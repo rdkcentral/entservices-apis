@@ -217,6 +217,10 @@ namespace Exchange {
 
         ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x210,
         ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1
+
+        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x240,
+        ID_HDMI_CEC_SOURCE_DEVICE_LIST_Iterator          = ID_HDMI_CEC_SOURCE + 1,
+        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
     };
 }
 }
