@@ -31,6 +31,15 @@ namespace WPEFramework
         struct EXTERNAL IHdmiCecSource : virtual public Core::IUnknown {
             enum { ID = ID_HDMI_CEC_SOURCE };
 
+            struct HdmiCecSourceDevices
+            {
+                uint8_t logicalAddress;
+                string vendorId;
+                string osdName;
+            }
+
+            using IHdmiCecSourceDeviceListIterator = RPC::IIteratorType<HdmiCecSourceDevices, ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR>;
+
 
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
@@ -125,6 +134,8 @@ namespace WPEFramework
             // @text setVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
             virtual uint32_t SetVendorId(const string vendorId /* @in */) = 0;
+
+            virtual uint32_t GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */) const = 0;
         };
 } // namespace Exchange
 } // namespace WPEFramework
