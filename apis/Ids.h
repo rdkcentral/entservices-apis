@@ -216,7 +216,10 @@ namespace Exchange {
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
 
         ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x210,
-        ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1
+        ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1,
+
+        ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x220,
+        ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
     };
 }
 }
