@@ -36,7 +36,7 @@ namespace WPEFramework
                 uint8_t logicalAddress;
                 string vendorId;
                 string osdName;
-            }
+            };
 
             using IHdmiCecSourceDeviceListIterator = RPC::IIteratorType<HdmiCecSourceDevices, ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR>;
 
