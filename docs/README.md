@@ -1,6 +1,6 @@
-# RDK Services API Documentation
+# ENT Services API Documentation
 
-This project houses required resources for RDK Services API documentation. The documentation is hosted as a static web site on Github and is created using the Docsify site generator.
+This project houses required resources for ENT Services API documentation. The documentation is hosted as a static web site on Github and is created using the Docsify site generator.
 
 [View Latest Documentation](https://github.io/rdkservices/#/README ***FIX THIS)
 

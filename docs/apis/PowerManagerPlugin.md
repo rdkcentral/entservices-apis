@@ -43,7 +43,7 @@ The table below lists configuration options of the plugin.
 
 The following methods are provided by the org.rdk.PowerManager plugin:
 
-PowerManager interface methods:
+org.rdk.PowerManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -54,7 +54,7 @@ PowerManager interface methods:
 | [setOvertempGraceInterval](#setOvertempGraceInterval) | Sets the over-temperature grace interval value |
 | [setPowerState](#setPowerState) | Sets the power state of the device |
 | [setDeepSleepTimer](#setDeepSleepTimer) | Sets the deep sleep timeout period |
-| [getWakeupReason](#getWakeupReason) | Returns the reason for the device coming out of deep sleep |
+| [getLastWakeupReason](#getLastWakeupReason) | Returns the reason for the device coming out of deep sleep |
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode |
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device |
@@ -113,7 +113,7 @@ This method takes no parameters.
 <a name="getPowerState"></a>
 ## *getPowerState*
 
-Returns the current power state of the device.
+Returns the current power state of the device. The power state (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*).
 
 ### Events
 
@@ -128,7 +128,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
+| result.currentState | string | The current power state |
+| result.newState | string | The new power state |
 
 ### Example
 
@@ -149,7 +150,8 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "powerState": 2
+        "currentState": "STANDBY",
+        "newState": "ON"
     }
 }
 ```
@@ -172,7 +174,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.temperature | float | The temperature |
+| result?.currentTemperature | float | <sup>*(optional)*</sup> The temperature |
 
 ### Example
 
@@ -193,7 +195,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "temperature": 48.0
+        "currentTemperature": 48.0
     }
 }
 ```
@@ -264,8 +266,13 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -288,9 +295,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -303,21 +308,27 @@ Sets the power state of the device.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onPowerModeChanged](#onPowerModeChanged) | Triggers when the system power state changes |
+| [onPowerModeChanged](#onPowerModeChanged) | Triggers when the system power state changes. The power state (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*) |
 ### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
+| params?.keyCode | integer | <sup>*(optional)*</sup> power state changed keycode |
+| params.powerState | string | Set the new power state |
 | params.standbyReason | string | The reason for a standby state |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -329,7 +340,8 @@ Sets the power state of the device.
     "id": 42,
     "method": "org.rdk.PowerManager.setPowerState",
     "params": {
-        "powerState": 2,
+        "keyCode": 30,
+        "powerState": "ON",
         "standbyReason": "APIUnitTest"
     }
 }
@@ -341,9 +353,7 @@ Sets the power state of the device.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -361,14 +371,19 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deep_sleep_timeout | integer | The deep sleep timeout in seconds |
+| params?.timeOut | integer | <sup>*(optional)*</sup> The deep sleep timeout in seconds |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -380,7 +395,7 @@ No Events
     "id": 42,
     "method": "org.rdk.PowerManager.setDeepSleepTimer",
     "params": {
-        "deep_sleep_timeout": 3
+        "timeOut": 3
     }
 }
 ```
@@ -391,14 +406,12 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
-<a name="getWakeupReason"></a>
-## *getWakeupReason*
+<a name="getLastWakeupReason"></a>
+## *getLastWakeupReason*
 
 Returns the reason for the device coming out of deep sleep.
 
@@ -416,7 +429,6 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.wakeupReason | integer | The reason (must be one of the following: *WAKEUP_REASON_IR*, *WAKEUP_REASON_RCU_BT*, *WAKEUP_REASON_RCU_RF4CE*, *WAKEUP_REASON_GPIO*, *WAKEUP_REASON_LAN*, *WAKEUP_REASON_WLAN*, *WAKEUP_REASON_TIMER*, *WAKEUP_REASON_FRONT_PANEL*, *WAKEUP_REASON_WATCHDOG*, *WAKEUP_REASON_SOFTWARE_RESET*, *WAKEUP_REASON_THERMAL_RESET*, *WAKEUP_REASON_WARM_RESET*, *WAKEUP_REASON_COLDBOOT*, *WAKEUP_REASON_STR_AUTH_FAILURE*, *WAKEUP_REASON_CEC*, *WAKEUP_REASON_PRESENCE*, *WAKEUP_REASON_VOICE*, *WAKEUP_REASON_UNKNOWN*) |
-| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -426,7 +438,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.PowerManager.getWakeupReason"
+    "method": "org.rdk.PowerManager.getLastWakeupReason"
 }
 ```
 
@@ -437,8 +449,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "wakeupReason": 7,
-        "success": true
+        "wakeupReason": 7
     }
 }
 ```
@@ -462,7 +473,6 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.wakeupKeyCode | integer | The last wakeup keycode |
-| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -483,8 +493,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "wakeupKeyCode": 59,
-        "success": true
+        "wakeupKeyCode": 59
     }
 }
 ```
@@ -504,7 +513,9 @@ Requests that the system performs a reboot of the set-top box.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rebootReason | string | The reboot reason |
+| params?.rebootRequestor | string | <sup>*(optional)*</sup> Reboot requiested module |
+| params?.rebootReasonCustom | string | <sup>*(optional)*</sup> The reboot reason |
+| params?.rebootReasonOther | string | <sup>*(optional)*</sup> The reboot reason |
 
 ### Result
 
@@ -512,7 +523,6 @@ Requests that the system performs a reboot of the set-top box.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.IARM_Bus_Call_STATUS | integer | IARM BUS status |
-| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -524,7 +534,9 @@ Requests that the system performs a reboot of the set-top box.
     "id": 42,
     "method": "org.rdk.PowerManager.reboot",
     "params": {
-        "rebootReason": "FIRMWARE_FAILURE"
+        "rebootRequestor": "SystemServicesPlugin",
+        "rebootReasonCustom": "FIRMWARE_FAILURE",
+        "rebootReasonOther": "FIRMWARE_FAILURE"
     }
 }
 ```
@@ -536,8 +548,7 @@ Requests that the system performs a reboot of the set-top box.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "IARM_Bus_Call_STATUS": 0,
-        "success": true
+        "IARM_Bus_Call_STATUS": 0
     }
 }
 ```
@@ -560,8 +571,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.nwStandby | boolean | Whether `WakeOnLAN` and `WakeOnWLAN` is enabled (`true`); otherwise, `false` |
-| result.success | boolean | Whether the request succeeded |
+| result.standbyMode | boolean | Whether `WakeOnLAN` and `WakeOnWLAN` is enabled (`true`); otherwise, `false` |
 
 ### Example
 
@@ -582,8 +592,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "nwStandby": false,
-        "success": true
+        "standbyMode": false
     }
 }
 ```
@@ -602,14 +611,19 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.nwStandby | boolean | Whether `WakeOnLAN` and `WakeOnWLAN` is enabled (`true`); otherwise, `false` |
+| params.standbyMode | boolean | Whether `WakeOnLAN` and `WakeOnWLAN` is enabled (`true`); otherwise, `false` |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -621,7 +635,7 @@ No Events
     "id": 42,
     "method": "org.rdk.PowerManager.setNetworkStandbyMode",
     "params": {
-        "nwStandby": false
+        "standbyMode": false
     }
 }
 ```
@@ -632,9 +646,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -652,25 +664,20 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.powerState | integer | <sup>*(optional)*</sup> The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#] | object |  |
-| params.wakeupSources[#]?.WAKEUPSRC_VOICE | boolean | <sup>*(optional)*</sup> Voice Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_PRESENCE_DETECTION | boolean | <sup>*(optional)*</sup> Presense detection wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_BLUETOOTH | boolean | <sup>*(optional)*</sup> Bluetooth Wakeup |
-| params.wakeupSources[#]?.WAKEUPSRC_WIFI | boolean | <sup>*(optional)*</sup> WiFi Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_IR | boolean | <sup>*(optional)*</sup> IR Remote Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_POWER_KEY | boolean | <sup>*(optional)*</sup> Power Button Wake up - GPIO |
-| params.wakeupSources[#]?.WAKEUPSRC_CEC | boolean | <sup>*(optional)*</sup> HDMI CEC commadn Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_LAN | boolean | <sup>*(optional)*</sup> LAN wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_TIMER | boolean | <sup>*(optional)*</sup> TImer Wake up |
+| params?.powerState | integer | <sup>*(optional)*</sup> Enum indicating bit position, If the reason is STANDBY, the value is 4(bit counting starts at 1) (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*) |
+| params.wakeupSources | integer | Enum indicating bit position, If the reason is LAN, the value is 32(bit counting starts at 1) (must be one of the following: *WAKEUP_REASON_IR*, *WAKEUP_REASON_RCU_BT*, *WAKEUP_REASON_RCU_RF4CE*, *WAKEUP_REASON_GPIO*, *WAKEUP_REASON_LAN*, *WAKEUP_REASON_WLAN*, *WAKEUP_REASON_TIMER*, *WAKEUP_REASON_FRONT_PANEL*, *WAKEUP_REASON_WATCHDOG*, *WAKEUP_REASON_SOFTWARE_RESET*, *WAKEUP_REASON_THERMAL_RESET*, *WAKEUP_REASON_WARM_RESET*, *WAKEUP_REASON_COLDBOOT*, *WAKEUP_REASON_STR_AUTH_FAILURE*, *WAKEUP_REASON_CEC*, *WAKEUP_REASON_PRESENCE*, *WAKEUP_REASON_VOICE*, *WAKEUP_REASON_UNKNOWN*) |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -682,20 +689,8 @@ No Events
     "id": 42,
     "method": "org.rdk.PowerManager.setWakeupSrcConfig",
     "params": {
-        "powerState": 2,
-        "wakeupSources": [
-            {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
-            }
-        ]
+        "powerState": 4,
+        "wakeupSources": 6
     }
 }
 ```
@@ -706,9 +701,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -730,19 +723,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| result.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| result.wakeupSources[#] | object |  |
-| result.wakeupSources[#]?.WAKEUPSRC_VOICE | boolean | <sup>*(optional)*</sup> Voice Wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_PRESENCE_DETECTION | boolean | <sup>*(optional)*</sup> Presense detection wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_BLUETOOTH | boolean | <sup>*(optional)*</sup> Bluetooth Wakeup |
-| result.wakeupSources[#]?.WAKEUPSRC_WIFI | boolean | <sup>*(optional)*</sup> WiFi Wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_IR | boolean | <sup>*(optional)*</sup> IR Remote Wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_POWER_KEY | boolean | <sup>*(optional)*</sup> Power Button Wake up - GPIO |
-| result.wakeupSources[#]?.WAKEUPSRC_CEC | boolean | <sup>*(optional)*</sup> HDMI CEC commadn Wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_LAN | boolean | <sup>*(optional)*</sup> LAN wake up |
-| result.wakeupSources[#]?.WAKEUPSRC_TIMER | boolean | <sup>*(optional)*</sup> TImer Wake up |
-| result.success | boolean | Whether the request succeeded |
+| result.powerState | integer | Enum indicating bit position, If the reason is STANDBY, the value is 4(bit counting starts at 1) (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*) |
+| result.wakeupSources | integer | Enum indicating bit position, If the reason is LAN, the value is 32(bit counting starts at 1) (must be one of the following: *WAKEUP_REASON_IR*, *WAKEUP_REASON_RCU_BT*, *WAKEUP_REASON_RCU_RF4CE*, *WAKEUP_REASON_GPIO*, *WAKEUP_REASON_LAN*, *WAKEUP_REASON_WLAN*, *WAKEUP_REASON_TIMER*, *WAKEUP_REASON_FRONT_PANEL*, *WAKEUP_REASON_WATCHDOG*, *WAKEUP_REASON_SOFTWARE_RESET*, *WAKEUP_REASON_THERMAL_RESET*, *WAKEUP_REASON_WARM_RESET*, *WAKEUP_REASON_COLDBOOT*, *WAKEUP_REASON_STR_AUTH_FAILURE*, *WAKEUP_REASON_CEC*, *WAKEUP_REASON_PRESENCE*, *WAKEUP_REASON_VOICE*, *WAKEUP_REASON_UNKNOWN*) |
 
 ### Example
 
@@ -763,21 +745,8 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "powerState": 2,
-        "wakeupSources": [
-            {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
-            }
-        ],
-        "success": true
+        "powerState": 4,
+        "wakeupSources": 6
     }
 }
 ```
@@ -799,15 +768,20 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.currentMode | integer | Indicates the current operating mode of the STB (must be one of the following: *NORMAL*, *EAS*, *WAREHOUSE*) |
-| params.newMode | integer | Sets the desired operating mode for the STB (must be one of the following: *NORMAL*, *EAS*, *WAREHOUSE*) |
+| params.currentMode | integer | Indicates the current operating mode of the STB (must be one of the following: *UNKNOWN*, *NORMAL*, *EAS*, *WAREHOUSE*) |
+| params.newMode | integer | Sets the desired operating mode for the STB (must be one of the following: *UNKNOWN*, *NORMAL*, *EAS*, *WAREHOUSE*) |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -831,9 +805,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -855,8 +827,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | integer | The power state |
-| result.success | boolean | Whether the request succeeded |
+| result?.powerStateBeforeReboot | string | <sup>*(optional)*</sup> The power state |
 
 ### Example
 
@@ -877,8 +848,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "state": 2,
-        "success": true
+        "powerStateBeforeReboot": "ON"
     }
 }
 ```
@@ -904,8 +874,13 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -929,9 +904,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": "null"
 }
 ```
 
@@ -942,7 +915,7 @@ Notifications are autonomous events, triggered by the internals of the implement
 
 The following events are provided by the org.rdk.PowerManager plugin:
 
-PowerManager interface events:
+org.rdk.PowerManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -983,15 +956,15 @@ Triggered when an application invokes the reboot
 <a name="onPowerModeChanged"></a>
 ## *onPowerModeChanged*
 
-Triggered when the power manager detects a device power state change.
+Triggered when the power manager detects a device power state change. The power state (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*).
 
 ### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| params.currentPowerState | integer | The current power state |
+| params.currentState | string | The current power state |
+| params.newState | string | The new power state |
 
 ### Example
 
@@ -1000,8 +973,8 @@ Triggered when the power manager detects a device power state change.
     "jsonrpc": "2.0",
     "method": "client.events.onPowerModeChanged",
     "params": {
-        "powerState": 2,
-        "currentPowerState": 2
+        "currentState": "STANDBY",
+        "newState": "ON"
     }
 }
 ```
@@ -1009,15 +982,15 @@ Triggered when the power manager detects a device power state change.
 <a name="onPowerModePreChange"></a>
 ## *onPowerModePreChange*
 
-Triggered before change then device power state.
+Triggered before change then device power state. The power state (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*).
 
 ### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| params.currentPowerState | integer | The current power state |
+| params.currentState | string | The current power state |
+| params?.newState | string | <sup>*(optional)*</sup> The new power state |
 
 ### Example
 
@@ -1026,8 +999,8 @@ Triggered before change then device power state.
     "jsonrpc": "2.0",
     "method": "client.events.onPowerModePreChange",
     "params": {
-        "powerState": 2,
-        "currentPowerState": 2
+        "currentState": "STANDBY",
+        "newState": "ON"
     }
 }
 ```
@@ -1042,8 +1015,7 @@ Triggered when the power manager detects a device power state change to light sl
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | integer | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| params.currentPowerState | integer | The current power state |
+| params?.wakeupTimeout | integer | <sup>*(optional)*</sup> Timeout in seconds, to wakeup from deep sleep |
 
 ### Example
 
@@ -1052,8 +1024,7 @@ Triggered when the power manager detects a device power state change to light sl
     "jsonrpc": "2.0",
     "method": "client.events.onDeepSleepTimeout",
     "params": {
-        "powerState": 2,
-        "currentPowerState": 30
+        "wakeupTimeout": 30
     }
 }
 ```
@@ -1068,7 +1039,7 @@ Triggered when the network standby mode setting changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.nwStandby | boolean | Network standby mode |
+| params.enabled | boolean | Network standby mode |
 
 ### Example
 
@@ -1077,7 +1048,7 @@ Triggered when the network standby mode setting changes.
     "jsonrpc": "2.0",
     "method": "client.events.onNetworkStandbyModeChanged",
     "params": {
-        "nwStandby": true
+        "enabled": true
     }
 }
 ```
@@ -1092,9 +1063,9 @@ Triggered when the device temperature changes beyond the `WARN` or `MAX` limits 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.thresholdType | integer | The exceeded threshold (must be one of the following: *MAX*, *MIN*) |
-| params.exceeded | boolean | Whether the threshold exceeded the configured value |
-| params.temperature | float | The temperature |
+| params?.currentThermalLevel | string | <sup>*(optional)*</sup> The exceeded threshold |
+| params?.newThermalLevel | string | <sup>*(optional)*</sup> The exceeded threshold |
+| params?.currentTemperature | float | <sup>*(optional)*</sup> The temperature |
 
 ### Example
 
@@ -1103,9 +1074,9 @@ Triggered when the device temperature changes beyond the `WARN` or `MAX` limits 
     "jsonrpc": "2.0",
     "method": "client.events.onThermalModeChanged",
     "params": {
-        "thresholdType": 1,
-        "exceeded": true,
-        "temperature": 48.0
+        "currentThermalLevel": "HIGH",
+        "newThermalLevel": "NORMAL",
+        "currentTemperature": 48.0
     }
 }
 ```
