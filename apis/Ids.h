@@ -220,7 +220,7 @@ namespace Exchange {
         ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x220,
 
         ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x230,
-        ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1
+        ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1,
 
         ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x240,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
