@@ -1,48 +1,42 @@
 {
     "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
     "jsonrpc": "2.0",
-    "info":
-    {
-        "title": "UserSettings API methods",
+    "info": {
+        "title": "UserSettings API",
         "class": "org.rdk.UserSettings",
         "description": "The `UserSettings`, that is responsible for persisting and notifying listeners of any change of these settings.."
     },
-    "common": { "$ref": "../common/common.json" },
-    "definitions":
-	{
-        "preferredLanguages":
-		{
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "preferredLanguages": {
             "summary": "A prioritized list of ISO 639-2/B codes for the preferred audio languages",
             "type": "string",
             "example": "eng"
         },
-        "preferredCaptionsLanguages":
-		{
+        "preferredCaptionsLanguages": {
             "summary": "A prioritized list of ISO 639-2/B codes for the preferred captions languages",
             "type": "string",
             "example": "eng"
         },
-        "preferredClosedCaptionService":
-		{
+        "preferredClosedCaptionService": {
             "summary": "A string for the preferred closed captions service.  Valid values are AUTO, CC[1-4], TEXT[1-4], SERVICE[1-64] where CC and TEXT is CTA-608 and SERVICE is CTA-708.  AUTO indicates that the choice is left to the player",
             "type": "string",
             "example": "CC3"
         },
-        "presentationLanguage":
-		{
+        "presentationLanguage": {
             "summary": "The preferred presentationLanguage in a full BCP 47 value, including script, * region, variant The language set and used by Immerse UI",
             "type": "string",
             "example": "en-US"
         },
-        "viewingRestrictions":
-		{
-            "summary": "A JSON document that describes the rating scheme(s) and ratings that are blocked.",
+        "viewingRestrictions": {
+            "summary": "A project-specific representation of the time interval when viewing.",
             "type": "string",
             "example": "ALWAYS"
         },
-        "viewingRestrictionsWindow":
-		{
-            "summary": "A project-specific representation of the time interval.",
+        "viewingRestrictionsWindow": {
+            "summary": "A project-specific representation of the time interval",
             "type": "string",
             "example": "ALWAYS"
         },
@@ -53,342 +47,263 @@
             "example": "0.1 to 10"
         }
     },
-    "methods":
-	{
-        "setAudioDescription":
-		{
+    "methods": {
+        "setAudioDescription": {
             "summary": "Setting Audio Description.",
-			"events":
-			{
+			"events": {
                 "onAudioDescriptionChanged" : "Triggered when the audio description changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "enabled":
-					{
+                "properties": {
+                    "enabled": {
                         "summary": "Audio Description Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setPreferredAudioLanguages":
-		{
+        "setPreferredAudioLanguages": {
             "summary": "Setting Preferred Audio Languages.",
-			"events":
-			{
+			"events": {
                 "onPreferredAudioLanguagesChanged" : "Triggered when the audio preferred Audio languages changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "preferredLanguages":
-					{
+                "properties": {
+                    "preferredLanguages": {
                         "$ref": "#/definitions/preferredLanguages"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setPresentationLanguage":
-		{
+        "setPresentationLanguage": {
             "summary": "Setting Presentation Languages.",
-			"events":
-			{
+			"events": {
                 "onPresentationLanguageChanged" : "Triggered when the presentation Language changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "presentationLanguage":
-					{
+                "properties": {
+                    "presentationLanguage": {
                         "$ref": "#/definitions/presentationLanguage"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setCaptions":
-		{
+        "setCaptions": {
             "summary": "Setting Captions.",
-			"events":
-			{
+			"events": {
                 "onCaptionsChanged" : "Triggered when the captions changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "enabled":
-					{
+                "properties": {
+                    "enabled": {
                         "summary": "Captions Enabled: true/false",
                         "type": "boolean",
                         "example": true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setPreferredCaptionsLanguages":
-		{
+        "setPreferredCaptionsLanguages": {
             "summary": "Setting PreferredCaption Languages.",
-			"events":
-			{
+			"events": {
                 "onPreferredCaptionsLanguagesChanged" : "Triggered when the PreferredCaption Languages changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "preferredLanguages":
-					{
+                "properties": {
+                    "preferredLanguages": {
                         "$ref": "#/definitions/preferredCaptionsLanguages"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setPreferredClosedCaptionService":
-		{
+        "setPreferredClosedCaptionService": {
             "summary": "Setting Preferred Closed Caption Service.",
-			"events":
-			{
+			"events": {
                 "onPreferredClosedCaptionServiceChanged" : "Triggered when the Preferred Closed Caption changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "service":
-					{
+                "properties": {
+                    "service": {
                         "$ref": "#/definitions/preferredClosedCaptionService"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setPinControl":
-		{
+	"setPinControl": {
             "summary": "Setting PinControl.",
-			"events":
-			{
+			"events": {
                 "onPinControlChanged" : "Triggered when the pincontrol changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "pinControl":
-					{
+                "properties": {
+                    "pinControl": {
                         "summary": "PinControl Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setViewingRestrictions":
-		{
+	    "setViewingRestrictions": {
             "summary": "Setting ViewingRestrictions.",
-			"events": 
-			{
+			"events": {
                 "onViewingRestrictionsChanged" : "Triggered when the viewingRestrictions changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "viewingRestrictions":
-					{
+                "properties": {
+                    "viewingRestrictions": {
                         "$ref": "#/definitions/viewingRestrictions"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-        "setViewingRestrictionsWindow":
-		{
+        "setViewingRestrictionsWindow": {
             "summary": "Setting viewingRestrictionsWindow.",
-			"events":
-			{
+			"events": {
                 "onViewingRestrictionsWindowChanged" : "Triggered when the viewingRestrictionsWindow changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "viewingRestrictionsWindow":
-					{
+                "properties": {
+                    "viewingRestrictionsWindow": {
                         "$ref": "#/definitions/viewingRestrictionsWindow"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setLiveWatershed":
-		{
+	"setLiveWatershed": {
             "summary": "Setting LiveWatershed.",
-			"events":
-			{
+			"events": {
                 "onLiveWatershedChanged" : "Triggered when the liveWatershed changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "liveWatershed":
-					{
+                "properties": {
+                    "liveWatershed": {
                         "summary": "LiveWatershed Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setPlaybackWatershed":
-		{
+	    "setPlaybackWatershed": {
             "summary": "Setting PlaybackWatershed.",
-			"events":
-			{
+			"events": {
                 "onPlaybackWatershedChanged" : "Triggered when the playbackWatershed changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "playbackWatershed":
-					{
+                "properties": {
+                    "playbackWatershed": {
                         "summary": "PlaybackWatershed Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setBlockNotRatedContent":
-		{
+	    "setBlockNotRatedContent": {
             "summary": "Setting BlockNotRatedContent.",
-			"events":
-			{
+			"events": {
                 "onBlockNotRatedContentChanged" : "Triggered when the blockNotRatedContent changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "blockNotRatedContent":
-					{
+                "properties": {
+                    "blockNotRatedContent": {
                         "summary": "BlockNotRatedContent Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setPinOnPurchase":
-		{
+	    "setPinOnPurchase": {
             "summary": "Setting setPinOnPurchase",
-			"events":
-			{
+			"events": {
                 "onPinOnPurchaseChanged" : "Triggered when the pin on the purchase changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "pinOnPurchase":
-					{
+                "properties": {
+                    "pinOnPurchase": {
                         "summary": "setPinOnPurchase Enabled: true/false",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
@@ -503,116 +418,91 @@
         "getAudioDescription":
 		{
             "summary": "Returns Audio Description.",
-            "result":
-			{
+            "result": {
                 "summary": "Audio Description Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getPreferredAudioLanguages":
-		{
+        "getPreferredAudioLanguages":{
             "summary": "Returns Preferred Audio Languages.",
-            "result":
-			{
+            "result": {
                 "$ref": "#/definitions/preferredLanguages"
             }
         },
-        "getPresentationLanguage":
-		{
+        "getPresentationLanguage":{
             "summary": "Getting Presentation Languages.",
-            "result":
-			{
+            "result": {
                 "$ref": "#/definitions/presentationLanguage"
             }
         },
-        "getCaptions":
-		{
+        "getCaptions":{
             "summary": "Getting Captions Enabled.",
-            "result":
-			{
+            "result": {
                 "summary": "Captions Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getPreferredCaptionsLanguages":
-		{
+        "getPreferredCaptionsLanguages":{
             "summary": "Getting Preferred Caption Languages.",
-            "result":
-			{
+            "result": {
                 "$ref": "#/definitions/preferredCaptionsLanguages"
             }
         },
-        "getPreferredClosedCaptionService":
-		{
+        "getPreferredClosedCaptionService":{
             "summary": "Getting Preferred ClosedCaption Service.",
-            "result":
-			{
+            "result": {
                 "$ref": "#/definitions/preferredClosedCaptionService"
             }
         },
-	    "getPinControl":
-		{
+	    "getPinControl":{
             "summary": "Returns Pin Control.",
-            "result":
-			{
+            "result": {
                 "summary": "Pin Control Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getViewingRestrictions":
-		{
+        "getViewingRestrictions":{
             "summary": "Returns Get Viewing Restrictions.",
-            "result":
-			{
+            "result": {
               "$ref": "#/definitions/viewingRestrictions"
             }
         },
-        "getViewingRestrictionsWindow":
-		{
+        "getViewingRestrictionsWindow":{
             "summary": "Returns Get Viewing Restrictions Window.",
-            "result":
-			{
+            "result": {
               "$ref": "#/definitions/viewingRestrictionsWindow"
             }
         },
-        "getLiveWatershed":
-		{
+        "getLiveWatershed":{
             "summary": "Returns Live Watershed.",
-            "result":
-			{
+            "result": {
                 "summary": "Live Watershed Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getPlaybackWatershed":
-		{
+        "getPlaybackWatershed":{
             "summary": "Returns Playback Watershed.",
-            "result":
-			{
+            "result": {
                 "summary": "Playback Watershed Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getBlockNotRatedContent":
-		{
+        "getBlockNotRatedContent":{
             "summary": "Returns BlockNotRatedContent.",
-            "result":
-			{
+            "result": {
                 "summary": "BlockNotRatedContent Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
         },
-        "getPinOnPurchase":
-		{
+        "getPinOnPurchase":{
             "summary": "Returns PinOnPurchase.",
-            "result":
-			{
+            "result": {
                 "summary": "PinOnPurchase Enabled: true/false",
                 "type": "boolean",
                 "example": true
@@ -866,7 +756,6 @@
                 "required": [
                     "pinOnPurchase"
                 ]
-            }
         },
 		"onHighContrastChanged": {
             "summary": "Triggered after the high contrast settings changes(see `SetHighContrast`)",
@@ -877,12 +766,12 @@
                         "summary": "Receive high contrast enabled or not.",
                         "type": "boolean",
                         "example": true
-                    }
+        }
                 },
                 "required": [
                     "enabled"
                 ]
-            }
+    }
         },
 		"onVoiceGuidanceChanged": {
             "summary": "Triggered after the voice guidance enabled settings changes.(see `SetVoiceGuidance`)",
@@ -893,7 +782,7 @@
                         "summary": "Receive voice guidance enabled or not.",
                         "type": "boolean",
                         "example": true
-                    }
+}
                 },
                 "required": [
                     "enabled"
