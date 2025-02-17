@@ -220,7 +220,18 @@ namespace Exchange {
         ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x220,
 
         ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x230,
-        ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1
+        ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1,
+
+        ID_PACKAGE_MANAGER_NEW                       = ID_ENTOS_OFFSET + 0x250,
+        ID_PACKAGE_DOWNLOADER                        = ID_PACKAGE_MANAGER_NEW + 1,
+        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_PACKAGE_MANAGER_NEW + 2,
+        ID_PACKAGE_INSTALLER                         = ID_PACKAGE_MANAGER_NEW + 3,
+        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_PACKAGE_MANAGER_NEW + 4,
+        ID_PACKAGE_HANDLER                           = ID_PACKAGE_MANAGER_NEW + 5,
+        ID_PACKAGE_INFO_ITERATOR                     = ID_PACKAGE_MANAGER_NEW + 7,
+        ID_PACKAGE_ITERATOR                          = ID_PACKAGE_MANAGER_NEW + 8,
+        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_PACKAGE_MANAGER_NEW + 9
+
     };
 }
 }
