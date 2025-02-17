@@ -28,10 +28,15 @@ namespace Exchange {
             PERSISTENCE_FAILURE
     };
         struct Package {
+            // @brief PackageId
             string packageId;
+            // @brief Version
             string version;
+            // @brief PackageState
             PackageLifecycleState packageState;
+            // @brief Digest
             string digest;
+            // @brief SizeKb
             uint64_t sizeKb;
         };
         using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
@@ -54,11 +59,14 @@ namespace Exchange {
         virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0;
 
         struct EXTERNAL KeyValue  {
+            // @brief Key
             string key;
+            // @brief Value
             string value;
         };
         using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGE_KEY_VALUE_ITERATOR>;
 
+        // @brief Install
         // @text install
         // @param packageId: Package Id
         // @param version: Version
@@ -71,6 +79,7 @@ namespace Exchange {
             const string &fileLocator,
             FailReason &reason /* @out */) = 0;
 
+        // @brief Uninstall
         // @text uninstall
         // @param packageId: Package Id
         virtual Core::hresult Uninstall(
@@ -78,9 +87,11 @@ namespace Exchange {
             string &errorReason /* @out */
             ) = 0;
 
+        // @brief ListPackages
         // @text listPackages
         virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
 
+        // @brief Config
         // @text config
         // @param packageId: Package Id
         // @param version: Version
@@ -90,6 +101,7 @@ namespace Exchange {
             string &config /* @out */   // XXX: JsonObject ?!
             ) = 0;
 
+        // @brief PackageState
         // @text packageState
         // @param packageId: Package Id
         // @param version: Version

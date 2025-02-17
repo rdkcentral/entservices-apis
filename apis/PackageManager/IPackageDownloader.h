@@ -42,6 +42,7 @@ namespace Exchange {
         virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
         virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
 
+	    // @brief Download
         // @text download
         // @param url: Download url
         virtual Core::hresult Download(
@@ -51,33 +52,40 @@ namespace Exchange {
             const uint64_t rateLimit /* @optional */,
             string &downloadId /* @out */) = 0;
 
+        // @brief Pause
         // @text pause
         // @param downloadId: Download id
         virtual Core::hresult Pause(const string &downloadId) = 0;
 
+        // @brief Resume
         // @text resume
         // @param downloadId: Download id
         virtual Core::hresult Resume(const string &downloadId) = 0;
 
+        // @brief Cancel
         // @text cancel
         // @param downloadId: Download id
         virtual Core::hresult Cancel(const string &downloadId) = 0;
 
+        // @brief Delete
         // @text delete
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
+        // @brief Delete
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
             uint8_t &percent /* @out */) = 0;
 
+        // @brief GetStorageDetails
         // @text getStorageDetails
         virtual Core::hresult GetStorageDetails(
             uint32_t &quotaKB /* @out */,
             uint32_t &usedKB  /* @out */) = 0;
 
+        // @brief RateLimit
         // @text rateLimit
         // @param downloadId: Download id
         virtual Core::hresult RateLimit(const string &downloadId, uint64_t &limit /* @out */) = 0;

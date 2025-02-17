@@ -14,6 +14,7 @@ namespace Exchange {
             LAUNCH
         };
 
+        // @brief Lock
         // @text lock
         // @param packageId: Package Id
         // @param version: Version
@@ -33,6 +34,7 @@ namespace Exchange {
             // XXX: appContextPath ?!
             ) = 0;
 
+        // @brief Unlock
         // @text unlock
         // @param packageId: Package Id
         // @param version: Version
@@ -40,6 +42,7 @@ namespace Exchange {
             const string &packageId,
             const string &version) = 0;
 
+        // @brief GetLockedInfo
         // @text getLockedInfo
         // @param packageId: Package Id
         // @param version: Version
