@@ -35,8 +35,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
         enum { ID = ID_USER_SETTINGS_NOTIFICATION };
 
         // Constructor
-        INotification() = delete;
-        INotification(const INotification&) = delete;
+        INotification() {};
 
         // Destructor
         virtual ~INotification() {};
