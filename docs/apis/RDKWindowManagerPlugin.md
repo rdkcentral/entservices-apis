@@ -1,5 +1,5 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.RDKWindowManager_Plugin"></a>
+<a name="RDKWindowManager_Plugin"></a>
 # RDKWindowManager Plugin
 
 **Version: [1.0.0]()**
@@ -8,25 +8,25 @@ A org.rdk.RDKWindowManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `RDKWindowManager`plugin controls the management of composition, layout, Z order, and key handling.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRDKWindowManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.RDKWindowManager plugin:
@@ -47,27 +47,27 @@ RDKWindowManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [addKeyIntercept](#method.addKeyIntercept) | Adds a key intercept to the client application specified |
-| [addKeyIntercepts](#method.addKeyIntercepts) | Adds the list of key intercepts |
-| [addKeyListener](#method.addKeyListener) | Adds a key listener to an application |
-| [createDisplay](#method.createDisplay) |  Creates a display for the specified client using the configuration parameters |
-| [enableInactivityReporting](#method.enableInactivityReporting) | Enables or disables inactivity reporting and events |
-| [enableInputEvents](#method.enableInputEvents) | Enables KeyInputEvents for list of clients specified |
-| [enableKeyRepeats](#method.enableKeyRepeats) | Enables or disables key repeats |
-| [generateKey](#method.generateKey) | Triggers the key events (key press and release) |
-| [getClients](#method.getClients) | Gets a list of clients |
-| [getKeyRepeatsEnabled](#method.getKeyRepeatsEnabled) | Returns whether key repeating is enabled or disabled |
-| [ignoreKeyInputs](#method.ignoreKeyInputs) | Blocks user key inputs |
-| [injectKey](#method.injectKey) | Injects the keys |
-| [keyRepeatConfig](#method.keyRepeatConfig) | Configuration for keyrepeat |
-| [removeKeyIntercept](#method.removeKeyIntercept) | Removes a key intercept |
-| [removeKeyListener](#method.removeKeyListener) | Removes a key listener for an application |
-| [resetInactivityTime](#method.resetInactivityTime) | Resets the inactivity notification interval |
-| [setInactivityInterval](#method.setInactivityInterval) | Sets the inactivity notification interval |
+| [addKeyIntercept](#addKeyIntercept) | Adds a key intercept to the client application specified |
+| [addKeyIntercepts](#addKeyIntercepts) | Adds the list of key intercepts |
+| [addKeyListener](#addKeyListener) | Adds a key listener to an application |
+| [createDisplay](#createDisplay) |  Creates a display for the specified client using the configuration parameters |
+| [enableInactivityReporting](#enableInactivityReporting) | Enables or disables inactivity reporting and events |
+| [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
+| [enableKeyRepeats](#enableKeyRepeats) | Enables or disables key repeats |
+| [generateKey](#generateKey) | Triggers the key events (key press and release) |
+| [getClients](#getClients) | Gets a list of clients |
+| [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Returns whether key repeating is enabled or disabled |
+| [ignoreKeyInputs](#ignoreKeyInputs) | Blocks user key inputs |
+| [injectKey](#injectKey) | Injects the keys |
+| [keyRepeatConfig](#keyRepeatConfig) | Configuration for keyrepeat |
+| [removeKeyIntercept](#removeKeyIntercept) | Removes a key intercept |
+| [removeKeyListener](#removeKeyListener) | Removes a key listener for an application |
+| [resetInactivityTime](#resetInactivityTime) | Resets the inactivity notification interval |
+| [setInactivityInterval](#setInactivityInterval) | Sets the inactivity notification interval |
 
 
-<a name="method.addKeyIntercept"></a>
-## *addKeyIntercept [<sup>method</sup>](#head.Methods)*
+<a name="addKeyIntercept"></a>
+## *addKeyIntercept*
 
 Adds a key intercept to the client application specified. The keys are specified by a key code and a set of modifiers. Regardless of the application that has focus, key presses that match the key code and modifiers will be sent to the client application.
 
@@ -113,8 +113,8 @@ No Events
 }
 ```
 
-<a name="method.addKeyIntercepts"></a>
-## *addKeyIntercepts [<sup>method</sup>](#head.Methods)*
+<a name="addKeyIntercepts"></a>
+## *addKeyIntercepts*
 
 Adds the list of key intercepts.
 
@@ -160,8 +160,8 @@ No Events
 }
 ```
 
-<a name="method.addKeyListener"></a>
-## *addKeyListener [<sup>method</sup>](#head.Methods)*
+<a name="addKeyListener"></a>
+## *addKeyListener*
 
 Adds a key listener to an application. The keys are bubbled up based on their z-order.
 
@@ -207,8 +207,8 @@ No Events
 }
 ```
 
-<a name="method.createDisplay"></a>
-## *createDisplay [<sup>method</sup>](#head.Methods)*
+<a name="createDisplay"></a>
+## *createDisplay*
 
  Creates a display for the specified client using the configuration parameters.
 
@@ -254,8 +254,8 @@ No Events
 }
 ```
 
-<a name="method.enableInactivityReporting"></a>
-## *enableInactivityReporting [<sup>method</sup>](#head.Methods)*
+<a name="enableInactivityReporting"></a>
+## *enableInactivityReporting*
 
 Enables or disables inactivity reporting and events.
 
@@ -301,8 +301,8 @@ No Events
 }
 ```
 
-<a name="method.enableInputEvents"></a>
-## *enableInputEvents [<sup>method</sup>](#head.Methods)*
+<a name="enableInputEvents"></a>
+## *enableInputEvents*
 
 Enables KeyInputEvents for list of clients specified.
 
@@ -350,8 +350,8 @@ No Events
 }
 ```
 
-<a name="method.enableKeyRepeats"></a>
-## *enableKeyRepeats [<sup>method</sup>](#head.Methods)*
+<a name="enableKeyRepeats"></a>
+## *enableKeyRepeats*
 
 Enables or disables key repeats.
 
@@ -397,8 +397,8 @@ No Events
 }
 ```
 
-<a name="method.generateKey"></a>
-## *generateKey [<sup>method</sup>](#head.Methods)*
+<a name="generateKey"></a>
+## *generateKey*
 
 Triggers the key events (key press and release).
 
@@ -446,8 +446,8 @@ No Events
 }
 ```
 
-<a name="method.getClients"></a>
-## *getClients [<sup>method</sup>](#head.Methods)*
+<a name="getClients"></a>
+## *getClients*
 
 Gets a list of clients.
 
@@ -487,8 +487,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getKeyRepeatsEnabled"></a>
-## *getKeyRepeatsEnabled [<sup>method</sup>](#head.Methods)*
+<a name="getKeyRepeatsEnabled"></a>
+## *getKeyRepeatsEnabled*
 
 Returns whether key repeating is enabled or disabled.
 
@@ -531,8 +531,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.ignoreKeyInputs"></a>
-## *ignoreKeyInputs [<sup>method</sup>](#head.Methods)*
+<a name="ignoreKeyInputs"></a>
+## *ignoreKeyInputs*
 
 Blocks user key inputs.
 
@@ -578,8 +578,8 @@ No Events
 }
 ```
 
-<a name="method.injectKey"></a>
-## *injectKey [<sup>method</sup>](#head.Methods)*
+<a name="injectKey"></a>
+## *injectKey*
 
 Injects the keys.
 
@@ -627,8 +627,8 @@ No Events
 }
 ```
 
-<a name="method.keyRepeatConfig"></a>
-## *keyRepeatConfig [<sup>method</sup>](#head.Methods)*
+<a name="keyRepeatConfig"></a>
+## *keyRepeatConfig*
 
 Configuration for keyrepeat.
 
@@ -676,8 +676,8 @@ No Events
 }
 ```
 
-<a name="method.removeKeyIntercept"></a>
-## *removeKeyIntercept [<sup>method</sup>](#head.Methods)*
+<a name="removeKeyIntercept"></a>
+## *removeKeyIntercept*
 
 Removes a key intercept.
 
@@ -723,8 +723,8 @@ No Events
 }
 ```
 
-<a name="method.removeKeyListener"></a>
-## *removeKeyListener [<sup>method</sup>](#head.Methods)*
+<a name="removeKeyListener"></a>
+## *removeKeyListener*
 
 Removes a key listener for an application.
 
@@ -770,8 +770,8 @@ No Events
 }
 ```
 
-<a name="method.resetInactivityTime"></a>
-## *resetInactivityTime [<sup>method</sup>](#head.Methods)*
+<a name="resetInactivityTime"></a>
+## *resetInactivityTime*
 
 Resets the inactivity notification interval.
 
@@ -811,8 +811,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setInactivityInterval"></a>
-## *setInactivityInterval [<sup>method</sup>](#head.Methods)*
+<a name="setInactivityInterval"></a>
+## *setInactivityInterval*
 
 Sets the inactivity notification interval.
 
@@ -820,7 +820,7 @@ Sets the inactivity notification interval.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onUserInactivity](#event.onUserInactivity) | Triggers only if the device is inactive for the specified time interval |
+| [onUserInactivity](#onUserInactivity) | Triggers only if the device is inactive for the specified time interval |
 ### Parameters
 
 | Name | Type | Description |
@@ -859,10 +859,10 @@ Sets the inactivity notification interval.
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.RDKWindowManager plugin:
 
@@ -870,11 +870,11 @@ RDKWindowManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onUserInactivity](#event.onUserInactivity) | Triggered when a device has been inactive for a period of time |
+| [onUserInactivity](#onUserInactivity) | Triggered when a device has been inactive for a period of time |
 
 
-<a name="event.onUserInactivity"></a>
-## *onUserInactivity [<sup>event</sup>](#head.Notifications)*
+<a name="onUserInactivity"></a>
+## *onUserInactivity*
 
 Triggered when a device has been inactive for a period of time. This event is broadcasted at the frequency specified by `setInactivityInterval` if the device is not active. The default frequency is 15 minutes.
 

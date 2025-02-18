@@ -1,5 +1,5 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.USBMassStorage_Plugin"></a>
+<a name="USBMassStorage_Plugin"></a>
 # USBMassStorage Plugin
 
 **Version: [1.0.0]()**
@@ -8,25 +8,25 @@ A org.rdk.UsbMassStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `USBMassStorage` plugin is using For mounting the file system on mass storage and enumeration of mount points.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBMassStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.UsbMassStorage plugin:
@@ -47,13 +47,13 @@ org.rdk.UsbMassStorage interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDeviceList](#method.getDeviceList) | Retrieve the list of connected USB storage devices |
-| [getMountPoints](#method.getMountPoints) | Retrieve the mount info list by given USB storage device name |
-| [getPartitionInfo](#method.getPartitionInfo) | Get the partition information for the given mount path |
+| [getDeviceList](#getDeviceList) | Retrieve the list of connected USB storage devices |
+| [getMountPoints](#getMountPoints) | Retrieve the mount info list by given USB storage device name |
+| [getPartitionInfo](#getPartitionInfo) | Get the partition information for the given mount path |
 
 
-<a name="method.getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#head.Methods)*
+<a name="getDeviceList"></a>
+## *getDeviceList*
 
 Retrieve the list of connected USB storage devices.
 
@@ -103,8 +103,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getMountPoints"></a>
-## *getMountPoints [<sup>method</sup>](#head.Methods)*
+<a name="getMountPoints"></a>
+## *getMountPoints*
 
 Retrieve the mount info list by given USB storage device name.
 
@@ -162,8 +162,8 @@ No Events
 }
 ```
 
-<a name="method.getPartitionInfo"></a>
-## *getPartitionInfo [<sup>method</sup>](#head.Methods)*
+<a name="getPartitionInfo"></a>
+## *getPartitionInfo*
 
 Get the partition information for the given mount path.
 
@@ -229,10 +229,10 @@ No Events
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.UsbMassStorage plugin:
 
@@ -240,12 +240,12 @@ org.rdk.UsbMassStorage interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDeviceMounted](#event.onDeviceMounted) | Triggered after the device partitions are mounted |
-| [OnDeviceUnmounted](#event.OnDeviceUnmounted) | Triggered after the device partitions are unmounted |
+| [onDeviceMounted](#onDeviceMounted) | Triggered after the device partitions are mounted |
+| [onDeviceUnmounted](#onDeviceUnmounted) | Triggered after the device partitions are unmounted |
 
 
-<a name="event.onDeviceMounted"></a>
-## *onDeviceMounted [<sup>event</sup>](#head.Notifications)*
+<a name="onDeviceMounted"></a>
+## *onDeviceMounted*
 
 Triggered after the device partitions are mounted.
 
@@ -280,8 +280,8 @@ Triggered after the device partitions are mounted.
 }
 ```
 
-<a name="event.OnDeviceUnmounted"></a>
-## *onDeviceUnmounted [<sup>event</sup>](#head.Notifications)*
+<a name="onDeviceUnmounted"></a>
+## *onDeviceUnmounted*
 
 Triggered after the device partitions are unmounted.
 

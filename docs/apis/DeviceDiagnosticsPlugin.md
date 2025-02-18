@@ -158,7 +158,7 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "milestones": [
-            "2020 Jan 28 08:24:06.762355 abcpq1 systemd[1]: Starting Log RDK Started Service..."
+            "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
         ],
         "success": true
     }

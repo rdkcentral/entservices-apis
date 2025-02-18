@@ -1,6 +1,6 @@
-# RDK Services Documentation
+# ENT Services Documentation
 
-> RDK services are a set of services that provides access to various components and features that are available on RDK based entertainment devices. Application developers use these services over COMRPC or JSON-RPC to build interactive applications that provide a robust user experience.
+> ENT services are a set of services that provides access to various components and features that are available on RDK based entertainment devices. Application developers use these services over COMRPC or JSON-RPC to build interactive applications that provide a robust user experience.
 
 ## Get Started
 

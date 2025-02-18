@@ -1,5 +1,5 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.USBDevice_Plugin"></a>
+<a name="USBDevice_Plugin"></a>
 # USBDevice Plugin
 
 **Version: [1.0.0]()**
@@ -8,25 +8,25 @@ A org.rdk.UsbDevice plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `USBDevice`Plugin is responsible for notifying and providing information about USB devices attached to the host system.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBDevice.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.UsbDevice plugin:
@@ -47,14 +47,14 @@ org.rdk.UsbDevice interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDeviceList](#method.getDeviceList) | Gets the device information of the connected USB Devices |
-| [getDeviceInfo](#method.getDeviceInfo) | Gets detailed device information for the given device name |
-| [bindDriver](#method.bindDriver) | Binds the respective driver for the device |
-| [unbindDriver](#method.unbindDriver) | Unbinds the respective driver for the device |
+| [getDeviceList](#getDeviceList) | Gets the device information of the connected USB Devices |
+| [getDeviceInfo](#getDeviceInfo) | Gets detailed device information for the given device name |
+| [bindDriver](#bindDriver) | Binds the respective driver for the device |
+| [unbindDriver](#unbindDriver) | Unbinds the respective driver for the device |
 
 
-<a name="method.getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#head.Methods)*
+<a name="getDeviceList"></a>
+## *getDeviceList*
 
 Gets the device information of the connected USB Devices.
 
@@ -118,8 +118,8 @@ No Events
 }
 ```
 
-<a name="method.getDeviceInfo"></a>
-## *getDeviceInfo [<sup>method</sup>](#head.Methods)*
+<a name="getDeviceInfo"></a>
+## *getDeviceInfo*
 
 Gets detailed device information for the given device name.
 
@@ -257,8 +257,8 @@ No Events
 }
 ```
 
-<a name="method.bindDriver"></a>
-## *bindDriver [<sup>method</sup>](#head.Methods)*
+<a name="bindDriver"></a>
+## *bindDriver*
 
 Binds the respective driver for the device.
 
@@ -310,8 +310,8 @@ No Events
 }
 ```
 
-<a name="method.unbindDriver"></a>
-## *unbindDriver [<sup>method</sup>](#head.Methods)*
+<a name="unbindDriver"></a>
+## *unbindDriver*
 
 Unbinds the respective driver for the device.
 
@@ -363,10 +363,10 @@ No Events
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.UsbDevice plugin:
 
@@ -374,12 +374,12 @@ org.rdk.UsbDevice interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDevicePluggedIn](#event.onDevicePluggedIn) | Device Plugged in notification |
-| [onDevicePluggedOut](#event.onDevicePluggedOut) | Device Plugged out notification |
+| [onDevicePluggedIn](#onDevicePluggedIn) | Device Plugged in notification |
+| [onDevicePluggedOut](#onDevicePluggedOut) | Device Plugged out notification |
 
 
-<a name="event.onDevicePluggedIn"></a>
-## *onDevicePluggedIn [<sup>event</sup>](#head.Notifications)*
+<a name="onDevicePluggedIn"></a>
+## *onDevicePluggedIn*
 
 Device Plugged in notification.
 
@@ -411,8 +411,8 @@ Device Plugged in notification.
 }
 ```
 
-<a name="event.onDevicePluggedOut"></a>
-## *onDevicePluggedOut [<sup>event</sup>](#head.Notifications)*
+<a name="onDevicePluggedOut"></a>
+## *onDevicePluggedOut*
 
 Device Plugged out notification.
 

@@ -191,7 +191,6 @@ namespace Exchange {
         ID_LIFECYCLE_MANAGER_NOTIFICATION            = ID_LIFECYCLE_MANAGER + 1,
         ID_LIFECYCLE_MANAGER_STATE                   = ID_LIFECYCLE_MANAGER + 2,
         ID_LIFECYCLE_MANAGER_RUNTIME                 = ID_LIFECYCLE_MANAGER + 3,
-        ID_LIFECYCLE_MANAGER_STATE_HOOK              = ID_LIFECYCLE_MANAGER + 4,
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x200,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
@@ -218,8 +217,17 @@ namespace Exchange {
         ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x210,
         ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1,
 
+        ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x220,
+
+        ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x230,
+        ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1,
+
+        ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x240,
+        ID_OCICONTAINER_NOTIFICATION                 = ID_OCICONTAINER + 1,
+
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
+
     };
 }
 }

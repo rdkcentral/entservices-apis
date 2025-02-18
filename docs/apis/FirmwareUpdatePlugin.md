@@ -2,7 +2,7 @@
 <a name="Firmware_Update_Plugin"></a>
 # Firmware Update Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/SystemMode/CHANGELOG.md)**
+**Version: [1.0.0]()**
 
 A org.rdk.FirmwareUpdate plugin for Thunder framework.
 
@@ -17,7 +17,7 @@ A org.rdk.FirmwareUpdate plugin for Thunder framework.
 <a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
 <a name="Description"></a>
 # Description
