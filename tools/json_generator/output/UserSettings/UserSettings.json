@@ -40,11 +40,11 @@
             "type": "string",
             "example": "ALWAYS"
         },
-		"rate":
-		{
+        "rate":
+        {
             "summary": "voice guidance rate value",
-            "type": "double",
-            "example": "0.1 to 10"
+            "type": "number",
+            "example": 0.1
         }
     },
     "methods": {
@@ -309,107 +309,84 @@
                 "example": "null"
             }
         },
-	    "setHighContrast":
-		{
+        "setHighContrast":
+        {
             "summary": "Sets highContrast. Whether the app should display with high contrast or not.",
-			"events":
-			{
+            "events": {
                 "onHighContrastChanged" : "Triggers when the highContrast changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "enabled":
-					{
+                "properties": {
+                    "enabled": {
                         "summary": "high contrast enabled(true) or disabled(false).",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-		"setVoiceGuidance":
-		{
+        "setVoiceGuidance": {
             "summary": "Sets voiceGuidance. Whether Voice Guidance is enabled or not.",
-			"events":
-			{
+            "events": {
                 "onVoiceGuidanceChanged" : "Triggers after the voice guidance enabled settings changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "enabled":
-					{
+                "properties": {
+                    "enabled": {
                         "summary": "voice guidance enabled(true) or disabled(false).",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-	    "setVoiceGuidanceRate":
-		{
+        "setVoiceGuidanceRate": {
             "summary": "Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.",
-			"events":
-			{
+            "events": {
                 "onVoiceGuidanceRateChanged" : "Triggered after the voice guidance rate changed."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "rate":
-					{
+                "properties": {
+                    "rate": {
                        "$ref": "#/definitions/rate"
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
             }
         },
-		"setVoiceGuidanceHints":
-		{
+        "setVoiceGuidanceHints": {
             "summary": "Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.",
-			"events":
-			{
+            "events": {
                 "onVoiceGuidanceHintsChanged" : "Triggered after the voice guidance hints changes."
             },
-            "params":
-			{
+            "params": {
                 "type": "object",
-                "properties":
-				{
-                    "hints":
-					{
+                "properties": {
+                    "hints": {
                         "summary": "voiceGuidanceHints enabled(true) or disabled(false).",
                         "type": "boolean",
                         "example":true
                     }
                 }
             },
-            "result":
-			{
+            "result": {
                 "summary": "On success null will be returned",
                 "type": "string",
                 "example": "null"
@@ -507,42 +484,34 @@
                 "type": "boolean",
                 "example": true
             }
-        }
-        "getHighContrast":
-		{
+        },
+        "getHighContrast": {
             "summary": "Gets the current highContrast setting.",
-            "result":
-			{
+            "result": {
                 "summary": "HighContrast Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
-        }
-		"getVoiceGuidance":
-		{
+        },
+        "getVoiceGuidance": {
             "summary": "Gets the current voiceGuidance setting.",
-            "result":
-			{
+            "result": {
                 "summary": "voiceGuidance Enabled: true/false",
                 "type": "boolean",
                 "example": true
             }
-        }
-		"getVoiceGuidanceRate":
-		{
+        },
+        "getVoiceGuidanceRate":
+        {
             "summary": "Gets the current voiceGuidanceRate setting.",
-            "result":
-			{
-                "summary": "Voice Guidance rate",
-                "type": "boolean",
-                "example": true
+            "result": {
+              "$ref": "#/definitions/rate"
             }
-        }
-	    "getVoiceGuidanceHints":
-		{
+        },
+        "getVoiceGuidanceHints":
+        {
             "summary": "Gets the current voiceGuidanceHints setting.",
-            "result":
-			{
+            "result": {
                 "summary": "voiceGuidanceHints Enabled: true/false",
                 "type": "boolean",
                 "example": true
@@ -670,7 +639,7 @@
                     "viewingRestrictions":{
                         "summary": "Receive viewingRestrictions changes",
                         "type": "string",
-                        "example": "{\"restrictions\": [{\"scheme\": \"US_TV\", \"restrict\": [\"TV-Y7/FV\"]}, {\"scheme\": \"MPAA\", \"restrict\": []}]}"
+                        "example": ""
                     }
                 },
                 "required": [
@@ -756,8 +725,9 @@
                 "required": [
                     "pinOnPurchase"
                 ]
+	    }
         },
-		"onHighContrastChanged": {
+        "onHighContrastChanged": {
             "summary": "Triggered after the high contrast settings changes(see `SetHighContrast`)",
             "params": {
                 "type": "object",
@@ -766,14 +736,14 @@
                         "summary": "Receive high contrast enabled or not.",
                         "type": "boolean",
                         "example": true
-        }
+                    }
                 },
                 "required": [
                     "enabled"
                 ]
-    }
+            }
         },
-		"onVoiceGuidanceChanged": {
+        "onVoiceGuidanceChanged": {
             "summary": "Triggered after the voice guidance enabled settings changes.(see `SetVoiceGuidance`)",
             "params": {
                 "type": "object",
@@ -782,14 +752,14 @@
                         "summary": "Receive voice guidance enabled or not.",
                         "type": "boolean",
                         "example": true
-}
+                    }
                 },
                 "required": [
                     "enabled"
                 ]
             }
         },
-		"onVoiceGuidanceRateChanged": {
+        "onVoiceGuidanceRateChanged": {
             "summary": "Triggered after the voice guidance rate changed.(see `SetVoiceGuidanceRate`)",
             "params": {
                 "type": "object",
@@ -803,23 +773,21 @@
                 ]
             }
         },
-		"onVoiceGuidanceHintsChanged":
-		{
-			"summary": "Triggered after the voice guidance hints changes.(see `SetVoiceGuidanceHints`)",
-			"params":
-			{
-				"type": "object",
-				"properties":
-				{
-				   "hints":
-				   {
-						"summary": "Receive voice guidance hints enabled or not.",
-						"type": "boolean",
-						"example": true
-				   }
-				},
-				"required": [ "hints" ]
-			}
+        "onVoiceGuidanceHintsChanged": {
+            "summary": "Triggered after the voice guidance hints changes.(see `SetVoiceGuidanceHints`)",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "hints": {
+                        "summary": "Receive voice guidance hints enabled or not.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [ "hints" ]
+            }
         }
     }
 }
+
+
