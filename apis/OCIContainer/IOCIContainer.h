@@ -31,14 +31,15 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     enum { ID = ID_OCICONTAINER };
 
     enum ContainerState : uint8_t {
-        STARTING,
-        RUNNING,
-        SUSPENDED,
-        HIBERNATING,
-        HIBERNATED,
-        WAKING,
-        TERMINATING,
-        TERMINATED
+        Invalid = 0,
+        Starting = 1,
+        Running = 2,
+        Stopping = 3,
+        Paused = 4,
+        Stopped = 5,
+        Hibernating = 6,
+        Hibernated = 7,
+        Awakening = 8
     };
 
     // @event
@@ -77,7 +78,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     /** Get the information about container */
     // @text getContainerInfo
     // @param containerId Identifier of container
-    virtual Core::hresult GetContainerInfo(const string& containerId /* @in */, string& info /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
+    virtual Core::hresult GetContainerInfo(const string& containerId /* @in */, string& info /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     /** Get the state of container */
     // @text getContainerState
