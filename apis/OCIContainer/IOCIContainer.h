@@ -90,7 +90,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param bundlePath path of application bundle
     // @param command(optional) command to run in container
     // @param westerosSocket(optional) Westeros socket container need to connect
-    virtual Core::hresult StartContainer(const string& containerId /* @in */, const string& bundlePath /* @in */, const string& command /* @in */, const string& westerosSocket /* @in */, uint32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
+    virtual Core::hresult StartContainer(const string& containerId /* @in */, const string& bundlePath /* @in */, const string& command /* @in */, const string& westerosSocket /* @in */, int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     /** Start the container from dobby specification */
     // @text startContainerFromDobbySpec
@@ -98,7 +98,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param dobbySpec dobby specification as json string
     // @param command(optional) command to run in container
     // @param westerosSocket(optional) Westeros socket container need to connect
-    virtual Core::hresult StartContainerFromDobbySpec(const string& containerId /* @in */, const string& dobbySpec /* @in */, const string& command /* @in */, const string& westerosSocket /* @in */, uint32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
+    virtual Core::hresult StartContainerFromDobbySpec(const string& containerId /* @in */, const string& dobbySpec /* @in */, const string& command /* @in */, const string& westerosSocket /* @in */, int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     /** Stop the container */
     // @text stopContainer
