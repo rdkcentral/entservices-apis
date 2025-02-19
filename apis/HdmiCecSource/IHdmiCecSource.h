@@ -68,6 +68,18 @@ namespace WPEFramework
                 // @text standbyMessageReceived
                 // @param logicalAddress: Logical address of the device
                 virtual void standbyMessageReceived(const int8_t logicalAddress /* @in */) = 0;
+
+                // @brief Triggered when a key release message is received
+                // @text SendKeyReleaseMsgEvent
+                // @param logicalAddress: Logical address of the device
+                virtual void SendKeyReleaseMsgEvent(const int logicalAddress /* @in */) = 0;
+
+
+                // @brief Triggered when a key press message is received
+                // @text SendKeyPressMsgEvent
+                // @param logicalAddress: Logical address of the device
+                // @param keyCode: Key code of the key press event
+                virtual void SendKeyPressMsgEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) = 0;
             };
 
             // @json:omit
