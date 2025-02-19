@@ -2,7 +2,7 @@
 <a name="head.UserSettings_Plugin"></a>
 # UserSettings Plugin
 
-**Version: [2.0.0](https://github.com/rdkcentral/rdkservices/blob/main/UserSettings/CHANGELOG.md)**
+**Version: [2.1.0](https://github.com/rdkcentral/entservices-infra/blob/develop/UserSettings/CHANGELOG.md)**
 
 A org.rdk.UserSettings plugin for Thunder framework.
 
