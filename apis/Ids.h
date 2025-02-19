@@ -191,6 +191,7 @@ namespace Exchange {
         ID_LIFECYCLE_MANAGER_NOTIFICATION            = ID_LIFECYCLE_MANAGER + 1,
         ID_LIFECYCLE_MANAGER_STATE                   = ID_LIFECYCLE_MANAGER + 2,
         ID_LIFECYCLE_MANAGER_RUNTIME                 = ID_LIFECYCLE_MANAGER + 3,
+        ID_LIFECYCLE_MANAGER_STATE_NOTIFICATION      = ID_LIFECYCLE_MANAGER + 4,
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x200,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
@@ -222,7 +223,10 @@ namespace Exchange {
         ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x230,
         ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1,
 
-        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x240,
+        ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x240,
+        ID_OCICONTAINER_NOTIFICATION                 = ID_OCICONTAINER + 1,
+
+        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x250,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
         ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
     };
