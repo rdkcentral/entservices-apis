@@ -73,7 +73,8 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
     /** Provide list of containers */
     // @text listContainers
-    virtual Core::hresult ListContainers(string& containers /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
+    // @param containers - out/json - string
+    virtual Core::hresult ListContainers(string& containers /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     /** Get the information about container */
     // @text getContainerInfo
