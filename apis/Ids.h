@@ -225,15 +225,15 @@ namespace Exchange {
         ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x240,
         ID_OCICONTAINER_NOTIFICATION                 = ID_OCICONTAINER + 1,
 
-        ID_PACKAGE_MANAGER_NEW                       = ID_ENTOS_OFFSET + 0x250,
-        ID_PACKAGE_DOWNLOADER                        = ID_PACKAGE_MANAGER_NEW + 1,
-        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_PACKAGE_MANAGER_NEW + 2,
-        ID_PACKAGE_INSTALLER                         = ID_PACKAGE_MANAGER_NEW + 3,
-        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_PACKAGE_MANAGER_NEW + 4,
-        ID_PACKAGE_HANDLER                           = ID_PACKAGE_MANAGER_NEW + 5,
-        ID_PACKAGE_INFO_ITERATOR                     = ID_PACKAGE_MANAGER_NEW + 7,
-        ID_PACKAGE_ITERATOR                          = ID_PACKAGE_MANAGER_NEW + 8,
-        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_PACKAGE_MANAGER_NEW + 9
+        ID_PACKAGE_MANAGER                           = ID_ENTOS_OFFSET + 0x250,
+        ID_PACKAGE_DOWNLOADER                        = ID_PACKAGE_MANAGER + 1,
+        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_PACKAGE_MANAGER + 2,
+        ID_PACKAGE_INSTALLER                         = ID_PACKAGE_MANAGER + 3,
+        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_PACKAGE_MANAGER + 4,
+        ID_PACKAGE_HANDLER                           = ID_PACKAGE_MANAGER + 5,
+        ID_PACKAGE_INFO_ITERATOR                     = ID_PACKAGE_MANAGER + 7,
+        ID_PACKAGE_ITERATOR                          = ID_PACKAGE_MANAGER + 8,
+        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_PACKAGE_MANAGER + 9
 
     };
 }
