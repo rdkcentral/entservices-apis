@@ -46,28 +46,28 @@ namespace WPEFramework
                 enum { ID = ID_HDMI_CEC_SOURCE_NOTIFICATION };
     
                 // @brief Device added event
-                // @text onDeviceAdded
+                // @text OnDeviceAdded
                 virtual void OnDeviceAdded() = 0;
     
                 // @brief Device removed event
-                // @text onDeviceRemoved
+                // @text OnDeviceRemoved
                 // @param logicalAddress: Logical address of the removed device
                 virtual void OnDeviceRemoved(const uint8_t logicalAddress /* @in */) = 0;
     
                 // @brief Device info updated event
-                // @text onDeviceInfoUpdated
+                // @text OnDeviceInfoUpdated
                 // @param deviceInfo: Device info of the updated device
                 virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) = 0;
     
                 // @brief Active source status updated event
-                // @text onActiveSourceStatusUpdated
+                // @text OnActiveSourceStatusUpdated
                 // @param isActiveSource: Is the active source active or not
                 virtual void OnActiveSourceStatusUpdated(const bool isActiveSource /* @in */) = 0;
     
                 // @brief Triggered when a device enters standby
-                // @text standbyMessageReceived
+                // @text StandbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void standbyMessageReceived(const int8_t logicalAddress /* @in */) = 0;
+                virtual void StandbyMessageReceived(const int8_t logicalAddress /* @in */) = 0;
 
                 // @brief Triggered when a key release message is received
                 // @text SendKeyReleaseMsgEvent
@@ -90,64 +90,80 @@ namespace WPEFramework
             /** Gets the status of the active source. */
             // @text getActiveSourceStatus
             // @brief Gets the status of the active source
-            // @param isActiveSource: Is the active source active or not
-            virtual uint32_t GetActiveSourceStatus(bool &isActiveSource /* @out */) const = 0;
+            // @param status: Is the active source active or not
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetActiveSourceStatus(bool &status /* @out */, bool &success /* @out */) const = 0;
 
             // @brief Gets the status of the HDMI CEC source
             // @text getEnabled
             // @param enabled: Is the HDMI CEC source enabled or not
-            virtual uint32_t GetEnabled(bool &enabled /* @out */) const = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetEnabled(bool &enabled /* @out */, bool &success /* @out */) const = 0;
 
             // @brief Gets the OSD name of the HDMI CEC source
             // @text getOSDName
-            // @param osdName: OSD name of the HDMI CEC source
-            virtual uint32_t GetOSDName(string &osdName /* @out */) const = 0;
+            // @param name: OSD name of the HDMI CEC source
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetOSDName(string &name /* @out */, bool &success /* out */) const = 0;
 
             // @brief Gets the OTP enabled status of the HDMI CEC source
             // @text getOTPEnabled
             // @param otpEnabled: Is the OTP enabled or not
-            virtual uint32_t GetOTPEnabled(bool &otpEnabled /* @out */) const = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetOTPEnabled(bool &enabled /* @out */, bool &success /* out */) const = 0;
 
             // @brief Gets the vendor ID of the HDMI CEC source
             // @text getVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
-            virtual uint32_t GetVendorId(string &vendorId /* @out */) const = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetVendorId(string &vendorid /* @out */, bool &success /* out */) const = 0;
 
             // @brief Performs the OTP action
             // @text performOTPAction
-            virtual uint32_t PerformOTPAction() = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t PerformOTPAction(bool &success /* out */) = 0;
 
             // @brief Sends a key press event to the HDMI CEC source
             // @text sendKeyPressEvent
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
-            virtual uint32_t SendKeyPressEvent(const uint32_t logicalAddress, const uint32_t keyCode /* @in */) = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SendKeyPressEvent(const uint32_t &logicalAddress, const uint32_t &keyCode /* @in */, bool &success /* out */) = 0;
 
             // @brief Sends a standby message to the HDMI CEC source
             // @text sendStandbyMessage
-            virtual uint32_t SendStandbyMessage() = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SendStandbyMessage(bool &success /* out */) = 0;
 
             // @brief Sets the status of the HDMI CEC source
             // @text setEnabled
             // @param enabled: Is the HDMI CEC source enabled or not
-            virtual uint32_t SetEnabled(const bool enabled /* @in */) = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SetEnabled(const bool &enabled /* @in */, bool &success /* out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC source
             // @text setOSDName
             // @param osdName: OSD name of the HDMI CEC source
-            virtual uint32_t SetOSDName(const string osdName /* @in */) = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SetOSDName(const string &name /* @in */, bool &success /* out */) = 0;
 
             // @brief Sets the OTP enabled status of the HDMI CEC source
             // @text setOTPEnabled
             // @param enabled: Is the OTP enabled or not
-            virtual uint32_t SetOTPEnabled(const bool enabled /* @in */) = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SetOTPEnabled(const bool &enabled /* @in */, bool &success /* out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC source
             // @text setVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
-            virtual uint32_t SetVendorId(const string vendorId /* @in */) = 0;
+            // @param success: Is the operation successful or not
+            virtual uint32_t SetVendorId(const string &vendorid /* @in */, bool &success /* out */) = 0;
 
-            virtual uint32_t GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */) const = 0;
+            // @brief Gets the list of devices connected to the HDMI CEC source
+            // @text getDeviceList
+            // @param deviceList: List of devices connected to the HDMI CEC source
+            // @param success: Is the operation successful or not
+            virtual uint32_t GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* out */) const = 0;
         };
 } // namespace Exchange
 } // namespace WPEFramework
