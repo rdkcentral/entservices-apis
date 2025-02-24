@@ -126,7 +126,7 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @text getInfo
     // @param appInstanceId App identifier for the application/container
     // @param info This should contain information like RAM, CPU usage, GPU memory, and other stats, come as json string format
-    virtual Core::hresult GetInfo(const string& appInstanceId, string& info /* @out */) const = 0;
+    virtual Core::hresult GetInfo(const string& appInstanceId, string& info /* @out */) = 0;
 
     /** @brief annotates are sent to Dobby for recording */
     // @text annotate
