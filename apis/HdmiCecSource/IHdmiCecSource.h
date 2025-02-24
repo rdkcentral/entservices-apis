@@ -128,7 +128,7 @@ namespace WPEFramework
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual uint32_t SendKeyPressEvent(const uint32_t &logicalAddress, const uint32_t &keyCode /* @in */, bool &success /* out */) = 0;
+            virtual uint32_t SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, bool &success /* out */) = 0;
 
             // @brief Sends a standby message to the HDMI CEC source
             // @text sendStandbyMessage
