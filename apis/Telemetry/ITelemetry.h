@@ -49,7 +49,6 @@ namespace WPEFramework
             // @text setReportProfileStatus
             // @brief Sets the status of telemetry reporting
             // @param status - in - string
-            // @param success - out - boolean
             virtual Core::hresult SetReportProfileStatus(const string& status /* @in */) = 0;
             /**********************setReportProfileStatus() - end******************************/
 
@@ -58,7 +57,6 @@ namespace WPEFramework
             // @brief Logs an application
             // @param eventName - in - string
             // @param eventValue - in - string
-            // @param success - out - boolean
             virtual Core::hresult LogApplicationEvent(const string& eventName /* @in */, const string& eventValue /* @in */) = 0;
             /**********************logApplicationEvent() - end*********************************/
 
