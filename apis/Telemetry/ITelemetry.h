@@ -26,7 +26,7 @@ namespace WPEFramework
 {
     namespace Exchange
     {
-        /* @json @text:keep */
+        /* @json 1.0.0 @text:keep */
         struct EXTERNAL ITelemetry : virtual public Core::IUnknown 
         {
             enum { ID = ID_TELEMETRY };
@@ -39,18 +39,18 @@ namespace WPEFramework
                 // @text onReportUpload
                 // @brief Triggered by callback from Telemetry after report uploading
                 // @param telemetryUploadStatus - in - string
-                virtual void OnReportUpload(const string& telemetryUploadStatus /* @in */) = 0;
+                virtual void OnReportUpload(const string& telemetryUploadStatus) {};
             };
 
-            virtual uint32_t Register(ITelemetry::INotification* notification /* @in */) = 0;
-            virtual uint32_t Unregister(ITelemetry::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(ITelemetry::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(ITelemetry::INotification* notification /* @in */) = 0;
 
             /**********************setReportProfileStatus() - start****************************/
             // @text setReportProfileStatus
             // @brief Sets the status of telemetry reporting
             // @param status - in - string
             // @param success - out - boolean
-            virtual uint32_t SetReportProfileStatus(const string& status /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetReportProfileStatus(const string& status /* @in */) = 0;
             /**********************setReportProfileStatus() - end******************************/
 
             /**********************logApplicationEvent() - start*******************************/
@@ -59,19 +59,19 @@ namespace WPEFramework
             // @param eventName - in - string
             // @param eventValue - in - string
             // @param success - out - boolean
-            virtual uint32_t LogApplicationEvent(const string& eventName /* @in */, const string& eventValue /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult LogApplicationEvent(const string& eventName /* @in */, const string& eventValue /* @in */) = 0;
             /**********************logApplicationEvent() - end*********************************/
 
             /**********************uploadReport() - start**************************************/
             // @text uploadReport
             // @brief Uploading of telemetry report
-            virtual uint32_t UploadReport() = 0;
+            virtual Core::hresult UploadReport() = 0;
             /**********************uploadReport() - end****************************************/
 
             /**********************abortReport() - start***************************************/
             // @text abortReport
             // @brief Abort report upload
-            virtual uint32_t AbortReport() = 0;
+            virtual Core::hresult AbortReport() = 0;
             /**********************abortReport() - end*****************************************/
         };
     } // namespace Exchange
