@@ -47,39 +47,39 @@ namespace WPEFramework
     
                 // @brief Device added event
                 // @text OnDeviceAdded
-                virtual void OnDeviceAdded() = {};
+                virtual void OnDeviceAdded() {};
     
                 // @brief Device removed event
                 // @text OnDeviceRemoved
                 // @param logicalAddress: Logical address of the removed device
-                virtual void OnDeviceRemoved(const uint8_t logicalAddress /* @in */) = {};
+                virtual void OnDeviceRemoved(const uint8_t logicalAddress /* @in */) {};
     
                 // @brief Device info updated event
                 // @text OnDeviceInfoUpdated
                 // @param deviceInfo: Device info of the updated device
-                virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) = {};
+                virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) {};
     
                 // @brief Active source status updated event
                 // @text OnActiveSourceStatusUpdated
                 // @param isActiveSource: Is the active source active or not
-                virtual void OnActiveSourceStatusUpdated(const bool isActiveSource /* @in */) = {};
+                virtual void OnActiveSourceStatusUpdated(const bool isActiveSource /* @in */) {};
     
                 // @brief Triggered when a device enters standby
                 // @text StandbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void StandbyMessageReceived(const int8_t logicalAddress /* @in */) = {};
+                virtual void StandbyMessageReceived(const int8_t logicalAddress /* @in */) {};
 
                 // @brief Triggered when a key release message is received
                 // @text SendKeyReleaseMsgEvent
                 // @param logicalAddress: Logical address of the device
-                virtual void SendKeyReleaseMsgEvent(const int logicalAddress /* @in */) = {};
+                virtual void SendKeyReleaseMsgEvent(const int logicalAddress /* @in */) {};
 
 
                 // @brief Triggered when a key press message is received
                 // @text SendKeyPressMsgEvent
                 // @param logicalAddress: Logical address of the device
                 // @param keyCode: Key code of the key press event
-                virtual void SendKeyPressMsgEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) = {};
+                virtual void SendKeyPressMsgEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) {};
             };
 
             // @json:omit
