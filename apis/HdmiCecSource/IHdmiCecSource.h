@@ -86,6 +86,8 @@ namespace WPEFramework
             virtual uint32_t Register(Exchange::IHdmiCecSource::INotification *notification) = 0;
             // @json:omit
             virtual uint32_t Unregister(Exchange::IHdmiCecSource::INotification *notification) = 0;
+            // @json:omit
+            virtual uint32_t Configure() = 0;
 
             /** Gets the status of the active source. */
             // @text getActiveSourceStatus
