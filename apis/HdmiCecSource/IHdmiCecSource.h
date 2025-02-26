@@ -47,7 +47,8 @@ namespace WPEFramework
     
                 // @brief Device added event
                 // @text OnDeviceAdded
-                virtual void OnDeviceAdded() {};
+                // @param logicalAddress: Logical address of the added device
+                virtual void OnDeviceAdded(const uint8_t logicalAddress) {};
     
                 // @brief Device removed event
                 // @text OnDeviceRemoved
@@ -57,12 +58,12 @@ namespace WPEFramework
                 // @brief Device info updated event
                 // @text OnDeviceInfoUpdated
                 // @param deviceInfo: Device info of the updated device
-                virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) {};
+                virtual void OnDeviceInfoUpdated(const uint8_t logicalAddress/* @in */) {};
     
                 // @brief Active source status updated event
                 // @text OnActiveSourceStatusUpdated
                 // @param isActiveSource: Is the active source active or not
-                virtual void OnActiveSourceStatusUpdated(const bool isActiveSource /* @in */) {};
+                virtual void OnActiveSourceStatusUpdated(const bool status /* @in */) {};
     
                 // @brief Triggered when a device enters standby
                 // @text StandbyMessageReceived
