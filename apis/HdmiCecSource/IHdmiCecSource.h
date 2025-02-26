@@ -72,7 +72,7 @@ namespace WPEFramework
                 // @brief Triggered when a key release message is received
                 // @text SendKeyReleaseMsgEvent
                 // @param logicalAddress: Logical address of the device
-                virtual void SendKeyReleaseMsgEvent(const int logicalAddress /* @in */) {};
+                virtual void SendKeyReleaseMsgEvent(const int8_t logicalAddress /* @in */) {};
 
 
                 // @brief Triggered when a key press message is received
