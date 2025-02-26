@@ -224,6 +224,10 @@ namespace Exchange {
 
         ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x250,
         ID_OCICONTAINER_NOTIFICATION                 = ID_OCICONTAINER + 1,
+
+        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x250,
+        ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
+        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
     };
 }
 }
