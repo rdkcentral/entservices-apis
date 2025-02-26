@@ -79,7 +79,7 @@ namespace WPEFramework
                 // @text SendKeyPressMsgEvent
                 // @param logicalAddress: Logical address of the device
                 // @param keyCode: Key code of the key press event
-                virtual void SendKeyPressMsgEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) {};
+                virtual void SendKeyPressMsgEvent(const int8_t logicalAddress /* @in */, const int32_t keyCode /* @in */) {};
             };
 
             // @json:omit
