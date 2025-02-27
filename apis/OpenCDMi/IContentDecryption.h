@@ -98,7 +98,7 @@ namespace Exchange {
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             // Clear the administration space before using it.
-            ::memset(admin, 0, sizeof(Administration));
+            ::memset(admin, 0, 10*sizeof(Administration));
         }
         ~DataExchange() = default;
 
@@ -143,7 +143,7 @@ namespace Exchange {
             ::memcpy(admin->IV, ivData, admin->IVLength);
             if (admin->IVLength < sizeof(Administration::IV)) {
                 ::memset(&(admin->IV[admin->IVLength]), 0,
-                    (sizeof(Administration::IV) - admin->IVLength));
+                    10*(sizeof(Administration::IV) - admin->IVLength));
             }
         }
         void SetEncScheme(const uint8_t encScheme)
