@@ -27,11 +27,22 @@ namespace WPEFramework {
 namespace Exchange {
 // @text:keep
 struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
-
     enum { ID = ID_RUNTIME_MANAGER };
 
     using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
     using IValueIterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
+
+    enum RuntimeState : uint8_t {
+        RUNTIME_STATE_UNKNOWN     = 0   /* @text RUNTIME_STATE_UNKNOWN */,
+        RUNTIME_STATE_STARTING    = 1   /* @text RUNTIME_STATE_STARTING */,
+        RUNTIME_STATE_RUNNING     = 2   /* @text RUNTIME_STATE_RUNNING */,
+        RUNTIME_STATE_SUSPENDED   = 3   /* @text RUNTIME_STATE_SUSPENDED */,
+        RUNTIME_STATE_HIBERNATING = 4   /* @text RUNTIME_STATE_HIBERNATING */,
+        RUNTIME_STATE_HIBERNATED  = 5   /* @text RUNTIME_STATE_HIBERNATED */,
+        RUNTIME_STATE_WAKING      = 6   /* @text RUNTIME_STATE_WAKING */,
+        RUNTIME_STATE_TERMINATING = 7   /* @text RUNTIME_STATE_TERMINATING */,
+        RUNTIME_STATE_TERMINATED  = 8   /* @text RUNTIME_STATE_TERMINATED */
+    };
 
     // @event 
     struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -40,24 +51,25 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
  
         // @brief Notifies container is started
         // @text onStarted
-        // @json:omit
+        // @param appInstanceId App identifier for the application/container
         virtual void OnStarted(const string& appInstanceId) {};
  
         // @brief Notifies container is shutdown
         // @text onTerminated
-        // @json:omit
+        // @param appInstanceId App identifier for the application/container
         virtual void OnTerminated(const string& appInstanceId) {};
  
         // @brief Notifies failure in container execution
         // @text onFailure
-        // @json:omit
+        // @param appInstanceId App identifier for the application/container
+        // @param error error string will send if there is failure
         virtual void OnFailure(const string& appInstanceId, const string& error) {};
  
         // @brief Notifies state of container
         // @text onStateChanged
-        // @json:omit
-        virtual void OnStateChanged(const string& appInstanceId, const string& state) {};
-        // Possible state values {Starting, running, suspended, hibernating, hibernated, waking, terminating, terminated}
+        // @param appInstanceId App identifier for the application/container
+        // @param state state of the application/container
+        virtual void OnStateChanged(const string& appInstanceId, const RuntimeState state) {};
     };
 
     /** Register notification interface */
@@ -66,57 +78,70 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     /** Unregister notification interface */
     virtual Core::hresult Unregister(INotification *notification) = 0;
 
-    /** Run the application */
-    // @json:omit
+    /** @brief Run the application */
     // @text run
-    virtual Core::hresult Run(const string& appInstanceId /* @in */, const string& appPath /* @in */, const string& runtimePath /* @in */, IStringIterator* const& envVars /* @in */, const uint32_t userId /* @in */, const uint32_t groupId /* @in */, IValueIterator* const& ports /* @in */, IStringIterator* const& paths /* @in */, IStringIterator* const& debugSettings /* @in */, bool& success /* @out */) = 0;
+    // @param appInstanceId App identifier for the application/container
+    // @param appPath path of the container/application
+    // @param runtimePath(optional) run time path of the container/application
+    // @param envVars The tokens from the Firebolt Gateway will be passed as part of the environmentVars
+    // @param userId userId used to identify the user
+    // @param userId groupid used to represent a group
+    // @param ports(optional) array of socket ports to allow
+    // @param paths(optional) paths contains an additional set of files and directories to map into the container
+    // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
+    virtual Core::hresult Run(const string& appInstanceId, const string& appPath, const string& runtimePath, IStringIterator* const& envVars, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings) = 0;
 
-    /** Hibernate the application */
-    // @json:omit
+    /** @brief Hibernate the application */
     // @text hibernate
-    virtual Core::hresult Hibernate(const string& appInstanceId /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult Hibernate(const string& appInstanceId) = 0;
 
-    /** Wake the application to given state */
-    // @json:omit
+    /** @brief Wake the application to given state */
     // @text wake
-    virtual Core::hresult Wake(const string& appInstanceId /* @in */, const string& state /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    // @param runtimeState state of runtime application/container
+    virtual Core::hresult Wake(const string& appInstanceId, const RuntimeState runtimeState) = 0;
 
-    /** Suspend the application */
-    // @json:omit
+    /** @brief Suspend the application */
     // @text suspend
-    virtual Core::hresult Suspend(const string& appInstanceId /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult Suspend(const string& appInstanceId) = 0;
 
-    /** Resume the application */
-    // @json:omit
+    /** @brief Resume the application */
     // @text resume
-    virtual Core::hresult Resume(const string& appInstanceId /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult Resume(const string& appInstanceId) = 0;
 
-    /** Terminate the application */
-    // @json:omit
+    /** @brief Terminate the application */
     // @text terminate
-    virtual Core::hresult Terminate(const string& appInstanceId /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult Terminate(const string& appInstanceId) = 0;
 
-    /** Kill the application */
-    // @json:omit
+    /**@brief  Kill the application */
     // @text kill
-    virtual Core::hresult Kill(const string& appInstanceId /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    virtual Core::hresult Kill(const string& appInstanceId) = 0;
 
-    /** get info of the application */
-    // @json:omit
+    /** @brief get info of the application */
     // @text getInfo
-    virtual Core::hresult GetInfo(const string& appInstanceId /* @in */, const string& info /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    // @param info This should contain information like RAM, CPU usage, GPU memory, and other stats, come as json string format
+    virtual Core::hresult GetInfo(const string& appInstanceId, string& info /* @out */) = 0;
 
-    // @json:omit
+    /** @brief annotates are sent to Dobby for recording */
     // @text annotate
-    virtual Core::hresult Annotate(const string& appInstanceId /* @in */, const string& key /* @in */, const string& value /* @in */, bool& success /* @out */) const = 0;
+    // @param appInstanceId App identifier for the application/container
+    // @param key set a dictionary of key for running containers
+    // @param key set a dictionary of value of key for running containers
+    virtual Core::hresult Annotate(const string& appInstanceId, const string& key, const string& value) = 0;
 
-    // @json:omit
+    /** @brief mounts a new host directory/device inside container */
     // @text mount
-    virtual Core::hresult Mount() const = 0;
+    virtual Core::hresult Mount() = 0;
 
-    // @json:omit
+    /** @brief unmounts a new host directory/device inside container */
     // @text unmount
-    virtual Core::hresult Unmount() const = 0;
+    virtual Core::hresult Unmount() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

@@ -23,21 +23,14 @@
 
 namespace WPEFramework {
 namespace Exchange {
-struct EXTERNAL ILifecycleManagerRuntime : virtual public Core::IUnknown {
 
-    enum AppTerminatedReason : uint8_t {
-	REQUESTED,
-	CRASHED,
-	SELF_TERMINATED
+    /// Interface implemented by each Thunder component that needs to react to DEVICE_OPTIMIZE system mode state activation requests.
+    struct EXTERNAL IDeviceOptimizeStateActivator : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR };
+
+        /// Requests the component to asynchronously transition to the new state.
+        /// @param[in] newState     The new target state to transition to.
+        virtual void Request(const string&  newState  /* @in @text newState*/) = 0;
     };
-
-    enum { ID = ID_LIFECYCLE_MANAGER_RUNTIME };
-
-    /**  notification API call in response to terminateRuntime */
-    //  @json:omit
-    // @brief  notification API call in response to terminateRuntime
-    virtual Core::hresult RuntimeTerminated(const string& appInstanceId /* @in */, const AppTerminatedReason terminatedReason /* @in */) { return Core::ERROR_NONE; };
-
-};
-} // namespace Exchange
-} // namespace WPEFramework
+}
+}

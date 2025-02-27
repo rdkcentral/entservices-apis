@@ -41,7 +41,7 @@ def convert_json_to_md():
 
     for file in flist:
         os.system(r"{} --docs "
-                   r"{} -o ../../docs/apis --no-interfaces-section".format(jsongenpath, file))
+                   r"{} -o ../../../../docs/apis --no-interfaces-section".format(jsongenpath, file))
     print()
     print("*****   Generated md files under docs/apis   *****")
 
