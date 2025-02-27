@@ -32,7 +32,7 @@
         },
         "percentageComplete": {
             "summary": "Number between 0 and 100 indicating the percentage complete of the flashing process.",
-            "type": "Number",
+            "type": "number",
             "example": "100"
         }
     },
