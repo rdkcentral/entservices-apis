@@ -34,7 +34,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @brief Posting the client is inactive state
     // @text onUserInactivity
     // @param minutes: notify how long user is inactive state
-    virtual void OnUserInactivity(const double minutes) = 0;
+    virtual void OnUserInactivity(const double minutes){};
 
   };
 

@@ -192,10 +192,10 @@ namespace Exchange {
         ID_LIFECYCLE_MANAGER_STATE                   = ID_LIFECYCLE_MANAGER + 2,
         ID_LIFECYCLE_MANAGER_STATE_NOTIFICATION      = ID_LIFECYCLE_MANAGER + 3,
 
-	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x200,
+	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
 
-        ID_LISA                                      = ID_ENTOS_OFFSET + 0x1F0,
+        ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,
         ID_LISA_APP_VERSION                          = ID_LISA + 2,
         ID_LISA_APP_VERSION_ITERATOR                 = ID_LISA + 3,
@@ -211,21 +211,24 @@ namespace Exchange {
         ID_LISA_LOCK_INFO                            = ID_LISA + 13,
         ID_LISA_HANDLE_RESULT                        = ID_LISA + 14,
 
-        ID_SYSTEMAUDIOPLAYER                         = ID_ENTOS_OFFSET + 0x200,
+        ID_SYSTEMAUDIOPLAYER                         = ID_ENTOS_OFFSET + 0x210,
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
 
-        ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x210,
+        ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x220,
         ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1,
 
-        ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x220,
+        ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x230,
 
-        ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x230,
+        ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x240,
         ID_SYSTEM_MODE_NOTIFICATION                  = ID_SYSTEM_MODE + 1,
 
-        ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x240,
+        ID_OCICONTAINER                              = ID_ENTOS_OFFSET + 0x250,
         ID_OCICONTAINER_NOTIFICATION                 = ID_OCICONTAINER + 1,
 
-        ID_PACKAGE_MANAGER                           = ID_ENTOS_OFFSET + 0x250,
+        ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
+        ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
+
+        ID_PACKAGE_MANAGER                           = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_PACKAGE_MANAGER + 1,
         ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_PACKAGE_MANAGER + 2,
         ID_PACKAGE_INSTALLER                         = ID_PACKAGE_MANAGER + 3,

@@ -33,7 +33,7 @@
         "viewingRestrictions": {
             "summary": "A project-specific representation of the time interval when viewing.",
             "type": "string",
-            "example": "{\"restrictions\": [{\"scheme\": \"US_TV\", \"restrict\": [\"TV-Y7/FV\"]}, {\"scheme\": \"MPAA\", \"restrict\": []}]}"
+	    "example": "{\\\"restrictions\\\": [{\\\"scheme\\\": \\\"US_TV\\\", \\\"restrict\\\": [\\\"TV-Y7/FV\\\"]}, {\\\"scheme\\\": \\\"MPAA\\\", \\\"restrict\\\": []}]}"
         },
         "viewingRestrictionsWindow": {
             "summary": "A project-specific representation of the time interval",
@@ -639,7 +639,7 @@
                     "viewingRestrictions":{
                         "summary": "Receive viewingRestrictions changes",
                         "type": "string",
-                        "example": "{\"restrictions\": [{\"scheme\": \"US_TV\", \"restrict\": [\"TV-Y7/FV\"]}, {\"scheme\": \"MPAA\", \"restrict\": []}]}"
+			"example": "{\\\"restrictions\\\": [{\\\"scheme\\\": \\\"US_TV\\\", \\\"restrict\\\": [\\\"TV-Y7/FV\\\"]}, {\\\"scheme\\\": \\\"MPAA\\\", \\\"restrict\\\": []}]}"
                     }
                 },
                 "required": [
