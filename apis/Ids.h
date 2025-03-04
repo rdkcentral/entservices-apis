@@ -228,15 +228,15 @@ namespace Exchange {
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
 
-        ID_PACKAGE_MANAGER                           = ID_ENTOS_OFFSET + 0x300,
-        ID_PACKAGE_DOWNLOADER                        = ID_PACKAGE_MANAGER + 1,
-        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_PACKAGE_MANAGER + 2,
-        ID_PACKAGE_INSTALLER                         = ID_PACKAGE_MANAGER + 3,
-        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_PACKAGE_MANAGER + 4,
-        ID_PACKAGE_HANDLER                           = ID_PACKAGE_MANAGER + 5,
-        ID_PACKAGE_INFO_ITERATOR                     = ID_PACKAGE_MANAGER + 7,
-        ID_PACKAGE_ITERATOR                          = ID_PACKAGE_MANAGER + 8,
-        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_PACKAGE_MANAGER + 9
+        ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
+        ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
+        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_APP_PACKAGE_MANAGER + 2,
+        ID_PACKAGE_INSTALLER                         = ID_APP_PACKAGE_MANAGER + 3,
+        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_APP_PACKAGE_MANAGER + 4,
+        ID_PACKAGE_HANDLER                           = ID_APP_PACKAGE_MANAGER + 5,
+        ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
+        ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
+        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9
 
     };
 }
