@@ -34,7 +34,7 @@ namespace WPEFramework
             struct HdmiCecSourceDevices
             {
                 uint8_t logicalAddress;
-                string vendorId;
+                string vendorID;
                 string osdName;
             };
 
@@ -46,41 +46,41 @@ namespace WPEFramework
                 enum { ID = ID_HDMI_CEC_SOURCE_NOTIFICATION };
     
                 // @brief Device added event
-                // @text OnDeviceAdded
+                // @text onDeviceAdded
                 // @param logicalAddress: Logical address of the added device
-                virtual void OnDeviceAdded(const uint8_t logicalAddress) {};
+                virtual void OnDeviceAdded(const int logicalAddress) {};
     
                 // @brief Device removed event
-                // @text OnDeviceRemoved
+                // @text onDeviceRemoved
                 // @param logicalAddress: Logical address of the removed device
-                virtual void OnDeviceRemoved(const uint8_t logicalAddress /* @in */) {};
+                virtual void OnDeviceRemoved(const int logicalAddress /* @in */) {};
     
                 // @brief Device info updated event
-                // @text OnDeviceInfoUpdated
+                // @text onDeviceInfoUpdated
                 // @param deviceInfo: Device info of the updated device
-                virtual void OnDeviceInfoUpdated(const uint8_t logicalAddress/* @in */) {};
+                virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) {};
     
                 // @brief Active source status updated event
-                // @text OnActiveSourceStatusUpdated
+                // @text onActiveSourceStatusUpdated
                 // @param isActiveSource: Is the active source active or not
                 virtual void OnActiveSourceStatusUpdated(const bool status /* @in */) {};
     
                 // @brief Triggered when a device enters standby
-                // @text StandbyMessageReceived
+                // @text standbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void StandbyMessageReceived(const int8_t logicalAddress /* @in */) {};
+                virtual void StandbyMessageReceived(const int logicalAddress /* @in */) {};
 
                 // @brief Triggered when a key release message is received
-                // @text SendKeyReleaseMsgEvent
+                // @text sendKeyReleaseMsgEvent
                 // @param logicalAddress: Logical address of the device
-                virtual void SendKeyReleaseMsgEvent(const int8_t logicalAddress /* @in */) {};
+                virtual void SendKeyReleaseMsgEvent(const int logicalAddress /* @in */) {};
 
 
                 // @brief Triggered when a key press message is received
-                // @text SendKeyPressMsgEvent
+                // @text sendKeyPressMsgEvent
                 // @param logicalAddress: Logical address of the device
                 // @param keyCode: Key code of the key press event
-                virtual void SendKeyPressMsgEvent(const int8_t logicalAddress /* @in */, const int32_t keyCode /* @in */) {};
+                virtual void SendKeyPressMsgEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) {};
             };
 
             // @json:omit
