@@ -95,31 +95,31 @@ namespace WPEFramework
             // @brief Gets the status of the active source
             // @param status: Is the active source active or not
             // @param success: Is the operation successful or not
-            virtual uint32_t GetActiveSourceStatus(bool &status /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetActiveSourceStatus(bool &status /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the status of the HDMI CEC source
             // @text getEnabled
             // @param enabled: Is the HDMI CEC source enabled or not
             // @param success: Is the operation successful or not
-            virtual uint32_t GetEnabled(bool &enabled /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the OSD name of the HDMI CEC source
             // @text getOSDName
             // @param name: OSD name of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual uint32_t GetOSDName(string &name /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetOSDName(string &name /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the OTP enabled status of the HDMI CEC source
             // @text getOTPEnabled
             // @param otpEnabled: Is the OTP enabled or not
             // @param success: Is the operation successful or not
-            virtual uint32_t GetOTPEnabled(bool &enabled /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetOTPEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the vendor ID of the HDMI CEC source
             // @text getVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual uint32_t GetVendorId(string &vendorid /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetVendorId(string &vendorid /* @out */, bool &success /* @out */) = 0;
 
             // @brief Performs the OTP action
             // @text performOTPAction
@@ -166,7 +166,7 @@ namespace WPEFramework
             // @text getDeviceList
             // @param deviceList: List of devices connected to the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual uint32_t GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) const = 0;
+            virtual uint32_t GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
         };
 } // namespace Exchange
 } // namespace WPEFramework
