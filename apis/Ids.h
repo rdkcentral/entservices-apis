@@ -238,7 +238,9 @@ namespace Exchange {
         ID_PACKAGE_HANDLER                           = ID_APP_PACKAGE_MANAGER + 5,
         ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
         ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
-        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9
+        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
+	
+	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310
 
     };
 }
