@@ -1,6 +1,7 @@
 import os
 import re
 import glob
+import sys
 
 def load_ids(ids_file_path):
     with open(ids_file_path, 'r') as file:
@@ -170,6 +171,7 @@ def validate_header(file_path, issues, ids_lines):
     # Find the INotification interface declaration
     interface_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?INotification\s*:\s*virtual\s+public\s+Core::IUnknown\s*')
     matches = interface_pattern.finditer(content)
+
     for match in matches:
         start_index = match.start()
         end_index = find_matching_brace(content, start_index) + 1
@@ -206,6 +208,7 @@ def validate_header(file_path, issues, ids_lines):
             inside_inotification = True
         if inside_inotification and line.strip().startswith('};'):
             inside_inotification = False
+        
         if inside_inotification:
             continue
         
@@ -230,18 +233,26 @@ def validate_header(file_path, issues, ids_lines):
                     break
     
 
-def main():
+def main(changed_files_path):
     ids_file_path = 'apis/Ids.h'
     ids_lines = load_ids(ids_file_path)
     
-    directories = glob.glob('apis/*')
+    '''directories = glob.glob('apis/*')
     issues = []
     for directory in directories:
         for root, _, files in os.walk(directory):
             for file in files:
                 if file.endswith('.h'):
                     file_path = os.path.join(root, file)
-                    validate_header(file_path, issues, ids_lines)
+                    validate_header(file_path, issues, ids_lines)'''
+
+    with open(changed_files_path, 'r') as f:
+        changed_files = f.read().splitlines()
+    
+    issues = []
+    for file_path in changed_files:
+        if file_path.startswith('apis/') and file_path.endswith('.h'):
+            validate_header(file_path, issues, ids_lines)
     
     if issues:
         print("The following issues were found in the header files:")
@@ -252,4 +263,5 @@ def main():
         print("No issues found.")
 
 if __name__ == "__main__":
-    main()
+    changed_files_path = sys.argv[1]
+    main(changed_files_path)

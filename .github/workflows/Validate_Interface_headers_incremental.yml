@@ -1,0 +1,34 @@
+name: Validate Interface header on PR
+
+on: [pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Get changed files
+      id: changed_files
+      run: |
+        git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+        git diff --name-only origin/${{ github.event.pull_request.base.ref }} > changed_files.txt
+
+    - name: Run validation script
+      run: |
+        python .github/workflows/validate_interface_headers_incremental.py changed_files.txt
+
+    - name: Remove changed_files.txt
+      run: |
+        rm changed_files.txt
