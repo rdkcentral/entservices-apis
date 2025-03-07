@@ -239,8 +239,10 @@ namespace Exchange {
         ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
         ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
+	
+	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
-        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x310,
+        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x320,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
         ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
 
