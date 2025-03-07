@@ -67,6 +67,8 @@ namespace WPEFramework {
 			virtual uint32_t getProtocolVersion(string &protocolVersion /* @out */ ) const = 0;
 			virtual uint32_t registerApplications(IApplicationInfoIterator * const appInfoList /* @in */ ) = 0;
 			virtual uint32_t setNetworkStandbyMode(bool networkStandbyMode) = 0;
+			virtual uint32_t setManufacturerName(string manufacturerName) = 0;
+			virtual uint32_t setModelName(string modelName) = 0;
 		};
 
 	} // Exchange
