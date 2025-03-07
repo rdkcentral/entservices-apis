@@ -504,6 +504,28 @@
         }
       ]
     },
+    "brandname": {
+      "summary": "Device brand",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "example": "Comcast"
+          }
+        },
+        "required": [
+          "brand"
+        ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
+    },
     "devicetype": {
       "summary": "Device type",
       "readonly": true,
