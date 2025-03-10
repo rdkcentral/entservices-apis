@@ -240,8 +240,10 @@ namespace Exchange {
         ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
 	
-	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310
+	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
+        ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x320,
+        ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1
     };
 }
 }
