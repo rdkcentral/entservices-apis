@@ -371,8 +371,8 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
 
     struct SettingsMigrationState
     {
-        SettingsKey key             /* @text key which needs the migration information */ ;
-        bool requiresMigration      /* @text whether the key requires migration or not */;
+        SettingsKey key;
+        bool requiresMigration;
     };
 
     using IUserSettingsMigrationStateIterator = RPC::IIteratorType<SettingsMigrationState, ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR>;
