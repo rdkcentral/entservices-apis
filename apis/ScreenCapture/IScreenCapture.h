@@ -38,7 +38,7 @@ namespace WPEFramework
                 // @brief Triggered after uploading a screen capture
                 // @param status - in - boolean
                 // @param message - in - string
-                // @param callGUID - in - string
+                // @param call_guid - in - string
                 virtual void UploadComplete(const bool& status, const string& message, const string& call_guid ) {};
             };
 
