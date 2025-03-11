@@ -39,7 +39,7 @@ namespace WPEFramework
                 // @param status - in - boolean
                 // @param message - in - string
                 // @param callGUID - in - string
-                virtual void UploadComplete(const bool& status, const string& message, const string& callGUID ) {};
+                virtual void UploadComplete(const bool& status, const string& message, const string& call_guid ) {};
             };
 
             virtual Core::hresult Register(IScreenCapture::INotification* notification /* @in */) = 0;
