@@ -132,7 +132,7 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, bool &success /* @out */) = 0;
 
-            // @brief Sends a standby message to the HDMI CEC source
+            // @brief Sends a standby message to another CEC device
             // @text sendStandbyMessage
             // @param success: Is the operation successful or not
             virtual Core::hresult SendStandbyMessage(bool &success /* @out */) = 0;
