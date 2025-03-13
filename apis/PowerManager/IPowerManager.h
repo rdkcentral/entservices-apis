@@ -88,51 +88,112 @@ namespace WPEFramework
         };
 
         // @event
-        struct EXTERNAL INotification : virtual public Core::IUnknown
+        struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
         {
-            enum { ID = ID_POWER_MANAGER_NOTIFICATION };
-
-            // @brief Power mode changed
-            // @text onPowerModeChanged
-            // @param currentState: Current Power State
-            // @param newState: New Power State
-            virtual void OnPowerModeChanged(const PowerState &currentState, const PowerState &newState) = 0;
-            /** The Power Mode is going to change - sent before actual power mode change. */
-
-            // @brief Power mode Pre-change event
-            // @text onPowerModePreChange
-            // @param currentState: Current Power State
-            // @param newState: Changing power state to this New Power State
-            virtual void OnPowerModePreChange(const PowerState &currentState, const PowerState &newState) = 0;
-
-            // @brief Deep sleep timeout event
-            // @text onDeepSleepTimeout
-            // @param wakeupTimeout: Deep sleep wakeup timeout in seconds
-            virtual void OnDeepSleepTimeout(const int &wakeupTimeout) = 0;
-
-            // @brief Network Standby Mode changed event - only on XIone
-            // @text onNetworkStandbyModeChanged
-            // @param enabled: network standby enabled or disabled
-            virtual void OnNetworkStandbyModeChanged(const bool &enabled) = 0;
-
-            // @brief Thermal Mode changed event
-            // @text onThermalModeChanged
-            // @param currentThermalLevel: current thermal level
-            // @param newThermalLevel: new thermal level
-            // @param currentTemperature: current temperature
-            virtual void OnThermalModeChanged(const ThermalTemperature &currentThermalLevel, const ThermalTemperature &newThermalLevel, const float &currentTemperature) = 0;
-
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_REBOOT };
             // @brief Reboot begin event
             // @text onRebootBegin
             // @param rebootReasonCustom: Reboot reason custom
             // @param rebootReasonOther: Reboot reason other
             // @param rebootRequestor: Reboot requested by
             virtual void OnRebootBegin(const string &rebootReasonCustom, const string &rebootReasonOther, const string &rebootRequestor) = 0;
-
         };
+        virtual uint32_t Register(Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
+        virtual uint32_t Unregister(Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
 
-        virtual uint32_t Register(Exchange::IPowerManager::INotification* notification /* @in */) = 0;
-        virtual uint32_t Unregister(Exchange::IPowerManager::INotification* notification /* @in */) = 0;
+        // @event
+        struct EXTERNAL IModePreChangeNotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_PRECHANGE };
+            // @brief Power mode Pre-change event
+            // @text onPowerModePreChange
+            // @param currentState: Current Power State
+            // @param newState: Changing power state to this New Power State
+            // @param transactionId: transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API
+            // @param stateChangeAfter: seconds after which the actual power mode will be applied.
+            virtual void OnPowerModePreChange(const PowerState &currentState, const PowerState &newState, const int transactionId, const int stateChangeAfter) = 0;
+        };
+        // @brief Register for Power Mode pre-change event
+        virtual uint32_t Register(IModePreChangeNotification* notification /* @in */) = 0;
+        // @brief Unregister for Power Mode pre-change event
+        //       IMPORTANT: If client is also engaged in power mode pre-change operation (requested via AddPowerModePreChangeClient API),
+        //                  make sure to disengage (using RemovePowerModePreChangeClient API) before calling Unregister.
+        virtual uint32_t Unregister(IModePreChangeNotification* notification /* @in */) = 0;
+
+        // @event
+        struct EXTERNAL IModeChangedNotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED };
+            // @brief Power mode changed
+            // @text onPowerModeChanged
+            // @param currentState: Current Power State
+            // @param newState: New Power State
+            virtual void OnPowerModeChanged(const PowerState &currentState, const PowerState &newState) = 0;
+        };
+        virtual uint32_t Register(IModeChangedNotification* notification /* @in */) = 0;
+        virtual uint32_t Unregister(IModeChangedNotification* notification /* @in */) = 0;
+
+        // @event
+        struct EXTERNAL IDeepSleepTimeoutNotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT };
+            // @brief Deep sleep timeout event
+            // @text onDeepSleepTimeout
+            // @param wakeupTimeout: Deep sleep wakeup timeout in seconds
+            virtual void OnDeepSleepTimeout(const int &wakeupTimeout) = 0;
+        };
+        virtual uint32_t Register(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
+        virtual uint32_t Unregister(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
+
+         // @event
+         struct EXTERNAL INetworkStandbyModeChangedNotification : virtual public Core::IUnknown
+         {
+             enum { ID = ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED };
+             // @brief Network Standby Mode changed event - only on XIone
+             // @text onNetworkStandbyModeChanged
+             // @param enabled: network standby enabled or disabled
+             virtual void OnNetworkStandbyModeChanged(const bool &enabled) = 0;
+         };
+         virtual uint32_t Register(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
+         virtual uint32_t Unregister(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
+
+         // @event
+         struct EXTERNAL IThermalModeChangedNotification : virtual public Core::IUnknown
+         {
+             enum { ID = ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED };
+             // @brief Thermal Mode changed event
+             // @text onThermalModeChanged
+             // @param currentThermalLevel: current thermal level
+             // @param newThermalLevel: new thermal level
+             // @param currentTemperature: current temperature
+             virtual void OnThermalModeChanged(const ThermalTemperature &currentThermalLevel, const ThermalTemperature &newThermalLevel, const float &currentTemperature) = 0;
+         };
+         virtual uint32_t Register(IThermalModeChangedNotification* notification /* @in */) = 0;
+         virtual uint32_t Unregister(IThermalModeChangedNotification* notification /* @in */) = 0;
+
+        /** Engage a client in power mode change operation. */
+        // @text addPowerModePreChangeClient
+        // @brief Register a client to engage in power mode state changes.
+        //        Added client should call either
+        //          - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.
+        //          - Or `DelayPowerModeChangeBy` API to delay the power mode change.
+        //        If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete
+        //        after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).
+        //
+        //        IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **
+        //                   always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.
+        //
+        // @param clientName: Name of the client
+        // @param clientId: Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) 
+        //                  or to delay the power mode change (`DelayPowerModeChangeBy`)
+        virtual uint32_t AddPowerModePreChangeClient(const string& clientName /* @in */, uint32_t& clientId /* @out */) = 0;
+
+        /** Disengage a client from the power mode change operation. */
+        // @text removePowerModePreChangeClient
+        // @brief Removes a registered client from participating in power mode pre-change operations.
+        //        NOTE client will still continue to receive pre-change notifications.
+        // @param clientId: Unique identifier for the client. See `AddPowerModePreChangeClient`
+        virtual uint32_t RemovePowerModePreChangeClient(const uint32_t clientId /* @in */) = 0;
 
         /** Sets Power State . */
         // @text setPowerState
@@ -249,7 +310,22 @@ namespace WPEFramework
         // @param powerStateBeforeReboot: power state
         virtual uint32_t GetPowerStateBeforeReboot(PowerState &powerStateBeforeReboot /* @out */) = 0;
 
-};
+        /** Power prechange activity completed */
+        // @text powerModePreChangeComplete
+        // @brief Pre power mode handling complete for given client and transation id
+        // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
+        // @param transactionId: transaction id as received in OnPowerModePreChange
+        virtual uint32_t PowerModePreChangeComplete(const uint32_t clientId /* @in */, const int transactionId /* @in */) = 0;
+
+        /** Delay Powermode change by given time */
+        // @text delayPowerModeChangeBy
+        // @brief Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
+        // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
+        // @param transactionId: transaction id as received in OnPowerModePreChange
+        // @param delayPeriod: delay in seconds
+        virtual uint32_t DelayPowerModeChangeBy(const uint32_t clientId /* @in */, const int transactionId /* @in */, const int delayPeriod /* @in */) = 0;
+    };
+
 } // namespace Exchange
 } // namespace WPEFramework
 
