@@ -163,9 +163,10 @@ namespace WPEFramework
 
             // @brief Gets the list of devices connected to the HDMI CEC source
             // @text getDeviceList
+            // @param numberofdevices: Number of devices connected to the HDMI CEC source
             // @param deviceList: List of devices connected to the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetDeviceList(IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetDeviceList(uint32_t &numberofdevices /* @out */, IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
         };
 } // namespace Exchange
 } // namespace WPEFramework
