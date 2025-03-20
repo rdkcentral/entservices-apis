@@ -40,7 +40,7 @@ namespace WPEFramework
 
             using IHdmiCecSourceDeviceListIterator = RPC::IIteratorType<HdmiCecSourceDevices, ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR>;
 
-
+            // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
                 enum { ID = ID_HDMI_CEC_SOURCE_NOTIFICATION };
