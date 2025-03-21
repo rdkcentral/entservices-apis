@@ -29,7 +29,7 @@ namespace WPEFramework
         {
             enum { ID = ID_HDCPPROFILE };
 			
-			struct HDCPStatus
+	 		struct HDCPStatus
 			{
 				bool isConnected /* Indicates whether a display is connected*/;
 				bool isHDCPCompliant /* Indicates whether the display is HDCP compliant*/;
@@ -38,13 +38,12 @@ namespace WPEFramework
 				string supportedHDCPVersion /* Supported HDCP protocol version by the host device*/;
 				string receiverHDCPVersion /* Supported HDCP protocol version by the receiver device (display)*/;
 				string currentHDCPVersion /* Currently used HDCP protocol version*/;
-				
-			}
+			};
 			struct SupportedHdcpInfo
 			{
 				string supportedHDCPVersion /* Supported HDCP protocol version by the host device */;
 				bool isHDCPSupported /* Indicates whether HDCP is supported by the STB*/;	
-			}
+			};
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
@@ -54,22 +53,22 @@ namespace WPEFramework
 				// @text onDisplayConnectionChanged
 				// @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
 				// @param HDCPStatus - in - string
-				virtual void onDisplayConnectionChanged(const string& HDCPStatus) {};
+				virtual void OnDisplayConnectionChanged(const string& HDCPStatus) {};
             };
-			virtual Core::hresult Register(IHdcpProfile::INotification* notification /* @in */) = 0;
+	    	virtual Core::hresult Register(IHdcpProfile::INotification* notification /* @in */) = 0;
             virtual Core::hresult Unregister(IHdcpProfile::INotification* notification /* @in */) = 0;
 			
 			/**********************getHDCPStatus() - start****************************/
             // @text getHDCPStatus
             // @brief Returns HDCP-related data.
 			// @param HDCPStatus: Contains HDCP-related data as separate properties
-            virtual Core::hresult getHDCPStatus(HDCPStatus &hdcpstatus /* @out */) = 0;
+            virtual Core::hresult GetHDCPStatus(HDCPStatus &hdcpstatus /* @out */) = 0;
 			
 			/**********************getSettopHDCPSupport() - start****************************/
             // @text getSettopHDCPSupport
             // @brief Returns which version of HDCP is supported by the STB.
-			// @param SupportedHdcpInfo: settop supported Hdcp information
-            virtual Core::hresult getHDCPStatus(SupportedHdcpInfo &hdcpinfo /* @out */) = 0;
+	    	// @param SupportedHdcpInfo: settop supported Hdcp information
+            virtual Core::hresult GetHDCPStatus(SupportedHdcpInfo &hdcpinfo /* @out */) = 0;
 			
         };
     } // namespace Exchange
