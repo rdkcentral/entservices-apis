@@ -17,43 +17,22 @@
                 "devicePath": {
                     "summary": "The path to the USB device",
                     "type": "string",
-                    "example": "/dev/sda1"
+                    "example": "\/dev\/sda"
                 },
                 "deviceName": {
                     "summary": "The name of the USB device",
                     "type": "string",
-                    "example": "MyUSBDevice"
-                }
-            }
-        },
-        "USBStorageDeviceInfoIterator": {
-            "summary": "Information about a connected USB storage device.",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "devicePath": {
-                        "summary": "The path to the USB storage device in the system.",
-                        "type": "string",
-                        "example": "/dev/sda1"
-                    },
-                    "deviceName": {
-                        "summary": "The name of the USB storage device.",
-                        "type": "string",
-                        "example": "USB Drive 1"
-                    }
+                    "example": "001\/006"
                 }
             }
         },
         "USBStorageMountInfoIterator": {
-            "type": "array",
-            "items": {
                 "type": "object",
                 "properties": {
                     "partitionName": {
                         "summary": "The name of the partition being mounted",
                         "type": "string",
-                        "example": "/dev/sda1"
+                        "example": "\/dev\/sda1"
                     },
                     "mountFlags": {
                         "summary": "Flags indicating how the partition is mounted",
@@ -63,11 +42,10 @@
                     "mountPath": {
                         "summary": "The mount point path in the file system",
                         "type": "string",
-                        "example": "/mnt/usb1"
+                        "example": "\/tmp\/media\/usb2"
                     }
                 },
                 "required": ["partitionName", "mountFlags", "mountPath"]
-            }
         },
         "USBStoragePartitionInfo": {
             "type": "object",
@@ -122,7 +100,7 @@
                 "summary": "On success, a list of USB storage devices will be returned.",
                 "type": "array",
                 "items": {
-                    "$ref": "#/definitions/USBStorageDeviceInfoIterator"
+                    "$ref": "#/definitions/USBStorageDeviceInfo"
                 }
             }
         },
@@ -154,7 +132,7 @@
                     "mountPath": {
                         "summary": "Name of the USB storage device.",
                         "type": "string",
-                        "example": "/mnt/usb/media1/"
+                        "example": "\/tmp\/media\/usb2"
                     }
                 }
             },
@@ -173,7 +151,7 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "deviceList": {
+                    "mountPoints": {
                         "summary": "mount info list of a USB storage device will be returned.",
                         "type": "array",
                         "items": {
@@ -188,7 +166,7 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "deviceList": {
+                    "mountPoints": {
                         "summary": "mount info list of a USB storage device will be returned.",
                         "type": "array",
                         "items": {
