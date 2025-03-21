@@ -31,18 +31,18 @@ namespace WPEFramework
 			
 	    struct HDCPStatus
 	    {
-	    	bool isConnected /* Indicates whether a display is connected*/;
-		bool isHDCPCompliant /* Indicates whether the display is HDCP compliant*/;
-		bool isHDCPEnabled /* Indicates whether content is protected*/;
-		uint32_t hdcpReason /* The HDCP status reason*/;
-		string supportedHDCPVersion /* Supported HDCP protocol version by the host device*/;
-		string receiverHDCPVersion /* Supported HDCP protocol version by the receiver device (display)*/;
-		string currentHDCPVersion /* Currently used HDCP protocol version*/;
+	    	bool isConnected /* @text isConnected */ /* @brief Indicates whether a display is connected */;
+		bool isHDCPCompliant  /* @text isHDCPCompliant */ /* @brief Indicates whether the display is HDCP compliant */;
+		bool isHDCPEnabled  /* @text isHDCPEnabled *//* @brief Indicates whether content is protected */;
+		uint32_t hdcpReason  /* @text hdcpReason *//* @brief The HDCP status reason */;
+		string supportedHDCPVersion  /* @text supportedHDCPVersion */ /* @brief Supported HDCP protocol version by the host device */;
+		string receiverHDCPVersion  /* @text receiverHDCPVersion */ /* @brief Supported HDCP protocol version by the receiver device (display) */;
+		string currentHDCPVersion  /* @text currentHDCPVersion */ /* @brief Currently used HDCP protocol version */;
 	    };
 	    struct SupportedHdcpInfo
 	    {
-		string supportedHDCPVersion /* Supported HDCP protocol version by the host device */;
-		bool isHDCPSupported /* Indicates whether HDCP is supported by the STB*/;	
+		string supportedHDCPVersion /* @text supportedHDCPVersion */ /* @brief Supported HDCP protocol version by the host device */;
+		bool isHDCPSupported /* @text isHDCPSupported */ /* @brief Indicates whether HDCP is supported by the STB */;	
 	    };
 
             // @event
@@ -52,8 +52,8 @@ namespace WPEFramework
 				
 		// @text onDisplayConnectionChanged
 		// @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
-		// @param HDCPStatus - in - string
-		virtual void OnDisplayConnectionChanged(const string& HDCPStatus) {};
+		// @param HDCPStatus: Contains HDCP-related data as separate properties
+		virtual void OnDisplayConnectionChanged(const HDCPStatus &hdcpstatus) {};
             };
 	    virtual Core::hresult Register(IHdcpProfile::INotification* notification /* @in */) = 0;
             virtual Core::hresult Unregister(IHdcpProfile::INotification* notification /* @in */) = 0;
@@ -63,12 +63,14 @@ namespace WPEFramework
             // @brief Returns HDCP-related data.
 	    // @param HDCPStatus: Contains HDCP-related data as separate properties
             virtual Core::hresult GetHDCPStatus(HDCPStatus &hdcpstatus /* @out */) = 0;
+	    /**********************getHDCPStatus() - end******************************/
 			
-	    /**********************getSettopHDCPSupport() - start****************************/
+	    /**********************getSettopHDCPSupport() - start*********************************/
             // @text getSettopHDCPSupport
             // @brief Returns which version of HDCP is supported by the STB.
 	    // @param SupportedHdcpInfo: settop supported Hdcp information
             virtual Core::hresult GetSettopHDCPSupport(SupportedHdcpInfo &hdcpinfo /* @out */) = 0;
+	    /**********************getSettopHDCPSupport() - end***********************************/
 			
         };
     } // namespace Exchange
