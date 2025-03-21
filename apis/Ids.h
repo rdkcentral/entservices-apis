@@ -245,7 +245,11 @@ namespace Exchange {
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
         ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
 
-	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330
+	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330,
+
+    ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
+        ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
+        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
     };
 }
 }
