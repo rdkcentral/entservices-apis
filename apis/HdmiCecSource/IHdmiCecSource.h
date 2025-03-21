@@ -38,7 +38,7 @@ namespace WPEFramework
                 string osdName;
             };
 
-            struct EXTERNAL HdmiCecSourceSucces {
+            struct EXTERNAL HdmiCecSourceSuccess {
                 bool success;
             };
 
@@ -128,43 +128,43 @@ namespace WPEFramework
             // @brief Performs the OTP action
             // @text performOTPAction
             // @param success: Is the operation successful or not
-            virtual Core::hresult PerformOTPAction(HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult PerformOTPAction(HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sends a key press event to the HDMI CEC device.
             // @text sendKeyPressEvent
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sends a standby message to another CEC device
             // @text sendStandbyMessage
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendStandbyMessage(HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SendStandbyMessage(HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the status of the HDMI CEC source
             // @text setEnabled
             // @param enabled: Is the HDMI CEC source enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC source
             // @text setOSDName
             // @param osdName: OSD name of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetOSDName(const string &name /* @in */, HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SetOSDName(const string &name /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OTP enabled status of the HDMI CEC source
             // @text setOTPEnabled
             // @param enabled: Is the OTP enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetOTPEnabled(const bool &enabled /* @in */, HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SetOTPEnabled(const bool &enabled /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC source
             // @text setVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetVendorId(const string &vendorid /* @in */, HdmiCecSourceSucces &success /* @out */) = 0;
+            virtual Core::hresult SetVendorId(const string &vendorid /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Gets the list of devices connected to the HDMI CEC source
             // @text getDeviceList
