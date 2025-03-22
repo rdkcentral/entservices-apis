@@ -245,7 +245,10 @@ namespace Exchange {
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
         ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
 
-	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330
+	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330,
+
+	ID_HDCPPROFILE				     = ID_ENTOS_OFFSET + 0x340,
+	ID_HDCPPROFILE_NOTIFICATION	             = ID_HDCPPROFILE + 1
     };
 }
 }
