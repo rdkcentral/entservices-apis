@@ -25,34 +25,56 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json 1.0.0
+    // @json 1.0.0 @text:keep
     struct IAmazon : virtual public Core::IUnknown {
 
         enum { ID = ID_AMAZONPRIME };
 
-        enum state {
-            PLAYING = 0x0001,
-            STOPPED = 0x0002,
-            SUSPENDING = 0x0004
+        enum State {
+            PLAYING = 0x0001     /* @text PLAYING */,
+            STOPPED = 0x0002     /* @text STOPPED */,
+            SUSPENDING = 0x0004  /* @text SUSPENDING */
         };
 
+        // @event 
         struct INotification : virtual public Core::IUnknown {
             enum { ID = ID_AMAZONPRIME_NOTIFICATION };
 
             virtual ~INotification() {}
 
-            // Signal changes on the subscribed namespace..
-            virtual void StateChange(const IAmazon::state state) {};
+            // @text StateChange
+            // @brief Triggered whenever the App state changes
+            // @param state: current state of amazon prime
+            virtual void StateChange(const IAmazon::State state) {};
         };
 
         virtual ~IAmazon() {}
 
-        virtual Core::hresult Register(IAmazon::INotification* amazon) = 0;
-        virtual Core::hresult Unregister(IAmazon::INotification* amazon) = 0;
+        /** Register notification interface */
+        virtual Core::hresult Register(IAmazon::INotification* amazon /* @in */) = 0;
+        /** Unregister notification interface */
+        virtual Core::hresult Unregister(IAmazon::INotification* amazon /* @in */) = 0;
 
+        /** To send deeplink command to amazon prime application **/
+        // @text setDeepLink
+        // @brief Set the deeplink command for amazon prime
+        // @param command : app Deeplink command
         virtual Core::hresult SetDeepLink(const string& command) = 0;
+
+        /** To request for personal access token to amazon prime application **/
+        // @text personalInfoRequest
+        // @brief Request for personal access token to amazon prime app
         virtual Core::hresult PersonalInfoRequest() = 0;
+
+        /** To factory reset amazon prime application **/
+        // @text factoryResetRequest
+        // @brief Factory reset amazon prime app data
         virtual Core::hresult FactoryResetRequest() = 0;
+
+        /** To set launch reason for amazon prime application **/
+        // @texts setLaunchReason
+        // @brief Set launch reason for amazon prime app
+        // @param command : app launch reason
         virtual Core::hresult SetLaunchReason(const string& command) = 0;
     };
 }
