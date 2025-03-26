@@ -51,7 +51,7 @@ namespace WPEFramework
                 // @brief Notifies subscribers about the status of the warehouse reset operation
                 // @param success - in - boolean
                 // @param error - in - string
-                virtual void ResetDone(const boo& success /* @in */, const string& error /* @in */) {};
+                virtual void ResetDone(const bool& success /* @in */, const string& error /* @in */) {};
             };
 
             virtual Core::hresult Register(IWarehouse::INotification* notification /* @in */) = 0;
