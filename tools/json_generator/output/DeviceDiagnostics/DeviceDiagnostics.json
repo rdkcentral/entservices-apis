@@ -53,61 +53,38 @@
             },
             "result": {
                 "type": "object",
-                "properties": {
-                    "paramList": {
-                        "summary": "An array of JSON objects with the specified properties and their values",
-                        "type":"array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "summary": "The property name; Empty, if the property name is not supported",
-                                    "type":"string",
-                                    "example": "Device.X_CISCO_COM_LED.RedPwm"
-                                },
-                                "value": {
-                                    "summary": "The property value; Empty, if the property name is not supported",
-                                    "type":"string",
-                                    "example": "123"
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "value"
-                            ]
+                "summary": "An array of JSON objects with the specified properties and their values",
+                "type":"array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "summary": "The property name; Empty, if the property name is not supported",
+                            "type":"string",
+                            "example": "Device.X_CISCO_COM_LED.RedPwm"
+                        },
+                        "value": {
+                            "summary": "The property value; Empty, if the property name is not supported",
+                            "type":"string",
+                            "example": "123"
                         }
                     },
-                    "success": {
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "paramList",
-                    "success"
-                ]
+                    "required": [
+                        "name",
+                        "value"
+                    ]
+                }
             }
         },
-	"getMilestones": {
+        "getMilestones": {
             "summary": "Returns the list of milestones.",
             "result": {
-                "type": "object",
-                "properties": {
-                    "milestones": {
-                        "summary": "A string [] of milestones",
-                        "type": "array",
-                        "items": {
-                            "type":"string",
-                            "example": "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
-                        }
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "milestones",
-                    "success"
-                ]
+		"summary": "A string [] of milestones",
+                "type": "array",
+		"items": {
+		    "type": "string",
+                    "example": "RDK_STARTED:7097 ..."
+                }
             }
         },
         "logMilestone": {
@@ -124,25 +101,27 @@
                       "marker"
                   ]
               },
-              "result": {
-                  "$ref": "#/common/result"
-              }
-         },
+	      "result": {
+                  "$ref": "#/common/results/void"
+              },
+	      "errors": [
+                {
+                    "description": "General error",
+                    "$ref": "#/common/errors/general"
+                }
+            ]
+        },
         "getAVDecoderStatus":{
             "summary": "Gets the most active status of audio/video decoder/pipeline. This API doesn't track individual pipelines. It will aggregate and report the pipeline status, and the pipeline states are prioritized from High to Low (`ACTIVE`, `PAUSED`, and `IDLE`). Therefore, if any of the pipelines is in active state, then `getAVDecoderStatus` will return `ACTIVE`. If none of the pipelines are active but one is in a paused state, then `getAVDecoderStatus` will return `PAUSED`, and if all the pipelines are idle only then, `IDLE` will be returned.",
             "result":{
                 "type":"object",
                 "properties": {
-                    "AVDecoderStatus": {
+                    "avDecoderStatus": {
                         "$ref": "#/definitions/AVDecoderStatus"
-                    },
-                    "success": {
-                        "$ref": "#/common/success"
                     }
                 },
                 "required": [
-                    "AVDecoderStatus",
-                    "success"
+                    "avDecoderStatus"
                 ]
             }
         }
@@ -153,12 +132,12 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "AVDecoderStatus": {
+                    "avDecoderStatusChange": {
                         "$ref": "#/definitions/AVDecoderStatus"
                     }
                 },
                 "required": [
-                    "AVDecoderStatus"
+                    "avDecoderStatusChange"
                 ]
             }
         }
