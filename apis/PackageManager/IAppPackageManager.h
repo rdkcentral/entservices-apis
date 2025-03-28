@@ -2,21 +2,12 @@
 #include "Module.h"
 #include <utility>
 
+#include "RuntimeConfig.h"
+// @stubgen:include "RuntimeConfig.h"
 // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
 namespace Exchange {
-    struct RuntimeConfig {
-        bool dial;
-        bool wanLanAccess;
-        bool thunder;
-        int32_t systemMemoryLimit;
-        int32_t gpuMemoryLimit;
-        std::string envVars;
-        int32_t userid;
-        int32_t groupid;
-        int32_t dataImageSize;
-    };
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
@@ -236,7 +227,7 @@ namespace Exchange {
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            RuntimeConfig &configMetadata /* @out */,
+            Exchange::RuntimeConfig &configMetadata /* @out */,
             string &appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
