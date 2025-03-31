@@ -44,6 +44,13 @@ namespace Exchange {
         virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
         virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
 
+        // @json:omit
+        virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
+
+        // @json:omit
+        virtual void Deinitialize(PluginHost::IShell* service) = 0;
+
+
 	    // @brief Download
         // @text download
         // @param url: Download url
