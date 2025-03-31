@@ -249,7 +249,12 @@ namespace Exchange {
 
     ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
-        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2
+        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2,
+
+    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x350,
+        ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
+        ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
+        ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 3
     };
 }
 }
