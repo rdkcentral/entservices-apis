@@ -175,7 +175,7 @@
             // @param pathList: List of active path
             // @param ActiveRoute: Active route of the device
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetActiveRoute(bool &available /* @out */, uint8_t &length /* @out */, IHdmiCecSinkActivePathIterator &pathList /* @out */, string &ActiveRoute /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetActiveRoute(bool &available /* @out */, uint8_t &length /* @out */, IHdmiCecSinkActivePathIterator*& pathList /* @out */, string &ActiveRoute /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the status of the current active source
             // @text getActiveSource
