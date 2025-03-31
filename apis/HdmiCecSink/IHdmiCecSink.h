@@ -327,7 +327,7 @@
             // @param audioOutputCompensated: Audio Output Compensated value
             // @param audioOutputDelay: Audio Output Delay value
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetLatencyInfo(const string &videoLatency /* @in */, const string &lowLatencyMode /* @out */, const string &audioOutputCompensated /* @out */, const string &audioOutputDelay /* @out */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetLatencyInfo(const string &videoLatency /* @in */, const string &lowLatencyMode /* @in */, const string &audioOutputCompensated /* @in */, const string &audioOutputDelay /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
          };
 
