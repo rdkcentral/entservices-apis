@@ -81,6 +81,8 @@ org.rdk.UserSettings interface methods:
 | [getVoiceGuidance](#getVoiceGuidance) | Gets the current voiceGuidance setting |
 | [getVoiceGuidanceRate](#getVoiceGuidanceRate) | Gets the current voiceGuidanceRate setting |
 | [getVoiceGuidanceHints](#getVoiceGuidanceHints) | Gets the current voiceGuidanceHints setting |
+| [getMigrationState](#getMigrationState) | Gets the migration state of the respective key |
+| [getMigrationStates](#getMigrationStates) | Gets the migration state of all the defined keys |
 
 
 <a name="setAudioDescription"></a>
@@ -1596,6 +1598,102 @@ This method takes no parameters.
 }
 ```
 
+<a name="getMigrationState"></a>
+## *getMigrationState*
+
+Gets the migration state of the respective key.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.key | string | the property key, for which we need to get migration state |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | boolean | migration state of the respective key true/false |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.UserSettings.getMigrationState",
+    "params": {
+        "key": "VOICE_GUIDANCE_RATE"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": true
+}
+```
+
+<a name="getMigrationStates"></a>
+## *getMigrationStates*
+
+Gets the migration state of all the defined keys.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | array | migration state of all the defined keys |
+| result[#] | object | Keys and it's migration states |
+| result[#].key | string | key of the property |
+| result[#].requiresMigration | boolean | Migration State Of the Property |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.UserSettings.getMigrationStates"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": [
+        {
+            "key": "PREFERRED_AUDIO_LANGUAGES",
+            "requiresMigration": true
+        }
+    ]
+}
+```
+
 <a name="Notifications"></a>
 # Notifications
 
@@ -2033,3 +2131,4 @@ Triggered after the voice guidance hints changes.(see `SetVoiceGuidanceHints`).
     }
 }
 ```
+

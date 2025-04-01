@@ -1,3 +1,3 @@
-# ENT Services Architecture
+# Entertainment Services Architecture
 
 Will be updated soon!!

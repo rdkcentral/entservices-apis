@@ -31,24 +31,24 @@ struct EXTERNAL INativeJS : virtual public Core::IUnknown {
 
     /** Allow the plugin to initialize to use service object */
     // @json:omit
-    virtual uint32_t Initialize(string waylandDisplay) = 0;
+    virtual Core::hresult Initialize(string waylandDisplay) = 0;
 
     /** Allow the plugin to deinitialize to use service object */
     // @json:omit
-    virtual uint32_t Deinitialize() = 0;
+    virtual Core::hresult Deinitialize() = 0;
 
     /** Launches the NativeJS plugin */
     // @text launchApplication
     // @brief Launch a NativeJS application.
     // @param url The URL of the application to launch.
     // @param options Additional options for launching the application.
-    virtual uint32_t LaunchApplication(const std::string url, const std::string options) = 0;
+    virtual Core::hresult LaunchApplication(const std::string url, const std::string options) = 0;
 
     /** Stops the NativeJS plugin */
     // @text destroyApplication
     // @brief Destroy a running NativeJS application.
     // @param url The URL of the application to destroy.
-    virtual uint32_t DestroyApplication(const std::string url) = 0;
+    virtual Core::hresult DestroyApplication(const std::string url) = 0;
 };
 
 } // Exchange

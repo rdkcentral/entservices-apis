@@ -67,6 +67,10 @@ namespace WPEFramework {
 			virtual uint32_t getProtocolVersion(string &protocolVersion /* @out */ ) const = 0;
 			virtual uint32_t registerApplications(IApplicationInfoIterator * const appInfoList /* @in */ ) = 0;
 			virtual uint32_t setNetworkStandbyMode(bool networkStandbyMode) = 0;
+			virtual uint32_t setManufacturerName(string manufacturername) const = 0;
+			virtual uint32_t getManufacturerName(string &manufacturername /* @out */ ) const = 0;
+			virtual uint32_t setModelName(string modelname) const = 0;
+			virtual uint32_t getModelName(string &modelname /* @out */ ) const = 0;
 		};
 
 	} // Exchange
