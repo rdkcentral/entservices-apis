@@ -28,12 +28,10 @@
          struct EXTERNAL IHdcpProfile : virtual public Core::IUnknown 
          {
              enum { ID = ID_HDCPPROFILE };
-             struct EXTERNAL Result {
-                bool success /* @text success */;
-            };
+             
          struct EXTERNAL HDCPStatus
          {
-             bool isConnected /* @text isConnected */ /* @brief Indicates whether a display is connected */;
+        bool isConnected /* @text isConnected */ /* @brief Indicates whether a display is connected */;
          bool isHDCPCompliant  /* @text isHDCPCompliant */ /* @brief Indicates whether the display is HDCP compliant */;
          bool isHDCPEnabled  /* @text isHDCPEnabled *//* @brief Indicates whether content is protected */;
          uint32_t hdcpReason  /* @text hdcpReason *//* @brief The HDCP status reason */;
@@ -64,14 +62,14 @@
              // @text getHDCPStatus
              // @brief Returns HDCP-related data.
          // @param HDCPStatus: Contains HDCP-related data as separate properties
-             virtual Core::hresult GetHDCPStatus(HDCPStatus &hdcpstatus /* @out */,Result &result /* @out */) = 0;
+             virtual Core::hresult GetHDCPStatus(HDCPStatus &hdcpstatus /* @out */,bool& success  /* @out */) = 0;
          /**********************getHDCPStatus() - end******************************/
              
          /**********************getSettopHDCPSupport() - start*********************************/
              // @text getSettopHDCPSupport
              // @brief Returns which version of HDCP is supported by the STB.
          // @param SupportedHdcpInfo: settop supported Hdcp information
-             virtual Core::hresult GetSettopHDCPSupport(SupportedHdcpInfo &hdcpinfo /* @out */,Result &result /* @out */) = 0;
+             virtual Core::hresult GetSettopHDCPSupport(SupportedHdcpInfo &hdcpinfo /* @out */,bool& success /* @out */) = 0;
          /**********************getSettopHDCPSupport() - end***********************************/
              
          };
