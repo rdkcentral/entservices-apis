@@ -260,7 +260,13 @@ namespace Exchange {
         ID_AMAZONPRIME_NOTIFICATION                  = ID_AMAZONPRIME + 1,
 
         ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
-        ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1
+        ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
+
+    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x370,
+        ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
+        ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
+        ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 3,
+        ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR = ID_HDMI_CEC_SINK + 4
     };
 }
 }
