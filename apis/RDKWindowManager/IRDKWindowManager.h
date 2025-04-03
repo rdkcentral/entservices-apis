@@ -53,7 +53,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
 
   /** Allow the plugin to deinitialize to use service object */
   // @json:omit
-  virtual void Deinitialize(PluginHost::IShell* service) = 0;
+  virtual Core::hresult Deinitialize(PluginHost::IShell* service) = 0;
 
   /** Create the display window */
   // @text createDisplay
