@@ -151,12 +151,17 @@
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
                 // @param ShortAudioDescriptor: Short Audio Descriptor of the device
-                virtual void ShortAudiodescriptorEvent(IHdmiCecSinkShortAudioDescriptorIterator* ShortAudioDescriptor /* @in */) {};
+                virtual void ShortAudioDescriptorEvent(IHdmiCecSinkShortAudioDescriptorIterator* ShortAudioDescriptor /* @in */) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void standbyMessageReceived(const int logicalAddress /* @in */) {};
+                virtual void StandbyMessageReceived(const int logicalAddress /* @in */) {};
+
+                // @brief Triggered when the source device changes.
+                // @text reportAudioDevicePowerStatus
+                // @param powerStatus: Power status of the device
+                virtual void ReportAudioDevicePowerStatus(const int powerStatus /* @in */) {};
 
 
             };
@@ -188,7 +193,7 @@
             // @param vendorID: Vendor ID of the active source
             // @param powerStatus: Power status of the active source
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetActiveSource(bool &available /* @out */, uint8_t &logicalAddress /* @out */, string &physicalAddress /* @out */, string &deviceType /* @out */, string &cecVersion /* @out */, string &osdName /* @out */, string &vendorID /* @out*/, string &powerStatus /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetActiveSource(bool &available /* @out */, uint8_t &logicalAddress /* @out */, string &physicalAddress /* @out */, string &deviceType /* @out */, string &cecVersion /* @out */, string &osdName /* @out */, string &vendorID /* @out*/, string &powerStatus /* @out */, string &port /* @out */ bool &success /* @out */) = 0;
 
             // @brief Gets audio device connected status
             // @text getAudioDeviceConnectedStatus
@@ -217,7 +222,7 @@
 
             // @brief Gets the vendor ID of the HDMI CEC Sink
             // @text getVendorId
-            // @param vendorId: Vendor ID of the HDMI CEC Sink
+            // @param vendorid: Vendor ID of the HDMI CEC Sink
             // @param success: Is the operation successful or not
             virtual Core::hresult GetVendorId(string &vendorid /* @out */, bool &success /* @out */) = 0;
 
@@ -238,9 +243,9 @@
             virtual Core::hresult RequestShortAudioDescriptor(HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
-            // @text sendAudioDevicePowerOn
+            // @text sendAudioDevicePowerOnMessage
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetSystemAudioModeEvent(HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SendAudioDevicePowerOnMessage(HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sends the CEC <Give Audio Status> message to request the audio status.
             // @text sendGetAudioStatusMessage
@@ -312,7 +317,7 @@
             // @text setupARCRouting
             // @param enabled: Is the HDMI-CEC ARC routing enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetupARCRouting(const string &enabled /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetupARCRouting(const bool &enabled /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC Sink
             // @text setVendorId
