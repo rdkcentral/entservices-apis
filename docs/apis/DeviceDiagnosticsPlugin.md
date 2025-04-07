@@ -74,12 +74,10 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.paramList | array | An array of JSON objects with the specified properties and their values |
-| result.paramList[#] | object |  |
-| result.paramList[#].name | string | The property name; Empty, if the property name is not supported |
-| result.paramList[#].value | string | The property value; Empty, if the property name is not supported |
-| result.success | boolean | Whether the request succeeded |
+| result | array | An array of JSON objects with the specified properties and their values |
+| result[#] | object |  |
+| result[#].name | string | The property name; Empty, if the property name is not supported |
+| result[#].value | string | The property value; Empty, if the property name is not supported |
 
 ### Example
 
@@ -104,15 +102,12 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "paramList": [
-            {
-                "name": "Device.X_CISCO_COM_LED.RedPwm",
-                "value": "123"
-            }
-        ],
-        "success": true
-    }
+    "result": [
+        {
+            "name": "Device.X_CISCO_COM_LED.RedPwm",
+            "value": "123"
+        }
+    ]
 }
 ```
 
@@ -133,10 +128,8 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.milestones | array | A string [] of milestones |
-| result.milestones[#] | string |  |
-| result.success | boolean | Whether the request succeeded |
+| result | array | A string [] of milestones |
+| result[#] | string |  |
 
 ### Example
 
@@ -156,12 +149,9 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "milestones": [
-            "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
-        ],
-        "success": true
-    }
+    "result": [
+        "RDK_STARTED:7097 ..."
+    ]
 }
 ```
 
@@ -185,8 +175,13 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | null | Always null |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -209,9 +204,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": null
 }
 ```
 
@@ -233,8 +226,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.AVDecoderStatus | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
-| result.success | boolean | Whether the request succeeded |
+| result.avDecoderStatus | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
 
 ### Example
 
@@ -255,8 +247,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "AVDecoderStatus": "ACTIVE",
-        "success": true
+        "avDecoderStatus": "ACTIVE"
     }
 }
 ```
@@ -285,7 +276,7 @@ Triggered when the most active status of audio/video decoder/pipeline changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.AVDecoderStatus | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
+| params.avDecoderStatusChange | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
 
 ### Example
 
@@ -294,8 +285,7 @@ Triggered when the most active status of audio/video decoder/pipeline changes.
     "jsonrpc": "2.0",
     "method": "client.events.onAVDecoderStatusChanged",
     "params": {
-        "AVDecoderStatus": "ACTIVE"
+        "avDecoderStatusChange": "ACTIVE"
     }
 }
 ```
-

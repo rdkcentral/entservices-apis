@@ -261,8 +261,12 @@ namespace Exchange {
 
         ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
         ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
+      
+        ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
+        ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
+        ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
 
-    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x370,
+    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x380,
         ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
         ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
         ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 3,
