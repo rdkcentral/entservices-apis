@@ -151,7 +151,7 @@
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
                 // @param ShortAudioDescriptor: Short Audio Descriptor of the device
-                virtual void ShortAudioDescriptorEvent(std::vector<int>* ShortAudioDescriptor /* @in */) {};
+                virtual void ShortAudioDescriptorEvent(std::vector<int> ShortAudioDescriptor /* @in */) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
