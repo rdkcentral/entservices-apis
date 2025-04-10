@@ -165,8 +165,13 @@ namespace Exchange {
 	ID_XCAST_NOTIFICATION                        = ID_XCAST + 1,
 	ID_XCAST_APPLICATION_INFO_ITERATOR           = ID_XCAST + 2,
 
-	ID_POWER_MANAGER                             = ID_ENTOS_OFFSET + 0x180,
-	ID_POWER_MANAGER_NOTIFICATION                = ID_POWER_MANAGER + 1,
+        ID_POWER_MANAGER                                           = ID_ENTOS_OFFSET + 0x180,
+        ID_POWER_MANAGER_NOTIFICATION_REBOOT                       = ID_POWER_MANAGER + 1,
+        ID_POWER_MANAGER_NOTIFICATION_MODE_PRECHANGE               = ID_POWER_MANAGER + 2,
+        ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED                 = ID_POWER_MANAGER + 3,
+        ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT           = ID_POWER_MANAGER + 4,
+        ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
+        ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
 
 	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
@@ -251,8 +256,18 @@ namespace Exchange {
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
         ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2,
 
-	ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x350,
-	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1
+        ID_AMAZONPRIME                               = ID_ENTOS_OFFSET + 0x350,
+        ID_AMAZONPRIME_NOTIFICATION                  = ID_AMAZONPRIME + 1,
+
+        ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
+        ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
+      
+        ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
+        ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
+        ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
+      
+        ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
+	      ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1
     };
 }
 }
