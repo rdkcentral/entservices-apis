@@ -267,7 +267,7 @@ namespace Exchange {
         ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
       
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
-	      ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1
+	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1
     };
 }
 }
