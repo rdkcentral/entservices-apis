@@ -20,9 +20,7 @@
  #pragma once
 
  #include "Module.h"
- #include <vector>
  
- // @stubgen:include <vector>
  // @stubgen:include <com/IIteratorType.h>
  
  namespace WPEFramework
@@ -61,7 +59,7 @@
             using IHdmiCecSinkActivePathIterator = RPC::IIteratorType<HdmiCecSinkActivePath, ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR>;
             using IHdmiCecSinkDeviceListIterator = RPC::IIteratorType<HdmiCecSinkDevices, ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR>;
             using IHdmiCecSinkShortAudioDescriptorIterator = RPC::IIteratorType<int, ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR>;
-            
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
