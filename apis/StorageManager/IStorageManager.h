@@ -33,24 +33,22 @@ struct EXTERNAL IStorageManager : virtual public Core::IUnknown {
     // @text createStorage
     // @brief Called by the Package Manager after installing an app and returns a storage path or an error
     // @param appId - in - string App identifier for the application.
-    // @param userId - in -int
-    // @param groupId - in - int
     // @param size -  uint (in KB)
     // @param path -out -string path to a directory or image file
     // @param errorReason - out - string error reason string
-    virtual Core::hresult CreateStorage(const string& appId, const int32_t& userId, const int32_t& groupId, const uint32_t& size, string& path/* @out */, string& errorReason /* @out */) = 0;
+    virtual Core::hresult CreateStorage(const string& appId, const uint32_t& size, string& path/* @out */, string& errorReason /* @out */) = 0;
 
     /** Get the storage location for a given app id */
     // @json:omit
     // @text getStorage
     // @brief Called by RuntimeManager and returns the storage location for a given app id
     // @param appId - in - string App identifier for the application.
+    // @param userId - in -int
+    // @param groupId - in - int
     // @param path -out -string path to a directory or image file
-    // @param userId - out -int
-    // @param groupId - out - int
     // @param size - out - uint (in KB)
     // @param used - out - uint (in KB)
-    virtual Core::hresult GetStorage(const string& appId, string& path/* @out */, int32_t& userId /*@out*/, int32_t& groupId /*@out*/, uint32_t& size /* @out*/, uint32_t& used /* @out*/) = 0;
+    virtual Core::hresult GetStorage(const string& appId, const int32_t& userId, const int32_t& groupId, string& path/* @out */, uint32_t& size /* @out*/, uint32_t& used /* @out*/) = 0;
 
     /** Deletes storage for a given app id */
     // @json:omit
