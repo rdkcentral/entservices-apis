@@ -51,11 +51,11 @@ namespace WPEFramework
                 // @brief Notifies subscribers about the status of the warehouse reset operation
                 // @param success - in - boolean
                 // @param error - in - string
-                virtual void ResetDone(const bool& success /* @in */, const string& error /* @in */) {};
+                virtual void ResetDone(const bool& success, const string& error) {};
             };
 
-            virtual Core::hresult Register(IWarehouse::INotification* notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IWarehouse::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(IWarehouse::INotification* notification) = 0;
+            virtual Core::hresult Unregister(IWarehouse::INotification* notification) = 0;
 
             // @text executeHardwareTest
             // @brief Starts a hardware test on the device
@@ -64,15 +64,15 @@ namespace WPEFramework
 
             // @text getHardwareTestResults
             // @brief Returns the results of the last hardware test.
-            // @param testResults - in - string
+            // @param testResults - out - string
             // @param WarehouseSuccess - out 
-            virtual Core::hresult GetHardwareTestResults(const string& testResults /* @in */, WarehouseSuccess& success /* @out */) = 0;
+            virtual Core::hresult GetHardwareTestResults(string& testResults /* @out */, WarehouseSuccess& success /* @out */) = 0;
 
             // @text internalReset
             // @brief Invokes the internal reset script, which reboots the Warehouse service
             // @param passPhrase - in - string
             // @param WarehouseSuccessErr - out
-            virtual Core::hresult InternalReset(const string& passPhrase /* @in */, WarehouseSuccessErr& successErr /* @out */) = 0;
+            virtual Core::hresult InternalReset(const string& passPhrase, WarehouseSuccessErr& successErr /* @out */) = 0;
 
             // @text isClean
             // @brief Checks the locations on the device where customer data may be stored.
@@ -80,7 +80,7 @@ namespace WPEFramework
             // @param clean - out - boolean
             // @param files - out - string [] of file locations for each file
             // @param success - out - boolean
-            virtual Core::hresult IsClean(const int age /* @in */, bool &clean /* @out */, IStringIterator*& files /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult IsClean(const int age, bool &clean /* @out */, IStringIterator*& files /* @out */, bool &success /* @out */) = 0;
             
             // @text lightReset
             // @brief Resets the application data.
@@ -92,7 +92,7 @@ namespace WPEFramework
             // @param suppressReboot - in - bool
             // @param resetType - in - string
             // @param WarehouseSuccessErr - out
-            virtual Core::hresult ResetDevice(const bool suppressReboot /* @in */, const string& resetType /* @in */, WarehouseSuccessErr& successErr /* @out */) = 0;
+            virtual Core::hresult ResetDevice(const bool suppressReboot, const string& resetType, WarehouseSuccessErr& successErr /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
