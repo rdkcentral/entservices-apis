@@ -230,7 +230,7 @@ def generate_request_section(request, method_type):
     """
     request_json = json.dumps(request, indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
-    markdown += "````"
+    markdown += "```"
     return markdown
 
 def generate_response_section(response, method_type):
@@ -239,7 +239,7 @@ def generate_response_section(response, method_type):
     """
     response_json = json.dumps(response, indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
-    markdown += "````"
+    markdown += "```"
     return markdown
 
 def generate_properties_toc(properties, classname):
