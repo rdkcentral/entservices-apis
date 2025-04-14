@@ -35,6 +35,7 @@ def generate_md_from_header(header_file):
     filename = os.path.basename(header_file)
     classname, _ = os.path.splitext(filename)
 
+    # Remove the leading 'I' from the api's class name
     output_file_path = 'generated_docs/' + classname[1:] + '.md'
 
     log_file_path = 'logs/' + classname + '.txt'
@@ -45,20 +46,23 @@ def generate_md_from_header(header_file):
     with open(output_file_path, 'w', encoding='utf-8') as file:
         file.write(generate_header_toc(classname, header_structure))
         file.write(generate_header_description_markdown(classname))
-        if len(header_structure.methods.values()) > 0:   
+        if len(header_structure.methods.values()) > 0:
             file.write(generate_methods_toc(header_structure.methods, classname))
             for method_name, method_info in header_structure.methods.items():
-                file.write(generate_method_markdown(method_name, method_info, header_structure.symbols_registry))
+                file.write(generate_method_markdown(
+                    method_name, method_info, header_structure.symbols_registry))
         file.write("\n")
         if len(header_structure.properties.values()) > 0:
             file.write(generate_properties_toc(header_structure.properties, classname))
             for prop_name, prop_info in header_structure.properties.items():
-                file.write(generate_property_markdown(prop_name,prop_info, header_structure.symbols_registry))
+                file.write(generate_property_markdown(
+                    prop_name,prop_info, header_structure.symbols_registry))
         file.write("\n")
         if len(header_structure.events.values()) > 0:
             file.write(generate_notifications_toc(header_structure.events, classname))
             for event_name, event_info in header_structure.events.items():
-                file.write(generate_notification_markdown(event_name, event_info, header_structure.symbols_registry))
+                file.write(generate_notification_markdown(
+                    event_name, event_info, header_structure.symbols_registry))
     logger.write_log()
     logger.close()
 

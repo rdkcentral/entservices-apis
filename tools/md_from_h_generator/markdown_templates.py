@@ -152,27 +152,27 @@ def generate_header_toc(classname, document_object, version="1.0.0"):
         toc += "- [Notifications](#head.Notifications)\n"
     return toc
 
-def generate_header_description_markdown(classname): 
+def generate_header_description_markdown(classname):
     """
     Generate the header description markdown for the file.
     """
     return HEADER_DESCRIPTION_TEMPLATE.format(classname=classname)
 
-def generate_methods_toc(methods, classname): 
+def generate_methods_toc(methods, classname):
     """
     Generate the methods table of contents for the markdown file.
     """
-    toc = METHODS_TOC_TEMPLATE.format(classname=classname) 
+    toc = METHODS_TOC_TEMPLATE.format(classname=classname)
     for method in methods:
         method_body = methods[method]
-        toc += f"| [{method}](#method.{method}) | {method_body['brief'] or method_body['details']} |\n" 
+        toc += f"| [{method}](#method.{method}) | {method_body['brief'] or method_body['details']} |\n"
     return toc
 
-def generate_method_markdown(method_name, method_info, symbol_registry): 
+def generate_method_markdown(method_name, method_info, symbol_registry):
     """
     Generate the markdown for a specific method.
     """
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['brief'] or method_info['details']) 
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['brief'] or method_info['details'])
     markdown += generate_events_section(method_info['events'])
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
@@ -292,17 +292,17 @@ def generate_values_section(values, symbol_registry):
         markdown += "This property has no values.\n"
     return markdown
 
-def generate_notifications_toc(events, classname): 
+def generate_notifications_toc(events, classname):
     """
     Generate the notifications table of contents for the markdown file.
     """
-    toc = EVENTS_TOC_TEMPLATE.format(classname=classname) 
+    toc = EVENTS_TOC_TEMPLATE.format(classname=classname)
     for event in events:
         event_body = events[event]
         toc += f"| [{event}](#event.{event}) | {event_body['brief'] or event_body['details']} |\n"
     return toc
 
-def generate_notification_markdown(event_name, event_info, symbol_registry): 
+def generate_notification_markdown(event_name, event_info, symbol_registry):
     """
     Generate the markdown for a specific event.
     """
