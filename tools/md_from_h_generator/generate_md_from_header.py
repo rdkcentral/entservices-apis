@@ -35,7 +35,7 @@ def generate_md_from_header(header_file):
     filename = os.path.basename(header_file)
     classname, _ = os.path.splitext(filename)
 
-    output_file_path = 'generated_docs/' + classname + '.md'
+    output_file_path = 'generated_docs/' + classname[1:] + '.md'
 
     log_file_path = 'logs/' + classname + '.txt'
     logger = Logger(log_file_path)
