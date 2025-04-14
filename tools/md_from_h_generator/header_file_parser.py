@@ -632,7 +632,7 @@ class HeaderFileParser:
         """
         Links methods to their associated events. Directly modifies the methods dictionary.
         """
-        for method_name, method_info in self.methods:
+        for method_name, method_info in self.methods.items():
             method_events = method_info['events']
             for event in method_events:
                 if event in self.events:
