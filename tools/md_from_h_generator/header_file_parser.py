@@ -646,7 +646,7 @@ class HeaderFileParser:
         """
         Logs events that are not associated with any method.
         """
-        for event_name, event_info in self.events:
+        for event_name, event_info in self.events.items():
             if not event_info.get('associated_method'):
                 self.logger.log("WARNING", f"Event {event_name} is not associated with a method.")
 
