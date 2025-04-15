@@ -157,6 +157,12 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param input: input type (default/keyboard)
   // @param keyConfig: JSON String format with enabled, initialDelay and repeatInterval
   virtual Core::hresult KeyRepeatConfig(const string &input, const string &keyConfig) = 0;
+
+  /** Sets the focus to the app with the app id */
+  // @text setFocus
+  // @brief Sets the focus to the app with the app id
+  // @param client/appInstanceId: Client/Application instance ID as a plain string (e.g., "rdkwmtestapp_13193")
+  virtual Core::hresult SetFocus(const string &client) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
