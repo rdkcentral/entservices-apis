@@ -192,7 +192,7 @@
             // @param vendorID: Vendor ID of the active source
             // @param powerStatus: Power status of the active source
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetActiveSource(bool &available /* @out */, uint8_t &logicalAddress /* @out */, string &physicalAddress /* @out */, string &deviceType /* @out */, string &cecVersion /* @out */, string &osdName /* @out */, string &vendorID /* @out*/, string &powerStatus /* @out */, string &port /* @out */ bool &success /* @out */) = 0;
+            virtual Core::hresult GetActiveSource(bool &available /* @out */, uint8_t &logicalAddress /* @out */, string &physicalAddress /* @out */, string &deviceType /* @out */, string &cecVersion /* @out */, string &osdName /* @out */, string &vendorID /* @out*/, string &powerStatus /* @out */, string &port /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets audio device connected status
             // @text getAudioDeviceConnectedStatus
