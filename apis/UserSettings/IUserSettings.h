@@ -21,6 +21,7 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
 namespace WPEFramework {
 namespace Exchange {
 
@@ -328,6 +329,66 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Gets the current voiceGuidanceHints setting.
     // @param hints: true/false
     virtual uint32_t GetVoiceGuidanceHints(bool &hints /* @out */) const = 0;
+
+};
+
+/**
+ * If a setting was owned by an other component prior to being migrated into UserSettings,
+ * we require the ability to detect when this migration has completed.
+ * The component which was the previous owner of a given setting has the responsibility
+ * to always set the setting on UserSettings interface (During migration AND during first time install).
+ * Until this is done the setting is not considered valid, meaning the the MigrationState will contain requiresMigration=true
+ * All settings not requiring migration would immediately be valid.
+ */
+
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
+{
+    enum { ID = ID_USER_SETTINGS_INSPECTOR };
+
+    ~IUserSettingsInspector() override = default;
+
+    enum SettingsKey : uint32_t
+    {
+        PREFERRED_AUDIO_LANGUAGES = 1,
+        AUDIO_DESCRIPTION = 2,
+        CAPTIONS = 3,
+        PREFERRED_CAPTIONS_LANGUAGES = 4,
+        PREFERRED_CLOSED_CAPTION_SERVICE = 5,
+        PRESENTATION_LANGUAGE = 6,
+        HIGH_CONTRAST = 7,
+        PIN_CONTROL = 8,
+        VIEWING_RESTRICTIONS = 9,
+        VIEWING_RESTRICTIONS_WINDOW = 10,
+        LIVE_WATERSHED = 11,
+        PLAYBACK_WATERSHED = 12,
+        BLOCK_NOT_RATED_CONTENT = 13,
+        PIN_ON_PURCHASE = 14,
+        VOICE_GUIDANCE = 15,
+        VOICE_GUIDANCE_RATE = 16,
+        VOICE_GUIDANCE_HINTS = 17
+    };
+
+    struct SettingsMigrationState
+    {
+        SettingsKey key;
+        bool requiresMigration;
+    };
+
+    using IUserSettingsMigrationStateIterator = RPC::IIteratorType<SettingsMigrationState, ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR>;
+
+    /** Get the migration state of the respective key */
+    // @text getMigrationState
+    // @brief Get the migration state of the respective key
+    // @param key: one of UserSettingsKey
+    // @param migrationState: key and it's migration state.
+    virtual Core::hresult GetMigrationState(const SettingsKey key, bool &requiresMigration /* @out */) const = 0;
+
+    /** Get the migration state of all the defined keys */
+    // @text getMigrationStates
+    // @brief Get the migration state of all the defined keys
+    // @param states: array of migration status.
+    virtual Core::hresult GetMigrationStates(IUserSettingsMigrationStateIterator*& states /* @out */) const = 0;
 
 };
 

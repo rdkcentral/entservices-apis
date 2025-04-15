@@ -34,8 +34,12 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @brief Posting the client is inactive state
     // @text onUserInactivity
     // @param minutes: notify how long user is inactive state
-    virtual void OnUserInactivity(const double minutes) = 0;
+    virtual void OnUserInactivity(const double minutes){};
 
+    // @brief Notifies when an application is disconnected
+    // @text onDisconnected
+    // @param client: the identifier of the disconnected application
+    virtual void OnDisconnected(const std::string& client){};
   };
 
   /** Register notification interface */
@@ -49,7 +53,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
 
   /** Allow the plugin to deinitialize to use service object */
   // @json:omit
-  virtual void Deinitialize(PluginHost::IShell* service) = 0;
+  virtual Core::hresult Deinitialize(PluginHost::IShell* service) = 0;
 
   /** Create the display window */
   // @text createDisplay
@@ -153,6 +157,12 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param input: input type (default/keyboard)
   // @param keyConfig: JSON String format with enabled, initialDelay and repeatInterval
   virtual Core::hresult KeyRepeatConfig(const string &input, const string &keyConfig) = 0;
+
+  /** Sets the focus to the app with the app id */
+  // @text setFocus
+  // @brief Sets the focus to the app with the app id
+  // @param client/appInstanceId: Client/Application instance ID as a plain string (e.g., "rdkwmtestapp_13193")
+  virtual Core::hresult SetFocus(const string &client) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

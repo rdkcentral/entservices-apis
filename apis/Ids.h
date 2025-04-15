@@ -21,27 +21,27 @@
 
 // This file holds all the identifiers (uint32_t) used to identify an interface. From this
 // identifier, the comrpc framework can find the proper proxy/stub in case of communicating
-// over a process boundary. 
-// Some users do not "fully" rebuild the system in case of changes. If this means that the 
+// over a process boundary.
+// Some users do not "fully" rebuild the system in case of changes. If this means that the
 // Proxy/Stub code is not always rebuild in case of new releases, the identifier associated
 // with an interface becomes as important as the interface syntax and as interfaces are not
 // allowed to be changed, the ID associated with the interface should also not be changed
-// and thus should be "fixed". 
+// and thus should be "fixed".
 
 // So if you extend this file by defining a new interface ID make sure it is defined (has
 // an actual value) and once the enum label has a value, never change it again.
 
-// As some interfaces might be grouped, the first ID of the group is assigned a value, the 
-// other interfaces belonging to this group use the enum value of label that has an assigned 
-// value and just increment that label by the proper amount. 
+// As some interfaces might be grouped, the first ID of the group is assigned a value, the
+// other interfaces belonging to this group use the enum value of label that has an assigned
+// value and just increment that label by the proper amount.
 
 // Using this system, all interfaces will have an assigned number. If numbers overlap, the
-// compiler, your best friend, will start complaining. Time to reassign the value, before we 
+// compiler, your best friend, will start complaining. Time to reassign the value, before we
 // deploy.
 
-// NOTE: Default the gap between each group of interface is 16. If you need more and the new 
+// NOTE: Default the gap between each group of interface is 16. If you need more and the new
 //       addition is add the end, write a comment with your interface that you might need more
-//       than 16 interface in that group so that the next ID is indeed elevated (and rounded 
+//       than 16 interface in that group so that the next ID is indeed elevated (and rounded
 //       up to a multiple of 16) if the next entry is made in the future.
 
 namespace WPEFramework {
@@ -64,14 +64,14 @@ namespace Exchange {
         ID_MEMORYEXTENDED                            = ID_BROWSER + 11,
 	ID_APPLICATION				     = ID_BROWSER + 12,
 	ID_APPLICATION_NOTIFICATION		     = ID_BROWSER + 13,
-	
+
 	ID_DICTIONARY                                = ID_ENTOS_OFFSET + 0x010,
         ID_DICTIONARY_NOTIFICATION                   = ID_DICTIONARY + 1,
         ID_DICTIONARY_ITERATOR                       = ID_DICTIONARY + 2,
-  
+
         ID_NETFLIX                                   = ID_ENTOS_OFFSET + 0x020,
         ID_NETFLIX_NOTIFICATION                      = ID_NETFLIX + 1,
-  
+
         ID_CONTENTDECRYPTION                         = ID_ENTOS_OFFSET + 0x030,
         ID_CONTENTDECRYPTION_NOTIFICATION            = ID_CONTENTDECRYPTION + 1,
 
@@ -156,6 +156,8 @@ namespace Exchange {
 
         ID_USER_SETTINGS                             = ID_ENTOS_OFFSET + 0x150,
         ID_USER_SETTINGS_NOTIFICATION                = ID_USER_SETTINGS + 1,
+        ID_USER_SETTINGS_INSPECTOR                   = ID_USER_SETTINGS + 2,
+        ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR    = ID_USER_SETTINGS + 3,
 
 	ID_ANALYTICS                                 = ID_ENTOS_OFFSET + 0x160,
 
@@ -163,8 +165,13 @@ namespace Exchange {
 	ID_XCAST_NOTIFICATION                        = ID_XCAST + 1,
 	ID_XCAST_APPLICATION_INFO_ITERATOR           = ID_XCAST + 2,
 
-	ID_POWER_MANAGER                             = ID_ENTOS_OFFSET + 0x180,
-	ID_POWER_MANAGER_NOTIFICATION                = ID_POWER_MANAGER + 1,
+        ID_POWER_MANAGER                                           = ID_ENTOS_OFFSET + 0x180,
+        ID_POWER_MANAGER_NOTIFICATION_REBOOT                       = ID_POWER_MANAGER + 1,
+        ID_POWER_MANAGER_NOTIFICATION_MODE_PRECHANGE               = ID_POWER_MANAGER + 2,
+        ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED                 = ID_POWER_MANAGER + 3,
+        ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT           = ID_POWER_MANAGER + 4,
+        ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
+        ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
 
 	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
@@ -228,6 +235,36 @@ namespace Exchange {
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
 
+        ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
+        ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
+        ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_APP_PACKAGE_MANAGER + 2,
+        ID_PACKAGE_INSTALLER                         = ID_APP_PACKAGE_MANAGER + 3,
+        ID_PACKAGE_INSTALLER_NOTIFICATION            = ID_APP_PACKAGE_MANAGER + 4,
+        ID_PACKAGE_HANDLER                           = ID_APP_PACKAGE_MANAGER + 5,
+        ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
+        ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
+        ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
+	
+	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
+
+        ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
+        ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
+
+	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330,
+
+    ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
+        ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
+        ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2,
+
+        ID_AMAZONPRIME                               = ID_ENTOS_OFFSET + 0x350,
+        ID_AMAZONPRIME_NOTIFICATION                  = ID_AMAZONPRIME + 1,
+
+        ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
+        ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
+      
+        ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
+        ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
+        ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2
     };
 }
 }

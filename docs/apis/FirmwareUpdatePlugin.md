@@ -117,3 +117,96 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
+| result.state | string | Status of the firmware update process.(must be one of the following: VALIDATION_FAILED/FLASHING_STARTED/FLASHING_FAILED/FLASHING_SUCCEEDED/FLASHING_SUCCEEDED |
+| result.substate | string | Sub Status of the firmware update process(must be one of the following: FIRMWARE_NOT_FOUND/FIRMWARE_INVALID/FIRMWARE_OUTDATED/FIRMWARE_UPTODATE/FIRMWARE_INCOMPATIBLE/PREWRITE_SIGNATURE_CHECK_FAILED/FLASH_WRITE_FAILED/POSTWRITE_FIRMWARE_CHECK_FAILED/POSTWRITE_SIGNATURE_CHECK_FAILED) |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.FirmwareUpdate.getUpdateState"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "state": "FLASHING_SUCCEEDED",
+        "substate": "FIRMWARE_NOT_FOUND"
+    }
+}
+```
+
+<a name="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the org.rdk.FirmwareUpdate plugin:
+
+org.rdk.FirmwareUpdate interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onUpdateStateChange](#onUpdateStateChange) | Raised either in response to updateFirmware method being invoked by the apps or when the device initiates the firmware download process on its own based on the scheduled firmware update in the server) |
+| [onFlashingStateChange](#onFlashingStateChange) | This notification is raised between flashing started state and flashing succeeded (or flashing failed) state of firmware update, indicating the progress made on the flashing process |
+
+
+<a name="onUpdateStateChange"></a>
+## *onUpdateStateChange*
+
+Raised either in response to updateFirmware method being invoked by the apps or when the device initiates the firmware download process on its own based on the scheduled firmware update in the server).
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.state | string | Status of the firmware update process.(must be one of the following: VALIDATION_FAILED/FLASHING_STARTED/FLASHING_FAILED/FLASHING_SUCCEEDED/FLASHING_SUCCEEDED |
+| params.substate | string | Sub Status of the firmware update process(must be one of the following: FIRMWARE_NOT_FOUND/FIRMWARE_INVALID/FIRMWARE_OUTDATED/FIRMWARE_UPTODATE/FIRMWARE_INCOMPATIBLE/PREWRITE_SIGNATURE_CHECK_FAILED/FLASH_WRITE_FAILED/POSTWRITE_FIRMWARE_CHECK_FAILED/POSTWRITE_SIGNATURE_CHECK_FAILED) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onUpdateStateChange",
+    "params": {
+        "state": "FLASHING_SUCCEEDED",
+        "substate": "FIRMWARE_NOT_FOUND"
+    }
+}
+```
+
+<a name="onFlashingStateChange"></a>
+## *onFlashingStateChange*
+
+This notification is raised between flashing started state and flashing succeeded (or flashing failed) state of firmware update, indicating the progress made on the flashing process.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.percentageComplete | number | Number between 0 and 100 indicating the percentage complete of the flashing process |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onFlashingStateChange",
+    "params": {
+        "percentageComplete": 100
+    }
+}
+```

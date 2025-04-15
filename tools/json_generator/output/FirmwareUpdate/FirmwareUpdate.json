@@ -32,7 +32,7 @@
         },
         "percentageComplete": {
             "summary": "Number between 0 and 100 indicating the percentage complete of the flashing process.",
-            "type": "Number",
+            "type": "number",
             "example": "100"
         }
     },
@@ -61,6 +61,7 @@
         "getUpdateState": {
             "summary": "Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the status of these steps in the firmware update process that was triggered by updateFirmware method.",            
             "result": {
+                "type": "object",
                 "properties": {
                     "state": {
                         "$ref": "#/definitions/state"
