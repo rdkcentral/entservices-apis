@@ -6,9 +6,6 @@
 
 namespace WPEFramework {
 namespace Exchange {
-    #if 1
-    #include "RuntimeConfig.h"
-    #else
     struct RuntimeConfig {
         bool dial;
         bool wanLanAccess;
@@ -20,7 +17,6 @@ namespace Exchange {
         uint32_t groupId;
         uint32_t dataImageSize;
     };
-    #endif
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
@@ -206,7 +202,7 @@ namespace Exchange {
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            string &config /* @out */   // XXX: JsonObject ?!
+            RuntimeConfig &configMetadata /* @out */
             ) = 0;
 
         // @brief PackageState
@@ -247,7 +243,7 @@ namespace Exchange {
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            Exchange::RuntimeConfig &configMetadata /* @out */,
+            RuntimeConfig &configMetadata /* @out */,
             string &appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
@@ -268,7 +264,7 @@ namespace Exchange {
             const string &packageId,
             const string &version,
             string &unpackedPath /* @out */,
-            string &configMetadata /* @out */,
+            RuntimeConfig &configMetadata /* @out */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
             ) = 0;
