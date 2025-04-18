@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Generating and postprocessing the JSONRPC based interface definitions
-# Place the file under rdkservices-apis/docs folder
+# Place the file under entservices-apis/docs folder
 
 def main():
     print("Hi! This tool is not developed yet! Please wait for it to be developed!!")
