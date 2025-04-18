@@ -64,9 +64,9 @@ namespace WPEFramework
 
             // @text getHardwareTestResults
             // @brief Returns the results of the last hardware test.
+            // @param success - out - boolean
             // @param testResults - out - string
-            // @param WarehouseSuccess - out 
-            virtual Core::hresult GetHardwareTestResults(string& testResults /* @out */, WarehouseSuccess& success /* @out */) = 0;
+            virtual Core::hresult GetHardwareTestResults(bool& success /* @out */, string& testResults /* @out */) = 0;
 
             // @text internalReset
             // @brief Invokes the internal reset script, which reboots the Warehouse service
