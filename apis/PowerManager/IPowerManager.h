@@ -111,7 +111,7 @@ namespace WPEFramework
             // @param newState: Changing power state to this New Power State
             // @param transactionId: transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API
             // @param stateChangeAfter: seconds after which the actual power mode will be applied.
-            virtual void OnPowerModePreChange(const PowerState &currentState, const PowerState &newState, const int transactionId, const int stateChangeAfter) = 0;
+            virtual void OnPowerModePreChange(const PowerState currentState, const PowerState newState, const int transactionId, const int stateChangeAfter) = 0;
         };
         // @brief Register for Power Mode pre-change event
         virtual uint32_t Register(IModePreChangeNotification* notification /* @in */) = 0;
@@ -128,7 +128,7 @@ namespace WPEFramework
             // @text onPowerModeChanged
             // @param currentState: Current Power State
             // @param newState: New Power State
-            virtual void OnPowerModeChanged(const PowerState &currentState, const PowerState &newState) = 0;
+            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) = 0;
         };
         virtual uint32_t Register(IModeChangedNotification* notification /* @in */) = 0;
         virtual uint32_t Unregister(IModeChangedNotification* notification /* @in */) = 0;
@@ -140,7 +140,7 @@ namespace WPEFramework
             // @brief Deep sleep timeout event
             // @text onDeepSleepTimeout
             // @param wakeupTimeout: Deep sleep wakeup timeout in seconds
-            virtual void OnDeepSleepTimeout(const int &wakeupTimeout) = 0;
+            virtual void OnDeepSleepTimeout(const int wakeupTimeout) = 0;
         };
         virtual uint32_t Register(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
         virtual uint32_t Unregister(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
@@ -152,7 +152,7 @@ namespace WPEFramework
              // @brief Network Standby Mode changed event - only on XIone
              // @text onNetworkStandbyModeChanged
              // @param enabled: network standby enabled or disabled
-             virtual void OnNetworkStandbyModeChanged(const bool &enabled) = 0;
+             virtual void OnNetworkStandbyModeChanged(const bool enabled) = 0;
          };
          virtual uint32_t Register(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
          virtual uint32_t Unregister(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
@@ -166,7 +166,7 @@ namespace WPEFramework
              // @param currentThermalLevel: current thermal level
              // @param newThermalLevel: new thermal level
              // @param currentTemperature: current temperature
-             virtual void OnThermalModeChanged(const ThermalTemperature &currentThermalLevel, const ThermalTemperature &newThermalLevel, const float &currentTemperature) = 0;
+             virtual void OnThermalModeChanged(const ThermalTemperature currentThermalLevel, const ThermalTemperature newThermalLevel, const float currentTemperature) = 0;
          };
          virtual uint32_t Register(IThermalModeChangedNotification* notification /* @in */) = 0;
          virtual uint32_t Unregister(IThermalModeChangedNotification* notification /* @in */) = 0;
@@ -200,7 +200,7 @@ namespace WPEFramework
         // @brief Set Power State
         // @param powerState: Set power to this state
         // @param reason: Reason for moving to the power state
-        virtual uint32_t SetPowerState(const int &keyCode /* @in */, const PowerState &powerState /* @in */,const string &reason /* @in */) = 0;
+        virtual uint32_t SetPowerState(const int keyCode /* @in */, const PowerState powerState /* @in */,const string &reason /* @in */) = 0;
 
         /** Gets the Power State.*/
         // @text getPowerState
@@ -273,7 +273,7 @@ namespace WPEFramework
         // @text setNetworkStandbyMode
         // @brief Set the standby mode for Network
         // @param standbyMode: Network standby mode
-        virtual uint32_t SetNetworkStandbyMode(const bool &standbyMode /* @in */) = 0;
+        virtual uint32_t SetNetworkStandbyMode(const bool standbyMode /* @in */) = 0;
 
         /** Get Network Standby Mode */
         // @text getNetworkStandbyMode
@@ -287,7 +287,7 @@ namespace WPEFramework
         // @param powerMode: power mode
         // @param wakeSrcType: source type
         // @param config: config
-        virtual uint32_t SetWakeupSrcConfig(const int &powerMode /* @in */, const int &wakeSrcType /* @in */, int config /* @in */ ) = 0;
+        virtual uint32_t SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
 
         /** Get Wakeup source configuration */
         // @text getWakeupSrcConfig
@@ -302,7 +302,7 @@ namespace WPEFramework
         // @brief System mode change
         // @param oldMode: old mode
         // @param newMode: new mode
-        virtual uint32_t SetSystemMode(const SystemMode &currentMode /* @in */, const SystemMode &newMode /* @in */) const = 0;
+        virtual uint32_t SetSystemMode(const SystemMode currentMode /* @in */, const SystemMode newMode /* @in */) const = 0;
 
         /** Get Power State before reboot */
         // @text getPowerStateBeforeReboot
