@@ -12,6 +12,7 @@ The md_from_h tool is currently run automatically on a weekly basis from a Jenki
 `python3 generate_md_from_header.py [path_to_header_file]`
 
 This will create a folder in the current directory named "generated_docs", where "generated_docs" contains the generated markdown file for the header file.
+
 ---
 
 ## 3. Supported Doxygen Tags
