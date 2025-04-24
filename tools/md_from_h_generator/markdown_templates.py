@@ -204,7 +204,8 @@ def generate_parameters_section(params, symbol_registry):
         for param in params:
             flattened_params = symbol_registry[f"{param['name']}-{param['type']}"]['flattened_description']
             for param_name, param_data in flattened_params.items():
-                markdown += f"| params{param_name} | {param_data['type']} | {re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])} |\n"
+                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                markdown += f"| params{param_name} | {param_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This method takes no parameters.\n"
     return markdown
@@ -219,7 +220,8 @@ def generate_results_section(results, symbol_registry):
         for result in results:
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
             for result_name, result_data in flattened_results.items():
-                markdown += f"| result{result_name} | {result_data['type']} | {re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])} |\n"
+                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                markdown += f"| result{result_name} | {result_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This method returns no results.\n"
     return markdown
@@ -287,7 +289,8 @@ def generate_values_section(values, symbol_registry):
         for value in values:
             flattened_values = symbol_registry[f"{value['name']}-{value['type']}"]['flattened_description']
             for value_name, value_data in flattened_values.items():
-                markdown += f"| (property){value_name} | {value_data['type']} | {re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])} |\n"
+                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
+                markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This property has no values.\n"
     return markdown
