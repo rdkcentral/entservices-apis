@@ -50,7 +50,7 @@ namespace WPEFramework
             virtual Core::hresult GetLEDState(string& state /* @out */, bool& success /* @out */) = 0;
 
             // @text setLEDState
-            // @brief Invokes the internal reset script, which reboots the Warehouse service
+            // @brief Change the device LED state to one mentioned in the input argument.
             // @param state - in - string
             // @param LEDControlSuccess - out
             virtual Core::hresult SetLEDState(const string& state, LEDControlSuccess& success /* @out */) = 0;
