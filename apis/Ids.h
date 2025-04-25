@@ -264,7 +264,10 @@ namespace Exchange {
       
         ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
         ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
-        ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2
+        ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
+      
+        ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
+	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1
     };
 }
 }
