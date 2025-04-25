@@ -16,6 +16,16 @@ namespace Exchange {
         uint32_t userId;
         uint32_t groupId;
         uint32_t dataImageSize;
+
+        bool resourceManagerClientEnabled;
+        std::string dialId;
+        std::string command;
+        uint32_t appType;
+        std::string appPath;
+        std::string runtimePath;
+
+        std::string fireboltVersion;
+        bool enableDebugger;
     };
 
     // @json 1.0.0 @text:keep
