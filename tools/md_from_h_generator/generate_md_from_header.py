@@ -38,7 +38,7 @@ def generate_md_from_header(header_file):
     # Remove the leading 'I' from the api's class name
     output_file_path = 'generated_docs/' + classname[1:] + '.md'
 
-    log_file_path = 'logs/' + classname + '.txt'
+    log_file_path = './tools/md_from_h_generator/generate_md_from_header/logs/' + classname + '.txt'
     logger = Logger(log_file_path)
 
     header_structure = HeaderFileParser(header_file, logger)
