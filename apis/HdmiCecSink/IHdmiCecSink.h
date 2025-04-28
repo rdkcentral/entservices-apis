@@ -33,23 +33,23 @@
 
              struct HdmiCecSinkActivePath
             {
-                uint8_t logicalAddress;
-                string physicalAddress;
-                string deviceType;
-                string vendorID;
-                string osdName;
+                uint8_t logicalAddress; /* @text logical address*/
+                string physicalAddress; /* @text physical address*/
+                string deviceType; /* @text device type*/
+                string vendorID;    /* @text vendor id*/
+                string osdName; /* @text osd name*/
             };
 
             struct HdmiCecSinkDevices
             {
-                uint8_t logicalAddress;
-                string physicalAddress;
-                string deviceType;
-                string cecVersion;
-                string osdName;
-                string vendorID;
-                string powerStatus;
-                string portNumber;
+                uint8_t logicalAddress; /* @text logical address*/
+                string physicalAddress; /* @text physical address*/
+                string deviceType; /* @text device type*/
+                string cecVersion; /* @text cec version*/
+                string osdName; /* @text osd name*/
+                string vendorID; /* @text vendor id*/
+                string powerStatus; /* @text power status*/
+                string portNumber; /* @text port number*/
             };
 
             struct EXTERNAL HdmiCecSinkSuccess {
@@ -164,7 +164,7 @@
 
             };
 
-             // @json:omit
+            // @json:omit
             virtual Core::hresult Register(Exchange::IHdmiCecSink::INotification *notification) = 0;
             // @json:omit
             virtual Core::hresult Unregister(Exchange::IHdmiCecSink::INotification *notification) = 0;
