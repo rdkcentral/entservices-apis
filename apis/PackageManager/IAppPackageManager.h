@@ -6,6 +6,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
+#ifndef RUNTIME_CONFIG
     struct RuntimeConfig {
         bool dial;
         bool wanLanAccess;
@@ -27,6 +28,8 @@ namespace Exchange {
         std::string fireboltVersion;
         bool enableDebugger;
     };
+    #define RUNTIME_CONFIG
+#endif
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {

@@ -10,6 +10,8 @@ enum Result : uint8_t {
     SUCCESS,
     FAILED
 };
+
+// @stubgen:omit
 struct ConfigMetaData {
     bool dial;
     bool wanLanAccess;
@@ -32,6 +34,7 @@ struct ConfigMetaData {
     bool enableDebugger;
 };
 
+// @stubgen:omit
 class IPackageImpl {
     public:
     virtual ~IPackageImpl() = default;
