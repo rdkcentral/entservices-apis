@@ -33,27 +33,24 @@ namespace WPEFramework
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-            struct EXTERNAL LEDControlSuccess {
-                bool success;
+            struct EXTERNAL LEDControlState {
+                string state;
             };
 
             // @text getSupportedLEDStates
             // @brief Returns all the LED states supported by the platform
             // @param supportedLEDStates - out - string [] of supported LED states
-            // @param success - out - boolean
-            virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */) = 0;
 
             // @text getLEDState
             // @brief Returns current LED state.
-            // @param state - out - string
-            // @param success - out - boolean
-            virtual Core::hresult GetLEDState(string& state /* @out */, bool& success /* @out */) = 0;
+            // @param LEDControlState - out  
+            virtual Core::hresult GetLEDState(LEDControlState& ledState /* @out */) = 0;
 
             // @text setLEDState
             // @brief Change the device LED state to one mentioned in the input argument.
             // @param state - in - string
-            // @param LEDControlSuccess - out
-            virtual Core::hresult SetLEDState(const string& state, LEDControlSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetLEDState(const string& state) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
