@@ -64,21 +64,18 @@ No Events
 
 ### Parameters
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
+This method takes no parameters.
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.devices | array | An array of USBDevice |
-| result.devices[#] | object |  |
-| result.devices[#].deviceClass | integer | USB class of the device |
-| result.devices[#].deviceSubclass | integer | USB Sub class of the device |
-| result.devices[#].deviceName | string | Name of the USB device |
-| result.devices[#].devicePath | string | The path to be used for the USB device |
+| result | array |  |
+| result[#] | object |  |
+| result[#].deviceClass | integer | USB class of the device |
+| result[#].deviceSubclass | integer | USB Sub class of the device |
+| result[#].deviceName | string | Name of the USB device |
+| result[#].devicePath | string | The path to be used for the USB device |
 
 ### Errors
 
@@ -94,8 +91,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.UsbDevice.getDeviceList",
-    "params": {}
+    "method": "org.rdk.UsbDevice.getDeviceList"
 }
 ```
 
@@ -105,16 +101,14 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "devices": [
-            {
-                "deviceClass": 8,
-                "deviceSubclass": 6,
-                "deviceName": "001/003",
-                "devicePath": "/dev/sdb"
-            }
-        ]
-    }
+    "result": [
+        {
+            "deviceClass": 8,
+            "deviceSubclass": 6,
+            "deviceName": "001/006",
+            "devicePath": "/dev/sda"
+        }
+    ]
 }
 ```
 
@@ -139,45 +133,43 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.deviceInfo | array | An array of USBDeviceInfo |
-| result.deviceInfo[#] | object |  |
-| result.deviceInfo[#].parentId | integer | Parent Node ID of the device |
-| result.deviceInfo[#].deviceStatus | integer | Current device status |
-| result.deviceInfo[#].deviceLevel | integer | Device level |
-| result.deviceInfo[#].portNumber | integer | Port number of USB on which the device is attached |
-| result.deviceInfo[#].vendorId | integer | Vendor ID of the device |
-| result.deviceInfo[#].productid | integer | Product ID of the device |
-| result.deviceInfo[#].protocol | integer | Protocol supported by the device |
-| result.deviceInfo[#].serialnumber | string | Serial number of the device |
-| result.deviceInfo[#].device | object |  |
-| result.deviceInfo[#].device.deviceClass | integer | USB class of the device |
-| result.deviceInfo[#].device.deviceSubclass | integer | USB Sub class of the device |
-| result.deviceInfo[#].device.deviceName | string | Name of the USB device |
-| result.deviceInfo[#].device.devicePath | string | The path to be used for the USB device |
-| result.deviceInfo[#].flags | string | Flags of the device |
-| result.deviceInfo[#]?.features | integer | <sup>*(optional)*</sup> Features supported by the device - reserved |
-| result.deviceInfo[#].busSpeed | string | Speed of the device |
-| result.deviceInfo[#]?.numLanguageIds | integer | <sup>*(optional)*</sup> Number of language IDs present on the device |
-| result.deviceInfo[#]?.productInfo1 | object | <sup>*(optional)*</sup>  |
-| result.deviceInfo[#]?.productInfo1?.languageId | integer | <sup>*(optional)*</sup> Language ID present on the device |
-| result.deviceInfo[#]?.productInfo1?.serialNumber | string | <sup>*(optional)*</sup> Unicode string representing the serial number of the device |
-| result.deviceInfo[#]?.productInfo1?.manufacturer | string | <sup>*(optional)*</sup> Unicode string representing the manufacturer of the device |
-| result.deviceInfo[#]?.productInfo1?.product | string | <sup>*(optional)*</sup> Unicode string representing the product |
-| result.deviceInfo[#]?.productInfo2 | object | <sup>*(optional)*</sup>  |
-| result.deviceInfo[#]?.productInfo2?.languageId | integer | <sup>*(optional)*</sup> Language ID present on the device |
-| result.deviceInfo[#]?.productInfo2?.serialNumber | string | <sup>*(optional)*</sup> Unicode string representing the serial number of the device |
-| result.deviceInfo[#]?.productInfo2?.manufacturer | string | <sup>*(optional)*</sup> Unicode string representing the manufacturer of the device |
-| result.deviceInfo[#]?.productInfo2?.product | string | <sup>*(optional)*</sup> Unicode string representing the product |
-| result.deviceInfo[#]?.productInfo3 | object | <sup>*(optional)*</sup>  |
-| result.deviceInfo[#]?.productInfo3?.languageId | integer | <sup>*(optional)*</sup> Language ID present on the device |
-| result.deviceInfo[#]?.productInfo3?.serialNumber | string | <sup>*(optional)*</sup> Unicode string representing the serial number of the device |
-| result.deviceInfo[#]?.productInfo3?.manufacturer | string | <sup>*(optional)*</sup> Unicode string representing the manufacturer of the device |
-| result.deviceInfo[#]?.productInfo3?.product | string | <sup>*(optional)*</sup> Unicode string representing the product |
-| result.deviceInfo[#]?.productInfo4 | object | <sup>*(optional)*</sup>  |
-| result.deviceInfo[#]?.productInfo4?.languageId | integer | <sup>*(optional)*</sup> Language ID present on the device |
-| result.deviceInfo[#]?.productInfo4?.serialNumber | string | <sup>*(optional)*</sup> Unicode string representing the serial number of the device |
-| result.deviceInfo[#]?.productInfo4?.manufacturer | string | <sup>*(optional)*</sup> Unicode string representing the manufacturer of the device |
-| result.deviceInfo[#]?.productInfo4?.product | string | <sup>*(optional)*</sup> Unicode string representing the product |
+| result.parentId | integer | Parent Node ID of the device |
+| result.deviceStatus | integer | Current device status |
+| result.deviceLevel | integer | Device level |
+| result.portNumber | integer | Port number of USB on which the device is attached |
+| result.vendorId | integer | Vendor ID of the device |
+| result.productid | integer | Product ID of the device |
+| result.protocol | integer | Protocol supported by the device |
+| result.serialnumber | string | Serial number of the device |
+| result.device | object |  |
+| result.device.deviceClass | integer | USB class of the device |
+| result.device.deviceSubclass | integer | USB Sub class of the device |
+| result.device.deviceName | string | Name of the USB device |
+| result.device.devicePath | string | The path to be used for the USB device |
+| result.flags | string | Flags of the device |
+| result?.features | integer | <sup>*(optional)*</sup> Features supported by the device - reserved |
+| result.busSpeed | string | Speed of the device |
+| result?.numLanguageIds | integer | <sup>*(optional)*</sup> Number of language IDs present on the device |
+| result?.productInfo1 | object | <sup>*(optional)*</sup>  |
+| result?.productInfo1.languageId | integer | Language ID present on the device |
+| result?.productInfo1.serialNumber | string | Unicode string representing the serial number of the device |
+| result?.productInfo1.manufacturer | string | Unicode string representing the manufacturer of the device |
+| result?.productInfo1.product | string | Unicode string representing the product |
+| result?.productInfo2 | object | <sup>*(optional)*</sup>  |
+| result?.productInfo2.languageId | integer | Language ID present on the device |
+| result?.productInfo2.serialNumber | string | Unicode string representing the serial number of the device |
+| result?.productInfo2.manufacturer | string | Unicode string representing the manufacturer of the device |
+| result?.productInfo2.product | string | Unicode string representing the product |
+| result?.productInfo3 | object | <sup>*(optional)*</sup>  |
+| result?.productInfo3.languageId | integer | Language ID present on the device |
+| result?.productInfo3.serialNumber | string | Unicode string representing the serial number of the device |
+| result?.productInfo3.manufacturer | string | Unicode string representing the manufacturer of the device |
+| result?.productInfo3.product | string | Unicode string representing the product |
+| result?.productInfo4 | object | <sup>*(optional)*</sup>  |
+| result?.productInfo4.languageId | integer | Language ID present on the device |
+| result?.productInfo4.serialNumber | string | Unicode string representing the serial number of the device |
+| result?.productInfo4.manufacturer | string | Unicode string representing the manufacturer of the device |
+| result?.productInfo4.product | string | Unicode string representing the product |
 
 ### Errors
 
@@ -207,52 +199,48 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "deviceInfo": [
-            {
-                "parentId": 0,
-                "deviceStatus": 1,
-                "deviceLevel": 1,
-                "portNumber": 1,
-                "vendorId": 1921,
-                "productid": 21889,
-                "protocol": 0,
-                "serialnumber": "4C530000120309105565",
-                "device": {
-                    "deviceClass": 8,
-                    "deviceSubclass": 6,
-                    "deviceName": "001/003",
-                    "devicePath": "/dev/sdb"
-                },
-                "flags": "AVAILABLE",
-                "features": 0,
-                "busSpeed": "Super",
-                "numLanguageIds": 2,
-                "productInfo1": {
-                    "languageId": 10,
-                    "serialNumber": "B32FD507",
-                    "manufacturer": "Alcor Micro Corp",
-                    "product": "Flash Drive"
-                },
-                "productInfo2": {
-                    "languageId": 10,
-                    "serialNumber": "B32FD507",
-                    "manufacturer": "Alcor Micro Corp",
-                    "product": "Flash Drive"
-                },
-                "productInfo3": {
-                    "languageId": 10,
-                    "serialNumber": "B32FD507",
-                    "manufacturer": "Alcor Micro Corp",
-                    "product": "Flash Drive"
-                },
-                "productInfo4": {
-                    "languageId": 10,
-                    "serialNumber": "B32FD507",
-                    "manufacturer": "Alcor Micro Corp",
-                    "product": "Flash Drive"
-                }
-            }
-        ]
+        "parentId": 0,
+        "deviceStatus": 1,
+        "deviceLevel": 1,
+        "portNumber": 1,
+        "vendorId": 1921,
+        "productid": 21889,
+        "protocol": 0,
+        "serialnumber": "4C530000120309105565",
+        "device": {
+            "deviceClass": 8,
+            "deviceSubclass": 6,
+            "deviceName": "001/006",
+            "devicePath": "/dev/sda"
+        },
+        "flags": "AVAILABLE",
+        "features": 0,
+        "busSpeed": "Super",
+        "numLanguageIds": 1,
+        "productInfo1": {
+            "languageId": 1033,
+            "serialNumber": "04011a1ac241414372e459026efb4429e88c8b51d9f5d101fb0c73505a872c1cc9ae0000000000000000000020c9773500885a1881558107882f26a7",
+            "manufacturer": "USB",
+            "product": "SanDisk 3.2Gen1"
+        },
+        "productInfo2": {
+            "languageId": 0,
+            "serialNumber": "...",
+            "manufacturer": "...",
+            "product": "..."
+        },
+        "productInfo3": {
+            "languageId": 0,
+            "serialNumber": "...",
+            "manufacturer": "...",
+            "product": "..."
+        },
+        "productInfo4": {
+            "languageId": 0,
+            "serialNumber": "...",
+            "manufacturer": "...",
+            "product": "..."
+        }
     }
 }
 ```
@@ -404,8 +392,8 @@ Device Plugged in notification.
         "device": {
             "deviceClass": 8,
             "deviceSubclass": 6,
-            "deviceName": "001/003",
-            "devicePath": "/dev/sdb"
+            "deviceName": "001/006",
+            "devicePath": "/dev/sda"
         }
     }
 }
@@ -437,8 +425,8 @@ Device Plugged out notification.
         "device": {
             "deviceClass": 8,
             "deviceSubclass": 6,
-            "deviceName": "001/003",
-            "devicePath": "/dev/sdb"
+            "deviceName": "001/006",
+            "devicePath": "/dev/sda"
         }
     }
 }
