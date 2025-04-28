@@ -252,7 +252,7 @@ namespace Exchange {
 
 	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330,
 
-    ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
+	ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
         ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2,
 
@@ -265,11 +265,15 @@ namespace Exchange {
         ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
         ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
         ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
+
       
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
-        ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
+	      ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
-        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x390
+	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
+	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
+
+        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0
     };
 }
 }
