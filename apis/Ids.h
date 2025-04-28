@@ -268,7 +268,7 @@ namespace Exchange {
 
       
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
-	      ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
+	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
