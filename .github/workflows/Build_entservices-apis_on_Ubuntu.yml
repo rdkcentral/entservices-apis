@@ -1,4 +1,4 @@
-name: Build rdkservices-apis on Ubuntu
+name: Build entservices-apis on Ubuntu
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
             -DINITV_SCRIPT=OFF
           cmake --build Thunder/build --target install
 
-      - name: Build rdkservices-apis
+      - name: Build entservices-apis
         run: |
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="install" \
