@@ -70,9 +70,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | array | On success, a list of USB storage devices will be returned |
-| result[#] | array | Information about a connected USB storage device |
-| devicePath | string | <sup>*(optional)*</sup> The path to the USB storage device in the system |
-| deviceName | string | <sup>*(optional)*</sup> The name of the USB storage device |
+| result[#] | object | Information about a USB storage device |
+| result[#].devicePath | string | The path to the USB device |
+| result[#].deviceName | string | The name of the USB device |
 
 ### Example
 
@@ -93,12 +93,10 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": [
-        [
-            {
-                "devicePath": "/dev/sda1",
-                "deviceName": "USB Drive 1"
-            }
-        ]
+        {
+            "devicePath": "/dev/sda",
+            "deviceName": "001/006"
+        }
     ]
 }
 ```
@@ -124,10 +122,11 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | array | On success, mount info list of a USB storage device will be returned |
-| result[#] | array |  |
-| partitionName | string | The name of the partition being mounted |
-| mountFlags | string | Flags indicating how the partition is mounted |
-| mountPath | string | The mount point path in the file system |
+| result[#] | object |  |
+| result[#].partitionName | string | The name of the partition being mounted |
+| result[#].mountFlags | string | Flags indicating how the partition is mounted |
+| result[#].mountPath | string | The mount point path in the file system |
+| result[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
 
 ### Example
 
@@ -139,7 +138,7 @@ No Events
     "id": 42,
     "method": "org.rdk.UsbMassStorage.getMountPoints",
     "params": {
-        "deviceName": "USB Drive 1"
+        "deviceName": "001/006"
     }
 }
 ```
@@ -151,13 +150,12 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": [
-        [
-            {
-                "partitionName": "/dev/sda1",
-                "mountFlags": "READ_ONLY",
-                "mountPath": "/mnt/usb1"
-            }
-        ]
+        {
+            "partitionName": "/dev/sda1",
+            "mountFlags": "READ_ONLY",
+            "mountPath": "/tmp/media/usb2",
+            "fileSystem": "VFAT"
+        }
     ]
 }
 ```
@@ -182,16 +180,15 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | array | On success, mount info list of a USB storage device will be returned |
-| result[#] | object |  |
-| result[#]?.fileSystem | string | <sup>*(optional)*</sup> The file system of the partition |
-| result[#]?.size | integer | <sup>*(optional)*</sup> Total size of the partition in MB |
-| result[#]?.startSector | integer | <sup>*(optional)*</sup> The starting sector of the partition |
-| result[#]?.numSectors | integer | <sup>*(optional)*</sup> The number of sectors in the partition |
-| result[#]?.sectorSize | integer | <sup>*(optional)*</sup> The size of each sector in bytes |
-| result[#]?.totalSpace | integer | <sup>*(optional)*</sup> Total space of the partition in MB |
-| result[#]?.usedSpace | integer | <sup>*(optional)*</sup> Used space of the partition in MB |
-| result[#]?.availableSpace | integer | <sup>*(optional)*</sup> Available space in the partition in MB |
+| result | object |  |
+| result.fileSystem | string | The file system of the partition |
+| result.size | integer | Total size of the partition in MB |
+| result.startSector | integer | The starting sector of the partition |
+| result.numSectors | integer | The number of sectors in the partition |
+| result.sectorSize | integer | The size of each sector in bytes |
+| result.totalSpace | integer | Total space of the partition in MB |
+| result.usedSpace | integer | Used space of the partition in MB |
+| result.availableSpace | integer | Available space in the partition in MB |
 
 ### Example
 
@@ -203,7 +200,7 @@ No Events
     "id": 42,
     "method": "org.rdk.UsbMassStorage.getPartitionInfo",
     "params": {
-        "mountPath": "/mnt/usb/media1/"
+        "mountPath": "/tmp/media/usb2"
     }
 }
 ```
@@ -214,18 +211,16 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": [
-        {
-            "fileSystem": "vfat",
-            "size": 1024,
-            "startSector": 2048,
-            "numSectors": 4096,
-            "sectorSize": 512,
-            "totalSpace": 1024,
-            "usedSpace": 512,
-            "availableSpace": 512
-        }
-    ]
+    "result": {
+        "fileSystem": "VFAT",
+        "size": 1024,
+        "startSector": 2048,
+        "numSectors": 4096,
+        "sectorSize": 512,
+        "totalSpace": 1024,
+        "usedSpace": 512,
+        "availableSpace": 512
+    }
 }
 ```
 
@@ -254,11 +249,15 @@ Triggered after the device partitions are mounted.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceList | array | mount info list of a USB storage device will be returned |
-| params.deviceList[#] | array |  |
-| partitionName | string | The name of the partition being mounted |
-| mountFlags | string | Flags indicating how the partition is mounted |
-| mountPath | string | The mount point path in the file system |
+| params.deviceinfo | object |  |
+| params.deviceinfo.devicePath | string | The device path |
+| params.deviceinfo.deviceName | string | The name of the device |
+| params.mountPoints | array | mount info list of a USB storage device will be returned |
+| params.mountPoints[#] | object |  |
+| params.mountPoints[#].partitionName | string | The name of the partition being mounted |
+| params.mountPoints[#].mountFlags | string | Flags indicating how the partition is mounted |
+| params.mountPoints[#].mountPath | string | The mount point path in the file system |
+| params.mountPoints[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
 
 ### Example
 
@@ -267,14 +266,17 @@ Triggered after the device partitions are mounted.
     "jsonrpc": "2.0",
     "method": "client.events.onDeviceMounted",
     "params": {
-        "deviceList": [
-            [
-                {
-                    "partitionName": "/dev/sda1",
-                    "mountFlags": "READ_ONLY",
-                    "mountPath": "/mnt/usb1"
-                }
-            ]
+        "deviceinfo": {
+            "devicePath": "/dev/sda",
+            "deviceName": "001/022"
+        },
+        "mountPoints": [
+            {
+                "partitionName": "/dev/sda1",
+                "mountFlags": "READ_ONLY",
+                "mountPath": "/tmp/media/usb2",
+                "fileSystem": "VFAT"
+            }
         ]
     }
 }
@@ -290,11 +292,15 @@ Triggered after the device partitions are unmounted.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceList | array | mount info list of a USB storage device will be returned |
-| params.deviceList[#] | array |  |
-| partitionName | string | The name of the partition being mounted |
-| mountFlags | string | Flags indicating how the partition is mounted |
-| mountPath | string | The mount point path in the file system |
+| params.deviceinfo | object |  |
+| params.deviceinfo.devicePath | string | The device path |
+| params.deviceinfo.deviceName | string | The name of the device |
+| params.mountPoints | array | mount info list of a USB storage device will be returned |
+| params.mountPoints[#] | object |  |
+| params.mountPoints[#].partitionName | string | The name of the partition being mounted |
+| params.mountPoints[#].mountFlags | string | Flags indicating how the partition is mounted |
+| params.mountPoints[#].mountPath | string | The mount point path in the file system |
+| params.mountPoints[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
 
 ### Example
 
@@ -303,14 +309,17 @@ Triggered after the device partitions are unmounted.
     "jsonrpc": "2.0",
     "method": "client.events.onDeviceUnmounted",
     "params": {
-        "deviceList": [
-            [
-                {
-                    "partitionName": "/dev/sda1",
-                    "mountFlags": "READ_ONLY",
-                    "mountPath": "/mnt/usb1"
-                }
-            ]
+        "deviceinfo": {
+            "devicePath": "/dev/sda",
+            "deviceName": "001/022"
+        },
+        "mountPoints": [
+            {
+                "partitionName": "/dev/sda1",
+                "mountFlags": "READ_ONLY",
+                "mountPath": "/tmp/media/usb2",
+                "fileSystem": "VFAT"
+            }
         ]
     }
 }
