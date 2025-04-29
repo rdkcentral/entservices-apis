@@ -146,10 +146,10 @@
                 // @param audioMode: Audio mode of the device
                 virtual void SetSystemAudioModeEvent(const string audioMode /* @in */) {};
 
-                // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
-                // @text shortAudiodescriptorEvent
-                // @param ShortAudioDescriptor: Short Audio Descriptor of the device
-                virtual void ShortAudiodescriptorEvent(IValueIterator* const& ShortAudioDescriptor /* @in */) {};
+                // brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
+                // text shortAudiodescriptorEvent
+                // param ShortAudioDescriptor: Short Audio Descriptor of the device
+                //virtual void ShortAudiodescriptorEvent(IValueIterator* const& ShortAudioDescriptor /* @in */) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
