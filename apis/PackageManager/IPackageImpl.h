@@ -33,7 +33,7 @@ class IPackageImpl {
     public:
     virtual ~IPackageImpl() = default;
 
-    virtual Result Initialize(ConfigMetadataArray &configMetadata) = 0;
+    virtual Result Initialize(const std::string &configStr, ConfigMetadataArray &configMetadata) = 0;
 
     virtual Result Install(const std::string &packageId, const std::string &version, const std::string &fileLocator, ConfigMetaData &configMetadata) = 0;
     virtual Result Uninstall(const std::string &packageId) = 0;
