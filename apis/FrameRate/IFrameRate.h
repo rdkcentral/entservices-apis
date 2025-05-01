@@ -41,7 +41,7 @@ namespace WPEFramework
 				// @param average - in - int
 				// @param min - in - int
 				// @param max - in - int
-				virtual void OnFpsEvent( int average, int min, int max ) = 0;
+				virtual void OnFpsEvent(int average, int min, int max) = 0;
 
 				// @text onDisplayFrameRateChanging
 				// @brief Triggered when the framerate changes started
@@ -62,14 +62,14 @@ namespace WPEFramework
 			// @brief Gets the current display frame rate values.
 			// @param framerate - out - string
 			// @param success - out - boolean
-			virtual Core::hresult GetDisplayFrameRate(string& framerate /* @out */, bool& success /* @out */) = 0;
+			virtual Core::hresult GetDisplayFrameRate(string& frameRate /* @out */, bool& success /* @out */) = 0;
 
 			/** Gets framerate mode */
 			// @text getFrmMode
 			// @brief Gets the current auto framerate mode.
-			// @param frmmode - out - int
+			// @param autoFrameRateMode - out - int
 			// @param success - out - boolean
-			virtual Core::hresult GetFrmMode(int &frmmode /* @out */, bool& success /* @out */) = 0;
+			virtual Core::hresult GetFrmMode(int &autoFrameRateMode /* @out */, bool& success /* @out */) = 0;
 
 			/** Sets the FPS data collection interval */
 			// @text setCollectionFrequency
@@ -83,14 +83,14 @@ namespace WPEFramework
 			// @brief Sets the display framerate values.
 			// @param framerate - in - string
 			// @param success - out - boolean
-			virtual Core::hresult SetDisplayFrameRate(const string& framerate /* @in */, bool& success /* @out */) = 0;
+			virtual Core::hresult SetDisplayFrameRate(const string& frameRate /* @in */, bool& success /* @out */) = 0;
 
 			/** Sets the auto framerate mode */
 			// @text setFrmMode
 			// @brief Set the Frm mode.
 			// @param frmmode - in - string
 			// @param success - out - boolean
-			virtual Core::hresult SetFrmMode(int frmmode /* @in */, bool& success /* @out */) = 0;
+			virtual Core::hresult SetFrmMode(int frmMode /* @in */, bool& success /* @out */) = 0;
 
 			/** Starts the FPS data collection */
 			// @text startFpsCollection
