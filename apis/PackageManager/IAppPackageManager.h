@@ -72,7 +72,7 @@ namespace Exchange {
         virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
 
         // @json:omit
-        virtual void Deinitialize(PluginHost::IShell* service) = 0;
+        virtual Core::hresult  Deinitialize(PluginHost::IShell* service) = 0;
 
 
 	    // @brief Download
