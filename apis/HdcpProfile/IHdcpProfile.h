@@ -28,7 +28,7 @@
          struct EXTERNAL IHdcpProfile : virtual public Core::IUnknown 
          {
             enum { ID = ID_HDCPPROFILE };
-             
+
             struct EXTERNAL HDCPStatus
             {
                 bool isConnected /* @text isConnected */ /* @brief Indicates whether a display is connected */;
@@ -48,7 +48,7 @@
                 // @text onDisplayConnectionChanged
                 // @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
                 // @param HDCPStatus: Contains HDCP-related data as separate properties
-                virtual void OnDisplayConnectionChanged(const HDCPStatus hdcpStatus) {};
+                virtual void OnDisplayConnectionChanged(const HDCPStatus hdcpStatus/* @text HDCPStatus*/) {};
             };
             virtual Core::hresult Register(IHdcpProfile::INotification* notification /* @in */) = 0;
             virtual Core::hresult Unregister(IHdcpProfile::INotification* notification /* @in */) = 0;
