@@ -110,13 +110,6 @@ namespace WPEFramework
             // @param newFpsValue - in - int
             // @param success - out - boolean
             virtual Core::hresult UpdateFps(int newFpsValue /* @in */, bool& success /* @out */) = 0;
-
-            /** Gets the FPS data collection interval */
-            // @text GetCollectionFrequency
-            // @brief Retrieves the current FPS data collection interval.
-            // @param frequency - out - int
-            // @param success - out - boolean
-            virtual Core::hresult GetCollectionFrequency(int& frequency /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
