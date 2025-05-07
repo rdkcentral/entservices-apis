@@ -176,8 +176,8 @@ namespace Exchange {
         virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0;
 
         struct EXTERNAL KeyValue  {
-            // @brief Key
-            string key;
+            // @brief Name
+            string name;
             // @brief Value
             string value;
         };
