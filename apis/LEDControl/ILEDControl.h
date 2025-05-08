@@ -40,7 +40,8 @@ namespace WPEFramework
             // @text getSupportedLEDStates
             // @brief Returns all the LED states supported by the platform
             // @param supportedLEDStates - out - string [] of supported LED states
-            virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success / @out */) = 0;
 
             // @text getLEDState
             // @brief Returns current LED state.
