@@ -87,7 +87,7 @@
                 ]
             }
         },
-	"getMilestones": {
+        "getMilestones": {
             "summary": "Returns the list of milestones.",
             "result": {
                 "type": "object",
@@ -110,7 +110,7 @@
                 ]
             }
         },
-	    "logMilestone": {
+        "logMilestone": {
               "summary": "Log marker string to rdk milestones log.",
               "params": {
                   "type":"object",
