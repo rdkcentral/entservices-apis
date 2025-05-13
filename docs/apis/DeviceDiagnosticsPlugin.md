@@ -74,10 +74,12 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | array | An array of JSON objects with the specified properties and their values |
-| result[#] | object |  |
-| result[#].name | string | The property name; Empty, if the property name is not supported |
-| result[#].value | string | The property value; Empty, if the property name is not supported |
+| result | object |  |
+| result.paramList | array | An array of JSON objects with the specified properties and their values |
+| result.paramList[#] | object |  |
+| result.paramList[#].name | string | The property name; Empty, if the property name is not supported |
+| result.paramList[#].value | string | The property value; Empty, if the property name is not supported |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -102,12 +104,15 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": [
-        {
-            "name": "Device.X_CISCO_COM_LED.RedPwm",
-            "value": "123"
-        }
-    ]
+    "result": {
+        "paramList": [
+            {
+                "name": "Device.X_CISCO_COM_LED.RedPwm",
+                "value": "123"
+            }
+        ],
+        "success": true
+    }
 }
 ```
 
@@ -128,8 +133,10 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | array | A string [] of milestones |
-| result[#] | string |  |
+| result | object |  |
+| result.milestones | array | A string [] of milestones |
+| result.milestones[#] | string |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -149,9 +156,12 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": [
-        "RDK_STARTED:7097 ..."
-    ]
+    "result": {
+        "milestones": [
+            "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
+        ],
+        "success": true
+    }
 }
 ```
 
