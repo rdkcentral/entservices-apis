@@ -58,7 +58,7 @@
 
             using IHdmiCecSinkActivePathIterator = RPC::IIteratorType<HdmiCecSinkActivePath, ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR>;
             using IHdmiCecSinkDeviceListIterator = RPC::IIteratorType<HdmiCecSinkDevices, ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR>;
-            using IValueIterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
+            using IHdmiCecSinkShortAudioDescriptorIterator = RPC::IIteratorType<uint32_T, ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR>;
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -150,7 +150,7 @@
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
                 // @param ShortAudioDescriptor: Short Audio Descriptor of the device
-                virtual void ShortAudiodescriptorEvent(IValueIterator* const& ShortAudioDescriptor) {};
+                virtual void ShortAudiodescriptorEvent(IHdmiCecSinkShortAudioDescriptorIterator* const& ShortAudioDescriptor) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
