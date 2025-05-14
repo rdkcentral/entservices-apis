@@ -58,7 +58,7 @@
 
             using IHdmiCecSinkActivePathIterator = RPC::IIteratorType<HdmiCecSinkActivePath, ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR>;
             using IHdmiCecSinkDeviceListIterator = RPC::IIteratorType<HdmiCecSinkDevices, ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR>;
-            using IHdmiCecSinkShortAudioDescriptorIterator = RPC::IIteratorType<uint32_T, ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR>;
+            using IHdmiCecSinkShortAudioDescriptorIterator = RPC::IIteratorType<uint32_t, ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR>;
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
