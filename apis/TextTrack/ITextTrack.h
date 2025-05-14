@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2024 RDK Management.
+ * Copyright 2024-2025 RDK Management.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-#define ITEXTTRACK_VERSION 1
+#define ITEXTTRACK_VERSION 2
 
 namespace WPEFramework {
 namespace Exchange {
@@ -306,11 +306,59 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
     /* @} */
 };
 
+/*
+ * This is the COM-RPC interface for global TTML style overrides.
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
+    enum {
+	    ID = ID_TEXT_TRACK_TTML_STYLE
+    };
+
+    /* @event */
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum {
+            ID = ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION
+        };
+
+        /**
+         * @brief The TTML Style override settings has changed.
+         * @text onTtmlStyleOverridesChanged
+         */
+        virtual void OnTtmlStyleOverridesChanged(const string &style) {};
+    };
+
+    /** Register notification interface.
+     * The callback will be called with the current settings.
+     */
+    virtual Core::hresult Register(INotification *notification) = 0;
+    /** Unregister notification interface */
+    virtual Core::hresult Unregister(const INotification *notification) = 0;
+
+    /**
+     * @brief Sets global TTML override style.
+     * @details The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning
+     * that they will override styles given in the content.
+     * The value will be persisted in the system.
+     * The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
+     * @param style Contains the chosen override for styles
+     * @text setTtmlStyleOverrides
+     */
+    virtual Core::hresult SetTtmlStyleOverrides(const string& style) = 0;
+
+    /**
+     * @briet Gets the global TTML style overrides
+     * @param style will receive the style overrides
+     * @text getTtmlStyleOverrides
+     */
+    virtual Core::hresult GetTtmlStyleOverrides(string& style /* @out */) const = 0;
+
+};
 
 /*
     This is the COM-RPC interface for handling TextTrack sessions.
 */
-/* @json 1.0.0 @text:keep */
+/* @json 1.1.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     enum {
         ID = ID_TEXT_TRACK
@@ -462,6 +510,19 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @text setSessionSCTESelection
      */
     virtual Core::hresult SetSessionSCTESelection(const uint32_t sessionId) = 0;
+
+    /**
+     * @brief Applies a custom TTML styling with overrides that is applied on all elements
+     * @details When a custom styling override is applied on a specific TTML session, the styling carried on the data for the specified element is
+     * overridden. For styling options, see https://www.w3.org/TR/2018/REC-ttml1-20181108/#styling-vocabulary-style
+     * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
+     * Styles not mentioned in the list will not be affected.
+     * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @param style Contains the list of styles to be overridden
+     * @text applyCustomTtmlStyleOverridesToSession
+     */
+    virtual Core::hresult ApplyCustomTtmlStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
+
 };
 } // namespace Exchange
 } // namespace WPEFramework
