@@ -271,7 +271,13 @@ namespace Exchange {
 	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
-	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1
+	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
+
+    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x400,
+        ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
+        ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
+        ID_HDMI_CEC_SINK_SHORT_AUDIO_DESCRIPTOR_ITERATOR = ID_HDMI_CEC_SINK + 3,
+        ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 4,
     };
 }
 }
