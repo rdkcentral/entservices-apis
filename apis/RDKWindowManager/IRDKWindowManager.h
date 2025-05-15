@@ -163,6 +163,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the focus to the app with the app id
   // @param client/appInstanceId: Client/Application instance ID as a plain string (e.g., "rdkwmtestapp_13193")
   virtual Core::hresult SetFocus(const string &client) = 0;
+
+  /** Sets the visibility of the given client or appInstanceId */
+  // @text setVisible
+  // @brief Sets the visibility of the given client or appInstanceId
+  // @param client: client name or application instance ID
+  // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
+  virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework
