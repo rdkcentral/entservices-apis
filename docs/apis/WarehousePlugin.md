@@ -226,6 +226,7 @@ No Events
 | result.files | array | A string [] of file locations for each file that is found that should have been deleted in the cleaning process. If the `clean` property is `true`, then this array is empty or `null` |
 | result.files[#] | string |  |
 | result.success | boolean | Whether the request succeeded |
+| result.error | string | An error message in case of a failure |
 
 ### Example
 
@@ -253,7 +254,8 @@ No Events
         "files": [
             "/opt/ctrlm.sql"
         ],
-        "success": true
+        "success": true,
+        "error": "..."
     }
 }
 ```
