@@ -74,7 +74,8 @@ namespace WPEFramework
             // @text logMilestone
             // @brief Log marker string to rdk milestones log
             // @param marker - in - string
-            virtual Core::hresult LogMilestone(const string& marker /* @in */) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult LogMilestone(const string& marker /* @in */, bool& success /* @out */) = 0;
 
             // @text getAVDecoderStatus
             // @brief Gets the most active status of audio/video decoder/pipeline
