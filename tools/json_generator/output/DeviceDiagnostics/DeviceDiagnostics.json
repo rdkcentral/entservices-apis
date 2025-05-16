@@ -125,7 +125,7 @@
                   ]
               },
 	      "result": {
-                  "$ref": "#/common/results/void"
+                  "$ref": "#/common/success"
               },
 	      "errors": [
                 {
