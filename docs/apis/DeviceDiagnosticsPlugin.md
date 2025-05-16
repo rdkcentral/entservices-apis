@@ -214,7 +214,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": null
+    "result": true
 }
 ```
 
