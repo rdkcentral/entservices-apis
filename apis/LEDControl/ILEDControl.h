@@ -51,7 +51,8 @@ namespace WPEFramework
             // @text setLEDState
             // @brief Change the device LED state to one mentioned in the input argument.
             // @param state - in - string
-            virtual Core::hresult SetLEDState(const string& state) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult SetLEDState(const string& state, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
