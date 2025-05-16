@@ -104,12 +104,16 @@
                     },
                     "success":{
                         "$ref": "#/common/success"
+                    },
+                    "error":{
+                        "$ref": "#/definitions/error"
                     }
                 },
                 "required": [
                     "clean",
                     "files",
-                    "success"
+                    "success",
+                    "error"
                 ]
             }
         },
