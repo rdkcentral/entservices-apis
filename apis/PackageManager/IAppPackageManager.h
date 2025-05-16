@@ -25,6 +25,12 @@ namespace Exchange {
         std::string appPath;
         std::string runtimePath;
 
+        std::string logFilePath;
+        uint32_t logFileMaxSize;
+        std::string logLevels;          //json array of strings
+        bool mapi;
+        std::string fkpsFiles;          //json array of strings
+
         std::string fireboltVersion;
         bool enableDebugger;
     };
@@ -109,6 +115,11 @@ namespace Exchange {
         // @text delete
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
+
+        struct Percent {
+            uint8_t percent;
+        };
+        // {"jsonrpc":"2.0","id":1007,"result":{"percent":77}}
 
         // @brief Delete
         // @text progress
