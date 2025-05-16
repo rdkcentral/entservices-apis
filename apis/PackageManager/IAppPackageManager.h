@@ -75,14 +75,19 @@ namespace Exchange {
         virtual Core::hresult  Deinitialize(PluginHost::IShell* service) = 0;
 
 
+        struct Options {
+            bool priority;
+            uint32_t retries;
+            uint64_t rateLimit;
+        };
+
 	    // @brief Download
         // @text download
         // @param url: Download url
+        // @param options: Download options
         virtual Core::hresult Download(
             const string &url,
-            const bool priority /* @optional */,
-            const uint32_t retries /* @optional */,
-            const uint64_t rateLimit /* @optional */,
+            const Options &options,
             string &downloadId /* @out */) = 0;
 
         // @brief Pause
