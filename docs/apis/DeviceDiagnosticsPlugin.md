@@ -185,7 +185,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Always null |
+| result | boolean | Whether the request succeeded |
 
 ### Errors
 
