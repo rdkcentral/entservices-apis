@@ -6,6 +6,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
 #ifndef RUNTIME_CONFIG
     struct RuntimeConfig {
         bool dial;
@@ -21,7 +22,7 @@ namespace Exchange {
         bool resourceManagerClientEnabled;
         std::string dialId;
         std::string command;
-        uint32_t appType;
+        std::string appType;
         std::string appPath;
         std::string runtimePath;
 
