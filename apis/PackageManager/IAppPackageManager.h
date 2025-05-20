@@ -149,11 +149,13 @@ namespace Exchange {
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
-        enum PackageLifecycleState : uint8_t {
+        enum InstallState : uint8_t{
             INSTALLING,
             INSTALLATION_BLOCKED,
+            INSTALL_FAILURE,
             INSTALLED,
             UNINSTALLING,
+            UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
@@ -163,14 +165,14 @@ namespace Exchange {
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
             PERSISTENCE_FAILURE
-    };
+        };
         struct Package {
             // @brief PackageId
             string packageId;
             // @brief Version
             string version;
-            // @brief PackageState
-            PackageLifecycleState packageState;
+            // @brief state
+            InstallState state;
             // @brief Digest
             string digest;
             // @brief SizeKb
@@ -245,7 +247,7 @@ namespace Exchange {
         virtual Core::hresult PackageState(
             const string &packageId,
             const string &version,
-            PackageLifecycleState &state /* @out */
+            InstallState &state /* @out */
             ) = 0;
    };
 
