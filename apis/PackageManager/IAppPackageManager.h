@@ -83,8 +83,11 @@ namespace Exchange {
 
 
         struct Options {
+            // @brief Priority
             bool priority;
+            // @brief Retries
             uint32_t retries;
+            // @brief RateLimit
             uint64_t rateLimit;
         };
 
