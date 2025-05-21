@@ -41,17 +41,17 @@ namespace WPEFramework
                 // @param average - in - int
                 // @param min - in - int
                 // @param max - in - int
-                virtual void OnFpsEvent(int average, int min, int max) = 0;
+                virtual void OnFpsEvent(int average, int min, int max) {};
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
                 // @param displayFrameRate - in - string
-                virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) = 0;
+                virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
 
                 // @text onDisplayFrameRateChanged
                 // @brief Triggered when the framerate changed.
                 // @param displayFrameRate - in - string
-                virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) = 0;
+                virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
             };
 
             virtual Core::hresult Register(IFrameRate::INotification* notification /* @in */) = 0;
