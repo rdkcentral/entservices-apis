@@ -60,7 +60,7 @@ namespace Exchange {
         // @brief Sets the value of a key in the the specified namespace
         // @text setValue
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space 
         // @param key: key 
         // @param value: value
         // @param ttl: time to live (optional)
@@ -69,7 +69,7 @@ namespace Exchange {
         // @brief Returns the value of a key from the specified namespace.
         // @text getValue
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param key: key 
         // @param value: value out
         // @param ttl: time to live (optional)
@@ -78,14 +78,14 @@ namespace Exchange {
         // @brief Deletes a key from the specified namespace
         // @text deleteKey
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param key: key
         // @param success: success
         virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, Success& success /* @out */) = 0;
         // @brief Deletes the specified namespace
         // @text deleteNamespace
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param success: success
         virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */, Success& success /* @out */) = 0;
     };
@@ -108,7 +108,7 @@ namespace Exchange {
         // @brief Returns the keys that are stored in the specified namespace
         // @text getKeys
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param keys: keys list
         // @param success: success
         virtual Core::hresult GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool success /* @out */) = 0;
@@ -140,14 +140,14 @@ namespace Exchange {
         // @brief Sets the storage limit for a given namespace
         // @text setNamespaceStorageLimit
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param size: size
         // @param success: success
         virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool success /* @out */) = 0;
         // @brief Returns the storage limit for a given namespace
         // @text getNamespaceStorageLimit
         // @param scope: must be device or account
-        // @param ns: namespace
+        // @param ns: name space
         // @param storageLimit: Size in bytes
         virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
     };
@@ -163,4 +163,3 @@ namespace Exchange {
 
 } // namespace Exchange
 } // namespace WPEFramework
-
