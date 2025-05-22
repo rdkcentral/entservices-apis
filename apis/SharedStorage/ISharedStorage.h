@@ -74,7 +74,7 @@ namespace Exchange {
         // @param value: value out
         // @param ttl: time to live (optional)
         // @param success: success
-        virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */, bool& success /* @out */) = 0;
         // @brief Deletes a key from the specified namespace
         // @text deleteKey
         // @param scope: must be device or account
@@ -111,19 +111,19 @@ namespace Exchange {
         // @param ns: name space
         // @param keys: keys list
         // @param success: success
-        virtual Core::hresult GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool& success /* @out */) = 0;
         // @brief Returns the namespaces
         // @text getNamespaces
         // @param scope: must be device or account
         // @param namespaces: namespaces list
         // @param success: success
-        virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */, bool& success /* @out */) = 0;
         // @brief Returns the size occupied by each namespace
         // @text getStorageSizes
         // @param scope: must be device or account
         // @param storageList: list of namespaces and their sizes
         // @param success: success
-        virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */, bool& success /* @out */) = 0;
     };
 
     /* @json @text:keep */
@@ -143,13 +143,14 @@ namespace Exchange {
         // @param ns: name space
         // @param size: size
         // @param success: success
-        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool success /* @out */) = 0;
+        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool& success /* @out */) = 0;
         // @brief Returns the storage limit for a given namespace
         // @text getNamespaceStorageLimit
         // @param scope: must be device or account
         // @param ns: name space
         // @param storageLimit: Size in bytes
-        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
+        // @param success: success
+        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */, bool& success /* @out */) = 0;
     };
 
     /* @json @text:keep */
