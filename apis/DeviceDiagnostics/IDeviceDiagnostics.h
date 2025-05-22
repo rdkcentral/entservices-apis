@@ -51,8 +51,8 @@ namespace WPEFramework
 
                 // @text onAVDecoderStatusChanged
                 // @brief Triggered when the most active status of audio/video decoder/pipeline changes
-                // @param AVDecoderStatus - in - string
-                virtual void OnAVDecoderStatusChanged(const string& AVDecoderStatus) {};
+                // @param avDecoderStatusChange - in - string
+                virtual void OnAVDecoderStatusChanged(const string& avDecoderStatusChange) {};
             };
 
             virtual Core::hresult Register(IDeviceDiagnostics::INotification* notification /* @in */) = 0;
@@ -62,17 +62,20 @@ namespace WPEFramework
             // @brief Gets the values associated with the corresponding property names
             // @param names - in - String array of property names
             // @param paramList - out - specified properties and their values
-            virtual Core::hresult GetConfiguration(IStringIterator* const& names /* @in */, IDeviceDiagnosticsParamListIterator*& paramList /* @out */) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult GetConfiguration(IStringIterator* const& names /* @in */, IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
 
             // @text getMilestones
             // @brief Returns the list of milestones
             // @param milestones - out - A string [] of milestones
-            virtual Core::hresult GetMilestones(IStringIterator*& milestones /* @out */) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult GetMilestones(IStringIterator*& milestones /* @out */, bool& success /* @out */) = 0;
 
             // @text logMilestone
             // @brief Log marker string to rdk milestones log
             // @param marker - in - string
-            virtual Core::hresult LogMilestone(const string& marker /* @in */) = 0;
+            // @param success - out - boolean
+            virtual Core::hresult LogMilestone(const string& marker /* @in */, bool& success /* @out */) = 0;
 
             // @text getAVDecoderStatus
             // @brief Gets the most active status of audio/video decoder/pipeline
