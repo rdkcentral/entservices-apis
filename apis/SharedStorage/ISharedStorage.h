@@ -49,7 +49,6 @@ namespace Exchange {
             // @brief Values stored are changed using setValue
             // @text onValueChanged
             // @param scope: must be device or account
-            // @param ns: namespace
             // @param key: key 
             // @param value: value
             virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) {};
