@@ -49,46 +49,46 @@ namespace Exchange {
             // @brief Values stored are changed using setValue
             // @text onValueChanged
             // @param scope: must be device or account
-            // @param namespace: namespace
+            // @param ns: namespace
             // @param key: key 
             // @param value: value
-            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) = 0;
+            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) {};
         };
 
-        virtual uint32_t Register(Exchange::ISharedStorage::INotification* notification) = 0;
-        virtual uint32_t Unregister(Exchange::ISharedStorage::INotification* notification) = 0;
+        virtual Core::hresult Register(Exchange::ISharedStorage::INotification* notification) = 0;
+        virtual Core::hresult Unregister(Exchange::ISharedStorage::INotification* notification) = 0;
 
         // @brief Sets the value of a key in the the specified namespace
         // @text setValue
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param key: key 
         // @param value: value
         // @param ttl: time to live (optional)
         // @param success: success
-        virtual uint32_t SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl, Success& success /* @out */) = 0;
+        virtual Core::hresult SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl, Success& success /* @out */) = 0;
         // @brief Returns the value of a key from the specified namespace.
         // @text getValue
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param key: key 
         // @param value: value out
         // @param ttl: time to live (optional)
         // @param success: success
-        virtual uint32_t GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */, bool success /* @out */) = 0;
         // @brief Deletes a key from the specified namespace
         // @text deleteKey
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param key: key
         // @param success: success
-        virtual uint32_t DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, Success& success /* @out */) = 0;
+        virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, Success& success /* @out */) = 0;
         // @brief Deletes the specified namespace
         // @text deleteNamespace
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param success: success
-        virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */, Success& success /* @out */) = 0;
+        virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */, Success& success /* @out */) = 0;
     };
 
     /* @json @text:keep */
@@ -109,22 +109,22 @@ namespace Exchange {
         // @brief Returns the keys that are stored in the specified namespace
         // @text getKeys
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param keys: keys list
         // @param success: success
-        virtual uint32_t GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool success /* @out */) = 0;
         // @brief Returns the namespaces
         // @text getNamespaces
         // @param scope: must be device or account
         // @param namespaces: namespaces list
         // @param success: success
-        virtual uint32_t GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */, bool success /* @out */) = 0;
         // @brief Returns the size occupied by each namespace
         // @text getStorageSizes
         // @param scope: must be device or account
         // @param storageList: list of namespaces and their sizes
         // @param success: success
-        virtual uint32_t GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */, bool success /* @out */) = 0;
+        virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */, bool success /* @out */) = 0;
     };
 
     /* @json @text:keep */
@@ -141,16 +141,16 @@ namespace Exchange {
         // @brief Sets the storage limit for a given namespace
         // @text setNamespaceStorageLimit
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param size: size
         // @param success: success
-        virtual uint32_t SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool success /* @out */) = 0;
+        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool success /* @out */) = 0;
         // @brief Returns the storage limit for a given namespace
         // @text getNamespaceStorageLimit
         // @param scope: must be device or account
-        // @param namespace: namespace
+        // @param ns: namespace
         // @param storageLimit: Size in bytes
-        virtual uint32_t GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
+        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
     };
 
     /* @json @text:keep */
@@ -159,7 +159,7 @@ namespace Exchange {
 
         // @brief Flushes the device cache
         // @text flushCache
-        virtual uint32_t FlushCache() = 0;
+        virtual Core::hresult FlushCache() = 0;
     };
 
 } // namespace Exchange
