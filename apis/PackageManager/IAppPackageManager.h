@@ -91,6 +91,10 @@ namespace Exchange {
             uint64_t rateLimit;
         };
 
+        struct DownloadId {
+            string downloadId;
+        };
+
 	    // @brief Download
         // @text download
         // @param url: Download url
@@ -98,7 +102,7 @@ namespace Exchange {
         virtual Core::hresult Download(
             const string &url,
             const Options &options,
-            string &downloadId /* @out */) = 0;
+            DownloadId &downloadId /* @out */) = 0;
 
         // @brief Pause
         // @text pause
@@ -123,20 +127,19 @@ namespace Exchange {
         struct Percent {
             uint8_t percent;
         };
-        // {"jsonrpc":"2.0","id":1007,"result":{"percent":77}}
 
         // @brief Delete
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            uint8_t &percent /* @out */) = 0;
+            Percent &percent /* @out */) = 0;
 
         // @brief GetStorageDetails
         // @text getStorageDetails
         virtual Core::hresult GetStorageDetails(
-            uint32_t &quotaKB /* @out */,
-            uint32_t &usedKB  /* @out */) = 0;
+            uint32_t &quotaKb /* @out */,
+            uint32_t &usedKb  /* @out */) = 0;
 
         // @brief RateLimit
         // @text rateLimit
@@ -150,17 +153,17 @@ namespace Exchange {
         enum { ID = ID_PACKAGE_INSTALLER };
 
         enum InstallState : uint8_t{
-            INSTALLING,
+            INSTALLING,                 // XXX: necessary ?!
             INSTALLATION_BLOCKED,
             INSTALL_FAILURE,
             INSTALLED,
-            UNINSTALLING,
+            UNINSTALLING,               // XXX: necessary ?!
             UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
         enum FailReason : uint8_t {
-            NONE,
+            NONE,                       // XXX: Not in HLA
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
@@ -216,7 +219,7 @@ namespace Exchange {
             const string &version,
             IPackageInstaller::IKeyValueIterator* const& additionalMetadata,
             const string &fileLocator,
-            FailReason &reason /* @out */) = 0;
+            FailReason &failReason /* @out */) = 0;
 
         // @brief Uninstall
         // @text uninstall
