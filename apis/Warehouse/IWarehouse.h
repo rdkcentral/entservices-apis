@@ -80,7 +80,8 @@ namespace WPEFramework
             // @param clean - out - boolean
             // @param files - out - string [] of file locations for each file
             // @param success - out - boolean
-            virtual Core::hresult IsClean(const int age, bool &clean /* @out */, IStringIterator*& files /* @out */, bool &success /* @out */) = 0;
+            // @param error -out - string
+            virtual Core::hresult IsClean(const int age, bool &clean /* @out */, IStringIterator*& files /* @out */, bool &success /* @out */, string& error /* @out */) = 0;
             
             // @text lightReset
             // @brief Resets the application data.
