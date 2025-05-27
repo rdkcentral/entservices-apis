@@ -148,7 +148,7 @@
 
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
-                // @param ShortAudioDescriptor: Short Audio Descriptor of the device
+                // @param jsonresponse: JSON response containing the Short Audio Descriptor (SAD) information
                 virtual void ShortAudiodescriptorEvent(const string& jsonresponse) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
