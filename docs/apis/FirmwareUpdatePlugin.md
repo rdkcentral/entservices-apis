@@ -1,127 +1,73 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Firmware_Update_Plugin"></a>
-# Firmware Update Plugin
+<a id="head.IFirmwareUpdate_Plugin"></a>
+# IFirmwareUpdate Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IFirmwareUpdate/CHANGELOG.md)**
 
-A org.rdk.FirmwareUpdate plugin for Thunder framework.
+A IFirmwareUpdate plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `FirmwareUpdate` plugin provides APIs to update (i.e., flash) the device with already downloaded and locally kept firmware image.
+The `IFirmwareUpdate` plugin provides an interface for IFirmwareUpdate.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.FirmwareUpdate*) |
-| classname | string | Class name: *org.rdk.FirmwareUpdate* |
-| locator | string | Library name: *libWPEFrameworkFirmwareUpdate.so* |
+| callsign | string | Plugin instance name (default: *IFirmwareUpdate*) |
+| classname | string | Class name: *IFirmwareUpdate* |
+| locator | string | Library name: *libWPEFrameworkIFirmwareUpdate.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.FirmwareUpdate plugin:
+The following methods are provided by the IFirmwareUpdate plugin:
 
-org.rdk.FirmwareUpdate interface methods:
+IFirmwareUpdate interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [updateFirmware](#updateFirmware) | Update the device firmware with a previously downloaded image (using methods provided by components outside of this plugin) or with an image present in the attached USB mass storage device |
-| [getUpdateState](#getUpdateState) | Firmware update consists of 2 major steps: 1 |
+| [GetUpdateState](#method.GetUpdateState) | Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method. |
+| [UpdateFirmware](#method.UpdateFirmware) | Initiates a firmware update. |
 
+<a id="method.GetUpdateState"></a>
+## *GetUpdateState [<sup>method</sup>](#head.Methods)*
 
-<a name="updateFirmware"></a>
-## *updateFirmware*
-
-Update the device firmware with a previously downloaded image (using methods provided by components outside of this plugin) or with an image present in the attached USB mass storage device. FirmwareUpdate is an asynchronous process. Status of the firmware update would be notified through onUpdateStateChange notification.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.firmwareFilepath | string | The complete path with firmware file to which the device needs to be updated |
-| params.firmwareType | string | Type of firmware(must be one of the following: PCI,DRI) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | Always null |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.FirmwareUpdate.updateFirmware",
-    "params": {
-        "firmwareFilepath": "/tmp/usbmnt/sda1/firmware/HSTP11MWR_4.11p5s1_VBN_sdy.bin",
-        "firmwareType": "PCI"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": null
-}
-```
-
-<a name="getUpdateState"></a>
-## *getUpdateState*
-
-Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the status of these steps in the firmware update process that was triggered by updateFirmware 
+Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | Status of the firmware update process.(must be one of the following: VALIDATION_FAILED/FLASHING_STARTED/FLASHING_FAILED/FLASHING_SUCCEEDED/FLASHING_SUCCEEDED |
-| result.substate | string | Sub Status of the firmware update process(must be one of the following: FIRMWARE_NOT_FOUND/FIRMWARE_INVALID/FIRMWARE_OUTDATED/FIRMWARE_UPTODATE/FIRMWARE_INCOMPATIBLE/PREWRITE_SIGNATURE_CHECK_FAILED/FLASH_WRITE_FAILED/POSTWRITE_FIRMWARE_CHECK_FAILED/POSTWRITE_SIGNATURE_CHECK_FAILED) |
+| result.getUpdateStateResult | GetUpdateStateResult |  |
+| result.getUpdateStateResult.state | State | state |
+| result.getUpdateStateResult.substate | SubState | substate |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -129,7 +75,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.FirmwareUpdate.getUpdateState"
+    "method": "org.rdk.IFirmwareUpdate.GetUpdateState"
 }
 ```
 
@@ -140,73 +86,126 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "state": "FLASHING_SUCCEEDED",
-        "substate": "FIRMWARE_NOT_FOUND"
+        "getUpdateStateResult": {
+            "state": "VALIDATION_FAILED",
+            "substate": "NOT_APPLICABLE"
+        }
+    }
+}
+```
+<a id="method.UpdateFirmware"></a>
+## *UpdateFirmware [<sup>method</sup>](#head.Methods)*
+
+Initiates a firmware update.
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.firmwareFilepath | string | The complete path of the firmware file to which the device needs to be updated to. |
+| params.firmwareType | string | Type of firmware. One of the following (PCI,DRI) |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.result | Result |  |
+| result.result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IFirmwareUpdate.UpdateFirmware",
+    "params": {
+        "firmwareFilepath": "",
+        "firmwareType": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "result": {
+            "success": "true"
+        }
+    }
+}
+```
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.FirmwareUpdate plugin:
+The following events are provided by the IFirmwareUpdate plugin:
 
-org.rdk.FirmwareUpdate interface events:
+IFirmwareUpdate interface events:
 
-| Event | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [onUpdateStateChange](#onUpdateStateChange) | Raised either in response to updateFirmware method being invoked by the apps or when the device initiates the firmware download process on its own based on the scheduled firmware update in the server) |
-| [onFlashingStateChange](#onFlashingStateChange) | This notification is raised between flashing started state and flashing succeeded (or flashing failed) state of firmware update, indicating the progress made on the flashing process |
+| [OnFlashingStateChange](#event.OnFlashingStateChange) | This notification is raised between flashing started state and flashing succeeded/failed. |
+| [OnUpdateStateChange](#event.OnUpdateStateChange) | notify Firmware update state change. |
 
+<a id="event.OnFlashingStateChange"></a>
+## *OnFlashingStateChange [<sup>event</sup>](#head.Notifications)*
 
-<a name="onUpdateStateChange"></a>
-## *onUpdateStateChange*
-
-Raised either in response to updateFirmware method being invoked by the apps or when the device initiates the firmware download process on its own based on the scheduled firmware update in the server).
+This notification is raised between flashing started state and flashing succeeded/failed.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.state | string | Status of the firmware update process.(must be one of the following: VALIDATION_FAILED/FLASHING_STARTED/FLASHING_FAILED/FLASHING_SUCCEEDED/FLASHING_SUCCEEDED |
-| params.substate | string | Sub Status of the firmware update process(must be one of the following: FIRMWARE_NOT_FOUND/FIRMWARE_INVALID/FIRMWARE_OUTDATED/FIRMWARE_UPTODATE/FIRMWARE_INCOMPATIBLE/PREWRITE_SIGNATURE_CHECK_FAILED/FLASH_WRITE_FAILED/POSTWRITE_FIRMWARE_CHECK_FAILED/POSTWRITE_SIGNATURE_CHECK_FAILED) |
+| params.percentageComplete | uint32_t | Number between 0 and 100 indicating the "percentage complete" of the flashing process. |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onUpdateStateChange",
+    "id": 42,
+    "method": "org.rdk.IFirmwareUpdate.OnFlashingStateChange",
     "params": {
-        "state": "FLASHING_SUCCEEDED",
-        "substate": "FIRMWARE_NOT_FOUND"
+        "percentageComplete": "0"
     }
 }
 ```
+<a id="event.OnUpdateStateChange"></a>
+## *OnUpdateStateChange [<sup>event</sup>](#head.Notifications)*
 
-<a name="onFlashingStateChange"></a>
-## *onFlashingStateChange*
-
-This notification is raised between flashing started state and flashing succeeded (or flashing failed) state of firmware update, indicating the progress made on the flashing process.
+notify Firmware update state change.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.percentageComplete | number | Number between 0 and 100 indicating the percentage complete of the flashing process |
+| params.state | State | state |
+| params.substate | SubState | substate |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onFlashingStateChange",
+    "id": 42,
+    "method": "org.rdk.IFirmwareUpdate.OnUpdateStateChange",
     "params": {
-        "percentageComplete": 100
+        "state": "VALIDATION_FAILED",
+        "substate": "NOT_APPLICABLE"
     }
 }
 ```
