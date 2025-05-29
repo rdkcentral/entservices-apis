@@ -37,18 +37,37 @@ struct EXTERNAL INativeJS : virtual public Core::IUnknown {
     // @json:omit
     virtual Core::hresult Deinitialize() = 0;
 
-    /** Launches the NativeJS plugin */
-    // @text launchApplication
-    // @brief Launch a NativeJS application.
-    // @param url The URL of the application to launch.
-    // @param options Additional options for launching the application.
-    virtual Core::hresult LaunchApplication(const std::string url, const std::string options) = 0;
+    /** Creates the NativeJS plugin */
+    // @text createApplication
+    // @brief Create a NativeJS application.
+    // @param options Additional options for creating the application.
+    // @param id This should have the id of the created application
+    virtual Core::hresult CreateApplication(const std::string options /* @in */, uint32_t& id /* @out */) = 0;
+    
+    /** Run the created NativeJS plugin */
+    // @text runApplication
+    // @brief run a NativeJS application.
+    // @param id The ID for the application to run.
+    // @param url URL for the application to run.
+    virtual Core::hresult RunApplication(uint32_t id /* @in */, const std::string url /* @in */) = 0;
+    
+    /** Run the created NativeJS plugin */
+    // @text runJavaScript 
+    // @brief run a NativeJS code.
+    // @param id The ID for the code to run.
+    // @param options Additional options for creating the application.
+    virtual Core::hresult RunJavaScript(uint32_t id /* @in */, const std::string code /* @in */) = 0;
+    
+    /** Get all the existing NativeJS plugin */
+    // @text getApplications
+    // @brief Get details of existing plugin.
+    virtual Core::hresult GetApplications() = 0;
 
     /** Stops the NativeJS plugin */
-    // @text destroyApplication
+    // @text terminateApplication
     // @brief Destroy a running NativeJS application.
-    // @param url The URL of the application to destroy.
-    virtual Core::hresult DestroyApplication(const std::string url) = 0;
+    // @param id The ID of the application to destroy.
+    virtual Core::hresult TerminateApplication(uint32_t id /* @in */) = 0;
 };
 
 } // Exchange
