@@ -149,8 +149,7 @@ namespace Exchange {
         // @param scope: must be device or account
         // @param ns: name space
         // @param storageLimit: Size in bytes
-        // @param success: success
-        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */, bool& success /* @out */) = 0;
+        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
     };
 
     /* @json @text:keep */
