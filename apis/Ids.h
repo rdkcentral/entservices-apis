@@ -275,7 +275,9 @@ namespace Exchange {
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
-    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x400,
+        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
+
+    ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x3B0,
         ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
         ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
         ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 3,
