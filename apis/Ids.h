@@ -275,7 +275,11 @@ namespace Exchange {
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
-        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0
+        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
+
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x3B0,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2
     };
 }
 }
