@@ -276,7 +276,8 @@ namespace Exchange {
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
         ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
-        ID_FRAMERATE                                 = ID_ENTOS_OFFSET + 0x400,
+
+	ID_FRAMERATE                                 = ID_ENTOS_OFFSET + 0x400,
         ID_FRAMERATE_NOTIFICATION                    = ID_FRAMERATE + 1
     };
 }
