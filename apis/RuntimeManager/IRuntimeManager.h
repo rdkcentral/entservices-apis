@@ -25,6 +25,23 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig
+{
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVars;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @text:keep
 struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     enum { ID = ID_RUNTIME_MANAGER };
@@ -90,7 +107,7 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @param ports(optional) array of socket ports to allow
     // @param paths(optional) paths contains an additional set of files and directories to map into the container
     // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
-    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const string& appPath, const string& runtimePath, IStringIterator* const& envVars, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings) = 0;
+    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const string& appPath, const string& runtimePath, IStringIterator* const& envVars, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const RuntimeConfig& runtimeConfigObject) = 0;
 
     /** @brief Hibernate the application */
     // @text hibernate

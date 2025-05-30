@@ -23,6 +23,23 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig
+{
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVars;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   enum { ID = ID_APPMANAGER };
