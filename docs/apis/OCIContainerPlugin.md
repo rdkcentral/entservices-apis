@@ -1,89 +1,89 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="OCIContainer_Plugin"></a>
-# OCIContainer Plugin
+<a id="head.IOCIContainer_Plugin"></a>
+# IOCIContainer Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IOCIContainer/CHANGELOG.md)**
 
-A org.rdk.OCIContainer plugin for Thunder framework.
+A IOCIContainer plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `OCIContainer` plugin allows for control of OCI containers using the Dobby hypervisor.
+The `IOCIContainer` plugin provides an interface for IOCIContainer.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.OCIContainer*) |
-| classname | string | Class name: *org.rdk.OCIContainer* |
-| locator | string | Library name: *libWPEFrameworkOCIContainer.so* |
+| callsign | string | Plugin instance name (default: *IOCIContainer*) |
+| classname | string | Class name: *IOCIContainer* |
+| locator | string | Library name: *libWPEFrameworkIOCIContainer.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.OCIContainer plugin:
+The following methods are provided by the IOCIContainer plugin:
 
-OCIContainer interface methods:
+IOCIContainer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [executeCommand](#executeCommand) | Executes a command inside a running container |
-| [getContainerInfo](#getContainerInfo) | Gets information about a running container such as CPU, memory, and GPU usage (GPU not supported on some products) |
-| [getContainerState](#getContainerState) | Gets the state of a currently running container |
-| [listContainers](#listContainers) | Lists all running OCI containers Dobby knows about |
-| [pauseContainer](#pauseContainer) | Pauses a currently running container |
-| [resumeContainer](#resumeContainer) | Resumes a previously paused container |
-| [startContainer](#startContainer) | Starts a new container from an existing OCI bundle |
-| [startContainerFromDobbySpec](#startContainerFromDobbySpec) | Starts a new container from a legacy Dobby JSON specification |
-| [stopContainer](#stopContainer) | Stops a currently running container |
+| [Annotate](#method.Annotate) |  |
+| [ExecuteCommand](#method.ExecuteCommand) |  |
+| [GetContainerInfo](#method.GetContainerInfo) |  |
+| [GetContainerState](#method.GetContainerState) |  |
+| [HibernateContainer](#method.HibernateContainer) |  |
+| [ListContainers](#method.ListContainers) |  |
+| [Mount](#method.Mount) |  |
+| [PauseContainer](#method.PauseContainer) |  |
+| [RemoveAnnotation](#method.RemoveAnnotation) |  |
+| [ResumeContainer](#method.ResumeContainer) |  |
+| [StartContainer](#method.StartContainer) |  |
+| [StartContainerFromDobbySpec](#method.StartContainerFromDobbySpec) |  |
+| [StopContainer](#method.StopContainer) |  |
+| [Unmount](#method.Unmount) |  |
+| [WakeupContainer](#method.WakeupContainer) |  |
+
+<a id="method.Annotate"></a>
+## *Annotate [<sup>method</sup>](#head.Methods)*
 
 
-<a name="executeCommand"></a>
-## *executeCommand*
-
-Executes a command inside a running container. The path to the executable must resolve within the container's namespace.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-| params?.options | string | <sup>*(optional)*</sup> Global options for crun `exec` command |
-| params.command | string | Command to execute |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+| params.key | string | name of property |
+| params.value | string | property data |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -91,11 +91,11 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.executeCommand",
+    "method": "org.rdk.IOCIContainer.Annotate",
     "params": {
-        "containerId": "com.bskyb.epgui",
-        "options": "--cwd=PATH",
-        "command": "command"
+        "containerId": "",
+        "key": "",
+        "value": ""
     }
 }
 ```
@@ -107,52 +107,32 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.ExecuteCommand"></a>
+## *ExecuteCommand [<sup>method</sup>](#head.Methods)*
 
-<a name="getContainerInfo"></a>
-## *getContainerInfo*
 
-Gets information about a running container such as CPU, memory, and GPU usage (GPU not supported on some products).
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+| params.options | string | (optional) options to be passed to command |
+| params.command | string | (optional) command to run in container |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.info | object | Information about the specified container |
-| result.info.cpu | object | CPU information |
-| result.info.cpu.usage | object | The amount of CPU usage |
-| result.info.cpu.usage.percpu | array | The usage for each CPU |
-| result.info.cpu.usage.percpu[#] | integer |  |
-| result.info.cpu.usage.total | integer | The combined usage for all CPUs |
-| result.info.id | string | The ID of a container as returned by `listContainers` |
-| result.info.memory | object | The amount of memory being used by the container |
-| result.info.memory.user | object | User memory statistics |
-| result.info.memory.user.failcnt | integer | The fail count; the number of times that the usage counter hit its limit |
-| result.info.memory.user.limit | integer | The memory limit |
-| result.info.memory.user.max | integer | The maximum amount of memory used |
-| result.info.memory.user.usage | integer | The current memory being used |
-| result.info.pids | array | A list of container process IDs |
-| result.info.pids[#] | integer |  |
-| result.info.state | string | The container state (must be one of the following: *Invalid*, *Starting*, *Running*, *Stopped*, *Paused*) |
-| result.info.timestamp | integer | The timestamp for container information |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -160,9 +140,11 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.getContainerInfo",
+    "method": "org.rdk.IOCIContainer.ExecuteCommand",
     "params": {
-        "containerId": "com.bskyb.epgui"
+        "containerId": "",
+        "options": "",
+        "command": ""
     }
 }
 ```
@@ -174,61 +156,31 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "info": {
-            "cpu": {
-                "usage": {
-                    "percpu": [
-                        83134464184
-                    ],
-                    "total": 224025108679
-                }
-            },
-            "id": "com.bskyb.epgui",
-            "memory": {
-                "user": {
-                    "failcnt": 0,
-                    "limit": 230686720,
-                    "max": 38555648,
-                    "usage": 28655616
-                }
-            },
-            "pids": [
-                7644
-            ],
-            "state": "Running",
-            "timestamp": 6849968158125
-        },
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.GetContainerInfo"></a>
+## *GetContainerInfo [<sup>method</sup>](#head.Methods)*
 
-<a name="getContainerState"></a>
-## *getContainerState*
 
-Gets the state of a currently running container.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.containerId | string | The ID of a container as returned by `listContainers` |
-| result.state | string | The container state (must be one of the following: *Invalid*, *Starting*, *Running*, *Stopped*, *Paused*) |
-| result.success | boolean | Whether the request succeeded |
+| result.info | string |  |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -236,9 +188,9 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.getContainerState",
+    "method": "org.rdk.IOCIContainer.GetContainerInfo",
     "params": {
-        "containerId": "com.bskyb.epgui"
+        "containerId": ""
     }
 }
 ```
@@ -250,38 +202,124 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "containerId": "com.bskyb.epgui",
-        "state": "Running",
-        "success": true
+        "info": "",
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.GetContainerState"></a>
+## *GetContainerState [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.state | ContainerState |  |
+| result.success | bool |  |
+| result.errorReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.GetContainerState",
+    "params": {
+        "containerId": ""
     }
 }
 ```
 
-<a name="listContainers"></a>
-## *listContainers*
+#### Response
 
-Lists all running OCI containers Dobby knows about.
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "state": "INVALID",
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.HibernateContainer"></a>
+## *HibernateContainer [<sup>method</sup>](#head.Methods)*
+
+
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.options | string | (optional) options to be passed to command |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.HibernateContainer",
+    "params": {
+        "containerId": "",
+        "options": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.ListContainers"></a>
+## *ListContainers [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.containers | array | A list of running containers |
-| result.containers[#] | object |  |
-| result.containers[#].Descriptor | integer | The container descriptor |
-| result.containers[#].Id | string | The container Id |
-| result.success | boolean | Whether the request succeeded |
+| result.containers | string | - out/json - string |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -289,7 +327,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.listContainers"
+    "method": "org.rdk.IOCIContainer.ListContainers"
 }
 ```
 
@@ -300,41 +338,35 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "containers": [
-            {
-                "Descriptor": 91,
-                "Id": "com.bskyb.epgui"
-            }
-        ],
-        "success": true
+        "containers": "",
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.Mount"></a>
+## *Mount [<sup>method</sup>](#head.Methods)*
 
-<a name="pauseContainer"></a>
-## *pauseContainer*
 
-Pauses a currently running container.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+| params.source | string | path source to mount |
+| params.target | string | mount target inside container |
+| params.type | string | type of mounting |
+| params.options | string | (optional) options to be passed to command |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -342,9 +374,13 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.pauseContainer",
+    "method": "org.rdk.IOCIContainer.Mount",
     "params": {
-        "containerId": "com.bskyb.epgui"
+        "containerId": "",
+        "source": "",
+        "target": "",
+        "type": "",
+        "options": ""
     }
 }
 ```
@@ -356,35 +392,30 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.PauseContainer"></a>
+## *PauseContainer [<sup>method</sup>](#head.Methods)*
 
-<a name="resumeContainer"></a>
-## *resumeContainer*
 
-Resumes a previously paused container.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -392,9 +423,9 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.resumeContainer",
+    "method": "org.rdk.IOCIContainer.PauseContainer",
     "params": {
-        "containerId": "com.bskyb.epgui"
+        "containerId": ""
     }
 }
 ```
@@ -406,42 +437,31 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.RemoveAnnotation"></a>
+## *RemoveAnnotation [<sup>method</sup>](#head.Methods)*
 
-<a name="startContainer"></a>
-## *startContainer*
 
-Starts a new container from an existing OCI bundle.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onContainerStarted](#onContainerStarted) | Triggers when a new container starts running. |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-| params.bundlePath | string | Path to the OCI bundle containing the rootfs and config to use to create the container |
-| params?.command | string | <sup>*(optional)*</sup> Command to execute |
-| params?.westerosSocket | string | <sup>*(optional)*</sup> Path to a Westeros socket to mount inside the container |
-| params?.envvar | array | <sup>*(optional)*</sup> A list of environment variables to add to the container |
-| params?.envvar[#] | string | <sup>*(optional)*</sup>  |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+| params.key | string | name of property |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.descriptor | integer | The container descriptor |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -449,15 +469,10 @@ Starts a new container from an existing OCI bundle.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.startContainer",
+    "method": "org.rdk.IOCIContainer.RemoveAnnotation",
     "params": {
-        "containerId": "com.bskyb.epgui",
-        "bundlePath": "/containers/myBundle",
-        "command": "command",
-        "westerosSocket": "/usr/mySocket",
-        "envvar": [
-            "FOO=BAR"
-        ]
+        "containerId": "",
+        "key": ""
     }
 }
 ```
@@ -469,41 +484,30 @@ Starts a new container from an existing OCI bundle.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "descriptor": 91,
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.ResumeContainer"></a>
+## *ResumeContainer [<sup>method</sup>](#head.Methods)*
 
-<a name="startContainerFromDobbySpec"></a>
-## *startContainerFromDobbySpec*
 
-Starts a new container from a legacy Dobby JSON specification.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onContainerStarted](#onContainerStarted) | Triggers when a new container starts running. |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-| params.dobbySpec | string | Dobby specification to use for the container |
-| params?.command | string | <sup>*(optional)*</sup> Command to execute |
-| params?.westerosSocket | string | <sup>*(optional)*</sup> Path to a Westeros socket to mount inside the container |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.descriptor | integer | The container descriptor |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -511,12 +515,9 @@ Starts a new container from a legacy Dobby JSON specification.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.startContainerFromDobbySpec",
+    "method": "org.rdk.IOCIContainer.ResumeContainer",
     "params": {
-        "containerId": "com.bskyb.epgui",
-        "dobbySpec": "/containers/dobbySpec",
-        "command": "command",
-        "westerosSocket": "/usr/mySocket"
+        "containerId": ""
     }
 }
 ```
@@ -528,38 +529,34 @@ Starts a new container from a legacy Dobby JSON specification.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "descriptor": 91,
-        "success": true
+        "success": "true",
+        "errorReason": ""
     }
 }
 ```
+<a id="method.StartContainer"></a>
+## *StartContainer [<sup>method</sup>](#head.Methods)*
 
-<a name="stopContainer"></a>
-## *stopContainer*
 
-Stops a currently running container.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onContainerStopped](#onContainerStopped) | Triggers when the container stops running. |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | The ID of a container as returned by `listContainers` |
-| params?.force | boolean | <sup>*(optional)*</sup> If `true`, force stop the container using the `SIGKILL` signal). Otherwise, use the `SIGTERM` signal. The default value if no value is specified is `false` |
-
-### Result
-
+| params.containerId | string | Identifier of container |
+| params.bundlePath | string | path of application bundle |
+| params.command | string | (optional) command to run in container |
+| params.westerosSocket | string | (optional) Westeros socket container need to connect |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.descriptor | int32_t |  |
+| result.success | bool |  |
+| result.errorReason | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -567,10 +564,12 @@ Stops a currently running container.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.OCIContainer.stopContainer",
+    "method": "org.rdk.IOCIContainer.StartContainer",
     "params": {
-        "containerId": "com.bskyb.epgui",
-        "force": true
+        "containerId": "",
+        "bundlePath": "",
+        "command": "",
+        "westerosSocket": ""
     }
 }
 ```
@@ -582,75 +581,329 @@ Stops a currently running container.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "descriptor": "0",
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.StartContainerFromDobbySpec"></a>
+## *StartContainerFromDobbySpec [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.dobbySpec | string | dobby specification as json string |
+| params.command | string | (optional) command to run in container |
+| params.westerosSocket | string | (optional) Westeros socket container need to connect |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.descriptor | int32_t |  |
+| result.success | bool |  |
+| result.errorReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.StartContainerFromDobbySpec",
+    "params": {
+        "containerId": "",
+        "dobbySpec": "",
+        "command": "",
+        "westerosSocket": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "descriptor": "0",
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.StopContainer"></a>
+## *StopContainer [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.force | bool | (optional) Metion forceful or graceful termination of container |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | bool |  |
+| result.errorReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.StopContainer",
+    "params": {
+        "containerId": "",
+        "force": "true"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.Unmount"></a>
+## *Unmount [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.target | string | mount target inside container |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | bool |  |
+| result.errorReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.Unmount",
+    "params": {
+        "containerId": "",
+        "target": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+<a id="method.WakeupContainer"></a>
+## *WakeupContainer [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | bool |  |
+| result.errorReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.WakeupContainer",
+    "params": {
+        "containerId": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": "true",
+        "errorReason": ""
+    }
+}
+```
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.OCIContainer plugin:
+The following events are provided by the IOCIContainer plugin:
 
-OCIContainer interface events:
+IOCIContainer interface events:
 
-| Event | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [onContainerStarted](#onContainerStarted) | Triggered when a new container has started running |
-| [onContainerStopped](#onContainerStopped) | Triggered when the container has stopped running |
+| [OnContainerFailed](#event.OnContainerFailed) | Notifies failure in container execution |
+| [OnContainerStarted](#event.OnContainerStarted) | Notifies container is started |
+| [OnContainerStateChanged](#event.OnContainerStateChanged) | Notifies state change of container |
+| [OnContainerStopped](#event.OnContainerStopped) | Notifies container is stopped |
 
+<a id="event.OnContainerFailed"></a>
+## *OnContainerFailed [<sup>event</sup>](#head.Notifications)*
 
-<a name="onContainerStarted"></a>
-## *onContainerStarted*
-
-Triggered when a new container has started running.
+Notifies failure in container execution
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.descriptor | integer | The container descriptor |
-| params.name | string | Name of the Container |
+| params.containerId | string | Identifier of container |
+| params.name | string |  |
+| params.error | uint32_t |  |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onContainerStarted",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.OnContainerFailed",
     "params": {
-        "descriptor": 91,
-        "name": "com.bskyb.epgui"
+        "containerId": "",
+        "name": "",
+        "error": "0"
     }
 }
 ```
+<a id="event.OnContainerStarted"></a>
+## *OnContainerStarted [<sup>event</sup>](#head.Notifications)*
 
-<a name="onContainerStopped"></a>
-## *onContainerStopped*
-
-Triggered when the container has stopped running.
+Notifies container is started
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.descriptor | integer | The container descriptor |
-| params.name | string | Name of the Container |
+| params.containerId | string | Identifier of container |
+| params.name | string |  |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onContainerStopped",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.OnContainerStarted",
     "params": {
-        "descriptor": 91,
-        "name": "com.bskyb.epgui"
+        "containerId": "",
+        "name": ""
     }
 }
 ```
+<a id="event.OnContainerStateChanged"></a>
+## *OnContainerStateChanged [<sup>event</sup>](#head.Notifications)*
 
+Notifies state change of container
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.state | ContainerState |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.OnContainerStateChanged",
+    "params": {
+        "containerId": "",
+        "state": "INVALID"
+    }
+}
+```
+<a id="event.OnContainerStopped"></a>
+## *OnContainerStopped [<sup>event</sup>](#head.Notifications)*
+
+Notifies container is stopped
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.containerId | string | Identifier of container |
+| params.name | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IOCIContainer.OnContainerStopped",
+    "params": {
+        "containerId": "",
+        "name": ""
+    }
+}
+```
