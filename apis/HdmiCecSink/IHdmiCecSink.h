@@ -255,14 +255,14 @@
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SendKeyPressEvent(const uint32_t logicalAddress /* @in */, const uint32_t keyCode /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Pressed> message when TV remote key is pressed.
             // @text sendUserControlPressed
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendUserControlPressed(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SendUserControlPressed(const uint32_t logicalAddress /* @in */, const uint32_t keyCode /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Released> message when TV remote key is released.
             // @text sendUserControlReleased
@@ -279,7 +279,7 @@
             // @text setActivePath
             // @param activePath: Active path of the device
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetActivePath(const string &activePath /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetActivePath(const string activePath /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
             // @text setActiveSource
