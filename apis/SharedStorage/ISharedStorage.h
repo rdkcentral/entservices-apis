@@ -141,9 +141,9 @@ namespace Exchange {
         // @text setNamespaceStorageLimit
         // @param scope: must be device or account
         // @param ns: name space
-        // @param size: size
+        // @param storageLimit: size
         // @param success: success
-        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t size, bool& success /* @out */) = 0;
+        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t storageLimit, bool& success /* @out */) = 0;
         // @brief Returns the storage limit for a given namespace
         // @text getNamespaceStorageLimit
         // @param scope: must be device or account
