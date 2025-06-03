@@ -296,7 +296,7 @@
             // @text setMenuLanguage
             // @param language: Menu language to be set
             // @param success: Is the operation successful or not
-            virtual Core::hresult setMenuLanguage(const string &language /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetMenuLanguage(const string &language /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC Sink
             // @text setOSDName
