@@ -293,10 +293,10 @@
             virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
-            // @text setMenuLangauge
+            // @text setMenuLanguage
             // @param language: Menu language to be set
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetMenuLangauge(const string &language /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+            virtual Core::hresult setMenuLanguage(const string &language /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC Sink
             // @text setOSDName
