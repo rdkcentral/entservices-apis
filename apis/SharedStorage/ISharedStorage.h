@@ -51,7 +51,7 @@ namespace Exchange {
             // @param scope: must be device or account
             // @param key: key 
             // @param value: value
-            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) {};
+            virtual void OnValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) {};
         };
 
         virtual Core::hresult Register(Exchange::ISharedStorage::INotification* notification) = 0;
