@@ -23,29 +23,68 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig
+{
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVariables;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+
+    bool resourceManagerClientEnabled;
+    std::string dialId;
+    std::string command;
+    std::string appType;
+    std::string appPath;
+    std::string runtimePath;
+
+    std::string logFilePath;
+    uint32_t logFileMaxSize;
+    std::string logLevels;          //json array of strings
+    bool mapi;
+    std::string fkpsFiles;          //json array of strings
+
+    std::string fireboltVersion;
+    bool enableDebugger;
+    string unpackedPath;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   enum { ID = ID_APPMANAGER };
 
   enum AppLifecycleState : uint8_t {
-          APP_STATE_UNKNOWN     = 0   /* @text APP_STATE_UNKNOWN */,
-          APP_STATE_RUNNING     = 1   /* @text APP_STATE_RUNNING */,
-          APP_STATE_ACTIVE      = 2   /* @text APP_STATE_ACTIVE */,
-          APP_STATE_SUSPENDED   = 3   /* @text APP_STATE_SUSPENDED */,
-          APP_STATE_HIBERNATED  = 4   /* @text APP_STATE_HIBERNATED */,
-          APP_STATE_TERMINATED  = 5   /* @text APP_STATE_TERMINATED */
+          APP_STATE_UNKNOWN      = 0   /* @text APP_STATE_UNKNOWN */,
+          APP_STATE_UNLOADED     = 1   /* @text APP_STATE_UNLOADED */,
+          APP_STATE_LOADING      = 2   /* @text APP_STATE_LOADING */,
+          APP_STATE_INITIALIZING = 3   /* @text APP_STATE_INITIALIZING */,
+          APP_STATE_PAUSED       = 4   /* @text APP_STATE_PAUSED */,
+          APP_STATE_RUNNING      = 5   /* @text APP_STATE_RUNNING */,
+          APP_STATE_ACTIVE       = 6   /* @text APP_STATE_ACTIVE */,
+          APP_STATE_SUSPENDED    = 7   /* @text APP_STATE_SUSPENDED */,
+          APP_STATE_HIBERNATED   = 8   /* @text APP_STATE_HIBERNATED */,
+          APP_STATE_TERMINATED   = 9   /* @text APP_STATE_TERMINATED */
       };
 
   enum AppErrorReason : uint8_t {
-          APP_ERROR_UNKNOWN          = 0     /* @text APP_ERROR_UNKNOWN */,
-          APP_ERROR_STATE_TIMEOUT    = 1     /* @text APP_ERROR_STATE_TIMEOUT */,
-          APP_ERROR_ABORT            = 2     /* @text APP_ERROR_ABORT */
+          APP_ERROR_NONE             = 0     /* @text APP_ERROR_NONE */,
+          APP_ERROR_UNKNOWN          = 1     /* @text APP_ERROR_UNKNOWN */,
+          APP_ERROR_STATE_TIMEOUT    = 2     /* @text APP_ERROR_STATE_TIMEOUT */,
+          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */
       };
 
-  // @event 
+  // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_APPMANAGER_NOTIFICATION };
- 
+
     // @text onAppInstalled
     // @brief Triggered whenever the App is installed.
     // @param appId:App identifier for the application.
