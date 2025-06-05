@@ -14,7 +14,7 @@ namespace Exchange {
         bool thunder;
         int32_t systemMemoryLimit;
         int32_t gpuMemoryLimit;
-        std::string envVars;
+        std::string envVariables;
         uint32_t userId;
         uint32_t groupId;
         uint32_t dataImageSize;
