@@ -74,6 +74,11 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
         // @param service: the changed preferredClosedCaptionService.
         virtual void OnPreferredClosedCaptionServiceChanged(const string& service) {};
 
+        // @text onPrivacyModeChanged
+        // @brief The PrivacyMode setting has changed.
+        // @param privacyMode: "SHARE", "DO_NOT_SHARE".
+        virtual void OnPrivacyModeChanged(const string& privacyMode /* @text privacyMode */) {};
+
         // @alt onPinControlChanged
         // @brief The PinControl setting has changed.
         // @param pinControl: pinControl enabled or not.
@@ -128,6 +133,12 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
         // @brief Triggered after the voice guidance hints changes.
         // @param hints: voice guidance hints enabled or not.
         virtual void OnVoiceGuidanceHintsChanged(const bool hints) {};
+
+        // @text onContentPinChanged
+        // @brief The ContentPin setting has changed.
+        // @param contentPin: The changed contentPin.
+        virtual void OnContentPinChanged(const string& contentPin) {};
+
     };
 
     virtual Core::hresult Register(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
@@ -212,6 +223,18 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Gets the current PreferredClosedCaptionService setting.
     // @param service: Identifies the service to display e.g. "CC3".
     virtual Core::hresult GetPreferredClosedCaptionService(string &service /* @out */) const = 0;
+
+    // @text setPrivacyMode
+    // @brief Sets the PrivacyMode.
+    // @details The setting should be honored by the Telemetry.
+    // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
+    // @param privacyMode: "SHARE", "DO_NOT_SHARE"
+    virtual uint32_t SetPrivacyMode(const string& privacyMode /* @in @text privacyMode*/) = 0;
+
+    // @text getPrivacyMode
+    // @brief Gets the current PrivacyMode setting.
+    // @param privacyMode: "SHARE"
+    virtual uint32_t GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
 
     // @alt setPinControl
     // @brief Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
@@ -330,6 +353,17 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @param hints: true/false
     virtual Core::hresult GetVoiceGuidanceHints(bool &hints /* @out */) const = 0;
 
+    // @text setContentPin
+    // @brief Sets the ContentPin.
+    // @details ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
+    // @param contentPin: A string of four decimal digits that represents the content PIN.
+    virtual Core::hresult SetContentPin(const string& contentPin) = 0;
+
+    // @text getContentPin
+    // @brief Gets the ContentPin.
+    // @param contentPin: A string of four decimal digits that represents the content PIN.
+    virtual Core::hresult GetContentPin(string& contentPin /* @out */) const = 0;
+
 };
 
 /**
@@ -366,7 +400,8 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
         PIN_ON_PURCHASE = 14,
         VOICE_GUIDANCE = 15,
         VOICE_GUIDANCE_RATE = 16,
-        VOICE_GUIDANCE_HINTS = 17
+        VOICE_GUIDANCE_HINTS = 17,
+        CONTENT_PIN = 18
     };
 
     struct SettingsMigrationState

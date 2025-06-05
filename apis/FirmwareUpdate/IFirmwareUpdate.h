@@ -64,12 +64,12 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
           // @param State   : State
           // @param SubState: SubState
           // @text onUpdateStateChange
-          virtual void OnUpdateStateChange (const State state  , const SubState substate )= 0;
+          virtual void OnUpdateStateChange (const State state  , const SubState substate ) {};
 
           // @brief This notification is raised between flashing started state and flashing succeeded/failed.
           // @param percentageComplete   : Number between 0 and 100 indicating the "percentage complete" of the flashing process. 
           // @text onFlashingStateChange
-          virtual void OnFlashingStateChange (const uint32_t percentageComplete )= 0;
+          virtual void OnFlashingStateChange (const uint32_t percentageComplete ) {};
   
    };
 
