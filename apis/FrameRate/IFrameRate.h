@@ -41,7 +41,7 @@ namespace WPEFramework
                 // @param average - in - int
                 // @param min - in - int
                 // @param max - in - int
-                virtual void OnFpsEvent(int average, int min, int max) {};
+                virtual void OnFpsEvent(const int average, const int min, const int max) {};
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
@@ -54,8 +54,8 @@ namespace WPEFramework
                 virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
             };
 
-            virtual Core::hresult Register(IFrameRate::INotification* notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IFrameRate::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(IFrameRate::INotification* notification) = 0;
+            virtual Core::hresult Unregister(IFrameRate::INotification* notification) = 0;
 
             /** Gets the Display Frame Rate*/
             // @text getDisplayFrameRate
@@ -76,21 +76,21 @@ namespace WPEFramework
             // @brief Sets the FPS data collection interval.
             // @param frequency - in -  int
             // @param success - out - boolean
-            virtual Core::hresult SetCollectionFrequency(int frequency /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetCollectionFrequency(const int frequency, bool& success /* @out */) = 0;
 
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
             // @brief Sets the display framerate values.
             // @param framerate - in - string
             // @param success - out - boolean
-            virtual Core::hresult SetDisplayFrameRate(const string& framerate /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetDisplayFrameRate(const string& framerate, bool& success /* @out */) = 0;
 
             /** Sets the auto framerate mode */
             // @text setFrmMode
             // @brief Set the Frm mode.
-            // @param frmmode - in - string
+            // @param frmmode - in - int
             // @param success - out - boolean
-            virtual Core::hresult SetFrmMode(int frmmode /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetFrmMode(const int frmmode /* @in */, bool& success /* @out */) = 0;
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
@@ -109,7 +109,7 @@ namespace WPEFramework
             // @brief Update the FPS value
             // @param newFpsValue - in - int
             // @param success - out - boolean
-            virtual Core::hresult UpdateFps(int newFpsValue /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult UpdateFps(const int newFpsValue, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
