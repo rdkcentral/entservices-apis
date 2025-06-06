@@ -127,7 +127,7 @@
     "devicetype": {
       "type": "string",
       "enum": [
-        "tv",
+        "IpTv",
         "IpStb",
         "QamIpStb"
       ],
