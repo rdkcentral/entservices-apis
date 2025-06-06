@@ -169,7 +169,7 @@ def validate_header(file_path, issues, ids_lines):
                             break
                     
     # Find the INotification interface declaration
-    interface_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?INotification\s*:\s*virtual\s+public\s+Core::IUnknown\s*')
+    interface_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?I\w*Notification\s*:\s*virtual\s+public\s+Core::IUnknown\s*')
     matches = interface_pattern.finditer(content)
 
     for match in matches:

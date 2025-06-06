@@ -7,6 +7,37 @@
 namespace WPEFramework {
 namespace Exchange {
 
+#ifndef RUNTIME_CONFIG
+    struct RuntimeConfig {
+        bool dial;
+        bool wanLanAccess;
+        bool thunder;
+        int32_t systemMemoryLimit;
+        int32_t gpuMemoryLimit;
+        std::string envVariables;
+        uint32_t userId;
+        uint32_t groupId;
+        uint32_t dataImageSize;
+
+        bool resourceManagerClientEnabled;
+        std::string dialId;
+        std::string command;
+        std::string appType;
+        std::string appPath;
+        std::string runtimePath;
+
+        std::string logFilePath;
+        uint32_t logFileMaxSize;
+        std::string logLevels;          //json array of strings
+        bool mapi;
+        std::string fkpsFiles;          //json array of strings
+
+        std::string fireboltVersion;
+        bool enableDebugger;
+    };
+    #define RUNTIME_CONFIG
+#endif
+
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
@@ -48,18 +79,30 @@ namespace Exchange {
         virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
 
         // @json:omit
-        virtual void Deinitialize(PluginHost::IShell* service) = 0;
+        virtual Core::hresult  Deinitialize(PluginHost::IShell* service) = 0;
 
+
+        struct Options {
+            // @brief Priority
+            bool priority;
+            // @brief Retries
+            uint32_t retries;
+            // @brief RateLimit
+            uint64_t rateLimit;
+        };
+
+        struct DownloadId {
+            string downloadId;
+        };
 
 	    // @brief Download
         // @text download
         // @param url: Download url
+        // @param options: Download options
         virtual Core::hresult Download(
             const string &url,
-            const bool priority /* @optional */,
-            const uint32_t retries /* @optional */,
-            const uint64_t rateLimit /* @optional */,
-            string &downloadId /* @out */) = 0;
+            const Options &options,
+            DownloadId &downloadId /* @out */) = 0;
 
         // @brief Pause
         // @text pause
@@ -81,18 +124,22 @@ namespace Exchange {
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
+        struct Percent {
+            uint8_t percent;
+        };
+
         // @brief Delete
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            uint8_t &percent /* @out */) = 0;
+            Percent &percent /* @out */) = 0;
 
         // @brief GetStorageDetails
         // @text getStorageDetails
         virtual Core::hresult GetStorageDetails(
-            uint32_t &quotaKB /* @out */,
-            uint32_t &usedKB  /* @out */) = 0;
+            uint32_t &quotaKb /* @out */,
+            uint32_t &usedKb  /* @out */) = 0;
 
         // @brief RateLimit
         // @text rateLimit
@@ -105,16 +152,18 @@ namespace Exchange {
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
-        enum PackageLifecycleState : uint8_t {
-            INSTALLING,
+        enum InstallState : uint8_t{
+            INSTALLING,                 // XXX: necessary ?!
             INSTALLATION_BLOCKED,
+            INSTALL_FAILURE,
             INSTALLED,
-            UNINSTALLING,
+            UNINSTALLING,               // XXX: necessary ?!
+            UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
         enum FailReason : uint8_t {
-            NONE,
+            NONE,                       // XXX: Not in HLA
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
@@ -125,8 +174,8 @@ namespace Exchange {
             string packageId;
             // @brief Version
             string version;
-            // @brief PackageState
-            PackageLifecycleState packageState;
+            // @brief state
+            InstallState state;
             // @brief Digest
             string digest;
             // @brief SizeKb
@@ -152,8 +201,8 @@ namespace Exchange {
         virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0;
 
         struct EXTERNAL KeyValue  {
-            // @brief Key
-            string key;
+            // @brief Name
+            string name;
             // @brief Value
             string value;
         };
@@ -170,7 +219,7 @@ namespace Exchange {
             const string &version,
             IPackageInstaller::IKeyValueIterator* const& additionalMetadata,
             const string &fileLocator,
-            FailReason &reason /* @out */) = 0;
+            FailReason &failReason /* @out */) = 0;
 
         // @brief Uninstall
         // @text uninstall
@@ -191,7 +240,7 @@ namespace Exchange {
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            string &config /* @out */   // XXX: JsonObject ?!
+            RuntimeConfig &configMetadata /* @out */
             ) = 0;
 
         // @brief PackageState
@@ -201,7 +250,7 @@ namespace Exchange {
         virtual Core::hresult PackageState(
             const string &packageId,
             const string &version,
-            PackageLifecycleState &state /* @out */
+            InstallState &state /* @out */
             ) = 0;
    };
 
@@ -232,7 +281,7 @@ namespace Exchange {
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            string &configMetadata /* @out */,
+            RuntimeConfig &configMetadata /* @out */,
             string &appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
@@ -253,7 +302,7 @@ namespace Exchange {
             const string &packageId,
             const string &version,
             string &unpackedPath /* @out */,
-            string &configMetadata /* @out */,
+            RuntimeConfig &configMetadata /* @out */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
             ) = 0;

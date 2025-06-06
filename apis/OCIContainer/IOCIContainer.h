@@ -31,15 +31,15 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     enum { ID = ID_OCICONTAINER };
 
     enum ContainerState : uint8_t {
-        Invalid = 0,
-        Starting = 1,
-        Running = 2,
-        Stopping = 3,
-        Paused = 4,
-        Stopped = 5,
-        Hibernating = 6,
-        Hibernated = 7,
-        Awakening = 8
+        INVALID = 0,
+        STARTING = 1,
+        RUNNING = 2,
+        STOPPING = 3,
+        PAUSED = 4,
+        STOPPED = 5,
+        HIBERNATING = 6,
+        HIBERNATED = 7,
+        AWAKENING = 8
     };
 
     // @event

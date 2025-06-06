@@ -40,6 +40,11 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onDisconnected
     // @param client: the identifier of the disconnected application
     virtual void OnDisconnected(const std::string& client){};
+
+    // @brief Posting the client for first frame ready.
+    // @text onReady
+    // @param client: notify first frame event received for client or application instance ID
+    virtual void OnReady(const string &client){};
   };
 
   /** Register notification interface */
@@ -163,6 +168,27 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the focus to the app with the app id
   // @param client/appInstanceId: Client/Application instance ID as a plain string (e.g., "rdkwmtestapp_13193")
   virtual Core::hresult SetFocus(const string &client) = 0;
+
+  /** Sets the visibility of the given client or appInstanceId */
+  // @text setVisible
+  // @brief Sets the visibility of the given client or appInstanceId
+  // @param client: client name or application instance ID
+  // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
+  virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
+
+  /** Get the first-frame rendered status of the application */
+  // @text renderReady
+  // @brief To get the status of first frame is rendered or not
+  // @param client: client name or application instance ID
+  // @param status: Returns true if the application has rendered first frame, false if it has not yet.
+  virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
+
+  /** To enable/disable the rendering of a Wayland display in the window manager */
+  // @text enableDisplayRender
+  // @brief Enable or disable the rendering of a Wayland display
+  // @param client: client name or application instance ID
+  // @param enable: flag to true/false for controlling the wayland render
+  virtual Core::hresult EnableDisplayRender(const string& client, bool enable) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
