@@ -74,6 +74,11 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
         // @param service: the changed preferredClosedCaptionService.
         virtual void OnPreferredClosedCaptionServiceChanged(const string& service) {};
 
+        // @text onPrivacyModeChanged
+        // @brief The PrivacyMode setting has changed.
+        // @param privacyMode: "SHARE", "DO_NOT_SHARE".
+        virtual void OnPrivacyModeChanged(const string& privacyMode /* @text privacyMode */) {};
+
         // @alt onPinControlChanged
         // @brief The PinControl setting has changed.
         // @param pinControl: pinControl enabled or not.
@@ -218,6 +223,18 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Gets the current PreferredClosedCaptionService setting.
     // @param service: Identifies the service to display e.g. "CC3".
     virtual Core::hresult GetPreferredClosedCaptionService(string &service /* @out */) const = 0;
+
+    // @text setPrivacyMode
+    // @brief Sets the PrivacyMode.
+    // @details The setting should be honored by the Telemetry.
+    // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
+    // @param privacyMode: "SHARE", "DO_NOT_SHARE"
+    virtual uint32_t SetPrivacyMode(const string& privacyMode /* @in @text privacyMode*/) = 0;
+
+    // @text getPrivacyMode
+    // @brief Gets the current PrivacyMode setting.
+    // @param privacyMode: "SHARE"
+    virtual uint32_t GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
 
     // @alt setPinControl
     // @brief Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.

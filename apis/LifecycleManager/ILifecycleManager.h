@@ -23,38 +23,64 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig {
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVariables;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+
+    bool resourceManagerClientEnabled;
+    std::string dialId;
+    std::string command;
+    std::string appType;
+    std::string appPath;
+    std::string runtimePath;
+
+    std::string logFilePath;
+    uint32_t logFileMaxSize;
+    std::string logLevels;          //json array of strings
+    bool mapi;
+    std::string fkpsFiles;          //json array of strings
+
+    std::string fireboltVersion;
+    bool enableDebugger;
+    string unpackedPath;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @text:keep
 struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
 
     enum LifecycleState : uint8_t {
+        UNLOADED,
         LOADING,
         INITIALIZING,
-        RUNREQUESTED,
-        RUNNING,
-        ACTIVATEREQUESTED,
+        PAUSED,
         ACTIVE,
-        DEACTIVATEREQUESTED,
-        SUSPENDREQUESTED,
         SUSPENDED,
-        RESUMEREQUESTED,
-        HIBERNATEREQUESTED,
         HIBERNATED,
-        WAKEREQUESTED,
-        TERMINATEREQUESTED,
         TERMINATING
     };
 
     enum { ID = ID_LIFECYCLE_MANAGER };
 
-    // @event 
+    // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
         enum { ID = ID_LIFECYCLE_MANAGER_NOTIFICATION };
- 
+
         // @brief Notifies the change of state of application
         // @text onnAppStateChanged
         // @json:omit
-        virtual void OnAppStateChanged(const string& appId, LifecycleState state, const string& errorReason) = 0;
+        virtual void OnAppStateChanged(const string& appId, LifecycleState state, const string& errorReason) {};
     };
 
     /** Register notification interface */
@@ -79,7 +105,7 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @json:omit
     // @text spawnApp
     // @brief Perform launching of application with window and runtime manager
-    virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& appPath /* @in */, const string& appConfig /* @in */, const string& runtimeAppId /* @in */, const string& runtimePath /* @in */, const string& runtimeConfig /* @in */, const string& launchIntent /* @in */, const string& environmentVars /* @in */, const bool enableDebugger /* @in */, const LifecycleState targetLifecycleState /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& appPath /* @in */, const string& appConfig /* @in */, const string& runtimeAppId /* @in */, const string& runtimePath /* @in */, const string& runtimeConfig /* @in */, const string& launchIntent /* @in */, const string& environmentVars /* @in */, const bool enableDebugger /* @in */, const LifecycleState targetLifecycleState /* @in */, const RuntimeConfig& runtimeConfigObject /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit
