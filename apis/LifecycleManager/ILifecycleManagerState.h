@@ -25,6 +25,7 @@
 
 namespace WPEFramework {
 namespace Exchange {
+// @json 1.0.0 @text:keep
 struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
 
     enum AppCloseReason : uint8_t {
@@ -41,8 +42,13 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
         enum { ID = ID_LIFECYCLE_MANAGER_STATE_NOTIFICATION };
 
         /** Notifies the new state */
-        // @json:omit
+        // @text onAppLifecycleStateChanged
         // @brief Notifies the new state
+        // @param appId:App identifier for the application.
+        // @param appInstanceId:A numerical identifier for a specific instance of the application.
+        // @param newState:The new state to transition the application.
+        // @param oldState:The previous state of the application instance before the update.
+        // @param navigationIntent:navigation intent during active state
         virtual void OnAppLifecycleStateChanged(const string& appId,
                                                 const string& appInstanceId,
                                                 const ILifecycleManager::LifecycleState oldState,
@@ -57,18 +63,23 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
     virtual Core::hresult Unregister(INotification *notification) = 0;
 
     /** Response api call to appInitializing API */
-    // @json:omit
+    // @text appReady
     // @brief Response api call to appInitializing API
+    // @param appId:App identifier for the application.
     virtual Core::hresult AppReady(const string& appId /* @in */) = 0;
 
     /** Response api call to appLifecycleStateChanged API */
-    // @json:omit
+    // @text stateChangeComplete
     // @brief Response api call to appLifecycleStateChanged API
+    // @param appId:App identifier for the application.
+    // @param stateChangedId: state changed identifier
     virtual Core::hresult StateChangeComplete(const string& appId /* @in */, const uint32_t stateChangedId /* @in */, const bool success /* @in */) = 0;
 
     /** close the app */
-    // @json:omit
+    // @text closeApp
     // @brief close the app
+    // @param appId:App identifier for the application.
+    // @param closeReason: closed reason for application
     virtual Core::hresult CloseApp(const string& appId /* @in */, const AppCloseReason closeReason /* @in */) = 0;
 
 };
