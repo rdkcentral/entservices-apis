@@ -138,7 +138,11 @@
       "type": "string",
       "enum": [
         "manufacturer1",
-	"RaspberryPi4"
+	      "RaspberryPi4",
+        "RDKCommonPort",
+        "Amlogic_Inc",
+        "realtek",
+        "BRCMREF"
       ],
       "description": "Device manufacturer",
       "example": "alphanumerical string"
@@ -147,7 +151,11 @@
       "type": "string",
       "enum": [
         "SKU1",
-	"RPI4"
+	      "RPI4",
+        "AH212",
+        "AT301",
+        "BCM972126OTT",
+        "REALTEKHANK"
       ],
       "description": "Device model number or SKU",
       "example": "alphanumerical string"
@@ -155,7 +163,10 @@
     "socname": {
       "type": "string",
       "enum": [
-        "SOC1"
+        "SOC1",
+        "Amlogic",
+        "Realtek",
+        "Broadcom"
       ],
       "description": "SOC Name",
       "example": "alphanumerical string"
