@@ -168,7 +168,7 @@ namespace Exchange {
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
             PERSISTENCE_FAILURE
-        };
+    };
         struct Package {
             // @brief PackageId
             string packageId;
@@ -243,11 +243,6 @@ namespace Exchange {
             RuntimeConfig &configMetadata /* @out */
             ) = 0;
 
-        struct PackageStateResponse {
-            InstallState state;
-        };
-        // XXX: update vvv
-
         // @brief PackageState
         // @text packageState
         // @param packageId: Package Id
@@ -271,14 +266,6 @@ namespace Exchange {
             LAUNCH
         };
 
-        struct EXTERNAL AdditionalLock  {
-            // @brief PackageId
-            string packageId;
-            // @brief Version
-            string version;
-        };
-        using ILockIterator = RPC::IIteratorType<AdditionalLock, ID_PACKAGE_LOCK_ITERATOR>;
-
         // @brief Lock
         // @text lock
         // @param packageId: Package Id
@@ -295,7 +282,7 @@ namespace Exchange {
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
             RuntimeConfig &configMetadata /* @out */,
-            IPackageHandler::ILockIterator*& appMetadata /* @out */
+            string &appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
 
