@@ -273,7 +273,11 @@ namespace Exchange {
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
-        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0
+        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
+
+       ID_FRONT_PANEL                            = ID_ENTOS_OFFSET + 0x3B0,
+       ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
+       ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2,
     };
 }
 }
