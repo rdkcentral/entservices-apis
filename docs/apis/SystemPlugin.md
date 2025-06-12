@@ -116,8 +116,6 @@ org.rdk.System interface methods:
 | [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs |
 | [abortLogUpload](#abortLogUpload) | Stops background process to upload logs |
 | [getThunderStartReason](#getThunderStartReason) | Returns the Thunder start reason |
-| [SetPrivacyMode](#SetPrivacyMode) | Setting Privacy Mode |
-| [getPrivacyMode](#getPrivacyMode) | Getting Privacy Mode |
 
 
 <a name="clearLastDeepSleepReason"></a>
@@ -3646,95 +3644,6 @@ This method takes no parameters.
 }
 ```
 
-<a name="SetPrivacyMode"></a>
-## *SetPrivacyMode*
-
-Setting Privacy Mode.
-
-### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onPrivacyModeChanged](#onPrivacyModeChanged) | Triggered when the Privacy Mode changes. |
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.privacyMode | string | New Privacy Mode |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.System.SetPrivacyMode",
-    "params": {
-        "privacyMode": "DO_NOT_SHARE"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
-}
-```
-
-<a name="getPrivacyMode"></a>
-## *getPrivacyMode*
-
-Getting Privacy Mode.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | string | Current Privacy Mode |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.System.getPrivacyMode"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "DO_NOT_SHARE"
-}
-```
-
 <a name="Notifications"></a>
 # Notifications
 
@@ -3761,7 +3670,6 @@ org.rdk.System interface events:
 | [onDeviceMgtUpdateReceived](#onDeviceMgtUpdateReceived) | Triggered when the device management update completes |
 | [onTimeZoneDSTChanged](#onTimeZoneDSTChanged) | Triggered when device time zone changed |
 | [onLogUpload](#onLogUpload) | Triggered when logs upload process is done or stopped |
-| [onPrivacyModeChanged](#onPrivacyModeChanged) | Triggered after the Privacy Mode changes (see `SetPrivacyMode`) |
 
 
 <a name="onFirmwarePendingReboot"></a>
@@ -4181,30 +4089,6 @@ Triggered when logs upload process is done or stopped.
     "method": "client.events.onLogUpload",
     "params": {
         "logUploadStatus": "UPLOAD_SUCCESS"
-    }
-}
-```
-
-<a name="onPrivacyModeChanged"></a>
-## *onPrivacyModeChanged*
-
-Triggered after the Privacy Mode changes (see `SetPrivacyMode`).
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.privacyMode | string | Receive Privacy Mode changes |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onPrivacyModeChanged",
-    "params": {
-        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
