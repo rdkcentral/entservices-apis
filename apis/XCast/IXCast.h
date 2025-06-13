@@ -26,6 +26,7 @@
 
 namespace WPEFramework {
 	namespace Exchange {
+		/* @json 1.0.0 @text:keep */
 		struct EXTERNAL IXCast : virtual public Core::IUnknown {
 			enum { ID = ID_XCAST };
 
@@ -39,38 +40,45 @@ namespace WPEFramework {
 			};
 
 			using IApplicationInfoIterator = RPC::IIteratorType<ApplicationInfo,ID_XCAST_APPLICATION_INFO_ITERATOR>;
-
-			struct INotification : virtual public Core::IUnknown {
+			
+			//@event
+			struct EXTERNAL INotification : virtual public Core::IUnknown {
 				enum { ID = ID_XCAST_NOTIFICATION };
 
-				~INotification() override = default;
+				// ~INotification() override = default;
 
-				virtual void onApplicationLaunchRequestWithLaunchParam(const string& appName, const string& strPayLoad, const string& strQuery, const string& strAddDataUrl) = 0;
-				virtual void onApplicationLaunchRequest(const string& appName, const string& parameter) = 0;
-				virtual void onApplicationStopRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationHideRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationStateRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationResumeRequest(const string& appName, const string& appID) = 0;
-				virtual void onUpdatePowerStateRequest(const string& powerState) = 0;
+				virtual void OnApplicationLaunchRequestWithLaunchParam(const string& appName, const string& strPayLoad, const string& strQuery, const string& strAddDataUrl) {};
+				virtual void OnApplicationLaunchRequest(const string& appName, const string& parameter)  {};
+				virtual void OnApplicationStopRequest(const string& appName, const string& appID)  {};
+				virtual void OnApplicationHideRequest(const string& appName, const string& appID)  {};
+				virtual void OnApplicationStateRequest(const string& appName, const string& appID)  {};
+				virtual void OnApplicationResumeRequest(const string& appName, const string& appID)  {};
+				virtual void OnUpdatePowerStateRequest(const string& powerState)  {};
 			};
 
-			~IXCast() override = default;
+			// ~IXCast() override = default;
 
-			virtual void Register(IXCast::INotification* sink) = 0;
-			virtual void Unregister(IXCast::INotification* sink) = 0;
+			virtual Core::hresult Register(IXCast::INotification* sink /* @in */) = 0;
+			virtual Core::hresult Unregister(IXCast::INotification* sink /* @in */) = 0;	
 
-			virtual uint32_t Initialize(bool networkStandbyMode) = 0;
-			virtual void Deinitialize(void) = 0;
+			virtual Core::hresult ApplicationStateChanged(const string& applicationName, const string& state, const string& applicationId, const string& error) = 0;
+			virtual Core::hresult GetProtocolVersion(string &protocolVersion /* @out */ ) = 0;
+			virtual Core::hresult SetNetworkStandbyMode(bool networkStandbyMode) = 0;
+			virtual Core::hresult SetManufacturerName(string manufacturername) = 0;
+			virtual Core::hresult GetManufacturerName(string &manufacturername /* @out */ ) = 0;
+			virtual Core::hresult SetModelName(string modelname) = 0;
+			virtual Core::hresult GetModelName(string &modelname /* @out */ ) = 0;
 
-			virtual uint32_t applicationStateChanged(const string& applicationName, const string& state, const string& applicationId, const string& error) const = 0;
-			virtual uint32_t enableCastService(string friendlyname,bool enableService) const = 0;
-			virtual uint32_t getProtocolVersion(string &protocolVersion /* @out */ ) const = 0;
-			virtual uint32_t registerApplications(IApplicationInfoIterator * const appInfoList /* @in */ ) = 0;
-			virtual uint32_t setNetworkStandbyMode(bool networkStandbyMode) = 0;
-			virtual uint32_t setManufacturerName(string manufacturername) const = 0;
-			virtual uint32_t getManufacturerName(string &manufacturername /* @out */ ) const = 0;
-			virtual uint32_t setModelName(string modelname) const = 0;
-			virtual uint32_t getModelName(string &modelname /* @out */ ) const = 0;
+			virtual Core::hresult SetEnabled(bool enabled) = 0;
+			virtual Core::hresult GetEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
+			virtual Core::hresult SetStandbyBehavior(string standbybehavior) = 0;
+			virtual Core::hresult GetStandbyBehavior(string &standbybehavior /* @out */, bool &success /* @out */ ) = 0;
+			virtual Core::hresult SetFriendlyName(string friendlyname) = 0;
+			virtual Core::hresult GetFriendlyName(string &friendlyname /* @out */, bool &success /* @out */) = 0;
+			virtual Core::hresult GetApiVersionNumber(uint32_t &version /* @out */, bool &success/* @out */) = 0;
+
+			virtual Core::hresult RegisterApplications(IApplicationInfoIterator* const appInfoList /* @in @opaque */) = 0;
+
 		};
 
 	} // Exchange
