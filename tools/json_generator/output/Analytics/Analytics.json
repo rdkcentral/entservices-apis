@@ -4,7 +4,7 @@
     "info": {
         "title": "Analytics API",
         "class": "Analytics",
-        "description": "The `Analytics` plugin allows sending analytics events to dedicated backends."
+        "description": "The `Analytics` plugin allows sending analytics events to dedicated backends. Currently the SIFT backend is supported."
     },
     "common": {
         "$ref": "../common/common.json"
@@ -48,18 +48,26 @@
             "type": "integer",
             "example": 35000
         },
+        "appId":{
+            "summary": "Durable App ID string",
+            "type": "string",
+            "example": "app-id-app1"
+        },
         "eventPayload":{
-            "summary": "The payload of the event",
+            "summary": "Custom payload of the event in JSON format. User defined colection of objects and keys. May be an empty object",
             "type": "object",
-            "example": {
-                "key1": "value1",
-                "key2": "value2"
+            "properties": {
+                "keyOrObject": {
+                    "summary": "User defined custom key or object",
+                    "type": "string",
+                    "example": "value1"
+                }
             }
         }
     },
     "methods": {
         "sendEvent":{
-            "summary": "Send event",
+            "summary": "Enqueue an event to be sent to the SIFT analytics backend",
             "params": {
                 "type":"object",
                 "properties": {
@@ -84,6 +92,9 @@
                     "uptimeTimestamp":{
                         "$ref": "#/definitions/uptimeTimestamp"
                     },
+                    "appId":{
+                        "$ref": "#/definitions/appId"
+                    },
                     "eventPayload":{
                         "$ref": "#/definitions/eventPayload"
                     }
@@ -97,7 +108,9 @@
                 ]
             },
             "result": {
-                "$ref": "#/common/result"
+                "summary": "On success null will be returned",
+                "type": "string",
+                "example": "null"
             }
         }
     }
