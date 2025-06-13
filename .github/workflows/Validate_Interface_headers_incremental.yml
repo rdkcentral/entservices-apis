@@ -25,9 +25,25 @@ jobs:
         git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
         git diff --name-only origin/${{ github.event.pull_request.base.ref }} > changed_files.txt
 
+    - name: Filter only existing changed files
+      id: filter_existing
+      run: |
+        touch existing_files.txt
+        while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            echo "$file" >> existing_files.txt
+          else
+            echo " $file file has been removed in your PR,hence skipping validation for the removed file"
+          fi
+        done < changed_files.txt
+        
     - name: Run validation script
       run: |
-        python .github/workflows/validate_interface_headers_incremental.py changed_files.txt
+        if [ -s existing_files.txt ]; then
+          python .github/workflows/validate_interface_headers_incremental.py existing_files.txt
+        else
+          echo "No valid changed files to validate."
+        fi
 
     - name: Remove changed_files.txt
       run: |

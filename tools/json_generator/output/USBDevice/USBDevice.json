@@ -307,10 +307,8 @@
                 "required": ["deviceName"]
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
-            },
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"            },
             "errors": [
                 {
                     "description": "General error",
@@ -332,9 +330,8 @@
                 "required": ["deviceName"]
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             },
             "errors": [
                 {

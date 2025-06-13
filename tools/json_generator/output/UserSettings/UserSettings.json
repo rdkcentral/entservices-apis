@@ -85,9 +85,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setPreferredAudioLanguages": {
@@ -104,9 +103,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setPresentationLanguage": {
@@ -123,9 +121,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setCaptions": {
@@ -144,9 +141,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setPreferredCaptionsLanguages": {
@@ -163,9 +159,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setPreferredClosedCaptionService": {
@@ -182,12 +177,11 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
-	"setPinControl": {
+        "setPinControl": {
             "summary": "Setting PinControl.",
 			"events": {
                 "onPinControlChanged" : "Triggered when the pincontrol changes."
@@ -203,9 +197,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
 	    "setViewingRestrictions": {
@@ -222,9 +215,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setViewingRestrictionsWindow": {
@@ -241,12 +233,11 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
-	"setLiveWatershed": {
+        "setLiveWatershed": {
             "summary": "Setting LiveWatershed.",
 			"events": {
                 "onLiveWatershedChanged" : "Triggered when the liveWatershed changes."
@@ -262,9 +253,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
 	    "setPlaybackWatershed": {
@@ -283,9 +273,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
 	    "setBlockNotRatedContent": {
@@ -304,9 +293,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
 	    "setPinOnPurchase": {
@@ -325,9 +313,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setHighContrast":
@@ -347,9 +334,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setVoiceGuidance": {
@@ -368,9 +354,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setVoiceGuidanceRate": {
@@ -387,9 +372,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setVoiceGuidanceHints": {
@@ -408,9 +392,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "setContentPin": {
@@ -427,9 +410,8 @@
                 }
             },
             "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
+                "description": "On success null will be returned",
+                "$ref": "#/common/results/void"
             }
         },
         "getAudioDescription":

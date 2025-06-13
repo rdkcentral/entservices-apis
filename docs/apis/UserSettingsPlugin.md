@@ -2,7 +2,7 @@
 <a name="UserSettings_Plugin"></a>
 # UserSettings Plugin
 
-**Version: [2.3.0](https://github.com/rdkcentral/rdkservices/blob/main/UserSettings/CHANGELOG.md)**
+**Version: [1.0.0]()**
 
 A org.rdk.UserSettings plugin for Thunder framework.
 
@@ -17,7 +17,7 @@ A org.rdk.UserSettings plugin for Thunder framework.
 <a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
 <a name="Description"></a>
 # Description
@@ -108,7 +108,7 @@ Setting Audio Description.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -131,7 +131,7 @@ Setting Audio Description.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -156,7 +156,7 @@ Setting Preferred Audio Languages.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -179,7 +179,7 @@ Setting Preferred Audio Languages.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -204,7 +204,7 @@ Setting Presentation Languages.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -227,7 +227,7 @@ Setting Presentation Languages.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -252,7 +252,7 @@ Setting Captions.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -275,7 +275,7 @@ Setting Captions.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -300,7 +300,7 @@ Setting PreferredCaption Languages.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -323,7 +323,7 @@ Setting PreferredCaption Languages.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -348,7 +348,7 @@ Setting Preferred Closed Caption Service.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -371,7 +371,7 @@ Setting Preferred Closed Caption Service.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -396,7 +396,7 @@ Setting PinControl.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -419,7 +419,7 @@ Setting PinControl.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -444,7 +444,7 @@ Setting ViewingRestrictions.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -467,7 +467,7 @@ Setting ViewingRestrictions.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -492,7 +492,7 @@ Setting viewingRestrictionsWindow.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -515,7 +515,7 @@ Setting viewingRestrictionsWindow.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -540,7 +540,7 @@ Setting LiveWatershed.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -563,7 +563,7 @@ Setting LiveWatershed.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -588,7 +588,7 @@ Setting PlaybackWatershed.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -611,7 +611,7 @@ Setting PlaybackWatershed.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -636,7 +636,7 @@ Setting BlockNotRatedContent.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -659,7 +659,7 @@ Setting BlockNotRatedContent.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -684,7 +684,7 @@ Setting setPinOnPurchase.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -707,7 +707,7 @@ Setting setPinOnPurchase.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -732,7 +732,7 @@ Sets highContrast. Whether the app should display with high contrast or not.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -755,7 +755,7 @@ Sets highContrast. Whether the app should display with high contrast or not.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -780,7 +780,7 @@ Sets voiceGuidance. Whether Voice Guidance is enabled or not.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -803,7 +803,7 @@ Sets voiceGuidance. Whether Voice Guidance is enabled or not.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -828,7 +828,7 @@ Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclus
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -851,7 +851,7 @@ Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclus
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -876,7 +876,7 @@ Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -899,7 +899,7 @@ Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -924,7 +924,7 @@ Setting ContentPin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Example
 
@@ -947,7 +947,7 @@ Setting ContentPin.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
