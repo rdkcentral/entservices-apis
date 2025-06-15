@@ -273,7 +273,13 @@ namespace Exchange {
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
-        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0
+		ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
+
+		ID_MIRACAST_SERVICE                          = ID_ENTOS_OFFSET + 0x3B0,
+		ID_MIRACAST_SERVICE_NOTIFICATION             = ID_MIRACAST_SERVICE + 1,
+		ID_MIRACAST_PLAYER                           = ID_MIRACAST_SERVICE + 2,
+		ID_MIRACAST_PLAYER_NOTIFICATION              = ID_MIRACAST_SERVICE + 3,
+		ID_MIRACAST_PLAYER_WESTEROS_ENV_ARGS_ITERATOR= ID_MIRACAST_SERVICE + 4
     };
 }
 }
