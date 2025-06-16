@@ -265,7 +265,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Errors
 
@@ -294,7 +294,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
@@ -318,7 +318,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned |
 
 ### Errors
 
@@ -347,7 +347,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "null"
+    "result": null
 }
 ```
 
