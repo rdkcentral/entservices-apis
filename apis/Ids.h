@@ -75,6 +75,9 @@ namespace Exchange {
         ID_CONTENTDECRYPTION                         = ID_ENTOS_OFFSET + 0x030,
         ID_CONTENTDECRYPTION_NOTIFICATION            = ID_CONTENTDECRYPTION + 1,
 
+        ID_FRAMERATE                                 = ID_ENTOS_OFFSET + 0x040,
+        ID_FRAMERATE_NOTIFICATION                    = ID_FRAMERATE + 1,
+
         ID_CAPTURE                                   = ID_ENTOS_OFFSET + 0x050,
 
         ID_PACKAGER                                  = ID_ENTOS_OFFSET + 0x060,
