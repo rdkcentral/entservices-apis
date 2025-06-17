@@ -75,6 +75,9 @@ namespace Exchange {
         ID_CONTENTDECRYPTION                         = ID_ENTOS_OFFSET + 0x030,
         ID_CONTENTDECRYPTION_NOTIFICATION            = ID_CONTENTDECRYPTION + 1,
 
+        ID_FRAMERATE                                 = ID_ENTOS_OFFSET + 0x040,
+        ID_FRAMERATE_NOTIFICATION                    = ID_FRAMERATE + 1,
+
         ID_CAPTURE                                   = ID_ENTOS_OFFSET + 0x050,
 
         ID_PACKAGER                                  = ID_ENTOS_OFFSET + 0x060,
@@ -273,7 +276,16 @@ namespace Exchange {
 	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
 	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
-        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0
+        ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
+
+        ID_SHARED_STORAGE                            = ID_ENTOS_OFFSET + 0x3B0,
+        ID_SHARED_STORAGE_NOTIFICATION               = ID_SHARED_STORAGE + 1,
+        ID_SHARED_STORAGE_INSPECTOR                  = ID_SHARED_STORAGE + 2,
+        ID_SHARED_STORAGE_INSPECTOR_NAMESPACE_SIZE_ITERATOR = ID_SHARED_STORAGE + 3,
+        ID_SHARED_STORAGE_LIMIT                      = ID_SHARED_STORAGE + 4,
+        ID_SHARED_STORAGE_LIMIT_NOTIFICATION         = ID_SHARED_STORAGE + 5,
+        ID_SHARED_STORAGE_LIMIT_INSPECTOR            = ID_SHARED_STORAGE + 6,
+        ID_SHARED_STORAGE_CACHE                      = ID_SHARED_STORAGE + 7
     };
 }
 }
