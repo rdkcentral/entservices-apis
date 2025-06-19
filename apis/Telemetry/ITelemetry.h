@@ -42,6 +42,10 @@ namespace WPEFramework
                 virtual void OnReportUpload(const string& telemetryUploadStatus) {};
             };
 
+            struct EXTERNAL SystemServicesSuccess {
+                bool success;
+            };
+
             virtual Core::hresult Register(ITelemetry::INotification* notification /* @in */) = 0;
             virtual Core::hresult Unregister(ITelemetry::INotification* notification /* @in */) = 0;
 
@@ -71,6 +75,23 @@ namespace WPEFramework
             // @brief Abort report upload
             virtual Core::hresult AbortReport() = 0;
             /**********************abortReport() - end*****************************************/
+
+            /**********************setOptOutTelemetry() - start***************************************/
+            // @text setOptOutTelemetry
+            // @brief Sets the telemetry opt-out status.
+            // @param OptOut  - in - boolean
+            // @param SystemServicesSuccess - out - struct
+            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemServicesSuccess& success /* @out */) = 0;
+            /**********************setOptOutTelemetry() - end*****************************************/
+
+             /**********************isOptOutTelemetry() - start***************************************/
+	        // @text isOptOutTelemetry
+            // @brief Checks the telemetry opt-out status.
+            // @param OptOut  - out - boolean
+            // @param success - out - boolean
+            virtual Core::hresult IsOptOutTelemetry(bool& OptOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0
+            /**********************isOptOutTelemetry() - end*****************************************/
+
         };
     } // namespace Exchange
 } // namespace WPEFramework
