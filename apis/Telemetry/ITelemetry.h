@@ -42,7 +42,7 @@ namespace WPEFramework
                 virtual void OnReportUpload(const string& telemetryUploadStatus) {};
             };
 
-            struct EXTERNAL SystemServicesSuccess {
+            struct EXTERNAL TelemetrySuccess {
                 bool success;
             };
 
@@ -80,8 +80,8 @@ namespace WPEFramework
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
             // @param OptOut  - in - boolean
-            // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemServicesSuccess& success /* @out */) = 0;
+            // @param TelemetrySuccess - out - struct
+            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, TelemetrySuccess& success /* @out */) = 0;
             /**********************setOptOutTelemetry() - end*****************************************/
 
              /**********************isOptOutTelemetry() - start***************************************/
