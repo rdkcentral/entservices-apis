@@ -285,7 +285,11 @@ namespace Exchange {
         ID_SHARED_STORAGE_LIMIT                      = ID_SHARED_STORAGE + 4,
         ID_SHARED_STORAGE_LIMIT_NOTIFICATION         = ID_SHARED_STORAGE + 5,
         ID_SHARED_STORAGE_LIMIT_INSPECTOR            = ID_SHARED_STORAGE + 6,
-        ID_SHARED_STORAGE_CACHE                      = ID_SHARED_STORAGE + 7
+        ID_SHARED_STORAGE_CACHE                      = ID_SHARED_STORAGE + 7,
+
+        ID_FRONT_PANEL                            = ID_ENTOS_OFFSET + 0x3C0,
+       ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
+       ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2
     };
 }
 }
