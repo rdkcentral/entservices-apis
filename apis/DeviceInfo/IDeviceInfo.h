@@ -39,6 +39,8 @@ namespace Exchange {
         virtual Core::hresult SocName(string& socName /* @out */) const = 0;
         virtual Core::hresult DistributorId(string& distributorId /* @out */) const = 0;
         virtual Core::hresult Brand(string& brand /* @out */) const = 0;
+        virtual Core::hresult ReleaseVersion(string& releaseVersion /* @out */) const = 0;
+        virtual Core::hresult ChipSet(string& chipSet /* @out */) const = 0;
     };
 
     struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {

@@ -1,13 +1,47 @@
 {
-    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/plugin.schema.json",
-    "info": {
-      "title": "Analytics Plugin",
-      "callsign": "org.rdk.Analytics",
-      "locator": "libWPEFrameworkAnalytics.so",
-      "status": "development",
-      "description": "The `Analytics` plugin allows to send analytics events to dedicated backends."
-    },
-    "interface": {
-      "$ref": "Analytics.json#"
-    }
+  "$schema":"https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/plugin.schema.json",
+  "info":{
+     "title":"Analytics Plugin",
+     "callsign":"org.rdk.Analytics",
+     "locator":"libWPEFrameworkAnalytics.so",
+     "status":"development",
+     "description":"The `Analytics` plugin allows to send analytics events to dedicated backends"
+  },
+  "configuration":{
+     "type":"object",
+     "properties":{
+        "configuration":{
+           "type":"object",
+           "properties":{
+              "loggername":{
+                 "description":"Logger name used by backend",
+                 "type":"string"
+              },
+              "loggerversion":{
+                 "description":"Logger version used by backend",
+                 "type":"string"
+              },
+              "eventsmap":{
+               "description":"Optional path to json file with array of mapped events name",
+               "type":"string"
+              },
+              "backendlib":{
+               "description":"Name of backend library",
+               "type":"string"
+              }
+           },
+           "required":[
+              "loggername",
+              "loggerversion",
+              "backendlib"
+           ]
+        }
+     },
+     "required":[
+        "configuration"
+     ]
+  },
+  "interface":{
+     "$ref":"Analytics.json#"
+  }
 }
