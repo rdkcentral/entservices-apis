@@ -27,7 +27,7 @@ namespace Exchange {
 struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
     enum { ID = ID_STORE_CACHE };
 
-    virtual uint32_t FlushCache() = 0;
+    virtual Core::hresult FlushCache() = 0;
 };
 
 } // namespace Exchange

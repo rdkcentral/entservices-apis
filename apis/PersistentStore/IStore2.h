@@ -44,20 +44,20 @@ namespace Exchange {
             ~INotification() override = default;
 
             // @alt onValueChanged
-            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) = 0;
+            virtual void ValueChanged(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value) {}
         };
 
-        virtual uint32_t Register(Exchange::IStore2::INotification* notification) = 0;
-        virtual uint32_t Unregister(Exchange::IStore2::INotification* notification) = 0;
+        virtual Core::hresult Register(Exchange::IStore2::INotification* notification) = 0;
+        virtual Core::hresult Unregister(Exchange::IStore2::INotification* notification) = 0;
 
         // @alt setValue
-        virtual uint32_t SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
+        virtual Core::hresult SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
         // @alt getValue
-        virtual uint32_t GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
+        virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
         // @alt deleteKey
-        virtual uint32_t DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key) = 0;
+        virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key) = 0;
         // @alt deleteNamespace
-        virtual uint32_t DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */) = 0;
+        virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */) = 0;
     };
 
     struct EXTERNAL IStoreInspector : virtual public Core::IUnknown {
@@ -74,9 +74,9 @@ namespace Exchange {
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
 
-        virtual uint32_t GetKeys(const ScopeType scope, const string& ns, IStringIterator*& keys /* @out */) = 0;
-        virtual uint32_t GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */) = 0;
-        virtual uint32_t GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */) = 0;
+        virtual Core::hresult GetKeys(const ScopeType scope, const string& ns, IStringIterator*& keys /* @out */) = 0;
+        virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */) = 0;
+        virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */) = 0;
     };
 
     struct EXTERNAL IStoreLimit : virtual public Core::IUnknown {
@@ -86,8 +86,8 @@ namespace Exchange {
 
         using ScopeType = IStore2::ScopeType;
 
-        virtual uint32_t SetNamespaceStorageLimit(const ScopeType scope, const string& ns, const uint32_t size) = 0;
-        virtual uint32_t GetNamespaceStorageLimit(const ScopeType scope, const string& ns, uint32_t& size /* @out */) = 0;
+        virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns, const uint32_t size) = 0;
+        virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns, uint32_t& size /* @out */) = 0;
     };
 
 } // namespace Exchange

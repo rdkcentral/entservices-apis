@@ -582,7 +582,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | string | HDR formats supported by the TV (must be one of the following: *HdrOff*, *Hdr10*, *Hdr10Plus*, *HdrHlg*, *HdrDolbyvision*, *HdrTechnicolor*) |
+| (property) | string | HDR formats supported by the TV (must be one of the following: *HdrOff*, *Hdr10*, *Hdr10Plus*, *HdrHlg*, *HdrDolbyvision*, *HdrTechnicolor*, *HdrSdr*) |
 
 ### Example
 

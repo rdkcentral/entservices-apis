@@ -128,7 +128,8 @@ namespace Exchange {
             HDR_10PLUS,
             HDR_HLG,
             HDR_DOLBYVISION,
-            HDR_TECHNICOLOR
+            HDR_TECHNICOLOR,
+            HDR_SDR
         };
 
         typedef RPC::IIteratorType<HDRType, ID_HDR_ITERATOR> IHDRIterator;
