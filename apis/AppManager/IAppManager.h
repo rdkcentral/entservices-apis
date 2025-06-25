@@ -62,16 +62,16 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   enum { ID = ID_APPMANAGER };
 
   enum AppLifecycleState : uint8_t {
-          APP_STATE_UNKNOWN      = 0   /* @text APP_STATE_UNKNOWN */,
-          APP_STATE_UNLOADED     = 1   /* @text APP_STATE_UNLOADED */,
-          APP_STATE_LOADING      = 2   /* @text APP_STATE_LOADING */,
-          APP_STATE_INITIALIZING = 3   /* @text APP_STATE_INITIALIZING */,
-          APP_STATE_PAUSED       = 4   /* @text APP_STATE_PAUSED */,
-          APP_STATE_RUNNING      = 5   /* @text APP_STATE_RUNNING */,
-          APP_STATE_ACTIVE       = 6   /* @text APP_STATE_ACTIVE */,
-          APP_STATE_SUSPENDED    = 7   /* @text APP_STATE_SUSPENDED */,
-          APP_STATE_HIBERNATED   = 8   /* @text APP_STATE_HIBERNATED */,
-          APP_STATE_TERMINATED   = 9   /* @text APP_STATE_TERMINATED */
+          APP_STATE_UNKNOWN       = 0   /* @text APP_STATE_UNKNOWN */,
+          APP_STATE_UNLOADED      = 1   /* @text APP_STATE_UNLOADED */,
+          APP_STATE_LOADING       = 2   /* @text APP_STATE_LOADING */,
+          APP_STATE_INITIALIZING  = 3   /* @text APP_STATE_INITIALIZING */,
+          APP_STATE_PAUSED        = 4   /* @text APP_STATE_PAUSED */,
+          APP_STATE_RUNNING       = 5   /* @text APP_STATE_RUNNING */,
+          APP_STATE_ACTIVE        = 6   /* @text APP_STATE_ACTIVE */,
+          APP_STATE_SUSPENDED     = 7   /* @text APP_STATE_SUSPENDED */,
+          APP_STATE_HIBERNATED    = 8   /* @text APP_STATE_HIBERNATED */,
+          APP_STATE_TERMINATING   = 9   /* @text APP_STATE_TERMINATING */
       };
 
   enum AppErrorReason : uint8_t {

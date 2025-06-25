@@ -29,10 +29,10 @@ namespace Exchange {
 
         virtual ~IFirmwareVersion() override = default;
 
-        virtual uint32_t Imagename(string& imagename /* @out */) const = 0;
-        virtual uint32_t Sdk(string& sdk /* @out */) const = 0;
-        virtual uint32_t Mediarite(string& mediarite /* @out */) const = 0;
-        virtual uint32_t Yocto(string& yocto /* @out */) const = 0;
+        virtual Core::hresult Imagename(string& imagename /* @out */) const = 0;
+        virtual Core::hresult Sdk(string& sdk /* @out */) const = 0;
+        virtual Core::hresult Mediarite(string& mediarite /* @out */) const = 0;
+        virtual Core::hresult Yocto(string& yocto /* @out */) const = 0;
     };
 }
 }

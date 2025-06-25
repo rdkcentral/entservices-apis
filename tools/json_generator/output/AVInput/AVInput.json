@@ -221,6 +221,68 @@
                 ]
             }
 	},
+	"getVRRSupport":{
+            "summary": "Returns the EDID VRR bit value.",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "portId":{
+                        "$ref": "#/definitions/portId"
+                    }
+                },
+                "required": [
+                    "portid"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "vrrSupport": {
+                        "summary": "The VRR bit value in edid",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "vrrSupport",
+                    "success"
+                ]
+            }
+        },
+	"getVRRFrameRate":{
+            "summary": "Returns the VRR FrameRate.",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "portId":{
+                        "$ref": "#/definitions/portId"
+                    }
+                },
+                "required": [
+                    "portid"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "currentVRRVideoFrameRate": {
+                        "summary": "The VRR FrameRate.",
+                        "type": "number",
+                        "example": 48.6
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "currentVRRVideoFrameRate",
+                    "success"
+                ]
+            }
+        },
 	"getEdidVersion":{
             "summary": "Returns the EDID version.",
             "params": {
@@ -491,6 +553,29 @@
                 "$ref": "#/common/result"
             }
         },
+	"setVRRSupport": {
+            "summary": "Sets an HDMI VRR bit in EDID.",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "portId":{
+                        "$ref": "#/definitions/portId"
+                    },
+                    "vrrSupport":{
+                        "summary": "The VRR support in EDID",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "portId",
+                    "vrrSupport"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
+            }
+        },
 	"setEdidVersion": {
             "summary": "Sets an HDMI EDID version.",
             "params": {
@@ -652,7 +737,7 @@
                 "type": "object",
                 "properties": {
                     "mode": {
-                        "summary": "The current game feature status. Mode is required only for ALLM. Need to add support for future game features",
+                        "summary": "The current status of the game features like ALLM, VRR-HDMI, VRR-FREESYNC, VRR-FREESYNC-PREMIUM and VRR-FREESYNC-PREMIUM-PRO.",
                         "type": "boolean",
                         "example": true
                     }
@@ -786,7 +871,7 @@
             }
         },
         "gameFeatureStatusUpdate": {
-            "summary": "Triggered whenever game feature(ALLM) status changes for an HDMI Input",
+            "summary": "Triggered whenever game feature status changes for an HDMI Input",
             "params": {
                 "type": "object",
                 "properties": {
@@ -799,7 +884,7 @@
                         "example": "ALLM"
                     },
                     "mode": {
-                        "summary": "The current game feature status. Mode is required only for ALLM. Need to add support for future game features",
+                        "summary": "The current status of the game features like ALLM, VRR-HDMI, VRR-FREESYNC, VRR-FREESYNC-PREMIUM and VRR-FREESYNC-PREMIUM-PRO.",
                         "type": "boolean",
                         "example": true
                     }

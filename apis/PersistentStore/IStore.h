@@ -30,16 +30,16 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
     struct EXTERNAL INotification : virtual public Core::IUnknown {
         enum { ID = ID_STORE_NOTIFICATION };
 
-        virtual void ValueChanged(const string &ns, const string &key, const string &value) = 0;
-        virtual void StorageExceeded() = 0;
+        virtual void ValueChanged(const string &ns, const string &key, const string &value) {}
+        virtual void StorageExceeded() {}
     };
 
-    virtual uint32_t Register(Exchange::IStore::INotification *notification) = 0;
-    virtual uint32_t Unregister(Exchange::IStore::INotification *notification) = 0;
-    virtual uint32_t SetValue(const string &ns, const string &key, const string &value) = 0;
-    virtual uint32_t GetValue(const string &ns, const string &key, string &value /* @out */) = 0;
-    virtual uint32_t DeleteKey(const string &ns, const string &key) = 0;
-    virtual uint32_t DeleteNamespace(const string &ns) = 0;
+    virtual Core::hresult Register(Exchange::IStore::INotification *notification) = 0;
+    virtual Core::hresult Unregister(Exchange::IStore::INotification *notification) = 0;
+    virtual Core::hresult SetValue(const string &ns, const string &key, const string &value) = 0;
+    virtual Core::hresult GetValue(const string &ns, const string &key, string &value /* @out */) = 0;
+    virtual Core::hresult DeleteKey(const string &ns, const string &key) = 0;
+    virtual Core::hresult DeleteNamespace(const string &ns) = 0;
 };
 
 } // namespace Exchange

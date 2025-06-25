@@ -31,14 +31,16 @@ namespace Exchange {
 
         virtual ~IDeviceInfo() override = default;
 
-        virtual uint32_t SerialNumber(string& serialNumber /* @out */) const = 0;
-        virtual uint32_t Sku(string& sku /* @out */) const = 0;
-        virtual uint32_t Make(string& make /* @out */) const = 0;
-        virtual uint32_t Model(string& model /* @out */) const = 0;
-        virtual uint32_t DeviceType(string& deviceType /* @out */) const = 0;
-        virtual uint32_t SocName(string& socName /* @out */) const = 0;
-        virtual uint32_t DistributorId(string& distributorId /* @out */) const = 0;
-        virtual uint32_t Brand(string& brand /* @out */) const = 0;
+        virtual Core::hresult SerialNumber(string& serialNumber /* @out */) const = 0;
+        virtual Core::hresult Sku(string& sku /* @out */) const = 0;
+        virtual Core::hresult Make(string& make /* @out */) const = 0;
+        virtual Core::hresult Model(string& model /* @out */) const = 0;
+        virtual Core::hresult DeviceType(string& deviceType /* @out */) const = 0;
+        virtual Core::hresult SocName(string& socName /* @out */) const = 0;
+        virtual Core::hresult DistributorId(string& distributorId /* @out */) const = 0;
+        virtual Core::hresult Brand(string& brand /* @out */) const = 0;
+        virtual Core::hresult ReleaseVersion(string& releaseVersion /* @out */) const = 0;
+        virtual Core::hresult ChipSet(string& chipSet /* @out */) const = 0;
     };
 
     struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {
@@ -85,10 +87,10 @@ namespace Exchange {
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
         typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
-        virtual uint32_t SupportedAudioPorts(RPC::IStringIterator*& supportedAudioPorts /* @out */) const = 0;
-        virtual uint32_t AudioCapabilities(const string& audioPort /* @in */, IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
-        virtual uint32_t MS12Capabilities(const string& audioPort /* @in */, IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
-        virtual uint32_t SupportedMS12AudioProfiles(const string& audioPort /* @in */, RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
+        virtual Core::hresult SupportedAudioPorts(RPC::IStringIterator*& supportedAudioPorts /* @out */) const = 0;
+        virtual Core::hresult AudioCapabilities(const string& audioPort /* @in */, IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
+        virtual Core::hresult MS12Capabilities(const string& audioPort /* @in */, IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
+        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort /* @in */, RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
     };
 
     struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
@@ -109,31 +111,31 @@ namespace Exchange {
         };
 
         enum ScreenResolution : uint8_t {
-            ScreenResolution_Unknown = 0,
-            ScreenResolution_480i = 1,
-            ScreenResolution_480p = 2,
-            ScreenResolution_576i = 3,
-            ScreenResolution_576p = 4,
-            ScreenResolution_576p50Hz = 5,
-            ScreenResolution_720p = 6,
-            ScreenResolution_720p50Hz = 7,
-            ScreenResolution_768p60Hz = 8,
-            ScreenResolution_1080i = 9,
-            ScreenResolution_1080i25Hz = 10,
-            ScreenResolution_1080i50Hz = 11,
-            ScreenResolution_1080p = 12,
-            ScreenResolution_1080p24Hz = 13,
-            ScreenResolution_1080p25Hz = 14,
-            ScreenResolution_1080p30Hz = 15,
-            ScreenResolution_1080p50Hz = 16,
-            ScreenResolution_1080p60Hz = 17,
-            ScreenResolution_2160p24Hz = 18,
-            ScreenResolution_2160p25Hz = 19,
-            ScreenResolution_2160p30Hz = 20,
-            ScreenResolution_2160p50Hz = 21,
-            ScreenResolution_2160p60Hz = 22,
-            ScreenResolution_4320p30Hz = 23,
-            ScreenResolution_4320p60Hz = 24
+            SCREENRESOLUTION_UNKNOWN = 0,
+            SCREENRESOLUTION_480I = 1,
+            SCREENRESOLUTION_480P = 2,
+            SCREENRESOLUTION_576I = 3,
+            SCREENRESOLUTION_576P = 4,
+            SCREENRESOLUTION_576P50HZ = 5,
+            SCREENRESOLUTION_720P = 6,
+            SCREENRESOLUTION_720P50HZ = 7,
+            SCREENRESOLUTION_768P60HZ = 8,
+            SCREENRESOLUTION_1080I = 9,
+            SCREENRESOLUTION_1080I25HZ = 10,
+            SCREENRESOLUTION_1080I50HZ = 11,
+            SCREENRESOLUTION_1080P = 12,
+            SCREENRESOLUTION_1080P24HZ = 13,
+            SCREENRESOLUTION_1080P25HZ = 14,
+            SCREENRESOLUTION_1080P30HZ = 15,
+            SCREENRESOLUTION_1080P50HZ = 16,
+            SCREENRESOLUTION_1080P60HZ = 17,
+            SCREENRESOLUTION_2160P24HZ = 18,
+            SCREENRESOLUTION_2160P25HZ = 19,
+            SCREENRESOLUTION_2160P30HZ = 20,
+            SCREENRESOLUTION_2160P50HZ = 21,
+            SCREENRESOLUTION_2160P60HZ = 22,
+            SCREENRESOLUTION_4320P30HZ = 23,
+            SCREENRESOLUTION_4320P60HZ = 24
         };
 
         enum CopyProtection : uint8_t {
@@ -147,11 +149,11 @@ namespace Exchange {
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
         typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
-        virtual uint32_t SupportedVideoDisplays(RPC::IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
-        virtual uint32_t DefaultResolution(const string& videoDisplay /* @in */, string& defaultResolution /* @out */) const = 0;
-        virtual uint32_t SupportedResolutions(const string& videoDisplay /* @in */, RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
-        virtual uint32_t HostEDID(string& edid /* @out */) const = 0;
-        virtual uint32_t SupportedHdcp(const string& videoDisplay /* @in */, CopyProtection& supportedHDCPVersion /* @out */) const = 0;
+        virtual Core::hresult SupportedVideoDisplays(RPC::IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
+        virtual Core::hresult DefaultResolution(const string& videoDisplay /* @in */, string& defaultResolution /* @out */) const = 0;
+        virtual Core::hresult SupportedResolutions(const string& videoDisplay /* @in */, RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
+        virtual Core::hresult HostEDID(string& edid /* @out */) const = 0;
+        virtual Core::hresult SupportedHdcp(const string& videoDisplay /* @in */, CopyProtection& supportedHDCPVersion /* @out */) const = 0;
     };
 }
 }
