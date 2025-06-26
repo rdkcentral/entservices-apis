@@ -33,33 +33,35 @@ def generate_md_from_header(header_file):
         header_file (str): Path to the header file.
     """
     filename = os.path.basename(header_file)
-    classname, _ = os.path.splitext(filename)
+    # Extract the interface name from the filename assuming the filename is in the format 'IClassName.h'
+    interface_name, _ = os.path.splitext(filename)
 
-    # Remove the leading 'I' from the api's class name
-    output_file_path = './tools/md_from_h_generator/generated_docs/' + classname[1:] + 'Plugin.md'
+    # Remove the leading 'I' from the api's interface name to get the plugin name
+    plugin_name = interface_name[1:] if interface_name.startswith('I') else interface_name
+    output_file_path = './tools/md_from_h_generator/generated_docs/' + plugin_name + 'Plugin.md'
 
-    log_file_path = './tools/md_from_h_generator/logs/' + classname + '.txt'
+    log_file_path = './tools/md_from_h_generator/logs/' + interface_name + '.txt'
     logger = Logger(log_file_path)
 
     header_structure = HeaderFileParser(header_file, logger)
 
     with open(output_file_path, 'w', encoding='utf-8') as file:
-        file.write(generate_header_toc(classname, header_structure))
-        file.write(generate_header_description_markdown(classname))
+        file.write(generate_header_toc(plugin_name, header_structure))
+        file.write(generate_header_description_markdown(plugin_name))
         if len(header_structure.methods.values()) > 0:
-            file.write(generate_methods_toc(header_structure.methods, classname))
+            file.write(generate_methods_toc(header_structure.methods, plugin_name))
             for method_name, method_info in header_structure.methods.items():
                 file.write(generate_method_markdown(
                     method_name, method_info, header_structure.symbols_registry))
         file.write("\n")
         if len(header_structure.properties.values()) > 0:
-            file.write(generate_properties_toc(header_structure.properties, classname))
+            file.write(generate_properties_toc(header_structure.properties, plugin_name))
             for prop_name, prop_info in header_structure.properties.items():
                 file.write(generate_property_markdown(
                     prop_name,prop_info, header_structure.symbols_registry))
         file.write("\n")
         if len(header_structure.events.values()) > 0:
-            file.write(generate_notifications_toc(header_structure.events, classname))
+            file.write(generate_notifications_toc(header_structure.events, plugin_name))
             for event_name, event_info in header_structure.events.items():
                 file.write(generate_notification_markdown(
                     event_name, event_info, header_structure.symbols_registry))

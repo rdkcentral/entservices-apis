@@ -45,7 +45,7 @@ HEADER_DESCRIPTION_TEMPLATE = """
 <a id="head.Description"></a>
 # Description
 
-The `{classname}` plugin provides an interface for {classname}.
+The `{classname}` plugin allows applications to interact with {classname} functionality through the Thunder framework interface.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
@@ -155,8 +155,38 @@ def generate_header_toc(classname, document_object, version="1.0.0"):
 def generate_header_description_markdown(classname):
     """
     Generate the header description markdown for the file.
+    Provides specific descriptions for known plugins, otherwise uses a generic template.
     """
-    return HEADER_DESCRIPTION_TEMPLATE.format(classname=classname)
+    # Plugin-specific descriptions
+    plugin_descriptions = {
+        'FrameRate': 'The `FrameRate` plugin allows applications to collect FPS (Frames Per Second) data and manage display frame rate settings.',
+        'DeviceInfo': 'The `DeviceInfo` plugin provides access to device information and system details.',
+        'DisplayInfo': 'The `DisplayInfo` plugin provides information about display capabilities and configuration.',
+        'UserSettings': 'The `UserSettings` plugin manages user preferences and configuration settings.',
+        'NetworkManager': 'The `NetworkManager` plugin manages network interfaces and connectivity settings.',
+        'Monitor': 'The `Monitor` plugin provides system monitoring and resource usage information.',
+        'WebKitBrowser': 'The `WebKitBrowser` plugin provides web browsing capabilities using the WebKit engine.',
+        'Netflix': 'The `Netflix` plugin provides Netflix streaming service integration.',
+        'AmazonPrime': 'The `AmazonPrime` plugin provides Amazon Prime Video streaming service integration.',
+        'Cobalt': 'The `Cobalt` plugin provides YouTube streaming capabilities using the Cobalt browser.',
+        'PackageManager': 'The `PackageManager` plugin manages application packages and installations.',
+        'PersistentStore': 'The `PersistentStore` plugin provides persistent storage capabilities for applications.',
+        'SystemAudioPlayer': 'The `SystemAudioPlayer` plugin manages system audio playback functionality.',
+        'TextToSpeech': 'The `TextToSpeech` plugin provides text-to-speech conversion capabilities.',
+        'Warehouse': 'The `Warehouse` plugin manages application deployment and lifecycle.',
+        'PowerManager': 'The `PowerManager` plugin manages system power states and power consumption.',
+        'Telemetry': 'The `Telemetry` plugin collects and reports system telemetry data.'
+    }
+
+    # Use specific description if available, otherwise use generic template
+    if classname in plugin_descriptions:
+        custom_description = HEADER_DESCRIPTION_TEMPLATE.replace(
+            'The `{classname}` plugin allows applications to interact with {classname} functionality through the Thunder framework interface.',
+            plugin_descriptions[classname]
+        )
+        return custom_description.format(classname=classname)
+    else:
+        return HEADER_DESCRIPTION_TEMPLATE.format(classname=classname)
 
 def generate_methods_toc(methods, classname):
     """
@@ -309,7 +339,7 @@ def generate_notification_markdown(event_name, event_info, symbol_registry):
     """
     Generate the markdown for a specific event.
     """
-    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details']) 
+    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     markdown += generate_request_section(event_info['request'], '')
