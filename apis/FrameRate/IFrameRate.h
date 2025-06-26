@@ -87,7 +87,7 @@ namespace WPEFramework
 
             /** Sets the auto framerate mode */
             // @text setFrmMode
-            // @brief Set the Frm mode.
+            // @brief Sets the auto framerate mode
             // @param frmmode - in - int
             // @param success - out - boolean
             virtual Core::hresult SetFrmMode(const int frmmode /* @in */, bool& success /* @out */) = 0;

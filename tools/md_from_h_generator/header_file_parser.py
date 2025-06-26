@@ -82,6 +82,8 @@ class HeaderFileParser:
         # objects to hold the different components and properties of the header file
         self.header_file_path = header_file_path
         self.classname = os.path.splitext(os.path.basename(self.header_file_path))[0]
+        # Derive plugin name by removing 'I' prefix from interface name for JSON-RPC calls
+        self.plugin_name = self.classname[1:] if self.classname.startswith('I') else self.classname
         self.methods = {}
         self.properties = {}
         self.events = {}
@@ -528,7 +530,7 @@ class HeaderFileParser:
         request = {
             "jsonrpc": "2.0",
             "id": 42,
-            "method": f"org.rdk.{self.classname}.{method_name}",
+            "method": f"org.rdk.{self.plugin_name}.{method_name}",
         }
         if method_info['params'] != []:
             request["params"] = {}
