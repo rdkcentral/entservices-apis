@@ -582,3 +582,9 @@ class HeaderFileParser:
                 scope.pop()
                 brace_count.pop()
         return scope, brace_count
+
+    def count_parentheses(self, line):
+        """
+        Counts the number of opening and closing parentheses in a line.
+        """
+        return line.count('(') - line.count(')')
