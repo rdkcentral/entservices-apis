@@ -520,33 +520,55 @@ class HeaderFileParser:
 
     def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
-        Helper to build params and results data structures, using the parameter declaration list
-        and doxygen tags.
+        Processes method parameters, cleans descriptions, and uses @text as the JSON key if present.
+        Returns (params, results) lists.
         """
-        param_list_info = self.get_info_from_param_declaration(method_parameters)
         params = []
         results = []
-        # build the params and results lists using the parameter delcaration list and doxygen tags
-        for symbol_name, (symbol_type, symbol_inline_comment) in param_list_info.items():
-            # register string iterators here b/c they are seldom defined outside of a method param
-            if symbol_type == 'RPC::IStringIterator':
-                self.register_iterator(symbol_type)
-            symbol_description = doxy_tag_param_info.get(symbol_name, '')
-            self.register_symbol(symbol_name, symbol_type, symbol_description)
-            symbol_info = {
-                'name': symbol_name,
-                'type': symbol_type,
-                'description': symbol_description
+        # Split parameters by comma, handle empty
+        param_list = [p.strip() for p in method_parameters.split(',') if p.strip()]
+        for param in param_list:
+            # Try to extract type and name
+            match = re.match(r'(?:const\s+)?([\w:]+)\s*[&*]?\s*(\w+)', param)
+            if not match:
+                continue
+            param_type, param_name = match.groups()
+            doxy_desc = doxy_tag_param_info.get(param_name, '')
+            # Look for @text override in param or doxy
+            text_match = re.search(r'@text:([\w-]+)', param)
+            if not text_match and doxy_desc:
+                text_match = re.search(r'@text:([\w-]+)', doxy_desc)
+            json_key = text_match.group(1) if text_match else param_name
+            # Clean description
+            description = self.clean_param_description(doxy_desc)
+            # Determine direction (in/out) from param or doxy
+            direction = 'in'
+            if '@out' in param or '- out -' in doxy_desc:
+                direction = 'out'
+            # Register symbol
+            self.register_symbol(param_name, param_type, description)
+            param_info = {
+                'name': json_key,
+                'type': param_type,
+                'description': description
             }
-            # determine whether the symbol is a result or a parameter
-            if symbol_inline_comment and '@inout' in symbol_inline_comment:
-                params.append(symbol_info)
-                results.append(symbol_info)
-            elif symbol_inline_comment and '@out' in symbol_inline_comment:
-                results.append(symbol_info)
-            else:  # Includes '@in', other, or empty
-                params.append(symbol_info)
+            if direction == 'out':
+                results.append(param_info)
+            else:
+                params.append(param_info)
         return params, results
+
+    def clean_param_description(self, description):
+        """
+        Cleans a parameter description by removing doxygen tag and unnecessary characters.
+        """
+        if description:
+            description = description.strip()
+            description = re.sub(r'^@\S+', '', description)
+            description = description[:-2] if description.endswith("*/") else description
+            # Remove - in - / - out - markers
+            description = re.sub(r'-\s*(in|out)\s*-?', '', description, flags=re.IGNORECASE)
+        return description
 
     def get_info_from_param_declaration(self, parameters):
         """

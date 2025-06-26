@@ -67,7 +67,7 @@ namespace WPEFramework
             /** Gets framerate mode */
             // @text getFrmMode
             // @brief Gets the current auto framerate mode.
-            // @param auto-frm-mode - out - int e.g. 0 for "disabled", 1 for "enabled".
+            // @param auto-frm-mode - out - int 0 for "disabled", 1 for "enabled". eg: 0
             // @param success - out - boolean e.g. true
             virtual Core::hresult GetFrmMode(int &framerateMode /* @out @text:auto-frm-mode */, bool& success /* @out */) = 0;
 
