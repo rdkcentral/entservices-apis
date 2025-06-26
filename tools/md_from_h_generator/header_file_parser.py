@@ -738,3 +738,15 @@ class HeaderFileParser:
                 scope.pop()
                 brace_count.pop()
         return scope, brace_count
+
+    def register_symbol(self, symbol_name, symbol_type, description):
+        """
+        Registers a symbol by adding it to the symbols registry if not already present.
+        """
+        unique_id = f"{symbol_name}-{symbol_type}"
+        if unique_id not in self.symbols_registry:
+            self.symbols_registry[unique_id] = {'type': symbol_type, 'description': description.strip() if description else ''}
+        else:
+            # Only update description if not already set
+            if not self.symbols_registry[unique_id].get('description') and description:
+                self.symbols_registry[unique_id]['description'] = description.strip()
