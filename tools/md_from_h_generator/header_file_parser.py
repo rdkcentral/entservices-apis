@@ -521,44 +521,271 @@ class HeaderFileParser:
     def format_example_for_json(self, example):
         """
         If the example is a type placeholder (int, boolean, float), output as bare identifier (not quoted).
-        If the example is the string placeholder 'string', output as quoted string.
         Otherwise, output as-is (quoted if string, etc.).
         """
         if example in ['int', 'boolean', 'float']:
             return example  # bare identifier, not quoted
-        if example == 'string':
-            return '"string"'
-        if isinstance(example, str) and not (example.startswith('"') and example.endswith('"')):
-            # If it's a string but not already quoted, quote it
-            return f'"{example}"'
         return example
 
     def clean_param_description(self, description):
         """
         Remove '- in -', '- out -', and type info from param description, leaving only the real description.
-        Handles extra spaces and formatting.
         """
         if not description:
             return ''
-        # Remove leading '- in - type', '- out - type', etc. (robust to extra spaces)
+        # Remove leading '- in - type', '- out - type', etc.
         desc = re.sub(r'^-\s*(in|out|inout)\s*-\s*\w+\s*', '', description, flags=re.IGNORECASE)
-        # Remove any remaining '- in -', '- out -', etc. (robust to extra spaces)
+        # Remove any remaining '- in -', '- out -', etc.
         desc = re.sub(r'-\s*(in|out|inout)\s*-', '', desc, flags=re.IGNORECASE)
-        # Remove leading type info if present (e.g., 'int ', 'bool ', etc.)
-        desc = re.sub(r'^(int|bool|boolean|float|double|string|uint32_t|int32_t|uint64_t|int64_t)\s*', '', desc, flags=re.IGNORECASE)
         return desc.strip()
+
+    def generate_missing_examples_for_symbol_registry(self):
+        """
+        Generate examples for symbols in the symbols registry that lack examples.
+        """
+        for unique_id, symbol_data in self.symbols_registry.items():
+            if not symbol_data.get('example'):
+                description = symbol_data.get('description')
+                symbol_data['example'] = self.generate_example_for_individual_symbol(
+                    unique_id, description)
+                self.logger.log("INFO", f"Generated missing example for {unique_id}")
+
+    def generate_example_for_individual_symbol(self, unique_id, description):
+        """
+        Generate an example for an individual symbol based on its description or type.
+        """
+        example = self.generate_example_from_description(description)
+        if example:
+            return self.wrap_example_if_iterator(unique_id, example)
+        if unique_id in self.symbols_registry:
+            symbol_name = unique_id.split('-')[0]
+            symbol_type = self.symbols_registry[unique_id]['type']
+            # Use smart name-based examples
+            return self.generate_smart_example_from_name_and_type(symbol_name, symbol_type)
+        return None
 
     def generate_example_from_description(self, param_description):
         """
-        Extracts an example from a parameter description. Handles e.g. and ex: with or without quotes.
+        Extracts an example from a parameter description.
         """
         if param_description is None:
             return None
-        # Try to match e.g. or ex: followed by quoted or unquoted value
-        match = re.search(r'(?:e\.g\.|ex:)\s*"([^"]+)"', param_description, re.IGNORECASE)
-        if match:
-            return match.group(1)
-        match = re.search(r'(?:e\.g\.|ex:)\s*([^\s,;]+)', param_description, re.IGNORECASE)
-        if match:
-            return match.group(1)
-        return None
+        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
+        return match.group(1) if match else None
+
+    def generate_example_from_symbol_type(self, symbol_type):
+        """
+        Creates an example parameter based on the symbol type.
+        """
+        if symbol_type in self.structs_registry:
+            struct = self.structs_registry[symbol_type]
+            return {member_name: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
+        if symbol_type in self.enums_registry:
+            return list(self.enums_registry[symbol_type])[0]
+        if symbol_type in self.BASIC_TYPE_EXAMPLES:
+            return self.BASIC_TYPE_EXAMPLES[symbol_type]
+        if symbol_type in self.iterators_registry:
+            underlying_type = self.iterators_registry[symbol_type]
+            return [self.generate_example_from_symbol_type(underlying_type)]
+        return ''
+
+    def get_type_category(self, symbol_type):
+        """
+        Determine the type category (string, number, boolean) for a given symbol type.
+        """
+        if symbol_type == 'string':
+            return 'string'
+        elif symbol_type in ['int32_t', 'uint32_t', 'int64_t', 'uint64_t', 'int', 'float', 'double']:
+            return 'number'
+        elif symbol_type == 'bool':
+            return 'boolean'
+        else:
+            return 'default'
+
+    def generate_smart_example_from_name_and_type(self, symbol_name, symbol_type):
+        """
+        Generate a smart example based on parameter name and type.
+        """
+        # Check if we have a name-based example
+        symbol_name_lower = symbol_name.lower()
+        for name_pattern, type_examples in self.PARAMETER_NAME_EXAMPLES.items():
+            if name_pattern in symbol_name_lower:
+                # Get the type category and find the appropriate example
+                type_category = self.get_type_category(symbol_type)
+                if type_category in type_examples:
+                    return type_examples[type_category]
+                else:
+                    return type_examples['default']
+
+        # Fall back to type-based example
+        return self.generate_example_from_symbol_type(symbol_type)
+
+    def wrap_example_if_iterator(self, unique_id, example):
+        """
+        Wrap the example in a list if the symbol is an iterator, otherwise simply return the
+        example.
+        """
+        if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
+            return [example]
+        return example
+
+    def link_method_to_event(self):
+        """
+        Links methods to their associated events. Directly modifies the methods dictionary.
+        """
+        for method_name, method_info in self.methods.items():
+            method_events = method_info['events']
+            for event in method_events:
+                if event in self.events:
+                    self.methods[method_name]['events'][event] = self.events[event].get('brief')
+                    self.events[event]['associated_method'] = method_name
+                else:
+                    self.logger.log("ERROR",
+                                    f"Event {event} tagged with {method_name} does not exist.")
+
+    def log_unassociated_events(self):
+        """
+        Logs events that are not associated with any method.
+        """
+        for event_name, event_info in self.events.items():
+            if not event_info.get('associated_method'):
+                self.logger.log("WARNING", f"Event {event_name} is not associated with a method.")
+
+    def fill_and_log_missing_symbol_descriptions(self):
+        """
+        Fills missing symbol information for methods, events, and properties.
+        """
+        for method_name, method_info in self.methods.items():
+            for param in method_info['params']:
+                if not param.get('description'):
+                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {param['name']} in method {method_name}")
+            for result in method_info['results']:
+                if not result.get('description'):
+                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {result['name']} in method {method_name}")
+        for event_name, event_info in self.events.items():
+            for param in event_info['params']:
+                if not param.get('description'):
+                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {param['name']} in event {event_name}")
+            for result in event_info['results']:
+                if not result.get('description'):
+                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {result['name']} in event {event_name}")
+        for prop_name, prop_info in self.properties.items():
+            for param in prop_info['params']:
+                if not param.get('description'):
+                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {param['name']} in property {prop_name}")
+            for result in prop_info['results']:
+                if not result.get('description'):
+                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
+                    self.logger.log("INFO",
+                            f"Filled missing desc for {result['name']} in property {prop_name}")
+
+    def log_missing_method_info(self):
+        """
+        At the end of parsing, if there is still information missing for methods, events, and
+        symbols, log it.
+        """
+        for method_name, method_info in self.methods.items():
+            if not method_info.get('brief') and not method_info.get('details'):
+                self.logger.log("INFO", f"Missing description: {method_name}")
+        for event_name, event_info in self.events.items():
+            if not event_info.get('brief') and not event_info.get('details'):
+                self.logger.log("INFO", f"Missing description: {event_name}")
+        for prop_name, prop_info in self.properties.items():
+            if not prop_info.get('brief') and not prop_info.get('details'):
+                self.logger.log("INFO", f"Missing description: {prop_name}")
+        for symbol_name, symbol_info in self.symbols_registry.items():
+            if not symbol_info.get('description'):
+                self.logger.log("INFO", f"Missing description: {symbol_name}")
+            if symbol_info.get('example') == "":
+                self.logger.log("INFO", f"Missing example: {symbol_name}")
+
+    def count_parentheses(self, line):
+        """
+        Counts the number of opening and closing parentheses in a line.
+        """
+        return line.count('(') - line.count(')')
+
+    def count_braces(self, line):
+        """
+        Counts the number of opening and closing braces in a line.
+        """
+        return line.count('{') - line.count('}')
+
+    def sort_dict(self, dictionary):
+        """
+        Sorts a dictionary by its keys and returns a new dictionary.
+        """
+        return dict(sorted(dictionary.items()))
+
+    def generate_flattened_descriptions_for_symbol_registry(self):
+        """
+        Builds flattened descriptions for all symbols in the symbols registry.
+        """
+        for symbol_name, symbol_info in self.symbols_registry.items():
+            symbol_info['flattened_description'] = self.get_description_from_individual_symbol('', symbol_name)
+
+    def get_description_from_individual_symbol(self, parent_key, unqiue_id):
+        """
+        Used to flatten descriptions for params/results/values in the symbol registry.
+        """
+        if unqiue_id in self.symbols_registry:
+            symbol_name = unqiue_id.split('-')[0]
+            symbol_type = self.symbols_registry[unqiue_id]['type']
+            symbol_desc = self.symbols_registry[unqiue_id]['description']
+            curr_key = f"{parent_key}.{symbol_name}"
+            flattened_descriptions = {curr_key: {'type': symbol_type, 'description': symbol_desc}}
+            flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
+            return flattened_descriptions
+        return {}
+
+    def flatten_description(self, parent_key, symbol_type):
+        """
+        Mirrors logic in generate_example_from_symbol_type.
+        """
+        flattened_descriptions = {}
+        if symbol_type in self.structs_registry:
+            struct = self.structs_registry[symbol_type]
+            for member_name in struct:
+                member_type = struct[member_name]['type']
+                member_desc = struct[member_name]['description']
+                curr_key = f"{parent_key}.{member_name}"
+                flattened_descriptions[curr_key] = {'type': member_type, 'description': member_desc}
+                flattened_descriptions.update(
+                    self.flatten_description(curr_key, member_type))
+            return flattened_descriptions
+        elif symbol_type in self.enums_registry:
+            if parent_key[-3:] == '[#]':
+                flattened_descriptions.update(
+                    {parent_key: {'type': 'string', 'description': ''}})
+            return flattened_descriptions
+        elif symbol_type in self.BASIC_TYPE_EXAMPLES:
+            if parent_key[-3:] == '[#]':
+                flattened_descriptions.update(
+                    {parent_key: {'type': symbol_type, 'description': ''}})
+            return flattened_descriptions
+        elif symbol_type in self.iterators_registry:
+            underlying_type = self.iterators_registry[symbol_type]
+            flattened_descriptions.update(
+                self.flatten_description(f"{parent_key}[#]", underlying_type))
+            return flattened_descriptions
+        return {}
+
+    def clean_description(self, description):
+        """
+        Cleans a description by removing doxygen tag and unnecessary characters.
+        """
+        if description:
+            description = description.strip()
+            description = re.sub(r'^@\S+', '', description)
+            description = description[:-2] if description.endswith("*/") else description
+        return description
