@@ -562,23 +562,3 @@ class HeaderFileParser:
         if match:
             return match.group(1)
         return None
-
-    def external_struct_tracker(self, line, scope, brace_count):
-        """
-        Tracks the current C++ scope and brace count for struct/class parsing.
-        """
-        # Entering a new struct/class scope
-        struct_match = re.match(r'(struct|class)\s+(\w+)', line)
-        if struct_match:
-            scope.append(struct_match.group(2))
-            brace_count.append(0)
-        # Update brace count for current scope
-        if '{' in line:
-            brace_count[-1] += line.count('{')
-        if '}' in line:
-            brace_count[-1] -= line.count('}')
-            # Exiting a scope if braces are balanced
-            if brace_count[-1] <= 0 and len(scope) > 1:
-                scope.pop()
-                brace_count.pop()
-        return scope, brace_count
