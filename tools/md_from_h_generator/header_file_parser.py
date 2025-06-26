@@ -771,3 +771,39 @@ class HeaderFileParser:
         for event_name, method_list in event_to_methods.items():
             if method_list:
                 self.events[event_name].setdefault('triggered_by', []).extend(method_list)
+
+    def generate_missing_examples_for_symbol_registry(self):
+        """
+        Fills in example values for all symbols in the registry, using name-based or type-based logic.
+        """
+        for symbol_name, symbol_info in self.symbols_registry.items():
+            # Skip if already has an example
+            if 'example' in symbol_info and symbol_info['example']:
+                continue
+            # Prefer name-based example if available and generic
+            name = symbol_name.split('-')[0]
+            typ = symbol_info['type']
+            example = None
+            # Use PARAMETER_NAME_EXAMPLES if name is generic
+            if name in self.PARAMETER_NAME_EXAMPLES:
+                exmap = self.PARAMETER_NAME_EXAMPLES[name]
+                if typ in self.BASIC_TYPE_EXAMPLES:
+                    type_key = self.BASIC_TYPE_EXAMPLES[typ]
+                    example = exmap.get(type_key, exmap.get('default'))
+                else:
+                    example = exmap.get('default')
+            # Fallback to type-based example
+            if example is None and typ in self.BASIC_TYPE_EXAMPLES:
+                type_key = self.BASIC_TYPE_EXAMPLES[typ]
+                if type_key == 'int':
+                    example = 42
+                elif type_key == 'float':
+                    example = 3.14
+                elif type_key == 'boolean':
+                    example = True
+                elif type_key == 'string':
+                    example = '"example"'
+            # Fallback to empty string
+            if example is None:
+                example = ''
+            symbol_info['example'] = example
