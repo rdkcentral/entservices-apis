@@ -38,19 +38,19 @@ namespace WPEFramework
 
                 // @text onFpsEvent
                 // @brief Triggered by callback from FrameRate after onFpsEvent
-                // @param average - in - int
-                // @param min - in - int
-                // @param max - in - int
+                // @param average - in - int e.g. 60
+                // @param min - in - int e.g. 24
+                // @param max - in - int e.g. 120
                 virtual void OnFpsEvent(const int average, const int min, const int max) {};
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
-                // @param displayFrameRate - in - string
+                // @param displayFrameRate - in - string e.g. "3840x2160x60" matching "WIDTHxHEIGHTxFPS"
                 virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
 
                 // @text onDisplayFrameRateChanged
                 // @brief Triggered when the framerate changed.
-                // @param displayFrameRate - in - string
+                // @param displayFrameRate - in - string e.g. "1920x1080x30" matching "WIDTHxHEIGHTxFPS"
                 virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
             };
 
@@ -60,55 +60,56 @@ namespace WPEFramework
             /** Gets the Display Frame Rate*/
             // @text getDisplayFrameRate
             // @brief Gets the current display frame rate values.
-            // @param framerate - out - string
-            // @param success - out - boolean
+            // @param framerate - out - string e.g. "3840x2160px60" matching "WIDTHxHEIGHTpxFPS"
+            // @param success - out - boolean e.g. true
             virtual Core::hresult GetDisplayFrameRate(string& framerate /* @out */, bool& success /* @out */) = 0;
 
             /** Gets framerate mode */
             // @text getFrmMode
             // @brief Gets the current auto framerate mode.
-            // @param frmmode - out - int
-            // @param success - out - boolean
+            // @param auto-frm-mode - out - int e.g. 0 for "disabled", 1 for "enabled".
+            // @param success - out - boolean e.g. true
             virtual Core::hresult GetFrmMode(int &framerateMode /* @out @text:auto-frm-mode */, bool& success /* @out */) = 0;
 
             /** Sets the FPS data collection interval */
             // @text setCollectionFrequency
             // @brief Sets the FPS data collection interval.
-            // @param frequency - in -  int
+            // @param frequency - in -  int e.g. The amount of time in milliseconds. Default is 10000ms and min is 100ms
+
             // @param success - out - boolean
             virtual Core::hresult SetCollectionFrequency(const int frequency, bool& success /* @out */) = 0;
 
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
             // @brief Sets the display framerate values.
-            // @param framerate - in - string
-            // @param success - out - boolean
+            // @param framerate - in - string e.g. "1920x1080px30" "WIDTHxHEIGHTpxFPS" matching DSHAL specification
+            // @param success - out - boolean e.g. true
             virtual Core::hresult SetDisplayFrameRate(const string& framerate, bool& success /* @out */) = 0;
 
             /** Sets the auto framerate mode */
             // @text setFrmMode
             // @brief Sets the auto framerate mode
-            // @param frmmode - in - int
-            // @param success - out - boolean
+            // @param frmmode - in - int e.g. 0 for "disabled", 1 for "enabled" and (must be one of the following: 0, 1).
+            // @param success - out - boolean e.g. true
             virtual Core::hresult SetFrmMode(const int frmmode /* @in */, bool& success /* @out */) = 0;
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
             // @brief Starts the FPS data collection. Starts the FPS data collection
-            // @param success - out - boolean
+            // @param success - out - boolean e.g. true
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
 
             /** Stops the FPS data collection */
             // @text stopFpsCollection
             // @brief Stops the FPS data collection
-            // @param success - out - boolean
+            // @param success - out - boolean e.g. true
             virtual Core::hresult StopFpsCollection(bool& success /* @out */) = 0;
 
             /** Update the FPS value */
             // @text updateFps
             // @brief Update the FPS value
-            // @param newFpsValue - in - int
-            // @param success - out - boolean
+            // @param newFpsValue - in - int e.g. 30 (should be greater than 0)
+            // @param success - out - boolean e.g. true
             virtual Core::hresult UpdateFps(const int newFpsValue, bool& success /* @out */) = 0;
         };
     } // namespace Exchange

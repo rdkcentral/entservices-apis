@@ -47,16 +47,16 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-            'int32_t': 0,
-            'uint32_t': 0,
-            'int64_t': 0,
-            'uint64_t': 0,
-            'int': 0,
-            'float': 0.0,
-            'double': 0.0,
-            'bool': True,
-            'char': '"a"',
-            'string': '""'
+        'int32_t': 'int',
+        'uint32_t': 'int',
+        'int64_t': 'int',
+        'uint64_t': 'int',
+        'int': 'int',
+        'float': 'float',
+        'double': 'float',
+        'bool': 'boolean',
+        'char': 'string',
+        'string': 'string'
     }
 
     # Smart defaults based on very generic parameter names for better examples
