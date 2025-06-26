@@ -225,6 +225,7 @@ class HeaderFileParser:
         """
         self.generate_missing_examples_for_symbol_registry()
         self.generate_flattened_descriptions_for_symbol_registry()
+        self.register_text_aliases_in_symbol_registry()  # <-- Register @text aliases after flattening
         self.generate_request_response_objects()
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
@@ -840,3 +841,19 @@ class HeaderFileParser:
         for event_name, event_info in self.events.items():
             if not event_info.get('triggered_by'):
                 self.logger.log("INFO", f"Event '{event_name}' is not referenced by any method (@see).")
+
+    def register_text_aliases_in_symbol_registry(self):
+        """
+        For all params/results with a @text alias, register the alias as a key in the symbol registry
+        pointing to the same value as the original C++ name.
+        """
+        for method in list(self.methods.values()) + list(self.properties.values()) + list(self.events.values()):
+            for param in method.get('params', []) + method.get('results', []):
+                orig = param.get('orig_name', param['name'])
+                typ = param['type']
+                alias = param['name']
+                if alias != orig:
+                    orig_key = f"{orig}-{typ}"
+                    alias_key = f"{alias}-{typ}"
+                    if orig_key in self.symbols_registry and alias_key not in self.symbols_registry:
+                        self.symbols_registry[alias_key] = self.symbols_registry[orig_key]
