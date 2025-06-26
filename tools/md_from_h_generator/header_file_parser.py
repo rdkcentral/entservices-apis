@@ -807,3 +807,24 @@ class HeaderFileParser:
             if example is None:
                 example = ''
             symbol_info['example'] = example
+
+    def generate_request_response_objects(self):
+        """
+        Generates example request and response objects for each method, property, and event.
+        Uses parameter/result info and example values from the symbol registry.
+        """
+        def build_example_obj(param_list):
+            obj = {}
+            for param in param_list:
+                key = param['name']
+                orig = param.get('orig_name', key)
+                typ = param['type']
+                example = self.symbols_registry.get(f"{orig}-{typ}", {}).get('example', None)
+                obj[key] = example
+            return obj
+
+        for method in list(self.methods.values()) + list(self.properties.values()) + list(self.events.values()):
+            # Example request: all 'params' (inputs)
+            method['example_request'] = build_example_obj(method.get('params', []))
+            # Example response: all 'results' (outputs)
+            method['example_response'] = build_example_obj(method.get('results', []))
