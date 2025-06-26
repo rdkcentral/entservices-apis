@@ -518,26 +518,164 @@ class HeaderFileParser:
                 method_info['property'] = 'read'
         return method_info
 
-    def format_example_for_json(self, example):
+    def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
-        If the example is a type placeholder (int, boolean, float), output as bare identifier (not quoted).
-        Otherwise, output as-is (quoted if string, etc.).
+        Helper to build params and results data structures, using the parameter declaration list
+        and doxygen tags.
         """
-        if example in ['int', 'boolean', 'float']:
-            return example  # bare identifier, not quoted
-        return example
+        param_list_info = self.get_info_from_param_declaration(method_parameters)
+        params = []
+        results = []
+        # build the params and results lists using the parameter delcaration list and doxygen tags
+        for symbol_name, (symbol_type, symbol_inline_comment) in param_list_info.items():
+            # register string iterators here b/c they are seldom defined outside of a method param
+            if symbol_type == 'RPC::IStringIterator':
+                self.register_iterator(symbol_type)
+            symbol_description = doxy_tag_param_info.get(symbol_name, '')
+            self.register_symbol(symbol_name, symbol_type, symbol_description)
+            symbol_info = {
+                'name': symbol_name,
+                'type': symbol_type,
+                'description': symbol_description
+            }
+            # determine whether the symbol is a result or a parameter
+            if symbol_inline_comment and '@inout' in symbol_inline_comment:
+                params.append(symbol_info)
+                results.append(symbol_info)
+            elif symbol_inline_comment and '@out' in symbol_inline_comment:
+                results.append(symbol_info)
+            else:  # Includes '@in', other, or empty
+                params.append(symbol_info)
+        return params, results
 
-    def clean_param_description(self, description):
+    def get_info_from_param_declaration(self, parameters):
         """
-        Remove '- in -', '- out -', and type info from param description, leaving only the real description.
+        Helper to extract parameter information from a parameter list string.
         """
-        if not description:
-            return ''
-        # Remove leading '- in - type', '- out - type', etc.
-        desc = re.sub(r'^-\s*(in|out|inout)\s*-\s*\w+\s*', '', description, flags=re.IGNORECASE)
-        # Remove any remaining '- in -', '- out -', etc.
-        desc = re.sub(r'-\s*(in|out|inout)\s*-', '', desc, flags=re.IGNORECASE)
-        return desc.strip()
+        parameters = parameters.strip('()')
+        param_info = {}
+        for param in parameters.split(','):
+            # clean up the parameter string
+            param = param.strip().replace('&', '').replace('const ', '')
+            param = re.sub(r'(?<!\/)\*(?!\/)', '', param)
+            # check if the cleaned parameter string matches the expected format
+            match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
+            if match:
+                param_type, param_name, param_inline_comment = match.groups()
+                param_info[param_name] = (param_type, param_inline_comment)
+            else:
+                self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
+        return param_info
+
+    def register_symbol(self, symbol_name, symbol_type, description):
+        """
+        Registers a symbol by incrementally adding information to the symbols registry, as
+        information is discovered while parsing.
+        """
+        unique_id = f"{symbol_name}-{symbol_type}"
+        if unique_id not in self.symbols_registry:
+            self.symbols_registry[unique_id] = {'type': symbol_type}
+        if not self.symbols_registry[unique_id].get('description'):
+            self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
+        if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
+            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
+
+    def external_struct_tracker(self, line, scope, brace_count):
+        """
+        Tracks the current scope of the line being processed.
+        """
+        external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
+        external_struct_tracker_match = external_struct_tracker_regex.match(line)
+        # if this line contains the declaration of an external structure, update it as the scope
+        if external_struct_tracker_match:
+            scope.append(external_struct_tracker_match.group(1))
+            brace_count.append(0)
+            brace_count[-1] += self.count_braces(line)
+        else:
+            brace_count[-1] += self.count_braces(line)
+            # keep track of braces to determine the end of the current scope
+            while brace_count and brace_count[-1] <= 0:
+                if brace_count[-1] < 0 and len(brace_count) > 1:
+                    brace_count[-2] += brace_count[-1]
+                scope.pop()
+                brace_count.pop()
+        return scope, brace_count
+
+    def generate_request_response_objects(self):
+        """
+        Generates request and response JSONs for each method and event. Directly modifies the
+        methods, properties, and events registries.
+        """
+        for method_name, method_info in self.methods.items():
+            method_info['request'] = self.generate_request_object(method_name, method_info)
+            method_info['response'] = self.generate_response_object(method_info)
+        for event_name, event_info in self.events.items():
+            event_info['request'] = self.generate_request_object(event_name, event_info)
+        for prop_name, prop_info in self.properties.items():
+            # properties can have both get and set requests and responses
+            if 'read' in prop_info['property']:
+                if prop_info['params'] != []:
+                    prop_info['results'] = prop_info['params']
+                    prop_info['params'] = []
+                prop_info['get_request'] = self.generate_request_object(prop_name, prop_info)
+                prop_info['get_response'] = self.generate_response_object(prop_info)
+            if 'write' in prop_info['property']:
+                if prop_info['results'] != []:
+                    prop_info['params'] = prop_info['results']
+                    prop_info['results'] = []
+                prop_info['set_request'] = self.generate_request_object(prop_name, prop_info)
+                prop_info['set_response'] = self.generate_response_object(prop_info)
+
+    def generate_request_object(self, method_name, method_info):
+        """
+        Makes a request JSON. Creates an example dynamically.
+        """
+        self.request_id_counter += 1  # Increment counter for each request
+        request = {
+            "jsonrpc": "2.0",
+            "id": self.request_id_counter,
+            "method": f"org.rdk.{self.plugin_name}.{method_name}",
+        }
+        if method_info['params'] != []:
+            request["params"] = {}
+            for param in method_info['params']:
+                param_name = param.get('name')
+                param_type = param.get('type')
+                param_desc = param.get('description')
+                request["params"][param_name] = self.get_symbol_example(
+                    f"{param_name}-{param_type}", param_desc)
+        return request
+
+    def generate_response_object(self, method_info):
+        """
+        Makes a response JSON. Creates an example dynamically.
+        """
+        response = {
+            "jsonrpc": "2.0",
+            "id": self.request_id_counter,  # Use the same ID as the corresponding request
+            "result": "null"
+        }
+        if method_info['results'] != []:
+            response['result'] = {}
+            for result in method_info['results']:
+                result_name = result.get('name')
+                result_type = result.get('type')
+                result_desc = result.get('description')
+                response['result'][result_name] = self.get_symbol_example(
+                    f"{result_name}-{result_type}", result_desc)
+        return response
+
+    def get_symbol_example(self, unique_id, description):
+        """
+        Used in generating request/response JSONs. Pulls an example from either the @param tag
+        description or the symbols registry.
+        """
+        example_from_description = self.generate_example_from_description(description)
+        if example_from_description:
+            return self.wrap_example_if_iterator(unique_id, example_from_description)
+        if unique_id in self.symbols_registry:
+            return self.symbols_registry[unique_id].get('example')
+        return None
 
     def generate_missing_examples_for_symbol_registry(self):
         """
