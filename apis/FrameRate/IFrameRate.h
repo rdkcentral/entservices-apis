@@ -84,6 +84,8 @@ namespace WPEFramework
             // @brief Sets the display framerate values.
             // @param framerate - in - string e.g. "1920x1080px30" "WIDTHxHEIGHTpxFPS" matching DSHAL specification
             // @param success - out - boolean e.g. true
+			// @see onDisplayFrameRateChanging
+			// @see onDisplayFrameRateChanged
             virtual Core::hresult SetDisplayFrameRate(const string& framerate, bool& success /* @out */) = 0;
 
             /** Sets the auto framerate mode */
@@ -97,12 +99,14 @@ namespace WPEFramework
             // @text startFpsCollection
             // @brief Starts the FPS data collection. Starts the FPS data collection
             // @param success - out - boolean e.g. true
+			// @see onFpsEvent - Triggered periodically at FPS data collection interval while the FPS data collection is active.
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
 
             /** Stops the FPS data collection */
             // @text stopFpsCollection
             // @brief Stops the FPS data collection
             // @param success - out - boolean e.g. true
+			// @see onFpsEvent - Triggered once after the stopFpsCollection method is invoked.
             virtual Core::hresult StopFpsCollection(bool& success /* @out */) = 0;
 
             /** Update the FPS value */
