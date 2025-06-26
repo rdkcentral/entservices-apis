@@ -550,7 +550,8 @@ class HeaderFileParser:
             param_info = {
                 'name': json_key,
                 'type': param_type,
-                'description': description
+                'description': description,
+                'orig_name': param_name  # Store original C++ name for registry lookups
             }
             if direction == 'out':
                 results.append(param_info)
@@ -558,296 +559,49 @@ class HeaderFileParser:
                 params.append(param_info)
         return params, results
 
-    def clean_param_description(self, description):
-        """
-        Cleans a parameter description by removing doxygen tag and unnecessary characters.
-        """
-        if description:
-            description = description.strip()
-            description = re.sub(r'^@\S+', '', description)
-            description = description[:-2] if description.endswith("*/") else description
-            # Remove - in - / - out - markers
-            description = re.sub(r'-\s*(in|out)\s*-?', '', description, flags=re.IGNORECASE)
-        return description
-
-    def get_info_from_param_declaration(self, parameters):
-        """
-        Helper to extract parameter information from a parameter list string.
-        """
-        parameters = parameters.strip('()')
-        param_info = {}
-        for param in parameters.split(','):
-            # clean up the parameter string
-            param = param.strip().replace('&', '').replace('const ', '')
-            param = re.sub(r'(?<!\/)\*(?!\/)', '', param)
-            # check if the cleaned parameter string matches the expected format
-            match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
-            if match:
-                param_type, param_name, param_inline_comment = match.groups()
-                param_info[param_name] = (param_type, param_inline_comment)
-            else:
-                self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
-        return param_info
-
-    def register_symbol(self, symbol_name, symbol_type, description):
-        """
-        Registers a symbol by incrementally adding information to the symbols registry, as
-        information is discovered while parsing.
-        """
-        unique_id = f"{symbol_name}-{symbol_type}"
-        if unique_id not in self.symbols_registry:
-            self.symbols_registry[unique_id] = {'type': symbol_type}
-        if not self.symbols_registry[unique_id].get('description'):
-            self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
-        if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
-            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
-
-    def external_struct_tracker(self, line, scope, brace_count):
-        """
-        Tracks the current scope of the line being processed.
-        """
-        external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
-        external_struct_tracker_match = external_struct_tracker_regex.match(line)
-        # if this line contains the declaration of an external structure, update it as the scope
-        if external_struct_tracker_match:
-            scope.append(external_struct_tracker_match.group(1))
-            brace_count.append(0)
-            brace_count[-1] += self.count_braces(line)
-        else:
-            brace_count[-1] += self.count_braces(line)
-            # keep track of braces to determine the end of the current scope
-            while brace_count and brace_count[-1] <= 0:
-                if brace_count[-1] < 0 and len(brace_count) > 1:
-                    brace_count[-2] += brace_count[-1]
-                scope.pop()
-                brace_count.pop()
-        return scope, brace_count
-
-    def generate_request_response_objects(self):
-        """
-        Generates request and response JSONs for each method and event. Directly modifies the
-        methods, properties, and events registries.
-        """
-        for method_name, method_info in self.methods.items():
-            method_info['request'] = self.generate_request_object(method_name, method_info)
-            method_info['response'] = self.generate_response_object(method_info)
-        for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info)
-        for prop_name, prop_info in self.properties.items():
-            # properties can have both get and set requests and responses
-            if 'read' in prop_info['property']:
-                if prop_info['params'] != []:
-                    prop_info['results'] = prop_info['params']
-                    prop_info['params'] = []
-                prop_info['get_request'] = self.generate_request_object(prop_name, prop_info)
-                prop_info['get_response'] = self.generate_response_object(prop_info)
-            if 'write' in prop_info['property']:
-                if prop_info['results'] != []:
-                    prop_info['params'] = prop_info['results']
-                    prop_info['results'] = []
-                prop_info['set_request'] = self.generate_request_object(prop_name, prop_info)
-                prop_info['set_response'] = self.generate_response_object(prop_info)
-
-    def generate_request_object(self, method_name, method_info):
-        """
-        Makes a request JSON. Creates an example dynamically.
-        """
-        self.request_id_counter += 1  # Increment counter for each request
-        request = {
-            "jsonrpc": "2.0",
-            "id": self.request_id_counter,
-            "method": f"org.rdk.{self.plugin_name}.{method_name}",
-        }
-        if method_info['params'] != []:
-            request["params"] = {}
-            for param in method_info['params']:
-                param_name = param.get('name')
-                param_type = param.get('type')
-                param_desc = param.get('description')
-                request["params"][param_name] = self.get_symbol_example(
-                    f"{param_name}-{param_type}", param_desc)
-        return request
-
-    def generate_response_object(self, method_info):
-        """
-        Makes a response JSON. Creates an example dynamically.
-        """
-        response = {
-            "jsonrpc": "2.0",
-            "id": self.request_id_counter,  # Use the same ID as the corresponding request
-            "result": "null"
-        }
-        if method_info['results'] != []:
-            response['result'] = {}
-            for result in method_info['results']:
-                result_name = result.get('name')
-                result_type = result.get('type')
-                result_desc = result.get('description')
-                response['result'][result_name] = self.get_symbol_example(
-                    f"{result_name}-{result_type}", result_desc)
-        return response
-
-    def get_symbol_example(self, unique_id, description):
-        """
-        Used in generating request/response JSONs. Pulls an example from either the @param tag
-        description or the symbols registry.
-        """
-        example_from_description = self.generate_example_from_description(description)
-        if example_from_description:
-            return self.wrap_example_if_iterator(unique_id, example_from_description)
-        if unique_id in self.symbols_registry:
-            return self.symbols_registry[unique_id].get('example')
-        return None
-
-    def generate_missing_examples_for_symbol_registry(self):
-        """
-        Generate examples for symbols in the symbols registry that lack examples.
-        """
-        for unique_id, symbol_data in self.symbols_registry.items():
-            if not symbol_data.get('example'):
-                description = symbol_data.get('description')
-                symbol_data['example'] = self.generate_example_for_individual_symbol(
-                    unique_id, description)
-                self.logger.log("INFO", f"Generated missing example for {unique_id}")
-
-    def generate_example_for_individual_symbol(self, unique_id, description):
-        """
-        Generate an example for an individual symbol based on its description or type.
-        """
-        example = self.generate_example_from_description(description)
-        if example:
-            return self.wrap_example_if_iterator(unique_id, example)
-        if unique_id in self.symbols_registry:
-            symbol_name = unique_id.split('-')[0]
-            symbol_type = self.symbols_registry[unique_id]['type']
-            # Use smart name-based examples
-            return self.generate_smart_example_from_name_and_type(symbol_name, symbol_type)
-        return None
-
-    def generate_example_from_description(self, param_description):
-        """
-        Extracts an example from a parameter description.
-        """
-        if param_description is None:
-            return None
-        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
-        return match.group(1) if match else None
-
-    def generate_example_from_symbol_type(self, symbol_type):
-        """
-        Creates an example parameter based on the symbol type.
-        """
-        if symbol_type in self.structs_registry:
-            struct = self.structs_registry[symbol_type]
-            return {member_name: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
-        if symbol_type in self.enums_registry:
-            return list(self.enums_registry[symbol_type])[0]
-        if symbol_type in self.BASIC_TYPE_EXAMPLES:
-            return self.BASIC_TYPE_EXAMPLES[symbol_type]
-        if symbol_type in self.iterators_registry:
-            underlying_type = self.iterators_registry[symbol_type]
-            return [self.generate_example_from_symbol_type(underlying_type)]
-        return ''
-
-    def get_type_category(self, symbol_type):
-        """
-        Determine the type category (string, number, boolean) for a given symbol type.
-        """
-        if symbol_type == 'string':
-            return 'string'
-        elif symbol_type in ['int32_t', 'uint32_t', 'int64_t', 'uint64_t', 'int', 'float', 'double']:
-            return 'number'
-        elif symbol_type == 'bool':
-            return 'boolean'
-        else:
-            return 'default'
-
-    def generate_smart_example_from_name_and_type(self, symbol_name, symbol_type):
-        """
-        Generate a smart example based on parameter name and type.
-        """
-        # Check if we have a name-based example
-        symbol_name_lower = symbol_name.lower()
-        for name_pattern, type_examples in self.PARAMETER_NAME_EXAMPLES.items():
-            if name_pattern in symbol_name_lower:
-                # Get the type category and find the appropriate example
-                type_category = self.get_type_category(symbol_type)
-                if type_category in type_examples:
-                    return type_examples[type_category]
-                else:
-                    return type_examples['default']
-
-        # Fall back to type-based example
-        return self.generate_example_from_symbol_type(symbol_type)
-
-    def wrap_example_if_iterator(self, unique_id, example):
-        """
-        Wrap the example in a list if the symbol is an iterator, otherwise simply return the
-        example.
-        """
-        if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
-            return [example]
-        return example
-
-    def link_method_to_event(self):
-        """
-        Links methods to their associated events. Directly modifies the methods dictionary.
-        """
-        for method_name, method_info in self.methods.items():
-            method_events = method_info['events']
-            for event in method_events:
-                if event in self.events:
-                    self.methods[method_name]['events'][event] = self.events[event].get('brief')
-                    self.events[event]['associated_method'] = method_name
-                else:
-                    self.logger.log("ERROR",
-                                    f"Event {event} tagged with {method_name} does not exist.")
-
-    def log_unassociated_events(self):
-        """
-        Logs events that are not associated with any method.
-        """
-        for event_name, event_info in self.events.items():
-            if not event_info.get('associated_method'):
-                self.logger.log("WARNING", f"Event {event_name} is not associated with a method.")
-
     def fill_and_log_missing_symbol_descriptions(self):
         """
         Fills missing symbol information for methods, events, and properties.
         """
         for method_name, method_info in self.methods.items():
             for param in method_info['params']:
+                orig = param.get('orig_name', param['name'])
+                key = f"{orig}-{param['type']}"
                 if not param.get('description'):
-                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in method {method_name}")
+                    param['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {param['name']} in method {method_name}")
             for result in method_info['results']:
+                orig = result.get('orig_name', result['name'])
+                key = f"{orig}-{result['type']}"
                 if not result.get('description'):
-                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {result['name']} in method {method_name}")
+                    result['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {result['name']} in method {method_name}")
         for event_name, event_info in self.events.items():
             for param in event_info['params']:
+                orig = param.get('orig_name', param['name'])
+                key = f"{orig}-{param['type']}"
                 if not param.get('description'):
-                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in event {event_name}")
+                    param['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {param['name']} in event {event_name}")
             for result in event_info['results']:
+                orig = result.get('orig_name', result['name'])
+                key = f"{orig}-{result['type']}"
                 if not result.get('description'):
-                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {result['name']} in event {event_name}")
+                    result['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {result['name']} in event {event_name}")
         for prop_name, prop_info in self.properties.items():
             for param in prop_info['params']:
+                orig = param.get('orig_name', param['name'])
+                key = f"{orig}-{param['type']}"
                 if not param.get('description'):
-                    param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in property {prop_name}")
+                    param['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {param['name']} in property {prop_name}")
             for result in prop_info['results']:
+                orig = result.get('orig_name', result['name'])
+                key = f"{orig}-{result['type']}"
                 if not result.get('description'):
-                    result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {result['name']} in property {prop_name}")
+                    result['description'] = self.symbols_registry.get(key, {}).get('description', '')
+                    self.logger.log("INFO", f"Filled missing desc for {result['name']} in property {prop_name}")
 
     def log_missing_method_info(self):
         """
