@@ -559,6 +559,21 @@ class HeaderFileParser:
                 params.append(param_info)
         return params, results
 
+    def clean_param_description(self, description):
+        """
+        Remove '- in -', '- out -', and type info from param description, leaving only the real description.
+        Handles extra spaces and formatting.
+        """
+        if not description:
+            return ''
+        # Remove leading '- in - type', '- out - type', etc. (robust to extra spaces)
+        desc = re.sub(r'^-\s*(in|out|inout)\s*-\s*\w+\s*', '', description, flags=re.IGNORECASE)
+        # Remove any remaining '- in -', '- out -', etc. (robust to extra spaces)
+        desc = re.sub(r'-\s*(in|out|inout)\s*-', '', desc, flags=re.IGNORECASE)
+        # Remove leading type info if present (e.g., 'int ', 'bool ', etc.)
+        desc = re.sub(r'^(int|bool|boolean|float|double|string|uint32_t|int32_t|uint64_t|int64_t)\s*', '', desc, flags=re.IGNORECASE)
+        return desc.strip()
+
     def fill_and_log_missing_symbol_descriptions(self):
         """
         Fills missing symbol information for methods, events, and properties.
