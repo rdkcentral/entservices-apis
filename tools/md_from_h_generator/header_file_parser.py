@@ -225,7 +225,8 @@ class HeaderFileParser:
         """
         self.generate_missing_examples_for_symbol_registry()
         self.generate_flattened_descriptions_for_symbol_registry()
-        self.register_text_aliases_in_symbol_registry()  # <-- Register @text aliases after flattening
+        self.register_text_aliases_in_symbol_registry()
+        self.remove_events_from_methods()  # <-- Remove notifications from methods
         self.generate_request_response_objects()
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
@@ -857,3 +858,12 @@ class HeaderFileParser:
                     alias_key = f"{alias}-{typ}"
                     if orig_key in self.symbols_registry and alias_key not in self.symbols_registry:
                         self.symbols_registry[alias_key] = self.symbols_registry[orig_key]
+
+    def remove_events_from_methods(self):
+        """
+        Ensures that any method also present in events (notifications) is removed from methods.
+        This prevents notifications from appearing in the Methods section.
+        """
+        for event_name in self.events:
+            if event_name in self.methods:
+                del self.methods[event_name]
