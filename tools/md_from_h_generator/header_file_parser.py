@@ -84,6 +84,7 @@ class HeaderFileParser:
         self.classname = os.path.splitext(os.path.basename(self.header_file_path))[0]
         # Derive plugin name by removing 'I' prefix from interface name for JSON-RPC calls
         self.plugin_name = self.classname[1:] if self.classname.startswith('I') else self.classname
+        self.request_id_counter = 0  # Counter for generating unique request IDs
         self.methods = {}
         self.properties = {}
         self.events = {}
@@ -527,9 +528,10 @@ class HeaderFileParser:
         """
         Makes a request JSON. Creates an example dynamically.
         """
+        self.request_id_counter += 1  # Increment counter for each request
         request = {
             "jsonrpc": "2.0",
-            "id": 42,
+            "id": self.request_id_counter,
             "method": f"org.rdk.{self.plugin_name}.{method_name}",
         }
         if method_info['params'] != []:
@@ -548,7 +550,7 @@ class HeaderFileParser:
         """
         response = {
             "jsonrpc": "2.0",
-            "id": 42,
+            "id": self.request_id_counter,  # Use the same ID as the corresponding request
             "result": "null"
         }
         if method_info['results'] != []:
