@@ -47,16 +47,118 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-            'int32_t': '0',
-            'uint32_t': '0',
-            'int64_t': '0',
-            'uint64_t': '0',
-            'int': '0',
-            'float': '0.0',
-            'double': '0.0',
-            'bool': 'true',
-            'char': 'a',
-            'string': ''
+            'int32_t': 0,
+            'uint32_t': 0,
+            'int64_t': 0,
+            'uint64_t': 0,
+            'int': 0,
+            'float': 0.0,
+            'double': 0.0,
+            'bool': True,
+            'char': '"a"',
+            'string': '""'
+    }
+
+    # Smart defaults based on very generic parameter names for better examples
+    # Only includes the most generic parameter names - fallback to type-based examples otherwise
+    PARAMETER_NAME_EXAMPLES = {
+        # Generic identifiers
+        'id': {
+            'string': '"12345"',
+            'number': 42,
+            'default': 42
+        },
+
+        # Names and labels
+        'name': {
+            'string': '"example"',
+            'default': '"example"'
+        },
+
+        # URLs and paths
+        'url': {
+            'string': '"https://example.com"',
+            'default': '"https://example.com"'
+        },
+        'path': {
+            'string': '"/path/to/file"',
+            'default': '"/path/to/file"'
+        },
+
+        # Status and state
+        'status': {
+            'boolean': True,
+            'string': '"active"',
+            'default': True
+        },
+        'state': {
+            'string': '"enabled"',
+            'boolean': True,
+            'default': '"enabled"'
+        },
+
+        # Configuration
+        'type': {
+            'string': '"standard"',
+            'default': '"standard"'
+        },
+        'mode': {
+            'string': '"auto"',
+            'default': '"auto"'
+        },
+
+        # Generic values
+        'value': {
+            'string': '"sample"',
+            'number': 100,
+            'boolean': True,
+            'default': '"sample"'
+        },
+        'key': {
+            'string': '"key"',
+            'default': '"key"'
+        },
+
+        # Boolean states
+        'enabled': {
+            'boolean': True,
+            'default': True
+        },
+        'success': {
+            'boolean': True,
+            'default': True
+        },
+        'visible': {
+            'boolean': True,
+            'default': True
+        },
+
+        # Common numeric values
+        'port': {
+            'number': 8080,
+            'string': '"8080"',
+            'default': 8080
+        },
+        'timeout': {
+            'number': 5000,
+            'string': '"5000"',
+            'default': 5000
+        },
+        'count': {
+            'number': 10,
+            'string': '"10"',
+            'default': 10
+        },
+        'size': {
+            'number': 1024,
+            'string': '"1024"',
+            'default': 1024
+        },
+        'index': {
+            'number': 0,
+            'string': '"0"',
+            'default': 0
+        }
     }
     # List of regexes to match different cpp components of the header file
     CPP_COMPONENT_REGEX = {
@@ -594,8 +696,10 @@ class HeaderFileParser:
         if example:
             return self.wrap_example_if_iterator(unique_id, example)
         if unique_id in self.symbols_registry:
+            symbol_name = unique_id.split('-')[0]
             symbol_type = self.symbols_registry[unique_id]['type']
-            return self.generate_example_from_symbol_type(symbol_type)
+            # Use smart name-based examples
+            return self.generate_smart_example_from_name_and_type(symbol_name, symbol_type)
         return None
 
     def generate_example_from_description(self, param_description):
@@ -622,6 +726,37 @@ class HeaderFileParser:
             underlying_type = self.iterators_registry[symbol_type]
             return [self.generate_example_from_symbol_type(underlying_type)]
         return ''
+
+    def get_type_category(self, symbol_type):
+        """
+        Determine the type category (string, number, boolean) for a given symbol type.
+        """
+        if symbol_type == 'string':
+            return 'string'
+        elif symbol_type in ['int32_t', 'uint32_t', 'int64_t', 'uint64_t', 'int', 'float', 'double']:
+            return 'number'
+        elif symbol_type == 'bool':
+            return 'boolean'
+        else:
+            return 'default'
+
+    def generate_smart_example_from_name_and_type(self, symbol_name, symbol_type):
+        """
+        Generate a smart example based on parameter name and type.
+        """
+        # Check if we have a name-based example
+        symbol_name_lower = symbol_name.lower()
+        for name_pattern, type_examples in self.PARAMETER_NAME_EXAMPLES.items():
+            if name_pattern in symbol_name_lower:
+                # Get the type category and find the appropriate example
+                type_category = self.get_type_category(symbol_type)
+                if type_category in type_examples:
+                    return type_examples[type_category]
+                else:
+                    return type_examples['default']
+
+        # Fall back to type-based example
+        return self.generate_example_from_symbol_type(symbol_type)
 
     def wrap_example_if_iterator(self, unique_id, example):
         """
