@@ -828,3 +828,11 @@ class HeaderFileParser:
             method['example_request'] = build_example_obj(method.get('params', []))
             # Example response: all 'results' (outputs)
             method['example_response'] = build_example_obj(method.get('results', []))
+
+    def log_unassociated_events(self):
+        """
+        Logs events that are not referenced by any method (not cross-linked via @see).
+        """
+        for event_name, event_info in self.events.items():
+            if not event_info.get('triggered_by'):
+                self.logger.log("INFO", f"Event '{event_name}' is not referenced by any method (@see).")
