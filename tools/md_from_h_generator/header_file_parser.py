@@ -750,3 +750,24 @@ class HeaderFileParser:
             # Only update description if not already set
             if not self.symbols_registry[unique_id].get('description') and description:
                 self.symbols_registry[unique_id]['description'] = description.strip()
+
+    def link_method_to_event(self):
+        """
+        Associates methods with events (notifications) based on @see tags in Doxygen comments.
+        Adds 'triggers' to methods and 'triggered_by' to events for documentation cross-referencing.
+        """
+        # Map event names to the methods that reference them
+        event_to_methods = {event: [] for event in self.events}
+        for method_name, method_info in self.methods.items():
+            # 'events' is a dict of event names from @see tags
+            referenced_events = method_info.get('events', {})
+            for event_name in referenced_events:
+                if event_name in self.events:
+                    # Add event reference to method
+                    method_info.setdefault('triggers', []).append(event_name)
+                    # Add method reference to event
+                    event_to_methods[event_name].append(method_name)
+        # Update each event with the list of methods that trigger it
+        for event_name, method_list in event_to_methods.items():
+            if method_list:
+                self.events[event_name].setdefault('triggered_by', []).extend(method_list)
