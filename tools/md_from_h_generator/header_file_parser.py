@@ -825,9 +825,13 @@ class HeaderFileParser:
 
         for method in list(self.methods.values()) + list(self.properties.values()) + list(self.events.values()):
             # Example request: all 'params' (inputs)
-            method['example_request'] = build_example_obj(method.get('params', []))
-            # Example response: all 'results' (outputs)
-            method['example_response'] = build_example_obj(method.get('results', []))
+            example_req = build_example_obj(method.get('params', []))
+            example_resp = build_example_obj(method.get('results', []))
+            method['example_request'] = example_req
+            method['example_response'] = example_resp
+            # Add legacy keys for compatibility
+            method['request'] = example_req
+            method['response'] = example_resp
 
     def log_unassociated_events(self):
         """
