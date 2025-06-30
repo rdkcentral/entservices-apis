@@ -188,5 +188,15 @@
       "default": null,
       "description": "Always null"
     }
+  },
+  "result": {
+    "type": "boolean",
+    "default": true,
+    "description": "Always true"
+  },
+  "success": {
+    "type": "boolean",
+    "default": true,
+    "description": "Indicates success"
   }
 }
