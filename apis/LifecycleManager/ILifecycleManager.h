@@ -105,7 +105,7 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @json:omit
     // @text spawnApp
     // @brief Perform launching of application with window and runtime manager
-    virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& appPath /* @in */, const string& appConfig /* @in */, const string& runtimeAppId /* @in */, const string& runtimePath /* @in */, const string& runtimeConfig /* @in */, const string& launchIntent /* @in */, const string& environmentVars /* @in */, const bool enableDebugger /* @in */, const LifecycleState targetLifecycleState /* @in */, const RuntimeConfig& runtimeConfigObject /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& launchIntent /* @in */, const LifecycleState targetLifecycleState /* @in */, const RuntimeConfig& runtimeConfigObject /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit
