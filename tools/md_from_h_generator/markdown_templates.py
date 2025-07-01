@@ -208,10 +208,15 @@ def generate_parameters_section(params, symbol_registry):
     if params:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         for param in params:
+            display_name = param.get('custom_name') if param.get('direction') in ['in', 'inout'] and param.get('custom_name') else param['name']
             flattened_params = symbol_registry[f"{param['name']}-{param['type']}"]['flattened_description']
             for param_name, param_data in flattened_params.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                markdown += f"| params{param_name} | {param_data['type']} | {cleaned_description} |\n"
+                # Only override the top-level param name
+                if param_name == f".{param['name']}":
+                    markdown += f"| {display_name} | {param_data['type']} | {cleaned_description} |\n"
+                else:
+                    markdown += f"| params{param_name} | {param_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This method takes no parameters.\n"
     return markdown
@@ -224,10 +229,15 @@ def generate_results_section(results, symbol_registry):
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         for result in results:
+            display_name = result.get('custom_name') if result.get('direction') in ['out', 'inout'] and result.get('custom_name') else result['name']
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
             for result_name, result_data in flattened_results.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
-                markdown += f"| result{result_name} | {result_data['type']} | {cleaned_description} |\n"
+                # Only override the top-level result name
+                if result_name == f".{result['name']}":
+                    markdown += f"| {display_name} | {result_data['type']} | {cleaned_description} |\n"
+                else:
+                    markdown += f"| result{result_name} | {result_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This method returns no results.\n"
     return markdown

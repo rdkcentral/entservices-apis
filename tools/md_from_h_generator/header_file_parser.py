@@ -427,7 +427,7 @@ class HeaderFileParser:
         params = []
         results = []
         # build the params and results lists using the parameter delcaration list and doxygen tags
-        for symbol_name, (symbol_type, symbol_inline_comment) in param_list_info.items():
+        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, direction) in param_list_info.items():
             # register string iterators here b/c they are seldom defined outside of a method param
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
@@ -436,7 +436,9 @@ class HeaderFileParser:
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
-                'description': symbol_description
+                'description': symbol_description,
+                'custom_name': custom_name,
+                'direction': direction
             }
             # determine whether the symbol is a result or a parameter
             if symbol_inline_comment and '@inout' in symbol_inline_comment:
@@ -462,7 +464,17 @@ class HeaderFileParser:
             match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
-                param_info[param_name] = (param_type, param_inline_comment)
+                custom_name = None
+                direction = None
+                if param_inline_comment:
+                    text_match = re.search(r'@text:([\w\-]+)', param_inline_comment)
+                    if text_match:
+                        custom_name = text_match.group(1)
+                    if '@in' in param_inline_comment:
+                        direction = 'in'
+                    elif '@out' in param_inline_comment:
+                        direction = 'out'
+                param_info[param_name] = (param_type, param_inline_comment, custom_name, direction)
             else:
                 self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
@@ -538,11 +550,15 @@ class HeaderFileParser:
         if method_info['params'] != []:
             request["params"] = {}
             for param in method_info['params']:
-                param_name = param.get('name')
+                # Use custom_name only for @in params
+                if param.get('direction') == 'in' and param.get('custom_name'):
+                    param_name = param['custom_name']
+                else:
+                    param_name = param['name']
                 param_type = param.get('type')
                 param_desc = param.get('description')
                 request["params"][param_name] = self.get_symbol_example(
-                    f"{param_name}-{param_type}", param_desc)
+                    f"{param['name']}-{param_type}", param_desc)
         return request
 
     def generate_response_object(self, method_info):
@@ -557,11 +573,15 @@ class HeaderFileParser:
         if method_info['results'] != []:
             response['result'] = {}
             for result in method_info['results']:
-                result_name = result.get('name')
+                # Use custom_name only for @out params
+                if result.get('direction') == 'out' and result.get('custom_name'):
+                    result_name = result['custom_name']
+                else:
+                    result_name = result['name']
                 result_type = result.get('type')
                 result_desc = result.get('description')
                 response['result'][result_name] = self.get_symbol_example(
-                    f"{result_name}-{result_type}", result_desc)
+                    f"{result['name']}-{result_type}", result_desc)
         return response
 
     def get_symbol_example(self, unique_id, description):
