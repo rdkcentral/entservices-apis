@@ -129,6 +129,7 @@ EXAMPLE_REQUEST_TEMPLATE = """
 
 ```json
 {request_json}
+```
 """
 
 EXAMPLE_RESPONSE_TEMPLATE = """
@@ -137,6 +138,13 @@ EXAMPLE_RESPONSE_TEMPLATE = """
 
 ```json
 {response_json}
+```
+"""
+
+EXAMPLE_NOTIFICATION_TEMPLATE = """
+```json
+{request_json}
+```
 """
 
 def generate_header_toc(classname, document_object, version="1.0.0"):
@@ -246,25 +254,21 @@ def generate_request_section(request, method_type, classname=None):
     """
     Generate the request section for a method.
     """
-    # If classname is provided and the request has a 'method' field, update it
     if classname and isinstance(request, dict) and 'method' in request:
-        # Replace the class part in the method string with the correct classname
         parts = request['method'].split('.')
         if len(parts) > 2:
             parts[2] = classname
             request['method'] = '.'.join(parts)
-    request_json = json.dumps(request, indent=4)
+    request_json = json.dumps(_convert_json_types(request), indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
-    markdown += "```"
     return markdown
 
 def generate_response_section(response, method_type, classname=None):
     """
     Generate the response section for a method.
     """
-    response_json = json.dumps(response, indent=4)
+    response_json = json.dumps(_convert_json_types(response), indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
-    markdown += "```"
     return markdown
 
 def generate_properties_toc(properties, classname):
@@ -335,5 +339,34 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
-    markdown += generate_request_section(event_info['request'], '', classname)
+    request = event_info['request']
+    if classname and isinstance(request, dict) and 'method' in request:
+        parts = request['method'].split('.')
+        if len(parts) > 2:
+            parts[2] = classname
+            request['method'] = '.'.join(parts)
+    request_json = json.dumps(_convert_json_types(request), indent=4)
+    markdown += EXAMPLE_NOTIFICATION_TEMPLATE.format(request_json=request_json)
     return markdown
+
+def _convert_json_types(obj):
+    """
+    Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
+    """
+    if isinstance(obj, dict):
+        return {k: _convert_json_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_convert_json_types(i) for i in obj]
+    elif isinstance(obj, str):
+        if obj.lower() == 'true':
+            return True
+        if obj.lower() == 'false':
+            return False
+        try:
+            if '.' in obj:
+                return float(obj)
+            return int(obj)
+        except ValueError:
+            return obj
+    else:
+        return obj
