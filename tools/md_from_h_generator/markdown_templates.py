@@ -56,7 +56,7 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *{classname}*) |
+| callsign | string | Plugin instance name (default: org.rdk.{classname}) |
 | classname | string | Class name: *{classname}* |
 | locator | string | Library name: *libWPEFramework{classname}.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
@@ -152,11 +152,17 @@ def generate_header_toc(classname, document_object, version="1.0.0"):
         toc += "- [Notifications](#head.Notifications)\n"
     return toc
 
-def generate_header_description_markdown(classname):
+def generate_header_description_markdown(classname, plugindescription=None):
     """
     Generate the header description markdown for the file.
     """
-    return HEADER_DESCRIPTION_TEMPLATE.format(classname=classname)
+    description_line = (
+        plugindescription.strip() if plugindescription else f'The `{classname}` plugin provides an interface for {classname}.'
+    )
+    return HEADER_DESCRIPTION_TEMPLATE.replace(
+        'The `{classname}` plugin provides an interface for {classname}.',
+        description_line
+    ).format(classname=classname)
 
 def generate_methods_toc(methods, classname):
     """
@@ -168,7 +174,7 @@ def generate_methods_toc(methods, classname):
         toc += f"| [{method}](#method.{method}) | {method_body['brief'] or method_body['details']} |\n"
     return toc
 
-def generate_method_markdown(method_name, method_info, symbol_registry):
+def generate_method_markdown(method_name, method_info, symbol_registry, classname):
     """
     Generate the markdown for a specific method.
     """
@@ -177,8 +183,8 @@ def generate_method_markdown(method_name, method_info, symbol_registry):
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
     markdown += "\n### Examples\n"
-    markdown += generate_request_section(method_info['request'], '')
-    markdown += generate_response_section(method_info['response'], '')
+    markdown += generate_request_section(method_info['request'], '', classname)
+    markdown += generate_response_section(method_info['response'], '', classname)
     return markdown
 
 def generate_events_section(events):
@@ -226,16 +232,23 @@ def generate_results_section(results, symbol_registry):
         markdown += "This method returns no results.\n"
     return markdown
 
-def generate_request_section(request, method_type):
+def generate_request_section(request, method_type, classname=None):
     """
     Generate the request section for a method.
     """
+    # If classname is provided and the request has a 'method' field, update it
+    if classname and isinstance(request, dict) and 'method' in request:
+        # Replace the class part in the method string with the correct classname
+        parts = request['method'].split('.')
+        if len(parts) > 2:
+            parts[2] = classname
+            request['method'] = '.'.join(parts)
     request_json = json.dumps(request, indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
     markdown += "```"
     return markdown
 
-def generate_response_section(response, method_type):
+def generate_response_section(response, method_type, classname=None):
     """
     Generate the response section for a method.
     """
@@ -259,7 +272,7 @@ def generate_properties_toc(properties, classname):
         toc += f"| [{prop}](#property.{prop}){super_script} | {property_body['brief'] or property_body['details']} |\n"
     return toc
 
-def generate_property_markdown(property_name, property_info, symbol_registry):
+def generate_property_markdown(property_name, property_info, symbol_registry, classname):
     """
     Generate the markdown for a specific property.
     """
@@ -272,11 +285,11 @@ def generate_property_markdown(property_name, property_info, symbol_registry):
     markdown += generate_values_section((property_info['results'] + property_info['params']), symbol_registry)
     markdown += "\n### Examples\n"
     if 'read' in property_info['property']:
-        markdown += generate_request_section(property_info['get_request'], 'Get ')
-        markdown += generate_response_section(property_info['get_response'], 'Get ')
+        markdown += generate_request_section(property_info['get_request'], 'Get ', classname)
+        markdown += generate_response_section(property_info['get_response'], 'Get ', classname)
     if 'write' in property_info['property']:
-        markdown += generate_request_section(property_info['set_request'], 'Set ')
-        markdown += generate_response_section(property_info['set_response'], 'Set ')
+        markdown += generate_request_section(property_info['set_request'], 'Set ', classname)
+        markdown += generate_response_section(property_info['set_response'], 'Set ', classname)
     return markdown
 
 def generate_values_section(values, symbol_registry):
@@ -305,12 +318,12 @@ def generate_notifications_toc(events, classname):
         toc += f"| [{event}](#event.{event}) | {event_body['brief'] or event_body['details']} |\n"
     return toc
 
-def generate_notification_markdown(event_name, event_info, symbol_registry):
+def generate_notification_markdown(event_name, event_info, symbol_registry, classname):
     """
     Generate the markdown for a specific event.
     """
-    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details']) 
+    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
-    markdown += generate_request_section(event_info['request'], '')
+    markdown += generate_request_section(event_info['request'], '', classname)
     return markdown

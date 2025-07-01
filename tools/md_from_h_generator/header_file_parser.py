@@ -31,6 +31,8 @@ class HeaderFileParser:
     """
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
+        ('plugindescription', 'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*@plugindescription\s+(.*?)(?=\s*\*\/|$)')),
+    ] + [
         ('text',    'doxygen', re.compile(r'(?:\/\*+|\*|//) (?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',   'doxygen', re.compile(r'(?:\/\*+|\*|//) @brief\s*(.*?)(?=\s*\*\/|$)')),
         ('details', 'doxygen', re.compile(r'(?:\/\*+|\*|//) @details\s*(.*?)(?=\s*\*\/|$)')),
@@ -38,7 +40,7 @@ class HeaderFileParser:
         ('return',  'doxygen', re.compile(r'(?:\/\*+|\*|//) @return(?:s)?\s*(.*?)(?=\s*\*\/|$)')),
         ('see',     'doxygen', re.compile(r'(?:\/\*+|\*|//) @see\s*(.*?)(?=\s*\*\/|$)')),
         ('omit',    'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*(@json:omit|@omit)')),
-        ('property','doxygen', re.compile(r'(?:\/\*+|\*|//) @property\s*(.*)')), 
+        ('property','doxygen', re.compile(r'(?:\/\*+|\*|//) @property\s*(.*)')),
         ('comment', 'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*(.*)')),
         ('enum',    'cpp_obj', re.compile(r'enum\s+([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',  'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
@@ -47,15 +49,15 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-            'int32_t': '0', 
-            'uint32_t': '0', 
-            'int64_t': '0', 
+            'int32_t': '0',
+            'uint32_t': '0',
+            'int64_t': '0',
             'uint64_t': '0',
             'int': '0',
-            'float': '0.0', 
-            'double': '0.0', 
-            'bool': 'true', 
-            'char': 'a', 
+            'float': '0.0',
+            'double': '0.0',
+            'bool': True,
+            'char': 'a',
             'string': ''
     }
     # List of regexes to match different cpp components of the header file
@@ -72,16 +74,17 @@ class HeaderFileParser:
 
     def __init__(self, header_file_path: str, logger: Logger):
         """
-        Initializes data structures to track different components of a C++ header file, then 
+        Initializes data structures to track different components of a C++ header file, then
         parses said header file to extract methods, structs, enums, and iterators.
 
-        Args: 
+        Args:
             header_file_path (str): path to the header file
             logger (Logger): list of regex matching different components of the header file
         """
         # objects to hold the different components and properties of the header file
         self.header_file_path = header_file_path
-        self.classname = os.path.splitext(os.path.basename(self.header_file_path))[0]
+        # All the header files will begin with "I", strip it to get the classname.
+        self.classname = os.path.splitext(os.path.basename(self.header_file_path))[0][1:]
         self.methods = {}
         self.properties = {}
         self.events = {}
@@ -127,7 +130,7 @@ class HeaderFileParser:
 
     def parse_header_file(self):
         """
-        Parses the header file line-by-line to track and record the file's components, such as 
+        Parses the header file line-by-line to track and record the file's components, such as
         methods, properties, events, structs, enums, and iterators. Keeps track of these components'
         associated doxygen tags.
         """
@@ -186,7 +189,7 @@ class HeaderFileParser:
                 return match.groups(), tag, l_type
         return None, None, None
 
-    def process_method(self, line, method_object, within_method_def, method_paren_count, 
+    def process_method(self, line, method_object, within_method_def, method_paren_count,
                        curr_line_num, scope):
         """
         Processes a line within a method definition.
@@ -226,7 +229,7 @@ class HeaderFileParser:
             enum_object = ''
         return enum_object, enum_braces_count, within_enum_def
 
-    def process_struct(self, line, struct_object, within_struct_def, struct_braces_count, 
+    def process_struct(self, line, struct_object, within_struct_def, struct_braces_count,
                        curr_line_num):
         """
         Processes a line within a struct definition.
@@ -248,10 +251,11 @@ class HeaderFileParser:
 
     def update_doxy_tags(self, groups, line_tag):
         """
-        Updates the doxygen tag object with the given line's information. 
+        Updates the doxygen tag object with the given line's information.
         """
-        if line_tag == 'text':
-            # self.doxy_tags = {}
+        if line_tag == 'plugindescription':
+            self.plugindescription = groups[0]
+        elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
         elif line_tag == 'params':
             self.latest_param = groups[0]
@@ -264,16 +268,17 @@ class HeaderFileParser:
                 return
             elif self.latest_tag == 'params':
                 self.doxy_tags['params'][self.latest_param] += (' ' + groups[0])
-            elif self.latest_tag:
+            elif self.latest_tag and self.latest_tag in self.doxy_tags and self.latest_tag != 'plugindescription':
                 self.doxy_tags[self.latest_tag] += (' ' + groups[0])
             line_tag = self.latest_tag
         else:
             self.doxy_tags[line_tag] = groups[0]
-        self.latest_tag = line_tag
+        if line_tag != 'plugindescription':
+            self.latest_tag = line_tag
 
     def clean_and_validate_cpp_obj_line(self, line, delimiter, line_num, data_type):
         """
-        Validates a line of a multi-line cpp object by checking that data members are defined on 
+        Validates a line of a multi-line cpp object by checking that data members are defined on
         separate lines and that comments are formed before the delimiter.
         """
         delim_index = line.find(delimiter)
@@ -288,7 +293,7 @@ class HeaderFileParser:
             self.logger.log("WARNING",
                             f"Line {line_num + 1} should have only one {data_type} per line.")
         return line
-    
+
     def remove_inline_comments(self, line):
         """
         Removes inline comments from a line.
@@ -334,7 +339,7 @@ class HeaderFileParser:
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
-                        'value': enumerator_value, 
+                        'value': enumerator_value,
                         'description': description.strip() if description else ''
                     }
         else:
@@ -356,7 +361,7 @@ class HeaderFileParser:
                     member_type, member_name, description = member_match.groups()
                     description = self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
-                        'type': member_type, 
+                        'type': member_type,
                         'description': description.strip() if description else ''
                     }
                     # register each data member in the global symbol registry
@@ -392,14 +397,14 @@ class HeaderFileParser:
 
     def build_method_info(self, method_return_type, method_parameters, doxy_tags):
         """
-        Helper to build a method info object. Also registers method parameters in the symbol 
+        Helper to build a method info object. Also registers method parameters in the symbol
         registry.
         """
         doxy_tag_param_info = doxy_tags.get('params', {})
         params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info)
         method_info = {
-            'text': doxy_tags.get('text', ''), 
-            'brief': doxy_tags.get('brief', ''), 
+            'text': doxy_tags.get('text', ''),
+            'brief': doxy_tags.get('brief', ''),
             'details': doxy_tags.get('details', ''),
             'events': doxy_tags.get('see', {}),
             'params': params,
@@ -415,7 +420,7 @@ class HeaderFileParser:
 
     def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
-        Helper to build params and results data structures, using the parameter declaration list 
+        Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
         """
         param_list_info = self.get_info_from_param_declaration(method_parameters)
@@ -464,7 +469,7 @@ class HeaderFileParser:
 
     def register_symbol(self, symbol_name, symbol_type, description):
         """
-        Registers a symbol by incrementally adding information to the symbols registry, as 
+        Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
         """
         unique_id = f"{symbol_name}-{symbol_type}"
@@ -498,7 +503,7 @@ class HeaderFileParser:
 
     def generate_request_response_objects(self):
         """
-        Generates request and response JSONs for each method and event. Directly modifies the 
+        Generates request and response JSONs for each method and event. Directly modifies the
         methods, properties, and events registries.
         """
         for method_name, method_info in self.methods.items():
@@ -561,7 +566,7 @@ class HeaderFileParser:
 
     def get_symbol_example(self, unique_id, description):
         """
-        Used in generating request/response JSONs. Pulls an example from either the @param tag 
+        Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
         example_from_description = self.generate_example_from_description(description)
@@ -621,7 +626,7 @@ class HeaderFileParser:
 
     def wrap_example_if_iterator(self, unique_id, example):
         """
-        Wrap the example in a list if the symbol is an iterator, otherwise simply return the 
+        Wrap the example in a list if the symbol is an iterator, otherwise simply return the
         example.
         """
         if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
@@ -639,7 +644,7 @@ class HeaderFileParser:
                     self.methods[method_name]['events'][event] = self.events[event].get('brief')
                     self.events[event]['associated_method'] = method_name
                 else:
-                    self.logger.log("ERROR", 
+                    self.logger.log("ERROR",
                                     f"Event {event} tagged with {method_name} does not exist.")
 
     def log_unassociated_events(self):
@@ -687,11 +692,11 @@ class HeaderFileParser:
                     result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
                     self.logger.log("INFO",
                             f"Filled missing desc for {result['name']} in property {prop_name}")
-        
+
     def log_missing_method_info(self):
         """
-        At the end of parsing, if there is still information missing for methods, events, and 
-        symbols, log it. 
+        At the end of parsing, if there is still information missing for methods, events, and
+        symbols, log it.
         """
         for method_name, method_info in self.methods.items():
             if not method_info.get('brief') and not method_info.get('details'):

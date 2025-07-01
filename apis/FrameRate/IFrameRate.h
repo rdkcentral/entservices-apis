@@ -27,6 +27,7 @@ namespace WPEFramework
     namespace Exchange
     {
         /* @json 1.0.0 @text:keep */
+		// @plugindescription This plugin allows to collect FPS related data on TV profile stack.
         struct EXTERNAL IFrameRate : virtual public Core::IUnknown
         {
             enum { ID = ID_FRAMERATE };
@@ -38,78 +39,95 @@ namespace WPEFramework
 
                 // @text onFpsEvent
                 // @brief Triggered by callback from FrameRate after onFpsEvent
-                // @param average - in - int
-                // @param min - in - int
-                // @param max - in - int
-                virtual void OnFpsEvent(const int average, const int min, const int max) {};
+                // @details Triggered at the end of each interval as defined by the setCollectionFrequency method
+				// after StartFpsCollection method and once after the stopFpsCollection method is invoked
+                // @param average: The average FPS e.g. 60
+                // @param min: The minimum FPS e.g. 30
+                // @param max: The maximum FPS e.g. 120
+                virtual void OnFpsEvent(const int average /* @in */, const int min /* @in */, const int max /* @in */) {};
 
                 // @text onDisplayFrameRateChanging
-                // @brief Triggered when the framerate changes started
-                // @param displayFrameRate - in - string
-                virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
+                // @brief Triggered when the framerate change is starting.
+                // @details This event is triggered when the display frame rate is about to change
+				// and represented as "WIDTHxHEIGHTxFPS".
+                // @param displayFrameRate: The new display frame rate e.g. "1920x1080x60"
+                virtual void OnDisplayFrameRateChanging(const string& displayFrameRate /* @in */) {};
 
                 // @text onDisplayFrameRateChanged
-                // @brief Triggered when the framerate changed.
-                // @param displayFrameRate - in - string
-                virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
+                // @brief Triggered when the framerate has changed.
+                // @details This event is triggered after the display frame rate has changed
+				// and represented as "WIDTHxHEIGHTxFPS".
+                // @param displayFrameRate: The new display frame rate e.g. "1920x1080x60"
+                virtual void OnDisplayFrameRateChanged(const string& displayFrameRate /* @in */) {};
             };
 
+			// @omit
             virtual Core::hresult Register(IFrameRate::INotification* notification) = 0;
+			// @omit
             virtual Core::hresult Unregister(IFrameRate::INotification* notification) = 0;
 
             /** Gets the Display Frame Rate*/
             // @text getDisplayFrameRate
-            // @brief Gets the current display frame rate values.
-            // @param framerate - out - string
-            // @param success - out - boolean
+            // @details Retrieves the current display frame rate as a string in the format "WIDTHxHEIGHTpxFPS"
+            // @param framerate: The current display frame rate. e.g. "3840x2160px60"
+            // @param success: Indicates if the operation was successful e.g. True
+            // @returns Core::hresult
             virtual Core::hresult GetDisplayFrameRate(string& framerate /* @out */, bool& success /* @out */) = 0;
 
             /** Gets framerate mode */
             // @text getFrmMode
-            // @brief Gets the current auto framerate mode.
-            // @param frmmode - out - int
-            // @param success - out - boolean
+            // @details Retrieves the current auto framerate mode as an integer. Expeted values are 0 or 1.
+            // @param auto-frm-mode: The current auto framerate mode. e.g. 1
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
             virtual Core::hresult GetFrmMode(int &framerateMode /* @out @text:auto-frm-mode */, bool& success /* @out */) = 0;
 
             /** Sets the FPS data collection interval */
             // @text setCollectionFrequency
-            // @brief Sets the FPS data collection interval.
-            // @param frequency - in -  int
-            // @param success - out - boolean
-            virtual Core::hresult SetCollectionFrequency(const int frequency, bool& success /* @out */) = 0;
+            // @details Sets the interval for FPS data collection in milliseconds. Default is 10000ms and min is 100ms
+            // @param frequency: The collection frequency in ms. e.g. 1000
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
+            virtual Core::hresult SetCollectionFrequency(const int frequency /* @in */, bool& success /* @out */) = 0;
 
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
-            // @brief Sets the display framerate values.
-            // @param framerate - in - string
-            // @param success - out - boolean
-            virtual Core::hresult SetDisplayFrameRate(const string& framerate, bool& success /* @out */) = 0;
+            // @details Sets the display framerate to the specified value in the format "WIDTHxHEIGHTpxFPS".
+            // @param framerate: The display framerate to set. e.g. "3840px2160px30"
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
+            virtual Core::hresult SetDisplayFrameRate(const string& framerate /* @in */, bool& success /* @out */) = 0;
 
             /** Sets the auto framerate mode */
             // @text setFrmMode
-            // @brief Set the Frm mode.
-            // @param frmmode - in - int
-            // @param success - out - boolean
+            // @details Sets the auto framerate mode to the specified value. Expected values are 0(disable) or 1(enable).
+            // @param frmmode: The framerate mode to set. e.g. 1
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
             virtual Core::hresult SetFrmMode(const int frmmode /* @in */, bool& success /* @out */) = 0;
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
-            // @brief Starts the FPS data collection. Starts the FPS data collection
-            // @param success - out - boolean
+            // @details Starts collecting FPS data at the configured interval set by the method SetCollectionFrequency.
+			// @see SetCollectionFrequency.
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
 
             /** Stops the FPS data collection */
             // @text stopFpsCollection
-            // @brief Stops the FPS data collection
-            // @param success - out - boolean
+            // @details Stops the FPS data collection.
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
             virtual Core::hresult StopFpsCollection(bool& success /* @out */) = 0;
 
             /** Update the FPS value */
             // @text updateFps
-            // @brief Update the FPS value
-            // @param newFpsValue - in - int
-            // @param success - out - boolean
-            virtual Core::hresult UpdateFps(const int newFpsValue, bool& success /* @out */) = 0;
+            // @details Updates the current FPS value to the specified value represented as integer.
+            // @param newFpsValue: The new FPS value. e.g. 60
+            // @param success: Indicates if the operation was successful. e.g. True
+            // @returns Core::hresult
+            virtual Core::hresult UpdateFps(const int newFpsValue /* @in */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
