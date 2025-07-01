@@ -48,21 +48,21 @@ def generate_md_from_header(header_file):
         file.write(generate_header_description_markdown(header_structure.classname, getattr(header_structure, 'plugindescription', '')))
         if len(header_structure.methods.values()) > 0:
             file.write(generate_methods_toc(header_structure.methods, header_structure.classname))
-            for method_name, method_info in header_structure.methods.items():
+            for idx, (method_name, method_info) in enumerate(header_structure.methods.items(), start=1):
                 file.write(generate_method_markdown(
-                    method_name, method_info, header_structure.symbols_registry, header_structure.classname))
+                    method_name, method_info, header_structure.symbols_registry, header_structure.classname, idx))
         file.write("\n")
         if len(header_structure.properties.values()) > 0:
             file.write(generate_properties_toc(header_structure.properties, header_structure.classname))
-            for prop_name, prop_info in header_structure.properties.items():
+            for idx, (prop_name, prop_info) in enumerate(header_structure.properties.items(), start=1):
                 file.write(generate_property_markdown(
                     prop_name, prop_info, header_structure.symbols_registry, header_structure.classname))
         file.write("\n")
         if len(header_structure.events.values()) > 0:
             file.write(generate_notifications_toc(header_structure.events, header_structure.classname))
-            for event_name, event_info in header_structure.events.items():
+            for idx, (event_name, event_info) in enumerate(header_structure.events.items(), start=1):
                 file.write(generate_notification_markdown(
-                    event_name, event_info, header_structure.symbols_registry, header_structure.classname))
+                    event_name, event_info, header_structure.symbols_registry, header_structure.classname, idx))
     logger.write_log()
     logger.close()
 

@@ -182,7 +182,7 @@ def generate_methods_toc(methods, classname):
         toc += f"| [{method}](#method.{method}) | {method_body['brief'] or method_body['details']} |\n"
     return toc
 
-def generate_method_markdown(method_name, method_info, symbol_registry, classname):
+def generate_method_markdown(method_name, method_info, symbol_registry, classname, example_id):
     """
     Generate the markdown for a specific method.
     """
@@ -191,8 +191,8 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
     markdown += "\n### Examples\n"
-    markdown += generate_request_section(method_info['request'], '', classname)
-    markdown += generate_response_section(method_info['response'], '', classname)
+    markdown += generate_request_section(method_info['request'], '', classname, example_id)
+    markdown += generate_response_section(method_info['response'], '', classname, example_id)
     return markdown
 
 def generate_events_section(events):
@@ -250,7 +250,7 @@ def generate_results_section(results, symbol_registry):
         markdown += "This method returns no results.\n"
     return markdown
 
-def generate_request_section(request, method_type, classname=None):
+def generate_request_section(request, method_type, classname=None, example_id=42):
     """
     Generate the request section for a method.
     """
@@ -259,14 +259,21 @@ def generate_request_section(request, method_type, classname=None):
         if len(parts) > 2:
             parts[2] = classname
             request['method'] = '.'.join(parts)
+    # Set the id
+    if isinstance(request, dict):
+        request = dict(request)  # shallow copy
+        request['id'] = example_id
     request_json = json.dumps(_convert_json_types(request), indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
     return markdown
 
-def generate_response_section(response, method_type, classname=None):
+def generate_response_section(response, method_type, classname=None, example_id=42):
     """
     Generate the response section for a method.
     """
+    if isinstance(response, dict):
+        response = dict(response)
+        response['id'] = example_id
     response_json = json.dumps(_convert_json_types(response), indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
     return markdown
@@ -332,7 +339,7 @@ def generate_notifications_toc(events, classname):
         toc += f"| [{event}](#event.{event}) | {event_body['brief'] or event_body['details']} |\n"
     return toc
 
-def generate_notification_markdown(event_name, event_info, symbol_registry, classname):
+def generate_notification_markdown(event_name, event_info, symbol_registry, classname, example_id):
     """
     Generate the markdown for a specific event.
     """
@@ -345,6 +352,9 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
         if len(parts) > 2:
             parts[2] = classname
             request['method'] = '.'.join(parts)
+    if isinstance(request, dict):
+        request = dict(request)
+        request['id'] = example_id
     request_json = json.dumps(_convert_json_types(request), indent=4)
     markdown += EXAMPLE_NOTIFICATION_TEMPLATE.format(request_json=request_json)
     return markdown
