@@ -218,6 +218,33 @@ virtual uint32_t internalMethod();
 virtual uint32_t PortName (string& name /* @out */) const = 0;
 ```
 
+### 9. `@plugindescription`
+- **Purpose**: Provides option to override the generic plugin description text
+- **Required**: No (Mandatory tag if method is a property)
+- **Usage**:
+  - Use this tag for overriding the generic plugin description.
+
+**Example**:
+```cpp
+    namespace Exchange
+    {
+        /* @json 1.0.0 @text:keep */
+        // @plugindescription This plugin provides so and so functionalities
+        struct EXTERNAL IClassName : virtual public Core::IUnknown
+        {
+```
+
+***Generated Markdown Example:***
+
+> <a id="head.Description"></a>
+> # Description
+>
+> This plugin provides so and so functionalities
+>
+> The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer > > to [[Thunder](#ref.Thunder)].
+>
+> <a id="head.Configuration"></a>
+
 ---
 
 ## 4. Additional Features and Guidelines
