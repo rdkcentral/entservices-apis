@@ -38,23 +38,20 @@ namespace WPEFramework
                 enum { ID = ID_FRAMERATE_NOTIFICATION };
 
                 // @text onFpsEvent
-                // @brief Triggered by callback from FrameRate after onFpsEvent
-                // @details Triggered at the end of each interval as defined by the setCollectionFrequency method
-				// after StartFpsCollection method and once after the stopFpsCollection method is invoked
+                // @details Triggered at the end of each interval as defined by the `setCollectionFrequency` method
+                // after `startFpsCollection` method and once after the `stopFpsCollection` method is invoked
                 // @param average: The average FPS e.g. 60
                 // @param min: The minimum FPS e.g. 30
                 // @param max: The maximum FPS e.g. 120
                 virtual void OnFpsEvent(const int average /* @in */, const int min /* @in */, const int max /* @in */) {};
 
                 // @text onDisplayFrameRateChanging
-                // @brief Triggered when the framerate change is starting.
                 // @details This event is triggered when the display frame rate is about to change
 				// and represented as "WIDTHxHEIGHTxFPS".
                 // @param displayFrameRate: The new display frame rate e.g. "1920x1080x60"
                 virtual void OnDisplayFrameRateChanging(const string& displayFrameRate /* @in */) {};
 
                 // @text onDisplayFrameRateChanged
-                // @brief Triggered when the framerate has changed.
                 // @details This event is triggered after the display frame rate has changed
 				// and represented as "WIDTHxHEIGHTxFPS".
                 // @param displayFrameRate: The new display frame rate e.g. "1920x1080x60"
@@ -108,8 +105,8 @@ namespace WPEFramework
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
-            // @details Starts collecting FPS data at the configured interval set by the method SetCollectionFrequency.
-			// @see SetCollectionFrequency.
+            // @details Starts collecting FPS data at the configured interval set by the method `SetCollectionFrequency`.
+            // @see onFpsEvent
             // @param success: Indicates if the operation was successful. e.g. True
             // @returns Core::hresult
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
@@ -124,6 +121,7 @@ namespace WPEFramework
             /** Update the FPS value */
             // @text updateFps
             // @details Updates the current FPS value to the specified value represented as integer.
+            // @see onFpsEvent
             // @param newFpsValue: The new FPS value. e.g. 60
             // @param success: Indicates if the operation was successful. e.g. True
             // @returns Core::hresult

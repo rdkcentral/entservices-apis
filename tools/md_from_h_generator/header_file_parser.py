@@ -36,7 +36,7 @@ class HeaderFileParser:
         ('text',    'doxygen', re.compile(r'(?:\/\*+|\*|//) (?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',   'doxygen', re.compile(r'(?:\/\*+|\*|//) @brief\s*(.*?)(?=\s*\*\/|$)')),
         ('details', 'doxygen', re.compile(r'(?:\/\*+|\*|//) @details\s*(.*?)(?=\s*\*\/|$)')),
-        ('params',  'doxygen', re.compile(r'(?:\/\*+|\*|//) @param(?:\[.*\])?\s+(\w+)\s*\:?\s*(.*?)(?=\s*\*\/|$)')),
+        ('params',  'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*@param(?:\[.*\])?\s+([^\s:]+)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('return',  'doxygen', re.compile(r'(?:\/\*+|\*|//) @return(?:s)?\s*(.*?)(?=\s*\*\/|$)')),
         ('see',     'doxygen', re.compile(r'(?:\/\*+|\*|//) @see\s*(.*?)(?=\s*\*\/|$)')),
         ('omit',    'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*(@json:omit|@omit)')),
@@ -252,27 +252,32 @@ class HeaderFileParser:
     def update_doxy_tags(self, groups, line_tag):
         """
         Updates the doxygen tag object with the given line's information.
+        Supports multiline for all tags by accumulating lines until a new tag is found.
         """
         if line_tag == 'plugindescription':
             self.plugindescription = groups[0]
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
+            self.latest_tag = 'text'
         elif line_tag == 'params':
             self.latest_param = groups[0]
             self.latest_tag = 'params'
             self.doxy_tags.setdefault('params', {})[self.latest_param] = groups[1]
         elif line_tag == 'see':
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
+            self.latest_tag = 'see'
         elif line_tag == 'comment':
             if groups[0] == '/':
                 return
-            elif self.latest_tag == 'params':
+            # Multiline support: append to last tag
+            if self.latest_tag == 'params':
                 self.doxy_tags['params'][self.latest_param] += (' ' + groups[0])
             elif self.latest_tag and self.latest_tag in self.doxy_tags and self.latest_tag != 'plugindescription':
                 self.doxy_tags[self.latest_tag] += (' ' + groups[0])
             line_tag = self.latest_tag
         else:
             self.doxy_tags[line_tag] = groups[0]
+            self.latest_tag = line_tag
         if line_tag != 'plugindescription':
             self.latest_tag = line_tag
 
@@ -423,30 +428,65 @@ class HeaderFileParser:
         Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
         """
+        def normalize_key(key):
+            return key.replace('_', '-').lower().strip()
+
+        # Build a normalized lookup for param descriptions
+        normalized_param_info = {normalize_key(k): v for k, v in doxy_tag_param_info.items()}
+
+        # DEBUG: Print the doxygen param info and normalized lookup
+        self.logger.log("INFO", f"doxy_tag_param_info: {doxy_tag_param_info}")
+        self.logger.log("INFO", f"normalized_param_info: {normalized_param_info}")
+
         param_list_info = self.get_info_from_param_declaration(method_parameters)
+        self.logger.log("INFO", f"param_list_info: {param_list_info}")
         params = []
         results = []
-        # build the params and results lists using the parameter delcaration list and doxygen tags
         for symbol_name, (symbol_type, symbol_inline_comment, custom_name, direction) in param_list_info.items():
-            # register string iterators here b/c they are seldom defined outside of a method param
+            self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
             symbol_description = doxy_tag_param_info.get(symbol_name, '')
+            custom_description = None
+            if symbol_inline_comment:
+                text_match = re.search(r'@text:([\w\-]+)', symbol_inline_comment)
+                if text_match:
+                    override_name = text_match.group(1)
+                    custom_name = override_name
+                    norm_override = normalize_key(override_name)
+                    self.logger.log("INFO", f"Found @text override: override_name={override_name}, norm_override={norm_override}")
+                    # Prefer description from normalized doxygen @param for override name
+                    if norm_override in normalized_param_info:
+                        custom_description = normalized_param_info[norm_override]
+                        self.logger.log("INFO", f"Found custom_description for override: {custom_description}")
+                    else:
+                        self.logger.log("INFO", f"Override param name '{override_name}' not found in @param tags for method param '{symbol_name}'.")
+                        self.logger.log("WARNING", f"Override param name '{override_name}' not found in @param tags for method param '{symbol_name}'.")
+                    # Fallback to original param name if not found
+                    if not custom_description and normalize_key(symbol_name) in normalized_param_info:
+                        custom_description = normalized_param_info[normalize_key(symbol_name)]
+                        self.logger.log("INFO", f"Fallback to original param name: {custom_description}")
+            if not custom_description and normalize_key(symbol_name) in normalized_param_info:
+                custom_description = normalized_param_info[normalize_key(symbol_name)]
+                self.logger.log("INFO", f"No override, using original param name: {custom_description}")
+            if custom_description:
+                custom_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|e\.g\.\s*[^.]+', '', custom_description).strip()
+            self.logger.log("INFO", f"Final custom_description for {custom_name or symbol_name}: {custom_description}")
             self.register_symbol(symbol_name, symbol_type, symbol_description)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
                 'description': symbol_description,
                 'custom_name': custom_name,
+                'custom_description': custom_description,
                 'direction': direction
             }
-            # determine whether the symbol is a result or a parameter
             if symbol_inline_comment and '@inout' in symbol_inline_comment:
                 params.append(symbol_info)
                 results.append(symbol_info)
             elif symbol_inline_comment and '@out' in symbol_inline_comment:
                 results.append(symbol_info)
-            else:  # Includes '@in', other, or empty
+            else:
                 params.append(symbol_info)
         return params, results
 
@@ -538,14 +578,19 @@ class HeaderFileParser:
                 prop_info['set_request'] = self.generate_request_object(prop_name, prop_info)
                 prop_info['set_response'] = self.generate_response_object(prop_info)
 
+    def to_camel_case(self, name):
+        """Convert UpperCamelCase to lowerCamelCase."""
+        return name[0].lower() + name[1:] if name and name[0].isupper() else name
+
     def generate_request_object(self, method_name, method_info):
         """
         Makes a request JSON. Creates an example dynamically.
         """
+        camel_method_name = self.to_camel_case(method_name)
         request = {
             "jsonrpc": "2.0",
             "id": 42,
-            "method": f"org.rdk.{self.classname}.{method_name}",
+            "method": f"org.rdk.{self.classname}.{camel_method_name}",
         }
         if method_info['params'] != []:
             request["params"] = {}
@@ -813,3 +858,32 @@ class HeaderFileParser:
             description = re.sub(r'^@\S+', '', description)
             description = description[:-2] if description.endswith("*/") else description
         return description
+
+    def build_canonical_dict(self, param_or_result_list):
+        """
+        Build a canonical dict for a list of params or results, applying all override names and descriptions.
+        Returns a dict: { field_name: { 'type': ..., 'description': ... } }
+        """
+        result = {}
+        for item in param_or_result_list:
+            name = item.get('custom_name') or item['name']
+            description = item.get('custom_description') or item.get('description', '')
+            result[name] = {
+                'type': item['type'],
+                'description': description
+            }
+        return result
+
+    def build_all_canonical_dicts(self):
+        """
+        For all methods, build canonical request/response dicts with overrides applied.
+        """
+        for method_name, method_info in self.methods.items():
+            method_info['canonical_params'] = self.build_canonical_dict(method_info['params'])
+            method_info['canonical_results'] = self.build_canonical_dict(method_info['results'])
+        for event_name, event_info in self.events.items():
+            event_info['canonical_params'] = self.build_canonical_dict(event_info['params'])
+            event_info['canonical_results'] = self.build_canonical_dict(event_info['results'])
+        for prop_name, prop_info in self.properties.items():
+            prop_info['canonical_params'] = self.build_canonical_dict(prop_info['params'])
+            prop_info['canonical_results'] = self.build_canonical_dict(prop_info['results'])

@@ -39,6 +39,7 @@ def generate_md_from_header(header_file):
     logger = Logger(log_file_path)
 
     header_structure = HeaderFileParser(header_file, logger)
+    header_structure.build_all_canonical_dicts()
 
     # Remove the leading 'I' from the api's class name
     output_file_path = './tools/md_from_h_generator/generated_docs/' + header_structure.classname + 'Plugin.md'
@@ -50,7 +51,7 @@ def generate_md_from_header(header_file):
             file.write(generate_methods_toc(header_structure.methods, header_structure.classname))
             for idx, (method_name, method_info) in enumerate(header_structure.methods.items(), start=1):
                 file.write(generate_method_markdown(
-                    method_name, method_info, header_structure.symbols_registry, header_structure.classname, idx))
+                    method_name, method_info, header_structure.symbols_registry, header_structure.classname, idx, header_structure.events))
         file.write("\n")
         if len(header_structure.properties.values()) > 0:
             file.write(generate_properties_toc(header_structure.properties, header_structure.classname))

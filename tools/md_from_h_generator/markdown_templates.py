@@ -111,7 +111,7 @@ The following events are provided by the {classname} plugin:
 
 {classname} interface events:
 
-| Method | Description |
+| Event | Description |
 | :-------- | :-------- |
 """
 
@@ -147,6 +147,10 @@ EXAMPLE_NOTIFICATION_TEMPLATE = """
 ```
 """
 
+def to_camel_case(name):
+    """Convert UpperCamelCase to lowerCamelCase."""
+    return name[0].lower() + name[1:] if name and name[0].isupper() else name
+
 def generate_header_toc(classname, document_object, version="1.0.0"):
     """
     Generate the header table of contents for the markdown file.
@@ -179,76 +183,20 @@ def generate_methods_toc(methods, classname):
     toc = METHODS_TOC_TEMPLATE.format(classname=classname)
     for method in methods:
         method_body = methods[method]
-        toc += f"| [{method}](#method.{method}) | {method_body['brief'] or method_body['details']} |\n"
+        camel_method = to_camel_case(method)
+        toc += f"| [{camel_method}](#method.{camel_method}) | {method_body['brief'] or method_body['details']} |\n"
     return toc
 
-def generate_method_markdown(method_name, method_info, symbol_registry, classname, example_id):
+def flatten_canonical_dict(canonical_dict, parent_prefix):
     """
-    Generate the markdown for a specific method.
+    Flatten a canonical dict for table output. Returns a list of (name, type, description) tuples.
     """
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['brief'] or method_info['details'])
-    markdown += generate_events_section(method_info['events'])
-    markdown += generate_parameters_section(method_info['params'], symbol_registry)
-    markdown += generate_results_section(method_info['results'], symbol_registry)
-    markdown += "\n### Examples\n"
-    markdown += generate_request_section(method_info['request'], '', classname, example_id)
-    markdown += generate_response_section(method_info['response'], '', classname, example_id)
-    return markdown
-
-def generate_events_section(events):
-    """
-    Generate the events section for a method.
-    """
-    markdown = "### Events\n"
-    if events:
-        markdown += """| Event | Description |\n| :-------- | :-------- |\n"""
-        for event in events:
-            markdown += f"| [{event}](#event.{event}) | {events[event]} |\n"
-    else:
-        markdown += "No events are associated with this method.\n"
-    return markdown
-
-def generate_parameters_section(params, symbol_registry):
-    """
-    Generate the parameters section for a method.
-    """
-    markdown = "### Parameters\n"
-    if params:
-        markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
-        for param in params:
-            display_name = param.get('custom_name') if param.get('direction') in ['in', 'inout'] and param.get('custom_name') else param['name']
-            flattened_params = symbol_registry[f"{param['name']}-{param['type']}"]['flattened_description']
-            for param_name, param_data in flattened_params.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                # Only override the top-level param name
-                if param_name == f".{param['name']}":
-                    markdown += f"| {display_name} | {param_data['type']} | {cleaned_description} |\n"
-                else:
-                    markdown += f"| params{param_name} | {param_data['type']} | {cleaned_description} |\n"
-    else:
-        markdown += "This method takes no parameters.\n"
-    return markdown
-
-def generate_results_section(results, symbol_registry):
-    """
-    Generate the results section for a method.
-    """
-    markdown = "### Results\n"
-    if results:
-        markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
-        for result in results:
-            display_name = result.get('custom_name') if result.get('direction') in ['out', 'inout'] and result.get('custom_name') else result['name']
-            flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
-            for result_name, result_data in flattened_results.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
-                # Only override the top-level result name
-                if result_name == f".{result['name']}":
-                    markdown += f"| {display_name} | {result_data['type']} | {cleaned_description} |\n"
-                else:
-                    markdown += f"| result{result_name} | {result_data['type']} | {cleaned_description} |\n"
-    else:
-        markdown += "This method returns no results.\n"
-    return markdown
+    rows = []
+    for name, info in canonical_dict.items():
+        # Only add if description is not empty, else fallback to type if both are empty
+        desc = info['description'] if info['description'] else ''
+        rows.append((f"{parent_prefix}.{name}", info['type'], desc))
+    return rows
 
 def generate_request_section(request, method_type, classname=None, example_id=42):
     """
@@ -276,6 +224,84 @@ def generate_response_section(response, method_type, classname=None, example_id=
         response['id'] = example_id
     response_json = json.dumps(_convert_json_types(response), indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
+    return markdown
+
+def generate_parameters_section(params, symbol_registry):
+    """
+    Generate the parameters section for a method, showing the parent object and all fields for all params, using override names and descriptions if present.
+    """
+    markdown = "### Parameters\n"
+    if params:
+        markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        markdown += f"| params | object |  |\n"
+        for param in params:
+            param_key = f"{param['name']}-{param['type']}"
+            flattened_params = symbol_registry[param_key]['flattened_description']
+            for key, value in flattened_params.items():
+                # Always use override name and description for top-level param if present
+                if key == f".{param['name']}":
+                    display_name = param.get('custom_name') if param.get('custom_name') else param['name']
+                    description = param.get('custom_description') if param.get('custom_description') else value['description']
+                    field_name = f"params.{display_name}"
+                else:
+                    field_name = 'params' + key
+                    description = value['description']
+                markdown += f"| {field_name} | {value['type']} | {re.sub(r'e\\.g\\.\\s*\\".*?(?<!\\\\)\\"|ex\\:\\s*.*?(?=\\.|$)', '', description)} |\n"
+    else:
+        markdown += "This method takes no parameters.\n"
+    return markdown
+
+def generate_parameters_section_from_canonical(canonical_params):
+    markdown = "### Parameters\n"
+    if canonical_params:
+        markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        markdown += f"| params | object |  |\n"
+        for name, type_, desc in flatten_canonical_dict(canonical_params, 'params'):
+            # If desc is empty, show a placeholder
+            markdown += f"| {name} | {type_} | {desc if desc else '-'} |\n"
+    else:
+        markdown += "This method takes no parameters.\n"
+    return markdown
+
+def generate_results_section_from_canonical(canonical_results):
+    markdown = "### Results\n"
+    if canonical_results:
+        markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        markdown += f"| result | object |  |\n"
+        for name, type_, desc in flatten_canonical_dict(canonical_results, 'result'):
+            markdown += f"| {name} | {type_} | {desc if desc else '-'} |\n"
+    else:
+        markdown += "This method returns no results.\n"
+    return markdown
+
+def generate_method_markdown(method_name, method_info, symbol_registry, classname, example_id, all_events=None):
+    """
+    Generate the markdown for a specific method.
+    """
+    camel_method = to_camel_case(method_name)
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=camel_method, method_description=method_info['brief'] or method_info['details'])
+    markdown += generate_events_section(method_info['events'], all_events)
+    # Use canonical dicts for tables
+    markdown += generate_parameters_section_from_canonical(method_info.get('canonical_params', {}))
+    markdown += generate_results_section_from_canonical(method_info.get('canonical_results', {}))
+    markdown += "\n### Examples\n"
+    markdown += generate_request_section(method_info['request'], '', classname, example_id)
+    markdown += generate_response_section(method_info['response'], '', classname, example_id)
+    return markdown
+
+def generate_events_section(events, all_events=None):
+    """
+    Generate the events section for a method.
+    all_events: dict of all event definitions (from document_object.events)
+    """
+    markdown = "### Events\n"
+    if events:
+        # Only show a list of links to events, not a table
+        for event in events:
+            camel_event = to_camel_case(event)
+            markdown += f"- [{camel_event}](#event.{camel_event})\n"
+    else:
+        markdown += "No events are associated with this method.\n"
     return markdown
 
 def generate_properties_toc(properties, classname):
@@ -333,17 +359,19 @@ def generate_notifications_toc(events, classname):
     """
     Generate the notifications table of contents for the markdown file.
     """
-    toc = EVENTS_TOC_TEMPLATE.format(classname=classname)
+    toc = EVENTS_TOC_TEMPLATE.replace('| Method |', '| Event |').format(classname=classname)
     for event in events:
         event_body = events[event]
-        toc += f"| [{event}](#event.{event}) | {event_body['brief'] or event_body['details']} |\n"
+        camel_event = to_camel_case(event)
+        toc += f"| [{camel_event}](#event.{camel_event}) | {event_body['brief'] or event_body['details']} |\n"
     return toc
 
 def generate_notification_markdown(event_name, event_info, symbol_registry, classname, example_id):
     """
     Generate the markdown for a specific event.
     """
-    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=event_name, event_description=event_info['brief'] or event_info['details'])
+    camel_event = to_camel_case(event_name)
+    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['brief'] or event_info['details'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     request = event_info['request']
