@@ -26,51 +26,199 @@
 
 namespace WPEFramework {
 	namespace Exchange {
+		/* @json 1.0.0 @text:keep */
 		struct EXTERNAL IXCast : virtual public Core::IUnknown {
 			enum { ID = ID_XCAST };
 
-			struct ApplicationInfo {
-				string appName;
-				string prefixes;
-				string cors;
-				string query;
-				string payload;
-				int  allowStop;
+			enum State : uint8_t {
+				RUNNING = 0 /* @text running */,
+				STOPPED = 1/* @text stopped */,
+				HIDDEN = 2 /* @text suspended */
+        	};
+
+			enum StandbyBehavior : uint8_t {
+				ACTIVE = 0 /* @text active */,
+				INACTIVE = 1 /* @text inactive */
+			};
+			
+			enum ErrorCode : uint16_t {
+				NONE = 200 /* @text none */ ,
+				FORBIDDEN = 403 /* @text forbidden */ ,
+				UNAVAILABLE = 404 /* @text unavailable */ ,
+				INVALID = 400 /* @text invalid */,
+				INTERNAL = 500 /* @text internal */
+			};
+
+
+			struct EXTERNAL ApplicationInfo {
+				string appName /* @text names */ /* @brief Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail */;
+				string prefixes /* @text prefixes */ /* @brief  If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail */; 
+				string cors /* @text cors */ /* @brief a set of origins allowed for the application. This must not be empty */;
+				string query /* @text query */ /* @brief query string that need to be appended in launch request */;
+				string payload /* @text payload */ /* @brief optional payload string that need to be appended in launch request */;
+				int  allowStop /* @text allowStop */ /* @brief 	is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched */;
 			};
 
 			using IApplicationInfoIterator = RPC::IIteratorType<ApplicationInfo,ID_XCAST_APPLICATION_INFO_ITERATOR>;
+			using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-			struct INotification : virtual public Core::IUnknown {
+			//@event
+			struct EXTERNAL INotification : virtual public Core::IUnknown {
 				enum { ID = ID_XCAST_NOTIFICATION };
 
-				~INotification() override = default;
-
-				virtual void onApplicationLaunchRequestWithLaunchParam(const string& appName, const string& strPayLoad, const string& strQuery, const string& strAddDataUrl) = 0;
-				virtual void onApplicationLaunchRequest(const string& appName, const string& parameter) = 0;
-				virtual void onApplicationStopRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationHideRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationStateRequest(const string& appName, const string& appID) = 0;
-				virtual void onApplicationResumeRequest(const string& appName, const string& appID) = 0;
-				virtual void onUpdatePowerStateRequest(const string& powerState) = 0;
+				// @text onApplicationLaunchRequest
+				// @brief Triggered when the cast service receives a launch request from a client with launch params
+				// @param applicationName: Registered application name
+				// @param strPayLoad: Payload string to be passed to the application
+				// @param strQuery: Query string to be appended in launch request
+				// @param strAddDataUrl: Additional data URL to be passed to the application
+				virtual void OnApplicationLaunchRequestWithLaunchParam(const string& appName /* @text applicationName */ , const string& strPayLoad /* @text strPayLoad */, const string& strQuery /* @text strQuery */, const string& strAddDataUrl /* @text strAddDataUrl */) {};
+				// @text onApplicationLaunchRequest
+				// @brief Triggered when the cast service receives a launch request from a client with launch params
+				// @param applicationName: Registered application name
+				// @param parameter: Application launch string
+				virtual void OnApplicationLaunchRequest(const string& appName /* @text applicationName */ , const string& parameter /* @text parameters */ )  {};
+				// @text onApplicationStopRequest
+				// @brief 	Triggered when the cast service receives a stop request from a client
+				// @param applicationName: 	Registered application name
+				// @param applicationId: 	Application instance ID
+				virtual void OnApplicationStopRequest(const string& appName /* @text applicationName */, const string& appID /* @text applicationId */)  {};
+				// @text onApplicationHideRequest
+				// @brief Triggered when the cast service receives a hide request from a client
+				// @param applicationName: Registered application name
+				// @param applicationId: Application instance ID
+				virtual void OnApplicationHideRequest(const string& appName /* @text applicationName */ , const string& appID /* @text applicationId */ )  {};
+				// @text onApplicationStateRequest
+				// @brief 	Triggered when the cast service needs an update of the application state
+				// @param applicationName: Registered application name
+				// @param applicationId: Application instance ID
+				virtual void OnApplicationStateRequest(const string& appName /* @text applicationName */ , const string& appID /* @text applicationId */ )  {};
+				// @text onApplicationResumeRequest
+				// @brief Triggered when the cast service receives a resume request from a client
+				// @param applicationName: Registered application name
+				// @param applicationId: Application instance ID
+				virtual void OnApplicationResumeRequest(const string& appName /* @text applicationName */ , const string& appID /* @text applicationId */)  {};
 			};
 
-			~IXCast() override = default;
+			virtual Core::hresult Register(IXCast::INotification* sink /* @in */) = 0;
+			virtual Core::hresult Unregister(IXCast::INotification* sink /* @in */) = 0;	
 
-			virtual void Register(IXCast::INotification* sink) = 0;
-			virtual void Unregister(IXCast::INotification* sink) = 0;
+			/****************************************applicationStateChanged()*****************************/
+			// @text onApplicationStateChanged
+			// @brief Triggered when the cast service receives an application state change notification from a client
+			// @param applicationName: Registered application name
+			// @param state: Application state
+			// @param applicationId: Application instance ID
+			// @param error: Error string, if any
+			virtual Core::hresult ApplicationStateChanged(const string& applicationName /* @in @text applicationName */, const State& state /* @in @text state */, const string& applicationId /* @in @text applicationId */, const ErrorCode& error /* @in @text error */) = 0;
+			/****************************************applicationStateChanged()*****************************/
 
-			virtual uint32_t Initialize(bool networkStandbyMode) = 0;
-			virtual void Deinitialize(void) = 0;
+			/****************************************getProtocolVersion()**********************************/
+			// @text getProtocolVersion
+			// @brief Returns the DIAL protocol version supported by the server
+			// @param version: 	DIAL protocol version
+			// @param success: 	Whether the request succeeded
+			virtual Core::hresult GetProtocolVersion(string &protocolVersion /* @out @text version */, bool &success /* @out */) = 0;
+			/***************************************** getProtocolVersion() **********************************/
 
-			virtual uint32_t applicationStateChanged(const string& applicationName, const string& state, const string& applicationId, const string& error) const = 0;
-			virtual uint32_t enableCastService(string friendlyname,bool enableService) const = 0;
-			virtual uint32_t getProtocolVersion(string &protocolVersion /* @out */ ) const = 0;
-			virtual uint32_t registerApplications(IApplicationInfoIterator * const appInfoList /* @in */ ) = 0;
-			virtual uint32_t setNetworkStandbyMode(bool networkStandbyMode) = 0;
-			virtual uint32_t setManufacturerName(string manufacturername) const = 0;
-			virtual uint32_t getManufacturerName(string &manufacturername /* @out */ ) const = 0;
-			virtual uint32_t setModelName(string modelname) const = 0;
-			virtual uint32_t getModelName(string &modelname /* @out */ ) const = 0;
+			/****************************************setManufacturerName()**********************************/
+			// @text setManufacturerName
+			// @brief Sets the manufacturer name of the device
+			// @param manufacturer: The Manufacturer name of the device which used to update in dd.xml
+			virtual Core::hresult SetManufacturerName(const string &manufacturername /* @in @text manufacturer */) = 0;
+			/***************************************** setManufacturerName() **********************************/
+
+			/****************************************getManufacturerName()**********************************/
+			// @text getManufacturerName
+			// @brief Returns the manufacturer name set by setManufacturerName API
+			// @param manufacturer: The Manufacturer name of the device which used to update in dd.xml
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetManufacturerName(string &manufacturername /* @out @text manufacturer */, bool &success /* @out */) = 0;
+			/***************************************** getManufacturerName() *********************************/
+
+			/****************************************setModelName()**********************************/
+			// @text setModelName
+			// @brief Sets the model name of the device
+			// @param model: The Model name of the device which used to update in dd.xml
+			virtual Core::hresult SetModelName(const string &modelname /* @in @text model */) = 0;
+			/***************************************** setModelName() **********************************/
+
+			/****************************************getModelName()**********************************/
+			// @text getModelName
+			// @brief Returns the model name set by setModelName API
+			// @param model: The Model name of the device which used to update in dd.xml
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetModelName(string &modelname /* @out @text model */, bool &success /* @out */) = 0;
+			/***************************************** getModelName() *********************************/
+
+			/****************************************setEnabled()**********************************/
+			// @text setEnabled
+			// @brief Enable or disable XCAST service
+			// @parm enabled: true for enabled or false for disabled
+			virtual Core::hresult SetEnabled(const bool& enabled /* @in @text enabled */) = 0;
+			/***************************************** setEnabled() **********************************/
+
+			/****************************************getEnabled()**********************************/
+			// @text getEnabled
+			// @brief Reports whether xcast plugin is enabled or disabled
+			// @param enabled: true for enabled or false for disabled
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetEnabled(bool &enabled /* @out @text enabled */, bool &success /* @out */) = 0;
+			/***************************************** getEnabled() **********************************/
+
+			/****************************************setStandbyBehavior()**********************************/
+			// @text setStandbyBehavior
+			// @brief Sets the expected xcast behavior in standby mode
+			// @param standbybehavior: whether to remain active or inactive during standby mode (must be one of the following: active, inactive)
+			virtual Core::hresult SetStandbyBehavior(const StandbyBehavior &standbybehavior /* @in @text standbybehavior */) = 0;
+			/***************************************** setStandbyBehavior() *********************************/
+
+			/****************************************getStandbyBehavior()**********************************/
+			// @text getStandbyBehavior
+			// @brief Return current standby behavior option string set uisng setStandbyBehavior or default value
+			// @param standbybehavior: whether to remain active or inactive during standby mode (must be one of the following: active, inactive)
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetStandbyBehavior(StandbyBehavior &standbybehavior /* @out @text standbybehavior */, bool &success /* @out */) = 0;
+			/***************************************** getStandbyBehavior() *********************************/
+
+			/****************************************setFriendlyName()**********************************/
+			// @text setFriendlyName
+			// @brief Sets the friendly name of the device
+			// @param friendlyname: The friendly name of the device which used to display on the client device list
+			virtual Core::hresult SetFriendlyName(const string &friendlyname /* @in @text friendlyname */) = 0;
+			/***************************************** setFriendlyName() **********************************/
+
+			/****************************************getFriendlyName()**********************************/
+			// @text getFriendlyName
+			// @brief Returns the friendly name set by setFriendlyName API
+			// @param friendlyname: The friendly name of the device which used to display on the client device list
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetFriendlyName(string &friendlyname /* @out @text friendlyname */, bool &success /* @out */) = 0;
+			/***************************************** getFriendlyName() *********************************/
+
+			/****************************************getApiVersionNumber()**********************************/
+			// @text getApiVersionNumber
+			// @brief Gets the API version number
+			// @param version: a version number
+			// @param success: Whether the request succeeded
+			virtual Core::hresult GetApiVersionNumber(uint32_t &version /* @out @text version */, bool &success/* @out */) = 0;
+			/****************************************getApiVersionNumber()**********************************/
+
+			/****************************************registerApplications()**********************************/
+			// @text registerApplications
+			// @brief Registers an application
+			// @param applications: Json array with one or more application details to register
+			virtual Core::hresult RegisterApplications(IApplicationInfoIterator* const appInfoList /* @text applications */ ) = 0;
+			/****************************************registerApplications()**********************************/
+
+			/****************************************unregisterApplications()**********************************/
+			// @text unregisterApplications
+			// @brief Unregisters an application
+			// @param applications: One or more application name to unregister
+			virtual Core::hresult UnregisterApplications(IStringIterator* const applications /* @in @text applications */) = 0;
+			/****************************************unregisterApplications()**********************************/
+			
+
 		};
 
 	} // Exchange
