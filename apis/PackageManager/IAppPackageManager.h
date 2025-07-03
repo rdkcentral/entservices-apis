@@ -144,7 +144,8 @@ namespace Exchange {
         // @brief RateLimit
         // @text rateLimit
         // @param downloadId: Download id
-        virtual Core::hresult RateLimit(const string &downloadId, uint64_t &limit /* @out */) = 0;
+        // @param limit: Limit
+        virtual Core::hresult RateLimit(const string &downloadId, const uint64_t &limit) = 0;
     };
 
 
