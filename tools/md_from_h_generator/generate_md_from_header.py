@@ -35,34 +35,36 @@ def generate_md_from_header(header_file):
     filename = os.path.basename(header_file)
     classname, _ = os.path.splitext(filename)
 
-    # Remove the leading 'I' from the api's class name
-    output_file_path = './tools/md_from_h_generator/generated_docs/' + classname[1:] + 'Plugin.md'
-
     log_file_path = './tools/md_from_h_generator/logs/' + classname + '.txt'
+    os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
     logger = Logger(log_file_path)
 
     header_structure = HeaderFileParser(header_file, logger)
+    header_structure.build_all_canonical_dicts()
 
+    # Remove the leading 'I' from the api's class name
+    output_file_path = './tools/md_from_h_generator/generated_docs/' + header_structure.classname + 'Plugin.md'
+    os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     with open(output_file_path, 'w', encoding='utf-8') as file:
-        file.write(generate_header_toc(classname, header_structure))
-        file.write(generate_header_description_markdown(classname))
+        file.write(generate_header_toc(header_structure.classname, header_structure))
+        file.write(generate_header_description_markdown(header_structure.classname, getattr(header_structure, 'plugindescription', '')))
         if len(header_structure.methods.values()) > 0:
-            file.write(generate_methods_toc(header_structure.methods, classname))
+            file.write(generate_methods_toc(header_structure.methods, header_structure.classname))
             for method_name, method_info in header_structure.methods.items():
                 file.write(generate_method_markdown(
-                    method_name, method_info, header_structure.symbols_registry))
+                    method_name, method_info, header_structure.symbols_registry, header_structure.classname, header_structure.events))
         file.write("\n")
         if len(header_structure.properties.values()) > 0:
-            file.write(generate_properties_toc(header_structure.properties, classname))
+            file.write(generate_properties_toc(header_structure.properties, header_structure.classname))
             for prop_name, prop_info in header_structure.properties.items():
                 file.write(generate_property_markdown(
-                    prop_name,prop_info, header_structure.symbols_registry))
+                    prop_name, prop_info, header_structure.symbols_registry, header_structure.classname))
         file.write("\n")
         if len(header_structure.events.values()) > 0:
-            file.write(generate_notifications_toc(header_structure.events, classname))
+            file.write(generate_notifications_toc(header_structure.events, header_structure.classname))
             for event_name, event_info in header_structure.events.items():
                 file.write(generate_notification_markdown(
-                    event_name, event_info, header_structure.symbols_registry))
+                    event_name, event_info, header_structure.symbols_registry, header_structure.classname))
     logger.write_log()
     logger.close()
 
