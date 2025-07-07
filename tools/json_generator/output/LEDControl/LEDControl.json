@@ -12,8 +12,11 @@
     "definitions": {
         "supportedLEDStates": {
             "summary": "Returns all the LED states available on the platform.",
-            "type":"string array",
-            "example": "[\"ACTIVE\",\"STANDBY\",\"WPS_CONNECTING\",\"WPS_CONNECTED\",\"WPS_ERROR\",\"FACTORY_RESET\",\"USB_UPGRADE\",\"DOWNLOAD_ERROR\"]"
+            "type":"array",
+            "items": {
+                "type": "string",
+                "example": "`ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR'"
+            }
         },
         "state": {
             "summary": "Indicates a platform supported LED state",
@@ -38,9 +41,6 @@
                     "supportedLEDStates",
                     "success"
                 ]
-            },
-            "result": {
-                "$ref": "#/common/result"
             }
         },
         "getLEDState": {
@@ -50,14 +50,10 @@
                 "properties": {
                     "state": {
                         "$ref": "#/definitions/state"
-                    },
-                    "success": {
-                        "$ref": "#/common/success"
                     }
                 },
                 "required": [
-                    "state",
-                    "success"
+                    "state"
                 ]
             }
         },
@@ -75,7 +71,7 @@
                 ]
             },
             "result": {
-                "$ref": "#/common/result"
+                "$ref": "#/common/success"
             }
         }
     }
