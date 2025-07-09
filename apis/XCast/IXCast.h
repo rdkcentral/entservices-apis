@@ -24,6 +24,8 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
+
+
 namespace WPEFramework {
 	namespace Exchange {
 		struct EXTERNAL IXCast : virtual public Core::IUnknown {
@@ -71,6 +73,8 @@ namespace WPEFramework {
 			virtual uint32_t getManufacturerName(string &manufacturername /* @out */ ) const = 0;
 			virtual uint32_t setModelName(string modelname) const = 0;
 			virtual uint32_t getModelName(string &modelname /* @out */ ) const = 0;
+
+
 		};
 
 	} // Exchange
