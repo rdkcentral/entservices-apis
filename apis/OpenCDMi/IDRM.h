@@ -154,14 +154,6 @@ private:
     size_t pos_;
 };
 
-namespace WPEFramework
-{
-   namespace PluginHost
-   {
-      struct IShell;
-   }
-}
-
 namespace CDMi {
 
 // EME error code to which CDMi errors are mapped. Please
