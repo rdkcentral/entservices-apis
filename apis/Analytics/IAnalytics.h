@@ -43,6 +43,7 @@ namespace Exchange {
         // @param cetList: List of CETs
         // @param epochTimestamp: Epoch timestamp of the event
         // @param uptimeTimestamp: Uptime timestamp of the event
+        // @param appId: Durable App Id string
         // @param eventPayload: Payload of the event
 
         virtual Core::hresult SendEvent(const string& eventName /* @in */,
@@ -52,6 +53,7 @@ namespace Exchange {
                                    IStringIterator* const& cetList /* @in */,
                                    const uint64_t epochTimestamp /* @in */,
                                    const uint64_t uptimeTimestamp /* @in */,
+                                   const string& appId /* @in */,
                                    const string& eventPayload /* @in */ ) = 0;
     };
 }
