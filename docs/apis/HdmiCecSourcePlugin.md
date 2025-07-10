@@ -1,168 +1,154 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="HdmiCecSourcePlugin"></a>
-# HdmiCecSourcePlugin
+<a id="head.HdmiCecSource_Plugin"></a>
+# HdmiCecSource Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/HdmiCecSource/CHANGELOG.md)**
 
-A org.rdk.HdmiCecSource plugin for Thunder framework.
+A HdmiCecSource plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `HdmiCecSource` plugin allows you to configure HDMI Consumer Electronics Control (CEC) on a set-top device. The HdmiCecSource plugin is meant to be used on the source devices where an application relies on the Thunder plugin to handle protocol related messaging. The plugin also provides API's and events to implement the CEC use cases.
+The `HdmiCecSource` plugin provides an interface for HdmiCecSource.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.HdmiCecSource*) |
-| classname | string | Class name: *org.rdk.HdmiCecSource* |
+| callsign | string | Plugin instance name (default: org.rdk.HdmiCecSource) |
+| classname | string | Class name: *HdmiCecSource* |
 | locator | string | Library name: *libWPEFrameworkHdmiCecSource.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.HdmiCecSource plugin:
+The following methods are provided by the HdmiCecSource plugin:
 
 HdmiCecSource interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getActiveSourceStatus](#getActiveSourceStatus) | Gets the active source status of the device |
-| [getDeviceList](#getDeviceList) | Gets the list of CEC enabled devices connected and system information for each device |
-| [getEnabled](#getEnabled) | Returns HDMI-CEC driver enabled status |
-| [getOSDName](#getOSDName) | Returns the OSD name set by the application |
-| [getOTPEnabled](#getOTPEnabled) | Returns HDMI-CEC OTP option enabled status |
-| [getVendorId](#getVendorId) | Returns the vendor ID set by the application |
-| [performOTPAction](#performOTPAction) | Turns on the TV and takes back the input to the device |
-| [sendKeyPressEvent](#sendKeyPressEvent) | Sends the CEC \<User Control Pressed\> and \<User Control Release\> message when TV remote key is pressed |
-| [sendStandbyMessage](#sendStandbyMessage) | Sends a CEC \<Standby\> message to the logical address of the device |
-| [setEnabled](#setEnabled) | Enables or disables HDMI-CEC driver |
-| [setOSDName](#setOSDName) | Sets the OSD name of the application |
-| [setOTPEnabled](#setOTPEnabled) | Enables or disables HDMI-CEC OTP option |
-| [setVendorId](#setVendorId) | Sets the vendor ID of the application |
+| [getActiveSourceStatus](#method.getActiveSourceStatus) | Gets the status if the device is the current active source |
+| [getDeviceList](#method.getDeviceList) | Gets the list of devices connected to the HDMI CEC source |
+| [getEnabled](#method.getEnabled) | Gets the status of the HDMI CEC source |
+| [getOSDName](#method.getOSDName) | Gets the OSD name of the HDMI CEC source |
+| [getOTPEnabled](#method.getOTPEnabled) | Gets the OTP enabled status of the HDMI CEC source |
+| [getVendorId](#method.getVendorId) | Gets the vendor ID of the HDMI CEC source |
+| [performOTPAction](#method.performOTPAction) | Performs the OTP action |
+| [sendKeyPressEvent](#method.sendKeyPressEvent) | Sends a key press event to the HDMI CEC device. |
+| [sendStandbyMessage](#method.sendStandbyMessage) | Sends a standby message to another CEC device |
+| [setEnabled](#method.setEnabled) | Sets the status of the HDMI CEC source |
+| [setOSDName](#method.setOSDName) | Sets the OSD name of the HDMI CEC source |
+| [setOTPEnabled](#method.setOTPEnabled) | Sets the OTP enabled status of the HDMI CEC source |
+| [setVendorId](#method.setVendorId) | Sets the vendor ID of the HDMI CEC source |
 
+<a id="method.getActiveSourceStatus"></a>
+## *getActiveSourceStatus [<sup>method</sup>](#head.Methods)*
 
-<a name="getActiveSourceStatus"></a>
-## *getActiveSourceStatus*
-
-Gets the active source status of the device.
+Gets the status if the device is the current active source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
+This method takes no parameters.
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | boolean | `true` if the device is active source otherwise, `false` |
+| result.status | bool | Is the active source active or not |
+| result.success | bool | Is the operation successful or not |
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.HdmiCecSource.getActiveSourceStatus",
-    "params": {
-        "status": true
-    }
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.HdmiCecSource.getActiveSourceStatus"
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
+        "status": true,
         "success": true
     }
 }
 ```
 
-<a name="getDeviceList"></a>
-## *getDeviceList*
+<a id="method.getDeviceList"></a>
+## *getDeviceList [<sup>method</sup>](#head.Methods)*
 
-Gets the list of CEC enabled devices connected and system information for each device. The information includes logicalAddress,OSD name and vendor ID.
+Gets the list of devices connected to the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.numberofdevices | integer | number of devices in the `deviceList` array |
-| result.deviceList | array | Object [] of information about each device |
-| result.deviceList[#] | object |  |
-| result.deviceList[#].logicalAddress | integer | Logical address of the device |
-| result.deviceList[#].osdName | string | OSD name of the device |
-| result.deviceList[#].vendorID | string | Vendor ID of the device |
-| result.success | boolean | Whether the request succeeded |
+| result.numberofdevices | uint32_t | Number of devices connected to the HDMI CEC source |
+| result.deviceList | IHdmiCecSourceDeviceListIterator | List of devices connected to the HDMI CEC source |
+| result.deviceList[#].logicalAddress | uint8_t | - |
+| result.deviceList[#].vendorID | string | - |
+| result.deviceList[#].osdName | string | - |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.HdmiCecSource.getDeviceList"
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
-        "numberofdevices": 1,
+        "numberofdevices": 0,
         "deviceList": [
             {
-                "logicalAddress": 0,
-                "osdName": "TV Box",
-                "vendorID": "019fb"
+                "logicalAddress": "",
+                "vendorID": "",
+                "osdName": ""
             }
         ],
         "success": true
@@ -170,669 +156,680 @@ This method takes no parameters.
 }
 ```
 
-<a name="getEnabled"></a>
-## *getEnabled*
+<a id="method.getEnabled"></a>
+## *getEnabled [<sup>method</sup>](#head.Methods)*
 
-Returns HDMI-CEC driver enabled status.
+Gets the status of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | boolean | Indicates whether HDMI-CEC is enabled (`true`) or disabled (`false`). The default value is `true` if the parameter has not been set before |
-| result.success | boolean | Whether the request succeeded |
+| result.enabled | bool | Is the HDMI CEC source enabled or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.HdmiCecSource.getEnabled"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
-        "enabled": false,
+        "enabled": true,
         "success": true
     }
 }
 ```
 
-<a name="getOSDName"></a>
-## *getOSDName*
+<a id="method.getOSDName"></a>
+## *getOSDName [<sup>method</sup>](#head.Methods)*
 
-Returns the OSD name set by the application.
+Gets the OSD name of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.name | string | The OSD name. The default value is `TV Box` if no value is set |
-| result.success | boolean | Whether the request succeeded |
+| result.name | string | OSD name of the HDMI CEC source |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.HdmiCecSource.getOSDName"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
-        "name": "My TV",
+        "name": "",
         "success": true
     }
 }
 ```
 
-<a name="getOTPEnabled"></a>
-## *getOTPEnabled*
+<a id="method.getOTPEnabled"></a>
+## *getOTPEnabled [<sup>method</sup>](#head.Methods)*
 
-Returns HDMI-CEC OTP option enabled status.
+Gets the OTP enabled status of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | boolean | Indicates whether HDMI-CEC OTP is enabled (`true`) or disabled (`false`). The default value is `true` if the parameter has not been set before |
-| result.success | boolean | Whether the request succeeded |
+| result.enabled | bool | Is the HDMI CEC source enabled or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.HdmiCecSource.getOTPEnabled"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
-        "enabled": false,
+        "enabled": true,
         "success": true
     }
 }
 ```
 
-<a name="getVendorId"></a>
-## *getVendorId*
+<a id="method.getVendorId"></a>
+## *getVendorId [<sup>method</sup>](#head.Methods)*
 
-Returns the vendor ID set by the application.
+Gets the vendor ID of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.vendorid | string | The vendor ID. The default value is `0019FB` if no value is set. If the device is connected to an LG TV, then `00E091` is used as the vendor ID |
-| result.success | boolean | Whether the request succeeded |
+| result.vendorid | string | - |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.HdmiCecSource.getVendorId"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
-        "vendorid": "0x0019FB",
+        "vendorid": "",
         "success": true
     }
 }
 ```
 
-<a name="performOTPAction"></a>
-## *performOTPAction*
+<a id="method.performOTPAction"></a>
+## *performOTPAction [<sup>method</sup>](#head.Methods)*
 
-Turns on the TV and takes back the input to the device.
+Performs the OTP action
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.HdmiCecSource.performOTPAction"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="sendKeyPressEvent"></a>
-## *sendKeyPressEvent*
+<a id="method.sendKeyPressEvent"></a>
+## *sendKeyPressEvent [<sup>method</sup>](#head.Methods)*
 
-Sends the CEC \<User Control Pressed\> and \<User Control Release\> message when TV remote key is pressed.
-  
-### Event 
-
- No Events.
+Sends a key press event to the HDMI CEC device.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.keyCode | integer | The key code for the pressed key. Possible values : `0x41` (VOLUME_UP), `0x42` (VOLUME_DOWN), `0x43` (MUTE), `0x01` (UP), `0x02` (DOWN), `0x03` (LEFT), `0x04` (RIGHT), `0x00` (SELECT), `0x09` (HOME), `0x0D` (BACK), `0x20` (NUMBER_0), `0x21` (NUMBER_1), `0x22` (NUMBER_2), `0x23` (NUMBER_3), `0x24` (NUMBER_4), `0x25` (NUMBER_5), `0x26` (NUMBER_6), `0x27` (NUMBER_7), `0x28` (NUMBER_8), `0x29` (NUMBER_9) |
-
-### Result
-
+| params.logicalAddress | uint32_t | Logical address of the device |
+| params.keyCode | uint32_t | Key code of the key press event |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "method": "org.rdk.HdmiCecSource.sendKeyPressEvent",
     "params": {
         "logicalAddress": 0,
-        "keyCode": 65
+        "keyCode": 0
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="sendStandbyMessage"></a>
-## *sendStandbyMessage*
+<a id="method.sendStandbyMessage"></a>
+## *sendStandbyMessage [<sup>method</sup>](#head.Methods)*
 
-Sends a CEC \<Standby\> message to the logical address of the device.
+Sends a standby message to another CEC device
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 8,
     "method": "org.rdk.HdmiCecSource.sendStandbyMessage"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 8,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setEnabled"></a>
-## *setEnabled*
+<a id="method.setEnabled"></a>
+## *setEnabled [<sup>method</sup>](#head.Methods)*
 
-Enables or disables HDMI-CEC driver.
+Sets the status of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | boolean | Indicates whether HDMI-CEC is enabled (`true`) or disabled (`false`). The default value is `true` if the parameter has not been set before |
-
-### Result
-
+| params.enabled | bool | Is the HDMI CEC source enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 9,
     "method": "org.rdk.HdmiCecSource.setEnabled",
     "params": {
-        "enabled": false
+        "enabled": true
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 9,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setOSDName"></a>
-## *setOSDName*
+<a id="method.setOSDName"></a>
+## *setOSDName [<sup>method</sup>](#head.Methods)*
 
-Sets the OSD name of the application.
+Sets the OSD name of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | The OSD name. The default value is `TV Box` if no value is set |
-
-### Result
-
+| params.name | string | OSD name of the HDMI CEC source |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 10,
     "method": "org.rdk.HdmiCecSource.setOSDName",
     "params": {
-        "name": "My TV"
+        "name": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 10,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setOTPEnabled"></a>
-## *setOTPEnabled*
+<a id="method.setOTPEnabled"></a>
+## *setOTPEnabled [<sup>method</sup>](#head.Methods)*
 
-Enables or disables HDMI-CEC OTP option.
+Sets the OTP enabled status of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | boolean | Indicates whether HDMI-CEC OTP is enabled (`true`) or disabled (`false`). The default value is `true` if the parameter has not been set before |
-
-### Result
-
+| params.enabled | bool | Is the HDMI CEC source enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 11,
     "method": "org.rdk.HdmiCecSource.setOTPEnabled",
     "params": {
-        "enabled": false
+        "enabled": true
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 11,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setVendorId"></a>
-## *setVendorId*
+<a id="method.setVendorId"></a>
+## *setVendorId [<sup>method</sup>](#head.Methods)*
 
-Sets the vendor ID of the application.
+Sets the vendor ID of the HDMI CEC source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.vendorid | string | The vendor ID. The default value is `0019FB` if no value is set. If the device is connected to an LG TV, then `00E091` is used as the vendor ID |
-
-### Result
-
+| params.vendorid | string | - |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSourceSuccess | Is the operation successful or not |
+| result.success.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 12,
     "method": "org.rdk.HdmiCecSource.setVendorId",
     "params": {
-        "vendorid": "0x0019FB"
+        "vendorid": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 12,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.HdmiCecSource plugin:
+The following events are provided by the HdmiCecSource plugin:
 
 HdmiCecSource interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onActiveSourceStatusUpdated](#onActiveSourceStatusUpdated) | Triggered when the device active source status changes |
-| [onDeviceAdded](#onDeviceAdded) | Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device |
-| [onDeviceInfoUpdated](#onDeviceInfoUpdated) | Triggered when device system information is updated (vendorID, osdName) |
-| [onDeviceRemoved](#onDeviceRemoved) | Triggered when HDMI cable is physically removed from the HDMI port on a TV or the power cable is removed from the source device |
-| [standbyMessageReceived](#standbyMessageReceived) | Triggered when the source device changes status to `STANDBY` |
+| [onActiveSourceStatusUpdated](#event.onActiveSourceStatusUpdated) | Notifies when the active source status is updated |
+| [onDeviceAdded](#event.onDeviceAdded) | Notifies when CEC device added to CEC network |
+| [onDeviceInfoUpdated](#event.onDeviceInfoUpdated) | Notifies when CEC device info updated |
+| [onDeviceRemoved](#event.onDeviceRemoved) | Notifies when CEC device removed from CEC network |
+| [onKeyPressEvent](#event.onKeyPressEvent) | Notifies when a key press CEC message is received from other CEC device |
+| [onKeyReleaseEvent](#event.onKeyReleaseEvent) | Notifies when a key release CEC message is received from other CEC device |
+| [standbyMessageReceived](#event.standbyMessageReceived) | Notifies when CEC standby message received from the other CEC device |
 
+<a id="event.onActiveSourceStatusUpdated"></a>
+## *onActiveSourceStatusUpdated [<sup>event</sup>](#head.Notifications)*
 
-<a name="onActiveSourceStatusUpdated"></a>
-## *onActiveSourceStatusUpdated*
-
-Triggered when the device active source status changes.
+Notifies when the active source status is updated
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | boolean | `true` if the device is active source otherwise, `false` |
+| params.status | bool | Is the active source active or not |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onActiveSourceStatusUpdated",
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.HdmiCecSource.onActiveSourceStatusUpdated",
     "params": {
         "status": true
     }
 }
 ```
 
-<a name="onDeviceAdded"></a>
-## *onDeviceAdded*
+<a id="event.onDeviceAdded"></a>
+## *onDeviceAdded [<sup>event</sup>](#head.Notifications)*
 
-Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device.  After a new device is hotplugged to the port, various information such as OSD name and vendor ID is collected. The `onDeviceAdded` event is sent as soon as any of these details are available. However, the connected device sends the information asynchronously; therefore, the information may not be collected immediately.
+Notifies when CEC device added to CEC network
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the added device |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDeviceAdded",
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.HdmiCecSource.onDeviceAdded",
     "params": {
         "logicalAddress": 0
     }
 }
 ```
 
-<a name="onDeviceInfoUpdated"></a>
-## *onDeviceInfoUpdated*
+<a id="event.onDeviceInfoUpdated"></a>
+## *onDeviceInfoUpdated [<sup>event</sup>](#head.Notifications)*
 
-Triggered when device system information is updated (vendorID, osdName).
+Notifies when CEC device info updated
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the added device |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDeviceInfoUpdated",
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.HdmiCecSource.onDeviceInfoUpdated",
     "params": {
         "logicalAddress": 0
     }
 }
 ```
 
-<a name="onDeviceRemoved"></a>
-## *onDeviceRemoved*
+<a id="event.onDeviceRemoved"></a>
+## *onDeviceRemoved [<sup>event</sup>](#head.Notifications)*
 
-Triggered when HDMI cable is physically removed from the HDMI port on a TV or the power cable is removed from the source device. The device is considered removed when no ACK messages are received after pinging the device.
+Notifies when CEC device removed from CEC network
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the added device |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDeviceRemoved",
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.HdmiCecSource.onDeviceRemoved",
     "params": {
         "logicalAddress": 0
     }
 }
 ```
 
-<a name="standbyMessageReceived"></a>
-## *standbyMessageReceived*
+<a id="event.onKeyPressEvent"></a>
+## *onKeyPressEvent [<sup>event</sup>](#head.Notifications)*
 
-Triggered when the source device changes status to `STANDBY`.
+Notifies when a key press CEC message is received from other CEC device
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the added device |
+| params.keyCode | int | Key code of the key press event |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.standbyMessageReceived",
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.HdmiCecSource.onKeyPressEvent",
+    "params": {
+        "logicalAddress": 0,
+        "keyCode": 0
+    }
+}
+```
+
+<a id="event.onKeyReleaseEvent"></a>
+## *onKeyReleaseEvent [<sup>event</sup>](#head.Notifications)*
+
+Notifies when a key release CEC message is received from other CEC device
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.logicalAddress | int | Logical address of the added device |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.HdmiCecSource.onKeyReleaseEvent",
     "params": {
         "logicalAddress": 0
     }
 }
 ```
 
+<a id="event.standbyMessageReceived"></a>
+## *standbyMessageReceived [<sup>event</sup>](#head.Notifications)*
+
+Notifies when CEC standby message received from the other CEC device
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.logicalAddress | int | Logical address of the added device |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.HdmiCecSource.standbyMessageReceived",
+    "params": {
+        "logicalAddress": 0
+    }
+}
+```

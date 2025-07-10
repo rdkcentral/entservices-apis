@@ -26,6 +26,7 @@
 namespace WPEFramework {
 namespace Exchange {
 /* @json 1.0.0 @text:keep */
+// @plugindescription The `USBMassStorage` plugin is using For mounting the file system on mass storage and enumeration of mount points.
 struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 {
     enum { ID = ID_USB_MASS_STORAGE };
@@ -47,17 +48,17 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 
     struct USBStorageDeviceInfo
     {
-        string   devicePath     /* @brief Device path in the file system (sysfs) */;
-        string   deviceName     /* @brief Device name identifying the device */;
+        string   devicePath     /* @brief Device path in the file system (sysfs) e.g. "/dev/sda" */;
+        string   deviceName     /* @brief Device name identifying the device e.g. "001/006"*/;
     };
 
     using IUSBStorageDeviceInfoIterator = RPC::IIteratorType<USBStorageDeviceInfo, ID_USB_MASS_STORAGE_DEVICE_INFO_ITERATOR>;
 
     struct USBStorageMountInfo
     {
-        string                  partitionName  /* @brief name of the partition */;
-        USBStorageMountFlags    mountFlags     /* @brief Mount flags used for mounting the device / partition */;
-        string                  mountPath      /* @brief path at which the partition is mounted on */;
+        string                  partitionName  /* @brief name of the partition e.g. "/dev/sda1" */;
+        USBStorageMountFlags    mountFlags     /* @brief Mount flags used for mounting the device / partition e.g. "READ_ONLY"*/;
+        string                  mountPath      /* @brief path at which the partition is mounted on e.g. "/tmp/media/usb2" */;
         USBStorageFileSystem    fileSystem     /* @brief file system of the partition */;
     };
 
@@ -65,14 +66,14 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 
     struct USBStoragePartitionInfo
     {
-        USBStorageFileSystem    fileSystem      /* file system of the partition */;
-        uint32_t                size            /* total size of the partition in MB */;
-        uint64_t                startSector     /* start sector of the partition */;
-        uint64_t                numSectors      /* number of sectors in the partition */;
-        uint32_t                sectorSize      /* size of the sector in the partition in bytes */;
-        uint32_t                totalSpace      /* total space of the partition in MB */;
-        uint32_t                usedSpace       /* used space in the partition in MB */;
-        uint32_t                availableSpace /* available space in the partition in MB */;
+        USBStorageFileSystem    fileSystem;      // file system of the partition e.g. "VFAT"
+        uint32_t                size            /* total size of the partition in MB e.g. "1024" */;
+        uint64_t                startSector     /* start sector of the partition e.g. "2048" */;
+        uint64_t                numSectors      /* number of sectors in the partition e.g. "4096" */;
+        uint32_t                sectorSize      /* size of the sector in the partition in bytes e.g. "512" */;
+        uint32_t                totalSpace      /* total space of the partition in MB e.g. "1024" */;
+        uint32_t                usedSpace       /* used space in the partition in MB e.g. "512" */;
+        uint32_t                availableSpace /* available space in the partition in MB e.g. "512" */;
     };
 
 

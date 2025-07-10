@@ -1,289 +1,310 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="RDKWindowManager_Plugin"></a>
+<a id="head.RDKWindowManager_Plugin"></a>
 # RDKWindowManager Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/RDKWindowManager/CHANGELOG.md)**
 
-A org.rdk.RDKWindowManager plugin for Thunder framework.
+A RDKWindowManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `RDKWindowManager`plugin controls the management of composition, layout, Z order, and key handling.
+The `RDKWindowManager` plugin provides an interface for RDKWindowManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.RDKWindowManager*) |
-| classname | string | Class name: *org.rdk.RDKWindowManager* |
+| callsign | string | Plugin instance name (default: org.rdk.RDKWindowManager) |
+| classname | string | Class name: *RDKWindowManager* |
 | locator | string | Library name: *libWPEFrameworkRDKWindowManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.RDKWindowManager plugin:
+The following methods are provided by the RDKWindowManager plugin:
 
 RDKWindowManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [addKeyIntercept](#addKeyIntercept) | Adds a key intercept to the client application specified |
-| [addKeyIntercepts](#addKeyIntercepts) | Adds the list of key intercepts |
-| [addKeyListener](#addKeyListener) | Adds a key listener to an application |
-| [createDisplay](#createDisplay) |  Creates a display for the specified client using the configuration parameters |
-| [enableInactivityReporting](#enableInactivityReporting) | Enables or disables inactivity reporting and events |
-| [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
-| [enableKeyRepeats](#enableKeyRepeats) | Enables or disables key repeats |
-| [generateKey](#generateKey) | Triggers the key events (key press and release) |
-| [getClients](#getClients) | Gets a list of clients |
-| [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Returns whether key repeating is enabled or disabled |
-| [ignoreKeyInputs](#ignoreKeyInputs) | Blocks user key inputs |
-| [injectKey](#injectKey) | Injects the keys |
-| [keyRepeatConfig](#keyRepeatConfig) | Configuration for keyrepeat |
-| [removeKeyIntercept](#removeKeyIntercept) | Removes a key intercept |
-| [removeKeyListener](#removeKeyListener) | Removes a key listener for an application |
-| [resetInactivityTime](#resetInactivityTime) | Resets the inactivity notification interval |
-| [setInactivityInterval](#setInactivityInterval) | Sets the inactivity notification interval |
+| [addKeyIntercept](#method.addKeyIntercept) | Registers a key intercept for a specific key code and client |
+| [addKeyIntercepts](#method.addKeyIntercepts) | Registers multiple key intercepts in a single operation. |
+| [addKeyListener](#method.addKeyListener) | Registers listeners for specific keys. |
+| [createDisplay](#method.createDisplay) | Create the display window |
+| [enableDisplayRender](#method.enableDisplayRender) | Enable or disable the rendering of a Wayland display |
+| [enableInactivityReporting](#method.enableInactivityReporting) | Enables the inactivity reporting |
+| [enableInputEvents](#method.enableInputEvents) | Enables KeyInputEvents for list of clients specified |
+| [enableKeyRepeats](#method.enableKeyRepeats) | Key repeats are enabled/disabled |
+| [generateKey](#method.generateKey) | Generates a key event for the specified keys and client. |
+| [getClients](#method.getClients) | get the list of Clients which are available |
+| [getKeyRepeatsEnabled](#method.getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
+| [ignoreKeyInputs](#method.ignoreKeyInputs) | Ignore key inputs |
+| [injectKey](#method.injectKey) | Simulates a key press event with optional modifiers. |
+| [keyRepeatConfig](#method.keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
+| [removeKeyIntercept](#method.removeKeyIntercept) | Removes a key intercept for a specific key code and client. |
+| [removeKeyListener](#method.removeKeyListener) | Removes listeners for specific keys. |
+| [renderReady](#method.renderReady) | To get the status of first frame is rendered or not |
+| [resetInactivityTime](#method.resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
+| [setFocus](#method.setFocus) | Sets the focus to the app with the app id |
+| [setInactivityInterval](#method.setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
+| [setVisible](#method.setVisible) | Sets the visibility of the given client or appInstanceId |
 
+<a id="method.addKeyIntercept"></a>
+## *addKeyIntercept [<sup>method</sup>](#head.Methods)*
 
-<a name="addKeyIntercept"></a>
-## *addKeyIntercept*
-
-Adds a key intercept to the client application specified. The keys are specified by a key code and a set of modifiers. Regardless of the application that has focus, key presses that match the key code and modifiers will be sent to the client application.
+Registers a key intercept for a specific key code and client
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercept | string | A JSON String containing client, callSign (optional), keyCode and modifiers (optional) |
+| params.intercept | string | JSON String format with the client/callSign, keyCode, modifiers |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.RDKWindowManager.addKeyIntercept",
     "params": {
-        "intercept": "{\"client\":\"org.rdk.Netflix\",\"keyCode\":37,\"modifiers\":[\"shift\"]}"
+        "intercept": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": null
 }
 ```
 
-<a name="addKeyIntercepts"></a>
-## *addKeyIntercepts*
+<a id="method.addKeyIntercepts"></a>
+## *addKeyIntercepts [<sup>method</sup>](#head.Methods)*
 
-Adds the list of key intercepts.
+Registers multiple key intercepts in a single operation.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercepts | string | A JSON String containing client, callSign (optional), keyCode and modifiers (optional) |
+| params.intercepts | string | JSON String format containing the array of key intercept(client/callSign, keyCode, modifiers) configuration |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.RDKWindowManager.addKeyIntercepts",
     "params": {
-        "intercepts": "{\"intercepts\":[{\"keys\":[{\"keyCode\": 37,\"modifiers\":[\"ctrl\",\"alt\"]},{\"keyCode\": 38,\"modifiers\":[\"shift\"]}],\"client\":\"org.rdk.Netflix\"}]}"
+        "intercepts": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": null
 }
 ```
 
-<a name="addKeyListener"></a>
-## *addKeyListener*
+<a id="method.addKeyListener"></a>
+## *addKeyListener [<sup>method</sup>](#head.Methods)*
 
-Adds a key listener to an application. The keys are bubbled up based on their z-order.
+Registers listeners for specific keys.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyListeners | string | A JSON String containing keys(keyCode, nativekeyCode (optional), modifiers (optional), activate, propagate), client, callSign (optional) |
+| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.RDKWindowManager.addKeyListener",
     "params": {
-        "keyListeners": "{\"keys\":[{\"keyCode\":37,\"modifiers\":[\"shift\"],\"activate\":false,\"propagate\":true}],\"client\":\"org.rdk.Netflix\"}"
+        "keyListeners": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": null
 }
 ```
 
-<a name="createDisplay"></a>
-## *createDisplay*
+<a id="method.createDisplay"></a>
+## *createDisplay [<sup>method</sup>](#head.Methods)*
 
- Creates a display for the specified client using the configuration parameters.
+Create the display window
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayParams | string | A JSON String containing client, callSign (optional), displayName, displayWidth, displayHeight, virtualDisplay, virtualWidth, virtualHeight, topmost (optional), focus (optional) |
+| params.displayParams | string | JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.RDKWindowManager.createDisplay",
     "params": {
-        "displayParams": "{\"client\":\"org.rdk.Netflix\",\"callsign\":\"org.rdk.Netflix\",\"displayName\":\"test\",\"displayWidth\":1920,\"displayHeight\":1080,\"virtualDisplay\":true,\"virtualWidth\":1920,\"virtualHeight\":1080,\"topmost\":false,\"focus\":false}"
+        "displayParams": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": null
 }
 ```
 
-<a name="enableInactivityReporting"></a>
-## *enableInactivityReporting*
+<a id="method.enableDisplayRender"></a>
+## *enableDisplayRender [<sup>method</sup>](#head.Methods)*
 
-Enables or disables inactivity reporting and events.
+Enable or disable the rendering of a Wayland display
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enable | boolean | Whether to enable (`true`) or disable (`false`) inactivity reporting |
+| params.client | string | notify first frame event received for client or application instance ID |
+| params.enable | bool | flag to true/false the feature |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.RDKWindowManager.enableDisplayRender",
+    "params": {
+        "client": "",
+        "enable": true
+    }
+}
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+
+<a id="method.enableInactivityReporting"></a>
+## *enableInactivityReporting [<sup>method</sup>](#head.Methods)*
+
+Enables the inactivity reporting
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enable | bool | flag to true/false the feature |
+### Results
+This method returns no results.
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.RDKWindowManager.enableInactivityReporting",
     "params": {
         "enable": true
@@ -291,95 +312,85 @@ No Events
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": null
 }
 ```
 
-<a name="enableInputEvents"></a>
-## *enableInputEvents*
+<a id="method.enableInputEvents"></a>
+## *enableInputEvents [<sup>method</sup>](#head.Methods)*
 
-Enables KeyInputEvents for list of clients specified.
+Enables KeyInputEvents for list of clients specified
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clients | string | A JSON String containing one or more clients |
-| params.enable | boolean | enable:Flag to enable input events |
+| params.clients | string | get the number of clients as a JSON string format |
+| params.enable | bool | flag to true/false the feature |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.RDKWindowManager.enableInputEvents",
     "params": {
-        "clients": "{\"clients\":[\"org.rdk.Netflix\"]}",
+        "clients": "",
         "enable": true
     }
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": null
 }
 ```
 
-<a name="enableKeyRepeats"></a>
-## *enableKeyRepeats*
+<a id="method.enableKeyRepeats"></a>
+## *enableKeyRepeats [<sup>method</sup>](#head.Methods)*
 
-Enables or disables key repeats.
+Key repeats are enabled/disabled
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enable | boolean | Whether to enable (`true`) or disable (`false`) key repeats |
+| params.enable | bool | flag to true/false the feature |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "method": "org.rdk.RDKWindowManager.enableKeyRepeats",
     "params": {
         "enable": true
@@ -387,513 +398,644 @@ No Events
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "result": null
 }
 ```
 
-<a name="generateKey"></a>
-## *generateKey*
+<a id="method.generateKey"></a>
+## *generateKey [<sup>method</sup>](#head.Methods)*
 
-Triggers the key events (key press and release).
+Generates a key event for the specified keys and client.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keys | string | A JSON String containing keyCode, modifiers (optional), delay |
-| params?.client | string | <sup>*(optional)*</sup> The client name |
+| params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
+| params.client | string | notify first frame event received for client or application instance ID |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 8,
     "method": "org.rdk.RDKWindowManager.generateKey",
     "params": {
-        "keys": "{\"keys\": [{\"keyCode\":37,\"modifiers\":[\"shift\"],\"delay\":1}]}",
-        "client": "org.rdk.Netflix"
+        "keys": "",
+        "client": ""
     }
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 8,
     "result": null
 }
 ```
 
-<a name="getClients"></a>
-## *getClients*
+<a id="method.getClients"></a>
+## *getClients [<sup>method</sup>](#head.Methods)*
 
-Gets a list of clients.
+get the list of Clients which are available
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | A JSON String containing one or more clients |
+| result.clients | string | get the number of clients as a JSON string format |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 9,
     "method": "org.rdk.RDKWindowManager.getClients"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "{\"clients\":[\"org.rdk.Netflix\"]}"
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": ""
 }
 ```
 
-<a name="getKeyRepeatsEnabled"></a>
-## *getKeyRepeatsEnabled*
+<a id="method.getKeyRepeatsEnabled"></a>
+## *getKeyRepeatsEnabled [<sup>method</sup>](#head.Methods)*
 
-Returns whether key repeating is enabled or disabled.
+Retrieves the flag determining whether keyRepeat true/false
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.keyRepeat | boolean | `true` if enabled, otherwise `false` |
+| result.keyRepeat | bool | flag stating whether keyRepeat true/false |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 10,
     "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "keyRepeat": true
-    }
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": true
 }
 ```
 
-<a name="ignoreKeyInputs"></a>
-## *ignoreKeyInputs*
+<a id="method.ignoreKeyInputs"></a>
+## *ignoreKeyInputs [<sup>method</sup>](#head.Methods)*
 
-Blocks user key inputs.
+Ignore key inputs
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.ignore | boolean | Whether key inputs are ignored |
+| params.ignore | bool | flag stating whether key inputs ignored |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 11,
     "method": "org.rdk.RDKWindowManager.ignoreKeyInputs",
     "params": {
-        "ignore": false
+        "ignore": true
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 11,
     "result": null
 }
 ```
 
-<a name="injectKey"></a>
-## *injectKey*
+<a id="method.injectKey"></a>
+## *injectKey [<sup>method</sup>](#head.Methods)*
 
-Injects the keys.
+Simulates a key press event with optional modifiers.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keycode | number | The key code of the key to intercept (only symbol * (string data type) is acceptable) |
-| params?.modifiers | string | <sup>*(optional)*</sup> A JSON String containing one or more modifiers (`ctrl`, `alt`, and `shift` are supported) |
+| params.keyCode | uint32_t | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
+| params.modifiers | string | - |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 12,
     "method": "org.rdk.RDKWindowManager.injectKey",
     "params": {
-        "keycode": 37,
-        "modifiers": "{\"modifiers\":[\"ctrl\",\"alt\"]}"
+        "keyCode": 0,
+        "modifiers": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 12,
     "result": null
 }
 ```
 
-<a name="keyRepeatConfig"></a>
-## *keyRepeatConfig*
+<a id="method.keyRepeatConfig"></a>
+## *keyRepeatConfig [<sup>method</sup>](#head.Methods)*
 
-Configuration for keyrepeat.
+Enables KeyInputEvents for list of clients specified
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.input | string | Input type (default/keyboard) |
-| params.keyConfig | string | A JSON String containing enabled, initialDelay (in milli seconds) and repeatInterval (in milli seconds) |
+| params.input | string | input type (default/keyboard) |
+| params.keyConfig | string | JSON String format with enabled, initialDelay and repeatInterval |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 13,
     "method": "org.rdk.RDKWindowManager.keyRepeatConfig",
     "params": {
-        "input": "default",
-        "keyConfig": "{\"enabled\":true,\"initialDelay\":500,\"repeatInterval\":100}"
+        "input": "",
+        "keyConfig": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 13,
     "result": null
 }
 ```
 
-<a name="removeKeyIntercept"></a>
-## *removeKeyIntercept*
+<a id="method.removeKeyIntercept"></a>
+## *removeKeyIntercept [<sup>method</sup>](#head.Methods)*
 
-Removes a key intercept.
+Removes a key intercept for a specific key code and client.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercept | string | A JSON String containing client, callSign (optional), keyCode and modifiers (optional) |
+| params.intercept | string | JSON String format with the client/callSign, keyCode, modifiers |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 14,
     "method": "org.rdk.RDKWindowManager.removeKeyIntercept",
     "params": {
-        "intercept": "{\"client\":\"org.rdk.Netflix\",\"keyCode\":37,\"modifiers\":[\"shift\"]}"
+        "intercept": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 14,
     "result": null
 }
 ```
 
-<a name="removeKeyListener"></a>
-## *removeKeyListener*
+<a id="method.removeKeyListener"></a>
+## *removeKeyListener [<sup>method</sup>](#head.Methods)*
 
-Removes a key listener for an application.
+Removes listeners for specific keys.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyListeners | string | A JSON String containing keys(keyCode, nativekeyCode (optional), modifiers (optional), activate, propagate), client, callSign (optional) |
+| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 15,
     "method": "org.rdk.RDKWindowManager.removeKeyListener",
     "params": {
-        "keyListeners": "{\"keys\":[{\"keyCode\":37,\"modifiers\":[\"ctrl\",\"alt\"]},{\"keyCode\":38,\"modifiers\":[\"ctrl\",\"alt\"]}],\"client\":\"org.rdk.Netflix\"}"
+        "keyListeners": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 15,
     "result": null
 }
 ```
 
-<a name="resetInactivityTime"></a>
-## *resetInactivityTime*
+<a id="method.renderReady"></a>
+## *renderReady [<sup>method</sup>](#head.Methods)*
 
-Resets the inactivity notification interval.
+To get the status of first frame is rendered or not
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
-This method takes no parameters.
-
-### Result
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | null on success |
+| params | object |  |
+| params.client | string | notify first frame event received for client or application instance ID |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.status | bool | Returns true if the application has rendered first frame, false if it has not yet. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.RDKWindowManager.renderReady",
+    "params": {
+        "client": ""
+    }
+}
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "result": true
+}
+```
+
+<a id="method.resetInactivityTime"></a>
+## *resetInactivityTime [<sup>method</sup>](#head.Methods)*
+
+Resets inactivity interval if EnableUserInactivity feature is enabled
+
+### Events
+No events are associated with this method.
+### Parameters
+This method takes no parameters.
+### Results
+This method returns no results.
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
     "method": "org.rdk.RDKWindowManager.resetInactivityTime"
 }
 ```
 
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 17,
     "result": null
 }
 ```
 
-<a name="setInactivityInterval"></a>
-## *setInactivityInterval*
+<a id="method.setFocus"></a>
+## *setFocus [<sup>method</sup>](#head.Methods)*
 
-Sets the inactivity notification interval.
+Sets the focus to the app with the app id
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onUserInactivity](#onUserInactivity) | Triggers only if the device is inactive for the specified time interval |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.interval | integer | The inactivity event interval in minutes |
+| params.client | string | notify first frame event received for client or application instance ID |
+### Results
+This method returns no results.
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | null on success |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.RDKWindowManager.setInactivityInterval",
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.RDKWindowManager.setFocus",
     "params": {
-        "interval": 15
+        "client": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 18,
     "result": null
 }
 ```
 
-<a name="Notifications"></a>
+<a id="method.setInactivityInterval"></a>
+## *setInactivityInterval [<sup>method</sup>](#head.Methods)*
+
+Sets inactivity interval if EnableUserInactivity feature is enabled
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.interval | uint32_t | time interval set for inactivity |
+### Results
+This method returns no results.
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.RDKWindowManager.setInactivityInterval",
+    "params": {
+        "interval": 0
+    }
+}
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "result": null
+}
+```
+
+<a id="method.setVisible"></a>
+## *setVisible [<sup>method</sup>](#head.Methods)*
+
+Sets the visibility of the given client or appInstanceId
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.client | std::string | the identifier of the disconnected application |
+| params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
+### Results
+This method returns no results.
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.RDKWindowManager.setVisible",
+    "params": {
+        "client": "",
+        "visible": true
+    }
+}
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "result": null
+}
+```
+
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.RDKWindowManager plugin:
+The following events are provided by the RDKWindowManager plugin:
 
 RDKWindowManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onUserInactivity](#onUserInactivity) | Triggered when a device has been inactive for a period of time |
+| [onDisconnected](#event.onDisconnected) | Notifies when an application is disconnected |
+| [onReady](#event.onReady) | Posting the client for first frame ready. |
+| [onUserInactivity](#event.onUserInactivity) | Posting the client is inactive state |
 
+<a id="event.onDisconnected"></a>
+## *onDisconnected [<sup>event</sup>](#head.Notifications)*
 
-<a name="onUserInactivity"></a>
-## *onUserInactivity*
-
-Triggered when a device has been inactive for a period of time. This event is broadcasted at the frequency specified by `setInactivityInterval` if the device is not active. The default frequency is 15 minutes.
+Notifies when an application is disconnected
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.minutes | number | The number of minutes that the device has been inactive |
+| params.client | std::string | the identifier of the disconnected application |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onUserInactivity",
+    "jsonrpc": 2.0,
+    "id": 21,
+    "method": "org.rdk.RDKWindowManager.onDisconnected",
     "params": {
-        "minutes": 5
+        "client": ""
     }
 }
 ```
 
+<a id="event.onReady"></a>
+## *onReady [<sup>event</sup>](#head.Notifications)*
+
+Posting the client for first frame ready.
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.client | string | notify first frame event received for client or application instance ID |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "method": "org.rdk.RDKWindowManager.onReady",
+    "params": {
+        "client": ""
+    }
+}
+```
+
+<a id="event.onUserInactivity"></a>
+## *onUserInactivity [<sup>event</sup>](#head.Notifications)*
+
+Posting the client is inactive state
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.minutes | double | notify how long user is inactive state |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "org.rdk.RDKWindowManager.onUserInactivity",
+    "params": {
+        "minutes": 0.0
+    }
+}
+```

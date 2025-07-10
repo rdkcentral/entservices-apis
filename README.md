@@ -59,32 +59,21 @@ TO BE UPDATED!!
 
 - By default, the APIs are defined / described using header file so COMRPC is inherently supported by default (Refer entservices-apis/apis/<service name>/<servicename>.h for example)
 
-- When the implementation of a given Ent Service is expected to support JSONRPC in addition to COMRPC, then the tool available under tools/json_generator/generate_json.py SHALL be used to generate the required JSON Schema files from the headerfile defined for COMRPC.
+- API documentation is generated directly from the API header files themselves. This ensures a single-source-of-truth, as opposed to creating a JSON for documentation. Using JSON to generate documentation has been deprecated. 
 
-- When the implementation of a given Ent Service is expected to support only JSONRPC, the APIs are described using [JSON Schema](https://json-schema.org/). In this case, the required JSON schema files SHALL be created manually as per the details provided below.
+- To generate documentation, the header files should have doxygen comments and descriptions as specified in this [README](./tools/md_from_h_generator/README.md). The README also contains information on running the tool locally. The IFrameRate.h and IUSBMassStorage.h plugin header files are examples of supported Doxygen tagging.
 
-  - JSON Schema provides a standard approach for describing APIs and ensures consistency across all APIs. There are two schemas that are used to describe a service:
+- Markdown files are generated from the header file definitions using the md_from_h_generator tool (tools/md_from_h_generator/generate_md_from_header.py).
 
-  - * [plugin.schema.json](https://github.com/rdkcentral/entservices-apis/blob/main/tools/md_generator/json2md/schemas/plugin.schema.json): A schema for defining a service.
-  - * [interface.schema.json](https://github.com/rdkcentral/entservices-apis/blob/main/tools/md_generator/json2md/schemas/interface.schema.json): A schema for defining the properties, methods, and events of a service.
-
-Markdown files are generated from the header file / JSON definitions using the md_generator tool (`tools/md_generator/generate_md.py`).
-
+- The tool
 The generator tool requires:
 
-* Python 3.5 or higher
-* The jsonref library
+* Python 3.8.10 or higher
 
 Verify your Python version:
 
 ```shell
 python --version
-```
-
-Install jsonref if it is not already installed:
-
-```shell
-pip install jsonref
 ```
 
 ### Generating Markdown for a Single Service ###
