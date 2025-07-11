@@ -128,7 +128,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @text getInstalledApps
   // @brief Function fetches the details of all applications currently installed
   // @param apps A list containing the details of installed applications.
-  virtual Core::hresult GetInstalledApps(string& apps /* @out */) = 0;
+  virtual Core::hresult GetInstalledApps(string& apps /* @out @opaque */) = 0;
 
   /** Check the specific application is installed on the system. **/
   // @text isInstalled
