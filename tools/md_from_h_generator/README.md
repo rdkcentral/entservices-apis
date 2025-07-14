@@ -42,7 +42,7 @@ virtual uint32_t initialize();
 - **Required**: Yes (Mandatory tag for all methods/properties/events)
 - **Usage**:
   - Use this tag for a short, one-line description of the method.
-  - The description following this tag will be shown on the method/property/event table of contents 
+  - The description following this tag will be shown on the method/property/event table of contents
 
 ### Example:
 
@@ -98,7 +98,7 @@ virtual uint32_t initialize();
 - **Required**: No (Optional tag)
 - **Usage**:
   - Use this tag to reference related methods, classes, or external documentation.
-  - The linked event name should appear exactly as it is declared, without parenthesis 
+  - The linked event name should appear exactly as it is declared, without parenthesis
   - This tag is optional, but should be used if a corresponding event is defined in INotifications
 
 ### Example:
@@ -137,31 +137,35 @@ virtual void onInitialize();
 - **Usage**:
   - Use this tag for each parameter of the method. Each parameter and tag must be declared on a new line.
   - The description following the tag shall be listed in the parameters/results table
-  - Parameter/symbol examples should be defined here (see [Providing Symbol Examples](#providing_examples))
+  - Optional parameters can be specified using `@param [param_name](optional)`
+  - Parameter/symbol examples should be defined here (see [Providing Symbol Examples](#providing_examples), for providing examples and descriptions for `struct` as well)
   - Specify the parameter name and its description. Format can include colon i.e. `@param [param_name]: [description]` or `@param [para_name] [description]`
-  - IMPORTANTLY, in addition to using the param tag, mark each parameter with inline 'in/out' information in the parameter list. If a parameter does not have inline in/out information, it defaults to 'in'.
+  - IMPORTANTLY, in addition to using the param tag, each parameter that is an output should be marked with an inline '@out' tag in the parameter list. The '@in' tag is optional for input parameters. If a parameter does not have inline in/out information, it defaults to 'in'.
+  - Additionally a parameter name override can be specified by combining `@in` or `@out` followed by `@text:varible-override-name` in the function declaration.
 
 ### Example:
 
 ***Header File Example:***
 ```cpp
-/** 
+/**
  ...
  * @param configPath: The config file path for initialization e.g. "../build/test.conf"
  * @param status The status of the initialization. Set to true if completed.
+ * @param configDetails(optional): Details of the configuration
  */
-virtual uint32_t initialize(const string& configPath /* @in */, bool status /* @out */);
+virtual uint32_t initialize(const string& configPath /* @in @text:config-path-override-name */, bool status /* @out @text:status-response */, string& configDetails /* @in */);
 ```
 
 ***Generated Markdown Example:***
 > ### Parameters
 > | Name | Type | Description |
 > | :-------- | :-------- | :-------- |
-> | config | string | The config file path for initialization |
+> | config-path-override-name | string | The config file path for initialization |
+> | configDetails | string | <sup>(optional)</sup> Details of the configuration |
 > ### Results
 > | Name | Type | Description |
 > | :-------- | :-------- | :-------- |
-> | status | bool | The status of the initialization. Set to true if completed. |
+> | status-response | bool | The status of the initialization. Set to true if completed. |
 
 ---
 
@@ -209,7 +213,7 @@ virtual uint32_t internalMethod();
 
 **Example**:
 ```cpp
-/* 
+/*
  * @property
  * @brief Video output port on the STB used for connection to TV
  * @param name: video output port name
@@ -217,13 +221,40 @@ virtual uint32_t internalMethod();
 virtual uint32_t PortName (string& name /* @out */) const = 0;
 ```
 
+### 9. `@plugindescription`
+- **Purpose**: Provides option to override the generic plugin description text
+- **Required**: No (Mandatory tag if method is a property)
+- **Usage**:
+  - Use this tag for overriding the generic plugin description.
+
+**Example**:
+```cpp
+    namespace Exchange
+    {
+        /* @json 1.0.0 @text:keep */
+        // @plugindescription This plugin provides so and so functionalities
+        struct EXTERNAL IClassName : virtual public Core::IUnknown
+        {
+```
+
+***Generated Markdown Example:***
+
+> <a id="head.Description"></a>
+> # Description
+>
+> This plugin provides so and so functionalities
+>
+> The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer > > to [[Thunder](#ref.Thunder)].
+>
+> <a id="head.Configuration"></a>
+
 ---
 
 ## 4. Additional Features and Guidelines
 
 <a id="providing_examples"></a>
 
-### Providing Symbol Examples 
+### Providing Symbol Examples
 In the RDK Services and Entservices APIs, plugins communicate using RPC. To facilitate this, the documentation includes relevant examples of request and response JSON structures. The md_from_h tool automates the creation of these examples by parsing enums, structs, iterators, and basic types declared in the header file, as well as extracting examples from @param Doxygen tags.
 
 The tool maintains a global symbol registry to track the names and types of parameters declared in methods, properties, events, enums, and struct members. The goal of the global symbol registry is to make it easier and more consistent to provide examples for symbols which appear multiple times in a header file (such as preferredLanguages in IUserSettings.h). Examples are generated by analyzing the @param tags, where the tool uses a regular expression to extract text following the pattern `e.g. "(.*)"` in the parameter description. The value inside the quotes is then used as the example for that symbol. The pattern `ex: (.*)` is also matched in cases where examples have double-quotes. Additionally, examples can be derived from structs if their members include descriptive comments.
@@ -254,13 +285,13 @@ The following demonstrates how examples are set for method parameters:
 >```
 
 ### Setting Examples for Struct Members
-The following demonstrates how examples are set for struct members:
+The following demonstrates how examples are set for struct members. Struct members can be commented with single-line comments (`//`) or block-comments (`/*...*/`).
 
 ***Header File Example:***
 ```cpp
-struct USBDevice { 
-    uint8_t  deviceClass    /* @brief USB class of the device as per USB specification e.g. "10" */ ;
-    uint8_t  deviceSubclass /* @brief USB sub class of the device as per USB specification e.g. "6" */;
+struct USBDevice {
+    uint8_t  deviceClass;    // @brief USB class of the device as per USB specification e.g. "10"
+    uint8_t  deviceSubclass; // @brief USB sub class of the device as per USB specification e.g. "6"
     string   deviceName     /* @brief Name of the USB device e.g. "001/003"*/;
     string   devicePath     /* @brief the path to be used for the USB device e.g."/dev/sdX" */;
 };

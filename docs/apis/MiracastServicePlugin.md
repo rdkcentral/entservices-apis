@@ -1,149 +1,143 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="MiracastService_Plugin"></a>
+<a id="head.MiracastService_Plugin"></a>
 # MiracastService Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/MiracastService/CHANGELOG.md)**
 
-A org.rdk.MiracastService plugin for Thunder framework.
+A MiracastService plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `MiracastService` plugin will manage Peer-to-Peer events from WiFi driver then It will launch Miracast player for screen mirroring.
+The `MiracastService` plugin provides an interface for MiracastService.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.MiracastService*) |
-| classname | string | Class name: *org.rdk.MiracastService* |
+| callsign | string | Plugin instance name (default: org.rdk.MiracastService) |
+| classname | string | Class name: *MiracastService* |
 | locator | string | Library name: *libWPEFrameworkMiracastService.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.MiracastService plugin:
+The following methods are provided by the MiracastService plugin:
 
 MiracastService interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [setEnable](#setEnable) | To enable /disable the Miracast feature |
-| [getEnable](#getEnable) | To get the enable status of the Miracast feature |
-| [acceptClientConnection](#acceptClientConnection) | To accept /reject new client connection requests for the Miracast feature |
-| [updatePlayerState](#updatePlayerState) | Update the Miracast Player State to the Miracast Service Plugin |
-| [stopClientConnection](#stopClientConnection) | To abort the ongoing connection after accepted connection request |
-| [setLogging](#setLogging) | Enable/Disable/Reduce the Logging level for Miracast |
+| [acceptClientConnection](#method.acceptClientConnection) | To accept or reject new client connection requests for the Miracast feature |
+| [getEnabled](#method.getEnabled) | To get the enable status of the Miracast feature |
+| [setEnabled](#method.setEnabled) | To enable or disable the Miracast feature |
+| [setP2PBackendDiscovery](#method.setP2PBackendDiscovery) | Sets the status of the MiracastService backend discovery |
+| [stopClientConnection](#method.stopClientConnection) | To abort the ongoing connection after accepted connection request |
+| [updatePlayerState](#method.updatePlayerState) | Update the Miracast Player State to the Miracast Service Plugin |
 
+<a id="method.acceptClientConnection"></a>
+## *acceptClientConnection [<sup>method</sup>](#head.Methods)*
 
-<a name="setEnable"></a>
-## *setEnable*
-
-To enable /disable the Miracast feature.
+To accept or reject new client connection requests for the Miracast feature
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | boolean | `true` for enabled or `false` for disabled |
-
-### Result
-
+| params.requestStatus | string | It should be "Accept" or "Reject" |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.result | Result | - |
+| result.result.message | string | message */ /* @brief reason for success or failure |
+| result.result.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.MiracastService.setEnable",
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.MiracastService.acceptClientConnection",
     "params": {
-        "enabled": true
+        "requestStatus": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
+        "message": "",
         "success": true
     }
 }
 ```
 
-<a name="getEnable"></a>
-## *getEnable*
+<a id="method.getEnabled"></a>
+## *getEnabled [<sup>method</sup>](#head.Methods)*
 
-To get the enable status of the Miracast feature.
+To get the enable status of the Miracast feature
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | boolean | `true` for enabled or `false` for disabled |
-| result.success | boolean | Whether the request succeeded |
+| result.enabled | bool | Is the MiracastService discovery enabled or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.MiracastService.getEnable"
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.MiracastService.getEnabled"
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
         "enabled": true,
         "success": true
@@ -151,339 +145,310 @@ This method takes no parameters.
 }
 ```
 
-<a name="acceptClientConnection"></a>
-## *acceptClientConnection*
+<a id="method.setEnabled"></a>
+## *setEnabled [<sup>method</sup>](#head.Methods)*
 
-To accept /reject new client connection requests for the Miracast feature.
+To enable or disable the Miracast feature
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.requestStatus | string | `Accept` for connect device request or `Reject` for denying connect device request |
-
-### Result
-
+| params.enabled | bool | Is the MiracastService discovery enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.result | Result | - |
+| result.result.message | string | message */ /* @brief reason for success or failure |
+| result.result.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.MiracastService.acceptClientConnection",
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.MiracastService.setEnabled",
     "params": {
-        "requestStatus": "Accept or Reject"
+        "enabled": true
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
+        "message": "",
         "success": true
     }
 }
 ```
 
-<a name="updatePlayerState"></a>
-## *updatePlayerState*
+<a id="method.setP2PBackendDiscovery"></a>
+## *setP2PBackendDiscovery [<sup>method</sup>](#head.Methods)*
 
-Update the Miracast Player State to the Miracast Service Plugin.
+Sets the status of the MiracastService backend discovery
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mac | string | Mac id of the source device |
-| params.state | string | Current state of the Miracast player |
-| params.reason_code | number | Player Reason codes (must be one of the following: *MIRACAST_PLAYER_REASON_CODE_SUCCESS = 200*, *MIRACAST_PLAYER_REASON_CODE_APP_REQ_TO_STOP = 201*, *MIRACAST_PLAYER_REASON_CODE_SRC_DEV_REQ_TO_STOP = 202*, *MIRACAST_PLAYER_REASON_CODE_RTSP_ERROR = 203*, *MIRACAST_PLAYER_REASON_CODE_RTSP_TIMEOUT = 204*, *MIRACAST_PLAYER_REASON_CODE_RTSP_METHOD_NOT_SUPPORTED = 205*, *MIRACAST_PLAYER_REASON_CODE_GST_ERROR = 206*, *MIRACAST_PLAYER_REASON_CODE_INT_FAILURE = 207*, *MIRACAST_PLAYER_REASON_CODE_NEW_SRC_DEV_CONNECT_REQ = 208*) |
-| params.reason | string | Description of the player's reason code |
-
-### Result
-
+| params.enabled | bool | Is the MiracastService discovery enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.result | Result | - |
+| result.result.message | string | message */ /* @brief reason for success or failure |
+| result.result.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.MiracastService.updatePlayerState",
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.MiracastService.setP2PBackendDiscovery",
     "params": {
-        "mac": "ab:cd:ef:12:34:56",
-        "state": "(INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State))",
-        "reason_code": 200,
-        "reason": "read Description"
+        "enabled": true
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
+        "message": "",
         "success": true
     }
 }
 ```
 
-<a name="stopClientConnection"></a>
-## *stopClientConnection*
+<a id="method.stopClientConnection"></a>
+## *stopClientConnection [<sup>method</sup>](#head.Methods)*
 
-To abort the ongoing connection after accepted connection request.
+To abort the ongoing connection after accepted connection request
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mac | string | Mac id of the source device |
-| params.name | string | Name of the source device |
-
-### Result
-
+| params.mac | string | MacAddress of the client device |
+| params.name | string | Name of the client device |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.result | Result | - |
+| result.result.message | string | message */ /* @brief reason for success or failure |
+| result.result.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.MiracastService.stopClientConnection",
     "params": {
-        "mac": "ab:cd:ef:12:34:56",
-        "name": "Manufacturer WiFi-Direct Name"
+        "clientMac": "",
+        "clientName": ""
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
+        "message": "",
         "success": true
     }
 }
 ```
 
-<a name="setLogging"></a>
-## *setLogging*
+<a id="method.updatePlayerState"></a>
+## *updatePlayerState [<sup>method</sup>](#head.Methods)*
 
-Enable/Disable/Reduce the Logging level for Miracast.
+Update the Miracast Player State to the Miracast Service Plugin
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.level | string | Set the log level for Miracast service plugin |
-| params?.separate_logger | object | <sup>*(optional)*</sup> Route the Miracast service logs to a separate file if required |
-| params?.separate_logger.logfilename | string | Name of a separate logging filename. Logfile will be created under /opt/logs/ |
-| params?.separate_logger.status | string | Enable/Disable the separate logging |
-
-### Result
-
+| params.mac | string | MacAddress of the client device |
+| params.state | PlayerState | Player state to be updated |
+| params.reason_code | int | Reason code for the player state update |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.result | Result | - |
+| result.result.message | string | message */ /* @brief reason for success or failure |
+| result.result.success | bool | - |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.MiracastService.setLogging",
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
-        "level": "FATAL|ERROR|WARNING|INFO|VERBOSE|TRACE",
-        "separate_logger": {
-            "logfilename": "sample.log",
-            "status": "ENABLE|DISABLE"
-        }
+        "clientMac": "",
+        "playerState": "PLAYER_STATE_IDLE",
+        "reasonCode": 0
     }
 }
 ```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
+        "message": "",
         "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.MiracastService plugin:
+The following events are provided by the MiracastService plugin:
 
 MiracastService interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onClientConnectionRequest](#onClientConnectionRequest) | Triggered when the Miracast Service plugin receives a new connection request from a client |
-| [onLaunchRequest](#onLaunchRequest) | Miracast Service Plugin raises this Event to request RA to launch the Miracast Player |
-| [onClientConnectionError](#onClientConnectionError) | It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming |
+| [onClientConnectionError](#event.onClientConnectionError) | It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming |
+| [onClientConnectionRequest](#event.onClientConnectionRequest) | Triggered when the Miracast Service plugin receives a new connection request from a client |
+| [onLaunchRequest](#event.onLaunchRequest) | Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player |
 
+<a id="event.onClientConnectionError"></a>
+## *onClientConnectionError [<sup>event</sup>](#head.Notifications)*
 
-<a name="onClientConnectionRequest"></a>
-## *onClientConnectionRequest*
-
-Triggered when the Miracast Service plugin receives a new connection request from a client. The application should respond with an acceptClientConnection call to accept or reject the request.
+It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mac | string | Mac id of the source device |
-| params.name | string | Name of the source device |
+| params.mac | string | MacAddress of the client device |
+| params.name | string | Name of the client device |
+| params.error_code | string | - |
+| params.reason | ReasonCode | - |
 
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onClientConnectionRequest",
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.MiracastService.onClientConnectionError",
     "params": {
-        "mac": "ab:cd:ef:12:34:56",
-        "name": "Manufacturer WiFi-Direct Name"
+        "clientMac": "",
+        "clientName": "",
+        "reasonCode": "",
+        "reasonDescription": "REASON_CODE_SUCCESS"
     }
 }
 ```
 
-<a name="onLaunchRequest"></a>
-## *onLaunchRequest*
+<a id="event.onClientConnectionRequest"></a>
+## *onClientConnectionRequest [<sup>event</sup>](#head.Notifications)*
 
-Miracast Service Plugin raises this Event to request RA to launch the Miracast Player.
+Triggered when the Miracast Service plugin receives a new connection request from a client
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.source_dev_ip | string | Source Device IP address |
-| params.source_dev_mac | string | Mac id of the source device |
-| params.source_dev_name | string | Name of the source device |
-| params.sink_dev_ip | string | IP address of the Local/Sink device |
+| params.mac | string | MacAddress of the client device |
+| params.name | string | Name of the client device |
 
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onLaunchRequest",
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.MiracastService.onClientConnectionRequest",
     "params": {
-        "source_dev_ip": "xx.xx.xx.xx",
-        "source_dev_mac": "ab:cd:ef:12:34:56",
-        "source_dev_name": "Manufacturer WiFi-Direct Name",
-        "sink_dev_ip": "xx.xx.xx.xx"
+        "clientMac": "",
+        "clientName": ""
     }
 }
 ```
 
-<a name="onClientConnectionError"></a>
-## *onClientConnectionError*
+<a id="event.onLaunchRequest"></a>
+## *onLaunchRequest [<sup>event</sup>](#head.Notifications)*
 
-It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming.
+Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Name of the source device |
-| params.mac | string | Mac id of the source device |
-| params.error_code | number | Miracast Service plugin error codes (must be one of the following: *MIRACAST_SERVICE_ERR_CODE_SUCCESS = 100*, *MIRACAST_SERVICE_ERR_CODE_P2P_CONNECT_ERROR = 102*, *MIRACAST_SERVICE_ERR_CODE_P2P_GROUP_NEGO_ERROR = 103*, *MIRACAST_SERVICE_ERR_CODE_P2P_GROUP_FORMATION_ERROR = 104*, *MIRACAST_SERVICE_ERR_CODE_GENERIC_FAILURE = 105*) |
+| params.device_parameters | DeviceParameters | - |
+| params.device_parameters.sourceDeviceIP | string | source_dev_ip */ /* @brief IP Address of Source Device |
+| params.device_parameters.sourceDeviceMac | string | source_dev_mac */ /* @brief MAC Address of Source Device |
+| params.device_parameters.sourceDeviceName | string | source_dev_name */ /* @brief Name of Source Device |
+| params.device_parameters.sinkDeviceIP | string | sink_dev_ip */ /* @brief IP Address of Sink Device |
 
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onClientConnectionError",
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.MiracastService.onLaunchRequest",
     "params": {
-        "name": "Manufacturer WiFi-Direct Name",
-        "mac": "ab:cd:ef:12:34:56",
-        "error_code": 100
+        "deviceParameters": {
+            "sourceDeviceIP": "",
+            "sourceDeviceMac": "",
+            "sourceDeviceName": "",
+            "sinkDeviceIP": ""
+        }
     }
 }
 ```
-
