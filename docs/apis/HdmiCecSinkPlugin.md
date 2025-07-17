@@ -1,110 +1,103 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="HdmiCecSinkPlugin"></a>
-# HdmiCecSinkPlugin
+<a id="head.IHdmiCecSink_Plugin"></a>
+# IHdmiCecSink Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IHdmiCecSink/CHANGELOG.md)**
 
-A org.rdk.HdmiCecSink plugin for Thunder framework.
+A IHdmiCecSink plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `HdmiCecSink` plugin allows you to manage HDMI Consumer Electronics Control (CEC) sink for connected devices.
+The `IHdmiCecSink` plugin provides an interface for IHdmiCecSink.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.HdmiCecSink*) |
-| classname | string | Class name: *org.rdk.HdmiCecSink* |
-| locator | string | Library name: *libWPEFrameworkHdmiCecSink.so* |
+| callsign | string | Plugin instance name (default: *IHdmiCecSink*) |
+| classname | string | Class name: *IHdmiCecSink* |
+| locator | string | Library name: *libWPEFrameworkIHdmiCecSink.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.HdmiCecSink plugin:
+The following methods are provided by the IHdmiCecSink plugin:
 
-HdmiCecSink interface methods:
+IHdmiCecSink interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getActiveRoute](#getActiveRoute) | Gets details for the current route from the source to sink devices |
-| [getActiveSource](#getActiveSource) | Gets details for the current active source |
-| [getAudioDeviceConnectedStatus](#getAudioDeviceConnectedStatus) | Get status of audio device connection |
-| [getDeviceList](#getDeviceList) | Gets the number of connected source devices and system information for each device |
-| [getEnabled](#getEnabled) | Returns whether HDMI-CEC is enabled on platform or not |
-| [getOSDName](#getOSDName) | Returns the OSD name used by host device |
-| [getVendorId](#getVendorId) | Gets the current vendor ID used by host device |
-| [printDeviceList](#printDeviceList) | This is a helper debug command for developers |
-| [requestActiveSource](#requestActiveSource) | Requests the active source in the network |
-| [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an event |
-| [sendAudioDevicePowerOnMessage](#sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device |
-| [sendGetAudioStatusMessage](#sendGetAudioStatusMessage) | Sends the CEC \<Give Audio Status\> message to request the audio status |
-| [sendKeyPressEvent](#sendKeyPressEvent) | Sends the CEC \<User Control Pressed\> message when TV remote key is pressed |
-| [sendUserControlPressed](#sendUserControlPressed) | Sends the CEC \<User Control Pressed\> message when TV remote key is pressed |
-| [sendUserControlReleased](#sendUserControlReleased) | Sends the CEC \<User Control released\> message when TV remote key is released |
-| [sendStandbyMessage](#sendStandbyMessage) | Sends a CEC \<Standby\> message to the logical address of the device |
-| [setActivePath](#setActivePath) | Sets the source device to active (`setStreamPath`) |
-| [setActiveSource](#setActiveSource) | Sets the current active source as TV (physical address 0 |
-| [setEnabled](#setEnabled) | Enables or disables HDMI-CEC support in the platform |
-| [setMenuLanguage](#setMenuLanguage) | Updates the internal data structure with the new menu Language and also broadcasts the \<Set Menu Language\> CEC message |
-| [setOSDName](#setOSDName) | Sets the OSD Name used by host device |
-| [setRoutingChange](#setRoutingChange) | Changes routing while switching between HDMI inputs and TV |
-| [setupARCRouting](#setupARCRouting) | Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing |
-| [setVendorId](#setVendorId) | Sets a vendor ID used by host device |
-| [setLatencyInfo](#setLatencyInfo) | Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending \<Report Current Latency\> message for Dynamic Auto LipSync Feature |
+| [GetActiveRoute](#method.GetActiveRoute) | Gets the Active Route(s) of the HDMI CEC Sink |
+| [GetActiveSource](#method.GetActiveSource) | Gets the status of the current active source |
+| [GetAudioDeviceConnectedStatus](#method.GetAudioDeviceConnectedStatus) | Gets audio device connected status |
+| [GetDeviceList](#method.GetDeviceList) | Gets the list of devices connected to the HDMI CEC sink |
+| [GetEnabled](#method.GetEnabled) | Gets the status of the HDMI CEC Sink |
+| [GetOSDName](#method.GetOSDName) | Gets the OSD name of the HDMI CEC Sink |
+| [GetVendorId](#method.GetVendorId) | Gets the vendor ID of the HDMI CEC Sink |
+| [PrintDeviceList](#method.PrintDeviceList) | This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices |
+| [RequestActiveSource](#method.RequestActiveSource) | Request the active source in the network |
+| [RequestShortAudioDescriptor](#method.RequestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an |
+| [SendAudioDevicePowerOnMessage](#method.SendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network. |
+| [SendGetAudioStatusMessage](#method.SendGetAudioStatusMessage) | Sends the CEC <Give Audio Status> message to request the audio status. |
+| [SendKeyPressEvent](#method.SendKeyPressEvent) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
+| [SendStandbyMessage](#method.SendStandbyMessage) | Sends the CEC <Standby> message to another CEC device |
+| [SendUserControlPressed](#method.SendUserControlPressed) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
+| [SendUserControlReleased](#method.SendUserControlReleased) | Sends the CEC <User Control Released> message when TV remote key is released. |
+| [SetActivePath](#method.SetActivePath) | Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state. |
+| [SetActiveSource](#method.SetActiveSource) | Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps. |
+| [SetEnabled](#method.SetEnabled) | Sets the status of the HDMI CEC Sink |
+| [SetLatencyInfo](#method.SetLatencyInfo) | Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature. |
+| [SetMenuLanguage](#method.SetMenuLanguage) | Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message. |
+| [SetOSDName](#method.SetOSDName) | Sets the OSD name of the HDMI CEC Sink |
+| [SetRoutingChange](#method.SetRoutingChange) | Changes routing while switching between HDMI inputs and TV. |
+| [SetVendorId](#method.SetVendorId) | Sets the vendor ID of the HDMI CEC Sink |
+| [SetupARCRouting](#method.SetupARCRouting) | Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent. |
 
+<a id="method.GetActiveRoute"></a>
+## *GetActiveRoute [<sup>method</sup>](#head.Methods)*
 
-<a name="getActiveRoute"></a>
-## *getActiveRoute*
-
-Gets details for the current route from the source to sink devices. This API is used for debugging the route.
+Gets the Active Route(s) of the HDMI CEC Sink
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.available | boolean | If `true`, then there is an active source available and source details are included in the result. If `false`, then there is no active source |
-| result.length | integer | The number of devices in the path list |
-| result.pathList | array | Object [] of information about each device in the active path |
-| result.pathList[#] | object |  |
-| result.pathList[#].logicalAddress | integer | Logical address of the device |
-| result.pathList[#].physicalAddress | string | Physical address of the device |
-| result.pathList[#].deviceType | string | Type of the device |
-| result.pathList[#].osdName | string | OSD name of the device if available |
-| result.pathList[#].vendorID | string | Vendor ID of the device |
-| result.ActiveRoute | string | Gives the route from source to sink with the device type and OSD name as an identifier |
-| result.success | boolean | Whether the request succeeded |
+| result.available | bool | Is the active route available or not |
+| result.length | uint8_t | Length of the active route |
+| result.pathList | IHdmiCecSinkActivePathIterator | List of active path |
+| result.pathList[#].logicalAddress | uint8_t |  |
+| result.pathList[#].physicalAddress | string |  |
+| result.pathList[#].deviceType | string |  |
+| result.pathList[#].vendorID | string |  |
+| result.pathList[#].osdName | string |  |
+| result.ActiveRoute | string | Active route of the device |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -112,7 +105,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getActiveRoute"
+    "method": "org.rdk.IHdmiCecSink.GetActiveRoute"
 }
 ```
 
@@ -123,53 +116,47 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "available": true,
-        "length": 1,
+        "available": "true",
+        "length": "",
         "pathList": [
             {
-                "logicalAddress": 4,
-                "physicalAddress": "1.0.0.0",
-                "deviceType": "Playback Device",
-                "osdName": "Fire TV Stick",
-                "vendorID": "0ce7"
+                "logicalAddress": "",
+                "physicalAddress": "",
+                "deviceType": "",
+                "vendorID": "",
+                "osdName": ""
             }
         ],
-        "ActiveRoute": "Playback Device 1(Fire TV Stick)-->HDMI0",
-        "success": true
+        "ActiveRoute": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetActiveSource"></a>
+## *GetActiveSource [<sup>method</sup>](#head.Methods)*
 
-<a name="getActiveSource"></a>
-## *getActiveSource*
-
-Gets details for the current active source.
+Gets the status of the current active source
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.available | boolean | If `true`, then there is an active source available and source details are included in the result. If `false`, then there is no active source |
-| result.logicalAddress | integer | Logical address of the device |
-| result.physicalAddress | string | Physical address of the device |
-| result.deviceType | string | Type of the device |
-| result.cecVersion | string | CEC version supported |
-| result.osdName | string | OSD name of the device if available |
-| result.vendorID | string | Vendor ID of the device |
-| result.powerStatus | string | Power status of the device |
-| result.port | string | Port of the device |
-| result.success | boolean | Whether the request succeeded |
+| result.available | bool | Is the active route available or not |
+| result.logicalAddress | uint8_t | Logical address of the active source |
+| result.physicalAddress | string | Physical address of the active source |
+| result.deviceType | string | Device type of the active source |
+| result.cecVersion | string | CEC version of the active source |
+| result.osdName | string | OSD name of the active source |
+| result.vendorID | string | Vendor ID of the active source |
+| result.powerStatus | string | Power status of the active source |
+| result.port | string |  |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -177,7 +164,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getActiveSource"
+    "method": "org.rdk.IHdmiCecSink.GetActiveSource"
 }
 ```
 
@@ -188,42 +175,36 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "available": true,
-        "logicalAddress": 4,
-        "physicalAddress": "1.0.0.0",
-        "deviceType": "Playback Device",
-        "cecVersion": "Version 1.4",
-        "osdName": "Fire TV Stick",
-        "vendorID": "0ce7",
-        "powerStatus": "Standby",
-        "port": "HDMI0",
-        "success": true
+        "available": "true",
+        "logicalAddress": "",
+        "physicalAddress": "",
+        "deviceType": "",
+        "cecVersion": "",
+        "osdName": "",
+        "vendorID": "",
+        "powerStatus": "",
+        "port": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetAudioDeviceConnectedStatus"></a>
+## *GetAudioDeviceConnectedStatus [<sup>method</sup>](#head.Methods)*
 
-<a name="getAudioDeviceConnectedStatus"></a>
-## *getAudioDeviceConnectedStatus*
-
-Get status of audio device connection.
+Gets audio device connected status
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.connected | boolean | `true` if an audio device is connected, otherwise `false` |
-| result.success | boolean | Whether the request succeeded |
+| result.connected | bool | Is the audio device connected or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -231,7 +212,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getAudioDeviceConnectedStatus"
+    "method": "org.rdk.IHdmiCecSink.GetAudioDeviceConnectedStatus"
 }
 ```
 
@@ -242,44 +223,37 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "connected": true,
-        "success": true
+        "connected": "true",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetDeviceList"></a>
+## *GetDeviceList [<sup>method</sup>](#head.Methods)*
 
-<a name="getDeviceList"></a>
-## *getDeviceList*
-
-Gets the number of connected source devices and system information for each device. The information includes device type, physical address, CEC version, vendor ID, power status and OSD name.
+Gets the list of devices connected to the HDMI CEC sink
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.numberofdevices | integer | number of devices in the `devicelist` array |
-| result.deviceList | array | Object [] of information about each device |
-| result.deviceList[#] | object |  |
-| result.deviceList[#].logicalAddress | integer | Logical address of the device |
-| result.deviceList[#].physicalAddress | string | Physical address of the device |
-| result.deviceList[#].deviceType | string | Type of the device |
-| result.deviceList[#].cecVersion | string | CEC version supported |
-| result.deviceList[#].osdName | string | OSD name of the device if available |
-| result.deviceList[#].vendorID | string | Vendor ID of the device |
-| result.deviceList[#].powerStatus | string | Power status of the device |
-| result.deviceList[#].portNumber | integer |  |
-| result.success | boolean | Whether the request succeeded |
+| result.numberofdevices | uint32_t | Number of devices connected to the HDMI CEC sink |
+| result.deviceList | IHdmiCecSinkDeviceListIterator | List of devices connected to the HDMI CEC sink |
+| result.deviceList[#].logicalAddress | uint8_t |  |
+| result.deviceList[#].physicalAddress | string |  |
+| result.deviceList[#].deviceType | string |  |
+| result.deviceList[#].cecVersion | string |  |
+| result.deviceList[#].osdName | string |  |
+| result.deviceList[#].vendorID | string |  |
+| result.deviceList[#].powerStatus | string |  |
+| result.deviceList[#].portNumber | string |  |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -287,7 +261,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getDeviceList"
+    "method": "org.rdk.IHdmiCecSink.GetDeviceList"
 }
 ```
 
@@ -298,46 +272,40 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "numberofdevices": 1,
+        "numberofdevices": "0",
         "deviceList": [
             {
-                "logicalAddress": 4,
-                "physicalAddress": "1.0.0.0",
-                "deviceType": "Playback Device",
-                "cecVersion": "Version 1.4",
-                "osdName": "Fire TV Stick",
-                "vendorID": "0ce7",
-                "powerStatus": "Standby",
-                "portNumber": 0
+                "logicalAddress": "",
+                "physicalAddress": "",
+                "deviceType": "",
+                "cecVersion": "",
+                "osdName": "",
+                "vendorID": "",
+                "powerStatus": "",
+                "portNumber": ""
             }
         ],
-        "success": true
+        "success": "true"
     }
 }
 ```
+<a id="method.GetEnabled"></a>
+## *GetEnabled [<sup>method</sup>](#head.Methods)*
 
-<a name="getEnabled"></a>
-## *getEnabled*
-
-Returns whether HDMI-CEC is enabled on platform or not.
+Gets the status of the HDMI CEC Sink
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | boolean | Indicates whether HDMI-CEC is enabled (`true`) or disabled (`false`) in the platform |
-| result.success | boolean | Whether the request succeeded |
+| result.enabled | bool | Is the HDMI CEC Sink enabled or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -345,7 +313,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getEnabled"
+    "method": "org.rdk.IHdmiCecSink.GetEnabled"
 }
 ```
 
@@ -356,34 +324,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "enabled": false,
-        "success": true
+        "enabled": "true",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetOSDName"></a>
+## *GetOSDName [<sup>method</sup>](#head.Methods)*
 
-<a name="getOSDName"></a>
-## *getOSDName*
-
-Returns the OSD name used by host device.
+Gets the OSD name of the HDMI CEC Sink
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.name | string | The OSD Name |
-| result.success | boolean | Whether the request succeeded |
+| result.name | string | OSD name of the HDMI CEC Sink |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -391,7 +353,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getOSDName"
+    "method": "org.rdk.IHdmiCecSink.GetOSDName"
 }
 ```
 
@@ -402,34 +364,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "name": "Fire TV Stick",
-        "success": true
+        "name": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetVendorId"></a>
+## *GetVendorId [<sup>method</sup>](#head.Methods)*
 
-<a name="getVendorId"></a>
-## *getVendorId*
-
-Gets the current vendor ID used by host device.
+Gets the vendor ID of the HDMI CEC Sink
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.vendorid | string | Vendor ID for this device. The ID can have a maximum of 6 characters |
-| result.success | boolean | Whether the request succeeded |
+| result.vendorid | string | Vendor ID of the HDMI CEC Sink |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -437,7 +393,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.getVendorId"
+    "method": "org.rdk.IHdmiCecSink.GetVendorId"
 }
 ```
 
@@ -448,34 +404,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "vendorid": "0019fc",
-        "success": true
+        "vendorid": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.PrintDeviceList"></a>
+## *PrintDeviceList [<sup>method</sup>](#head.Methods)*
 
-<a name="printDeviceList"></a>
-## *printDeviceList*
-
-This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices like deviceType, VendorID, CEC version, PowerStatus, OSDName, PhysicalAddress etc.
+This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.printed | boolean | Whether device list is printed |
-| result.success | boolean | Whether the request succeeded |
+| result.printed | bool | Is the device list printed or not |
+| result.success | bool | Is the operation successful or not |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -483,7 +433,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.printDeviceList"
+    "method": "org.rdk.IHdmiCecSink.PrintDeviceList"
 }
 ```
 
@@ -494,36 +444,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "printed": true,
-        "success": true
+        "printed": "true",
+        "success": "true"
     }
 }
 ```
+<a id="method.RequestActiveSource"></a>
+## *RequestActiveSource [<sup>method</sup>](#head.Methods)*
 
-<a name="requestActiveSource"></a>
-## *requestActiveSource*
-
-Requests the active source in the network.
+Request the active source in the network
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onActiveSourceChange](#onActiveSourceChange) | Triggered with the active source device changes. |
-| [onDeviceAdded](#onDeviceAdded) | Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device. |
-| [onDeviceInfoUpdated](#onDeviceInfoUpdated) | Triggered when device information changes (physicalAddress, deviceType, vendorID, osdName, cecVersion, powerStatus). |
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -531,7 +473,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.requestActiveSource"
+    "method": "org.rdk.IHdmiCecSink.RequestActiveSource"
 }
 ```
 
@@ -542,33 +484,29 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.RequestShortAudioDescriptor"></a>
+## *RequestShortAudioDescriptor [<sup>method</sup>](#head.Methods)*
 
-<a name="requestShortAudioDescriptor"></a>
-## *requestShortAudioDescriptor*
-
-Sends the CEC Request Short Audio Descriptor (SAD) message as an 
+Sends the CEC Request Short Audio Descriptor (SAD) message as an
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device. |
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -576,7 +514,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.requestShortAudioDescriptor"
+    "method": "org.rdk.IHdmiCecSink.RequestShortAudioDescriptor"
 }
 ```
 
@@ -587,33 +525,29 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
-
-<a name="sendAudioDevicePowerOnMessage"></a>
-## *sendAudioDevicePowerOnMessage*
+<a id="method.SendAudioDevicePowerOnMessage"></a>
+## *SendAudioDevicePowerOnMessage [<sup>method</sup>](#head.Methods)*
 
 This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [setSystemAudioModeEvent](#setSystemAudioModeEvent) | Triggered when CEC <Set System Audio Mode> message of device is received. |
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -621,7 +555,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendAudioDevicePowerOnMessage"
+    "method": "org.rdk.IHdmiCecSink.SendAudioDevicePowerOnMessage"
 }
 ```
 
@@ -632,33 +566,29 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SendGetAudioStatusMessage"></a>
+## *SendGetAudioStatusMessage [<sup>method</sup>](#head.Methods)*
 
-<a name="sendGetAudioStatusMessage"></a>
-## *sendGetAudioStatusMessage*
-
-Sends the CEC \<Give Audio Status\> message to request the audio status.
+Sends the CEC <Give Audio Status> message to request the audio status.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [reportAudioStatusEvent](#reportAudioStatusEvent) | Triggered when CEC <Report Audio Status> message of device is received. |
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -666,7 +596,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendGetAudioStatusMessage"
+    "method": "org.rdk.IHdmiCecSink.SendGetAudioStatusMessage"
 }
 ```
 
@@ -677,36 +607,32 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SendKeyPressEvent"></a>
+## *SendKeyPressEvent [<sup>method</sup>](#head.Methods)*
 
-<a name="sendKeyPressEvent"></a>
-## *sendKeyPressEvent*
-
-Sends the CEC \<User Control Pressed\> message when TV remote key is pressed.
+Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.keyCode | integer | The key code for the pressed key. Possible values : `0x41` (VOLUME_UP), `0x42` (VOLUME_DOWN), `0x43` (MUTE), `0x01` (UP), `0x02` (DOWN), `0x03` (LEFT), `0x04` (RIGHT), `0x00` (SELECT), `0x09` (HOME), `0x0D` (BACK), `0x20` (NUMBER_0), `0x21` (NUMBER_1), `0x22` (NUMBER_2), `0x23` (NUMBER_3), `0x24` (NUMBER_4), `0x25` (NUMBER_5), `0x26` (NUMBER_6), `0x27` (NUMBER_7), `0x28` (NUMBER_8), `0x29` (NUMBER_9) |
-
-### Result
-
+| params.logicalAddress | uint32_t | Logical address of the device |
+| params.keyCode | uint32_t | Key code of the key press event |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -714,10 +640,10 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendKeyPressEvent",
+    "method": "org.rdk.IHdmiCecSink.SendKeyPressEvent",
     "params": {
-        "logicalAddress": 4,
-        "keyCode": 65
+        "logicalAddress": "0",
+        "keyCode": "0"
     }
 }
 ```
@@ -729,134 +655,29 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SendStandbyMessage"></a>
+## *SendStandbyMessage [<sup>method</sup>](#head.Methods)*
 
-<a name="sendUserControlPressed"></a>
-## *sendUserControlPressed*
-
-Sends the CEC \<User Control Pressed\> message when TV remote key is pressed.
+Sends the CEC <Standby> message to another CEC device
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.keyCode | integer | The key code for the pressed key. Possible values : `0x41` (VOLUME_UP), `0x42` (VOLUME_DOWN), `0x43` (MUTE), `0x01` (UP), `0x02` (DOWN), `0x03` (LEFT), `0x04` (RIGHT), `0x00` (SELECT), `0x09` (HOME), `0x0D` (BACK), `0x20` (NUMBER_0), `0x21` (NUMBER_1), `0x22` (NUMBER_2), `0x23` (NUMBER_3), `0x24` (NUMBER_4), `0x25` (NUMBER_5), `0x26` (NUMBER_6), `0x27` (NUMBER_7), `0x28` (NUMBER_8), `0x29` (NUMBER_9) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendUserControlPressed",
-    "params": {
-        "logicalAddress": 4,
-        "keyCode": 65
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="sendUserControlReleased"></a>
-## *sendUserControlReleased*
-
-Sends the CEC \<User Control released\> message when TV remote key is released.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendUserControlReleased",
-    "params": {
-        "logicalAddress": 4
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="sendStandbyMessage"></a>
-## *sendStandbyMessage*
-
-Sends a CEC \<Standby\> message to the logical address of the device.
-
-### Events
-
-No Events
-
-### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -864,7 +685,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.sendStandbyMessage"
+    "method": "org.rdk.IHdmiCecSink.SendStandbyMessage"
 }
 ```
 
@@ -875,35 +696,32 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SendUserControlPressed"></a>
+## *SendUserControlPressed [<sup>method</sup>](#head.Methods)*
 
-<a name="setActivePath"></a>
-## *setActivePath*
-
-Sets the source device to active (`setStreamPath`). The source wakes from standby if it's in the standby state.
+Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.activePath | string | Physical address of the source device |
-
-### Result
-
+| params.logicalAddress | uint32_t | Logical address of the device |
+| params.keyCode | uint32_t | Key code of the key press event |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -911,9 +729,10 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setActivePath",
+    "method": "org.rdk.IHdmiCecSink.SendUserControlPressed",
     "params": {
-        "activePath": "1.0.0.0"
+        "logicalAddress": "0",
+        "keyCode": "0"
     }
 }
 ```
@@ -925,32 +744,121 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SendUserControlReleased"></a>
+## *SendUserControlReleased [<sup>method</sup>](#head.Methods)*
+
+Sends the CEC <User Control Released> message when TV remote key is released.
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.logicalAddress | uint32_t | Logical address of the device |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.SendUserControlReleased",
+    "params": {
+        "logicalAddress": "0"
     }
 }
 ```
 
-<a name="setActiveSource"></a>
-## *setActiveSource*
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetActivePath"></a>
+## *SetActivePath [<sup>method</sup>](#head.Methods)*
+
+Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state.
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.activePath | string | Active path of the device |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.SetActivePath",
+    "params": {
+        "activePath": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetActiveSource"></a>
+## *SetActiveSource [<sup>method</sup>](#head.Methods)*
 
 Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -958,7 +866,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setActiveSource"
+    "method": "org.rdk.IHdmiCecSink.SetActiveSource"
 }
 ```
 
@@ -969,36 +877,31 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SetEnabled"></a>
+## *SetEnabled [<sup>method</sup>](#head.Methods)*
 
-<a name="setEnabled"></a>
-## *setEnabled*
-
-Enables or disables HDMI-CEC support in the platform.
+Sets the status of the HDMI CEC Sink
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled. |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | boolean | Indicates whether HDMI-CEC is enabled (`true`) or disabled (`false`) in the platform |
-
-### Result
-
+| params.enabled | bool | Is the HDMI CEC Sink enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -1006,9 +909,9 @@ Enables or disables HDMI-CEC support in the platform.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setEnabled",
+    "method": "org.rdk.IHdmiCecSink.SetEnabled",
     "params": {
-        "enabled": false
+        "enabled": "true"
     }
 }
 ```
@@ -1020,35 +923,34 @@ Enables or disables HDMI-CEC support in the platform.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SetLatencyInfo"></a>
+## *SetLatencyInfo [<sup>method</sup>](#head.Methods)*
 
-<a name="setMenuLanguage"></a>
-## *setMenuLanguage*
-
-Updates the internal data structure with the new menu Language and also broadcasts the \<Set Menu Language\> CEC message.
+Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.language | string | 3 byte ASCII defined in ISO_639-2_codes (https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes) |
-
-### Result
-
+| params.videoLatency | string | Video Latency value |
+| params.lowLatencyMode | string | Low Latency Mode value |
+| params.audioOutputCompensated | string | Audio Output Compensated value |
+| params.audioOutputDelay | string | Audio Output Delay value |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -1056,9 +958,12 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setMenuLanguage",
+    "method": "org.rdk.IHdmiCecSink.SetLatencyInfo",
     "params": {
-        "language": "chi"
+        "videoLatency": "",
+        "lowLatencyMode": "",
+        "audioOutputCompensated": "",
+        "audioOutputDelay": ""
     }
 }
 ```
@@ -1070,35 +975,31 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SetMenuLanguage"></a>
+## *SetMenuLanguage [<sup>method</sup>](#head.Methods)*
 
-<a name="setOSDName"></a>
-## *setOSDName*
-
-Sets the OSD Name used by host device.
+Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.name | string | The OSD Name |
-
-### Result
-
+| params.language | string | Menu language to be set |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -1106,9 +1007,9 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setOSDName",
+    "method": "org.rdk.IHdmiCecSink.SetMenuLanguage",
     "params": {
-        "name": "Fire TV Stick"
+        "language": ""
     }
 }
 ```
@@ -1120,36 +1021,78 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetOSDName"></a>
+## *SetOSDName [<sup>method</sup>](#head.Methods)*
+
+Sets the OSD name of the HDMI CEC Sink
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.name | string | OSD name of the HDMI CEC Sink |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.SetOSDName",
+    "params": {
+        "name": ""
     }
 }
 ```
 
-<a name="setRoutingChange"></a>
-## *setRoutingChange*
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetRoutingChange"></a>
+## *SetRoutingChange [<sup>method</sup>](#head.Methods)*
 
 Changes routing while switching between HDMI inputs and TV.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.oldPort | string | Current active port, such as `TV`, `HDMI0`, `HDMI1`, `HDMI2` |
-| params.newPort | string | New port to switch to, such as `TV`, `HDMI0`, `HDMI1`, `HDMI2` |
-
-### Result
-
+| params.oldPort | string | Old port number |
+| params.newPort | string | New port number |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -1157,10 +1100,10 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setRoutingChange",
+    "method": "org.rdk.IHdmiCecSink.SetRoutingChange",
     "params": {
-        "oldPort": "HDMI0",
-        "newPort": "TV"
+        "oldPort": "",
+        "newPort": ""
     }
 }
 ```
@@ -1172,37 +1115,77 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetVendorId"></a>
+## *SetVendorId [<sup>method</sup>](#head.Methods)*
+
+Sets the vendor ID of the HDMI CEC Sink
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.vendorid | string | Vendor ID of the HDMI CEC Sink |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.SetVendorId",
+    "params": {
+        "vendorid": ""
     }
 }
 ```
 
-<a name="setupARCRouting"></a>
-## *setupARCRouting*
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetupARCRouting"></a>
+## *SetupARCRouting [<sup>method</sup>](#head.Methods)*
 
 Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [arcInitiationEvent](#arcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established. |
-| [arcTerminationEvent](#arcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates. |
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | boolean | Indicates whether HDMI-CEC ARC is enabled (`true`) or disabled (`false`). If enabled, the CEC \<Request ARC Initiation\> and \<Report ARC Initiated\> messages are sent. If disabled, the CEC \<Request ARC Termination\> and \<Report ARC Terminated\> messages are sent |
-
-### Result
-
+| params.enabled | bool | Is the HDMI CEC Sink enabled or not |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | HdmiCecSinkSuccess | Is the operation successful or not |
+| result.success.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -1210,9 +1193,9 @@ Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, 
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.HdmiCecSink.setupARCRouting",
+    "method": "org.rdk.IHdmiCecSink.SetupARCRouting",
     "params": {
-        "enabled": true
+        "enabled": "true"
     }
 }
 ```
@@ -1224,571 +1207,503 @@ Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, 
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
 
-<a name="setVendorId"></a>
-## *setVendorId*
 
-Sets a vendor ID used by host device.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.vendorid | string | Vendor ID for this device. The ID can have a maximum of 6 characters |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.HdmiCecSink.setVendorId",
-    "params": {
-        "vendorid": "0019fc"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setLatencyInfo"></a>
-## *setLatencyInfo*
-
-Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending \<Report Current Latency\> message for Dynamic Auto LipSync Feature.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.videoLatency | string | Indicates the Video Latency value of the target device |
-| params.lowLatencyMode | string | Indicates whether low latency Mode is 0 or 1 |
-| params.audioOutputCompensated | string | Indicates whether Audio Output is delay compensated or not. 0 = (NA)Sent by Non-TV, 1 = TV's audio Output is delay compensated, 2 = Not delay compensated, 3 = Partially delayed |
-| params.audioOutputDelay | string | Indicates the Audio Output Delay value of the target device |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.HdmiCecSink.setLatencyInfo",
-    "params": {
-        "videoLatency": "2",
-        "lowLatencyMode": "1",
-        "audioOutputCompensated": "1",
-        "audioOutputDelay": "20"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="Notifications"></a>
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.HdmiCecSink plugin:
+The following events are provided by the IHdmiCecSink plugin:
 
-HdmiCecSink interface events:
+IHdmiCecSink interface events:
 
-| Event | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [arcInitiationEvent](#arcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established |
-| [arcTerminationEvent](#arcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates |
-| [onActiveSourceChange](#onActiveSourceChange) | Triggered with the active source device changes |
-| [onDeviceAdded](#onDeviceAdded) | Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device |
-| [onDeviceInfoUpdated](#onDeviceInfoUpdated) | Triggered when device information changes (physicalAddress, deviceType, vendorID, osdName, cecVersion, powerStatus) |
-| [onDeviceRemoved](#onDeviceRemoved) | Triggered when HDMI cable is physically removed from the HDMI port on a TV or the power cable is removed from the source device |
-| [onImageViewOnMsg](#onImageViewOnMsg) | Triggered when an \<Image View ON\> CEC message is received from the source device |
-| [onInActiveSource](#onInActiveSource) | Triggered when the source is no longer active |
-| [onTextViewOnMsg](#onTextViewOnMsg) | Triggered when a \<Text View ON\> CEC message is received from the source device |
-| [onWakeupFromStandby](#onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives \<Image View ON\>/ \<Text View ON\>/ \<Active Source\> CEC message from the connected source device |
-| [reportAudioDeviceConnectedStatus](#reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed |
-| [reportAudioStatusEvent](#reportAudioStatusEvent) | Triggered when CEC \<Report Audio Status\> message of device is received |
-| [reportFeatureAbortEvent](#reportFeatureAbortEvent) | Triggered when CEC \<Feature Abort\> message of device is received |
-| [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled |
-| [setSystemAudioModeEvent](#setSystemAudioModeEvent) | Triggered when CEC \<Set System Audio Mode\> message of device is received |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device |
-| [standbyMessageReceived](#standbyMessageReceived) | Triggered when the source device changes status to `STANDBY` |
+| [ArcInitiationEvent](#event.ArcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established. |
+| [ArcTerminationEvent](#event.ArcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates. |
+| [OnActiveSourceChange](#event.OnActiveSourceChange) | Triggered when the active source device changes. |
+| [OnDeviceAdded](#event.OnDeviceAdded) | Triggered when a new device is added to the CEC network. |
+| [OnDeviceInfoUpdated](#event.OnDeviceInfoUpdated) | Triggered when device information changes. |
+| [OnDeviceRemoved](#event.OnDeviceRemoved) | Triggered when a device is removed from the CEC network. |
+| [OnImageViewOnMsg](#event.OnImageViewOnMsg) | Triggered when an <Image View ON> CEC message is received from the source device. |
+| [OnInActiveSource](#event.OnInActiveSource) | Triggered when the source is no longer active. |
+| [OnTextViewOnMsg](#event.OnTextViewOnMsg) | Triggered when a <Text View ON> CEC message is received from the source device. |
+| [OnWakeupFromStandby](#event.OnWakeupFromStandby) | Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device. |
+| [ReportAudioDeviceConnectedStatus](#event.ReportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed. |
+| [ReportAudioDevicePowerStatus](#event.ReportAudioDevicePowerStatus) | Triggered when the source device changes. |
+| [ReportAudioStatusEvent](#event.ReportAudioStatusEvent) | Triggered when CEC <Report Audio Status> message of device is received. |
+| [ReportCecEnabledEvent](#event.ReportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled. |
+| [ReportFeatureAbortEvent](#event.ReportFeatureAbortEvent) | Triggered when CEC <Feature Abort> message of device is received. |
+| [SetSystemAudioModeEvent](#event.SetSystemAudioModeEvent) | Triggered when CEC <Set System Audio Mode> message of device is received. |
+| [ShortAudiodescriptorEvent](#event.ShortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor. |
+| [StandbyMessageReceived](#event.StandbyMessageReceived) | Triggered when the source device changes status to STANDBY. |
 
-
-<a name="arcInitiationEvent"></a>
-## *arcInitiationEvent*
+<a id="event.ArcInitiationEvent"></a>
+## *ArcInitiationEvent [<sup>event</sup>](#head.Notifications)*
 
 Triggered when routing though the HDMI ARC port is successfully established.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | string | Whether the operation succeeded |
+| params.success | string | Is the operation successful or not |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.arcInitiationEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ArcInitiationEvent",
     "params": {
-        "status": "success"
+        "success": ""
     }
 }
 ```
-
-<a name="arcTerminationEvent"></a>
-## *arcTerminationEvent*
+<a id="event.ArcTerminationEvent"></a>
+## *ArcTerminationEvent [<sup>event</sup>](#head.Notifications)*
 
 Triggered when routing though the HDMI ARC port terminates.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | string | Whether the operation succeeded |
+| params.success | string | Is the operation successful or not |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.arcTerminationEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ArcTerminationEvent",
     "params": {
-        "status": "success"
+        "success": ""
     }
 }
 ```
+<a id="event.OnActiveSourceChange"></a>
+## *OnActiveSourceChange [<sup>event</sup>](#head.Notifications)*
 
-<a name="onActiveSourceChange"></a>
-## *onActiveSourceChange*
-
-Triggered with the active source device changes.
+Triggered when the active source device changes.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.physicalAddress | string | Physical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
+| params.physicalAddress | string | Physical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onActiveSourceChange",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnActiveSourceChange",
     "params": {
-        "logicalAddress": 4,
-        "physicalAddress": "1.0.0.0"
+        "logicalAddress": "0",
+        "physicalAddress": ""
     }
 }
 ```
+<a id="event.OnDeviceAdded"></a>
+## *OnDeviceAdded [<sup>event</sup>](#head.Notifications)*
 
-<a name="onDeviceAdded"></a>
-## *onDeviceAdded*
-
-Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device.  After a new device is hotplugged to the port, various information is collected such as CEC version, OSD name, vendor ID, and power status. The `onDeviceAdded` event is sent as soon as any of these details are available. However, the connected device sends the information asynchronously; therefore, the information may not be collected immediately.
+Triggered when a new device is added to the CEC network.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onDeviceAdded",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnDeviceAdded",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
+<a id="event.OnDeviceInfoUpdated"></a>
+## *OnDeviceInfoUpdated [<sup>event</sup>](#head.Notifications)*
 
-<a name="onDeviceInfoUpdated"></a>
-## *onDeviceInfoUpdated*
-
-Triggered when device information changes (physicalAddress, deviceType, vendorID, osdName, cecVersion, powerStatus).
+Triggered when device information changes.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onDeviceInfoUpdated",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnDeviceInfoUpdated",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
+<a id="event.OnDeviceRemoved"></a>
+## *OnDeviceRemoved [<sup>event</sup>](#head.Notifications)*
 
-<a name="onDeviceRemoved"></a>
-## *onDeviceRemoved*
-
-Triggered when HDMI cable is physically removed from the HDMI port on a TV or the power cable is removed from the source device. The device is considered removed when no ACK messages are received after pinging the device.
+Triggered when a device is removed from the CEC network.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onDeviceRemoved",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnDeviceRemoved",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
+<a id="event.OnImageViewOnMsg"></a>
+## *OnImageViewOnMsg [<sup>event</sup>](#head.Notifications)*
 
-<a name="onImageViewOnMsg"></a>
-## *onImageViewOnMsg*
-
-Triggered when an \<Image View ON\> CEC message is received from the source device.
+Triggered when an <Image View ON> CEC message is received from the source device.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onImageViewOnMsg",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnImageViewOnMsg",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
-
-<a name="onInActiveSource"></a>
-## *onInActiveSource*
+<a id="event.OnInActiveSource"></a>
+## *OnInActiveSource [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the source is no longer active.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.physicalAddress | string | Physical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
+| params.physicalAddress | string | Physical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onInActiveSource",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnInActiveSource",
     "params": {
-        "logicalAddress": 4,
-        "physicalAddress": "1.0.0.0"
+        "logicalAddress": "0",
+        "physicalAddress": ""
     }
 }
 ```
+<a id="event.OnTextViewOnMsg"></a>
+## *OnTextViewOnMsg [<sup>event</sup>](#head.Notifications)*
 
-<a name="onTextViewOnMsg"></a>
-## *onTextViewOnMsg*
-
-Triggered when a \<Text View ON\> CEC message is received from the source device.
+Triggered when a <Text View ON> CEC message is received from the source device.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onTextViewOnMsg",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnTextViewOnMsg",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
+<a id="event.OnWakeupFromStandby"></a>
+## *OnWakeupFromStandby [<sup>event</sup>](#head.Notifications)*
 
-<a name="onWakeupFromStandby"></a>
-## *onWakeupFromStandby*
-
-Triggered when the TV is in standby mode and it receives \<Image View ON\>/ \<Text View ON\>/ \<Active Source\> CEC message from the connected source device. This event will be notified to UI/Application and application will bring the TV out of standby.
+Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.logicalAddress | int | Logical address of the active source |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onWakeupFromStandby",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.OnWakeupFromStandby",
     "params": {
-        "logicalAddress": 4
+        "logicalAddress": "0"
     }
 }
 ```
-
-<a name="reportAudioDeviceConnectedStatus"></a>
-## *reportAudioDeviceConnectedStatus*
+<a id="event.ReportAudioDeviceConnectedStatus"></a>
+## *ReportAudioDeviceConnectedStatus [<sup>event</sup>](#head.Notifications)*
 
 Triggered when an audio device is added or removed.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | string | The status |
-| params.audioDeviceConnected | string | `true` if an audio device is connected, otherwise `false` |
+| params.status | string | Status of the audio device |
+| params.audioDeviceConnected | string | Audio device connected or not |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.reportAudioDeviceConnectedStatus",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ReportAudioDeviceConnectedStatus",
     "params": {
-        "status": "success",
-        "audioDeviceConnected": "true"
+        "status": "",
+        "audioDeviceConnected": ""
     }
 }
 ```
+<a id="event.ReportAudioDevicePowerStatus"></a>
+## *ReportAudioDevicePowerStatus [<sup>event</sup>](#head.Notifications)*
 
-<a name="reportAudioStatusEvent"></a>
-## *reportAudioStatusEvent*
-
-Triggered when CEC \<Report Audio Status\> message of device is received.
+Triggered when the source device changes.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.muteStatus | integer | The mute status |
-| params.volumeLevel | integer | The volume level of device |
+| params.powerStatus | int | Power status of the device |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.reportAudioStatusEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ReportAudioDevicePowerStatus",
     "params": {
-        "muteStatus": 0,
-        "volumeLevel": 28
+        "powerStatus": "0"
     }
 }
 ```
+<a id="event.ReportAudioStatusEvent"></a>
+## *ReportAudioStatusEvent [<sup>event</sup>](#head.Notifications)*
 
-<a name="reportFeatureAbortEvent"></a>
-## *reportFeatureAbortEvent*
-
-Triggered when CEC \<Feature Abort\> message of device is received.
+Triggered when CEC <Report Audio Status> message of device is received.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
-| params.opcode | integer | The opcode send to the device |
-| params.FeatureAbortReason | integer | Reason for the feature abort |
+| params.muteStatus | int | Mute status of the device |
+| params.volumeLevel | int | Volume level of the device |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.reportFeatureAbortEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ReportAudioStatusEvent",
     "params": {
-        "logicalAddress": 4,
-        "opcode": 0,
-        "FeatureAbortReason": 0
+        "muteStatus": "0",
+        "volumeLevel": "0"
     }
 }
 ```
-
-<a name="reportCecEnabledEvent"></a>
-## *reportCecEnabledEvent*
+<a id="event.ReportCecEnabledEvent"></a>
+## *ReportCecEnabledEvent [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the HDMI-CEC is enabled.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.cecEnable | string | Whether the cec is enabled |
+| params.cecEnable | string | HDMI-CEC enabled or not |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.reportCecEnabledEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ReportCecEnabledEvent",
     "params": {
-        "cecEnable": "true"
+        "cecEnable": ""
     }
 }
 ```
+<a id="event.ReportFeatureAbortEvent"></a>
+## *ReportFeatureAbortEvent [<sup>event</sup>](#head.Notifications)*
 
-<a name="setSystemAudioModeEvent"></a>
-## *setSystemAudioModeEvent*
-
-Triggered when CEC \<Set System Audio Mode\> message of device is received.
+Triggered when CEC <Feature Abort> message of device is received.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.audioMode | string | Audio mode of system |
+| params.logicalAddress | int | Logical address of the active source |
+| params.opcode | int | Opcode of the message |
+| params.FeatureAbortReason | int | Reason for the feature abort |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.setSystemAudioModeEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ReportFeatureAbortEvent",
     "params": {
-        "audioMode": "On"
+        "logicalAddress": "0",
+        "opcode": "0",
+        "FeatureAbortReason": "0"
     }
 }
 ```
+<a id="event.SetSystemAudioModeEvent"></a>
+## *SetSystemAudioModeEvent [<sup>event</sup>](#head.Notifications)*
 
-<a name="shortAudiodesciptorEvent"></a>
-## *shortAudiodesciptorEvent*
-
-Triggered when SAD is received from the connected audio device. See `requestShortAudioDescriptor`.
+Triggered when CEC <Set System Audio Mode> message of device is received.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.ShortAudioDescriptor | array | The SAD information (formatid, audioFormatCode, numberofdescriptor) |
-| params.ShortAudioDescriptor[#] | integer |  |
+| params.audioMode | string | Audio mode of the device |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.shortAudiodesciptorEvent",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.SetSystemAudioModeEvent",
     "params": {
-        "ShortAudioDescriptor": [
-            [
-                0,
-                10,
-                2
-            ]
-        ]
+        "audioMode": ""
     }
 }
 ```
+<a id="event.ShortAudiodescriptorEvent"></a>
+## *ShortAudiodescriptorEvent [<sup>event</sup>](#head.Notifications)*
 
-<a name="standbyMessageReceived"></a>
-## *standbyMessageReceived*
-
-Triggered when the source device changes status to `STANDBY`.
+Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logicalAddress | integer | Logical address of the device |
+| params.jsonresponse | string | JSON response containing the Short Audio Descriptor (SAD) information |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.standbyMessageReceived",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.ShortAudiodescriptorEvent",
     "params": {
-        "logicalAddress": 4
+        "jsonresponse": ""
     }
 }
 ```
+<a id="event.StandbyMessageReceived"></a>
+## *StandbyMessageReceived [<sup>event</sup>](#head.Notifications)*
 
+Triggered when the source device changes status to STANDBY.
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.logicalAddress | int | Logical address of the active source |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IHdmiCecSink.StandbyMessageReceived",
+    "params": {
+        "logicalAddress": "0"
+    }
+}
+```
