@@ -162,6 +162,26 @@
             "summary":"display the current Graphics framerate",
             "type":"number",
             "example":40
+        },
+        "appIds": {
+            "summary": "A JSON String containing one or more application IDs",
+            "type": "string",
+            "example": "{\\\"appIds\\\":[\\\"org.rdk.Netflix\\\"]}"
+        },
+        "visible": {
+              "summary": "Whether the client is visible (`true`) or not (`false`)",
+              "type": "boolean",
+              "example": true
+        },
+        "appInstanceId": {
+            "summary": "The application instance ID for an app.",
+            "type": "string",
+            "example": "rdkwmtestapp_13193"
+        },
+        "zOrder": {
+            "summary": "The desired z-order value (integer).",
+            "type": "integer",
+            "example": 5
         }
     },
     "methods": {
@@ -314,10 +334,10 @@
                 "$ref": "#/definitions/result"
             }
         },
-        "getClients": {
-            "summary": "Gets a list of clients.",
+        "getApps": {
+            "summary": "Gets a list of active application IDs.",
             "result": {
-                "$ref": "#/definitions/clients"
+                "$ref": "#/definitions/appIds"
             }
         },
         "getKeyRepeatsEnabled": {
@@ -459,6 +479,140 @@
             "result": {
                 "$ref": "#/definitions/result"
             }
+        },
+        "setFocus": {
+            "summary": "Sets the focus to the specified app by app ID.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "setVisible": {
+            "summary": "Sets the visibility of the specified client or application instance ID.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    },
+                    "visible": {
+                        "$ref": "#/definitions/visible"
+                    }
+                },
+                "required": [
+                    "appInstanceId",
+                    "visible"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "renderReady": {
+            "summary": "Returns whether the specified application has rendered its first frame.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "summary": "Returns true if the application has rendered its first frame, false if it has not.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            }
+        },
+        "enableDisplayRender": {
+            "summary": "Enables or disables the rendering of a Wayland display for the specified client or application instance.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    },
+                    "enable": {
+                        "summary": "Boolean flag to enable (`true`) or disable (`false`) the Wayland display render.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "appInstanceId",
+                    "enable"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "setZOrder": {
+            "summary": "Sets the z-order of the specified app.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    },
+                    "zOrder": {
+                        "$ref": "#/definitions/zOrder"
+                    }
+                },
+                "required": [
+                    "appInstanceId",
+                    "zOrder"
+                ]
+            },
+            "result": {
+                "$ref": "#/definitions/result"
+            }
+        },
+        "getZOrder": {
+            "summary": "Returns the z-order of the specified app.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "zOrder": {
+                        "$ref": "#/definitions/zOrder"
+                    }
+                },
+                "required": [
+                    "zOrder"
+                ]
+            }
         }
     },
     "events": {
@@ -475,6 +629,104 @@
                 },
                 "required": [
                     "minutes"
+                ]
+            }
+        },
+        "onDisconnected": {
+            "summary": "Triggered when an app is disconnected from a Wayland display.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                 },
+                 "required": [
+                     "appInstanceId"
+                 ]
+             }
+        },
+        "onReady": {
+            "summary": "Triggered when an app has made its first graphics visible on a Wayland display.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            }
+        },
+        "onConnected": {
+            "summary": "Triggered when an app is connected to a Wayland display.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            }
+        },
+        "onVisible": {
+            "summary": "Sent when the app becomes visible.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            }
+        },
+        "onHidden": {
+            "summary": "Sent when the app becomes visible.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            }
+        },
+        "onFocus": {
+            "summary": "Sent when the app receives focus.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
+                ]
+            }
+        },
+        "onBlur": {
+            "summary": "Sent when the app removes focus.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appInstanceId": {
+                        "$ref": "#/definitions/appInstanceId"
+                    }
+                },
+                "required": [
+                    "appInstanceId"
                 ]
             }
         }
