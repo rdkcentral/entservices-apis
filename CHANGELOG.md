@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.0 (2025-07-22)
+
+
+Full set of changes: [`1.12.0...1.13.0`](https://github.com/rdkcentral/entservices-apis/compare/1.12.0...1.13.0)
+
 ## 1.12.0 (2025-07-15)
 
 
