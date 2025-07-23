@@ -64,7 +64,7 @@ namespace Exchange {
 
             // @brief Signal changes on the status
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(const string& jsonresponse) {
+            virtual void OnAppDownloadStatus(const string& jsonresponse /* @opaque */) {
                 // Thunder does not support neither standard collection nor RPC::IIteratorType in notification
             }
         };
