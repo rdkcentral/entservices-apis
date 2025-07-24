@@ -839,18 +839,18 @@ namespace WPEFramework
         }
 
         enum VideoResolution: uint8_t {
-            DS_VIDEO_PIXELRES_720x480,
-            DS_VIDEO_PIXELRES_720x576,
-            DS_VIDEO_PIXELRES_1280x720,
-            DS_VIDEO_PIXELRES_1366x768,
-            DS_VIDEO_PIXELRES_1920x1080,
-            DS_VIDEO_PIXELRES_3840x2160,
-            DS_VIDEO_PIXELRES_4096x2160
+            DS_VIDEO_PIXELRES_720X480,
+            DS_VIDEO_PIXELRES_720X576,
+            DS_VIDEO_PIXELRES_1280X720,
+            DS_VIDEO_PIXELRES_1366X768,
+            DS_VIDEO_PIXELRES_1920X1080,
+            DS_VIDEO_PIXELRES_3840X2160,
+            DS_VIDEO_PIXELRES_4096X2160
         }
 
         enum VideoAspectRatio: uint8_t {
-            DS_VIDEO_ASPECT_RATIO_4x3,
-            DS_VIDEO_ASPECT_RATIO_16x9
+            DS_VIDEO_ASPECT_RATIO_4X3,
+            DS_VIDEO_ASPECT_RATIO_16X9
         }
 
         enum VideoStereoScopicMode : uint8_t {
@@ -924,9 +924,9 @@ namespace WPEFramework
         enum DisplayColorSpace: uint8_t {
             DS_DISPLAY_COLORSPACE_UNKNOWN  = 0,
             DS_DISPLAY_COLORSPACE_RGB      = 1,
-            DS_DISPLAY_COLORSPACE_YCbCr422 = 2,
-            DS_DISPLAY_COLORSPACE_YCbCr444 = 3,
-            DS_DISPLAY_COLORSPACE_YCbCr420 = 4,
+            DS_DISPLAY_COLORSPACE_YCBCR422 = 2,
+            DS_DISPLAY_COLORSPACE_YCBCR444 = 3,
+            DS_DISPLAY_COLORSPACE_YCBCR420 = 4,
             DS_DISPLAY_COLORSPACE_AUTO     = 5
         }
 
@@ -947,7 +947,7 @@ namespace WPEFramework
         struct DSOutputSettings {
             HDRStandard videoEotf;
             DisplayMatrixCoefficients matrixCoefficients;
-            uint32_t color_depth;
+            uint32_t colorDepth;
             DisplayColorSpace colorSpace;
             DisplayQuantizationRange quantizationRange;
         };
@@ -1383,7 +1383,7 @@ namespace WPEFramework
             DS_COMPOSITE_IN_PORT_UNKNOWN = 0  /* @text UNKNOWN */,
             DS_COMPOSITE_IN_PORT_0       = 1  /* @text CompositeIn Port 0 */,
             DS_COMPOSITE_IN_PORT_1       = 2  /* @text CompositeIn Port 1 */
-        }
+        };
 
         enum CompositeInSignalStatus: uint8_t {
             DS_COMPOSITE_IN_SIGNAL_STATUS_UNKNOWN       = 0 /* @text UNKNOWN */,
@@ -1392,21 +1392,21 @@ namespace WPEFramework
             DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE      = 3 /* @text Signal Status Unstable */,
             DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED  = 4 /* @text Signal Status Not supported */,
             DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE        = 5 /* @text Signal Status Stable */
-        }
+        };
 
         struct CompositeInStatus {
             bool isPresented;
             CompositeInPort activePort;
             bool isPort0Connected;
             bool isPort1Connected; /* Can't have array in structures..so separating the booleans */
-        }
+        };
 
         struct VideoRectangle {
             int x;
             int y;
             int width;
             int height;
-        }
+        };
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -1703,7 +1703,7 @@ namespace WPEFramework
         enum VideoAspectRatio : uint8_t {
             DS_VIDEO_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
             DS_VIDEO_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_VIDEO_ASPECT_RATIO_16x9        = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_VIDEO_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
         }
 
 

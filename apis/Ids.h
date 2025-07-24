@@ -159,11 +159,11 @@ namespace Exchange {
         ID_USER_SETTINGS_INSPECTOR                   = ID_USER_SETTINGS + 2,
         ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR    = ID_USER_SETTINGS + 3,
 
-	ID_ANALYTICS                                 = ID_ENTOS_OFFSET + 0x160,
+        ID_ANALYTICS                                 = ID_ENTOS_OFFSET + 0x160,
 
-	ID_XCAST                                     = ID_ENTOS_OFFSET + 0x170,
-	ID_XCAST_NOTIFICATION                        = ID_XCAST + 1,
-	ID_XCAST_APPLICATION_INFO_ITERATOR           = ID_XCAST + 2,
+        ID_XCAST                                     = ID_ENTOS_OFFSET + 0x170,
+        ID_XCAST_NOTIFICATION                        = ID_XCAST + 1,
+        ID_XCAST_APPLICATION_INFO_ITERATOR           = ID_XCAST + 2,
 
         ID_POWER_MANAGER                                           = ID_ENTOS_OFFSET + 0x180,
         ID_POWER_MANAGER_NOTIFICATION_REBOOT                       = ID_POWER_MANAGER + 1,
@@ -173,35 +173,35 @@ namespace Exchange {
         ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
         ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
 
-	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
-	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
-	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
+        ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
+        ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
+        ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
 
-	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
-	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
-	ID_USB_DEVICE_INFO_ITERATOR                  = ID_USB_DEVICE + 2,
-	ID_USB_DEVICE_NOTIFICATION                   = ID_USB_DEVICE + 3,
-	ID_USB_DEVICE_ITERATOR                       = ID_USB_DEVICE + 4,
+        ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
+        ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
+        ID_USB_DEVICE_INFO_ITERATOR                  = ID_USB_DEVICE + 2,
+        ID_USB_DEVICE_NOTIFICATION                   = ID_USB_DEVICE + 3,
+        ID_USB_DEVICE_ITERATOR                       = ID_USB_DEVICE + 4,
 
-	ID_USB_MASS_STORAGE                          = ID_ENTOS_OFFSET + 0x1B0,
-	ID_USB_MASS_STORAGE_DEVICE_INFO_ITERATOR     = ID_USB_MASS_STORAGE + 1,
-	ID_USB_MASS_STORAGE_MOUNT_INFO_ITERATOR      = ID_USB_MASS_STORAGE + 2,
-	ID_USB_MASS_STORAGE_NOTIFICATION             = ID_USB_MASS_STORAGE + 3,
+        ID_USB_MASS_STORAGE                          = ID_ENTOS_OFFSET + 0x1B0,
+        ID_USB_MASS_STORAGE_DEVICE_INFO_ITERATOR     = ID_USB_MASS_STORAGE + 1,
+        ID_USB_MASS_STORAGE_MOUNT_INFO_ITERATOR      = ID_USB_MASS_STORAGE + 2,
+        ID_USB_MASS_STORAGE_NOTIFICATION             = ID_USB_MASS_STORAGE + 3,
 
-	ID_RDK_WINDOW_MANAGER                        = ID_ENTOS_OFFSET +0x1C0,
-	ID_RDK_WINDOW_MANAGER_NOTIFICATION           = ID_RDK_WINDOW_MANAGER + 1,
+        ID_RDK_WINDOW_MANAGER                        = ID_ENTOS_OFFSET +0x1C0,
+        ID_RDK_WINDOW_MANAGER_NOTIFICATION           = ID_RDK_WINDOW_MANAGER + 1,
 
-    	ID_FIRMWARE_UPDATE                           = ID_ENTOS_OFFSET + 0x1D0,
-    	ID_FIRMWARE_UPDATE_NOTIFICATION              = ID_FIRMWARE_UPDATE + 1,
+        ID_FIRMWARE_UPDATE                           = ID_ENTOS_OFFSET + 0x1D0,
+        ID_FIRMWARE_UPDATE_NOTIFICATION              = ID_FIRMWARE_UPDATE + 1,
 
         ID_LIFECYCLE_MANAGER                         = ID_ENTOS_OFFSET + 0x1E0,
         ID_LIFECYCLE_MANAGER_NOTIFICATION            = ID_LIFECYCLE_MANAGER + 1,
         ID_LIFECYCLE_MANAGER_STATE                   = ID_LIFECYCLE_MANAGER + 2,
         ID_LIFECYCLE_MANAGER_STATE_NOTIFICATION      = ID_LIFECYCLE_MANAGER + 3,
 
-	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
+        ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
 
         ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
@@ -248,14 +248,14 @@ namespace Exchange {
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
         ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
 
-	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
+        ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
         ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
 
-	ID_NATIVEJS				     = ID_ENTOS_OFFSET + 0x330,
+        ID_NATIVEJS                                  = ID_ENTOS_OFFSET + 0x330,
 
-	ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
+        ID_HDMI_CEC_SOURCE                               = ID_ENTOS_OFFSET + 0x340,
         ID_HDMI_CEC_SOURCE_DEVICE_LIST_ITERATOR          = ID_HDMI_CEC_SOURCE + 1,
         ID_HDMI_CEC_SOURCE_NOTIFICATION                  = ID_HDMI_CEC_SOURCE + 2,
 
@@ -271,10 +271,10 @@ namespace Exchange {
 
 
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
-	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
+        ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
-	ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
-	ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
+        ID_HDCPPROFILE                               = ID_ENTOS_OFFSET + 0x390,
+        ID_HDCPPROFILE_NOTIFICATION                  = ID_HDCPPROFILE + 1,
 
         ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
 
@@ -296,7 +296,23 @@ namespace Exchange {
         ID_MIRACAST_SERVICE_NOTIFICATION             = ID_MIRACAST_SERVICE + 1,
         ID_MIRACAST_PLAYER                           = ID_MIRACAST_SERVICE + 2,
         ID_MIRACAST_PLAYER_NOTIFICATION              = ID_MIRACAST_SERVICE + 3,
-        ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR    = ID_MIRACAST_SERVICE + 4
+        ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR    = ID_MIRACAST_SERVICE + 4,
+
+        ID_DEVICESETTINGS_AUDIO                      = ID_ENTOS_OFFSET + 0x3E0,
+        ID_DEVICESETTINGS_AUDIO_NOTIFICATION         = ID_DEVICESETTINGS_AUDIO + 1,
+        ID_DEVICESETTINGS_VIDEOPORT                  = ID_DEVICESETTINGS_AUDIO + 2,
+        ID_DEVICESETTINGS_VIDEOPORT_NOTIFICATION     = ID_DEVICESETTINGS_AUDIO + 3,
+        ID_DEVICESETTINGS_VIDEODEVICE                = ID_DEVICESETTINGS_AUDIO + 4,
+        ID_DEVICESETTINGS_VIDEODEVICE_NOTIFICATION   = ID_DEVICESETTINGS_AUDIO + 5,
+        ID_DEVICESETTINGS_COMPOSITEIN                = ID_DEVICESETTINGS_AUDIO + 6,
+        ID_DEVICESETTINGS_COMPOSITEIN_NOTIFICATION   = ID_DEVICESETTINGS_AUDIO + 7,
+        ID_DEVICESETTINGS_HOST                       = ID_DEVICESETTINGS_AUDIO + 8,
+        ID_DEVICESETTINGS_HOST_NOTIFICATION          = ID_DEVICESETTINGS_AUDIO + 9,
+        ID_DEVICESETTINGS_FPD                        = ID_DEVICESETTINGS_AUDIO + 10,
+        ID_DEVICESETTINGS_FPD_NOTIFICATION           = ID_DEVICESETTINGS_AUDIO + 11,
+        ID_DEVICESETTINGS_DISPLAY                    = ID_DEVICESETTINGS_AUDIO + 12,
+        ID_DEVICESETTINGS_DISPLAY_NOTIFICATION       = ID_DEVICESETTINGS_AUDIO + 13
+
     };
 }
 }
