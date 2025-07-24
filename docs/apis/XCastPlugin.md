@@ -1,91 +1,84 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="XCast_Plugin"></a>
-# XCast Plugin
+<a id="head.IXCast_Plugin"></a>
+# IXCast Plugin
 
-**Version: [1.0.0]()**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IXCast/CHANGELOG.md)**
 
-A org.rdk.Xcast plugin for Thunder framework.
+A IXCast plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-This XCast plugin provides methods and events to support launching applications from an external source (for example, DIAL, Alexa, or WebPA). The RT implementation should use a RT service name that complies to the convention `com.comcast.<name>cast`. For example, `com.comcast.xdialcast` is used by `xdialserver`.
+The `IXCast` plugin provides an interface for IXCast.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.Xcast*) |
-| classname | string | Class name: *org.rdk.Xcast* |
-| locator | string | Library name: *libWPEFrameworkXCast.so* |
+| callsign | string | Plugin instance name (default: *IXCast*) |
+| classname | string | Class name: *IXCast* |
+| locator | string | Library name: *libWPEFrameworkIXCast.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.Xcast plugin:
+The following methods are provided by the IXCast plugin:
 
-XCast interface methods:
+IXCast interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getApiVersionNumber](#getApiVersionNumber) | Gets the API version number |
-| [getEnabled](#getEnabled) | Reports whether xcast plugin is enabled or disabled |
-| [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API |
-| [getManufacturerName](#getManufacturerName) | Returns the friendly name set by setManufacturerName API |
-| [getModelName](#getModelName) | Returns the friendly name set by setModelName API |
-| [getProtocolVersion](#getProtocolVersion) | Returns the DIAL protocol version supported by the server |
-| [getStandbyBehavior](#getStandbyBehavior) | Return current standby behavior option string set uisng setStandbyBehavior or default value  |
-| [onApplicationStateChanged](#onApplicationStateChanged) | Provides notification whenever an application changes state due to user activity, an internal error, or other reasons |
-| [registerApplications](#registerApplications) | Registers an application |
-| [unregisterApplications](#unregisterApplications) | Unregisters an application |
-| [setEnabled](#setEnabled) | Enable or disable XCAST service |
-| [setFriendlyName](#setFriendlyName) | Sets the friendly name of device |
-| [setManufacturerName](#setManufacturerName) | Sets the Manufacturer name of device |
-| [setModelName](#setModelName) | Sets the Model name of device |
-| [setStandbyBehavior](#setStandbyBehavior) | Sets the expected xcast behavior in standby mode |
+| [GetEnabled](#method.GetEnabled) | Reports whether xcast plugin is enabled or disabled |
+| [GetFriendlyName](#method.GetFriendlyName) | Returns the friendly name set by setFriendlyName API |
+| [GetManufacturerName](#method.GetManufacturerName) | Returns the manufacturer name set by setManufacturerName API |
+| [GetModelName](#method.GetModelName) | Returns the model name set by setModelName API |
+| [GetProtocolVersion](#method.GetProtocolVersion) | Returns the DIAL protocol version supported by the server |
+| [GetStandbyBehavior](#method.GetStandbyBehavior) | Return current standby behavior option string set uisng setStandbyBehavior or default value |
+| [RegisterApplications](#method.RegisterApplications) | Registers an application |
+| [SetApplicationState](#method.SetApplicationState) | Triggered when the cast service receives an application state change notification from a client |
+| [SetEnabled](#method.SetEnabled) | Enable or disable XCAST service @parm enabled: true for enabled or false for disabled |
+| [SetFriendlyName](#method.SetFriendlyName) | Sets the friendly name of the device |
+| [SetManufacturerName](#method.SetManufacturerName) | Sets the manufacturer name of the device |
+| [SetModelName](#method.SetModelName) | Sets the model name of the device |
+| [SetStandbyBehavior](#method.SetStandbyBehavior) | Sets the expected xcast behavior in standby mode |
+| [UnregisterApplications](#method.UnregisterApplications) | Unregisters an application |
 
+<a id="method.GetEnabled"></a>
+## *GetEnabled [<sup>method</sup>](#head.Methods)*
 
-<a name="getApiVersionNumber"></a>
-## *getApiVersionNumber*
-
-Gets the API version number.
+Reports whether xcast plugin is enabled or disabled
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.version | integer | a version number |
-| result.success | boolean | Whether the request succeeded |
+| result.enabled | bool | true for enabled or false for disabled |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -93,7 +86,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getApiVersionNumber"
+    "method": "org.rdk.IXCast.GetEnabled"
 }
 ```
 
@@ -104,82 +97,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "version": 1,
-        "success": true
+        "enabled": "true",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetFriendlyName"></a>
+## *GetFriendlyName [<sup>method</sup>](#head.Methods)*
 
-<a name="getEnabled"></a>
-## *getEnabled*
-
-Reports whether xcast plugin is enabled or disabled.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | boolean | `true` for enabled or `false` for disabled |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.getEnabled"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "enabled": true,
-        "success": true
-    }
-}
-```
-
-<a name="getFriendlyName"></a>
-## *getFriendlyName*
-
-Returns the friendly name set by setFriendlyName API.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api]( https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=getFriendlyName)
+Returns the friendly name set by setFriendlyName API
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
 | result.friendlyname | string | The friendly name of the device which used to display on the client device list |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -187,7 +126,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getFriendlyName"
+    "method": "org.rdk.IXCast.GetFriendlyName"
 }
 ```
 
@@ -198,34 +137,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "friendlyname": "Friendly name",
-        "success": true
+        "friendlyname": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetManufacturerName"></a>
+## *GetManufacturerName [<sup>method</sup>](#head.Methods)*
 
-<a name="getManufacturerName"></a>
-## *getManufacturerName*
-
-Returns the friendly name set by setManufacturerName API.
+Returns the manufacturer name set by setManufacturerName API
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.manufacturer | string | The Manufacturer name of the device which used to update in dd.xml |
-| result.success | boolean | Whether the request succeeded |
+| result.manufacturername | string |  |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -233,7 +166,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getManufacturerName"
+    "method": "org.rdk.IXCast.GetManufacturerName"
 }
 ```
 
@@ -244,34 +177,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "manufacturer": "Manufacturer name",
-        "success": true
+        "manufacturername": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetModelName"></a>
+## *GetModelName [<sup>method</sup>](#head.Methods)*
 
-<a name="getModelName"></a>
-## *getModelName*
-
-Returns the friendly name set by setModelName API.
+Returns the model name set by setModelName API
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.model | string | The Model name of the device which used to update in dd.xml |
-| result.success | boolean | Whether the request succeeded |
+| result.modelname | string |  |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -279,7 +206,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getModelName"
+    "method": "org.rdk.IXCast.GetModelName"
 }
 ```
 
@@ -290,34 +217,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "model": "Model name",
-        "success": true
+        "modelname": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetProtocolVersion"></a>
+## *GetProtocolVersion [<sup>method</sup>](#head.Methods)*
 
-<a name="getProtocolVersion"></a>
-## *getProtocolVersion*
-
-Returns the DIAL protocol version supported by the server.
+Returns the DIAL protocol version supported by the server
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.version | string | DIAL protocol version |
-| result.success | boolean | Whether the request succeeded |
+| result.protocolVersion | string |  |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -325,7 +246,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getProtocolVersion"
+    "method": "org.rdk.IXCast.GetProtocolVersion"
 }
 ```
 
@@ -336,34 +257,28 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "version": "2.2.1",
-        "success": true
+        "protocolVersion": "",
+        "success": "true"
     }
 }
 ```
+<a id="method.GetStandbyBehavior"></a>
+## *GetStandbyBehavior [<sup>method</sup>](#head.Methods)*
 
-<a name="getStandbyBehavior"></a>
-## *getStandbyBehavior*
-
-Return current standby behavior option string set uisng setStandbyBehavior or default value .
+Return current standby behavior option string set uisng setStandbyBehavior or default value
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: *active*, *inactive*) |
-| result.success | boolean | Whether the request succeeded |
+| result.standbybehavior | StandbyBehavior | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
+| result.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -371,7 +286,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.getStandbyBehavior"
+    "method": "org.rdk.IXCast.GetStandbyBehavior"
 }
 ```
 
@@ -382,49 +297,36 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "standbybehavior": "active",
-        "success": true
+        "standbybehavior": "ACTIVE",
+        "success": "true"
     }
 }
 ```
+<a id="method.RegisterApplications"></a>
+## *RegisterApplications [<sup>method</sup>](#head.Methods)*
 
-<a name="onApplicationStateChanged"></a>
-## *onApplicationStateChanged*
-
-Provides notification whenever an application changes state due to user activity, an internal error, or other reasons. For singleton applications, the `applicationId` parameter is optional. If an application request is denied, fails to fulfill, or the state change is triggered by an internal error, then a predefined error string should be included. This error may be translated to an XCast client.  
-
-The following table provides a client error mapping example: 
-
-| Error | Description | HTTP Status Codes |  
-| :-------- | :-------- | :-------- |   
-| `none` | The request (start/stop) is fulfilled successfully | HTTP 200 OK |  
-| `forbidden` | The user is not allowed to change the state of the application. This is not related to user account authentication of the native application | HTTP 403 Forbidden |  
-| `unavailable` | The target native application is not available on the device | HTTP 404 Not Found |  
-| `invalid` | The request is invalid (bad parameter for example) | HTTP 400 Bad Request |  
-| `internal` | The server failed to fulfill the request (server error) | HTTP 500 Internal |.
+Registers an application
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applicationName | string | Registered application name |
-| params.state | string | A predefined application state. Either `running`, `stopped`, `hidden`, or `suspended` (introduced in DIAL 2.1, `suspended` is a synonym to `hidden`) |
-| params?.applicationId | string | <sup>*(optional)*</sup> Application instance ID |
-| params?.error | string | <sup>*(optional)*</sup> A predefined error from the cast target application. Either `none`, `forbidden` `unavailable` `invalid` or `internal` |
-
-### Result
-
+| params.appInfoList | IApplicationInfoIterator |  |
+| params.appInfoList[#].appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.appInfoList[#].prefixes | string | prefix */ /* @brief  If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail |
+| params.appInfoList[#].cors | string | cors */ /* @brief origin allowed for the application. This must not be empty |
+| params.appInfoList[#].query | string | query */ /* @brief query string that need to be appended in launch request |
+| params.appInfoList[#].payload | string | payload */ /* @brief optional payload string that need to be appended in launch request |
+| params.appInfoList[#].allowStop | int | allowStop */ /* @brief 	is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -432,91 +334,16 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.onApplicationStateChanged",
+    "method": "org.rdk.IXCast.RegisterApplications",
     "params": {
-        "applicationName": "NetflixApp",
-        "state": "running",
-        "applicationId": "1234",
-        "error": "..."
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="registerApplications"></a>
-## *registerApplications*
-
-Registers an application. This allows to whitelist the apps which support dial service. To dynamically update the app list, same API should be called with the updated list. so that app list will be appended to the existing XCast white list. If a DIAL request for an unregistered application is received by DIAL server, the request will be denied (HTTP 404) per DIAL specification. Optional fields need not be included, or can be included with empty values.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applications | array | Json array with one or more application details to register |
-| params.applications[#] | object |  |
-| params.applications[#].names | array | case-sensitive. Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#].names[#] | string |  |
-| params.applications[#]?.prefixes | array | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#]?.prefixes[#] | string | <sup>*(optional)*</sup>  |
-| params.applications[#]?.cors | array | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
-| params.applications[#]?.cors[#] | string | <sup>*(optional)*</sup>  |
-| params.applications[#]?.properties | object | <sup>*(optional)*</sup> specific application properties applicable to app management. If not present in descriptor, the default value is assumed |
-| params.applications[#]?.properties.allowStop | boolean | is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched |
-| params.applications[#]?.launchParameters | object | <sup>*(optional)*</sup> launchParameters that application wants dial-server to append before sending the request to launch application |
-| params.applications[#]?.launchParameters.query | string | query string that need to be appended in launch request |
-| params.applications[#]?.launchParameters.payload | string | optional payload string that need to be appended in launch request |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.registerApplications",
-    "params": {
-        "applications": [
+        "appInfoList": [
             {
-                "names": [
-                    "Youtube"
-                ],
-                "prefixes": [
-                    "myYouTube"
-                ],
-                "cors": [
-                    ".youtube.com"
-                ],
-                "properties": {
-                    "allowStop": true
-                },
-                "launchParameters": {
-                    "query": "source_type=12",
-                    "payload": "..."
-                }
+                "appName": "",
+                "prefixes": "",
+                "cors": "",
+                "query": "",
+                "payload": "",
+                "allowStop": "0"
             }
         ]
     }
@@ -530,466 +357,526 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "success": true
+        "success": {
+            "success": "true"
+        }
     }
 }
 ```
+<a id="method.SetApplicationState"></a>
+## *SetApplicationState [<sup>method</sup>](#head.Methods)*
 
-<a name="unregisterApplications"></a>
-## *unregisterApplications*
-
-Unregisters an application. This API allows to remove the specified applist from the XCast whitelist. To dynamically delete the specific app list, same API should be called with the app list to remove. so that mentioned app list will be removed from the XCast whitelist. Calling this API with empty list will clear the Xcast Whitelist.
+Triggered when the cast service receives an application state change notification from a client
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applications | string | One or more application name to unregister |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.unregisterApplications",
-    "params": {
-        "applications": "['YouTube', 'Netflix']"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setEnabled"></a>
-## *setEnabled*
-
-Enable or disable XCAST service.  When disabled, the customer should not be able to discover CPE as a cast target for any client application. After enable(true) server application manger must re-register all app that are available for user to cast. The enabled status is not persisted on device after each reboot or reconnect application should call setEnalbed to initialize XCast thunder plugin.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | boolean | `true` for enabled or `false` for disabled |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.setEnabled",
-    "params": {
-        "enabled": true
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setFriendlyName"></a>
-## *setFriendlyName*
-
-Sets the friendly name of device. It allows an application to override the default friendly name value with the friendly name passed as an argument. The provided name  should not be empty. If a user provided name is not available, the caller of the API should use the default name partnerId+Model  (or any other agreed default name) as the parameter. After initialization, XCastService should not be activated until setFriendlyName() is invoked. Frinedly name is not persisted on device after each reboot or reconnect application should call API to update the friendlyName.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api]( https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=setFriendlyName)
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.friendlyname | string | The friendly name of the device which used to display on the client device list |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.setFriendlyName",
-    "params": {
-        "friendlyname": "Friendly name"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setManufacturerName"></a>
-## *setManufacturerName*
-
-Sets the Manufacturer name of device. It allows an application to override the default manufacturer name value with the manufacturer name passed as an argument. The provided name  should not be empty. Manufacturer name is not persisted on device after each reboot or reconnect application should call API to update the manufacturerName.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.manufacturer | string | The Manufacturer name of the device which used to update in dd.xml |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.setManufacturerName",
-    "params": {
-        "manufacturer": "Manufacturer name"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setModelName"></a>
-## *setModelName*
-
-Sets the Model name of device. It allows an application to override the default model name value with the model name passed as an argument. The provided name  should not be empty. Model name is not persisted on device after each reboot or reconnect application should call API to update the modelName.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.model | string | The Model name of the device which used to update in dd.xml |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.setModelName",
-    "params": {
-        "model": "Model name"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setStandbyBehavior"></a>
-## *setStandbyBehavior*
-
-Sets the expected xcast behavior in standby mode. It allows an application to override controls on xcast behavior in standby mode. The default behavior in STANDBY mode is inactive, so client device can not discover the server. When STANDBY behavior is active, client device can discover the CPE device and perform the launch operation. Upon reeiving the launch request device will transitioned from STANDBY to ON mode.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: *active*, *inactive*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.setStandbyBehavior",
-    "params": {
-        "standbybehavior": "active"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="Notifications"></a>
-# Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
-
-The following events are provided by the org.rdk.Xcast plugin:
-
-XCast interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [onApplicationHideRequest](#onApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
-| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client |
-| [onApplicationResumeRequest](#onApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
-| [onApplicationStateRequest](#onApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
-| [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
-
-
-<a name="onApplicationHideRequest"></a>
-## *onApplicationHideRequest*
-
-Triggered when the cast service receives a hide request from a client. This is a request to hide an application from the foreground (suspend/run in background).  
-Upon hiding the application, the resident application is responsible for calling the `onApplicationStateChanged` method if hiding the application changes its running state.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
 | params.applicationName | string | Registered application name |
+| params.state | State | Application state |
 | params.applicationId | string | Application instance ID |
+| params.error | ErrorCode | Error string, if any |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onApplicationHideRequest",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetApplicationState",
     "params": {
-        "applicationName": "NetflixApp",
-        "applicationId": "1234"
+        "applicationName": "",
+        "state": "RUNNING",
+        "applicationId": "",
+        "error": "NONE"
     }
 }
 ```
 
-<a name="onApplicationLaunchRequest"></a>
-## *onApplicationLaunchRequest*
-
-Triggered when the cast service receives a launch request from a client. This is a request to launch an application. The resident application can determine if the application should be launched based on the current context. If the application is not already running, the requested application is started. If the application is already running and is in background mode, the requested application enters foreground mode (`optimus::running`, `xcast::running`). If the application is already in foreground mode, the request does not change the application state.  
-Upon launching the application, the resident application is responsible for calling the `onApplicationStateChanged` method, which sends the notification back to the XCast client (for example, `Dial`).
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applicationName | string | Registered application name |
-| params.parameters | object | The format and interpretation is determined between the application launcher or cast target and the cast client for each application. For example, a Netflix DIAL-client returns a `pluginURL` parameter with the application launch string. A Youtube DIAL-client returns a `url` parameter with the application launch string |
-| params.parameters.pluginUrl | string | Application launch string |
-
-### Example
+#### Response
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onApplicationLaunchRequest",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetEnabled"></a>
+## *SetEnabled [<sup>method</sup>](#head.Methods)*
+
+Enable or disable XCAST service @parm enabled: true for enabled or false for disabled
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.enabled | bool | true for enabled or false for disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetEnabled",
     "params": {
-        "applicationName": "NetflixApp",
-        "parameters": {
-            "pluginUrl": "https://www.netflix.com"
+        "enabled": "true"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetFriendlyName"></a>
+## *SetFriendlyName [<sup>method</sup>](#head.Methods)*
+
+Sets the friendly name of the device
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.friendlyname | string | The friendly name of the device which used to display on the client device list |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetFriendlyName",
+    "params": {
+        "friendlyname": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetManufacturerName"></a>
+## *SetManufacturerName [<sup>method</sup>](#head.Methods)*
+
+Sets the manufacturer name of the device
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.manufacturername | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetManufacturerName",
+    "params": {
+        "manufacturername": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetModelName"></a>
+## *SetModelName [<sup>method</sup>](#head.Methods)*
+
+Sets the model name of the device
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.modelname | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetModelName",
+    "params": {
+        "modelname": ""
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.SetStandbyBehavior"></a>
+## *SetStandbyBehavior [<sup>method</sup>](#head.Methods)*
+
+Sets the expected xcast behavior in standby mode
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.standbybehavior | StandbyBehavior | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.SetStandbyBehavior",
+    "params": {
+        "standbybehavior": "ACTIVE"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
+        }
+    }
+}
+```
+<a id="method.UnregisterApplications"></a>
+## *UnregisterApplications [<sup>method</sup>](#head.Methods)*
+
+Unregisters an application
+
+### Events
+No events are associated with this method.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.applications | IStringIterator | One or more application name to unregister |
+| params.applications[#] | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | XCastSuccess | Whether the request succeeded |
+| result.success.success | bool | success */ /* @brief  true if the request was successful, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.UnregisterApplications",
+    "params": {
+        "applications": [
+            ""
+        ]
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": {
+            "success": "true"
         }
     }
 }
 ```
 
-<a name="onApplicationResumeRequest"></a>
-## *onApplicationResumeRequest*
 
-Triggered when the cast service receives a resume request from a client. This is a request to resume an application.  
-Upon resuming the application, the resident application is responsible for calling the `onApplicationStateChanged` 
+<a id="head.Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+
+The following events are provided by the IXCast plugin:
+
+IXCast interface events:
+
+| Method | Description |
+| :-------- | :-------- |
+| [OnApplicationHideRequest](#event.OnApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
+| [OnApplicationLaunchRequest](#event.OnApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
+| [OnApplicationLaunchRequestWithParam](#event.OnApplicationLaunchRequestWithParam) | Triggered when the cast service receives a launch request from a client with launch params |
+| [OnApplicationResumeRequest](#event.OnApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
+| [OnApplicationStateRequest](#event.OnApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
+| [OnApplicationStopRequest](#event.OnApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
+
+<a id="event.OnApplicationHideRequest"></a>
+## *OnApplicationHideRequest [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the cast service receives a hide request from a client
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applicationName | string | Registered application name |
-| params.applicationId | string | Application instance ID |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.appID | string |  |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onApplicationResumeRequest",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationHideRequest",
     "params": {
-        "applicationName": "NetflixApp",
-        "applicationId": "1234"
+        "appName": "",
+        "appID": ""
     }
 }
 ```
+<a id="event.OnApplicationLaunchRequest"></a>
+## *OnApplicationLaunchRequest [<sup>event</sup>](#head.Notifications)*
 
-<a name="onApplicationStateRequest"></a>
-## *onApplicationStateRequest*
-
-Triggered when the cast service needs an update of the application state.  
-The resident application is responsible for calling the `onApplicationStateChanged` method indicating the current state.
+Triggered when the cast service receives a launch request from a client with launch params
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applicationName | string | Registered application name |
-| params.applicationId | string | Application instance ID |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.parameter | string | Application launch string |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onApplicationStateRequest",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationLaunchRequest",
     "params": {
-        "applicationName": "NetflixApp",
-        "applicationId": "1234"
+        "appName": "",
+        "parameter": ""
     }
 }
 ```
+<a id="event.OnApplicationLaunchRequestWithParam"></a>
+## *OnApplicationLaunchRequestWithParam [<sup>event</sup>](#head.Notifications)*
 
-<a name="onApplicationStopRequest"></a>
-## *onApplicationStopRequest*
-
-Triggered when the cast service receives a stop request from a client. This is a request to stop an application. If the application is already running and either in foreground or background mode, then the requested application is destroyed (`optimus::destroyed`, `xcast::stopped`). If the application is not running, this request triggers an error `onApplicationStateChanged` message with `Invalid`.  
-Upon stopping the application, the resident application is responsible for calling the `onApplicationStateChanged` 
+Triggered when the cast service receives a launch request from a client with launch params
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.applicationName | string | Registered application name |
-| params.applicationId | string | Application instance ID |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.strPayLoad | string | Payload string to be passed to the application |
+| params.strQuery | string | Query string to be appended in launch request |
+| params.strAddDataUrl | string | Additional data URL to be passed to the application |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.onApplicationStopRequest",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationLaunchRequestWithParam",
     "params": {
-        "applicationName": "NetflixApp",
-        "applicationId": "1234"
+        "appName": "",
+        "strPayLoad": "",
+        "strQuery": "",
+        "strAddDataUrl": ""
     }
 }
 ```
+<a id="event.OnApplicationResumeRequest"></a>
+## *OnApplicationResumeRequest [<sup>event</sup>](#head.Notifications)*
 
+Triggered when the cast service receives a resume request from a client
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.appID | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationResumeRequest",
+    "params": {
+        "appName": "",
+        "appID": ""
+    }
+}
+```
+<a id="event.OnApplicationStateRequest"></a>
+## *OnApplicationStateRequest [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the cast service needs an update of the application state
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.appID | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationStateRequest",
+    "params": {
+        "appName": "",
+        "appID": ""
+    }
+}
+```
+<a id="event.OnApplicationStopRequest"></a>
+## *OnApplicationStopRequest [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the cast service receives a stop request from a client
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params.appName | string | name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.appID | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.IXCast.OnApplicationStopRequest",
+    "params": {
+        "appName": "",
+        "appID": ""
+    }
+}
+```
