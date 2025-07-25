@@ -58,6 +58,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     // @property
     // @brief Retrieves a list of current message controls
+    // Test1
     virtual uint32_t Controls(IControlIterator*& control /* @out */) const = 0;
   };
 
