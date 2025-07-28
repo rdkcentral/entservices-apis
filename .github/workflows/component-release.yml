@@ -1,0 +1,97 @@
+name: Component Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - develop
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Install git-flow and auto-changelog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-flow
+          npm install -g auto-changelog
+
+      - name: Clone the project and start release
+        run: |
+          set -e
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} project
+          cd project
+          git fetch --all
+          git checkout main || git checkout -b main origin/main
+          git checkout develop || git checkout -b develop origin/develop
+
+          git config gitflow.branch.master main
+          git config gitflow.branch.develop develop
+          git config gitflow.prefix.feature feature/
+          git config gitflow.prefix.bugfix bugfix/
+          git config gitflow.prefix.release release/
+          git config gitflow.prefix.hotfix hotfix/
+          git config gitflow.prefix.support support/
+          git config gitflow.prefix.versiontag ''
+
+          echo "git config completed"
+          # Extract version from PR description
+          PR_DESC="${{ github.event.pull_request.body }}"
+          
+          VERSION_FROM_PR=$(echo "$PR_DESC" | grep -oiP 'version\s*:\s*\K[0-9]+\.[0-9]+\.[0-9]+(?=)' || true)
+          
+          echo "Extracted version from PR: $VERSION_FROM_PR"
+
+          # Get top tag from CHANGELOG.md
+          TOP_TAG=$(grep -m 1 -oP '^#### \[\K[^\]]+' CHANGELOG.md)
+          if [[ -z "$VERSION_FROM_PR" ]]; then
+            echo "Version not found in PR description"
+            exit 1
+          fi
+          if [[ -z "$TOP_TAG" ]]; then
+            echo "No version found in CHANGELOG.md!"
+            exit 1
+          fi
+          # Compare PR version and top tag
+          if [[ "$VERSION_FROM_PR" == "$TOP_TAG" || $(printf '%s\n%s' "$VERSION_FROM_PR" "$TOP_TAG" | sort -V | head -n1) != "$TOP_TAG" ]]; then
+            echo "Invalid version provided"
+            exit 1
+          fi
+          RELEASE_VERSION="$VERSION_FROM_PR"
+          echo "Using version from PR description: $RELEASE_VERSION"
+          echo "RELEASE_VERSION=$RELEASE_VERSION"
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+          # Check if tag already exists
+          if git rev-parse "refs/tags/$RELEASE_VERSION" >/dev/null 2>&1; then
+            echo "Tag $RELEASE_VERSION already exists. Skipping release."
+            exit 0
+          fi
+          git flow release start $RELEASE_VERSION
+          auto-changelog -v $RELEASE_VERSION
+          git add CHANGELOG.md
+          git commit -m "$RELEASE_VERSION release changelog updates"
+          git flow release publish
+      - name: Finish release and push (default git-flow messages)
+        run: |
+          set -e
+          cd project
+          git flow release finish -m "$RELEASE_VERSION release" $RELEASE_VERSION
+          git push origin main
+          git push origin --tags
+          git push origin develop
+      - name: Cleanup tag if workflow fails
+        if: failure()
+        run: |
+          cd project
+          git tag -d $RELEASE_VERSION || true
+          git push origin :refs/tags/$RELEASE_VERSION || true
