@@ -228,6 +228,16 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
   virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+
+  /** Starts the VNC server */
+  // @text startVncServer
+  // @brief Starts the VNC server
+  virtual Core::hresult StartVncServer() = 0;
+
+  /** Stops the VNC server */
+  // @text stopVncServer
+  // @brief Stops the VNC server
+  virtual Core::hresult StopVncServer() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
