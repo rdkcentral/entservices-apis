@@ -9,7 +9,7 @@ on:
 jobs:
   release:
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+    runs-on: comcast-ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -47,27 +47,31 @@ jobs:
           echo "git config completed"
           # Extract version from PR description
           PR_DESC="${{ github.event.pull_request.body }}"
-          
-          VERSION_FROM_PR=$(echo "$PR_DESC" | grep -oiP 'version\s*:\s*\K[0-9]+\.[0-9]+\.[0-9]+(?=)' || true)
-          
-          echo "Extracted version from PR: $VERSION_FROM_PR"
-
           # Get top tag from CHANGELOG.md
           TOP_TAG=$(grep -m 1 -oP '^#### \[\K[^\]]+' CHANGELOG.md)
-          if [[ -z "$VERSION_FROM_PR" ]]; then
-            echo "Version not found in PR description"
-            exit 1
-          fi
           if [[ -z "$TOP_TAG" ]]; then
             echo "No version found in CHANGELOG.md!"
             exit 1
           fi
-          # Compare PR version and top tag
-          if [[ "$VERSION_FROM_PR" == "$TOP_TAG" || $(printf '%s\n%s' "$VERSION_FROM_PR" "$TOP_TAG" | sort -V | head -n1) != "$TOP_TAG" ]]; then
-            echo "Invalid version provided"
+          IFS='.' read -r major minor patch <<< "$TOP_TAG"
+          VERSION_TYPE=$(echo "$PR_DESC" | grep -oiP 'version\s*:\s*\K(major|minor|patch)' | tr '[:upper:]' '[:lower:]')
+          if [[ -z "$VERSION_TYPE" ]]; then
+            echo "No version type found in PR description, defaulting to PATCH increment."
+            patch=$((patch + 1))
+          elif [[ "$VERSION_TYPE" == "major" ]]; then
+            major=$((major + 1))
+            minor=0
+            patch=0
+          elif [[ "$VERSION_TYPE" == "minor" ]]; then
+            minor=$((minor + 1))
+            patch=0
+          elif [[ "$VERSION_TYPE" == "patch" ]]; then
+            patch=$((patch + 1))
+          else
+            echo "Invalid version type in PR description: $VERSION_TYPE"
             exit 1
           fi
-          RELEASE_VERSION="$VERSION_FROM_PR"
+          RELEASE_VERSION="$major.$minor.$patch"
           echo "Using version from PR description: $RELEASE_VERSION"
           echo "RELEASE_VERSION=$RELEASE_VERSION"
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
@@ -81,6 +85,7 @@ jobs:
           git add CHANGELOG.md
           git commit -m "$RELEASE_VERSION release changelog updates"
           git flow release publish
+
       - name: Finish release and push (default git-flow messages)
         run: |
           set -e
@@ -89,6 +94,7 @@ jobs:
           git push origin main
           git push origin --tags
           git push origin develop
+          
       - name: Cleanup tag if workflow fails
         if: failure()
         run: |
