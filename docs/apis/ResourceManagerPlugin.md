@@ -2,8 +2,6 @@
 <a name="ResourceManager_Plugin"></a>
 # ResourceManager Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.ResourceManager plugin for Thunder framework.
 
 ### Table of Contents
@@ -48,6 +46,7 @@ ResourceManager interface methods:
 | :-------- | :-------- |
 | [setAVBlocked](#setAVBlocked) | adds/removes the list of applications with the given callsigns to/from the blacklist |
 | [getBlockedAVApplications](#getBlockedAVApplications) | Gets a list of blacklisted clients |
+| [reserveTTSResourceForApps](#reserveTTSResourceForApps) | Reserves the Text To speech Resource for specified clients |
 | [reserveTTSResource](#reserveTTSResource) | Reserves the Text To speech Resource for specified client |
 
 
@@ -147,6 +146,59 @@ This method takes no parameters.
         "clients": [
             "org.rdk.Netflix"
         ],
+        "success": true
+    }
+}
+```
+
+<a name="reserveTTSResourceForApps"></a>
+## *reserveTTSResourceForApps*
+
+Reserves the Text To speech Resource for specified clients.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appids | array | A list of application callsigns |
+| params.appids[#] | string |  |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.ResourceManager.reserveTTSResourceForApps",
+    "params": {
+        "appids": [
+            "xumo"
+        ]
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
         "success": true
     }
 }

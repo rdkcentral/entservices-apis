@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
         "title": "System API", 
@@ -491,8 +491,8 @@
         },
         "getDeviceInfo":{
             "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=properties",
-            "summary": "Collects device details. Sample keys include:  \n* bluetooth_mac  \n* boxIP  \n* build_type  \n* estb_mac  \n* imageVersion  \n* rf4ce_mac  \n* wifi_mac. \n \n System.getDeviceInfo is DEPRECATED use the following APIS \n* make = [DeviceInfo.make](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=make)  \n* bluetooth_mac = DEPRECATED  \n* boxIP = [Network.getStbIp](https://rdkcentral.github.io/rdkservices/#/api/NetworkPlugin?id=getstbip)  \n* build_type = org.rdk.System.getBuildType  \n* device_type = DEPRECATED  \n* estb_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses)  \n* eth_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses) \n* friendly_id = [DeviceInfo.modelname](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=modelname)  \n* imageVersion = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=firmwareversion)  \n* version = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=firmwareversion)  \n* wifi_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses) .",
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=properties",
+            "summary": "Collects device details. Sample keys include:  \n* bluetooth_mac  \n* boxIP  \n* build_type  \n* estb_mac  \n* imageVersion  \n* rf4ce_mac  \n* wifi_mac. \n \n System.getDeviceInfo is DEPRECATED use the following APIS \n* make = [DeviceInfo.make](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=make)  \n* bluetooth_mac = DEPRECATED  \n* boxIP = [Network.GetIPSettings](https://github.com/rdkcentral/networkmanager/blob/main/docs/NetworkManagerPlugin.md#method.GetIPSettings)  \n* build_type = org.rdk.System.getBuildType  \n* device_type = DEPRECATED  \n* estb_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses)  \n* eth_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses) \n* friendly_id = [DeviceInfo.modelname](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=modelname)  \n* imageVersion = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=firmwareversion)  \n* version = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=firmwareversion)  \n* wifi_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses) .",
             "params": {
                 "type": "object",
                 "properties": {
@@ -745,7 +745,7 @@
         },
         "getMilestones": {
 	        "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/rdkservices/#/api/DeviceDiagnosticsPlugin?id=getmilestones",
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/DeviceDiagnosticsPlugin?id=getmilestones",
             "summary": "Returns the list of milestones.",
             "result": {
                 "type": "object",

@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "SharedStorage Plugin",
+      "callsign": "org.rdk.SharedStorage",
+      "locator": "libWPEFrameworkSharedStorage.so",
+      "status": "production",
+      "description": "The `SharedStorage` plugin allows you to persist key/value pairs by namespace"
+    },
+    "interface": {
+      "$ref": "SharedStorage.json#"
+    }
+ }

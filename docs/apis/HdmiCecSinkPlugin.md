@@ -2,8 +2,6 @@
 <a name="HdmiCecSinkPlugin"></a>
 # HdmiCecSinkPlugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.HdmiCecSink plugin for Thunder framework.
 
 ### Table of Contents

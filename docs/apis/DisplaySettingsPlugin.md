@@ -2,8 +2,6 @@
 <a name="DisplaySettings_Plugin"></a>
 # DisplaySettings Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.DisplaySettings plugin for Thunder framework.
 
 ### Table of Contents

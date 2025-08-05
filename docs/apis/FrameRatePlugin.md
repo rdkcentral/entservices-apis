@@ -2,8 +2,6 @@
 <a name="FrameRate_Plugin"></a>
 # FrameRate Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.FrameRate plugin for Thunder framework.
 
 ### Table of Contents

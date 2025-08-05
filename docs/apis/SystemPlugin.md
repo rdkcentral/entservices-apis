@@ -2,8 +2,6 @@
 <a name="System_Plugin"></a>
 # System Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.System plugin for Thunder framework.
 
 ### Table of Contents
@@ -467,19 +465,19 @@ Collects device details. Sample keys include:
 * wifi_mac. 
  
  System.getDeviceInfo is DEPRECATED use the following APIS 
-* make = [DeviceInfo.make](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=make)  
+* make = [DeviceInfo.make](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=make)  
 * bluetooth_mac = DEPRECATED  
-* boxIP = [Network.getStbIp](https://rdkcentral.github.io/rdkservices/#/api/NetworkPlugin?id=getstbip)  
+* boxIP = [Network.GetIPSettings](https://github.com/rdkcentral/networkmanager/blob/main/docs/NetworkManagerPlugin.md#GetIPSettings)  
 * build_type = org.rdk.System.getBuildType  
 * device_type = DEPRECATED  
-* estb_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses)  
-* eth_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses) 
-* friendly_id = [DeviceInfo.modelname](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=modelname)  
-* imageVersion = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=firmwareversion)  
-* version = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=firmwareversion)  
-* wifi_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=addresses) .
+* estb_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses)  
+* eth_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses) 
+* friendly_id = [DeviceInfo.modelname](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=modelname)  
+* imageVersion = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=firmwareversion)  
+* version = [DeviceInfo.firmwareversion](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=firmwareversion)  
+* wifi_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses) .
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/rdkservices/#/api/DeviceInfoPlugin?id=properties)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=properties)
 
 ### Events
 
@@ -970,7 +968,7 @@ This method takes no parameters.
 
 Returns the list of milestones.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/rdkservices/#/api/DeviceDiagnosticsPlugin?id=getmilestones)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceDiagnosticsPlugin?id=getmilestones)
 
 ### Events
 

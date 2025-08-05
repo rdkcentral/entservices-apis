@@ -2,8 +2,6 @@
 <a name="Telemetry_Plugin"></a>
 # Telemetry Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.Telemetry plugin for Thunder framework.
 
 ### Table of Contents

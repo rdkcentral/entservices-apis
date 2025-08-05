@@ -134,32 +134,6 @@
       "description": "Device type",
       "example": "IpStb"
     },
-    "make": {
-      "type": "string",
-      "enum": [
-        "manufacturer1",
-	"RaspberryPi4"
-      ],
-      "description": "Device manufacturer",
-      "example": "alphanumerical string"
-    },
-    "sku": {
-      "type": "string",
-      "enum": [
-        "SKU1",
-	"RPI4"
-      ],
-      "description": "Device model number or SKU",
-      "example": "alphanumerical string"
-    },
-    "socname": {
-      "type": "string",
-      "enum": [
-        "SOC1"
-      ],
-      "description": "SOC Name",
-      "example": "alphanumerical string"
-    },
     "yocto": {
       "type": "string",
       "enum": [
@@ -497,7 +471,8 @@
         "type": "object",
         "properties": {
           "sku": {
-            "$ref": "#/definitions/sku"
+            "type": "string",
+            "example": "alphanumerical string"
           }
         },
         "required": [
@@ -518,7 +493,8 @@
         "type": "object",
         "properties": {
           "make": {
-            "$ref": "#/definitions/make"
+            "type": "string",
+            "example": "alphanumerical string"
           }
         },
         "required": [
@@ -604,7 +580,8 @@
         "type": "object",
         "properties": {
           "socname": {
-            "$ref": "#/definitions/socname"
+            "type": "string",
+            "example": "alphanumerical string"
           }
         },
         "required": [

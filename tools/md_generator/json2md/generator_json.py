@@ -2334,7 +2334,7 @@ def CreateDocument(schema, path):
         # Emit title bar
         if "title" in info:
             MdHeader(info["title"])
-        MdParagraph(bold("Version: [{}]({})").format(version,link_to_version))
+        # MdParagraph(bold("Version: [{}]({})").format(version,link_to_version))
 
  
 

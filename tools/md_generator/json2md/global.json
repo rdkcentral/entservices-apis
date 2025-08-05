@@ -1,5 +1,5 @@
 {
-  "sourcelocation": "https://github.com/rdkcentral/ThunderInterfaces/blob/{revision}/interfaces/{interfacefile}",
+  "sourcelocation": "https://github.com/rdkcentral/entservices-apis/tree/main/apis",
   "sourcerevision": "master",
   "acronyms": {
     "API": "Application Programming Interface",
@@ -11,7 +11,7 @@
     "callsign": "The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique."
   },
   "references": {
-    "[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20WPEFramework.docx)": "Thunder API Reference",
+    "[ENT Services-apis](https://github.com/rdkcentral/entservices-apis)": "ENT Services API Reference",
     "[HTTP](http://www.w3.org/Protocols)": "HTTP specification",
     "[JSON](http://www.json.org/)": "JSON specification",
     "[JSON-RPC](https://www.jsonrpc.org/specification)": "JSON-RPC 2.0 specification"

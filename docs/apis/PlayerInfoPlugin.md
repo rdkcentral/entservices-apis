@@ -2,8 +2,6 @@
 <a name="Player_Info_Plugin"></a>
 # Player Info Plugin
 
-**Version: [1.0.0]()**
-
 A PlayerInfo plugin for Thunder framework.
 
 ### Table of Contents

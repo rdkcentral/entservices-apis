@@ -2,8 +2,6 @@
 <a name="XCast_Plugin"></a>
 # XCast Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.Xcast plugin for Thunder framework.
 
 ### Table of Contents
@@ -161,7 +159,7 @@ This method takes no parameters.
 
 Returns the friendly name set by setFriendlyName API.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api]( https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=getFriendlyName)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/SystemPlugin?id=getfriendlyname)
 
 ### Events
 
@@ -640,7 +638,7 @@ No Events
 
 Sets the friendly name of device. It allows an application to override the default friendly name value with the friendly name passed as an argument. The provided name  should not be empty. If a user provided name is not available, the caller of the API should use the default name partnerId+Model  (or any other agreed default name) as the parameter. After initialization, XCastService should not be activated until setFriendlyName() is invoked. Frinedly name is not persisted on device after each reboot or reconnect application should call API to update the friendlyName.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api]( https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=setFriendlyName)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api]( https://rdkcentral.github.io/entservices-apis/#/apis/XCastPlugin?id=setfriendlyname)
 
 ### Events
 

@@ -2,8 +2,6 @@
 <a name="DeviceDiagnostics_Plugin"></a>
 # DeviceDiagnostics Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.DeviceDiagnostics plugin for Thunder framework.
 
 ### Table of Contents

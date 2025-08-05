@@ -2,8 +2,6 @@
 <a name="Linear_Playback_Control_Plugin"></a>
 # Linear Playback Control Plugin
 
-**Version: [1.0.0]()**
-
 A LinearPlaybackControl plugin for Thunder framework.
 
 ### Table of Contents

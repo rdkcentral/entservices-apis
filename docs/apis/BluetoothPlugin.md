@@ -2,8 +2,6 @@
 <a name="Bluetooth_Plugin"></a>
 # Bluetooth Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.Bluetooth plugin for Thunder framework.
 
 ### Table of Contents

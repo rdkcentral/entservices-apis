@@ -11,4 +11,4 @@
 
 ## Contribute
 
-The documentation is actively governed and continuously reviewed and maintained by the RDK Services goverance body. Documentation requests and submissions are always welcome. See [Contribute ***FIX THIS](https://github.com/rdkcentral/rdkservices/blob/139c3e8e551ce9c1c4260b16ae5ca6efeab1a4f8/README.md#contributing-to-rdkservices).
+The documentation is actively governed and continuously reviewed and maintained by the RDK Services goverance body. Documentation requests and submissions are always welcome. See [Contribute](https://github.com/rdkcentral/entservices-apis/blob/main/README.md#contributing-to-entservices-apis).

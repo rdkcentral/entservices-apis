@@ -2,8 +2,6 @@
 <a name="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0]()**
-
 A DisplayInfo plugin for Thunder framework.
 
 ### Table of Contents
@@ -582,7 +580,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | string | HDR formats supported by the TV (must be one of the following: *HdrOff*, *Hdr10*, *Hdr10Plus*, *HdrHlg*, *HdrDolbyvision*, *HdrTechnicolor*, *HdrSdr*) |
+| (property) | string | HDR formats supported by the TV (must be one of the following: *HdrOff*, *Hdr10*, *Hdr10Plus*, *HdrHlg*, *HdrDolbyvision*, *HdrTechnicolor*) |
 
 ### Example
 

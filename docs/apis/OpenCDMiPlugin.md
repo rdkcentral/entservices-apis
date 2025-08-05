@@ -2,8 +2,6 @@
 <a name="OpenCDMi_Plugin"></a>
 # OpenCDMi Plugin
 
-**Version: [1.0.0]()**
-
 A OCDM plugin for Thunder framework.
 
 ### Table of Contents

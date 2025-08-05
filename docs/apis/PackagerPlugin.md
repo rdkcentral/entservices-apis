@@ -2,8 +2,6 @@
 <a name="Packager_Plugin"></a>
 # Packager Plugin
 
-**Version: [1.0.0]()**
-
 A Packager plugin for Thunder framework.
 
 ### Table of Contents

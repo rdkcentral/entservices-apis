@@ -2,8 +2,6 @@
 <a name="USBDevice_Plugin"></a>
 # USBDevice Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.UsbDevice plugin for Thunder framework.
 
 ### Table of Contents

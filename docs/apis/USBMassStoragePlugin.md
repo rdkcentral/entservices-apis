@@ -2,8 +2,6 @@
 <a name="USBMassStorage_Plugin"></a>
 # USBMassStorage Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.UsbMassStorage plugin for Thunder framework.
 
 ### Table of Contents

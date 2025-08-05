@@ -2,8 +2,6 @@
 <a name="FrontPanel_Plugin"></a>
 # FrontPanel Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.FrontPanel plugin for Thunder framework.
 
 ### Table of Contents

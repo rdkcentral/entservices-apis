@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
         "title": "ResourceManager API", 
@@ -66,6 +66,29 @@
                     "clients",
                     "success"
                 ]
+            }
+        },
+	"reserveTTSResourceForApps": {
+            "summary": "Reserves the Text To speech Resource for specified clients",
+            "params": {
+                "type": "object",
+                "properties":{
+                    "appids": {
+                        "summary": "A list of application callsigns",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "xumo"
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "appids"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
             }
         },
         "reserveTTSResource": {

@@ -2,8 +2,6 @@
 <a name="Firmware_Update_Plugin"></a>
 # Firmware Update Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.FirmwareUpdate plugin for Thunder framework.
 
 ### Table of Contents

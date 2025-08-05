@@ -2,8 +2,6 @@
 <a name="MaintenanceManagerPlugin"></a>
 # MaintenanceManagerPlugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.MaintenanceManager plugin for Thunder framework.
 
 ### Table of Contents

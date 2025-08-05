@@ -1,5 +1,5 @@
 {
-  "sourcelocation": "https://github.com/rdkcentral/ThunderInterfaces/blob/{revision}/jsonrpc/{interfacefile}",
+  "sourcelocation": "https://github.com/rdkcentral/entservices-apis/tree/main/apis",
   "errors": {
     "general": {
       "code": 1,

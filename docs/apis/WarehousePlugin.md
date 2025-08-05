@@ -2,8 +2,6 @@
 <a name="Warehouse_Plugin"></a>
 # Warehouse Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.Warehouse plugin for Thunder framework.
 
 ### Table of Contents

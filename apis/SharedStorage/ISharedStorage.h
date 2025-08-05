@@ -97,7 +97,7 @@ namespace Exchange {
         ~ISharedStorageInspector() override = default;
 
         struct NamespaceSize {
-            string ns;
+            string ns /* @text:namespace */;
             uint32_t size;
         };
 

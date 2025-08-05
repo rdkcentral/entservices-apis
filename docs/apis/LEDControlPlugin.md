@@ -2,8 +2,6 @@
 <a name="LEDControl_Plugin"></a>
 # LEDControl Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.LEDControl plugin for Thunder framework.
 
 ### Table of Contents
@@ -69,6 +67,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
+| result.supportedLEDStates | array | Returns all the LED states available on the platform |
+| result.supportedLEDStates[#] | string |  |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -90,6 +90,9 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
+        "supportedLEDStates": [
+            "`ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR'"
+        ],
         "success": true
     }
 }
@@ -114,7 +117,6 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.state | string | Indicates a platform supported LED state |
-| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -135,8 +137,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "state": "ACTIVE",
-        "success": true
+        "state": "ACTIVE"
     }
 }
 ```
@@ -161,8 +162,7 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -185,9 +185,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "success": true
-    }
+    "result": true
 }
 ```
 

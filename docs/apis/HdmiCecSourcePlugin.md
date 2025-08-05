@@ -2,8 +2,6 @@
 <a name="HdmiCecSourcePlugin"></a>
 # HdmiCecSourcePlugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.HdmiCecSource plugin for Thunder framework.
 
 ### Table of Contents

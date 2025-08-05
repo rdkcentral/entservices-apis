@@ -2,8 +2,6 @@
 <a name="OCIContainer_Plugin"></a>
 # OCIContainer Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.OCIContainer plugin for Thunder framework.
 
 ### Table of Contents

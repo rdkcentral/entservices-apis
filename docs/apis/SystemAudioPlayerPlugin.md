@@ -2,8 +2,6 @@
 <a name="SystemAudioPlayer_Plugin"></a>
 # SystemAudioPlayer Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.SystemAudioPlayer plugin for Thunder framework.
 
 ### Table of Contents
