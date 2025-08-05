@@ -182,7 +182,7 @@ namespace Exchange {
             // @brief SizeKb
             uint64_t sizeKb;
         };
-        using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
+        //using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -232,7 +232,7 @@ namespace Exchange {
 
         // @brief ListPackages
         // @text listPackages
-        virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
+        virtual Core::hresult ListPackages(string& packagesJson /* @out @opaque */) = 0;
 
         // @brief Config
         // @text config
