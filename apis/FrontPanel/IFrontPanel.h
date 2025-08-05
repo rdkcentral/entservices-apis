@@ -37,23 +37,7 @@ namespace WPEFramework
                 bool success;
             };
 
-            struct FrontPanelPattern{
-                uint32_t brightness;
-                uint32_t duration;
-                string color;
-                uint32_t red;
-                uint32_t green;
-                uint32_t blue;
-            };
-
-            struct FrontPanelBlinkInfo {
-                string ledIndicator;
-                uint32_t iterations;
-                FrontPanelPattern pattern;
-            };
-
             using IFrontPanelLightsListIterator = RPC::IIteratorType<string, ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR>;
-            using IFrontPanelBlinkInfoListIterator = RPC::IIteratorType<FrontPanelBlinkInfo, ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR>;
 
             // @json:omit
             virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
@@ -88,7 +72,7 @@ namespace WPEFramework
             // @text setBlink
             // @param blinkInfo: Information about the blink pattern @see FrontPanelBlinkInfo
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetBlink(const FrontPanelBlinkInfo &blinkInfo, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetBlink(const string &blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets the brightness of the specified LED
             // @text setBrightness
