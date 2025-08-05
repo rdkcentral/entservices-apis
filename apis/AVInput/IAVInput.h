@@ -95,7 +95,10 @@ namespace WPEFramework
                 // @text onDevicesChanged
                 // @brief Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
                 // @param info - in - The new signal information of the input device
+                // <pca> debug
                 virtual void OnDevicesChanged(const string &devices) {};
+                // virtual void OnDevicesChanged(const InputDevice &inputDevice -/-*- -@-in- -*-/-, IInputDeviceIterator *const devices -/-*- -@-in- -*-/-) {};
+                //  </pca>
 
                 // @text onSignalChanged
                 // @brief Triggered whenever the signal status changes for an HDMI/Composite Input
