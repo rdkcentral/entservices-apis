@@ -1,5 +1,8 @@
 name: Component Release
 
+permissions:
+  contents: write
+  
 on:
   pull_request:
     types: [closed]
@@ -9,7 +12,7 @@ on:
 jobs:
   release:
     if: github.event.pull_request.merged == true
-    runs-on: comcast-ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
