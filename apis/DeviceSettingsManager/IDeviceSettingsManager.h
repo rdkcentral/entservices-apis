@@ -800,7 +800,7 @@ namespace Exchange {
 #endif
     };
 
-#if 1
+#if 0
     struct EXTERNAL IDeviceSettingsManagerCompositeIn : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
@@ -2316,3 +2316,4 @@ namespace Exchange {
 #endif
 } // namespace Exchange
 } // namespace WPEFramework
+
