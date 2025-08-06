@@ -977,8 +977,8 @@ namespace Exchange {
             int32_t serialNumber;              ///< Serial number of the display device
             int32_t manufactureYear;           ///< Year of manufacture of the display device
             int32_t manufactureWeek;           ///< Week of manufacture of the display device
-            bool hdmiDeviceType;               ///< Device type ( @a true if HDMI, @a false if DVI )
-            bool  isRepeater;                  ///<  Receiver is a repeater  ( @a true if Repeater, @a false if connected Receiver is not a repeater)
+            bool hdmiDeviceType;               ///< Device type  @a true if HDMI, @a false if DVI 
+            bool  isRepeater;                  ///<  Receiver is a repeater   @a true if Repeater, @a false if connected Receiver is not a repeater
             uint8_t physicalAddressA;          ///<  Physical Address for HDMI nodeA
             uint8_t physicalAddressB;          ///<  Physical Address for HDMI nodeB
             uint8_t physicalAddressC;          ///<  Physical Address for HDMI nodeC
