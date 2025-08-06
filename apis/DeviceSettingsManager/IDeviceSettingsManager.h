@@ -809,27 +809,27 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
 
-        enum CompositeInPort : int8_t {
-            DS_COMPOSITE_IN_PORT_NONE = -1  /* @text UNKNOWN */,
-            DS_COMPOSITE_IN_PORT_0 = 0  /* @text CompositeIn Port 0 */,
-            DS_COMPOSITE_IN_PORT_1 = 1  /* @text CompositeIn Port 1 */,
-            DS_COMPOSITE_IN_PORT_MAX = 2  /* @text CompositeIn Port MAX */,
+        enum CompositeInPort: int8_t {
+            DS_COMPOSITE_IN_PORT_NONE    = -1  /* @text UNKNOWN */,
+            DS_COMPOSITE_IN_PORT_0       = 0  /* @text CompositeIn Port 0 */,
+            DS_COMPOSITE_IN_PORT_1       = 1  /* @text CompositeIn Port 1 */,
+            DS_COMPOSITE_IN_PORT_MAX     = 2  /* @text CompositeIn Port MAX */,
         };
 
-        enum CompositeInSignalStatus : int8_t {
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE = -1 /* @text Signal Status None */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL = 0 /* @text Signal Status No Signal */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE = 1 /* @text Signal Status Unstable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED = 2 /* @text Signal Status Not supported */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE = 3 /* @text Signal Status Stable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX = 4 /* @test Signal Status MAX */
+        enum CompositeInSignalStatus: int8_t {
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE          = -1 /* @text Signal Status None */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL      = 0 /* @text Signal Status No Signal */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE      = 1 /* @text Signal Status Unstable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED  = 2 /* @text Signal Status Not supported */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE        = 3 /* @text Signal Status Stable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX           = 4 /* @test Signal Status MAX */
         };
 
         struct CompositeInStatus {
             bool isPresented;
             CompositeInPort activePort;
             bool isPort0Connected;
-            bool isPort1Connected; /* Can't Have array in structures..so separating the booleans */
+            bool isPort1Connected; /* Can't have array in structures..so separating the booleans */
         };
 
         struct VideoRectangle {
@@ -837,6 +837,70 @@ namespace Exchange {
             int y;
             int width;
             int height;
+        };
+
+        enum DisplayTVResolution: uint32_t {
+            DS_DISPLAY_RESOLUTION_480I     = 0x000001,     
+            DS_DISPLAY_RESOLUTION_480P     = 0x000002,     
+            DS_DISPLAY_RESOLUTION_576I     = 0x000004,     
+            DS_DISPLAY_RESOLUTION_576P     = 0x000008,     
+            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,   
+            DS_DISPLAY_RESOLUTION_720P     = 0x000020,     
+            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,   
+            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,    
+            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
+            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
+            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
+            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
+            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
+            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,  
+            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,  
+            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,  
+            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,  
+            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,  
+            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000  
+        };
+
+        enum DisplayVideoAspectRatio : uint8_t {
+            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
+            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16x9        = 2  /* @text Video Aspect Ratio 16x9 */
+        };
+
+        enum DisplayInVideoStereoScopicMode : uint8_t {
+            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
+            DS_DISPLAY_SSMODE_2D                = 1,                  
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+        };
+
+        enum DisplayInVideoFrameRate: uint8_t {
+            DS_DISPLAY_FRAMERATE_UNKNOWN   = 0, 
+            DS_DISPLAY_FRAMERATE_24        = 1,
+            DS_DISPLAY_FRAMERATE_25        = 2,       
+            DS_DISPLAY_FRAMERATE_30        = 3,       
+            DS_DISPLAY_FRAMERATE_60        = 4,       
+            DS_DISPLAY_FRAMERATE_23_98     = 5,  
+            DS_DISPLAY_FRAMERATE_29_97     = 6,  
+            DS_DISPLAY_FRAMERATE_50        = 7,       
+            DS_DISPLAY_FRAMERATE_59_94     = 8,
+            DS_DISPLAY_FRAMERATE_100       = 9,
+            DS_DISPLAY_FRAMERATE_119_88    = 10,
+            DS_DISPLAY_FRAMERATE_120       = 11,
+            DS_DISPLAY_FRAMERATE_200       = 12,
+            DS_DISPLAY_FRAMERATE_239_76    = 13,
+            DS_DISPLAY_FRAMERATE_240       = 14,
+            DS_DISPLAY_FRAMERATE_MAX       = 15
+        };
+          
+        struct DisplayVideoPortResolution {
+            string name;
+            DisplayTVResolution pixelResolution;
+            DisplayVideoAspectRatio aspectRatio;
+            DisplayInVideoFrameRate frameRate;
+            bool interlaced;
         };
 
         // @event
@@ -861,6 +925,14 @@ namespace Exchange {
             // @param activePort: Active port
             // @param isPresented: is it presented to user
             virtual void OnCompositeInStatus(const CompositeInPort activePort, const bool isPresented) {};
+
+            // @brief Composite In status
+            // @text onCompositeInStatus
+            // @param activePort: Active port
+            // @param videoResolution: See DisplayVideoPortResolution
+            virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution videoResolution) {};
+
+
             
         };
 
@@ -897,49 +969,49 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY };
 
         enum DisplayEvent {
-            DS_DISPLAY_EVENT_CONNECTED = 0,  ///< Display connected event   
-            DS_DISPLAY_EVENT_DISCONNECTED = 1,   ///< Display disconnected event       
-            DS_DISPLAY_RXSENSE_ON = 2,           ///< Rx Sense ON event
-            DS_DISPLAY_RXSENSE_OFF = 3,          ///< Rx Sense OFF event
+            DS_DISPLAY_EVENT_CONNECTED     = 0,  ///< Display connected event   
+            DS_DISPLAY_EVENT_DISCONNECTED  = 1,  ///< Display disconnected event       
+            DS_DISPLAY_RXSENSE_ON          = 2,  ///< Rx Sense ON event
+            DS_DISPLAY_RXSENSE_OFF         = 3,  ///< Rx Sense OFF event
             DS_DISPLAY_HDCPPROTOCOL_CHANGE = 4,  ///< HDCP Protocol Version Change event
-            DS_DISPLAY_EVENT_MAX             ///< Display max event
+            DS_DISPLAY_EVENT_MAX                 ///< Display max event
         };
 
-        enum DisplayTVResolution : uint32_t {
-            DS_DISPLAY_RESOLUTION_480I = 0x000001,
-            DS_DISPLAY_RESOLUTION_480P = 0x000002,
-            DS_DISPLAY_RESOLUTION_576I = 0x000004,
-            DS_DISPLAY_RESOLUTION_576P = 0x000008,
-            DS_DISPLAY_RESOLUTION_576P50 = 0x000010,
-            DS_DISPLAY_RESOLUTION_720P = 0x000020,
-            DS_DISPLAY_RESOLUTION_720P50 = 0x000040,
-            DS_DISPLAY_RESOLUTION_1080I = 0x000080,
-            DS_DISPLAY_RESOLUTION_1080P = 0x000100,
-            DS_DISPLAY_RESOLUTION_1080P24 = 0x000200,
-            DS_DISPLAY_RESOLUTION_1080I25 = 0x000400,
-            DS_DISPLAY_RESOLUTION_1080I25 = 0x000800,
-            DS_DISPLAY_RESOLUTION_1080P30 = 0x001000,
-            DS_DISPLAY_RESOLUTION_1080I50 = 0x002000,
-            DS_DISPLAY_RESOLUTION_1080P50 = 0x004000,
-            DS_DISPLAY_RESOLUTION_1080P60 = 0x008000,
-            DS_DISPLAY_RESOLUTION_2160P24 = 0x010000,
-            DS_DISPLAY_RESOLUTION_2160P25 = 0x020000,
-            DS_DISPLAY_RESOLUTION_2160P30 = 0x040000,
-            DS_DISPLAY_RESOLUTION_2160P50 = 0x080000,
-            DS_DISPLAY_RESOLUTION_2160P60 = 0x100000
+        enum DisplayTVResolution: uint32_t {
+            DS_DISPLAY_RESOLUTION_480I     = 0x000001,     
+            DS_DISPLAY_RESOLUTION_480P     = 0x000002,     
+            DS_DISPLAY_RESOLUTION_576I     = 0x000004,     
+            DS_DISPLAY_RESOLUTION_576P     = 0x000008,     
+            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,   
+            DS_DISPLAY_RESOLUTION_720P     = 0x000020,     
+            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,   
+            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,    
+            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
+            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
+            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
+            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
+            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
+            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,  
+            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,  
+            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,  
+            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,  
+            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,  
+            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000  
         };
 
         enum DisplayVideoAspectRatio : uint8_t {
-            DS_DISPLAY_ASPECT_RATIO_UNKNOWN = 0  /* @text Video Aspect Ratio UNKNOWN */,
-            DS_DISPLAY_ASPECT_RATIO_4X3 = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16X9 = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
+            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
-            DS_DISPLAY_SSMODE_UNKNOWN = 0,
-            DS_DISPLAY_SSMODE_2D = 1,
-            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE = 2,
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3
+            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
+            DS_DISPLAY_SSMODE_2D                = 1,                  
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
         };
 
         enum DisplayInVideoFrameRate: uint8_t {
@@ -1437,6 +1509,13 @@ namespace Exchange {
             // @param audioDelay: audio delay
             // @param videoDelay: video delay
             virtual void OnHDMInAVLatency(const int audioDelay, const int videoDelay) {};
+
+            // @brief HDMI VRR status
+            // @text OnHDMInVRRStatus
+            // @param port: port 0 or 1 et al
+            // @param vrrType: VRR type
+            virtual void OnHDMInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
+
             
         };
 
