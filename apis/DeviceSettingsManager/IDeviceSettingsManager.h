@@ -809,35 +809,35 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
 
-        enum CompositeInPort: int8_t {
-            DS_COMPOSITE_IN_PORT_NONE    = -1  /* @text UNKNOWN */,
-            DS_COMPOSITE_IN_PORT_0       = 0  /* @text CompositeIn Port 0 */,
-            DS_COMPOSITE_IN_PORT_1       = 1  /* @text CompositeIn Port 1 */,
-            DS_COMPOSITE_IN_PORT_MAX     = 2  /* @text CompositeIn Port MAX */,
-        }
+        enum CompositeInPort : int8_t {
+            DS_COMPOSITE_IN_PORT_NONE = -1  /* @text UNKNOWN */,
+            DS_COMPOSITE_IN_PORT_0 = 0  /* @text CompositeIn Port 0 */,
+            DS_COMPOSITE_IN_PORT_1 = 1  /* @text CompositeIn Port 1 */,
+            DS_COMPOSITE_IN_PORT_MAX = 2  /* @text CompositeIn Port MAX */,
+        };
 
-        enum CompositeInSignalStatus: int8_t {
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE          = -1 /* @text Signal Status None */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL      = 0 /* @text Signal Status No Signal */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE      = 1 /* @text Signal Status Unstable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED  = 2 /* @text Signal Status Not supported */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE        = 3 /* @text Signal Status Stable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX           = 4 /* @test Signal Status MAX */
-        }
+        enum CompositeInSignalStatus : int8_t {
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE = -1 /* @text Signal Status None */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL = 0 /* @text Signal Status No Signal */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE = 1 /* @text Signal Status Unstable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED = 2 /* @text Signal Status Not supported */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE = 3 /* @text Signal Status Stable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX = 4 /* @test Signal Status MAX */
+        };
 
         struct CompositeInStatus {
             bool isPresented;
             CompositeInPort activePort;
             bool isPort0Connected;
-            bool isPort1Connected; /* Can't have array in structures..so separating the booleans */
-        }
+            bool isPort1Connected; /* Can't Have array in structures..so separating the booleans */
+        };
 
         struct VideoRectangle {
             int x;
             int y;
             int width;
             int height;
-        }
+        };
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -897,50 +897,50 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY };
 
         enum DisplayEvent {
-            DS_DISPLAY_EVENT_CONNECTED    =0,  ///< Display connected event   
-            DS_DISPLAY_EVENT_DISCONNECTED =1,   ///< Display disconnected event       
-            DS_DISPLAY_RXSENSE_ON         =2,           ///< Rx Sense ON event
-            DS_DISPLAY_RXSENSE_OFF         =3,          ///< Rx Sense OFF event
-            DS_DISPLAY_HDCPPROTOCOL_CHANGE=4,  ///< HDCP Protocol Version Change event
+            DS_DISPLAY_EVENT_CONNECTED = 0,  ///< Display connected event   
+            DS_DISPLAY_EVENT_DISCONNECTED = 1,   ///< Display disconnected event       
+            DS_DISPLAY_RXSENSE_ON = 2,           ///< Rx Sense ON event
+            DS_DISPLAY_RXSENSE_OFF = 3,          ///< Rx Sense OFF event
+            DS_DISPLAY_HDCPPROTOCOL_CHANGE = 4,  ///< HDCP Protocol Version Change event
             DS_DISPLAY_EVENT_MAX             ///< Display max event
-        }
+        };
 
-        enum DisplayTVResolution: uint32_t {
-            DS_DISPLAY_RESOLUTION_480I     = 0x000001,     
-            DS_DISPLAY_RESOLUTION_480P     = 0x000002,     
-            DS_DISPLAY_RESOLUTION_576I     = 0x000004,     
-            DS_DISPLAY_RESOLUTION_576P     = 0x000008,     
-            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,   
-            DS_DISPLAY_RESOLUTION_720P     = 0x000020,     
-            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,   
-            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,    
-            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
-            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
-            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
-            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
-            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
-            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
-            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
-            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,  
-            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,  
-            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,  
-            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,  
-            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,  
-            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000  
-        }
+        enum DisplayTVResolution : uint32_t {
+            DS_DISPLAY_RESOLUTION_480I = 0x000001,
+            DS_DISPLAY_RESOLUTION_480P = 0x000002,
+            DS_DISPLAY_RESOLUTION_576I = 0x000004,
+            DS_DISPLAY_RESOLUTION_576P = 0x000008,
+            DS_DISPLAY_RESOLUTION_576P50 = 0x000010,
+            DS_DISPLAY_RESOLUTION_720P = 0x000020,
+            DS_DISPLAY_RESOLUTION_720P50 = 0x000040,
+            DS_DISPLAY_RESOLUTION_1080I = 0x000080,
+            DS_DISPLAY_RESOLUTION_1080P = 0x000100,
+            DS_DISPLAY_RESOLUTION_1080P24 = 0x000200,
+            DS_DISPLAY_RESOLUTION_1080I25 = 0x000400,
+            DS_DISPLAY_RESOLUTION_1080I25 = 0x000800,
+            DS_DISPLAY_RESOLUTION_1080P30 = 0x001000,
+            DS_DISPLAY_RESOLUTION_1080I50 = 0x002000,
+            DS_DISPLAY_RESOLUTION_1080P50 = 0x004000,
+            DS_DISPLAY_RESOLUTION_1080P60 = 0x008000,
+            DS_DISPLAY_RESOLUTION_2160P24 = 0x010000,
+            DS_DISPLAY_RESOLUTION_2160P25 = 0x020000,
+            DS_DISPLAY_RESOLUTION_2160P30 = 0x040000,
+            DS_DISPLAY_RESOLUTION_2160P50 = 0x080000,
+            DS_DISPLAY_RESOLUTION_2160P60 = 0x100000
+        };
 
         enum DisplayVideoAspectRatio : uint8_t {
-            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
-            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
-        }
+            DS_DISPLAY_ASPECT_RATIO_UNKNOWN = 0  /* @text Video Aspect Ratio UNKNOWN */,
+            DS_DISPLAY_ASPECT_RATIO_4X3 = 1  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16X9 = 2  /* @text Video Aspect Ratio 16x9 */
+        };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
-            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
-            DS_DISPLAY_SSMODE_2D                = 1,                  
-            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
-        }
+            DS_DISPLAY_SSMODE_UNKNOWN = 0,
+            DS_DISPLAY_SSMODE_2D = 1,
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE = 2,
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3
+        };
 
         enum DisplayInVideoFrameRate: uint8_t {
             DS_DISPLAY_FRAMERATE_UNKNOWN   = 0, 
@@ -979,12 +979,12 @@ namespace Exchange {
             int32_t manufactureWeek;           ///< Week of manufacture of the display device
             bool hdmiDeviceType;               ///< Device type ( @a true if HDMI, @a false if DVI )
             bool  isRepeater;                  ///<  Receiver is a repeater  ( @a true if Repeater, @a false if connected Receiver is not a repeater)
-            uint8_t physicalAddressA;          ///<  Physical Address for HDMI node A
-            uint8_t physicalAddressB;          ///<  Physical Address for HDMI node B
-            uint8_t physicalAddressC;          ///<  Physical Address for HDMI node C
-            uint8_t physicalAddressD;          ///<  Physical Address for HDMI node D
-            int32_t numOfSupportedResolution;  ///<  Number of Supported Resolution
-            IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///<  EDID Supported Resoultion List
+            uint8_t physicalAddressA;          ///<  Physical Address for HDMI nodeA
+            uint8_t physicalAddressB;          ///<  Physical Address for HDMI nodeB
+            uint8_t physicalAddressC;          ///<  Physical Address for HDMI nodeC
+            uint8_t physicalAddressD;          ///<  Physical Address for HDMI nodeD
+            int32_t numOfSupportedResolution;  ///<  Number of Supported resolution
+            IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///<  EDID Supported Resoultion list
             string monitorName;
         };
         
@@ -1262,14 +1262,14 @@ namespace Exchange {
         using IHDMIInGameFeatureListIterator = RPC::IIteratorType<HDMIInGameFeatureList, ID_DEVICESETTINGS_HDMIIN_GAMELIST_ITERATOR>;
 
         struct HDMIInSpdInfoFrame {
-            uint8_t pkttype;            /*!< Package type */
+            uint8_t pktType;            /*!< Package type */
             uint8_t version;            /*!< Version */
             uint8_t length;             /*!< max length 25, min length 0 */
             uint8_t rsd;                /*!< Repetition of static data */
-            uint8_t checksum;           /*!< Checksum for spd info frame */
-            string  vendor_name;        /*!< Vendor Name string. Min length 0 */
-            string  product_des;       /*!< Product Description string. Min length 0 */
-            uint8_t source_info;        /*!< Source info of the frame  */
+            uint8_t checkSum;           /*!< Checksum for spd info frame */
+            string  vendorName;        /*!< Vendor Name string. Min length 0 */
+            string  productDes;       /*!< Product Description string. Min length 0 */
+            uint8_t sourceInfo;        /*!< Source info of the frame  */
         };
 
         enum HDMIInEdidVersion : uint8_t {
@@ -1898,14 +1898,14 @@ namespace Exchange {
             DS_DISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG    = 2,   
             DS_DISPLAY_MATRIXCOEFFICIENT_SMPTE_170M     = 3,   
             DS_DISPLAY_MATRIXCOEFFICIENT_XVYCC_709      = 4,     
-            DS_DISPLAY_MATRIXCOEFFICIENT_eXVYCC_601     = 5,    
+            DS_DISPLAY_MATRIXCOEFFICIENT_EXVYCC_601     = 5,    
             DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL    = 6,   
             DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_CL     = 7,    
             DS_DISPLAY_MATRIXCOEFFICIENT_EDVI_FR_RGB    = 8,   
             DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_RGB      = 9,     
             DS_DISPLAY_MATRIXCOEFFICIENT_EFCC           = 10,          
             DS_DISPLAY_MATRIXCOEFFICIENT_ESMPTE_240M    = 11,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_FR_YCbCr = 12,
+            DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_FR_YCBCR = 12,
             DS_DISPLAY_MATRIXCOEFFICIENT_MAX            = 13
         };
 
@@ -1937,7 +1937,7 @@ namespace Exchange {
         struct DSOutputSettings {
             HDRStandard videoEotf;
             DisplayMatrixCoefficients matrixCoefficients;
-            uint32_t color_depth;
+            uint32_t colorDepth;
             DisplayColorSpace colorSpace;
             DisplayQuantizationRange quantizationRange;
         };
