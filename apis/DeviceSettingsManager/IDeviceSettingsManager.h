@@ -117,11 +117,6 @@ namespace Exchange {
             AUDIO_INPUT_MAX                       = 2
         };
 
-        struct AudioARCStatus {
-            AudioARCType    type;               
-            bool status;                        
-        };
-
         enum MS12Capabilities : uint8_t {
             AUDIO_MS12_CAPABILITIES_NONE                    = 0,
             AUDIO_MS12_CAPABILITIES_DOLBYVOLUME             = 1,
@@ -309,7 +304,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param count: number of items in sadList (max 15)
         // @param sadList: SAD array 
-        virtual Core::hresult SetSAD(const int handle /* @in */, int count /* @in */, int sadList[] /* @in */) = 0;
+        virtual Core::hresult SetSAD(const int handle /* @in */, int count /* @in */, int sadList[] /* @in @length:return @maxlength:count */) = 0;
 
         /** Enable ARC */
         // @text enableARC
@@ -427,7 +422,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param enable :  persistence enable (true) or disable (false)
         // @param portName: portName for which persistence is enabled
-        virtual Core::hresult SetAudioEnablePersist(const int handle /* @in */, bool enable /* @in */, string &portName /* @in */) = 0;
+        virtual Core::hresult SetAudioEnablePersist(const int handle /* @in */, bool enable /* @in */, string portName /* @in */) = 0;
 
         /** Audio MS decode Status. */
         // @text isAudioMSDecoded
@@ -652,7 +647,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param mode: Equalizer mode
         virtual Core::hresult GetAudioGraphicEqualizerMode(const int handle /* @in */, int &mode /* @out */) = 0;
-
+#if 0
         /** Get Audio MS12 profile list    */
         // @text getAudioMS12ProfileList
         // @brief Get Audio MS12 profile list
@@ -680,7 +675,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param audioInput: AudioInput 
         // @param volume: Volume level
-        virtual Core::hresult SetAudioMixerLevels(const int handle /* @in */, const AudioInput audioInput /* @in */, int &volume /* @in */) = 0;
+        virtual Core::hresult SetAudioMixerLevels(const int handle /* @in */, const AudioInput audioInput /* @in */, int volume /* @in */) = 0;
 
         /** Set Associated Audio Mixing values     */
         // @text setAssociatedAudioMixing
@@ -802,9 +797,10 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param portId: Port Id
         virtual Core::hresult GetAudioHDMIARCPortId(const int handle /* @in */, int &portId /* @out */) = 0;
-
+#endif
     };
 
+#if 1
     struct EXTERNAL IDeviceSettingsManagerCompositeIn : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
@@ -1090,7 +1086,8 @@ namespace Exchange {
         // @param port: port for which the handle is required
         // @param index: index of the port (there can be multiple number of ports)
         // @param handle: handle to the port
-        virtual Core::hresult GetDisplay(VideoPort port /* @in */, int index /* @in */, int &handle /* @out */) = 0;
+       // virtual Core::hresult GetDisplay(VideoPort port /* @in */, int index /* @in */, int &handle /* @out */) = 0;
+       // Lakshmi commented above as VideoPort is avalable at line no: 1847
 
         /** Get Display Aspect ratio. */
         // @text getDisplayAspectRatio
@@ -1104,7 +1101,8 @@ namespace Exchange {
         // @brief Get Display EDID
         // @param handle: handle returned in GetDisplay
         // @param edId: EDID information
-        virtual Core::hresult GetDisplayEdid(const int handle /* @in */, DisplayEDID &edId /* @out */) = 0;
+//        virtual Core::hresult GetDisplayEdid(const int handle, DisplayEDID &edId /* @out */) = 0;
+//Lakshmi:  ERROR: IFirmwareVersion.h: /home/nadosakayala/dsmgr/entservices-apis/apis/DeviceSettingsManager/IDeviceSettingsManager.h(1105): parse error: in/out tags not allowed here
 
         /** Get Display EDID bytes. */
         // @text getDisplayEdidBytes
@@ -1306,7 +1304,7 @@ namespace Exchange {
             DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,                                 
             DS_HDMI_IN_SIGNAL_STATUS_NOTSUPPORTED = 2,                               
             DS_HDMI_IN_SIGNAL_STATUS_STABLE       = 3,
-            DS_HDMI_IN_SIGNAL_STATUS_MAX.         = 4
+            DS_HDMI_IN_SIGNAL_STATUS_MAX          = 4
         };
 
         struct HDMIPortConnectionStatus {
@@ -2315,6 +2313,6 @@ namespace Exchange {
 	
 
     };
-
+#endif
 } // namespace Exchange
 } // namespace WPEFramework
