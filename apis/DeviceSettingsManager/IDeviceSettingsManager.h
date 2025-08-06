@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2025 RDK Management
+ * Copyright 2024 RDK Management - vdixit - Change to 2025
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,176 +25,11 @@
 #include "Module.h"
 
 namespace WPEFramework {
-    namespace Exchange {
-    struct EXTERNAL IDeviceSettingsManager : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICESETTINGS_MANAGER };
-
-        enum DisplayEvent {
-            DS_DISPLAY_EVENT_CONNECTED     = 0, ///< Display connected event
-            DS_DISPLAY_EVENT_DISCONNECTED  = 1, ///< Display disconnected event
-            DS_DISPLAY_RXSENSE_ON          = 2, ///< Rx Sense ON event
-            DS_DISPLAY_RXSENSE_OFF         = 3, ///< Rx Sense OFF event
-            DS_DISPLAY_HDCPPROTOCOL_CHANGE = 4, ///< HDCP Protocol Version Change event
-            DS_DISPLAY_EVENT_MAX           = 5  ///< MAX
-        };
-
-        struct ResolutionChange {
-            uint32_t width;
-            uint32_t height;
-        };
-
-        enum HDRStandard : uint16_t {
-            DS_HDRSTANDARD_NONE             = 0x0,
-            DS_HDRSTANDARD_HDR10            = 0x01,
-            DS_HDRSTANDARD_HLG              = 0x02,
-            DS_HDRSTANDARD_DOLBYVISION      = 0x04,
-            DS_HDRSTANDARD_TECHNICOLORPRIME = 0x08,
-            DS_HDRSTANDARD_HDR10PLUS        = 0x10,
-            DS_HDRSTANDARD_SDR              = 0x20,
-            DS_HDRSTANDARD_INVALID          = 0x80
-        };
-
-        enum HDCPStatus : uint8_t {
-            DS_HDCP_STATUS_UNPOWERED             = 0,
-            DS_HDCP_STATUS_UNAUTHENTICATED       = 1,
-            DS_HDCP_STATUS_AUTHENTICATED         = 2,
-            DS_HDCP_STATUS_AUTHENTICATIONFAILURE = 3,
-            DS_HDCP_STATUS_INPROGRESS            = 4,
-            DS_HDCP_STATUS_PORTDISABLED          = 5,
-            DS_HDCP_STATUS_MAX                   = 6
-        };
-
-        enum HDCPProtocolVersion : uint8_t {
-            DS_HDCP_VERSION_1X = 0,
-            DS_HDCP_VERSION_2X = 1,
-            DS_HDCP_VERSION_MAX = 2
-        };
-
-        enum VideoZoom : int8_t {
-            DS_VIDEO_DEVICE_ZOOM_UNKNOWN           = -1,
-            DS_VIDEO_DEVICE_ZOOM_NONE              = 0,
-            DS_VIDEO_DEVICE_ZOOM_FULL              = 1,
-            DS_VIDEO_DEVICE_ZOOM_LB_16_9           = 2,
-            DS_VIDEO_DEVICE_ZOOM_LB_14_9           = 3,
-            DS_VIDEO_DEVICE_ZOOM_CCO               = 4,
-            DS_VIDEO_DEVICE_ZOOM_PAN_SCAN          = 5,
-            DS_VIDEO_DEVICE_ZOOM_LB_2_21_1_ON_4_3  = 6,
-            DS_VIDEO_DEVICE_ZOOM_LB_2_21_1_ON_16_9 = 7,
-            DS_VIDEO_DEVICE_ZOOM_PLATFORM          = 8,
-            DS_VIDEO_DEVICE_ZOOM_16_9_ZOOM         = 9,
-            DS_VIDEO_DEVICE_ZOOM_PILLARBOX_4_3     = 10,
-            DS_VIDEO_DEVICE_ZOOM_WIDE_4_3          = 11,
-            DS_VIDEO_DEVICE_ZOOM_MAX               = 12
-        };
-
-        enum FPDTimeFormat : uint8_t {
-            DS_FPD_TIMEFORMAT_12_HOUR = 0,
-            DS_FPD_TIMEFORMAT_24_HOUR,
-            DS_FPD_TIMEFORMAT_MAX
-        };
-
-        enum SleepMode : uint8_t {
-            DS_HOST_SLEEPMODE_LIGHT = 0,
-            DS_HOST_SLEEPMODE_DEEP,
-            DS_HOST_SLEEPMODE_MAX
-        };
-
-        enum HDMIInPort : int8_t {
-            DS_HDMI_IN_PORT_NONE = -1,
-            DS_HDMI_IN_PORT_0    = 0,
-            DS_HDMI_IN_PORT_1    = 1,
-            DS_HDMI_IN_PORT_2    = 2,
-            DS_HDMI_IN_PORT_3    = 3,
-            DS_HDMI_IN_PORT_4    = 4
-        };
-
-        enum HDMIInSignalStatus : int8_t {
-            DS_HDMI_IN_SIGNAL_STATUS_NONE         = -1,
-            DS_HDMI_IN_SIGNAL_STATUS_NOSIGNAL     = 0,
-            DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,
-            DS_HDMI_IN_SIGNAL_STATUS_NOTSUPPORTED = 2,
-            DS_HDMI_IN_SIGNAL_STATUS_STABLE       = 3,
-            DS_HDMI_IN_SIGNAL_STATUS_MAX          = 4
-        };
-
-        enum HDMIInTVResolution : uint32_t {
-            DS_HDMIIN_RESOLUTION_480I    = 0x000001,
-            DS_HDMIIN_RESOLUTION_480P    = 0x000002,
-            DS_HDMIIN_RESOLUTION_576I    = 0x000004,
-            DS_HDMIIN_RESOLUTION_576P    = 0x000008,
-            DS_HDMIIN_RESOLUTION_576P50  = 0x000010,
-            DS_HDMIIN_RESOLUTION_720P    = 0x000020,
-            DS_HDMIIN_RESOLUTION_720P50  = 0x000040,
-            DS_HDMIIN_RESOLUTION_1080I   = 0x000080,
-            DS_HDMIIN_RESOLUTION_1080P   = 0x000100,
-            DS_HDMIIN_RESOLUTION_1080P24 = 0x000200,
-            DS_HDMIIN_RESOLUTION_1080I25 = 0x000400,
-            DS_HDMIIN_RESOLUTION_1080P25 = 0x000800,
-            DS_HDMIIN_RESOLUTION_1080P30 = 0x001000,
-            DS_HDMIIN_RESOLUTION_1080I50 = 0x002000,
-            DS_HDMIIN_RESOLUTION_1080P50 = 0x004000,
-            DS_HDMIIN_RESOLUTION_1080P60 = 0x008000,
-            DS_HDMIIN_RESOLUTION_2160P24 = 0x010000,
-            DS_HDMIIN_RESOLUTION_2160P25 = 0x020000,
-            DS_HDMIIN_RESOLUTION_2160P30 = 0x040000,
-            DS_HDMIIN_RESOLUTION_2160P50 = 0x080000,
-            DS_HDMIIN_RESOLUTION_2160P60 = 0x100000
-        };
-
-        enum HDMIVideoAspectRatio : uint8_t {
-            DS_HDMIIN_ASPECT_RATIO_4X3     = 0 /* @text Video Aspect Ratio 4X3 */,
-            DS_HDMIIN_ASPECT_RATIO_16X9    = 1 /* @text Video Aspect Ratio 16x9 */,
-            DS_HDMIIN_ASPECT_RATIO_MAX     = 2
-        };
-
-        enum HDMIInVideoStereoScopicMode : uint8_t {
-            DS_HDMIIN_SSMODE_UNKNOWN           = 0,
-            DS_HDMIIN_SSMODE_2D                = 1,
-            DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,
-            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3,
-            DS_HDMIIN_SSMODE_MAX               = 4
-        };
-
-        enum HDMIInVideoFrameRate : uint8_t {
-            DS_HDMIIN_FRAMERATE_UNKNOWN = 0,
-            DS_HDMIIN_FRAMERATE_24      = 1,
-            DS_HDMIIN_FRAMERATE_25      = 2,
-            DS_HDMIIN_FRAMERATE_30      = 3,
-            DS_HDMIIN_FRAMERATE_60      = 4,
-            DS_HDMIIN_FRAMERATE_23_98   = 5,
-            DS_HDMIIN_FRAMERATE_29_97   = 6,
-            DS_HDMIIN_FRAMERATE_50      = 7,
-            DS_HDMIIN_FRAMERATE_59_94   = 8,
-            DS_HDMIIN_FRAMERATE_100     = 9,
-            DS_HDMIIN_FRAMERATE_119_88  = 10,
-            DS_HDMIIN_FRAMERATE_120     = 11,
-            DS_HDMIIN_FRAMERATE_200     = 12,
-            DS_HDMIIN_FRAMERATE_239_76  = 13,
-            DS_HDMIIN_FRAMERATE_240     = 14,
-            DS_HDMIIN_FRAMERATE_MAX     = 15
-        };
-
-        // AiW
-        enum HDMIInAviContentType : uint8_t {
-            DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      = 0,
-            DS_HDMIIN_AVICONTENT_TYPE_PHOTO         = 1,
-            DS_HDMIIN_AVICONTENT_TYPE_CINEMA        = 2,
-            DS_HDMIIN_AVICONTENT_TYPE_GAME          = 3,
-            DS_HDMIIN_AVICONTENT_TYPE_NOT_SIGNALLED = 4,
-            DS_HDMIIN_AVICONTENT_TYPE_MAX           = 5
-        };
-
-        struct HDMIVideoPortResolution {
-            string name;
-            HDMIInTVResolution pixelResolution;
-            HDMIVideoAspectRatio aspectRatio;
-            HDMIInVideoStereoScopicMode stereoScopicMode;
-            HDMIInVideoFrameRate frameRate;
-            bool interlaced;
-        };
+namespace Exchange {
+    struct EXTERNAL IDeviceSettingsManagerAudio : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_AUDIO };
 
         enum AudioPortType : uint8_t {
-             
             AUDIO_PORT_TYPE_LR        = 0,
             AUDIO_PORT_TYPE_HDMI      = 1,
             AUDIO_PORT_TYPE_SPDIF     = 2,
@@ -202,6 +37,28 @@ namespace WPEFramework {
             AUDIO_PORT_TYPE_HDMIARC   = 4,
             AUDIO_PORT_TYPE_HEADPHONE = 5,
             AUDIO_PORT_TYPE_MAX       = 6
+        };
+
+        enum AudioPortState : uint8_t {
+            AUDIO_PORT_STATE_UNKNOWN       = 0,
+            AUDIO_PORT_STATE_UNINITIALIZED = 1,
+            AUDIO_PORT_STATE_INITIALIZED   = 2
+        };
+
+        enum AudioEncoding : uint8_t {
+            AUDIO_ENCODING_NONE            = 0,
+            AUDIO_ENCODING_DISPLAY         = 1,
+            AUDIO_ENCODING_PCM             = 2,
+            AUDIO_ENCODING_AC3             = 3,
+            AUDIO_ENCODING_EAC3            = 4
+        };
+
+        enum AudioCompression : uint8_t {
+            AUDIO_COMPRESSION_NONE          = 0,
+            AUDIO_COMPRESSION_LIGHT         = 1,
+            AUDIO_COMPRESSION_MEDIUM        = 2,
+            AUDIO_COMPRESSION_HEAVY         = 3,
+            AUDIO_COMPRESSION_MAX           = 4,
         };
 
         enum AudioFormat : uint8_t {
@@ -223,17 +80,82 @@ namespace WPEFramework {
             AUDIO_FORMAT_MAX                = 15
         };
 
-        enum AudioPortState : uint8_t {
-            AUDIO_PORT_STATE_UNKNOWN       = 0,
-            AUDIO_PORT_STATE_UNINITIALIZED = 1,
-            AUDIO_PORT_STATE_INITIALIZED   = 2
+        enum AudioDuckingAction : uint8_t {
+            AUDIO_DUCKINGACTION_START         = 0,
+            AUDIO_DUCKINGACTION_STOP          = 1,
+            AUDIO_DUCKINGACTION_MAX           = 2,
         };
 
-        enum DolbyAtmosCapability : uint8_t {
-            AUDIO_DOLBYATMOS_NOT_SUPPORTED  = 0,
-            AUDIO_DOLBYATMOS_DDPLUS_STREAM  = 1,
-            AUDIO_DOLBYATMOS_ATMOS_METADATA = 2,
-            AUDIO_DOLBYATMOS_MAX            = 3
+        enum AudioDuckingType : uint8_t {
+            AUDIO_DUCKINGTYPE_ABSOLUTE       = 0,
+            AUDIO_DUCKINGTYPE_RELATIVE       = 1,
+            AUDIO_DUCKINGTYPE_MAX            = 2
+        };
+
+        enum AudioCapabilities : uint32_t {
+            AUDIO_CAPS_NONE                      = 0,
+            AUDIO_CAPS_ATMOS                     = 1,
+            AUDIO_CAPS_DOLBY_DIGITAL             = 2,
+            AUDIO_CAPS_DOLBY_DIGITAL_PLUS        = 4,
+            AUDIO_CAPS_DIGITAL_AUDIO_DELIVERY    = 8,
+            AUDIO_CAPS_DIGITAL_AUDIO_PROCESS_V2  = 16,
+            AUDIO_CAPS_MS12                      = 32,
+            AUDIO_CAPS_MS12_V2                   = 64,
+            AUDIO_CAPS_INVALID                   = 128,
+
+        };
+
+        enum AudioARCType : uint8_t {
+            AUDIO_ARCTYPE_NONE                    = 0,
+            AUDIO_ARCTYPE_ARC                     = 1,
+            AUDIO_ARCTYPE_EARC                    = 2
+        };
+
+        enum AudioInput : uint8_t {
+            AUDIO_INPUT_PRIMARY                   = 0,
+            AUDIO_INPUT_SYSTEM                    = 1,
+            AUDIO_INPUT_MAX                       = 2
+        };
+
+        struct AudioARCStatus {
+            AudioARCType    type;               
+            bool status;                        
+        };
+
+        enum MS12Capabilities : uint8_t {
+            AUDIO_MS12_CAPABILITIES_NONE                    = 0,
+            AUDIO_MS12_CAPABILITIES_DOLBYVOLUME             = 1,
+            AUDIO_MS12_CAPABILITIES_INTELLIGENT_EQUALIZER   = 2,
+            AUDIO_MS12_CAPABILITIES_DIALOG_ENHANCER         = 4,
+            AUDIO_MS12_CAPABILITIES_VOLUME_LEVELLER         = 8,
+            AUDIO_MS12_CAPABILITIES_BASE_ENHANCER           = 16,
+            AUDIO_MS12_CAPABILITIES_SURROUND_DECODER        = 32,
+            AUDIO_MS12_CAPABILITIES_DRC_MODE                = 64,
+            AUDIO_MS12_CAPABILITIES_SURROUND_VIRTUALIZER    = 128,
+            AUDIO_MS12_CAPABILITIES_MI_STEERING             = 256,
+            AUDIO_MS12_CAPABILITIES_GRAPHIC_EQUALIZER       = 512,
+            AUDIO_MS12_CAPABILITIES_LE_CONFIG               = 1024,
+            AUDIO_MS12_CAPABILITIES_INVALID                 = (1 << 31)
+        };
+
+        // TODO AudioSADList 
+
+        // TODO MS12 Audio Profile list
+
+        struct MS12AudioProfile {
+            string audioProfile;                 
+        };
+
+        using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICE_SETTINGS_AUDIO_PROFILE_ITERATOR>;
+
+        struct VolumeLeveller {
+            uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
+            uint8_t level;      /* @text Value of volume leveller. 0 -10 */
+        };
+
+        struct SurroundVirtualizer {
+            uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
+            uint8_t boost;      /* @text Value of boost level. 0 -96 */
         };
 
         enum StereoMode : uint8_t {
@@ -247,69 +169,40 @@ namespace WPEFramework {
             AUDIO_STEREO_MAX         = 7
         };
 
-        enum CompositeInPort : uint8_t {
-            DS_COMPOSITE_IN_NONE         = 0 /* @text NONE */,
-            DS_COMPOSITE_IN_PORT_0       = 1 /* @text CompositeIn Port 0 */,
-            DS_COMPOSITE_IN_PORT_1       = 2 /* @text CompositeIn Port 1 */,
-            DS_COMPOSITE_IN_PORT_MAX     = 3 /* @text CompositeIn Port Max*/
+        enum DolbyAtmosCapability: uint8_t {
+            AUDIO_DOLBYATMOS_NOT_SUPPORTED     = 0,
+            AUDIO_DOLBYATMOS_DDPLUS_STREAM     = 1,
+            AUDIO_DOLBYATMOS_ATMOS_METADATA    = 2,
+            AUDIO_DOLBYATMOS_MAX               = 3
         };
 
-        // AiW
-        enum CompositeInSignalStatus : uint8_t {
-            DS_COMPOSITE_IN_SIGNAL_STATUS_UNKNOWN      = 0 /* @text UNKNOWN */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE         = 1 /* @text Signal Status None */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL     = 2 /* @text Signal Status No Signal */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE     = 3 /* @text Signal Status Unstable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED = 4 /* @text Signal Status Not supported */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE       = 5 /* @text Signal Status Stable */
+        enum SurroundMode: uint8_t {
+            AUDIO_SURROUND_MODE_NONE              = 0,
+            AUDIO_SURROUND_MODE_DD                = 1,
+            AUDIO_SURROUND_MODE_DDPLUS            = 2,
+            AUDIO_SURROUND_MODE_MAX               = 4
         };
 
-        struct CompositeInStatus {
-            bool isPresented;
-            CompositeInPort activePort;
-            /* Structure can not have array in this interface file. So separated the booleans. 
-               https://github.com/rdkcentral/rdk-halif-device_settings/blob/16515f3b8fdbc683164dd58e50a0f7d6ff995d1f/include/dsCompositeInTypes.h#L120 */
-            bool isPort0Connected;
-            bool isPort1Connected; 
+        enum MS12Feature: uint8_t {
+            AUDIO_MS12_FEATURE_DAPV2           = 0,
+            AUDIO_MS12_FEATURE_DE              = 1,
+            AUDIO_MS12_FEATURE_MAX             = 2
+        };
+
+        // TODO AudioConfig type from dsAVDTypes.h - vdixit
+
+        struct AudioSADItem { 
+            int  sad    /* @brief SAD value */ ;
+        };
+        using IDSAudioSADIterator = RPC::IIteratorType<AudioSADItem, ID_DSAUDIO_SAD_ITERATOR>;
+
+        struct AudioARCStatus { 
+            AudioARCType  arcType    /* @brief ARC Type */ ;
+            bool          status     /* @brief ARC status */;
         };
 
         // @event
-        struct EXTERNAL IHDMIHotPlugNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIHOTPLUG_NOTIFICATION };
-            // @brief HDMI Hotplug event
-            // @text OnHDMIHotPlug
-            // @param displayEvent: CONNECTED or DISCONNECTED
-            virtual void OnHDMIHotPlug(DisplayEvent displayEvent) { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IHDMIHotPlugNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IHDMIHotPlugNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IRxSenseNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_RXSENSE_NOTIFICATION };
-            // @brief RX Sense event
-            // @text OnRxSense
-            // @param displayEvent: RX Sense On or Off
-            virtual void OnRxSense(DisplayEvent displayEvent) { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IRxSenseNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IRxSenseNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IHDCPStatusNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_HDCP_STATUS_NOTIFICATION };
-            // @brief HDCP Protocol version change
-            // @text OnHDCPProtocolChangeStatus
-            virtual void OnHDCPProtocolChangeStatus() { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IHDCPStatusNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IHDCPStatusNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IDSAudioNotification : virtual public Core::IUnknown {
+        struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_DEVICESETTINGS_MANAGER_AUDIO_NOTIFICATION };
 
             // @brief Associated Audio mixing changed
@@ -368,165 +261,1981 @@ namespace WPEFramework {
             virtual void OnAudioLevelChangedEvent(int audioLevel) { };
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSAudioNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSAudioNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerAudio::INotification* notification /* @in */)   = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerAudio::INotification* notification /* @in */) = 0;
+
+        /** Get Audio Port . */
+        // @text getAudioPort
+        // @brief Get Audio Port handle for the port type and index
+        // @param type: Type of Audio port - see AudioPortType
+        // @param index: index of the audio port within the list of audio port types
+        // @param handle: handle to the port
+        virtual Core::hresult GetAudioPort(const AudioPortType type /* @in */, const int index /* @in */,int &handle /* @out */) = 0;
+
+        /** Terminate Audio Port . */
+        // @text audioPortTerm
+        // @brief Terminate the Audio Port for the port type and index
+        // @param type: Type of Audio port - see AudioPortType
+        // @param index: index of the audio port within the list of audio port types
+        // @param handle: handle to the port
+        virtual Core::hresult AudioPortTerm(const AudioPortType type /* @in */, const int index /* @in */,int handle /* @in */) = 0;
+
+        /** Audio Port status. */
+        // @text isAudioPortEnabled
+        // @brief Audio port status
+        // @param type: Type of Audio port - see AudioPortType
+        // @param index: index of the audio port within the list of audio port types
+        // @param handle: handle to the port
+        virtual Core::hresult IsAudioPortEnabled(const AudioPortType type /* @in */, const int index /* @in */,int &handle /* @out */) = 0;
+
+        /** Enable Audio Port. */
+        // @text enableAudioPort
+        // @brief Audio port status
+        // @param type: Type of Audio port - see AudioPortType
+        // @param index: index of the audio port within the list of audio port types
+        // @param handle: handle to the port
+        virtual Core::hresult EnableAudioPort(const AudioPortType type /* @in */, const int index /* @in */,int &handle /* @out */) = 0;
+
+        /** Get Supported ARC types . */
+        // @text getSupportedARCTypes
+        // @brief Get Supported ARC types
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: Supported types
+        virtual Core::hresult GetSupportedARCTypes(const int handle /* @in */, int &types /* @out */) = 0;
+
+        /** Set SAD */
+        // @text setSAD
+        // @brief Get Supported ARC types
+        // @param handle: handle returned in GetAudioPort()
+        // @param count: number of items in sadList (max 15)
+        // @param sadList: SAD array 
+        virtual Core::hresult SetSAD(const int handle /* @in */, int count /* @in */, int sadList[] /* @in */) = 0;
+
+        /** Enable ARC */
+        // @text enableARC
+        // @brief Get Supported ARC types
+        // @param handle: handle returned in GetAudioPort()
+        // @param arcStatus: ARC param
+        virtual Core::hresult EnableARC(const int handle /* @in */, AudioARCStatus arcStatus /* @in */) = 0;
+
+        /** Get Stereo Mode  . */
+        // @text getStereoMode
+        // @brief Get Stereo Mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: mode
+        virtual Core::hresult GetStereoMode(const int handle /* @in */, StereoMode &mode /* @out */) = 0;
+
+        /** Set Stereo Mode  . */
+        // @text setStereoMode
+        // @brief Set Stereo Mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: mode
+        // @param persist: persist the mode
+        virtual Core::hresult SetStereoMode(const int handle /* @in */, StereoMode mode /* @in */ ,bool persist /* @in */) = 0;
+
+        /** Get Stereo Auto  . */
+        // @text getStereoAuto
+        // @brief Get Stereo Auto
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: auto mode
+        virtual Core::hresult GetStereoAuto(const int handle /* @in */, int &mode /* @out */) = 0;
+
+        /** Set Stereo Auto  . */
+        // @text setStereoAuto
+        // @brief Set Stereo Auto
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: auto mode
+        // @param persist: persist the setting
+        virtual Core::hresult SetStereoAuto(const int handle /* @in */, int mode /* @in */, bool persist /* @in */) = 0;
+
+        /** Set Audio Mute . */
+        // @text setAudioMute
+        // @brief Set Audio mute
+        // @param handle: handle returned in GetAudioPort()
+        // @param mute: Mute (true) or Unmute (false)
+        virtual Core::hresult SetAudioMute(const int handle /* @in */, bool mute /* @in */) = 0;
+
+        /** Audio Mute Status. */
+        // @text isAudioMuted
+        // @brief Audio mute status
+        // @param handle: handle returned in GetAudioPort()
+        // @param muted: Muted (true) or not (false)
+        virtual Core::hresult IsAudioMuted(const int handle /* @in */, bool &muted /* @out */) = 0;
+
+        /** Set Audio ducking */
+        // @text setAudioDucking
+        // @brief Set Audio ducking
+        // @param handle: handle returned in GetAudioPort()
+        // @param duckingType: Audio ducking type
+        // @param duckingAction: Audio ducking action
+        // @param level : Volume level when audio is ducked. 
+        virtual Core::hresult SetAudioDucking(const int handle /* @in */, AudioDuckingType duckingType /* @in */, AudioDuckingAction duckingAction /* @in */, uint8_t level /* @in */) = 0;
+
+        /** Set Audio Level */
+        // @text setAudioLevel
+        // @brief Set Audio Level
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioLevel: Audio level
+        virtual Core::hresult SetAudioLevel(const int handle /* @in */, float audioLevel /* @in */) = 0;
+
+        /** Get Audio Level */
+        // @text GetAudioDucking
+        // @brief Get Audio Level
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioLevel: Audio level
+        virtual Core::hresult GetAudioLevel(const int handle /* @in */, float &audioLevel /* @out */) = 0;
+
+        /** Set Audio Gain */
+        // @text setAudioGain
+        // @brief Set Audio Gain
+        // @param handle: handle returned in GetAudioPort()
+        // @param gainLevel: Gain level
+        virtual Core::hresult SetAudioGain(const int handle /* @in */, float gainLevel /* @in */) = 0;
+
+        /** Get Audio Gain */
+        // @text setAudioGain
+        // @brief Get Audio Gain
+        // @param handle: handle returned in GetAudioPort()
+        // @param gainLevel: Gain level
+        virtual Core::hresult GetAudioGain(const int handle /* @in */, float &gainLevel /* @out */) = 0;
+
+        /** Get Audio Format */
+        // @text getAudioFormat
+        // @brief Get Audio Format
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioFormat: Audio format
+        virtual Core::hresult GetAudioFormat(const int handle /* @in */, AudioFormat &audioFormat /* @out */) = 0;
+
+        /** Get Audio encoding */
+        // @text getAudioEncoding
+        // @brief Get Audio encoding
+        // @param handle: handle returned in GetAudioPort()
+        // @param encoding: Audio encoding
+        virtual Core::hresult GetAudioEncoding(const int handle /* @in */, AudioEncoding &encoding /* @out */) = 0;
+
+        /** Get Audio Persistence status . */
+        // @text getAudioEnablePersist
+        // @brief Get Persistence status
+        // @param handle: handle returned in GetAudioPort()
+        // @param enabled: Is persistence enabled or not
+        // @param portName: portName for which persistence is enabled
+        virtual Core::hresult GetAudioEnablePersist(const int handle /* @in */, bool &enabled /* @out */, string &portName /* @out */) = 0;
+
+        /** Set Audio Persistence status . */
+        // @text SetAudioEnablePersist
+        // @brief Set Persistence status
+        // @param handle: handle returned in GetAudioPort()
+        // @param enable :  persistence enable (true) or disable (false)
+        // @param portName: portName for which persistence is enabled
+        virtual Core::hresult SetAudioEnablePersist(const int handle /* @in */, bool enable /* @in */, string &portName /* @in */) = 0;
+
+        /** Audio MS decode Status. */
+        // @text isAudioMSDecoded
+        // @brief Audio MS decode status
+        // @param handle: handle returned in GetAudioPort()
+        // @param hasms11Decode: true or false
+        virtual Core::hresult IsAudioMSDecoded(const int handle /* @in */, bool &hasms11Decode /* @out */) = 0;
+
+        /** Audio MS12 decode Status. */
+        // @text isAudioMS12Decoded
+        // @brief Audio MS12 decode status
+        // @param handle: handle returned in GetAudioPort()
+        // @param hasms12Decode: true or false
+        virtual Core::hresult IsAudioMS12Decoded(const int handle /* @in */, int &hasms12Decode /* @out */) = 0;
+
+        /** Get Audio LE config */
+        // @text getAudioLEConfig
+        // @brief Get Audio LE config
+        // @param handle: handle returned in GetAudioPort()
+        // @param enabled: true (enabled) or false (disabled)
+        virtual Core::hresult GetAudioLEConfig(const int handle /* @in */, bool &enabled /* @out */) = 0;
+
+        /** Enable Audio LE config */
+        // @text enableAudioLEConfig
+        // @brief Audio LE config Enable
+        // @param handle: handle returned in GetAudioPort()
+        // @param enabled: true (enabled) or false (disabled)
+        virtual Core::hresult EnableAudioLEConfig(const int handle /* @in */, bool enable /* @in */) = 0;
+
+        /** Set Audio Delay  */
+        // @text setAudioDelay
+        // @brief Set Audio Delay
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioDelay: Audio delay in millisecs
+        virtual Core::hresult SetAudioDelay(const int handle /* @in */, uint32_t audioDelay /* @in */) = 0;
+
+        /** Get Audio Delay  */
+        // @text getAudioDelay
+        // @brief Get Audio Delay
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioDelay: Audio delay in millisecs
+        virtual Core::hresult GetAudioDelay(const int handle /* @in */, uint32_t &audioDelay /* @out */) = 0;
+
+        /** Set Audio Delay Offset */
+        // @text setAudioDelayOffset
+        // @brief Set Audio Delay offset
+        // @param handle: handle returned in GetAudioPort()
+        // @param delayOffset: delay offset in millisecs
+        virtual Core::hresult SetAudioDelayOffset(const int handle /* @in */, int delayOffset /* @in */) = 0;
+
+        /** Get Audio Delay Offset */
+        // @text getAudioDelayOffset
+        // @brief Get Audio Delay offset
+        // @param handle: handle returned in GetAudioPort()
+        // @param delayOffset: delay offset in millisecs
+        virtual Core::hresult GetAudioDelayOffset(const int handle /* @in */, uint32_t &delayOffset /* @out */) = 0;
+
+        /** Get Audio Sink device Atmos capability */
+        // @text getAudioSinkDeviceAtmosCapability
+        // @brief Get Audio Sink device Atmos capability
+        // @param handle: handle returned in GetAudioPort()
+        // @param atmosCapability: Atmos capability
+        virtual Core::hresult GetAudioSinkDeviceAtmosCapability(const int handle /* @in */, DolbyAtmosCapability &atmosCapability /* @out */) = 0;
+
+        /** Set Audio Atmos output mode */
+        // @text setAudioAtmosOutputMode
+        // @brief Set Audio Atmos output mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param enable: Enable audio atmos output mode
+        virtual Core::hresult SetAudioAtmosOutputMode(const int handle /* @in */, bool enable /* @in */) = 0;
+
+        /** Set Audio Compression */
+        // @text setAudioCompression
+        // @brief Set Audio Compression
+        // @param handle: handle returned in GetAudioPort()
+        // @param compressionLevel: compression level
+        virtual Core::hresult SetAudioCompression(const int handle /* @in */, int compressionLevel /* @in */) = 0;
+
+        /** Get Audio Compression */
+        // @text getAudioCompression
+        // @brief Get Audio Compression
+        // @param handle: handle returned in GetAudioPort()
+        // @param compressionLevel: compression level
+        virtual Core::hresult GetAudioCompression(const int handle /* @in */, int &compressionLevel /* @out */) = 0;
+
+        /** Set Audio Dialog Enhancement */
+        // @text setAudioDialogEnhancement
+        // @brief Set Audio Dialog Enhancement
+        // @param handle: handle returned in GetAudioPort()
+        // @param level: Enhancement level
+        virtual Core::hresult SetAudioDialogEnhancement(const int handle /* @in */, int level /* @in */) = 0;
+
+        /** Get Audio Dialog Enhancement */
+        // @text getAudioDialogEnhancement
+        // @brief Get Audio Dialog Enhancement
+        // @param handle: handle returned in GetAudioPort()
+        // @param level: Enhancement level
+        virtual Core::hresult GetAudioDialogEnhancement(const int handle /* @in */, int &level /* @out */) = 0;
+
+        /** Set Audio Dolby Volume mode  */
+        // @text setAudioDolbyVolumeMode
+        // @brief Set Audio Dolby volume mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param enable: true (enable dolby volume mode) or false (disable dolby volume mode)
+        virtual Core::hresult SetAudioDolbyVolumeMode(const int handle /* @in */, bool enable /* @in */) = 0;
+
+        /** Get Audio Dolby Volume mode  */
+        // @text getAudioDolbyVolumeMode
+        // @brief Get Audio Dolby volume mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param enabled: true (enabled dolby volume mode) or false (disabled dolby volume mode)
+        virtual Core::hresult GetAudioDolbyVolumeMode(const int handle /* @in */, bool &enabled /* @out */) = 0;
+
+        /** Set Audio Intelligent equalizer mode  */
+        // @text setAudioIntelligentEqualizerMode
+        // @brief Set Audio Intelligent equalizer mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: mode
+        virtual Core::hresult SetAudioIntelligentEqualizerMode(const int handle /* @in */, int mode /* @in */) = 0;
+
+        /** Get Audio Intelligent equalizer mode  */
+        // @text getAudioIntelligentEqualizerMode
+        // @brief Get Audio Intelligent equalizer mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: mode
+        virtual Core::hresult GetAudioIntelligentEqualizerMode(const int handle /* @in */, int &mode /* @out */) = 0;
+
+        /** Set Audio Volume leveller  */
+        // @text setAudioVolumeLeveller
+        // @brief Set Audio Volume leveller
+        // @param handle: handle returned in GetAudioPort()
+        // @param volumeLeveller: volume leveller (mode and a level)
+        virtual Core::hresult SetAudioVolumeLeveller(const int handle /* @in */, VolumeLeveller volumeLeveller /* @in */) = 0;
+
+        /** Get Audio Volume leveller  */
+        // @text getAudioVolumeLeveller
+        // @brief Get Audio Volume leveller
+        // @param handle: handle returned in GetAudioPort()
+        // @param volumeLeveller: volume leveller (mode and a level)
+        virtual Core::hresult GetAudioVolumeLeveller(const int handle /* @in */, VolumeLeveller &volumeLeveller /* @out */) = 0;
+
+        /** Set Audio Bass Enhancer  */
+        // @text setAudioBassEnhancer
+        // @brief Set Audio Bass Enhancer
+        // @param handle: handle returned in GetAudioPort()
+        // @param boost: boost for bass
+        virtual Core::hresult SetAudioBassEnhancer(const int handle /* @in */, int boost /* @in */) = 0;
+
+        /** Get Audio Bass Enhancer  */
+        // @text getAudioBassEnhancer
+        // @brief Get Audio Bass Enhancer
+        // @param handle: handle returned in GetAudioPort()
+        // @param boost: boost for bass
+        virtual Core::hresult GetAudioBassEnhancer(const int handle /* @in */, int &boost /* @out */) = 0;
+
+        /** Enable Audio Surroud Decoder  */
+        // @text enableAudioSurroudDecoder
+        // @brief Enable Audio Surroud Decoder
+        // @param handle: handle returned in GetAudioPort()
+         // @param enable: true (surround decoder enabled) or false (surround decoder disabled)
+        virtual Core::hresult EnableAudioSurroudDecoder(const int handle /* @in */, bool enable /* @in */) = 0;
+
+        /** Is Audio Surroud Decoder enabled? */
+        // @text isAudioSurroudDecoderEnabled
+        // @brief Audio Surroud Decoder enabled or not
+        // @param handle: handle returned in GetAudioPort()
+        // @param enabled: true (surround decoder enabled) or false (surround decoder disabled)
+        virtual Core::hresult IsAudioSurroudDecoderEnabled(const int handle /* @in */, bool &enabled /* @out */) = 0;
+
+        /** Set Audio DRC mode  */
+        // @text setAudioDRCMode
+        // @brief Set Audio Bass Enhancer
+        // @param handle: handle returned in GetAudioPort()
+        // @param drcMode: mode
+        virtual Core::hresult SetAudioDRCMode(const int handle /* @in */, int drcMode /* @in */) = 0;
+
+         /** Get Audio DRC mode  */
+        // @text getAudioDRCMode
+        // @brief Get Audio Bass Enhancer
+        // @param handle: handle returned in GetAudioPort()
+        // @param drcMode: mode
+        virtual Core::hresult GetAudioDRCMode(const int handle /* @in */, int &drcMode /* @out */) = 0;
+
+        /** Set Audio Surroud Virtualizer  */
+        // @text setAudioSurroudVirtualizer
+        // @brief Set Audio Surroud Virtualizer
+        // @param handle: handle returned in GetAudioPort()
+        // @param surroundVirtualizer: virtualizer
+        virtual Core::hresult SetAudioSurroudVirtualizer(const int handle /* @in */, SurroundVirtualizer surroundVirtualizer /* @in */) = 0;
+
+        /** Get Audio Surroud Virtualizer  */
+        // @text getAudioSurroudVirtualizer
+        // @brief Get Audio Surroud Virtualizer
+        // @param handle: handle returned in GetAudioPort()
+        // @param surroundVirtualizer: virtualizer
+        virtual Core::hresult GetAudioSurroudVirtualizer(const int handle /* @in */, SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
+
+        /** Set Audio MI Steering   */
+        // @text setAudioMISteering
+        // @brief Set Audio MI Steering
+        // @param handle: handle returned in GetAudioPort()
+        // @param enable: true (enable steering) or false (disable steering)
+        virtual Core::hresult SetAudioMISteering(const int handle /* @in */, bool enable /* @out */) = 0;
+
+        /** Get Audio MI Steering   */
+        // @text getAudioMISteering
+        // @brief Get Audio MI Steering
+        // @param handle: handle returned in GetAudioPort()
+        // @param enable: true (enable steering) or false (disable steering)
+        virtual Core::hresult GetAudioMISteering(const int handle /* @in */, bool &enable /* @out */) = 0;
+
+        /** Set Audio Graphic Equalizer Mode    */
+        // @text setAudioGraphicEqualizerMode
+        // @brief Set Audio Graphic Equalizer Mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: Equalizer mode
+        virtual Core::hresult SetAudioGraphicEqualizerMode(const int handle /* @in */, int mode /* @in */) = 0;
+
+        /** Get Audio Graphic Equalizer Mode    */
+        // @text getAudioGraphicEqualizerMode
+        // @brief Get Audio Graphic Equalizer Mode
+        // @param handle: handle returned in GetAudioPort()
+        // @param mode: Equalizer mode
+        virtual Core::hresult GetAudioGraphicEqualizerMode(const int handle /* @in */, int &mode /* @out */) = 0;
+
+        /** Get Audio MS12 profile list    */
+        // @text getAudioMS12ProfileList
+        // @brief Get Audio MS12 profile list
+        // @param handle: handle returned in GetAudioPort()
+        // @param ms12ProfileList: MS12 profile list iterator
+        virtual Core::hresult GetAudioMS12ProfileList(const int handle /* @in */, IDeviceSettingsAudioMS12AudioProfileIterator *&ms12ProfileList /* @out */) = 0;
+
+        /** Get Audio MS12 profile    */
+        // @text getAudioMS12Profile
+        // @brief Get Audio MS12 profile
+        // @param handle: handle returned in GetAudioPort()
+        // @param profile: Name of the profile
+        virtual Core::hresult GetAudioMS12Profile(const int handle /* @in */, string &profile /* @out */) = 0;
+
+        /** Set Audio MS12 profile    */
+        // @text setAudioMS12Profile
+        // @brief Set Audio MS12 profile
+        // @param handle: handle returned in GetAudioPort()
+        // @param profile: Name of the profile
+        virtual Core::hresult SetAudioMS12Profile(const int handle /* @in */, string &profile /* @out */) = 0;
+
+        /** Set Audio Mixer Levels     */
+        // @text setAudioMixerLevels
+        // @brief Set Audio Mixer levels
+        // @param handle: handle returned in GetAudioPort()
+        // @param audioInput: AudioInput 
+        // @param volume: Volume level
+        virtual Core::hresult SetAudioMixerLevels(const int handle /* @in */, const AudioInput audioInput /* @in */, int &volume /* @in */) = 0;
+
+        /** Set Associated Audio Mixing values     */
+        // @text setAssociatedAudioMixing
+        // @brief Set Associated Audio Mixing values 
+        // @param handle: handle returned in GetAudioPort()
+        // @param mixing: true or false
+        virtual Core::hresult SetAssociatedAudioMixing(const int handle /* @in */, bool mixing /* @out */) = 0;
+
+        /** Get Associated Audio Mixing values     */
+        // @text getAssociatedAudioMixing
+        // @brief Get Associated Audio Mixing values 
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: true or false
+        virtual Core::hresult GetAssociatedAudioMixing(const int handle /* @in */, bool &mixing /* @out */) = 0;
+
+        /** Set Audio Fader control values     */
+        // @text setAudioFaderControl
+        // @brief Set Audio Fader control values 
+        // @param handle: handle returned in GetAudioPort()
+        // @param mixerBalance: Mixer balance for fader control
+        virtual Core::hresult SetAudioFaderControl(const int handle /* @in */, int &mixerBalance /* @out */) = 0;
+
+        /** Get Audio Fader control values     */
+        // @text getAudioFaderControl
+        // @brief Get Audio Fader control values 
+        // @param handle: handle returned in GetAudioPort()
+        // @param mixerBalance: Mixer balance for fader control
+        virtual Core::hresult GetAudioFaderControl(const int handle /* @in */, int &mixerBalance /* @out */) = 0;
+
+        /** Set Primary Audio language     */
+        // @text setAudioPrimaryLanguage
+        // @brief Set Primary Audio language
+        // @param handle: handle returned in GetAudioPort()
+        // @param primaryAudioLanguage: Primary audio language
+        virtual Core::hresult SetAudioPrimaryLanguage(const int handle /* @in */, string &primaryAudioLanguage /* @in */) = 0;
+
+        /** Get Primary Audio language     */
+        // @text getAudioPrimaryLanguage
+        // @brief Get Primary Audio language
+        // @param handle: handle returned in GetAudioPort()
+        // @param primaryAudioLanguage: Primary audio language
+        virtual Core::hresult GetAudioPrimaryLanguage(const int handle /* @in */, string &primaryAudioLanguage /* @out */) = 0;
+
+        /** Set Secondary Audio language     */
+        // @text setAudioSecondaryLanguage
+        // @brief Set Secondary Audio language
+        // @param handle: handle returned in GetAudioPort()
+        // @param secondaryAudioLanguage: Secondary audio language
+        virtual Core::hresult SetAudioSecondaryLanguage(const int handle /* @in */, string &secondaryAudioLanguage /* @in */) = 0;
+
+        /** Get Primary Audio language     */
+        // @text getAudioSecondaryLanguage
+        // @brief Get Secondary Audio language
+        // @param handle: handle returned in GetAudioPort()
+        // @param secondaryAudioLanguage: Secondary audio language
+        virtual Core::hresult GetAudioSecondaryLanguage(const int handle /* @in */, string &secondaryAudioLanguage /* @out */) = 0;
+
+        /** Get Audio Capabilities     */
+        // @text getAudioCapabilities
+        // @brief Get Audio capabilites
+        // @param handle: handle returned in GetAudioPort()
+        // @param capabilities: Capabilities
+        virtual Core::hresult GetAudioCapabilities(const int handle /* @in */, int &capabilities /* @out */) = 0;
+
+        /** Get Audio MS12 Capabilities     */
+        // @text getAudioMS12Capabilities
+        // @brief Get Audio MS12 capabilites
+        // @param handle: handle returned in GetAudioPort()
+        // @param capabilities: Capabilities
+        virtual Core::hresult GetAudioMS12Capabilities(const int handle /* @in */, int &capabilities /* @out */) = 0;
+
+        /** Set Audio MS12 Settings override     */
+        // @text setAudioMS12SettingsOverride
+        // @brief Get Audio MS12 capabilites
+        // @param handle: handle returned in GetAudioPort()
+        // @param profileName: Name of the profile
+        // @param profileSettingsName: Name of the profile setting 
+        // @param profileState: ADD or REMOVE
+        virtual Core::hresult SetAudioMS12SettingsOverride(const int handle /* @in */, string &profileName /* @in */, string &profileSettingsName /* @in */, string &profileSettingValue /* @in */, string &profileState /* @in */ ) = 0;
+
+        /** Is Audio output connected?    */
+        // @text isAudioOutputConnected
+        // @brief Is Audio output connected?
+        // @param handle: handle returned in GetAudioPort()
+        // @param isConnected: connected (true) or not (false)
+        virtual Core::hresult IsAudioOutputConnected(const int handle /* @in */, bool &isConnected /* @out */) = 0;
+
+        /** Reset Audio Dialog enhancement    */
+        // @text resetAudioDialogEnhancement
+        // @brief Reset Audio Dialog enhancement
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: Supported types
+        virtual Core::hresult ResetAudioDialogEnhancement(const int handle /* @in */) = 0;
+
+        /** Reset Audio Bass enhancement    */
+        // @text resetAudioBassEnhancer
+        // @brief Reset Audio Bass enhancement
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: Supported types
+        virtual Core::hresult ResetAudioBassEnhancer(const int handle /* @in */) = 0;
+
+        /** Reset Audio Surround virtualizer   */
+        // @text resetAudioSurroundVirtualizer
+        // @brief Reset Audio Surround virtualizer
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: Supported types
+        virtual Core::hresult ResetAudioSurroundVirtualizer(const int handle /* @in */) = 0;
+
+        /** Reset Audio Volume leveller    */
+        // @text resetAudioVolumeLeveller
+        // @brief Reset Audio Volume leveller
+        // @param handle: handle returned in GetAudioPort()
+        // @param types: Supported types
+        virtual Core::hresult ResetAudioVolumeLeveller(const int handle /* @in */) = 0;
+
+        /** Get Audio HDMI ARC Port ID    */
+        // @text getAudioHDMIARCPortId
+        // @brief Get Audio HDMI ARC Port ID
+        // @param handle: handle returned in GetAudioPort()
+        // @param portId: Port Id
+        virtual Core::hresult GetAudioHDMIARCPortId(const int handle /* @in */, int &portId /* @out */) = 0;
+
+    };
+
+    struct EXTERNAL IDeviceSettingsManagerCompositeIn : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
+
+
+        enum CompositeInPort: int8_t {
+            DS_COMPOSITE_IN_PORT_NONE    = -1  /* @text UNKNOWN */,
+            DS_COMPOSITE_IN_PORT_0       = 0  /* @text CompositeIn Port 0 */,
+            DS_COMPOSITE_IN_PORT_1       = 1  /* @text CompositeIn Port 1 */,
+            DS_COMPOSITE_IN_PORT_MAX     = 2  /* @text CompositeIn Port MAX */,
+        }
+
+        enum CompositeInSignalStatus: int8_t {
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NONE          = -1 /* @text Signal Status None */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOSIGNAL      = 0 /* @text Signal Status No Signal */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE      = 1 /* @text Signal Status Unstable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED  = 2 /* @text Signal Status Not supported */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE        = 3 /* @text Signal Status Stable */,
+            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX           = 4 /* @test Signal Status MAX */
+        }
+
+        struct CompositeInStatus {
+            bool isPresented;
+            CompositeInPort activePort;
+            bool isPort0Connected;
+            bool isPort1Connected; /* Can't have array in structures..so separating the booleans */
+        }
+
+        struct VideoRectangle {
+            int x;
+            int y;
+            int width;
+            int height;
+        }
 
         // @event
-        struct EXTERNAL IHDMIInNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN_NOTIFICATION };
-            // @brief HDMI Event Hot Plug
-            // @text onHDMIInEventHotPlug
-            // @param port: port 0 or 1 et al
-            // @param isConnected: is it connected (true) or not (false)
-            virtual void OnHDMIInEventHotPlug(HDMIInPort port, bool isConnected) { };
-
-            // @brief HDMI Event Signal status
-            // @text OnHDMIInEventSignalStatus
-            // @param port: port 0 or 1 et al
-            // @param signalStatus: Signal Status
-            virtual void OnHDMIInEventSignalStatus(HDMIInPort port, HDMIInSignalStatus signalStatus) { };
-
-            // @brief HDMI Event Signal status
-            // @text onHDMIInEventStatus
-            // @param activePort: port 0 or 1 et al
-            // @param isPresented: is it presented or not
-            virtual void OnHDMIInEventStatus(HDMIInPort activePort, bool isPresented) { };
-
-            // @brief HDMI Video Mode update
-            // @text onHDMInVideoModeUpdate
-            // @param port: port 0 or 1 et al
-            // @param videoPortResolution: Video port resolution
-            virtual void OnHDMInVideoModeUpdate(HDMIInPort port, const HDMIVideoPortResolution& videoPortResolution) { };
-
-            // @brief HDMI ALLM (Auto Low Latency Mode) status
-            // @text onHDMInAllmStatus
-            // @param port: port 0 or 1 et al
-            // @param allmStatus: allm status
-            virtual void OnHDMInAllmStatus(HDMIInPort port, bool allmStatus) { };
-
-            // @brief HDMI Event AVI content type
-            // @text OnHDMInAVIContentType
-            // @param port: port 0 or 1 et al
-            // @param aviContentType: AVI content type
-            virtual void OnHDMInAVIContentType(HDMIInPort port, HDMIInAviContentType aviContentType) { };
-
-            // @brief HDMI Event AV Latency
-            // @text OnHDMInAVLatency
-            // @param audioDelay: audio delay (in millisecs)
-            // @param videoDelay: video delay (in millisecs)
-            virtual void OnHDMInAVLatency(int audioDelay, int videoDelay) { };
-        };
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IHDMIInNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IHDMIInNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IDSVideoPortStatusNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEOPORT_NOTIFICATION };
-            // @brief On Resolution Pre changed
-            // @text OnResolutionPreChange
-            // @param resolution: resolution
-            virtual void OnResolutionPreChange(const ResolutionChange& resolution) { };
-
-            // @brief On Resolution Post change
-            // @text onResolutionPostChange
-            // @param resolution: resolution
-            virtual void OnResolutionPostChange(const ResolutionChange& resolution) { };
-
-            // @brief On HDCP Status change
-            // @text OnHDCPStatusChange
-            // @param hdcpStatus: HDCP Status
-            virtual void OnHDCPStatusChange(HDCPStatus hdcpStatus) { };
-
-            // @brief On Video Format update
-            // @text OnVideoFormatUpdate
-            // @param videoFormatHDR: Video format HDR standard
-            virtual void OnVideoFormatUpdate(HDRStandard videoFormatHDR) { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSVideoPortStatusNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSVideoPortStatusNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IDSVideoDeviceNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEODEVICE_NOTIFICATION };
-
-            // @brief Zoom settings changed
-            // @text OnZoomSettingsChanged
-            // @param zoomSetting: Currently applied zoom setting
-            virtual void OnZoomSettingsChanged(VideoZoom zoomSetting) { };
-
-            // @brief Display Framerate Pre-change
-            // @text OnDisplayFrameratePreChange
-            // @param frameRate: PreChange framerate
-            virtual void OnDisplayFrameratePreChange(const string& frameRate) { };
-
-            // @brief Display Framerate Post-change
-            // @text OnDisplayFrameratePostChange
-            // @param frameRate:  framerate post change
-            virtual void OnDisplayFrameratePostChange(const string& frameRate) { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSVideoDeviceNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSVideoDeviceNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IDSHostNotification : virtual public Core::IUnknown {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_HOST_NOTIFICATION };
-
-            // @brief Sleep mode changed
-            // @text onSleepModeChanged
-            // @param sleepMode: see SleepMode
-            virtual void OnSleepModeChanged(SleepMode sleepMode) { };
-        };
-
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSHostNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSHostNotification* notification /* @in */) = 0;
-
-        // @event
-        struct EXTERNAL IDSCompositeInNotification : virtual public Core::IUnknown {
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
             enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN_NOTIFICATION };
 
             // @brief Composite In Hotplug event
             // @text onCompositeInHotPlug
-            // @param port: Port of the hotplug
+            // @param port: Port of the hotplug 
             // @param isConnected: Is it connected (true) or not(false)
-            virtual void OnCompositeInHotPlug(CompositeInPort port, bool isConnected) { };
+            virtual void OnCompositeInHotPlug(const CompositeInPort port, const bool isConnected) {};
 
             // @brief Composite In Signal status
             // @text onCompositeInSignalStatus
-            // @param port: Port of the hotplug
+            // @param port: Port of the hotplug 
             // @param signalStatus: Signal status
-            virtual void OnCompositeInSignalStatus(CompositeInPort port, CompositeInSignalStatus signalStatus) { };
+            virtual void OnCompositeInSignalStatus(const CompositeInPort port, const CompositeInSignalStatus signalStatus) {};
 
             // @brief Composite In status
             // @text onCompositeInStatus
             // @param activePort: Active port
             // @param isPresented: is it presented to user
-            virtual void OnCompositeInStatus(CompositeInPort activePort, bool isPresented) { };
+            virtual void OnCompositeInStatus(const CompositeInPort activePort, const bool isPresented) {};
+            
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSCompositeInNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSCompositeInNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
+	
+        /** Get number of composite inputs. */
+        // @text getNrOfCompositeInputs
+        // @brief Get Preferred Sleep mode.
+        // @param nrCompositeInputs: number of composite inputs
+        virtual Core::hresult GetNrOfCompositeInputs(int &nrCompositeInputs /* @out */) = 0;
+
+        /** Get Composite In port status. */
+        // @text getCompositeInStatus
+        // @brief Get Composite In port status
+        // @param status: Composite In status
+        virtual Core::hresult GetCompositeInStatus(CompositeInStatus &status /* @out */) = 0;
+
+        /** Select Composite In port */
+        // @text selectCompositeInPort
+        // @brief Select Composite In port.
+        // @param port: port to be selected
+        virtual Core::hresult SelectCompositeInPort(const CompositeInPort port /* @in */) = 0;
+
+        /** Scale composite video . */
+        // @text scaleCompositeInVideo
+        // @brief Scale composite video.
+        // @param videoRect: co-ordinates and width/height to scale to
+        virtual Core::hresult ScaleCompositeInVideo(const VideoRectangle videoRect /* @in */) = 0;
+
+    };
+
+    struct EXTERNAL IDeviceSettingsManagerDisplay : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY };
+
+        enum DisplayEvent {
+            DS_DISPLAY_EVENT_CONNECTED    =0,  ///< Display connected event   
+            DS_DISPLAY_EVENT_DISCONNECTED =1,   ///< Display disconnected event       
+            DS_DISPLAY_RXSENSE_ON         =2,           ///< Rx Sense ON event
+            DS_DISPLAY_RXSENSE_OFF         =3,          ///< Rx Sense OFF event
+            DS_DISPLAY_HDCPPROTOCOL_CHANGE=4,  ///< HDCP Protocol Version Change event
+            DS_DISPLAY_EVENT_MAX             ///< Display max event
+        }
+
+        enum DisplayTVResolution: uint32_t {
+            DS_DISPLAY_RESOLUTION_480I     = 0x000001,     
+            DS_DISPLAY_RESOLUTION_480P     = 0x000002,     
+            DS_DISPLAY_RESOLUTION_576I     = 0x000004,     
+            DS_DISPLAY_RESOLUTION_576P     = 0x000008,     
+            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,   
+            DS_DISPLAY_RESOLUTION_720P     = 0x000020,     
+            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,   
+            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,    
+            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
+            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
+            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
+            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
+            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
+            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,  
+            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,  
+            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,  
+            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,  
+            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,  
+            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000  
+        }
+
+        enum DisplayVideoAspectRatio : uint8_t {
+            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
+            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16x9        = 2  /* @text Video Aspect Ratio 16x9 */
+        }
+
+        enum DisplayInVideoStereoScopicMode : uint8_t {
+            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
+            DS_DISPLAY_SSMODE_2D                = 1,                  
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+        }
+
+        enum DisplayInVideoFrameRate: uint8_t {
+            DS_DISPLAY_FRAMERATE_UNKNOWN   = 0, 
+            DS_DISPLAY_FRAMERATE_24        = 1,
+            DS_DISPLAY_FRAMERATE_25        = 2,       
+            DS_DISPLAY_FRAMERATE_30        = 3,       
+            DS_DISPLAY_FRAMERATE_60        = 4,       
+            DS_DISPLAY_FRAMERATE_23_98     = 5,  
+            DS_DISPLAY_FRAMERATE_29_97     = 6,  
+            DS_DISPLAY_FRAMERATE_50        = 7,       
+            DS_DISPLAY_FRAMERATE_59_94     = 8,
+            DS_DISPLAY_FRAMERATE_100       = 9,
+            DS_DISPLAY_FRAMERATE_119_88    = 10,
+            DS_DISPLAY_FRAMERATE_120       = 11,
+            DS_DISPLAY_FRAMERATE_200       = 12,
+            DS_DISPLAY_FRAMERATE_239_76    = 13,
+            DS_DISPLAY_FRAMERATE_240       = 14,
+            DS_DISPLAY_FRAMERATE_MAX       = 15
+        };
+          
+        struct DisplayVideoPortResolution {
+            string name;
+            DisplayTVResolution pixelResolution;
+            DisplayVideoAspectRatio aspectRatio;
+            DisplayInVideoStereoScopicMode stereoScopicMode;
+            DisplayInVideoFrameRate frameRate;
+            bool interlaced;
+        };
+
+        using IDeviceSettingsDisplayVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICE_SETTINGS_DISPLAY_RESOLUTION_ITERATOR>;
+        
+        struct DisplayEDID {
+            int32_t productCode;               ///< Product code of the display device
+            int32_t serialNumber;              ///< Serial number of the display device
+            int32_t manufactureYear;           ///< Year of manufacture of the display device
+            int32_t manufactureWeek;           ///< Week of manufacture of the display device
+            bool hdmiDeviceType;               ///< Device type ( @a true if HDMI, @a false if DVI )
+            bool  isRepeater;                  ///<  Receiver is a repeater  ( @a true if Repeater, @a false if connected Receiver is not a repeater)
+            uint8_t physicalAddressA;          ///<  Physical Address for HDMI node A
+            uint8_t physicalAddressB;          ///<  Physical Address for HDMI node B
+            uint8_t physicalAddressC;          ///<  Physical Address for HDMI node C
+            uint8_t physicalAddressD;          ///<  Physical Address for HDMI node D
+            int32_t numOfSupportedResolution;  ///<  Number of Supported Resolution
+            IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///<  EDID Supported Resoultion List
+            string monitorName;
+        };
+        
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY_NOTIFICATION };
+
+            // @brief Display HDMI Hot plug event
+            // @text onDisplayHDMIHotPlug
+            // @param displayEvent: DS_DISPLAY_EVENT_CONNECTED or DS_DISPLAY_EVENT_DISCONNECTED
+            virtual void OnDisplayHDMIHotPlug(const DisplayEvent displayEvent) {};
+
+            // @brief Display RX Sense event
+            // @text onDisplayRxSense
+            // @param displayEvent: DS_DISPLAY_RXSENSE_ON or DS_DISPLAY_RXSENSE_OFF
+            virtual void OnDisplayRxSense(const DisplayEvent displayEvent) {};
+
+            // @brief Display HDCP Status
+            // @text OnDisplayHDCPStatus
+            virtual void OnDisplayHDCPStatus() {};
+            
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
+	
+        /** Get Handle of Video port. */
+        // @text getDisplay
+        // @brief Get Handle of Video port
+        // @param port: port for which the handle is required
+        // @param index: index of the port (there can be multiple number of ports)
+        // @param handle: handle to the port
+        virtual Core::hresult GetDisplay(VideoPort port /* @in */, int index /* @in */, int &handle /* @out */) = 0;
+
+        /** Get Display Aspect ratio. */
+        // @text getDisplayAspectRatio
+        // @brief Get Display Aspect ratio
+        // @param handle: handle returned in GetDisplay
+        // @param aspectRatio: Aspect ratio of port
+        virtual Core::hresult GetDisplayAspectRatio(const int handle /* @in */, VideoAspectRatio &aspectRatio /* @out */) = 0;
+
+        /** Get Display EDID. */
+        // @text getDisplayEdid
+        // @brief Get Display EDID
+        // @param handle: handle returned in GetDisplay
+        // @param edId: EDID information
+        virtual Core::hresult GetDisplayEdid(const int handle /* @in */, DisplayEDID &edId /* @out */) = 0;
+
+        /** Get Display EDID bytes. */
+        // @text getDisplayEdidBytes
+        // @brief Get Display EDID bytes
+        // @param handle: handle returned in GetDisplay
+        // @param edIdBytes: EDID Bytes
+        // @param edIdLength: length of EDID bytes
+        virtual Core::hresult GetDisplayEdidBytes(const int handle /* @in */, uint38_t edIdBytes[] /* @out */, uint32_t &edidLength /* @out */) = 0;
+
+    };
+
+    struct EXTERNAL IDeviceSettingsManagerFPD : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_FPD };
+
+        enum FPDTimeFormat : uint8_t {
+            DS_FPD_TIMEFORMAT_12_HOUR    = 0,
+            DS_FPD_TIMEFORMAT_24_HOUR    = 1
+            DS_FPD_TIMEFORMAT_MAX        = 2
+        };
+
+        enum FPDIndicator : uint8_t {
+            DS_FPD_INDICATOR_MESSAGE    = 0,
+            DS_FPD_INDICATOR_POWER      = 1,
+            DS_FPD_INDICATOR_RECORD     = 2,
+            DS_FPD_INDICATOR_REMOTE     = 3,
+            DS_FPD_INDICATOR_RFBYPASS   = 4,
+            DS_FPD_INDICATOR_MAX        = 5
+        };
+
+        enum FPDState : uint8_t {
+            DS_FPD_STATE_OFF        = 0,
+            DS_FPD_STATE_ON         = 1,
+            DS_FPD_STATE_MAX        = 2
+        };
+
+        enum FPDTextDisplay : uint8_t {
+            DS_FPD_TEXTDISPLAY_TEXT        = 0,
+            DS_FPD_TEXTDISPLAY_MAX         = 1
+        };
+
+        enum FPDMode : uint8_t {
+            DS_FPD_MODE_ANY        = 0,
+            DS_FPD_MODE_TEXT       = 1,
+            DS_FPD_MODE_CLOCK      = 2,
+            DS_FPD_MODE_MAX        = 3,
+        };
+
+        enum FDPLEDState: uint8_t {
+            DS_FPD_LED_DEVICE_NONE              = 0,
+            DS_FPD_LED_DEVICE_ACTIVE            = 1,
+            DS_FPD_LED_DEVICE_STANDBY           = 2,
+            DS_FPD_LED_DEVICE_WPS_CONNECTING    = 3,
+            DS_FPD_LED_DEVICE_WPS_CONNECTED     = 4,
+            DS_FPD_LED_DEVICE_WPS_ERROR         = 5,
+            DS_FPD_LED_DEVICE_FACTORY_RESET     = 6,
+            DS_FPD_LED_DEVICE_USB_UPGRADE       = 7,
+            DS_FPD_LED_DEVICE_SW_UPGRADE_ERROR  = 8,
+            DS_FPD_LED_DEVICE_MAX               = 9
+        };
+        
 
         // @event
-        struct EXTERNAL IDSFPDNotification : virtual public Core::IUnknown {
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
             enum { ID = ID_DEVICESETTINGS_MANAGER_FPD_NOTIFICATION };
 
             // @brief On Front Panel display time format changed
             // @text OnFPDTimeFormatChanged
             // @param timeFormat: current time format 12 or 24 hour
-            virtual void OnFPDTimeFormatChanged(FPDTimeFormat timeFormat) { };
+            virtual void OnFPDTimeFormatChanged(const FPDTimeFormat timeFormat) {};
+            
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDSFPDNotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDSFPDNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerFPD::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingManagerFPD::INotification* notification /* @in */) = 0;
 
-        /** Execute API. */
-        // @text Execute API
-        // @brief Execute API.
-        // @param reqBuf: request string (contains serialized parameters)
-        // @param respBuf: response string (contains serialized parameters)
-        virtual Core::hresult Execute(const string& reqBuf /* @in */, string& respBuf /* @out*/) = 0;
+        /** Set Front Panel Display Time. */
+        // @text setFPDTime
+        // @brief Set Front Panel Display Time.
+        // @param timeFormat: Time format in 12 hour or 24 hour format
+        // @param minutes: Minutes value to display
+        // @param seconds: Seconds value to display
+        virtual Core::hresult SetFPDTime(const FPDTimeFormat timeFormat /* @in */, const uint32_t minutes /* @in */, const uint32_t seconds /* @in */) = 0;
+
+        /** Set Front Panel Display Scroll. */
+        // @text setFPDScroll
+        // @brief Set Front Panel Display Scroll.
+        // @param scrollHoldDuration: Scroll hold duration
+        // @param nHorizontalScrollIterations: number of horizontal scroll iterations
+        // @param nVerticalScrollIterations: number of vertical scroll iterations
+        virtual Core::hresult SetFPDScroll(const uint32_t scrollHoldDuration /* @in */, const uint32_t nHorizontalScrollIterations /* @in */, const uint32_t nVerticalScrollIterations /* @in */) = 0;
+
+        /** Set Front Panel Display Blink. */
+        // @text setFPDBlink
+        // @brief Set Front Panel Display Blink.
+        // @param indicator: Type of indicator
+        // @param blinkDuration: Time in seconds for which the indictor has to be blinked
+        // @param blinkIterations: number of times the blink has to be done for the blink duration
+        virtual Core::hresult SetFPDBlink(const FPDIndicator indicator /* @in */, const uint32_t blinkDuration /* @in */, const uint32_t blinkIterations /* @in */) = 0;
+
+        /** Set Front Panel Display Blink. */
+        // @text setFPDBrightness
+        // @brief Set Front Panel Display Blink.
+        // @param indicator: Type of indicator
+        // @param brightNess: brightness between 1 and 100 
+        // @param persist: persist( true ) the brightness or not (false)
+        virtual Core::hresult SetFPDBrightness(const FPDIndicator indicator /* @in */, const uint32_t brightNess /* @in */, const bool persist /* @in */)  = 0;
+
+        /** Get Front Panel Display Brightness. */
+        // @text getFPDScroll
+        // @brief Get Front Panel Display Brightness.
+        // @param indicator: Type of indicator
+        // @param brightNess: brightness between 1 and 100 
+        virtual Core::hresult GetFPDBrightness(const FPDIndicator indicator /* @in */, uint32_t &brightNess /* @out */)  = 0;
+
+        /** Set Front Panel Display State. */
+        // @text setFPDState
+        // @brief Set Front Panel Display State.
+        // @param indicator: Type of indicator
+        // @param state: FPD State
+        virtual Core::hresult SetFPDState(const FPDIndicator indicator /* @in */, const FPDState state /* @in */)  = 0;
+
+        /** Get Front Panel Display State. */
+        // @text getFPDState
+        // @brief Get Front Panel Display State.
+        // @param indicator: Type of indicator
+        // @param state: FPD State
+        virtual Core::hresult GetFPDState(const FPDIndicator indicator /* @in */, FPDState &state /* @out */)  = 0;
+
+        /** Get Front Panel Display Color. */
+        // @text getFPDColor
+        // @brief Get Front Panel Display Color.
+        // @param indicator: Type of indicator
+        // @param color: color
+        virtual Core::hresult GetFPDColor(const FPDIndicator indicator /* @in */, uint32_t &color /* @out */)  = 0;
+
+        /** Set Front Panel Display Color. */
+        // @text setFPDColor
+        // @brief Set Front Panel Display State.
+        // @param indicator: Type of indicator
+        // @param color: color
+        virtual Core::hresult SetFPDColor(const FPDIndicator indicator /* @in */, const uint32_t color /* @in */)  = 0;
+
+        /** Set Front Panel Text Display (LED). */
+        // @text setFPDColor
+        // @brief Set Front Panel Text Display (LED).
+        // @param textDisplay: Text display
+        // @param brightNess: Brightness of the text display
+        virtual Core::hresult SetFPDTextBrightness(const FPDTextDisplay textDisplay /* @in */, const uint32_t brightNess /* @in */)  = 0;
+       
+        /** Get Front Panel Text Display (LED). */
+        // @text setFPDColor
+        // @brief Get Front Panel Text Display (LED).
+        // @param textDisplay: Text display
+        // @param brightNess: Brightness of the text display
+        virtual Core::hresult GetFPDTextBrightness(const FPDTextDisplay textDisplay /* @in */, uint32_t &brightNess /* @out */)  = 0;
+
+        /** Enable Front Panel Clock display. */
+        // @text enableFPDClockDisplay
+        // @brief Enable Front Panel Clock display.
+        // @param enable: enable (true) or disable (false) clock display
+        virtual Core::hresult EnableFPDClockDisplay(const bool enable /* @in */)  = 0;
+
+        /** Get Front Panel Display Time format. */
+        // @text getFPDTimeFormat
+        // @brief Get Front Panel Display Time format.
+        // @param fpdTimeFormat: 12 or 24 hour format
+        virtual Core::hresult GetFPDTimeFormat(FPDTimeFormat &fpdTimeFormat /* @out */)  = 0;
+
+        /** Set Front Panel Display Time format. */
+        // @text setFPDTimeFormat
+        // @brief Set Front Panel Display Time format.
+        // @param fpdTimeFormat: 12 or 24 hour format
+        virtual Core::hresult SetFPDTimeFormat(const FPDTimeFormat fpdTimeFormat /* @in */)  = 0;
+
+        /** Set Front Panel Display Mode. */
+        // @text setFPDMode
+        // @brief Set Front Panel Display Mode.
+        // @param fpdMode: FPD Mode
+        virtual Core::hresult SetFPDMode(const FPDMode fpdMode /* @in */)  = 0;
+    };  
+
+    struct EXTERNAL IDeviceSettingsManagerHDMIIn : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN };
+
+        enum HDMIInPort : int8_t {
+            DS_HDMI_IN_PORT_NONE    = -1,  
+            DS_HDMI_IN_PORT_0       = 0,          
+            DS_HDMI_IN_PORT_1       = 1,          
+            DS_HDMI_IN_PORT_2       = 2,          
+            DS_HDMI_IN_PORT_3       = 3,          
+            DS_HDMI_IN_PORT_4       = 4,
+            DS_HDMI_IN_PORT_MAX     = 5
+        };
+
+        enum HDMIInSignalStatus: int8_t {
+            DS_HDMI_IN_SIGNAL_STATUS_NONE        = -1,    
+            DS_HDMI_IN_SIGNAL_STATUS_NOSIGNAL     = 0,     
+            DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,                                 
+            DS_HDMI_IN_SIGNAL_STATUS_NOTSUPPORTED = 2,                               
+            DS_HDMI_IN_SIGNAL_STATUS_STABLE       = 3,
+            DS_HDMI_IN_SIGNAL_STATUS_MAX.         = 4
+        };
+
+        struct HDMIPortConnectionStatus {
+            bool isPortConnected;
+        };
+        using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR>;
+        struct HDMIInStatus {
+            bool isPresented;
+            IHDMIInPortConnectionStatusIterator portConnectionStatus;
+            HDMIInPort activePort;
+        };
+
+        // Need iterator here or should we add a connected Port..
+
+        struct HDMIInCapabilities {
+            bool isPortArcCapable;
+        };
+
+        using IHDMIInCapabilitiesIterator = RPC::IIteratorType<HDMIInCapabilities, ID_DEVICESETTINGS_HDMIIN_CAPS_ITERATOR>;
+
+        struct HDMIInGameFeatureList {
+            string gameFeature;
+        };
+
+        using IHDMIInGameFeatureListIterator = RPC::IIteratorType<HDMIInGameFeatureList, ID_DEVICESETTINGS_HDMIIN_GAMELIST_ITERATOR>;
+
+        struct HDMIInSpdInfoFrame {
+            uint8_t pkttype;            /*!< Package type */
+            uint8_t version;            /*!< Version */
+            uint8_t length;             /*!< max length 25, min length 0 */
+            uint8_t rsd;                /*!< Repetition of static data */
+            uint8_t checksum;           /*!< Checksum for spd info frame */
+            string  vendor_name;        /*!< Vendor Name string. Min length 0 */
+            string  product_des;       /*!< Product Description string. Min length 0 */
+            uint8_t source_info;        /*!< Source info of the frame  */
+        };
+
+        enum HDMIInEdidVersion : uint8_t {
+            HDMI_EDID_VER_14      = 0,   
+            HDMI_EDID_VER_20      = 1,
+            HDMI_EDID_VER_MAX     = 2
+        };
+
+        enum HDMIVideoPlaneType: uint8_t {
+            DS_HDMIIN_VIDEOPLANE_PRIMARY   = 0,
+            DS_HDMIIN_VIDEOPLANE_SECONDARY = 1,
+            DS_HDMIIN_VIDEOPLANE_MAX       = 2
+        };
+
+        enum HDMIInCapabilityVersion {
+            HDMI_COMPATIBILITY_VERSION_14 = 0, 
+            HDMI_COMPATIBILITY_VERSION_20 = 1,     
+            HDMI_COMPATIBILITY_VERSION_21 = 2,     
+            HDMI_COMPATIBILITY_VERSION_MAX = 3    
+        };
+
+        struct HDMIInVideoRectangle {         
+            int32_t x;
+            int32_t y;
+            int32_t width;
+            int32_t height;
+        };
+
+        enum HDMIInVideoZoom : uint8_t {
+            DS_HDMIIN_VIDEO_ZOOM_UNKNOWN           = 0,
+            DS_HDMIIN_VIDEO_ZOOM_NONE              = 1,
+            DS_HDMIIN_VIDEO_ZOOM_FULL              = 2,
+            DS_HDMIIN_VIDEO_ZOOM_LB_16_9           = 3,
+            DS_HDMIIN_VIDEO_ZOOM_LB_14_9           = 4,
+            DS_HDMIIN_VIDEO_ZOOM_CCO               = 5,
+            DS_HDMIIN_VIDEO_ZOOM_PAN_SCAN          = 6,
+            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_4_3  = 7,
+            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_16_9 = 8,
+            DS_HDMIIN_VIDEO_ZOOM_PLATFORM          = 9,
+            DS_HDMIIN_VIDEO_ZOOM_16_9_ZOOM         = 10,
+            DS_HDMIIN_VIDEO_ZOOM_PILLARBOX_4_3     = 11,
+            DS_HDMIIN_VIDEO_ZOOM_WIDE_4_3          = 12
+        };
+
+        enum HDMIInVRRType: uint8_t {
+            DS_HDMIIN_VRR_NONE                  = 0,
+            DS_HDMIIN_HDMI_VRR                  = 1,
+            DS_HDMIIN_AMD_FREESYNC              = 2,
+            DS_HDMIIN_AMD_FREESYNC_PREMIUM      = 3,
+            DS_HDMIIN_AMD_FREESYNC_PREMIUM_PRO  = 4
+        };
+
+        enum HDMIInTVResolution: uint32_t {
+            DS_HDMIIN_RESOLUTION_480I     = 0x000001,     
+            DS_HDMIIN_RESOLUTION_480P     = 0x000002,     
+            DS_HDMIIN_RESOLUTION_576I     = 0x000004,     
+            DS_HDMIIN_RESOLUTION_576P     = 0x000008,     
+            DS_HDMIIN_RESOLUTION_576P50   = 0x000010,   
+            DS_HDMIIN_RESOLUTION_720P     = 0x000020,     
+            DS_HDMIIN_RESOLUTION_720P50   = 0x000040,   
+            DS_HDMIIN_RESOLUTION_1080I    = 0x000080,    
+            DS_HDMIIN_RESOLUTION_1080P    = 0x000100,    
+            DS_HDMIIN_RESOLUTION_1080P24  = 0x000200,  
+            DS_HDMIIN_RESOLUTION_1080I25  = 0x000400,  
+            DS_HDMIIN_RESOLUTION_1080I25  = 0x000800,  
+            DS_HDMIIN_RESOLUTION_1080P30  = 0x001000,  
+            DS_HDMIIN_RESOLUTION_1080I50  = 0x002000,  
+            DS_HDMIIN_RESOLUTION_1080P50  = 0x004000,  
+            DS_HDMIIN_RESOLUTION_1080P60  = 0x008000,  
+            DS_HDMIIN_RESOLUTION_2160P24  = 0x010000,  
+            DS_HDMIIN_RESOLUTION_2160P25  = 0x020000,  
+            DS_HDMIIN_RESOLUTION_2160P30  = 0x040000,  
+            DS_HDMIIN_RESOLUTION_2160P50  = 0x080000,  
+            DS_HDMIIN_RESOLUTION_2160P60  = 0x100000  
+        };
+
+        enum HDMIVideoAspectRatio : uint8_t {
+            DS_HDMIIN_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
+            DS_HDMIIN_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
+            DS_HDMIIN_ASPECT_RATIO_16x9        = 2  /* @text Video Aspect Ratio 16x9 */
+        };
+
+        enum HDMIInVideoStereoScopicMode : uint8_t {
+            DS_HDMIIN_SSMODE_UNKNOWN           = 0,         
+            DS_HDMIIN_SSMODE_2D                = 1,                  
+            DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,     
+            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+        };
+
+        enum HDMIInVideoFrameRate: uint8_t {
+            DS_HDMIIN_FRAMERATE_UNKNOWN   = 0, 
+            DS_HDMIIN_FRAMERATE_24        = 1,
+            DS_HDMIIN_FRAMERATE_25        = 2,       
+            DS_HDMIIN_FRAMERATE_30        = 3,       
+            DS_HDMIIN_FRAMERATE_60        = 4,       
+            DS_HDMIIN_FRAMERATE_23_98     = 5,  
+            DS_HDMIIN_FRAMERATE_29_97     = 6,  
+            DS_HDMIIN_FRAMERATE_50        = 7,       
+            DS_HDMIIN_FRAMERATE_59_94     = 8
+        };
+
+
+        enum HDMIInAviContentType {
+            DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      =0,     
+            DS_HDMIIN_AVICONTENT_TYPE_PHOTO         =1,        
+            DS_HDMIIN_AVICONTENT_TYPE_CINEMA        =2,       
+            DS_HDMIIN_AVICONTENT_TYPE_GAME          =3,         
+            DS_HDMIIN_AVICONTENT_TYPE_NOT_SIGNALLED =4,
+            DS_HDMIIN_AVICONTENT_TYPE_MAX           =5
+        };
+          
+        struct HDMIVideoPortResolution {
+            string name;
+            HDMIInTVResolution pixelResolution;
+            HDMIVideoAspectRatio aspectRatio;
+            HDMIInVideoStereoScopicMode stereoScopicMode;
+            HDMIInVideoFrameRate frameRate;
+            bool interlaced;
+        };
+        
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_HDMI_NOTIFICATION };
+
+            // @brief HDMI Event Hot Plug
+            // @text onHDMIInEventHotPlug
+            // @param port: port 0 or 1 et al
+            // @param isConnected: is it connected (true) or not (false)
+            virtual void OnHDMIInEventHotPlug(const HDMIInPort port, const bool isConnected) {};
+
+            // @brief HDMI Event Signal status
+            // @text OnHDMIInEventSignalStatus
+            // @param port: port 0 or 1 et al
+            // @param signalStatus: Signal Status
+            virtual void OnHDMIInEventSignalStatus(const HDMIInPort port, const HDMIInSignalStatus signalStatus) {};
+
+            // @brief HDMI Event Signal status
+            // @text onHDMIInEventStatus
+            // @param activePort: port 0 or 1 et al
+            // @param isPresented: is it presented or not
+            virtual void OnHDMIInEventStatus(const HDMIInPort activePort, const bool isPresented) {};
+
+            // @brief HDMI Video Mode update
+            // @text onHDMInVideoModeUpdate
+            // @param port: port 0 or 1 et al
+            // @param videoPortResolution: Video port resolution
+            virtual void OnHDMInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
+            
+            // @brief HDMI ALLM status
+            // @text onHDMInAllmStatus
+            // @param port: port 0 or 1 et al
+            // @param allmStatus: allm status
+            virtual void OnHDMInAllmStatus(const HDMIInPort port, const bool allmStatus) {};
+
+            // @brief HDMI Event AVI content type
+            // @text OnHDMInAVIContentType
+            // @param port: port 0 or 1 et al
+            // @param aviContentType: AVI content type
+            virtual void OnHDMInAVIContentType(const HDMIInPort port, const HDMIInAviContentType aviContentType) {};
+
+            // @brief HDMI Event AV Latency
+            // @text OnHDMInAVLatency
+            // @param port: port 0 or 1 et al
+            // @param audioDelay: audio delay
+            // @param videoDelay: video delay
+            virtual void OnHDMInAVLatency(const int audioDelay, const int videoDelay) {};
+            
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
+	
+        /** Get Number of HDMI Inputs in the platform. */
+        // @text getHDMIInNumbefOfInputs
+        // @brief Get Number of HDMI Inputs in the platform
+        // @param count: number of inputs
+        virtual Core::hresult GetHDMIInNumbefOfInputs(int &count /* @out */) = 0;
+
+        /** Get HDMIIn Status. */
+        // @text getHDMIInStatus
+        // @brief Get HDMIIn Status
+        // @param hdmiStatus: HDMI Status
+        virtual Core::hresult GetHDMIInStatus(HDMIInStatus &hdmiStatus /* @out */) = 0;
+
+        /** Select HDMIIn Port. */
+        // @text selectHDMIInPort
+        // @brief Get HDMIIn Status
+        // @param port: Port to select 
+        // @param requestAudioMix: Should audio be mixed on this port?
+        // @param topMostPlane: Should this be on top for display?
+        // @param videoPlaneType: Primary or secondary?
+        virtual Core::hresult SelectHDMIInPort(HDMIInPort port /* @in */, bool requestAudioMix /* @in */, bool topMostPlane /* @in */, HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
+
+        /** Scale HDMIIn Video. */
+        // @text scaleHDMIInVideo
+        // @brief Scale HDMIIn Video
+        // @param videoPosition: co-ordinates to scale
+        virtual Core::hresult ScaleHDMIInVideo(HDMIInVideoRectangle videoPosition /* @in */) = 0;
+
+        /** Select HDMIIn Zoom mode. */
+        // @text selectHDMIZoomMode
+        // @brief Select HDMIIn Zoom mode
+        // @param zoomMode: zoom mode
+        virtual Core::hresult SelectHDMIZoomMode(HDMIInVideoZoom zoomMode /* @in */) = 0;
+
+        /** Get Supported Game feature list. */
+        // @text getSupportedGameFeaturesList
+        // @brief Get Supported Game feature list
+        // @param gameFeatureList: game feature list
+        virtual Core::hresult GetSupportedGameFeaturesList(HDMIInGameFeatureList *& gameFeatureList /* @out */) = 0;
+
+        /** Get AV latency. */
+        // @text getHDMIInAVLatency
+        // @brief Get AV latency
+        // @param videoLatency: video latency
+        // @param videoLatency: audio latency
+        virtual Core::hresult GetHDMIInAVLatency(int32 &videoLatency /* out */, int32 &audioLatency /* @out*/) = 0;
+
+        /** Get ALLM Status. */
+        // @text getHDMIInAllmStatus
+        // @brief Get ALLM Status
+        // @param port: Port number
+        // @param allmStatus: ALLM status
+        virtual Core::hresult GetHDMIInAllmStatus(HDMIInPort port /* @in */, bool &allmStatus /* @out*/) = 0;
+
+        /** Get EDID to ALLM Supported or not. */
+        // @text getHDMIInEdid2AllmSupport
+        // @brief Get EDID to ALLM Supported or not
+        // @param port: Port number
+        // @param allmSupport: ALLM supported (true) or not (false)
+        virtual Core::hresult GetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool &allmSupport /* @out*/) = 0;
+
+        /** Set EDID to ALLM Supported or not. */
+        // @text setHDMIInEdid2AllmSupport
+        // @brief Get EDID to ALLM Supported or not
+        // @param port: Port number
+        // @param allmSupport: ALLM supported (true) or not (false)
+        virtual Core::hresult SetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool &allmSupport /* @in*/) = 0;
+
+        /** Get EDID bytes. */
+        // @text getEdidBytes
+        // @brief Get EDID bytes.
+        // @param port: Port number
+        // @param edidBytesLength: number of bytes in the edidBytes array
+        // @param edidBytes: EDID information
+        virtual Core::hresult GetEdidBytes(HDMIInPort port /* @in */, uint32_t &edidBytesLength /* @out */,  uint8_t edidBytes[] /* @out @length:return @maxlength:edidBytesLength */) = 0;
+
+        /** Get HDMI SPD Information. */
+        // @text getEdidBytes
+        // @brief Get HDMI SPD Information.
+        // @param port: Port number
+        // @param spdBytesLength: number of bytes in the spdBytes array
+        // @param spdBytes: SPD information
+        virtual Core::hresult GetHDMISPDInformation(HDMIInPort port /* @in */, uint32_t &spdBytesLength /* @out */,  uint8_t spdBytes[] /* @out @length:return @maxlength:spdBytesLength */) = 0;
+
+        /** Get HDMI Port EDID version. */
+        // @text getHDMIEdidVersion
+        // @brief Get HDMI Port EDID version.
+        // @param port: Port number
+        // @param edidVersion: EDID version
+        virtual Core::hresult GetHDMIEdidVersion(HDMIInPort port /* @in */, HDMIInEdidVersion &edidVersion /* @out */) = 0;
+
+        /** Set HDMI Port EDID version. */
+        // @text setHDMIEdidVersion
+        // @brief Set HDMI Port EDID version.
+        // @param port: Port number
+        // @param edidVersion: EDID version
+        virtual Core::hresult SetHDMIEdidVersion(HDMIInPort port /* @in */, HDMIInEdidVersion edidVersion /* @in */) = 0;
+
+
+        /** Get HDMI Video mode. */
+        // @text getHDMIVideoMode
+        // @brief Get HDMI Video mode.
+        // @param port: Port number
+        // @param videoPortResolution: Video port resolution structure
+        virtual Core::hresult GetHDMIVideoMode(HDMIInPort port /* @in */, HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
+        
     };
-    } // namespace Exchange
-    } // namespace WPEFramework
+
+    struct EXTERNAL IDeviceSettingsManagerHost : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_HOST };
+
+        enum SleepMode : uint8_t {
+            DS_HOST_SLEEPMODE_LIGHT      = 0,
+            DS_HOST_SLEEPMODE_DEEP       = 1,
+            DS_HOST_SLEEPMODE_MAX        = 2
+        };
+
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_HOST_NOTIFICATION };
+
+            // @brief Sleep mode changed
+            // @text onSleepModeChanged
+            // @param sleepMode: see SleepMode
+            virtual void OnSleepModeChanged(const SleepMode sleepMode) {};
+            
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
+	
+        /** Get Preferred Sleep mode. */
+        // @text getPreferredSleepMode
+        // @brief Get Preferred Sleep mode.
+        // @param mode: Sleep mode
+        virtual Core::hresult GetPreferredSleepMode(SleepMode &mode /* @out */) = 0;
+
+        /** Get Preferred Sleep mode. */
+        // @text setPreferredSleepMode
+        // @brief Set Preferred Sleep mode.
+        // @param mode: Sleep mode
+        virtual Core::hresult SetPreferredSleepMode(const SleepMode mode /* @in */) = 0;
+
+        /** Get CPU temperature. */
+        // @text getCPUTemperature
+        // @brief Get CPU temperature.
+        // @param temperature: temperature in degree centigrade?
+        virtual Core::hresult GetCPUTemperature(float &temperature /* @out */) = 0;
+
+        /** Get HAL Version . */
+        // @text getHALVersion
+        // @brief Get HAL Version.
+        // @param versionNo: 16 bits MSB is major version and 16 bits LSB is minor version
+        virtual Core::hresult GetHALVersion(uint32_t &versionNo /* @out */) = 0;
+
+        /** Get SOCID. */
+        // @text getHALVersion
+        // @brief Get SOCID.
+        // @param socID: SOCID in string format
+        virtual Core::hresult GetSoCID(string &socID /* @out */) = 0;
+
+        /** Get EDID Bytes. */
+        // @text getHALVersion
+        // @brief Get EDID.
+        // @param edId: EDID in bytes
+        // @param edIdLength: number of bytes in edId array
+        virtual Core::hresult GetEDID(uint8_t edId[] /* @out */, uint32_t &edIdLength /* @out */) = 0;
+
+        /** Get MS12 Config type. */
+        // @text getHALVersion
+        // @brief Get MS12 Config
+        // @param ms12Config: MS12 config type
+        virtual Core::hresult GetMS12ConfigType(string &ms12Config /* @out */) = 0;
+
+    };
+
+    struct EXTERNAL IDeviceSettingsManagerVideoDevice : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEODEVICE };
+
+        enum VideoZoom : int8_t {
+            DS_VIDEO_DEVICE_ZOOM_UNKNOWN           = -1,
+            DS_VIDEO_DEVICE_ZOOM_NONE              = 0,
+            DS_VIDEO_DEVICE_ZOOM_FULL              = 1,
+            DS_VIDEO_DEVICE_ZOOM_LB_16_9           = 2,
+            DS_VIDEO_DEVICE_ZOOM_LB_14_9           = 3,
+            DS_VIDEO_DEVICE_ZOOM_CCO               = 4,
+            DS_VIDEO_DEVICE_ZOOM_PAN_SCAN          = 5,
+            DS_VIDEO_DEVICE_ZOOM_LB_2_21_1_ON_4_3  = 6,
+            DS_VIDEO_DEVICE_ZOOM_LB_2_21_1_ON_16_9 = 7,
+            DS_VIDEO_DEVICE_ZOOM_PLATFORM          = 8,
+            DS_VIDEO_DEVICE_ZOOM_16_9_ZOOM         = 9,
+            DS_VIDEO_DEVICE_ZOOM_PILLARBOX_4_3     = 10,
+            DS_VIDEO_DEVICE_ZOOM_WIDE_4_3          = 11,
+            DS_VIDEO_DEVICE_ZOOM_MAX               = 12
+        };
+
+        enum VideoCodec: uint8_t {
+            DS_VIDEO_CODEC_MPEGHPART2  = 0x01,
+            DS_VIDEO_CODEC_MPEG4PART10 = 0x02,
+            DS_VIDEO_CODEC_MPEG2       = 0x04,
+            DS_VIDEO_CODEC_MAX         = 0x08
+        };
+
+        enum VideoCodecHEVCProfile: uint8_t {
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN = 0x01,
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN10 = 0x02,
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN_STILLPICTURE = 0x04,
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAX = 0x08
+        };
+
+        struct VideoCodecProfileSupport {
+            VideoCodecHEVCProfile profile;
+            float level;
+        };
+
+        using IDeviceSettingsVideoCodecProfileIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICE_SETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
+
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEODEVICE_NOTIFICATION };
+
+            // @brief Zoom settings changed
+            // @text OnZoomSettingsChanged
+            // @param zoomSetting: Currently applied zoom setting
+            virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) = 0;
+
+            // @brief Display Framerate Pre-change
+            // @text OnDisplayFrameratePreChange
+            // @param frameRate: PreChange framerate
+            virtual void OnDisplayFrameratePreChange(const string frameRate) = 0;
+
+            // @brief Display Framerate Post-change
+            // @text OnDisplayFrameratePostChange
+            // @param frameRate:  framerate post change
+            virtual void OnDisplayFrameratePostChange(const string frameRate) = 0;
+            
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVidoeDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingManagerVideoDevice::INotification* notification /* @in */) = 0;
+	
+
+        /** Get Video Device handle. */
+        // @text getVideoDeviceHandle
+        // @brief Get Video device handle
+        // @param index: index (can be multiple instances)
+        // @param handle: video device handle (to be used for other APIs)
+        virtual Core::hresult GetVideoDeviceHandle(const int index /* @in */, int &handle /* @out */) = 0;
+
+        /** Set Video Device DFC. */
+        // @text setVideoDeviceDFC
+        // @brief Set Video Device DFC
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param zoomSetting: Zoom setting to apply
+        virtual Core::hresult SetVideoDeviceDFC(const int handle /* @in */, const VideoZoom zoomSetting /* @in */) = 0;
+
+        /** Get Video Device DFC. */
+        // @text getVideoDeviceDFC
+        // @brief Get Video Device DFC
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param zoomSetting: current Zoom setting
+        virtual Core::hresult GetVideoDeviceDFC(const int handle /* @in */, VideoZoom &zoomSetting /* @out */) = 0;
+
+        /** Get Video Device HDR capabilities. */
+        // @text getHDRCapabilities
+        // @brief Get Video Device HDR capabilities
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param capabilities: Capabilities
+        virtual Core::hresult GetHDRCapabilities(const int handle /* @in */, int &capabilities /* @out */) = 0;
+
+        /** Get Video Device Supported . */
+        // @text getSupportedVideoCodingFormats
+        // @brief Get Video Zoom setting
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param supportedFormats: Supported Formats
+        virtual Core::hresult GetSupportedVideoCodingFormats(const int handle /* @in */, int &supportedFormats /* @out */) = 0;
+
+        /** Get Video Device Codec Information TBD - vdixit. */
+        // @text getCodecInfo
+        // @brief Get Video Device Codec Information
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param supportedFormats: Supported Formats
+        virtual Core::hresult GetCodecInfo(const int handle /* @in */, int &supportedFormats /* @out */) = 0;
+
+        /** Video Device Disable HDR */
+        // @text disableHDR
+        // @brief Video Device Disable HDR
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param disable: disable (true) or enable (false)
+        virtual Core::hresult DisableHDR(const int handle /* @in */, const bool disable /* @in */) = 0;
+
+        /** Set Video Device FRF mode. */
+        // @text setFRFMode
+        // @brief Set FRF mode
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param frfmode: FRF mode
+        virtual Core::hresult SetFRFMode(const int handle /* @in */, const int frfmode /* @in */) = 0;
+
+        /** Get Video Device FRF mode. */
+        // @text getFRFMode
+        // @brief Get FRF mode
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param frfmode: FRF mode
+        virtual Core::hresult GetFRFMode(const int handle /* @in */, int &frfmode /* @in */) = 0;
+
+        /** Get Video Device display frame rate */
+        // @text getCurrentDisplayFrameRate
+        // @brief Get current display frame rate
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param framerate: frame rate
+        virtual Core::hresult GetCurrentDisplayFrameRate(const int handle /* @in */, string &framerate /* @out */) = 0;
+
+        /** Set Video Device display frame rate */
+        // @text setDisplayFrameRate
+        // @brief Set current display frame rate
+        // @param handle: video device handle (returned in GetVideoDeviceHandle)
+        // @param framerate: frame rate
+        virtual Core::hresult SetDisplayFrameRate(const int handle /* @in */, string &framerate /* @in */) = 0;
+
+    };
+
+    struct EXTERNAL IDeviceSettingsManagerVideoPort : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEOPORT };
+
+        enum VideoPort : uint8_t {
+            DS_VIDEO_PORT_TYPE_RF          = 0,
+            DS_VIDEO_PORT_TYPE_BB          = 1,
+            DS_VIDEO_PORT_TYPE_SVIDEO      = 2,
+            DS_VIDEO_PORT_TYPE_1394        = 3,
+            DS_VIDEO_PORT_TYPE_DVI         = 4,
+            DS_VIDEO_PORT_TYPE_COMPONENT   = 5,
+            DS_VIDEO_PORT_TYPE_HDMI        = 6,
+            DS_VIDEO_PORT_TYPE_HDMI_INPUT  = 7,
+            DS_VIDEO_PORT_TYPE_INTERNAL    = 8,
+            DS_VIDEO_PORT_TYPE_MAX         = 9
+        };
+
+        enum VideoPortSurroundMode: uint8_t {
+            DS_VIDEO_PORT_SURROUNDMODE_NONE    = 0,
+            DS_VIDEO_PORT_SURROUNDMODE_DD      = 1,
+            DS_VIDEO_PORT_SURROUNDMODE_DDPLUS  = 2,
+            DS_VIDEO_PORT_SURROUNDMODE_MAX     = 3
+        };
+
+        enum TVResolution: uint32_t {
+            DS_TV_RESOLUTION_480I     = 0x000001,     
+            DS_TV_RESOLUTION_480P     = 0x000002,     
+            DS_TV_RESOLUTION_576I     = 0x000004,     
+            DS_TV_RESOLUTION_576P     = 0x000008,     
+            DS_TV_RESOLUTION_576P50   = 0x000010,   
+            DS_TV_RESOLUTION_720P     = 0x000020,     
+            DS_TV_RESOLUTION_720P50   = 0x000040,   
+            DS_TV_RESOLUTION_1080I    = 0x000080,    
+            DS_TV_RESOLUTION_1080P    = 0x000100,    
+            DS_TV_RESOLUTION_1080P24  = 0x000200,  
+            DS_TV_RESOLUTION_1080I25  = 0x000400,  
+            DS_TV_RESOLUTION_1080I25  = 0x000800,  
+            DS_TV_RESOLUTION_1080P30  = 0x001000,  
+            DS_TV_RESOLUTION_1080I50  = 0x002000,  
+            DS_TV_RESOLUTION_1080P50  = 0x004000,  
+            DS_TV_RESOLUTION_1080P60  = 0x008000,  
+            DS_TV_RESOLUTION_2160P24  = 0x010000,  
+            DS_TV_RESOLUTION_2160P25  = 0x020000,  
+            DS_TV_RESOLUTION_2160P30  = 0x040000,  
+            DS_TV_RESOLUTION_2160P50  = 0x080000,  
+            DS_TV_RESOLUTION_2160P60  = 0x100000  
+        };
+
+        enum VideoResolution: uint8_t {
+            DS_VIDEO_PIXELRES_720x480,     
+            DS_VIDEO_PIXELRES_720x576,     
+            DS_VIDEO_PIXELRES_1280x720,    
+            DS_VIDEO_PIXELRES_1366x768,    
+            DS_VIDEO_PIXELRES_1920x1080,   
+            DS_VIDEO_PIXELRES_3840x2160,   
+            DS_VIDEO_PIXELRES_4096x2160,
+            DS_VIDEO_PIXELRES_MAX 
+        };
+
+        enum VideoAspectRatio: uint8_t {
+            DS_VIDEO_ASPECT_RATIO_4x3,    
+            DS_VIDEO_ASPECT_RATIO_16x9,
+            DS_VIDEO_ASPECT_RATIO_MAX
+        };
+        
+        enum VideoStereoScopicMode : uint8_t {
+            DS_VIDEO_SSMODE_UNKNOWN           = 0,         
+            DS_VIDEO_SSMODE_2D                = 1,                  
+            DS_VIDEO_SSMODE_3D_SIDE_BY_SIDE   = 2,     
+            DS_VIDEO_SSMODE_3D_TOP_AND_BOTTOM = 3,
+            DS_VIDEO_SSMODE_MAX               = 4
+        };
+
+        enum VideoFrameRate: uint8_t {
+            DS_VIDEO_FRAMERATE_UNKNOWN   = 0, 
+            DS_VIDEO_FRAMERATE_24        = 1,
+            DS_VIDEO_FRAMERATE_25        = 2,       
+            DS_VIDEO_FRAMERATE_30        = 3,       
+            DS_VIDEO_FRAMERATE_60        = 4,       
+            DS_VIDEO_FRAMERATE_23_98     = 5,  
+            DS_VIDEO_FRAMERATE_29_97     = 6,  
+            DS_VIDEO_FRAMERATE_50        = 7,       
+            DS_VIDEO_FRAMERATE_59_94     = 8,
+            DS_VIDEO_FRAMERATE_100       = 9,
+            DS_VIDEO_FRAMERATE_119_88    = 10,
+            DS_VIDEO_FRAMERATE_120       = 11,
+            DS_VIDEO_FRAMERATE_200       = 12,
+            DS_VIDEO_FRAMERATE_239_76    = 13,
+            DS_VIDEO_FRAMERATE_240       = 14,
+            DS_VIDEO_FRAMERATE_MAX       = 15
+        };
+
+        struct VideoPortResolution {
+            string name;
+            VideoResolution pixelResolution;
+            VideoAspectRatio aspectRatio;
+            VideoStereoScopicMode stereoScopicMode;
+            VideoFrameRate frameRate;
+            bool interlaced;
+        };
+
+        enum HDCPStatus : uint8_t {
+            DS_HDCP_STATUS_UNPOWERED              = 0,            
+            DS_HDCP_STATUS_UNAUTHENTICATED        = 1,          
+            DS_HDCP_STATUS_AUTHENTICATED          = 2,            
+            DS_HDCP_STATUS_AUTHENTICATIONFAILURE  = 3,    
+            DS_HDCP_STATUS_INPROGRESS             = 4,               
+            DS_HDCP_STATUS_PORTDISABLED           = 5,
+            DS_HDCP_STATUS_MAX                    = 6
+        };
+
+        enum HDCPProtocolVersion: uint8_t {
+            DS_HDCP_VERSION_1X = 0,  
+            DS_HDCP_VERSION_2X = 1,
+            DS_HDCP_VERSION_MAX = 2
+        };
+
+        enum HDRStandard: uint16_t {
+            DS_HDRSTANDARD_NONE             = 0x0,               
+            DS_HDRSTANDARD_HDR10            = 0x01,             
+            DS_HDRSTANDARD_HLG              = 0x02,              
+            DS_HDRSTANDARD_DOLBYVISION      = 0x04,       
+            DS_HDRSTANDARD_TECHNICOLORPRIME = 0x08,  
+            DS_HDRSTANDARD_HDR10PLUS        = 0x10,          
+            DS_HDRSTANDARD_SDR              = 0x20,
+            DS_HDRSTANDARD_INVALID          = 0x80
+        };
+
+        enum DisplayMatrixCoefficients: uint8_t {
+            DS_DISPLAY_MATRIXCOEFFICIENT_UNKNOWN        = 0,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_709         = 1,        
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG    = 2,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_SMPTE_170M     = 3,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_XvYCC_709      = 4,     
+            DS_DISPLAY_MATRIXCOEFFICIENT_eXvYCC_601     = 5,    
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL    = 6,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_CL     = 7,    
+            DS_DISPLAY_MATRIXCOEFFICIENT_eDVI_FR_RGB    = 8,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_eHDMI_RGB      = 9,     
+            DS_DISPLAY_MATRIXCOEFFICIENT_eFCC           = 10,          
+            DS_DISPLAY_MATRIXCOEFFICIENT_eSMPTE_240M    = 11,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_eHDMI_FR_YCbCr = 12,
+            DS_DISPLAY_MATRIXCOEFFICIENT_MAX            = 13
+        };
+
+        enum DisplayColorSpace: uint8_t {
+            DS_DISPLAY_COLORSPACE_UNKNOWN  = 0,   
+            DS_DISPLAY_COLORSPACE_RGB      = 1,       
+            DS_DISPLAY_COLORSPACE_YCbCr422 = 2,  
+            DS_DISPLAY_COLORSPACE_YCbCr444 = 3,  
+            DS_DISPLAY_COLORSPACE_YCbCr420 = 4,  
+            DS_DISPLAY_COLORSPACE_AUTO     = 5,
+            DS_DISPLAY_COLORSPACE_MAX      = 6
+        };
+
+        enum DisplayQuantizationRange: uint8_t {
+            DS_DISPLAY_QUANTIZATIONRANGE_UNKNOWN = 0,
+            DS_DISPLAY_QUANTIZATIONRANGE_LIMITED = 1,    
+            DS_DISPLAY_QUANTIZATIONRANGE_FULL    = 2,
+            DS_DISPLAY_QUANTIZATIONRANGE_MAX     = 3
+        };
+
+        enum DisplayColorDepth : uint8_t {
+            DS_DISPLAY_COLORDEPTH_UNKNOWN = 0x0, 
+            DS_DISPLAY_COLORDEPTH_8BIT    = 0x01,   
+            DS_DISPLAY_COLORDEPTH_10BIT   = 0x02,  
+            DS_DISPLAY_COLORDEPTH_12BIT   = 0x04,  
+            DS_DISPLAY_COLORDEPTH_AUTO    = 0x08
+        };
+
+        struct DSOutputSettings {
+            HDRStandard videoEotf;
+            DisplayMatrixCoefficients matrixCoefficients;
+            uint32_t color_depth;
+            DisplayColorSpace colorSpace;
+            DisplayQuantizationRange quantizationRange;
+        };
+
+         enum VideoBackgroundColor : uint8_t {
+            DS_VIDEO_BGCOLOR_BLUE   = 0,   
+            DS_VIDEO_BGCOLOR_BLACK  = 1,  
+            DS_VIDEO_BGCOLOR_NONE   = 2,
+            DS_VIDEO_BGCOLOR_MAX    = 3
+        };
+
+        enum VideoScanMode: uint8_t {
+            DS_VIDEO_SCAN_MODE_INTERLACED = 0,
+            DS_VIDEO_SCAN_MODE_PROGRESSIVE = 1
+        };
+
+        struct ResolutionChange {
+            uint32_t width;
+            uint32_t height;
+        };
+
+        
+        // @event
+        struct EXTERNAL INotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEOPORT_NOTIFICATION };
+
+            // @brief On Resolution Post change
+            // @text onResolutionPostChange
+            // @param resolution: resolution
+            virtual void OnResolutionPostChange(const ResolutionChange resolution) {};
+
+            // @brief On Resolution Pre changed
+            // @text OnResolutionPreChange
+            // @param resolution: resolution
+            virtual void OnResolutionPreChange(const ResolutionChange resolution) {};
+
+            // @brief On HDCP Status change 
+            // @text OnHDCPStatusChange
+            // @param hdcpStatus: HDCP Status
+            virtual void OnHDCPStatusChange(const HDCPStatus hdcpStatus) {};
+
+            // @brief On Video Format update 
+            // @text OnVideoFormatUpdate
+            // @param videoFormatHDR: Video format HDR standard
+            virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
+            
+            
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideoPort::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerVideoPort::INotification* notification /* @in */) = 0;
+
+        /** Get Video Port handle. */
+        // @text getVideoPort
+        // @brief Get Video Port handle
+        // @param videoPort: Type of port
+        // @param index: index of the port (there can be multiple number of ports)
+        // @param handle: handle to the port
+        virtual Core::hresult GetVideoPort(const VideoPort videoPort /* @in */, const int index /* @in */, int &handle /* @out */) = 0;
+
+        /** Video Port Enabled or not. */
+        // @text isVideoPortEnabled
+        // @brief Is Video Port enabled
+        // @param handle: handle to the port
+        // @param enabled: enabled (true) or disabled (false)
+        virtual Core::hresult IsVideoPortEnabled(const int handle /* @in */, bool &enabled /* @out */) = 0;
+
+        /** Video Port connected to display or not. */
+        // @text isVideoPortDisplayConnected
+        // @brief Is Video Port connected to display or not
+        // @param handle: handle to the port
+        // @param connected: connected (true) or not connected (false)
+        virtual Core::hresult IsVideoPortDisplayConnected(const int handle /* @in */, bool &connected /* @out */) = 0;
+
+        /** Video port display supports surround or not. */
+        // @text isVideoPortDisplaySurround
+        // @brief Does Video Port display support surround or not
+        // @param handle: handle to the port
+        // @param surround: supports surround (true) or not (false)
+        virtual Core::hresult IsVideoPortDisplaySurround(const int handle /* @in */, bool &surround /* @out */) = 0;
+
+        /** Get Video port displays surround mode. */
+        // @text getVideoPortDisplaySurroundMode
+        // @brief Get Video port displays surround mode
+        // @param handle: handle to the port
+        // @param surroundMode: surround mode
+        virtual Core::hresult GetVideoPortDisplaySurroundMode(const int handle /* @in */, VideoPortSurroundMode &surroundMode /* @out */) = 0;
+
+        /** Enable Video port. */
+        // @text enableVideoPort
+        // @brief Enable video port
+        // @param handle: handle to the port
+        // @param enable: enable (true) or disable (false) 
+        virtual Core::hresult EnableVideoPort(const int handle /* @in */, bool enable /* @in */) = 0;
+
+        /** Get Video port resolution. */
+        // @text getVideoPortResolution
+        // @brief Get Video port resolution
+        // @param handle: handle to the port
+        // @param videoPortResolution: video port resolution
+        virtual Core::hresult GetVideoPortResolution(const int handle /* @in */, VideoPortResolution &videoPortResolution /* @out */) = 0;
+
+        /** Set Video port resolution. */
+        // @text setVideoPortResolution
+        // @brief Set Video port resolution
+        // @param handle: handle to the port
+        // @param videoPortResolution: video port resolution 
+        // @param persist: persist this setting
+        // @param forceCompatibilty: force compatibility
+        virtual Core::hresult SetVideoPortResolution(const int handle /* @in */, VideoPortResolution videoPortResolution /* @in */, bool persist /* @in */, bool forceCompatibility /* @in */) = 0;
+
+        /** Enable HDCP Video port. */
+        // @text enableHDCPOnVideoPort
+        // @brief Enable HDCP on video port
+        // @param handle: handle to the port
+        // @param enable: enable (true) or disable (false) 
+        // @param hdcpKey: hdcp key 
+        // @param hdcpKeySize: number of bytes in hdcpKey array
+        virtual Core::hresult EnableHDCPOnVideoPort(const int handle /* @in */, bool hdcpEnable /* @in */, uint8_t hdcpKey[] /* @in */, int hdcpKeySize /* @in */) = 0;
+
+        /** Is HDCP enabled on Video port. */
+        // @text isHDCPEnabledOnVideoPort
+        // @brief Is HDCP enabled on Video port
+        // @param handle: handle to the port
+        // @param hdcpEnabled: enabled (true) or disabled (false) 
+        virtual Core::hresult IsHDCPEnabledOnVideoPort(const int handle /* @in */, bool &hdcpEnabled /* @out */) = 0;
+
+        /**  Get HDCP Status on Video port. */
+        // @text getHDCPStatusOnVideoPort
+        // @brief Get HDCP Status on Video port
+        // @param handle: handle to the port
+        // @param hdcpStatus: HDCP status
+        virtual Core::hresult GetHDCPStatusOnVideoPort(const int handle /* @in */, HDCPStatus &hdcpStatus /* @out */) = 0;
+
+        /**  Get HDCP Protocol version on Video port. */
+        // @text getHDCPProtocolVersionOnVideoPort
+        // @brief Get HDCP Protocol version on Video port
+        // @param handle: handle to the port
+        // @param hdcpVersion: HDCP version
+        virtual Core::hresult GetHDCPProtocolVersionOnVideoPort(const int handle /* @in */, HDCPProtocolVersion &hdcpVersion /* @out */) = 0;
+
+        /**  Get HDCP Receiver Protocol version on Video port. */
+        // @text getHDCPReceiverProtocolVersionOnVideoPort
+        // @brief Get HDCP Receiver Protocol version on Video port
+        // @param handle: handle to the port
+        // @param hdcpVersion: HDCP version
+        virtual Core::hresult GetHDCPReceiverProtocolVersionOnVideoPort(const int handle /* @in */, HDCPProtocolVersion &hdcpVersion /* @out */) = 0;
+
+        /**  Get HDCP Current Protocol version on Video port. */
+        // @text getHDCPCurrentProtocolVersionOnVideoPort
+        // @brief Get HDCP Current Protocol version on Video port
+        // @param handle: handle to the port
+        // @param hdcpVersion: HDCP version
+        virtual Core::hresult GetHDCPCurrentProtocolVersionOnVideoPort(const int handle /* @in */, HDCPProtocolVersion &hdcpVersion /* @out */) = 0;
+
+        /** Is Video port active. */
+        // @text isVideoPortActive
+        // @brief Is Video port active
+        // @param handle: handle to the port
+        // @param active: active (true) or inactive (false) 
+        virtual Core::hresult IsVideoPortActive(const int handle /* @in */, bool &active /* @out */) = 0;
+
+        /**  Get TVs HDR capabilities. */
+        // @text getTVHDRCapabilities
+        // @brief Get TVs HDR capabilities
+        // @param handle: handle to the port
+        // @param capabilities: capabilities (masked value) - see HDRStandard
+        virtual Core::hresult GetTVHDRCapabilities(const int handle /* @in */, int &capabilities /* @out */) = 0;
+
+        /**  Get TVs supported resolutions. */
+        // @text getTVHDRCapabilities
+        // @brief  Get TVs supported resolutions
+        // @param handle: handle to the port
+        // @param resolutions: resolutions (masked value) - see TVResolution
+        virtual Core::hresult GetTVSupportedResolutions(const int handle /* @in */, int &resolutions /* @out */) = 0;
+
+        /** Set Disable 4K. */
+        // @text setForceDisable4K
+        // @brief Force disable 4K
+        // @param handle: handle to the port
+        // @param disable: disable (true) or enable (false) 
+        virtual Core::hresult SetForceDisable4K(const int handle /* @in */, bool disable /* @in */) = 0;
+
+        /** Get Disable 4K status. */
+        // @text setForceDisable4K
+        // @brief Get Force disable 4K value
+        // @param handle: handle to the port
+        // @param disabled: disabled (true) or enabled (false) 
+        virtual Core::hresult GetForceDisable4K(const int handle /* @in */, bool &disabled /* @out */) = 0;
+
+        /** Is Video port output HDR?. */
+        // @text issVideoPortOutputHDR
+        // @brief Is Video port output HDR?
+        // @param handle: handle to the port
+        // @param isHDR: yes (true) or no (false) 
+        virtual Core::hresult IsVideoPortOutputHDR(const int handle /* @in */, bool &isHDR /* @out */) = 0;
+
+        /** Reset Video port output to SDR. */
+        // @text resetVideoPortOutputToSDR
+        // @brief Reset Video port output to SDR
+        virtual Core::hresult ResetVideoPortOutputToSDR() = 0;
+
+        /**  Get HDMI preferred HDCP protocol version. */
+        // @text getHDMIPreference
+        // @brief Get HDMI preferred HDCP protocol version
+        // @param handle: handle to the port
+        // @param hdcpVersion: HDCP version
+        virtual Core::hresult GetHDMIPreference(const int handle /* @in */, HDCPProtocolVersion &hdcpVersion /* @out */) = 0;
+
+        /**  Set HDMI preferred HDCP protocol version. */
+        // @text setHDMIPreference
+        // @brief Set HDMI preferred HDCP protocol version
+        // @param handle: handle to the port
+        // @param hdcpVersion: HDCP version
+        virtual Core::hresult SetHDMIPreference(const int handle /* @in */, HDCPProtocolVersion hdcpVersion /* @in */) = 0;
+
+        /**  Get Video EOTF. */
+        // @text getVideoEOTF
+        // @brief Get TVs HDR capabilities
+        // @param handle: handle to the port
+        // @param hdrStandard: see HDRStandard
+        virtual Core::hresult GetVideoEOTF(const int handle /* @in */, HDRStandard &hdrStandard /* @out */) = 0;
+
+        /**  Get Matrix coefficients. */
+        // @text getMatrixCoefficients
+        // @brief Get Matrix coefficients
+        // @param handle: handle to the port
+        // @param matrixCoefficients: see DisplayMatrixCoefficients
+        virtual Core::hresult GetMatrixCoefficients(const int handle /* @in */, DisplayMatrixCoefficients &matrixCoefficients /* @out */) = 0;
+                
+        /**  Get Color Depth. */
+        // @text getColorDepth
+        // @brief Get Color Depth
+        // @param handle: handle to the port
+        // @param colorDepth: color depth See DisplayColorDepth (masked)
+        virtual Core::hresult GetColorDepth(const int handle /* @in */, uint32_t &colorDepth /* @out */) = 0;
+
+        /**  Get Color Space. */
+        // @text getColorSpace
+        // @brief Get Color Space
+        // @param handle: handle to the port
+        // @param colorSpace: color space
+        virtual Core::hresult GetColorSpace(const int handle /* @in */, DisplayColorSpace &colorSpace /* @out */) = 0;
+
+        /**  Get Quantization Range. */
+        // @text getQuantizationRange
+        // @brief Get Quantization range
+        // @param handle: handle to the port
+        // @param quantizationRange: quantization range
+        virtual Core::hresult GetQuantizationRange(const int handle /* @in */, DisplayQuantizationRange &quantizationRange /* @out */) = 0;
+
+        /**  Get Current output settings. */
+        // @text getCurrentOutputSettings
+        // @brief Get Current output settings
+        // @param handle: handle to the port
+        // @param outputSettings: Output settings 
+        virtual Core::hresult GetCurrentOutputSettings(const int handle /* @in */, DSOutputSettings &outputSettings /* @out */) = 0;
+
+        /**  Set Video background color. */
+        // @text setBackgroundColor
+        // @brief Set Video background color.
+        // @param handle: handle to the port
+        // @param backgroundColor: video background color
+        virtual Core::hresult SetBackgroundColor(const int handle /* @in */, VideoBackgroundColor backgroundColor /* @in */) = 0;
+
+        /**  Set HDR mode. */
+        // @text setForceHDRMode
+        // @brief Set HDR mode 
+        // @param handle: handle to the port
+        // @param hdrMode: see HDRStandard
+        virtual Core::hresult SetForceHDRMode(const int handle /* @in */, HDRStandard hdrMode /* @in */) = 0;
+
+        /**  Get Color Depth capabilities. */
+        // @text getColorDepthCapabilities
+        // @brief Get Color Depth capabilities
+        // @param handle: handle to the port
+        // @param colorDepthCapabilities: color depth capabilities See DisplayColorDepth (masked)
+        virtual Core::hresult GetColorDepthCapabilities(const int handle /* @in */, uint32_t &colorDepthCapabilities /* @out */) = 0;
+
+        /**  Get Preferred Color Depth. */
+        // @text getPreferredColorDepth
+        // @brief Get Preferred Color Depth
+        // @param handle: handle to the port
+        // @param colorDepth: color depth See DisplayColorDepth 
+        // @param persist: return persisted value (true) or not (false)
+        virtual Core::hresult GetPreferredColorDepth(const int handle /* @in */, DisplayColorDepth &colorDepth /* @out */, bool persist /* @in */) = 0;
+        
+        /**  Set Preferred Color Depth. */
+        // @text getPreferredColorDepth
+        // @brief Set Preferred Color Depth
+        // @param handle: handle to the port
+        // @param colorDepth: color depth See DisplayColorDepth 
+        // @param persist:  persist value (true) or not (false)
+        virtual Core::hresult SetPreferredColorDepth(const int handle /* @in */, DisplayColorDepth colorDepth /* @in */, bool persist /* @in */) = 0;
+	
+
+    };
+
+} // namespace Exchange
+} // namespace WPEFramework
