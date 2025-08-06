@@ -866,7 +866,7 @@ namespace Exchange {
         enum DisplayVideoAspectRatio : uint8_t {
             DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
             DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16x9        = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
