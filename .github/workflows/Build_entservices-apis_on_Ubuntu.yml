@@ -2,7 +2,7 @@ name: Build entservices-apis on Ubuntu
 
 on:
   push:
-    branches: ["develop"]
+    branches: ["develop", feature/RDKEMW-6078-testing]
   pull_request:
     branches: ["develop"]
 
