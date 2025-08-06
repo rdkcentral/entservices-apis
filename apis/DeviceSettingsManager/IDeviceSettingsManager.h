@@ -1668,17 +1668,17 @@ namespace Exchange {
             // @brief Zoom settings changed
             // @text OnZoomSettingsChanged
             // @param zoomSetting: Currently applied zoom setting
-            virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) = 0;
+            virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) {};
 
             // @brief Display Framerate Pre-change
             // @text OnDisplayFrameratePreChange
             // @param frameRate: PreChange framerate
-            virtual void OnDisplayFrameratePreChange(const string frameRate) = 0;
+            virtual void OnDisplayFrameratePreChange(const string frameRate) {};
 
             // @brief Display Framerate Post-change
             // @text OnDisplayFrameratePostChange
             // @param frameRate:  framerate post change
-            virtual void OnDisplayFrameratePostChange(const string frameRate) = 0;
+            virtual void OnDisplayFrameratePostChange(const string frameRate) {};
             
         };
 
