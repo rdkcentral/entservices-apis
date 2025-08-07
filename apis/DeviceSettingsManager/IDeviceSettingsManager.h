@@ -117,7 +117,8 @@ namespace Exchange {
             AUDIO_INPUT_MAX                       = 2
         };
 
-        enum MS12Capabilities : uint8_t {
+         /* Lakshmi: removed struct AudioARCStatus to avoid duplication */
+        enum MS12Capabilities : uint64_t {
             AUDIO_MS12_CAPABILITIES_NONE                    = 0,
             AUDIO_MS12_CAPABILITIES_DOLBYVOLUME             = 1,
             AUDIO_MS12_CAPABILITIES_INTELLIGENT_EQUALIZER   = 2,
@@ -130,7 +131,7 @@ namespace Exchange {
             AUDIO_MS12_CAPABILITIES_MI_STEERING             = 256,
             AUDIO_MS12_CAPABILITIES_GRAPHIC_EQUALIZER       = 512,
             AUDIO_MS12_CAPABILITIES_LE_CONFIG               = 1024,
-            AUDIO_MS12_CAPABILITIES_INVALID                 = (1 << 31)
+            //AUDIO_MS12_CAPABILITIES_INVALID                 = (1 << 31)
         };
 
         // TODO AudioSADList 
@@ -138,7 +139,7 @@ namespace Exchange {
         // TODO MS12 Audio Profile list
 
         struct MS12AudioProfile {
-            string audioProfile;                 
+            string audioProfile;
         };
 
         using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICE_SETTINGS_AUDIO_PROFILE_ITERATOR>;
@@ -189,6 +190,8 @@ namespace Exchange {
         struct AudioSADItem { 
             int  sad    /* @brief SAD value */ ;
         };
+
+        // Lakshmi not using this iterator. shall we remove.
         using IDSAudioSADIterator = RPC::IIteratorType<AudioSADItem, ID_DSAUDIO_SAD_ITERATOR>;
 
         struct AudioARCStatus { 
@@ -297,15 +300,15 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param types: Supported types
         virtual Core::hresult GetSupportedARCTypes(const int handle /* @in */, int &types /* @out */) = 0;
-
+#if 0
         /** Set SAD */
         // @text setSAD
         // @brief Get Supported ARC types
         // @param handle: handle returned in GetAudioPort()
-        // @param count: number of items in sadList (max 15)
         // @param sadList: SAD array 
-        virtual Core::hresult SetSAD(const int handle /* @in */, int count /* @in */, int sadList[] /* @in @length:return @maxlength:count */) = 0;
-
+        // @param count: number of items in sadList (max 15)
+        virtual Core::hresult SetSAD(const int handle /* @in */, int sadList[] /* @in @length:return @maxlength:count */, int count /* @in */) = 0;
+#endif
         /** Enable ARC */
         // @text enableARC
         // @brief Get Supported ARC types
@@ -647,13 +650,15 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param mode: Equalizer mode
         virtual Core::hresult GetAudioGraphicEqualizerMode(const int handle /* @in */, int &mode /* @out */) = 0;
+
 #if 0
         /** Get Audio MS12 profile list    */
         // @text getAudioMS12ProfileList
         // @brief Get Audio MS12 profile list
         // @param handle: handle returned in GetAudioPort()
         // @param ms12ProfileList: MS12 profile list iterator
-        virtual Core::hresult GetAudioMS12ProfileList(const int handle /* @in */, IDeviceSettingsAudioMS12AudioProfileIterator *&ms12ProfileList /* @out */) = 0;
+        virtual Core::hresult GetAudioMS12ProfileList(const int handle /* @in */, IDeviceSettingsAudioMS12AudioProfileIterator*& ms12ProfileList /* @out */) const = 0;
+#endif
 
         /** Get Audio MS12 profile    */
         // @text getAudioMS12Profile
@@ -667,7 +672,7 @@ namespace Exchange {
         // @brief Set Audio MS12 profile
         // @param handle: handle returned in GetAudioPort()
         // @param profile: Name of the profile
-        virtual Core::hresult SetAudioMS12Profile(const int handle /* @in */, string &profile /* @out */) = 0;
+        virtual Core::hresult SetAudioMS12Profile(const int handle /* @in */, string profile /* @in */) = 0;
 
         /** Set Audio Mixer Levels     */
         // @text setAudioMixerLevels
@@ -676,6 +681,7 @@ namespace Exchange {
         // @param audioInput: AudioInput 
         // @param volume: Volume level
         virtual Core::hresult SetAudioMixerLevels(const int handle /* @in */, const AudioInput audioInput /* @in */, int volume /* @in */) = 0;
+
 
         /** Set Associated Audio Mixing values     */
         // @text setAssociatedAudioMixing
@@ -688,7 +694,7 @@ namespace Exchange {
         // @text getAssociatedAudioMixing
         // @brief Get Associated Audio Mixing values 
         // @param handle: handle returned in GetAudioPort()
-        // @param types: true or false
+        // @param mixing: true or false
         virtual Core::hresult GetAssociatedAudioMixing(const int handle /* @in */, bool &mixing /* @out */) = 0;
 
         /** Set Audio Fader control values     */
@@ -696,7 +702,7 @@ namespace Exchange {
         // @brief Set Audio Fader control values 
         // @param handle: handle returned in GetAudioPort()
         // @param mixerBalance: Mixer balance for fader control
-        virtual Core::hresult SetAudioFaderControl(const int handle /* @in */, int &mixerBalance /* @out */) = 0;
+        virtual Core::hresult SetAudioFaderControl(const int handle /* @in */, int mixerBalance /* @in */) = 0;
 
         /** Get Audio Fader control values     */
         // @text getAudioFaderControl
@@ -710,7 +716,7 @@ namespace Exchange {
         // @brief Set Primary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param primaryAudioLanguage: Primary audio language
-        virtual Core::hresult SetAudioPrimaryLanguage(const int handle /* @in */, string &primaryAudioLanguage /* @in */) = 0;
+        virtual Core::hresult SetAudioPrimaryLanguage(const int handle /* @in */, string primaryAudioLanguage /* @in */) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioPrimaryLanguage
@@ -724,7 +730,7 @@ namespace Exchange {
         // @brief Set Secondary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param secondaryAudioLanguage: Secondary audio language
-        virtual Core::hresult SetAudioSecondaryLanguage(const int handle /* @in */, string &secondaryAudioLanguage /* @in */) = 0;
+        virtual Core::hresult SetAudioSecondaryLanguage(const int handle /* @in */, string secondaryAudioLanguage /* @in */) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioSecondaryLanguage
@@ -753,8 +759,9 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param profileName: Name of the profile
         // @param profileSettingsName: Name of the profile setting 
+        // @param profileSettingValue : value of the profile setting 
         // @param profileState: ADD or REMOVE
-        virtual Core::hresult SetAudioMS12SettingsOverride(const int handle /* @in */, string &profileName /* @in */, string &profileSettingsName /* @in */, string &profileSettingValue /* @in */, string &profileState /* @in */ ) = 0;
+        virtual Core::hresult SetAudioMS12SettingsOverride(const int handle /* @in */, string profileName /* @in */, string profileSettingsName /* @in */, string profileSettingValue /* @in */, string profileState /* @in */ ) = 0;
 
         /** Is Audio output connected?    */
         // @text isAudioOutputConnected
@@ -763,32 +770,29 @@ namespace Exchange {
         // @param isConnected: connected (true) or not (false)
         virtual Core::hresult IsAudioOutputConnected(const int handle /* @in */, bool &isConnected /* @out */) = 0;
 
+
         /** Reset Audio Dialog enhancement    */
         // @text resetAudioDialogEnhancement
         // @brief Reset Audio Dialog enhancement
         // @param handle: handle returned in GetAudioPort()
-        // @param types: Supported types
         virtual Core::hresult ResetAudioDialogEnhancement(const int handle /* @in */) = 0;
 
         /** Reset Audio Bass enhancement    */
         // @text resetAudioBassEnhancer
         // @brief Reset Audio Bass enhancement
         // @param handle: handle returned in GetAudioPort()
-        // @param types: Supported types
         virtual Core::hresult ResetAudioBassEnhancer(const int handle /* @in */) = 0;
 
         /** Reset Audio Surround virtualizer   */
         // @text resetAudioSurroundVirtualizer
         // @brief Reset Audio Surround virtualizer
         // @param handle: handle returned in GetAudioPort()
-        // @param types: Supported types
         virtual Core::hresult ResetAudioSurroundVirtualizer(const int handle /* @in */) = 0;
 
         /** Reset Audio Volume leveller    */
         // @text resetAudioVolumeLeveller
         // @brief Reset Audio Volume leveller
         // @param handle: handle returned in GetAudioPort()
-        // @param types: Supported types
         virtual Core::hresult ResetAudioVolumeLeveller(const int handle /* @in */) = 0;
 
         /** Get Audio HDMI ARC Port ID    */
@@ -797,10 +801,8 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param portId: Port Id
         virtual Core::hresult GetAudioHDMIARCPortId(const int handle /* @in */, int &portId /* @out */) = 0;
-#endif
     };
 
-#if 1
     struct EXTERNAL IDeviceSettingsManagerCompositeIn : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
@@ -836,27 +838,26 @@ namespace Exchange {
         };
 
         enum DisplayTVResolution: uint32_t {
-            DS_DISPLAY_RESOLUTION_480I     = 0x000001,     
-            DS_DISPLAY_RESOLUTION_480P     = 0x000002,     
-            DS_DISPLAY_RESOLUTION_576I     = 0x000004,     
-            DS_DISPLAY_RESOLUTION_576P     = 0x000008,     
-            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,   
-            DS_DISPLAY_RESOLUTION_720P     = 0x000020,     
-            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,   
-            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,    
-            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
-            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
-            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
-            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
-            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
-            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
-            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
-            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,  
-            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,  
-            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,  
-            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,  
-            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,  
-            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000  
+            DS_DISPLAY_RESOLUTION_480I     = 0x000001,
+            DS_DISPLAY_RESOLUTION_480P     = 0x000002,
+            DS_DISPLAY_RESOLUTION_576I     = 0x000004,
+            DS_DISPLAY_RESOLUTION_576P     = 0x000008,
+            DS_DISPLAY_RESOLUTION_576P50   = 0x000010,
+            DS_DISPLAY_RESOLUTION_720P     = 0x000020,
+            DS_DISPLAY_RESOLUTION_720P50   = 0x000040,
+            DS_DISPLAY_RESOLUTION_1080I    = 0x000080,
+            DS_DISPLAY_RESOLUTION_1080P    = 0x000100,
+            DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,
+            DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,
+            DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,
+            DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,
+            DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,
+            DS_DISPLAY_RESOLUTION_1080P60  = 0x008000,
+            DS_DISPLAY_RESOLUTION_2160P24  = 0x010000,
+            DS_DISPLAY_RESOLUTION_2160P25  = 0x020000,
+            DS_DISPLAY_RESOLUTION_2160P30  = 0x040000,
+            DS_DISPLAY_RESOLUTION_2160P50  = 0x080000,
+            DS_DISPLAY_RESOLUTION_2160P60  = 0x100000
         };
 
         enum DisplayVideoAspectRatio : uint8_t {
@@ -866,21 +867,21 @@ namespace Exchange {
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
-            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
-            DS_DISPLAY_SSMODE_2D                = 1,                  
-            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+            DS_DISPLAY_SSMODE_UNKNOWN           = 0,
+            DS_DISPLAY_SSMODE_2D                = 1,
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3
         };
 
         enum DisplayInVideoFrameRate: uint8_t {
-            DS_DISPLAY_FRAMERATE_UNKNOWN   = 0, 
+            DS_DISPLAY_FRAMERATE_UNKNOWN   = 0,
             DS_DISPLAY_FRAMERATE_24        = 1,
-            DS_DISPLAY_FRAMERATE_25        = 2,       
-            DS_DISPLAY_FRAMERATE_30        = 3,       
-            DS_DISPLAY_FRAMERATE_60        = 4,       
-            DS_DISPLAY_FRAMERATE_23_98     = 5,  
-            DS_DISPLAY_FRAMERATE_29_97     = 6,  
-            DS_DISPLAY_FRAMERATE_50        = 7,       
+            DS_DISPLAY_FRAMERATE_25        = 2,
+            DS_DISPLAY_FRAMERATE_30        = 3,
+            DS_DISPLAY_FRAMERATE_60        = 4,
+            DS_DISPLAY_FRAMERATE_23_98     = 5,
+            DS_DISPLAY_FRAMERATE_29_97     = 6,
+            DS_DISPLAY_FRAMERATE_50        = 7,
             DS_DISPLAY_FRAMERATE_59_94     = 8,
             DS_DISPLAY_FRAMERATE_100       = 9,
             DS_DISPLAY_FRAMERATE_119_88    = 10,
@@ -890,7 +891,7 @@ namespace Exchange {
             DS_DISPLAY_FRAMERATE_240       = 14,
             DS_DISPLAY_FRAMERATE_MAX       = 15
         };
-          
+
         struct DisplayVideoPortResolution {
             string name;
             DisplayTVResolution pixelResolution;
@@ -928,13 +929,11 @@ namespace Exchange {
             // @param videoResolution: See DisplayVideoPortResolution
             virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution videoResolution) {};
 
-
-            
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
-	
+
         /** Get number of composite inputs. */
         // @text getNrOfCompositeInputs
         // @brief Get Preferred Sleep mode.
@@ -958,15 +957,14 @@ namespace Exchange {
         // @brief Scale composite video.
         // @param videoRect: co-ordinates and width/height to scale to
         virtual Core::hresult ScaleCompositeInVideo(const VideoRectangle videoRect /* @in */) = 0;
-
     };
 
     struct EXTERNAL IDeviceSettingsManagerDisplay : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY };
 
         enum DisplayEvent {
-            DS_DISPLAY_EVENT_CONNECTED     = 0,  ///< Display connected event   
-            DS_DISPLAY_EVENT_DISCONNECTED  = 1,  ///< Display disconnected event       
+            DS_DISPLAY_EVENT_CONNECTED     = 0,  ///< Display connected event
+            DS_DISPLAY_EVENT_DISCONNECTED  = 1,  ///< Display disconnected event
             DS_DISPLAY_RXSENSE_ON          = 2,  ///< Rx Sense ON event
             DS_DISPLAY_RXSENSE_OFF         = 3,  ///< Rx Sense OFF event
             DS_DISPLAY_HDCPPROTOCOL_CHANGE = 4,  ///< HDCP Protocol Version Change event
@@ -985,7 +983,6 @@ namespace Exchange {
             DS_DISPLAY_RESOLUTION_1080P    = 0x000100,    
             DS_DISPLAY_RESOLUTION_1080P24  = 0x000200,  
             DS_DISPLAY_RESOLUTION_1080I25  = 0x000400,  
-            DS_DISPLAY_RESOLUTION_1080I25  = 0x000800,  
             DS_DISPLAY_RESOLUTION_1080P30  = 0x001000,  
             DS_DISPLAY_RESOLUTION_1080I50  = 0x002000,  
             DS_DISPLAY_RESOLUTION_1080P50  = 0x004000,  
@@ -1039,7 +1036,7 @@ namespace Exchange {
         };
 
         using IDeviceSettingsDisplayVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICE_SETTINGS_DISPLAY_RESOLUTION_ITERATOR>;
-        
+
         struct DisplayEDID {
             int32_t productCode;               ///< Product code of the display device
             int32_t serialNumber;              ///< Serial number of the display device
@@ -1052,19 +1049,14 @@ namespace Exchange {
             uint8_t physicalAddressC;          ///<  Physical Address for HDMI nodeC
             uint8_t physicalAddressD;          ///<  Physical Address for HDMI nodeD
             int32_t numOfSupportedResolution;  ///<  Number of Supported resolution
-            IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///<  EDID Supported Resoultion list
+            //IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///<  EDID Supported Resoultion list
             string monitorName;
         };
-        
+
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
         {
             enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY_NOTIFICATION };
-
-            // @brief Display HDMI Hot plug event
-            // @text onDisplayHDMIHotPlug
-            // @param displayEvent: DS_DISPLAY_EVENT_CONNECTED or DS_DISPLAY_EVENT_DISCONNECTED
-            virtual void OnDisplayHDMIHotPlug(const DisplayEvent displayEvent) {};
 
             // @brief Display RX Sense event
             // @text onDisplayRxSense
@@ -1079,39 +1071,37 @@ namespace Exchange {
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
-	
-        /** Get Handle of Video port. */
-        // @text getDisplay
-        // @brief Get Handle of Video port
-        // @param port: port for which the handle is required
-        // @param index: index of the port (there can be multiple number of ports)
-        // @param handle: handle to the port
-       // virtual Core::hresult GetDisplay(VideoPort port /* @in */, int index /* @in */, int &handle /* @out */) = 0;
-       // Lakshmi commented above as VideoPort is avalable at line no: 1847
 
-        /** Get Display Aspect ratio. */
-        // @text getDisplayAspectRatio
-        // @brief Get Display Aspect ratio
-        // @param handle: handle returned in GetDisplay
-        // @param aspectRatio: Aspect ratio of port
-        virtual Core::hresult GetDisplayAspectRatio(const int handle /* @in */, VideoAspectRatio &aspectRatio /* @out */) = 0;
+        // @event
+        struct EXTERNAL IDisplayNotification : virtual public Core::IUnknown
+        {
+            enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY_HOTPLUG_NOTIFICATION };
+
+            // @brief Display HDMI Hot plug event
+            // @text onDisplayHDMIHotPlug
+            // @param displayEvent: DS_DISPLAY_EVENT_CONNECTED or DS_DISPLAY_EVENT_DISCONNECTED
+            virtual void OnDisplayHDMIHotPlug(const DisplayEvent displayEvent) {};
+
+        };
+
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::IDisplayNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::IDisplayNotification* notification /* @in */) = 0;
 
         /** Get Display EDID. */
         // @text getDisplayEdid
         // @brief Get Display EDID
         // @param handle: handle returned in GetDisplay
         // @param edId: EDID information
-//        virtual Core::hresult GetDisplayEdid(const int handle, DisplayEDID &edId /* @out */) = 0;
-//Lakshmi:  ERROR: IFirmwareVersion.h: /home/nadosakayala/dsmgr/entservices-apis/apis/DeviceSettingsManager/IDeviceSettingsManager.h(1105): parse error: in/out tags not allowed here
-
+        virtual Core::hresult GetDisplayEdid(const int handle /* @in */, DisplayEDID &edId /* @out */) = 0;
+#if 0
         /** Get Display EDID bytes. */
         // @text getDisplayEdidBytes
         // @brief Get Display EDID bytes
         // @param handle: handle returned in GetDisplay
         // @param edIdBytes: EDID Bytes
-        // @param edIdLength: length of EDID bytes
-        virtual Core::hresult GetDisplayEdidBytes(const int handle /* @in */, uint38_t edIdBytes[] /* @out */, uint32_t &edidLength /* @out */) = 0;
-
+        // @param edidLength: length of EDID bytes
+        virtual Core::hresult GetDisplayEdidBytes(const int handle /* @in */, uint8_t &edIdBytes[] /* @out @length:return @maxlength:edidLength */, uint32_t &edidLength /* @out */) = 0;
+#endif
     };
 
     struct EXTERNAL IDeviceSettingsManagerFPD : virtual public Core::IUnknown {
@@ -1119,7 +1109,7 @@ namespace Exchange {
 
         enum FPDTimeFormat : uint8_t {
             DS_FPD_TIMEFORMAT_12_HOUR    = 0,
-            DS_FPD_TIMEFORMAT_24_HOUR    = 1
+            DS_FPD_TIMEFORMAT_24_HOUR    = 1,
             DS_FPD_TIMEFORMAT_MAX        = 2
         };
 
@@ -1177,7 +1167,7 @@ namespace Exchange {
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerFPD::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingManagerFPD::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerFPD::INotification* notification /* @in */) = 0;
 
         /** Set Front Panel Display Time. */
         // @text setFPDTime
@@ -1289,20 +1279,20 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN };
 
         enum HDMIInPort : int8_t {
-            DS_HDMI_IN_PORT_NONE    = -1,  
-            DS_HDMI_IN_PORT_0       = 0,          
-            DS_HDMI_IN_PORT_1       = 1,          
-            DS_HDMI_IN_PORT_2       = 2,          
-            DS_HDMI_IN_PORT_3       = 3,          
+            DS_HDMI_IN_PORT_NONE    = -1,
+            DS_HDMI_IN_PORT_0       = 0,
+            DS_HDMI_IN_PORT_1       = 1,
+            DS_HDMI_IN_PORT_2       = 2,
+            DS_HDMI_IN_PORT_3       = 3,
             DS_HDMI_IN_PORT_4       = 4,
             DS_HDMI_IN_PORT_MAX     = 5
         };
 
         enum HDMIInSignalStatus: int8_t {
-            DS_HDMI_IN_SIGNAL_STATUS_NONE        = -1,    
-            DS_HDMI_IN_SIGNAL_STATUS_NOSIGNAL     = 0,     
-            DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,                                 
-            DS_HDMI_IN_SIGNAL_STATUS_NOTSUPPORTED = 2,                               
+            DS_HDMI_IN_SIGNAL_STATUS_NONE        = -1,
+            DS_HDMI_IN_SIGNAL_STATUS_NOSIGNAL     = 0,
+            DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,
+            DS_HDMI_IN_SIGNAL_STATUS_NOTSUPPORTED = 2,
             DS_HDMI_IN_SIGNAL_STATUS_STABLE       = 3,
             DS_HDMI_IN_SIGNAL_STATUS_MAX          = 4
         };
@@ -1313,7 +1303,7 @@ namespace Exchange {
         using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR>;
         struct HDMIInStatus {
             bool isPresented;
-            IHDMIInPortConnectionStatusIterator portConnectionStatus;
+            //IHDMIInPortConnectionStatusIterator portConnectionStatus;
             HDMIInPort activePort;
         };
 
@@ -1323,6 +1313,7 @@ namespace Exchange {
             bool isPortArcCapable;
         };
 
+        //Lakshmi: Not using this iterator. shall we remove?
         using IHDMIInCapabilitiesIterator = RPC::IIteratorType<HDMIInCapabilities, ID_DEVICESETTINGS_HDMIIN_CAPS_ITERATOR>;
 
         struct HDMIInGameFeatureList {
@@ -1343,7 +1334,7 @@ namespace Exchange {
         };
 
         enum HDMIInEdidVersion : uint8_t {
-            HDMI_EDID_VER_14      = 0,   
+            HDMI_EDID_VER_14      = 0,
             HDMI_EDID_VER_20      = 1,
             HDMI_EDID_VER_MAX     = 2
         };
@@ -1355,13 +1346,13 @@ namespace Exchange {
         };
 
         enum HDMIInCapabilityVersion {
-            HDMI_COMPATIBILITY_VERSION_14 = 0, 
-            HDMI_COMPATIBILITY_VERSION_20 = 1,     
-            HDMI_COMPATIBILITY_VERSION_21 = 2,     
-            HDMI_COMPATIBILITY_VERSION_MAX = 3    
+            HDMI_COMPATIBILITY_VERSION_14 = 0,
+            HDMI_COMPATIBILITY_VERSION_20 = 1,
+            HDMI_COMPATIBILITY_VERSION_21 = 2,
+            HDMI_COMPATIBILITY_VERSION_MAX = 3
         };
 
-        struct HDMIInVideoRectangle {         
+        struct HDMIInVideoRectangle {
             int32_t x;
             int32_t y;
             int32_t width;
@@ -1393,27 +1384,26 @@ namespace Exchange {
         };
 
         enum HDMIInTVResolution: uint32_t {
-            DS_HDMIIN_RESOLUTION_480I     = 0x000001,     
-            DS_HDMIIN_RESOLUTION_480P     = 0x000002,     
-            DS_HDMIIN_RESOLUTION_576I     = 0x000004,     
-            DS_HDMIIN_RESOLUTION_576P     = 0x000008,     
-            DS_HDMIIN_RESOLUTION_576P50   = 0x000010,   
-            DS_HDMIIN_RESOLUTION_720P     = 0x000020,     
-            DS_HDMIIN_RESOLUTION_720P50   = 0x000040,   
-            DS_HDMIIN_RESOLUTION_1080I    = 0x000080,    
-            DS_HDMIIN_RESOLUTION_1080P    = 0x000100,    
-            DS_HDMIIN_RESOLUTION_1080P24  = 0x000200,  
-            DS_HDMIIN_RESOLUTION_1080I25  = 0x000400,  
-            DS_HDMIIN_RESOLUTION_1080I25  = 0x000800,  
-            DS_HDMIIN_RESOLUTION_1080P30  = 0x001000,  
-            DS_HDMIIN_RESOLUTION_1080I50  = 0x002000,  
-            DS_HDMIIN_RESOLUTION_1080P50  = 0x004000,  
-            DS_HDMIIN_RESOLUTION_1080P60  = 0x008000,  
-            DS_HDMIIN_RESOLUTION_2160P24  = 0x010000,  
-            DS_HDMIIN_RESOLUTION_2160P25  = 0x020000,  
-            DS_HDMIIN_RESOLUTION_2160P30  = 0x040000,  
-            DS_HDMIIN_RESOLUTION_2160P50  = 0x080000,  
-            DS_HDMIIN_RESOLUTION_2160P60  = 0x100000  
+            DS_HDMIIN_RESOLUTION_480I     = 0x000001,
+            DS_HDMIIN_RESOLUTION_480P     = 0x000002,
+            DS_HDMIIN_RESOLUTION_576I     = 0x000004,
+            DS_HDMIIN_RESOLUTION_576P     = 0x000008,
+            DS_HDMIIN_RESOLUTION_576P50   = 0x000010,
+            DS_HDMIIN_RESOLUTION_720P     = 0x000020,
+            DS_HDMIIN_RESOLUTION_720P50   = 0x000040,
+            DS_HDMIIN_RESOLUTION_1080I    = 0x000080,
+            DS_HDMIIN_RESOLUTION_1080P    = 0x000100,
+            DS_HDMIIN_RESOLUTION_1080P24  = 0x000200,
+            DS_HDMIIN_RESOLUTION_1080I25  = 0x000400,
+            DS_HDMIIN_RESOLUTION_1080P30  = 0x001000,
+            DS_HDMIIN_RESOLUTION_1080I50  = 0x002000,
+            DS_HDMIIN_RESOLUTION_1080P50  = 0x004000,
+            DS_HDMIIN_RESOLUTION_1080P60  = 0x008000,
+            DS_HDMIIN_RESOLUTION_2160P24  = 0x010000,
+            DS_HDMIIN_RESOLUTION_2160P25  = 0x020000,
+            DS_HDMIIN_RESOLUTION_2160P30  = 0x040000,
+            DS_HDMIIN_RESOLUTION_2160P50  = 0x080000,
+            DS_HDMIIN_RESOLUTION_2160P60  = 0x100000
         };
 
         enum HDMIVideoAspectRatio : uint8_t {
@@ -1423,30 +1413,29 @@ namespace Exchange {
         };
 
         enum HDMIInVideoStereoScopicMode : uint8_t {
-            DS_HDMIIN_SSMODE_UNKNOWN           = 0,         
-            DS_HDMIIN_SSMODE_2D                = 1,                  
-            DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,     
-            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+            DS_HDMIIN_SSMODE_UNKNOWN           = 0,
+            DS_HDMIIN_SSMODE_2D                = 1,
+            DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,
+            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3
         };
 
         enum HDMIInVideoFrameRate: uint8_t {
-            DS_HDMIIN_FRAMERATE_UNKNOWN   = 0, 
+            DS_HDMIIN_FRAMERATE_UNKNOWN   = 0,
             DS_HDMIIN_FRAMERATE_24        = 1,
-            DS_HDMIIN_FRAMERATE_25        = 2,       
-            DS_HDMIIN_FRAMERATE_30        = 3,       
-            DS_HDMIIN_FRAMERATE_60        = 4,       
-            DS_HDMIIN_FRAMERATE_23_98     = 5,  
-            DS_HDMIIN_FRAMERATE_29_97     = 6,  
-            DS_HDMIIN_FRAMERATE_50        = 7,       
+            DS_HDMIIN_FRAMERATE_25        = 2,
+            DS_HDMIIN_FRAMERATE_30        = 3,
+            DS_HDMIIN_FRAMERATE_60        = 4,
+            DS_HDMIIN_FRAMERATE_23_98     = 5,
+            DS_HDMIIN_FRAMERATE_29_97     = 6,
+            DS_HDMIIN_FRAMERATE_50        = 7,
             DS_HDMIIN_FRAMERATE_59_94     = 8
         };
 
-
         enum HDMIInAviContentType {
-            DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      =0,     
-            DS_HDMIIN_AVICONTENT_TYPE_PHOTO         =1,        
-            DS_HDMIIN_AVICONTENT_TYPE_CINEMA        =2,       
-            DS_HDMIIN_AVICONTENT_TYPE_GAME          =3,         
+            DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      =0,
+            DS_HDMIIN_AVICONTENT_TYPE_PHOTO         =1,
+            DS_HDMIIN_AVICONTENT_TYPE_CINEMA        =2,
+            DS_HDMIIN_AVICONTENT_TYPE_GAME          =3,
             DS_HDMIIN_AVICONTENT_TYPE_NOT_SIGNALLED =4,
             DS_HDMIIN_AVICONTENT_TYPE_MAX           =5
         };
@@ -1513,13 +1502,11 @@ namespace Exchange {
             // @param port: port 0 or 1 et al
             // @param vrrType: VRR type
             virtual void OnHDMInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
-
-            
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
-	
+
         /** Get Number of HDMI Inputs in the platform. */
         // @text getHDMIInNumbefOfInputs
         // @brief Get Number of HDMI Inputs in the platform
@@ -1536,9 +1523,9 @@ namespace Exchange {
         // @text selectHDMIInPort
         // @brief Get HDMIIn Status
         // @param port: Port to select 
-        // @param requestAudioMix: Should audio be mixed on this port?
-        // @param topMostPlane: Should this be on top for display?
-        // @param videoPlaneType: Primary or secondary?
+        // @param requestAudioMix: Should audio be mixed on this port
+        // @param topMostPlane: Should this be on top for display
+        // @param videoPlaneType: Primary or secondary
         virtual Core::hresult SelectHDMIInPort(HDMIInPort port /* @in */, bool requestAudioMix /* @in */, bool topMostPlane /* @in */, HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
 
         /** Scale HDMIIn Video. */
@@ -1552,19 +1539,19 @@ namespace Exchange {
         // @brief Select HDMIIn Zoom mode
         // @param zoomMode: zoom mode
         virtual Core::hresult SelectHDMIZoomMode(HDMIInVideoZoom zoomMode /* @in */) = 0;
-
+#if 0
         /** Get Supported Game feature list. */
         // @text getSupportedGameFeaturesList
         // @brief Get Supported Game feature list
         // @param gameFeatureList: game feature list
-        virtual Core::hresult GetSupportedGameFeaturesList(HDMIInGameFeatureList *& gameFeatureList /* @out */) = 0;
-
+        virtual Core::hresult GetSupportedGameFeaturesList(IHDMIInGameFeatureListIterator *& gameFeatureList /* @out */) = 0;
+#endif
         /** Get AV latency. */
         // @text getHDMIInAVLatency
         // @brief Get AV latency
         // @param videoLatency: video latency
-        // @param videoLatency: audio latency
-        virtual Core::hresult GetHDMIInAVLatency(int32 &videoLatency /* out */, int32 &audioLatency /* @out*/) = 0;
+        // @param audioLatency: audio latency
+        virtual Core::hresult GetHDMIInAVLatency(uint32_t &videoLatency /* @out */, uint32_t &audioLatency /* @out*/) = 0;
 
         /** Get ALLM Status. */
         // @text getHDMIInAllmStatus
@@ -1585,8 +1572,8 @@ namespace Exchange {
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult SetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool &allmSupport /* @in*/) = 0;
-
+        virtual Core::hresult SetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool allmSupport /* @in*/) = 0;
+#if 0
         /** Get EDID bytes. */
         // @text getEdidBytes
         // @brief Get EDID bytes.
@@ -1602,7 +1589,7 @@ namespace Exchange {
         // @param spdBytesLength: number of bytes in the spdBytes array
         // @param spdBytes: SPD information
         virtual Core::hresult GetHDMISPDInformation(HDMIInPort port /* @in */, uint32_t &spdBytesLength /* @out */,  uint8_t spdBytes[] /* @out @length:return @maxlength:spdBytesLength */) = 0;
-
+#endif
         /** Get HDMI Port EDID version. */
         // @text getHDMIEdidVersion
         // @brief Get HDMI Port EDID version.
@@ -1617,14 +1604,12 @@ namespace Exchange {
         // @param edidVersion: EDID version
         virtual Core::hresult SetHDMIEdidVersion(HDMIInPort port /* @in */, HDMIInEdidVersion edidVersion /* @in */) = 0;
 
-
         /** Get HDMI Video mode. */
         // @text getHDMIVideoMode
         // @brief Get HDMI Video mode.
         // @param port: Port number
         // @param videoPortResolution: Video port resolution structure
         virtual Core::hresult GetHDMIVideoMode(HDMIInPort port /* @in */, HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
-        
     };
 
     struct EXTERNAL IDeviceSettingsManagerHost : virtual public Core::IUnknown {
@@ -1650,7 +1635,7 @@ namespace Exchange {
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
-	
+
         /** Get Preferred Sleep mode. */
         // @text getPreferredSleepMode
         // @brief Get Preferred Sleep mode.
@@ -1680,14 +1665,14 @@ namespace Exchange {
         // @brief Get SOCID.
         // @param socID: SOCID in string format
         virtual Core::hresult GetSoCID(string &socID /* @out */) = 0;
-
+#if 0
         /** Get EDID Bytes. */
         // @text getHALVersion
         // @brief Get EDID.
         // @param edId: EDID in bytes
         // @param edIdLength: number of bytes in edId array
-        virtual Core::hresult GetEDID(uint8_t edId[] /* @out */, uint32_t &edIdLength /* @out */) = 0;
-
+        virtual Core::hresult GetEDID(uint8_t edId[] /* @out @length:return @maxlength:edIdLength */, uint32_t &edIdLength /* @out */) = 0;
+#endif
         /** Get MS12 Config type. */
         // @text getHALVersion
         // @brief Get MS12 Config
@@ -1735,6 +1720,7 @@ namespace Exchange {
             float level;
         };
 
+        // Lakshmi: Not using this iterator anywhere. shall we remove this?
         using IDeviceSettingsVideoCodecProfileIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICE_SETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
 
         // @event
@@ -1756,12 +1742,11 @@ namespace Exchange {
             // @text OnDisplayFrameratePostChange
             // @param frameRate:  framerate post change
             virtual void OnDisplayFrameratePostChange(const string frameRate) {};
-            
+
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVidoeDevice::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingManagerVideoDevice::INotification* notification /* @in */) = 0;
-	
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideoDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerVideoDevice::INotification* notification /* @in */) = 0;
 
         /** Get Video Device handle. */
         // @text getVideoDeviceHandle
@@ -1824,7 +1809,7 @@ namespace Exchange {
         // @brief Get FRF mode
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param frfmode: FRF mode
-        virtual Core::hresult GetFRFMode(const int handle /* @in */, int &frfmode /* @in */) = 0;
+        virtual Core::hresult GetFRFMode(const int handle /* @in */, int &frfmode /* @out */) = 0;
 
         /** Get Video Device display frame rate */
         // @text getCurrentDisplayFrameRate
@@ -1838,8 +1823,7 @@ namespace Exchange {
         // @brief Set current display frame rate
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param framerate: frame rate
-        virtual Core::hresult SetDisplayFrameRate(const int handle /* @in */, string &framerate /* @in */) = 0;
-
+        virtual Core::hresult SetDisplayFrameRate(const int handle /* @in */, string framerate /* @in */) = 0;
     };
 
     struct EXTERNAL IDeviceSettingsManagerVideoPort : virtual public Core::IUnknown {
@@ -1877,7 +1861,6 @@ namespace Exchange {
             DS_TV_RESOLUTION_1080P    = 0x000100,    
             DS_TV_RESOLUTION_1080P24  = 0x000200,  
             DS_TV_RESOLUTION_1080I25  = 0x000400,  
-            DS_TV_RESOLUTION_1080I25  = 0x000800,  
             DS_TV_RESOLUTION_1080P30  = 0x001000,  
             DS_TV_RESOLUTION_1080I50  = 0x002000,  
             DS_TV_RESOLUTION_1080P50  = 0x004000,  
@@ -2126,7 +2109,7 @@ namespace Exchange {
         // @param persist: persist this setting
         // @param forceCompatibilty: force compatibility
         virtual Core::hresult SetVideoPortResolution(const int handle /* @in */, VideoPortResolution videoPortResolution /* @in */, bool persist /* @in */, bool forceCompatibility /* @in */) = 0;
-
+#if 0
         /** Enable HDCP Video port. */
         // @text enableHDCPOnVideoPort
         // @brief Enable HDCP on video port
@@ -2134,8 +2117,8 @@ namespace Exchange {
         // @param enable: enable (true) or disable (false) 
         // @param hdcpKey: hdcp key 
         // @param hdcpKeySize: number of bytes in hdcpKey array
-        virtual Core::hresult EnableHDCPOnVideoPort(const int handle /* @in */, bool hdcpEnable /* @in */, uint8_t hdcpKey[] /* @in */, int hdcpKeySize /* @in */) = 0;
-
+        virtual Core::hresult EnableHDCPOnVideoPort(const int handle /* @in */, bool hdcpEnable /* @in */, uint8_t hdcpKey[] /* @in @length:return @maxlength:hdcpKeySize */, int hdcpKeySize /* @in */) = 0;
+#endif
         /** Is HDCP enabled on Video port. */
         // @text isHDCPEnabledOnVideoPort
         // @brief Is HDCP enabled on Video port
@@ -2310,9 +2293,8 @@ namespace Exchange {
         // @param colorDepth: color depth See DisplayColorDepth 
         // @param persist:  persist value (true) or not (false)
         virtual Core::hresult SetPreferredColorDepth(const int handle /* @in */, DisplayColorDepth colorDepth /* @in */, bool persist /* @in */) = 0;
-	
 
     };
-#endif
+
 } // namespace Exchange
 } // namespace WPEFramework
