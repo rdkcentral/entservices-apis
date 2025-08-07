@@ -36,7 +36,7 @@
                 uint8_t logicalAddress; /* @text logicalAddress*/
                 string physicalAddress; /* @text physicalAddress*/
                 string deviceType; /* @text deviceType*/
-                string vendorID;    /* @text vendorId*/
+                string vendorID;    /* @text vendorID*/
                 string osdName; /* @text osdName*/
             };
 
