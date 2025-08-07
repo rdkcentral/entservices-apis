@@ -47,7 +47,7 @@
                 string deviceType; /* @text deviceType*/
                 string cecVersion; /* @text cecVersion*/
                 string osdName; /* @text osdName*/
-                string vendorID; /* @text vendorId*/
+                string vendorID; /* @text vendorID*/
                 string powerStatus; /* @text powerStatus*/
                 string portNumber; /* @text portNumber*/
             };
