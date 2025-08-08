@@ -338,7 +338,6 @@
             virtual Core::hresult RequestAudioDevicePowerStatus(HdmiCecSinkSuccess &success /* @out */) = 0;
 
          };
-
  } // namespace Exchange
  } // namespace WPEFramework
  
