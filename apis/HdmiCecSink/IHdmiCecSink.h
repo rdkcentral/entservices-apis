@@ -33,15 +33,16 @@
 
              struct EXTERNAL HdmiCecSinkActivePath
             {
+                uint8_t logicalAddress;
                 string physicalAddress;
                 string deviceType;
                 string vendorID;
                 string osdName;
-                uint8_t logicalAddress;
             };
 
             struct EXTERNAL HdmiCecSinkDevices
             {
+                uint8_t logicalAddress;
                 string physicalAddress;
                 string deviceType;
                 string cecVersion;
@@ -49,7 +50,6 @@
                 string vendorID;
                 string powerStatus;
                 string portNumber;
-                uint8_t logicalAddress;
             };
 
             struct EXTERNAL HdmiCecSinkSuccess {
