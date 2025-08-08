@@ -33,23 +33,23 @@
 
              struct EXTERNAL HdmiCecSinkActivePath
             {
-                string physicalAddress; /* @text physicalAddress*/
-                string deviceType; /* @text deviceType*/
-                string vendorID;    /* @text vendorID*/
-                string osdName; /* @text osdName*/
-                uint8_t logicalAddress; /* @text logicalAddress*/
+                string physicalAddress; /* @brief physicalAddress*/
+                string deviceType; /* @brief deviceType*/
+                string vendorID;    /* @brief vendorID*/
+                string osdName; /* @brief osdName*/
+                uint8_t logicalAddress; /* @brief logicalAddress*/
             };
 
             struct EXTERNAL HdmiCecSinkDevices
             {
-                string physicalAddress; /* @text physicalAddress*/
-                string deviceType; /* @text deviceType*/
-                string cecVersion; /* @text cecVersion*/
-                string osdName; /* @text osdName*/
-                string vendorID; /* @text vendorID*/
-                string powerStatus; /* @text powerStatus*/
-                string portNumber; /* @text portNumber*/
-                uint8_t logicalAddress; /* @text logicalAddress*/
+                string physicalAddress; /* @brief physicalAddress*/
+                string deviceType; /* @brief deviceType*/
+                string cecVersion; /* @brief cecVersion*/
+                string osdName; /* @brief osdName*/
+                string vendorID; /* @brief vendorID*/
+                string powerStatus; /* @brief powerStatus*/
+                string portNumber; /* @brief portNumber*/
+                uint8_t logicalAddress; /* @brief logicalAddress*/
             };
 
             struct EXTERNAL HdmiCecSinkSuccess {
