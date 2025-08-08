@@ -31,7 +31,7 @@
          struct EXTERNAL IHdmiCecSink : virtual public Core::IUnknown {
              enum { ID = ID_HDMI_CEC_SINK };
 
-             struct HdmiCecSinkActivePath
+             struct EXTERNAL HdmiCecSinkActivePath
             {
                 string physicalAddress; /* @text physicalAddress*/
                 string deviceType; /* @text deviceType*/
@@ -40,7 +40,7 @@
                 uint8_t logicalAddress; /* @text logicalAddress*/
             };
 
-            struct HdmiCecSinkDevices
+            struct EXTERNAL HdmiCecSinkDevices
             {
                 string physicalAddress; /* @text physicalAddress*/
                 string deviceType; /* @text deviceType*/
