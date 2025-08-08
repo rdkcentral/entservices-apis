@@ -27,7 +27,7 @@
  {
      namespace Exchange
      {
-         // @json @text:keep
+         /* @json 1.0.0 @text:keep */
          struct EXTERNAL IHdmiCecSink : virtual public Core::IUnknown {
              enum { ID = ID_HDMI_CEC_SINK };
 
