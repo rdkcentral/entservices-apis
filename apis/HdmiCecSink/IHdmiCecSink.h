@@ -67,13 +67,13 @@
 
                 // @brief Triggered when routing though the HDMI ARC port is successfully established.
                 // @text arcInitiationEvent
-                // @param success: Is the operation successful or not
-                virtual void ArcInitiationEvent(const string success /* @in */) {};
+                // @param status: Is the operation successful or not
+                virtual void ArcInitiationEvent(const string status /* @in */) {};
 
                 // @brief Triggered when routing though the HDMI ARC port terminates.
                 // @text arcTerminationEvent
-                // @param success: Is the operation successful or not
-                virtual void ArcTerminationEvent(const string success /* @in */) {};
+                // @param status: Is the operation successful or not
+                virtual void ArcTerminationEvent(const string status /* @in */) {};
 
                 // @brief Triggered when the active source device changes.
                 // @text onActiveSourceChange
@@ -331,6 +331,11 @@
             // @param audioOutputDelay: Audio Output Delay value
             // @param success: Is the operation successful or not
             virtual Core::hresult SetLatencyInfo(const string &videoLatency /* @in */, const string &lowLatencyMode /* @in */, const string &audioOutputCompensated /* @in */, const string &audioOutputDelay /* @in */, HdmiCecSinkSuccess &success /* @out */) = 0;
+
+            // @brief Requests the audio device power status.
+            // @text requestAudioDevicePowerStatus
+            // @param success: Is the operation successful or not
+            virtual Core::hresult RequestAudioDevicePowerStatus(HdmiCecSinkSuccess &success /* @out */) = 0;
 
          };
 
