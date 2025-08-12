@@ -191,9 +191,9 @@ namespace Exchange {
 		struct AudioConfig {
 		   int32_t typeId;                 /* @brief AudioConfig Type */;
 		   string  name;                   /* @brief AudioConfig Name */;
-		   IDeviceSettingsAudioCompressionIterator *audioCompressions;  /* @brief Audio Compressions */; 
-		   IDeviceSettingsAudioEncodingIterator *audioEncodings;        /* @brief Audio Encoding */;
-		   IDeviceSettingsStereoModeIterator *stereoModes;              /* @brief Audio StereoMode */;
+		   //IDeviceSettingsAudioCompressionIterator *audioCompressions;  /* @brief Audio Compressions */; 
+		   //IDeviceSettingsAudioEncodingIterator *audioEncodings;        /* @brief Audio Encoding */;
+		   //IDeviceSettingsStereoModeIterator *stereoModes;              /* @brief Audio StereoMode */;
 		};
 
         struct AudioSADItem { 
@@ -1306,9 +1306,9 @@ namespace Exchange {
         using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR>;
 
         struct HDMIInStatus {
-            bool isPresented;                                            ///<  Hdmi Status Present or Not
+            bool isPresented;                                            ///<  Hdmi Status Is Present
             IHDMIInPortConnectionStatusIterator *portConnectionStatus;   ///<  Hdmi Port Connection Status
-            HDMIInPort activePort;                                       ///<  Hdmi status
+            HDMIInPort activePort;                                       ///<  Hdmi Status
         };
 
         struct HDMIInCapabilities {
