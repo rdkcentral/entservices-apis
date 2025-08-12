@@ -48,14 +48,14 @@ namespace Exchange {
             DISK_PERSISTENCE_FAILURE
         };
 
-        //struct PackageInfo {
-        //    string downloadId;
-        //    string fileLocator;
-        //    Reason reason;
-        //};
+        struct PackageInfo {
+           string downloadId;
+           string fileLocator;
+           Reason reason;
+        };
 
         //typedef std::vector<PackageInfo> PackageInfoList;
-        //using IPackageIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
+        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -64,8 +64,7 @@ namespace Exchange {
 
             // @brief Signal changes on the status
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(const string& jsonresponse /* @opaque */) {
-                // Thunder does not support neither standard collection nor RPC::IIteratorType in notification
+            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
             }
         };
 
