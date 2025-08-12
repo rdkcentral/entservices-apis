@@ -57,21 +57,23 @@ namespace Exchange {
         //typedef std::vector<PackageInfo> PackageInfoList;
         using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
 
-        /* @event */
+
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
-            ~INotification() override = default;
 
             // @brief Signal changes on the status
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
-            }
+            // @@iterator
+            // @param packageInfo: Download Id, File Locator and Reason
+            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {};
         };
 
         ~IPackageDownloader() override = default;
 
         // Register for any changes
+        // @json:omit
         virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
+        // @json:omit
         virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
 
         // @json:omit
