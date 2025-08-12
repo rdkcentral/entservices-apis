@@ -55,6 +55,8 @@ namespace Exchange {
             AUDIO_ENCODING_EAC3            = 4
         };
 
+	using IDeviceSettingsAudioEncodingIterator = RPC::IIteratorType<AudioEncoding, ID_DEVICE_SETTINGS_AUDIO_ENCODING_ITERATOR>;
+
         enum AudioCompression : uint8_t {
             AUDIO_COMPRESSION_NONE          = 0,
             AUDIO_COMPRESSION_LIGHT         = 1,
@@ -62,6 +64,8 @@ namespace Exchange {
             AUDIO_COMPRESSION_HEAVY         = 3,
             AUDIO_COMPRESSION_MAX           = 4,
         };
+
+	using IDeviceSettingsAudioCompressionIterator = RPC::IIteratorType<AudioCompression, ID_DEVICE_SETTINGS_AUDIO_COMPRESSION_ITERATOR>;
 
         enum AudioFormat : uint8_t {
             AUDIO_FORMAT_NONE               = 0,
@@ -162,6 +166,8 @@ namespace Exchange {
             AUDIO_STEREO_MAX         = 7
         };
 
+	using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICE_SETTINGS_AUDIO_STEREOMODE_ITERATOR>;
+
         enum DolbyAtmosCapability: uint8_t {
             AUDIO_DOLBYATMOS_NOT_SUPPORTED     = 0,
             AUDIO_DOLBYATMOS_DDPLUS_STREAM     = 1,
@@ -182,7 +188,13 @@ namespace Exchange {
             AUDIO_MS12_FEATURE_MAX             = 2
         };
 
-        // TODO AudioConfig type from dsAVDTypes.h - vdixit
+	struct AudioConfig {
+	   int32_t typeId;
+	   string  name;
+	   IDeviceSettingsAudioCompressionIterator *audioCompressions;
+	   IDeviceSettingsAudioEncodingIterator *audioEncodings;
+	   IDeviceSettingsStereoModeIterator *stereoModes;
+	};
 
         struct AudioSADItem { 
             int32_t  sad    /* @brief SAD value */ ;
@@ -1027,7 +1039,7 @@ namespace Exchange {
             bool interlaced;
         };
 
-        using IDeviceSettingsDisplayVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICE_SETTINGS_DISPLAY_RESOLUTION_ITERATOR>;
+        using IDSVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICE_SETTINGS_DISPLAY_RESOLUTION_ITERATOR>;
 
         struct DisplayEDID {
             int32_t productCode;               ///< Product code of the display device
@@ -1041,7 +1053,7 @@ namespace Exchange {
             uint8_t physicalAddressC;          ///<  Physical Address for HDMI nodeC
             uint8_t physicalAddressD;          ///<  Physical Address for HDMI nodeD
             int32_t numOfSupportedResolution;  ///<  Number of Supported resolution
-            //IDeviceSettingsDisplayVideoPortResolutionIterator suppResolutionList;   ///< TODO: Need to enable. EDID Supported Resoultion list
+            IDSVideoPortResolutionIterator *suppResolutionList;   ///<  EDID Supported Resoultion list
             string monitorName;
         };
 
@@ -1295,7 +1307,7 @@ namespace Exchange {
 
         struct HDMIInStatus {
             bool isPresented;
-            //IHDMIInPortConnectionStatusIterator portConnectionStatus; //TODO: Need to enable this variable.
+            IHDMIInPortConnectionStatusIterator *portConnectionStatus;
             HDMIInPort activePort;
         };
 
@@ -1707,8 +1719,7 @@ namespace Exchange {
             float level;
         };
 
-        // TODO:
-        //using IDeviceSettingsVideoCodecProfileIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICE_SETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
+        using IDeviceSettingsVideoCodecProfileSupportIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICE_SETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -1770,12 +1781,13 @@ namespace Exchange {
         // @param supportedFormats: Supported Formats
         virtual Core::hresult GetSupportedVideoCodingFormats(const int32_t handle /* @in */, int32_t &supportedFormats /* @out */) = 0;
 
-        /** Get Video Device Codec Information TBD - vdixit. */
+        /** Get Video Device Codec Information  */
         // @text getCodecInfo
         // @brief Get Video Device Codec Information
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
-        // @param supportedFormats: Supported Formats
-        virtual Core::hresult GetCodecInfo(const int32_t handle /* @in */, int32_t &supportedFormats /* @out */) = 0;
+        // @param videoCodec: Video codec for which information is needed
+        // @param videoCodecInfo: Video codec information
+        virtual Core::hresult GetCodecInfo(const int32_t handle /* @in */, VideoCodec videoCodec /* @in */, IDeviceSettingsVideoCodecProfileSupportIterator *&codecInfo /* @out */) = 0;
 
         /** Video Device Disable HDR */
         // @text disableHDR
