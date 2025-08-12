@@ -1306,9 +1306,9 @@ namespace Exchange {
         using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR>;
 
         struct HDMIInStatus {
-            bool isPresented;                                            ///<  Hdmi Status Is Present
-            IHDMIInPortConnectionStatusIterator *portConnectionStatus;   ///<  Hdmi Port Connection Status
-            HDMIInPort activePort;                                       ///<  Hdmi Status
+            bool isPresented;
+            //IHDMIInPortConnectionStatusIterator *portConnectionStatus;
+            HDMIInPort activePort;
         };
 
         struct HDMIInCapabilities {
