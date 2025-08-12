@@ -191,9 +191,9 @@ namespace Exchange {
 	struct AudioConfig {
 	   int32_t typeId;
 	   string  name;
-	   IDeviceSettingsAudioCompressionIterator *AudioCompressions;
-	   IDeviceSettingsAudioEncodingIterator *AudioEncodings;
-	   IDeviceSettingsStereoModeIterator *StereoModes;
+	   IDeviceSettingsAudioCompressionIterator *audioCompressions;
+	   IDeviceSettingsAudioEncodingIterator *audioEncodings;
+	   IDeviceSettingsStereoModeIterator *stereoModes;
 	};
 
         struct AudioSADItem { 
@@ -1307,7 +1307,7 @@ namespace Exchange {
 
         struct HDMIInStatus {
             bool isPresented;
-            IHDMIInPortConnectionStatusIterator *PortConnectionStatus;
+            IHDMIInPortConnectionStatusIterator *portConnectionStatus;
             HDMIInPort activePort;
         };
 
