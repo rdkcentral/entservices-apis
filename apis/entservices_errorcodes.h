@@ -2,11 +2,12 @@
 
 // 1. The single source of truth: a list of all errors.
 #define ERROR_LIST \
-    X(FILE_IO, "File Read or Write error") \
-    X(PERMISSION_DENIED, "Permission denied") \
+    X(ERROR_FILE_IO, "File Read or Write error") \
+    X(ERROR_PERMISSION_DENIED, "Permission denied") \
 
+/******** PLEASE DO NOT MODIFY ANYTHING BELOW THIS **********/
 // 2. Define the 'X' macro to generate the enum.
-#define X(name, string) ERROR_##name,
+#define X(name, string) name,
 typedef enum {
     // Start the first error code at 1000
     ERROR_BASE = 1000,
@@ -23,3 +24,10 @@ const char *error_strings[] = {
     ERROR_LIST,
     "Unknown error code"
 };
+
+//4.Fetch Error strings
+#define ERROR_MESSAGE(errorcode) \
+    (((errorcode) >= ERROR_BASE && \
+      (errorcode) < ERROR_BASE + (sizeof(error_strings)/sizeof(error_strings[0]))) \
+        ? error_strings[(errorcode) - ERROR_BASE] \
+        : "Unknown error")
