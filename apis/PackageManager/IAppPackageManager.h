@@ -49,9 +49,9 @@ namespace Exchange {
         };
 
         struct PackageInfo {
-           string downloadId;
-           string fileLocator;
-           Reason reason;
+           string downloadId;   /*@brief Download ID*/
+           string fileLocator;  /*@brief File Locator*/
+           Reason reason;       /*@brief Reason for the download status*/
         };
 
         //typedef std::vector<PackageInfo> PackageInfoList;
