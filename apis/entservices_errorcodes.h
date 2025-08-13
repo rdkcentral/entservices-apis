@@ -11,7 +11,7 @@
 typedef enum {
     // Start the first error code at 1000
     ERROR_BASE = 1000,
-    ERROR_LIST,
+    ERROR_LIST
     MAX_ERROR_CODE
 } ErrorCode;
 // Undefine 'X' to avoid conflicts.
@@ -21,7 +21,7 @@ typedef enum {
 #define X(name, string) string,
 const char *error_strings[] = {
     "Error base",
-    ERROR_LIST,
+    ERROR_LIST
     "Unknown error code"
 };
 
