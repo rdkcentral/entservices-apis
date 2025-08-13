@@ -55,7 +55,7 @@ namespace Exchange {
             AUDIO_ENCODING_EAC3            = 4
         };
 
-	using IDeviceSettingsAudioEncodingIterator = RPC::IIteratorType<AudioEncoding, ID_DEVICE_SETTINGS_AUDIO_ENCODING_ITERATOR>;
+        using IDeviceSettingsAudioEncodingIterator = RPC::IIteratorType<AudioEncoding, ID_DEVICE_SETTINGS_AUDIO_ENCODING_ITERATOR>;
 
         enum AudioCompression : uint8_t {
             AUDIO_COMPRESSION_NONE          = 0,
@@ -65,7 +65,7 @@ namespace Exchange {
             AUDIO_COMPRESSION_MAX           = 4,
         };
 
-	using IDeviceSettingsAudioCompressionIterator = RPC::IIteratorType<AudioCompression, ID_DEVICE_SETTINGS_AUDIO_COMPRESSION_ITERATOR>;
+        using IDeviceSettingsAudioCompressionIterator = RPC::IIteratorType<AudioCompression, ID_DEVICE_SETTINGS_AUDIO_COMPRESSION_ITERATOR>;
 
         enum AudioFormat : uint8_t {
             AUDIO_FORMAT_NONE               = 0,
@@ -166,7 +166,7 @@ namespace Exchange {
             AUDIO_STEREO_MAX         = 7
         };
 
-	using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICE_SETTINGS_AUDIO_STEREOMODE_ITERATOR>;
+        using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICE_SETTINGS_AUDIO_STEREOMODE_ITERATOR>;
 
         enum DolbyAtmosCapability: uint8_t {
             AUDIO_DOLBYATMOS_NOT_SUPPORTED     = 0,
@@ -188,13 +188,14 @@ namespace Exchange {
             AUDIO_MS12_FEATURE_MAX             = 2
         };
 
-		struct AudioConfig {
-		   int32_t typeId;                 /* @brief AudioConfig Type */;
-		   string  name;                   /* @brief AudioConfig Name */;
-		   //IDeviceSettingsAudioCompressionIterator *audioCompressions;  /* @brief Audio Compressions */; 
-		   //IDeviceSettingsAudioEncodingIterator *audioEncodings;        /* @brief Audio Encoding */;
-		   //IDeviceSettingsStereoModeIterator *stereoModes;              /* @brief Audio StereoMode */;
-		};
+        
+	struct AudioConfig {
+	   int32_t typeId;
+	   string  name;
+	   IDeviceSettingsAudioCompressionIterator *audioCompressions;
+	   IDeviceSettingsAudioEncodingIterator *audioEncodings;
+	   IDeviceSettingsStereoModeIterator *stereoModes;
+	};
 
         struct AudioSADItem { 
             int32_t  sad    /* @brief SAD value */ ;
@@ -1053,8 +1054,8 @@ namespace Exchange {
             uint8_t physicalAddressC;          ///<  Physical Address for HDMI nodeC
             uint8_t physicalAddressD;          ///<  Physical Address for HDMI nodeD
             int32_t numOfSupportedResolution;  ///<  Number of Supported resolution
-            IDSVideoPortResolutionIterator *suppResolutionList;   ///<  EDID Supported Resoultion list
             string monitorName;
+   	    // IDSVideoPortResolutionIterator *suppResolutionList;   ///<  EDID Supported Resoultion list
         };
 
         // @event
@@ -1096,7 +1097,7 @@ namespace Exchange {
         // @brief Get Display EDID
         // @param handle: handle returned in GetDisplay
         // @param edId: EDID information
-        virtual Core::hresult GetDisplayEdid(const int32_t handle /* @in */, DisplayEDID &edId /* @out */) = 0;
+        virtual Core::hresult GetDisplayEdid(const int32_t handle /* @in */, DisplayEDID &edId /* @out */, IDSVideoPortResolutionIterator*& supportedResolutionList /* @out */) = 0;
 
         /** Get Display EDID bytes. */
         // @text getDisplayEdidBytes
@@ -1307,8 +1308,8 @@ namespace Exchange {
 
         struct HDMIInStatus {
             bool isPresented;
-            //IHDMIInPortConnectionStatusIterator *portConnectionStatus;
             HDMIInPort activePort;
+            // IHDMIInPortConnectionStatusIterator *portConnectionStatus;
         };
 
         struct HDMIInCapabilities {
@@ -1516,7 +1517,7 @@ namespace Exchange {
         // @text getHDMIInStatus
         // @brief Get HDMIIn Status
         // @param hdmiStatus: HDMI Status
-        virtual Core::hresult GetHDMIInStatus(HDMIInStatus &hdmiStatus /* @out */) = 0;
+        virtual Core::hresult GetHDMIInStatus(HDMIInStatus &hdmiStatus /* @out */, IHDMIInPortConnectionStatusIterator*& portConnectionStatus /* @out */) = 0;
 
         /** Select HDMIIn Port. */
         // @text selectHDMIInPort
