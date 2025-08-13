@@ -71,10 +71,8 @@ namespace Exchange {
         ~IPackageDownloader() override = default;
 
         // Register for any changes
-        // @json:omit
-        virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
-        // @json:omit
-        virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
+        virtual Core::hresult Register(IPackageDownloader::INotification *sink /* @in */) = 0;
+        virtual Core::hresult Unregister(IPackageDownloader::INotification *sink /* @in */) = 0;
 
         // @json:omit
         virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
