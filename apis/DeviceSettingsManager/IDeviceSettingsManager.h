@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2024 RDK Management - vdixit - Change to 2025
+ * Copyright 2025 RDK Management.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,20 +52,21 @@ namespace Exchange {
             AUDIO_ENCODING_DISPLAY         = 1,
             AUDIO_ENCODING_PCM             = 2,
             AUDIO_ENCODING_AC3             = 3,
-            AUDIO_ENCODING_EAC3            = 4
+            AUDIO_ENCODING_EAC3            = 4,
+            AUDIO_ENCODING_MAX             = 5
         };
 
-        using IDeviceSettingsAudioEncodingIterator = RPC::IIteratorType<AudioEncoding, ID_DEVICE_SETTINGS_AUDIO_ENCODING_ITERATOR>;
+        using IDeviceSettingsAudioEncodingIterator = RPC::IIteratorType<AudioEncoding, ID_DEVICESETTINGS_MANAGER_AUDIO_ENCODING_ITERATOR>;
 
         enum AudioCompression : uint8_t {
             AUDIO_COMPRESSION_NONE          = 0,
             AUDIO_COMPRESSION_LIGHT         = 1,
             AUDIO_COMPRESSION_MEDIUM        = 2,
             AUDIO_COMPRESSION_HEAVY         = 3,
-            AUDIO_COMPRESSION_MAX           = 4,
+            AUDIO_COMPRESSION_MAX           = 4
         };
 
-        using IDeviceSettingsAudioCompressionIterator = RPC::IIteratorType<AudioCompression, ID_DEVICE_SETTINGS_AUDIO_COMPRESSION_ITERATOR>;
+        using IDeviceSettingsAudioCompressionIterator = RPC::IIteratorType<AudioCompression, ID_DEVICESETTINGS_MANAGER_AUDIO_COMPRESSION_ITERATOR>;
 
         enum AudioFormat : uint8_t {
             AUDIO_FORMAT_NONE               = 0,
@@ -108,7 +109,6 @@ namespace Exchange {
             AUDIO_CAPS_MS12                      = 32,
             AUDIO_CAPS_MS12_V2                   = 64,
             AUDIO_CAPS_INVALID                   = 128,
-
         };
 
         enum AudioARCType : uint8_t {
@@ -143,7 +143,7 @@ namespace Exchange {
             string audioProfile;
         };
 
-        using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICE_SETTINGS_AUDIO_PROFILE_ITERATOR>;
+        using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICESETTINGS_MANAGER_AUDIO_PROFILE_ITERATOR>;
 
         struct VolumeLeveller {
             uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
@@ -166,7 +166,7 @@ namespace Exchange {
             AUDIO_STEREO_MAX         = 7
         };
 
-        using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICE_SETTINGS_AUDIO_STEREOMODE_ITERATOR>;
+        using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICESETTINGS_MANAGER_AUDIO_STEREOMODE_ITERATOR>;
 
         enum DolbyAtmosCapability: uint8_t {
             AUDIO_DOLBYATMOS_NOT_SUPPORTED     = 0,
@@ -188,17 +188,12 @@ namespace Exchange {
             AUDIO_MS12_FEATURE_MAX             = 2
         };
 
-        
-	struct AudioConfig {
-	   int32_t typeId;
-	   string  name;
-	   IDeviceSettingsAudioCompressionIterator *audioCompressions;
-	   IDeviceSettingsAudioEncodingIterator *audioEncodings;
-	   IDeviceSettingsStereoModeIterator *stereoModes;
-	};
-
-        struct AudioSADItem { 
-            int32_t  sad    /* @brief SAD value */ ;
+        struct AudioConfig {
+           int32_t typeId;
+           string  name;
+           IDeviceSettingsAudioCompressionIterator *audioCompressions;
+           IDeviceSettingsAudioEncodingIterator *audioEncodings;
+           IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
         struct AudioARCStatus { 
@@ -973,7 +968,7 @@ namespace Exchange {
             DS_DISPLAY_RXSENSE_ON          = 2,  ///< Rx Sense ON event
             DS_DISPLAY_RXSENSE_OFF         = 3,  ///< Rx Sense OFF event
             DS_DISPLAY_HDCPPROTOCOL_CHANGE = 4,  ///< HDCP Protocol Version Change event
-            DS_DISPLAY_EVENT_MAX                 ///< Display max event
+            DS_DISPLAY_EVENT_MAX           = 5 ///< Display max event
         };
 
         enum DisplayTVResolution: uint32_t {
@@ -1030,7 +1025,7 @@ namespace Exchange {
             DS_DISPLAY_FRAMERATE_240       = 14,
             DS_DISPLAY_FRAMERATE_MAX       = 15
         };
-          
+
         struct DisplayVideoPortResolution {
             string name;
             DisplayTVResolution pixelResolution;
@@ -1040,7 +1035,7 @@ namespace Exchange {
             bool interlaced;
         };
 
-        using IDSVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICE_SETTINGS_DISPLAY_RESOLUTION_ITERATOR>;
+        using IDSVideoPortResolutionIterator = RPC::IIteratorType<DisplayVideoPortResolution, ID_DEVICESETTINGS_MANAGER_DISPLAY_RESOLUTION_ITERATOR>;
 
         struct DisplayEDID {
             int32_t productCode;               ///< Product code of the display device
@@ -1055,7 +1050,6 @@ namespace Exchange {
             uint8_t physicalAddressD;          ///<  Physical Address for HDMI nodeD
             int32_t numOfSupportedResolution;  ///<  Number of Supported resolution
             string monitorName;
-   	    // IDSVideoPortResolutionIterator *suppResolutionList;   ///<  EDID Supported Resoultion list
         };
 
         // @event
@@ -1078,7 +1072,7 @@ namespace Exchange {
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
 
         // @event
-        struct EXTERNAL IDisplayNotification : virtual public Core::IUnknown
+        struct EXTERNAL IDisplayHDMIHotPlugNotification : virtual public Core::IUnknown
         {
             enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY_HOTPLUG_NOTIFICATION };
 
@@ -1304,7 +1298,7 @@ namespace Exchange {
         struct HDMIPortConnectionStatus {
             bool isPortConnected;
         };
-        using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR>;
+        using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_MANAGER_HDMIIN_PORTCONNECTION_ITERATOR>;
 
         struct HDMIInStatus {
             bool isPresented;
@@ -1320,7 +1314,7 @@ namespace Exchange {
             string gameFeature;
         };
 
-        using IHDMIInGameFeatureListIterator = RPC::IIteratorType<HDMIInGameFeatureList, ID_DEVICESETTINGS_HDMIIN_GAMELIST_ITERATOR>;
+        using IHDMIInGameFeatureListIterator = RPC::IIteratorType<HDMIInGameFeatureList, ID_DEVICESETTINGS_MANAGER_HDMIIN_GAMELIST_ITERATOR>;
 
         struct HDMIInSpdInfoFrame {
             uint8_t pktType;            /*!< Package type */
@@ -1346,9 +1340,9 @@ namespace Exchange {
         };
 
         enum HDMIInCapabilityVersion {
-            HDMI_COMPATIBILITY_VERSION_14 = 0,
-            HDMI_COMPATIBILITY_VERSION_20 = 1,
-            HDMI_COMPATIBILITY_VERSION_21 = 2,
+            HDMI_COMPATIBILITY_VERSION_14  = 0,
+            HDMI_COMPATIBILITY_VERSION_20  = 1,
+            HDMI_COMPATIBILITY_VERSION_21  = 2,
             HDMI_COMPATIBILITY_VERSION_MAX = 3
         };
 
@@ -1452,7 +1446,7 @@ namespace Exchange {
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
         {
-            enum { ID = ID_DEVICESETTINGS_MANAGER_HDMI_NOTIFICATION };
+            enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN_NOTIFICATION };
 
             // @brief HDMI Event Hot Plug
             // @text onHDMIInEventHotPlug
@@ -1709,10 +1703,10 @@ namespace Exchange {
         };
 
         enum VideoCodecHEVCProfile: uint8_t {
-            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN = 0x01,
-            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN10 = 0x02,
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN              = 0x01,
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAIN10            = 0x02,
             DS_VIDEO_CODEC_HEVC_PROFILE_MAIN_STILLPICTURE = 0x04,
-            DS_VIDEO_CODEC_HEVC_PROFILE_MAX = 0x08
+            DS_VIDEO_CODEC_HEVC_PROFILE_MAX               = 0x08
         };
 
         struct VideoCodecProfileSupport {
@@ -1720,7 +1714,7 @@ namespace Exchange {
             float level;
         };
 
-        using IDeviceSettingsVideoCodecProfileSupportIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICE_SETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
+        using IDeviceSettingsVideoCodecProfileSupportIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICESETTINGS_MANAGER_VIDEO_CODEC_PROFILE_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -1873,22 +1867,22 @@ namespace Exchange {
         };
 
         enum VideoResolution: uint8_t {
-            DS_VIDEO_PIXELRES_720X480,     
-            DS_VIDEO_PIXELRES_720X576,     
-            DS_VIDEO_PIXELRES_1280X720,    
-            DS_VIDEO_PIXELRES_1366X768,    
-            DS_VIDEO_PIXELRES_1920X1080,   
-            DS_VIDEO_PIXELRES_3840X2160,   
+            DS_VIDEO_PIXELRES_720X480,
+            DS_VIDEO_PIXELRES_720X576,
+            DS_VIDEO_PIXELRES_1280X720,
+            DS_VIDEO_PIXELRES_1366X768,
+            DS_VIDEO_PIXELRES_1920X1080,
+            DS_VIDEO_PIXELRES_3840X2160,
             DS_VIDEO_PIXELRES_4096X2160,
-            DS_VIDEO_PIXELRES_MAX 
+            DS_VIDEO_PIXELRES_MAX
         };
 
         enum VideoAspectRatio: uint8_t {
-            DS_VIDEO_ASPECT_RATIO_4X3,    
+            DS_VIDEO_ASPECT_RATIO_4X3,
             DS_VIDEO_ASPECT_RATIO_16X9,
             DS_VIDEO_ASPECT_RATIO_MAX
         };
-        
+
         enum VideoStereoScopicMode : uint8_t {
             DS_VIDEO_SSMODE_UNKNOWN           = 0,
             DS_VIDEO_SSMODE_2D                = 1,
@@ -1926,71 +1920,71 @@ namespace Exchange {
         };
 
         enum HDCPStatus : uint8_t {
-            DS_HDCP_STATUS_UNPOWERED              = 0, 
-            DS_HDCP_STATUS_UNAUTHENTICATED        = 1,          
-            DS_HDCP_STATUS_AUTHENTICATED          = 2,            
-            DS_HDCP_STATUS_AUTHENTICATIONFAILURE  = 3,    
-            DS_HDCP_STATUS_INPROGRESS             = 4,               
+            DS_HDCP_STATUS_UNPOWERED              = 0,
+            DS_HDCP_STATUS_UNAUTHENTICATED        = 1,
+            DS_HDCP_STATUS_AUTHENTICATED          = 2,
+            DS_HDCP_STATUS_AUTHENTICATIONFAILURE  = 3,
+            DS_HDCP_STATUS_INPROGRESS             = 4,
             DS_HDCP_STATUS_PORTDISABLED           = 5,
             DS_HDCP_STATUS_MAX                    = 6
         };
 
         enum HDCPProtocolVersion: uint8_t {
-            DS_HDCP_VERSION_1X = 0,  
-            DS_HDCP_VERSION_2X = 1,
+            DS_HDCP_VERSION_1X  = 0,  
+            DS_HDCP_VERSION_2X  = 1,
             DS_HDCP_VERSION_MAX = 2
         };
 
         enum HDRStandard: uint16_t {
-            DS_HDRSTANDARD_NONE             = 0x0,               
-            DS_HDRSTANDARD_HDR10            = 0x01,             
-            DS_HDRSTANDARD_HLG              = 0x02,              
-            DS_HDRSTANDARD_DOLBYVISION      = 0x04,       
-            DS_HDRSTANDARD_TECHNICOLORPRIME = 0x08,  
-            DS_HDRSTANDARD_HDR10PLUS        = 0x10,          
+            DS_HDRSTANDARD_NONE             = 0x0,
+            DS_HDRSTANDARD_HDR10            = 0x01,
+            DS_HDRSTANDARD_HLG              = 0x02,
+            DS_HDRSTANDARD_DOLBYVISION      = 0x04,
+            DS_HDRSTANDARD_TECHNICOLORPRIME = 0x08,
+            DS_HDRSTANDARD_HDR10PLUS        = 0x10,
             DS_HDRSTANDARD_SDR              = 0x20,
             DS_HDRSTANDARD_INVALID          = 0x80
         };
 
         enum DisplayMatrixCoefficients: uint8_t {
-            DS_DISPLAY_MATRIXCOEFFICIENT_UNKNOWN        = 0,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_BT_709         = 1,        
-            DS_DISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG    = 2,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_SMPTE_170M     = 3,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_XVYCC_709      = 4,     
-            DS_DISPLAY_MATRIXCOEFFICIENT_EXVYCC_601     = 5,    
-            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL    = 6,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_CL     = 7,    
-            DS_DISPLAY_MATRIXCOEFFICIENT_EDVI_FR_RGB    = 8,   
-            DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_RGB      = 9,     
-            DS_DISPLAY_MATRIXCOEFFICIENT_EFCC           = 10,          
-            DS_DISPLAY_MATRIXCOEFFICIENT_ESMPTE_240M    = 11,   
+            DS_DISPLAY_MATRIXCOEFFICIENT_UNKNOWN        = 0,
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_709         = 1,
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG    = 2,
+            DS_DISPLAY_MATRIXCOEFFICIENT_SMPTE_170M     = 3,
+            DS_DISPLAY_MATRIXCOEFFICIENT_XVYCC_709      = 4,
+            DS_DISPLAY_MATRIXCOEFFICIENT_EXVYCC_601     = 5,
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL    = 6,
+            DS_DISPLAY_MATRIXCOEFFICIENT_BT_2020_CL     = 7,
+            DS_DISPLAY_MATRIXCOEFFICIENT_EDVI_FR_RGB    = 8,
+            DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_RGB      = 9,
+            DS_DISPLAY_MATRIXCOEFFICIENT_EFCC           = 10,
+            DS_DISPLAY_MATRIXCOEFFICIENT_ESMPTE_240M    = 11,
             DS_DISPLAY_MATRIXCOEFFICIENT_EHDMI_FR_YCBCR = 12,
             DS_DISPLAY_MATRIXCOEFFICIENT_MAX            = 13
         };
 
         enum DisplayColorSpace: uint8_t {
-            DS_DISPLAY_COLORSPACE_UNKNOWN  = 0,   
-            DS_DISPLAY_COLORSPACE_RGB      = 1,       
-            DS_DISPLAY_COLORSPACE_YCBCR422 = 2,  
-            DS_DISPLAY_COLORSPACE_YCBCR444 = 3,  
-            DS_DISPLAY_COLORSPACE_YCBCR420 = 4,  
+            DS_DISPLAY_COLORSPACE_UNKNOWN  = 0,
+            DS_DISPLAY_COLORSPACE_RGB      = 1,
+            DS_DISPLAY_COLORSPACE_YCBCR422 = 2,
+            DS_DISPLAY_COLORSPACE_YCBCR444 = 3,
+            DS_DISPLAY_COLORSPACE_YCBCR420 = 4,
             DS_DISPLAY_COLORSPACE_AUTO     = 5,
             DS_DISPLAY_COLORSPACE_MAX      = 6
         };
 
         enum DisplayQuantizationRange: uint8_t {
             DS_DISPLAY_QUANTIZATIONRANGE_UNKNOWN = 0,
-            DS_DISPLAY_QUANTIZATIONRANGE_LIMITED = 1,    
+            DS_DISPLAY_QUANTIZATIONRANGE_LIMITED = 1,
             DS_DISPLAY_QUANTIZATIONRANGE_FULL    = 2,
             DS_DISPLAY_QUANTIZATIONRANGE_MAX     = 3
         };
 
         enum DisplayColorDepth : uint8_t {
-            DS_DISPLAY_COLORDEPTH_UNKNOWN = 0x0, 
-            DS_DISPLAY_COLORDEPTH_8BIT    = 0x01,   
-            DS_DISPLAY_COLORDEPTH_10BIT   = 0x02,  
-            DS_DISPLAY_COLORDEPTH_12BIT   = 0x04,  
+            DS_DISPLAY_COLORDEPTH_UNKNOWN = 0x0,
+            DS_DISPLAY_COLORDEPTH_8BIT    = 0x01,
+            DS_DISPLAY_COLORDEPTH_10BIT   = 0x02,
+            DS_DISPLAY_COLORDEPTH_12BIT   = 0x04,
             DS_DISPLAY_COLORDEPTH_AUTO    = 0x08
         };
 
@@ -2003,8 +1997,8 @@ namespace Exchange {
         };
 
          enum VideoBackgroundColor : uint8_t {
-            DS_VIDEO_BGCOLOR_BLUE   = 0,   
-            DS_VIDEO_BGCOLOR_BLACK  = 1,  
+            DS_VIDEO_BGCOLOR_BLUE   = 0,
+            DS_VIDEO_BGCOLOR_BLACK  = 1,
             DS_VIDEO_BGCOLOR_NONE   = 2,
             DS_VIDEO_BGCOLOR_MAX    = 3
         };
@@ -2019,7 +2013,6 @@ namespace Exchange {
             uint32_t height;
         };
 
-        
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
         {
@@ -2044,8 +2037,6 @@ namespace Exchange {
             // @text OnVideoFormatUpdate
             // @param videoFormatHDR: Video format HDR standard
             virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
-            
-            
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideoPort::INotification* notification /* @in */) = 0;
@@ -2110,7 +2101,7 @@ namespace Exchange {
         // @param forceCompatibilty: force compatibility
         virtual Core::hresult SetVideoPortResolution(const int32_t handle /* @in */, VideoPortResolution videoPortResolution /* @in */, bool persist /* @in */, bool forceCompatibility /* @in */) = 0;
 
-	/** Enable HDCP Video port. */
+        /** Enable HDCP Video port. */
         // @text enableHDCPOnVideoPort
         // @brief Enable HDCP on video port
         // @param handle: handle to the port
@@ -2119,7 +2110,7 @@ namespace Exchange {
         // @param hdcpKeySize: number of bytes in hdcpKey array
         virtual Core::hresult EnableHDCPOnVideoPort(const int32_t handle /* @in */, const bool hdcpEnable /* @in */, const uint8_t hdcpKey[] /* @in @length:hdcpKeySize @maxlength:hdcpKeySize */, const uint16_t hdcpKeySize /* @in */) = 0;
 
-	/** Is HDCP enabled on Video port. */
+        /** Is HDCP enabled on Video port. */
         // @text isHDCPEnabledOnVideoPort
         // @brief Is HDCP enabled on Video port
         // @param handle: handle to the port
