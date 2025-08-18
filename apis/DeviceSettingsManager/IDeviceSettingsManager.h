@@ -42,9 +42,9 @@ namespace Exchange {
         };
 
         enum AudioPortState : uint8_t {
-            AUDIO_PORT_STATE_UNKNOWN       = 0,
-            AUDIO_PORT_STATE_UNINITIALIZED = 1,
-            AUDIO_PORT_STATE_INITIALIZED   = 2
+            AUDIO_PORT_STATE_UNINITIALIZED = 0,
+            AUDIO_PORT_STATE_INITIALIZED   = 1,
+            dsAUDIOPORT_STATE_MAX          = 2
         };
 
         enum AudioEncoding : uint8_t {
@@ -169,10 +169,10 @@ namespace Exchange {
         using IDeviceSettingsStereoModeIterator = RPC::IIteratorType<StereoMode, ID_DEVICESETTINGS_MANAGER_AUDIO_STEREOMODE_ITERATOR>;
 
         enum DolbyAtmosCapability: uint8_t {
-            AUDIO_DOLBYATMOS_NOT_SUPPORTED     = 0,
-            AUDIO_DOLBYATMOS_DDPLUS_STREAM     = 1,
-            AUDIO_DOLBYATMOS_ATMOS_METADATA    = 2,
-            AUDIO_DOLBYATMOS_MAX               = 3
+            AUDIO_DOLBY_ATMOS_NOT_SUPPORTED     = 0,
+            AUDIO_DOLBY_ATMOS_DDPLUS_STREAM     = 1,
+            AUDIO_DOLBY_ATMOS_METADATA          = 2,
+            AUDIO_DOLBY_ATMOS_MAX               = 3
         };
 
         enum SurroundMode: uint8_t {
@@ -870,7 +870,8 @@ namespace Exchange {
             DS_DISPLAY_SSMODE_UNKNOWN           = 0,
             DS_DISPLAY_SSMODE_2D                = 1,
             DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3,
+            DS_DISPLAY_SSMODE_MAX               = 4
         };
 
         enum DisplayInVideoFrameRate: uint8_t {
@@ -997,25 +998,27 @@ namespace Exchange {
         enum DisplayVideoAspectRatio : uint8_t {
             DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
             DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */,
+            DS_DISPLAY_ASPECT_RATIO_MAX         = 3
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
-            DS_DISPLAY_SSMODE_UNKNOWN           = 0,         
-            DS_DISPLAY_SSMODE_2D                = 1,                  
-            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,     
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3                  
+            DS_DISPLAY_SSMODE_UNKNOWN           = 0,
+            DS_DISPLAY_SSMODE_2D                = 1,
+            DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3,
+            DS_DISPLAY_SSMODE_MAX               = 4
         };
 
         enum DisplayInVideoFrameRate: uint8_t {
             DS_DISPLAY_FRAMERATE_UNKNOWN   = 0, 
             DS_DISPLAY_FRAMERATE_24        = 1,
-            DS_DISPLAY_FRAMERATE_25        = 2,       
-            DS_DISPLAY_FRAMERATE_30        = 3,       
-            DS_DISPLAY_FRAMERATE_60        = 4,       
-            DS_DISPLAY_FRAMERATE_23_98     = 5,  
-            DS_DISPLAY_FRAMERATE_29_97     = 6,  
-            DS_DISPLAY_FRAMERATE_50        = 7,       
+            DS_DISPLAY_FRAMERATE_25        = 2,
+            DS_DISPLAY_FRAMERATE_30        = 3,
+            DS_DISPLAY_FRAMERATE_60        = 4,
+            DS_DISPLAY_FRAMERATE_23_98     = 5,
+            DS_DISPLAY_FRAMERATE_29_97     = 6,
+            DS_DISPLAY_FRAMERATE_50        = 7,
             DS_DISPLAY_FRAMERATE_59_94     = 8,
             DS_DISPLAY_FRAMERATE_100       = 9,
             DS_DISPLAY_FRAMERATE_119_88    = 10,
@@ -1083,8 +1086,8 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::IDisplayNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::IDisplayNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
 
         /** Get Display EDID. */
         // @text getDisplayEdid
@@ -1303,7 +1306,6 @@ namespace Exchange {
         struct HDMIInStatus {
             bool isPresented;
             HDMIInPort activePort;
-            // IHDMIInPortConnectionStatusIterator *portConnectionStatus;
         };
 
         struct HDMIInCapabilities {
@@ -1354,19 +1356,20 @@ namespace Exchange {
         };
 
         enum HDMIInVideoZoom : uint8_t {
-            DS_HDMIIN_VIDEO_ZOOM_UNKNOWN           = 0,
-            DS_HDMIIN_VIDEO_ZOOM_NONE              = 1,
-            DS_HDMIIN_VIDEO_ZOOM_FULL              = 2,
-            DS_HDMIIN_VIDEO_ZOOM_LB_16_9           = 3,
-            DS_HDMIIN_VIDEO_ZOOM_LB_14_9           = 4,
-            DS_HDMIIN_VIDEO_ZOOM_CCO               = 5,
-            DS_HDMIIN_VIDEO_ZOOM_PAN_SCAN          = 6,
-            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_4_3  = 7,
-            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_16_9 = 8,
-            DS_HDMIIN_VIDEO_ZOOM_PLATFORM          = 9,
-            DS_HDMIIN_VIDEO_ZOOM_16_9_ZOOM         = 10,
-            DS_HDMIIN_VIDEO_ZOOM_PILLARBOX_4_3     = 11,
-            DS_HDMIIN_VIDEO_ZOOM_WIDE_4_3          = 12
+            DS_HDMIIN_VIDEO_ZOOM_UNKNOWN           = -1,
+            DS_HDMIIN_VIDEO_ZOOM_NONE              = 0,
+            DS_HDMIIN_VIDEO_ZOOM_FULL              = 1,
+            DS_HDMIIN_VIDEO_ZOOM_LB_16_9           = 2,
+            DS_HDMIIN_VIDEO_ZOOM_LB_14_9           = 3,
+            DS_HDMIIN_VIDEO_ZOOM_CCO               = 4,
+            DS_HDMIIN_VIDEO_ZOOM_PAN_SCAN          = 5,
+            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_4_3  = 6,
+            DS_HDMIIN_VIDEO_ZOOM_LB_2_21_1_ON_16_9 = 7,
+            DS_HDMIIN_VIDEO_ZOOM_PLATFORM          = 8,
+            DS_HDMIIN_VIDEO_ZOOM_16_9_ZOOM         = 9,
+            DS_HDMIIN_VIDEO_ZOOM_PILLARBOX_4_3     = 10,
+            DS_HDMIIN_VIDEO_ZOOM_WIDE_4_3          = 11,
+            DS_HDMIIN_VIDEO_ZOOM_WIDE_MAX          = 12
         };
 
         enum HDMIInVRRType: uint8_t {
@@ -1401,16 +1404,17 @@ namespace Exchange {
         };
 
         enum HDMIVideoAspectRatio : uint8_t {
-            DS_HDMIIN_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
-            DS_HDMIIN_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_HDMIIN_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_HDMIIN_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
+            DS_HDMIIN_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
+            DS_HDMIIN_ASPECT_RATIO_MAX         = 2
         };
 
         enum HDMIInVideoStereoScopicMode : uint8_t {
             DS_HDMIIN_SSMODE_UNKNOWN           = 0,
             DS_HDMIIN_SSMODE_2D                = 1,
             DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,
-            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3
+            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3,
+            DS_HDMIIN_SSMODE_MAX               = 4
         };
 
         enum HDMIInVideoFrameRate: uint8_t {
@@ -1422,7 +1426,14 @@ namespace Exchange {
             DS_HDMIIN_FRAMERATE_23_98     = 5,
             DS_HDMIIN_FRAMERATE_29_97     = 6,
             DS_HDMIIN_FRAMERATE_50        = 7,
-            DS_HDMIIN_FRAMERATE_59_94     = 8
+            DS_HDMIIN_FRAMERATE_59_94     = 8,
+            DS_HDMIIN_FRAMERATE_100       = 9,
+            DS_HDMIIN_FRAMERATE_119dot88  = 10,
+            DS_HDMIIN_FRAMERATE_120       = 11,
+            DS_HDMIIN_FRAMERATE_200       = 12,
+            DS_HDMIIN_FRAMERATE_239dot76  = 13,
+            DS_HDMIIN_FRAMERATE_240       = 14,
+            DS_HDMIIN_FRAMERATE_MAX       = 15
         };
 
         enum HDMIInAviContentType: uint8_t {
@@ -1844,43 +1855,43 @@ namespace Exchange {
         };
 
         enum TVResolution: uint32_t {
-            DS_TV_RESOLUTION_480I     = 0x000001,     
-            DS_TV_RESOLUTION_480P     = 0x000002,     
-            DS_TV_RESOLUTION_576I     = 0x000004,     
-            DS_TV_RESOLUTION_576P     = 0x000008,     
-            DS_TV_RESOLUTION_576P50   = 0x000010,   
-            DS_TV_RESOLUTION_720P     = 0x000020,     
-            DS_TV_RESOLUTION_720P50   = 0x000040,   
-            DS_TV_RESOLUTION_1080I    = 0x000080,    
-            DS_TV_RESOLUTION_1080P    = 0x000100,    
-            DS_TV_RESOLUTION_1080P24  = 0x000200,  
-            DS_TV_RESOLUTION_1080I25  = 0x000400,  
-            DS_TV_RESOLUTION_1080P30  = 0x001000,  
-            DS_TV_RESOLUTION_1080I50  = 0x002000,  
-            DS_TV_RESOLUTION_1080P50  = 0x004000,  
-            DS_TV_RESOLUTION_1080P60  = 0x008000,  
-            DS_TV_RESOLUTION_2160P24  = 0x010000,  
-            DS_TV_RESOLUTION_2160P25  = 0x020000,  
-            DS_TV_RESOLUTION_2160P30  = 0x040000,  
-            DS_TV_RESOLUTION_2160P50  = 0x080000,  
-            DS_TV_RESOLUTION_2160P60  = 0x100000  
+            DS_TV_RESOLUTION_480I     = 0x000001,
+            DS_TV_RESOLUTION_480P     = 0x000002,
+            DS_TV_RESOLUTION_576I     = 0x000004,
+            DS_TV_RESOLUTION_576P     = 0x000008,
+            DS_TV_RESOLUTION_576P50   = 0x000010,
+            DS_TV_RESOLUTION_720P     = 0x000020,
+            DS_TV_RESOLUTION_720P50   = 0x000040,
+            DS_TV_RESOLUTION_1080I    = 0x000080,
+            DS_TV_RESOLUTION_1080P    = 0x000100,
+            DS_TV_RESOLUTION_1080P24  = 0x000200,
+            DS_TV_RESOLUTION_1080I25  = 0x000400,
+            DS_TV_RESOLUTION_1080P30  = 0x001000,
+            DS_TV_RESOLUTION_1080I50  = 0x002000,
+            DS_TV_RESOLUTION_1080P50  = 0x004000,
+            DS_TV_RESOLUTION_1080P60  = 0x008000,
+            DS_TV_RESOLUTION_2160P24  = 0x010000,
+            DS_TV_RESOLUTION_2160P25  = 0x020000,
+            DS_TV_RESOLUTION_2160P30  = 0x040000,
+            DS_TV_RESOLUTION_2160P50  = 0x080000,
+            DS_TV_RESOLUTION_2160P60  = 0x100000
         };
 
         enum VideoResolution: uint8_t {
-            DS_VIDEO_PIXELRES_720X480,
-            DS_VIDEO_PIXELRES_720X576,
-            DS_VIDEO_PIXELRES_1280X720,
-            DS_VIDEO_PIXELRES_1366X768,
-            DS_VIDEO_PIXELRES_1920X1080,
-            DS_VIDEO_PIXELRES_3840X2160,
-            DS_VIDEO_PIXELRES_4096X2160,
-            DS_VIDEO_PIXELRES_MAX
+            DS_VIDEO_PIXELRES_720X480    = 0,
+            DS_VIDEO_PIXELRES_720X576    = 1,
+            DS_VIDEO_PIXELRES_1280X720   = 2,
+            DS_VIDEO_PIXELRES_1366X768   = 3,
+            DS_VIDEO_PIXELRES_1920X1080  = 4,
+            DS_VIDEO_PIXELRES_3840X2160  = 5,
+            DS_VIDEO_PIXELRES_4096X2160  = 6,
+            DS_VIDEO_PIXELRES_MAX        = 7
         };
 
         enum VideoAspectRatio: uint8_t {
-            DS_VIDEO_ASPECT_RATIO_4X3,
-            DS_VIDEO_ASPECT_RATIO_16X9,
-            DS_VIDEO_ASPECT_RATIO_MAX
+            DS_VIDEO_ASPECT_RATIO_4X3    = 0,
+            DS_VIDEO_ASPECT_RATIO_16X9   = 1,
+            DS_VIDEO_ASPECT_RATIO_MAX    = 2
         };
 
         enum VideoStereoScopicMode : uint8_t {
