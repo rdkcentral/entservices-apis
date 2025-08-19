@@ -27,7 +27,13 @@ const char *error_strings[] = {
 
 //4.Fetch Error strings
 #define ERROR_MESSAGE(errorcode) \
-    (((errorcode) >= ERROR_BASE && \
-      (errorcode) < ERROR_BASE + (sizeof(error_strings)/sizeof(error_strings[0]))) \
-        ? error_strings[(errorcode) - ERROR_BASE] \
-        : "Unknown error")
+    ({ \
+        const char *msg = \
+            (((errorcode) >= ERROR_BASE && \
+              (errorcode) < ERROR_BASE + (sizeof(error_strings)/sizeof(error_strings[0]))) \
+                ? error_strings[(errorcode) - ERROR_BASE] \
+                : "Unknown error"); \
+        printf("[DEBUG] ErrorCode=%d -> %s\n", errorcode, msg); \
+        msg; \
+    })
+
