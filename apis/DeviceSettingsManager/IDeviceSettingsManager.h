@@ -272,29 +272,19 @@ namespace Exchange {
         // @param handle: handle to the port
         virtual Core::hresult GetAudioPort(const AudioPortType type /* @in */, const int32_t index /* @in */, int32_t &handle /* @out */) = 0;
 
-        /** Terminate Audio Port . */
-        // @text audioPortTerm
-        // @brief Terminate the Audio Port for the port type and index
-        // @param type: Type of Audio port - see AudioPortType
-        // @param index: index of the audio port within the list of audio port types
-        // @param handle: handle to the port
-        virtual Core::hresult AudioPortTerm(const AudioPortType type /* @in */, const int32_t index /* @in */,int32_t handle /* @in */) = 0;
-
         /** Audio Port status. */
         // @text isAudioPortEnabled
-        // @brief Audio port status
-        // @param type: Type of Audio port - see AudioPortType
-        // @param index: index of the audio port within the list of audio port types
+        // @brief Audio port enabled or not
         // @param handle: handle to the port
-        virtual Core::hresult IsAudioPortEnabled(const AudioPortType type /* @in */, const int32_t index /* @in */,int32_t &handle /* @out */) = 0;
+        // @param enabled: enabled (true) or not (false)
+        virtual Core::hresult IsAudioPortEnabled(const int32_t handle /* @in */, bool &enabled /* @out */) = 0;
 
         /** Enable Audio Port. */
         // @text enableAudioPort
         // @brief Audio port status
-        // @param type: Type of Audio port - see AudioPortType
-        // @param index: index of the audio port within the list of audio port types
         // @param handle: handle to the port
-        virtual Core::hresult EnableAudioPort(const AudioPortType type /* @in */, const int32_t index /* @in */,int32_t &handle /* @out */) = 0;
+        // @param enable : enable (true) or disable (false)
+        virtual Core::hresult EnableAudioPort(const int32_t handle /* @in */, const bool enable /* @in */) = 0;
 
         /** Get Supported ARC types . */
         // @text getSupportedARCTypes
@@ -861,17 +851,16 @@ namespace Exchange {
         };
 
         enum DisplayVideoAspectRatio : uint8_t {
-            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
-            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */
+            DS_DISPLAY_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
+            DS_DISPLAY_ASPECT_RATIO_MAX         = 2  /* @text Video Aspect Ratio 16x9 */
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
             DS_DISPLAY_SSMODE_UNKNOWN           = 0,
             DS_DISPLAY_SSMODE_2D                = 1,
             DS_DISPLAY_SSMODE_3D_SIDE_BY_SIDE   = 2,
-            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3,
-            DS_DISPLAY_SSMODE_MAX               = 4
+            DS_DISPLAY_SSMODE_3D_TOP_AND_BOTTOM = 3
         };
 
         enum DisplayInVideoFrameRate: uint8_t {
@@ -1355,7 +1344,7 @@ namespace Exchange {
             int32_t height;
         };
 
-        enum HDMIInVideoZoom : uint8_t {
+        enum HDMIInVideoZoom : int8_t {
             DS_HDMIIN_VIDEO_ZOOM_UNKNOWN           = -1,
             DS_HDMIIN_VIDEO_ZOOM_NONE              = 0,
             DS_HDMIIN_VIDEO_ZOOM_FULL              = 1,
@@ -1369,7 +1358,7 @@ namespace Exchange {
             DS_HDMIIN_VIDEO_ZOOM_16_9_ZOOM         = 9,
             DS_HDMIIN_VIDEO_ZOOM_PILLARBOX_4_3     = 10,
             DS_HDMIIN_VIDEO_ZOOM_WIDE_4_3          = 11,
-            DS_HDMIIN_VIDEO_ZOOM_WIDE_MAX          = 12
+            DS_HDMIIN_VIDEO_ZOOM_MAX               = 12
         };
 
         enum HDMIInVRRType: uint8_t {
@@ -1378,6 +1367,11 @@ namespace Exchange {
             DS_HDMIIN_AMD_FREESYNC              = 2,
             DS_HDMIIN_AMD_FREESYNC_PREMIUM      = 3,
             DS_HDMIIN_AMD_FREESYNC_PREMIUM_PRO  = 4
+        };
+
+        struct HDMIInVRRStatus {
+            HDMIInVRRType vrrType;
+            double vrrFreeSyncFramerateHz;
         };
 
         enum HDMIInTVResolution: uint32_t {
@@ -1406,7 +1400,7 @@ namespace Exchange {
         enum HDMIVideoAspectRatio : uint8_t {
             DS_HDMIIN_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
             DS_HDMIIN_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
-            DS_HDMIIN_ASPECT_RATIO_MAX         = 2
+            DS_HDMIIN_ASPECT_RATIO_MAX         = 2  /* @text Video Aspect Ratio MAX */
         };
 
         enum HDMIInVideoStereoScopicMode : uint8_t {
@@ -1428,10 +1422,10 @@ namespace Exchange {
             DS_HDMIIN_FRAMERATE_50        = 7,
             DS_HDMIIN_FRAMERATE_59_94     = 8,
             DS_HDMIIN_FRAMERATE_100       = 9,
-            DS_HDMIIN_FRAMERATE_119dot88  = 10,
+            DS_HDMIIN_FRAMERATE_119_88    = 10,
             DS_HDMIIN_FRAMERATE_120       = 11,
             DS_HDMIIN_FRAMERATE_200       = 12,
-            DS_HDMIIN_FRAMERATE_239dot76  = 13,
+            DS_HDMIIN_FRAMERATE_239_76    = 13,
             DS_HDMIIN_FRAMERATE_240       = 14,
             DS_HDMIIN_FRAMERATE_MAX       = 15
         };
@@ -1563,21 +1557,21 @@ namespace Exchange {
         // @brief Get ALLM Status
         // @param port: Port number
         // @param allmStatus: ALLM status
-        virtual Core::hresult GetHDMIInAllmStatus(HDMIInPort port /* @in */, bool &allmStatus /* @out*/) = 0;
+        virtual Core::hresult GetHDMIInAllmStatus(const HDMIInPort port /* @in */, bool &allmStatus /* @out*/) = 0;
 
         /** Get EDID to ALLM Supported or not. */
         // @text getHDMIInEdid2AllmSupport
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult GetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool &allmSupport /* @out*/) = 0;
+        virtual Core::hresult GetHDMIInEdid2AllmSupport(const HDMIInPort port /* @in */, bool &allmSupport /* @out*/) = 0;
 
         /** Set EDID to ALLM Supported or not. */
         // @text setHDMIInEdid2AllmSupport
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult SetHDMIInEdid2AllmSupport(HDMIInPort port /* @in */, bool allmSupport /* @in*/) = 0;
+        virtual Core::hresult SetHDMIInEdid2AllmSupport(const HDMIInPort port /* @in */, bool allmSupport /* @in*/) = 0;
 
         /** Get EDID bytes. */
         // @text getEdidBytes
@@ -1585,7 +1579,7 @@ namespace Exchange {
         // @param port: Port number
         // @param edidBytesLength: number of bytes in the edidBytes array
         // @param edidBytes: EDID information
-        virtual Core::hresult GetEdidBytes(HDMIInPort port /* @in */, const uint16_t edidBytesLength /* @in */,  uint8_t edidBytes[] /* @out @length:edidBytesLength @maxlength:edidBytesLength */) = 0;
+        virtual Core::hresult GetEdidBytes(const HDMIInPort port /* @in */, const uint16_t edidBytesLength /* @in */,  uint8_t edidBytes[] /* @out @length:edidBytesLength @maxlength:edidBytesLength */) = 0;
 
         /** Get HDMI SPD Information. */
         // @text getEdidBytes
@@ -1593,28 +1587,56 @@ namespace Exchange {
         // @param port: Port number
         // @param spdBytesLength: number of bytes in the spdBytes array
         // @param spdBytes: SPD information
-        virtual Core::hresult GetHDMISPDInformation(HDMIInPort port /* @in */, const uint16_t spdBytesLength /* @in */,  uint8_t spdBytes[] /* @out @length:spdBytesLength @maxlength:spdBytesLength */) = 0;
+        virtual Core::hresult GetHDMISPDInformation(const HDMIInPort port /* @in */, const uint16_t spdBytesLength /* @in */,  uint8_t spdBytes[] /* @out @length:spdBytesLength @maxlength:spdBytesLength */) = 0;
 
         /** Get HDMI Port EDID version. */
         // @text getHDMIEdidVersion
         // @brief Get HDMI Port EDID version.
         // @param port: Port number
         // @param edidVersion: EDID version
-        virtual Core::hresult GetHDMIEdidVersion(HDMIInPort port /* @in */, HDMIInEdidVersion &edidVersion /* @out */) = 0;
+        virtual Core::hresult GetHDMIEdidVersion(const HDMIInPort port /* @in */, HDMIInEdidVersion &edidVersion /* @out */) = 0;
 
         /** Set HDMI Port EDID version. */
         // @text setHDMIEdidVersion
         // @brief Set HDMI Port EDID version.
         // @param port: Port number
         // @param edidVersion: EDID version
-        virtual Core::hresult SetHDMIEdidVersion(HDMIInPort port /* @in */, HDMIInEdidVersion edidVersion /* @in */) = 0;
+        virtual Core::hresult SetHDMIEdidVersion(const HDMIInPort port /* @in */, HDMIInEdidVersion edidVersion /* @in */) = 0;
 
         /** Get HDMI Video mode. */
         // @text getHDMIVideoMode
         // @brief Get HDMI Video mode.
         // @param port: Port number
         // @param videoPortResolution: Video port resolution structure
-        virtual Core::hresult GetHDMIVideoMode(HDMIInPort port /* @in */, HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
+        virtual Core::hresult GetHDMIVideoMode(const HDMIInPort port /* @in */, HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
+
+        /** Get HDMI Supported version. */
+        // @text getHDMIVersion
+        // @brief Get HDMI Supported Version
+        // @param port: Port number
+        // @param capabilityVersion: supported capability version
+        virtual Core::hresult GetHDMIVersion(const HDMIInPort port /* @in */, HDMIInCapabilityVersion &capabilityVersion /* @out */) = 0;
+
+        /** Set HDMI VRR Support. */
+        // @text setVRRSupport
+        // @brief Set HDMI VRR Support.
+        // @param port: Port number
+        // @param vrrSupport: enable (true) or disable (false)
+        virtual Core::hresult SetVRRSupport(const HDMIInPort port /* @in */, const bool vrrSupport /* @in */) = 0;
+
+        /** Get HDMI VRR Support. */
+        // @text getVRRSupport
+        // @brief Get HDMI VRR Support.
+        // @param port: Port number
+        // @param vrrSupport: enabled (true) or disable (false)
+        virtual Core::hresult GetVRRSupport(const HDMIInPort port /* @in */, bool &vrrSupport /* @out */) = 0;
+
+        /** Get HDMI VRR Status. */
+        // @text getVRRStatus
+        // @brief Get HDMI VRR Status.
+        // @param port: Port number
+        // @param vrrStatus: VRR Status
+        virtual Core::hresult GetVRRStatus(const HDMIInPort port /* @in */, HDMIInVRRStatus &vrrStatus /* @out */) = 0;
     };
 
     struct EXTERNAL IDeviceSettingsManagerHost : virtual public Core::IUnknown {
@@ -1666,20 +1688,20 @@ namespace Exchange {
         virtual Core::hresult GetHALVersion(uint32_t &versionNo /* @out */) = 0;
 
         /** Get SOCID. */
-        // @text getHALVersion
+        // @text getSoCID
         // @brief Get SOCID.
         // @param socID: SOCID in string format
         virtual Core::hresult GetSoCID(string &socID /* @out */) = 0;
 
         /** Get EDID Bytes. */
-        // @text getHALVersion
+        // @text getEDID
         // @brief Get EDID.
         // @param edId: EDID in bytes
         // @param edIdLength: number of bytes in edId array
         virtual Core::hresult GetEDID(uint8_t edId[] /* @out @length:edIdLength @maxlength:edIdLength */, const uint16_t edIdLength /* @in */) = 0;
 
         /** Get MS12 Config type. */
-        // @text getHALVersion
+        // @text getMS12ConfigType
         // @brief Get MS12 Config
         // @param ms12Config: MS12 config type
         virtual Core::hresult GetMS12ConfigType(string &ms12Config /* @out */) = 0;
@@ -1996,7 +2018,8 @@ namespace Exchange {
             DS_DISPLAY_COLORDEPTH_8BIT    = 0x01,
             DS_DISPLAY_COLORDEPTH_10BIT   = 0x02,
             DS_DISPLAY_COLORDEPTH_12BIT   = 0x04,
-            DS_DISPLAY_COLORDEPTH_AUTO    = 0x08
+            DS_DISPLAY_COLORDEPTH_AUTO    = 0x08,
+            DS_DISPLAY_COLORDEPTH_MAX     = 0x10
         };
 
         struct DSOutputSettings {
