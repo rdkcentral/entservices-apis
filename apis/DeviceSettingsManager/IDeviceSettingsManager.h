@@ -985,10 +985,9 @@ namespace Exchange {
         };
 
         enum DisplayVideoAspectRatio : uint8_t {
-            DS_DISPLAY_ASPECT_RATIO_UNKNOWN     = 0  /* @text Video Aspect Ratio UNKNOWN */,
-            DS_DISPLAY_ASPECT_RATIO_4X3         = 1  /* @text Video Aspect Ratio 4X3 */,
-            DS_DISPLAY_ASPECT_RATIO_16X9        = 2  /* @text Video Aspect Ratio 16x9 */,
-            DS_DISPLAY_ASPECT_RATIO_MAX         = 3
+            DS_DISPLAY_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
+            DS_DISPLAY_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
+            DS_DISPLAY_ASPECT_RATIO_MAX         = 2
         };
 
         enum DisplayInVideoStereoScopicMode : uint8_t {
@@ -2208,7 +2207,7 @@ namespace Exchange {
         virtual Core::hresult SetForceDisable4K(const int32_t handle /* @in */, const bool disable /* @in */) = 0;
 
         /** Get Disable 4K status. */
-        // @text setForceDisable4K
+        // @text getForceDisable4K
         // @brief Get Force disable 4K value
         // @param handle: handle to the port
         // @param disabled: disabled (true) or enabled (false) 
