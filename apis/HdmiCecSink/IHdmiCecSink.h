@@ -68,83 +68,83 @@
                 // @brief Triggered when routing though the HDMI ARC port is successfully established.
                 // @text arcInitiationEvent
                 // @param status: Is the operation successful or not
-                virtual void ArcInitiationEvent(const string status /* @in */) {};
+                virtual void ArcInitiationEvent(const string status) {};
 
                 // @brief Triggered when routing though the HDMI ARC port terminates.
                 // @text arcTerminationEvent
                 // @param status: Is the operation successful or not
-                virtual void ArcTerminationEvent(const string status /* @in */) {};
+                virtual void ArcTerminationEvent(const string status) {};
 
                 // @brief Triggered when the active source device changes.
                 // @text onActiveSourceChange
                 // @param logicalAddress: Logical address of the active source
                 // @param physicalAddress: Physical address of the active source
-                virtual void OnActiveSourceChange(const int logicalAddress /* @in */, const string physicalAddress /* @in */) {};
+                virtual void OnActiveSourceChange(const int logicalAddress, const string physicalAddress) {};
 
                 // @brief Triggered when a new device is added to the CEC network.
                 // @text onDeviceAdded
                 // @param logicalAddress: Logical address of the added device
-                virtual void OnDeviceAdded(const int logicalAddress /* @in */) {};
+                virtual void OnDeviceAdded(const int logicalAddress) {};
 
                 // @brief Triggered when device information changes.
                 // @text onDeviceInfoUpdated
                 // @param logicalAddress: Logical address of the device
-                virtual void OnDeviceInfoUpdated(const int logicalAddress /* @in */) {};
+                virtual void OnDeviceInfoUpdated(const int logicalAddress) {};
 
                 // @brief Triggered when a device is removed from the CEC network.
                 // @text onDeviceRemoved
                 // @param logicalAddress: Logical address of the removed device
-                virtual void OnDeviceRemoved(const int logicalAddress /* @in */) {};
+                virtual void OnDeviceRemoved(const int logicalAddress) {};
 
                 // @brief Triggered when an <Image View ON> CEC message is received from the source device.
                 // @text onImageViewOnMsg
                 // @param logicalAddress: Logical address of the device
-                virtual void OnImageViewOnMsg(const int logicalAddress /* @in */) {};
+                virtual void OnImageViewOnMsg(const int logicalAddress) {};
 
                 // @brief Triggered when the source is no longer active.
                 // @text onInActiveSource
                 // @param logicalAddress: Logical address of the source
                 // @param physicalAddress: Physical address of the source
-                virtual void OnInActiveSource(const int logicalAddress /* @in */, const string physicalAddress /* @in */) {};
+                virtual void OnInActiveSource(const int logicalAddress, const string physicalAddress) {};
 
                 // @brief Triggered when a <Text View ON> CEC message is received from the source device.
                 // @text onTextViewOnMsg
                 // @param logicalAddress: Logical address of the device
-                virtual void OnTextViewOnMsg(const int logicalAddress /* @in */) {};
+                virtual void OnTextViewOnMsg(const int logicalAddress) {};
 
                 // @brief Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device.
                 // @text onWakeupFromStandby
                 // @param logicalAddress: Logical address of the device
-                virtual void OnWakeupFromStandby(const int logicalAddress /* @in */) {};
+                virtual void OnWakeupFromStandby(const int logicalAddress) {};
 
                 // @brief Triggered when an audio device is added or removed.
                 // @text reportAudioDeviceConnectedStatus
                 // @param status: Status of the audio device
                 // @param audioDeviceConnected: Audio device connected or not
-                virtual void ReportAudioDeviceConnectedStatus(const string status /* @in */, const string audioDeviceConnected /* @in */) {};
+                virtual void ReportAudioDeviceConnectedStatus(const string status, const string audioDeviceConnected) {};
 
                 // @brief Triggered when CEC <Report Audio Status> message of device is received.
                 // @text reportAudioStatusEvent
                 // @param muteStatus: Mute status of the device
                 // @param volumeLevel: Volume level of the device
-                virtual void ReportAudioStatusEvent(const int muteStatus /* @in */, const int volumeLevel /* @in */) {};
+                virtual void ReportAudioStatusEvent(const int muteStatus, const int volumeLevel) {};
 
                 // @brief Triggered when CEC <Feature Abort> message of device is received.
                 // @text reportFeatureAbortEvent
                 // @param logicalAddress: Logical address of the device
                 // @param opcode: Opcode of the message
                 // @param FeatureAbortReason: Reason for the feature abort
-                virtual void ReportFeatureAbortEvent(const int logicalAddress /* @in */, const int opcode /* @in */, const int FeatureAbortReason /* @in */) {};
+                virtual void ReportFeatureAbortEvent(const int logicalAddress, const int opcode, const int FeatureAbortReason) {};
 
                 // @brief Triggered when the HDMI-CEC is enabled.
                 // @text reportCecEnabledEvent
                 // @param cecEnable: HDMI-CEC enabled or not
-                virtual void ReportCecEnabledEvent(const string cecEnable /* @in */) {};
+                virtual void ReportCecEnabledEvent(const string cecEnable) {};
 
                 // @brief Triggered when CEC <Set System Audio Mode> message of device is received.
                 // @text setSystemAudioModeEvent
                 // @param audioMode: Audio mode of the device
-                virtual void SetSystemAudioModeEvent(const string audioMode /* @in */) {};
+                virtual void SetSystemAudioModeEvent(const string audioMode) {};
 
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
@@ -154,12 +154,12 @@
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void StandbyMessageReceived(const int logicalAddress /* @in */) {};
+                virtual void StandbyMessageReceived(const int logicalAddress) {};
 
                 // @brief Triggered when the source device changes.
                 // @text reportAudioDevicePowerStatus
                 // @param powerStatus: Power status of the device
-                virtual void ReportAudioDevicePowerStatus(const int powerStatus /* @in */) {};
+                virtual void ReportAudioDevicePowerStatus(const int powerStatus) {};
 
 
             };
