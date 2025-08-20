@@ -27,17 +27,17 @@ namespace Exchange {
 #ifndef RUNTIME_CONFIG
 struct RuntimeConfig
 {
-    bool dial = false;
-    bool wanLanAccess = false;
-    bool thunder = false;
-    int32_t systemMemoryLimit = 0;
-    int32_t gpuMemoryLimit = 0;
-    std::string envVariables;
-    uint32_t userId = 0;
-    uint32_t groupId = 0;
-    uint32_t dataImageSize = 0;
+    bool dial{false};
+    bool wanLanAccess{false};
+    bool thunder{false};
+    int32_t systemMemoryLimit{0};
+    int32_t gpuMemoryLimit{0};
+    std::string envVariables{};
+    uint32_t userId{0};
+    uint32_t groupId{0};
+    uint32_t dataImageSize{0};
 
-    bool resourceManagerClientEnabled =false;
+    bool resourceManagerClientEnabled{false};
     std::string dialId;
     std::string command;
     std::string appType;
@@ -45,14 +45,14 @@ struct RuntimeConfig
     std::string runtimePath;
 
     std::string logFilePath;
-    uint32_t logFileMaxSize = 0;
+    uint32_t logFileMaxSize{0};
     std::string logLevels;          //json array of strings
-    bool mapi = false;
+    bool mapi {false};
     std::string fkpsFiles;          //json array of strings
 
     std::string fireboltVersion;
-    bool enableDebugger = false;
-    string unpackedPath;
+    bool enableDebugger{false};
+    std::string unpackedPath;
 };
 #define RUNTIME_CONFIG
 #endif
