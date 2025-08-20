@@ -299,14 +299,14 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param sadList: SAD array 
         // @param count: number of items in sadList (max 15)
-        virtual Core::hresult SetSAD(const int32_t handle /* @in */, const uint8_t sadList[] /* @in @length:count @maxlength:count */, uint8_t count /* @in */) = 0;
+        virtual Core::hresult SetSAD(const int32_t handle /* @in */, const uint8_t sadList[] /* @in @length:count @maxlength:count */, const uint8_t count /* @in */) = 0;
 
         /** Enable ARC */
         // @text enableARC
         // @brief Get Supported ARC types
         // @param handle: handle returned in GetAudioPort()
         // @param arcStatus: ARC param
-        virtual Core::hresult EnableARC(const int32_t handle /* @in */, AudioARCStatus arcStatus /* @in */) = 0;
+        virtual Core::hresult EnableARC(const int32_t handle /* @in */, const AudioARCStatus arcStatus /* @in */) = 0;
 
         /** Get Stereo Mode  . */
         // @text getStereoMode
@@ -321,7 +321,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param mode: mode
         // @param persist: persist the mode
-        virtual Core::hresult SetStereoMode(const int32_t handle /* @in */, StereoMode mode /* @in */ ,bool persist /* @in */) = 0;
+        virtual Core::hresult SetStereoMode(const int32_t handle /* @in */, const StereoMode mode /* @in */, const bool persist /* @in */) = 0;
 
         /** Get Stereo Auto  . */
         // @text getStereoAuto
@@ -336,14 +336,14 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param mode: auto mode
         // @param persist: persist the setting
-        virtual Core::hresult SetStereoAuto(const int32_t handle /* @in */, int32_t mode /* @in */, bool persist /* @in */) = 0;
+        virtual Core::hresult SetStereoAuto(const int32_t handle /* @in */, const int32_t mode /* @in */, const bool persist /* @in */) = 0;
 
         /** Set Audio Mute . */
         // @text setAudioMute
         // @brief Set Audio mute
         // @param handle: handle returned in GetAudioPort()
         // @param mute: Mute (true) or Unmute (false)
-        virtual Core::hresult SetAudioMute(const int32_t handle /* @in */, bool mute /* @in */) = 0;
+        virtual Core::hresult SetAudioMute(const int32_t handle /* @in */, const bool mute /* @in */) = 0;
 
         /** Audio Mute Status. */
         // @text isAudioMuted
@@ -359,14 +359,14 @@ namespace Exchange {
         // @param duckingType: Audio ducking type
         // @param duckingAction: Audio ducking action
         // @param level : Volume level when audio is ducked. 
-        virtual Core::hresult SetAudioDucking(const int32_t handle /* @in */, AudioDuckingType duckingType /* @in */, AudioDuckingAction duckingAction /* @in */, uint8_t level /* @in */) = 0;
+        virtual Core::hresult SetAudioDucking(const int32_t handle /* @in */, const AudioDuckingType duckingType /* @in */, const AudioDuckingAction duckingAction /* @in */, const uint8_t level /* @in */) = 0;
 
         /** Set Audio Level */
         // @text setAudioLevel
         // @brief Set Audio Level
         // @param handle: handle returned in GetAudioPort()
         // @param audioLevel: Audio level
-        virtual Core::hresult SetAudioLevel(const int32_t handle /* @in */, float audioLevel /* @in */) = 0;
+        virtual Core::hresult SetAudioLevel(const int32_t handle /* @in */, const float audioLevel /* @in */) = 0;
 
         /** Get Audio Level */
         // @text GetAudioDucking
@@ -380,7 +380,7 @@ namespace Exchange {
         // @brief Set Audio Gain
         // @param handle: handle returned in GetAudioPort()
         // @param gainLevel: Gain level
-        virtual Core::hresult SetAudioGain(const int32_t handle /* @in */, float gainLevel /* @in */) = 0;
+        virtual Core::hresult SetAudioGain(const int32_t handle /* @in */, const float gainLevel /* @in */) = 0;
 
         /** Get Audio Gain */
         // @text setAudioGain
@@ -417,7 +417,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param enable :  persistence enable (true) or disable (false)
         // @param portName: portName for which persistence is enabled
-        virtual Core::hresult SetAudioEnablePersist(const int32_t handle /* @in */, bool enable /* @in */, string portName /* @in */) = 0;
+        virtual Core::hresult SetAudioEnablePersist(const int32_t handle /* @in */, const bool enable /* @in */, const string portName /* @in */) = 0;
 
         /** Audio MS decode Status. */
         // @text isAudioMSDecoded
@@ -445,14 +445,14 @@ namespace Exchange {
         // @brief Audio LE config Enable
         // @param handle: handle returned in GetAudioPort()
         // @param enabled: true (enabled) or false (disabled)
-        virtual Core::hresult EnableAudioLEConfig(const int32_t handle /* @in */, bool enable /* @in */) = 0;
+        virtual Core::hresult EnableAudioLEConfig(const int32_t handle /* @in */, const bool enable /* @in */) = 0;
 
         /** Set Audio Delay  */
         // @text setAudioDelay
         // @brief Set Audio Delay
         // @param handle: handle returned in GetAudioPort()
         // @param audioDelay: Audio delay in millisecs
-        virtual Core::hresult SetAudioDelay(const int32_t handle /* @in */, uint32_t audioDelay /* @in */) = 0;
+        virtual Core::hresult SetAudioDelay(const int32_t handle /* @in */, const uint32_t audioDelay /* @in */) = 0;
 
         /** Get Audio Delay  */
         // @text getAudioDelay
@@ -487,7 +487,7 @@ namespace Exchange {
         // @brief Set Audio Atmos output mode
         // @param handle: handle returned in GetAudioPort()
         // @param enable: Enable audio atmos output mode
-        virtual Core::hresult SetAudioAtmosOutputMode(const int32_t handle /* @in */, bool enable /* @in */) = 0;
+        virtual Core::hresult SetAudioAtmosOutputMode(const int32_t handle /* @in */, const bool enable /* @in */) = 0;
 
         /** Set Audio Compression */
         // @text setAudioCompression
@@ -522,7 +522,7 @@ namespace Exchange {
         // @brief Set Audio Dolby volume mode
         // @param handle: handle returned in GetAudioPort()
         // @param enable: true (enable dolby volume mode) or false (disable dolby volume mode)
-        virtual Core::hresult SetAudioDolbyVolumeMode(const int32_t handle /* @in */, bool enable /* @in */) = 0;
+        virtual Core::hresult SetAudioDolbyVolumeMode(const int32_t handle /* @in */, const bool enable /* @in */) = 0;
 
         /** Get Audio Dolby Volume mode  */
         // @text getAudioDolbyVolumeMode
@@ -550,7 +550,7 @@ namespace Exchange {
         // @brief Set Audio Volume leveller
         // @param handle: handle returned in GetAudioPort()
         // @param volumeLeveller: volume leveller (mode and a level)
-        virtual Core::hresult SetAudioVolumeLeveller(const int32_t handle /* @in */, VolumeLeveller volumeLeveller /* @in */) = 0;
+        virtual Core::hresult SetAudioVolumeLeveller(const int32_t handle /* @in */, const VolumeLeveller volumeLeveller /* @in */) = 0;
 
         /** Get Audio Volume leveller  */
         // @text getAudioVolumeLeveller
@@ -606,7 +606,7 @@ namespace Exchange {
         // @brief Set Audio Surroud Virtualizer
         // @param handle: handle returned in GetAudioPort()
         // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult SetAudioSurroudVirtualizer(const int32_t handle /* @in */, SurroundVirtualizer surroundVirtualizer /* @in */) = 0;
+        virtual Core::hresult SetAudioSurroudVirtualizer(const int32_t handle /* @in */, const SurroundVirtualizer surroundVirtualizer /* @in */) = 0;
 
         /** Get Audio Surroud Virtualizer  */
         // @text getAudioSurroudVirtualizer
@@ -662,7 +662,7 @@ namespace Exchange {
         // @brief Set Audio MS12 profile
         // @param handle: handle returned in GetAudioPort()
         // @param profile: Name of the profile
-        virtual Core::hresult SetAudioMS12Profile(const int32_t handle /* @in */, string profile /* @in */) = 0;
+        virtual Core::hresult SetAudioMS12Profile(const int32_t handle /* @in */, const string profile /* @in */) = 0;
 
         /** Set Audio Mixer Levels     */
         // @text setAudioMixerLevels
@@ -670,7 +670,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param audioInput: AudioInput 
         // @param volume: Volume level
-        virtual Core::hresult SetAudioMixerLevels(const int32_t handle /* @in */, const AudioInput audioInput /* @in */, int32_t volume /* @in */) = 0;
+        virtual Core::hresult SetAudioMixerLevels(const int32_t handle /* @in */, const AudioInput audioInput /* @in */, const int32_t volume /* @in */) = 0;
 
 
         /** Set Associated Audio Mixing values     */
@@ -706,7 +706,7 @@ namespace Exchange {
         // @brief Set Primary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param primaryAudioLanguage: Primary audio language
-        virtual Core::hresult SetAudioPrimaryLanguage(const int32_t handle /* @in */, string primaryAudioLanguage /* @in */) = 0;
+        virtual Core::hresult SetAudioPrimaryLanguage(const int32_t handle /* @in */, const string primaryAudioLanguage /* @in */) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioPrimaryLanguage
@@ -720,7 +720,7 @@ namespace Exchange {
         // @brief Set Secondary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param secondaryAudioLanguage: Secondary audio language
-        virtual Core::hresult SetAudioSecondaryLanguage(const int32_t handle /* @in */, string secondaryAudioLanguage /* @in */) = 0;
+        virtual Core::hresult SetAudioSecondaryLanguage(const int32_t handle /* @in */, const string secondaryAudioLanguage /* @in */) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioSecondaryLanguage
@@ -751,7 +751,7 @@ namespace Exchange {
         // @param profileSettingsName: Name of the profile setting 
         // @param profileSettingValue : value of the profile setting 
         // @param profileState: ADD or REMOVE
-        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle /* @in */, string profileName /* @in */, string profileSettingsName /* @in */, string profileSettingValue /* @in */, string profileState /* @in */ ) = 0;
+        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle /* @in */, const string profileName /* @in */, const string profileSettingsName /* @in */, const string profileSettingValue /* @in */, const string profileState /* @in */ ) = 0;
 
         /** Is Audio output connected?    */
         // @text isAudioOutputConnected
@@ -1524,19 +1524,19 @@ namespace Exchange {
         // @param requestAudioMix: Should audio be mixed on this port
         // @param topMostPlane: Should this be on top for display
         // @param videoPlaneType: Primary or secondary
-        virtual Core::hresult SelectHDMIInPort(HDMIInPort port /* @in */, bool requestAudioMix /* @in */, bool topMostPlane /* @in */, HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
+        virtual Core::hresult SelectHDMIInPort(const HDMIInPort port /* @in */, const bool requestAudioMix /* @in */, const bool topMostPlane /* @in */, const HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
 
         /** Scale HDMIIn Video. */
         // @text scaleHDMIInVideo
         // @brief Scale HDMIIn Video
         // @param videoPosition: co-ordinates to scale
-        virtual Core::hresult ScaleHDMIInVideo(HDMIInVideoRectangle videoPosition /* @in */) = 0;
+        virtual Core::hresult ScaleHDMIInVideo(const HDMIInVideoRectangle videoPosition /* @in */) = 0;
 
         /** Select HDMIIn Zoom mode. */
         // @text selectHDMIZoomMode
         // @brief Select HDMIIn Zoom mode
         // @param zoomMode: zoom mode
-        virtual Core::hresult SelectHDMIZoomMode(HDMIInVideoZoom zoomMode /* @in */) = 0;
+        virtual Core::hresult SelectHDMIZoomMode(const HDMIInVideoZoom zoomMode /* @in */) = 0;
 
         /** Get Supported Game feature list. */
         // @text getSupportedGameFeaturesList
@@ -1600,14 +1600,13 @@ namespace Exchange {
         // @brief Set HDMI Port EDID version.
         // @param port: Port number
         // @param edidVersion: EDID version
-        virtual Core::hresult SetHDMIEdidVersion(const HDMIInPort port /* @in */, HDMIInEdidVersion edidVersion /* @in */) = 0;
+        virtual Core::hresult SetHDMIEdidVersion(const HDMIInPort port /* @in */, const HDMIInEdidVersion edidVersion /* @in */) = 0;
 
         /** Get HDMI Video mode. */
         // @text getHDMIVideoMode
         // @brief Get HDMI Video mode.
-        // @param port: Port number
         // @param videoPortResolution: Video port resolution structure
-        virtual Core::hresult GetHDMIVideoMode(const HDMIInPort port /* @in */, HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
+        virtual Core::hresult GetHDMIVideoMode( HDMIVideoPortResolution &videoPortResolution /* @out */) = 0;
 
         /** Get HDMI Supported version. */
         // @text getHDMIVersion
@@ -1814,7 +1813,7 @@ namespace Exchange {
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param videoCodec: Video codec for which information is needed
         // @param videoCodecInfo: Video codec information
-        virtual Core::hresult GetCodecInfo(const int32_t handle /* @in */, VideoCodec videoCodec /* @in */, IDeviceSettingsVideoCodecProfileSupportIterator *&codecInfo /* @out */) = 0;
+        virtual Core::hresult GetCodecInfo(const int32_t handle /* @in */, const VideoCodec videoCodec /* @in */, IDeviceSettingsVideoCodecProfileSupportIterator *&codecInfo /* @out */) = 0;
 
         /** Video Device Disable HDR */
         // @text disableHDR
@@ -1849,7 +1848,7 @@ namespace Exchange {
         // @brief Set current display frame rate
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param framerate: frame rate
-        virtual Core::hresult SetDisplayFrameRate(const int32_t handle /* @in */, string framerate /* @in */) = 0;
+        virtual Core::hresult SetDisplayFrameRate(const int32_t handle /* @in */, const string framerate /* @in */) = 0;
     };
 
     struct EXTERNAL IDeviceSettingsManagerVideoPort : virtual public Core::IUnknown {
@@ -2132,7 +2131,7 @@ namespace Exchange {
         // @param videoPortResolution: video port resolution 
         // @param persist: persist this setting
         // @param forceCompatibilty: force compatibility
-        virtual Core::hresult SetVideoPortResolution(const int32_t handle /* @in */, VideoPortResolution videoPortResolution /* @in */, bool persist /* @in */, bool forceCompatibility /* @in */) = 0;
+        virtual Core::hresult SetVideoPortResolution(const int32_t handle /* @in */, const VideoPortResolution videoPortResolution /* @in */, const bool persist /* @in */, const bool forceCompatibility /* @in */) = 0;
 
         /** Enable HDCP Video port. */
         // @text enableHDCPOnVideoPort
@@ -2237,7 +2236,7 @@ namespace Exchange {
         // @brief Set HDMI preferred HDCP protocol version
         // @param handle: handle to the port
         // @param hdcpVersion: HDCP version
-        virtual Core::hresult SetHDMIPreference(const int32_t handle /* @in */, HDCPProtocolVersion hdcpVersion /* @in */) = 0;
+        virtual Core::hresult SetHDMIPreference(const int32_t handle /* @in */, const HDCPProtocolVersion hdcpVersion /* @in */) = 0;
 
         /**  Get Video EOTF. */
         // @text getVideoEOTF
@@ -2286,14 +2285,14 @@ namespace Exchange {
         // @brief Set Video background color.
         // @param handle: handle to the port
         // @param backgroundColor: video background color
-        virtual Core::hresult SetBackgroundColor(const int32_t handle /* @in */, VideoBackgroundColor backgroundColor /* @in */) = 0;
+        virtual Core::hresult SetBackgroundColor(const int32_t handle /* @in */, const VideoBackgroundColor backgroundColor /* @in */) = 0;
 
         /**  Set HDR mode. */
         // @text setForceHDRMode
         // @brief Set HDR mode 
         // @param handle: handle to the port
         // @param hdrMode: see HDRStandard
-        virtual Core::hresult SetForceHDRMode(const int32_t handle /* @in */, HDRStandard hdrMode /* @in */) = 0;
+        virtual Core::hresult SetForceHDRMode(const int32_t handle /* @in */, const HDRStandard hdrMode /* @in */) = 0;
 
         /**  Get Color Depth capabilities. */
         // @text getColorDepthCapabilities
@@ -2308,7 +2307,7 @@ namespace Exchange {
         // @param handle: handle to the port
         // @param colorDepth: color depth See DisplayColorDepth 
         // @param persist: return persisted value (true) or not (false)
-        virtual Core::hresult GetPreferredColorDepth(const int32_t handle /* @in */, DisplayColorDepth &colorDepth /* @out */, bool persist /* @in */) = 0;
+        virtual Core::hresult GetPreferredColorDepth(const int32_t handle /* @in */, DisplayColorDepth &colorDepth /* @out */, const bool persist /* @in */) = 0;
         
         /**  Set Preferred Color Depth. */
         // @text getPreferredColorDepth
@@ -2316,7 +2315,7 @@ namespace Exchange {
         // @param handle: handle to the port
         // @param colorDepth: color depth See DisplayColorDepth 
         // @param persist:  persist value (true) or not (false)
-        virtual Core::hresult SetPreferredColorDepth(const int32_t handle /* @in */, DisplayColorDepth colorDepth /* @in */, bool persist /* @in */) = 0;
+        virtual Core::hresult SetPreferredColorDepth(const int32_t handle /* @in */, const DisplayColorDepth colorDepth /* @in */, const bool persist /* @in */) = 0;
 
     };
 
