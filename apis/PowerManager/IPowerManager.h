@@ -100,7 +100,7 @@ namespace WPEFramework
             virtual void OnRebootBegin(const string &rebootReasonCustom, const string &rebootReasonOther, const string &rebootRequestor) {};
         };
         virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(const Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
 
         // @event
         struct EXTERNAL IModePreChangeNotification : virtual public Core::IUnknown
@@ -119,7 +119,7 @@ namespace WPEFramework
         // @brief Unregister for Power Mode pre-change event
         //       IMPORTANT: If client is also engaged in power mode pre-change operation (requested via AddPowerModePreChangeClient API),
         //                  make sure to disengage (using RemovePowerModePreChangeClient API) before calling Unregister.
-        virtual Core::hresult Unregister(IModePreChangeNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(const IModePreChangeNotification* notification /* @in */) = 0;
 
         // @event
         struct EXTERNAL IModeChangedNotification : virtual public Core::IUnknown
@@ -132,7 +132,7 @@ namespace WPEFramework
             virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) {};
         };
         virtual Core::hresult Register(IModeChangedNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(IModeChangedNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(const IModeChangedNotification* notification /* @in */) = 0;
 
         // @event
         struct EXTERNAL IDeepSleepTimeoutNotification : virtual public Core::IUnknown
@@ -144,7 +144,7 @@ namespace WPEFramework
             virtual void OnDeepSleepTimeout(const int wakeupTimeout) {};
         };
         virtual Core::hresult Register(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(const IDeepSleepTimeoutNotification* notification /* @in */) = 0;
 
          // @event
          struct EXTERNAL INetworkStandbyModeChangedNotification : virtual public Core::IUnknown
@@ -156,7 +156,7 @@ namespace WPEFramework
              virtual void OnNetworkStandbyModeChanged(const bool enabled) {};
          };
          virtual Core::hresult Register(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
-         virtual Core::hresult Unregister(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
+         virtual Core::hresult Unregister(const INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
 
          // @event
          struct EXTERNAL IThermalModeChangedNotification : virtual public Core::IUnknown
@@ -170,7 +170,7 @@ namespace WPEFramework
              virtual void OnThermalModeChanged(const ThermalTemperature currentThermalLevel, const ThermalTemperature newThermalLevel, const float currentTemperature) {};
          };
          virtual Core::hresult Register(IThermalModeChangedNotification* notification /* @in */) = 0;
-         virtual Core::hresult Unregister(IThermalModeChangedNotification* notification /* @in */) = 0;
+         virtual Core::hresult Unregister(const IThermalModeChangedNotification* notification /* @in */) = 0;
 
         /** Engage a client in power mode change operation. */
         // @text addPowerModePreChangeClient
