@@ -25,43 +25,6 @@
 #define HDMI 0
 #define COMPOSITE 1
 
-struct MixerLevels
-{
-    uint8_t primaryVolume;
-    uint8_t playerVolume;
-};
-
-enum VideoPlaneType
-{
-    PRIMARY = 0,
-    SECONDARY = 1
-};
-
-struct InputSignalInfo
-{
-    int id;
-    string locator;
-    string status;
-};
-
-struct InputVideoMode
-{
-    int id;
-    string locator;
-    uint32_t width;
-    uint32_t height;
-    bool progressive;
-    uint32_t frameRateN;
-    uint32_t frameRateD;
-};
-
-struct GameFeatureStatus
-{
-    int id;
-    string gameFeature;
-    bool allmMode;
-};
-
 namespace WPEFramework
 {
     namespace Exchange
@@ -74,7 +37,44 @@ namespace WPEFramework
                 ID = ID_AV_INPUT
             };
 
-            struct InputDevice
+            struct EXTERNAL MixerLevels
+            {
+                uint8_t primaryVolume;
+                uint8_t playerVolume;
+            };
+
+            enum EXTERNAL VideoPlaneType
+            {
+                PRIMARY = 0,
+                SECONDARY = 1
+            };
+
+            struct EXTERNAL InputSignalInfo
+            {
+                int id;
+                string locator;
+                string status;
+            };
+
+            struct EXTERNAL InputVideoMode
+            {
+                int id;
+                string locator;
+                uint32_t width;
+                uint32_t height;
+                bool progressive;
+                uint32_t frameRateN;
+                uint32_t frameRateD;
+            };
+
+            struct EXTERNAL GameFeatureStatus
+            {
+                int id;
+                string gameFeature;
+                bool allmMode;
+            };
+
+            struct EXTERNAL InputDevice
             {
                 int id /* @text id */;
                 string locator /* @text locator */;
@@ -103,22 +103,22 @@ namespace WPEFramework
                 // @text onSignalChanged
                 // @brief Triggered whenever the signal status changes for an HDMI/Composite Input
                 // @param info - in - The new signal information of the input device
-                virtual void OnSignalChanged(const InputSignalInfo &info) {};
+                virtual void OnSignalChanged(const Exchange::IAVInput::InputSignalInfo &info) {};
 
                 // @text onInputStatusChanged
                 // @brief Triggered whenever the status changes for an HDMI/Composite Input
                 // @param info - in - The new input status information of the input device
-                virtual void OnInputStatusChanged(const InputSignalInfo &info) {};
+                virtual void OnInputStatusChanged(const Exchange::IAVInput::InputSignalInfo &info) {};
 
                 // @text videoStreamInfoUpdate
                 // @brief Triggered whenever there is an update in HDMI/Composite Input video stream info
                 // @param videoMode - in - The new video mode information of the input device
-                virtual void VideoStreamInfoUpdate(const InputVideoMode &videoMode) {};
+                virtual void VideoStreamInfoUpdate(const Exchange::IAVInput::InputVideoMode &videoMode) {};
 
                 // @text gameFeatureStatusUpdate
                 // @brief Triggered whenever game feature(ALLM) status changes for an HDMI Input
                 // @param status - in - The new game feature status of the input device
-                virtual void GameFeatureStatusUpdate(const GameFeatureStatus &status) {};
+                virtual void GameFeatureStatusUpdate(const Exchange::IAVInput::GameFeatureStatus &status) {};
 
                 // @text hdmiContentTypeUpdate
                 // @brief Triggered whenever AV Infoframe content type changes for an HDMI Input
@@ -138,7 +138,7 @@ namespace WPEFramework
             // @brief Returns a list of input devices of the specified type
             // @param type - in - The type of input devices to retrieve
             // @param devices - out - An iterator to the list of input devices
-            virtual Core::hresult GetInputDevices(int type /* @in */, IInputDeviceIterator *&devices /* @out */) = 0;
+            virtual Core::hresult GetInputDevices(int type /* @in */, Exchange::IAVInput::IInputDeviceIterator *&devices /* @out */) = 0;
 
             // @text writeEDID
             // @brief Returns a list of input devices of the specified type
@@ -214,7 +214,7 @@ namespace WPEFramework
             // @text startInput
             // @brief Starts the specified input device
             // @param id - in - The ID of the input device to start
-            virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, const VideoPlaneType &planeType /* @in */, bool topMostPlane /* @in */) = 0;
+            virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, const Exchange::IAVInput::VideoPlaneType &planeType /* @in */, bool topMostPlane /* @in */) = 0;
 
             // @text stopInput
             // @brief Stops the specified input device
@@ -244,7 +244,7 @@ namespace WPEFramework
             // @text getSupportedGameFeatures
             // @brief Returns the supported game features for the specified input device
             // @param features - out - A list of supported game features
-            virtual Core::hresult GetSupportedGameFeatures(IStringIterator *&features /* @out */) = 0;
+            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator *&features /* @out */) = 0;
 
             // @text getGameFeatureStatus
             // @brief Returns the status of a specific game feature for the specified input device
