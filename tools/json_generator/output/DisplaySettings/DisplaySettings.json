@@ -47,12 +47,12 @@
             "example":"SDR"
         },
         "audioPort0": {
-            "summary": "Audio port name.",
+            "summary": "Audio port name. See `getSupportedAudioPorts` for list of `audioPort`s",
             "type": "string",
             "example": "HDMI0"
         },
         "audioPort1": {
-            "summary": "Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified.",
+            "summary": "Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port`.",
             "default": "HDMI0",
             "type": "string",
             "example": "SPEAKER0"
@@ -126,7 +126,7 @@
             "example": true
         },
         "portName": {
-            "summary": "Video port name",
+            "summary": "Video port name.",
             "type":"string",
             "example": "HDMI0"
         },
@@ -135,7 +135,7 @@
             "type": "string",
             "example": "1080p"
         },
-	"w":{
+	    "w":{
             "summary":"The width",
             "type": "number",
             "example": 1920
@@ -145,7 +145,7 @@
             "type": "number",
             "example": 1080
         },
-	"progressive":{
+	    "progressive":{
             "summary":"The type of scan signal",
             "type": "boolean",
             "example": true
@@ -174,7 +174,7 @@
             "example": true
         },
         "videoDisplay": {
-            "summary": "Video display port name. The default port is `HDMI0` if no port is specified",
+            "summary": "Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list.",
             "default": "HDMI0",
             "type": "string",
             "example": "HDMI0"
@@ -210,12 +210,11 @@
             ],
             "example": "12 Bit"
         },
-	"ms12config": {
+	    "ms12config": {
             "summary": "Supported ms12 config by platforms, possible values, CONFIG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE",
             "type": "string",
             "example": "CONFIG_X"
         }
-
     },
     "methods": {
         "enableSurroundDecoder":{
@@ -2066,7 +2065,7 @@
             }
         },
         "setDolbyVolumeMode":{
-            "summary": "Enables or disables Dolby Volume mode on audio track (audio output port HDMI0).",
+            "summary": "Enables or disables Dolby Volume mode on audio track (audio output port HDMI0). Only applicable on `STB` profile with `HDMI0`. See `getConnectedAudioPorts` for related status.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2133,7 +2132,7 @@
                 "type": "object",
                 "properties": {
                     "hdr_mode": {
-                        "summary": "`true` to force the HDR format or `false` to reset the mode to the default.",
+                        "summary": "`true` to force the HDR format or `false` to reset the mode to the default. See response of `getSettopHDRSupport` `result.supportsHDR` and response of `getTvHDRSupport` `result.capabilities` to decide `hdr_mode` on `STB`s. On `TV` devices use the later only.",
                         "type": "boolean",
                         "example": true
                     }
