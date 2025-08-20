@@ -44,7 +44,7 @@ namespace Exchange {
         enum AudioPortState : uint8_t {
             AUDIO_PORT_STATE_UNINITIALIZED = 0,
             AUDIO_PORT_STATE_INITIALIZED   = 1,
-            dsAUDIOPORT_STATE_MAX          = 2
+            AUDIO_PORT_STATE_MAX           = 2
         };
 
         enum AudioEncoding : uint8_t {
@@ -191,9 +191,9 @@ namespace Exchange {
         struct AudioConfig {
            int32_t typeId;
            string  name;
-           IDeviceSettingsAudioCompressionIterator *audioCompressions;
-           IDeviceSettingsAudioEncodingIterator *audioEncodings;
-           IDeviceSettingsStereoModeIterator *stereoModes;
+           // IDeviceSettingsAudioCompressionIterator *audioCompressions;
+           // IDeviceSettingsAudioEncodingIterator *audioEncodings;
+           // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
         struct AudioARCStatus { 
