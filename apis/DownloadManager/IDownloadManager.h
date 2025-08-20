@@ -1,8 +1,5 @@
 #pragma once
 #include "Module.h"
-#include <utility>
-
-// @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -16,15 +13,6 @@ namespace Exchange {
             DISK_PERSISTENCE_FAILURE
         };
 
-        //struct PackageInfo {
-        //    string downloadId;
-        //    string fileLocator;
-        //    Reason reason;
-        //};
-
-        //typedef std::vector<PackageInfo> PackageInfoList;
-        //using IPackageIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
-
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_DOWNLOAD_MANAGER_NOTIFICATION };
@@ -32,9 +20,7 @@ namespace Exchange {
 
             // @brief OnAppDownloadStatus Callback for status changes of app downloads
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(const string& jsonresponse) {
-                // Thunder does not support neither standard collection nor RPC::IIteratorType in notification
-            }
+            virtual void OnAppDownloadStatus(const string& jsonresponse) {}
         };
 
         ~IDownloadManager() override = default;
