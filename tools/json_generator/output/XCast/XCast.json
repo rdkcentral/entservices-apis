@@ -49,8 +49,13 @@
             "type": "string",
             "example": "active"
         },
-        "names": {
-            "summary": "case-sensitive. Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
+        "appname": {
+            "summary": "case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
+	    "type": "string",
+	    "example": "Youtube"
+        },
+        "appnames": {
+            "summary": "case-sensitive. Group of Application names in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
             "type": "array",
             "items": {
                "type": "string",
@@ -59,11 +64,8 @@
         },
         "prefixes": {
             "summary": "If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail.",
-            "type": "array",
-            "items": {
-               "type": "string",
-               "example": "myYouTube"
-            }
+	    "type": "string",
+	    "example": "myYouTube"
         },
         "cors": {
             "summary": "a set of origins allowed for the application. This must not be empty",
@@ -100,7 +102,7 @@
                "type": "object",
                "properties": {
                     "names": {
-                        "$ref": "#/definitions/names"
+                        "$ref": "#/definitions/appname"
                     },
                     "prefixes": {
                         "$ref": "#/definitions/prefixes"
@@ -292,9 +294,7 @@
                 "type":"object",
                 "properties": {
                     "applications": {
-                        "summary": "One or more application name to unregister",
-                        "type": "string",
-                        "example": ["YouTube","Netflix"]
+                        "$ref": "#/definitions/appnames"
                     }
                 },
                 "required": [
