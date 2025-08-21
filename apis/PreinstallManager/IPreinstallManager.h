@@ -45,12 +45,12 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
         };
 
 
-    // struct AppInstallInfo {
-    //     string packageId;
-    //     string version;
-    //     PreinstallState state;
-    //     PreinstallFailReason failReason;
-    // };
+    struct AppInstallInfo {
+        string packageId;
+        string version;
+        PreinstallState state;
+        PreinstallFailReason failReason;
+    };
 
 
     // using IAppInstallInfoIterator = RPC::IIteratorType<AppInstallInfo, ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR>;
