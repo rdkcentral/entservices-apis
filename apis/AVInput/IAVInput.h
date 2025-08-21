@@ -39,8 +39,8 @@ namespace WPEFramework
 
             struct EXTERNAL MixerLevels
             {
-                uint8_t primaryVolume;
-                uint8_t playerVolume;
+                int primaryVolume;
+                int playerVolume;
             };
 
             enum EXTERNAL VideoPlaneType
@@ -179,7 +179,7 @@ namespace WPEFramework
             // @brief Sets an HDMI ALLM bit in EDID
             // @param id - in - The ID of the input device to set the ALLM bit for
             // @param allm - in - The ALLM bit value to set
-            virtual Core::hresult SetEdid2AllmSupport(int id /* @in */, const bool &allm /* @in */) = 0;
+            virtual Core::hresult SetEdid2AllmSupport(int id /* @in */, bool allm /* @in */) = 0;
 
             // @text getEdid2AllmSupport
             // @brief Returns the ALLM bit in EDID
@@ -205,16 +205,15 @@ namespace WPEFramework
             // @param hdmiVersion - out - The HDMI compatibility version
             virtual Core::hresult GetHdmiVersion(int id /* @in */, string &hdmiVersion /* @out */) = 0;
 
-            // @text setMixerLevels
+            // @text setAudioMixerLevels
             // @brief Sets the mixer levels for the specified input device
-            // @param id - in - The ID of the input device to set the mixer levels for
             // @param levels - in - The mixer levels to set
-            virtual Core::hresult SetMixerLevels(int id /* @in */, const MixerLevels &levels /* @in */) = 0;
+            virtual Core::hresult SetAudioMixerLevels(Exchange::IAVInput::MixerLevels levels /* @in */) = 0;
 
             // @text startInput
             // @brief Starts the specified input device
             // @param id - in - The ID of the input device to start
-            virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, const Exchange::IAVInput::VideoPlaneType &planeType /* @in */, bool topMostPlane /* @in */) = 0;
+            virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, Exchange::IAVInput::VideoPlaneType planeType /* @in */, bool topMostPlane /* @in */) = 0;
 
             // @text stopInput
             // @brief Stops the specified input device
