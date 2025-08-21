@@ -78,7 +78,7 @@ namespace Exchange {
             AUDIO_FORMAT_DOLBY_TRUEHD       = 6,
             AUDIO_FORMAT_DOLBY_EAC3_ATMOS   = 7,
             AUDIO_FORMAT_DOLBY_TRUEHD_ATMOS = 8,
-            AUDIO_FORMAT_DOLBY_MAT_ATMOS    = 0,
+            AUDIO_FORMAT_DOLBY_MAT_ATMOS    = 9,
             AUDIO_FORMAT_DOLBY_AC4_ATMOS    = 10,
             AUDIO_FORMAT_AAC                = 11,
             AUDIO_FORMAT_VORBIS             = 12,
@@ -810,7 +810,7 @@ namespace Exchange {
             DS_COMPOSITE_IN_SIGNAL_STATUS_UNSTABLE      = 1 /* @text Signal Status Unstable */,
             DS_COMPOSITE_IN_SIGNAL_STATUS_NOTSUPPORTED  = 2 /* @text Signal Status Not supported */,
             DS_COMPOSITE_IN_SIGNAL_STATUS_STABLE        = 3 /* @text Signal Status Stable */,
-            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX           = 4 /* @test Signal Status MAX */
+            DS_COMPOSITE_IN_SIGNAL_STATUS_MAX           = 4 /* @text Signal Status MAX */
         };
 
         struct CompositeInStatus {
