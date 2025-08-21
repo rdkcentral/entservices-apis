@@ -69,11 +69,8 @@
         },
         "cors": {
             "summary": "a set of origins allowed for the application. This must not be empty",
-            "type": "array",
-            "items": {
-               "type": "string",
-               "example": ".youtube.com"
-            }
+	    "type": "string",
+	    "example": ".youtube.com"
         },
 	"query": {
 	    "summary": "query string that need to be appended in launch request",

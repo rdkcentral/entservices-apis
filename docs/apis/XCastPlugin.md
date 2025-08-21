@@ -423,8 +423,7 @@ No Events
 | params.applications[#] | object |  |
 | params.applications[#].names | string | case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
 | params.applications[#]?.prefixes | string | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#]?.cors | array | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
-| params.applications[#]?.cors[#] | string | <sup>*(optional)*</sup>  |
+| params.applications[#]?.cors | string | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
 | params.applications[#]?.query | string | <sup>*(optional)*</sup> query string that need to be appended in launch request |
 | params.applications[#]?.payload | string | <sup>*(optional)*</sup> optional payload string that need to be appended in launch request |
 | params.applications[#]?.allowStop | boolean | <sup>*(optional)*</sup> is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched |
@@ -450,9 +449,7 @@ No Events
             {
                 "names": "Youtube",
                 "prefixes": "myYouTube",
-                "cors": [
-                    ".youtube.com"
-                ],
+                "cors": ".youtube.com",
                 "query": "source_type=12",
                 "payload": "...",
                 "allowStop": true
