@@ -85,11 +85,12 @@ namespace WPEFramework
             // @text setLED
             // @param ledIndiciator: LED indicator to set
             // @param brightness: Brightness level of the LED
+            // @param color: Color of the LED
             // @param red: Red component of the LED color
             // @param green: Green component of the LED color
             // @param blue: Blue component of the LED color
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetLED(const string &ledIndiciator, const uint32_t &brightness, const uint32_t &red, const uint32_t &green, const uint32_t &blue, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetLED(const string &ledIndiciator, const uint32_t &brightness, const string& color, const uint32_t &red, const uint32_t &green, const uint32_t &blue, FrontPanelSuccess &success /* @out */) = 0;
 
         };
 } // namespace Exchange
