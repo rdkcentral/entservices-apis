@@ -49,25 +49,25 @@ DisplaySettings interface methods:
 | [getActiveInput](#getActiveInput) | Returns `true` if the STB HDMI output is currently connected to the active input of the sink device (determined by `RxSense`) |
 | [getAudioDelay](#getAudioDelay) | Returns the audio delay (in ms) on the selected audio port |
 | [getAudioDelayOffset](#getAudioDelayOffset) | Returns the audio delay offset (in ms) on the selected audio port |
-| [getAudioFormat](#getAudioFormat) | Returns the currently set audio format |
-| [getBassEnhancer](#getBassEnhancer) | Returns the current status of the Bass Enhancer settings |
+| [getAudioFormat](#getAudioFormat) | Returns the currently set audio format as well as all the supported audio formats |
+| [getBassEnhancer](#getBassEnhancer) | Returns the current status of the Bass Enhancer settings of the specified `audioPort` |
 | [getConnectedAudioPorts](#getConnectedAudioPorts) | Returns connected audio output ports (a subset of the ports supported on the device) |
 | [getConnectedVideoDisplays](#getConnectedVideoDisplays) | Returns connected video displays |
-| [getCurrentOutputSettings](#getCurrentOutputSettings) | Returns current output settings |
+| [getCurrentOutputSettings](#getCurrentOutputSettings) | Returns current output settings of `HDMI0` or `INTERNAL0` or the first available port |
 | [getCurrentResolution](#getCurrentResolution) | Returns the current resolution on the selected video display port |
-| [getDefaultResolution](#getDefaultResolution) | Gets the default resolution supported by the HDMI0 video output port |
+| [getDefaultResolution](#getDefaultResolution) | Gets the default resolution supported by the current video output port |
 | [getDialogEnhancement](#getDialogEnhancement) | Returns the current Dialog Enhancer level (port HDMI0) |
 | [getDolbyVolumeMode](#getDolbyVolumeMode) | Returns whether Dolby Volume mode is enabled or disabled (audio output port HDMI0) |
-| [getDRCMode](#getDRCMode) | Returns the current Dynamic Range Control mode |
-| [getEnableAudioPort](#getEnableAudioPort) |  Returns the current status of the specified input audio port |
-| [setAssociatedAudioMixing](#setAssociatedAudioMixing) | Sets the Associated Audio Mixing Enable/Disable |
-| [getAssociatedAudioMixing](#getAssociatedAudioMixing) | Returns the Associated Audio Mixing status |
-| [setFaderControl](#setFaderControl) | Sets the set the mixerbalance betweeen main and associated audio |
-| [getFaderControl](#getFaderControl) | Returns the mixerbalance betweeen main and associated audio |
-| [setPrimaryLanguage](#setPrimaryLanguage) | Sets the Primary language |
-| [getPrimaryLanguage](#getPrimaryLanguage) | Returns the Primary language |
-| [setSecondaryLanguage](#setSecondaryLanguage) | Sets the secondary language |
-| [getSecondaryLanguage](#getSecondaryLanguage) | Returns the Secondary language |
+| [getDRCMode](#getDRCMode) | Returns the current Dynamic Range Control mode of the specified `audioPort` |
+| [getEnableAudioPort](#getEnableAudioPort) | Returns the current status of the specified audio port |
+| [setAssociatedAudioMixing](#setAssociatedAudioMixing) | Sets the Associated Audio Mixing `Enable/Disable` on the specified `audioPort` |
+| [getAssociatedAudioMixing](#getAssociatedAudioMixing) | Returns the Associated Audio Mixing status of the specified `audioPort` |
+| [setFaderControl](#setFaderControl) | Sets the configured `mixerBalance` betweeen main and associated audio on the specified `audioPort` |
+| [getFaderControl](#getFaderControl) | Returns the mixerbalance betweeen main and associated audio on the specified `audioPort` |
+| [setPrimaryLanguage](#setPrimaryLanguage) | Sets the Primary language for the specified `audioPort` |
+| [getPrimaryLanguage](#getPrimaryLanguage) | Returns the Primary language for the specified `audioPort` |
+| [setSecondaryLanguage](#setSecondaryLanguage) | Sets the secondary language for the specified `audioPort` |
+| [getSecondaryLanguage](#getSecondaryLanguage) | Returns the Secondary language for the specified `audioPort` |
 | [getGain](#getGain) | Returns the current gain value |
 | [getGraphicEqualizerMode](#getGraphicEqualizerMode) | Returns the current Graphic Equalizer Mode setting (port HDMI0) |
 | [getIntelligentEqualizerMode](#getIntelligentEqualizerMode) | Returns the current Intelligent Equalizer Mode setting (port HDMI0) |
@@ -75,11 +75,11 @@ DisplaySettings interface methods:
 | [getMS12AudioCompression](#getMS12AudioCompression) | Returns the current audio compression settings |
 | [getMS12AudioProfile](#getMS12AudioProfile) | Returns the current MS12 audio profile settings |
 | [getMuted](#getMuted) | Returns whether audio is muted on a given port |
-| [getPreferredColorDepth](#getPreferredColorDepth) | Returns the current color depth on the selected video display port |
-| [getSettopAudioCapabilities](#getSettopAudioCapabilities) | Returns the set-top audio capabilities for the specified audio port |
+| [getPreferredColorDepth](#getPreferredColorDepth) | Returns the current color depth on the specified `videoDisplay` port |
+| [getSettopAudioCapabilities](#getSettopAudioCapabilities) | Returns the set-top audio capabilities for the specified output `audioPort` |
 | [getSettopHDRSupport](#getSettopHDRSupport) | Returns an HDR support object (list of standards that the STB supports) |
-| [getSettopMS12Capabilities](#getSettopMS12Capabilities) | Returns the set-top MS12 audio capabilities for the specified audio port |
-| [getSinkAtmosCapability](#getSinkAtmosCapability) | Returns the ATMOS capability of the sink (HDMI0) |
+| [getSettopMS12Capabilities](#getSettopMS12Capabilities) | Returns the set-top MS12 audio capabilities for the specified output `audioPort` |
+| [getSinkAtmosCapability](#getSinkAtmosCapability) | Returns the ATMOS capability of the specified `audioPort` sink |
 | [getSoundMode](#getSoundMode) | Returns the sound mode for the incoming video display |
 | [getSupportedAudioModes](#getSupportedAudioModes) | Returns a list of strings containing the supported audio modes |
 | [getSupportedAudioPorts](#getSupportedAudioPorts) | Returns all audio ports supported on the device (all ports that are physically present) |
@@ -88,15 +88,15 @@ DisplaySettings interface methods:
 | [getSupportedSettopResolutions](#getSupportedSettopResolutions) | Returns supported STB resolutions |
 | [getSupportedTvResolutions](#getSupportedTvResolutions) | Returns supported TV resolutions on the selected video display port |
 | [getSupportedVideoDisplays](#getSupportedVideoDisplays) | Returns all video ports supported on the device (all ports that are physically present) |
-| [getSurroundVirtualizer](#getSurroundVirtualizer) | (Version 2) Returns the current surround virtualizer boost settings |
+| [getSurroundVirtualizer](#getSurroundVirtualizer) | (Version 2) Returns the current surround virtualizer boost settings of the specified `audioPort` |
 | [getTVHDRCapabilities](#getTVHDRCapabilities) | Gets HDR capabilities supported by the TV |
 | [getTvHDRSupport](#getTvHDRSupport) | Returns an HDR support object (list of standards that the TV supports) |
 | [getVideoFormat](#getVideoFormat) | Returns the current and supported video formats |
-| [getVideoPortStatusInStandby](#getVideoPortStatusInStandby) | Returns video port status in standby mode (failure if the port name is missing) |
+| [getVideoPortStatusInStandby](#getVideoPortStatusInStandby) | Returns video port status in standby mode |
 | [getVolumeLevel](#getVolumeLevel) | Returns the current volume level |
-| [getVolumeLeveller](#getVolumeLeveller) | (Version 2) Returns the current Volume Leveller setting |
+| [getVolumeLeveller](#getVolumeLeveller) | (Version 2) Returns the current Volume Leveller setting of specified `audioPort` |
 | [getZoomSetting](#getZoomSetting) | Returns the zoom setting value |
-| [isConnectedDeviceRepeater](#isConnectedDeviceRepeater) | Indicates whether the device connected to the HDMI0 video output port is an HDCP repeater |
+| [isConnectedDeviceRepeater](#isConnectedDeviceRepeater) | Indicates whether the device connected to the current video output port is an HDCP repeater |
 | [isSurroundDecoderEnabled](#isSurroundDecoderEnabled) | Returns the current status of Surround Decoder |
 | [readEDID](#readEDID) | Reads the EDID from the connected HDMI (output) device |
 | [readHostEDID](#readHostEDID) | Reads the EDID of the host |
@@ -104,15 +104,15 @@ DisplaySettings interface methods:
 | [resetDialogEnhancement](#resetDialogEnhancement) | Resets the dialog enhancer level to its default enhancer level |
 | [resetSurroundVirtualizer](#resetSurroundVirtualizer) | Resets the surround virtualizer to its default boost value |
 | [resetVolumeLeveller](#resetVolumeLeveller) | Resets the Volume Leveller level to default volume value |
-| [setAudioAtmosOutputMode](#setAudioAtmosOutputMode) | Sets ATMOS audio output mode (on HDMI0) |
+| [setAudioAtmosOutputMode](#setAudioAtmosOutputMode) | Sets ATMOS audio output mode for the specified `audioPort` |
 | [setAudioDelay](#setAudioDelay) | Sets the audio delay (in ms) on the selected audio port |
 | [setAudioDelayOffset](#setAudioDelayOffset) | Sets the audio delay offset (in ms) on the selected audio port |
 | [setBassEnhancer](#setBassEnhancer) | Sets the Bass Enhancer |
-| [setCurrentResolution](#setCurrentResolution) | Sets the current resolution |
+| [setCurrentResolution](#setCurrentResolution) | Sets the current resolution to specified value |
 | [setDialogEnhancement](#setDialogEnhancement) | Sets the Dialog Enhancer level |
 | [setDolbyVolumeMode](#setDolbyVolumeMode) | Enables or disables Dolby Volume mode on audio track (audio output port HDMI0) |
 | [setDRCMode](#setDRCMode) | Sets the Dynamic Range Control (DRC) setting |
-| [setEnableAudioPort](#setEnableAudioPort) | Enable or disable the specified audio port based on the input audio port name |
+| [setEnableAudioPort](#setEnableAudioPort) | This method provides option to enable or disable the specified audio port |
 | [setForceHDRMode](#setForceHDRMode) | Enables or disables the force HDR mode |
 | [setGain](#setGain) | Adjusts the gain on a specific port |
 | [setGraphicEqualizerMode](#setGraphicEqualizerMode) | Sets the Graphic Equalizer Mode |
@@ -120,18 +120,18 @@ DisplaySettings interface methods:
 | [setMISteering](#setMISteering) | Enables or Disables Media Intelligent Steering |
 | [setMS12AudioCompression](#setMS12AudioCompression) | Sets the audio dynamic range compression level (port HDMI0) |
 | [setMS12AudioProfile](#setMS12AudioProfile) | Sets the selected MS12 audio profile |
-| [setMS12ProfileSettingsOverride](#setMS12ProfileSettingsOverride) | Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode) |
+| [setMS12ProfileSettingsOverride](#setMS12ProfileSettingsOverride) | Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode) on the specified or current audio out |
 | [setMuted](#setMuted) | Mutes or unmutes audio on a specific port |
-| [setPreferredColorDepth](#setPreferredColorDepth) | Sets the current color depth for the videoDisplay |
-| [setScartParameter](#setScartParameter) | Sets SCART parameters |
+| [setPreferredColorDepth](#setPreferredColorDepth) | Sets the current color depth for the output `videoDisplay` |
+| [setScartParameter](#setScartParameter) | This method allows to configure SCART(Syndicat des Constructeurs d'Appareils Radiorécepteurs et Téléviseurs) specific settings |
 | [setSoundMode](#setSoundMode) | Sets the current sound mode for the corresponding video display |
 | [setSurroundVirtualizer](#setSurroundVirtualizer) | (Version 2) Sets the Surround Virtualizer boost |
-| [setVideoPortStatusInStandby](#setVideoPortStatusInStandby) | Sets the specified video port status to be used in standby mode (failure if the port name is missing) |
+| [setVideoPortStatusInStandby](#setVideoPortStatusInStandby) | Sets the specified video port status to be used in standby mode |
 | [setVolumeLevel](#setVolumeLevel) | Adjusts the Volume Level on a specific port |
-| [setVolumeLeveller](#setVolumeLeveller) | (Version 2) Sets the Volume Leveller level |
+| [setVolumeLeveller](#setVolumeLeveller) | (Version 2) Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources |
 | [setZoomSetting](#setZoomSetting) | Sets the current zoom value |
-| [getColorDepthCapabilities](#getColorDepthCapabilities) | Returns supported color depth capabilities |
-| [getSupportedMS12Config](#getSupportedMS12Config) | Returns supported ms12 config by the platform, possible values couldbe CONFG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE |
+| [getColorDepthCapabilities](#getColorDepthCapabilities) | Returns supported color depth capabilities of the current video output port(`HDMI0` if available, otherwise `INTERNAL0`, or first available port) |
+| [getSupportedMS12Config](#getSupportedMS12Config) | Returns supported ms12 config by the platform, possible values: `CONFIG_Z`, `CONFIG_X`, `CONFIG_Y`, `CONFIG_NONE` |
 
 
 <a name="enableSurroundDecoder"></a>
@@ -148,7 +148,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.surroundDecoderEnable | boolean | Whether Surround Decoder is is enabled (`true`) or disabled (`false`) |
 
 ### Result
@@ -200,7 +200,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 
 ### Result
 
@@ -345,7 +345,7 @@ No Events
 <a name="getAudioFormat"></a>
 ## *getAudioFormat*
 
-Returns the currently set audio format.
+Returns the currently set audio format as well as all the supported audio formats.
 
 ### Events
 
@@ -396,7 +396,7 @@ This method takes no parameters.
 <a name="getBassEnhancer"></a>
 ## *getBassEnhancer*
 
-Returns the current status of the Bass Enhancer settings.
+Returns the current status of the Bass Enhancer settings of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -407,7 +407,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -450,7 +450,7 @@ No Events
 <a name="getConnectedAudioPorts"></a>
 ## *getConnectedAudioPorts*
 
-Returns connected audio output ports (a subset of the ports supported on the device). For SPDIF supported platforms, SPDIF port is always considered connected. HDMI port may or may not be connected.
+Returns connected audio output ports (a subset of the ports supported on the device). SPDIF port is always considered `connected` on a supported platform. HDMI port may or may not be connected.
 
 ### Events
 
@@ -548,7 +548,7 @@ This method takes no parameters.
 <a name="getCurrentOutputSettings"></a>
 ## *getCurrentOutputSettings*
 
-Returns current output settings.
+Returns current output settings of `HDMI0` or `INTERNAL0` or the first available port.
 
 ### Events
 
@@ -563,11 +563,11 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.colorSpace | integer | The color space. Possible values: `0` (dsDISPLAY_COLORSPACE_UNKNOWN), `1` (sDISPLAY_COLORSPACE_RGB, `2` (dsDISPLAY_COLORSPACE_YCbCr422), `3` (dsDISPLAY_COLORSPACE_YCbCr444), `4` (dsDISPLAY_COLORSPACE_YCbCr420), `5` (dsDISPLAY_COLORSPACE_AUTO) |
-| result.colorDepth | integer | The color depth. The value that is returned from `dsGetCurrentOutputSettings` |
-| result.matrixCoefficients | integer | matrix coefficients. Possible values: `0` (dsDISPLAY_MATRIXCOEFFICIENT_UNKNOWN), `1` (dsDISPLAY_MATRIXCOEFFICIENT_BT_709), `2` (dsDISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG), `3` (dsDISPLAY_MATRIXCOEFFICIENT_SMPTE_170M), `4` (dsDISPLAY_MATRIXCOEFFICIENT_XvYCC_709), `5` (dsDISPLAY_MATRIXCOEFFICIENT_eXvYCC_601), `6` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL), `7` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_CL) |
-| result.videoEOTF | integer | HDR standard. Possible values: `0x0` (dsHDRSTANDARD_NONE), `0x01` (dsHDRSTANDARD_HDR10), `0x02` (dsHDRSTANDARD_HLG), `0x04` (dsHDRSTANDARD_DolbyVision), `0x08` (dsHDRSTANDARD_TechnicolorPrime), `0x10` (dsHDRSTANDARD_HDR10PLUS), `0x20` (dsHDRSTANDARD_SDR), `0x80` (dsHDRSTANDARD_Invalid) |
-| result?.quantizationRange | integer | <sup>*(optional)*</sup> The supported quantization range |
+| result.colorSpace | integer | Defines how color information is represented, encoded and displayed. Possible values: `0` (dsDISPLAY_COLORSPACE_UNKNOWN), `1` (sDISPLAY_COLORSPACE_RGB, `2` (dsDISPLAY_COLORSPACE_YCbCr422), `3` (dsDISPLAY_COLORSPACE_YCbCr444), `4` (dsDISPLAY_COLORSPACE_YCbCr420), `5` (dsDISPLAY_COLORSPACE_AUTO) |
+| result.colorDepth | integer | The number of bits used for each color channel (e.g., 8-bit, 10-bit, 12-bit). Higher color depth allows more precise color representation. Here the value that is returned from `dsGetCurrentOutputSettings` |
+| result.matrixCoefficients | integer | Specifies the mathematical conversion between color spaces (e.g., BT.709, BT.2020). This affects how colors are mapped from one standard to another. Possible values: `0` (dsDISPLAY_MATRIXCOEFFICIENT_UNKNOWN), `1` (dsDISPLAY_MATRIXCOEFFICIENT_BT_709), `2` (dsDISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG), `3` (dsDISPLAY_MATRIXCOEFFICIENT_SMPTE_170M), `4` (dsDISPLAY_MATRIXCOEFFICIENT_XvYCC_709), `5` (dsDISPLAY_MATRIXCOEFFICIENT_eXvYCC_601), `6` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL), `7` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_CL) |
+| result.videoEOTF | integer | Current EOTF (Electro-Optical Transfer Function) also known as HDR standard. Possible values: `0x0` (dsHDRSTANDARD_NONE), `0x01` (dsHDRSTANDARD_HDR10), `0x02` (dsHDRSTANDARD_HLG), `0x04` (dsHDRSTANDARD_DolbyVision), `0x08` (dsHDRSTANDARD_TechnicolorPrime), `0x10` (dsHDRSTANDARD_HDR10PLUS), `0x20` (dsHDRSTANDARD_SDR), `0x80` (dsHDRSTANDARD_Invalid) |
+| result?.quantizationRange | integer | <sup>*(optional)*</sup> The range of values used to represent color (e.g., limited range `16 to 235`, full range `0 to 255`). It affects contrast and black/white levels. Current supported quantization range |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -602,7 +602,7 @@ This method takes no parameters.
 <a name="getCurrentResolution"></a>
 ## *getCurrentResolution*
 
-Returns the current resolution on the selected video display port.
+Returns the current resolution on the selected video display port. Defaults to `HDMI0` if available, otherwise `INTERNAL0`, or first available port if not specified.
 
 ### Events
 
@@ -613,7 +613,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 
 ### Result
 
@@ -660,7 +660,7 @@ No Events
 <a name="getDefaultResolution"></a>
 ## *getDefaultResolution*
 
-Gets the default resolution supported by the HDMI0 video output port.
+Gets the default resolution supported by the current video output port.
 
 ### Events
 
@@ -675,7 +675,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.defaultResolution | string | Default resolution supported by the HDMI0 video output port |
+| result.defaultResolution | string | Default resolution supported by the current video output port |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -717,7 +717,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -806,7 +806,7 @@ This method takes no parameters.
 <a name="getDRCMode"></a>
 ## *getDRCMode*
 
-Returns the current Dynamic Range Control mode.
+Returns the current Dynamic Range Control mode of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -817,7 +817,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -858,7 +858,7 @@ No Events
 <a name="getEnableAudioPort"></a>
 ## *getEnableAudioPort*
 
- Returns the current status of the specified input audio port.
+Returns the current status of the specified audio port. If not specified, defaults `audioPort` to `HDMI0`.
 
 ### Events
 
@@ -910,7 +910,7 @@ No Events
 <a name="setAssociatedAudioMixing"></a>
 ## *setAssociatedAudioMixing*
 
-Sets the Associated Audio Mixing Enable/Disable.
+Sets the Associated Audio Mixing `Enable/Disable` on the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -921,7 +921,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.mixing | boolean | `true` enables the Associated Audio Mixing for specified audio port. `false` to disables |
 
 ### Result
@@ -962,7 +962,7 @@ No Events
 <a name="getAssociatedAudioMixing"></a>
 ## *getAssociatedAudioMixing*
 
-Returns the Associated Audio Mixing status.
+Returns the Associated Audio Mixing status of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -973,7 +973,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1014,7 +1014,7 @@ No Events
 <a name="setFaderControl"></a>
 ## *setFaderControl*
 
-Sets the set the mixerbalance betweeen main and associated audio.
+Sets the configured `mixerBalance` betweeen main and associated audio on the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else applies globally using `Host::setFaderControl()`.
 
 ### Events
 
@@ -1025,7 +1025,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.mixerBalance | integer | Value between -32 to +32, where -32 means mute associated and +32 means mute main |
 
 ### Result
@@ -1066,7 +1066,7 @@ No Events
 <a name="getFaderControl"></a>
 ## *getFaderControl*
 
-Returns the mixerbalance betweeen main and associated audio.
+Returns the mixerbalance betweeen main and associated audio on the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global mixer balance from `Host::getFaderControl()`.
 
 ### Events
 
@@ -1077,7 +1077,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1118,7 +1118,7 @@ No Events
 <a name="setPrimaryLanguage"></a>
 ## *setPrimaryLanguage*
 
-Sets the Primary language.
+Sets the Primary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` output if not specified when available. Else applies globally with `Host::setPrimaryLanguage()`.
 
 ### Events
 
@@ -1129,7 +1129,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.lang | string | 3 letter lang code should be used as per ISO 639 |
 
 ### Result
@@ -1170,7 +1170,7 @@ No Events
 <a name="getPrimaryLanguage"></a>
 ## *getPrimaryLanguage*
 
-Returns the Primary language.
+Returns the Primary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global primary language from `Host::getPrimaryLanguage()`.
 
 ### Events
 
@@ -1181,7 +1181,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1222,7 +1222,7 @@ No Events
 <a name="setSecondaryLanguage"></a>
 ## *setSecondaryLanguage*
 
-Sets the secondary language.
+Sets the secondary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` output if not specified when available. Else applies globally with `Host::setSecondaryLanguage()`.
 
 ### Events
 
@@ -1233,7 +1233,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.lang | string | 3 letter lang code should be used as per ISO 639 |
 
 ### Result
@@ -1274,7 +1274,7 @@ No Events
 <a name="getSecondaryLanguage"></a>
 ## *getSecondaryLanguage*
 
-Returns the Secondary language.
+Returns the Secondary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global secondary language from `Host::getSecondaryLanguage()`.
 
 ### Events
 
@@ -1285,7 +1285,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1337,7 +1337,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1389,7 +1389,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1443,7 +1443,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1497,7 +1497,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1549,7 +1549,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1603,7 +1603,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1655,7 +1655,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1696,7 +1696,7 @@ No Events
 <a name="getPreferredColorDepth"></a>
 ## *getPreferredColorDepth*
 
-Returns the current color depth on the selected video display port.
+Returns the current color depth on the specified `videoDisplay` port. Defaults to `HDMI0` if available, otherwise `INTERNAL0`, or first available port if not specified.
 
 ### Events
 
@@ -1707,7 +1707,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 | params?.persist | boolean | <sup>*(optional)*</sup> Persists the color depth |
 
 ### Result
@@ -1750,7 +1750,7 @@ No Events
 <a name="getSettopAudioCapabilities"></a>
 ## *getSettopAudioCapabilities*
 
-Returns the set-top audio capabilities for the specified audio port.
+Returns the set-top audio capabilities for the specified output `audioPort`. If not specified, defaults to `HDMI0`.
 
 ### Events
 
@@ -1761,7 +1761,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1856,7 +1856,7 @@ This method takes no parameters.
 <a name="getSettopMS12Capabilities"></a>
 ## *getSettopMS12Capabilities*
 
-Returns the set-top MS12 audio capabilities for the specified audio port.
+Returns the set-top MS12 audio capabilities for the specified output `audioPort`. If not specified, defaults to `HDMI0`.
 
 ### Events
 
@@ -1867,7 +1867,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1911,7 +1911,7 @@ No Events
 <a name="getSinkAtmosCapability"></a>
 ## *getSinkAtmosCapability*
 
-Returns the ATMOS capability of the sink (HDMI0).
+Returns the ATMOS capability of the specified `audioPort` sink. Defaults to `HDMI0` if not specified on `STB` and on `TV` it returns the ATMOS capability of the current output port, e.g: `ARC`. See `getConnectedAudioPorts` and `getSupportedAudioPorts` for possible values.
 
 ### Events
 
@@ -1922,7 +1922,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -1974,7 +1974,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2031,7 +2031,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2135,7 +2135,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2190,7 +2190,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 
 ### Result
 
@@ -2294,7 +2294,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 
 ### Result
 
@@ -2387,7 +2387,7 @@ This method takes no parameters.
 <a name="getSurroundVirtualizer"></a>
 ## *getSurroundVirtualizer*
 
-(Version 2) Returns the current surround virtualizer boost settings.
+(Version 2) Returns the current surround virtualizer boost settings of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -2398,7 +2398,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2596,7 +2596,7 @@ This method takes no parameters.
 <a name="getVideoPortStatusInStandby"></a>
 ## *getVideoPortStatusInStandby*
 
-Returns video port status in standby mode (failure if the port name is missing).
+Returns video port status in standby mode.
 
 ### Events
 
@@ -2661,7 +2661,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2702,7 +2702,7 @@ No Events
 <a name="getVolumeLeveller"></a>
 ## *getVolumeLeveller*
 
-(Version 2) Returns the current Volume Leveller setting.
+(Version 2) Returns the current Volume Leveller setting of specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -2713,7 +2713,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -2802,7 +2802,7 @@ This method takes no parameters.
 <a name="isConnectedDeviceRepeater"></a>
 ## *isConnectedDeviceRepeater*
 
-Indicates whether the device connected to the HDMI0 video output port is an HDCP repeater.
+Indicates whether the device connected to the current video output port is an HDCP repeater.
 
 ### Events
 
@@ -2859,7 +2859,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -3003,7 +3003,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -3053,7 +3053,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -3103,7 +3103,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -3153,7 +3153,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 
 ### Result
 
@@ -3192,7 +3192,7 @@ No Events
 <a name="setAudioAtmosOutputMode"></a>
 ## *setAudioAtmosOutputMode*
 
-Sets ATMOS audio output mode (on HDMI0).
+Sets ATMOS audio output mode for the specified `audioPort`. Defaults to `HDMI0` output if not specified. On devices which does not have `HDMI0` output, it will apply the setting globally.
 
 ### Events
 
@@ -3253,7 +3253,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.audioPort | string | Audio port name. See `getSupportedAudioPorts` for list of `audioPort`s |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name. See `getSupportedAudioPorts` for list of `audioPort`s |
 | params.audioDelay | string | Delay (in ms) on the selected audio port |
 
 ### Result
@@ -3357,7 +3357,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.bassBoost | integer | Value between 0 and 100, where 0 means no bass boost (disabled) and 100 means max bass boost |
 
 ### Result
@@ -3398,7 +3398,7 @@ No Events
 <a name="setCurrentResolution"></a>
 ## *setCurrentResolution*
 
-Sets the current resolution.
+Sets the current resolution to specified value. See `getSupportedVideoDisplays` for supported `videoDisplay`. And see `getSupportedResolutions` for supported `resolution`.
 
 ### Events
 
@@ -3411,9 +3411,9 @@ Sets the current resolution.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params.videoDisplay | string | Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 | params.resolution | string | Video display resolution |
-| params?.persist | boolean | <sup>*(optional)*</sup> Persists the resolution |
+| params?.persist | boolean | <sup>*(optional)*</sup> Persists the resolution across reboots |
 | params?.ignoreEdid | boolean | <sup>*(optional)*</sup> Ignore the supported resolutions as transmitted by the connected TV EDID |
 
 ### Result
@@ -3467,7 +3467,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.enhancerlevel | integer | Value between 0 and 16, where 0 means no enhancement and 16 means maximum enhancement |
 
 ### Result
@@ -3569,7 +3569,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.DRCMode | integer | Value of 0 or 1, where 0 is Line mode and 1 is RF mode |
 
 ### Result
@@ -3610,7 +3610,7 @@ No Events
 <a name="setEnableAudioPort"></a>
 ## *setEnableAudioPort*
 
-Enable or disable the specified audio port based on the input audio port name. This feature provides the consumer with a single user control to enable or disable the specified audio port.
+This method provides option to enable or disable the specified audio port.
 
 ### Events
 
@@ -3723,7 +3723,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.gain | number | Value between -2080 and 480, where -2080 means negative gain and 480 means maximum gain |
 
 ### Result
@@ -3775,7 +3775,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.graphicEqualizerMode | integer | Graphic Equalizer mode (`0` = off, `1` = open, `2` = rich, `3` = focused) |
 
 ### Result
@@ -3827,7 +3827,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.intelligentEqualizerMode | integer | Intelligent Equalizer mode (`0` = unset, `1` = open, `2` = rich, `3` = focused) |
 
 ### Result
@@ -3879,7 +3879,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.MISteeringEnable | boolean | Whether Media Intelligence Steering is enabled (`true`) or disabled (`false`) |
 
 ### Result
@@ -3931,7 +3931,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.compresionLevel | integer | Value between 0 and 10, where 0 means no compression and 10 means maximum compression |
 
 ### Result
@@ -3983,7 +3983,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.ms12AudioProfile | string | An MS12 audio profile name from `getSupportedMS12AudioProfile` |
 
 ### Result
@@ -4024,7 +4024,7 @@ No Events
 <a name="setMS12ProfileSettingsOverride"></a>
 ## *setMS12ProfileSettingsOverride*
 
-Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode).
+Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode) on the specified or current audio out. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -4035,7 +4035,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.operation | string | The audio profile state |
 | params.profileName | string | An MS12 audio profile name from `getSupportedMS12AudioProfile` |
 | params.ms12SettingsName | string | An ms12 setting name |
@@ -4094,7 +4094,7 @@ Mutes or unmutes audio on a specific port.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.muted | boolean | mute or unmute audio |
 
 ### Result
@@ -4135,7 +4135,7 @@ Mutes or unmutes audio on a specific port.
 <a name="setPreferredColorDepth"></a>
 ## *setPreferredColorDepth*
 
-Sets the current color depth for the videoDisplay.
+Sets the current color depth for the output `videoDisplay`.
 .
 
 ### Events
@@ -4147,7 +4147,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list |
+| params.videoDisplay | string | Video display port name. See `getConnectedVideoDisplays` for acquiring available list |
 | params.colorDepth | string | Video display color depth. (must be one of the following: *8 Bit*, *10 Bit*, *12 Bit*, *Auto*) |
 | params?.persist | boolean | <sup>*(optional)*</sup> Persists the color depth |
 
@@ -4190,7 +4190,7 @@ No Events
 <a name="setScartParameter"></a>
 ## *setScartParameter*
 
-Sets SCART parameters.  
+This method allows to configure SCART(Syndicat des Constructeurs d'Appareils Radiorécepteurs et Téléviseurs) specific settings.
    
 Possible values:  
 | **Parameter** | **ParameterData** |  
@@ -4263,7 +4263,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.audioPort | string | Audio port name. See `getSupportedAudioPorts` for list of `audioPort`s |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name. See `getSupportedAudioPorts` for list of `audioPort`s |
 | params.soundMode | string | Sound mode. Possible values: `AUTO (Dolby Digital Plus)`, `AUTO (Dolby Digital 5.1)`, `AUTO (Stereo)`, `MONO`, `STEREO`, `SURROUND`, PASSTHRU |
 | params?.persist | boolean | <sup>*(optional)*</sup> persists the sound mode |
 
@@ -4317,7 +4317,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.mode | integer | Enables or disables volume leveling (`0` = off, `1` = on, `2` = auto) |
 | params.boost | integer | Value between 0 and 96, where 0 means no boost and 96 means maximum boost |
 
@@ -4360,7 +4360,7 @@ No Events
 <a name="setVideoPortStatusInStandby"></a>
 ## *setVideoPortStatusInStandby*
 
-Sets the specified video port status to be used in standby mode (failure if the port name is missing).
+Sets the specified video port status to be used in standby mode.
 
 ### Events
 
@@ -4426,7 +4426,7 @@ Adjusts the Volume Level on a specific port.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.volumeLevel | number | Value between 0 and 100, where 0 means no level and 100 means maximum level |
 
 ### Result
@@ -4467,7 +4467,7 @@ Adjusts the Volume Level on a specific port.
 <a name="setVolumeLeveller"></a>
 ## *setVolumeLeveller*
 
-(Version 2) Sets the Volume Leveller level. Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources.
+(Version 2) Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources. Sets the Volume Leveller mode and level for the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.
 
 ### Events
 
@@ -4478,7 +4478,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port` |
 | params.mode | integer | Enables or disables volume leveling (`0` = off, `1` = on, `2` = auto) |
 | params.level | integer | Value between 0 and 10, where 0 means no level and 10 means maximum level |
 
@@ -4572,7 +4572,7 @@ Sets the current zoom value.
 <a name="getColorDepthCapabilities"></a>
 ## *getColorDepthCapabilities*
 
-Returns supported color depth capabilities.
+Returns supported color depth capabilities of the current video output port(`HDMI0` if available, otherwise `INTERNAL0`, or first available port).
 
 ### Events
 
@@ -4587,7 +4587,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.getColorDepthCapabilities | array | <sup>*(optional)*</sup> A string array of supported STB color depth capabilities |
+| result?.getColorDepthCapabilities | array | <sup>*(optional)*</sup> A string array of supported color depth capabilities. `8 bit`, `10 bit`, `12 bit` or `Auto` |
 | result?.getColorDepthCapabilities[#] | string | <sup>*(optional)*</sup>  |
 | result.success | boolean | Whether the request succeeded |
 
@@ -4621,7 +4621,7 @@ This method takes no parameters.
 <a name="getSupportedMS12Config"></a>
 ## *getSupportedMS12Config*
 
-Returns supported ms12 config by the platform, possible values couldbe CONFG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE.
+Returns supported ms12 config by the platform, possible values: `CONFIG_Z`, `CONFIG_X`, `CONFIG_Y`, `CONFIG_NONE`.
 
 ### Events
 
@@ -4636,7 +4636,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.ms12config | string | Supported ms12 config by platforms, possible values, CONFIG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE |
+| result.ms12config | string | Supported ms12 config by platforms, possible values: `CONFIG_Z`, `CONFIG_X`, `CONFIG_Y`, `CONFIG_NONE` |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
