@@ -2,8 +2,8 @@
     "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
-        "title": "DisplaySettings API", 
-        "class": "DisplaySettings", 
+        "title": "DisplaySettings API",
+        "class": "DisplaySettings",
         "description": "The `DisplaySetting` plugin provides an interface for display information such as current video resolution, supported video displays, zoom setting, sound mode, and much more."
     },
     "common": {
@@ -52,7 +52,7 @@
             "example": "HDMI0"
         },
         "audioPort1": {
-            "summary": "Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified. See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port`.",
+            "summary": "Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). See `getSupportedAudioPorts` and `getConnectedAudioPorts` when selecting `port`.",
             "default": "HDMI0",
             "type": "string",
             "example": "SPEAKER0"
@@ -174,7 +174,7 @@
             "example": true
         },
         "videoDisplay": {
-            "summary": "Video display port name. The default port is `HDMI0` if no port is specified. See `getConnectedVideoDisplays` for acquiring avalable list.",
+            "summary": "Video display port name. See `getConnectedVideoDisplays` for acquiring available list.",
             "default": "HDMI0",
             "type": "string",
             "example": "HDMI0"
@@ -211,7 +211,7 @@
             "example": "12 Bit"
         },
 	    "ms12config": {
-            "summary": "Supported ms12 config by platforms, possible values, CONFIG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE",
+            "summary": "Supported ms12 config by platforms, possible values: `CONFIG_Z`, `CONFIG_X`, `CONFIG_Y`, `CONFIG_NONE`",
             "type": "string",
             "example": "CONFIG_X"
         }
@@ -276,10 +276,7 @@
                     "audioPort": {
                         "$ref": "#/definitions/audioPort0"
                     }
-                },
-                "required": [
-                    "audioPort"
-                ]
+                }
             },
             "result": {
                 "type":"object",
@@ -327,7 +324,7 @@
             }
         },
         "getAudioFormat": {
-            "summary": "Returns the currently set audio format.",
+            "summary": "Returns the currently set audio format as well as all the supported audio formats.",
             "result": {
                 "type":"object",
                 "properties": {
@@ -349,7 +346,7 @@
             }
         },
         "getBassEnhancer":{
-            "summary": "Returns the current status of the Bass Enhancer settings.",
+            "summary": "Returns the current status of the Bass Enhancer settings of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -382,7 +379,7 @@
             }
         },
         "getConnectedAudioPorts":{
-            "summary": "Returns connected audio output ports (a subset of the ports supported on the device). For SPDIF supported platforms, SPDIF port is always considered connected. HDMI port may or may not be connected.",
+            "summary": "Returns connected audio output ports (a subset of the ports supported on the device). SPDIF port is always considered `connected` on a supported platform. HDMI port may or may not be connected.",
             "result": {
                 "type":"object",
                 "properties": {
@@ -423,32 +420,32 @@
             }
         },
         "getCurrentOutputSettings":{
-            "summary": "Returns current output settings.",
+            "summary": "Returns current output settings of `HDMI0` or `INTERNAL0` or the first available port.",
             "result": {
                 "type":"object",
                 "properties": {
                     "colorSpace": {
-                        "summary": "The color space. Possible values: `0` (dsDISPLAY_COLORSPACE_UNKNOWN), `1` (sDISPLAY_COLORSPACE_RGB, `2` (dsDISPLAY_COLORSPACE_YCbCr422), `3` (dsDISPLAY_COLORSPACE_YCbCr444), `4` (dsDISPLAY_COLORSPACE_YCbCr420), `5` (dsDISPLAY_COLORSPACE_AUTO).",
+                        "summary": "Defines how color information is represented, encoded and displayed. Possible values: `0` (dsDISPLAY_COLORSPACE_UNKNOWN), `1` (sDISPLAY_COLORSPACE_RGB, `2` (dsDISPLAY_COLORSPACE_YCbCr422), `3` (dsDISPLAY_COLORSPACE_YCbCr444), `4` (dsDISPLAY_COLORSPACE_YCbCr420), `5` (dsDISPLAY_COLORSPACE_AUTO).",
                         "type": "integer",
                         "example": 5
                     },
                     "colorDepth": {
-                        "summary": "The color depth. The value that is returned from `dsGetCurrentOutputSettings`",
+                        "summary": "The number of bits used for each color channel (e.g., 8-bit, 10-bit, 12-bit). Higher color depth allows more precise color representation. Here the value that is returned from `dsGetCurrentOutputSettings`",
                         "type": "integer",
-                        "example": 0 
+                        "example": 0
                     },
                     "matrixCoefficients": {
-                        "summary": "matrix coefficients. Possible values: `0` (dsDISPLAY_MATRIXCOEFFICIENT_UNKNOWN), `1` (dsDISPLAY_MATRIXCOEFFICIENT_BT_709), `2` (dsDISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG), `3` (dsDISPLAY_MATRIXCOEFFICIENT_SMPTE_170M), `4` (dsDISPLAY_MATRIXCOEFFICIENT_XvYCC_709), `5` (dsDISPLAY_MATRIXCOEFFICIENT_eXvYCC_601), `6` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL), `7` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_CL)",
+                        "summary": "Specifies the mathematical conversion between color spaces (e.g., BT.709, BT.2020). This affects how colors are mapped from one standard to another. Possible values: `0` (dsDISPLAY_MATRIXCOEFFICIENT_UNKNOWN), `1` (dsDISPLAY_MATRIXCOEFFICIENT_BT_709), `2` (dsDISPLAY_MATRIXCOEFFICIENT_BT_470_2_BG), `3` (dsDISPLAY_MATRIXCOEFFICIENT_SMPTE_170M), `4` (dsDISPLAY_MATRIXCOEFFICIENT_XvYCC_709), `5` (dsDISPLAY_MATRIXCOEFFICIENT_eXvYCC_601), `6` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_NCL), `7` (dsDISPLAY_MATRIXCOEFFICIENT_BT_2020_CL)",
                         "type": "integer",
                         "example": 0
                     },
                     "videoEOTF": {
-                        "summary": "HDR standard. Possible values: `0x0` (dsHDRSTANDARD_NONE), `0x01` (dsHDRSTANDARD_HDR10), `0x02` (dsHDRSTANDARD_HLG), `0x04` (dsHDRSTANDARD_DolbyVision), `0x08` (dsHDRSTANDARD_TechnicolorPrime), `0x10` (dsHDRSTANDARD_HDR10PLUS), `0x20` (dsHDRSTANDARD_SDR), `0x80` (dsHDRSTANDARD_Invalid)",
+                        "summary": "Current EOTF (Electro-Optical Transfer Function) also known as HDR standard. Possible values: `0x0` (dsHDRSTANDARD_NONE), `0x01` (dsHDRSTANDARD_HDR10), `0x02` (dsHDRSTANDARD_HLG), `0x04` (dsHDRSTANDARD_DolbyVision), `0x08` (dsHDRSTANDARD_TechnicolorPrime), `0x10` (dsHDRSTANDARD_HDR10PLUS), `0x20` (dsHDRSTANDARD_SDR), `0x80` (dsHDRSTANDARD_Invalid)",
                         "type": "integer",
                         "example": 0
                     },
                     "quantizationRange": {
-                        "summary": "The supported quantization range",
+                        "summary": "The range of values used to represent color (e.g., limited range `16 to 235`, full range `0 to 255`). It affects contrast and black/white levels. Current supported quantization range.",
                         "type": "integer",
                         "example": 235
                     },
@@ -466,7 +463,7 @@
             }
         },
         "getCurrentResolution":{
-            "summary": "Returns the current resolution on the selected video display port.",
+            "summary": "Returns the current resolution on the selected video display port. Defaults to `HDMI0` if available, otherwise `INTERNAL0`, or first available port if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -484,13 +481,13 @@
                     "resolution": {
                         "$ref": "#/definitions/resolution"
                     },
-		    "w":{
+                    "w":{
                         "$ref": "#/definitions/w"
                     },
                     "h":{
                         "$ref": "#/definitions/h"
                     },
-		    "progressive":{
+                    "progressive":{
                         "$ref": "#/definitions/progressive"
                     },
                     "success": {
@@ -498,20 +495,20 @@
                     }
                 },
                 "required": [
-		    "resolution",
-		    "w",
-		    "h",
+                    "resolution",
+                    "w",
+                    "h",
                     "success"
                 ]
             }
         },
         "getDefaultResolution":{
-            "summary": "Gets the default resolution supported by the HDMI0 video output port.",
+            "summary": "Gets the default resolution supported by the current video output port.",
             "result": {
                 "type":"object",
                 "properties": {
                     "defaultResolution": {
-                        "summary": "Default resolution supported by the HDMI0 video output port",
+                        "summary": "Default resolution supported by the current video output port",
                         "type":"string",
                         "example":"720p"
                     },
@@ -578,7 +575,7 @@
             }
         },
         "getDRCMode":{
-            "summary": "Returns the current Dynamic Range Control mode.",
+            "summary": "Returns the current Dynamic Range Control mode of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -608,7 +605,7 @@
             }
         },
         "getEnableAudioPort": {
-            "summary": " Returns the current status of the specified input audio port.",
+            "summary": "Returns the current status of the specified audio port. If not specified, defaults `audioPort` to `HDMI0`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -639,7 +636,7 @@
             }
         },
 	"setAssociatedAudioMixing":{
-            "summary": "Sets the Associated Audio Mixing Enable/Disable.",
+            "summary": "Sets the Associated Audio Mixing `Enable/Disable` on the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -661,7 +658,7 @@
             }
         },
 	"getAssociatedAudioMixing":{
-            "summary": "Returns the Associated Audio Mixing status.",
+            "summary": "Returns the Associated Audio Mixing status of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -692,7 +689,7 @@
             }
         },
 	"setFaderControl":{
-            "summary": "Sets the set the mixerbalance betweeen main and associated audio.",
+            "summary": "Sets the configured `mixerBalance` betweeen main and associated audio on the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else applies globally using `Host::setFaderControl()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -714,7 +711,7 @@
             }
         },
 	"getFaderControl":{
-            "summary": "Returns the mixerbalance betweeen main and associated audio",
+            "summary": "Returns the mixerbalance betweeen main and associated audio on the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global mixer balance from `Host::getFaderControl()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -744,8 +741,8 @@
                 ]
             }
         },
-	"setPrimaryLanguage":{
-            "summary": "Sets the Primary language",
+        "setPrimaryLanguage":{
+            "summary": "Sets the Primary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` output if not specified when available. Else applies globally with `Host::setPrimaryLanguage()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -766,8 +763,8 @@
                 "$ref": "#/common/result"
             }
         },
-	"getPrimaryLanguage":{
-            "summary": "Returns the Primary language",
+        "getPrimaryLanguage":{
+            "summary": "Returns the Primary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global primary language from `Host::getPrimaryLanguage()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -797,8 +794,8 @@
                 ]
             }
         },
-	"setSecondaryLanguage":{
-            "summary": "Sets the secondary language",
+        "setSecondaryLanguage":{
+            "summary": "Sets the secondary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` output if not specified when available. Else applies globally with `Host::setSecondaryLanguage()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -819,8 +816,8 @@
                 "$ref": "#/common/result"
             }
         },
-	"getSecondaryLanguage":{
-            "summary": "Returns the Secondary language",
+        "getSecondaryLanguage":{
+            "summary": "Returns the Secondary language for the specified `audioPort`. Defaults `audioPort` to `HDMI0` when device has HDMI out port present and not specified. Else returns the global secondary language from `Host::getSecondaryLanguage()`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1076,7 +1073,7 @@
             }
         },
         "getPreferredColorDepth":{
-            "summary": "Returns the current color depth on the selected video display port.",
+            "summary": "Returns the current color depth on the specified `videoDisplay` port. Defaults to `HDMI0` if available, otherwise `INTERNAL0`, or first available port if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1108,7 +1105,7 @@
             }
         },
         "getSettopAudioCapabilities":{
-            "summary": "Returns the set-top audio capabilities for the specified audio port.",
+            "summary": "Returns the set-top audio capabilities for the specified output `audioPort`. If not specified, defaults to `HDMI0`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1165,7 +1162,7 @@
             }
         },
         "getSettopMS12Capabilities":{
-            "summary": "Returns the set-top MS12 audio capabilities for the specified audio port.",
+            "summary": "Returns the set-top MS12 audio capabilities for the specified output `audioPort`. If not specified, defaults to `HDMI0`.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1199,7 +1196,7 @@
             }
         },
         "getSinkAtmosCapability":{
-            "summary": "Returns the ATMOS capability of the sink (HDMI0).",
+            "summary": "Returns the ATMOS capability of the specified `audioPort` sink. Defaults to `HDMI0` if not specified on `STB` and on `TV` it returns the ATMOS capability of the current output port, e.g: `ARC`. See `getConnectedAudioPorts` and `getSupportedAudioPorts` for possible values.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1428,7 +1425,7 @@
                         "items" : {
                             "type": "string",
                             "example": "1080p"
-                        }  
+                        }
                     },
                     "success": {
                         "$ref": "#/common/success"
@@ -1464,7 +1461,7 @@
             }
         },
         "getSurroundVirtualizer":{
-            "summary": "(Version 1) Returns the current surround virtualizer boost settings.",
+            "summary": "(Version 1) Returns the current surround virtualizer boost settings of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1499,7 +1496,7 @@
             }
         },
         "getSurroundVirtualizer":{
-            "summary": "(Version 2) Returns the current surround virtualizer boost settings.",
+            "summary": "(Version 2) Returns the current surround virtualizer boost settings of the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1596,7 +1593,7 @@
             }
         },
         "getVideoPortStatusInStandby":{
-            "summary": "Returns video port status in standby mode (failure if the port name is missing).",
+            "summary": "Returns video port status in standby mode.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -1660,7 +1657,7 @@
             }
         },
         "getVolumeLeveller": {
-            "summary": "(Version 1)Returns the current Volume Leveller setting.",
+            "summary": "(Version 1)Returns the current Volume Leveller setting of specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1695,7 +1692,7 @@
             }
         },
         "getVolumeLeveller": {
-            "summary": "(Version 2) Returns the current Volume Leveller setting.",
+            "summary": "(Version 2) Returns the current Volume Leveller setting of specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1746,7 +1743,7 @@
             }
         },
         "isConnectedDeviceRepeater":{
-            "summary": "Indicates whether the device connected to the HDMI0 video output port is an HDCP repeater.",
+            "summary": "Indicates whether the device connected to the current video output port is an HDCP repeater.",
             "result": {
                 "type":"object",
                 "properties": {
@@ -1850,7 +1847,7 @@
                 "required": [
                     "success"
                 ]
-            }   
+            }
         },
         "resetDialogEnhancement":{
             "summary":"Resets the dialog enhancer level to its default enhancer level.",
@@ -1875,7 +1872,7 @@
                 "required": [
                     "success"
                 ]
-            }   
+            }
         },
         "resetSurroundVirtualizer":{
             "summary":"Resets the surround virtualizer to its default boost value.",
@@ -1925,10 +1922,10 @@
                 "required": [
                     "success"
                 ]
-            } 
+            }
         },
         "setAudioAtmosOutputMode":{
-            "summary": "Sets ATMOS audio output mode (on HDMI0).",
+            "summary": "Sets ATMOS audio output mode for the specified `audioPort`. Defaults to `HDMI0` output if not specified. On devices which does not have `HDMI0` output, it will apply the setting globally.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -1945,7 +1942,7 @@
             "result": {
                 "$ref": "#/common/result"
             }
-        },        
+        },
         "setAudioDelay":{
             "summary": "Sets the audio delay (in ms) on the selected audio port. If the `audioPort` argument is not specified, it will browse all ports (checking HDMI0 first). If there is no display connected, then it defaults to `HDMI0`.",
             "params": {
@@ -1959,7 +1956,6 @@
                     }
                 },
                 "required": [
-                    "audioPort",
                     "audioDelay"
                 ]
             },
@@ -2009,7 +2005,7 @@
             }
         },
         "setCurrentResolution":{
-            "summary": "Sets the current resolution.",
+            "summary": "Sets the current resolution to specified value. See `getSupportedVideoDisplays` for supported `videoDisplay`. And see `getSupportedResolutions` for supported `resolution`.",
             "events":{
                 "resolutionPreChange" : "Triggered when the resolution of the video display is about to change.",
                 "resolutionChanged" : "Triggered when the resolution is changed by the user and returns the current resolution."
@@ -2024,7 +2020,7 @@
                         "$ref": "#/definitions/resolution"
                     },
                     "persist": {
-                        "summary":"Persists the resolution",
+                        "summary":"Persists the resolution across reboots",
                         "type": "boolean",
                         "example": true
                     },
@@ -2104,7 +2100,7 @@
             }
         },
         "setEnableAudioPort": {
-            "summary": "Enable or disable the specified audio port based on the input audio port name. This feature provides the consumer with a single user control to enable or disable the specified audio port.",
+            "summary": "This method provides option to enable or disable the specified audio port.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2268,7 +2264,7 @@
             }
         },
         "setMS12ProfileSettingsOverride":{
-            "summary": "Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode)",
+            "summary": "Overrides individual MS12 audio settings in order to optimize the customer experience (for example, enabling dialog enhancement in sports mode) on the specified or current audio out. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2332,7 +2328,7 @@
             }
         },
         "setPreferredColorDepth":{
-            "summary": "Sets the current color depth for the videoDisplay.\n",
+            "summary": "Sets the current color depth for the output `videoDisplay`.\n",
             "params": {
                 "type": "object",
                 "properties": {
@@ -2358,7 +2354,7 @@
             }
         },
         "setScartParameter":{
-            "summary": "Sets SCART parameters.  \n   \nPossible values:  \n| **Parameter** | **ParameterData** |  \n| `aspect_ratio` | `4x3` or `16x9` |  \n| `tv_startup` | `on` or `off` |  \n| `rgb` | `on` (disables cvbs) |  \n| `cvbs` | `on` (disables rgb) |  \n| `macrovision` | not implemented |  \n| `cgms` |  `disabled`, `copyNever`, `copyOnce`, `copyFreely`, or `copyNoMore` |  \n| `port` | `on` or `off` |",
+            "summary": "This method allows to configure SCART(Syndicat des Constructeurs d'Appareils Radiorécepteurs et Téléviseurs) specific settings.\n   \nPossible values:  \n| **Parameter** | **ParameterData** |  \n| `aspect_ratio` | `4x3` or `16x9` |  \n| `tv_startup` | `on` or `off` |  \n| `rgb` | `on` (disables cvbs) |  \n| `cvbs` | `on` (disables rgb) |  \n| `macrovision` | not implemented |  \n| `cgms` |  `disabled`, `copyNever`, `copyOnce`, `copyFreely`, or `copyNoMore` |  \n| `port` | `on` or `off` |",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2400,7 +2396,6 @@
                     }
                 },
                 "required": [
-                    "audioPort",
                     "soundMode"
                 ]
             },
@@ -2453,7 +2448,7 @@
             }
         },
         "setVideoPortStatusInStandby":{
-            "summary": "Sets the specified video port status to be used in standby mode (failure if the port name is missing).",
+            "summary": "Sets the specified video port status to be used in standby mode.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -2512,7 +2507,7 @@
             }
         },
         "setVolumeLeveller":{
-            "summary": "(Version 1)Sets the Volume Leveller level. Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources.",
+            "summary": "(Version 1)Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources. Sets the Volume Leveller level for the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2532,7 +2527,7 @@
             }
         },
         "setVolumeLeveller":{
-            "summary": "(Version 2) Sets the Volume Leveller level. Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources.",
+            "summary": "(Version 2) Volume Leveller is an advanced volume-control solution that maintains consistent playback levels for content from different sources. Sets the Volume Leveller mode and level for the specified `audioPort`. Defaults `audioPort` to `HDMI0` if not specified.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -2576,12 +2571,12 @@
             }
         },
         "getColorDepthCapabilities": {
-            "summary": "Returns supported color depth capabilities.",
+            "summary": "Returns supported color depth capabilities of the current video output port(`HDMI0` if available, otherwise `INTERNAL0`, or first available port).",
             "result": {
                 "type":"object",
                 "properties": {
                     "getColorDepthCapabilities": {
-                        "summary": "A string array of supported STB color depth capabilities",
+                        "summary": "A string array of supported color depth capabilities. `8 bit`, `10 bit`, `12 bit` or `Auto`.",
                         "type": "array",
                         "items": {
                             "type": "string",
@@ -2598,7 +2593,7 @@
             }
         },
         "getSupportedMS12Config":{
-            "summary": "Returns supported ms12 config by the platform, possible values couldbe CONFG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE",
+            "summary": "Returns supported ms12 config by the platform, possible values: `CONFIG_Z`, `CONFIG_X`, `CONFIG_Y`, `CONFIG_NONE`",
             "result": {
                 "type":"object",
                 "properties": {
