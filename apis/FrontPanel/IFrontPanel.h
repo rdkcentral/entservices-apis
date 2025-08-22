@@ -68,9 +68,16 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             virtual Core::hresult PowerLedOn(const string &index, FrontPanelSuccess &success /* @out */) = 0;
 
-            // @brief Sets the blink pattern for the specified LED
+            // @brief Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) 
+                // - the index name of an LED indicator (record_led, power_led, data_led); 
+                // iterations (integer) - number of times to loop through the pattern array 
+                // where 0 indicates one iteration (do-while loop), positive values loop the specified times, 
+                // and -1 loops indefinitely until setLED, animate, setBrightness, 
+                // or setBlink is called again; pattern (array) - an array of blink properties 
+                // where each object contains brightness (0-100), duration (milliseconds), 
+                // and optionally color (string for colorMode 2), or red/green/blue (integers for colorMode 0 RGB values)
             // @text setBlink
-            // @param blinkInfo: Information about the blink pattern @see FrontPanelBlinkInfo
+            // @param blinkInfo: JSON string with blink pattern information containing ledIndicator, iterations, and pattern array with brightness, duration(milliseconds), and optional color and red/green/blue values.
             // @param success: Is the operation successful or not
             virtual Core::hresult SetBlink(const string &blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
 
