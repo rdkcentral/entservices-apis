@@ -421,8 +421,8 @@ No Events
 | params | object |  |
 | params.applications | array | Json array with one or more application details to register |
 | params.applications[#] | object |  |
-| params.applications[#].names | string | case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#]?.prefixes | string | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#]?.name | string | <sup>*(optional)*</sup> case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#]?.prefix | string | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
 | params.applications[#]?.cors | string | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
 | params.applications[#]?.query | string | <sup>*(optional)*</sup> query string that need to be appended in launch request |
 | params.applications[#]?.payload | string | <sup>*(optional)*</sup> optional payload string that need to be appended in launch request |
@@ -447,8 +447,8 @@ No Events
     "params": {
         "applications": [
             {
-                "names": "Youtube",
-                "prefixes": "myYouTube",
+                "name": "Youtube",
+                "prefix": "myYouTube",
                 "cors": ".youtube.com",
                 "query": "source_type=12",
                 "payload": "...",
