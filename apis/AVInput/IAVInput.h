@@ -280,6 +280,8 @@ namespace WPEFramework
             // @param audioMix - in - Whether to enable audio mixing
             // @param planeType - in - The video plane type to use
             // @param topMostPlane - in - Whether to use the top-most video plane
+            // TODO: Documentation states ID is optional. If optional, are any specified defaults inserted into the JSON prior to calling
+            //       the implmentation? Does the new COM-RPC method need to handle optional params via OptionalType<T>?
             virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, int planeType /* @in */, bool topMostPlane /* @in */) = 0;
 
             // @text stopInput
