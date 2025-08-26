@@ -148,55 +148,13 @@
     "distributorid": {
       "type": "string",
       "enum": [
-        "comcast",
-        "xglobal",
-        "sky-de",
-        "sky-italia",
-        "sky-uk",
-        "sky-uk-dev",
-        "sky-deu",
-        "sky-deu-dev",
-        "sky-it",
-        "sky-it-dev",
-        "cox",
-        "cox-hospitality",
-        "cox-dev",
-        "cox-qa",
-        "MIT",
-        "shaw",
-        "shaw-dev",
-        "rogers",
-        "rogers-dev",
-        "videotron",
-        "charter",
-        "charter-dev"
+        "distributor1"
       ],
       "enumids": [
-        "COMCAST",
-        "XGLOBAL",
-        "SKY_DE",
-        "SKY_ITALIA",
-        "SKY_UK",
-        "SKY_UK_DEV",
-        "SKY_DEU",
-        "SKY_DEU_DEV",
-        "SKY_IT",
-        "SKY_IT_DEV",
-        "COX",
-        "COX_HOSPITALITY",
-        "COX_DEV",
-        "COX_QA",
-        "MIT",
-        "SHAW",
-        "SHAW_DEV",
-        "ROGERS",
-        "ROGERS_DEV",
-        "VIDEOTRON",
-        "CHARTER",
-        "CHARTER_DEV"
+        "PARTNERID"
       ],
       "description": "Partner ID or distributor ID for device",
-      "example": "comcast"
+      "example": "aplhanumerical string"
     },
     "audiocapability": {
       "type": "string",
@@ -311,7 +269,7 @@
           },
           "serialnumber": {
             "description": "Device serial number",
-            "example": "WPEuCfrLF45",
+            "example": "aplhanumerical string",
             "type": "string"
           },
           "time": {
@@ -414,7 +372,7 @@
         "properties": {
           "imagename": {
             "type": "string",
-            "example": "PX051AEI_VBN_2203_sprint_20220331225312sdy_NG"
+            "example": "alphanumerical string"
           },
           "sdk": {
             "type": "string",
@@ -448,7 +406,7 @@
         "properties": {
           "serialnumber": {
             "type": "string",
-            "example": "PAW400003744"
+            "example": "alphanumerical string"
           }
         },
         "required": [
@@ -463,48 +421,48 @@
       ]
     },
     "releaseversion": {
-        "summary": "Release version of Image",
-        "readonly": true,
-        "params": {
-            "type": "object",
-            "properties": {
-                "releaseversion": {
-                    "type": "string",
-                    "example": "8.2.0.0"
-                }
-            },
-            "required": [
-                "releaseversion"
-            ]
+      "summary": "Release version of Image",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "releaseversion": {
+            "type": "string",
+            "example": "8.2.0.0"
+          }
         },
-        "errors": [
-            {
-                "description": "General error",
-                "$ref": "#/common/errors/general"
-            }
+        "required": [
+          "releaseversion"
         ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "chipset": {
-        "summary": "Chipset used for this device",
-        "readonly": true,
-        "params": {
-            "type": "object",
-            "properties": {
-                "chipset": {
-                    "type": "string",
-                    "example": "T962X3"
-                }
-            },
-            "required": [
-                "chipset"
-            ]
+      "summary": "Chipset used for this device",
+      "readonly": true,
+      "params": {
+        "type": "object",
+        "properties": {
+          "chipset": {
+            "type": "string",
+            "example": "T962X3"
+          }
         },
-        "errors": [
-            {
-                "description": "General error",
-                "$ref": "#/common/errors/general"
-            }
+        "required": [
+          "chipset"
         ]
+      },
+      "errors": [
+        {
+          "description": "General error",
+          "$ref": "#/common/errors/general"
+        }
+      ]
     },
     "modelid": {
       "summary": "Device model number or SKU",
@@ -558,7 +516,7 @@
         "properties": {
           "model": {
             "type": "string",
-            "example": "Pace Xi5"
+            "example": "alphanumerical string"
           }
         },
         "required": [
