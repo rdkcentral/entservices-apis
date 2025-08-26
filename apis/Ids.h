@@ -298,8 +298,6 @@ namespace WPEFramework
                         ID_MIRACAST_SERVICE_NOTIFICATION = ID_MIRACAST_SERVICE + 1,
                         ID_MIRACAST_PLAYER = ID_MIRACAST_SERVICE + 2,
                         ID_MIRACAST_PLAYER_NOTIFICATION = ID_MIRACAST_SERVICE + 3,
-                        // <pca>
-                        // ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR    = ID_MIRACAST_SERVICE + 4
 
                         ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR = ID_MIRACAST_SERVICE + 4,
                         ID_AV_INPUT = ID_ENTOS_OFFSET + 0x3E0,
@@ -310,7 +308,6 @@ namespace WPEFramework
                         ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE = ID_AV_INPUT + 5,
                         ID_AV_INPUT_NOTIFICATION_HDMI_CONTENT_TYPE_UPDATE = ID_AV_INPUT + 6,
                         ID_AV_INPUT_DEVICE_LIST_ITERATOR = ID_AV_INPUT + 7
-                        // </pca>
                 };
         }
 }
