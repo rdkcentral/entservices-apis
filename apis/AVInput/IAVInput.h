@@ -224,13 +224,13 @@ namespace WPEFramework
             // @text getSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
             // @param spd - out - The SPD infoFrame packet information read from the device
-            virtual Core::hresult GetSPD(int id /* @in */, string &spd /* @out */) = 0;
+            virtual Core::hresult GetSPD(int id /* @in @optional */, string &spd /* @out */) = 0;
 
             // @text setEdidVersion
             // @brief Sets an HDMI EDID version
             // @param id - in - The ID of the input device to set the EDID version for
             // @param version - in - The EDID version to set
-            virtual Core::hresult SetEdidVersion(int id /* @in */, const string &version /* @in */) = 0;
+            virtual Core::hresult SetEdidVersion(int id /* @in @optional */, const string &version /* @in */) = 0;
 
             // @text getEdidVersion
             // @brief Returns the EDID version
@@ -282,7 +282,7 @@ namespace WPEFramework
             // @param topMostPlane - in - Whether to use the top-most video plane
             // TODO: Documentation states ID is optional. If optional, are any specified defaults inserted into the JSON prior to calling
             //       the implmentation? Does the new COM-RPC method need to handle optional params via OptionalType<T>?
-            virtual Core::hresult StartInput(int id /* @in */, int type /* @in */, bool audioMix /* @in */, int planeType /* @in */, bool topMostPlane /* @in */) = 0;
+            virtual Core::hresult StartInput(int id /* @in @optional */, int type /* @in */, bool audioMix /* @in @optional */, int planeType /* @in @optional */, bool topMostPlane /* @in @optional */) = 0;
 
             // @text stopInput
             // @brief Stops the specified input device
@@ -318,7 +318,7 @@ namespace WPEFramework
             // @brief Returns the status of a specific game feature for the specified input device
             // @param feature - in - The game feature to check the status of
             // @param status - out - The status of the game feature
-            virtual Core::hresult GetGameFeatureStatus(int id /* @in */, const string &feature /* @in */, bool &mode /* @out */) = 0;
+            virtual Core::hresult GetGameFeatureStatus(int id /* @in @optional */, const string &feature /* @in */, bool &mode /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
