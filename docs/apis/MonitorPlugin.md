@@ -2,8 +2,6 @@
 <a name="Monitor_Plugin"></a>
 # Monitor Plugin
 
-**Version: [1.0.0]()**
-
 A Monitor plugin for Thunder framework.
 
 ### Table of Contents

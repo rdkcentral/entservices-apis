@@ -2,8 +2,6 @@
 <a name="PowerManager_Plugin"></a>
 # PowerManager Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.PowerManager plugin for Thunder framework.
 
 ### Table of Contents

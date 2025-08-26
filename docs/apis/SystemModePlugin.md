@@ -2,8 +2,6 @@
 <a name="System_Mode_Plugin"></a>
 # System Mode Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.SystemMode plugin for Thunder framework.
 
 ### Table of Contents

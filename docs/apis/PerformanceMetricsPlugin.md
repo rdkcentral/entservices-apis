@@ -2,8 +2,6 @@
 <a name="PerformanceMetrics_Plugin"></a>
 # PerformanceMetrics Plugin
 
-**Version: [1.0.0]()**
-
 A PerformanceMetrics plugin for Thunder framework.
 
 ### Table of Contents

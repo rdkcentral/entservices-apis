@@ -32,7 +32,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
 
-    enum messagetype : uint8_t {
+    enum MessageType : uint8_t {
         TRACING        = 1,
         LOGGING        = 2,
         REPORTING      = 3,
@@ -41,7 +41,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     };
 
     struct Control {
-        messagetype type /* @brief Type of message */;
+        MessageType type /* @brief Type of message */;
         string category /* @brief Name of the message category (e.g. Information) */;
         string module /* @brief Name of the module the message is originating from (e.g. Plugin_BluetoothControl) */;
         bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
@@ -54,11 +54,11 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
     // @param module Name of the module the message is originating from (e.g. Plugin_BluetoothControl)
     // @param category Name of the message category (e.g. Information)
     // @param enabled Denotes if control should be enabled (true) or disabled (false)
-    virtual uint32_t Enable(const messagetype type, const string& category, const string& module, const bool enabled) = 0;
+    virtual Core::hresult Enable(const MessageType type, const string& category, const string& module, const bool enabled) = 0;
 
     // @property
     // @brief Retrieves a list of current message controls
-    virtual uint32_t Controls(IControlIterator*& control /* @out */) const = 0;
+    virtual Core::hresult Controls(IControlIterator*& control /* @out */) const = 0;
   };
 
 } // namespace Exchange

@@ -2,8 +2,6 @@
 <a name="VoiceControl_Plugin"></a>
 # VoiceControl Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.VoiceControl plugin for Thunder framework.
 
 ### Table of Contents
@@ -259,7 +257,7 @@ No Events
 
 Sends a voice session with a transcription string to simulate a real voice session for QA. Example use cases for this API call include rack and automation testing.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/rdkservices/#/api/VoiceControlPlugin?id=voicesessionrequest)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/VoiceControlPlugin?id=voicesessionrequest)
 
 ### Events
 

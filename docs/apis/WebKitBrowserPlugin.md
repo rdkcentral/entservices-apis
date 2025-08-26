@@ -2,8 +2,6 @@
 <a name="WebKitBrowser_Plugin"></a>
 # WebKitBrowser Plugin
 
-**Version: [1.0.0]()**
-
 A WebKitBrowser plugin for Thunder framework.
 
 ### Table of Contents

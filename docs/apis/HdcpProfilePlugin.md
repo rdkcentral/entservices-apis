@@ -2,8 +2,6 @@
 <a name="HdcpProfile_Plugin"></a>
 # HdcpProfile Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.HdcpProfile plugin for Thunder framework.
 
 ### Table of Contents

@@ -2,8 +2,6 @@
 <a name="MotionDetectionPlugin"></a>
 # MotionDetectionPlugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.MotionDetection plugin for Thunder framework.
 
 ### Table of Contents

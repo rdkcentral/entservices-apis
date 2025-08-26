@@ -2,8 +2,6 @@
 <a name="MiracastPlayer_Plugin"></a>
 # MiracastPlayer Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.MiracastPlayer plugin for Thunder framework.
 
 ### Table of Contents

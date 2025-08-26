@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/rdkcentral/rdkservices/main/Tools/json_generator/schemas/interface.schema.json",
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
         "title": "XCast API", 
@@ -49,8 +49,13 @@
             "type": "string",
             "example": "active"
         },
-        "names": {
-            "summary": "case-sensitive. Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
+        "appname": {
+            "summary": "case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
+	    "type": "string",
+	    "example": "Youtube"
+        },
+        "appnames": {
+            "summary": "case-sensitive. Group of Application names in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail.",
             "type": "array",
             "items": {
                "type": "string",
@@ -59,53 +64,33 @@
         },
         "prefixes": {
             "summary": "If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail.",
-            "type": "array",
-            "items": {
-               "type": "string",
-               "example": "myYouTube"
-            }
+	    "type": "string",
+	    "example": "myYouTube"
         },
         "cors": {
             "summary": "a set of origins allowed for the application. This must not be empty",
-            "type": "array",
-            "items": {
-               "type": "string",
-               "example": ".youtube.com"
-            }
+	    "type": "string",
+	    "example": ".youtube.com"
         },
-        "properties": {
-            "summary": "specific application properties applicable to app management. If not present in descriptor, the default value is assumed",
-            "type": "object",
-            "properties": {
-                "allowStop": {
-                    "summary": "is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched",
-                    "type": "boolean",
-                    "example": true
-                }
-            },
-            "required":[
-                "allowStop"
-            ]
-        },
-        "launchParameters": {
-            "summary": "launchParameters that application wants dial-server to append before sending the request to launch application",
-            "type": "object",
-            "properties": {
-                "query": {
-                    "summary": "query string that need to be appended in launch request",
-                    "type": "string",
-                    "example": "source_type=12"
-                },
-                "payload": {
-                    "summary": "optional payload string that need to be appended in launch request",
-                    "type": "string",
-                    "example": ""
-                }
-             },
-            "required":[
-                "query",
-                "payload"
-            ]
+	"query": {
+	    "summary": "query string that need to be appended in launch request",
+	    "type": "string",
+	    "example": "source_type=12"
+	},
+	"payload": {
+	    "summary": "optional payload string that need to be appended in launch request",
+	    "type": "string",
+	    "example": ""
+	},
+	"AddDataUrl": {
+	    "summary": "optional Additional data URL to be passed to the application",
+	    "type": "string",
+	    "example": ""
+	},
+	"allowStop": {
+	    "summary": "is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched",
+	    "type": "boolean",
+	    "example": true
         },
         "applicationsList": {
             "summary": "Json array with one or more application details to register",
@@ -113,21 +98,24 @@
             "items": {
                "type": "object",
                "properties": {
-                    "names": {
-                        "$ref": "#/definitions/names"
+                    "name": {
+                        "$ref": "#/definitions/appname"
                     },
-                    "prefixes": {
+                    "prefix": {
                         "$ref": "#/definitions/prefixes"
                     },
                     "cors": {
                        "$ref": "#/definitions/cors"
                     },
-                    "properties": {
-                        "$ref": "#/definitions/properties"
+                    "query": {
+                        "$ref": "#/definitions/query"
                     },
-                    "launchParameters": {
-                        "$ref": "#/definitions/launchParameters"
-                    }
+                    "payload": {
+                        "$ref": "#/definitions/payload"
+                    },
+		    "allowStop": {
+                        "$ref": "#/definitions/allowStop"
+		    }
                 },
                 "required":[
                     "names",
@@ -142,26 +130,6 @@
         }
     },
     "methods": {
-        "getApiVersionNumber":{
-            "summary": "Gets the API version number.",
-            "result": {
-                "type":"object",
-                "properties": {
-                    "version": {
-                        "description": "a version number",
-                        "type":"integer",
-                        "example": 1
-                    },
-                    "success": {
-                        "$ref": "#/common/success"
-                    }
-                }, 
-                "required": [
-                    "version",
-                    "success"
-                ]               
-            }
-        },
         "getEnabled":{
             "summary": "Reports whether xcast plugin is enabled or disabled.",
             "result": {
@@ -182,7 +150,7 @@
         },
         "getFriendlyName":{
             "deprecated" : true,
-            "referenceUrl" : " https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=getFriendlyName",
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/SystemPlugin?id=getfriendlyname",
             "summary": "Returns the friendly name set by setFriendlyName API.",
             "result": {
                 "type":"object",
@@ -272,7 +240,7 @@
                 ]               
             }
         },  
-        "onApplicationStateChanged":{
+        "setApplicationState":{
             "summary": "Provides notification whenever an application changes state due to user activity, an internal error, or other reasons. For singleton applications, the `applicationId` parameter is optional. If an application request is denied, fails to fulfill, or the state change is triggered by an internal error, then a predefined error string should be included. This error may be translated to an XCast client.  \n\nThe following table provides a client error mapping example: \n\n| Error | Description | HTTP Status Codes |  \n| :-------- | :-------- | :-------- |   \n| `none` | The request (start/stop) is fulfilled successfully | HTTP 200 OK |  \n| `forbidden` | The user is not allowed to change the state of the application. This is not related to user account authentication of the native application | HTTP 403 Forbidden |  \n| `unavailable` | The target native application is not available on the device | HTTP 404 Not Found |  \n| `invalid` | The request is invalid (bad parameter for example) | HTTP 400 Bad Request |  \n| `internal` | The server failed to fulfill the request (server error) | HTTP 500 Internal |",
             "params": {
                 "type":"object",
@@ -323,9 +291,7 @@
                 "type":"object",
                 "properties": {
                     "applications": {
-                        "summary": "One or more application name to unregister",
-                        "type": "string",
-                        "example": ["YouTube","Netflix"]
+                        "$ref": "#/definitions/appnames"
                     }
                 },
                 "required": [
@@ -355,7 +321,7 @@
         },
         "setFriendlyName":{
             "deprecated" : true,
-            "referenceUrl" : " https://rdkcentral.github.io/rdkservices/#/api/SystemPlugin?id=setFriendlyName",
+            "referenceUrl" : " https://rdkcentral.github.io/entservices-apis/#/apis/XCastPlugin?id=setfriendlyname",
             "summary": "Sets the friendly name of device. It allows an application to override the default friendly name value with the friendly name passed as an argument. The provided name  should not be empty. If a user provided name is not available, the caller of the API should use the default name partnerId+Model  (or any other agreed default name) as the parameter. After initialization, XCastService should not be activated until setFriendlyName() is invoked. Frinedly name is not persisted on device after each reboot or reconnect application should call API to update the friendlyName",
             "params": {
                 "type":"object",
@@ -451,21 +417,23 @@
                     "applicationName": {
                         "$ref": "#/definitions/applicationName"
                     },
+                    "strPayLoad": {
+                        "$ref": "#/definitions/payload"
+                    },
+                    "strQuery": {
+                        "$ref": "#/definitions/query"
+                    },
+                    "strAddDataUrl": {
+                        "$ref": "#/definitions/AddDataUrl"
+                    },
                     "parameters": {
-                        "summary":"The format and interpretation is determined between the application launcher or cast target and the cast client for each application. For example, a Netflix DIAL-client returns a `pluginURL` parameter with the application launch string. A Youtube DIAL-client returns a `url` parameter with the application launch string.",
-                        "type":"object",
-                        "properties": {
-                            "pluginUrl":{
-                                "summary":"Application launch string",
-                                "type":"string",
-                                "example": "https://www.netflix.com"
-                            }
-                        }
+                        "summary":"Application launch string AND The format and interpretation is determined between the application launcher or cast target and the cast client for each application.",
+			"type":"string",
+			"example": "https://www.netflix.com"
                     }
                 },
                 "required": [
-                    "applicationName",
-                    "parameters"
+                    "applicationName"
                 ]
             }
         },

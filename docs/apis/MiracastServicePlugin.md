@@ -2,8 +2,6 @@
 <a name="MiracastService_Plugin"></a>
 # MiracastService Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.MiracastService plugin for Thunder framework.
 
 ### Table of Contents

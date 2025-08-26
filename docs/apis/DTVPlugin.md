@@ -2,8 +2,6 @@
 <a name="DTV_Plugin"></a>
 # DTV Plugin
 
-**Version: [1.0.0]()**
-
 A DTV plugin for Thunder framework.
 
 ### Table of Contents

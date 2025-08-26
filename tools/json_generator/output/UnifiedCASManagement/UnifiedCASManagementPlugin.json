@@ -1,5 +1,5 @@
 {
-  "$schema": "plugin.schema.json",
+  "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
   "info": {
     "title": "Unified CAS Management Plugin",
     "callsign": "UnifiedCASManagement",

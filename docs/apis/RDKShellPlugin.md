@@ -2,8 +2,6 @@
 <a name="RDKShell_Plugin"></a>
 # RDKShell Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.RDKShell plugin for Thunder framework.
 
 ### Table of Contents

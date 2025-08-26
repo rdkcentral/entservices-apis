@@ -2,8 +2,6 @@
 <a name="RDKWindowManager_Plugin"></a>
 # RDKWindowManager Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.RDKWindowManager plugin for Thunder framework.
 
 ### Table of Contents
@@ -55,7 +53,7 @@ RDKWindowManager interface methods:
 | [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
 | [enableKeyRepeats](#enableKeyRepeats) | Enables or disables key repeats |
 | [generateKey](#generateKey) | Triggers the key events (key press and release) |
-| [getClients](#getClients) | Gets a list of clients |
+| [getApps](#getApps) | Gets a list of active application IDs |
 | [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Returns whether key repeating is enabled or disabled |
 | [ignoreKeyInputs](#ignoreKeyInputs) | Blocks user key inputs |
 | [injectKey](#injectKey) | Injects the keys |
@@ -64,6 +62,12 @@ RDKWindowManager interface methods:
 | [removeKeyListener](#removeKeyListener) | Removes a key listener for an application |
 | [resetInactivityTime](#resetInactivityTime) | Resets the inactivity notification interval |
 | [setInactivityInterval](#setInactivityInterval) | Sets the inactivity notification interval |
+| [setFocus](#setFocus) | Sets the focus to the specified app by app ID |
+| [setVisible](#setVisible) | Sets the visibility of the specified client or application instance ID |
+| [renderReady](#renderReady) | Returns whether the specified application has rendered its first frame |
+| [enableDisplayRender](#enableDisplayRender) | Enables or disables the rendering of a Wayland display for the specified client or application instance |
+| [setZOrder](#setZOrder) | Sets the z-order of the specified app |
+| [getZOrder](#getZOrder) | Returns the z-order of the specified app |
 
 
 <a name="addKeyIntercept"></a>
@@ -446,10 +450,10 @@ No Events
 }
 ```
 
-<a name="getClients"></a>
-## *getClients*
+<a name="getApps"></a>
+## *getApps*
 
-Gets a list of clients.
+Gets a list of active application IDs.
 
 ### Events
 
@@ -463,7 +467,7 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | A JSON String containing one or more clients |
+| result | string | A JSON String containing one or more application IDs |
 
 ### Example
 
@@ -473,7 +477,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.RDKWindowManager.getClients"
+    "method": "org.rdk.RDKWindowManager.getApps"
 }
 ```
 
@@ -483,7 +487,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": "{\"clients\":[\"org.rdk.Netflix\"]}"
+    "result": "{\"appIds\":[\"org.rdk.Netflix\"]}"
 }
 ```
 
@@ -859,6 +863,300 @@ Sets the inactivity notification interval.
 }
 ```
 
+<a name="setFocus"></a>
+## *setFocus*
+
+Sets the focus to the specified app by app ID.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | null on success |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.setFocus",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": null
+}
+```
+
+<a name="setVisible"></a>
+## *setVisible*
+
+Sets the visibility of the specified client or application instance ID.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+| params.visible | boolean | Whether the client is visible (`true`) or not (`false`) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | null on success |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.setVisible",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193",
+        "visible": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": null
+}
+```
+
+<a name="renderReady"></a>
+## *renderReady*
+
+Returns whether the specified application has rendered its first frame.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.status | boolean | Returns true if the application has rendered its first frame, false if it has not |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.renderReady",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "status": true
+    }
+}
+```
+
+<a name="enableDisplayRender"></a>
+## *enableDisplayRender*
+
+Enables or disables the rendering of a Wayland display for the specified client or application instance.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+| params.enable | boolean | Boolean flag to enable (`true`) or disable (`false`) the Wayland display render |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | null on success |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.enableDisplayRender",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193",
+        "enable": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": null
+}
+```
+
+<a name="setZOrder"></a>
+## *setZOrder*
+
+Sets the z-order of the specified app.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+| params.zOrder | integer | The desired z-order value (integer) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | null on success |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.setZOrder",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193",
+        "zOrder": 5
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": null
+}
+```
+
+<a name="getZOrder"></a>
+## *getZOrder*
+
+Returns the z-order of the specified app.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.zOrder | integer | The desired z-order value (integer) |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.RDKWindowManager.getZOrder",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "zOrder": 5
+    }
+}
+```
+
 <a name="Notifications"></a>
 # Notifications
 
@@ -871,6 +1169,13 @@ RDKWindowManager interface events:
 | Event | Description |
 | :-------- | :-------- |
 | [onUserInactivity](#onUserInactivity) | Triggered when a device has been inactive for a period of time |
+| [onDisconnected](#onDisconnected) | Triggered when an app is disconnected from a Wayland display |
+| [onReady](#onReady) | Triggered when an app has made its first graphics visible on a Wayland display |
+| [onConnected](#onConnected) | Triggered when an app is connected to a Wayland display |
+| [onVisible](#onVisible) | Sent when the app becomes visible |
+| [onHidden](#onHidden) | Sent when the app becomes visible |
+| [onFocus](#onFocus) | Sent when the app receives focus |
+| [onBlur](#onBlur) | Sent when the app removes focus |
 
 
 <a name="onUserInactivity"></a>
@@ -893,6 +1198,174 @@ Triggered when a device has been inactive for a period of time. This event is br
     "method": "client.events.onUserInactivity",
     "params": {
         "minutes": 5
+    }
+}
+```
+
+<a name="onDisconnected"></a>
+## *onDisconnected*
+
+Triggered when an app is disconnected from a Wayland display.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onDisconnected",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onReady"></a>
+## *onReady*
+
+Triggered when an app has made its first graphics visible on a Wayland display.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onReady",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onConnected"></a>
+## *onConnected*
+
+Triggered when an app is connected to a Wayland display.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onConnected",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onVisible"></a>
+## *onVisible*
+
+Sent when the app becomes visible.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onVisible",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onHidden"></a>
+## *onHidden*
+
+Sent when the app becomes visible.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onHidden",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onFocus"></a>
+## *onFocus*
+
+Sent when the app receives focus.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onFocus",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
+    }
+}
+```
+
+<a name="onBlur"></a>
+## *onBlur*
+
+Sent when the app removes focus.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appInstanceId | string | The application instance ID for an app |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onBlur",
+    "params": {
+        "appInstanceId": "rdkwmtestapp_13193"
     }
 }
 ```

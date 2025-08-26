@@ -2,8 +2,6 @@
 <a name="TextToSpeech_Plugin"></a>
 # TextToSpeech Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.TextToSpeech plugin for Thunder framework.
 
 ### Table of Contents

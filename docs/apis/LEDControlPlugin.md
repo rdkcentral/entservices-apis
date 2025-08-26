@@ -2,8 +2,6 @@
 <a name="LEDControl_Plugin"></a>
 # LEDControl Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.LEDControl plugin for Thunder framework.
 
 ### Table of Contents

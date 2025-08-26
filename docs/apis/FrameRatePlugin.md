@@ -1,32 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.FrameRate_Plugin"></a>
+<a name="FrameRate_Plugin"></a>
 # FrameRate Plugin
-
-**Version: [1.0.0]()**
 
 A org.rdk.FrameRate plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `FrameRate` plugin allows you to collect FPS data.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkFrameRate.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.FrameRate plugin:
@@ -47,18 +45,18 @@ FrameRate interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDisplayFrameRate](#method.getDisplayFrameRate) | Returns the current display frame rate values |
-| [getFrmMode](#method.getFrmMode) | Returns the current auto framerate mode |
-| [setCollectionFrequency](#method.setCollectionFrequency) | Sets the FPS data collection interval |
-| [setDisplayFrameRate](#method.setDisplayFrameRate) | Sets the display framerate values |
-| [setFrmMode](#method.setFrmMode) | Sets the auto framerate mode |
-| [startFpsCollection](#method.startFpsCollection) | Starts the FPS data collection |
-| [stopFpsCollection](#method.stopFpsCollection) | Stops the FPS data collection |
-| [updateFps](#method.updateFps) | Updates Fps values |
+| [getDisplayFrameRate](#getDisplayFrameRate) | Returns the current display frame rate values |
+| [getFrmMode](#getFrmMode) | Returns the current auto framerate mode |
+| [setCollectionFrequency](#setCollectionFrequency) | Sets the FPS data collection interval |
+| [setDisplayFrameRate](#setDisplayFrameRate) | Sets the display framerate values |
+| [setFrmMode](#setFrmMode) | Sets the auto framerate mode |
+| [startFpsCollection](#startFpsCollection) | Starts the FPS data collection |
+| [stopFpsCollection](#stopFpsCollection) | Stops the FPS data collection |
+| [updateFps](#updateFps) | Updates Fps values |
 
 
-<a name="method.getDisplayFrameRate"></a>
-## *getDisplayFrameRate [<sup>method</sup>](#head.Methods)*
+<a name="getDisplayFrameRate"></a>
+## *getDisplayFrameRate*
 
 Returns the current display frame rate values.
 
@@ -76,7 +74,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.framerate | string | The display framerate setting (width x height x framerate) |
-| result.success | boolean | Indicates success |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -103,8 +101,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getFrmMode"></a>
-## *getFrmMode [<sup>method</sup>](#head.Methods)*
+<a name="getFrmMode"></a>
+## *getFrmMode*
 
 Returns the current auto framerate mode.
 
@@ -122,7 +120,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.auto-frm-mode | integer | `0` for auto framerate mode disabled, `1` for auto framerate mode enabled (must be one of the following: *0*, *1*) |
-| result.success | boolean | Indicates success |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -149,8 +147,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setCollectionFrequency"></a>
-## *setCollectionFrequency [<sup>method</sup>](#head.Methods)*
+<a name="setCollectionFrequency"></a>
+## *setCollectionFrequency*
 
 Sets the FPS data collection interval.
 
@@ -169,7 +167,8 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -192,12 +191,14 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="method.setDisplayFrameRate"></a>
-## *setDisplayFrameRate [<sup>method</sup>](#head.Methods)*
+<a name="setDisplayFrameRate"></a>
+## *setDisplayFrameRate*
 
 Sets the display framerate values.
 
@@ -205,8 +206,8 @@ Sets the display framerate values.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDisplayFrameRateChanging](#event.onDisplayFrameRateChanging) | Triggered when the framerate changes started. |
-| [onDisplayFrameRateChanged](#event.onDisplayFrameRateChanged) | Triggered when the framerate changed |
+| [onDisplayFrameRateChanging](#onDisplayFrameRateChanging) | Triggered when the framerate changes started. |
+| [onDisplayFrameRateChanged](#onDisplayFrameRateChanged) | Triggered when the framerate changed |
 ### Parameters
 
 | Name | Type | Description |
@@ -218,7 +219,8 @@ Sets the display framerate values.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -241,12 +243,14 @@ Sets the display framerate values.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="method.setFrmMode"></a>
-## *setFrmMode [<sup>method</sup>](#head.Methods)*
+<a name="setFrmMode"></a>
+## *setFrmMode*
 
 Sets the auto framerate mode.
 
@@ -265,7 +269,8 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -288,12 +293,14 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="method.startFpsCollection"></a>
-## *startFpsCollection [<sup>method</sup>](#head.Methods)*
+<a name="startFpsCollection"></a>
+## *startFpsCollection*
 
 Starts the FPS data collection.
 
@@ -301,7 +308,7 @@ Starts the FPS data collection.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFpsEvent](#event.onFpsEvent) | Triggered at the end of each interval as defined by the setCollectionFrequency |
+| [onFpsEvent](#onFpsEvent) | Triggered at the end of each interval as defined by the setCollectionFrequency |
 ### Parameters
 
 This method takes no parameters.
@@ -310,7 +317,8 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -330,12 +338,14 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="method.stopFpsCollection"></a>
-## *stopFpsCollection [<sup>method</sup>](#head.Methods)*
+<a name="stopFpsCollection"></a>
+## *stopFpsCollection*
 
 Stops the FPS data collection.
 
@@ -343,7 +353,7 @@ Stops the FPS data collection.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFpsEvent](#event.onFpsEvent) | Triggered once after the stopFpsCollection method is invoked. |
+| [onFpsEvent](#onFpsEvent) | Triggered once after the stopFpsCollection method is invoked. |
 ### Parameters
 
 This method takes no parameters.
@@ -352,7 +362,8 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -372,12 +383,14 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="method.updateFps"></a>
-## *updateFps [<sup>method</sup>](#head.Methods)*
+<a name="updateFps"></a>
+## *updateFps*
 
 Updates Fps values.
 
@@ -396,7 +409,8 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | Always true |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -419,14 +433,16 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.FrameRate plugin:
 
@@ -434,13 +450,13 @@ FrameRate interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDisplayFrameRateChanging](#event.onDisplayFrameRateChanging) | Triggered when the framerate changes started |
-| [onDisplayFrameRateChanged](#event.onDisplayFrameRateChanged) | Triggered when the framerate changed |
-| [onFpsEvent](#event.onFpsEvent) | Triggered at the end of each interval as defined by the `setCollectionFrequency` method and once after the `stopFpsCollection` method is invoked |
+| [onDisplayFrameRateChanging](#onDisplayFrameRateChanging) | Triggered when the framerate changes started |
+| [onDisplayFrameRateChanged](#onDisplayFrameRateChanged) | Triggered when the framerate changed |
+| [onFpsEvent](#onFpsEvent) | Triggered at the end of each interval as defined by the `setCollectionFrequency` method and once after the `stopFpsCollection` method is invoked |
 
 
-<a name="event.onDisplayFrameRateChanging"></a>
-## *onDisplayFrameRateChanging [<sup>event</sup>](#head.Notifications)*
+<a name="onDisplayFrameRateChanging"></a>
+## *onDisplayFrameRateChanging*
 
 Triggered when the framerate changes started.
 
@@ -463,8 +479,8 @@ Triggered when the framerate changes started.
 }
 ```
 
-<a name="event.onDisplayFrameRateChanged"></a>
-## *onDisplayFrameRateChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onDisplayFrameRateChanged"></a>
+## *onDisplayFrameRateChanged*
 
 Triggered when the framerate changed.
 
@@ -487,8 +503,8 @@ Triggered when the framerate changed.
 }
 ```
 
-<a name="event.onFpsEvent"></a>
-## *onFpsEvent [<sup>event</sup>](#head.Notifications)*
+<a name="onFpsEvent"></a>
+## *onFpsEvent*
 
 Triggered at the end of each interval as defined by the `setCollectionFrequency` method and once after the `stopFpsCollection` method is invoked.
 

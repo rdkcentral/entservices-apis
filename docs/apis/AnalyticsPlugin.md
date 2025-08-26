@@ -2,8 +2,6 @@
 <a name="Analytics_Plugin"></a>
 # Analytics Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.Analytics plugin for Thunder framework.
 
 ### Table of Contents

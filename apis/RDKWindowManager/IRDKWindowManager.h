@@ -45,6 +45,31 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onReady
     // @param client: notify first frame event received for client or application instance ID
     virtual void OnReady(const string &client){};
+
+    // @brief Notifies when an application is connected
+    // @text onConnected
+    // @param appInstanceId: the identifier of the connected application
+    virtual void OnConnected(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is visible
+    // @text onVisible
+    // @param appInstanceId: the identifier of the visible application
+    virtual void OnVisible(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is hidden
+    // @text OnHidden
+    // @param appInstanceId: the identifier of the hidden application
+    virtual void OnHidden(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is in focus
+    // @text OnFocus
+    // @param appInstanceId: the identifier of the focussed application
+    virtual void OnFocus(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is blurred
+    // @text OnBlur
+    // @param appInstanceId: the identifier of the blurred application
+    virtual void OnBlur(const std::string& appInstanceId){};
   };
 
   /** Register notification interface */
@@ -66,11 +91,11 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
   virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
 
-  /** Get the list of active Clients */
-  // @text getClients
-  // @brief get the list of Clients which are available
-  // @param clients: get the number of clients as a JSON string format
-  virtual Core::hresult GetClients(string &clients /* @out */) const = 0;
+  /** Get the list of active Apps */
+  // @text getApps
+  // @brief Get the list of Apps which are currently active and available
+  // @param appsIds: Returns the list of app IDs as a JSON string.
+  virtual Core::hresult GetApps(string &appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept

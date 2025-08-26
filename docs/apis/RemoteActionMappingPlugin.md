@@ -2,8 +2,6 @@
 <a name="RemoteActionMapping_Plugin"></a>
 # RemoteActionMapping Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.RemoteActionMapping plugin for Thunder framework.
 
 ### Table of Contents

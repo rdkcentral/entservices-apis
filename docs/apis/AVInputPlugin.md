@@ -2,8 +2,6 @@
 <a name="AVInput_Plugin"></a>
 # AVInput Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.AVInput plugin for Thunder framework.
 
 ### Table of Contents
@@ -52,6 +50,8 @@ AVInput interface methods:
 | [numberOfInputs](#numberOfInputs) | Returns an integer that specifies the number of available inputs |
 | [getInputDevices](#getInputDevices) | Returns an array of available HDMI/Composite Input ports |
 | [getEdid2AllmSupport](#getEdid2AllmSupport) | Returns the EDID ALLM bit value |
+| [getVRRSupport](#getVRRSupport) | Returns the EDID VRR bit value |
+| [getVRRFrameRate](#getVRRFrameRate) | Returns the VRR FrameRate |
 | [getEdidVersion](#getEdidVersion) | Returns the EDID version |
 | [getSPD](#getSPD) | Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device |
 | [getRawSPD](#getRawSPD) | Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits |
@@ -60,6 +60,7 @@ AVInput interface methods:
 | [stopInput](#stopInput) | Deactivates the HDMI/Composite Input port currently selected as the primary video source |
 | [setAudioMixerLevels](#setAudioMixerLevels) | Sets the audio mixer level for given audio input |
 | [setEdid2AllmSupport](#setEdid2AllmSupport) | Sets an HDMI ALLM bit in EDID |
+| [setVRRSupport](#setVRRSupport) | Sets an HDMI VRR bit in EDID |
 | [setEdidVersion](#setEdidVersion) | Sets an HDMI EDID version |
 | [setVideoRectangle](#setVideoRectangle) | Sets an HDMI/Composite Input video window |
 | [writeEDID](#writeEDID) | Changes a current EDID value |
@@ -331,6 +332,110 @@ No Events
     "id": 42,
     "result": {
         "allmSupport": true,
+        "success": true
+    }
+}
+```
+
+<a name="getVRRSupport"></a>
+## *getVRRSupport*
+
+Returns the EDID VRR bit value.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.vrrSupport | boolean | The VRR bit value in edid |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.AVInput.getVRRSupport",
+    "params": {
+        "portId": "0"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "vrrSupport": true,
+        "success": true
+    }
+}
+```
+
+<a name="getVRRFrameRate"></a>
+## *getVRRFrameRate*
+
+Returns the VRR FrameRate.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.currentVRRVideoFrameRate | number | The VRR FrameRate |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.AVInput.getVRRFrameRate",
+    "params": {
+        "portId": "0"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "currentVRRVideoFrameRate": 48.6,
         "success": true
     }
 }
@@ -787,6 +892,58 @@ No Events
 }
 ```
 
+<a name="setVRRSupport"></a>
+## *setVRRSupport*
+
+Sets an HDMI VRR bit in EDID.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.vrrSupport | boolean | The VRR support in EDID |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.AVInput.setVRRSupport",
+    "params": {
+        "portId": "0",
+        "vrrSupport": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a name="setEdidVersion"></a>
 ## *setEdidVersion*
 
@@ -1035,7 +1192,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.mode | boolean | The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
+| result.mode | boolean | The current status of the game features like ALLM, VRR-HDMI, VRR-FREESYNC, VRR-FREESYNC-PREMIUM and VRR-FREESYNC-PREMIUM-PRO |
 
 ### Errors
 
@@ -1086,7 +1243,7 @@ AVInput interface events:
 | [onInputStatusChanged](#onInputStatusChanged) | Triggered whenever the status changes for an HDMI/Composite Input |
 | [onSignalChanged](#onSignalChanged) | Triggered whenever the signal status changes for an HDMI/Composite Input |
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI Input video stream info |
-| [gameFeatureStatusUpdate](#gameFeatureStatusUpdate) | Triggered whenever game feature(ALLM) status changes for an HDMI Input |
+| [gameFeatureStatusUpdate](#gameFeatureStatusUpdate) | Triggered whenever game feature status changes for an HDMI Input |
 | [hdmiContentTypeUpdate](#hdmiContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
 
 
@@ -1221,7 +1378,7 @@ Triggered whenever there is an update in HDMI Input video stream info.
 <a name="gameFeatureStatusUpdate"></a>
 ## *gameFeatureStatusUpdate*
 
-Triggered whenever game feature(ALLM) status changes for an HDMI Input.
+Triggered whenever game feature status changes for an HDMI Input.
 
 ### Parameters
 
@@ -1230,7 +1387,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input.
 | params | object |  |
 | params.id | number | The port identifier for the HDMI/Composite Input |
 | params.gameFeature | string | Game Feature to which current status requested |
-| params.mode | boolean | The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
+| params.mode | boolean | The current status of the game features like ALLM, VRR-HDMI, VRR-FREESYNC, VRR-FREESYNC-PREMIUM and VRR-FREESYNC-PREMIUM-PRO |
 
 ### Example
 

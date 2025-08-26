@@ -2,8 +2,6 @@
 <a name="UserSettings_Plugin"></a>
 # UserSettings Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.UserSettings plugin for Thunder framework.
 
 ### Table of Contents

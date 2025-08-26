@@ -2,8 +2,6 @@
 <a name="PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.PersistentStore plugin for Thunder framework.
 
 ### Table of Contents
