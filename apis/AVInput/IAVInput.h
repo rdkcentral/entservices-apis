@@ -22,42 +22,34 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-#define HDMI 0
-#define COMPOSITE 1
+#define HDMI        0
+#define COMPOSITE   1
 
-namespace WPEFramework
-{
-    namespace Exchange
-    {
+namespace WPEFramework {
+    namespace Exchange {
         /* @json 1.0.0 @text:keep */
-        struct EXTERNAL IAVInput : virtual public Core::IUnknown
-        {
-            enum
-            {
+        struct EXTERNAL IAVInput : virtual public Core::IUnknown {
+            enum {
                 ID = ID_AV_INPUT
             };
 
-            struct MixerLevels
-            {
+            struct MixerLevels {
                 int primaryVolume;
                 int playerVolume;
             };
 
-            struct InputSignalInfo
-            {
+            struct InputSignalInfo {
                 int id;
                 string locator;
                 string status;
             };
 
-            struct InputStatus
-            {
+            struct InputStatus {
                 InputSignalInfo info;
                 int plane;
             };
 
-            struct InputVideoMode
-            {
+            struct InputVideoMode {
                 int id;
                 string locator;
                 uint32_t width;
@@ -67,22 +59,19 @@ namespace WPEFramework
                 uint32_t frameRateD;
             };
 
-            struct GameFeatureStatus
-            {
+            struct GameFeatureStatus {
                 int id;
                 string gameFeature;
                 bool allmMode;
             };
 
-            struct InputDevice
-            {
+            struct InputDevice {
                 int id /* @text id */;
                 string locator /* @text locator */;
                 bool connected /* @text connected */;
             };
 
-            struct ContentInfo
-            {
+            struct ContentInfo {
                 int id;
                 int contentType;
             };
@@ -91,152 +80,140 @@ namespace WPEFramework
             using IInputDeviceIterator = RPC::IIteratorType<InputDevice, ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
 
             // @event
-            struct EXTERNAL IDevicesChangedNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL IDevicesChangedNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_DEVICES_CHANGED
                 };
 
                 // @text onDevicesChanged
                 // @brief Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
                 // @param devices - in - List of input devices in JSON format
-                virtual void OnDevicesChanged(const string &devices) {}; // Thunder does not currently support iterators as a notification parameter
+                virtual void OnDevicesChanged(const string& devices) { }; // Thunder does not currently support iterators as a notification parameter
             };
 
-            virtual Core::hresult Register(IDevicesChangedNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IDevicesChangedNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(IDevicesChangedNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(IDevicesChangedNotification* notification /* @in */) = 0;
 
             // @event
-            struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_SIGNAL_CHANGED
                 };
 
                 // @text onSignalChanged
                 // @brief Triggered whenever the signal status changes for an HDMI/Composite Input
                 // @param info - in - The new signal information of the input device
-                virtual void OnSignalChanged(const Exchange::IAVInput::InputSignalInfo &info) {};
+                virtual void OnSignalChanged(const Exchange::IAVInput::InputSignalInfo& info) { };
             };
 
-            virtual Core::hresult Register(ISignalChangedNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(ISignalChangedNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(ISignalChangedNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(ISignalChangedNotification* notification /* @in */) = 0;
 
             // @event
-            struct EXTERNAL IInputStatusChangedNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL IInputStatusChangedNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_INPUT_STATUS_CHANGED
                 };
 
                 // @text onInputStatusChanged
                 // @brief Triggered whenever the status changes for an HDMI/Composite Input
                 // @param info - in - The new input status information of the input device
-                virtual void OnInputStatusChanged(const Exchange::IAVInput::InputStatus &status) {};
+                virtual void OnInputStatusChanged(const Exchange::IAVInput::InputStatus& status) { };
             };
 
-            virtual Core::hresult Register(IInputStatusChangedNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IInputStatusChangedNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(IInputStatusChangedNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(IInputStatusChangedNotification* notification /* @in */) = 0;
 
             // @event
-            struct EXTERNAL IVideoStreamInfoUpdateNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL IVideoStreamInfoUpdateNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_VIDEO_STREAM_INFO_UPDATE
                 };
 
                 // @text videoStreamInfoUpdate
                 // @brief Triggered whenever there is an update in HDMI/Composite Input video stream info
                 // @param videoMode - in - The new video mode information of the input device
-                virtual void VideoStreamInfoUpdate(const Exchange::IAVInput::InputVideoMode &videoMode) {};
+                virtual void VideoStreamInfoUpdate(const Exchange::IAVInput::InputVideoMode& videoMode) { };
             };
 
-            virtual Core::hresult Register(IVideoStreamInfoUpdateNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IVideoStreamInfoUpdateNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(IVideoStreamInfoUpdateNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(IVideoStreamInfoUpdateNotification* notification /* @in */) = 0;
 
             // @event
-            struct EXTERNAL IGameFeatureStatusUpdateNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL IGameFeatureStatusUpdateNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE
                 };
 
                 // @text gameFeatureStatusUpdate
                 // @brief Triggered whenever game feature(ALLM) status changes for an HDMI Input
                 // @param status - in - The new game feature status of the input device
-                virtual void GameFeatureStatusUpdate(const Exchange::IAVInput::GameFeatureStatus &status) {};
+                virtual void GameFeatureStatusUpdate(const Exchange::IAVInput::GameFeatureStatus& status) { };
             };
 
-            virtual Core::hresult Register(IGameFeatureStatusUpdateNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IGameFeatureStatusUpdateNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(IGameFeatureStatusUpdateNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(IGameFeatureStatusUpdateNotification* notification /* @in */) = 0;
 
             // @event
-            struct EXTERNAL IHdmiContentTypeUpdateNotification : virtual public Core::IUnknown
-            {
-                enum
-                {
+            struct EXTERNAL IHdmiContentTypeUpdateNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_HDMI_CONTENT_TYPE_UPDATE
                 };
 
                 // @text hdmiContentTypeUpdate
                 // @brief Triggered whenever AV Infoframe content type changes for an HDMI Input
                 // @param contentType - in - The new AVI content type of the input device
-                virtual void HdmiContentTypeUpdate(const Exchange::IAVInput::ContentInfo &contentInfo) {};
+                virtual void HdmiContentTypeUpdate(const Exchange::IAVInput::ContentInfo& contentInfo) { };
             };
 
-            virtual Core::hresult Register(IHdmiContentTypeUpdateNotification *notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IHdmiContentTypeUpdateNotification *notification /* @in */) = 0;
+            virtual Core::hresult Register(IHdmiContentTypeUpdateNotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(IHdmiContentTypeUpdateNotification* notification /* @in */) = 0;
 
             // @text numberOfInputs
             // @brief Returns an integer that specifies the number of available inputs
             // @param inputCount - out - An integer representing number of inputs
-            virtual Core::hresult NumberOfInputs(uint32_t &inputCount /* @out */) = 0;
+            virtual Core::hresult NumberOfInputs(uint32_t& inputCount /* @out */) = 0;
 
             // @text getInputDevices
             // @brief Returns a list of input devices of the specified type
             // @param type - in - The type of input devices to retrieve
             // @param devices - out - An iterator to the list of input devices
-            virtual Core::hresult GetInputDevices(int type /* @in */, Exchange::IAVInput::IInputDeviceIterator *&devices /* @out */) = 0;
+            virtual Core::hresult GetInputDevices(int type /* @in */, Exchange::IAVInput::IInputDeviceIterator*& devices /* @out */) = 0;
 
             // @text writeEDID
             // @brief Returns a list of input devices of the specified type
             // @param id - in - The ID of the input device to write EDID to
             // @param edid - in - The EDID message to write
-            virtual Core::hresult WriteEDID(int id /* @in */, const string &edid /* @in */) = 0;
+            virtual Core::hresult WriteEDID(int id /* @in */, const string& edid /* @in */) = 0;
 
             // @text readEDID
             // @brief Reads the EDID from the specified input device
             // @param edid - out - The EDID message read from the device
             // @param id - in - The ID of the input device to write EDID to
             // @param edid - out - The EDID message to read
-            virtual Core::hresult ReadEDID(int id /* @in */, string &edid /* @out */) = 0;
+            virtual Core::hresult ReadEDID(int id /* @in */, string& edid /* @out */) = 0;
 
             // @text getRawSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits
             // @param spd - out - The SPD infoFrame packet information read from the device
-            virtual Core::hresult GetRawSPD(int id /* @in */, string &spd /* @out */) = 0;
+            virtual Core::hresult GetRawSPD(int id /* @in */, string& spd /* @out */) = 0;
 
             // @text getSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
             // @param spd - out - The SPD infoFrame packet information read from the device
-            virtual Core::hresult GetSPD(int id /* @in @optional */, string &spd /* @out */) = 0;
+            virtual Core::hresult GetSPD(int id /* @in @optional */, string& spd /* @out */) = 0;
 
             // @text setEdidVersion
             // @brief Sets an HDMI EDID version
             // @param id - in - The ID of the input device to set the EDID version for
             // @param version - in - The EDID version to set
-            virtual Core::hresult SetEdidVersion(int id /* @in @optional */, const string &version /* @in */) = 0;
+            virtual Core::hresult SetEdidVersion(int id /* @in @optional */, const string& version /* @in */) = 0;
 
             // @text getEdidVersion
             // @brief Returns the EDID version
             // @param id - in - The ID of the input device to get the EDID version for
             // @param version - out - The EDID version
-            virtual Core::hresult GetEdidVersion(int id /* @in */, string &version /* @out */) = 0;
+            virtual Core::hresult GetEdidVersion(int id /* @in */, string& version /* @out */) = 0;
 
             // @text setEdid2AllmSupport
             // @brief Sets an HDMI ALLM bit in EDID
@@ -248,7 +225,7 @@ namespace WPEFramework
             // @brief Returns the ALLM bit in EDID
             // @param id - in - The ID of the input device to get the ALLM
             // @param allm - out - The ALLM bit value
-            virtual Core::hresult GetEdid2AllmSupport(int id /* @in */, bool &allm /* @out */) = 0;
+            virtual Core::hresult GetEdid2AllmSupport(int id /* @in */, bool& allm /* @out */) = 0;
 
             // @text setVRRSupport
             // @brief Sets an HDMI VRR support bit in EDID
@@ -260,13 +237,13 @@ namespace WPEFramework
             // @brief Returns the VRR support bit in EDID
             // @param id - in - The ID of the input device to get the VRR
             // @param vrrSupport - out - The VRR support bit value
-            virtual Core::hresult GetVRRSupport(int id /* @in */, bool &vrrSupport /* @out */) = 0;
+            virtual Core::hresult GetVRRSupport(int id /* @in */, bool& vrrSupport /* @out */) = 0;
 
             // @text getHdmiVersion
             // @brief Returns the HDMI compatibility version for the specified input device
             // @param id - in - The ID of the input device to get the HDMI version
             // @param hdmiVersion - out - The HDMI compatibility version
-            virtual Core::hresult GetHdmiVersion(int id /* @in */, string &hdmiVersion /* @out */) = 0;
+            virtual Core::hresult GetHdmiVersion(int id /* @in */, string& hdmiVersion /* @out */) = 0;
 
             // @text setAudioMixerLevels
             // @brief Sets the mixer levels for the specified input device
@@ -302,23 +279,23 @@ namespace WPEFramework
             // @brief Returns the current video mode for the specified input device
             // @param currentVideoMode - out - The current video mode
             // @param message - out - A message indicating the status of the operation
-            virtual Core::hresult CurrentVideoMode(string &currentVideoMode /* @out */, string &message /* @out */) = 0;
+            virtual Core::hresult CurrentVideoMode(string& currentVideoMode /* @out */, string& message /* @out */) = 0;
 
             // @text contentProtected
             // @brief Returns whether the content is protected for the specified input device
             // @param isContentProtected - out - A boolean indicating if the content is protected
-            virtual Core::hresult ContentProtected(bool &isContentProtected /* @out */) = 0;
+            virtual Core::hresult ContentProtected(bool& isContentProtected /* @out */) = 0;
 
             // @text getSupportedGameFeatures
             // @brief Returns the supported game features for the specified input device
             // @param features - out - A list of supported game features
-            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator *&features /* @out */) = 0;
+            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator*& features /* @out */) = 0;
 
             // @text getGameFeatureStatus
             // @brief Returns the status of a specific game feature for the specified input device
             // @param feature - in - The game feature to check the status of
             // @param status - out - The status of the game feature
-            virtual Core::hresult GetGameFeatureStatus(int id /* @in @optional */, const string &feature /* @in */, bool &mode /* @out */) = 0;
+            virtual Core::hresult GetGameFeatureStatus(int id /* @in @optional */, const string& feature /* @in */, bool& mode /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
