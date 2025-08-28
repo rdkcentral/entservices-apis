@@ -230,7 +230,7 @@ namespace Exchange {
             // @param portType: Type of audio port see AudioPortType
             // @param uiPortNumber: The port number assigned by UI
             // @param isPortConnected: true (connected) or false (not connected)
-            virtual void OnAudioOutHotPlug(AudioPortType portType, int32_t uiPortNumber, bool isPortConnected) { };
+            virtual void OnAudioOutHotPlug(AudioPortType portType, uint32_t uiPortNumber, bool isPortConnected) { };
 
             // @brief Audio Output format changed
             // @text onAudioFormatUpdate
@@ -1471,35 +1471,35 @@ namespace Exchange {
             virtual void OnHDMIInEventStatus(const HDMIInPort activePort, const bool isPresented) {};
 
             // @brief HDMI Video Mode update
-            // @text onHDMInVideoModeUpdate
+            // @text onHDMIInVideoModeUpdate
             // @param port: port 0 or 1 et al
             // @param videoPortResolution: Video port resolution
-            virtual void OnHDMInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
+            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
             
             // @brief HDMI ALLM status
-            // @text onHDMInAllmStatus
+            // @text onHDMIInAllmStatus
             // @param port: port 0 or 1 et al
             // @param allmStatus: allm status
-            virtual void OnHDMInAllmStatus(const HDMIInPort port, const bool allmStatus) {};
+            virtual void OnHDMIInAllmStatus(const HDMIInPort port, const bool allmStatus) {};
 
             // @brief HDMI Event AVI content type
-            // @text OnHDMInAVIContentType
+            // @text onHDMIInAVIContentType
             // @param port: port 0 or 1 et al
             // @param aviContentType: AVI content type
-            virtual void OnHDMInAVIContentType(const HDMIInPort port, const HDMIInAviContentType aviContentType) {};
+            virtual void OnHDMIInAVIContentType(const HDMIInPort port, const HDMIInAviContentType aviContentType) {};
 
             // @brief HDMI Event AV Latency
-            // @text OnHDMInAVLatency
+            // @text onHDMIInAVLatency
             // @param port: port 0 or 1 et al
             // @param audioDelay: audio delay
             // @param videoDelay: video delay
-            virtual void OnHDMInAVLatency(const int32_t audioDelay, const int32_t videoDelay) {};
+            virtual void OnHDMIInAVLatency(const int32_t audioDelay, const int32_t videoDelay) {};
 
             // @brief HDMI VRR status
-            // @text OnHDMInVRRStatus
+            // @text onHDMIInVRRStatus
             // @param port: port 0 or 1 et al
             // @param vrrType: VRR type
-            virtual void OnHDMInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
+            virtual void OnHDMIInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
