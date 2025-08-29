@@ -32,7 +32,7 @@ const char *error_strings[] = {
             (((errorcode) >= ERROR_BASE && \
               (errorcode) < ERROR_BASE + (sizeof(error_strings)/sizeof(error_strings[0]))) \
                 ? error_strings[(errorcode) - ERROR_BASE] \
-                : ""); \
+                : "null"); \
         printf("[DEBUG] ErrorCode=%d -> %s\n", errorcode, msg); \
         msg; \
     })
