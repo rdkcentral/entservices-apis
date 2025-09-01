@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+        "title": "StorageManager Plugin",
+        "callsign": "org.rdk.StorageManager",
+        "locator": "libWPEFrameworkStorageManager.so",
+        "status": "production",
+        "description": "The StorageManager is responsible for maintaining the space on the flash disk needed for Web Applications to store Browser functions such as Cookies and Local Storage. It is a Thunder plugin that exposes a single Thunder interface(s) called IStorageManager.\n\nNote: This document only describes the JSON-RPC methods exposed by the plugin, it does not cover COM-RPC interfaces or usage."
+   },
+    "interface": {
+        "$ref": "StorageManager.json#"
+    }
+}

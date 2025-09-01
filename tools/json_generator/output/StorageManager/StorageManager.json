@@ -1,0 +1,90 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "StorageManager API",
+        "class": "StorageManager",
+        "description": "The StorageManager is responsible for maintaining the space on the flash disk needed for Web Applications to store Browser functions such as Cookies and Local Storage. It is a Thunder plugin that exposes a single Thunder interface(s) called IStorageManager."
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "appId": {
+            "summary": "Application Identifier",
+            "type": "string",
+            "example": "com.example.myapp"
+        },
+        "exemptionAppIds": {
+            "summary": "A JSON-formatted string listing app IDs exempt from clearing",
+            "type": "string",
+            "example": "{\\\"exemptionAppIds\\\":[\\\"com.example.app1\\\", \\\"com.example.app2\\\"]}"
+        },
+        "error": {
+            "summary": "Error message, if any",
+            "type": "string",
+            "example": "null"
+        }
+    },
+    "methods": {
+        "clear": {
+            "summary": "Clears app data for a given app id.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "appId": { "$ref": "#/definitions/appId" }
+                },
+                "required": ["appId"]
+            },
+            "result": {
+                "description": "Returns success or error status.",
+                "type": "object",
+                "properties": {
+                    "error": { "$ref": "#/definitions/error" }
+                }
+            },
+            "errors": [
+                {
+                    "code": 0,
+                    "message": "Core::ERROR_NONE",
+                    "description": "Success"
+                },
+                {
+                    "code": 1,
+                    "message": "Core::ERROR_GENERAL",
+                    "description": "General error"
+                }
+            ]
+        },
+        "clearAll": {
+            "summary": "Clears all app data except for the exempt app ids.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "exemptionAppIds": { "$ref": "#/definitions/exemptionAppIds" }
+                },
+                "required": []
+            },
+            "result": {
+                "description": "Returns success or error status.",
+                "type": "object",
+                "properties": {
+                    "error": { "$ref": "#/definitions/error" }
+                }
+            },
+            "errors": [
+                {
+                    "code": 0,
+                    "message": "Core::ERROR_NONE",
+                    "description": "Success"
+                },
+                {
+                    "code": 1,
+                    "message": "Core::ERROR_GENERAL",
+                    "description": "General error"
+                }
+            ]
+        }
+    }
+}
+
