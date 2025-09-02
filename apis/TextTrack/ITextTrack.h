@@ -431,7 +431,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @param data Is the data to display, properly formatted as per the expectations of the type used
      * @text sendSessionData
      */
-    virtual Core::hresult SendSessionData(const uint32_t sessionId, const DataType type, const int32_t displayOffsetMs, const string &data) = 0;
+    virtual Core::hresult SendSessionData(const uint32_t sessionId, const DataType type, const int64_t displayOffsetMs, const string &data) = 0;
     /**
      * @brief Sends the current timestamp from a media player to a render session.
      * @details The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
