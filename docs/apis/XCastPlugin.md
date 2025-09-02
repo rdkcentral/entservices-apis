@@ -45,14 +45,13 @@ XCast interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getApiVersionNumber](#getApiVersionNumber) | Gets the API version number |
 | [getEnabled](#getEnabled) | Reports whether xcast plugin is enabled or disabled |
 | [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API |
 | [getManufacturerName](#getManufacturerName) | Returns the friendly name set by setManufacturerName API |
 | [getModelName](#getModelName) | Returns the friendly name set by setModelName API |
 | [getProtocolVersion](#getProtocolVersion) | Returns the DIAL protocol version supported by the server |
 | [getStandbyBehavior](#getStandbyBehavior) | Return current standby behavior option string set uisng setStandbyBehavior or default value  |
-| [onApplicationStateChanged](#onApplicationStateChanged) | Provides notification whenever an application changes state due to user activity, an internal error, or other reasons |
+| [setApplicationState](#setApplicationState) | Provides notification whenever an application changes state due to user activity, an internal error, or other reasons |
 | [registerApplications](#registerApplications) | Registers an application |
 | [unregisterApplications](#unregisterApplications) | Unregisters an application |
 | [setEnabled](#setEnabled) | Enable or disable XCAST service |
@@ -61,52 +60,6 @@ XCast interface methods:
 | [setModelName](#setModelName) | Sets the Model name of device |
 | [setStandbyBehavior](#setStandbyBehavior) | Sets the expected xcast behavior in standby mode |
 
-
-<a name="getApiVersionNumber"></a>
-## *getApiVersionNumber*
-
-Gets the API version number.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.version | integer | a version number |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Xcast.getApiVersionNumber"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "version": 1,
-        "success": true
-    }
-}
-```
 
 <a name="getEnabled"></a>
 ## *getEnabled*
@@ -386,8 +339,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="onApplicationStateChanged"></a>
-## *onApplicationStateChanged*
+<a name="setApplicationState"></a>
+## *setApplicationState*
 
 Provides notification whenever an application changes state due to user activity, an internal error, or other reasons. For singleton applications, the `applicationId` parameter is optional. If an application request is denied, fails to fulfill, or the state change is triggered by an internal error, then a predefined error string should be included. This error may be translated to an XCast client.  
 
@@ -430,7 +383,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Xcast.onApplicationStateChanged",
+    "method": "org.rdk.Xcast.setApplicationState",
     "params": {
         "applicationName": "NetflixApp",
         "state": "running",
@@ -468,17 +421,12 @@ No Events
 | params | object |  |
 | params.applications | array | Json array with one or more application details to register |
 | params.applications[#] | object |  |
-| params.applications[#].names | array | case-sensitive. Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#].names[#] | string |  |
-| params.applications[#]?.prefixes | array | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
-| params.applications[#]?.prefixes[#] | string | <sup>*(optional)*</sup>  |
-| params.applications[#]?.cors | array | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
-| params.applications[#]?.cors[#] | string | <sup>*(optional)*</sup>  |
-| params.applications[#]?.properties | object | <sup>*(optional)*</sup> specific application properties applicable to app management. If not present in descriptor, the default value is assumed |
-| params.applications[#]?.properties.allowStop | boolean | is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched |
-| params.applications[#]?.launchParameters | object | <sup>*(optional)*</sup> launchParameters that application wants dial-server to append before sending the request to launch application |
-| params.applications[#]?.launchParameters.query | string | query string that need to be appended in launch request |
-| params.applications[#]?.launchParameters.payload | string | optional payload string that need to be appended in launch request |
+| params.applications[#]?.name | string | <sup>*(optional)*</sup> case-sensitive. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#]?.prefix | string | <sup>*(optional)*</sup> If the application name in request URI does not match the list of names, it must contain one of the prefixes.If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#]?.cors | string | <sup>*(optional)*</sup> a set of origins allowed for the application. This must not be empty |
+| params.applications[#]?.query | string | <sup>*(optional)*</sup> query string that need to be appended in launch request |
+| params.applications[#]?.payload | string | <sup>*(optional)*</sup> optional payload string that need to be appended in launch request |
+| params.applications[#]?.allowStop | boolean | <sup>*(optional)*</sup> is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched |
 
 ### Result
 
@@ -499,22 +447,12 @@ No Events
     "params": {
         "applications": [
             {
-                "names": [
-                    "Youtube"
-                ],
-                "prefixes": [
-                    "myYouTube"
-                ],
-                "cors": [
-                    ".youtube.com"
-                ],
-                "properties": {
-                    "allowStop": true
-                },
-                "launchParameters": {
-                    "query": "source_type=12",
-                    "payload": "..."
-                }
+                "name": "Youtube",
+                "prefix": "myYouTube",
+                "cors": ".youtube.com",
+                "query": "source_type=12",
+                "payload": "...",
+                "allowStop": true
             }
         ]
     }
@@ -547,7 +485,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.applications | string | One or more application name to unregister |
+| params.applications | array | case-sensitive. Group of Application names in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#] | string |  |
 
 ### Result
 
@@ -566,7 +505,9 @@ No Events
     "id": 42,
     "method": "org.rdk.Xcast.unregisterApplications",
     "params": {
-        "applications": "['YouTube', 'Netflix']"
+        "applications": [
+            "Youtube"
+        ]
     }
 }
 ```
@@ -892,8 +833,10 @@ Upon launching the application, the resident application is responsible for call
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.applicationName | string | Registered application name |
-| params.parameters | object | The format and interpretation is determined between the application launcher or cast target and the cast client for each application. For example, a Netflix DIAL-client returns a `pluginURL` parameter with the application launch string. A Youtube DIAL-client returns a `url` parameter with the application launch string |
-| params.parameters.pluginUrl | string | Application launch string |
+| params?.strPayLoad | string | <sup>*(optional)*</sup> optional payload string that need to be appended in launch request |
+| params?.strQuery | string | <sup>*(optional)*</sup> query string that need to be appended in launch request |
+| params?.strAddDataUrl | string | <sup>*(optional)*</sup> optional Additional data URL to be passed to the application |
+| params?.parameters | string | <sup>*(optional)*</sup> Application launch string AND The format and interpretation is determined between the application launcher or cast target and the cast client for each application |
 
 ### Example
 
@@ -903,9 +846,10 @@ Upon launching the application, the resident application is responsible for call
     "method": "client.events.onApplicationLaunchRequest",
     "params": {
         "applicationName": "NetflixApp",
-        "parameters": {
-            "pluginUrl": "https://www.netflix.com"
-        }
+        "strPayLoad": "...",
+        "strQuery": "source_type=12",
+        "strAddDataUrl": "...",
+        "parameters": "https://www.netflix.com"
     }
 }
 ```
