@@ -56,7 +56,7 @@ struct RuntimeConfig {
 #define RUNTIME_CONFIG
 #endif
 
-// @text:keep
+// @json @text:keep
 struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
 
     enum LifecycleState : uint8_t {
