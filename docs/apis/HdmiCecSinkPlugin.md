@@ -54,6 +54,7 @@ HdmiCecSink interface methods:
 | [getVendorId](#getVendorId) | Gets the current vendor ID used by host device |
 | [printDeviceList](#printDeviceList) | This is a helper debug command for developers |
 | [requestActiveSource](#requestActiveSource) | Requests the active source in the network |
+| [requestAudioDevicePowerStatus](#requestAudioDevicePowerStatus) | Requests the audio device power status |
 | [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an event |
 | [sendAudioDevicePowerOnMessage](#sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device |
 | [sendGetAudioStatusMessage](#sendGetAudioStatusMessage) | Sends the CEC \<Give Audio Status\> message to request the audio status |
@@ -530,6 +531,51 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.HdmiCecSink.requestActiveSource"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="requestAudioDevicePowerStatus"></a>
+## *requestAudioDevicePowerStatus*
+
+Requests the audio device power status.
+
+### Events
+
+| Event | Description |
+| :-------- | :-------- |
+| [reportAudioDevicePowerStatus](#reportAudioDevicePowerStatus) | Triggered when the audio device power status is received. |
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.HdmiCecSink.requestAudioDevicePowerStatus"
 }
 ```
 
@@ -1355,6 +1401,7 @@ HdmiCecSink interface events:
 | [onTextViewOnMsg](#onTextViewOnMsg) | Triggered when a \<Text View ON\> CEC message is received from the source device |
 | [onWakeupFromStandby](#onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives \<Image View ON\>/ \<Text View ON\>/ \<Active Source\> CEC message from the connected source device |
 | [reportAudioDeviceConnectedStatus](#reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed |
+| [reportAudioDevicePowerStatus](#reportAudioDevicePowerStatus) | Triggered when the audio device power status is received |
 | [reportAudioStatusEvent](#reportAudioStatusEvent) | Triggered when CEC \<Report Audio Status\> message of device is received |
 | [reportFeatureAbortEvent](#reportFeatureAbortEvent) | Triggered when CEC \<Feature Abort\> message of device is received |
 | [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled |
@@ -1629,6 +1676,30 @@ Triggered when an audio device is added or removed.
     "params": {
         "status": "success",
         "audioDeviceConnected": "true"
+    }
+}
+```
+
+<a name="reportAudioDevicePowerStatus"></a>
+## *reportAudioDevicePowerStatus*
+
+Triggered when the audio device power status is received.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.powerStatus | integer | The power status of the audio device |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.reportAudioDevicePowerStatus",
+    "params": {
+        "powerStatus": 0
     }
 }
 ```
