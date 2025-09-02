@@ -32,7 +32,7 @@ jobs:
       - name: Clone the project and start release
         run: |
           set -e
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} project
+          git clone https://x-access-token:${{ secrets.RDKCM_RDKE }}@github.com/${{ github.repository }} project
           cd project
           git fetch --all
           git checkout main || git checkout -b main origin/main
@@ -51,7 +51,7 @@ jobs:
           # Extract version from PR description
           PR_DESC="${{ github.event.pull_request.body }}"
           # Get top tag from CHANGELOG.md
-          TOP_TAG=$(grep -m 1 -oP '^#### \[\K[^\]]+' CHANGELOG.md)
+          TOP_TAG=$(grep -m 1 -oP '^##\s+\K[0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md)
           if [[ -z "$TOP_TAG" ]]; then
             echo "No version found in CHANGELOG.md!"
             exit 1
