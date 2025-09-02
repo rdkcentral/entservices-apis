@@ -1,29 +1,29 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="LEDControl_Plugin"></a>
+<a id="head.ILEDControl_Plugin"></a>
 # LEDControl Plugin
 
 A org.rdk.LEDControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
 The `LEDControl` plugin allows you to control brightness and power state for LEDs on a device.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -35,43 +35,35 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkLEDControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.LEDControl plugin:
+The following methods are provided by the LEDControl plugin:
 
 LEDControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getSupportedLEDStates](#getSupportedLEDStates) | Returns all the LED states supported by the platform |
-| [getLEDState](#getLEDState) | Returns current LED state |
-| [setLEDState](#setLEDState) | Change the device LED state to one mentioned in the input argument |
+| [GetLEDState](#method.GetLEDState) | Retrieves current state of the LED. e.g. "WPS_CONNECTING" |
+| [GetSupportedLEDStates](#method.GetSupportedLEDStates) | Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`. |
+| [SetLEDState](#method.SetLEDState) | Changes the device LED state to mentioned input state. |
 
+<a id="method.GetLEDState"></a>
+## *GetLEDState [<sup>method</sup>](#head.Methods)*
 
-<a name="getSupportedLEDStates"></a>
-## *getSupportedLEDStates*
-
-Returns all the LED states supported by the platform.
+Retrieves current state of the LED. e.g. "WPS_CONNECTING"
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedLEDStates | array | Returns all the LED states available on the platform |
-| result.supportedLEDStates[#] | string |  |
-| result.success | boolean | Whether the request succeeded |
+| result.state | LEDControlState | LEDControlState |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -79,7 +71,47 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.LEDControl.getSupportedLEDStates"
+    "method": "org.rdk.ILEDControl.GetLEDState"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "state": "FACTORY_RESET"
+    }
+}
+```
+<a id="method.GetSupportedLEDStates"></a>
+## *GetSupportedLEDStates [<sup>method</sup>](#head.Methods)*
+
+Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
+
+### Events
+No events are associated with this method.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.supportedLEDStates | IStringIterator | string [] of supported LED states.  |
+| result.supportedLEDStates[#] | string |  |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.ILEDControl.GetSupportedLEDStates"
 }
 ```
 
@@ -91,34 +123,30 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "supportedLEDStates": [
-            "`ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR'"
+            "ACTIVE", "STANDBY", "WPS_CONNECTING", "WPS_CONNECTED", "WPS_ERROR", "FACTORY_RESET", "USB_UPGRADE", "DOWNLOAD_ERROR"
         ],
-        "success": true
+        "success": "true"
     }
 }
 ```
+<a id="method.SetLEDState"></a>
+## *SetLEDState [<sup>method</sup>](#head.Methods)*
 
-<a name="getLEDState"></a>
-## *getLEDState*
-
-Returns current LED state.
+Changes the device LED state to mentioned input state.
 
 ### Events
-
-No Events
-
+No events are associated with this method.
 ### Parameters
-
-This method takes no parameters.
-
-### Result
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | Indicates a platform supported LED state |
+| params.state | LEDControlState | LEDControlState |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
@@ -126,7 +154,10 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.LEDControl.getLEDState"
+    "method": "org.rdk.ILEDControl.SetLEDState",
+    "params": {
+        "state": "FACTORY_RESET"
+    }
 }
 ```
 
@@ -137,55 +168,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "state": "ACTIVE"
+        "success": "true"
     }
 }
 ```
-
-<a name="setLEDState"></a>
-## *setLEDState*
-
-Change the device LED state to one mentioned in the input argument.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.state | string | Indicates a platform supported LED state |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.LEDControl.setLEDState",
-    "params": {
-        "state": "ACTIVE"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": true
-}
-```
-
