@@ -25,15 +25,13 @@ const char *error_strings[] = {
     "Unknown error code"
 };
 
-//4.Fetch Error strings
+//4.Check if Error code is within the entservices error code range.
+#define IS_ENTSERVICES_ERRORCODE(errorcode) \
+    ((errorcode) >= ERROR_BASE && \
+     (errorcode) < ERROR_BASE + (sizeof(error_strings) / sizeof(error_strings[0])))
+
+
+//5.Fetch Error strings
 #define ERROR_MESSAGE(errorcode) \
-    ({ \
-        const char *msg = \
-            (((errorcode) >= ERROR_BASE && \
-              (errorcode) < ERROR_BASE + (sizeof(error_strings)/sizeof(error_strings[0]))) \
-                ? error_strings[(errorcode) - ERROR_BASE] \
-                : Core::ErrorToString(errorcode)); \
-        printf("[DEBUG] ErrorCode=%d -> %s\n", errorcode, msg); \
-        msg; \
-    })
+    (error_strings[(errorcode) - ERROR_BASE])
 
