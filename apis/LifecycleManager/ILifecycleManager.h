@@ -109,7 +109,6 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& launchIntent /* @in */, const LifecycleState targetLifecycleState /* @in */, const RuntimeConfig& runtimeConfigObject /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
-    // @json:omit
     // @text setTargetAppState
     // @brief Set the state for the application instance
     // @param appInstanceId: Instance ID of the application
