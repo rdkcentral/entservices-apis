@@ -1262,12 +1262,20 @@ namespace Exchange {
         // @brief Set Front Panel Display Mode.
         // @param fpdMode: FPD Mode
         virtual Core::hresult SetFPDMode(const FPDMode fpdMode /* @in */)  = 0;
+
+        /** Set Front Panel LED Status. */
+        // @text setFPDLEDStatus
+        // @brief Set Front Panel LED Status
+        // @param fpdMode: FPD Mode
+        virtual Core::hresult SetFPDLEDStatus(const FPDIndicator fpdIndicator /* @in */, const FPDState fpdState /* @in */ )  = 0;
+
+
     };  
 
-    struct EXTERNAL IDeviceSettingsManagerHDMIIn : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN };
+    struct EXTERNAL IDeviceSettingsManagerHdmiIn : virtual public Core::IUnknown {
+        enum { ID = ID_DEVICESETTINGS_MANAGER_HdmiIn };
 
-        enum HDMIInPort : int8_t {
+        enum HdmiInPort : int8_t {
             DS_HDMI_IN_PORT_NONE    = -1,
             DS_HDMI_IN_PORT_0       = 0,
             DS_HDMI_IN_PORT_1       = 1,
@@ -1277,7 +1285,7 @@ namespace Exchange {
             DS_HDMI_IN_PORT_MAX     = 5
         };
 
-        enum HDMIInSignalStatus: int8_t {
+        enum HdmiInSignalStatus: int8_t {
             DS_HDMI_IN_SIGNAL_STATUS_NONE        = -1,
             DS_HDMI_IN_SIGNAL_STATUS_NOSIGNAL     = 0,
             DS_HDMI_IN_SIGNAL_STATUS_UNSTABLE     = 1,
@@ -1286,27 +1294,27 @@ namespace Exchange {
             DS_HDMI_IN_SIGNAL_STATUS_MAX          = 4
         };
 
-        struct HDMIPortConnectionStatus {
+        struct HdmiPortConnectionStatus {
             bool isPortConnected;
         };
-        using IHDMIInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_MANAGER_HDMIIN_PORTCONNECTION_ITERATOR>;
+        using IHdmiInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_MANAGER_HDMIIN_PORTCONNECTION_ITERATOR>;
 
-        struct HDMIInStatus {
+        struct HdmiInStatus {
             bool isPresented;
-            HDMIInPort activePort;
+            HdmiInPort activePort;
         };
 
-        struct HDMIInCapabilities {
+        struct HdmiInCapabilities {
             bool isPortArcCapable;
         };
 
-        struct HDMIInGameFeatureList {
+        struct HdmiInGameFeatureList {
             string gameFeature;
         };
 
-        using IHDMIInGameFeatureListIterator = RPC::IIteratorType<HDMIInGameFeatureList, ID_DEVICESETTINGS_MANAGER_HDMIIN_GAMELIST_ITERATOR>;
+        using IHdmiInGameFeatureListIterator = RPC::IIteratorType<HdmiInGameFeatureList, ID_DEVICESETTINGS_MANAGER_HDMIIN_GAMELIST_ITERATOR>;
 
-        struct HDMIInSpdInfoFrame {
+        struct HdmiInSpdInfoFrame {
             uint8_t pktType;            /*!< Package type */
             uint8_t version;            /*!< Version */
             uint8_t length;             /*!< max length 25, min length 0 */
@@ -1317,7 +1325,7 @@ namespace Exchange {
             uint8_t sourceInfo;        /*!< Source info of the frame  */
         };
 
-        enum HDMIInEdidVersion : uint8_t {
+        enum HdmiInEdidVersion : uint8_t {
             HDMI_EDID_VER_14      = 0,
             HDMI_EDID_VER_20      = 1,
             HDMI_EDID_VER_MAX     = 2
@@ -1329,21 +1337,21 @@ namespace Exchange {
             DS_HDMIIN_VIDEOPLANE_MAX       = 2
         };
 
-        enum HDMIInCapabilityVersion {
+        enum HdmiInCapabilityVersion : uint8_t {
             HDMI_COMPATIBILITY_VERSION_14  = 0,
             HDMI_COMPATIBILITY_VERSION_20  = 1,
             HDMI_COMPATIBILITY_VERSION_21  = 2,
             HDMI_COMPATIBILITY_VERSION_MAX = 3
         };
 
-        struct HDMIInVideoRectangle {
+        struct HdmiInVideoRectangle {
             int32_t x;
             int32_t y;
             int32_t width;
             int32_t height;
         };
 
-        enum HDMIInVideoZoom : int8_t {
+        enum HdmiInVideoZoom : int8_t {
             DS_HDMIIN_VIDEO_ZOOM_UNKNOWN           = -1,
             DS_HDMIIN_VIDEO_ZOOM_NONE              = 0,
             DS_HDMIIN_VIDEO_ZOOM_FULL              = 1,
@@ -1360,7 +1368,7 @@ namespace Exchange {
             DS_HDMIIN_VIDEO_ZOOM_MAX               = 12
         };
 
-        enum HDMIInVRRType: uint8_t {
+        enum HdmiInVRRType: uint8_t {
             DS_HDMIIN_VRR_NONE                  = 0,
             DS_HDMIIN_HDMI_VRR                  = 1,
             DS_HDMIIN_AMD_FREESYNC              = 2,
@@ -1368,12 +1376,12 @@ namespace Exchange {
             DS_HDMIIN_AMD_FREESYNC_PREMIUM_PRO  = 4
         };
 
-        struct HDMIInVRRStatus {
-            HDMIInVRRType vrrType;
+        struct HdmiInVRRStatus {
+            HdmiInVRRType vrrType;
             double vrrFreeSyncFramerateHz;
         };
 
-        enum HDMIInTVResolution: uint32_t {
+        enum HdmiInTVResolution: uint32_t {
             DS_HDMIIN_RESOLUTION_480I     = 0x000001,
             DS_HDMIIN_RESOLUTION_480P     = 0x000002,
             DS_HDMIIN_RESOLUTION_576I     = 0x000004,
@@ -1402,7 +1410,7 @@ namespace Exchange {
             DS_HDMIIN_ASPECT_RATIO_MAX         = 2  /* @text Video Aspect Ratio MAX */
         };
 
-        enum HDMIInVideoStereoScopicMode : uint8_t {
+        enum HdmiInVideoStereoScopicMode : uint8_t {
             DS_HDMIIN_SSMODE_UNKNOWN           = 0,
             DS_HDMIIN_SSMODE_2D                = 1,
             DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,
@@ -1410,7 +1418,7 @@ namespace Exchange {
             DS_HDMIIN_SSMODE_MAX               = 4
         };
 
-        enum HDMIInVideoFrameRate: uint8_t {
+        enum HdmiInVideoFrameRate: uint8_t {
             DS_HDMIIN_FRAMERATE_UNKNOWN   = 0,
             DS_HDMIIN_FRAMERATE_24        = 1,
             DS_HDMIIN_FRAMERATE_25        = 2,
@@ -1429,7 +1437,7 @@ namespace Exchange {
             DS_HDMIIN_FRAMERATE_MAX       = 15
         };
 
-        enum HDMIInAviContentType: uint8_t {
+        enum HdmiInAviContentType: uint8_t {
             DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      =0,
             DS_HDMIIN_AVICONTENT_TYPE_PHOTO         =1,
             DS_HDMIIN_AVICONTENT_TYPE_CINEMA        =2,
@@ -1440,10 +1448,10 @@ namespace Exchange {
           
         struct HDMIVideoPortResolution {
             string name;
-            HDMIInTVResolution pixelResolution;
-            HDMIVideoAspectRatio aspectRatio;
-            HDMIInVideoStereoScopicMode stereoScopicMode;
-            HDMIInVideoFrameRate frameRate;
+            HdmiInTVResolution pixelResolution;
+            HdmiVideoAspectRatio aspectRatio;
+            HdmiInVideoStereoScopicMode stereoScopicMode;
+            HdmiInVideoFrameRate frameRate;
             bool interlaced;
         };
         
@@ -1453,124 +1461,124 @@ namespace Exchange {
             enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN_NOTIFICATION };
 
             // @brief HDMI Event Hot Plug
-            // @text onHDMIInEventHotPlug
+            // @text onHdmiInEventHotPlug
             // @param port: port 0 or 1 et al
             // @param isConnected: is it connected (true) or not (false)
-            virtual void OnHDMIInEventHotPlug(const HDMIInPort port, const bool isConnected) {};
+            virtual void OnHdmiInEventHotPlug(const HdmiInPort port, const bool isConnected) {};
 
             // @brief HDMI Event Signal status
-            // @text OnHDMIInEventSignalStatus
+            // @text onHdmiInEventSignalStatus
             // @param port: port 0 or 1 et al
             // @param signalStatus: Signal Status
-            virtual void OnHDMIInEventSignalStatus(const HDMIInPort port, const HDMIInSignalStatus signalStatus) {};
+            virtual void OnHdmiInEventSignalStatus(const HdmiInPort port, const HdmiInSignalStatus signalStatus) {};
 
             // @brief HDMI Event Signal status
-            // @text onHDMIInEventStatus
+            // @text onHdmiInEventStatus
             // @param activePort: port 0 or 1 et al
             // @param isPresented: is it presented or not
-            virtual void OnHDMIInEventStatus(const HDMIInPort activePort, const bool isPresented) {};
+            virtual void OnHdmiInEventStatus(const HdmiInPort activePort, const bool isPresented) {};
 
             // @brief HDMI Video Mode update
-            // @text onHDMIInVideoModeUpdate
+            // @text onHdmiInVideoModeUpdate
             // @param port: port 0 or 1 et al
             // @param videoPortResolution: Video port resolution
-            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
+            virtual void OnHdmiInVideoModeUpdate(const HdmiInPort port, const HDMIVideoPortResolution videoPortResolution) {};
             
             // @brief HDMI ALLM status
-            // @text onHDMIInAllmStatus
+            // @text onHdmiInAllmStatus
             // @param port: port 0 or 1 et al
             // @param allmStatus: allm status
-            virtual void OnHDMIInAllmStatus(const HDMIInPort port, const bool allmStatus) {};
+            virtual void OnHdmiInAllmStatus(const HdmiInPort port, const bool allmStatus) {};
 
             // @brief HDMI Event AVI content type
-            // @text onHDMIInAVIContentType
+            // @text onHdmiInAVIContentType
             // @param port: port 0 or 1 et al
             // @param aviContentType: AVI content type
-            virtual void OnHDMIInAVIContentType(const HDMIInPort port, const HDMIInAviContentType aviContentType) {};
+            virtual void OnHdmiInAVIContentType(const HdmiInPort port, const HdmiInAviContentType aviContentType) {};
 
             // @brief HDMI Event AV Latency
-            // @text onHDMIInAVLatency
+            // @text onHdmiInAVLatency
             // @param port: port 0 or 1 et al
             // @param audioDelay: audio delay
             // @param videoDelay: video delay
-            virtual void OnHDMIInAVLatency(const int32_t audioDelay, const int32_t videoDelay) {};
+            virtual void OnHdmiInAVLatency(const int32_t audioDelay, const int32_t videoDelay) {};
 
             // @brief HDMI VRR status
-            // @text onHDMIInVRRStatus
+            // @text onHdmiInVRRStatus
             // @param port: port 0 or 1 et al
             // @param vrrType: VRR type
-            virtual void OnHDMIInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
+            virtual void OnHdmiInVRRStatus(const HdmiInPort port, const HdmiInVRRType vrrType) {};
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHdmiIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHdmiIn::INotification* notification /* @in */) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
-        // @text getHDMIInNumbefOfInputs
+        // @text getHdmiInNumbefOfInputs
         // @brief Get Number of HDMI Inputs in the platform
         // @param count: number of inputs
-        virtual Core::hresult GetHDMIInNumbefOfInputs(int32_t &count /* @out */) = 0;
+        virtual Core::hresult GetHdmiInNumbefOfInputs(int32_t &count /* @out */) = 0;
 
-        /** Get HDMIIn Status. */
-        // @text getHDMIInStatus
-        // @brief Get HDMIIn Status
+        /** Get HdmiIn Status. */
+        // @text getHdmiInStatus
+        // @brief Get HdmiIn Status
         // @param hdmiStatus: HDMI Status
-        virtual Core::hresult GetHDMIInStatus(HDMIInStatus &hdmiStatus /* @out */, IHDMIInPortConnectionStatusIterator*& portConnectionStatus /* @out */) = 0;
+        virtual Core::hresult GetHdmiInStatus(HdmiInStatus &hdmiStatus /* @out */, IHdmiInPortConnectionStatusIterator*& portConnectionStatus /* @out */) = 0;
 
-        /** Select HDMIIn Port. */
-        // @text selectHDMIInPort
-        // @brief Get HDMIIn Status
+        /** Select HdmiIn Port. */
+        // @text selectHdmiInPort
+        // @brief Get HdmiIn Status
         // @param port: Port to select 
         // @param requestAudioMix: Should audio be mixed on this port
         // @param topMostPlane: Should this be on top for display
         // @param videoPlaneType: Primary or secondary
-        virtual Core::hresult SelectHDMIInPort(const HDMIInPort port /* @in */, const bool requestAudioMix /* @in */, const bool topMostPlane /* @in */, const HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
+        virtual Core::hresult SelectHdmiInPort(const HdmiInPort port /* @in */, const bool requestAudioMix /* @in */, const bool topMostPlane /* @in */, const HDMIVideoPlaneType videoPlaneType /* @in */) = 0;
 
-        /** Scale HDMIIn Video. */
-        // @text scaleHDMIInVideo
-        // @brief Scale HDMIIn Video
+        /** Scale HdmiIn Video. */
+        // @text scaleHdmiInVideo
+        // @brief Scale HdmiIn Video
         // @param videoPosition: co-ordinates to scale
-        virtual Core::hresult ScaleHDMIInVideo(const HDMIInVideoRectangle videoPosition /* @in */) = 0;
+        virtual Core::hresult ScaleHdmiInVideo(const HdmiInVideoRectangle videoPosition /* @in */) = 0;
 
-        /** Select HDMIIn Zoom mode. */
+        /** Select HdmiIn Zoom mode. */
         // @text selectHDMIZoomMode
-        // @brief Select HDMIIn Zoom mode
+        // @brief Select HdmiIn Zoom mode
         // @param zoomMode: zoom mode
-        virtual Core::hresult SelectHDMIZoomMode(const HDMIInVideoZoom zoomMode /* @in */) = 0;
+        virtual Core::hresult SelectHDMIZoomMode(const HdmiInVideoZoom zoomMode /* @in */) = 0;
 
         /** Get Supported Game feature list. */
         // @text getSupportedGameFeaturesList
         // @brief Get Supported Game feature list
         // @param gameFeatureList: game feature list
-        virtual Core::hresult GetSupportedGameFeaturesList(IHDMIInGameFeatureListIterator *& gameFeatureList /* @out */) = 0;
+        virtual Core::hresult GetSupportedGameFeaturesList(IHdmiInGameFeatureListIterator *& gameFeatureList /* @out */) = 0;
 
         /** Get AV latency. */
-        // @text getHDMIInAVLatency
+        // @text getHdmiInAVLatency
         // @brief Get AV latency
         // @param videoLatency: video latency
         // @param audioLatency: audio latency
-        virtual Core::hresult GetHDMIInAVLatency(uint32_t &videoLatency /* @out */, uint32_t &audioLatency /* @out*/) = 0;
+        virtual Core::hresult GetHdmiInAVLatency(uint32_t &videoLatency /* @out */, uint32_t &audioLatency /* @out*/) = 0;
 
         /** Get ALLM Status. */
-        // @text getHDMIInAllmStatus
+        // @text getHdmiInAllmStatus
         // @brief Get ALLM Status
         // @param port: Port number
         // @param allmStatus: ALLM status
-        virtual Core::hresult GetHDMIInAllmStatus(const HDMIInPort port /* @in */, bool &allmStatus /* @out*/) = 0;
+        virtual Core::hresult GetHdmiInAllmStatus(const HdmiInPort port /* @in */, bool &allmStatus /* @out*/) = 0;
 
         /** Get EDID to ALLM Supported or not. */
-        // @text getHDMIInEdid2AllmSupport
+        // @text getHdmiInEdid2AllmSupport
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult GetHDMIInEdid2AllmSupport(const HDMIInPort port /* @in */, bool &allmSupport /* @out*/) = 0;
+        virtual Core::hresult GetHdmiInEdid2AllmSupport(const HdmiInPort port /* @in */, bool &allmSupport /* @out*/) = 0;
 
         /** Set EDID to ALLM Supported or not. */
-        // @text setHDMIInEdid2AllmSupport
+        // @text setHdmiInEdid2AllmSupport
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult SetHDMIInEdid2AllmSupport(const HDMIInPort port /* @in */, bool allmSupport /* @in*/) = 0;
+        virtual Core::hresult SetHdmiInEdid2AllmSupport(const HdmiInPort port /* @in */, bool allmSupport /* @in*/) = 0;
 
         /** Get EDID bytes. */
         // @text getEdidBytes
@@ -1578,7 +1586,7 @@ namespace Exchange {
         // @param port: Port number
         // @param edidBytesLength: number of bytes in the edidBytes array
         // @param edidBytes: EDID information
-        virtual Core::hresult GetEdidBytes(const HDMIInPort port /* @in */, const uint16_t edidBytesLength /* @in */,  uint8_t edidBytes[] /* @out @length:edidBytesLength @maxlength:edidBytesLength */) = 0;
+        virtual Core::hresult GetEdidBytes(const HdmiInPort port /* @in */, const uint16_t edidBytesLength /* @in */,  uint8_t edidBytes[] /* @out @length:edidBytesLength @maxlength:edidBytesLength */) = 0;
 
         /** Get HDMI SPD Information. */
         // @text getEdidBytes
@@ -1586,21 +1594,21 @@ namespace Exchange {
         // @param port: Port number
         // @param spdBytesLength: number of bytes in the spdBytes array
         // @param spdBytes: SPD information
-        virtual Core::hresult GetHDMISPDInformation(const HDMIInPort port /* @in */, const uint16_t spdBytesLength /* @in */,  uint8_t spdBytes[] /* @out @length:spdBytesLength @maxlength:spdBytesLength */) = 0;
+        virtual Core::hresult GetHDMISPDInformation(const HdmiInPort port /* @in */, const uint16_t spdBytesLength /* @in */,  uint8_t spdBytes[] /* @out @length:spdBytesLength @maxlength:spdBytesLength */) = 0;
 
         /** Get HDMI Port EDID version. */
         // @text getHDMIEdidVersion
         // @brief Get HDMI Port EDID version.
         // @param port: Port number
         // @param edidVersion: EDID version
-        virtual Core::hresult GetHDMIEdidVersion(const HDMIInPort port /* @in */, HDMIInEdidVersion &edidVersion /* @out */) = 0;
+        virtual Core::hresult GetHDMIEdidVersion(const HdmiInPort port /* @in */, HdmiInEdidVersion &edidVersion /* @out */) = 0;
 
         /** Set HDMI Port EDID version. */
         // @text setHDMIEdidVersion
         // @brief Set HDMI Port EDID version.
         // @param port: Port number
         // @param edidVersion: EDID version
-        virtual Core::hresult SetHDMIEdidVersion(const HDMIInPort port /* @in */, const HDMIInEdidVersion edidVersion /* @in */) = 0;
+        virtual Core::hresult SetHDMIEdidVersion(const HdmiInPort port /* @in */, const HdmiInEdidVersion edidVersion /* @in */) = 0;
 
         /** Get HDMI Video mode. */
         // @text getHDMIVideoMode
@@ -1613,28 +1621,28 @@ namespace Exchange {
         // @brief Get HDMI Supported Version
         // @param port: Port number
         // @param capabilityVersion: supported capability version
-        virtual Core::hresult GetHDMIVersion(const HDMIInPort port /* @in */, HDMIInCapabilityVersion &capabilityVersion /* @out */) = 0;
+        virtual Core::hresult GetHDMIVersion(const HdmiInPort port /* @in */, HdmiInCapabilityVersion &capabilityVersion /* @out */) = 0;
 
         /** Set HDMI VRR Support. */
         // @text setVRRSupport
         // @brief Set HDMI VRR Support.
         // @param port: Port number
         // @param vrrSupport: enable (true) or disable (false)
-        virtual Core::hresult SetVRRSupport(const HDMIInPort port /* @in */, const bool vrrSupport /* @in */) = 0;
+        virtual Core::hresult SetVRRSupport(const HdmiInPort port /* @in */, const bool vrrSupport /* @in */) = 0;
 
         /** Get HDMI VRR Support. */
         // @text getVRRSupport
         // @brief Get HDMI VRR Support.
         // @param port: Port number
         // @param vrrSupport: enabled (true) or disable (false)
-        virtual Core::hresult GetVRRSupport(const HDMIInPort port /* @in */, bool &vrrSupport /* @out */) = 0;
+        virtual Core::hresult GetVRRSupport(const HdmiInPort port /* @in */, bool &vrrSupport /* @out */) = 0;
 
         /** Get HDMI VRR Status. */
         // @text getVRRStatus
         // @brief Get HDMI VRR Status.
         // @param port: Port number
         // @param vrrStatus: VRR Status
-        virtual Core::hresult GetVRRStatus(const HDMIInPort port /* @in */, HDMIInVRRStatus &vrrStatus /* @out */) = 0;
+        virtual Core::hresult GetVRRStatus(const HdmiInPort port /* @in */, HdmiInVRRStatus &vrrStatus /* @out */) = 0;
     };
 
     struct EXTERNAL IDeviceSettingsManagerHost : virtual public Core::IUnknown {
@@ -1703,6 +1711,13 @@ namespace Exchange {
         // @brief Get MS12 Config
         // @param ms12Config: MS12 config type
         virtual Core::hresult GetMS12ConfigType(string &ms12Config /* @out */) = 0;
+
+        /** Set Reboot Config. */
+        // @text setRebootConfig
+        // @brief Set Reboot Config
+        // @param rebootReasonCustom: Custom reboot reason
+        // @param powerState: Power State
+        virtual Core::hresult SetRebootConfig(string &rebootReasonCustom /* @in */, uint8_t powerState /* @in */) = 0;
 
     };
 
@@ -2316,6 +2331,28 @@ namespace Exchange {
         // @param colorDepth: color depth See DisplayColorDepth 
         // @param persist:  persist value (true) or not (false)
         virtual Core::hresult SetPreferredColorDepth(const int32_t handle /* @in */, const DisplayColorDepth colorDepth /* @in */, const bool persist /* @in */) = 0;
+
+        // vdixit - the APIs are not similar (no handle) in convention to the other APIs (with handle)
+        // vdixit - they may need to be re-looked
+        /**  Set AV Port Power State. */
+        // @text setAVPortState
+        // @brief Set AV Port Power State
+        // @param powerState:  power state
+        virtual Core::hresult SetAVPortState(const uint8_t powerState /* @in */) = 0;
+
+        /**  Set Standby Video State. */
+        // @text setStandbyVideoState
+        // @brief Set Standby Video State
+        // @param port: Port to enable 
+        // @param enable:  enable (true) or disable (false)
+        virtual Core::hresult SetStandbyVideoState(string &port /* @in */, const bool enable /* @in */) = 0;
+
+        /**  Get Standby Video State. */
+        // @text getStandbyVideoState
+        // @brief Get Standby Video State
+        // @param port: Port name
+        // @param isEnabled:  enable (true) or disable (false)
+        virtual Core::hresult GetStandbyVideoState(string &port /* @in */, bool &isEnabled /* @out */) = 0;
 
     };
 
