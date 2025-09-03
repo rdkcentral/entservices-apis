@@ -1052,11 +1052,6 @@ namespace Exchange {
             // @text onDisplayRxSense
             // @param displayEvent: DS_DISPLAY_RXSENSE_ON or DS_DISPLAY_RXSENSE_OFF
             virtual void OnDisplayRxSense(const DisplayEvent displayEvent) {};
-
-            // @brief Display HDCP Status
-            // @text OnDisplayHDCPStatus
-            virtual void OnDisplayHDCPStatus() {};
-            
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
@@ -1266,10 +1261,9 @@ namespace Exchange {
         /** Set Front Panel LED Status. */
         // @text setFPDLEDStatus
         // @brief Set Front Panel LED Status
-        // @param fpdMode: FPD Mode
+        // @param fpdIndicator: FPD Indicator
+        // @param fpdState: FPD State
         virtual Core::hresult SetFPDLEDStatus(const FPDIndicator fpdIndicator /* @in */, const FPDState fpdState /* @in */ )  = 0;
-
-
     };  
 
     struct EXTERNAL IDeviceSettingsManagerHdmiIn : virtual public Core::IUnknown {
@@ -1717,7 +1711,7 @@ namespace Exchange {
         // @brief Set Reboot Config
         // @param rebootReasonCustom: Custom reboot reason
         // @param powerState: Power State
-        virtual Core::hresult SetRebootConfig(string &rebootReasonCustom /* @in */, uint8_t powerState /* @in */) = 0;
+        virtual Core::hresult SetRebootConfig(string rebootReasonCustom /* @in */, uint8_t powerState /* @in */) = 0;
 
     };
 
@@ -2345,14 +2339,14 @@ namespace Exchange {
         // @brief Set Standby Video State
         // @param port: Port to enable 
         // @param enable:  enable (true) or disable (false)
-        virtual Core::hresult SetStandbyVideoState(string &port /* @in */, const bool enable /* @in */) = 0;
+        virtual Core::hresult SetStandbyVideoState(string port /* @in */, const bool enable /* @in */) = 0;
 
         /**  Get Standby Video State. */
         // @text getStandbyVideoState
         // @brief Get Standby Video State
         // @param port: Port name
         // @param isEnabled:  enable (true) or disable (false)
-        virtual Core::hresult GetStandbyVideoState(string &port /* @in */, bool &isEnabled /* @out */) = 0;
+        virtual Core::hresult GetStandbyVideoState(string port /* @in */, bool &isEnabled /* @out */) = 0;
 
     };
 
