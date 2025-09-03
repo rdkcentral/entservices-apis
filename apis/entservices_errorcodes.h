@@ -3,10 +3,11 @@
 // 1. The single source of truth: a list of all errors.
 #define ERROR_LIST \
     X(ERROR_FILE_IO, "File Read or Write error") \
+    X(ERROR_INVALID_PARAMETER, "Invalid Parameter") \
     X(ERROR_INVALID_DEVICENAME, "Invalid device name") \
     X(ERROR_INVALID_MOUNTPOINT, "Invalid mount path") \
-    X(ERROR_FIRMWAREUPDATE_INPROGRESS, "Firmware update inprogress") \
-    X(ERROR_FIRMWAREUPDATE_UPTODATE, "Firmware upto date") \
+    X(ERROR_FIRMWAREUPDATE_INPROGRESS, "Firmware update already in progress") \
+    X(ERROR_FIRMWAREUPDATE_UPTODATE, "Firmware is already upto date") \
 
 /******** PLEASE DO NOT MODIFY ANYTHING BELOW THIS **********/
 // 2. Define the 'X' macro to generate the enum.
