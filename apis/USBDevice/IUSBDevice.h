@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Module.h"
+#include "entservices_errorcodes.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
