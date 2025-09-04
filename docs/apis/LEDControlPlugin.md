@@ -132,7 +132,7 @@ This method takes no parameters.
 <a id="method.SetLEDState"></a>
 ## *SetLEDState [<sup>method</sup>](#head.Methods)*
 
-Changes the device LED state to mentioned input state.
+Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
 
 ### Events
 No events are associated with this method.

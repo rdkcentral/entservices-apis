@@ -60,7 +60,7 @@ namespace WPEFramework
             virtual Core::hresult GetLEDState(LEDControlState& state /* @out */) = 0;
 
             // @text setLEDState
-            // @brief Changes the device LED state to mentioned input state.
+            // @brief Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
             // @param state: LEDControlState. e.g. "FACTORY_RESET"
             // @param success: boolean
             virtual Core::hresult SetLEDState(const LEDControlState& state, bool& success /* @out */) = 0;
