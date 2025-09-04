@@ -1,4 +1,4 @@
-#include "entservices_errors.h"
+#include "entservices_errorcodes.h"
 
 #define X(name, string) string,
 const char *error_strings[] = {
