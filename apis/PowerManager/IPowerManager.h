@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework
 {
     namespace Exchange
@@ -87,6 +89,13 @@ namespace WPEFramework
             SYSTEM_MODE_EAS         = 2  /* @text EAS */,
             SYSTEM_MODE_WAREHOUSE   = 3  /* @text WAREHOUSE */
         };
+
+        struct WakeupSrcConfig {
+            string wakeupSource;
+            bool   enabled;
+        };
+
+        using IWakeupSrcConfigIterator = RPC::IIteratorType<WakeupSrcConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
@@ -290,6 +299,12 @@ namespace WPEFramework
         // @param config: config
         virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
 
+        /** Set Wakeup source configuration - Legacy way */
+        // @text setWakeupSourceConfig
+        // @brief Set the source configuration for device wakeup
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSrcConfigIterator* wakeupSources /* @in */ ) = 0;
+
         /** Get Wakeup source configuration */
         // @text getWakeupSrcConfig
         // @brief Get the source configuration for device wakeup
@@ -297,6 +312,12 @@ namespace WPEFramework
         // @param srcType: source type
         // @param config: config
         virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
+
+        /** Get Wakeup source configuration - legacy way */
+        // @text getWakeupSourceConfig
+        // @brief Get the source configuration for device wakeup
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult GetWakeupSourceConfig(IWakeupSrcConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Initiate System mode change */
         // @text setSystemMode
