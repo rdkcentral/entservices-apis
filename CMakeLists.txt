@@ -50,6 +50,7 @@ add_custom_target(install_headers ALL
 
 add_library(${Target} SHARED
         ./apis/Module.cpp
+		./apis/entservices_errorcodes.cpp
         ${PROXY_STUB_SOURCES}
         )
 add_dependencies(${NAMESPACE}Marshalling install_headers)

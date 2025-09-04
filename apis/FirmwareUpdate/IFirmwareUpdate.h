@@ -19,6 +19,7 @@
 #pragma once
 
 #include "Module.h"
+#include <interfaces/entservices_errorcodes.h>
 
 namespace WPEFramework {
 namespace Exchange {
