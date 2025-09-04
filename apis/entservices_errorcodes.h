@@ -28,7 +28,7 @@ extern const char *error_strings[];
 //4.Check if Error code is within the entservices error code range.
 #define IS_ENTSERVICES_ERRORCODE(errorcode) \
     ((errorcode) >= ERROR_BASE && \
-     (errorcode) < ERROR_BASE + (sizeof(error_strings) / sizeof(error_strings[0])))
+     (errorcode) <  MAX_ERROR_CODE)
 
 
 //5.Fetch Error strings
