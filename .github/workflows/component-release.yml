@@ -51,7 +51,7 @@ jobs:
           # Extract version from PR description
           PR_DESC="${{ github.event.pull_request.body }}"
           # Get top tag from CHANGELOG.md
-          TOP_TAG=$(grep -m 1 -oP '^##\s+\K[0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md)
+          TOP_TAG=$(grep -m 1 -oP '^#### \[\K[^\]]+' CHANGELOG.md)
           if [[ -z "$TOP_TAG" ]]; then
             echo "No version found in CHANGELOG.md!"
             exit 1
