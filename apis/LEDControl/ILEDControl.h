@@ -36,16 +36,16 @@ namespace WPEFramework
             virtual ~ILEDControl() = default;
 
             enum LEDControlState : uint8_t {
-                LEDSTATE_NONE = 0,       /* @text NONE @brief TRISTATE or not in a defined state */
-                LEDSTATE_ACTIVE,         /* @text ACTIVE @brief Indicates Active power state */
-                LEDSTATE_STANDBY,        /* @text STANDBY @brief Indicates Standby power state */
-                LEDSTATE_WPS_CONNECTING, /* @text WPS_CONNECTING @brief Indicates WPS Connecting */
-                LEDSTATE_WPS_CONNECTED,  /* @text WPS_CONNECTED @brief Indicates WPS Connected */
-                LEDSTATE_WPS_ERROR,      /* @text WPS_ERROR @brief Indicates WPS Error */
-                LEDSTATE_FACTORY_RESET,  /* @text FACTORY_RESET @brief Indicates Factory Reset */
-                LEDSTATE_USB_UPGRADE,    /* @text USB_UPGRADE @brief Indicates USB Upgrade */
-                LEDSTATE_DOWNLOAD_ERROR, /* @text DOWNLOAD_ERROR @brief Indicates Software Download Error */
-                LEDSTATE_MAX             /* @text MAX @brief Indicates Maximum State */
+                LEDSTATE_NONE = 0       /* @text NONE */,
+                LEDSTATE_ACTIVE         /* @text ACTIVE */,
+                LEDSTATE_STANDBY        /* @text STANDBY */,
+                LEDSTATE_WPS_CONNECTING /* @text WPS_CONNECTING */,
+                LEDSTATE_WPS_CONNECTED  /* @text WPS_CONNECTED */,
+                LEDSTATE_WPS_ERROR      /* @text WPS_ERROR */,
+                LEDSTATE_FACTORY_RESET  /* @text FACTORY_RESET */,
+                LEDSTATE_USB_UPGRADE    /* @text USB_UPGRADE */,
+                LEDSTATE_DOWNLOAD_ERROR /* @text DOWNLOAD_ERROR */,
+                LEDSTATE_MAX            /* @text MAX */
             };
 
             // @text getSupportedLEDStates
