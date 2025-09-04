@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 
 // 1. The single source of truth: a list of all errors.
@@ -22,12 +23,7 @@ typedef enum {
 #undef X
 
 // 3. Define the 'X' macro to generate the string array.
-#define X(name, string) string,
-const char *error_strings[] = {
-    "Error base",
-    ERROR_LIST
-    "Unknown error code"
-};
+extern const char *error_strings[];
 
 //4.Check if Error code is within the entservices error code range.
 #define IS_ENTSERVICES_ERRORCODE(errorcode) \
