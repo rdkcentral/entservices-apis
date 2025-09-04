@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework
 {
     namespace Exchange
@@ -46,18 +48,18 @@ namespace WPEFramework
         };
 
         enum WakeupSrcType : uint16_t {
-            WAKEUP_SRC_UNKNOWN          = 0         /* @text UNKNOWN */,
-            WAKEUP_SRC_VOICE            = 1         /* @text VOICE */,
-            WAKEUP_SRC_PRESENCEDETECTED = 1 << 1    /* @text PRESENCEDETECTED */,
-            WAKEUP_SRC_BLUETOOTH        = 1 << 2    /* @text BLUETOOTH */,
-            WAKEUP_SRC_WIFI             = 1 << 3    /* @text WIFI */,
-            WAKEUP_SRC_IR               = 1 << 4    /* @text IR */,
-            WAKEUP_SRC_POWERKEY         = 1 << 5    /* @text POWERKEY */,
-            WAKEUP_SRC_TIMER            = 1 << 6    /* @text TIMER */,
-            WAKEUP_SRC_CEC              = 1 << 7    /* @text CEC */,
-            WAKEUP_SRC_LAN              = 1 << 8    /* @text LAN */,
-            WAKEUP_SRC_RF4CE            = 1 << 9    /* @text RF4CE */,
-            WAKEUP_SRC_MAX              = 1 << 10
+            WAKEUP_SRC_UNKNOWN          = 0    /* @text UNKNOWN */,
+            WAKEUP_SRC_VOICE            = 1    /* @text VOICE */,
+            WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text PRESENCEDETECTED */,
+            WAKEUP_SRC_BLUETOOTH        = 3    /* @text BLUETOOTH */,
+            WAKEUP_SRC_WIFI             = 4    /* @text WIFI */,
+            WAKEUP_SRC_IR               = 5    /* @text IR */,
+            WAKEUP_SRC_POWERKEY         = 6    /* @text POWERKEY */,
+            WAKEUP_SRC_TIMER            = 7    /* @text TIMER */,
+            WAKEUP_SRC_CEC              = 8    /* @text CEC */,
+            WAKEUP_SRC_LAN              = 9    /* @text LAN */,
+            WAKEUP_SRC_RF4CE            = 10   /* @text RF4CE */,
+            WAKEUP_SRC_MAX              = 11   /* @text MAX - internal use only*/
         };
 
         enum WakeupReason : uint8_t {
@@ -87,6 +89,13 @@ namespace WPEFramework
             SYSTEM_MODE_EAS         = 2  /* @text EAS */,
             SYSTEM_MODE_WAREHOUSE   = 3  /* @text WAREHOUSE */
         };
+
+        struct WakeupSrcConfig {
+            WakeupSrcType wakeupSource;
+            bool          enabled;
+        };
+
+        using IWakeupSrcConfigIterator = RPC::IIteratorType<WakeupSrcConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
@@ -283,20 +292,16 @@ namespace WPEFramework
         virtual Core::hresult GetNetworkStandbyMode(bool &standbyMode /* @out */) = 0;
 
         /** Set Wakeup source configuration */
-        // @text setWakeupSrcConfig
+        // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param wakeSrcType: source type
-        // @param config: config
-        virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSrcConfigIterator* wakeupSources /* @in */ ) = 0;
 
         /** Get Wakeup source configuration */
-        // @text getWakeupSrcConfig
+        // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param srcType: source type
-        // @param config: config
-        virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult GetWakeupSourceConfig(IWakeupSrcConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Initiate System mode change */
         // @text setSystemMode
