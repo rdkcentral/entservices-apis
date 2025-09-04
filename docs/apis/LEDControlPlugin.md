@@ -1,6 +1,6 @@
 <!-- Generated automatically, DO NOT EDIT! -->
 <a id="head.ILEDControl_Plugin"></a>
-# LEDControl Plugin
+# ILEDControl Plugin
 
 A org.rdk.LEDControl plugin for Thunder framework.
 
@@ -32,7 +32,7 @@ The table below lists configuration options of the plugin.
 | :-------- | :-------- | :-------- |
 | callsign | string | Plugin instance name (default: *org.rdk.LEDControl*) |
 | classname | string | Class name: *org.rdk.LEDControl* |
-| locator | string | Library name: *libWPEFrameworkLEDControl.so* |
+| locator | string | Library name: *libWPEFrameworkILEDControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="head.Methods"></a>
@@ -40,7 +40,7 @@ The table below lists configuration options of the plugin.
 
 The following methods are provided by the LEDControl plugin:
 
-LEDControl interface methods:
+ILEDControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -71,7 +71,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.ILEDControl.GetLEDState"
+    "method": "org.rdk.LEDControl.GetLEDState"
 }
 ```
 
@@ -111,7 +111,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.ILEDControl.GetSupportedLEDStates"
+    "method": "org.rdk.LEDControl.GetSupportedLEDStates"
 }
 ```
 
@@ -154,7 +154,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.ILEDControl.SetLEDState",
+    "method": "org.rdk.LEDControl.SetLEDState",
     "params": {
         "state": "FACTORY_RESET"
     }
