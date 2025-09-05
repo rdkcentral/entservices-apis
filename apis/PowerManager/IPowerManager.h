@@ -299,7 +299,7 @@ namespace WPEFramework
         // @param config: config
         virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
 
-        /** Set Wakeup source configuration - Legacy way */
+        /** Set Wakeup source configuration - Iterator way */
         // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
@@ -313,7 +313,7 @@ namespace WPEFramework
         // @param config: config
         virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
 
-        /** Get Wakeup source configuration - legacy way */
+        /** Get Wakeup source configuration - Iterator way */
         // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
