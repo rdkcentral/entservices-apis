@@ -23,7 +23,7 @@ typedef enum {
 #undef X
 
 // 3. Define the 'X' macro to generate the string array.
-extern const char *error_strings[];
+extern const char* const error_strings[];
 
 //4.Check if Error code is within the entservices error code range.
 #define IS_ENTSERVICES_ERRORCODE(errorcode) \
