@@ -24,6 +24,7 @@ typedef enum {
 
 // 3. Define the 'X' macro to generate the string array.
 extern const char* const error_strings[];
+#error "EXITING SOUND"
 
 //4.Check if Error code is within the entservices error code range.
 #define IS_ENTSERVICES_ERRORCODE(errorcode) \
@@ -32,6 +33,5 @@ extern const char* const error_strings[];
 
 
 //5.Fetch Error strings
-#define ERROR_MESSAGE(errorcode) \
-    (error_strings[(errorcode) - ERROR_BASE])
+#define ERROR_MESSAGE(errorcode) (error_strings[(errorcode) - ERROR_BASE])
 
