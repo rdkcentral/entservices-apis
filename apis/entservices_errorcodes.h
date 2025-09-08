@@ -13,12 +13,12 @@
 /******** PLEASE DO NOT MODIFY ANYTHING BELOW THIS **********/
 // 2. Define the 'X' macro to generate the enum.
 #define X(name, string) name,
-typedef enum ErrorCodeEnum{
+enum ErrorCodeEnum{
     // Start the first error code at 1000
     ERROR_BASE = 1000,
     ERROR_LIST
     MAX_ERROR_CODE
-} ErrorCode;
+};
 // Undefine 'X' to avoid conflicts.
 #undef X
 
