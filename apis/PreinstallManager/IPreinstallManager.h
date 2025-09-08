@@ -26,6 +26,36 @@
 namespace WPEFramework {
 namespace Exchange {
 
+#ifndef RUNTIME_CONFIG
+    struct RuntimeConfig {
+        bool dial;
+        bool wanLanAccess;
+        bool thunder;
+        int32_t systemMemoryLimit;
+        int32_t gpuMemoryLimit;
+        std::string envVariables;
+        uint32_t userId;
+        uint32_t groupId;
+        uint32_t dataImageSize;
+
+        bool resourceManagerClientEnabled;
+        std::string dialId;
+        std::string command;
+        std::string appType;
+        std::string appPath;
+        std::string runtimePath;
+
+        std::string logFilePath;
+        uint32_t logFileMaxSize;
+        std::string logLevels;          //json array of strings
+        bool mapi;
+        std::string fkpsFiles;          //json array of strings
+
+        std::string fireboltVersion;
+        bool enableDebugger;
+    };
+    #define RUNTIME_CONFIG
+#endif
 
 // @json 1.0.0 @text:keep
 struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
