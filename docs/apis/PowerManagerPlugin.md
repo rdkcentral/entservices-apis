@@ -1306,7 +1306,7 @@ Triggered before change then device power state. The power state (must be one of
 | params.currentState | string | Current Power State |
 | params.newState | string | Changing power state to this New Power State |
 | params.transactionId | integer | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
-| params.stateChangeAfter | integer | seconds after which the actual power mode will be applied |
+| params.stateChangeAfter | integer | seconds after which the actual power mode will be applied, if the client does not call prePowerChangeComplete() API |
 
 ### Example
 
