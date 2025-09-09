@@ -31,6 +31,10 @@ namespace WPEFramework
         {
             enum { ID = ID_TELEMETRY };
 
+            struct EXTERNAL TelemetrySuccess {
+                bool success;
+            };
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
@@ -76,8 +80,8 @@ namespace WPEFramework
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
             // @param OptOut  - in - boolean
-            // @param TelemetrySuccess - out - struct
-            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, TelemetrySuccess& successResult /* @out */) = 0;
+            // @param  - out - struct
+            virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, & successResult /* @out */) = 0;
             /**********************setOptOutTelemetry() - end*****************************************/
 
             /**********************isOptOutTelemetry() - start***************************************/
@@ -85,7 +89,7 @@ namespace WPEFramework
             // @brief Checks the telemetry opt-out status.
             // @param OptOut  - out - boolean
             // @param success - out - boolean
-            virtual Core::hresult IsOptOutTelemetry(bool& OptOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0
+            virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0
             /**********************isOptOutTelemetry() - end*****************************************/
         };
     } // namespace Exchange
