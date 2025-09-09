@@ -135,6 +135,42 @@
         }
     },
     "methods": {
+        "addPowerModePreChangeClient": {
+            "summary": "Register a client to engage in power mode state changes.\nAdded client should call either\n  - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.\n  - Or `DelayPowerModeChangeBy` API to delay the power mode change.\nIf the client does not call `PowerModePreChangeComplete` API, the power mode change will complete\nafter the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).\n\nIMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **\n           always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "clientName": {
+                        "summary": "Name of the client",
+                        "type": "string"
+                    }
+                },
+                "required": ["clientName"]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "summary": "Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`)",
+                        "type": "integer"
+                    }
+                },
+                "required": ["clientId"]
+            }
+        },
+        "removePowerModePreChangeClient": {
+            "summary": "Removes a registered client from participating in power mode pre-change operations.\nNOTE client will still continue to receive pre-change notifications.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "summary": "Unique identifier for the client. See `AddPowerModePreChangeClient`",
+                        "type": "integer"
+                    }
+                },
+                "required": ["clientId"]
+            }
+        },
         "getOvertempGraceInterval": {
             "summary": "Returns the over-temperature grace interval value. Not supported on all devices.",
             "result": {
