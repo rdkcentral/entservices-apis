@@ -640,7 +640,7 @@
             }
         },
         "setWakeupSourceConfig": {
-            "summary": "Set the source configuration for device wakeup",
+            "summary": "Set the source configuration for device wakeup (Application friendly API). This API does not persist. Please call this API on Every bootup to set the values.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -651,12 +651,13 @@
                             "properties": {
                                 "wakeupSource": {
                                     "type": "string",
-                                    "description": "Wake up source",
-                                    "$ref": "#/definitions/wakeupSources"
+                                    "description": "Wake up source (strigified enum value PowerManager::WakeupSrcType)",
+                                    "example": "VOICE"
                                 },
                                 "enabled": {
                                     "type": "boolean",
-                                    "description": "Enable or disable the wakeup source"
+                                    "description": "Enable or disable the wakeup source",
+                                    "example": true
                                 }
                             }
                         }
@@ -670,28 +671,24 @@
             }
         },
         "getWakeupSourceConfig": {
-            "summary": "Get the source configuration for device wakeup",
+            "summary": "Get the source configuration for device wakeup (Application friendly API)",
             "result": {
-                "type": "object",
-                "properties": {
-                    "wakeupSources": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "wakeupSource": {
-                                    "type": "string",
-                                    "description": "Wake up source strigified enum value",
-                                    "$ref": "#/definitions/wakeupSources"
-                                },
-                                "enabled": {
-                                    "type": "boolean",
-                                    "description": "Wakeup source is enabled or not"
-                                }
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "wakeupSource": {
+                                "type": "string",
+                                "description": "Wake up source strigified enum value (Powermanager::WakeupSrcType)",
+                                "example": "VOICE"
+                            },
+                            "enabled": {
+                                "type": "boolean",
+                                "description": "Wakeup source is enabled or not",
+                                "example": true
                             }
                         }
                     }
-                }
             }
         },
         "setSystemMode":{

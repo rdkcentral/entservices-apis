@@ -63,8 +63,8 @@ org.rdk.PowerManager interface methods:
 | [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
 | [setWakeupSrcConfig](#setWakeupSrcConfig) | Sets the wakeup source configuration for the input powerState |
 | [getWakeupSrcConfig](#getWakeupSrcConfig) | Returns all the supported wakeup configurations and powerState |
-| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup |
-| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
+| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup (Application friendly API) |
+| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup (Application friendly API) |
 | [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
@@ -964,7 +964,7 @@ This method takes no parameters.
 <a name="setWakeupSourceConfig"></a>
 ## *setWakeupSourceConfig*
 
-Set the source configuration for device wakeup.
+Set the source configuration for device wakeup (Application friendly API). This API does not persist. Please call this API on Every bootup to set the values.
 
 ### Events
 
@@ -977,17 +977,7 @@ No Events
 | params | object |  |
 | params.wakeupSources | array |  |
 | params.wakeupSources[#] | object |  |
-| params.wakeupSources[#]?.wakeupSource | array | <sup>*(optional)*</sup> Wake up source |
-| params.wakeupSources[#]?.wakeupSource[#] | object | <sup>*(optional)*</sup>  |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_VOICE | boolean | <sup>*(optional)*</sup> Voice Wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_PRESENCE_DETECTION | boolean | <sup>*(optional)*</sup> Presense detection wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_BLUETOOTH | boolean | <sup>*(optional)*</sup> Bluetooth Wakeup |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_WIFI | boolean | <sup>*(optional)*</sup> WiFi Wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_IR | boolean | <sup>*(optional)*</sup> IR Remote Wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_POWER_KEY | boolean | <sup>*(optional)*</sup> Power Button Wake up - GPIO |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_CEC | boolean | <sup>*(optional)*</sup> HDMI CEC commadn Wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_LAN | boolean | <sup>*(optional)*</sup> LAN wake up |
-| params.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_TIMER | boolean | <sup>*(optional)*</sup> TImer Wake up |
+| params.wakeupSources[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source (strigified enum value PowerManager::WakeupSrcType) |
 | params.wakeupSources[#]?.enabled | boolean | <sup>*(optional)*</sup> Enable or disable the wakeup source |
 
 ### Result
@@ -1008,20 +998,8 @@ No Events
     "params": {
         "wakeupSources": [
             {
-                "wakeupSource": [
-                    {
-                        "WAKEUPSRC_VOICE": true,
-                        "WAKEUPSRC_PRESENCE_DETECTION": true,
-                        "WAKEUPSRC_BLUETOOTH": true,
-                        "WAKEUPSRC_WIFI": true,
-                        "WAKEUPSRC_IR": true,
-                        "WAKEUPSRC_POWER_KEY": true,
-                        "WAKEUPSRC_CEC": true,
-                        "WAKEUPSRC_LAN": true,
-                        "WAKEUPSRC_TIMER": true
-                    }
-                ],
-                "enabled": false
+                "wakeupSource": "VOICE",
+                "enabled": true
             }
         ]
     }
@@ -1041,7 +1019,7 @@ No Events
 <a name="getWakeupSourceConfig"></a>
 ## *getWakeupSourceConfig*
 
-Get the source configuration for device wakeup.
+Get the source configuration for device wakeup (Application friendly API).
 
 ### Events
 
@@ -1055,21 +1033,10 @@ This method takes no parameters.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.wakeupSources | array |  |
-| result.wakeupSources[#] | object |  |
-| result.wakeupSources[#]?.wakeupSource | array | <sup>*(optional)*</sup> Wake up source strigified enum value |
-| result.wakeupSources[#]?.wakeupSource[#] | object | <sup>*(optional)*</sup>  |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_VOICE | boolean | <sup>*(optional)*</sup> Voice Wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_PRESENCE_DETECTION | boolean | <sup>*(optional)*</sup> Presense detection wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_BLUETOOTH | boolean | <sup>*(optional)*</sup> Bluetooth Wakeup |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_WIFI | boolean | <sup>*(optional)*</sup> WiFi Wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_IR | boolean | <sup>*(optional)*</sup> IR Remote Wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_POWER_KEY | boolean | <sup>*(optional)*</sup> Power Button Wake up - GPIO |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_CEC | boolean | <sup>*(optional)*</sup> HDMI CEC commadn Wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_LAN | boolean | <sup>*(optional)*</sup> LAN wake up |
-| result.wakeupSources[#]?.wakeupSource[#]?.WAKEUPSRC_TIMER | boolean | <sup>*(optional)*</sup> TImer Wake up |
-| result.wakeupSources[#]?.enabled | boolean | <sup>*(optional)*</sup> Wakeup source is enabled or not |
+| result | array |  |
+| result[#] | object |  |
+| result[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source strigified enum value (Powermanager::WakeupSrcType) |
+| result[#]?.enabled | boolean | <sup>*(optional)*</sup> Wakeup source is enabled or not |
 
 ### Example
 
@@ -1089,26 +1056,12 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": {
-        "wakeupSources": [
-            {
-                "wakeupSource": [
-                    {
-                        "WAKEUPSRC_VOICE": true,
-                        "WAKEUPSRC_PRESENCE_DETECTION": true,
-                        "WAKEUPSRC_BLUETOOTH": true,
-                        "WAKEUPSRC_WIFI": true,
-                        "WAKEUPSRC_IR": true,
-                        "WAKEUPSRC_POWER_KEY": true,
-                        "WAKEUPSRC_CEC": true,
-                        "WAKEUPSRC_LAN": true,
-                        "WAKEUPSRC_TIMER": true
-                    }
-                ],
-                "enabled": false
-            }
-        ]
-    }
+    "result": [
+        {
+            "wakeupSource": "VOICE",
+            "enabled": true
+        }
+    ]
 }
 ```
 
