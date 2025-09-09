@@ -142,7 +142,8 @@
                 "properties": {
                     "clientName": {
                         "summary": "Name of the client",
-                        "type": "string"
+                        "type": "string",
+                        "example": "tr69hostif"
                     }
                 },
                 "required": ["clientName"]
@@ -152,7 +153,8 @@
                 "properties": {
                     "clientId": {
                         "summary": "Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`)",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                     }
                 },
                 "required": ["clientId"]
@@ -165,10 +167,76 @@
                 "properties": {
                     "clientId": {
                         "summary": "Unique identifier for the client. See `AddPowerModePreChangeClient`",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 1
                     }
                 },
                 "required": ["clientId"]
+            },
+            "result": {
+                "summary": "On success null will be returned",
+                "type": "string",
+                "example": "null"
+            }
+        },
+        "powerModePreChangeComplete": {
+            "summary": "Pre power mode handling complete for given client and transation id",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "summary": "Unique identifier for the client, as received in AddPowerModePreChangeClient",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "transactionId": {
+                        "summary": "transaction id as received in OnPowerModePreChange",
+                        "type": "integer",
+                        "example": 3
+                    }
+                },
+                "required": [
+                    "clientId",
+                    "transactionId"
+                ]
+            },
+            "result": {
+                "summary": "On success null will be returned",
+                "type": "string",
+                "example": "null"
+            }
+        },
+        "delayPowerModeChangeBy": {
+            "summary": "Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "summary": "Unique identifier for the client, as received in AddPowerModePreChangeClient",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "transactionId": {
+                        "summary": "transaction id as received in OnPowerModePreChange",
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "delayPeriod": {
+                        "summary": "delay in seconds",
+                        "type": "integer",
+                        "example": 5
+                    }
+                },
+                "required": [
+                    "clientId",
+                    "transactionId",
+                    "delayPeriod"
+                ]
+            },
+            "result": {
+                "summary": "On success null will be returned",
+                "type": "string",
+                "example": "null"
             }
         },
         "getOvertempGraceInterval": {
@@ -220,7 +288,7 @@
                     }
                 },
                 "required": [
-                    "temperature"
+                    "currentTemperature"
                 ]
             }
         },
@@ -571,6 +639,61 @@
                 ]
             }
         },
+        "setWakeupSourceConfig": {
+            "summary": "Set the source configuration for device wakeup",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "wakeupSources": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "wakeupSource": {
+                                    "type": "string",
+                                    "description": "Wake up source",
+                                    "$ref": "#/definitions/wakeupSources"
+                                },
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable or disable the wakeup source"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "result": {
+                "summary": "On success null will be returned",
+                "type": "string",
+                "example": "null"
+            }
+        },
+        "getWakeupSourceConfig": {
+            "summary": "Get the source configuration for device wakeup",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "wakeupSources": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "wakeupSource": {
+                                    "type": "string",
+                                    "description": "Wake up source strigified enum value",
+                                    "$ref": "#/definitions/wakeupSources"
+                                },
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Wakeup source is enabled or not"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "setSystemMode":{
             "summary": "Sets the mode of the set-top box for a specific duration before returning to normal mode. Valid modes are:  \n* `NORMAL` - The set-top box is operating in normal mode.  \n* `EAS` - The set-top box is operating in Emergency Alert System (EAS) mode. This mode is set when the device needs to perform certain tasks when entering EAS mode, such as setting the clock display or preventing the user from using the diagnostics menu.  \n* `WAREHOUSE` - The set-top box is operating in warehouse mode.",
             "params": {
@@ -612,7 +735,7 @@
                     }
                 },
                 "required": [
-                    "state"
+                    "powerStateBeforeReboot"
                 ]
             }
         },
@@ -687,25 +810,37 @@
                 ]
             }
         },
-        "onPowerModePreChange":{
+        "onPowerModePreChange": {
             "summary": "Triggered before change then device power state. The power state (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*)",
             "params": {
-                "type" :"object",
+                "type": "object",
                 "properties": {
                     "currentState": {
-                        "summary": "The current power state",
+                        "summary": "Current Power State",
                         "type": "string",
                         "example": "STANDBY"
                     },
                     "newState": {
-                        "summary": "The new power state",
+                        "summary": "Changing power state to this New Power State",
                         "type": "string",
                         "example": "ON"
+                    },
+                    "transactionId": {
+                        "summary": "transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API",
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "stateChangeAfter": {
+                        "summary": "seconds after which the actual power mode will be applied.",
+                        "type": "integer",
+                        "example": 1
                     }
                 },
                 "required": [
-                    "powerState",
-                    "currentState"
+                    "currentState",
+                    "newState",
+                    "transactionId",
+                    "stateChangeAfter"
                 ]
             }
         },
