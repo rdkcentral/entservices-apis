@@ -1267,7 +1267,7 @@ namespace Exchange {
     };  
 
     struct EXTERNAL IDeviceSettingsManagerHdmiIn : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICESETTINGS_MANAGER_HdmiIn };
+        enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN };
 
         enum HdmiInPort : int8_t {
             DS_HDMI_IN_PORT_NONE    = -1,
@@ -1291,7 +1291,7 @@ namespace Exchange {
         struct HdmiPortConnectionStatus {
             bool isPortConnected;
         };
-        using IHdmiInPortConnectionStatusIterator = RPC::IIteratorType<HDMIPortConnectionStatus, ID_DEVICESETTINGS_MANAGER_HDMIIN_PORTCONNECTION_ITERATOR>;
+        using IHdmiInPortConnectionStatusIterator = RPC::IIteratorType<HdmiPortConnectionStatus, ID_DEVICESETTINGS_MANAGER_HDMIIN_PORTCONNECTION_ITERATOR>;
 
         struct HdmiInStatus {
             bool isPresented;
@@ -1398,7 +1398,7 @@ namespace Exchange {
             DS_HDMIIN_RESOLUTION_2160P60  = 0x100000
         };
 
-        enum HDMIVideoAspectRatio : uint8_t {
+        enum HdmiVideoAspectRatio : uint8_t {
             DS_HDMIIN_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
             DS_HDMIIN_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
             DS_HDMIIN_ASPECT_RATIO_MAX         = 2  /* @text Video Aspect Ratio MAX */
