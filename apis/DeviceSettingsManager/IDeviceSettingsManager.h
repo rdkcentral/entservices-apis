@@ -25,7 +25,6 @@
 
 #include "Module.h"
 
-#define gsk 0
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -148,17 +147,7 @@ namespace Exchange {
         };
 
         using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICESETTINGS_MANAGER_AUDIO_PROFILE_ITERATOR>;
-#if gsk
-        struct VolumeLeveller {
-            uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
-            uint8_t level;      /* @text Value of volume leveller. 0 -10 */
-        };
-
-        struct SurroundVirtualizer {
-            uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
-            uint8_t boost;      /* @text Value of boost level. 0 -96 */
-        };
-#endif
+        
         enum StereoMode : uint8_t {
             AUDIO_STEREO_UNKNOWN     = 0,
             AUDIO_STEREO_MONO        = 1,
@@ -548,21 +537,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param mode: mode
         virtual Core::hresult GetAudioIntelligentEqualizerMode(const int32_t handle /* @in */, int32_t &mode /* @out */) = 0;
-#if gsk
-        /** Set Audio Volume leveller  */
-        // @text setAudioVolumeLeveller
-        // @brief Set Audio Volume leveller
-        // @param handle: handle returned in GetAudioPort()
-        // @param volumeLeveller: volume leveller (mode and a level)
-        virtual Core::hresult SetAudioVolumeLeveller(const int32_t handle /* @in */, const VolumeLeveller volumeLeveller /* @in */) = 0;
-
-        /** Get Audio Volume leveller  */
-        // @text getAudioVolumeLeveller
-        // @brief Get Audio Volume leveller
-        // @param handle: handle returned in GetAudioPort()
-        // @param volumeLeveller: volume leveller (mode and a level)
-        virtual Core::hresult GetAudioVolumeLeveller(const int32_t handle /* @in */, VolumeLeveller &volumeLeveller /* @out */) = 0;
-#endif
+        
         /** Set Audio Bass Enhancer  */
         // @text setAudioBassEnhancer
         // @brief Set Audio Bass Enhancer
@@ -604,21 +579,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param drcMode: mode
         virtual Core::hresult GetAudioDRCMode(const int32_t handle /* @in */, int32_t &drcMode /* @out */) = 0;
-#if gsk
-        /** Set Audio Surroud Virtualizer  */
-        // @text setAudioSurroudVirtualizer
-        // @brief Set Audio Surroud Virtualizer
-        // @param handle: handle returned in GetAudioPort()
-        // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult SetAudioSurroudVirtualizer(const int32_t handle /* @in */, const SurroundVirtualizer surroundVirtualizer /* @in */) = 0;
 
-        /** Get Audio Surroud Virtualizer  */
-        // @text getAudioSurroudVirtualizer
-        // @brief Get Audio Surroud Virtualizer
-        // @param handle: handle returned in GetAudioPort()
-        // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult GetAudioSurroudVirtualizer(const int32_t handle /* @in */, SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
-#endif
         /** Set Audio MI Steering   */
         // @text setAudioMISteering
         // @brief Set Audio MI Steering
