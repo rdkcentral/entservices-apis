@@ -828,7 +828,7 @@
                         "example": 3
                     },
                     "stateChangeAfter": {
-                        "summary": "seconds after which the actual power mode will be applied.",
+                        "summary": "seconds after which the actual power mode will be applied, if the client does not call prePowerChangeComplete() API",
                         "type": "integer",
                         "example": 1
                     }
