@@ -55,6 +55,7 @@ list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids_comcast
 
 add_library(${Target} SHARED
         ${JSON_ENUM_SOURCES}
+        ../apis/entservices_errorcodes.cpp
         )
 
 target_link_libraries(${Target}
