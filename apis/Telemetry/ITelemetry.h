@@ -81,7 +81,7 @@ namespace WPEFramework
             // @brief Sets the telemetry opt-out status.
             // @param OptOut  - in - boolean
             // @param  - out - struct
-            virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, & successResult /* @out */) = 0;
+            virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, TelemetrySuccess& successResult /* @out */) = 0;
             /**********************setOptOutTelemetry() - end*****************************************/
 
             /**********************isOptOutTelemetry() - start***************************************/
