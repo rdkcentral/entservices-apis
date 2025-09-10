@@ -72,7 +72,7 @@ namespace WPEFramework
             // @text setBlink
             // @param blinkInfo: JSON string with blink pattern information containing ledIndicator, iterations, and pattern array with brightness, duration(milliseconds), and optional color and red/green/blue values.
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetBlink(const string &blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetBlink(const string blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets the brightness of the specified LED
             // @text setBrightness
