@@ -21,8 +21,12 @@
                 "Invalid",
                 "Starting",
                 "Running",
+                "Stopping",
+                "Paused",
                 "Stopped",
-                "Paused"
+                "Hibernating",
+                "Hibernated",
+                "Awakening"
             ],
             "type": "string",
             "example": "Running"
@@ -41,33 +45,67 @@
             "summary":"Name of the Container.",
             "type":"string",
             "example":"com.bskyb.epgui"
+        },
+        "error": {
+            "summary":"Failure error code",
+            "type":"integer",
+            "error": 1
+        },
+        "errorReason": {
+            "summary": "A user-defined description explaining the reason for the failure. if success error field will be empty string",
+            "type": "string",
+            "error": " "
+        },
+        "annotationKey": {
+            "summary": "Updating the property key of the given container ID",
+            "type": "string",
+            "example": "fireboltState"
+        },
+        "annotationKeyValue": {
+            "summary": "Updating the value of the property key of the given container ID",
+            "type": "string",
+            "example": "foreground"
         }
     },
     "methods": {
-        "executeCommand":{
-            "summary": "Executes a command inside a running container. The path to the executable must resolve within the container's namespace.",
-            "params": {
+        "listContainers":{
+            "summary": "Lists all running OCI containers Dobby knows about.",
+            "result": {
                 "type": "object",
                 "properties": {
-                    "containerId": {
-                        "$ref": "#/definitions/containerId"
+                    "containers": {
+                        "summary": "A list of running containers",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Descriptor": {
+                                    "$ref": "#/definitions/Descriptor"
+                                },
+                                "Id": {
+                                    "summary": "The container Id",
+                                    "type": "string",
+                                    "example": "com.bskyb.epgui"
+                                }
+                            },
+                            "required": [
+                                "Descriptor",
+                                "Id"
+                            ]
+                        }
                     },
-                    "options": {
-                        "summary": "Global options for crun `exec` command",
-                        "type": "string",
-                        "example": "--cwd=PATH"
+                    "success":{
+                        "$ref": "#/common/success"
                     },
-                    "command": {
-                        "$ref": "#/definitions/command"
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
                     }
                 },
                 "required": [
-                    "containerId",
-                    "command"
+                    "containers",
+                    "success",
+                    "errorReason"
                 ]
-            },
-            "result": {
-                "$ref": "#/common/result"
             }
         },
         "getContainerInfo":{
@@ -194,11 +232,15 @@
                     },
                     "success":{
                         "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
                     }
                 },
                 "required": [
                     "info",
-                    "success"
+                    "success",
+                    "errorReason"
                 ]
             }
         },
@@ -218,100 +260,35 @@
             "result": {
                 "type": "object",
                 "properties": {
-                    "containerId": {
-                        "$ref": "#/definitions/containerId"
-                    },
                     "state": {
                         "summary": "The container state",
                         "enum": [
                             "Invalid",
                             "Starting",
                             "Running",
+                            "Stopping",
+                            "Paused",
                             "Stopped",
-                            "Paused"
+                            "Hibernating",
+                            "Hibernated",
+                            "Awakening"
                         ],
                         "type": "string",
                         "example": "Running"
                     },
                     "success":{
                         "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
                     }
                 },
                 "required": [
                     "containerId",
                     "state",
-                    "success"
+                    "success",
+                    "errorReason"
                 ]
-            }
-        },
-        "listContainers":{
-            "summary": "Lists all running OCI containers Dobby knows about.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "containers": {
-                        "summary": "A list of running containers",
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "Descriptor": {
-                                    "$ref": "#/definitions/Descriptor"
-                                },
-                                "Id": {
-                                    "summary": "The container Id",
-                                    "type": "string",
-                                    "example": "com.bskyb.epgui"
-                                }
-                            },
-                            "required": [
-                                "Descriptor",
-                                "Id"
-                            ]
-                        }
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "containers",
-                    "success"
-                ]
-            } 
-        },
-        "pauseContainer":{
-            "summary": "Pauses a currently running container.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "containerId": {
-                        "$ref": "#/definitions/containerId"
-                    }
-                },
-                "required": [
-                    "containerId"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "resumeContainer":{
-            "summary": "Resumes a previously paused container.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "containerId": {
-                        "$ref": "#/definitions/containerId"
-                    }
-                },
-                "required": [
-                    "containerId"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
             }
         },
         "startContainer":{
@@ -337,14 +314,6 @@
                         "summary": "Path to a Westeros socket to mount inside the container",
                         "type": "string",
                         "example": "/usr/mySocket"
-                    },
-                    "envvar": {
-                        "summary": "A list of environment variables to add to the container",
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "example": "FOO=BAR"
-                        }
                     }
                 },
                 "required": [
@@ -360,11 +329,15 @@
                     },
                     "success":{
                         "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
                     }
                 },
                 "required": [
                     "descriptor",
-                    "success"
+                    "success",
+                    "errorReason"
                 ]
             }
         },
@@ -406,14 +379,17 @@
                     },
                     "success":{
                         "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
                     }
                 },
                 "required": [
                     "descriptor",
-                    "success"
+                    "success",
+                    "errorReason"
                 ]
             }
-
         },
         "stopContainer":{
             "summary": "Stops a currently running container.",
@@ -433,12 +409,341 @@
                     }
                 },
                 "required": [
-                    "containerId",
-                    "dobbySpec"
+                    "containerId"
                 ]
             },
             "result": {
-                "$ref": "#/common/result"
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "pauseContainer":{
+            "summary": "Pauses a currently running container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    }
+                },
+                "required": [
+                    "containerId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "resumeContainer":{
+            "summary": "Resumes a previously paused container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    }
+                },
+                "required": [
+                    "containerId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "hibernateContainer":{
+            "summary": "Hibernate the container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "options": {
+                        "summary": "Hibernation options - Optional parameter",
+                        "type": "string",
+                        "example": " "
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "options"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "wakeupContainer":{
+            "summary": "Wakeup the container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    }
+                },
+                "required": [
+                    "containerId"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "executeCommand":{
+            "summary": "Executes a command inside a running container. The path to the executable must resolve within the container's namespace.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "options": {
+                        "summary": "Global options for crun `exec` command",
+                        "type": "string",
+                        "example": "--cwd=PATH"
+                    },
+                    "command": {
+                        "$ref": "#/definitions/command"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "command"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "annotate":{
+            "summary": "Update the container properties of running container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "key": {
+                        "$ref": "#/definitions/annotationKey"
+                    },
+                    "value": {
+                        "$ref": "#/definitions/annotationKeyValue"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "key",
+                    "value"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "removeAnnotation":{
+            "summary": "Remove the container properties of the given container Id.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "key": {
+                        "$ref": "#/definitions/annotationKey"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "key"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "mount":{
+            "summary": "Mount a path in container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "source": {
+                        "summary": "Source path to mount",
+                        "type": "string",
+                        "example": "/tmp/testdisplay"
+                    },
+                    "target": {
+                        "summary": "Destination path to mount",
+                        "type": "string",
+                        "example": "/tmp/westeros"
+                    },
+                    "type": {
+                        "summary": "The type of mount to be performed",
+                        "type": "string",
+                        "example": "bind"
+                    },
+                    "options": {
+                        "summary": "The options is a list of mount options that modify the behavior of the mount",
+                        "type": "string",
+                        "example": "rbind, nosuid, nodev, ro"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "source",
+                    "target",
+                    "type",
+                    "options"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
+            }
+        },
+        "unmount":{
+            "summary": "Unmount a path in container.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "containerId": {
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "target": {
+                        "summary": "Destination path to mount",
+                        "type": "string",
+                        "example": "/tmp/westeros"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "target"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    },
+                    "errorReason":{
+                        "$ref": "#/definitions/errorReason"
+                    }
+                },
+                "required": [
+                    "success",
+                    "errorReason"
+                ]
             }
         }
     },
@@ -448,15 +753,15 @@
             "params":{
                 "type":"object",
                 "properties": {
-                    "descriptor":{
-                        "$ref": "#/definitions/Descriptor"
+                    "containerId":{
+                        "$ref": "#/definitions/containerId"
                     },
                     "name":{
                         "$ref": "#/definitions/name"
                     }
                 },
                 "required": [
-                    "descriptor",
+                    "containerId",
                     "name"
                 ]
             }
@@ -466,16 +771,56 @@
             "params": {
                 "type":"object",
                 "properties": {
-                    "descriptor":{
-                        "$ref": "#/definitions/Descriptor"
+                    "containerId":{
+                        "$ref": "#/definitions/containerId"
                     },
                     "name":{
                         "$ref": "#/definitions/name"
                     }
                 },
                 "required": [
-                    "descriptor",
+                    "containerId",
                     "name"
+                ]
+            }
+        },
+        "onContainerFailed":{
+            "summary": "Triggered when the container execution is failed.",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "containerId":{
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "name":{
+                        "$ref": "#/definitions/name"
+                    },
+                    "error":{
+                        "$ref": "#/definitions/error"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "name",
+                    "error"
+                ]
+            }
+        },
+        "OnContainerStateChanged":{
+            "summary": "Triggered when the container state has changed.",
+            "params": {
+                "type":"object",
+                "properties": {
+                    "containerId":{
+                        "$ref": "#/definitions/containerId"
+                    },
+                    "state":{
+                        "$ref": "#/definitions/state"
+                    }
+                },
+                "required": [
+                    "containerId",
+                    "state"
                 ]
             }
         }
