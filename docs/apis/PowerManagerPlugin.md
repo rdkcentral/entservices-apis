@@ -47,7 +47,7 @@ org.rdk.PowerManager interface methods:
 | :-------- | :-------- |
 | [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode pre-change operations |
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
-| [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
+| [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
 | [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value |
 | [getPowerState](#getPowerState) | Returns the current power state of the device |
@@ -179,7 +179,7 @@ No Events
 <a name="powerModePreChangeComplete"></a>
 ## *powerModePreChangeComplete*
 
-Pre power mode handling complete for given client and transation id.
+Pre power mode handling complete for given client and transaction id.
 
 ### Events
 
@@ -977,7 +977,7 @@ No Events
 | params | object |  |
 | params.wakeupSources | array |  |
 | params.wakeupSources[#] | object |  |
-| params.wakeupSources[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source (strigified enum value PowerManager::WakeupSrcType) |
+| params.wakeupSources[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source (stringified enum value PowerManager::WakeupSrcType) |
 | params.wakeupSources[#]?.enabled | boolean | <sup>*(optional)*</sup> Enable or disable the wakeup source |
 
 ### Result
@@ -1035,7 +1035,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | array |  |
 | result[#] | object |  |
-| result[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source strigified enum value (Powermanager::WakeupSrcType) |
+| result[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source stringified enum value (Powermanager::WakeupSrcType) |
 | result[#]?.enabled | boolean | <sup>*(optional)*</sup> Wakeup source is enabled or not |
 
 ### Example
