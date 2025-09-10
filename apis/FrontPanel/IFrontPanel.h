@@ -47,7 +47,7 @@ namespace WPEFramework
             // @param index: Index of the brightness level
             // @param brightness: Brightness level
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetBrightness(const string &index, int32_t &brightness /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetBrightness(const string index, uint32_t &brightness /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the front panel lights
             // @text getFrontPanelLights
@@ -60,13 +60,13 @@ namespace WPEFramework
             // @text powerLedOff
             // @param index: Index of the LED to switch off
             // @param success: Is the operation successful or not
-            virtual Core::hresult PowerLedOff(const string &index, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult PowerLedOff(const string index, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Switches the specified LED on
             // @text powerLedOn
             // @param index: Index of the LED to switch on
             // @param success: Is the operation successful or not
-            virtual Core::hresult PowerLedOn(const string &index, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult PowerLedOn(const string index, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) 
             // @text setBlink
@@ -79,7 +79,7 @@ namespace WPEFramework
             // @param index: Index of the brightness level
             // @param brightness: Brightness level to set
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetBrightness(const string &index, const int32_t &brightness, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetBrightness(const string index, const uint32_t brightness, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets the LED with the specified color and brightness
             // @text setLED
@@ -90,7 +90,7 @@ namespace WPEFramework
             // @param green: Green component of the LED color
             // @param blue: Blue component of the LED color
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetLED(const string &ledIndicator, const uint32_t &brightness, const string& color, const uint32_t &red, const uint32_t &green, const uint32_t &blue, FrontPanelSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetLED(const string ledIndicator, const uint32_t brightness, const string color, const uint32_t red, const uint32_t green, const uint32_t blue, FrontPanelSuccess &success /* @out */) = 0;
 
         };
 } // namespace Exchange
