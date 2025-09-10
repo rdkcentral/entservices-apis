@@ -89,7 +89,7 @@ namespace WPEFramework
             // @brief Checks the telemetry opt-out status.
             // @param OptOut  - out - boolean
             // @param success - out - boolean
-            virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0
+            virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
             /**********************isOptOutTelemetry() - end*****************************************/
         };
     } // namespace Exchange
