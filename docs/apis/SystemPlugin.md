@@ -121,6 +121,8 @@ org.rdk.System interface methods:
 
 Clears the last deep sleep reason.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -164,6 +166,8 @@ This method takes no parameters.
 ## *deletePersistentPath*
 
 Deletes persistent path associated with a callsign.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -217,6 +221,8 @@ No Events
 
 Enables (or disables) Moca support for the platform.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -266,6 +272,8 @@ No Events
 ## *enableXREConnectionRetention*
 
 Enables (or disables) XRE Connection Retention option.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -317,6 +325,8 @@ No Events
 
 Notifies the device about a pending reboot.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 | Event | Description |
@@ -361,6 +371,8 @@ This method takes no parameters.
 ## *getAvailableStandbyModes*
 
 Queries the available standby modes.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -410,6 +422,8 @@ This method takes no parameters.
 ## *getCoreTemperature*
 
 Returns the core temperature of the device. Not supported on all devices.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getthermalstate)
 
 ### Events
 
@@ -731,6 +745,8 @@ This method takes no parameters.
 
 Retrieves the last deep sleep reason.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -868,6 +884,8 @@ This method takes no parameters.
 ## *getMacAddresses*
 
 Gets the MAC address of the device.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -1019,6 +1037,8 @@ This method takes no parameters.
 
 Returns the currently set mode information.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -1116,6 +1136,8 @@ This method takes no parameters.
 
 Returns the over-temperature grace interval value. Not supported on all devices.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getovertempgraceinterval)
+
 ### Events
 
 No Events
@@ -1161,6 +1183,8 @@ This method takes no parameters.
 ## *getPlatformConfiguration*
 
 Returns the supported features and device/account info.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -1449,6 +1473,8 @@ This method takes no parameters.
 
 Returns basic information about a reboot.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -1502,6 +1528,8 @@ This method takes no parameters.
 ## *getPreviousRebootInfo2*
 
 Returns detailed information about a reboot.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -1559,6 +1587,8 @@ This method takes no parameters.
 ## *getPreviousRebootReason*
 
 Returns the last reboot reason.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -1710,6 +1740,8 @@ This method takes no parameters.
 
 Queries device state information of various properties.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -1857,6 +1889,8 @@ This method takes no parameters.
 ## *getTemperatureThresholds*
 
 Returns temperature threshold values. Not supported on all devices.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=gettemperaturethresholds)
 
 ### Events
 
@@ -2307,6 +2341,8 @@ This method takes no parameters.
 
 Checks whether MOCA is enabled.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -2451,6 +2487,8 @@ This method takes no parameters.
 ## *setBootLoaderPattern*
 
 Sets the boot loader pattern mode in MFR.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -2601,6 +2639,8 @@ No Events
 ## *setFirmwareRebootDelay*
 
 Delays the firmware reboot.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -2863,6 +2903,8 @@ No Events
 
 Sets the over-temperature grace interval value. Not supported on all devices.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setovertempgraceinterval)
+
 ### Events
 
 No Events
@@ -2966,6 +3008,8 @@ Sets the power state of the device.
 
 Sets and persists the preferred standby mode. See [getAvailableStandbyModes](#getAvailableStandbyModes) for valid modes. Invoking this function does not change the power state of the device. It only sets the user preference for the preferred action when the [setPowerState](#setPowerState) method is invoked with a value of `STANDBY`.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Events
 
 No Events
@@ -3015,6 +3059,8 @@ No Events
 ## *setTemperatureThresholds*
 
 Sets the temperature threshold values. Not supported on all devices.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=settemperaturethresholds)
 
 ### Events
 
@@ -3323,6 +3369,8 @@ Sets the system time zone. See `getTimeZones` to get a list of available timezon
 
 Sets the wakeup source configuration for the input powerState. if you are using setNetworkStandbyMode API, Please do not use this API to set LAN and WIFI wakeup. Please migrate to setWakeupSrcConfiguration API to control all wakeup source settings. This API does not persist. Please call this API on Every bootup to set the values.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setwakeupsrcconfig)
+
 ### Events
 
 No Events
@@ -3396,6 +3444,8 @@ No Events
 ## *getWakeupSrcConfiguration*
 
 Returns all the supported wakeup configurations and powerState.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getwakeupsrcconfig)
 
 ### Events
 
@@ -3600,6 +3650,8 @@ This method takes no parameters.
 ## *getThunderStartReason*
 
 Returns the Thunder start reason.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -4090,4 +4142,3 @@ Triggered when logs upload process is done or stopped.
     }
 }
 ```
-
