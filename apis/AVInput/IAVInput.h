@@ -22,6 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
+#define ALL         -1
 #define HDMI        0
 #define COMPOSITE   1
 
