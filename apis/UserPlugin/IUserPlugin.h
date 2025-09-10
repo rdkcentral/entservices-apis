@@ -40,9 +40,15 @@ namespace Exchange {
         /** Gets the Audio Volume Level.*/
         // @text getVolumeLevel
         // @brief Get Volume Level
-	// @param[in] port, from which port they need an audio level
+	    // @param[in] port, from which port they need an audio level
         // @param[volumeLevel] response, audio level
         virtual Core::hresult GetVolumeLevel (const std::string& port /* @in */, std::string& volumeLevel /* @out */) const = 0;
+        
+        /** Gets the Current Resolution Value.*/
+        // @text getCurrentResolutionValue
+        // @brief Get Current Resolution Value
+        // @param[out] resolution The resolution name (e.g., "1920x1080")
+        virtual Core::hresult GetCurrentResolutionValue(std::string& resolution /* @out */) const = 0;
     };
 }
 }
