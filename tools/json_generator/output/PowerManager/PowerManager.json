@@ -126,7 +126,7 @@
             }
         },
         "powerModePreChangeComplete": {
-            "summary": "Pre power mode handling complete for given client and transation id",
+            "summary": "Pre power mode handling complete for given client and transaction id",
             "params": {
                 "type": "object",
                 "properties": {
@@ -597,7 +597,7 @@
                             "properties": {
                                 "wakeupSource": {
                                     "type": "string",
-                                    "description": "Wake up source (strigified enum value PowerManager::WakeupSrcType)",
+                                    "description": "Wake up source (stringified enum value PowerManager::WakeupSrcType)",
                                     "example": "VOICE"
                                 },
                                 "enabled": {
@@ -625,7 +625,7 @@
                         "properties": {
                             "wakeupSource": {
                                 "type": "string",
-                                "description": "Wake up source strigified enum value (Powermanager::WakeupSrcType)",
+                                "description": "Wake up source stringified enum value (Powermanager::WakeupSrcType)",
                                 "example": "VOICE"
                             },
                             "enabled": {
