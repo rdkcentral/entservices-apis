@@ -124,8 +124,8 @@ namespace Exchange {
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
-        struct Percent {
-            uint8_t percent;
+        struct Progress {
+            uint8_t progress;
         };
 
         // @brief Delete
@@ -133,13 +133,13 @@ namespace Exchange {
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            Percent &percent /* @out */) = 0;
+            Progress &progress /* @out */) = 0;
 
         // @brief GetStorageDetails
         // @text getStorageDetails
         virtual Core::hresult GetStorageDetails(
-            uint32_t &quotaKb /* @out */,
-            uint32_t &usedKb  /* @out */) = 0;
+            string &quotaKb /* @out */,
+            string &usedKb  /* @out */) = 0;
 
         // @brief RateLimit
         // @text rateLimit
