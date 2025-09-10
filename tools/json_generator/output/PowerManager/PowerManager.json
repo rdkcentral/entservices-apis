@@ -35,60 +35,6 @@
             "type": "string",
             "example": "SystemPlugin"
         },
-        "wakeupSources": {
-            "summary": "Array of Key value pair with wake up sources and its configurations",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "WAKEUPSRC_VOICE": {
-                        "description": "Voice Wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                        "WAKEUPSRC_PRESENCE_DETECTION": {
-                        "description": "Presense detection wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_BLUETOOTH": {
-                        "description": "Bluetooth Wakeup",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_WIFI": {
-                        "description": "WiFi Wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_IR": {
-                        "description": "IR Remote Wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_POWER_KEY": {
-                        "description": "Power Button Wake up - GPIO",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_CEC": {
-                        "description": "HDMI CEC commadn Wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_LAN": {
-                        "description": "LAN wake up",
-                        "type":"boolean",
-                        "example": true
-                    },
-                    "WAKEUPSRC_TIMER": {
-                        "description": "TImer Wake up",
-                        "type":"boolean",
-                        "example": true
-                    }
-                }
-            }
-        },
         "powerState": {
             "summary": "The power state",
             "enum": [
@@ -136,7 +82,7 @@
     },
     "methods": {
         "addPowerModePreChangeClient": {
-            "summary": "Register a client to engage in power mode state changes.\nAdded client should call either\n  - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.\n  - Or `DelayPowerModeChangeBy` API to delay the power mode change.\nIf the client does not call `PowerModePreChangeComplete` API, the power mode change will complete\nafter the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).\n\nIMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **\n           always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.",
+            "summary": "Register a client to engage in power mode pre-change operations.\nAdded client should call either\n  - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.\n  - Or `DelayPowerModeChangeBy` API to delay the power mode change.\nIf the client does not call `PowerModePreChangeComplete` API, the power mode change will complete\nafter the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).\n\nIMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **\n           always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -161,7 +107,7 @@
             }
         },
         "removePowerModePreChangeClient": {
-            "summary": "Removes a registered client from participating in power mode pre-change operations.\nNOTE client will still continue to receive pre-change notifications.",
+            "summary": "Removes a registered client from participating in power mode pre-change operations.\nNOTE client will still continue to receive pre-change notifications. Always `Unregister` from `IModePreChangeNotification` after invoking `removePowerModePreChangeClient`.",
             "params": {
                 "type": "object",
                 "properties": {

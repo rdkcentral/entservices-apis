@@ -45,7 +45,7 @@ org.rdk.PowerManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode state changes |
+| [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode pre-change operations |
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
@@ -73,7 +73,7 @@ org.rdk.PowerManager interface methods:
 <a name="addPowerModePreChangeClient"></a>
 ## *addPowerModePreChangeClient*
 
-Register a client to engage in power mode state changes.
+Register a client to engage in power mode pre-change operations.
 Added client should call either
   - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.
   - Or `DelayPowerModeChangeBy` API to delay the power mode change.
@@ -132,7 +132,7 @@ No Events
 ## *removePowerModePreChangeClient*
 
 Removes a registered client from participating in power mode pre-change operations.
-NOTE client will still continue to receive pre-change notifications.
+NOTE client will still continue to receive pre-change notifications. Always `Unregister` from `IModePreChangeNotification` after invoking `removePowerModePreChangeClient`.
 
 ### Events
 
