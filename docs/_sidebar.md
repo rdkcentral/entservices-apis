@@ -36,6 +36,7 @@
   - [RemoteControl](apis/RemoteControlPlugin.md)
   - [ResourceManager](apis/ResourceManagerPlugin.md)
   - [ScreenCapture](apis/ScreenCapturePlugin.md)
+  - [SharedStorage](apis/SharedStoragePlugin.md)
   - [SystemAudioPlayer](apis/SystemAudioPlayerPlugin.md)
   - [SystemServices](apis/SystemPlugin.md)
   - [Telemetry](apis/TelemetryPlugin.md)
