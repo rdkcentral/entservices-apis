@@ -155,57 +155,64 @@ namespace WPEFramework {
             // @text numberOfInputs
             // @brief Returns an integer that specifies the number of available inputs
             // @param numberOfInputs - out - The number of inputs that are available for selection
-            // @param message - out - Success if plugin is activated successfully and gets the current number of inputs. org.rdk.HdmiInput plugin is not ready if plugin is not activated or activation failed
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult NumberOfInputs(uint32_t& numberOfInputs /* @out */, string& message /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult NumberOfInputs(uint32_t& numberOfInputs /* @out */, bool& success /* @out */) = 0;
 
             // @text getInputDevices
             // @brief Returns a list of input devices of the specified type
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
-            // @param devices - out - An object [] that describes each HDMI/Composite Input port
-            virtual Core::hresult GetInputDevices(const int typeOfInput, Exchange::IAVInput::IInputDeviceIterator*& devices /* @out */) = 0;
+            // @param inputDevices - out - An object [] that describes each HDMI/Composite Input port
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetInputDevices(const int typeOfInput, IInputDeviceIterator*& devices /* @out */, bool& success /* @out */) = 0;
 
             // @text writeEDID
             // @brief Changes a current EDID value.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param message - in - A new EDID value
-            virtual Core::hresult WriteEDID(const int portId, const string& message) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult WriteEDID(const int portId, const string& message, bool& success /* @out */) = 0;
 
             // @text readEDID
             // @brief Returns the current EDID value.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param EDID - out - The EDID Value
-            virtual Core::hresult ReadEDID(const int portId, string& EDID /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult ReadEDID(const int portId, string& EDID /* @out */, bool& success /* @out */) = 0;
 
             // @text getRawSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HDMISPD - out - The SPD information as raw bits
-            virtual Core::hresult GetRawSPD(const int portId, string& HDMISPD /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetRawSPD(const int portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
 
             // @text getSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HDMISPD - out - The SPD information
-            virtual Core::hresult GetSPD(const int portId, string& HDMISPD /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetSPD(const int portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
 
             // @text setEdidVersion
             // @brief Sets an HDMI EDID version
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param edidVersion - in - The EDID version
-            virtual Core::hresult SetEdidVersion(const int portId, const string& edidVersion) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult SetEdidVersion(const int portId, const string& edidVersion, bool& success /* @out */) = 0;
 
             // @text getEdidVersion
             // @brief Returns the EDID version
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param edidVersion - out - The EDID version
-            virtual Core::hresult GetEdidVersion(const int portId, string& edidVersion /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetEdidVersion(const int portId, string& edidVersion /* @out */, bool& success /* @out */) = 0;
 
             // @text setEdid2AllmSupport
             // @brief Sets an HDMI ALLM bit in EDID.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param allmSupport - in - The ALLM support in EDID
-            virtual Core::hresult SetEdid2AllmSupport(const int portId, const bool allmSupport) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult SetEdid2AllmSupport(const int portId, const bool allmSupport, bool& success /* @out */) = 0;
 
             // @text getEdid2AllmSupport
             // @brief Returns the ALLM bit in EDID
@@ -237,7 +244,8 @@ namespace WPEFramework {
             // @brief Sets the audio mixer level for given audio input.
             // @param primaryVolume - in - Primary audio input volume
             // @param inputVolume - in - System audio input volume
-            virtual Core::hresult SetAudioMixerLevels(const int primaryVolume, const int inputVolume) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult SetAudioMixerLevels(const int primaryVolume, const int inputVolume, bool& success /* @out */) = 0;
 
             // @text startInput
             // @brief Activates the specified HDMI/Composite Input port as the primary video source.
@@ -246,12 +254,14 @@ namespace WPEFramework {
             // @param audioMix - in - Defines whether the Audio mixing is true or false, This is an optional argument
             // @param planeType - in - Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument
             // @param topMost - in - Defines whether the Hdmi Input should be over or under the other video plane
-            virtual Core::hresult StartInput(const int portId, const int typeOfInput, const bool audioMix, const int planeType, const bool topMost) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult StartInput(const int portId, const int typeOfInput, const bool audioMix, const int planeType, const bool topMost, bool& success /* @out */) = 0;
 
             // @text stopInput
             // @brief Deactivates the HDMI/Composite Input port currently selected as the primary video source.
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
-            virtual Core::hresult StopInput(const int typeOfInput) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult StopInput(const int typeOfInput, bool& success /* @out */) = 0;
 
             // @text setVideoRectangle
             // @brief Sets an HDMI/Composite Input video window.
@@ -260,14 +270,14 @@ namespace WPEFramework {
             // @param w - in - The width of the video rectangle
             // @param h - in - The height of the video rectangle
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
-            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const uint16_t typeOfInput) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const uint16_t typeOfInput, bool& success /* @out */) = 0;
 
             // @text currentVideoMode
             // @brief Returns the current video mode for the specified input device
             // @param currentVideoMode - out - The current video mode
-            // @param message - out - Success if plugin is activated successfully and gets the current Videomode. org.rdk.HdmiInput plugin is not ready if plugin is not activated or activation failed
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult CurrentVideoMode(string& currentVideoMode /* @out */, string& message /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult CurrentVideoMode(string& currentVideoMode /* @out */, bool& success /* @out */) = 0;
 
             // @text contentProtected
             // @brief Returns whether the content is protected for the specified input device
@@ -278,14 +288,16 @@ namespace WPEFramework {
             // @text getSupportedGameFeatures
             // @brief Returns the list of supported game features.
             // @param supportedGameFeatures - out - The supported game Features
-            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */, bool& success /* @out */) = 0;
 
             // @text getGameFeatureStatus
             // @brief Returns the Game Feature Status. For example: ALLM.
             // @param portId - in - An ID of an HDMI Input port as returned by the getInputDevices method
             // @param gameFeature - in - Game Feature to which current status requested
             // @param mode - out - The current game feature status. Mode is required only for ALLM. Need to add support for future game features
-            virtual Core::hresult GetGameFeatureStatus(const int portId, const string& gameFeature, bool& mode /* @out */) = 0;
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetGameFeatureStatus(const int portId, const string& gameFeature, bool& mode /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
