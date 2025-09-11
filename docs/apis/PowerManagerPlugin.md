@@ -45,6 +45,10 @@ org.rdk.PowerManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode pre-change operations |
+| [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
+| [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
+| [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
 | [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value |
 | [getPowerState](#getPowerState) | Returns the current power state of the device |
 | [getThermalState](#getThermalState) | Returns temperature threshold values |
@@ -59,10 +63,218 @@ org.rdk.PowerManager interface methods:
 | [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
 | [setWakeupSrcConfig](#setWakeupSrcConfig) | Sets the wakeup source configuration for the input powerState |
 | [getWakeupSrcConfig](#getWakeupSrcConfig) | Returns all the supported wakeup configurations and powerState |
+| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup (Application friendly API) |
+| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup (Application friendly API) |
 | [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
 
+
+<a name="addPowerModePreChangeClient"></a>
+## *addPowerModePreChangeClient*
+
+Register a client to engage in power mode pre-change operations.
+Added client should call either
+  - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation.
+  - Or `DelayPowerModeChangeBy` API to delay the power mode change.
+If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete
+after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).
+
+IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **
+           always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientName | string | Name of the client |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`) |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.addPowerModePreChangeClient",
+    "params": {
+        "clientName": "tr69hostif"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "clientId": 1
+    }
+}
+```
+
+<a name="removePowerModePreChangeClient"></a>
+## *removePowerModePreChangeClient*
+
+Removes a registered client from participating in power mode pre-change operations.
+NOTE client will still continue to receive pre-change notifications. Always `Unregister` from `IModePreChangeNotification` after invoking `removePowerModePreChangeClient`.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientId | integer | Unique identifier for the client. See `AddPowerModePreChangeClient` |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.removePowerModePreChangeClient",
+    "params": {
+        "clientId": 1
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="powerModePreChangeComplete"></a>
+## *powerModePreChangeComplete*
+
+Pre power mode handling complete for given client and transaction id.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientId | integer | Unique identifier for the client, as received in AddPowerModePreChangeClient |
+| params.transactionId | integer | transaction id as received in OnPowerModePreChange |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.powerModePreChangeComplete",
+    "params": {
+        "clientId": 1,
+        "transactionId": 3
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="delayPowerModeChangeBy"></a>
+## *delayPowerModeChangeBy*
+
+Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientId | integer | Unique identifier for the client, as received in AddPowerModePreChangeClient |
+| params.transactionId | integer | transaction id as received in OnPowerModePreChange |
+| params.delayPeriod | integer | delay in seconds |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.delayPowerModeChangeBy",
+    "params": {
+        "clientId": 1,
+        "transactionId": 3,
+        "delayPeriod": 5
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
 
 <a name="getOvertempGraceInterval"></a>
 ## *getOvertempGraceInterval*
@@ -172,7 +384,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.currentTemperature | float | <sup>*(optional)*</sup> The temperature |
+| result.currentTemperature | float | The temperature |
 
 ### Example
 
@@ -749,6 +961,110 @@ This method takes no parameters.
 }
 ```
 
+<a name="setWakeupSourceConfig"></a>
+## *setWakeupSourceConfig*
+
+Set the source configuration for device wakeup (Application friendly API). This API does not persist. Please call this API on Every bootup to set the values.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.wakeupSources | array |  |
+| params.wakeupSources[#] | object |  |
+| params.wakeupSources[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source (stringified enum value PowerManager::WakeupSrcType) |
+| params.wakeupSources[#]?.enabled | boolean | <sup>*(optional)*</sup> Enable or disable the wakeup source |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.setWakeupSourceConfig",
+    "params": {
+        "wakeupSources": [
+            {
+                "wakeupSource": "VOICE",
+                "enabled": true
+            }
+        ]
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="getWakeupSourceConfig"></a>
+## *getWakeupSourceConfig*
+
+Get the source configuration for device wakeup (Application friendly API).
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | array |  |
+| result[#] | object |  |
+| result[#]?.wakeupSource | string | <sup>*(optional)*</sup> Wake up source stringified enum value (Powermanager::WakeupSrcType) |
+| result[#]?.enabled | boolean | <sup>*(optional)*</sup> Wakeup source is enabled or not |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.getWakeupSourceConfig"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": [
+        {
+            "wakeupSource": "VOICE",
+            "enabled": true
+        }
+    ]
+}
+```
+
 <a name="setSystemMode"></a>
 ## *setSystemMode*
 
@@ -825,7 +1141,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.powerStateBeforeReboot | string | <sup>*(optional)*</sup> The power state |
+| result.powerStateBeforeReboot | string | The power state |
 
 ### Example
 
@@ -987,8 +1303,10 @@ Triggered before change then device power state. The power state (must be one of
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.currentState | string | The current power state |
-| params?.newState | string | <sup>*(optional)*</sup> The new power state |
+| params.currentState | string | Current Power State |
+| params.newState | string | Changing power state to this New Power State |
+| params.transactionId | integer | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
+| params.stateChangeAfter | integer | seconds after which the actual power mode will be applied, if the client does not call prePowerChangeComplete() API |
 
 ### Example
 
@@ -998,7 +1316,9 @@ Triggered before change then device power state. The power state (must be one of
     "method": "client.events.onPowerModePreChange",
     "params": {
         "currentState": "STANDBY",
-        "newState": "ON"
+        "newState": "ON",
+        "transactionId": 3,
+        "stateChangeAfter": 1
     }
 }
 ```
