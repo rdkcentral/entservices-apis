@@ -6,7 +6,7 @@
 // 1. The single source of truth: a list of all errors.
 #define ERROR_LIST \
     X(ERROR_INVALID_DEVICENAME, "Invalid device name") \
-    X(ERROR_INVALID_MOUNTPOINT, "Invalid mount path") \   
+    X(ERROR_INVALID_MOUNTPOINT, "Invalid mount path") \
     X(ERROR_FIRMWAREUPDATE_INPROGRESS, "Firmware update already in progress") \
     X(ERROR_FIRMWAREUPDATE_UPTODATE, "Firmware is already upto date") \
     X(ERROR_FILE_IO, "File Read or Write error") \
