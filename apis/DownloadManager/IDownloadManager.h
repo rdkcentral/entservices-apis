@@ -63,7 +63,7 @@ namespace Exchange {
             uint32_t retries;
 
             // @brief RateLimit Maximum bandwidth allowed for the download (bytes per second)
-            uint64_t rateLimit;
+            uint32_t rateLimit;
         };
 
         struct DownloadId {
@@ -125,7 +125,7 @@ namespace Exchange {
         // @text rateLimit
         // @param downloadId: Unique identifier of the download
         // @param limit: Maximum bandwidth in bytes per second (0 = unlimited)
-        virtual Core::hresult RateLimit(const string& downloadId, const uint64_t& limit) = 0;
+        virtual Core::hresult RateLimit(const string& downloadId, const uint32_t& limit) = 0;
     };
 } // Exchange
 } // WPEFramework
