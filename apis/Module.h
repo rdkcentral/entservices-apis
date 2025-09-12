@@ -36,3 +36,4 @@
 // in the file calls Ids.h, please extend it with your requried interface number
 // if you are creating a new interface.
 #include "Ids.h"
+#include <interfaces/entservices_errorcodes.h>
