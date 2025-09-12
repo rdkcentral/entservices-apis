@@ -264,8 +264,8 @@ namespace Exchange {
         // @param fileLocator: locator of package
         // @param packageId: package id
         // @param version: version of package
-        // @param metadata: metadata of package
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator /* @in */, string& packageId /* @out */, string &version /* @out */, RuntimeConfig& metadata /* @out */) = 0;
+        // @param config: metadata of package
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator /* @in */, string& packageId /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
 
