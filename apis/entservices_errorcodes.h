@@ -3,7 +3,11 @@
 #pragma once
 #include <stdio.h>
 
-// 1. The single source of truth: a list of all errors.
+// 1. A list of Plugin specific errors.
+// As per https://www.jsonrpc.org/specification#error_object, implementation defined error range is -32000 to -32099
+// So, we have room for only 100 errors across all entertainment services in RDK. 
+// Please define error code in reusable form (or generic form), wherever possible. 
+// Always consult Thunder Framework defined errors before defining a new error.
 #define ERROR_LIST \
     X(ERROR_INVALID_DEVICENAME, "Invalid device name") \
     X(ERROR_INVALID_MOUNTPOINT, "Invalid mount path") \
