@@ -325,6 +325,13 @@ namespace WPEFramework
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId /* @in */, const int transactionId /* @in */, const int delayPeriod /* @in */) = 0;
+
+        /** Checks whether the power state is managed by the device */
+        // @text getPowerStateIsManagedByDevice
+        // @brief Checks whether the power state is managed by the device
+        // @param powerStateManagedByDevice: true if power state is managed by the device, otherwise false
+        // @param success: success
+        virtual Core::hresult GetPowerStateIsManagedByDevice(bool &powerStateManagedByDevice /* @out */, bool &success /* @out */) = 0;
     };
 
 } // namespace Exchange
