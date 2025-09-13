@@ -262,10 +262,10 @@ namespace Exchange {
         // @brief getConfigForPackage
         // @text getConfigForPackage
         // @param fileLocator: locator of package
-        // @param packageId: package id
+        // @param id: package id
         // @param version: version of package
         // @param config: metadata of package
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator /* @in */, string& packageId /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator /* @in */, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
 
