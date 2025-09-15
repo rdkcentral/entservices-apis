@@ -35,37 +35,45 @@ namespace WPEFramework {
             };
 
             struct InputDevice {
-                int id /* @text id */;
-                string locator /* @text locator */;
-                bool connected /* @text connected */;
+                int id          /* @brief id */;
+                string locator  /* @brief locator */;
+                bool connected  /* @brief connected */;
             };
 
             struct ContentInfo {
-                int id;
-                int contentType;
+                int id;             /* @brief id */
+                int contentType;    /* @brief contentType */
             };
 
             struct SuccessResult {
-                bool success /* @text success */;
+                bool success /* @brief success */;
             };
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
             using IInputDeviceIterator = RPC::IIteratorType<InputDevice, ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
 
-            // @event
             struct EXTERNAL IDevicesChangedNotification : virtual public Core::IUnknown {
                 enum {
                     ID = ID_AV_INPUT_NOTIFICATION_DEVICES_CHANGED
                 };
 
                 // @text onDevicesChanged
-                // @brief Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input    
-                // @param devices - in - An object [] that describes each HDMI/Composite Input port
-                virtual void OnDevicesChanged(const string& devices) { }; // Thunder does not currently support iterators as a notification parameter
+                // @brief Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
+                // <pca>
+                //virtual void OnDevicesChanged(const string& devices) { }; // Thunder does not currently support iterators as a notification parameter
+                virtual void OnDevicesChanged(IInputDeviceIterator* const devices) {}
+                // </pca>
             };
 
+            // <pca>
+            // virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
+            // virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
+            // @json:omit
             virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
+
+            // @json:omit
             virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
+            // </pca>
 
             // @event
             struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
