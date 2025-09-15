@@ -27,9 +27,19 @@ namespace Exchange {
         enum { ID = ID_DOWNLOAD_MANAGER };
 
         enum FailReason : uint8_t {
-            NONE,                    // XXX: Not in HLA
             DOWNLOAD_FAILURE,
             DISK_PERSISTENCE_FAILURE
+        };
+
+        struct Options {
+            // @brief Adds the download request to either a priority queue (true) or regular queue (false)
+            bool priority;
+
+            // @brief Retries Number of retry attempts allowed for failed downloads (the default retries is 2)
+            uint32_t retries;
+
+            // @brief RateLimit Maximum bandwidth allowed for the download (bytes per second)
+            uint32_t rateLimit;
         };
 
         /* @event */
@@ -55,22 +65,6 @@ namespace Exchange {
         // @json:omit
         virtual Core::hresult Deinitialize(PluginHost::IShell* service) = 0;
 
-        struct Options {
-            // @brief Adds the download request to either a priority queue (true) or regular queue (false)
-            bool priority;
-
-            // @brief Retries Number of retry attempts allowed for failed downloads (the default retries is 2)
-            uint32_t retries;
-
-            // @brief RateLimit Maximum bandwidth allowed for the download (bytes per second)
-            uint32_t rateLimit;
-        };
-
-        struct DownloadId {
-            // @brief DownloadId Unique identifier for a download session
-            string downloadId;
-        };
-
         // @brief Download Start downloading a file from a specified URL with custom options
         // @text download
         // @param url: URL from which the file is to be downloaded
@@ -79,7 +73,7 @@ namespace Exchange {
         virtual Core::hresult Download(
             const string& url,
             const Options& options,
-            DownloadId& downloadId /* @out */) = 0;
+            string& downloadId /* @out */) = 0;
 
         // @brief Pause an active download session
         // @text pause
@@ -101,17 +95,13 @@ namespace Exchange {
         // @param fileLocator: File path or locator of the file to be deleted
         virtual Core::hresult Delete(const string& fileLocator) = 0;
 
-        struct Percent {
-            uint8_t percent;
-        };
-
         // @brief Progress Query current download progress
         // @text progress
         // @param downloadId: Unique identifier of the download
         // @param percent: Output parameter returning percentage completed
         virtual Core::hresult Progress(
             const string& downloadId,
-            Percent& percent /* @out */) = 0;
+            uint8_t& percent /* @out */) = 0;
 
         // @brief GetStorageDetails Get information about storage space availability
         // @text getStorageDetails
