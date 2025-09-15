@@ -38,7 +38,7 @@ namespace WPEFramework {
 			/** Prints the hello world */
 			// @text HelloWorld
 			// @brief Prints hello world
-			virtual Core:hresult HelloWorld()=0;
+			virtual Core::hresult HelloWorld()=0;
 		};
 	}//exchange
 }//WPEFramework
