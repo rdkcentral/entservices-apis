@@ -372,12 +372,14 @@
     },
     "methods": {
         "clearLastDeepSleepReason":{
+            "deprecated" : true,
             "summary": "Clears the last deep sleep reason.",
             "result": {
                 "$ref": "#/common/result"
             }
         },
         "deletePersistentPath": {
+            "deprecated" : true,
             "summary": "Deletes persistent path associated with a callsign.",
             "params": {
                 "type":"object",
@@ -402,6 +404,7 @@
             }
         },
         "enableMoca":{
+            "deprecated" : true,
             "summary": "Enables (or disables) Moca support for the platform.",
             "params": {
                 "type": "object",
@@ -421,6 +424,7 @@
             }
         },
         "enableXREConnectionRetention":{
+            "deprecated" : true,
             "summary": "Enables (or disables) XRE Connection Retention option.",
             "params": {
                 "type": "object",
@@ -440,6 +444,7 @@
             }
         },
         "fireFirmwarePendingReboot":{
+            "deprecated" : true,
             "summary": "Notifies the device about a pending reboot.",
             "events": {
                 "onFirmwarePendingReboot" : "Triggers when the firmware has a pending reboot"
@@ -449,6 +454,7 @@
             }
         },
         "getAvailableStandbyModes": {
+            "deprecated" : true,
             "summary": "Queries the available standby modes.",
             "result": {
                 "type": "object",
@@ -472,6 +478,8 @@
             }
         },
         "getCoreTemperature":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getthermalstate",
             "summary": "Returns the core temperature of the device. Not supported on all devices.",
             "result": {
                 "type": "object",
@@ -634,6 +642,7 @@
             }
         },
         "getLastDeepSleepReason":{
+            "deprecated" : true,
             "summary": "Retrieves the last deep sleep reason.",
             "result": {
                 "type": "object",
@@ -694,6 +703,7 @@
             }
         },
         "getMacAddresses":{
+            "deprecated" : true,
             "summary": "Gets the MAC address of the device.",
             "events": {
                 "onMacAddressesRetreived" : "Triggers when the MAC addresses are requested"
@@ -769,6 +779,7 @@
             }
         },
         "getMode":{
+            "deprecated" : true,
             "summary": "Returns the currently set mode information.",
             "result": {
                 "type": "object",
@@ -805,6 +816,8 @@
             }
         },
         "getOvertempGraceInterval": {
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getovertempgraceinterval",
             "summary": "Returns the over-temperature grace interval value. Not supported on all devices.",
             "result": {
                 "type": "object",
@@ -823,6 +836,7 @@
             }
         },
         "getPlatformConfiguration": {
+            "deprecated" : true,
             "summary": "Returns the supported features and device/account info.",
             "params": {
                 "type": "object",
@@ -928,6 +942,7 @@
             }
         },
         "getPreviousRebootInfo":{
+            "deprecated" : true,
             "summary": "Returns basic information about a reboot.",
             "result": {
                 "type": "object",
@@ -970,6 +985,7 @@
             }
         },
         "getPreviousRebootInfo2":{
+            "deprecated" : true,
             "summary": "Returns detailed information about a reboot.",
             "result": {
                 "type": "object",
@@ -1016,6 +1032,7 @@
             }
         },
         "getPreviousRebootReason":{
+            "deprecated" : true,
             "summary": "Returns the last reboot reason.",
             "result": {
                 "type": "object",
@@ -1098,6 +1115,7 @@
             }
         },
         "getStateInfo":{
+            "deprecated" : true,
             "summary": "Queries device state information of various properties.",
             "params": {
                 "type": "object",
@@ -1181,6 +1199,8 @@
             }
         },
         "getTemperatureThresholds":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=gettemperaturethresholds",
             "summary": "Returns temperature threshold values. Not supported on all devices.",
             "result": {
                 "type": "object",
@@ -1452,6 +1472,7 @@
 
         },
         "queryMocaStatus":{
+            "deprecated" : true,
             "summary": "Checks whether MOCA is enabled.",
             "result": {
                 "type": "object",
@@ -1526,6 +1547,7 @@
             }
         },
         "setBootLoaderPattern":{
+            "deprecated" : true,
             "summary": "Sets the boot loader pattern mode in MFR.",
             "params": {
                 "type":"object",
@@ -1579,6 +1601,7 @@
             }
         },
         "setFirmwareRebootDelay": {
+           "deprecated" : true,
             "summary": "Delays the firmware reboot.",
             "params": {
                 "type":"object",
@@ -1670,6 +1693,8 @@
             }
         },
         "setOvertempGraceInterval":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setovertempgraceinterval",
             "summary": "Sets the over-temperature grace interval value. Not supported on all devices.",
             "params": {
                 "type": "object",
@@ -1713,6 +1738,7 @@
             }
         },
         "setPreferredStandbyMode":{
+            "deprecated" : true,
             "summary": "Sets and persists the preferred standby mode. See [getAvailableStandbyModes](#getAvailableStandbyModes) for valid modes. Invoking this function does not change the power state of the device. It only sets the user preference for the preferred action when the [setPowerState](#setPowerState) method is invoked with a value of `STANDBY`.",
             "params": {
                 "type":"object",
@@ -1730,6 +1756,8 @@
             }
         },
         "setTemperatureThresholds":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=settemperaturethresholds",
             "summary": "Sets the temperature threshold values. Not supported on all devices.",
             "params": {
                 "type":"object",
@@ -1857,6 +1885,8 @@
             }
         },
         "setWakeupSrcConfiguration":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setwakeupsrcconfig",
             "summary": "Sets the wakeup source configuration for the input powerState. if you are using setNetworkStandbyMode API, Please do not use this API to set LAN and WIFI wakeup. Please migrate to setWakeupSrcConfiguration API to control all wakeup source settings. This API does not persist. Please call this API on Every bootup to set the values.",
             "params": {
                 "type": "object",
@@ -1877,6 +1907,8 @@
             }
         },
         "getWakeupSrcConfiguration":{
+            "deprecated" : true,
+            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getwakeupsrcconfig",
             "summary": "Returns all the supported wakeup configurations and powerState",
             "result": {
                 "type": "object",
@@ -1923,6 +1955,7 @@
             }
         },
         "getThunderStartReason":{
+            "deprecated" : true,
             "summary": "Returns the Thunder start reason.",
             "result": {
                 "type": "object",

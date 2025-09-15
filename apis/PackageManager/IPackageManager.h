@@ -27,15 +27,17 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    /* @json */
+    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageManager : virtual public Core::IUnknown {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         enum { ID = ID_PACKAGEMANAGER };
 
-        /* @brief Download the application bundle. */
-        virtual uint32_t Install(const string& type,
+        /** Install an application bundle */
+        // @text install
+        // @brief Downloads and installs an application bundle.
+        virtual Core::hresult Install(const string& type,
                 const string& id,
                 const string& version,
                 const string& url,
@@ -43,22 +45,29 @@ namespace Exchange {
                 const string& category,
                 string& handle /* @out */) = 0;
 
-        /* @brief Uninstall the application. */
-        virtual uint32_t Uninstall(const string& type,
+        /** Uninstall an application */
+        // @text uninstall
+        // @brief Uninstalls an application.
+        virtual Core::hresult Uninstall(const string& type,
                 const string& id,
                 const string& version,
                 const string& uninstallType,
                 string& handle /* @out */) = 0;
-        /* @brief Download arbitrary application's resource file. */
-        virtual uint32_t Download(const string& type,
+
+        /** Download a resource for an app */
+        // @text download
+        // @brief Downloads a resource file for an application.
+        virtual Core::hresult Download(const string& type,
                 const string& id,
                 const string& version,
                 const string& resKey,
                 const string& url,
                 string& handle /* @out */) = 0;
 
-        /* @brief Delete persistent data stored locally. */
-        virtual uint32_t Reset(const string& type,
+        /** Reset application state */
+        // @text reset
+        // @brief Deletes all persistent local data of the application.
+        virtual Core::hresult Reset(const string& type,
                 const string& id,
                 const string& version,
                 const string& resetType) = 0;
@@ -76,8 +85,10 @@ namespace Exchange {
                 StorageDetails persistent;
         };
 
-        /* @brief Information on the storage usage. */
-        virtual uint32_t GetStorageDetails(const string& type,
+        /** Get application storage usage */
+        // @text getStorageDetails
+        // @brief Retrieves details about app and persistent storage usage.
+        virtual Core::hresult GetStorageDetails(const string& type,
                 const string& id,
                 const string& version,
                 StorageInfo& storageinfo /* @out */) const = 0;
@@ -95,45 +106,58 @@ namespace Exchange {
             string url;
         };
 
-        /* @brief Set an arbitrary metadata. */
-        virtual uint32_t SetAuxMetadata(const string& type,
+        /** Set custom metadata */
+        // @text setAuxMetadata
+        // @brief Sets a key-value pair of metadata for the application.
+        virtual Core::hresult SetAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
                 const string& key,
                 const string& value) = 0;
 
-        /* @brief Clears an arbitrary metadata. */
-        virtual uint32_t ClearAuxMetadata(const string& type,
+        /** Clear custom metadata */
+        // @text clearAuxMetadata
+        // @brief Clears the specified metadata key.
+        virtual Core::hresult ClearAuxMetadata(const string& type,
                 const string& id,
                 const string& version,
                 const string& key) = 0;
 
-        /* @brief Get application metadata. */
-        virtual uint32_t GetMetadata(const string& type,
+        /** Get all metadata and resources */
+        // @text getMetadata
+        // @brief Retrieves metadata and auxiliary resource list for an application.
+        virtual Core::hresult GetMetadata(const string& type,
                 const string& id,
                 const string& version,
                 MetadataPayload& metadata /* @out */,
                 IPackageManager::IKeyValueIterator*& resources /* @out */,
                 IPackageManager::IKeyValueIterator*& auxMetadata /* @out */) const = 0;
 
-        /* @brief Cancel asynchronous request. */
-        virtual uint32_t Cancel(const string& handle) = 0;
+        /** Cancel an ongoing operation */
+        // @text cancel
+        // @brief Cancels a previously issued asynchronous request.
+        virtual Core::hresult Cancel(const string& handle) = 0;
 
-        /* @brief Estimated progress of a request. */
-        virtual uint32_t GetProgress(const string& handle, uint32_t& progress /* @out */) const = 0;
+        /** Get progress of an operation */
+        // @text getProgress
+        // @brief Provides the current progress of an ongoing operation.
+        virtual Core::hresult GetProgress(const string& handle, uint32_t& progress /* @out */) const = 0;
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
 
             enum {ID = ID_PACKAGEMANAGER_NOTIFICATION};
 
-            /* @brief Completion of asynchronous operation. */
+            // @text operationStatus
+            // @brief Notifies completion of an asynchronous operation.
             virtual void OperationStatus(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;
         };
 
-        virtual uint32_t Register(IPackageManager::INotification* notification) = 0;
-        virtual uint32_t Unregister(IPackageManager::INotification* notification) = 0;
+        /** Register for notifications */
+        virtual Core::hresult Register(IPackageManager::INotification* notification) = 0;
+        /** Unregister from notifications */
+        virtual Core::hresult Unregister(IPackageManager::INotification* notification) = 0;
 
         struct EXTERNAL PackageKey {            
             string id;
@@ -142,8 +166,10 @@ namespace Exchange {
 
         using IPackageKeyIterator = RPC::IIteratorType<PackageKey, ID_PACKAGEMANAGER_PACKAGE_KEY_ITERATOR>;
 
-        /* @brief List installed applications. */
-        virtual uint32_t GetList(
+        /** List installed apps */
+        // @text getList
+        // @brief Retrieves list of installed apps matching given filters.
+        virtual Core::hresult GetList(
                 const string& type,
                 const string& id,
                 const string& version,
@@ -151,8 +177,10 @@ namespace Exchange {
                 const string& category,
                 IPackageKeyIterator*& installedIds /* @out */) const = 0; 
 
-        /* @brief Lock the application. Preventing uninstallation. */
-        virtual uint32_t Lock(const string& type,
+        /** Lock application from uninstalling */
+        // @text lock
+        // @brief Locks an application to prevent uninstallation.
+        virtual Core::hresult Lock(const string& type,
                 const string& id,
                 const string& version,
                 const string& reason,
@@ -160,16 +188,20 @@ namespace Exchange {
                 string& handle /* @out */) = 0;
 
 
-        /* @brief Unlock application. */
-        virtual uint32_t Unlock(const string& handle) = 0;
+        /** Unlock application */
+        // @text unlock
+        // @brief Unlocks a previously locked application.
+        virtual Core::hresult Unlock(const string& handle) = 0;
 
         struct LockInfo {
             string reason;
             string owner;
         };
 
-        /* @brief Get lock info. */
-        virtual uint32_t GetLockInfo(const string& type,
+        /** Get lock details */
+        // @text getLockInfo
+        // @brief Provides lock reason and owner for an app.
+        virtual Core::hresult GetLockInfo(const string& type,
                 const string& id,
                 const string& version,
                 LockInfo& result /* @out */) const = 0;
@@ -180,8 +212,8 @@ namespace Exchange {
 
                 enum { ID = ID_PACKAGEMANAGER_BROKER };
 
-                virtual uint32_t Offer(IPackageManager* packagemanager) = 0;
-                virtual uint32_t Revoke(const IPackageManager* packagemanager) = 0;
+                virtual Core::hresult Offer(IPackageManager* packagemanager) = 0;
+                virtual Core::hresult Revoke(const IPackageManager* packagemanager) = 0;
 
     };
 
@@ -193,6 +225,5 @@ namespace Exchange {
                                          const string& version, const string& status, const string& details) = 0;
 
     };
-
 }
 }
