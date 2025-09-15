@@ -174,7 +174,7 @@ namespace WPEFramework {
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param message - in - A new EDID value
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult WriteEDID(const int portId, const string& message, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult WriteEDID(const int portId, const string& message, SuccessResult& successResult /* @out */) = 0;
 
             // @text readEDID
             // @brief Returns the current EDID value.
@@ -202,7 +202,7 @@ namespace WPEFramework {
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param edidVersion - in - The EDID version
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetEdidVersion(const int portId, const string& edidVersion, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult SetEdidVersion(const int portId, const string& edidVersion, SuccessResult& successResult /* @out */) = 0;
 
             // @text getEdidVersion
             // @brief Returns the EDID version
@@ -216,7 +216,7 @@ namespace WPEFramework {
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param allmSupport - in - The ALLM support in EDID
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetEdid2AllmSupport(const int portId, const bool allmSupport, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult SetEdid2AllmSupport(const int portId, const bool allmSupport, SuccessResult& successResult /* @out */) = 0;
 
             // @text getEdid2AllmSupport
             // @brief Returns the ALLM bit in EDID
@@ -249,7 +249,7 @@ namespace WPEFramework {
             // @param primaryVolume - in - Primary audio input volume
             // @param inputVolume - in - System audio input volume
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetAudioMixerLevels(const int primaryVolume, const int inputVolume, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult SetAudioMixerLevels(const int primaryVolume, const int inputVolume, SuccessResult& successResult /* @out */) = 0;
 
             // @text startInput
             // @brief Activates the specified HDMI/Composite Input port as the primary video source.
@@ -259,13 +259,13 @@ namespace WPEFramework {
             // @param planeType - in - Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument
             // @param topMost - in - Defines whether the Hdmi Input should be over or under the other video plane
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult StartInput(const int portId, const int typeOfInput, const bool audioMix, const int planeType, const bool topMost, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult StartInput(const int portId, const int typeOfInput, const bool audioMix, const int planeType, const bool topMost, SuccessResult& successResult /* @out */) = 0;
 
             // @text stopInput
             // @brief Deactivates the HDMI/Composite Input port currently selected as the primary video source.
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult StopInput(const int typeOfInput, bool& SuccessResult /* @out */) = 0;
+            virtual Core::hresult StopInput(const int typeOfInput, SuccessResult& successResult /* @out */) = 0;
 
             // @text setVideoRectangle
             // @brief Sets an HDMI/Composite Input video window.
@@ -275,7 +275,7 @@ namespace WPEFramework {
             // @param h - in - The height of the video rectangle
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const uint16_t typeOfInput, SuccessResult& success /* @out */) = 0;
+            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const uint16_t typeOfInput, SuccessResult& successResult /* @out */) = 0;
 
             // @text currentVideoMode
             // @brief Returns the current video mode for the specified input device
