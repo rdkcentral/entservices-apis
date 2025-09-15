@@ -61,10 +61,8 @@ org.rdk.PowerManager interface methods:
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device |
 | [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
-| [setWakeupSrcConfig](#setWakeupSrcConfig) | Sets the wakeup source configuration for the input powerState |
-| [getWakeupSrcConfig](#getWakeupSrcConfig) | Returns all the supported wakeup configurations and powerState |
-| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup (Application friendly API) |
-| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup (Application friendly API) |
+| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup |
+| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
 | [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
@@ -860,111 +858,10 @@ No Events
 }
 ```
 
-<a name="setWakeupSrcConfig"></a>
-## *setWakeupSrcConfig*
-
-Sets the wakeup source configuration for the input powerState. if you are using setNetworkStandbyMode API, Please do not use this API to set LAN and WIFI wakeup. Please migrate to setWakeupSrcConfiguration API to control all wakeup source settings. This API does not persist. Please call this API on Every bootup to set the values.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.powerState | integer | <sup>*(optional)*</sup> Enum indicating bit position, If the reason is STANDBY, the value is 4(bit counting starts at 1) (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*) |
-| params.wakeupSources | integer | Enum indicating bit position, If the reason is LAN, the value is 32(bit counting starts at 1) (must be one of the following: *WAKEUP_REASON_IR*, *WAKEUP_REASON_RCU_BT*, *WAKEUP_REASON_RCU_RF4CE*, *WAKEUP_REASON_GPIO*, *WAKEUP_REASON_LAN*, *WAKEUP_REASON_WLAN*, *WAKEUP_REASON_TIMER*, *WAKEUP_REASON_FRONT_PANEL*, *WAKEUP_REASON_WATCHDOG*, *WAKEUP_REASON_SOFTWARE_RESET*, *WAKEUP_REASON_THERMAL_RESET*, *WAKEUP_REASON_WARM_RESET*, *WAKEUP_REASON_COLDBOOT*, *WAKEUP_REASON_STR_AUTH_FAILURE*, *WAKEUP_REASON_CEC*, *WAKEUP_REASON_PRESENCE*, *WAKEUP_REASON_VOICE*, *WAKEUP_REASON_UNKNOWN*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | General error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PowerManager.setWakeupSrcConfig",
-    "params": {
-        "powerState": 4,
-        "wakeupSources": 6
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
-}
-```
-
-<a name="getWakeupSrcConfig"></a>
-## *getWakeupSrcConfig*
-
-Returns all the supported wakeup configurations and powerState.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.powerState | integer | Enum indicating bit position, If the reason is STANDBY, the value is 4(bit counting starts at 1) (must be one of the following: *OFF*, *STANDBY*, *ON*, *LIGHT_SLEEP*, *DEEP_SLEEP*) |
-| result.wakeupSources | integer | Enum indicating bit position, If the reason is LAN, the value is 32(bit counting starts at 1) (must be one of the following: *WAKEUP_REASON_IR*, *WAKEUP_REASON_RCU_BT*, *WAKEUP_REASON_RCU_RF4CE*, *WAKEUP_REASON_GPIO*, *WAKEUP_REASON_LAN*, *WAKEUP_REASON_WLAN*, *WAKEUP_REASON_TIMER*, *WAKEUP_REASON_FRONT_PANEL*, *WAKEUP_REASON_WATCHDOG*, *WAKEUP_REASON_SOFTWARE_RESET*, *WAKEUP_REASON_THERMAL_RESET*, *WAKEUP_REASON_WARM_RESET*, *WAKEUP_REASON_COLDBOOT*, *WAKEUP_REASON_STR_AUTH_FAILURE*, *WAKEUP_REASON_CEC*, *WAKEUP_REASON_PRESENCE*, *WAKEUP_REASON_VOICE*, *WAKEUP_REASON_UNKNOWN*) |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PowerManager.getWakeupSrcConfig"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "powerState": 4,
-        "wakeupSources": 6
-    }
-}
-```
-
 <a name="setWakeupSourceConfig"></a>
 ## *setWakeupSourceConfig*
 
-Set the source configuration for device wakeup (Application friendly API). This API does not persist. Please call this API on Every bootup to set the values.
+Set the source configuration for device wakeup. This API does not persist. Please call this API on Every bootup to set the values.
 
 ### Events
 
@@ -1019,7 +916,7 @@ No Events
 <a name="getWakeupSourceConfig"></a>
 ## *getWakeupSourceConfig*
 
-Get the source configuration for device wakeup (Application friendly API).
+Get the source configuration for device wakeup.
 
 ### Events
 

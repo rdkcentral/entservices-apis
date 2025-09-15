@@ -292,28 +292,12 @@ namespace WPEFramework
         virtual Core::hresult GetNetworkStandbyMode(bool &standbyMode /* @out */) = 0;
 
         /** Set Wakeup source configuration */
-        // @text setWakeupSrcConfig
-        // @brief Set the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param wakeSrcType: source type
-        // @param config: config
-        virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
-
-        /** Set Wakeup source configuration - Iterator way */
         // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
         virtual Core::hresult SetWakeupSourceConfig(IWakeupSrcConfigIterator* wakeupSources /* @in */ ) = 0;
 
         /** Get Wakeup source configuration */
-        // @text getWakeupSrcConfig
-        // @brief Get the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param srcType: source type
-        // @param config: config
-        virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
-
-        /** Get Wakeup source configuration - Iterator way */
         // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
