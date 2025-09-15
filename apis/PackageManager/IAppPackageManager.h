@@ -124,16 +124,16 @@ namespace Exchange {
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
-        //struct Progress {
-        //    uint8_t progress;
-        //};
+        struct ProgressInfo {
+            uint8_t progress;
+        };
 
         // @brief Delete
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            uint8_t &progress /* @out */) = 0;
+            ProgressInfo &progress /* @out */) = 0;
 
         // @brief GetStorageDetails
         // @text getStorageDetails
