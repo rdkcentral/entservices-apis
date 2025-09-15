@@ -1,0 +1,44 @@
+/*
+ * If not stated otherwise in this file or this component's LICENSE file the
+ * following copyright and licenses apply:
+ *
+ * Copyright 2025 RDK Management
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#pragma once
+
+#include "Module.h"
+
+namespace WPEFramework {
+	namespace Exchange {
+		// @json @text:keep
+		struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
+			enum { ID = ID_BARTON_MATTER };
+
+			/** Allow the plugin to initialize to use service object */
+			// @json:omit
+			virtual Core::hresult Initialize(string waylandDisplay) = 0;
+
+			/** Allow the plugin to deinitialize to use service object */
+			// @json:omit
+			virtual Core::hresult Deinitialize() = 0;
+
+			/** Prints the hello world */
+			// @text HelloWorld
+			// @brief Prints hello world
+			virtual Core:hresult HelloWorld()=0;
+		};
+	}//exchange
+}//WPEFramework
