@@ -78,7 +78,9 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           APP_ERROR_NONE             = 0     /* @text APP_ERROR_NONE */,
           APP_ERROR_UNKNOWN          = 1     /* @text APP_ERROR_UNKNOWN */,
           APP_ERROR_STATE_TIMEOUT    = 2     /* @text APP_ERROR_STATE_TIMEOUT */,
-          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */
+          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */,
+          APP_ERROR_NOT_INSTALLED    = 4     /* @text APP_ERROR_NOT_INSTALLED */,
+          APP_ERROR_PACKAGE_LOCK     = 5     /* @text APP_ERROR_INVALID_PACKAGE */
       };
 
   // @event
