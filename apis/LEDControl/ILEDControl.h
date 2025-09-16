@@ -48,16 +48,26 @@ namespace WPEFramework
                 LEDSTATE_MAX            /* @text MAX */
             };
 
+            // Struct to wrap LEDControlState for API compatibility
+            struct EXTERNAL LEDState {
+                LEDControlState state;
+            };
+
             // @text getSupportedLEDStates
             // @details Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
             // @param supportedLEDStates: string [] of supported LED states. e.g. "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
             // @param success: boolean
             virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success /* @out */) = 0;
 
-            // @text getLEDState
+            // @text getLEDState (new)
             // @brief Retrieves current state of the LED. e.g. "WPS_CONNECTING"
-            // @param state: LEDControlState
-            virtual Core::hresult GetLEDState(LEDControlState& state /* @out */) = 0;
+            // @param ledState: LEDControlState
+            virtual Core::hresult GetLEDState(LEDControlState& ledState /* @out */) = 0;
+
+            // @text getLEDState (old)
+            // @brief Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
+            // @param ledState: LEDState
+            virtual Core::hresult GetLEDState(LEDState& ledState /* @out */) = 0;
 
             // @text setLEDState
             // @brief Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
