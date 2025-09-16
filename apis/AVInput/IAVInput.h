@@ -49,14 +49,8 @@ namespace WPEFramework {
                 bool success /* @brief success */;
             };
 
-            struct ContentInfo
-            {
-                int id;
-                int contentType;
-            };
-
-            using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-            using IInputDeviceIterator = RPC::IIteratorType<InputDevice, ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
+            using IStringIterator       = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+            using IInputDeviceIterator  = RPC::IIteratorType<InputDevice, ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
 
             struct EXTERNAL IDevicesChangedNotification : virtual public Core::IUnknown {
                 enum {
