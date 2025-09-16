@@ -9,7 +9,7 @@ This document provides guidelines for using the `md_from_h` documentation tool. 
 
 The md_from_h tool is currently run automatically on a weekly basis from a Jenkins job. However, to run the tool locally on individual header files, navigate to the top level of the repo, and run:
 
-`python3 ./tools/md_from_h_generator/generate_md_from_header.py ./apis/[header_file_folder]/[header_file]`
+`python3 ./tools/md_from_h_generator/generate_md_from_header.py ./apis/[header_file_folder]`
 
 This will create a folder in the current directory named "generated_docs", where "generated_docs" contains the generated markdown file for the header file.
 
