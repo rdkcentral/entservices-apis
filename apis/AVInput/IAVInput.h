@@ -59,21 +59,14 @@ namespace WPEFramework {
 
                 // @text onDevicesChanged
                 // @brief Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
-                // <pca>
-                //virtual void OnDevicesChanged(const string& devices) { }; // Thunder does not currently support iterators as a notification parameter
                 virtual void OnDevicesChanged(IInputDeviceIterator* const devices) {}
-                // </pca>
             };
 
-            // <pca>
-            // virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
-            // virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
             // @json:omit
             virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
 
             // @json:omit
             virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
-            // </pca>
 
             // @event
             struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
