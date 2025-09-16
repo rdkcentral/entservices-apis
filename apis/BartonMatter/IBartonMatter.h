@@ -23,7 +23,7 @@
 
 namespace WPEFramework {
 	namespace Exchange {
-		// @json @text:keep
+		// @json 1.0.0 @text:keep
 		struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
 			enum { ID = ID_BARTON_MATTER };
 
@@ -35,9 +35,9 @@ namespace WPEFramework {
 			// @json:omit
 			virtual Core::hresult Deinitialize() = 0;
 
-			/** Prints the hello world */
 			// @text HelloWorld
 			// @brief Prints hello world
+			// @return Core::hresult
 			virtual Core::hresult HelloWorld()=0;
 		};
 	}//exchange
