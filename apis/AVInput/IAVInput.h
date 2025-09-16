@@ -71,6 +71,23 @@ namespace WPEFramework {
             // @event
             struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
                 enum {
+                    ID = ID_AV_INPUT_NOTIFICATION_SIGNAL_CHANGED
+                };
+
+                // @text onSignalChanged
+                // @brief Triggered whenever the signal status changes for an HDMI/Composite Input
+                // @param id - in - The port identifier for the HDMI/Composite Input
+                // @param locator - in - A URL corresponding to the HDMI/Composite Input port
+                // @param signalStatus - in - Signal Status of the HDMI/Composite Input. Valid values are noSignal, unstableSignal, notSupportedSignal, stableSignal
+                virtual void OnSignalChanged(const int id, const string& locator, const string& signalStatus) { };
+            };
+
+            virtual Core::hresult Register(ISignalChangedNotification* notification) = 0;
+            virtual Core::hresult Unregister(ISignalChangedNotification* notification) = 0;
+
+            // @event
+            struct EXTERNAL IInputStatusChangedNotification : virtual public Core::IUnknown {
+                enum {
                     ID = ID_AV_INPUT_NOTIFICATION_INPUT_STATUS_CHANGED
                 };
 
