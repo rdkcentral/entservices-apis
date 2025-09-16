@@ -22,10 +22,6 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-#define ALL         -1
-#define HDMI        0
-#define COMPOSITE   1
-
 namespace WPEFramework {
     namespace Exchange {
         /* @json 1.0.0 @text:keep */
