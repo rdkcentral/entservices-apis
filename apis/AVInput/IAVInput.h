@@ -66,6 +66,7 @@ namespace WPEFramework {
             virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
 
             // @json:omit
+            virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
 
             // @event
             struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
