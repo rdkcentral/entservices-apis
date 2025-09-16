@@ -36,11 +36,6 @@ namespace WPEFramework {
                 bool connected  /* @brief connected */;
             };
 
-            struct ContentInfo {
-                int id;             /* @brief id */
-                int contentType;    /* @brief contentType */
-            };
-
             struct SuccessResult {
                 bool success /* @brief success */;
             };
