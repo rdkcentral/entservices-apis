@@ -258,6 +258,14 @@ namespace Exchange {
             const string &version,
             InstallState &state /* @out */
             ) = 0;
+
+        // @brief getConfigForPackage
+        // @text getConfigForPackage
+        // @param fileLocator: locator of package
+        // @param id: package id
+        // @param version: version of package
+        // @param config: metadata of package
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
 
