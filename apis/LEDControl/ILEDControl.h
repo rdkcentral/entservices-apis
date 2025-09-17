@@ -59,12 +59,7 @@ namespace WPEFramework
             // @param success: boolean
             virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success /* @out */) = 0;
 
-            // @text getLEDState (new)
-            // @brief Retrieves current state of the LED. e.g. "WPS_CONNECTING"
-            // @param ledState: LEDControlState
-            virtual Core::hresult GetLEDState(LEDControlState& ledState /* @out */) = 0;
-
-            // @text getLEDState (old)
+            // @text getLEDState
             // @brief Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
             // @param ledState: LEDState
             virtual Core::hresult GetLEDState(LEDState& ledState /* @out */) = 0;
