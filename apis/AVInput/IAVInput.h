@@ -236,12 +236,12 @@ namespace WPEFramework {
             // @param success - out - Whether the request succeeded
             virtual Core::hresult GetHdmiVersion(const int portId, string& HdmiCapabilityVersion /* @out */, bool& success /* @out */) = 0;
 
-            // @text setAudioMixerLevels
+            // @text setMixerLevels
             // @brief Sets the audio mixer level for given audio input.
             // @param primaryVolume - in - Primary audio input volume
             // @param inputVolume - in - System audio input volume
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetAudioMixerLevels(const int primaryVolume, const int inputVolume, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult SetMixerLevels(const int primaryVolume, const int inputVolume, SuccessResult& successResult /* @out */) = 0;
 
             // @text startInput
             // @brief Activates the specified HDMI/Composite Input port as the primary video source.
@@ -294,6 +294,13 @@ namespace WPEFramework {
             // @param mode - out - The current game feature status. Mode is required only for ALLM. Need to add support for future game features
             // @param success - out - Whether the request succeeded
             virtual Core::hresult GetGameFeatureStatus(const int portId, const string& gameFeature, bool& mode /* @out */, bool& success /* @out */) = 0;
+
+            // @text getVRRFrameRate
+            // @brief Returns the current VRR frame rate for the specified input device
+            // @param portId - in - An ID of an HDMI Input port as returned by the getInputDevices method
+            // @param currentVRRVideoFrameRate - out - The current VRR frame rate
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetVRRFrameRate(const int portId, double& currentVRRVideoFrameRate /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
