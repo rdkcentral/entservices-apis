@@ -154,12 +154,7 @@ namespace WPEFramework {
             // @param success - out - Whether the request succeeded
             virtual Core::hresult NumberOfInputs(uint32_t& numberOfInputs /* @out */, bool& success /* @out */) = 0;
 
-            // @text getInputDevices
-            // @brief Returns a list of input devices of the specified type
-            // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
-            // @param inputDevices - out - An object [] that describes each HDMI/Composite Input port
-            // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetInputDevices(const int typeOfInput, IInputDeviceIterator*& devices /* @out */, bool& success /* @out */) = 0;
+            // <pca> Removed GetInputDevices </pca>
 
             // @text writeEDID
             // @brief Changes a current EDID value.
