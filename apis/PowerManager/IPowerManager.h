@@ -91,8 +91,8 @@ namespace WPEFramework
         };
 
         struct WakeupSrcConfig {
-            string wakeupSource;
-            bool   enabled;
+            WakeupSrcType wakeupSource;
+            bool          enabled;
         };
 
         using IWakeupSrcConfigIterator = RPC::IIteratorType<WakeupSrcConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
