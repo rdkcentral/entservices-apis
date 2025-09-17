@@ -40,6 +40,7 @@
   - [ScreenCapture](apis/ScreenCapturePlugin.md)
   - [SharedStorage](apis/SharedStoragePlugin.md)
   - [SystemAudioPlayer](apis/SystemAudioPlayerPlugin.md)
+  - [SystemMode](apis/SystemModePlugin.md)
   - [SystemServices](apis/SystemPlugin.md)
   - [Telemetry](apis/TelemetryPlugin.md)
   - [TextToSpeech](apis/TextToSpeechPlugin.md)
