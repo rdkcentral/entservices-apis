@@ -128,7 +128,7 @@ namespace Exchange {
             uint8_t progress;
         };
 
-        // @brief Delete
+        // @brief Progress
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
