@@ -300,7 +300,10 @@ namespace Exchange {
 
         ID_FRONT_PANEL                              = ID_ENTOS_OFFSET + 0x3E0,
         ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
-        ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2
+        ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2,
+
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x3F0,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1
     };
 }
 }
