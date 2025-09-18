@@ -22,11 +22,9 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-// <pca>
 #define INPUT_TYPE_ALL          "ALL"
 #define INPUT_TYPE_HDMI         "HDMI"
 #define INPUT_TYPE_COMPOSITE    "COMPOSITE"
-// </pca>
 
 namespace WPEFramework {
     namespace Exchange {
@@ -159,8 +157,6 @@ namespace WPEFramework {
             // @param numberOfInputs - out - The number of inputs that are available for selection
             // @param success - out - Whether the request succeeded
             virtual Core::hresult NumberOfInputs(uint32_t& numberOfInputs /* @out */, bool& success /* @out */) = 0;
-
-            // <pca> Removed GetInputDevices </pca>
 
             // @text writeEDID
             // @brief Changes a current EDID value.
