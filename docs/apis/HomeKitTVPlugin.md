@@ -237,6 +237,7 @@ curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" 
       "enabled":true
      }
 }
+```
 
 <a name="Notifications"></a>
 # Notifications
