@@ -22,6 +22,12 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
+// <pca>
+#define INPUT_TYPE_ALL          "ALL"
+#define INPUT_TYPE_HDMI         "HDMI"
+#define INPUT_TYPE_COMPOSITE    "COMPOSITE"
+// </pca>
+
 namespace WPEFramework {
     namespace Exchange {
         /* @json 1.0.0 @text:keep */
@@ -242,17 +248,17 @@ namespace WPEFramework {
             // @brief Activates the specified HDMI/Composite Input port as the primary video source.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
-            // @param audioMix - in - Defines whether the Audio mixing is true or false, This is an optional argument
-            // @param planeType - in - Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument
+            // @param requestAudioMix - in - Defines whether the Audio mixing is true or false, This is an optional argument
+            // @param plane - in - Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument
             // @param topMost - in - Defines whether the Hdmi Input should be over or under the other video plane
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult StartInput(const int portId, const int typeOfInput, const bool audioMix, const int planeType, const bool topMost, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult StartInput(const int portId, const string& typeOfInput, const bool requestAudioMix, const int plane, const bool topMost, SuccessResult& successResult /* @out */) = 0;
 
             // @text stopInput
             // @brief Deactivates the HDMI/Composite Input port currently selected as the primary video source.
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult StopInput(const int typeOfInput, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult StopInput(const string& typeOfInput, SuccessResult& successResult /* @out */) = 0;
 
             // @text setVideoRectangle
             // @brief Sets an HDMI/Composite Input video window.
@@ -262,7 +268,7 @@ namespace WPEFramework {
             // @param h - in - The height of the video rectangle
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const uint16_t typeOfInput, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult SetVideoRectangle(const uint16_t x, const uint16_t y, const uint16_t w, const uint16_t h, const string& typeOfInput, SuccessResult& successResult /* @out */) = 0;
 
             // @text currentVideoMode
             // @brief Returns the current video mode for the specified input device
