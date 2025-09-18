@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework
 {
     namespace Exchange
@@ -87,6 +89,13 @@ namespace WPEFramework
             SYSTEM_MODE_EAS         = 2  /* @text EAS */,
             SYSTEM_MODE_WAREHOUSE   = 3  /* @text WAREHOUSE */
         };
+
+        struct WakeupSrcConfig {
+            WakeupSrcType wakeupSource;
+            bool          enabled;
+        };
+
+        using IWakeupSrcConfigIterator = RPC::IIteratorType<WakeupSrcConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
@@ -283,20 +292,16 @@ namespace WPEFramework
         virtual Core::hresult GetNetworkStandbyMode(bool &standbyMode /* @out */) = 0;
 
         /** Set Wakeup source configuration */
-        // @text setWakeupSrcConfig
+        // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param wakeSrcType: source type
-        // @param config: config
-        virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSrcConfigIterator* wakeupSources /* @in */ ) = 0;
 
         /** Get Wakeup source configuration */
-        // @text getWakeupSrcConfig
+        // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param srcType: source type
-        // @param config: config
-        virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult GetWakeupSourceConfig(IWakeupSrcConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Initiate System mode change */
         // @text setSystemMode
