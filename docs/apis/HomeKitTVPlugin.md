@@ -280,7 +280,7 @@ Raised when HomeKit TV wants the distributor application to switch the state of 
     "params": {"origin":"AirPlay",
     "intent":{"action":"section",
     "data":{"sectionName":"uejhfeufeuifbuefbiejfief"},
-    "context:{"source":"HomeScreenButton"}
+    "context":{"source":"HomeScreenButton"}
     }
   }
 }
