@@ -244,11 +244,6 @@ Netflix interface properties:
 | [esn](#esn)  | ESN value|
 | [visibility](#visibility)  | Current Netflix visibility |
 
-StateControl interface properties:
-| Property | Description |
-| :-------- | :-------- |
-| [state](#state) | Running state of the service |
-
 <a name="esn"></a>
 ## *esn*
 
@@ -335,70 +330,6 @@ Use this property to return current visibilty status of Netflix.
 }
 ```
 
-<a name="state"></a>
-## *state*
-
-Provides access to the running state of the service.
-
-### Description
-
-Use this property to return the running state of the service.
-
-### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| statechange | Triggered if the state of the service changed. |
-
-### Value
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property) | string | Running state of the service. (must be one of the following: resumed, suspended) |
-
-### Example
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.state"
-}
-```
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "resumed"
-}
-```
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.state",
-    "params": "resumed"
-}
-```
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
-}
-```
-
 <a name="Notifications"></a>
 # Notifications
 
@@ -411,7 +342,6 @@ Netflix interface events:
 | :-------- | :-------- |
 | [visibilitychange](#visibilitychange) | Triggered when the Netflix service visibility changes |
 | [playbackchange](#playbackchange) | Triggered when Netflix playback changes |
-| [notifyeventchange](#notifyeventchange) | Triggered when an event change is sent with custom event names |
 
 StateControl interface events:
 | Event | Description |
@@ -462,30 +392,6 @@ Triggered when Netflix playback changes.
     "method": "client.events.1.playbackchange",
     "params": {
         "playing": true
-    }
-}
-```
-
-<a name="notifyeventchange "></a>
-## *notifyeventchange *
-
-Triggered when an event change is sent with custom event names.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.EventName | string | The event name corresponding to the Netflix action |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.1.notifyeventchange",
-    "params": {
-        "EventName": "signoff"
     }
 }
 ```
