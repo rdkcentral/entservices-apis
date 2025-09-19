@@ -356,7 +356,7 @@ Raised when input source is changed via Home Application running in Apple device
 | params.sourceType | string | Name of the Input Source Type. e.g., HDMI, Composite, etc. | Mandatory |
 | params.portId | Number | Port ID of the input source e.g., 0, 1 | Mandatory |
 
-## Example
+### Example
 ```json
 {
   "jsonrpc":"2.0",
