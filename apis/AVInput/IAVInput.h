@@ -212,7 +212,7 @@ namespace WPEFramework {
             // @param portId - in - The ID of the input device to get the ALLM
             // @param allmSupport - out - The ALLM bit value in edid
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetEdid2AllmSupport(const int portId, bool& allmSupport /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetEdid2AllmSupport(const string& portId, bool& allmSupport /* @out */, bool& success /* @out */) = 0;
 
             // @text setVRRSupport
             // @brief Sets an HDMI VRR support bit in EDID
