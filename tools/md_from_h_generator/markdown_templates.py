@@ -204,9 +204,9 @@ def generate_methods_toc(methods, classname):
     """
     toc = METHODS_TOC_TEMPLATE.format(classname=classname)
     for method in methods:
-        method_body = methods[method]
-        camel_method = to_camel_case(method)
-        toc += f"| [{camel_method}](#method.{camel_method}) | {method_body['brief'] or method_body['details']} |\n"
+        method_info = methods[method]
+        method_name = method_info.get('text') or to_camel_case(method)
+        toc += f"| [{method_name}](#method.{method_name}) | {method_info['brief'] or method_info['details']} |\n"
     return toc
 
 def flatten_canonical_dict(canonical_dict, parent_prefix):
@@ -269,26 +269,16 @@ def generate_parameters_section(params, symbol_registry):
     markdown = "### Parameters\n"
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
-        if len(params) == 1 and params[0]['flat'] == True:
-            param_key = f"{params[0]['name']}-{params[0]['type']}"
+        markdown += f"| params | object |  |\n"
+        for param in params:
+            param_key = f"{param['name']}-{param['type']}"
             flattened_params = symbol_registry[param_key]['flattened_description']
             for param_name, param_data in flattened_params.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                if params[0]['custom_name']:
-                    param_name = param_name.replace(params[0]['name'], params[0]['custom_name'])
-                optionality = f"<sup>({params[0]['optionality']})</sup>" if params[0]['optionality'] == 'optional' else ''
-                markdown += f"| {'?' if optionality else ''}{param_name[1:]} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
-        else:
-            markdown += f"| params | object |  |\n"
-            for param in params:
-                param_key = f"{param['name']}-{param['type']}"
-                flattened_params = symbol_registry[param_key]['flattened_description']
-                for param_name, param_data in flattened_params.items():
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                    if param['custom_name']:
-                        param_name = param_name.replace(param['name'], param['custom_name'])
-                    optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
-                    markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                if param['custom_name']:
+                    param_name = param_name.replace(param['name'], param['custom_name'])
+                optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
+                markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
     return markdown
@@ -300,25 +290,15 @@ def generate_results_section(results, symbol_registry):
     markdown = "### Results\n"
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
-        if len(results) == 1 and results[0]['flat'] == True:
-            result_key = f"{results[0]['name']}-{results[0]['type']}"
-            flattened_results = symbol_registry[result_key]['flattened_description']
+        markdown += f"| result | object |  |\n"
+        for result in results:
+            flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
             for result_name, result_data in flattened_results.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
-                if results[0]['custom_name']:
-                    result_name = result_name.replace(results[0]['name'], results[0]['custom_name'])
-                optionality = f"<sup>({results[0]['optionality']})</sup>" if results[0]['optionality'] == 'optional' else ''
-                markdown += f"| {'?' if optionality else ''}{result_name[1:]} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
-        else:
-            markdown += f"| result | object |  |\n"
-            for result in results:
-                flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
-                for result_name, result_data in flattened_results.items():
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
-                    if result['custom_name']:
-                        result_name = result_name.replace(result['name'], result['custom_name'])
-                    optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
-                    markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                if result['custom_name']:
+                    result_name = result_name.replace(result['name'], result['custom_name'])
+                optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
+                markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method returns no results.\n"
     return markdown
@@ -335,64 +315,21 @@ def generate_errors_section(errors):
             markdown += f"| {error_code_and_desc['code']} | {error_name} | {error_code_and_desc['description'] if error_code_and_desc['description'] else ''} |\n"
     return markdown
 
-def generate_parameters_section_from_canonical(canonical_params):
-    markdown = "### Parameters\n"
-    if canonical_params:
-        markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
-        markdown += f"| params | object |  |\n"
-        for name, type_, desc in flatten_canonical_dict(canonical_params, 'params'):
-            # If desc is empty, show a placeholder
-            markdown += f"| {name} | {type_} | {desc if desc else '-'} |\n"
-    else:
-        markdown += "This method takes no parameters.\n"
-    return markdown
-
-def generate_results_section_from_canonical(canonical_results):
-    markdown = "### Results\n"
-    if canonical_results:
-        markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
-        markdown += f"| result | object |  |\n"
-        for name, type_, desc in flatten_canonical_dict(canonical_results, 'result'):
-            markdown += f"| {name} | {type_} | {desc if desc else '-'} |\n"
-    else:
-        markdown += "This method returns no results.\n"
-    return markdown
-
 def generate_method_markdown(method_name, method_info, symbol_registry, classname, all_events=None):
     """
     Generate the markdown for a specific method.
     """
-    camel_method = to_camel_case(method_name)
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=camel_method, method_description=method_info['brief'] or method_info['details'])
+    method_name = to_camel_case(method_name)
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['brief'] or method_info['details'])
     markdown += generate_events_section(method_info['events'], all_events)
-    # Use canonical dicts for tables
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
     markdown += generate_errors_section(method_info['errors'])
     markdown += "\n### Examples\n"
-    if len(method_info['params']) == 1 and method_info['params'][0]['flat'] == True:
-        request_copy = method_info['request']
-        markdown += generate_request_section(flatten_request_result_object(request_copy, 'params'), '', classname)
-        markdown += generate_curl_request_section(flatten_request_result_object(request_copy,'params'),'',classname)
-    else:
-        markdown += generate_request_section(method_info['request'], '', classname)
-        markdown += generate_curl_request_section(method_info['request'],'',classname)
-    if len(method_info['results']) == 1 and method_info['results'][0]['flat'] == True:
-        response_copy = method_info['response']
-        markdown += generate_response_section(flatten_request_result_object(response_copy, 'result'), '', classname)
-    else:
-        markdown += generate_response_section(method_info['response'], '', classname)
+    markdown += generate_request_section(method_info['request'], '', classname)
+    markdown += generate_curl_request_section(method_info['request'],'',classname)
+    markdown += generate_response_section(method_info['response'], '', classname)
     return markdown
-
-def flatten_request_result_object(d, type):
-    """
-    type is string 'request' or 'response'
-    """
-    if type in d and isinstance(d[type], dict) and len(d[type]) == 1:
-        key, value = next(iter(d[type].items()))
-        d[key] = value
-        del d[type]
-    return d
 
 def generate_events_section(events, all_events=None):
     """
@@ -415,13 +352,14 @@ def generate_properties_toc(properties, classname):
     """
     toc = PROPERTIES_TOC_TEMPLATE.format(classname=classname)
     for prop in properties:
-        property_body = properties[prop]
+        property_info = properties[prop]
+        property_name = property_info.get('text') or to_camel_case(prop)
         super_script = ""
-        if property_body['property'] == 'read':
+        if property_info['property'] == 'read':
             super_script = "<sup>RO</sup>"
-        elif property_body['property'] == 'write':
+        elif property_info['property'] == 'write':
             super_script = "<sup>WO</sup>"
-        toc += f"| [{prop}](#property.{prop}){super_script} | {property_body['brief'] or property_body['details']} |\n"
+        toc += f"| [{property_name}](#property.{property_name}){super_script} | {property_info['brief'] or property_info['details']} |\n"
     return toc
 
 def generate_property_markdown(property_name, property_info, symbol_registry, classname):
@@ -468,9 +406,9 @@ def generate_notifications_toc(events, classname):
     """
     toc = EVENTS_TOC_TEMPLATE.replace('| Method |', '| Event |').format(classname=classname)
     for event in events:
-        event_body = events[event]
-        camel_event = to_camel_case(event)
-        toc += f"| [{camel_event}](#event.{camel_event}) | {event_body['brief'] or event_body['details']} |\n"
+        event_info = events[event]
+        event_name = event_info.get('text') or to_camel_case(event)
+        toc += f"| [{event_name}](#event.{event_name}) | {event_info['brief'] or event_info['details']} |\n"
     return toc
 
 def generate_notification_markdown(event_name, event_info, symbol_registry, classname):
