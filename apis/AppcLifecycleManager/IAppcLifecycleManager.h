@@ -7,7 +7,7 @@ namespace Exchange {
 
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
-
+      enum { ID = ID_APPCLIFECYCLEMANAGER };
     enum LifecycleState : uint8_t {
         UNLOADED,
         LOADING,
