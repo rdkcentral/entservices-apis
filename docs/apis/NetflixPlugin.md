@@ -372,8 +372,8 @@ Triggered when the Netflix service visibility changes.
 }
 ```
 
-<a name="playbackchange "></a>
-## *playbackchange *
+<a name="playbackchange"></a>
+## *playbackchange*
 
 Triggered when Netflix playback changes.
 
