@@ -44,7 +44,7 @@ def generate_md_from_header(plugin_folder_path, individual=False):
         header_file (str): Path to the header file.
     """
     header_files = [f for f in os.listdir(plugin_folder_path) if f.endswith('.h')]
-    plugin_name = os.path.basename(plugin_folder_path)
+    plugin_name = os.path.basename(os.path.normpath(plugin_folder_path))
 
     # if individual flag, then we generate a separate markdown file for each header file in folder
     if individual:

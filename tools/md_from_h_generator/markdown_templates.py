@@ -132,6 +132,15 @@ EXAMPLE_REQUEST_TEMPLATE = """
 ```
 """
 
+EXAMPLE_CURL_REQUEST_TEMPLATE = """
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{request_json}' http://127.0.0.1:9998/jsonrpc
+```
+"""
+
 EXAMPLE_RESPONSE_TEMPLATE = """
 
 #### {method_type}Response
@@ -225,6 +234,22 @@ def generate_request_section(request, method_type, classname=None):
         request = dict(request)  # shallow copy
     request_json = json.dumps(_convert_json_types(request), indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
+    return markdown
+
+def generate_curl_request_section(request, method_type, classname=None):
+    """
+    Generate the curl request section for a method.
+    """
+    if classname and isinstance(request, dict) and 'method' in request:
+        parts = request['method'].split('.')
+        if len(parts) > 2:
+            parts[2] = classname
+            request['method'] = '.'.join(parts)
+    # Set the id
+    if isinstance(request, dict):
+        request = dict(request)  # shallow copy
+    request_json = json.dumps(_convert_json_types(request))
+    markdown = EXAMPLE_CURL_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)  
     return markdown
 
 def generate_response_section(response, method_type, classname=None):
@@ -348,8 +373,10 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     if len(method_info['params']) == 1 and method_info['params'][0]['flat'] == True:
         request_copy = method_info['request']
         markdown += generate_request_section(flatten_request_result_object(request_copy, 'params'), '', classname)
+        markdown += generate_curl_request_section(flatten_request_result_object(request_copy,'params'),'',classname)
     else:
         markdown += generate_request_section(method_info['request'], '', classname)
+        markdown += generate_curl_request_section(method_info['request'],'',classname)
     if len(method_info['results']) == 1 and method_info['results'][0]['flat'] == True:
         response_copy = method_info['response']
         markdown += generate_response_section(flatten_request_result_object(response_copy, 'result'), '', classname)
@@ -411,9 +438,11 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     markdown += "\n### Examples\n"
     if 'read' in property_info['property']:
         markdown += generate_request_section(property_info['get_request'], 'Get ', classname)
+        markdown += generate_curl_request_section(property_info['get_request'],'Get ', classname)
         markdown += generate_response_section(property_info['get_response'], 'Get ', classname)
     if 'write' in property_info['property']:
         markdown += generate_request_section(property_info['set_request'], 'Set ', classname)
+        markdown += generate_curl_request_section(property_info['set_request'], 'Set ',classname)
         markdown += generate_response_section(property_info['set_response'], 'Set ', classname)
     return markdown
 
