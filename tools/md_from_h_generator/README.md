@@ -18,7 +18,7 @@ This will create a folder in the current directory named "generated_docs", where
 ## 3. Supported Doxygen Tags
 
 ### 1. `@text` or `@alt`
-- **Purpose**: Used to tell the program that all tags declared below the `@text` or `@alt` tag belong to the method
+- **Purpose**: Used to override the method or symbol name. Overriden name should come after the `@text` or `@alt` tag.
 - **Required**: Yes (Mandatory tag for all methods/properties/events)
 - **Usage**:
   - Use this tag to by following it with the name of the method/property/event.
@@ -32,7 +32,7 @@ This will create a folder in the current directory named "generated_docs", where
 /**
  * @text initialize
  */
-virtual uint32_t initialize();
+virtual uint32_t Initialize();
 ```
 
 ---
@@ -137,11 +137,11 @@ virtual void onInitialize();
 - **Usage**:
   - Use this tag for each parameter of the method. Each parameter and tag must be declared on a new line.
   - The description following the tag shall be listed in the parameters/results table
-  - Optional parameters can be specified using `@param [param_name](optional)`
+  - Optional parameters can be specified using `@param <param_name>(optional)`
   - Parameter/symbol examples should be defined here (see [Providing Symbol Examples](#providing_examples), for providing examples and descriptions for `struct` as well)
-  - Specify the parameter name and its description. Format can include colon i.e. `@param [param_name]: [description]` or `@param [para_name] [description]`
+  - Specify the parameter name and its description. Format can include colon i.e. `@param <param_name>: <description>` or `@param <para_name> <description>`
   - IMPORTANTLY, in addition to using the param tag, each parameter that is an output should be marked with an inline '@out' tag in the parameter list. The '@in' tag is optional for input parameters. If a parameter does not have inline in/out information, it defaults to 'in'.
-  - Additionally a parameter name override can be specified by combining `@in` or `@out` followed by `@text:varible-override-name` in the function declaration.
+  - Additionally a parameter name override can be specified by combining `@in` or `@out` followed by `@text:<varible-override-name>` in the function declaration.
 
 ### Example:
 
