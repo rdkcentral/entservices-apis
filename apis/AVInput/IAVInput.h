@@ -218,7 +218,7 @@ namespace WPEFramework {
             // @brief Sets an HDMI VRR support bit in EDID
             // @param id - in - The ID of the input device to set the VRR
             // @param vrrSupport - in - The VRR support bit value to set
-            virtual Core::hresult SetVRRSupport(const string& portId, const bool vrrSupport) = 0;
+            virtual Core::hresult SetVRRSupport(const string& portId, const bool vrrSupport, SuccessResult& successResult /* @out */) = 0;
 
             // @text getVRRSupport
             // @brief Returns the VRR support bit in EDID
