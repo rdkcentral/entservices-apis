@@ -20,7 +20,7 @@
 # header_file_parser.py
 
 import re
-import os
+import json
 from logger import Logger
 
 class HeaderFileParser:
@@ -36,7 +36,7 @@ class HeaderFileParser:
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
         ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
-        ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[.*\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
+        ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[\w+\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\d+?)\s+(\w+)\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
@@ -379,13 +379,19 @@ class HeaderFileParser:
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
-                    description = self.clean_description(description)
+                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    custom_name = text_tag_match.group(1) if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    brief_tag_match = re.search(brief_tag_pattern, description) if description else None
+                    description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
-                        'description': description.strip() if description else ''
+                        'description': description.strip() if description else '',
+                        'custom_name': custom_name.strip() if custom_name else ''
                     }
                     # register each data member in the global symbol registry
-                    self.register_symbol(member_name, member_type, description)
+                    self.register_symbol(member_name, custom_name, member_type, description)
         else:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register struct: {struct_object}")
@@ -406,7 +412,7 @@ class HeaderFileParser:
                 return
             # if we are parsing a method that has the same name as a property we have already
             # encountered/parsed, that means we are encountering the getter/setter version definition
-            # of a property, thus the property is read / write
+            # of a property, thus the property is read & write
             if method_name in self.properties:
                 self.properties[method_name]['property'] = 'read write'
                 return
@@ -447,85 +453,51 @@ class HeaderFileParser:
                 method_info['property'] = 'read'
         return method_info
 
+    def normalize_key(self, key):
+            return key.replace('_', '-').strip()
+
     def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
         Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
         """
-        def normalize_key(key):
-            return key.replace('_', '-').lower().strip()
 
-        # Build a normalized lookup for param descriptions
-        normalized_param_info = {normalize_key(k): v for k, v in doxy_tag_param_info.items()}
+        # doxy_tag_param_info has info from doxygen @param tags, while param_info_list has info from the parameter declaration
+        normalized_param_info = {self.normalize_key(k): v for k, v in doxy_tag_param_info.items()}
+        param_info_list = self.get_info_from_param_declaration(method_parameters)
 
-        # DEBUG: Print the doxygen param info and normalized lookup
-        if self.logger:
-            self.logger.log("INFO", f"doxy_tag_param_info: {doxy_tag_param_info}")
-            self.logger.log("INFO", f"normalized_param_info: {normalized_param_info}")
-
-        param_list_info = self.get_info_from_param_declaration(method_parameters)
-        if self.logger:
-            self.logger.log("INFO", f"param_list_info: {param_list_info}")
         params = []
         results = []
-        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, direction) in param_list_info.items():
+        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
-            symbol_description = doxy_tag_param_info.get(symbol_name, {}).get('description', '')
-            symbol_optionality = doxy_tag_param_info.get(symbol_name, {}).get('optionality', '')
-            symbol_direction = doxy_tag_param_info.get(symbol_name, {}).get('direction', '')
-            custom_description = None
-            flat_optionality = False
-            if symbol_inline_comment:
-                text_match = re.search(r'.*@text\s*:?\s*([\w\-]+)', symbol_inline_comment)
-                flat_match = '@flat' in symbol_inline_comment
-                if flat_match:
-                    flat_optionality = True
-                if text_match:
-                    override_name = text_match.group(1)
-                    custom_name = override_name
-                    norm_override = normalize_key(override_name)
-                    if self.logger:
-                        self.logger.log("INFO", f"Found @text override: override_name={override_name}, norm_override={norm_override}")
-                    # Prefer description from normalized doxygen @param for override name
-                    if norm_override in normalized_param_info:
-                        custom_description = normalized_param_info[norm_override].get('description', '')
-                        if self.logger:
-                            self.logger.log("INFO", f"Found custom_description for override: {custom_description}")
-                    else:
-                        if self.logger:
-                            self.logger.log("INFO", f"Override param name '{override_name}' not found in @param tags for method param '{symbol_name}'.")
-                            self.logger.log("WARNING", f"Override param name '{override_name}' not found in @param tags for method param '{symbol_name}'.")
-                    # Fallback to original param name if not found
-                    if not custom_description and normalize_key(symbol_name) in normalized_param_info:
-                        custom_description = normalized_param_info[normalize_key(symbol_name)].get('description', '')
-                        if self.logger:
-                            self.logger.log("INFO", f"Fallback to original param name: {custom_description}")
-            if not custom_description and normalize_key(symbol_name) in normalized_param_info:
-                custom_description = normalized_param_info[normalize_key(symbol_name)].get('description', '')
+            overriden_name = symbol_name
+            if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
+                overriden_name = custom_name
                 if self.logger:
-                    self.logger.log("INFO", f"No override, using original param name: {custom_description}")
-            if custom_description:
-                custom_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|e\.g\.\s*[^.]+', '', custom_description).strip()
-            if self.logger:
-                self.logger.log("INFO", f"Final custom_description for {custom_name or symbol_name}: {custom_description}")
-            self.register_symbol(symbol_name, symbol_type, symbol_description)
+                    self.logger.log("INFO", f"Overridden name for param {symbol_name} found in doxy tags as {overriden_name}")
+            symbol_description = doxy_tag_param_info.get(overriden_name, {}).get('description', '')
+            symbol_optionality = doxy_tag_param_info.get(overriden_name, {}).get('optionality', '')
+            symbol_direction = doxy_tag_param_info.get(overriden_name, {}).get('direction', '') or direction
+
+            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
                 'description': symbol_description,
                 'custom_name': custom_name,
-                'custom_description': custom_description,
-                'direction': direction,
+                'direction': symbol_direction,
                 'optionality': symbol_optionality,
-                'flat': flat_optionality
+                'unwrapped': unwrapped,
+                'keep_key': keep_key
             }
-            if symbol_inline_comment and '@inout' in symbol_inline_comment:
+
+            if direction == 'inout':
                 params.append(symbol_info)
                 results.append(symbol_info)
-            elif symbol_inline_comment and '@out' in symbol_inline_comment:
+            elif direction == 'out':
                 results.append(symbol_info)
             else:
                 params.append(symbol_info)
@@ -546,22 +518,30 @@ class HeaderFileParser:
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
                 custom_name = None
+                unwrapped = False
+                keep_key = False
                 direction = None
                 if param_inline_comment:
                     text_match = re.search(r'@text\s*:?\s*([\w\-]+)', param_inline_comment)
                     if text_match:
-                        custom_name = text_match.group(1)
-                    if '@in' in param_inline_comment:
-                        direction = 'in'
-                    elif '@out' in param_inline_comment:
+                        custom_name = self.normalize_key(text_match.group(1))
+                    if '@keep_key' in param_inline_comment:
+                        keep_key = True
+                    if '@unwrapped' in param_inline_comment:
+                        unwrapped = True
+                    if '@out' in param_inline_comment:
                         direction = 'out'
-                param_info[param_name] = (param_type, param_inline_comment, custom_name, direction)
+                    elif '@inout' in param_inline_comment:
+                        direction = 'inout'
+                    else:
+                        direction = 'in'
+                param_info[param_name] = (param_type, param_inline_comment, custom_name, unwrapped, keep_key, direction)
             else:
                 if self.logger:
                     self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
 
-    def register_symbol(self, symbol_name, symbol_type, description):
+    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description):
         """
         Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
@@ -569,6 +549,8 @@ class HeaderFileParser:
         unique_id = f"{symbol_name}-{symbol_type}"
         if unique_id not in self.symbols_registry:
             self.symbols_registry[unique_id] = {'type': symbol_type}
+        if not self.symbols_registry[unique_id].get('custom_name'):
+            self.symbols_registry[unique_id]['custom_name'] = symbol_custom_name.strip if symbol_custom_name else ''
         if not self.symbols_registry[unique_id].get('description'):
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
@@ -576,7 +558,8 @@ class HeaderFileParser:
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
-        Tracks the current scope of the line being processed.
+        Tracks the current scope of the line being processed. Currently used to determine when
+        the notification section is parsed.
         """
         external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
         external_struct_tracker_match = external_struct_tracker_regex.match(line)
@@ -639,21 +622,27 @@ class HeaderFileParser:
             "method": f"org.rdk.{self.classname}.{camel_method_name}",
         }
         if method_info['params'] != []:
+            if len(method_info['params']) == 1:
+                param = next(iter(method_info['params']))
+                if param.get('unwrapped'):
+                    param_name = param.get('name')
+                    param_type = param.get('type')
+                    param_desc = param.get('description')
+                    request['params'] = self.get_symbol_example(
+                    f"{param_name}-{param_type}", param_desc)
+                    return request
             request["params"] = {}
             for param in method_info['params']:
-                # Use custom_name only for @in params
-                print(param.get('custom_name'),param.get('direction'))
-                if param.get('direction') == 'in' and param.get('custom_name'):
-                    param_name = param['custom_name']
-                else:
-                    param_name = param['name']
+                keep_key = param.get('keep_key')
+                param_name = param.get('name')
                 param_type = param.get('type')
-                if param.get('custom_description'):
-                    param_desc = param['custom_description']
+                param_desc = param.get('description')
+                if len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
+                    request["params"] = self.get_symbol_example(
+                        f"{param_name}-{param_type}", param_desc)
                 else:
-                    param_desc = param.get('description')
-                request["params"][param_name] = self.get_symbol_example(
-                    f"{param['name']}-{param_type}", param_desc)
+                    request["params"][param_name] = self.get_symbol_example(
+                        f"{param_name}-{param_type}", param_desc)
         return request
 
     def generate_response_object(self, method_info, id_num):
@@ -670,21 +659,28 @@ class HeaderFileParser:
             "result": None
         }
         # Only consider @out results
-        out_results = [r for r in method_info['results'] if r.get('direction') == 'out']
-        if not out_results:
-            response['result'] = None
-        # elif len(out_results) == 1:
-        #     r = out_results[0]
-        #     result_name = r.get('custom_name') or r['name']
-        #     unique_id = f"{r['name']}-{r['type']}"
-        #     response['result'] = self.get_symbol_example(unique_id, r.get('custom_description') or r.get('description'))
-        else:
-            result_obj = {}
-            for r in out_results:
-                result_name = r.get('custom_name') or r['name']
-                unique_id = f"{r['name']}-{r['type']}"
-                result_obj[result_name] = self.get_symbol_example(unique_id, r.get('custom_description') or r.get('description'))
-            response['result'] = result_obj
+        if method_info['results'] != []:
+            if len(method_info['results']) == 1:
+                result = next(iter(method_info['results']))
+                if result.get('unwrapped'):
+                    param_name = result.get('name')
+                    param_type = result.get('type')
+                    param_desc = result.get('description')
+                    response['result'] = self.get_symbol_example(
+                    f"{param_name}-{param_type}", param_desc)
+                    return response
+            response['result'] = {}
+            for result in method_info['results']:
+                keep_key = result.get('keep_key')
+                result_name = result.get('name')
+                result_type = result.get('type')
+                result_desc = result.get('description')
+                if len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
+                    response['result'] = self.get_symbol_example(
+                        f"{result_name}-{result_type}", result_desc)
+                else:
+                    response['result'][result_name] = self.get_symbol_example(
+                        f"{result_name}-{result_type}", result_desc)
         return response
 
     def get_symbol_example(self, unique_id, description):
@@ -692,9 +688,10 @@ class HeaderFileParser:
         Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
-        example_from_description = self.generate_example_from_description(description)
-        if example_from_description:
-            return self.wrap_example_if_iterator(unique_id, example_from_description)
+        example_from_param_description = self.generate_example_from_description(description)
+        if example_from_param_description:
+            return self.wrap_example_if_iterator(unique_id, example_from_param_description)
+        # if no example in the param description, pull from the symbols registry
         if unique_id in self.symbols_registry:
             return self.symbols_registry[unique_id].get('example')
         return None
@@ -713,7 +710,8 @@ class HeaderFileParser:
 
     def generate_example_for_individual_symbol(self, unique_id, description):
         """
-        Generate an example for an individual symbol based on its description or type.
+        Generate an example for an individual symbol based on its description or type. Used as a
+        helper to populate the symbols registry.
         """
         example = self.generate_example_from_description(description)
         if example:
@@ -734,10 +732,15 @@ class HeaderFileParser:
 
     def generate_example_from_symbol_type(self, symbol_type):
         """
-        Creates an example parameter based on the symbol type.
+        Creates an example parameter based on the symbol type. Used as a
+        helper to populate the symbols registry.
         """
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
+            # if len(struct) == 1:
+            #     first_member = next(iter(struct))
+            #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+            #         return self.generate_example_for_individual_symbol(f"{first_member}-{struct[first_member]['type']}", struct[first_member]['description'])
             return {member_name: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
             return list(self.enums_registry[symbol_type])[0]
@@ -872,8 +875,8 @@ class HeaderFileParser:
         """
         Builds flattened descriptions for all symbols in the symbols registry.
         """
-        for symbol_name, symbol_info in self.symbols_registry.items():
-            symbol_info['flattened_description'] = self.get_description_from_individual_symbol('', symbol_name)
+        for symbol_unique_id, symbol_info in self.symbols_registry.items():
+            symbol_info['flattened_description'] = self.get_description_from_individual_symbol('', symbol_unique_id)
 
     def get_description_from_individual_symbol(self, parent_key, unqiue_id):
         """
@@ -881,8 +884,8 @@ class HeaderFileParser:
         """
         if unqiue_id in self.symbols_registry:
             symbol_name = unqiue_id.split('-')[0]
-            symbol_type = self.symbols_registry[unqiue_id]['type']
-            symbol_desc = self.symbols_registry[unqiue_id]['description']
+            symbol_type = self.symbols_registry[unqiue_id].get('type')
+            symbol_desc = self.symbols_registry[unqiue_id].get('description')
             curr_key = f"{parent_key}.{symbol_name}"
             flattened_descriptions = {curr_key: {'type': symbol_type, 'description': symbol_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
@@ -896,6 +899,12 @@ class HeaderFileParser:
         flattened_descriptions = {}
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
+            if len(struct) == 1:
+                first_member = next(iter(struct))
+                if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+                    flattened_descriptions.update(
+                        self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+                    return flattened_descriptions
             for member_name in struct:
                 member_type = struct[member_name]['type']
                 member_desc = struct[member_name]['description']
@@ -933,32 +942,3 @@ class HeaderFileParser:
             description = re.sub(r'\*/', ' ', description)
             description = re.sub(r'/\*', ' ', description)
         return description
-
-    def build_canonical_dict(self, param_or_result_list):
-        """
-        Build a canonical dict for a list of params or results, applying all override names and descriptions.
-        Returns a dict: { field_name: { 'type': ..., 'description': ... } }
-        """
-        result = {}
-        for item in param_or_result_list:
-            name = item.get('custom_name') or item['name']
-            description = item.get('custom_description') or item.get('description', '')
-            result[name] = {
-                'type': item['type'],
-                'description': description
-            }
-        return result
-
-    def build_all_canonical_dicts(self):
-        """
-        For all methods, build canonical request/response dicts with overrides applied.
-        """
-        for method_name, method_info in self.methods.items():
-            method_info['canonical_params'] = self.build_canonical_dict(method_info['params'])
-            method_info['canonical_results'] = self.build_canonical_dict(method_info['results'])
-        for event_name, event_info in self.events.items():
-            event_info['canonical_params'] = self.build_canonical_dict(event_info['params'])
-            event_info['canonical_results'] = self.build_canonical_dict(event_info['results'])
-        for prop_name, prop_info in self.properties.items():
-            prop_info['canonical_params'] = self.build_canonical_dict(prop_info['params'])
-            prop_info['canonical_results'] = self.build_canonical_dict(prop_info['results'])
