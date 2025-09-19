@@ -224,7 +224,7 @@ namespace WPEFramework {
             // @brief Returns the VRR support bit in EDID
             // @param id - in - The ID of the input device to get the VRR
             // @param vrrSupport - out - The VRR support bit value
-            virtual Core::hresult GetVRRSupport(const string& portId, bool& vrrSupport /* @out */) = 0;
+            virtual Core::hresult GetVRRSupport(const string& portId, bool& vrrSupport /* @out */, bool& success /* @out */) = 0;
 
             // @text getHdmiVersion
             // @brief Gets the maximum hdmi compatibility version supported for the given port.
