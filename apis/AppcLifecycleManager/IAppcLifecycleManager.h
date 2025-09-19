@@ -28,5 +28,6 @@ struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
     // @param launchIntent: Launch intent to use
     virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const LifecycleState targetLifecycleState /* @in */, const string& launchIntent /* @in */) = 0;
 
+};
 } // namespace Exchange
 } // namespace WPEFramework
