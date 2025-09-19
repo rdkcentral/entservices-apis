@@ -163,49 +163,49 @@ namespace WPEFramework {
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param message - in - A new EDID value
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult WriteEDID(const int portId, const string& message, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult WriteEDID(const string& portId, const string& message, SuccessResult& successResult /* @out */) = 0;
 
             // @text readEDID
             // @brief Returns the current EDID value.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param EDID - out - The EDID Value
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult ReadEDID(const int portId, string& EDID /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult ReadEDID(const string& portId, string& EDID /* @out */, bool& success /* @out */) = 0;
 
             // @text getRawSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HDMISPD - out - The SPD information as raw bits
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetRawSPD(const int portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetRawSPD(const string& portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
 
             // @text getSPD
             // @brief Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HDMISPD - out - The SPD information
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetSPD(const int portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetSPD(const string& portId, string& HDMISPD /* @out */, bool& success /* @out */) = 0;
 
             // @text setEdidVersion
             // @brief Sets an HDMI EDID version
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param edidVersion - in - The EDID version
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetEdidVersion(const int portId, const string& edidVersion, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult SetEdidVersion(const string& portId, const string& edidVersion, SuccessResult& successResult /* @out */) = 0;
 
             // @text getEdidVersion
             // @brief Returns the EDID version
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param edidVersion - out - The EDID version
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetEdidVersion(const int portId, string& edidVersion /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetEdidVersion(const string& portId, string& edidVersion /* @out */, bool& success /* @out */) = 0;
 
             // @text setEdid2AllmSupport
             // @brief Sets an HDMI ALLM bit in EDID.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param allmSupport - in - The ALLM support in EDID
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult SetEdid2AllmSupport(const int portId, const bool allmSupport, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult SetEdid2AllmSupport(const string& portId, const bool allmSupport, SuccessResult& successResult /* @out */) = 0;
 
             // @text getEdid2AllmSupport
             // @brief Returns the ALLM bit in EDID
@@ -218,20 +218,20 @@ namespace WPEFramework {
             // @brief Sets an HDMI VRR support bit in EDID
             // @param id - in - The ID of the input device to set the VRR
             // @param vrrSupport - in - The VRR support bit value to set
-            virtual Core::hresult SetVRRSupport(const int portId, const bool vrrSupport) = 0;
+            virtual Core::hresult SetVRRSupport(const string& portId, const bool vrrSupport) = 0;
 
             // @text getVRRSupport
             // @brief Returns the VRR support bit in EDID
             // @param id - in - The ID of the input device to get the VRR
             // @param vrrSupport - out - The VRR support bit value
-            virtual Core::hresult GetVRRSupport(const int portId, bool& vrrSupport /* @out */) = 0;
+            virtual Core::hresult GetVRRSupport(const string& portId, bool& vrrSupport /* @out */) = 0;
 
             // @text getHdmiVersion
             // @brief Gets the maximum hdmi compatibility version supported for the given port.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HdmiCapabilityVersion - out - The Maximum Hdmi compatibility version supported by the given port
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetHdmiVersion(const int portId, string& HdmiCapabilityVersion /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetHdmiVersion(const string& portId, string& HdmiCapabilityVersion /* @out */, bool& success /* @out */) = 0;
 
             // @text setMixerLevels
             // @brief Sets the audio mixer level for given audio input.
@@ -248,7 +248,7 @@ namespace WPEFramework {
             // @param plane - in - Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument
             // @param topMost - in - Defines whether the Hdmi Input should be over or under the other video plane
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult StartInput(const int portId, const string& typeOfInput, const bool requestAudioMix, const int plane, const bool topMost, SuccessResult& successResult /* @out */) = 0;
+            virtual Core::hresult StartInput(const string& portId, const string& typeOfInput, const bool requestAudioMix, const int plane, const bool topMost, SuccessResult& successResult /* @out */) = 0;
 
             // @text stopInput
             // @brief Deactivates the HDMI/Composite Input port currently selected as the primary video source.
@@ -290,14 +290,14 @@ namespace WPEFramework {
             // @param gameFeature - in - Game Feature to which current status requested
             // @param mode - out - The current game feature status. Mode is required only for ALLM. Need to add support for future game features
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetGameFeatureStatus(const int portId, const string& gameFeature, bool& mode /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetGameFeatureStatus(const string& portId, const string& gameFeature, bool& mode /* @out */, bool& success /* @out */) = 0;
 
             // @text getVRRFrameRate
             // @brief Returns the current VRR frame rate for the specified input device
             // @param portId - in - An ID of an HDMI Input port as returned by the getInputDevices method
             // @param currentVRRVideoFrameRate - out - The current VRR frame rate
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetVRRFrameRate(const int portId, double& currentVRRVideoFrameRate /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetVRRFrameRate(const string& portId, double& currentVRRVideoFrameRate /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
