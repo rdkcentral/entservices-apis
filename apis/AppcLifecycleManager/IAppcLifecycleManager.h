@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Module.h"
-#include "ILifecycleManager.h"
+#include "../LifecycleManager/ILifecycleManager.h"
 // @stubgen:include "ILifecycleManager.h"
 
 namespace WPEFramework {
