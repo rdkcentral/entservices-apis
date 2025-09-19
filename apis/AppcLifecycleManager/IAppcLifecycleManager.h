@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Module.h"
+#include "ILifecycleManager.h"
+// @stubgen:include "ILifecycleManager.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -8,16 +10,6 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
       enum { ID = ID_APPCLIFECYCLEMANAGER };
-    enum LifecycleState : uint8_t {
-        UNLOADED,
-        LOADING,
-        INITIALIZING,
-        PAUSED,
-        ACTIVE,
-        SUSPENDED,
-        HIBERNATED,
-        TERMINATING
-    };
 
 
     /** Get the list of loaded applications */
