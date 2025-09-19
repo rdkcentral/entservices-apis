@@ -46,8 +46,6 @@ The following methods are provided by the HomeKitTV plugin:
 | :-------- | :-------- |
 | [requestAppLaunch](#requestAppLaunch) | The distributor application (example, Immersive UI) running in the HomeKit Television accessory devices (such as TVs, Streaming Boxes and Streaming Sticks) SHALL use this API to request HomeKit to prepare for the launch of AirPlay Application |
 | [setCurrentInputSource](#setCurrentInputSource) | The distributor application (example, Immersive UI) running in the HomeKit Television accessory devices (such as TVs, Streaming Boxes and Streaming Sticks) SHALL use this API to inform HomeKit about the change in the currently selected Input Source. |
-| [getEnabledStatus](#getEnabledStatus) | Returns whether the airplay status is switched ON (true) or switched OFF(false) in the connected AirPlay Device's AirPlay Settings. |
-| [getEnabledStatus](#getEnabledStatus) | Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device |
 
 <a name="requestAppLaunch"></a>
 ## *requestAppLaunch*
