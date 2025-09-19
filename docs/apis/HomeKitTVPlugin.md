@@ -2,7 +2,7 @@
 <a name="HomeKitTV Plugin"></a>
 # HomeKitTV Plugin
 
-A org.rdk.HomeKitTV Plugin for Thunder framework.
+A HomeKitTV Plugin for Thunder framework.
 
 ### Table of Contents
 
