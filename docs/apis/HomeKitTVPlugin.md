@@ -281,7 +281,7 @@ Raised when HomeKit TV wants the distributor application to switch the state of 
 
 ### Example
 
-## Start or Resume AirPlay App:
+#### Start or Resume AirPlay App:
 ```json
 {
     "jsonrpc":"2.0",
@@ -296,7 +296,7 @@ Raised when HomeKit TV wants the distributor application to switch the state of 
 }
 ```
 
-## Suspend AirPlay App
+#### Suspend AirPlay App
 ```json
 {
     "jsonrpc":"2.0",
@@ -307,7 +307,7 @@ Raised when HomeKit TV wants the distributor application to switch the state of 
 }
 ```
 
-## Stop AirPlay App:
+#### Stop AirPlay App:
 ```json
 {
     "jsonrpc":"2.0",
