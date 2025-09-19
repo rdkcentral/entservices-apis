@@ -10,6 +10,7 @@ A org.rdk.HomeKitTV Plugin for Thunder framework.
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
+- [Properties](#Properties)
 - [Notifications](#Notifications)
 
 <a name="Abbreviation,_Acronyms_and_Terms"></a>
@@ -147,6 +148,17 @@ curl  --header "Content-Type: application/json" -H "Authorization: Bearer `WPEFr
     "result": 1
 }
 ```
+
+<a name="Properties"></a>
+# Properties
+
+The following properties are provided by the HomeKitTV plugin:
+
+HomeKitTV interface properties:
+| Property | Description |
+| :-------- | :-------- |
+| [getConnectionStatus](#getConnectionStatus)  | Set/Get property to Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device. |
+| [getEnabledStatus](#getEnabledStatus)  | Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device |
 
 <a name="getConnectionStatus"></a>
 ## *getConnectionStatus*
