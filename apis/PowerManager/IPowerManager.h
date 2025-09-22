@@ -48,18 +48,18 @@ namespace WPEFramework
         };
 
         enum WakeupSrcType : uint16_t {
-            WAKEUP_SRC_UNKNOWN          = 0         /* @text UNKNOWN */,
-            WAKEUP_SRC_VOICE            = 1         /* @text VOICE */,
-            WAKEUP_SRC_PRESENCEDETECTED = 1 << 1    /* @text PRESENCEDETECTED */,
-            WAKEUP_SRC_BLUETOOTH        = 1 << 2    /* @text BLUETOOTH */,
-            WAKEUP_SRC_WIFI             = 1 << 3    /* @text WIFI */,
-            WAKEUP_SRC_IR               = 1 << 4    /* @text IR */,
-            WAKEUP_SRC_POWERKEY         = 1 << 5    /* @text POWERKEY */,
-            WAKEUP_SRC_TIMER            = 1 << 6    /* @text TIMER */,
-            WAKEUP_SRC_CEC              = 1 << 7    /* @text CEC */,
-            WAKEUP_SRC_LAN              = 1 << 8    /* @text LAN */,
-            WAKEUP_SRC_RF4CE            = 1 << 9    /* @text RF4CE */,
-            WAKEUP_SRC_MAX              = 1 << 10
+            WAKEUP_SRC_UNKNOWN          = 0    /* @text UNKNOWN */,
+            WAKEUP_SRC_VOICE            = 1    /* @text VOICE */,
+            WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text PRESENCEDETECTED */,
+            WAKEUP_SRC_BLUETOOTH        = 3    /* @text BLUETOOTH */,
+            WAKEUP_SRC_WIFI             = 4    /* @text WIFI */,
+            WAKEUP_SRC_IR               = 5    /* @text IR */,
+            WAKEUP_SRC_POWERKEY         = 6    /* @text POWERKEY */,
+            WAKEUP_SRC_TIMER            = 7    /* @text TIMER */,
+            WAKEUP_SRC_CEC              = 8    /* @text CEC */,
+            WAKEUP_SRC_LAN              = 9    /* @text LAN */,
+            WAKEUP_SRC_RF4CE            = 10   /* @text RF4CE */,
+            WAKEUP_SRC_MAX              = 11   /* @text MAX - internal use only*/
         };
 
         enum WakeupReason : uint8_t {
