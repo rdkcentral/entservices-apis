@@ -300,7 +300,8 @@ def generate_results_section(results, symbol_registry):
                 optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
                 markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
-        markdown += "This method returns no results.\n"
+        markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
+        markdown += f"| result | null | On success null will be returned. |\n"
     return markdown
 
 def generate_errors_section(errors):
