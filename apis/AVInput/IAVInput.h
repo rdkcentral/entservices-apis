@@ -58,10 +58,10 @@ namespace WPEFramework {
             };
 
             // @json:omit
-            virtual Core::hresult Register(IDevicesChangedNotification* notification) = 0;
+            virtual Core::hresult RegisterDevicesChangedNotification(IDevicesChangedNotification* notification) = 0;
 
             // @json:omit
-            virtual Core::hresult Unregister(IDevicesChangedNotification* notification) = 0;
+            virtual Core::hresult UnregisterDevicesChangedNotification(IDevicesChangedNotification* notification) = 0;
 
             // @event
             struct EXTERNAL ISignalChangedNotification : virtual public Core::IUnknown {
@@ -77,8 +77,8 @@ namespace WPEFramework {
                 virtual void OnSignalChanged(const int id, const string& locator, const string& signalStatus) { };
             };
 
-            virtual Core::hresult Register(ISignalChangedNotification* notification) = 0;
-            virtual Core::hresult Unregister(ISignalChangedNotification* notification) = 0;
+            virtual Core::hresult RegisterSignalChangedNotification(ISignalChangedNotification* notification) = 0;
+            virtual Core::hresult UnregisterSignalChangedNotification(ISignalChangedNotification* notification) = 0;
 
             // @event
             struct EXTERNAL IInputStatusChangedNotification : virtual public Core::IUnknown {
@@ -95,8 +95,8 @@ namespace WPEFramework {
                 virtual void OnInputStatusChanged(const int id, const string& locator, const string& status, const int plane) { };
             };
 
-            virtual Core::hresult Register(IInputStatusChangedNotification* notification) = 0;
-            virtual Core::hresult Unregister(IInputStatusChangedNotification* notification) = 0;
+            virtual Core::hresult RegisterInputStatusChangedNotification(IInputStatusChangedNotification* notification) = 0;
+            virtual Core::hresult UnregisterInputStatusChangedNotification(IInputStatusChangedNotification* notification) = 0;
 
             // @event
             struct EXTERNAL IVideoStreamInfoUpdateNotification : virtual public Core::IUnknown {
@@ -116,8 +116,8 @@ namespace WPEFramework {
                 virtual void VideoStreamInfoUpdate(const int id, const string& locator, const int width, const int height, const bool progressive, const int frameRateN, const int frameRateD) { };
             };
 
-            virtual Core::hresult Register(IVideoStreamInfoUpdateNotification* notification) = 0;
-            virtual Core::hresult Unregister(IVideoStreamInfoUpdateNotification* notification) = 0;
+            virtual Core::hresult RegisterVideoStreamInfoUpdateNotification(IVideoStreamInfoUpdateNotification* notification) = 0;
+            virtual Core::hresult UnregisterVideoStreamInfoUpdateNotification(IVideoStreamInfoUpdateNotification* notification) = 0;
 
             // @event
             struct EXTERNAL IGameFeatureStatusUpdateNotification : virtual public Core::IUnknown {
@@ -133,8 +133,8 @@ namespace WPEFramework {
                 virtual void GameFeatureStatusUpdate(const int id, const string& gameFeature, const bool mode) { };
             };
 
-            virtual Core::hresult Register(IGameFeatureStatusUpdateNotification* notification) = 0;
-            virtual Core::hresult Unregister(IGameFeatureStatusUpdateNotification* notification) = 0;
+            virtual Core::hresult RegisterGameFeatureStatusUpdateNotification(IGameFeatureStatusUpdateNotification* notification) = 0;
+            virtual Core::hresult UnregisterGameFeatureStatusUpdateNotification(IGameFeatureStatusUpdateNotification* notification) = 0;
 
             // @event
             struct EXTERNAL IHdmiContentTypeUpdateNotification : virtual public Core::IUnknown {
@@ -149,8 +149,8 @@ namespace WPEFramework {
                 virtual void HdmiContentTypeUpdate(const int id, const int aviContentType) { };
             };
 
-            virtual Core::hresult Register(IHdmiContentTypeUpdateNotification* notification) = 0;
-            virtual Core::hresult Unregister(IHdmiContentTypeUpdateNotification* notification) = 0;
+            virtual Core::hresult RegisterHdmiContentTypeUpdateNotification(IHdmiContentTypeUpdateNotification* notification) = 0;
+            virtual Core::hresult UnregisterHdmiContentTypeUpdateNotification(IHdmiContentTypeUpdateNotification* notification) = 0;
 
             // @text numberOfInputs
             // @brief Returns an integer that specifies the number of available inputs
@@ -282,7 +282,7 @@ namespace WPEFramework {
             // @brief Returns the list of supported game features.
             // @param supportedGameFeatures - out - The supported game Features
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetSupportedGameFeatures(Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetSupportedGameFeatures(WPEFramework::Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */, bool& success /* @out */) = 0;
 
             // @text getGameFeatureStatus
             // @brief Returns the Game Feature Status. For example: ALLM.
