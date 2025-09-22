@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Module.h"
-#include "../LifecycleManager/ILifecycleManager.h"
-// @stubgen:include "ILifecycleManager.h"
+
 
 namespace WPEFramework {
 namespace Exchange {
@@ -11,6 +10,16 @@ namespace Exchange {
 struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
       enum { ID = ID_APPCLIFECYCLEMANAGER };
 
+       enum LifecycleState : uint8_t {
+        UNLOADED,
+        LOADING,
+        INITIALIZING,
+        PAUSED,
+        ACTIVE,
+        SUSPENDED,
+        HIBERNATED,
+        TERMINATING
+    };
 
     /** Get the list of loaded applications */
     // @text setTargetAppState
@@ -18,7 +27,7 @@ struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
     // @param appInstanceId: Instance ID of the application
     // @param targetLifecycleState: Target lifecycle state to set
     // @param launchIntent: Launch intent to use
-    virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const LifecycleState targetLifecycleState /* @in */, const string& launchIntent /* @in */) = 0;
+    virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const string& targetStateStr/* @in */, const string& launchIntent /* @in */) = 0;
 
 };
 } // namespace Exchange
