@@ -600,7 +600,7 @@ Sends the CEC Request Short Audio Descriptor (SAD) message as an
 
 | Event | Description |
 | :-------- | :-------- |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device. |
+| [shortAudiodescriptorEvent](#shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device. |
 ### Parameters
 
 This method takes no parameters.
@@ -1406,7 +1406,7 @@ HdmiCecSink interface events:
 | [reportFeatureAbortEvent](#reportFeatureAbortEvent) | Triggered when CEC \<Feature Abort\> message of device is received |
 | [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled |
 | [setSystemAudioModeEvent](#setSystemAudioModeEvent) | Triggered when CEC \<Set System Audio Mode\> message of device is received |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device |
+| [shortAudiodescriptorEvent](#shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device |
 | [standbyMessageReceived](#standbyMessageReceived) | Triggered when the source device changes status to `STANDBY` |
 
 
@@ -1806,8 +1806,8 @@ Triggered when CEC \<Set System Audio Mode\> message of device is received.
 }
 ```
 
-<a name="shortAudiodesciptorEvent"></a>
-## *shortAudiodesciptorEvent*
+<a name="shortAudiodescriptorEvent"></a>
+## *shortAudiodescriptorEvent*
 
 Triggered when SAD is received from the connected audio device. See `requestShortAudioDescriptor`.
 
@@ -1824,7 +1824,7 @@ Triggered when SAD is received from the connected audio device. See `requestShor
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.shortAudiodesciptorEvent",
+    "method": "client.events.shortAudiodescriptorEvent",
     "params": {
         "ShortAudioDescriptor": [
             [
