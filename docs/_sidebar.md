@@ -17,6 +17,7 @@
   - [HdmiCecSink](apis/HdmiCecSinkPlugin.md)
   - [HdmiCecSource](apis/HdmiCecSourcePlugin.md)
   - [LEDControl](apis/LEDControlPlugin.md)
+  - [LifecycleManager](apis/LifecycleManagerPlugin.md)
   - [LinearPlaybackControl](apis/LinearPlaybackControlPlugin.md)
   - [MaintenanceManager](apis/MaintenanceManagerPlugin.md)
   - [MiracastPlayer](apis/MiracastPlayerPlugin.md)
