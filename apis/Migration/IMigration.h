@@ -29,22 +29,33 @@ namespace WPEFramework
         {
             enum { ID = ID_MIGRATION };
 
+            struct EXTERNAL BootTypeInfo {
+                string bootType;
+            };
+
+            struct EXTERNAL MigrationStatusInfo {
+                string migrationStatus;
+            };
+
+            struct EXTERNAL MigrationResult {
+                bool success;
+            };
+
             // @text getBootTypeInfo
             // @brief query the BootType details
-            // @param bootType - out - string
-            virtual Core::hresult GetBootTypeInfo(string& bootType /* @text bootType @out */) = 0;
+            // @param bootTypeInfo - out - struct
+            virtual Core::hresult GetBootTypeInfo(BootTypeInfo& bootTypeInfo /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief sets the tr181 MigrationStatus parameter
             // @param status - in - string
-            // @param success - out - boolean
-            virtual Core::hresult SetMigrationStatus(const string& status, bool& success /* @out */) = 0;
+            // @param migrationResult - out - struct
+            virtual Core::hresult SetMigrationStatus(const string& status, MigrationResult& migrationResult /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the MigrationStatus details
-            // @param state - in - string
-            // @param success - out - boolean
-            virtual Core::hresult GetMigrationStatus(string& migrationStatus /* @out */ , bool& success /* @out */) = 0;
+            // @param migrationStatusInfo - out - struct
+            virtual Core::hresult GetMigrationStatus(MigrationStatusInfo& migrationStatusInfo /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
