@@ -637,7 +637,7 @@ class HeaderFileParser:
                 param_name = param.get('name')
                 param_type = param.get('type')
                 param_desc = param.get('description')
-                if len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
+                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
                     request["params"] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
                 else:
@@ -937,6 +937,7 @@ class HeaderFileParser:
         if description:
             description = description.strip()
             description = re.sub(r'@\S+', '', description)
+            description = re.sub(r'\- in \-|\- out \-', '', description)
             description = description[:-1] if description.endswith(';') else description
             description = description[:-2] if description.endswith("*/") else description
             description = re.sub(r'\*/', ' ', description)
