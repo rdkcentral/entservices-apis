@@ -260,29 +260,37 @@ class HeaderFileParser:
         if line_tag == 'plugindescription':
             self.plugindescription = groups[0]
         elif line_tag == 'configuration':
-            self.configuration_options[groups[0]] = {'type': groups[1], 'description': groups[2]}
+            type = groups[1]
+            description = groups[2]
+            self.configuration_options[groups[0]] = {'type': type, 'description': description}
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
             self.latest_tag = 'text'
         elif line_tag == 'params':
             self.latest_param = groups[1]
             self.latest_tag = 'params'
-            self.doxy_tags.setdefault('params', {})[self.latest_param] = {'description': groups[3], 
-                                                                          'direction': groups[0], 
-                                                                          'optionality': groups[2]}
+            description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[3])
+            direction = groups[0]
+            optionality = groups[2]
+            self.doxy_tags.setdefault('params', {})[self.latest_param] = {'description': description, 
+                                                                          'direction': direction, 
+                                                                          'optionality': optionality}
         elif line_tag == 'see':
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
             self.latest_tag = 'see'
         elif line_tag == 'errors':
-            self.doxy_tags.setdefault('errors', {})[groups[1]] = {'code': groups[0],
-                                                                  'description': groups[2]}
+            error_code = groups[0]
+            description = groups[2]
+            self.doxy_tags.setdefault('errors', {})[groups[1]] = {'code': error_code,
+                                                                  'description': description}
             self.latest_tag = 'errors'
         elif line_tag == 'comment':
             if groups[0] == '/':
                 return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
-                self.doxy_tags['params'][self.latest_param]['description'] += (' ' + groups[0])
+                description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[3])
+                self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
             elif self.latest_tag and self.latest_tag in self.doxy_tags and self.latest_tag != 'plugindescription':
                 self.doxy_tags[self.latest_tag] += (' ' + groups[0])
             line_tag = self.latest_tag
