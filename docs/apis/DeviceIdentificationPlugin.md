@@ -67,7 +67,7 @@ No Events
 | (property) | object | Device platform specific information |
 | (property).firmwareversion | string | Version of the device firmware |
 | (property).chipset | string | Chipset used for this device |
-| (property)?.identifier | string | <sup>*(optional)*</sup> Device unique identifier |
+| (property).deviceid | string | Device unique identifier |
 
 ### Example
 
@@ -90,7 +90,7 @@ No Events
     "result": {
         "firmwareversion": "1.0.0",
         "chipset": "BCM2711",
-        "identifier": "WPEuCfrLF45"
+        "deviceid": "WPEuCfrLF45"
     }
 }
 ```
