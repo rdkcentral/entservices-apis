@@ -41,7 +41,7 @@ class HeaderFileParser:
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
-        ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s+(.*)')),
+        ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
