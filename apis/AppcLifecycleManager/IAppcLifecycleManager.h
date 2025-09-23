@@ -19,7 +19,7 @@ struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
         SUSPENDED,
         HIBERNATED,
         TERMINATING
-    };
+    }; 
 
     /** Get the list of loaded applications */
     // @text setTargetAppState
@@ -27,7 +27,7 @@ struct EXTERNAL IAppcLifecycleManager : virtual public Core::IUnknown {
     // @param appInstanceId: Instance ID of the application
     // @param targetLifecycleState: Target lifecycle state to set
     // @param launchIntent: Launch intent to use
-    virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const string& targetStateStr/* @in */, const string& launchIntent /* @in */) = 0;
+    virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const LifecycleState &targetState/* @in */, const string& launchIntent /* @in */) = 0;
 
 };
 } // namespace Exchange
