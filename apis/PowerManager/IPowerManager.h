@@ -58,8 +58,7 @@ namespace WPEFramework
             WAKEUP_SRC_TIMER            = 7    /* @text TIMER */,
             WAKEUP_SRC_CEC              = 8    /* @text CEC */,
             WAKEUP_SRC_LAN              = 9    /* @text LAN */,
-            WAKEUP_SRC_RF4CE            = 10   /* @text RF4CE */,
-            WAKEUP_SRC_MAX              = 11   /* @text MAX - internal use only*/
+            WAKEUP_SRC_RF4CE            = 10   /* @text RF4CE (IMPORTANT: Add any new wakeupsrc before this)*/
         };
 
         enum WakeupReason : uint8_t {
