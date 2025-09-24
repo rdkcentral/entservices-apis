@@ -1244,7 +1244,7 @@ AVInput interface events:
 | [onSignalChanged](#onSignalChanged) | Triggered whenever the signal status changes for an HDMI/Composite Input |
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI Input video stream info |
 | [gameFeatureStatusUpdate](#gameFeatureStatusUpdate) | Triggered whenever game feature status changes for an HDMI Input |
-| [hdmiContentTypeUpdate](#hdmiContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
+| [aviContentTypeUpdate](#aviContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
 
 
 <a name="onDevicesChanged"></a>
@@ -1403,8 +1403,8 @@ Triggered whenever game feature status changes for an HDMI Input.
 }
 ```
 
-<a name="hdmiContentTypeUpdate"></a>
-## *hdmiContentTypeUpdate*
+<a name="aviContentTypeUpdate"></a>
+## *aviContentTypeUpdate*
 
 Triggered whenever AV Infoframe content type changes for an HDMI Input.
 
@@ -1421,7 +1421,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input.
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.hdmiContentTypeUpdate",
+    "method": "client.events.aviContentTypeUpdate",
     "params": {
         "id": 1,
         "aviContentType": 1

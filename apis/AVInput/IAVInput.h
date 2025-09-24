@@ -22,10 +22,6 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-#define INPUT_TYPE_ALL          "ALL"
-#define INPUT_TYPE_HDMI         "HDMI"
-#define INPUT_TYPE_COMPOSITE    "COMPOSITE"
-
 namespace WPEFramework {
     namespace Exchange {
         /* @json 1.0.0 @text:keep */
@@ -137,20 +133,20 @@ namespace WPEFramework {
             virtual Core::hresult UnregisterGameFeatureStatusUpdateNotification(IGameFeatureStatusUpdateNotification* notification) = 0;
 
             // @event
-            struct EXTERNAL IHdmiContentTypeUpdateNotification : virtual public Core::IUnknown {
+            struct EXTERNAL IAviContentTypeUpdateNotification : virtual public Core::IUnknown {
                 enum {
-                    ID = ID_AV_INPUT_NOTIFICATION_HDMI_CONTENT_TYPE_UPDATE
+                    ID = ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE
                 };
 
-                // @text hdmiContentTypeUpdate
+                // @text aviContentTypeUpdate
                 // @brief Triggered whenever AV Infoframe content type changes for an HDMI Input
                 // @param id - in - Hdmi Input port ID for which content type change event received and possible values are port id 0, 1 and 2 for three Hdmi Input ports
                 // @param aviContentType - in - new Content type received for the active hdmi input port and the possible integer values indicates following accordingly 0 - Graphics, 1 - Photo, 2 - Cinema, 3 - Game, 4 - Invalid data
-                virtual void HdmiContentTypeUpdate(const int id, const int aviContentType) { };
+                virtual void AviContentTypeUpdate(const int id, const int aviContentType) { };
             };
 
-            virtual Core::hresult RegisterHdmiContentTypeUpdateNotification(IHdmiContentTypeUpdateNotification* notification) = 0;
-            virtual Core::hresult UnregisterHdmiContentTypeUpdateNotification(IHdmiContentTypeUpdateNotification* notification) = 0;
+            virtual Core::hresult RegisterAviContentTypeUpdateNotification(IAviContentTypeUpdateNotification* notification) = 0;
+            virtual Core::hresult UnregisterAviContentTypeUpdateNotification(IAviContentTypeUpdateNotification* notification) = 0;
 
             // @text numberOfInputs
             // @brief Returns an integer that specifies the number of available inputs
