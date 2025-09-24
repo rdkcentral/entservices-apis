@@ -1,10 +1,10 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.IHdmiCecSource_Plugin"></a>
-# IHdmiCecSource Plugin
+<a id="head.HdmiCecSource_Plugin"></a>
+# HdmiCecSource Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IHdmiCecSource/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/HdmiCecSource/CHANGELOG.md)**
 
-A IHdmiCecSource plugin for Thunder framework.
+A HdmiCecSource plugin for Thunder framework.
 
 ### Table of Contents
 
@@ -22,7 +22,7 @@ A IHdmiCecSource plugin for Thunder framework.
 <a id="head.Description"></a>
 # Description
 
-The `IHdmiCecSource` plugin provides an interface for IHdmiCecSource.
+The `HdmiCecSource` plugin provides an interface for HdmiCecSource.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
@@ -33,17 +33,17 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *IHdmiCecSource*) |
-| classname | string | Class name: *IHdmiCecSource* |
-| locator | string | Library name: *libWPEFrameworkIHdmiCecSource.so* |
+| callsign | string | Plugin instance name (default: *HdmiCecSource*) |
+| classname | string | Class name: *HdmiCecSource* |
+| locator | string | Library name: *libWPEFrameworkHdmiCecSource.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the IHdmiCecSource plugin:
+The following methods are provided by the HdmiCecSource plugin:
 
-IHdmiCecSource interface methods:
+HdmiCecSource interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -114,7 +114,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result.numberofdevices | uint32_t | Number of devices connected to the HDMI CEC source |
-| result.deviceList | IHdmiCecSourceDeviceListIterator | List of devices connected to the HDMI CEC source |
+| result.deviceList | HdmiCecSourceDeviceListIterator | List of devices connected to the HDMI CEC source |
 | result.deviceList[#].logicalAddress | uint8_t |  |
 | result.deviceList[#].vendorID | string |  |
 | result.deviceList[#].osdName | string |  |
@@ -633,9 +633,9 @@ No events are associated with this method.
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IHdmiCecSource plugin:
+The following events are provided by the HdmiCecSource plugin:
 
-IHdmiCecSource interface events:
+HdmiCecSource interface events:
 
 | Method | Description |
 | :-------- | :-------- |
