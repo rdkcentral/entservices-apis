@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+        "title": "LifecycleManager Plugin",
+        "callsign": "org.rdk.LifecycleManager",
+        "locator": "libWPEFrameworkLifecycleManager.so",
+        "status": "production",
+        "description": "The `LifecycleManagerState` this is responsible for maintaining the states of Application."
+   },
+    "interface": {
+        "$ref": "LifecycleManager.json#"
+    }
+}
