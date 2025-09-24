@@ -54,7 +54,7 @@ IFrontPanel interface methods:
 | [SetBrightness](#method.SetBrightness) | Sets the brightness of the specified LED |
 | [SetLED](#method.SetLED) | Sets the LED with the specified color and brightness |
 
-<a id="method.GetBrightness"></a>
+<a id="method.getBrightness"></a>
 ## *GetBrightness [<sup>method</sup>](#head.Methods)*
 
 Gets the status of the Front Panel
@@ -80,7 +80,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.GetBrightness",
+    "method": "org.rdk.IFrontPanel.getBrightness",
     "params": {
         "index": ""
     }
@@ -99,7 +99,7 @@ No events are associated with this method.
     }
 }
 ```
-<a id="method.GetFrontPanelLights"></a>
+<a id="method.getFrontPanelLights"></a>
 ## *GetFrontPanelLights [<sup>method</sup>](#head.Methods)*
 
 Gets the front panel lights
@@ -125,7 +125,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.GetFrontPanelLights"
+    "method": "org.rdk.IFrontPanel.getFrontPanelLights"
 }
 ```
 
@@ -137,9 +137,20 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "supportedLights": [
-            ""
+            "power_led"
         ],
-        "supportedLightsInfo": "",
+        "supportedLightsInfo": {
+            "power_led": {
+                "range": "int",
+                "min": 0,
+                "max": 100,
+                "step": 10,
+                "colorMode": 2,
+                "colors": [
+                    "red"
+                ]
+            }
+        },
         "success": "true"
     }
 }
@@ -170,7 +181,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.PowerLedOff",
+    "method": "org.rdk.IFrontPanel.powerLedOff",
     "params": {
         "index": ""
     }
@@ -216,7 +227,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.PowerLedOn",
+    "method": "org.rdk.IFrontPanel.powerLedOn",
     "params": {
         "index": ""
     }
@@ -262,9 +273,22 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.SetBlink",
+    "method": "org.rdk.FrontPanel.setBlink",
     "params": {
-        "blinkInfo": ""
+        "blinkInfo": {
+            "ledIndicator": "power_led",
+            "iterations": 10,
+            "pattern": [
+                {
+                    "brightness": 50,
+                    "duration": 100,
+                    "color": "red",
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0
+                }
+            ]
+        },
     }
 }
 ```
@@ -309,7 +333,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.SetBrightness",
+    "method": "org.rdk.IFrontPanel.setBrightness",
     "params": {
         "index": "",
         "brightness": "0"
@@ -361,7 +385,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.SetLED",
+    "method": "org.rdk.IFrontPanel.setLED",
     "params": {
         "ledIndicator": "",
         "brightness": "0",
