@@ -321,7 +321,7 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     Generate the markdown for a specific method.
     """
     method_name = to_camel_case(method_name)
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['brief'] or method_info['details'])
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
     markdown += generate_events_section(method_info['events'], all_events)
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
@@ -367,7 +367,7 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     """
     Generate the markdown for a specific property.
     """
-    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['brief'] or property_info['details'])
+    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['details'] or property_info['brief'])
     if property_info['property'] == 'read':
         markdown += "> This property is read-only.\n"
     elif property_info['property'] == 'write':
@@ -417,7 +417,7 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     Generate the markdown for a specific event.
     """
     camel_event = to_camel_case(event_name)
-    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['brief'] or event_info['details'])
+    markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['details'] or event_info['brief'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     request = event_info['request']
