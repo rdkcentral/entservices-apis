@@ -85,7 +85,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetActiveSourceStatus"
+    "method": "org.rdk.HdmiCecSource.getActiveSourceStatus"
 }
 ```
 
@@ -129,7 +129,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetDeviceList"
+    "method": "org.rdk.HdmiCecSource.getDeviceList"
 }
 ```
 
@@ -176,7 +176,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetEnabled"
+    "method": "org.rdk.HdmiCecSource.getEnabled"
 }
 ```
 
@@ -216,7 +216,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetOSDName"
+    "method": "org.rdk.HdmiCecSource.getOSDName"
 }
 ```
 
@@ -256,7 +256,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetOTPEnabled"
+    "method": "org.rdk.HdmiCecSource.getOTPEnabled"
 }
 ```
 
@@ -296,7 +296,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.GetVendorId"
+    "method": "org.rdk.HdmiCecSource.getVendorId"
 }
 ```
 
@@ -336,7 +336,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.PerformOTPAction"
+    "method": "org.rdk.HdmiCecSource.performOTPAction"
 }
 ```
 
@@ -380,7 +380,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SendKeyPressEvent",
+    "method": "org.rdk.HdmiCecSource.sendKeyPressEvent",
     "params": {
         "logicalAddress": "0",
         "keyCode": "0"
@@ -425,7 +425,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SendStandbyMessage"
+    "method": "org.rdk.HdmiCecSource.sendStandbyMessage"
 }
 ```
 
@@ -468,7 +468,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SetEnabled",
+    "method": "org.rdk.HdmiCecSource.setEnabled",
     "params": {
         "enabled": "true"
     }
@@ -514,7 +514,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SetOSDName",
+    "method": "org.rdk.HdmiCecSource.setOSDName",
     "params": {
         "name": ""
     }
@@ -560,7 +560,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SetOTPEnabled",
+    "method": "org.rdk.HdmiCecSource.setOTPEnabled",
     "params": {
         "enabled": "true"
     }
@@ -606,7 +606,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.SetVendorId",
+    "method": "org.rdk.HdmiCecSource.setVendorId",
     "params": {
         "vendorid": ""
     }
@@ -666,7 +666,7 @@ Notifies when the active source status is updated
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnActiveSourceStatusUpdated",
+    "method": "client.events.onActiveSourceStatusUpdated",
     "params": {
         "status": "true"
     }
@@ -691,7 +691,7 @@ Notifies when CEC device added to CEC network
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnDeviceAdded",
+    "method": "client.events.onDeviceAdded",
     "params": {
         "logicalAddress": "0"
     }
@@ -716,7 +716,7 @@ Notifies when CEC device info updated
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnDeviceInfoUpdated",
+    "method": "client.events.onDeviceInfoUpdated",
     "params": {
         "logicalAddress": "0"
     }
@@ -741,7 +741,7 @@ Notifies when CEC device removed from CEC network
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnDeviceRemoved",
+    "method": "client.events.onDeviceRemoved",
     "params": {
         "logicalAddress": "0"
     }
@@ -767,7 +767,7 @@ Notifies when a key press CEC message is received from other CEC device
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnKeyPressEvent",
+    "method": "client.events.onKeyPressEvent",
     "params": {
         "logicalAddress": "0",
         "keyCode": "0"
@@ -793,7 +793,7 @@ Notifies when a key release CEC message is received from other CEC device
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.OnKeyReleaseEvent",
+    "method": "client.events.onKeyReleaseEvent",
     "params": {
         "logicalAddress": "0"
     }
@@ -818,7 +818,7 @@ Notifies when CEC standby message received from the other CEC device
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IHdmiCecSource.StandbyMessageReceived",
+    "method": "client.events.standbyMessageReceived",
     "params": {
         "logicalAddress": "0"
     }
