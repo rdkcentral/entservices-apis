@@ -20,6 +20,7 @@
   - [HdmiCecSource](apis/HdmiCecSourcePlugin.md)
   - [HomeKitTV](apis/HomeKitTVPlugin.md)
   - [LEDControl](apis/LEDControlPlugin.md)
+  - [LifecycleManager](apis/LifecycleManagerPlugin.md)
   - [LinearPlaybackControl](apis/LinearPlaybackControlPlugin.md)
   - [MaintenanceManager](apis/MaintenanceManagerPlugin.md)
   - [MessageControl](apis/MessageControlPlugin.md)
