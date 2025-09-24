@@ -32,7 +32,7 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindescr', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@plugindescription\s+(.*?)(?=\s*\*\/|$)')),
-        ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s+([\w\.\?]+)\s+(\w+)\s*(.*?)(?=\s*\*\/|$)')),
+        ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
         ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
@@ -130,6 +130,7 @@ class HeaderFileParser:
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
         self.log_missing_method_info()
+        print(self.configuration_options)
 
     def parse_header_file(self):
         """
@@ -259,7 +260,7 @@ class HeaderFileParser:
         """
         if line_tag == 'plugindescription':
             self.plugindescription = groups[0]
-        elif line_tag == 'configuration':
+        elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
             self.configuration_options[groups[0]] = {'type': type, 'description': description}
@@ -396,7 +397,7 @@ class HeaderFileParser:
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
                         'description': description.strip() if description else '',
-                        'custom_name': custom_name.strip() if custom_name else ''
+                        'custom_name': custom_name.strip() if custom_name else member_name
                     }
                     # register each data member in the global symbol registry
                     self.register_symbol(member_name, custom_name, member_type, description)
@@ -462,7 +463,7 @@ class HeaderFileParser:
         return method_info
 
     def normalize_key(self, key):
-            return key.replace('_', '-').strip()
+            return key#.replace('_', '-').strip()
 
     def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
@@ -481,14 +482,14 @@ class HeaderFileParser:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
-            overriden_name = symbol_name
+            overridden_name = symbol_name
             if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
-                overriden_name = custom_name
+                overridden_name = custom_name
                 if self.logger:
-                    self.logger.log("INFO", f"Overridden name for param {symbol_name} found in doxy tags as {overriden_name}")
-            symbol_description = doxy_tag_param_info.get(overriden_name, {}).get('description', '')
-            symbol_optionality = doxy_tag_param_info.get(overriden_name, {}).get('optionality', '')
-            symbol_direction = doxy_tag_param_info.get(overriden_name, {}).get('direction', '') or direction
+                    self.logger.log("INFO", f"Overridden name for param {symbol_name} found in doxy tags as {overridden_name}")
+            symbol_description = doxy_tag_param_info.get(overridden_name, {}).get('description', '')
+            symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
+            symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
 
             self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description)
             symbol_info = {
@@ -558,7 +559,7 @@ class HeaderFileParser:
         if unique_id not in self.symbols_registry:
             self.symbols_registry[unique_id] = {'type': symbol_type}
         if not self.symbols_registry[unique_id].get('custom_name'):
-            self.symbols_registry[unique_id]['custom_name'] = symbol_custom_name.strip if symbol_custom_name else ''
+            self.symbols_registry[unique_id]['custom_name'] = symbol_custom_name.strip() if symbol_custom_name else symbol_name
         if not self.symbols_registry[unique_id].get('description'):
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
@@ -643,13 +644,16 @@ class HeaderFileParser:
             for param in method_info['params']:
                 keep_key = param.get('keep_key')
                 param_name = param.get('name')
+                param_custom_name = param.get('custom_name')
+                # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
+                overridden_name = param_custom_name if param_custom_name else param_name
                 param_type = param.get('type')
                 param_desc = param.get('description')
                 if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
                     request["params"] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
                 else:
-                    request["params"][param_name] = self.get_symbol_example(
+                    request["params"][overridden_name] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
         return request
 
@@ -681,13 +685,16 @@ class HeaderFileParser:
             for result in method_info['results']:
                 keep_key = result.get('keep_key')
                 result_name = result.get('name')
+                result_custom_name = result.get('custom_name')
+                # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
+                overridden_name = result_custom_name if result_custom_name and result_custom_name != result_name else result_name
                 result_type = result.get('type')
                 result_desc = result.get('description')
-                if len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
+                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
                     response['result'] = self.get_symbol_example(
                         f"{result_name}-{result_type}", result_desc)
                 else:
-                    response['result'][result_name] = self.get_symbol_example(
+                    response['result'][overridden_name] = self.get_symbol_example(
                         f"{result_name}-{result_type}", result_desc)
         return response
 
@@ -749,7 +756,8 @@ class HeaderFileParser:
             #     first_member = next(iter(struct))
             #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
             #         return self.generate_example_for_individual_symbol(f"{first_member}-{struct[first_member]['type']}", struct[first_member]['description'])
-            return {member_name: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
+
+            return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
             return list(self.enums_registry[symbol_type])[0]
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
@@ -894,7 +902,9 @@ class HeaderFileParser:
             symbol_name = unqiue_id.split('-')[0]
             symbol_type = self.symbols_registry[unqiue_id].get('type')
             symbol_desc = self.symbols_registry[unqiue_id].get('description')
-            curr_key = f"{parent_key}.{symbol_name}"
+            symbol_custom_name = self.symbols_registry[unqiue_id].get('custom_name', '')
+            overridden_name = symbol_custom_name if symbol_custom_name else symbol_name
+            curr_key = f"{parent_key}.{overridden_name}"
             flattened_descriptions = {curr_key: {'type': symbol_type, 'description': symbol_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
             return flattened_descriptions
@@ -912,11 +922,12 @@ class HeaderFileParser:
                 if first_member not in self.structs_registry and first_member not in self.iterators_registry:
                     flattened_descriptions.update(
                         self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
-                    return flattened_descriptions
             for member_name in struct:
                 member_type = struct[member_name]['type']
                 member_desc = struct[member_name]['description']
-                curr_key = f"{parent_key}.{member_name}"
+                member_custom_name = struct[member_name].get('custom_name', '')
+                overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
+                curr_key = f"{parent_key}.{overridden_name}"
                 flattened_descriptions[curr_key] = {'type': member_type, 'description': member_desc}
                 flattened_descriptions.update(
                     self.flatten_description(curr_key, member_type))
@@ -945,7 +956,7 @@ class HeaderFileParser:
         if description:
             description = description.strip()
             description = re.sub(r'@\S+', '', description)
-            description = re.sub(r'\- in \-|\- out \-', '', description)
+            description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', description)
             description = description[:-1] if description.endswith(';') else description
             description = description[:-2] if description.endswith("*/") else description
             description = re.sub(r'\*/', ' ', description)
