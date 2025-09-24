@@ -80,7 +80,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.getBrightness",
+    "method": "org.rdk.FrontPanel.getBrightness",
     "params": {
         "index": ""
     }
@@ -125,7 +125,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.getFrontPanelLights"
+    "method": "org.rdk.FrontPanel.getFrontPanelLights"
 }
 ```
 
@@ -181,7 +181,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.powerLedOff",
+    "method": "org.rdk.FrontPanel.powerLedOff",
     "params": {
         "index": ""
     }
@@ -227,7 +227,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.powerLedOn",
+    "method": "org.rdk.FrontPanel.powerLedOn",
     "params": {
         "index": ""
     }
@@ -333,7 +333,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.setBrightness",
+    "method": "org.rdk.FrontPanel.setBrightness",
     "params": {
         "index": "",
         "brightness": "0"
@@ -385,7 +385,7 @@ No events are associated with this method.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.IFrontPanel.setLED",
+    "method": "org.rdk.FrontPanel.setLED",
     "params": {
         "ledIndicator": "",
         "brightness": "0",
