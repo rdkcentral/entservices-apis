@@ -144,7 +144,7 @@ This method takes no parameters.
         "deviceList": [
             {
                 "logicalAddress": "",
-                "vendorID": "",
+                "vendorID": "0x0019FB",
                 "osdName": ""
             }
         ],
@@ -307,7 +307,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "vendorid": "",
+        "vendorid": "0x0019FB",
         "success": "true"
     }
 }
@@ -608,7 +608,7 @@ No events are associated with this method.
     "id": 42,
     "method": "org.rdk.HdmiCecSource.setVendorId",
     "params": {
-        "vendorid": ""
+        "vendorid": "0x0019FB"
     }
 }
 ```
