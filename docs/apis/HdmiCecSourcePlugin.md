@@ -22,7 +22,7 @@ A HdmiCecSource plugin for Thunder framework.
 <a id="head.Description"></a>
 # Description
 
-The `HdmiCecSource` plugin provides an interface for HdmiCecSource.
+The `HdmiCecSource` plugin allows you to configure HDMI Consumer Electronics Control (CEC) on a set-top device. The HdmiCecSource plugin is meant to be used on the source devices where an application relies on the Thunder plugin to handle protocol related messaging. The plugin also provides API's and events to implement the CEC use cases.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
@@ -33,15 +33,15 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *HdmiCecSource*) |
-| classname | string | Class name: *HdmiCecSource* |
+| callsign | string | Plugin instance name (default: *org.rdk.HdmiCecSource*) |
+| classname | string | Class name: *org.rdk.HdmiCecSource* |
 | locator | string | Library name: *libWPEFrameworkHdmiCecSource.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the HdmiCecSource plugin:
+The following methods are provided by the org.rdk.HdmiCecSource plugin:
 
 HdmiCecSource interface methods:
 

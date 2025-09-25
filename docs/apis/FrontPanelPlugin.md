@@ -32,15 +32,15 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *FrontPanel*) |
-| classname | string | Class name: *FrontPanel* |
+| callsign | string | Plugin instance name (default: *org.rdk.FrontPanel*) |
+| classname | string | Class name: *org.rdk.FrontPanel* |
 | locator | string | Library name: *libWPEFrameworkFrontPanel.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the FrontPanel plugin:
+The following methods are provided by the org.rdk.FrontPanel plugin:
 
 FrontPanel interface methods:
 
