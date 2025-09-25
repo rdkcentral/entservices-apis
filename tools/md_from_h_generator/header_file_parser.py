@@ -50,6 +50,9 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
+        'integer':  '0',
+        'int16_t':  '0',
+        'uint16_t': '0',
         'int32_t':  '0',
         'uint32_t': '0',
         'int64_t':  '0',
@@ -130,6 +133,7 @@ class HeaderFileParser:
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
         self.log_missing_method_info()
+        print(json.dumps(self.symbols_registry, indent=4))
 
     def parse_header_file(self):
         """
@@ -400,7 +404,8 @@ class HeaderFileParser:
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
-                    if member_type == 'uint64_t' or member_type == 'int32_t':
+                    interger_regex_pattern = r'u?int(8|16|32|64)_t'
+                    if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
                     text_tag_pattern = r'@text\s+([^\*/]+)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
@@ -540,8 +545,12 @@ class HeaderFileParser:
             match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
-                if param_type == 'uint64_t' or param_type == 'int32_t':
+                interger_regex_pattern = r'u?int(8|16|32|64)_t'
+                if re.match(interger_regex_pattern, param_type):
                     param_type = 'integer'
+                if '[]' in param_name:
+                    param_name = param_name.replace('[]', '')
+                    param_type = 'string'
                 custom_name = None
                 unwrapped = False
                 keep_key = False
@@ -914,17 +923,28 @@ class HeaderFileParser:
         """
         Used to flatten descriptions for params/results/values in the symbol registry.
         """
+        flattened_descriptions = {}
         if unqiue_id in self.symbols_registry:
             symbol_name = unqiue_id.split('-')[0]
             symbol_type = self.symbols_registry[unqiue_id].get('type')
             symbol_desc = self.symbols_registry[unqiue_id].get('description')
             symbol_custom_name = self.symbols_registry[unqiue_id].get('custom_name', '')
             overridden_name = symbol_custom_name if symbol_custom_name else symbol_name
+            symbol_type_override = symbol_type
+            if symbol_type in self.enums_registry:
+                symbol_type_override = 'string'
             curr_key = f"{parent_key}.{overridden_name}"
-            flattened_descriptions = {curr_key: {'type': symbol_type, 'description': symbol_desc}}
+            if symbol_type in self.structs_registry:
+                struct = self.structs_registry[symbol_type]
+                if len(struct) == 1:
+                    first_member = next(iter(struct))
+                    if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+                        flattened_descriptions.update(
+                            self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+                        return flattened_descriptions
+            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': symbol_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
-            return flattened_descriptions
-        return {}
+        return flattened_descriptions
 
     def flatten_description(self, parent_key, symbol_type):
         """
@@ -938,15 +958,19 @@ class HeaderFileParser:
                 if first_member not in self.structs_registry and first_member not in self.iterators_registry:
                     flattened_descriptions.update(
                         self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
-            for member_name in struct:
-                member_type = struct[member_name]['type']
-                member_desc = struct[member_name]['description']
-                member_custom_name = struct[member_name].get('custom_name', '')
-                overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
-                curr_key = f"{parent_key}.{overridden_name}"
-                flattened_descriptions[curr_key] = {'type': member_type, 'description': member_desc}
-                flattened_descriptions.update(
-                    self.flatten_description(curr_key, member_type))
+            else:
+                for member_name in struct:
+                    member_type = struct[member_name]['type']
+                    member_desc = struct[member_name]['description']
+                    member_custom_name = struct[member_name].get('custom_name', '')
+                    overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
+                    curr_key = f"{parent_key}.{overridden_name}"
+                    member_type_override = member_type
+                    if member_type in self.enums_registry():
+                        member_type_override = 'string'
+                    flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
+                    flattened_descriptions.update(
+                        self.flatten_description(curr_key, member_type))
             return flattened_descriptions
         elif symbol_type in self.enums_registry:
             if parent_key[-3:] == '[#]':
