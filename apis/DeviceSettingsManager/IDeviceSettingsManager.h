@@ -191,9 +191,6 @@ namespace Exchange {
         struct AudioConfig {
            int32_t typeId;
            string  name;
-           // IDeviceSettingsAudioCompressionIterator *audioCompressions;
-           // IDeviceSettingsAudioEncodingIterator *audioEncodings;
-           // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
         struct AudioARCStatus { 
@@ -2352,3 +2349,4 @@ namespace Exchange {
 
 } // namespace Exchange
 } // namespace WPEFramework
+
