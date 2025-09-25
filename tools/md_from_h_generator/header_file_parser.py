@@ -31,13 +31,13 @@ class HeaderFileParser:
     """
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
-        ('plugindescr', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@plugindescription\s+(.*?)(?=\s*\*\/|$)')),
+        ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
         ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
         ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[\w+\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
-        ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\d+?)\s+(\w+)\s+(.*?)?(?=\s*\*\/|$)')),
+        ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
@@ -130,7 +130,6 @@ class HeaderFileParser:
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
         self.log_missing_method_info()
-        print(self.configuration_options)
 
     def parse_header_file(self):
         """
@@ -161,6 +160,8 @@ class HeaderFileParser:
                 scope, brace_count = self.external_struct_tracker(line, scope, brace_count)
                 groups, line_tag, line_type = self.match_line_with_regex(line, self.REGEX_LINE_LIST)
 
+                if line_tag == None:
+                    self.latest_tag = ''
                 if line_type == 'doxygen':
                     self.update_doxy_tags(groups, line_tag)
                 if line_type == 'cpp_obj':
@@ -258,12 +259,14 @@ class HeaderFileParser:
         Updates the doxygen tag object with the given line's information.
         Supports multiline for all tags by accumulating lines until a new tag is found.
         """
-        if line_tag == 'plugindescription':
+        if line_tag == 'plugindesc':
             self.plugindescription = groups[0]
+            self.latest_tag = 'plugindesc'
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
             self.configuration_options[groups[0]] = {'type': type, 'description': description}
+            self.latest_tag = 'config'
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
             self.latest_tag = 'text'
@@ -280,26 +283,35 @@ class HeaderFileParser:
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
             self.latest_tag = 'see'
         elif line_tag == 'errors':
-            error_code = groups[0]
+            error_code = groups[1]
             description = groups[2]
-            self.doxy_tags.setdefault('errors', {})[groups[1]] = {'code': error_code,
+            self.doxy_tags.setdefault('errors', {})[groups[0]] = {'code': error_code,
                                                                   'description': description}
             self.latest_tag = 'errors'
         elif line_tag == 'comment':
+            # if we encounter a comment that is not associated with a tag, skip it
+            if self.latest_tag == '':
+                return
             if groups[0] == '/':
                 return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[3])
                 self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
-            elif self.latest_tag and self.latest_tag in self.doxy_tags and self.latest_tag != 'plugindescription':
+            elif self.latest_tag == 'plugindesc':
+                self.plugindescription += (' ' + groups[0])
+            elif self.latest_tag == 'config':
+                # Multiline support for config description
+                last_key = list(self.configuration_options.keys())[-1]
+                self.configuration_options[last_key]['description'] += (' ' + groups[0])
+            elif self.latest_tag and self.latest_tag in self.doxy_tags:
                 self.doxy_tags[self.latest_tag] += (' ' + groups[0])
             line_tag = self.latest_tag
         else:
             self.doxy_tags[line_tag] = groups[0]
-            self.latest_tag = line_tag
-        if line_tag != 'plugindescription':
-            self.latest_tag = line_tag
+        self.latest_tag = line_tag
+        # if line_tag != 'plugindesc':
+        #     self.latest_tag = line_tag
 
     def clean_and_validate_cpp_obj_line(self, line, delimiter, line_num, data_type):
         """
@@ -388,6 +400,8 @@ class HeaderFileParser:
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
+                    if member_type == 'uint64_t' or member_type == 'int32_t':
+                        member_type = 'integer'
                     text_tag_pattern = r'@text\s+([^\*/]+)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
@@ -526,6 +540,8 @@ class HeaderFileParser:
             match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
+                if param_type == 'uint64_t' or param_type == 'int32_t':
+                    param_type = 'integer'
                 custom_name = None
                 unwrapped = False
                 keep_key = False
