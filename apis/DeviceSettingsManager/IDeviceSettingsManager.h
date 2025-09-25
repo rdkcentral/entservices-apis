@@ -1716,7 +1716,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IDevice : virtual public Core::IUnknown {
+    struct EXTERNAL IVideoDevice : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEODEVICE };
 
         enum VideoZoom : int8_t {
@@ -1779,8 +1779,8 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideo::IDevice::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerVideo::IDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IVideoDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IVideoDevice::INotification* notification /* @in */) = 0;
 
         /** Get Video Device handle. */
         // @text getVideoDeviceHandle
