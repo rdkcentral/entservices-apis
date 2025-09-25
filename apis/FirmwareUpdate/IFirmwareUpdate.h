@@ -92,8 +92,8 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @brief Enable or disable the AutoReboot feature.
   // @param[in] enable Boolean to enable or disable AutoReboot
   // @returns Core::hresult
-  // @text setFirmwareAutoReboot
-  virtual Core::hresult SetFirmwareAutoReboot(const bool enable, Result& result /* @out */) = 0;
+  // @text setAutoReboot
+  virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
 
 };
 } // namespace Exchange
