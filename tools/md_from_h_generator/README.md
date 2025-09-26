@@ -22,7 +22,6 @@ This will create a folder in the current directory named "generated_docs", where
 - **Required**: Yes (Mandatory tag for all methods/properties/events)
 - **Usage**:
   - Use this tag to by following it with the name of the method/property/event.
-  - Ensure the name following the tag matches the respective method/property/event name exactly.
 
 
 ### Example:
@@ -30,10 +29,15 @@ This will create a folder in the current directory named "generated_docs", where
 ***Header File Example:***
 ```cpp
 /**
- * @text initialize
+ * @text initializeOverriddenName
  */
 virtual uint32_t Initialize();
 ```
+
+***Generated Markdown Example:***
+> <a id="method.initializeOverriddenName"></a>
+> ## *initializeOverriddenName [<sup>method</sup>](#head.Methods)*
+
 
 ---
 
@@ -103,7 +107,7 @@ virtual uint32_t initialize();
 
 ### Example:
 
-***Usage in the header file:***
+***Header File Example:***
 ```cpp
 /**
  * @text initialize
@@ -121,7 +125,7 @@ virtual uint32_t initialize();
 virtual void onInitialize();
 ```
 
-***Result in the markdown:***
+***Generated Markdown Example:***
 >## *initialize [<sup>method</sup>](#head.Methods)*
 > This method initializes the system.
 > ### Events
@@ -175,7 +179,9 @@ virtual uint32_t initialize(const string& configPath /* @in @text:config-path-ov
 - **Usage**:
   - Use this tag to explain what the method returns.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
 /**
  * @text initialize
@@ -195,7 +201,9 @@ virtual uint32_t initialize();
   - Omitted methods do not need to have any tags, like the `@text` or `@brief` tags
   - This tag is optional.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
 /**
  * @omit
@@ -211,7 +219,9 @@ virtual uint32_t internalMethod();
 - **Usage**:
   - Use this tag for methods that act as properties.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
 /*
  * @property
@@ -222,13 +232,15 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 ```
 ---
 
-### 9. `@plugindescription`
+### 9. `@docs:plugindescr`
 - **Purpose**: Provides option to override the generic plugin description text
 - **Required**: No
 - **Usage**:
   - Use this tag for overriding the generic plugin description.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
     namespace Exchange
     {
@@ -257,7 +269,9 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 - **Usage**:
   - Use this tag to detail the error code, error message type, and error description
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
     namespace Exchange
     {
@@ -280,7 +294,9 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 - **Usage**:
   - Use this to describe a configuration option for the plugin. Include the option's name, type, and description. Do not need to include options for the plugin's callsign, classname, locator, or autostart.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
     namespace Exchange
     {
@@ -304,6 +320,39 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 > | configuration.loggername	| string	| Logger name used by backend |
 
 ---
+
+### 12. `@unwrapped`
+- **Purpose**: Provides option to unwrap the results or params object such that it directly returns a single member. 
+- **Required**: No
+- **Usage**:
+  - In some methods or APIs, the request object may have a 'params' key (or a response object may have a 'result' key) that does not have an object as a value, but rather the value itself. For example:
+```
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.Analytics.sample",
+    "params": true
+}
+```
+  - In this case, the parameter in the method should be tagged with the `@unwrapped` tag.
+
+### Example:
+
+***Header File Example:***
+```cpp
+  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @unwrapped @out */) = 0;
+```
+***Generated Markdown Example:***
+> #### Response
+>
+> ```json
+> {
+>     "jsonrpc": 2.0,
+>     "id": 7,
+>     "result": true
+> }
+> ```
+
 
 ## 4. Additional Features and Guidelines
 
