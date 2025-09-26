@@ -20,7 +20,7 @@
 # header_file_parser.py
 
 import re
-import os
+import json
 from logger import Logger
 
 class HeaderFileParser:
@@ -31,57 +31,65 @@ class HeaderFileParser:
     """
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
-        ('text',    'doxygen', re.compile(r'(?:\/\*+|\*|//) (?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
-        ('brief',   'doxygen', re.compile(r'(?:\/\*+|\*|//) @brief\s*(.*?)(?=\s*\*\/|$)')),
-        ('details', 'doxygen', re.compile(r'(?:\/\*+|\*|//) @details\s*(.*?)(?=\s*\*\/|$)')),
-        ('params',  'doxygen', re.compile(r'(?:\/\*+|\*|//) @param(?:\[.*\])?\s+(\w+)\s*\:?\s*(.*?)(?=\s*\*\/|$)')),
-        ('return',  'doxygen', re.compile(r'(?:\/\*+|\*|//) @return(?:s)?\s*(.*?)(?=\s*\*\/|$)')),
-        ('see',     'doxygen', re.compile(r'(?:\/\*+|\*|//) @see\s*(.*?)(?=\s*\*\/|$)')),
-        ('omit',    'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*(@json:omit|@omit)')),
-        ('property','doxygen', re.compile(r'(?:\/\*+|\*|//) @property\s*(.*)')), 
-        ('comment', 'doxygen', re.compile(r'(?:\/\*+|\*|//)\s*(.*)')),
-        ('enum',    'cpp_obj', re.compile(r'enum\s+([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
-        ('struct',  'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
-        ('method',  'cpp_obj', re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)')),
-        ('iterator','cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
+        ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
+        ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
+        ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
+        ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
+        ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
+        ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[\w+\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
+        ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
+        ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
+        ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
+        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
+        ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
+        ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
+        ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
+        ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
+        ('method',      'cpp_obj', re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)')),
+        ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-            'int32_t': '0', 
-            'uint32_t': '0', 
-            'int64_t': '0', 
-            'uint64_t': '0',
-            'int': '0',
-            'float': '0.0', 
-            'double': '0.0', 
-            'bool': 'true', 
-            'char': 'a', 
-            'string': ''
+        'integer':  '0',
+        'int16_t':  '0',
+        'uint16_t': '0',
+        'int32_t':  '0',
+        'uint32_t': '0',
+        'int64_t':  '0',
+        'uint64_t': '0',
+        'int':      '0',
+        'float':    '0.0',
+        'double':   '0.0',
+        'bool':     True,
+        'char':     'a',
+        'string':   ''
     }
     # List of regexes to match different cpp components of the header file
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
         'iter_typedef': re.compile(r'typedef\s+RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*([\w\d]+)\s*;'),
-        'enum': re.compile(r'enum\s+([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{(.*)\}\;?'),
-        'enum_mem': re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
-        'struct': re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{(.*)\}\;?'),
-        'struct_mem': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
-        'method': re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
+        'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{(.*)\}\;?'),
+        'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
+        'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
+        'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
+        'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
         'method_param': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
     }
 
-    def __init__(self, header_file_path: str, logger: Logger):
+    def __init__(self, header_file_path: str, plugin_name: str, logger: Logger):
         """
-        Initializes data structures to track different components of a C++ header file, then 
+        Initializes data structures to track different components of a C++ header file, then
         parses said header file to extract methods, structs, enums, and iterators.
 
-        Args: 
+        Args:
             header_file_path (str): path to the header file
+            plugin_name (str): name of the plugin, used to derive the classname
             logger (Logger): list of regex matching different components of the header file
         """
         # objects to hold the different components and properties of the header file
         self.header_file_path = header_file_path
-        self.classname = os.path.splitext(os.path.basename(self.header_file_path))[0]
+        # All the header files will begin with "I", strip it to get the classname.
+        self.classname = plugin_name
         self.methods = {}
         self.properties = {}
         self.events = {}
@@ -89,7 +97,9 @@ class HeaderFileParser:
         self.iterators_registry = {}
         self.enums_registry = {}
         self.symbols_registry = {}
+        self.configuration_options = {}
         self.logger = logger
+        self.plugindescription = ''
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -127,7 +137,7 @@ class HeaderFileParser:
 
     def parse_header_file(self):
         """
-        Parses the header file line-by-line to track and record the file's components, such as 
+        Parses the header file line-by-line to track and record the file's components, such as
         methods, properties, events, structs, enums, and iterators. Keeps track of these components'
         associated doxygen tags.
         """
@@ -154,6 +164,8 @@ class HeaderFileParser:
                 scope, brace_count = self.external_struct_tracker(line, scope, brace_count)
                 groups, line_tag, line_type = self.match_line_with_regex(line, self.REGEX_LINE_LIST)
 
+                if line_tag == None:
+                    self.latest_tag = ''
                 if line_type == 'doxygen':
                     self.update_doxy_tags(groups, line_tag)
                 if line_type == 'cpp_obj':
@@ -186,7 +198,7 @@ class HeaderFileParser:
                 return match.groups(), tag, l_type
         return None, None, None
 
-    def process_method(self, line, method_object, within_method_def, method_paren_count, 
+    def process_method(self, line, method_object, within_method_def, method_paren_count,
                        curr_line_num, scope):
         """
         Processes a line within a method definition.
@@ -226,7 +238,7 @@ class HeaderFileParser:
             enum_object = ''
         return enum_object, enum_braces_count, within_enum_def
 
-    def process_struct(self, line, struct_object, within_struct_def, struct_braces_count, 
+    def process_struct(self, line, struct_object, within_struct_def, struct_braces_count,
                        curr_line_num):
         """
         Processes a line within a struct definition.
@@ -236,10 +248,10 @@ class HeaderFileParser:
             return line, 0, within_struct_def
         # accumulate the struct's data members until the closing brace is reached
         if struct_braces_count > 0:
-            line = self.clean_and_validate_cpp_obj_line(line, ';', curr_line_num, 'Struct member')
-            struct_object += line
+            line = self.clean_and_validate_cpp_obj_line(line, '\n', curr_line_num, 'Struct member')
+            struct_object += (line + '\n')
         elif struct_braces_count <= 0:
-            struct_object += line
+            struct_object += (line + '\n')
             self.register_struct(struct_object)
             # reset the struct helper object once the struct is registered
             within_struct_def = False
@@ -248,47 +260,83 @@ class HeaderFileParser:
 
     def update_doxy_tags(self, groups, line_tag):
         """
-        Updates the doxygen tag object with the given line's information. 
+        Updates the doxygen tag object with the given line's information.
+        Supports multiline for all tags by accumulating lines until a new tag is found.
         """
-        if line_tag == 'text':
-            # self.doxy_tags = {}
+        if line_tag == 'plugindesc':
+            self.plugindescription = groups[0]
+            self.latest_tag = 'plugindesc'
+        elif line_tag == 'config':
+            type = groups[1]
+            description = groups[2]
+            self.configuration_options[groups[0]] = {'type': type, 'description': description}
+            self.latest_tag = 'config'
+        elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
+            self.latest_tag = 'text'
         elif line_tag == 'params':
-            self.latest_param = groups[0]
+            self.latest_param = groups[1]
             self.latest_tag = 'params'
-            self.doxy_tags.setdefault('params', {})[self.latest_param] = groups[1]
+            description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[3])
+            direction = groups[0]
+            optionality = groups[2]
+            self.doxy_tags.setdefault('params', {})[self.latest_param] = {'description': description, 
+                                                                          'direction': direction, 
+                                                                          'optionality': optionality}
         elif line_tag == 'see':
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
+            self.latest_tag = 'see'
+        elif line_tag == 'errors':
+            error_code = groups[1]
+            description = groups[2]
+            self.doxy_tags.setdefault('errors', {})[groups[0]] = {'code': error_code,
+                                                                  'description': description}
+            self.latest_tag = 'errors'
         elif line_tag == 'comment':
+            # if we encounter a comment that is not associated with a tag, skip it
+            if self.latest_tag == '':
+                return
             if groups[0] == '/':
                 return
-            elif self.latest_tag == 'params':
-                self.doxy_tags['params'][self.latest_param] += (' ' + groups[0])
-            elif self.latest_tag:
+            # Multiline support: append to last tag
+            if self.latest_tag == 'params':
+                description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
+                self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
+            elif self.latest_tag == 'plugindesc':
+                self.plugindescription += (' ' + groups[0])
+            elif self.latest_tag == 'config':
+                # Multiline support for config description
+                last_key = list(self.configuration_options.keys())[-1]
+                self.configuration_options[last_key]['description'] += (' ' + groups[0])
+            elif self.latest_tag and self.latest_tag in self.doxy_tags:
                 self.doxy_tags[self.latest_tag] += (' ' + groups[0])
             line_tag = self.latest_tag
         else:
             self.doxy_tags[line_tag] = groups[0]
         self.latest_tag = line_tag
+        # if line_tag != 'plugindesc':
+        #     self.latest_tag = line_tag
 
     def clean_and_validate_cpp_obj_line(self, line, delimiter, line_num, data_type):
         """
-        Validates a line of a multi-line cpp object by checking that data members are defined on 
+        Validates a line of a multi-line cpp object by checking that data members are defined on
         separate lines and that comments are formed before the delimiter.
         """
         delim_index = line.find(delimiter)
         # if a comment is defined after the delimiter, log a warning
         if delim_index != -1 and ('//' in line[delim_index:] or '/*' in line[delim_index:]):
             line = self.remove_inline_comments(line)
-            self.logger.log("WARNING",
-                            f"Comment on line {line_num + 1} should come before comma/semicolon.")
+            if self.logger:
+                self.logger.log("WARNING",
+                                f"Comment on line {line_num + 1} should come before comma/semicolon.")
         # if the delimiter is found more than once, log a warning
         if line.count(delimiter) > 1:
             line = self.remove_inline_comments(line)
-            self.logger.log("WARNING",
-                            f"Line {line_num + 1} should have only one {data_type} per line.")
+            if self.logger:
+                self.logger.log("WARNING",
+                                f"Line {line_num + 1} should have only one {data_type} per line.")
         return line
-    
+
     def remove_inline_comments(self, line):
         """
         Removes inline comments from a line.
@@ -315,7 +363,8 @@ class HeaderFileParser:
             iterator_name = groups[0]
             self.iterators_registry[iterator_name] = groups[1]
         else:
-            self.logger.log("ERROR", f"Could not register iterator: {iterator_object}")
+            if self.logger:
+                self.logger.log("ERROR", f"Could not register iterator: {iterator_object}")
 
     def register_enum(self, enum_object):
         """
@@ -334,11 +383,12 @@ class HeaderFileParser:
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
-                        'value': enumerator_value, 
+                        'value': enumerator_value,
                         'description': description.strip() if description else ''
                     }
         else:
-            self.logger.log("ERROR", f"Could not register enum: {enum_object}")
+            if self.logger:
+                self.logger.log("ERROR", f"Could not register enum: {enum_object}")
 
     def register_struct(self, struct_object):
         """
@@ -349,38 +399,54 @@ class HeaderFileParser:
             struct_name, struct_body = match.groups()
             self.structs_registry[struct_name] = {}
             # process each data member
-            for member_def in struct_body.split(';'):
+            for member_def in struct_body.split('\n'):
                 member_def = member_def.strip()
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
-                    description = self.clean_description(description)
+                    interger_regex_pattern = r'u?int(8|16|32|64)_t'
+                    if re.match(interger_regex_pattern, member_type):
+                        member_type = 'integer'
+                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    custom_name = text_tag_match.group(1) if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    brief_tag_match = re.search(brief_tag_pattern, description) if description else None
+                    description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
-                        'type': member_type, 
-                        'description': description.strip() if description else ''
+                        'type': member_type,
+                        'description': description.strip() if description else '',
+                        'custom_name': custom_name.strip() if custom_name else member_name
                     }
                     # register each data member in the global symbol registry
-                    self.register_symbol(member_name, member_type, description)
+                    self.register_symbol(member_name, custom_name, member_type, description, False)
         else:
-            self.logger.log("ERROR", f"Could not register struct: {struct_object}")
+            if self.logger:
+                self.logger.log("ERROR", f"Could not register struct: {struct_object}")
 
     def register_method(self, method_object, doxy_tags, scope):
         """
         Registers a method, property, or event.
         """
         if doxy_tags == {}:
-            self.logger.log("WARNING",f"{method_object} has no doxygen tags.")
+            if self.logger:
+                self.logger.log("WARNING", f"{method_object} has no doxygen tags.")
+
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
             # ignore these methods
             if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
                 return
-            # encountering the getter/setter version definition of a property
+            # if we are parsing a method that has the same name as a property we have already
+            # encountered/parsed, that means we are encountering the getter/setter version definition
+            # of a property, thus the property is read & write
             if method_name in self.properties:
                 self.properties[method_name]['property'] = 'read write'
                 return
+
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
+
             if 'property' in doxy_tags:
                 self.properties[method_name] = method_info
             elif scope[-1] == 'INotification':
@@ -388,22 +454,24 @@ class HeaderFileParser:
             else:
                 self.methods[method_name] = method_info
         else:
-            self.logger.log("ERROR", f"Could not register method: {method_object}")
+            if self.logger:
+                self.logger.log("ERROR", f"Could not register method: {method_object}")
 
     def build_method_info(self, method_return_type, method_parameters, doxy_tags):
         """
-        Helper to build a method info object. Also registers method parameters in the symbol 
+        Helper to build a method info object. Also registers method parameters in the symbol
         registry.
         """
         doxy_tag_param_info = doxy_tags.get('params', {})
         params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info)
         method_info = {
-            'text': doxy_tags.get('text', ''), 
-            'brief': doxy_tags.get('brief', ''), 
+            'text': doxy_tags.get('text', ''),
+            'brief': doxy_tags.get('brief', ''),
             'details': doxy_tags.get('details', ''),
             'events': doxy_tags.get('see', {}),
             'params': params,
             'results': results,
+            'errors': doxy_tags.get('errors', {}),
             'return_type': method_return_type
         }
         if 'property' in doxy_tags:
@@ -413,33 +481,53 @@ class HeaderFileParser:
                 method_info['property'] = 'read'
         return method_info
 
+    def normalize_key(self, key):
+            return key#.replace('_', '-').strip()
+
     def process_and_register_params(self, method_parameters, doxy_tag_param_info):
         """
-        Helper to build params and results data structures, using the parameter declaration list 
+        Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
         """
-        param_list_info = self.get_info_from_param_declaration(method_parameters)
+
+        # doxy_tag_param_info has info from doxygen @param tags, while param_info_list has info from the parameter declaration
+        normalized_param_info = {self.normalize_key(k): v for k, v in doxy_tag_param_info.items()}
+        param_info_list = self.get_info_from_param_declaration(method_parameters)
+
         params = []
         results = []
-        # build the params and results lists using the parameter delcaration list and doxygen tags
-        for symbol_name, (symbol_type, symbol_inline_comment) in param_list_info.items():
-            # register string iterators here b/c they are seldom defined outside of a method param
+        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction) in param_info_list.items():
+            if self.logger:
+                self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
-            symbol_description = doxy_tag_param_info.get(symbol_name, '')
-            self.register_symbol(symbol_name, symbol_type, symbol_description)
+            overridden_name = symbol_name
+            if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
+                overridden_name = custom_name
+                if self.logger:
+                    self.logger.log("INFO", f"Overridden name for param {symbol_name} found in doxy tags as {overridden_name}")
+            symbol_description = doxy_tag_param_info.get(overridden_name, {}).get('description', '')
+            symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
+            symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
+
+            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
-                'description': symbol_description
+                'description': symbol_description,
+                'custom_name': custom_name,
+                'direction': symbol_direction,
+                'optionality': symbol_optionality,
+                'unwrapped': unwrapped,
+                'keep_key': keep_key
             }
-            # determine whether the symbol is a result or a parameter
-            if symbol_inline_comment and '@inout' in symbol_inline_comment:
+
+            if direction == 'inout':
                 params.append(symbol_info)
                 results.append(symbol_info)
-            elif symbol_inline_comment and '@out' in symbol_inline_comment:
+            elif direction == 'out':
                 results.append(symbol_info)
-            else:  # Includes '@in', other, or empty
+            else:
                 params.append(symbol_info)
         return params, results
 
@@ -457,27 +545,57 @@ class HeaderFileParser:
             match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
-                param_info[param_name] = (param_type, param_inline_comment)
+                interger_regex_pattern = r'u?int(8|16|32|64)_t'
+                if re.match(interger_regex_pattern, param_type):
+                    param_type = 'integer'
+                if '[]' in param_name:
+                    param_name = param_name.replace('[]', '')
+                    param_type = 'string'
+                custom_name = None
+                unwrapped = False
+                keep_key = False
+                direction = None
+                if param_inline_comment:
+                    text_match = re.search(r'@text\s*:?\s*([\w\-]+)', param_inline_comment)
+                    if text_match:
+                        custom_name = self.normalize_key(text_match.group(1))
+                    if '@keep_key' in param_inline_comment:
+                        keep_key = True
+                    if '@unwrapped' in param_inline_comment:
+                        unwrapped = True
+                    if '@out' in param_inline_comment:
+                        direction = 'out'
+                    elif '@inout' in param_inline_comment:
+                        direction = 'inout'
+                    else:
+                        direction = 'in'
+                param_info[param_name] = (param_type, param_inline_comment, custom_name, unwrapped, keep_key, direction)
             else:
-                self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
+                if self.logger:
+                    self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
 
-    def register_symbol(self, symbol_name, symbol_type, description):
+    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False):
         """
-        Registers a symbol by incrementally adding information to the symbols registry, as 
+        Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
         """
         unique_id = f"{symbol_name}-{symbol_type}"
         if unique_id not in self.symbols_registry:
             self.symbols_registry[unique_id] = {'type': symbol_type}
+        if not self.symbols_registry[unique_id].get('custom_name'):
+            self.symbols_registry[unique_id]['custom_name'] = symbol_custom_name.strip() if symbol_custom_name else symbol_name
         if not self.symbols_registry[unique_id].get('description'):
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
+        if not self.symbols_registry[unique_id].get('unwrapped'):
+            self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
             self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
-        Tracks the current scope of the line being processed.
+        Tracks the current scope of the line being processed. Currently used to determine when
+        the notification section is parsed.
         """
         external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
         external_struct_tracker_match = external_struct_tracker_regex.match(line)
@@ -498,75 +616,124 @@ class HeaderFileParser:
 
     def generate_request_response_objects(self):
         """
-        Generates request and response JSONs for each method and event. Directly modifies the 
+        Generates request and response JSONs for each method and event. Directly modifies the
         methods, properties, and events registries.
         """
+        id_num = 0
         for method_name, method_info in self.methods.items():
-            method_info['request'] = self.generate_request_object(method_name, method_info)
-            method_info['response'] = self.generate_response_object(method_info)
+            method_info['request'] = self.generate_request_object(method_name, method_info, id_num)
+            method_info['response'] = self.generate_response_object(method_info, id_num)
+            id_num += 1
         for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info)
+            event_info['request'] = self.generate_request_object(event_name, event_info, id_num)
+            id_num += 1
         for prop_name, prop_info in self.properties.items():
             # properties can have both get and set requests and responses
             if 'read' in prop_info['property']:
                 if prop_info['params'] != []:
                     prop_info['results'] = prop_info['params']
                     prop_info['params'] = []
-                prop_info['get_request'] = self.generate_request_object(prop_name, prop_info)
-                prop_info['get_response'] = self.generate_response_object(prop_info)
+                prop_info['get_request'] = self.generate_request_object(prop_name, prop_info, id_num)
+                prop_info['get_response'] = self.generate_response_object(prop_info, id_num)
             if 'write' in prop_info['property']:
                 if prop_info['results'] != []:
                     prop_info['params'] = prop_info['results']
                     prop_info['results'] = []
-                prop_info['set_request'] = self.generate_request_object(prop_name, prop_info)
-                prop_info['set_response'] = self.generate_response_object(prop_info)
+                prop_info['set_request'] = self.generate_request_object(prop_name, prop_info, id_num)
+                prop_info['set_response'] = self.generate_response_object(prop_info, id_num)
+            id_num += 1
 
-    def generate_request_object(self, method_name, method_info):
+    def to_camel_case(self, name):
+        """Convert UpperCamelCase to lowerCamelCase."""
+        return name[0].lower() + name[1:] if name and name[0].isupper() else name
+
+    def generate_request_object(self, method_name, method_info, id_num):
         """
         Makes a request JSON. Creates an example dynamically.
         """
+        camel_method_name = self.to_camel_case(method_name)
         request = {
             "jsonrpc": "2.0",
-            "id": 42,
-            "method": f"org.rdk.{self.classname}.{method_name}",
+            "id": id_num,
+            "method": f"org.rdk.{self.classname}.{camel_method_name}",
         }
         if method_info['params'] != []:
+            if len(method_info['params']) == 1:
+                param = next(iter(method_info['params']))
+                if param.get('unwrapped'):
+                    param_name = param.get('name')
+                    param_type = param.get('type')
+                    param_desc = param.get('description')
+                    request['params'] = self.get_symbol_example(
+                    f"{param_name}-{param_type}", param_desc)
+                    return request
             request["params"] = {}
             for param in method_info['params']:
+                keep_key = param.get('keep_key')
                 param_name = param.get('name')
+                param_custom_name = param.get('custom_name')
+                # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
+                overridden_name = param_custom_name if param_custom_name else param_name
                 param_type = param.get('type')
                 param_desc = param.get('description')
-                request["params"][param_name] = self.get_symbol_example(
-                    f"{param_name}-{param_type}", param_desc)
+                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
+                    request["params"] = self.get_symbol_example(
+                        f"{param_name}-{param_type}", param_desc)
+                else:
+                    request["params"][overridden_name] = self.get_symbol_example(
+                        f"{param_name}-{param_type}", param_desc)
         return request
 
-    def generate_response_object(self, method_info):
+    def generate_response_object(self, method_info, id_num):
         """
         Makes a response JSON. Creates an example dynamically.
+        Pattern:
+        1. If no @out, result: null
+        2. If one @out, result: <type example> (key is override name if present)
+        3. If multiple @out, result: { key: <type example>, ... } (keys are override names if present)
         """
         response = {
             "jsonrpc": "2.0",
-            "id": 42,
-            "result": "null"
+            "id": id_num,
+            "result": None
         }
+        # Only consider @out results
         if method_info['results'] != []:
+            if len(method_info['results']) == 1:
+                result = next(iter(method_info['results']))
+                if result.get('unwrapped'):
+                    param_name = result.get('name')
+                    param_type = result.get('type')
+                    param_desc = result.get('description')
+                    response['result'] = self.get_symbol_example(
+                    f"{param_name}-{param_type}", param_desc)
+                    return response
             response['result'] = {}
             for result in method_info['results']:
+                keep_key = result.get('keep_key')
                 result_name = result.get('name')
+                result_custom_name = result.get('custom_name')
+                # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
+                overridden_name = result_custom_name if result_custom_name and result_custom_name != result_name else result_name
                 result_type = result.get('type')
                 result_desc = result.get('description')
-                response['result'][result_name] = self.get_symbol_example(
-                    f"{result_name}-{result_type}", result_desc)
+                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
+                    response['result'] = self.get_symbol_example(
+                        f"{result_name}-{result_type}", result_desc)
+                else:
+                    response['result'][overridden_name] = self.get_symbol_example(
+                        f"{result_name}-{result_type}", result_desc)
         return response
 
     def get_symbol_example(self, unique_id, description):
         """
-        Used in generating request/response JSONs. Pulls an example from either the @param tag 
+        Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
-        example_from_description = self.generate_example_from_description(description)
-        if example_from_description:
-            return self.wrap_example_if_iterator(unique_id, example_from_description)
+        example_from_param_description = self.generate_example_from_description(description)
+        if example_from_param_description:
+            return self.wrap_example_if_iterator(unique_id, example_from_param_description)
+        # if no example in the param description, pull from the symbols registry
         if unique_id in self.symbols_registry:
             return self.symbols_registry[unique_id].get('example')
         return None
@@ -580,11 +747,13 @@ class HeaderFileParser:
                 description = symbol_data.get('description')
                 symbol_data['example'] = self.generate_example_for_individual_symbol(
                     unique_id, description)
-                self.logger.log("INFO", f"Generated missing example for {unique_id}")
+                if self.logger:
+                    self.logger.log("INFO", f"Generated missing example for {unique_id}")
 
     def generate_example_for_individual_symbol(self, unique_id, description):
         """
-        Generate an example for an individual symbol based on its description or type.
+        Generate an example for an individual symbol based on its description or type. Used as a
+        helper to populate the symbols registry.
         """
         example = self.generate_example_from_description(description)
         if example:
@@ -605,11 +774,17 @@ class HeaderFileParser:
 
     def generate_example_from_symbol_type(self, symbol_type):
         """
-        Creates an example parameter based on the symbol type.
+        Creates an example parameter based on the symbol type. Used as a
+        helper to populate the symbols registry.
         """
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
-            return {member_name: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
+            # if len(struct) == 1:
+            #     first_member = next(iter(struct))
+            #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+            #         return self.generate_example_for_individual_symbol(f"{first_member}-{struct[first_member]['type']}", struct[first_member]['description'])
+
+            return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
             return list(self.enums_registry[symbol_type])[0]
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
@@ -621,7 +796,7 @@ class HeaderFileParser:
 
     def wrap_example_if_iterator(self, unique_id, example):
         """
-        Wrap the example in a list if the symbol is an iterator, otherwise simply return the 
+        Wrap the example in a list if the symbol is an iterator, otherwise simply return the
         example.
         """
         if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
@@ -639,8 +814,9 @@ class HeaderFileParser:
                     self.methods[method_name]['events'][event] = self.events[event].get('brief')
                     self.events[event]['associated_method'] = method_name
                 else:
-                    self.logger.log("ERROR", 
-                                    f"Event {event} tagged with {method_name} does not exist.")
+                    if self.logger:
+                        self.logger.log("ERROR",
+                                        f"Event {event} tagged with {method_name} does not exist.")
 
     def log_unassociated_events(self):
         """
@@ -648,7 +824,8 @@ class HeaderFileParser:
         """
         for event_name, event_info in self.events.items():
             if not event_info.get('associated_method'):
-                self.logger.log("WARNING", f"Event {event_name} is not associated with a method.")
+                if self.logger:
+                    self.logger.log("WARNING", f"Event {event_name} is not associated with a method.")
 
     def fill_and_log_missing_symbol_descriptions(self):
         """
@@ -658,55 +835,66 @@ class HeaderFileParser:
             for param in method_info['params']:
                 if not param.get('description'):
                     param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in method {method_name}")
+                    if self.logger:
+                        self.logger.log("INFO",
+                                f"Filled missing desc for {param['name']} in method {method_name}")
             for result in method_info['results']:
                 if not result.get('description'):
                     result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
+                    if self.logger:
+                        self.logger.log("INFO",
                             f"Filled missing desc for {result['name']} in method {method_name}")
         for event_name, event_info in self.events.items():
             for param in event_info['params']:
                 if not param.get('description'):
                     param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in event {event_name}")
+                    if self.logger:
+                        self.logger.log("INFO",
+                                f"Filled missing desc for {param['name']} in event {event_name}")
             for result in event_info['results']:
                 if not result.get('description'):
                     result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
+                    if self.logger:
+                        self.logger.log("INFO",
                             f"Filled missing desc for {result['name']} in event {event_name}")
         for prop_name, prop_info in self.properties.items():
             for param in prop_info['params']:
                 if not param.get('description'):
                     param['description'] = self.symbols_registry[f"{param['name']}-{param['type']}"].get('description', '')
-                    self.logger.log("INFO",
-                            f"Filled missing desc for {param['name']} in property {prop_name}")
+                    if self.logger:
+                        self.logger.log("INFO",
+                                f"Filled missing desc for {param['name']} in property {prop_name}")
             for result in prop_info['results']:
                 if not result.get('description'):
                     result['description'] = self.symbols_registry[f"{result['name']}-{result['type']}"].get('description', '')
-                    self.logger.log("INFO",
+                    if self.logger:
+                        self.logger.log("INFO",
                             f"Filled missing desc for {result['name']} in property {prop_name}")
-        
+
     def log_missing_method_info(self):
         """
-        At the end of parsing, if there is still information missing for methods, events, and 
-        symbols, log it. 
+        At the end of parsing, if there is still information missing for methods, events, and
+        symbols, log it.
         """
         for method_name, method_info in self.methods.items():
             if not method_info.get('brief') and not method_info.get('details'):
-                self.logger.log("INFO", f"Missing description: {method_name}")
+                if self.logger:
+                    self.logger.log("INFO", f"Missing description: {method_name}")
         for event_name, event_info in self.events.items():
             if not event_info.get('brief') and not event_info.get('details'):
-                self.logger.log("INFO", f"Missing description: {event_name}")
+                if self.logger:
+                    self.logger.log("INFO", f"Missing description: {event_name}")
         for prop_name, prop_info in self.properties.items():
             if not prop_info.get('brief') and not prop_info.get('details'):
-                self.logger.log("INFO", f"Missing description: {prop_name}")
+                if self.logger:
+                    self.logger.log("INFO", f"Missing description: {prop_name}")
         for symbol_name, symbol_info in self.symbols_registry.items():
             if not symbol_info.get('description'):
-                self.logger.log("INFO", f"Missing description: {symbol_name}")
+                if self.logger:
+                    self.logger.log("INFO", f"Missing description: {symbol_name}")
             if symbol_info.get('example') == "":
-                self.logger.log("INFO", f"Missing example: {symbol_name}")
+                if self.logger:
+                    self.logger.log("INFO", f"Missing example: {symbol_name}")
 
     def count_parentheses(self, line):
         """
@@ -730,22 +918,35 @@ class HeaderFileParser:
         """
         Builds flattened descriptions for all symbols in the symbols registry.
         """
-        for symbol_name, symbol_info in self.symbols_registry.items():
-            symbol_info['flattened_description'] = self.get_description_from_individual_symbol('', symbol_name)
+        for symbol_unique_id, symbol_info in self.symbols_registry.items():
+            symbol_info['flattened_description'] = self.get_description_from_individual_symbol('', symbol_unique_id)
 
     def get_description_from_individual_symbol(self, parent_key, unqiue_id):
         """
         Used to flatten descriptions for params/results/values in the symbol registry.
         """
+        flattened_descriptions = {}
         if unqiue_id in self.symbols_registry:
             symbol_name = unqiue_id.split('-')[0]
-            symbol_type = self.symbols_registry[unqiue_id]['type']
-            symbol_desc = self.symbols_registry[unqiue_id]['description']
-            curr_key = f"{parent_key}.{symbol_name}"
-            flattened_descriptions = {curr_key: {'type': symbol_type, 'description': symbol_desc}}
+            symbol_type = self.symbols_registry[unqiue_id].get('type')
+            symbol_desc = self.symbols_registry[unqiue_id].get('description')
+            symbol_custom_name = self.symbols_registry[unqiue_id].get('custom_name', '')
+            overridden_name = symbol_custom_name if symbol_custom_name else symbol_name
+            symbol_type_override = symbol_type
+            if symbol_type in self.enums_registry:
+                symbol_type_override = 'string'
+            curr_key = f"{parent_key}.{overridden_name}"
+            if symbol_type in self.structs_registry:
+                struct = self.structs_registry[symbol_type]
+                if len(struct) == 1:
+                    first_member = next(iter(struct))
+                    if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+                        flattened_descriptions.update(
+                            self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+                        return flattened_descriptions
+            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': symbol_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
-            return flattened_descriptions
-        return {}
+        return flattened_descriptions
 
     def flatten_description(self, parent_key, symbol_type):
         """
@@ -754,11 +955,22 @@ class HeaderFileParser:
         flattened_descriptions = {}
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
+            # if len(struct) == 1:
+            #     first_member = next(iter(struct))
+            #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+            #         flattened_descriptions.update(
+            #             self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+            # else:
             for member_name in struct:
                 member_type = struct[member_name]['type']
                 member_desc = struct[member_name]['description']
-                curr_key = f"{parent_key}.{member_name}"
-                flattened_descriptions[curr_key] = {'type': member_type, 'description': member_desc}
+                member_custom_name = struct[member_name].get('custom_name', '')
+                overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
+                curr_key = f"{parent_key}.{overridden_name}"
+                member_type_override = member_type
+                if member_type in self.enums_registry:
+                    member_type_override = 'string'
+                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
                 flattened_descriptions.update(
                     self.flatten_description(curr_key, member_type))
             return flattened_descriptions
@@ -785,6 +997,10 @@ class HeaderFileParser:
         """
         if description:
             description = description.strip()
-            description = re.sub(r'^@\S+', '', description)
+            description = re.sub(r'@\S+', '', description)
+            description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', description)
+            description = description[:-1] if description.endswith(';') else description
             description = description[:-2] if description.endswith("*/") else description
+            description = re.sub(r'\*/', ' ', description)
+            description = re.sub(r'/\*', ' ', description)
         return description

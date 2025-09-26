@@ -9,7 +9,7 @@ This document provides guidelines for using the `md_from_h` documentation tool. 
 
 The md_from_h tool is currently run automatically on a weekly basis from a Jenkins job. However, to run the tool locally on individual header files, navigate to the top level of the repo, and run:
 
-`python3 ./tools/md_from_h_generator/generate_md_from_header.py ./apis/[header_file_folder]/[header_file]`
+`python3 ./tools/md_from_h_generator/generate_md_from_header.py ./apis/[header_file_folder]`
 
 This will create a folder in the current directory named "generated_docs", where "generated_docs" contains the generated markdown file for the header file.
 
@@ -18,11 +18,10 @@ This will create a folder in the current directory named "generated_docs", where
 ## 3. Supported Doxygen Tags
 
 ### 1. `@text` or `@alt`
-- **Purpose**: Used to tell the program that all tags declared below the `@text` or `@alt` tag belong to the method
+- **Purpose**: Used to override the method or symbol name. Overriden name should come after the `@text` or `@alt` tag.
 - **Required**: Yes (Mandatory tag for all methods/properties/events)
 - **Usage**:
   - Use this tag to by following it with the name of the method/property/event.
-  - Ensure the name following the tag matches the respective method/property/event name exactly.
 
 
 ### Example:
@@ -30,10 +29,15 @@ This will create a folder in the current directory named "generated_docs", where
 ***Header File Example:***
 ```cpp
 /**
- * @text initialize
+ * @text initializeOverriddenName
  */
-virtual uint32_t initialize();
+virtual uint32_t Initialize();
 ```
+
+***Generated Markdown Example:***
+> <a id="method.initializeOverriddenName"></a>
+> ## *initializeOverriddenName [<sup>method</sup>](#head.Methods)*
+
 
 ---
 
@@ -42,7 +46,7 @@ virtual uint32_t initialize();
 - **Required**: Yes (Mandatory tag for all methods/properties/events)
 - **Usage**:
   - Use this tag for a short, one-line description of the method.
-  - The description following this tag will be shown on the method/property/event table of contents 
+  - The description following this tag will be shown on the method/property/event table of contents
 
 ### Example:
 
@@ -98,12 +102,12 @@ virtual uint32_t initialize();
 - **Required**: No (Optional tag)
 - **Usage**:
   - Use this tag to reference related methods, classes, or external documentation.
-  - The linked event name should appear exactly as it is declared, without parenthesis 
+  - The linked event name should appear exactly as it is declared, without parenthesis
   - This tag is optional, but should be used if a corresponding event is defined in INotifications
 
 ### Example:
 
-***Usage in the header file:***
+***Header File Example:***
 ```cpp
 /**
  * @text initialize
@@ -121,7 +125,7 @@ virtual uint32_t initialize();
 virtual void onInitialize();
 ```
 
-***Result in the markdown:***
+***Generated Markdown Example:***
 >## *initialize [<sup>method</sup>](#head.Methods)*
 > This method initializes the system.
 > ### Events
@@ -137,31 +141,35 @@ virtual void onInitialize();
 - **Usage**:
   - Use this tag for each parameter of the method. Each parameter and tag must be declared on a new line.
   - The description following the tag shall be listed in the parameters/results table
-  - Parameter/symbol examples should be defined here (see [Providing Symbol Examples](#providing_examples))
-  - Specify the parameter name and its description. Format can include colon i.e. `@param [param_name]: [description]` or `@param [para_name] [description]`
-  - IMPORTANTLY, in addition to using the param tag, mark each parameter with inline 'in/out' information in the parameter list. If a parameter does not have inline in/out information, it defaults to 'in'.
+  - Optional parameters can be specified using `@param <param_name>(optional)`
+  - Parameter/symbol examples should be defined here (see [Providing Symbol Examples](#providing_examples), for providing examples and descriptions for `struct` as well)
+  - Specify the parameter name and its description. Format can include colon i.e. `@param <param_name>: <description>` or `@param <para_name> <description>`
+  - IMPORTANTLY, in addition to using the param tag, each parameter that is an output should be marked with an inline '@out' tag in the parameter list. The '@in' tag is optional for input parameters. If a parameter does not have inline in/out information, it defaults to 'in'.
+  - Additionally a parameter name override can be specified by combining `@in` or `@out` followed by `@text:<varible-override-name>` in the function declaration.
 
 ### Example:
 
 ***Header File Example:***
 ```cpp
-/** 
+/**
  ...
  * @param configPath: The config file path for initialization e.g. "../build/test.conf"
  * @param status The status of the initialization. Set to true if completed.
+ * @param configDetails(optional): Details of the configuration
  */
-virtual uint32_t initialize(const string& configPath /* @in */, bool status /* @out */);
+virtual uint32_t initialize(const string& configPath /* @in @text:config-path-override-name */, bool status /* @out @text:status-response */, string& configDetails /* @in */);
 ```
 
 ***Generated Markdown Example:***
 > ### Parameters
 > | Name | Type | Description |
 > | :-------- | :-------- | :-------- |
-> | config | string | The config file path for initialization |
+> | config-path-override-name | string | The config file path for initialization |
+> | configDetails | string | <sup>(optional)</sup> Details of the configuration |
 > ### Results
 > | Name | Type | Description |
 > | :-------- | :-------- | :-------- |
-> | status | bool | The status of the initialization. Set to true if completed. |
+> | status-response | bool | The status of the initialization. Set to true if completed. |
 
 ---
 
@@ -171,7 +179,9 @@ virtual uint32_t initialize(const string& configPath /* @in */, bool status /* @
 - **Usage**:
   - Use this tag to explain what the method returns.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
 /**
  * @text initialize
@@ -191,7 +201,9 @@ virtual uint32_t initialize();
   - Omitted methods do not need to have any tags, like the `@text` or `@brief` tags
   - This tag is optional.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
 /**
  * @omit
@@ -207,23 +219,146 @@ virtual uint32_t internalMethod();
 - **Usage**:
   - Use this tag for methods that act as properties.
 
-**Example**:
+### Example:
+
+***Header File Example:***
 ```cpp
-/* 
+/*
  * @property
  * @brief Video output port on the STB used for connection to TV
  * @param name: video output port name
  */
 virtual uint32_t PortName (string& name /* @out */) const = 0;
 ```
+---
+
+### 9. `@docs:plugindescr`
+- **Purpose**: Provides option to override the generic plugin description text
+- **Required**: No
+- **Usage**:
+  - Use this tag for overriding the generic plugin description.
+
+### Example:
+
+***Header File Example:***
+```cpp
+    namespace Exchange
+    {
+        /* @json 1.0.0 @text:keep */
+        // @plugindescription This plugin provides so and so functionalities
+        struct EXTERNAL IClassName : virtual public Core::IUnknown
+    }
+```
+
+***Generated Markdown Example:***
+
+> <a id="head.Description"></a>
+> # Description
+>
+> This plugin provides so and so functionalities
+>
+> The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer > > to [[Thunder](#ref.Thunder)].
+>
+> <a id="head.Configuration"></a>
 
 ---
+
+### 10. `@errors`
+- **Purpose**: Describes the errors which this method can return.
+- **Required**: No
+- **Usage**:
+  - Use this tag to detail the error code, error message type, and error description
+
+### Example:
+
+***Header File Example:***
+```cpp
+    namespace Exchange
+    {
+        // @errors 1 ERROR_GENERAL General Error
+        virtual Core::hresult DefaultResolution(const string& videoDisplay /* @out */)
+    }
+```
+
+***Generated Markdown Example:***
+> ### Errors
+> | Code | Messafe | Description |
+> | :-------- | :-------- | :-------- |
+> | 1 | `ERROR_GENERAL` | General error |
+
+---
+
+### 11. `@docs:configuration`
+- **Purpose**: Provides option to include the plugin's configuration options
+- **Required**: No
+- **Usage**:
+  - Use this to describe a configuration option for the plugin. Include the option's name, type, and description. Do not need to include options for the plugin's callsign, classname, locator, or autostart.
+
+### Example:
+
+***Header File Example:***
+```cpp
+    namespace Exchange
+    {
+        /* @json 1.0.0 @text:keep */
+        // @plugindescription This plugin provides so and so functionalities
+        // @docs:config configuration string 
+        // @docs:config configuration.loggername string Logger name used by backend
+        struct EXTERNAL IClassName : virtual public Core::IUnknown
+    }
+```
+
+***Generated Markdown Example:***
+> ### Configuration
+> | Name	| Type	| Description |
+> | :-------- | :-------- | :-------- |
+> | callsign	| string	| Plugin instance name (default: *org.rdk.Analytics*) |
+> | classname	| string	| Class name: *org.rdk.Analytics* |
+> | locator	| string	| Library name: *libWPEFrameworkAnalytics.so* |
+> | autostart	| boolean	| Determines if the plugin shall be started automatically along with the framework |
+> | configuration	| object | |
+> | configuration.loggername	| string	| Logger name used by backend |
+
+---
+
+### 12. `@unwrapped`
+- **Purpose**: Provides option to unwrap the results or params object such that it directly returns a single member. 
+- **Required**: No
+- **Usage**:
+  - In some methods or APIs, the request object may have a 'params' key (or a response object may have a 'result' key) that does not have an object as a value, but rather the value itself. For example:
+```
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.Analytics.sample",
+    "params": true
+}
+```
+  - In this case, the parameter in the method should be tagged with the `@unwrapped` tag.
+
+### Example:
+
+***Header File Example:***
+```cpp
+  virtual Core::hresult IsInstalled(const string& appId, bool& installed /* @unwrapped @out */) = 0;
+```
+***Generated Markdown Example:***
+> #### Response
+>
+> ```json
+> {
+>     "jsonrpc": 2.0,
+>     "id": 7,
+>     "result": true
+> }
+> ```
+
 
 ## 4. Additional Features and Guidelines
 
 <a id="providing_examples"></a>
 
-### Providing Symbol Examples 
+### Providing Symbol Examples
 In the RDK Services and Entservices APIs, plugins communicate using RPC. To facilitate this, the documentation includes relevant examples of request and response JSON structures. The md_from_h tool automates the creation of these examples by parsing enums, structs, iterators, and basic types declared in the header file, as well as extracting examples from @param Doxygen tags.
 
 The tool maintains a global symbol registry to track the names and types of parameters declared in methods, properties, events, enums, and struct members. The goal of the global symbol registry is to make it easier and more consistent to provide examples for symbols which appear multiple times in a header file (such as preferredLanguages in IUserSettings.h). Examples are generated by analyzing the @param tags, where the tool uses a regular expression to extract text following the pattern `e.g. "(.*)"` in the parameter description. The value inside the quotes is then used as the example for that symbol. The pattern `ex: (.*)` is also matched in cases where examples have double-quotes. Additionally, examples can be derived from structs if their members include descriptive comments.
@@ -254,13 +389,13 @@ The following demonstrates how examples are set for method parameters:
 >```
 
 ### Setting Examples for Struct Members
-The following demonstrates how examples are set for struct members:
+The following demonstrates how examples are set for struct members. Struct members can be commented with single-line comments (`//`) or block-comments (`/*...*/`).
 
 ***Header File Example:***
 ```cpp
-struct USBDevice { 
-    uint8_t  deviceClass    /* @brief USB class of the device as per USB specification e.g. "10" */ ;
-    uint8_t  deviceSubclass /* @brief USB sub class of the device as per USB specification e.g. "6" */;
+struct USBDevice {
+    uint8_t  deviceClass;    // @brief USB class of the device as per USB specification e.g. "10"
+    uint8_t  deviceSubclass; // @brief USB sub class of the device as per USB specification e.g. "6"
     string   deviceName     /* @brief Name of the USB device e.g. "001/003"*/;
     string   devicePath     /* @brief the path to be used for the USB device e.g."/dev/sdX" */;
 };
