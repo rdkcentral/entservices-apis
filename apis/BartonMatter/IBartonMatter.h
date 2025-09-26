@@ -36,38 +36,6 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     /** Allow the plugin to deinitialize to use service object */
     // @json:omit
     virtual Core::hresult Deinitialize() = 0;
-
-    /** Creates the BartonMatter plugin */
-    // @text createApplication
-    // @brief Create a BartonMatter application.
-    // @param options Additional options for creating the application.
-    // @param id This should have the id of the created application
-    virtual Core::hresult CreateApplication(const std::string options /* @in */, uint32_t& id /* @out */) = 0;
-    
-    /** Run the created BartonMatter plugin */
-    // @text runApplication
-    // @brief run a BartonMatter application.
-    // @param id The ID for the application to run.
-    // @param url URL for the application to run.
-    virtual Core::hresult RunApplication(uint32_t id /* @in */, const std::string url /* @in */) = 0;
-    
-    /** Run the created BartonMatter plugin */
-    // @text runJavaScript 
-    // @brief run a BartonMatter code.
-    // @param id The ID for the code to run.
-    // @param options Additional options for creating the application.
-    virtual Core::hresult RunJavaScript(uint32_t id /* @in */, const std::string code /* @in */) = 0;
-    
-    /** Get all the existing BartonMatter plugin */
-    // @text getApplications
-    // @brief Get details of existing plugin.
-    virtual Core::hresult GetApplications() = 0;
-
-    /** Stops the BartonMatter plugin */
-    // @text terminateApplication
-    // @brief Destroy a running BartonMatter application.
-    // @param id The ID of the application to destroy.
-    virtual Core::hresult TerminateApplication(uint32_t id /* @in */) = 0;
 };
 
 } // Exchange
