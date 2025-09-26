@@ -246,8 +246,7 @@ namespace Exchange {
         ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
         ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
-        ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
-
+	
 	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
@@ -264,12 +263,12 @@ namespace Exchange {
 
         ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
         ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
-
+      
         ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
         ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
         ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
 
-
+      
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
 	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
