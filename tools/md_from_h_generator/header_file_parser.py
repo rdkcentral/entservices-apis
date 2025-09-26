@@ -32,7 +32,7 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
-        ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)(?=\s*\*\/|$)')),
+        ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
         ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
@@ -99,6 +99,7 @@ class HeaderFileParser:
         self.symbols_registry = {}
         self.configuration_options = {}
         self.logger = logger
+        self.plugindescription = ''
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -133,7 +134,6 @@ class HeaderFileParser:
         self.fill_and_log_missing_symbol_descriptions()
         self.log_unassociated_events()
         self.log_missing_method_info()
-        print(json.dumps(self.symbols_registry, indent=4))
 
     def parse_header_file(self):
         """
@@ -300,7 +300,7 @@ class HeaderFileParser:
                 return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
-                description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[3])
+                description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
                 self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
             elif self.latest_tag == 'plugindesc':
                 self.plugindescription += (' ' + groups[0])
@@ -419,7 +419,7 @@ class HeaderFileParser:
                         'custom_name': custom_name.strip() if custom_name else member_name
                     }
                     # register each data member in the global symbol registry
-                    self.register_symbol(member_name, custom_name, member_type, description)
+                    self.register_symbol(member_name, custom_name, member_type, description, False)
         else:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register struct: {struct_object}")
@@ -510,7 +510,7 @@ class HeaderFileParser:
             symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
             symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
 
-            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description)
+            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
@@ -575,7 +575,7 @@ class HeaderFileParser:
                     self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
 
-    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description):
+    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False):
         """
         Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
@@ -587,6 +587,8 @@ class HeaderFileParser:
             self.symbols_registry[unique_id]['custom_name'] = symbol_custom_name.strip() if symbol_custom_name else symbol_name
         if not self.symbols_registry[unique_id].get('description'):
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
+        if not self.symbols_registry[unique_id].get('unwrapped'):
+            self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
             self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
@@ -953,24 +955,24 @@ class HeaderFileParser:
         flattened_descriptions = {}
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
-            if len(struct) == 1:
-                first_member = next(iter(struct))
-                if first_member not in self.structs_registry and first_member not in self.iterators_registry:
-                    flattened_descriptions.update(
-                        self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
-            else:
-                for member_name in struct:
-                    member_type = struct[member_name]['type']
-                    member_desc = struct[member_name]['description']
-                    member_custom_name = struct[member_name].get('custom_name', '')
-                    overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
-                    curr_key = f"{parent_key}.{overridden_name}"
-                    member_type_override = member_type
-                    if member_type in self.enums_registry():
-                        member_type_override = 'string'
-                    flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
-                    flattened_descriptions.update(
-                        self.flatten_description(curr_key, member_type))
+            # if len(struct) == 1:
+            #     first_member = next(iter(struct))
+            #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
+            #         flattened_descriptions.update(
+            #             self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+            # else:
+            for member_name in struct:
+                member_type = struct[member_name]['type']
+                member_desc = struct[member_name]['description']
+                member_custom_name = struct[member_name].get('custom_name', '')
+                overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
+                curr_key = f"{parent_key}.{overridden_name}"
+                member_type_override = member_type
+                if member_type in self.enums_registry:
+                    member_type_override = 'string'
+                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
+                flattened_descriptions.update(
+                    self.flatten_description(curr_key, member_type))
             return flattened_descriptions
         elif symbol_type in self.enums_registry:
             if parent_key[-3:] == '[#]':
