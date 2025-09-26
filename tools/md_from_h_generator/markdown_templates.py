@@ -290,6 +290,11 @@ def generate_results_section(results, symbol_registry):
     markdown = "### Results\n"
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
+        if len(results) == 1:
+            result_info = symbol_registry[f"{results[0]['name']}-{results[0]['type']}"]
+            if 'unwrapped' in result_info and result_info['unwrapped']:
+                markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
+                return markdown
         markdown += f"| result | object |  |\n"
         for result in results:
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
