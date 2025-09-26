@@ -269,7 +269,7 @@ namespace Exchange {
    };
 
 
-    // @json 1.0.0 @text:keep
+    // @text:keep
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_HANDLER };
 
@@ -288,6 +288,7 @@ namespace Exchange {
         };
         using ILockIterator = RPC::IIteratorType<AdditionalLock, ID_PACKAGE_LOCK_ITERATOR>;
 
+        // @json:omit
         // @brief Lock
         // @text lock
         // @param packageId: Package Id
@@ -308,6 +309,7 @@ namespace Exchange {
             // XXX: appContextPath ?!
             ) = 0;
 
+        // @json:omit
         // @brief Unlock
         // @text unlock
         // @param packageId: Package Id
@@ -316,6 +318,7 @@ namespace Exchange {
             const string &packageId,
             const string &version) = 0;
 
+        // @json:omit
         // @brief GetLockedInfo
         // @text getLockedInfo
         // @param packageId: Package Id
