@@ -203,6 +203,7 @@ namespace Exchange {
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
+	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
         ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,
