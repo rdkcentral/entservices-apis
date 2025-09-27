@@ -63,16 +63,6 @@ struct RuntimeConfig
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   enum { ID = ID_APPMANAGER };
 
-  struct LoadedAppInfo
-    {
-        string appId ;
-        string appInstanceId ;
-        string activeSessionId;
-        string targetLifecycleState;
-        string currentLifecycleState;
-    };
-  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
-
   enum AppLifecycleState : uint8_t {
           APP_STATE_UNKNOWN       = 0   /* @text APP_STATE_UNKNOWN */,
           APP_STATE_UNLOADED      = 1   /* @text APP_STATE_UNLOADED */,
@@ -97,6 +87,16 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           APP_ERROR_NOT_INSTALLED    = 7     /* @text APP_ERROR_NOT_INSTALLED */,
           APP_ERROR_PACKAGE_LOCK     = 8     /* @text APP_ERROR_PACKAGE_LOCK */
       };
+
+  struct LoadedAppInfo
+    {
+        string appId ;
+        string appInstanceId ;
+        string activeSessionId;
+        AppLifecycleState targetLifecycleState;
+        AppLifecycleState currentLifecycleState;
+    };
+  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
