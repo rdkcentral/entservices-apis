@@ -1,0 +1,209 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "PackageDownloader API",
+        "class": "PackageDownloader",
+        "description": "The `PackageDownloader plugin allows download of packages to the system from a remote repository."
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "downloadId": {
+            "type": "string",
+            "description": "Download Id"
+        },
+        "option": {
+            "type": "object",
+            "description": "download options",
+            "properties": {
+                "priority": {
+                    "type": "boolean",
+                    "description": "Priority"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "Retries"
+                },
+                "ratelimit": {
+                    "type": "integer",
+                    "description": "Rate limit"
+                }
+            }
+        },
+        "packageInfo": {
+            "type": "array",
+            "description": "array of download status",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string"
+                    },
+                    "fileLocator": {
+                        "type": "string"
+                    },
+                    "reason": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "downloadId",
+                    "fileLocator",
+                    "reason"
+                ]
+            }
+        }
+    },
+    "methods": {
+        "download": {
+            "summary": "Download API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "url",
+                        "example": "http://<SERVER>/<PATH>"
+                    },
+                    "option": {
+                        "$ref": "#/definitions/option"
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/definitions/downloadId"
+            }
+        },
+        "pause": {
+            "summary": "Pause API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "resume": {
+            "summary": "Resume API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "cancel": {
+            "summary": "Calcel API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "delete": {
+            "summary": "Delete API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "progress": {
+            "summary": "Progress API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "getStorageDetails": {
+            "summary": "GetStorageDetails API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "rateLimit": {
+            "summary": "RateLimit API",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "downloadId": {
+                        "type": "string",
+                        "description": "Download Id"
+                    }
+                }
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        }
+    },
+    "events": {
+        "OnAppDownloadStatus": {
+            "summary": "Triggered whenever the App is installed.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageInfo": {
+                        "$ref": "#/definitions/packageInfo"
+                    }
+                }
+            }
+        }
+    }
+}

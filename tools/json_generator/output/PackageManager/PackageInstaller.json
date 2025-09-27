@@ -1,0 +1,116 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "PackageInstaller API",
+        "class": "PackageInstaller",
+        "description": "The `PackageInstaller plugin allows download of packages to the system from a remote repository."
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "InstallState": {
+            "description": "Install State",
+            "type": "string",
+            "enum": [
+                "INSTALLING",
+                "INSTALLATION_BLOCKED",
+                "INSTALL_FAILURE",
+                "INSTALLED",
+                "UNINSTALLING",
+                "UNINSTALL_FAILURE",
+                "UNINSTALLED"
+            ],
+            "example": "INSTALLING"
+        },
+        "PackageList": {
+            "type": "array",
+            "description": "List of installed applications (returned as a JSON string in actual API, shown here as parsed for clarity).",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "version": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "state": { "$ref": "#/definitions/InstallState" },
+                    "digest": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "sizeKb": {
+                        "type": "integer",
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "packageId",
+                    "version",
+                    "state"
+                ]
+            }
+        }
+
+    },
+    "methods": {
+        "install": {
+            "summary": "Install a package",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "description": "Package Id"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Package Version"
+                    },
+                    "fileLocator": {
+                        "type": "string",
+                        "description": "File Locator"
+                    }
+                },
+                "required": [
+                    "packageId"
+                ]
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "uninstall": {
+            "summary": "Uninstall a package",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "description": "Package Id"
+                    }
+                },
+                "required": [
+                    "packageId"
+                ]
+            },
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/common/results/void"
+            }
+        },
+        "listPackages": {
+            "summary": "Package List",
+            "result": {
+                "description": "Returns null on success or an error code string on failure.",
+                "$ref": "#/definitions/PackageList"
+            }
+        }
+    },
+    "events": {}
+}
