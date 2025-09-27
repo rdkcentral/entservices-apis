@@ -36,6 +36,35 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     /** Allow the plugin to deinitialize to use service object */
     // @json:omit
     virtual Core::hresult Deinitialize() = 0;
-    };
+
+    /** Creates the BartonMatter plugin */
+    // @text setWifiCred
+    // @brief sets the wifi credentials
+    // @param ssid wifi ssid.
+    // @param password wifi password
+    virtual Core::hresult SetWifiCredentials(const std::string ssid /* @in */, const std::string password /* @in */) = 0;
+    
+    /** commission the device */
+    // @text commissionDevice
+    // @brief commissions and onboards the client device.
+    // @param passcode the passcode for the client device.
+    virtual Core::hresult CommissionDevice(const std::string passcode /* @in */) = 0;
+    
+    /** Read the current status of the device */
+    // @text readResource 
+    // @brief Reads he current status the client device
+    virtual Core::hresult ReadResource() = 0;
+    
+    /** Write the resource*/
+    // @text writeResource
+    // @brief Writes the data to the client device
+    virtual Core::hresult WriteResource() = 0;
+
+    /** Disconnect the device */
+    // @text disconnect
+    // @brief Disconnects the connected device
+    virtual Core::hresult DisconnectDevice() = 0;
+};
+
 } // Exchange
 } // WPEFramework
