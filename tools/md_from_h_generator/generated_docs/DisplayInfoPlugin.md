@@ -59,7 +59,7 @@ DisplayInfo interface methods:
 
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 TV's Extended Display Identification Data
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -166,7 +166,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 Vertical size in centimeters
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -214,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 Horizontal size in centimeters
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -291,7 +291,7 @@ Provides access to the display's Colour space (chroma subsampling format)
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -337,7 +337,7 @@ Provides access to display's colorimetry
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -384,7 +384,7 @@ Provides access to display's colour Depth
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -430,7 +430,7 @@ Current HDMI connection status
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -476,7 +476,7 @@ Provides access to display's Electro optical transfer function
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -522,7 +522,7 @@ Provides access to Frame Rate
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -568,7 +568,7 @@ Free GPU DRAM memory (in bytes)
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -613,7 +613,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 HDCP protocol used for transmission
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -691,7 +691,7 @@ HDR format in use
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -737,7 +737,7 @@ Vertical resolution of TV
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -783,7 +783,7 @@ Current audio passthrough status on HDMI
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -829,7 +829,7 @@ Video output port on the STB used for connection to TV
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -875,7 +875,7 @@ Provides access to display's Qauntization Range
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -921,7 +921,7 @@ HDR formats supported by STB
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -968,7 +968,7 @@ HDR formats supported by TV
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1015,7 +1015,7 @@ Total GPU DRAM memory (in bytes)
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1061,7 +1061,7 @@ Vertical Frequency
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1107,7 +1107,7 @@ Horizontal resolution of TV
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

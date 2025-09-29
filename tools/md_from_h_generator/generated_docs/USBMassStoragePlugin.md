@@ -57,7 +57,7 @@ USBMassStorage interface methods:
 Get list of devices that are currently mounted in the system
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 Get mount points information for a specified device
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -173,7 +173,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 Get partition information for a given partition
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

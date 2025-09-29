@@ -58,7 +58,7 @@ DeviceDiagnostics interface methods:
 Gets the most active status of audio/video decoder/pipeline
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -106,7 +106,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 Gets the values associated with the corresponding property names
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -172,7 +172,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 Returns the list of milestones
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -225,7 +225,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 Log marker string to rdk milestones log
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

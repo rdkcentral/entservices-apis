@@ -63,7 +63,7 @@ PlayerInfo interface properties:
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -110,7 +110,7 @@ Checks Loudness Equivalence in platform
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -156,7 +156,7 @@ Current Video playback resolution
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -202,7 +202,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -249,7 +249,7 @@ Atmos capabilities of Sink
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -295,7 +295,7 @@ Enable Atmos Audio Output
 
 > This property is write-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -341,7 +341,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 Dolby Mode
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -419,7 +419,7 @@ Sound Mode - Mono/Stereo/Surround
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

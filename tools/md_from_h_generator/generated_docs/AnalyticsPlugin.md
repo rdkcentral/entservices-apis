@@ -59,7 +59,7 @@ Analytics interface methods:
 Send an event to the analytics server
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

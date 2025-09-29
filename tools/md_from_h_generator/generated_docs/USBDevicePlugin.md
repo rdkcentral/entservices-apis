@@ -58,7 +58,7 @@ USBDevice interface methods:
 Bind the respective driver for the device
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -109,7 +109,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 Get the extended USB device information for the provided device name
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -241,7 +241,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 Get the basic information about list of devices connected with the system.
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -298,7 +298,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 Unbind the respective driver for the device
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

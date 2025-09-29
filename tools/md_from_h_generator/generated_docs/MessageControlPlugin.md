@@ -55,7 +55,7 @@ MessageControl interface methods:
 Enables/disables a message control
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -124,7 +124,7 @@ Retrieves a list of current message controls
 
 > This property is read-only.
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

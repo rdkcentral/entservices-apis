@@ -55,7 +55,7 @@ ScreenCapture interface methods:
 Takes a screenshot and uploads it to the specified URL
 
 ### Events
-No events are associated with this method.
+Event details are missing in the header file documentation.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
