@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
     "jsonrpc": "2.0",
     "info": {
-        "title": "PackageInstaller API",
+        "title": "PackageInstaller",
         "class": "org.rdk.PackageInstaller",
         "description": "The `PackageInstaller plugin allows download of packages to the system from a remote repository."
     },
