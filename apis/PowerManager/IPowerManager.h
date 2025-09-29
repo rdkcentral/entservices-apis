@@ -89,12 +89,12 @@ namespace WPEFramework
             SYSTEM_MODE_WAREHOUSE   = 3  /* @text WAREHOUSE */
         };
 
-        struct WakeupSrcConfig {
+        struct WakeupSourceConfig {
             WakeupSrcType wakeupSource;
             bool          enabled;
         };
 
-        using IWakeupSrcConfigIterator = RPC::IIteratorType<WakeupSrcConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
+        using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
@@ -294,13 +294,13 @@ namespace WPEFramework
         // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
-        virtual Core::hresult SetWakeupSourceConfig(IWakeupSrcConfigIterator* wakeupSources /* @in */ ) = 0;
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* wakeupSources /* @in */ ) = 0;
 
         /** Get Wakeup source configuration */
         // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
-        virtual Core::hresult GetWakeupSourceConfig(IWakeupSrcConfigIterator*& wakeupSources /* @out */) const = 0;
+        virtual Core::hresult GetWakeupSourceConfig(IWakeupSourceConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Initiate System mode change */
         // @text setSystemMode
