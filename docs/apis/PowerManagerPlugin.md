@@ -61,8 +61,8 @@ org.rdk.PowerManager interface methods:
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device |
 | [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
-| [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup |
-| [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
+| [setWakeupSourceConfig](#setWakeupSourceConfig) | This API enables or disables provided wakeup sources for the device to wakeup from deep sleep mode |
+| [getWakeupSourceConfig](#getWakeupSourceConfig) | This API returns the currently configured values of all available wakeup sources that can be used to wakeup the device from deep sleep mode |
 | [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
@@ -808,7 +808,7 @@ This method takes no parameters.
 <a name="setNetworkStandbyMode"></a>
 ## *setNetworkStandbyMode*
 
-This API will be deprecated in the future. Please refer setWakeupSrcConfiguration to Migrate. This API Enables or disables the network standby mode of the device. If network standby is enabled, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR mode.
+This API will be deprecated in the future. Please refer setWakeupSourceConfig to Migrate. This API Enables or disables the network standby mode of the device. If network standby is enabled, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR mode.
 
 ### Events
 
@@ -861,7 +861,7 @@ No Events
 <a name="setWakeupSourceConfig"></a>
 ## *setWakeupSourceConfig*
 
-Set the source configuration for device wakeup. This API does not persist. Please call this API on Every bootup to set the values.
+This API enables or disables provided wakeup sources for the device to wakeup from deep sleep mode. This API does not persist. Please call this API on Every bootup to set the values.
 
 ### Events
 
@@ -916,7 +916,7 @@ No Events
 <a name="getWakeupSourceConfig"></a>
 ## *getWakeupSourceConfig*
 
-Get the source configuration for device wakeup.
+This API returns the currently configured values of all available wakeup sources that can be used to wakeup the device from deep sleep mode.
 
 ### Events
 
