@@ -20,7 +20,8 @@ A org.rdk.FrameRate plugin for Thunder framework.
 <a name="Description"></a>
 # Description
 
-The `FrameRate` plugin allows you to collect FPS data.
+The `FrameRate` plugin allows you to collect FPS data. 
+Framerate plugin is specific to TV devices not supported on STB devices as per HAL implementation.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
