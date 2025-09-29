@@ -302,7 +302,9 @@ namespace Exchange {
         ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
         ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2,
 
-        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x3F0,
+	      ID_TELEMETRYMETRICS                          = ID_ENTOS_OFFSET + 0x3F0,
+ 
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x400 
     };
 }
 }
