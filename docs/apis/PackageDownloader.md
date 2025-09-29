@@ -1,6 +1,6 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.PackageDownloader_API"></a>
-# PackageDownloader API
+<a name="head.PackageDownloader"></a>
+# PackageDownloader
 
 A org.rdk.PackageDownloader plugin for Thunder framework.
 

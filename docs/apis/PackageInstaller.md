@@ -1,6 +1,6 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.PackageInstaller_API"></a>
-# PackageInstaller API
+<a name="head.PackageInstaller"></a>
+# PackageInstaller
 
 A org.rdk.PackageInstaller plugin for Thunder framework.
 
