@@ -24,6 +24,7 @@
   - [LinearPlaybackControl](apis/LinearPlaybackControlPlugin.md)
   - [MaintenanceManager](apis/MaintenanceManagerPlugin.md)
   - [MessageControl](apis/MessageControlPlugin.md)
+  - [Migration](apis/MigrationPlugin.md)
   - [MiracastPlayer](apis/MiracastPlayerPlugin.md)
   - [MiracastService](apis/MiracastServicePlugin.md)
   - [Monitor](apis/MonitorPlugin.md)
