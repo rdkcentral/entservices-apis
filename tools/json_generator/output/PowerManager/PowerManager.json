@@ -453,7 +453,7 @@
             }
         },
         "setNetworkStandbyMode":{
-            "summary": "This API will be deprecated in the future. Please refer setWakeupSrcConfiguration to Migrate. This API Enables or disables the network standby mode of the device. If network standby is enabled, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR mode.",
+            "summary": "This API will be deprecated in the future. Please refer setWakeupSourceConfig to Migrate. This API Enables or disables the network standby mode of the device. If network standby is enabled, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR mode.",
             "params": {
                 "type":"object",
                 "properties": {
@@ -478,7 +478,7 @@
             ]
         },
         "setWakeupSourceConfig": {
-            "summary": "Set the source configuration for device wakeup. This API does not persist. Please call this API on Every bootup to set the values.",
+            "summary": "This API enables or disables provided wakeup sources for the device to wakeup from deep sleep mode. This API does not persist. Please call this API on Every bootup to set the values.",
             "params": {
                 "type": "object",
                 "properties": {
@@ -509,7 +509,7 @@
             }
         },
         "getWakeupSourceConfig": {
-            "summary": "Get the source configuration for device wakeup",
+            "summary": "This API returns the currently configured values of all available wakeup sources that can be used to wakeup the device from deep sleep mode.",
             "result": {
                     "type": "array",
                     "items": {
