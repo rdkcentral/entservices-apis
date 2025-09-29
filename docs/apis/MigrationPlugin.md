@@ -66,7 +66,14 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string | BOOT Type Info |
+| result.bootType | string | BOOT Type Info. one of the following "BOOT_NORMAL", "BOOT_MIGRATION", "BOOT_UPDATE", "BOOT_INCONCLUSIVE" |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ERROR_NONE``` | Success |
+| ```ERROR_FILE_IO``` | File Read or Write error |
 
 ### Example
 
@@ -110,7 +117,14 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.migrationStatus | string |  Migration Status|
+| result.migrationStatus | string |  Migration Status  One of the following: "NOT_STARTED","NOT_NEEDED","STARTED","PRIORITY_SETTINGS_MIGRATED","DEVICE_SETTINGS_MIGRATED","CLOUD_SETTINGS_MIGRATED","APP_DATA_MIGRATED","MIGRATION_COMPLETED" |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ERROR_NONE``` | Success |
+| ```ERROR_FILE_IO``` | File Read or Write error |
 
 ### Example
 
@@ -151,6 +165,14 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.status | string | Status of Migration process One of the following: "NOT_STARTED","NOT_NEEDED","STARTED","PRIORITY_SETTINGS_MIGRATED","DEVICE_SETTINGS_MIGRATED","CLOUD_SETTINGS_MIGRATED","APP_DATA_MIGRATED","MIGRATION_COMPLETED" |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ERROR_NONE``` | Success |
+| ```ERROR_FILE_IO``` | File Read or Write error |
+| ```ERROR_INVALID_PARAMETER``` | Invalid Request |
 
 ### Result
 
