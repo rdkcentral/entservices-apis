@@ -302,7 +302,18 @@ namespace Exchange {
         ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
         ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2,
 
-	ID_TELEMETRYMETRICS                          = ID_ENTOS_OFFSET + 0x3F0
-    };
-}
-}
+        ID_TELEMETRYMETRICS                         = ID_ENTOS_OFFSET + 0x3F0,
+
+        ID_AV_INPUT                                             = ID_ENTOS_OFFSET + 0x400,
+        ID_AV_INPUT_NOTIFICATION_DEVICES_CHANGED                = ID_AV_INPUT + 1,
+        ID_AV_INPUT_NOTIFICATION_SIGNAL_CHANGED                 = ID_AV_INPUT + 2,
+        ID_AV_INPUT_NOTIFICATION_INPUT_STATUS_CHANGED           = ID_AV_INPUT + 3,
+        ID_AV_INPUT_NOTIFICATION_VIDEO_STREAM_INFO_UPDATE       = ID_AV_INPUT + 4,
+        ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE     = ID_AV_INPUT + 5,
+        ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE        = ID_AV_INPUT + 6,
+        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7
+        
+    }; // enum IDS
+
+} // namespace Exchange
+} // namespace WPEFramework
