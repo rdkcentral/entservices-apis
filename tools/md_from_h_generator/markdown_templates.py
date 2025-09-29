@@ -349,7 +349,7 @@ def generate_events_section(events, all_events=None):
             camel_event = to_camel_case(event)
             markdown += f"- [{camel_event}](#event.{camel_event})\n"
     else:
-        markdown += "No events are associated with this method.\n"
+        markdown += "Event details are missing in the header file documentation.\n"
     return markdown
 
 def generate_properties_toc(properties, classname):
