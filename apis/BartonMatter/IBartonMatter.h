@@ -29,14 +29,6 @@ namespace Exchange {
 struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     enum { ID = ID_BARTONMATTER };
 
-    /** Allow the plugin to initialize to use service object */
-    // @json:omit
-    virtual Core::hresult Initialize() = 0;
-
-    /** Allow the plugin to deinitialize to use service object */
-    // @json:omit
-    virtual Core::hresult Deinitialize() = 0;
-
     /** Creates the BartonMatter plugin */
     // @text setWifiCred
     // @brief sets the wifi credentials
