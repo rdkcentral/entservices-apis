@@ -29,6 +29,12 @@ namespace Exchange {
 struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     enum { ID = ID_BARTONMATTER };
 
+    /** Creates the BartonMatter plugin */
+    // @text setWifiCred
+    // @brief sets the wifi credentials
+    // @param ssid wifi ssid.
+    // @param password wifi password
+    virtual Core::hresult SetWifiCredentials(const std::string ssid /* @in */, const std::string password /* @in */) = 0;
 };
 
 } // Exchange
