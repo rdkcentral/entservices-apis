@@ -31,39 +31,43 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
 
     /** Allow the plugin to initialize to use service object */
     // @json:omit
-    virtual Core::hresult Initialize() = 0;
+    virtual Core::hresult Initialize(string waylandDisplay) = 0;
 
     /** Allow the plugin to deinitialize to use service object */
     // @json:omit
     virtual Core::hresult Deinitialize() = 0;
 
     /** Creates the BartonMatter plugin */
-    // @text setWifiCred
-    // @brief sets the wifi credentials
-    // @param ssid wifi ssid.
-    // @param password wifi password
-    virtual Core::hresult SetWifiCredentials(const std::string ssid /* @in */, const std::string password /* @in */) = 0;
+    // @text createApplication
+    // @brief Create a BartonMatter application.
+    // @param options Additional options for creating the application.
+    // @param id This should have the id of the created application
+    virtual Core::hresult CreateApplication(const std::string options /* @in */, uint32_t& id /* @out */) = 0;
     
-    /** commission the device */
-    // @text commissionDevice
-    // @brief commissions and onboards the client device.
-    // @param passcode the passcode for the client device.
-    virtual Core::hresult CommissionDevice(const std::string passcode /* @in */) = 0;
+    /** Run the created BartonMatter plugin */
+    // @text runApplication
+    // @brief run a BartonMatter application.
+    // @param id The ID for the application to run.
+    // @param url URL for the application to run.
+    virtual Core::hresult RunApplication(uint32_t id /* @in */, const std::string url /* @in */) = 0;
     
-    /** Read the current status of the device */
-    // @text readResource 
-    // @brief Reads he current status the client device
-    virtual Core::hresult ReadResource() = 0;
+    /** Run the created BartonMatter plugin */
+    // @text runJavaScript 
+    // @brief run a BartonMatter code.
+    // @param id The ID for the code to run.
+    // @param options Additional options for creating the application.
+    virtual Core::hresult RunJavaScript(uint32_t id /* @in */, const std::string code /* @in */) = 0;
     
-    /** Write the resource*/
-    // @text writeResource
-    // @brief Writes the data to the client device
-    virtual Core::hresult WriteResource() = 0;
+    /** Get all the existing BartonMatter plugin */
+    // @text getApplications
+    // @brief Get details of existing plugin.
+    virtual Core::hresult GetApplications() = 0;
 
-    /** Disconnect the device */
-    // @text disconnect
-    // @brief Disconnects the connected device
-    virtual Core::hresult DisconnectDevice() = 0;
+    /** Stops the BartonMatter plugin */
+    // @text terminateApplication
+    // @brief Destroy a running BartonMatter application.
+    // @param id The ID of the application to destroy.
+    virtual Core::hresult TerminateApplication(uint32_t id /* @in */) = 0;
 };
 
 } // Exchange
