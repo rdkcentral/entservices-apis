@@ -169,8 +169,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -215,8 +214,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -261,8 +259,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -321,8 +318,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -373,8 +369,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
