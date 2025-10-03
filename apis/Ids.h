@@ -311,7 +311,11 @@ namespace Exchange {
         ID_AV_INPUT_NOTIFICATION_VIDEO_STREAM_INFO_UPDATE       = ID_AV_INPUT + 4,
         ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE     = ID_AV_INPUT + 5,
         ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE        = ID_AV_INPUT + 6,
-        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7
+        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7,
+
+        ID_LINCHPIN_BROKER                                      = ID_ENTOS_OFFSET + 0x410,
+        ID_LINCHPIN_BROKER_NOTIFICATION                         = ID_LINCHPIN_BROKER + 1,
+        ID_LINCHPIN_BROKER_TOPIC_INFO_ITERATOR                  = ID_LINCHPIN_BROKER + 2
         
     }; // enum IDS
 
