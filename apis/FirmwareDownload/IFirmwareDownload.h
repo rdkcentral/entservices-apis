@@ -38,7 +38,7 @@ namespace WPEFramework
             };
 
             struct EXTERNAL DownloadFailureReason {
-                string failureReason ;
+                string failureReason;
             };
             
             // @event
