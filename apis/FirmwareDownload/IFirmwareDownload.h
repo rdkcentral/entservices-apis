@@ -64,7 +64,7 @@ namespace WPEFramework
             // @param downloadedFWVersion - out - string
             // @param downloadedFWLocation - out - string
             // @param isRebootDeferred -out - boolean
-            virtual Core::hresult GetDownloadedFirmwareInfo(string& currentFWVersion /* @out */, string& downloadedFWVersion /* @out */, string& downloadedFWLocation /* @out */, bool& isRebootDeferred ) = 0;
+            virtual Core::hresult GetDownloadedFirmwareInfo(string& currentFWVersion /* @out */, string& downloadedFWVersion /* @out */, string& downloadedFWLocation /* @out */, bool& isRebootDeferred /* @out */) = 0;
 
             // @text getFirmwareDownloadPercent
             // @brief Gets the current download percentage.
