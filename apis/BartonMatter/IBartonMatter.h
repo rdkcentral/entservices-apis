@@ -34,6 +34,12 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     // @brief Initialize the commissioner
     virtual Core::hresult InitializeCommissioner() = 0;
 
+    /** starts the commissioning process for given passcode*/
+    //@text CommissionDevice
+    //@brief commissions the device with the provided passcode
+    //@param passcode code-of-possession
+    virtual Core::hresult CommissionDevice(const std::string passcode /* @in*/) = 0;
+
 
     /** Creates the BartonMatter plugin */
     // @text setWifiCred
