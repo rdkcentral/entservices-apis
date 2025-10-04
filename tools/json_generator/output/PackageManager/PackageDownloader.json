@@ -3,7 +3,7 @@
     "jsonrpc": "2.0",
     "info": {
         "title": "PackageDownloader API",
-        "class": "PackageDownloader",
+        "class": "org.rdk.PackageDownloader",
         "description": "The `PackageDownloader plugin allows download of packages to the system from a remote repository."
     },
     "common": {
@@ -34,7 +34,7 @@
         },
         "packageInfo": {
             "type": "array",
-            "description": "array of download status",
+            "description": "array of packageInfo",
             "items": {
                 "type": "object",
                 "properties": {

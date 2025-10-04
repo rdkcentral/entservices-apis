@@ -2,7 +2,7 @@
 <a name="head.PackageDownloader_API"></a>
 # PackageDownloader API
 
-A PackageDownloader plugin for Thunder framework.
+A org.rdk.PackageDownloader plugin for Thunder framework.
 
 ### Table of Contents
 
@@ -31,15 +31,15 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| classname | string | Class name: *PackageDownloader* |
+| classname | string | Class name: *org.rdk.PackageDownloader* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a name="head.Methods"></a>
 # Methods
 
-The following methods are provided by the PackageDownloader plugin:
+The following methods are provided by the org.rdk.PackageDownloader plugin:
 
-PackageDownloader interface methods:
+org.rdk.PackageDownloader interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -87,7 +87,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.download",
+    "method": "org.rdk.PackageDownloader.download",
     "params": {
         "url": "http://<SERVER>/<PATH>",
         "option": {
@@ -139,7 +139,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.pause",
+    "method": "org.rdk.PackageDownloader.pause",
     "params": {
         "downloadId": "..."
     }
@@ -186,7 +186,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.resume",
+    "method": "org.rdk.PackageDownloader.resume",
     "params": {
         "downloadId": "..."
     }
@@ -233,7 +233,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.cancel",
+    "method": "org.rdk.PackageDownloader.cancel",
     "params": {
         "downloadId": "..."
     }
@@ -280,7 +280,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.delete",
+    "method": "org.rdk.PackageDownloader.delete",
     "params": {
         "downloadId": "..."
     }
@@ -327,7 +327,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.progress",
+    "method": "org.rdk.PackageDownloader.progress",
     "params": {
         "downloadId": "..."
     }
@@ -374,7 +374,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.getStorageDetails",
+    "method": "org.rdk.PackageDownloader.getStorageDetails",
     "params": {
         "downloadId": "..."
     }
@@ -421,7 +421,7 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "PackageDownloader.rateLimit",
+    "method": "org.rdk.PackageDownloader.rateLimit",
     "params": {
         "downloadId": "..."
     }
@@ -443,9 +443,9 @@ No Events
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the PackageDownloader plugin:
+The following events are provided by the org.rdk.PackageDownloader plugin:
 
-PackageDownloader interface events:
+org.rdk.PackageDownloader interface events:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -462,7 +462,7 @@ Triggered whenever the App is installed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.packageInfo | array | array of download status |
+| params.packageInfo | array | array of packageInfo |
 | params.packageInfo[#] | object |  |
 | params.packageInfo[#].downloadId | string |  |
 | params.packageInfo[#].fileLocator | string |  |

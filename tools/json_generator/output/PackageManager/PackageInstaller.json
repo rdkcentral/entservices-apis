@@ -3,7 +3,7 @@
     "jsonrpc": "2.0",
     "info": {
         "title": "PackageInstaller API",
-        "class": "PackageInstaller",
+        "class": "org.rdk.PackageInstaller",
         "description": "The `PackageInstaller plugin allows download of packages to the system from a remote repository."
     },
     "common": {
@@ -26,7 +26,7 @@
         },
         "PackageList": {
             "type": "array",
-            "description": "List of installed applications (returned as a JSON string in actual API, shown here as parsed for clarity).",
+            "description": "List of Packages",
             "items": {
                 "type": "object",
                 "properties": {
@@ -38,7 +38,9 @@
                         "type": "string",
                         "default": ""
                     },
-                    "state": { "$ref": "#/definitions/InstallState" },
+                    "state": {
+                        "$ref": "#/definitions/InstallState"
+                    },
                     "digest": {
                         "type": "string",
                         "default": ""
@@ -54,8 +56,98 @@
                     "state"
                 ]
             }
+        },
+        "KeyValue": {
+            "type": "array",
+            "description": "Array of Key Values",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "value": {
+                        "type": "string",
+                        "default": ""
+                    }
+                },
+                "required": [
+                    "key",
+                    "value"
+                ]
+            }
+        },
+        "RuntimeConfig": {
+            "type": "object",
+            "description": "Runtime Config values",
+            "properties": {
+                "dial": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "wanLanAccess": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "thunder": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "systemMemoryLimit": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "gpuMemoryLimit": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "envVariables": {
+                    "type": "string",
+                    "default": ""
+                },
+                "userId": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "groupId": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "grodataImageSizeupId": {
+                    "type": "integer",
+                    "default": 0
+                },
+                "resourceManagerClientEnabled": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "dialId": {
+                    "type": "string",
+                    "default": ""
+                },
+                "command": {
+                    "type": "string",
+                    "default": ""
+                },
+                "appType": {
+                    "type": "string",
+                    "default": ""
+                },
+                "appPath": {
+                    "type": "string",
+                    "default": ""
+                },
+                "runtimePath": {
+                    "type": "string",
+                    "default": ""
+                }
+            },
+            "required": [
+                "dial",
+                "wanLanAccess"
+            ]
         }
-
     },
     "methods": {
         "install": {
@@ -70,6 +162,9 @@
                     "version": {
                         "type": "string",
                         "description": "Package Version"
+                    },
+                    "additionalMetadata": {
+                        "$ref": "#/definitions/KeyValue"
                     },
                     "fileLocator": {
                         "type": "string",
@@ -109,6 +204,90 @@
             "result": {
                 "description": "Returns null on success or an error code string on failure.",
                 "$ref": "#/definitions/PackageList"
+            }
+        },
+        "config": {
+            "summary": "return RuntimeConfig object",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "description": "Package Id"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Package Version"
+                    }
+                },
+                "required": [
+                    "packageId",
+                    "version"
+                ]
+            },
+            "result": {
+                "description": "Returns RuntimeConfig on success or an error code string on failure.",
+                "$ref": "#/definitions/RuntimeConfig"
+            }
+        },
+        "packageState": {
+            "summary": "retrutn Package State",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "description": "Package Id"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Package Version"
+                    }
+                },
+                "required": [
+                    "packageId",
+                    "version"
+                ]
+            },
+            "result": {
+                "description": "Returns InstallState on success or an error code string on failure.",
+                "$ref": "#/definitions/InstallState"
+            }
+        },
+        "getConfigForPackage": {
+            "summary": "return RuntimeConfig object",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "fileLocator": {
+                        "type": "string",
+                        "description": "File Locator"
+                    }
+                },
+                "required": [
+                    "fileLocator"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "packageId": {
+                        "type": "string",
+                        "description": "Package Id"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "Package Version"
+                    },
+                    "config": {
+                        "$ref": "#/definitions/RuntimeConfig"
+                    }
+                },
+                "required": [
+                    "packageId",
+                    "version",
+                    "config"
+                ]
             }
         }
     },
