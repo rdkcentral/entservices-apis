@@ -226,6 +226,10 @@ namespace Exchange {
         ID_RUNTIME_MANAGER                           = ID_ENTOS_OFFSET + 0x220,
         ID_RUNTIME_MANAGER_NOTIFICATION              = ID_RUNTIME_MANAGER + 1,
 
+        ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x270,
+        ID_RESOURCEMANAGER_CLIENT_ITERATOR           = ID_RESOURCEMANAGER + 1,
+        ID_RESOURCEMANAGER_APPID_ITERATOR            = ID_RESOURCEMANAGER + 2,
+
         ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR           = ID_ENTOS_OFFSET + 0x230,
 
         ID_SYSTEM_MODE                               = ID_ENTOS_OFFSET + 0x240,
