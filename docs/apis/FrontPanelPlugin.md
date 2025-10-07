@@ -1,10 +1,10 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.IFrontPanel_Plugin"></a>
-# IFrontPanel Plugin
+<a id="head.FrontPanel_Plugin"></a>
+# FrontPanel Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/IFrontPanel/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/FrontPanel/CHANGELOG.md)**
 
-A IFrontPanel plugin for Thunder framework.
+A FrontPanel plugin for Thunder framework.
 
 ### Table of Contents
 
@@ -21,7 +21,7 @@ A IFrontPanel plugin for Thunder framework.
 <a id="head.Description"></a>
 # Description
 
-The `IFrontPanel` plugin provides an interface for IFrontPanel.
+The `FrontPanel` plugin provides an interface for FrontPanel.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
@@ -32,17 +32,17 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *IFrontPanel*) |
-| classname | string | Class name: *IFrontPanel* |
-| locator | string | Library name: *libWPEFrameworkIFrontPanel.so* |
+| callsign | string | Plugin instance name (default: *org.rdk.FrontPanel*) |
+| classname | string | Class name: *org.rdk.FrontPanel* |
+| locator | string | Library name: *libWPEFrameworkFrontPanel.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the IFrontPanel plugin:
+The following methods are provided by the org.rdk.FrontPanel plugin:
 
-IFrontPanel interface methods:
+FrontPanel interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -111,7 +111,7 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.supportedLights | IFrontPanelLightsListIterator | List of supported front panel lights |
+| result.supportedLights | FrontPanelLightsListIterator | List of supported front panel lights |
 | result.supportedLights[#] | string |  |
 | result.supportedLightsInfo | string | Information about the supported front panel lights |
 | result.success | bool | Is the operation successful or not |
@@ -169,8 +169,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -215,8 +214,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -261,8 +259,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -321,8 +318,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
@@ -373,8 +369,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.success | FrontPanelSuccess | Is the operation successful or not |
-| result.success.success | bool |  |
+| result.success | bool | Is the operation successful or not |
 
 ### Examples
 
