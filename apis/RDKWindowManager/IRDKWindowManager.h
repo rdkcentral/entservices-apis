@@ -214,6 +214,30 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render
   virtual Core::hresult EnableDisplayRender(const string& client, bool enable) = 0;
+
+  /** Sets the zOrder of the given client or appInstanceId */
+  // @text setZOrder
+  // @brief Sets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder
+  virtual Core::hresult SetZOrder(const string& appInstanceId, int32_t zOrder) = 0;
+
+  /** Gets the zOrder of the given client or appInstanceId */
+  // @text getZOrder
+  // @brief Gets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder of the client
+  virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+
+  /** Starts the VNC server */
+  // @text startVncServer
+  // @brief Starts the VNC server
+  virtual Core::hresult StartVncServer() = 0;
+
+  /** Stops the VNC server */
+  // @text stopVncServer
+  // @brief Stops the VNC server
+  virtual Core::hresult StopVncServer() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
