@@ -449,7 +449,7 @@ A prioritized list of ISO 639-2/B codes for the preferred Captions languages, ex
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
 | params | object | mandatory |  |
-| params.preferredLanguages | string | mandatory | Is the list to set |
+| params.preferredLanguages | string | mandatory | Is the list to set. For e.g., "eng,fra" |
 
 ### Result
 
@@ -462,7 +462,14 @@ A prioritized list of ISO 639-2/B codes for the preferred Captions languages, ex
 #### Request
 
 ```json
-Failed to generate JSON example for setPreferredCaptionsLanguages
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.1.setPreferredCaptionsLanguages",
+  "params": {
+    "preferredLanguages": "..."
+  }
+}
 ```
 
 #### Response
@@ -2484,4 +2491,3 @@ The ContentPin setting has changed.
 ```
 
 > The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onContentPinChanged``.
-
