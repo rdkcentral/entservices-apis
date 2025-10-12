@@ -233,8 +233,8 @@ def validate_header(file_path, issues, ids_lines):
                     issues.append(f"Line {i + 1}: An enum ID of file {os.path.basename(file_path)} has not been defined with offset in Ids.h file: {id_value}")
                     break
                     
-    # Check for @in tag usage in method parameters
-    in_tag_pattern = re.compile(r'/\*[^*]*@in[^*]*\*/')
+    # Check for @in tag usage in method parameters (but allow @inout)
+    in_tag_pattern = re.compile(r'/\*[^*]*@in(?!out)[^*]*\*/')
     for i, line in enumerate(lines):
         if in_tag_pattern.search(line):
             issues.append(f"Line {i + 1}: Usage of @in tag is not allowed in file '{file_path}'. Method parameters are input by default: {line.strip()}")
