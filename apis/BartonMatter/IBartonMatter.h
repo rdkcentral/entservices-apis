@@ -68,7 +68,7 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     // @text ListDevices
     // @brief returns the list of all connected devices
     //@param deviceList: list off all connected devices
-    virtual Core::hresult ListDevices(std::vector<std::string> &deviceList /* @out*/) =0;
+     virtual Core::hresult ListDevices(std::string& deviceList /* @out */) =0;
 };
 
 } // Exchange
