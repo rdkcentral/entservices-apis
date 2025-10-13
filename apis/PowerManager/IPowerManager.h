@@ -294,7 +294,7 @@ namespace WPEFramework
         // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
         // @param wakeupSources: Wake up sources array
-        virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* wakeupSources/* @in */) = 0;
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* const wakeupSources) = 0;
 
         /** Get Wakeup source configuration */
         // @text getWakeupSourceConfig
