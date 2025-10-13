@@ -61,6 +61,12 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     // @param ssid wifi ssid.
     // @param password wifi password
     virtual Core::hresult SetWifiCredentials(const std::string ssid /* @in */, const std::string password /* @in */) = 0;
+
+    /** List the all connected devices*/
+    // @text ListDevices
+    // @brief returns the list of all connected devices
+    //@param deviceList: list off all connected devices
+    virtual Core::hresult ListDevices(std::vector<std::string> &deviceList /* @out*/) =0;
 };
 
 } // Exchange
