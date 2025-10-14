@@ -26,7 +26,7 @@ namespace Exchange {
     struct EXTERNAL IConfiguration : virtual public Core::IUnknown {
         enum { ID = ID_CONFIGURATION };
 
-        virtual uint32_t Configure(PluginHost::IShell* framework) = 0;
+        virtual Core::hresult Configure(PluginHost::IShell* framework) = 0;
     };
 }
 }
