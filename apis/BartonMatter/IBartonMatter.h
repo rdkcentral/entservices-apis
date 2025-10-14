@@ -43,8 +43,9 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     //@text WriteResource
     //@brief change the state of the device by writing the state
     //@param uri device uri
+    //@param resourceType the resource field to write to the data for e.g. isON,Label
     //@param value state to write into the device
-    virtual Core::hresult WriteResource(std::string uri /* @in*/, std::string value /* @in*/)=0;
+    virtual Core::hresult WriteResource(std::string uri /* @in*/, std::string resourceType /* @in*/, std::string value /* @in*/)=0;
 
     /** Allow the plugin to initialize to use service object */
     // @text InitializeCommissioner
