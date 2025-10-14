@@ -29,12 +29,22 @@ namespace WPEFramework
         {
             enum { ID = ID_MIGRATION };
 
-            struct EXTERNAL BootTypeInfo {
-                string bootType;
+            enum BootType : uint8_t {
+                BOOT_TYPE_NORMAL       = 0  /* @text BOOT_NORMAL */,
+                BOOT_TYPE_MIGRATION    = 1  /* @text BOOT_MIGRATION */,
+                BOOT_TYPE_UPDATE       = 2  /* @text BOOT_UPDATE */,
+                BOOT_TYPE_INCONCLUSIVE = 3  /* @text BOOT_INCONCLUSIVE */
             };
 
-            struct EXTERNAL MigrationStatusInfo {
-                string migrationStatus;
+            enum MigrationStatus : uint8_t {
+                MIGRATION_STATUS_NOT_STARTED                = 0 /* @text NOT_STARTED */,
+                MIGRATION_STATUS_NOT_NEEDED                 = 1 /* @text NOT_NEEDED */,
+                MIGRATION_STATUS_STARTED                    = 2 /* @text STARTED */,
+                MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED = 3 /* @text PRIORITY_SETTINGS_MIGRATED */,
+                MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED   = 4 /* @text DEVICE_SETTINGS_MIGRATED */,
+                MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED    = 5 /* @text CLOUD_SETTINGS_MIGRATED */,
+                MIGRATION_STATUS_APP_DATA_MIGRATED          = 6 /* @text APP_DATA_MIGRATED */,
+                MIGRATION_STATUS_MIGRATION_COMPLETED        = 7 /* @text MIGRATION_COMPLETED */,
             };
 
             struct EXTERNAL MigrationResult {
@@ -43,19 +53,19 @@ namespace WPEFramework
 
             // @text getBootTypeInfo
             // @brief query the BootType details
-            // @param bootTypeInfo - out - struct
-            virtual Core::hresult GetBootTypeInfo(BootTypeInfo& bootTypeInfo /* @out */) = 0;
+            // @param bootType - out - enum
+            virtual Core::hresult GetBootTypeInfo(BootType& bootType /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief sets the tr181 MigrationStatus parameter
-            // @param status - in - string
+            // @param status - in - enum
             // @param migrationResult - out - struct
-            virtual Core::hresult SetMigrationStatus(const string& status, MigrationResult& migrationResult /* @out */) = 0;
+            virtual Core::hresult SetMigrationStatus(const MigrationStatus status, MigrationResult& migrationResult /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the MigrationStatus details
-            // @param migrationStatusInfo - out - struct
-            virtual Core::hresult GetMigrationStatus(MigrationStatusInfo& migrationStatusInfo /* @out */) = 0;
+            // @param migrationStatus - out - enum
+            virtual Core::hresult GetMigrationStatus(MigrationStatus& migrationStatus /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
