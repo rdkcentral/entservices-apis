@@ -299,7 +299,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 
 ### Result
 
@@ -351,7 +351,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 
 ### Result
 
@@ -403,7 +403,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 
 ### Result
 
@@ -455,7 +455,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 
 ### Result
 
@@ -512,7 +512,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 
 ### Result
 
@@ -685,10 +685,10 @@ Activates the specified HDMI/Composite Input port as the primary video source.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 | params.typeOfInput | string | The type of Input - HDMI/COMPOSITE |
-| params?.audioMix | boolean | <sup>*(optional)*</sup> Defines whether the Audio mixing is true or false, This is an optional argument |
-| params?.planeType | integer | <sup>*(optional)*</sup> Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument  |
+| params?.requestAudioMix | boolean | <sup>*(optional)*</sup> Defines whether the Audio mixing is true or false, This is an optional argument |
+| params?.plane | integer | <sup>*(optional)*</sup> Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument  |
 | params?.topMost | boolean | <sup>*(optional)*</sup> Defines whether the Hdmi Input should be over or under the other video plane |
 
 ### Result
@@ -1184,7 +1184,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.portId | string | <sup>*(optional)*</sup> An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the `getInputDevices` method |
 | params.gameFeature | string | Game Feature to which current status requested |
 
 ### Result
@@ -1244,7 +1244,7 @@ AVInput interface events:
 | [onSignalChanged](#onSignalChanged) | Triggered whenever the signal status changes for an HDMI/Composite Input |
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI Input video stream info |
 | [gameFeatureStatusUpdate](#gameFeatureStatusUpdate) | Triggered whenever game feature status changes for an HDMI Input |
-| [hdmiContentTypeUpdate](#hdmiContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
+| [aviContentTypeUpdate](#aviContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
 
 
 <a name="onDevicesChanged"></a>
@@ -1294,7 +1294,7 @@ Triggered whenever the status changes for an HDMI/Composite Input.
 | params.id | number | The port identifier for the HDMI/Composite Input |
 | params.locator | string | A URL corresponding to the HDMI/Composite Input port |
 | params.status | string | Status of the HDMI/Composite Input. Valid values are `started` or `stopped` |
-| params?.plane | integer | <sup>*(optional)*</sup> Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid  |
+| params.plane | integer | Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid  |
 
 ### Example
 
@@ -1403,8 +1403,8 @@ Triggered whenever game feature status changes for an HDMI Input.
 }
 ```
 
-<a name="hdmiContentTypeUpdate"></a>
-## *hdmiContentTypeUpdate*
+<a name="aviContentTypeUpdate"></a>
+## *aviContentTypeUpdate*
 
 Triggered whenever AV Infoframe content type changes for an HDMI Input.
 
@@ -1421,7 +1421,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input.
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.hdmiContentTypeUpdate",
+    "method": "client.events.aviContentTypeUpdate",
     "params": {
         "id": 1,
         "aviContentType": 1
