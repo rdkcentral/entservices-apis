@@ -34,9 +34,10 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     /* Allow client/UI to read the current status of the device*/
     //@text ReadResource
     //@brief read the current state of the matter device
-    //@param uri uri of the device
+    //@param deviceId uri of the device
+    //@param resourceType the resource field to read to the data for e.g. isON,Label,manufracture
     //@param result: true/false mapped to device on/off state
-    virtual Core::hresult ReadResource(std::string uri /* @in*/, bool& result /* @out*/)=0;
+    virtual Core::hresult ReadResource(std::string deviceId /* @in*/, std::string resourceType /* @in*/, std::string &result /* @out*/)=0;
 
     /* Allow client/UI to change the state of the device*/
     //@text WriteResource
