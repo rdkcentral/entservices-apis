@@ -319,6 +319,10 @@ namespace Exchange {
         ID_PREINSTALL_MANAGER_NOTIFICATION              = ID_PREINSTALL_MANAGER + 1,
         ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR     = ID_PREINSTALL_MANAGER + 2,
 
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1
+        
+
     }; // enum IDS
 
 } // namespace Exchange
