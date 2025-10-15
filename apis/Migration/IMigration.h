@@ -47,14 +47,22 @@ namespace WPEFramework
                 MIGRATION_STATUS_MIGRATION_COMPLETED        = 7 /* @text MIGRATION_COMPLETED */,
             };
 
+            struct EXTERNAL BootTypeInfo {
+                BootType bootType;
+            };
+
+            struct EXTERNAL MigrationStatusInfo {
+                MigrationStatus migrationStatus;
+            };
+
             struct EXTERNAL MigrationResult {
                 bool success;
             };
 
             // @text getBootTypeInfo
             // @brief query the BootType details
-            // @param bootType - out - enum
-            virtual Core::hresult GetBootTypeInfo(BootType& bootType /* @out */) = 0;
+            // @param bootType - out - struct
+            virtual Core::hresult GetBootTypeInfo(BootTypeInfo& bootTypeInfo /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief sets the tr181 MigrationStatus parameter
@@ -64,8 +72,8 @@ namespace WPEFramework
 
             // @text getMigrationStatus
             // @brief get the MigrationStatus details
-            // @param migrationStatus - out - enum
-            virtual Core::hresult GetMigrationStatus(MigrationStatus& migrationStatus /* @out */) = 0;
+            // @param migrationStatus - out - struct
+            virtual Core::hresult GetMigrationStatus(MigrationStatusInfo& migrationStatusInfo /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
