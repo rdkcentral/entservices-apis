@@ -49,6 +49,8 @@ Telemtry interface methods:
 | [logApplicationEvent](#logApplicationEvent) | Logs an application event |
 | [uploadReport](#uploadReport) | Triggers processing and uploading of telemetry report for legacy Xconf based configuration |
 | [abortReport](#abortReport) | Makes request to Telemetry service to abort report upload |
+| [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status |
+| [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status |
 
 
 <a name="setReportProfileStatus"></a>
@@ -295,4 +297,97 @@ Triggered by callback from Telemetry after report uploading.
     }
 }
 ```
+<a name="isOptOutTelemetry"></a>
+## *isOptOutTelemetry*
 
+Checks the telemetry opt-out status.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.Opt-Out | boolean | `true` for opt-out, otherwise `false` |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.Telemetry.isOptOutTelemetry"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "Opt-Out": false,
+        "success": true
+    }
+}
+```
+<a name="setOptOutTelemetry"></a>
+## *setOptOutTelemetry*
+
+Sets the telemetry opt-out status.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.Opt-Out | boolean | `true` for opt-out, otherwise `false` |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.Telemetry.setOptOutTelemetry",
+    "params": {
+        "Opt-Out": false
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
