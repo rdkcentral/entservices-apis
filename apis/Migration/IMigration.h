@@ -30,10 +30,11 @@ namespace WPEFramework
             enum { ID = ID_MIGRATION };
 
             enum BootType : uint8_t {
-                BOOT_TYPE_NORMAL       = 0  /* @text BOOT_NORMAL */,
-                BOOT_TYPE_MIGRATION    = 1  /* @text BOOT_MIGRATION */,
-                BOOT_TYPE_UPDATE       = 2  /* @text BOOT_UPDATE */,
-                BOOT_TYPE_INCONCLUSIVE = 3  /* @text BOOT_INCONCLUSIVE */
+                BOOT_TYPE_INIT         = 0  /* @text BOOT_INIT */,
+                BOOT_TYPE_NORMAL       = 1  /* @text BOOT_NORMAL */,
+                BOOT_TYPE_MIGRATION    = 2  /* @text BOOT_MIGRATION */,
+                BOOT_TYPE_UPDATE       = 3  /* @text BOOT_UPDATE */,
+                BOOT_TYPE_INCONCLUSIVE = 4  /* @text BOOT_INCONCLUSIVE */
             };
 
             enum MigrationStatus : uint8_t {
