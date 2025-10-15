@@ -62,79 +62,79 @@ namespace Exchange {
             // Signal changes on the subscribed namespace
             // @brief Notify TTS enabled/disabled
             // @param state enabled/disabled
-            virtual void Enabled(const bool state) = 0;
+            virtual void Enabled(const bool state) {}
 
             // @brief Notify change in voice used for speaking
             // @param voice voice changed 
-            virtual void VoiceChanged(const string voice) = 0;
+            virtual void VoiceChanged(const string voice) {}
 
             // @brief Notify speechid based on the speech state(eg: start,pause,..etc)
             // @param speechid id of the text
-            virtual void WillSpeak(const uint32_t speechid) = 0;
-            virtual void SpeechStart(const uint32_t speechid) = 0;
-            virtual void SpeechPause(const uint32_t speechid) = 0;
-            virtual void SpeechResume(const uint32_t speechid) = 0;
-            virtual void SpeechInterrupted(const uint32_t speechid) = 0;
-            virtual void NetworkError(const uint32_t speechid) = 0;
-            virtual void PlaybackError(const uint32_t speechid) = 0;
-            virtual void SpeechComplete(const uint32_t speechid) = 0;
+            virtual void WillSpeak(const uint32_t speechid) {}
+            virtual void SpeechStart(const uint32_t speechid) {}
+            virtual void SpeechPause(const uint32_t speechid) {}
+            virtual void SpeechResume(const uint32_t speechid) {}
+            virtual void SpeechInterrupted(const uint32_t speechid) {}
+            virtual void NetworkError(const uint32_t speechid) {}
+            virtual void PlaybackError(const uint32_t speechid) {}
+            virtual void SpeechComplete(const uint32_t speechid) {}
         };
 
         ~ITextToSpeech() override = default;
 
-        virtual void Register(ITextToSpeech::INotification* sink) = 0;
-        virtual void Unregister(ITextToSpeech::INotification* sink) = 0;
-        virtual void RegisterWithCallsign(const string callsign,ITextToSpeech::INotification* sink) = 0;
+        virtual Core::hresult Register(ITextToSpeech::INotification* sink) = 0;
+        virtual Core::hresult Unregister(ITextToSpeech::INotification* sink) = 0;
+        virtual Core::hresult RegisterWithCallsign(const string callsign,ITextToSpeech::INotification* sink) = 0;
         
         // @property
         // @brief Query the status/enable tts
         // @param enable status/enable
-        virtual uint32_t Enable(const bool enable) = 0;
-        virtual uint32_t Enable(bool &enable /* @out */) const = 0;
+        virtual Core::hresult Enable(const bool enable) = 0;
+        virtual Core::hresult Enable(bool &enable /* @out */) const = 0;
 
         // @brief Set the tts configuration attributes
         // @param config tts configuration
         // @param status return status
-        virtual uint32_t SetConfiguration(const Configuration &config,TTSErrorDetail &status/* @out */) = 0;
+        virtual Core::hresult SetConfiguration(const Configuration &config,TTSErrorDetail &status/* @out */) = 0;
 
-        virtual uint32_t SetFallbackText(const string scenario,const string value) = 0;
-        virtual uint32_t SetAPIKey(const string apikey) = 0;
-        virtual uint32_t SetPrimaryVolDuck(const uint8_t prim) = 0;
-        virtual uint32_t SetACL(const string method,const string apps) = 0;
+        virtual Core::hresult SetFallbackText(const string scenario,const string value) = 0;
+        virtual Core::hresult SetAPIKey(const string apikey) = 0;
+        virtual Core::hresult SetPrimaryVolDuck(const uint8_t prim) = 0;
+        virtual Core::hresult SetACL(const string method,const string apps) = 0;
 
         // @brief Retrieve tts configuration attributes 
         // @param config tts configuration
-        virtual uint32_t GetConfiguration(Configuration &config/* @out */) const = 0;
+        virtual Core::hresult GetConfiguration(Configuration &config/* @out */) const = 0;
         
         // @brief List voices available 
         // @param language input
         // @param voices list of voices
-        virtual uint32_t ListVoices(const string language,RPC::IStringIterator*& voices/* @out */) const = 0;
+        virtual Core::hresult ListVoices(const string language,RPC::IStringIterator*& voices/* @out */) const = 0;
         
         // @brief Speaks text provided
         // @param text for conversion
         // @param speechid returns id for the text 
         // @param status return status
-        virtual uint32_t Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
+        virtual Core::hresult Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
         
         // @brief Cancel the speech
         // @param speechid id of text to be cancelled
-        virtual uint32_t Cancel(const uint32_t speechid) = 0;
+        virtual Core::hresult Cancel(const uint32_t speechid) = 0;
         
         // @brief Pause the speech
         // @param speechid id of text to be paused
         // @param status return status
-        virtual uint32_t Pause(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
+        virtual Core::hresult Pause(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Resume the speech
         // @param speechid id of text to be resumed
         // @param status return status
-        virtual uint32_t Resume(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
+        virtual Core::hresult Resume(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Get speech status
         // @param speechid id of text to get status
         // @param state speech state
-        virtual uint32_t GetSpeechState(const uint32_t speechid,SpeechState &state/* @out */) = 0;
+        virtual Core::hresult GetSpeechState(const uint32_t speechid,SpeechState &state/* @out */) = 0;
     };
 
 } // Exchange
