@@ -385,6 +385,10 @@
           "yocto": {
             "type": "string",
             "$ref": "#/definitions/yocto"
+          },
+          "pdri": {
+            "type": "string",
+            "example": "alphanumerical string"
           }
         },
         "required": [
