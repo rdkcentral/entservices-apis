@@ -70,8 +70,8 @@ The following methods are provided by the {classname} plugin:
 
 {classname} interface methods:
 
-| Method | Description |
-| :-------- | :-------- |
+| Method | Description | Event |
+| :-------- | :-------- |:-------- |
 """
 
 METHOD_MARKDOWN_TEMPLATE = """
@@ -89,8 +89,8 @@ The following properties are provided by the {classname} plugin:
 
 {classname} interface properties:
 
-| Method | Description |
-| :-------- | :-------- |
+| Method | Description | Event |
+| :-------- | :-------- |:-------- |
 """
 
 PROPERTY_MARKDOWN_TEMPLATE = """
@@ -200,13 +200,22 @@ def generate_configuration_options_section(configuration_options):
 
 def generate_methods_toc(methods, classname):
     """
-    Generate the methods table of contents for the markdown file.
+    Generate the methods table of contents for the markdown file 
+    including an event_name column, populated from the @see tag (if available).
     """
     toc = METHODS_TOC_TEMPLATE.format(classname=classname)
     for method in methods:
         method_info = methods[method]
         method_name = method_info.get('text') or to_camel_case(method)
-        toc += f"| [{method_name}](#method.{method_name}) | {method_info['brief'] or method_info['details']} |\n"
+        # Extract event names from the events dict keys
+        events_dict = method_info.get('events', {})
+        if events_dict:
+            # Only use the event name before the colon
+            event_names = [e.split(':')[0].strip() for e in events_dict.keys()]
+            event_str = ', '.join(event_names)
+        else:
+            event_str = 'NA'
+        toc += f"| [{method_name}](#method.{method_name}) | {method_info['brief'] or method_info['details']} | {event_str} |\n"
     return toc
 
 def flatten_canonical_dict(canonical_dict, parent_prefix):
@@ -354,7 +363,8 @@ def generate_events_section(events, all_events=None):
 
 def generate_properties_toc(properties, classname):
     """
-    Generate the properties table of contents for the markdown file.
+    Generate the properties table of contents for the markdown file 
+    including an event_name column, populated from the events dict (if available).
     """
     toc = PROPERTIES_TOC_TEMPLATE.format(classname=classname)
     for prop in properties:
@@ -365,7 +375,14 @@ def generate_properties_toc(properties, classname):
             super_script = "<sup>RO</sup>"
         elif property_info['property'] == 'write':
             super_script = "<sup>WO</sup>"
-        toc += f"| [{property_name}](#property.{property_name}){super_script} | {property_info['brief'] or property_info['details']} |\n"
+        # Extract event names from the events dict keys
+        events_dict = property_info.get('events', {})
+        if events_dict:
+            event_names = [e.split(':')[0].strip() for e in events_dict.keys()]
+            event_str = ', '.join(event_names)
+        else:
+            event_str = 'NA'
+        toc += f"| [{property_name}](#property.{property_name}){super_script} | {property_info['brief'] or property_info['details']} | {event_str} |\n"
     return toc
 
 def generate_property_markdown(property_name, property_info, symbol_registry, classname):
