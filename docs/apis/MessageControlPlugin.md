@@ -1,98 +1,44 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="MessageControl_Plugin"></a>
+<a id="head.MessageControl_Plugin"></a>
 # MessageControl Plugin
 
-**Version: 1.0**
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/MessageControl/CHANGELOG.md)**
 
-**Status: :black_circle::white_circle::white_circle:**
-
-MessageControl plugin for Thunder framework.
+A MessageControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Introduction](#Introduction)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-- [Methods](#Methods)
-- [Properties](#Properties)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Properties](#head.Properties)
 
-<a name="Introduction"></a>
-# Introduction
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+# Abbreviation, Acronyms and Terms
 
-<a name="Scope"></a>
-## Scope
+[[Refer to this link](userguide/aat.md)]
 
-This document describes purpose and functionality of the MessageControl plugin. It includes detailed specification about its configuration, methods and properties provided.
-
-<a name="Case_Sensitivity"></a>
-## Case Sensitivity
-
-All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
-
-<a name="Acronyms,_Abbreviations_and_Terms"></a>
-## Acronyms, Abbreviations and Terms
-
-The table below provides and overview of acronyms used in this document and their definitions.
-
-| Acronym | Description |
-| :-------- | :-------- |
-| <a name="API">API</a> | Application Programming Interface |
-| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
-| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
-| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
-
-The table below provides and overview of terms and abbreviations used in this document and their definitions.
-
-| Term | Description |
-| :-------- | :-------- |
-| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
-
-<a name="References"></a>
-## References
-
-| Ref ID | Description |
-| :-------- | :-------- |
-| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
-| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
-| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
-| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20WPEFramework.docx)</a> | Thunder API Reference |
-
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The MessageControl plugin allows reading of the traces from WPEFramework, and controlling them tracing and logging. Allows for outputting logging messages to the websocket.
+The `MessageControl` plugin provides an interface for MessageControl.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *MessageControl*) |
+| callsign | string | Plugin instance name (default: org.rdk.MessageControl) |
 | classname | string | Class name: *MessageControl* |
 | locator | string | Library name: *libWPEFrameworkMessageControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-| console | boolean | <sup>*(optional)*</sup> Enables message output messages to the console |
-| syslog | boolean | <sup>*(optional)*</sup> Enables message ouutput to syslog |
-| filepath | string | <sup>*(optional)*</sup> Path to file (inside VolatilePath) where messages will be stored |
-| abbreviated | boolean | <sup>*(optional)*</sup> Denotes if the messages should be abbreviated |
-| maxexportconnections | number | <sup>*(optional)*</sup> Specifies to how many websockets can the messages be outputted |
-| remote | object | <sup>*(optional)*</sup>  |
-| remote.port | number | Port |
-| remote?.bindig | string | <sup>*(optional)*</sup> Binding address |
 
-<a name="Interfaces"></a>
-# Interfaces
-
-This plugin implements the following interfaces:
-
-- Exchange::IMessageControl ([IMessageControl.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IMessageControl.h)) (version 1.0.0) (compliant format)
-
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
 The following methods are provided by the MessageControl plugin:
@@ -101,117 +47,128 @@ MessageControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [enable](#enable) | Enables/disables a message control |
+| [enable](#method.enable) | Enables/disables a message control |
 
+<a id="method.enable"></a>
+## *enable [<sup>method</sup>](#head.Methods)*
 
-<a name="enable"></a>
-## *enable*
+Enables/disables a message control
 
-Enables/disables a message control.
-
+### Events
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.type | string | Message type (must be one of the following: *Tracing*, *Logging*) |
-| params.category | string | Name of the message category |
-| params.module | string | Name of the module the message is originating from |
-| params.enabled | boolean | Denotes if control should be enabled (true) or disabled (false) |
-
-### Result
-
+| params.type | string | Type of message |
+| params.category | string | Name of the message category (e.g. Information) |
+| params.module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
+| params.enabled | bool | Denotes if the control is enabled (true) or disabled (false) |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Always null |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "MessageControl.1.enable",
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.MessageControl.enable",
     "params": {
-        "type": "Tracing",
-        "category": "Information",
-        "module": "Plugin_BluetoothControl",
-        "enabled": false
+        "type": "TRACING",
+        "category": "",
+        "module": "",
+        "enabled": true
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MessageControl.enable", "params": {"type": "TRACING", "category": "", "module": "", "enabled": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": null
 }
 ```
 
-<a name="Properties"></a>
-# Properties
 
+<a id="head.Properties"></a>
+# Properties
 The following properties are provided by the MessageControl plugin:
 
 MessageControl interface properties:
 
-| Property | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [controls](#controls) <sup>RO</sup> | Retrieves a list of current message controls |
+| [controls](#property.controls)<sup>RO</sup> | Retrieves a list of current message controls |
 
+<a id="property.Controls"></a>
+## *Controls [<sup>property</sup>](#head.Properties)*
 
-<a name="controls"></a>
-## *controls*
+Retrieves a list of current message controls
 
-Provides access to the retrieves a list of current message controls.
-
-> This property is **read-only**.
-
-### Value
-
-### Result
-
+> This property is read-only.
+### Events
+Event details are missing in the header file documentation.
+### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | array | Retrieves a list of current message controls |
-| result[#] | object |  |
-| result[#].type | string | Type of message (must be one of the following: *Tracing*, *Logging*) |
-| result[#].category | string | Name of the message category |
-| result[#].module | string | Name of the module the message is originating from |
-| result[#].enabled | boolean | Denotes if the control is enabled (true) or disabled (false) |
+| (property).control | IControlIterator |  |
+| (property).control[#].type | string | Type of message |
+| (property).control[#].category | string | Name of the message category (e.g. Information) |
+| (property).control[#].module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
+| (property).control[#].enabled | bool | Denotes if the control is enabled (true) or disabled (false) |
 
-### Example
+### Examples
+
 
 #### Get Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "MessageControl.1.controls"
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.MessageControl.controls"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MessageControl.controls"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Get Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": [
         {
-            "type": "Tracing",
-            "category": "Information",
-            "module": "Plugin_BluetoothControl",
-            "enabled": false
+            "type": "TRACING",
+            "category": "",
+            "module": "",
+            "enabled": true
         }
     ]
 }
 ```
-
 

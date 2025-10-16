@@ -1,410 +1,454 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="SharedStorage_Plugin"></a>
+<a id="head.SharedStorage_Plugin"></a>
 # SharedStorage Plugin
 
-A org.rdk.SharedStorage plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/SharedStorage/CHANGELOG.md)**
+
+A SharedStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `SharedStorage` plugin allows you to persist key/value pairs by namespace.
+The `SharedStorage` plugin provides an interface for SharedStorage.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.SharedStorage*) |
-| classname | string | Class name: *org.rdk.SharedStorage* |
+| callsign | string | Plugin instance name (default: org.rdk.SharedStorage) |
+| classname | string | Class name: *SharedStorage* |
 | locator | string | Library name: *libWPEFrameworkSharedStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.SharedStorage plugin:
+The following methods are provided by the SharedStorage plugin:
 
 SharedStorage interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#deleteKey) | Deletes a key from the specified namespace |
-| [deleteNamespace](#deleteNamespace) | Deletes the specified namespace |
-| [flushCache](#flushCache) | Flushes the device cache |
-| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
-| [getNamespaces](#getNamespaces) | Returns the namespaces |
-| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
-| [getValue](#getValue) | Returns the value of a key from the specified namespace |
-| [setValue](#setValue) | Sets the value of a key in the the specified namespace |
-| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
-| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
+| [deleteKey](#method.deleteKey) | Deletes a key from the specified namespace |
+| [deleteNamespace](#method.deleteNamespace) | Deletes the specified namespace |
+| [flushCache](#method.flushCache) | Flushes the device cache |
+| [getKeys](#method.getKeys) | Returns the keys that are stored in the specified namespace |
+| [getNamespaceStorageLimit](#method.getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
+| [getNamespaces](#method.getNamespaces) | Returns the namespaces |
+| [getStorageSizes](#method.getStorageSizes) | Returns the size occupied by each namespace |
+| [getValue](#method.getValue) | Returns the value of a key from the specified namespace. |
+| [setNamespaceStorageLimit](#method.setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
+| [setValue](#method.setValue) | Sets the value of a key in the the specified namespace |
 
+<a id="method.deleteKey"></a>
+## *deleteKey [<sup>method</sup>](#head.Methods)*
 
-<a name="deleteKey"></a>
-## *deleteKey*
-
-Deletes a key from the specified namespace.
+Deletes a key from the specified namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+| params.key | string | key |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.SharedStorage.deleteKey",
     "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="deleteNamespace"></a>
-## *deleteNamespace*
+<a id="method.deleteNamespace"></a>
+## *deleteNamespace [<sup>method</sup>](#head.Methods)*
 
-Deletes the specified namespace.
+Deletes the specified namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.SharedStorage.deleteNamespace",
     "params": {
-        "namespace": "ns1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="flushCache"></a>
-## *flushCache*
+<a id="method.flushCache"></a>
+## *flushCache [<sup>method</sup>](#head.Methods)*
 
-Flushes the device cache.
+Flushes the device cache
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Always null |
+| result | null | On success null will be returned. |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.SharedStorage.flushCache"
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": null
 }
 ```
 
-<a name="getKeys"></a>
-## *getKeys*
+<a id="method.getKeys"></a>
+## *getKeys [<sup>method</sup>](#head.Methods)*
 
-Returns the keys that are stored in the specified namespace.
+Returns the keys that are stored in the specified namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.keys | array |  |
-| result.keys[#] | string | Key |
-| result.success | boolean | Whether the request succeeded |
+| result.keys | IStringIterator | keys list |
+| result.keys[#] | string |  |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.SharedStorage.getKeys",
     "params": {
-        "namespace": "ns1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
         "keys": [
-            "key1"
+            ""
         ],
         "success": true
     }
 }
 ```
 
-<a name="getNamespaces"></a>
-## *getNamespaces*
+<a id="method.getNamespaceStorageLimit"></a>
+## *getNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
 
-Returns the namespaces.
+Returns the storage limit for a given namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.namespaces | array |  |
-| result.namespaces[#] | string | Namespace |
-| result.success | boolean | Whether the request succeeded |
+| result.storageLimit | integer | size |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.SharedStorage.getNamespaceStorageLimit",
+    "params": {
+        "scope": "DEVICE",
+        "namespace": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "storageLimit": 0
+    }
+}
+```
+
+<a id="method.getNamespaces"></a>
+## *getNamespaces [<sup>method</sup>](#head.Methods)*
+
+Returns the namespaces
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string | must be device or account |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.namespaces | IStringIterator | namespaces list |
+| result.namespaces[#] | string |  |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.SharedStorage.getNamespaces",
     "params": {
-        "scope": "device"
+        "scope": "DEVICE"
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
         "namespaces": [
-            "ns1"
+            ""
         ],
         "success": true
     }
 }
 ```
 
-<a name="getStorageSizes"></a>
-## *getStorageSizes*
+<a id="method.getStorageSizes"></a>
+## *getStorageSizes [<sup>method</sup>](#head.Methods)*
 
-Returns the size occupied by each namespace.
+Returns the size occupied by each namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.storageList | array |  |
-| result.storageList[#] | object |  |
-| result.storageList[#].namespace | string | Namespace |
-| result.storageList[#].size | number | Size in bytes |
-| result.success | boolean | Whether the request succeeded |
+| result.storageList | INamespaceSizeIterator | list of namespaces and their sizes |
+| result.storageList[#].ns | string |  |
+| result.storageList[#].size | integer |  |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.SharedStorage.getStorageSizes",
     "params": {
-        "scope": "device"
+        "scope": "DEVICE"
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": {
         "storageList": [
             {
-                "namespace": "ns1",
-                "size": 100
+                "ns": "",
+                "size": 0
             }
         ],
         "success": true
@@ -412,297 +456,229 @@ No Events
 }
 ```
 
-<a name="getValue"></a>
-## *getValue*
+<a id="method.getValue"></a>
+## *getValue [<sup>method</sup>](#head.Methods)*
 
 Returns the value of a key from the specified namespace.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+| params.key | string | key |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.value | string | Value |
-| result.success | boolean | Whether the request succeeded |
-| result?.ttl | number | <sup>*(optional)*</sup> Time in seconds |
+| result.value | string | value |
+| result.ttl | integer | time to live (optional) |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 31 | ```ERROR_PENDING_CONDITIONS``` | Time is not synced |
-| 43 | ```ERROR_NOT_EXIST``` | Unknown namespace |
-| 22 | ```ERROR_UNKNOWN_KEY``` | Unknown key |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "method": "org.rdk.SharedStorage.getValue",
     "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "result": {
-        "value": "value1",
-        "success": true,
-        "ttl": 100
+        "value": "",
+        "ttl": 0,
+        "success": true
     }
 }
 ```
 
-<a name="setValue"></a>
-## *setValue*
+<a id="method.setNamespaceStorageLimit"></a>
+## *setNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
 
-Sets the value of a key in the the specified namespace.
+Sets the storage limit for a given namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params.value | string | Value |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-| params?.ttl | number | <sup>*(optional)*</sup> Time in seconds |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+| params.storageLimit | integer | size |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 31 | ```ERROR_PENDING_CONDITIONS``` | Time is not synced |
-| 16 | ```ERROR_INVALID_INPUT_LENGTH``` | Empty/too large namespace or key, or the storage doesn't have enough space |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.SharedStorage.setValue",
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.SharedStorage.setNamespaceStorageLimit",
     "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "value": "value1",
-        "scope": "device",
-        "ttl": 100
+        "scope": "DEVICE",
+        "namespace": "",
+        "storageLimit": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "DEVICE", "namespace": "", "storageLimit": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 8,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit*
+<a id="method.setValue"></a>
+## *setValue [<sup>method</sup>](#head.Methods)*
 
-Sets the storage limit for a given namespace.
+Sets the value of a key in the the specified namespace
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params.storageLimit | number | Size in bytes |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | boolean | Whether the request succeeded |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 16 | ```ERROR_INVALID_INPUT_LENGTH``` | Empty/too large namespace, or the storage doesn't have enough space |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.SharedStorage.setNamespaceStorageLimit",
-    "params": {
-        "namespace": "ns1",
-        "storageLimit": 100,
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": true
-}
-```
-
-<a name="getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit*
-
-Returns the storage limit for a given namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+| params.key | string | key |
+| params.value | string | value |
+| params.ttl | integer | time to live (optional) |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.storageLimit | number | Size in bytes |
+| result.success | bool | success |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 43 | ```ERROR_NOT_EXIST``` | Unknown namespace |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.SharedStorage.getNamespaceStorageLimit",
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.SharedStorage.setValue",
     "params": {
-        "namespace": "ns1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": "",
+        "value": "",
+        "ttl": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "DEVICE", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 9,
     "result": {
-        "storageLimit": 100
+        "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.SharedStorage plugin:
+The following events are provided by the SharedStorage plugin:
 
 SharedStorage interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onValueChanged](#onValueChanged) | Triggered whenever any of the values stored are changed using setValue |
+| [onValueChanged](#event.onValueChanged) | Values stored are changed using setValue |
 
+<a id="event.onValueChanged"></a>
+## *onValueChanged [<sup>event</sup>](#head.Notifications)*
 
-<a name="onValueChanged"></a>
-## *onValueChanged*
-
-Triggered whenever any of the values stored are changed using setValue.
+Values stored are changed using setValue
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params.value | string | Value |
-| params.scope | string | Scope (must be one of the following: *device*, *account*) |
+| params.scope | string | must be device or account |
+| params.namespace | string | name space |
+| params.key | string | key |
+| params.value | string | value |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onValueChanged",
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.SharedStorage.onValueChanged",
     "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "value": "value1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": "",
+        "value": ""
     }
 }
 ```
-
