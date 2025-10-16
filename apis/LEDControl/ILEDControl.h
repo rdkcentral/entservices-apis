@@ -36,16 +36,24 @@ namespace WPEFramework
             virtual ~ILEDControl() = default;
 
             enum LEDControlState : uint8_t {
-                LEDSTATE_NONE = 0       /* @text NONE */,
-                LEDSTATE_ACTIVE         /* @text ACTIVE */,
-                LEDSTATE_STANDBY        /* @text STANDBY */,
-                LEDSTATE_WPS_CONNECTING /* @text WPS_CONNECTING */,
-                LEDSTATE_WPS_CONNECTED  /* @text WPS_CONNECTED */,
-                LEDSTATE_WPS_ERROR      /* @text WPS_ERROR */,
-                LEDSTATE_FACTORY_RESET  /* @text FACTORY_RESET */,
-                LEDSTATE_USB_UPGRADE    /* @text USB_UPGRADE */,
-                LEDSTATE_DOWNLOAD_ERROR /* @text DOWNLOAD_ERROR */,
-                LEDSTATE_MAX            /* @text MAX */
+                LEDSTATE_NONE = 0         /* @text NONE */,
+                LEDSTATE_ACTIVE           /* @text ACTIVE */,
+                LEDSTATE_STANDBY          /* @text STANDBY */,
+                LEDSTATE_WPS_CONNECTING   /* @text WPS_CONNECTING */,
+                LEDSTATE_WPS_CONNECTED    /* @text WPS_CONNECTED */,
+                LEDSTATE_WPS_ERROR        /* @text WPS_ERROR */,
+                LEDSTATE_FACTORY_RESET    /* @text FACTORY_RESET */,
+                LEDSTATE_USB_UPGRADE      /* @text USB_UPGRADE */,
+                LEDSTATE_DOWNLOAD_ERROR   /* @text DOWNLOAD_ERROR */,
+                LEDSTATE_WIFI_ERROR       /* @text WIFI_ERROR */,
+                LEDSTATE_BOOT_IN_PROGRESS /* @text BOOT_IN_PROGRESS */,
+                LEDSTATE_COLDSTANDBY      /* @text COLDSTANDBY */,
+                LEDSTATE_PSU_FAILURE      /* @text PSU_FAILURE */,
+                LEDSTATE_WPS_SES_OVERLAP  /* @text WPS_SES_OVERLAP */,
+                LEDSTATE_IP_ACQUIRED      /* @text IP_ACQUIRED */,
+                LEDSTATE_NO_IP            /* @text NO_IP */,
+                LEDSTATE_RCU_COMMAND      /* @text RCU_COMMAND */,
+                LEDSTATE_MAX              /* @text MAX */
             };
 
             // Struct to wrap LEDControlState for API compatibility
