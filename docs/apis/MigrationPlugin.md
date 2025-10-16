@@ -66,7 +66,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string | BOOT Type Info. one of the following "BOOT_NORMAL", "BOOT_MIGRATION", "BOOT_UPDATE", "BOOT_INCONCLUSIVE" |
+| result.bootType | string | BOOT Type Info. one of the following "BOOT_INIT", "BOOT_NORMAL", "BOOT_MIGRATION", "BOOT_UPDATE", "BOOT_INCONCLUSIVE" |
 
 ### Errors
 
