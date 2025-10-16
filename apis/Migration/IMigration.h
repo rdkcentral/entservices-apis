@@ -33,8 +33,7 @@ namespace WPEFramework
                 BOOT_TYPE_INIT         = 0  /* @text BOOT_INIT */,
                 BOOT_TYPE_NORMAL       = 1  /* @text BOOT_NORMAL */,
                 BOOT_TYPE_MIGRATION    = 2  /* @text BOOT_MIGRATION */,
-                BOOT_TYPE_UPDATE       = 3  /* @text BOOT_UPDATE */,
-                BOOT_TYPE_INCONCLUSIVE = 4  /* @text BOOT_INCONCLUSIVE */
+                BOOT_TYPE_UPDATE       = 3  /* @text BOOT_UPDATE */
             };
 
             enum MigrationStatus : uint8_t {
