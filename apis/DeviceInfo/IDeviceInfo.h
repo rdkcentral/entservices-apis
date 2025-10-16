@@ -88,9 +88,9 @@ namespace Exchange {
         typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
         virtual Core::hresult SupportedAudioPorts(RPC::IStringIterator*& supportedAudioPorts /* @out */) const = 0;
-        virtual Core::hresult AudioCapabilities(const string& audioPort /* @in */, IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
-        virtual Core::hresult MS12Capabilities(const string& audioPort /* @in */, IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
-        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort /* @in */, RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
+        virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
+        virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
+        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
     };
 
     struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
@@ -150,10 +150,10 @@ namespace Exchange {
         typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
         virtual Core::hresult SupportedVideoDisplays(RPC::IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
-        virtual Core::hresult DefaultResolution(const string& videoDisplay /* @in */, string& defaultResolution /* @out */) const = 0;
-        virtual Core::hresult SupportedResolutions(const string& videoDisplay /* @in */, RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
+        virtual Core::hresult DefaultResolution(const string& videoDisplay , string& defaultResolution /* @out */) const = 0;
+        virtual Core::hresult SupportedResolutions(const string& videoDisplay , RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
         virtual Core::hresult HostEDID(string& edid /* @out */) const = 0;
-        virtual Core::hresult SupportedHdcp(const string& videoDisplay /* @in */, CopyProtection& supportedHDCPVersion /* @out */) const = 0;
+        virtual Core::hresult SupportedHdcp(const string& videoDisplay , CopyProtection& supportedHDCPVersion /* @out */) const = 0;
     };
 }
 }

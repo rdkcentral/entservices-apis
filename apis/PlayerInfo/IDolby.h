@@ -81,7 +81,7 @@ namespace Exchange {
             // @brief Enable Atmos Audio Output
             // @param enable: enable/disable
             // @text dolby_enableatmosoutput
-            virtual uint32_t EnableAtmosOutput(const bool& enable /* @in */) = 0;
+            virtual uint32_t EnableAtmosOutput(const bool& enable) = 0;
 
             // @property
             // @brief Dolby Mode
