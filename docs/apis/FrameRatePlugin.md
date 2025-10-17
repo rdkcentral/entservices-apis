@@ -1,146 +1,154 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="FrameRate_Plugin"></a>
+<a id="head.FrameRate_Plugin"></a>
 # FrameRate Plugin
 
-A org.rdk.FrameRate plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/FrameRate/CHANGELOG.md)**
+
+A FrameRate plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `FrameRate` plugin allows you to collect FPS data. 
-NOTE: The Framerate plugin is supported only on TV devices and its not compatible on STB devices, as per HAL implementation.
+The `FrameRate` plugin provides an interface for FrameRate.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.FrameRate*) |
-| classname | string | Class name: *org.rdk.FrameRate* |
+| callsign | string | Plugin instance name (default: org.rdk.FrameRate) |
+| classname | string | Class name: *FrameRate* |
 | locator | string | Library name: *libWPEFrameworkFrameRate.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.FrameRate plugin:
+The following methods are provided by the FrameRate plugin:
 
 FrameRate interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDisplayFrameRate](#getDisplayFrameRate) | Returns the current display frame rate values |
-| [getFrmMode](#getFrmMode) | Returns the current auto framerate mode |
-| [setCollectionFrequency](#setCollectionFrequency) | Sets the FPS data collection interval |
-| [setDisplayFrameRate](#setDisplayFrameRate) | Sets the display framerate values |
-| [setFrmMode](#setFrmMode) | Sets the auto framerate mode |
-| [startFpsCollection](#startFpsCollection) | Starts the FPS data collection |
-| [stopFpsCollection](#stopFpsCollection) | Stops the FPS data collection |
-| [updateFps](#updateFps) | Updates Fps values |
+| [getDisplayFrameRate](#method.getDisplayFrameRate) | Gets the current display frame rate values. |
+| [getFrmMode](#method.getFrmMode) | Gets the current auto framerate mode. |
+| [setCollectionFrequency](#method.setCollectionFrequency) | Sets the FPS data collection interval. |
+| [setDisplayFrameRate](#method.setDisplayFrameRate) | Sets the display framerate values. |
+| [setFrmMode](#method.setFrmMode) | Set the Frm mode. |
+| [startFpsCollection](#method.startFpsCollection) | Starts the FPS data collection. Starts the FPS data collection |
+| [stopFpsCollection](#method.stopFpsCollection) | Stops the FPS data collection |
+| [updateFps](#method.updateFps) | Update the FPS value |
 
+<a id="method.getDisplayFrameRate"></a>
+## *getDisplayFrameRate [<sup>method</sup>](#head.Methods)*
 
-<a name="getDisplayFrameRate"></a>
-## *getDisplayFrameRate*
-
-Returns the current display frame rate values.
+Gets the current display frame rate values.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.framerate | string | The display framerate setting (width x height x framerate) |
-| result.success | boolean | Whether the request succeeded |
+| result.framerate | string | string |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.FrameRate.getDisplayFrameRate"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.FrameRate.getDisplayFrameRate"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
-        "framerate": "3840x2160px48",
+        "framerate": "",
         "success": true
     }
 }
 ```
 
-<a name="getFrmMode"></a>
-## *getFrmMode*
+<a id="method.getFrmMode"></a>
+## *getFrmMode [<sup>method</sup>](#head.Methods)*
 
-Returns the current auto framerate mode.
+Gets the current auto framerate mode.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.auto-frm-mode | integer | `0` for auto framerate mode disabled, `1` for auto framerate mode enabled (must be one of the following: *0*, *1*) |
-| result.success | boolean | Whether the request succeeded |
+| result.auto-frm-mode | int |  |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.FrameRate.getFrmMode"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.FrameRate.getFrmMode"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
         "auto-frm-mode": 0,
         "success": true
@@ -148,139 +156,141 @@ This method takes no parameters.
 }
 ```
 
-<a name="setCollectionFrequency"></a>
-## *setCollectionFrequency*
+<a id="method.setCollectionFrequency"></a>
+## *setCollectionFrequency [<sup>method</sup>](#head.Methods)*
 
 Sets the FPS data collection interval.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frequency | integer | The amount of time in milliseconds. The default frequency is 10000 milliseconds |
-
-### Result
-
+| params.frequency | int | int |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.FrameRate.setCollectionFrequency",
     "params": {
-        "frequency": 1000
+        "frequency": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FrameRate.setCollectionFrequency", "params": {"frequency": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setDisplayFrameRate"></a>
-## *setDisplayFrameRate*
+<a id="method.setDisplayFrameRate"></a>
+## *setDisplayFrameRate [<sup>method</sup>](#head.Methods)*
 
 Sets the display framerate values.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onDisplayFrameRateChanging](#onDisplayFrameRateChanging) | Triggered when the framerate changes started. |
-| [onDisplayFrameRateChanged](#onDisplayFrameRateChanged) | Triggered when the framerate changed |
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.framerate | string | The display framerate setting (width x height x framerate) |
-
-### Result
-
+| params.framerate | string | string |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.FrameRate.setDisplayFrameRate",
     "params": {
-        "framerate": "3840x2160px48"
+        "framerate": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.FrameRate.setDisplayFrameRate", "params": {"framerate": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="setFrmMode"></a>
-## *setFrmMode*
+<a id="method.setFrmMode"></a>
+## *setFrmMode [<sup>method</sup>](#head.Methods)*
 
-Sets the auto framerate mode.
+Set the Frm mode.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frmmode | integer | `0` for auto framerate mode disabled, `1` for auto framerate mode enabled (must be one of the following: *0*, *1*) |
-
-### Result
-
+| params.frmmode | int | int |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.FrameRate.setFrmMode",
     "params": {
         "frmmode": 0
@@ -288,242 +298,261 @@ No Events
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrameRate.setFrmMode", "params": {"frmmode": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="startFpsCollection"></a>
-## *startFpsCollection*
+<a id="method.startFpsCollection"></a>
+## *startFpsCollection [<sup>method</sup>](#head.Methods)*
 
-Starts the FPS data collection.
+Starts the FPS data collection. Starts the FPS data collection
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onFpsEvent](#onFpsEvent) | Triggered at the end of each interval as defined by the setCollectionFrequency |
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.FrameRate.startFpsCollection"
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.FrameRate.startFpsCollection"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="stopFpsCollection"></a>
-## *stopFpsCollection*
+<a id="method.stopFpsCollection"></a>
+## *stopFpsCollection [<sup>method</sup>](#head.Methods)*
 
-Stops the FPS data collection.
+Stops the FPS data collection
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onFpsEvent](#onFpsEvent) | Triggered once after the stopFpsCollection method is invoked. |
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.FrameRate.stopFpsCollection"
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.FrameRate.stopFpsCollection"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="updateFps"></a>
-## *updateFps*
+<a id="method.updateFps"></a>
+## *updateFps [<sup>method</sup>](#head.Methods)*
 
-Updates Fps values.
+Update the FPS value
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.newFpsValue | integer | New Frames per Second (Fps) value |
-
-### Result
-
+| params.newFpsValue | int | int |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "method": "org.rdk.FrameRate.updateFps",
     "params": {
-        "newFpsValue": 60
+        "newFpsValue": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.FrameRate.updateFps", "params": {"newFpsValue": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.FrameRate plugin:
+The following events are provided by the FrameRate plugin:
 
 FrameRate interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDisplayFrameRateChanging](#onDisplayFrameRateChanging) | Triggered when the framerate changes started |
-| [onDisplayFrameRateChanged](#onDisplayFrameRateChanged) | Triggered when the framerate changed |
-| [onFpsEvent](#onFpsEvent) | Triggered at the end of each interval as defined by the `setCollectionFrequency` method and once after the `stopFpsCollection` method is invoked |
+| [onDisplayFrameRateChanged](#event.onDisplayFrameRateChanged) | Triggered when the framerate changed. |
+| [onDisplayFrameRateChanging](#event.onDisplayFrameRateChanging) | Triggered when the framerate changes started |
+| [onFpsEvent](#event.onFpsEvent) | Triggered by callback from FrameRate after onFpsEvent |
 
-
-<a name="onDisplayFrameRateChanging"></a>
-## *onDisplayFrameRateChanging*
-
-Triggered when the framerate changes started.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.displayFrameRate | string | Video Display FrameRate changing |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onDisplayFrameRateChanging",
-    "params": {
-        "displayFrameRate": "1920x1080x60"
-    }
-}
-```
-
-<a name="onDisplayFrameRateChanged"></a>
-## *onDisplayFrameRateChanged*
+<a id="event.onDisplayFrameRateChanged"></a>
+## *onDisplayFrameRateChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the framerate changed.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string | Video Display FrameRate changed |
+| params.displayFrameRate | string | string |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDisplayFrameRateChanged",
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.FrameRate.onDisplayFrameRateChanged",
     "params": {
-        "displayFrameRate": "1920x1080x60"
+        "displayFrameRate": ""
     }
 }
 ```
 
-<a name="onFpsEvent"></a>
-## *onFpsEvent*
+<a id="event.onDisplayFrameRateChanging"></a>
+## *onDisplayFrameRateChanging [<sup>event</sup>](#head.Notifications)*
 
-Triggered at the end of each interval as defined by the `setCollectionFrequency` method and once after the `stopFpsCollection` method is invoked.
+Triggered when the framerate changes started
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.average | integer | The average FPS |
-| params.min | integer | The minimum FPS |
-| params.max | integer | The maximum FPS |
+| params.displayFrameRate | string | string |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onFpsEvent",
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.FrameRate.onDisplayFrameRateChanging",
+    "params": {
+        "displayFrameRate": ""
+    }
+}
+```
+
+<a id="event.onFpsEvent"></a>
+## *onFpsEvent [<sup>event</sup>](#head.Notifications)*
+
+Triggered by callback from FrameRate after onFpsEvent
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.average | int | int |
+| params.min | int | int |
+| params.max | int | int |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.FrameRate.onFpsEvent",
     "params": {
         "average": 0,
         "min": 0,
@@ -531,4 +560,3 @@ Triggered at the end of each interval as defined by the `setCollectionFrequency`
     }
 }
 ```
-

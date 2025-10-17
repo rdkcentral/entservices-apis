@@ -1,123 +1,126 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Analytics_Plugin"></a>
+<a id="head.Analytics_Plugin"></a>
 # Analytics Plugin
 
-A org.rdk.Analytics plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Analytics/CHANGELOG.md)**
+
+A Analytics plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
 The `Analytics` plugin allows to send analytics events to dedicated backends.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.Analytics*) |
-| classname | string | Class name: *org.rdk.Analytics* |
+| callsign | string | Plugin instance name (default: org.rdk.Analytics) |
+| classname | string | Class name: *Analytics* |
 | locator | string | Library name: *libWPEFrameworkAnalytics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 | configuration | object |  |
-| configuration.loggername | string | Logger name used by backend |
-| configuration.loggerversion | string | Logger version used by backend |
-| configuration?.eventsmap | string | <sup>*(optional)*</sup> Optional path to json file with array of mapped events name |
-| configuration.backendlib | string | Name of backend library |
+| configuration.loggername | string | Logger name used by backend  |
+| configuration.loggerversion | string | Logger version used by backend  |
+| configuration?.eventsmap | string | <sup>(optional)</sup> Optional path to json file with array of mapped events name  |
+| configurationn.backendlib | string | Name of backend library  |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.Analytics plugin:
+The following methods are provided by the Analytics plugin:
 
 Analytics interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendEvent](#sendEvent) | Enqueue an event to be sent to the SIFT analytics backend |
+| [sendEvent](#method.sendEvent) | Send an event to the analytics server |
 
+<a id="method.sendEvent"></a>
+## *sendEvent [<sup>method</sup>](#head.Methods)*
 
-<a name="sendEvent"></a>
-## *sendEvent*
-
-Enqueue an event to be sent to the SIFT analytics backend.
+Send an event to the analytics server
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.eventName | string | Name of the event |
-| params?.eventVersion | string | <sup>*(optional)*</sup> Version number of event schema |
-| params.eventSource | string | Name of the component that originates the event (Durable App ID if an App) |
-| params.eventSourceVersion | string | Version number for the component that originates the event |
-| params.cetList | array | An array of Capability Exclusion Tags to be included on the report. Each CET will exclude the event from being processed for the specified process, any may result in the event being dropped. May be an array of length zero |
+| params?.eventVersion | string | <sup>(optional)</sup>Version of the event |
+| params.eventSource | string | Source of the event |
+| params.eventSourceVersion | string | Version of the event source |
+| params.cetList | IStringIterator | List of CETs |
 | params.cetList[#] | string |  |
-| params?.epochTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, epoch time, in ms UTC |
-| params?.uptimeTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, uptime of the device, in ms. ONLY to be used when Time quality is not good |
-| params?.appId | string | <sup>*(optional)*</sup> Durable App ID string |
-| params.eventPayload | object | Custom payload of the event in JSON format. User defined colection of objects and keys. May be an empty object |
-| params.eventPayload.keyOrObject | string | User defined custom key or object |
-
-### Result
-
+| params?.epochTimestamp | integer | <sup>(optional)</sup>Epoch timestamp of the event |
+| params?.uptimeTimestamp | integer | <sup>(optional)</sup>Uptime timestamp of the event |
+| params?.appId | string | <sup>(optional)</sup>Durable App Id string |
+| params.eventPayload | string | Payload of the event |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.Analytics.sendEvent",
     "params": {
-        "eventName": "app_summary",
-        "eventVersion": "1.0.0",
-        "eventSource": "epg",
-        "eventSourceVersion": "1.0.0",
+        "eventName": "",
+        "eventVersion": "",
+        "eventSource": "",
+        "eventSourceVersion": "",
         "cetList": [
-            "cet1"
+            ""
         ],
-        "epochTimestamp": 1721906631000,
-        "uptimeTimestamp": 35000,
-        "appId": "app-id-app1",
-        "eventPayload": {
-            "keyOrObject": "value1"
-        }
+        "epochTimestamp": 0,
+        "uptimeTimestamp": 0,
+        "appId": "",
+        "eventPayload": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
 }
 ```
+
 

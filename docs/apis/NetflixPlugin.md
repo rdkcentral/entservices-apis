@@ -1,43 +1,44 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Netflix Plugin"></a>
+<a id="head.Netflix_Plugin"></a>
 # Netflix Plugin
+
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Netflix/CHANGELOG.md)**
 
 A Netflix plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The Netflix plugin allows applications to interact with the Netflix application that is running on a set-top device.
+The `Netflix` plugin provides an interface for Netflix.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *Netflix*) |
+| callsign | string | Plugin instance name (default: org.rdk.Netflix) |
 | classname | string | Class name: *Netflix* |
 | locator | string | Library name: *libWPEFrameworkNetflix.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
 The following methods are provided by the Netflix plugin:
@@ -46,376 +47,737 @@ Netflix interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [factoryreset](#factoryreset) | Performs a Netflix factory reset |
-| [systemcommand](#systemcommand) | Executes the specified Netflix system command |
-| [voicecommand](#voicecommand) | Executes the specified Netflix voice command |
+| [factoryReset](#method.factoryReset) |  |
+| [getESN](#method.getESN) |  |
+| [language](#method.language) |  |
+| [setVisible](#method.setVisible) |  |
+| [systemCommand](#method.systemCommand) |  |
+| [voiceCommand](#method.voiceCommand) |  |
+| [getNFREnabled](#method.getNFREnabled) |  |
+| [setNFREnabled](#method.setNFREnabled) |  |
+| [deriveKeys](#method.deriveKeys) |  |
+| [eSN](#method.eSN) |  |
+| [encryptionKey](#method.encryptionKey) |  |
+| [hMACKey](#method.hMACKey) |  |
+| [wrappingKey](#method.wrappingKey) |  |
 
-<a name="factoryreset"></a>
-## *factoryreset*
+<a id="method.factoryReset"></a>
+## *factoryReset [<sup>method</sup>](#head.Methods)*
 
-Performs a Netflix factory reset.
+
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Always null |
+| result | null | On success null will be returned. |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.factoryreset"
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.Netflix.factoryReset"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Netflix.factoryReset"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": null
 }
 ```
 
-<a name="systemcommand"></a>
-## *systemcommand*
+<a id="method.getESN"></a>
+## *getESN [<sup>method</sup>](#head.Methods)*
 
-Executes the specified Netflix system command.
+
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
+This method takes no parameters.
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.command | string | The system command to send to the Netflix application |
+| result | null | On success null will be returned. |
 
-### Result
+### Examples
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | Always null |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-| 22 | ERROR_UNKNOWN_KEY | Command is not set |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.systemcommand",
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.Netflix.getESN"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Netflix.getESN"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": null
+}
+```
+
+<a id="method.language"></a>
+## *language [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.language | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.Netflix.language",
     "params": {
-        "command": "config"
+        "language": ""
     }
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Netflix.language", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": null
 }
 ```
 
-<a name="voicecommand"></a>
-## *voicecommand*
+<a id="method.setVisible"></a>
+## *setVisible [<sup>method</sup>](#head.Methods)*
 
-Executes the specified Netflix voice command.
+
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.assistant | string | The voice assistant |
-| params.lang | string | The uttered language |
-| params.micType | string | The microphone type |
-| params.timeout | Integer | The duration, in milliseconds, to wait for execution |
-| params.utteranceStructured | object | The structure of the utterance |
-| params.utteranceStructured.command | string | The command to send to the Netflix application |
-| params.utteranceStructured.intents | array | A string array of intents |
-| params.utteranceStructured.intents[#] | string |  |
-| params.utteranceStructured.resources | array | The structured utterances to be executed |
-| params.utteranceStructured.resources[#] | object |  |
-| params.utteranceStructured.resources[#].type | string | The resources type |
-| params.utteranceStructured.resources[#].value | string | The resources value |
-| params.utterancetext | string | The uttered text |
-
-### Result
-
+| params.visibility | bool |  |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Always null |
+| result | null | On success null will be returned. |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-| 22 | ERROR_UNKNOWN_KEY | Command is not set |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.voicecommand",
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.Netflix.setVisible",
     "params": {
-        "assistant": "XFINITY",
-        "lang": "en-US",
-        "micType": "NEAR_FIELD",
-        "timeout": 15000,
-        "utteranceStructured": {
-            "command": "search",
-            "intents": [
-                "..."
-            ],
-            "resources": [
-                {
-                    "type": "Query",
-                    "value": "Comedy Movies"
-                }
-            ]
-        },
-        "utterancetext": "Find Comedy Movies"
+        "visibility": true
     }
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Netflix.setVisible", "params": {"visibility": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": null
 }
 ```
 
-<a name="Properties"></a>
-# Properties
+<a id="method.systemCommand"></a>
+## *systemCommand [<sup>method</sup>](#head.Methods)*
 
-The following properties are provided by the Netflix plugin:
 
-Netflix interface properties:
-| Property | Description |
-| :-------- | :-------- |
-| [esn](#esn)  | ESN value|
-| [visibility](#visibility)  | Current Netflix visibility |
-
-<a name="esn"></a>
-## *esn*
-
-Provides access to the ESN value.
-This property is read-only.
-
-### Value
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property) | string | ESN value |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.esn"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "DADDAUFV2=00000000000000000000000000000001"
-}
-```
-
-<a name="visibility"></a>
-## *visibility*
-
-Provides access to the current Netflix visibility.
-
-This property is write-only.
-
-### Description
-
-Use this property to return current visibilty status of Netflix.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| visibilitychange | Triggered if the Netflix visibility changed. |
-
-### Value
-
+Event details are missing in the header file documentation.
+### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | string | Current Netflix visibility. (must be one of the following: visible, hidden) |
+| params | object |  |
+| params.command | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.visibility",
-    "params": "visible"
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.Netflix.systemCommand",
+    "params": {
+        "command": ""
+    }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Netflix.systemCommand", "params": {"command": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
 }
 ```
 
-<a name="Notifications"></a>
+<a id="method.voiceCommand"></a>
+## *voiceCommand [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.command | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.Netflix.voiceCommand",
+    "params": {
+        "command": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Netflix.voiceCommand", "params": {"command": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": null
+}
+```
+
+<a id="method.getNFREnabled"></a>
+## *getNFREnabled [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.Netflix.getNFREnabled"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.Netflix.getNFREnabled"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": null
+}
+```
+
+<a id="method.setNFREnabled"></a>
+## *setNFREnabled [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.nfrEnable | bool |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.Netflix.setNFREnabled",
+    "params": {
+        "nfrEnable": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.Netflix.setNFREnabled", "params": {"nfrEnable": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": null
+}
+```
+
+<a id="method.deriveKeys"></a>
+## *deriveKeys [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.privateDhKeyId | integer |  |
+| params.peerPublicDhKeyId | integer |  |
+| params.derivationKeyId | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.encryptionKeyId | integer |  |
+| result.hmacKeyId | integer |  |
+| result.wrappingKeyId | integer |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.Netflix.deriveKeys",
+    "params": {
+        "privateDhKeyId": 0,
+        "peerPublicDhKeyId": 0,
+        "derivationKeyId": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Netflix.deriveKeys", "params": {"privateDhKeyId": 0, "peerPublicDhKeyId": 0, "derivationKeyId": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "encryptionKeyId": 0,
+        "hmacKeyId": 0,
+        "wrappingKeyId": 0
+    }
+}
+```
+
+<a id="method.eSN"></a>
+## *eSN [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.Netflix.eSN"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Netflix.eSN"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": null
+}
+```
+
+<a id="method.encryptionKey"></a>
+## *encryptionKey [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.Netflix.encryptionKey"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Netflix.encryptionKey"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": null
+}
+```
+
+<a id="method.hMACKey"></a>
+## *hMACKey [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.Netflix.hMACKey"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Netflix.hMACKey"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": null
+}
+```
+
+<a id="method.wrappingKey"></a>
+## *wrappingKey [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.Netflix.wrappingKey"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Netflix.wrappingKey"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
 The following events are provided by the Netflix plugin:
 
 Netflix interface events:
+
 | Event | Description |
 | :-------- | :-------- |
-| [visibilitychange](#visibilitychange) | Triggered when the Netflix service visibility changes |
-| [playbackchange](#playbackchange) | Triggered when Netflix playback changes |
+| [exit](#event.exit) |  |
+| [notifyClient](#event.notifyClient) |  |
+| [stateChange](#event.stateChange) |  |
 
-StateControl interface events:
-| Event | Description |
-| :-------- | :-------- |
-| [statechange](#statechange) | Signals a state change of the service |
+<a id="event.exit"></a>
+## *exit [<sup>event</sup>](#head.Notifications)*
 
-<a name="visibilitychange"></a>
-## *visibilitychange*
 
-Triggered when the Netflix service visibility changes.
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hidden | boolean | Whether Netflix has been hidden (true) or made visible (false) |
+| params.exitCode | integer |  |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.1.visibilitychange",
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.Netflix.exit",
     "params": {
-        "hidden": false
+        "exitCode": 0
     }
 }
 ```
 
-<a name="playbackchange"></a>
-## *playbackchange*
+<a id="event.notifyClient"></a>
+## *notifyClient [<sup>event</sup>](#head.Notifications)*
 
-Triggered when Netflix playback changes.
+
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.playing | boolean | Whether Netflix is playing (true) or not playing (false) |
+| params.eventName | string |  |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.1.playbackchange",
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.Netflix.notifyClient",
     "params": {
-        "playing": true
+        "eventName": ""
     }
 }
 ```
 
-<a name="statechange"></a>
-## *statechange*
+<a id="event.stateChange"></a>
+## *stateChange [<sup>event</sup>](#head.Notifications)*
 
-Signals a state change of the service.
+
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.suspended | boolean | Determines if the service has entered suspended state (true) or resumed state (false) |
+| params.state | INetflix::state |  |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.1.statechange",
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.Netflix.stateChange",
     "params": {
-        "suspended": false
+        "state": ""
     }
 }
 ```

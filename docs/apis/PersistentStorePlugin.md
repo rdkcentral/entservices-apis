@@ -1,709 +1,677 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="PersistentStore_Plugin"></a>
+<a id="head.PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-A org.rdk.PersistentStore plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/PersistentStore/CHANGELOG.md)**
+
+A PersistentStore plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](overview/aat.md)]
+[[Refer to this link](userguide/aat.md)]
 
-<a name="Description"></a>
+<a id="head.Description"></a>
 # Description
 
-The `PersistentStore` plugin allows you to persist key/value pairs by namespace.
+The `PersistentStore` plugin provides an interface for PersistentStore.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a id="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.PersistentStore*) |
-| classname | string | Class name: *org.rdk.PersistentStore* |
+| callsign | string | Plugin instance name (default: org.rdk.PersistentStore) |
+| classname | string | Class name: *PersistentStore* |
 | locator | string | Library name: *libWPEFrameworkPersistentStore.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="head.Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.PersistentStore plugin:
+The following methods are provided by the PersistentStore plugin:
 
 PersistentStore interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#deleteKey) | Deletes a key from the specified namespace |
-| [deleteNamespace](#deleteNamespace) | Deletes the specified namespace |
-| [flushCache](#flushCache) | Flushes the device cache |
-| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
-| [getNamespaces](#getNamespaces) | Returns the namespaces |
-| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
-| [getValue](#getValue) | Returns the value of a key from the specified namespace |
-| [setValue](#setValue) | Sets the value of a key in the the specified namespace |
-| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
-| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
+| [flushCache](#method.flushCache) |  |
+| [deleteKey](#method.deleteKey) |  |
+| [deleteNamespace](#method.deleteNamespace) |  |
+| [getValue](#method.getValue) |  |
+| [setValue](#method.setValue) |  |
+| [getKeys](#method.getKeys) |  |
+| [getNamespaceStorageLimit](#method.getNamespaceStorageLimit) |  |
+| [getNamespaces](#method.getNamespaces) |  |
+| [getStorageSizes](#method.getStorageSizes) |  |
+| [setNamespaceStorageLimit](#method.setNamespaceStorageLimit) |  |
+
+<a id="method.flushCache"></a>
+## *flushCache [<sup>method</sup>](#head.Methods)*
 
 
-<a name="deleteKey"></a>
-## *deleteKey*
-
-Deletes a key from the specified namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Legacy parameter (always true) |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.deleteKey",
-    "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="deleteNamespace"></a>
-## *deleteNamespace*
-
-Deletes the specified namespace.
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Legacy parameter (always true) |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.deleteNamespace",
-    "params": {
-        "namespace": "ns1",
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="flushCache"></a>
-## *flushCache*
-
-Flushes the device cache.
-
-### Events
-
-No Events
-
-### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Legacy parameter (always true) |
+| result | null | On success null will be returned. |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.PersistentStore.flushCache"
 }
 ```
 
-#### Response
 
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.flushCache"}' http://127.0.0.1:9998/jsonrpc
 ```
 
-<a name="getKeys"></a>
-## *getKeys*
-
-Returns the keys that are stored in the specified namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.keys | array |  |
-| result.keys[#] | string | Key |
-| result.success | boolean | Legacy parameter (always true) |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.getKeys",
-    "params": {
-        "namespace": "ns1",
-        "scope": "device"
-    }
-}
-```
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "keys": [
-            "key1"
-        ],
-        "success": true
-    }
-}
-```
-
-<a name="getNamespaces"></a>
-## *getNamespaces*
-
-Returns the namespaces.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.namespaces | array |  |
-| result.namespaces[#] | string | Namespace |
-| result.success | boolean | Legacy parameter (always true) |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.getNamespaces",
-    "params": {
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "namespaces": [
-            "ns1"
-        ],
-        "success": true
-    }
-}
-```
-
-<a name="getStorageSizes"></a>
-## *getStorageSizes*
-
-Returns the size occupied by each namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.storageList | array |  |
-| result.storageList[#] | object |  |
-| result.storageList[#].namespace | string | Namespace |
-| result.storageList[#].size | number | Size in bytes |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.getStorageSizes",
-    "params": {
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "storageList": [
-            {
-                "namespace": "ns1",
-                "size": 100
-            }
-        ]
-    }
-}
-```
-
-<a name="getValue"></a>
-## *getValue*
-
-Returns the value of a key from the specified namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.value | string | Value |
-| result.success | boolean | Legacy parameter (always true) |
-| result?.ttl | number | <sup>*(optional)*</sup> Time in seconds |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 31 | ```ERROR_PENDING_CONDITIONS``` | Time is not synced |
-| 43 | ```ERROR_NOT_EXIST``` | Unknown namespace |
-| 22 | ```ERROR_UNKNOWN_KEY``` | Unknown key |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.getValue",
-    "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "value": "value1",
-        "success": true,
-        "ttl": 100
-    }
-}
-```
-
-<a name="setValue"></a>
-## *setValue*
-
-Sets the value of a key in the the specified namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params.value | string | Value |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-| params?.ttl | number | <sup>*(optional)*</sup> Time in seconds |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Legacy parameter (always true) |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 31 | ```ERROR_PENDING_CONDITIONS``` | Time is not synced |
-| 16 | ```ERROR_INVALID_INPUT_LENGTH``` | Empty/too large namespace or key, or the storage doesn't have enough space |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.setValue",
-    "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "value": "value1",
-        "scope": "device",
-        "ttl": 100
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a name="setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit*
-
-Sets the storage limit for a given namespace.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params.storageLimit | number | Size in bytes |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | Always null |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 16 | ```ERROR_INVALID_INPUT_LENGTH``` | Empty/too large namespace, or the storage doesn't have enough space |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.setNamespaceStorageLimit",
-    "params": {
-        "namespace": "ns1",
-        "storageLimit": 100,
-        "scope": "device"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": null
 }
 ```
 
-<a name="getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit*
+<a id="method.deleteKey"></a>
+## *deleteKey [<sup>method</sup>](#head.Methods)*
 
-Returns the storage limit for a given namespace.
+
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.namespace | string | Namespace |
-| params?.scope | string | <sup>*(optional)*</sup> Scope (must be one of the following: *device*, *account*) |
-
-### Result
-
+| params.scope | string |  |
+| params.namespace | string |  |
+| params.key | string |  |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.storageLimit | number | Size in bytes |
+| result | null | On success null will be returned. |
 
-### Errors
+### Examples
 
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 43 | ```ERROR_NOT_EXIST``` | Unknown namespace |
-| 1 | ```ERROR_GENERAL``` | Unknown error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PersistentStore.getNamespaceStorageLimit",
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.PersistentStore.deleteKey",
     "params": {
-        "namespace": "ns1",
-        "scope": "device"
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "storageLimit": 100
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
+}
+```
+
+<a id="method.deleteNamespace"></a>
+## *deleteNamespace [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.PersistentStore.deleteNamespace",
+    "params": {
+        "scope": "DEVICE",
+        "namespace": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": null
+}
+```
+
+<a id="method.getValue"></a>
+## *getValue [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+| params.key | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.value | string |  |
+| result.ttl | integer |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.PersistentStore.getValue",
+    "params": {
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": {
+        "value": "",
+        "ttl": 0
+    }
+}
+```
+
+<a id="method.setValue"></a>
+## *setValue [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+| params.key | string |  |
+| params.value | string |  |
+| params.ttl | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.PersistentStore.setValue",
+    "params": {
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": "",
+        "value": "",
+        "ttl": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "DEVICE", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "result": null
+}
+```
+
+<a id="method.getKeys"></a>
+## *getKeys [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.keys | IStringIterator |  |
+| result.keys[#] | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.PersistentStore.getKeys",
+    "params": {
+        "scope": "DEVICE",
+        "ns": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getKeys", "params": {"scope": "DEVICE", "ns": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": [
+        ""
+    ]
+}
+```
+
+<a id="method.getNamespaceStorageLimit"></a>
+## *getNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.size | integer |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.PersistentStore.getNamespaceStorageLimit",
+    "params": {
+        "scope": "DEVICE",
+        "ns": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.getNamespaceStorageLimit", "params": {"scope": "DEVICE", "ns": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "size": 0
+    }
+}
+```
+
+<a id="method.getNamespaces"></a>
+## *getNamespaces [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.namespaces | IStringIterator |  |
+| result.namespaces[#] | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.PersistentStore.getNamespaces",
+    "params": {
+        "scope": "DEVICE"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PersistentStore.getNamespaces", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": [
+        ""
+    ]
+}
+```
+
+<a id="method.getStorageSizes"></a>
+## *getStorageSizes [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.storageList | INamespaceSizeIterator |  |
+| result.storageList[#].ns | string |  |
+| result.storageList[#].size | integer |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.PersistentStore.getStorageSizes",
+    "params": {
+        "scope": "DEVICE"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PersistentStore.getStorageSizes", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": [
+        {
+            "ns": "",
+            "size": 0
+        }
+    ]
+}
+```
+
+<a id="method.setNamespaceStorageLimit"></a>
+## *setNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+| params.size | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.PersistentStore.setNamespaceStorageLimit",
+    "params": {
+        "scope": "DEVICE",
+        "ns": "",
+        "size": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PersistentStore.setNamespaceStorageLimit", "params": {"scope": "DEVICE", "ns": "", "size": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": null
+}
+```
+
+
+
+<a id="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.PersistentStore plugin:
+The following events are provided by the PersistentStore plugin:
 
 PersistentStore interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onValueChanged](#onValueChanged) | Triggered whenever any of the values stored are changed using setValue |
+| [storageExceeded](#event.storageExceeded) |  |
+| [onValueChanged](#event.onValueChanged) |  |
+
+<a id="event.storageExceeded"></a>
+## *storageExceeded [<sup>event</sup>](#head.Notifications)*
 
 
-<a name="onValueChanged"></a>
-## *onValueChanged*
-
-Triggered whenever any of the values stored are changed using setValue.
 
 ### Parameters
+This method takes no parameters.
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.namespace | string | Namespace |
-| params.key | string | Key |
-| params.value | string | Value |
-| params.scope | string | Scope (must be one of the following: *device*, *account*) |
-
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onValueChanged",
-    "params": {
-        "namespace": "ns1",
-        "key": "key1",
-        "value": "value1",
-        "scope": "device"
-    }
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.PersistentStore.storageExceeded"
 }
 ```
 
+<a id="event.valueChanged"></a>
+## *valueChanged [<sup>event</sup>](#head.Notifications)*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scope | string |  |
+| params.namespace | string |  |
+| params.key | string |  |
+| params.value | string |  |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.PersistentStore.valueChanged",
+    "params": {
+        "scope": "DEVICE",
+        "namespace": "",
+        "key": "",
+        "value": ""
+    }
+}
+```
