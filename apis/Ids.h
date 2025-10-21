@@ -324,17 +324,17 @@ namespace Exchange {
 
         ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430
 
-        ID_APP_GATEWAY                               = FIREBOLT_INTERFACE_OFFSET + 0x440,
+        ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
 	ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
 	ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
 	ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 3,
 
-        ID_APP_NOTIFICATIONS                         = FIREBOLT_INTERFACE_OFFSET + 0x450,
+        ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
 	ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
 
-        ID_APP2APP_PROVIDER                          = FIREBOLT_INTERFACE_OFFSET + 0x460,
+        ID_APP2APP_PROVIDER                          = ID_ENTOS_OFFSET + 0x460,
 
-        ID_FBSETTINGS                                = FIREBOLT_INTERFACE_OFFSET + 0x470
+        ID_FBSETTINGS                                = ID_ENTOS_OFFSET + 0x470
         
 
     }; // enum IDS
