@@ -354,9 +354,11 @@ def generate_events_section(events, all_events=None):
     markdown = "### Events\n"
     if events:
         # Only show a list of links to events, not a table
+        markdown += "| Event | Description |\n| :-------- | :-------- |\n"
         for event in events:
             camel_event = to_camel_case(event)
-            markdown += f"- [{camel_event}](#event.{camel_event})\n"
+            event_description = events[event] if events[event] else ''
+            markdown += f"| [{camel_event}](#event.{camel_event}) | {event_description} |\n"
     else:
         markdown += "Event details are missing in the header file documentation.\n"
     return markdown
