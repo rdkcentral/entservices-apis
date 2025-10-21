@@ -896,7 +896,7 @@
                 ]
             }
         },
-    	"hdmiContentTypeUpdate": {
+    	"aviContentTypeUpdate": {
             "summary": "Triggered whenever AV Infoframe content type changes for an HDMI Input",
             "params": {
                 "type": "object",

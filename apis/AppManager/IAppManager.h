@@ -27,17 +27,17 @@ namespace Exchange {
 #ifndef RUNTIME_CONFIG
 struct RuntimeConfig
 {
-    bool dial;
-    bool wanLanAccess;
-    bool thunder;
-    int32_t systemMemoryLimit;
-    int32_t gpuMemoryLimit;
-    std::string envVariables;
-    uint32_t userId;
-    uint32_t groupId;
-    uint32_t dataImageSize;
+    bool dial{false};
+    bool wanLanAccess{false};
+    bool thunder{false};
+    int32_t systemMemoryLimit{0};
+    int32_t gpuMemoryLimit{0};
+    std::string envVariables{};
+    uint32_t userId{0};
+    uint32_t groupId{0};
+    uint32_t dataImageSize{0};
 
-    bool resourceManagerClientEnabled;
+    bool resourceManagerClientEnabled{false};
     std::string dialId;
     std::string command;
     std::string appType;
@@ -45,17 +45,19 @@ struct RuntimeConfig
     std::string runtimePath;
 
     std::string logFilePath;
-    uint32_t logFileMaxSize;
+    uint32_t logFileMaxSize{0};
     std::string logLevels;          //json array of strings
-    bool mapi;
+    bool mapi {false};
     std::string fkpsFiles;          //json array of strings
 
     std::string fireboltVersion;
-    bool enableDebugger;
-    string unpackedPath;
+    bool enableDebugger{false};
+    std::string unpackedPath;
 };
 #define RUNTIME_CONFIG
 #endif
+
+// @stubgen:include <com/IIteratorType.h>
 
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
@@ -78,8 +80,23 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           APP_ERROR_NONE             = 0     /* @text APP_ERROR_NONE */,
           APP_ERROR_UNKNOWN          = 1     /* @text APP_ERROR_UNKNOWN */,
           APP_ERROR_STATE_TIMEOUT    = 2     /* @text APP_ERROR_STATE_TIMEOUT */,
-          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */
+          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */,
+          APP_ERROR_INVALID_PARAM    = 4     /* @text APP_ERROR_INVALID_PARAM */,
+          APP_ERROR_CREATE_DISPLAY   = 5     /* @text APP_ERROR_CREATE_DISPLAY */,
+          APP_ERROR_DOBBY_SPEC       = 6     /* @text APP_ERROR_DOBBY_SPEC */,
+          APP_ERROR_NOT_INSTALLED    = 7     /* @text APP_ERROR_NOT_INSTALLED */,
+          APP_ERROR_PACKAGE_LOCK     = 8     /* @text APP_ERROR_PACKAGE_LOCK */
       };
+
+  struct LoadedAppInfo
+    {
+        string appId ;
+        string appInstanceId ;
+        string activeSessionId;
+        AppLifecycleState targetLifecycleState;
+        AppLifecycleState currentLifecycleState;
+    };
+  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -140,7 +157,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @text getLoadedApps
   // @brief Retrieves a list of applications currently loaded on the system.
   // @param apps A list containing the details of loaded applications
-  virtual Core::hresult GetLoadedApps(string& apps /* @out */) = 0;
+  virtual Core::hresult GetLoadedApps(ILoadedAppInfoIterator*& apps /* @out */) = 0;
 
   /** Launches an Application **/
   // @text launchApp

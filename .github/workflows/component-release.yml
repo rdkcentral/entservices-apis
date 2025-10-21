@@ -32,7 +32,7 @@ jobs:
       - name: Clone the project and start release
         run: |
           set -e
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} project
+          git clone https://x-access-token:${{ secrets.RDKCM_RDKE }}@github.com/${{ github.repository }} project
           cd project
           git fetch --all
           git checkout main || git checkout -b main origin/main
