@@ -39,7 +39,7 @@ class HeaderFileParser:
         ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[\w+\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
-        ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
+        ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)\:(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
@@ -284,7 +284,9 @@ class HeaderFileParser:
                                                                           'direction': direction, 
                                                                           'optionality': optionality}
         elif line_tag == 'see':
-            self.doxy_tags.setdefault('see', {})[groups[0]] = ''
+            linked_method_name = groups[0]
+            linked_method_description = groups[1]
+            self.doxy_tags.setdefault('see', {})[linked_method_name] = linked_method_description
             self.latest_tag = 'see'
         elif line_tag == 'errors':
             error_code = groups[1]
