@@ -48,31 +48,31 @@ namespace Exchange {
             DISK_PERSISTENCE_FAILURE
         };
 
-        struct PackageInfo {
-           string downloadId;   /*@brief Download ID*/
-           string fileLocator;  /*@brief File Locator*/
-           Reason reason;       /*@brief Reason for the download status*/
-        };
+        //struct PackageInfo {
+        //    string downloadId;
+        //    string fileLocator;
+        //    Reason reason;
+        //};
 
         //typedef std::vector<PackageInfo> PackageInfoList;
-        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
+        //using IPackageIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
 
+        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
             ~INotification() override = default;
 
             // @brief Signal changes on the status
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
+            virtual void OnAppDownloadStatus(const string& jsonresponse) {
+                // Thunder does not support neither standard collection nor RPC::IIteratorType in notification
             }
         };
 
         ~IPackageDownloader() override = default;
 
         // Register for any changes
-        // @json:omit
         virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
-        // @json:omit
         virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
 
         // @json:omit
@@ -124,22 +124,22 @@ namespace Exchange {
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
-        struct ProgressInfo {
-            uint8_t progress;
+        struct Percent {
+            uint8_t percent;
         };
 
-        // @brief Progress
+        // @brief Delete
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            ProgressInfo &progress /* @out */) = 0;
+            Percent &percent /* @out */) = 0;
 
         // @brief GetStorageDetails
         // @text getStorageDetails
         virtual Core::hresult GetStorageDetails(
-            string &quotaKb /* @out */,
-            string &usedKb  /* @out */) = 0;
+            uint32_t &quotaKb /* @out */,
+            uint32_t &usedKb  /* @out */) = 0;
 
         // @brief RateLimit
         // @text rateLimit
@@ -258,14 +258,6 @@ namespace Exchange {
             const string &version,
             InstallState &state /* @out */
             ) = 0;
-
-        // @brief getConfigForPackage
-        // @text getConfigForPackage
-        // @param fileLocator: locator of package
-        // @param id: package id
-        // @param version: version of package
-        // @param config: metadata of package
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
 

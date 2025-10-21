@@ -150,6 +150,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @text setInactivityInterval
   // @brief Sets inactivity interval if EnableUserInactivity feature is enabled
   // @param interval: time interval set for inactivity
+  // @see onUserInactivity : Triggers only if the device is inactive for the specified time interval
   virtual Core::hresult SetInactivityInterval(const uint32_t interval) = 0;
 
   /** Resets inactivity interval */

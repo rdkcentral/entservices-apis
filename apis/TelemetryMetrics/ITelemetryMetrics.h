@@ -45,4 +45,3 @@ struct EXTERNAL ITelemetryMetrics : virtual public Core::IUnknown {
 };
 }// namespace Exchange
 }// namespace WPEFramework
-

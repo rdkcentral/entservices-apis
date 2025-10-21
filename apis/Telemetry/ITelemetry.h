@@ -31,10 +31,6 @@ namespace WPEFramework
         {
             enum { ID = ID_TELEMETRY };
 
-            struct EXTERNAL TelemetrySuccess {
-                bool success;
-            };
-
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
@@ -46,14 +42,14 @@ namespace WPEFramework
                 virtual void OnReportUpload(const string& telemetryUploadStatus) {};
             };
 
-            virtual Core::hresult Register(ITelemetry::INotification* notification) = 0;
-            virtual Core::hresult Unregister(ITelemetry::INotification* notification) = 0;
+            virtual Core::hresult Register(ITelemetry::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Unregister(ITelemetry::INotification* notification /* @in */) = 0;
 
             /**********************setReportProfileStatus() - start****************************/
             // @text setReportProfileStatus
             // @brief Sets the status of telemetry reporting
             // @param status - in - string
-            virtual Core::hresult SetReportProfileStatus(const string& status) = 0;
+            virtual Core::hresult SetReportProfileStatus(const string& status /* @in */) = 0;
             /**********************setReportProfileStatus() - end******************************/
 
             /**********************logApplicationEvent() - start*******************************/
@@ -61,12 +57,13 @@ namespace WPEFramework
             // @brief Logs an application
             // @param eventName - in - string
             // @param eventValue - in - string
-            virtual Core::hresult LogApplicationEvent(const string& eventName , const string& eventValue) = 0;
+            virtual Core::hresult LogApplicationEvent(const string& eventName /* @in */, const string& eventValue /* @in */) = 0;
             /**********************logApplicationEvent() - end*********************************/
 
             /**********************uploadReport() - start**************************************/
             // @text uploadReport
             // @brief Uploading of telemetry report
+            // @see onReportUpload : Triggered by callback from Telemetry after report uploading
             virtual Core::hresult UploadReport() = 0;
             /**********************uploadReport() - end****************************************/
 
@@ -75,22 +72,6 @@ namespace WPEFramework
             // @brief Abort report upload
             virtual Core::hresult AbortReport() = 0;
             /**********************abortReport() - end*****************************************/
-
-            /**********************setOptOutTelemetry() - start***************************************/
-            // @text setOptOutTelemetry
-            // @brief Sets the telemetry opt-out status.
-            // @param OptOut  - in - boolean
-            // @param  - out - struct
-            virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, TelemetrySuccess& successResult /* @out */) = 0;
-            /**********************setOptOutTelemetry() - end*****************************************/
-
-            /**********************isOptOutTelemetry() - start***************************************/
-	        // @text isOptOutTelemetry
-            // @brief Checks the telemetry opt-out status.
-            // @param OptOut  - out - boolean
-            // @param success - out - boolean
-            virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
-            /**********************isOptOutTelemetry() - end*****************************************/
         };
     } // namespace Exchange
 } // namespace WPEFramework
