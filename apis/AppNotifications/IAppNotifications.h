@@ -80,7 +80,7 @@ namespace WPEFramework
         };
 
         // @text:keep
-        struct EXTERNAL IAppNotificationHandlerInternal : virtual public Core::IUnknown
+        struct EXTERNAL IAppNotificationHandler : virtual public Core::IUnknown
         {
             enum
             {
