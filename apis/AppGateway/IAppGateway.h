@@ -28,9 +28,9 @@ namespace WPEFramework
     namespace Exchange
     {
         #ifndef GATEWAY_CONTEXT
-        struct Context
+        struct GatewayContext
         {
-                int requestId;       // @brief Unique identifier for the request.
+                uint32_t requestId;       // @brief Unique identifier for the request.
                 uint32_t connectionId; // @brief guid for the execution/session context.
                 string appId;        // @brief Application identifier (Firebolt appId).
         };
@@ -38,7 +38,7 @@ namespace WPEFramework
         #endif
 
         // @json 1.0.0 @text:keep
-        struct EXTERNAL IAppGateway : virtual public Core::IUnknown
+        struct EXTERNAL IAppGatewayResolver : virtual public Core::IUnknown
         {
             enum
             {
@@ -54,26 +54,32 @@ namespace WPEFramework
             virtual Core::hresult Configure(IStringIterator *const &paths /* @in */) = 0;
 
 
+            // @json:omit
             // @text resolve
-            // @brief Provides support for other thunder plugins which implement IAppGatewayResponderInternal to use the 
-            // resolver for processing async requests.
+            // @brief Provides support for other thunder plugins to use the 
+            // resolver for processing requests.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @param origin: Origin of the request typically the callsign.
             // @param method: the method to resolve
             // @param params (optional): the parameters to resolve
+            // @param result: Result of the resolution can be empty
             // @returns Core::hresult
-            virtual Core::hresult Resolve(const Context &context /* @in */,
+            virtual Core::hresult Resolve(const GatewayContext &context /* @in */,
+                                          const string &origin /* @in */,
                                           const string &method /* @in */,
-                                          const string &params /* @in @opaque */) = 0;
+                                          const string &params /* @in @opaque */,
+                                        string& result /*@out @opaque */) = 0;
         };
 
         // @text:keep
-        struct EXTERNAL IAppGatewayAuthenticatorInternal : virtual public Core::IUnknown
+        struct EXTERNAL IAppGatewayAuthenticator : virtual public Core::IUnknown
         {
             enum
             {
                 ID = ID_APP_GATEWAY_AUTHENTICATOR
             };
 
+            // ---- Authenticate ----
             // @json:omit
             // @text Authenticate
             // @param sessionId: Session Id provided by a given application.
@@ -81,22 +87,16 @@ namespace WPEFramework
             virtual Core::hresult Authenticate(const string& sessionId /* @in */, string& appId /* @out */) = 0;
 
             // ---- GetSessionId ----
-            // @text getSessionId
+            // @json:omit
+            // @text GetSessionId
             // @param appId: AppId of the current application.
             // @brief Get the sessionId for a given application provided to the delegate
             virtual Core::hresult GetSessionId(const string& appId /* @in */ , string& sessionId /* @out */) = 0;
 
-
-            // ---- GetContentPartnerId ----
-            // @text getContentPartnerId
-            // @param appId: AppId of the current application.
-            // @brief Get the contentPartnerId for a given application provided to the delegate
-            virtual Core::hresult GetContentPartnerId(const string& appId /* @in */ , string& contentPartnerId /* @out */) = 0;
-
         };
 
         // @text:keep
-        struct EXTERNAL IAppGatewayResponderInternal : virtual public Core::IUnknown
+        struct EXTERNAL IAppGatewayResponder : virtual public Core::IUnknown
         {
             enum
             {
@@ -109,8 +109,40 @@ namespace WPEFramework
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
             // @returns Core::hresult
-            virtual Core::hresult Respond(const Context &context /* @in */,
+            virtual Core::hresult Respond(const GatewayContext &context /* @in */,
                                           const string &payload /* @in @opaque */) = 0;
+            
+            // @json:omit
+            // @text Emit
+            // @brief Provides support for Emitting Notifications to a given context
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param payload: the response payload
+            // @returns Core::hresult
+            virtual Core::hresult Emit(const GatewayContext &context /* @in */, 
+                const string &method /* @in */, const string payload /* @in @opaque */) = 0;
+
+            // @json:omit
+            // @text Request
+            // @brief Forwards a Request to the Client. Needed for App Provider Patterns.
+            // @param connectionId: Connection Id
+            // @param id: Request id
+            // @param method: Method
+            // @param params: Params string object
+            // @returns Core::hresult
+            virtual Core::hresult Request(const uint32_t connectionId /* @in */, 
+                const uint32_t id /* @in */, const string method /* @in */, const string params /* @in @opaque */) = 0;
+
+            
+            // @json:omit
+            // @text GetGatewayConnectionContext
+            // @brief Gets any connection context parameter like headers, url params
+            // @param connectionId: Connection Id
+            // @param contextKey: Connection Id
+            // @param contextValue: response value
+            // @returns Core::hresult
+            virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
+                const string& contextKey /* @in */, 
+                 string &contextValue /* @out */) = 0;
 
         };
 
@@ -126,9 +158,10 @@ namespace WPEFramework
             // @text respond
             // @brief Provides support for responding to a given context
             // @param context: Execution context containing requestId, connectionId, appId
-            // @param payload: the response payload
+            // @param payload: the request payload
+            // @param result: Response for the given request. Can be empty.
             // @returns Core::hresult
-            virtual Core::hresult HandleAppGatewayRequest(const Context &context /* @in */,
+            virtual Core::hresult HandleAppGatewayRequest(const GatewayContext &context /* @in */,
                                           const string& method /* @in */,
                                           const string &payload /* @in @opaque */,
                                           string& result /*@out @opaque */) = 0;

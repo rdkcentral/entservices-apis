@@ -330,11 +330,7 @@ namespace Exchange {
 	ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 3,
 
         ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
-	ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
-
-        ID_APP2APP_PROVIDER                          = ID_ENTOS_OFFSET + 0x460,
-
-        ID_FBSETTINGS                                = ID_ENTOS_OFFSET + 0x470
+	ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1
         
 
     }; // enum IDS

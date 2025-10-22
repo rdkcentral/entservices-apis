@@ -35,22 +35,16 @@ namespace WPEFramework
                 ID = ID_APP_NOTIFICATIONS
             };
 
-            struct Context
+            struct AppNotificationContext
             {
-                int requestId;       // @brief Unique identifier for the request.
+                uint32_t requestId;       // @brief Unique identifier for the request.
                 uint32_t connectionId; // @brief guid for the execution/session context.
                 string appId;        // @brief Application identifier (Firebolt appId).
-                string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway or org.rdk.LaunchDelegate).
+                string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway).
 
-                bool operator==(const Context& other) const {
+                bool operator==(const AppNotificationContext& other) const {
                     return this->requestId == other.requestId && this->connectionId == other.connectionId && this->appId == other.appId;
                 }
-            };
-
-            struct EXTERNAL Error
-            {
-                int code;       // @brief Error code.
-                string message; // @brief Error message (optional).
             };
 
             // @text subscribe
@@ -60,7 +54,7 @@ namespace WPEFramework
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
             // @returns Core::hresult
-            virtual Core::hresult Subscribe(const Context &context /* @in */,
+            virtual Core::hresult Subscribe(const AppNotificationContext &context /* @in */,
                                             bool listen /* @in */,
                                             const string &module /* @in */,
                                             const string &event /* @in */) = 0;
