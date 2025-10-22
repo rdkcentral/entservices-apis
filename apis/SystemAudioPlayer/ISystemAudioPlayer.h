@@ -31,27 +31,26 @@ namespace Exchange {
             enum { ID = ID_SYSTEMAUDIOPLAYER_NOTIFICATION };
 
             virtual ~INotification() {}
-            virtual void OnSAPEvents(const string &data) = 0;        
+            virtual void OnSAPEvents(const string &data) {}        
         };
 
         virtual ~ISystemAudioPlayer() {}
 
-        virtual uint32_t Configure(PluginHost::IShell* service) = 0;
-        virtual void Register(INotification* sink) = 0;
-        virtual void Unregister(INotification* sink) = 0;
-
-        virtual uint32_t Open(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t Play(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t PlayBuffer(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t Pause(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t Resume(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t Stop(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t Close(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t SetMixerLevels(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t SetSmartVolControl(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t IsPlaying(const string &input, string &output /* @out */) = 0;
-	virtual uint32_t Config(const string &input, string &output /* @out */) = 0;
-        virtual uint32_t GetPlayerSessionId(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
+        virtual Core::hresult Register(INotification* sink) = 0;
+        virtual Core::hresult Unregister(INotification* sink) = 0;
+        virtual Core::hresult Open(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Play(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult PlayBuffer(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Pause(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Resume(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Stop(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Close(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult SetMixerLevels(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult SetSmartVolControl(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult IsPlaying(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult Config(const string &input, string &output /* @out */) = 0;
+        virtual Core::hresult GetPlayerSessionId(const string &input, string &output /* @out */) = 0;
 
     };
 
