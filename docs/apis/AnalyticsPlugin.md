@@ -77,6 +77,7 @@ No Events
 | params?.appId | string | <sup>*(optional)*</sup> Durable App ID string |
 | params.eventPayload | object | Custom payload of the event in JSON format. User defined colection of objects and keys. May be an empty object |
 | params.eventPayload.keyOrObject | string | User defined custom key or object |
+| params?.additionalContext | string | <sup>*(optional)*</sup> Additional context for the event in JSON format. Opaque string passed through without schema validation |
 
 ### Result
 
@@ -106,7 +107,8 @@ No Events
         "appId": "app-id-app1",
         "eventPayload": {
             "keyOrObject": "value1"
-        }
+        },
+        "additionalContext": "{}"
     }
 }
 ```
