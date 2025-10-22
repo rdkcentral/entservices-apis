@@ -31,7 +31,7 @@ namespace WPEFramework
         struct GatewayContext
         {
                 uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief guid for the execution/session context.
+                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
                 string appId;        // @brief Application identifier (Firebolt appId).
         };
         #define GATEWAY_CONTEXT

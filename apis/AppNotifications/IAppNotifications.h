@@ -21,13 +21,11 @@
 
 #include "Module.h"
 
-// @stubgen:include <com/IIteratorType.h>
-
 namespace WPEFramework
 {
     namespace Exchange
     {
-        // @json 1.0.0 @text:keep
+        // @text:keep
         struct EXTERNAL IAppNotifications : virtual public Core::IUnknown
         {
             enum
@@ -38,7 +36,7 @@ namespace WPEFramework
             struct AppNotificationContext
             {
                 uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief guid for the execution/session context.
+                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
                 string appId;        // @brief Application identifier (Firebolt appId).
                 string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway).
 
@@ -47,6 +45,7 @@ namespace WPEFramework
                 }
             };
 
+            // @json:omit
             // @text subscribe
             // @brief Thunder register/unregister for Firebolt subsciption requests
             // @param context: Execution context containing requestId, connectionId, appId
@@ -59,6 +58,7 @@ namespace WPEFramework
                                             const string &module /* @in */,
                                             const string &event /* @in */) = 0;
 
+            // @json:omit
             // @text emit
             // @brief Dispatch event for a given registration, if appId is provided the dispatch happens for a given App.
             // @param event: the event to emit
@@ -69,6 +69,7 @@ namespace WPEFramework
                                        const string &payload /* @in @opaque */,
                                        const string &appId /* @in */) = 0;
 
+            // @json:omit
             // @text Cleanup
             // @brief Cleanup any context which has a given connectionId for a given origin
             // @param connectionId: connection id for a given context
