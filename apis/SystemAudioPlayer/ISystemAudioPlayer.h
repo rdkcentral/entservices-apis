@@ -41,16 +41,20 @@ namespace Exchange {
         virtual void Unregister(INotification* sink) = 0;
 
         virtual uint32_t Open(const string &input, string &output /* @out */) = 0;
+        // @see onsapevents : Triggered if the playback is started to play or finished normally on the specified player
         virtual uint32_t Play(const string &input, string &output /* @out */) = 0;
+        // @see onsapevents : Triggered if the buffer needs more data to play
         virtual uint32_t PlayBuffer(const string &input, string &output /* @out */) = 0;
+        // @see onsapevents : Triggered if the playback paused on the specified player
         virtual uint32_t Pause(const string &input, string &output /* @out */) = 0;
+        // @see onsapevents : Triggered if the playback resumed on the specified player
         virtual uint32_t Resume(const string &input, string &output /* @out */) = 0;
         virtual uint32_t Stop(const string &input, string &output /* @out */) = 0;
         virtual uint32_t Close(const string &input, string &output /* @out */) = 0;
         virtual uint32_t SetMixerLevels(const string &input, string &output /* @out */) = 0;
         virtual uint32_t SetSmartVolControl(const string &input, string &output /* @out */) = 0;
         virtual uint32_t IsPlaying(const string &input, string &output /* @out */) = 0;
-	virtual uint32_t Config(const string &input, string &output /* @out */) = 0;
+    virtual uint32_t Config(const string &input, string &output /* @out */) = 0;
         virtual uint32_t GetPlayerSessionId(const string &input, string &output /* @out */) = 0;
 
     };

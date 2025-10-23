@@ -100,12 +100,16 @@ namespace Exchange {
         // @property
         // @brief Page loaded in the browser
         // @param url Loaded URL (e.g. https://example.com)
+        // @see URLChanged : Triggered when a URL changes in the browser
+        // @see LoadFinished : Triggered if the urlchange event returns true as URL loaded successfully
+        // @see LoadFailed : Triggered if the urlchange event returns false as URL failed to load
         virtual uint32_t URL(string& url /* @out */) const = 0;
         virtual uint32_t URL(const string& url) = 0;
 
         // @property
         // @brief Browser window visibility state
         // @param visible Visiblity state (e.g. )
+        // @see VisibilityChange : Triggered whenever the visibility of the browser changes
         virtual uint32_t Visibility(VisibilityType& visible /* @out */) const = 0;
         virtual uint32_t Visibility(const VisibilityType visible) = 0;
 

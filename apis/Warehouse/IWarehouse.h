@@ -93,6 +93,7 @@ namespace WPEFramework
             // @param suppressReboot - in - bool
             // @param resetType - in - string
             // @param WarehouseSuccessErr - out
+            // @see resetDone : Triggers when the device reset is finished indicating a successful reset or failure
             virtual Core::hresult ResetDevice(const bool suppressReboot, const string& resetType, WarehouseSuccessErr& successErr /* @out */) = 0;
         };
     } // namespace Exchange

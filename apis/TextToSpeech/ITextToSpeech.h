@@ -89,12 +89,15 @@ namespace Exchange {
         // @property
         // @brief Query the status/enable tts
         // @param enable status/enable
+        // @see onttsstatechanged : Triggered when TTS is enabled or disabled
+        // @see onspeechinterrupted : Triggered when disabling TTS while speech is in-progress
         virtual uint32_t Enable(const bool enable) = 0;
         virtual uint32_t Enable(bool &enable /* @out */) const = 0;
 
         // @brief Set the tts configuration attributes
         // @param config tts configuration
         // @param status return status
+        // @see onvoicechanged : Triggered only when the voice configuration is changed
         virtual uint32_t SetConfiguration(const Configuration &config,TTSErrorDetail &status/* @out */) = 0;
 
         virtual uint32_t SetFallbackText(const string scenario,const string value) = 0;
@@ -115,20 +118,29 @@ namespace Exchange {
         // @param text for conversion
         // @param speechid returns id for the text 
         // @param status return status
+        // @see onwillspeak : Triggered when speech conversion is about to start
+        // @see onspeechstart : Triggered when conversion of text to speech is started
+        // @see onspeechinterrupted : Triggered when current speech is interrupted either by a next speech request; by calling the cancel method; or by disabling TTS, when speech is in-progress
+        // @see onspeechcomplete : Triggered when conversion from text to speech is completed
+        // @see onnetworkerror : Triggered when failed to fetch audio from the endpoint
+        // @see onplaybackerror : Triggered when an error occurs during playback including pipeline failures; Triggered when speak is called during TTS disabled
         virtual uint32_t Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
         
         // @brief Cancel the speech
         // @param speechid id of text to be cancelled
+        // @see onspeechinterrupted : Triggered when ongoing speech is cancelled
         virtual uint32_t Cancel(const uint32_t speechid) = 0;
         
         // @brief Pause the speech
         // @param speechid id of text to be paused
         // @param status return status
+        // @see onspeechpause : Triggered when ongoing speech is paused
         virtual uint32_t Pause(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Resume the speech
         // @param speechid id of text to be resumed
         // @param status return status
+        // @see onspeechresume : Triggered when speech is resumed and speech output is available
         virtual uint32_t Resume(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
         // @brief Get speech status

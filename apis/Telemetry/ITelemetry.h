@@ -67,6 +67,7 @@ namespace WPEFramework
             /**********************uploadReport() - start**************************************/
             // @text uploadReport
             // @brief Uploading of telemetry report
+            // @see onReportUpload : Triggered by callback from Telemetry after report uploading
             virtual Core::hresult UploadReport() = 0;
             /**********************uploadReport() - end****************************************/
 
