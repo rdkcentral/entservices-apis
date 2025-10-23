@@ -88,6 +88,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
     /** Start the container from bundle */
     // @text startContainer
+  // @see onContainerStarted : Triggers when a new container starts running.
     // @param containerId Identifier of container
     // @param bundlePath path of application bundle
     // @param command(optional) command to run in container
@@ -96,6 +97,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
     /** Start the container from dobby specification */
     // @text startContainerFromDobbySpec
+  // @see onContainerStarted : Triggers when a new container starts running.
     // @param containerId Identifier of container
     // @param dobbySpec dobby specification as json string
     // @param command(optional) command to run in container
@@ -104,6 +106,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
     /** Stop the container */
     // @text stopContainer
+  // @see onContainerStopped : Triggers when the container stops running.
     // @param containerId Identifier of container
     // @param force(optional) Metion forceful or graceful termination of container
     virtual Core::hresult StopContainer(const string& containerId /* @in */, bool force /* @in */, bool& success /* @out */, string& errorReason /* @out */) = 0;

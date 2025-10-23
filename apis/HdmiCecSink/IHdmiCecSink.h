@@ -232,21 +232,27 @@
 
             // @brief Request the active source in the network
             // @text requestActiveSource
+  // @see onActiveSourceChange : Triggered with the active source device changes.
+  // @see onDeviceAdded : Triggered when an HDMI cable is physically connected to the HDMI port on a TV, or the power cable is connected to the source device.
+  // @see onDeviceInfoUpdated : Triggered when device information changes (physicalAddress, deviceType, vendorID, osdName, cecVersion, powerStatus).
             // @param success: Is the operation successful or not
             virtual Core::hresult RequestActiveSource(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC Request Short Audio Descriptor (SAD) message as an
             // @text requestShortAudioDescriptor
+  // @see shortAudiodescriptorEvent : Triggered when SAD is received from the connected audio device.
             // @param success: Is the operation successful or not
             virtual Core::hresult RequestShortAudioDescriptor(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
             // @text sendAudioDevicePowerOnMessage
+  // @see setSystemAudioModeEvent : Triggered when CEC <Set System Audio Mode> message of device is received.
             // @param success: Is the operation successful or not
             virtual Core::hresult SendAudioDevicePowerOnMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <Give Audio Status> message to request the audio status.
             // @text sendGetAudioStatusMessage
+  // @see reportAudioStatusEvent : Triggered when CEC <Report Audio Status> message of device is received.
             // @param success: Is the operation successful or not
             virtual Core::hresult SendGetAudioStatusMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
@@ -288,6 +294,7 @@
 
             // @brief Sets the status of the HDMI CEC Sink
             // @text setEnabled
+  // @see reportCecEnabledEvent : Triggered when the HDMI-CEC is enabled.
             // @param enabled: Is the HDMI CEC Sink enabled or not
             // @param success: Is the operation successful or not
             virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
@@ -313,6 +320,8 @@
 
             // @brief Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
             // @text setupARCRouting
+  // @see arcInitiationEvent : Triggered when routing though the HDMI ARC port is successfully established.
+  // @see arcTerminationEvent : Triggered when routing though the HDMI ARC port terminates.
             // @param enabled: Is the HDMI-CEC ARC routing enabled or not
             // @param success: Is the operation successful or not
             virtual Core::hresult SetupARCRouting(const bool &enabled /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
@@ -334,6 +343,7 @@
 
             // @brief Requests the audio device power status.
             // @text requestAudioDevicePowerStatus
+  // @see reportAudioDevicePowerStatus : Triggered when the audio device power status is received.
             // @param success: Is the operation successful or not
             virtual Core::hresult RequestAudioDevicePowerStatus(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 

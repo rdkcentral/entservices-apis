@@ -165,6 +165,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @param appId App identifier for the application.
   // @param intent(optional) Specifies the intent or message to be executed.
   // @param launchArgs(optional) Additional parameters passed to the application.
+  // @see OnAppLaunchRequest : Triggered whenever there is a request for App Launch.
   virtual Core::hresult LaunchApp(const string& appId, const string& intent, const string& launchArgs) = 0;
 
   /** Preloads an Application **/
