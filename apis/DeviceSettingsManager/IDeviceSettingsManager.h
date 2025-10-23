@@ -30,10 +30,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    struct EXTERNAL IDeviceSettingsManager : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICESETTINGS_MANAGER };
-
-    struct EXTERNAL IAudio : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerAudio : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_AUDIO };
 
         enum AudioPortType : uint8_t {
@@ -266,8 +263,8 @@ namespace Exchange {
             virtual void OnAudioLevelChangedEvent(int32_t audioLevel) { };
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IAudio::INotification* notification /* @in */)   = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IAudio::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerAudio::INotification* notification /* @in */)   = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerAudio::INotification* notification /* @in */) = 0;
 
         /** Get Audio Port . */
         // @text getAudioPort
@@ -798,7 +795,7 @@ namespace Exchange {
         virtual Core::hresult GetAudioHDMIARCPortId(const int32_t handle /* @in */, int32_t &portId /* @out */) = 0;
     };
 
-    struct EXTERNAL ICompositeIn : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerCompositeIn : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_COMPOSITEIN };
 
 
@@ -926,8 +923,8 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::ICompositeIn::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::ICompositeIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerCompositeIn::INotification* notification /* @in */) = 0;
 
         /** Get number of composite inputs. */
         // @text getNrOfCompositeInputs
@@ -955,7 +952,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IDisplay : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerDisplay : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_DISPLAY };
 
         enum DisplayEvent: uint8_t {
@@ -1065,8 +1062,8 @@ namespace Exchange {
             
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDisplay::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDisplay::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::INotification* notification /* @in */) = 0;
 
         // @event
         struct EXTERNAL IDisplayHDMIHotPlugNotification : virtual public Core::IUnknown
@@ -1080,8 +1077,8 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerDisplay::IDisplayHDMIHotPlugNotification* notification /* @in */) = 0;
 
         /** Get Display EDID. */
         // @text getDisplayEdid
@@ -1100,7 +1097,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IFPD : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerFPD : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_FPD };
 
         enum FPDTimeFormat : uint8_t {
@@ -1162,8 +1159,8 @@ namespace Exchange {
             
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IFPD::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IFPD::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerFPD::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerFPD::INotification* notification /* @in */) = 0;
 
         /** Set Front Panel Display Time. */
         // @text setFPDTime
@@ -1198,7 +1195,7 @@ namespace Exchange {
         virtual Core::hresult SetFPDBrightness(const FPDIndicator indicator /* @in */, const uint32_t brightNess /* @in */, const bool persist /* @in */)  = 0;
 
         /** Get Front Panel Display Brightness. */
-        // @text getFPDBrightness
+        // @text GetFPDBrightness
         // @brief Get Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 
@@ -1272,7 +1269,7 @@ namespace Exchange {
     };  
 
     
-    struct EXTERNAL IHDMIIn : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerHDMIIn : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_HDMIIN };
 
         enum HDMIInPort : int8_t {
@@ -1510,8 +1507,8 @@ namespace Exchange {
             virtual void OnHDMIInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IHDMIIn::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IHDMIIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHDMIIn::INotification* notification /* @in */) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
         // @text getHDMIInNumbefOfInputs
@@ -1646,7 +1643,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IHost : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerHost : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_HOST };
 
         enum SleepMode : uint8_t {
@@ -1667,8 +1664,8 @@ namespace Exchange {
             
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IHost::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IHost::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerHost::INotification* notification /* @in */) = 0;
 
         /** Get Preferred Sleep mode. */
         // @text getPreferredSleepMode
@@ -1716,7 +1713,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IVideoDevice : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerVideoDevice : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEODEVICE };
 
         enum VideoZoom : int8_t {
@@ -1779,8 +1776,8 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IVideoDevice::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IVideoDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideoDevice::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerVideoDevice::INotification* notification /* @in */) = 0;
 
         /** Get Video Device handle. */
         // @text getVideoDeviceHandle
@@ -1862,7 +1859,7 @@ namespace Exchange {
     };
 
     
-    struct EXTERNAL IVideoPort : virtual public Core::IUnknown {
+    struct EXTERNAL IDeviceSettingsManagerVideoPort : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS_MANAGER_VIDEOPORT };
 
         enum VideoPort : uint8_t {
@@ -2082,8 +2079,8 @@ namespace Exchange {
             virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsManager::IVideoPort::INotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManager::IVideoPort::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IDeviceSettingsManagerVideoPort::INotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(Exchange::IDeviceSettingsManagerVideoPort::INotification* notification /* @in */) = 0;
 
         /** Get Video Port handle. */
         // @text getVideoPort
@@ -2330,8 +2327,5 @@ namespace Exchange {
 
     };
 
-};
-
 } // namespace Exchange
 } // namespace WPEFramework
-
