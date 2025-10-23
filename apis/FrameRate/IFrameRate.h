@@ -80,8 +80,8 @@ namespace WPEFramework
 
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
-  // @see onDisplayFrameRateChanging : Triggered when the framerate changes started.
-  // @see onDisplayFrameRateChanged : Triggered when the framerate changed
+            // @see onDisplayFrameRateChanging : Triggered when the framerate changes started.
+            // @see onDisplayFrameRateChanged : Triggered when the framerate changed
             // @brief Sets the display framerate values.
             // @param framerate - in - string
             // @param success - out - boolean
@@ -96,14 +96,14 @@ namespace WPEFramework
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
-  // @see onFpsEvent : Triggered at the end of each interval as defined by the setCollectionFrequency
+            // @see onFpsEvent : Triggered at the end of each interval as defined by the setCollectionFrequency
             // @brief Starts the FPS data collection. Starts the FPS data collection
             // @param success - out - boolean
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
 
             /** Stops the FPS data collection */
             // @text stopFpsCollection
-  // @see onFpsEvent : Triggered once after the stopFpsCollection method is invoked.
+            // @see onFpsEvent : Triggered once after the stopFpsCollection method is invoked.
             // @brief Stops the FPS data collection
             // @param success - out - boolean
             virtual Core::hresult StopFpsCollection(bool& success /* @out */) = 0;

@@ -237,8 +237,8 @@ namespace WPEFramework {
             virtual Core::hresult SetMixerLevels(const int primaryVolume, const int inputVolume, SuccessResult& successResult /* @out */) = 0;
 
             // @text startInput
-  // @see onInputStatusChanged : Triggers the event when HDMI/Composite Input source is activated and Input status changes to `started`
-  // @see onSignalChanged : Triggers the event when HDMI/Composite Input signal changes (must be one of the following:noSignal, unstableSignal, notSupportedSignal, stableSignal)
+            // @see onInputStatusChanged : Triggers the event when HDMI/Composite Input source is activated and Input status changes to `started`
+            // @see onSignalChanged : Triggers the event when HDMI/Composite Input signal changes (must be one of the following:noSignal, unstableSignal, notSupportedSignal, stableSignal)
             // @brief Activates the specified HDMI/Composite Input port as the primary video source.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
@@ -249,7 +249,7 @@ namespace WPEFramework {
             virtual Core::hresult StartInput(const string& portId, const string& typeOfInput, const bool requestAudioMix, const int plane, const bool topMost, SuccessResult& successResult /* @out */) = 0;
 
             // @text stopInput
-  // @see onInputStatusChanged : Triggers the event when HDMI/Composite Input source is deactivated and Input status changes to `stopped`
+            // @see onInputStatusChanged : Triggers the event when HDMI/Composite Input source is deactivated and Input status changes to `stopped`
             // @brief Deactivates the HDMI/Composite Input port currently selected as the primary video source.
             // @param typeOfInput - in - The type of Input - HDMI/COMPOSITE
             // @param success - out - Whether the request succeeded
