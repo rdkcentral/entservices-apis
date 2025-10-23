@@ -107,7 +107,8 @@ def generate_md_from_individual_header_file(header_structure, output_doc_folder_
     
     with open(output_file_path, 'w', encoding='utf-8') as file:
         # Write header sections
-        file.write(generate_header_toc(classname, header_structure))
+        file.write(generate_header_toc(
+            classname, header_structure, getattr(header_structure, 'plugin_version', '1.0.0')))
         file.write(generate_header_description_markdown(
             classname, getattr(header_structure, 'plugindescription', '')))
         file.write(generate_configuration_options_section(header_structure.configuration_options))

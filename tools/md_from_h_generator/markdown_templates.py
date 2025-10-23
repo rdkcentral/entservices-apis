@@ -160,7 +160,7 @@ def to_camel_case(name):
     """Convert UpperCamelCase to lowerCamelCase."""
     return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-def generate_header_toc(classname, document_object, version="1.0.0"):
+def generate_header_toc(classname, document_object, version):
     """
     Generate the header table of contents for the markdown file.
     """

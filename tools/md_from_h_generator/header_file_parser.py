@@ -32,6 +32,7 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
+        ('jsonversion', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
@@ -100,6 +101,7 @@ class HeaderFileParser:
         self.configuration_options = {}
         self.logger = logger
         self.plugindescription = ''
+        self.plugin_version = '1.0.0'
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -266,6 +268,9 @@ class HeaderFileParser:
         if line_tag == 'plugindesc':
             self.plugindescription = groups[0]
             self.latest_tag = 'plugindesc'
+        elif line_tag == 'jsonversion':
+            self.plugin_version = groups[0]
+            self.latest_tag = 'jsonversion'
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
