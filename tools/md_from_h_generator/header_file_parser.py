@@ -32,7 +32,7 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
-        ('jsonversion', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
+        ('version', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
@@ -43,6 +43,7 @@ class HeaderFileParser:
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
+        ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
@@ -100,13 +101,14 @@ class HeaderFileParser:
         self.symbols_registry = {}
         self.configuration_options = {}
         self.logger = logger
-        self.plugindescription = ''
-        self.plugin_version = '1.0.0'
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
         self.latest_param = ''
         self.latest_tag = ''
+        self.in_event = False
+        self.plugindescription = ''
+        self.plugin_version = '1.0.0'
 
         # main logic to create header file structure
         self.process_header_file()
@@ -268,9 +270,12 @@ class HeaderFileParser:
         if line_tag == 'plugindesc':
             self.plugindescription = groups[0]
             self.latest_tag = 'plugindesc'
-        elif line_tag == 'jsonversion':
+        elif line_tag == 'version':
             self.plugin_version = groups[0]
-            self.latest_tag = 'jsonversion'
+            self.latest_tag = 'version'
+        elif line_tag == 'event':
+            self.in_event = True
+            self.latest_tag = 'event'
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
@@ -602,11 +607,15 @@ class HeaderFileParser:
         Tracks the current scope of the line being processed. Currently used to determine when
         the notification section is parsed.
         """
-        external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
+        external_struct_tracker_regex = re.compile(r'struct(?:\s+EXTERNAL)?\s+([\w\d]+?)\s*\:\s*virtual\s+public\s+Core\:\:IUnknown.*\{?')
         external_struct_tracker_match = external_struct_tracker_regex.match(line)
         # if this line contains the declaration of an external structure, update it as the scope
         if external_struct_tracker_match:
-            scope.append(external_struct_tracker_match.group(1))
+            scope_name = external_struct_tracker_match.group(1)
+            if self.in_event:
+                scope_name = 'INotification'
+                self.in_event = False
+            scope.append(scope_name)
             brace_count.append(0)
             brace_count[-1] += self.count_braces(line)
         else:
