@@ -93,8 +93,9 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
         string appId ;
         string appInstanceId ;
         string activeSessionId;
+	string type;
         AppLifecycleState targetLifecycleState;
-        AppLifecycleState currentLifecycleState;
+        AppLifecycleState lifecycleState;
     };
   using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
 
