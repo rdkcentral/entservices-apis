@@ -52,11 +52,11 @@ namespace WPEFramework
             // @param register: boolean
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
-            // @returns Core::hresult
-            virtual Core::hresult Subscribe(const AppNotificationContext &context /* @in */,
+            // @returns Core::hresult 
+            virtual Core::hresult Subscribe(const AppNotificationContext& context /* @in */,
                                             bool listen /* @in */,
-                                            const string &module /* @in */,
-                                            const string &event /* @in */) = 0;
+                                            const string& module /* @in */,
+                                            const string& event /* @in */) = 0;
 
             // @json:omit
             // @text emit
@@ -65,9 +65,9 @@ namespace WPEFramework
             // @param payload: the payload to emit
             // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
             // @returns Core::hresult
-            virtual Core::hresult Emit(const string &event /* @in */,
-                                       const string &payload /* @in @opaque */,
-                                       const string &appId /* @in */) = 0;
+            virtual Core::hresult Emit(const string& event /* @in */,
+                                       const string& payload /* @in @opaque */,
+                                       const string& appId /* @in */) = 0;
 
             // @json:omit
             // @text Cleanup
@@ -75,7 +75,7 @@ namespace WPEFramework
             // @param connectionId: connection id for a given context
             // @param origin: origin of the context
             // @returns Core::hresult
-            virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */, const string &origin /* @in */) = 0;
+            virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */, const string& origin /* @in */) = 0;
 
         };
 
