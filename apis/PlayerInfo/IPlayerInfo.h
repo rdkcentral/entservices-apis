@@ -86,6 +86,7 @@ namespace Exchange {
             RESOLUTION_720P30,
             RESOLUTION_720P50,
             RESOLUTION_720P,
+            RESOLUTION_768P,
             RESOLUTION_1080I24,
             RESOLUTION_1080I25,
             RESOLUTION_1080I30,
