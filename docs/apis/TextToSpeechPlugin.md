@@ -1,1058 +1,1129 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="TextToSpeech_Plugin"></a>
+<a id="TextToSpeech_Plugin"></a>
 # TextToSpeech Plugin
 
-A org.rdk.TextToSpeech plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextToSpeech)**
+
+A TextToSpeech plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
+- [Properties](#Properties)
 - [Notifications](#Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a id="Description"></a>
 # Description
 
-The `TextToSpeech` plugin provides TTS functionality (Voice Guidance & Speech Synthesis) for the client application.
+The `TextToSpeech` plugin provides an interface for TextToSpeech.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.TextToSpeech*) |
-| classname | string | Class name: *org.rdk.TextToSpeech* |
+| callsign | string | Plugin instance name (default: org.rdk.TextToSpeech) |
+| classname | string | Class name: *TextToSpeech* |
 | locator | string | Library name: *libWPEFrameworkTextToSpeech.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.TextToSpeech plugin:
+The following methods are provided by the TextToSpeech plugin:
 
 TextToSpeech interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancel](#cancel) | Cancels the speech |
-| [enabletts](#enabletts) | (For Resident App) Enables or disables the TTS conversion processing |
-| [getapiversion](#getapiversion) | Gets the API Version |
-| [getspeechstate](#getspeechstate) | Returns the current state of the speech request |
-| [getttsconfiguration](#getttsconfiguration) | Gets the current TTS configuration |
-| [isspeaking](#isspeaking) | Checks if speech is in progress |
-| [isttsenabled](#isttsenabled) | Returns whether the TTS engine is enabled or disabled |
-| [listvoices](#listvoices) | Lists the available voices for the specified language |
-| [pause](#pause) | Pauses the speech |
-| [resume](#resume) | Resumes the speech |
-| [setttsconfiguration](#setttsconfiguration) | Sets the TTS configuration |
-| [speak](#speak) | Converts the input text to speech when TTS is enabled |
-| [setACL](#setACL) | Configures app to speak |
+| [cancel](#cancel) | Cancel the speech |
+| [getConfiguration](#getConfiguration) | Retrieve tts configuration attributes |
+| [getSpeechState](#getSpeechState) | Get speech status |
+| [listVoices](#listVoices) | List voices available |
+| [pause](#pause) | Pause the speech |
+| [registerWithCallsign](#registerWithCallsign) |  |
+| [resume](#resume) | Resume the speech |
+| [setACL](#setACL) |  |
+| [setAPIKey](#setAPIKey) |  |
+| [setConfiguration](#setConfiguration) | Set the tts configuration attributes |
+| [setFallbackText](#setFallbackText) |  |
+| [setPrimaryVolDuck](#setPrimaryVolDuck) |  |
+| [speak](#speak) | Speaks text provided |
 
-
-<a name="cancel"></a>
+<a id="cancel"></a>
 ## *cancel*
 
-Cancels the speech. Triggers the `onspeechinterrupted` 
+Cancel the speech
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onspeechinterrupted](#onspeechinterrupted) | Triggered when ongoing speech is cancelled. Event is not triggered: if TTS is not enabled; if ongoing Speech is completed |
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
-
-### Result
-
+| params.speechid | integer | id of the text |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.TextToSpeech.cancel",
     "params": {
-        "speechid": 1
+        "speechid": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextToSpeech.cancel", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "TTS_Status": 0,
-        "success": true
-    }
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
 }
 ```
 
-<a name="enabletts"></a>
-## *enabletts*
+<a id="getConfiguration"></a>
+## *getConfiguration*
 
-(For Resident App) Enables or disables the TTS conversion processing. Triggered `onttsstatechanged` event when state changes and `onspeechinterrupted` event when disabling TTS while speech is in-progress.
+Retrieve tts configuration attributes
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onttsstatechanged](#onttsstatechanged) | state : true Triggered when TTS is enabled; state : false Triggered when TTS is disabled; otherwise No event When TTS enable or disable is in-progress |
-| [onspeechinterrupted](#onspeechinterrupted) | Triggered when disabling TTS while speech is in-progress. |
+Event details are missing in the header file documentation.
 ### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabletts | boolean | Enable or Disable TTS |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.enabletts",
-    "params": {
-        "enabletts": true
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="getapiversion"></a>
-## *getapiversion*
-
-Gets the API Version.
-
-### Events
-
-No Events
-
-### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.version | number | Indicates the  API Version |
-| result.success | boolean | Whether the request succeeded |
+| result.config | Configuration | tts configuration |
+| result.config.ttsEndPoint | std::string |  |
+| result.config.ttsEndPointSecured | std::string |  |
+| result.config.language | std::string |  |
+| result.config.voice | std::string |  |
+| result.config.speechRate | std::string |  |
+| result.config.volume | integer |  |
+| result.config.rate | integer |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.getapiversion"
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.TextToSpeech.getConfiguration"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextToSpeech.getConfiguration"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
-        "version": 1,
-        "success": true
+        "ttsEndPoint": "",
+        "ttsEndPointSecured": "",
+        "language": "",
+        "voice": "",
+        "speechRate": "",
+        "volume": 0,
+        "rate": 0
     }
 }
 ```
 
-<a name="getspeechstate"></a>
-## *getspeechstate*
+<a id="getSpeechState"></a>
+## *getSpeechState*
 
-Returns the current state of the speech request.
+Get speech status
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
-
-### Result
-
+| params.speechid | integer | id of the text |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.speechstate | string | The speech state (must be one of the following: *SPEECH_PENDING(0)*, *SPEECH_IN_PROGRESS(1)*, *SPEECH_PAUSED(2)*, *SPEECH_NOT_FOUND(3)*) |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
+| result.state | string | speech state |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.getspeechstate",
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.TextToSpeech.getSpeechState",
     "params": {
-        "speechid": 1
+        "speechid": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextToSpeech.getSpeechState", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
-        "speechstate": "SPEECH_IN_PROGRESS",
-        "TTS_Status": 0,
-        "success": true
+        "state": "SPEECH_PENDING"
     }
 }
 ```
 
-<a name="getttsconfiguration"></a>
-## *getttsconfiguration*
+<a id="listVoices"></a>
+## *listVoices*
 
-Gets the current TTS configuration.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.ttsendpoint | string | The TTS engine URL |
-| result.ttsendpointsecured | string | The TTS engine secured URL |
-| result.language | string | The TTS language |
-| result.voice | string | The TTS Voice |
-| result.volume | string | The TTS Volume |
-| result.rate | number | The TTS Rate |
-| result?.speechrate | string | <sup>*(optional)*</sup> TTS Rate for TTS2 endpoint |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.getttsconfiguration"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "ttsendpoint": "http://url_for_the_text_to_speech_processing_unit",
-        "ttsendpointsecured": "https://url_for_the_text_to_speech_processing_unit",
-        "language": "en-US",
-        "voice": "carol",
-        "volume": "100.000000",
-        "rate": 50,
-        "speechrate": "medium",
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="isspeaking"></a>
-## *isspeaking*
-
-Checks if speech is in progress.
+List voices available
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
-
-### Result
-
+| params.language | string | input |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.speaking | boolean | `true` if the passed speech is in progress (that is, audio was playing), `false` if speech is completed or speech ID not found |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
+| result.voices | RPC::IStringIterator | list of voices |
+| result.voices[#] | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.isspeaking",
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.TextToSpeech.listVoices",
     "params": {
-        "speechid": 1
+        "language": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextToSpeech.listVoices", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "speaking": true,
-        "TTS_Status": 0,
-        "success": true
-    }
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": [
+        ""
+    ]
 }
 ```
 
-<a name="isttsenabled"></a>
-## *isttsenabled*
-
-Returns whether the TTS engine is enabled or disabled. By default the TTS engine is disabled.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.isenabled | boolean | `true` if the TTS engine is enabled, otherwise `false` |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.isttsenabled"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "isenabled": true,
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="listvoices"></a>
-## *listvoices*
-
-Lists the available voices for the specified language. For every language there is a set of pre-defined voices.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.language | string | The TTS language |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.voices | string | Array of available voice |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.listvoices",
-    "params": {
-        "language": "en-US"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "voices": "carol",
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="pause"></a>
+<a id="pause"></a>
 ## *pause*
 
-Pauses the speech. Triggers the `onspeechpause` 
+Pause the speech
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onspeechpause](#onspeechpause) | Triggered when ongoing speech is paused. Event not triggered on following conditions: TTS is not enabled; Speech is already in pause; or Speech is completed |
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
-
-### Result
-
+| params.speechid | integer | id of the text |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
+| result.status | string | return status |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.TextToSpeech.pause",
     "params": {
-        "speechid": 1
+        "speechid": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextToSpeech.pause", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
-        "TTS_Status": 0,
-        "success": true
+        "status": "TTS_OK"
     }
 }
 ```
 
-<a name="resume"></a>
+<a id="registerWithCallsign"></a>
+## *registerWithCallsign*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callsign | string |  |
+| params.sink | ITextToSpeech::INotification |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.TextToSpeech.registerWithCallsign",
+    "params": {
+        "callsign": "",
+        "sink": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextToSpeech.registerWithCallsign", "params": {"callsign": "", "sink": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": null
+}
+```
+
+<a id="resume"></a>
 ## *resume*
 
-Resumes the speech. Triggers the `onspeechresume` 
+Resume the speech
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onspeechresume](#onspeechresume) | Triggered when speech is resumed and speech output is available. Event not triggered under following conditions: TTS is not enabled; Speech is resumed already; or Speech is completed |
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
-
-### Result
-
+| params.speechid | integer | id of the text |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
+| result.status | string | return status |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.TextToSpeech.resume",
     "params": {
-        "speechid": 1
+        "speechid": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextToSpeech.resume", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": {
-        "TTS_Status": 0,
-        "success": true
+        "status": "TTS_OK"
     }
 }
 ```
 
-<a name="setttsconfiguration"></a>
-## *setttsconfiguration*
-
-Sets the TTS configuration. Triggers the `onvoicechanged` 
-
-### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onvoicechanged](#onvoicechanged) | Triggered only when the voice configuration is changed |
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.ttsendpoint | string | <sup>*(optional)*</sup> The TTS engine URL |
-| params?.ttsendpointsecured | string | <sup>*(optional)*</sup> The TTS engine secured URL |
-| params?.language | string | <sup>*(optional)*</sup> The TTS language |
-| params?.voice | string | <sup>*(optional)*</sup> The TTS Voice |
-| params?.volume | string | <sup>*(optional)*</sup> The TTS Volume |
-| params?.primvolduckpercent | number | <sup>*(optional)*</sup> The TTS Primary Volumeduckpercentage |
-| params?.rate | number | <sup>*(optional)*</sup> The TTS Rate |
-| params?.speechrate | string | <sup>*(optional)*</sup> TTS Rate for TTS2 endpoint |
-| params?.fallbacktext | object | <sup>*(optional)*</sup>  |
-| params?.fallbacktext?.scenario | string | <sup>*(optional)*</sup> Describes the scenario where fallback text is to be used . At present, only `offline` is supported |
-| params?.fallbacktext?.value | string | <sup>*(optional)*</sup> The Text which is to be spoken when the scenario is met |
-| params?.authinfo | object | <sup>*(optional)*</sup>  |
-| params?.authinfo?.type | string | <sup>*(optional)*</sup> The type of authentication. At present, only `apikey` is supported |
-| params?.authinfo?.value | string | <sup>*(optional)*</sup> x api key(secret key) required for GCD Endpoints |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.setttsconfiguration",
-    "params": {
-        "ttsendpoint": "http://url_for_the_text_to_speech_processing_unit",
-        "ttsendpointsecured": "https://url_for_the_text_to_speech_processing_unit",
-        "language": "en-US",
-        "voice": "carol",
-        "volume": "100.000000",
-        "primvolduckpercent": 25,
-        "rate": 50,
-        "speechrate": "medium",
-        "fallbacktext": {
-            "scenario": "offline",
-            "value": "No Internet connection"
-        },
-        "authinfo": {
-            "type": "apikey",
-            "value": "XXXXXXXXXXXX"
-        }
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="speak"></a>
-## *speak*
-
-Converts the input text to speech when TTS is enabled. Any ongoing speech is interrupted and the newly requested speech is processed. The clients of the previous speech is sent an `onspeechinterrupted`  Upon success, this API returns an ID, which is used as input to other API methods for controlling the speech (for example, `pause`, `resume`, and `cancel`).
-
-### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [onwillspeak](#onwillspeak) | Triggered when speech conversion is about to start |
-| [onspeechstart](#onspeechstart) | Triggered when conversion of text to speech is started |
-| [onspeechinterrupted](#onspeechinterrupted) | Current speech is interrupted either by a next speech request; by calling the cancel method; or by disabling TTS, when speech is in-progress |
-| [onspeechcomplete](#onspeechcomplete) | Triggered when conversion from text to speech is completed |
-| [onnetworkerror](#onnetworkerror) | Triggered when failed to fetch audio from the endpoint |
-| [onplaybackerror](#onplaybackerror) | Triggered when an error occurs during playback including pipeline failures; Triggered when speak is called during TTS disabled |
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.text | string | The text input |
-| params?.callsign | string | <sup>*(optional)*</sup>  Callsign of the application. This is mandatory when setACL is called prior to speak  |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.speechid | number | The speech ID |
-| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.TextToSpeech.speak",
-    "params": {
-        "text": "speech_1",
-        "callsign": "WebApp"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "speechid": 1,
-        "TTS_Status": 0,
-        "success": true
-    }
-}
-```
-
-<a name="setACL"></a>
+<a id="setACL"></a>
 ## *setACL*
 
-Configures app to speak. Allows the ResidentAPP to configure the particular app and provides access to `speak`  If not configured any then gives access to all apps to speak. Configuration does not retained after reboot.
+
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.accesslist | array |  |
-| params.accesslist[#] | object |  |
-| params.accesslist[#].method | string | Method of TTS function to be performed |
-| params.accesslist[#].apps | array | List of client application |
-| params.accesslist[#].apps[#] | string |  |
-
-### Result
-
+| params.method | string |  |
+| params.apps | string |  |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 7,
     "method": "org.rdk.TextToSpeech.setACL",
     "params": {
-        "accesslist": [
-            {
-                "method": "speak",
-                "apps": [
-                    "App1"
-                ]
-            }
-        ]
+        "method": "",
+        "apps": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextToSpeech.setACL", "params": {"method": "", "apps": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": null
+}
+```
+
+<a id="setAPIKey"></a>
+## *setAPIKey*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.apikey | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.TextToSpeech.setAPIKey",
+    "params": {
+        "apikey": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextToSpeech.setAPIKey", "params": {"apikey": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "result": null
+}
+```
+
+<a id="setConfiguration"></a>
+## *setConfiguration*
+
+Set the tts configuration attributes
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.config | Configuration | tts configuration |
+| params.config.ttsEndPoint | std::string |  |
+| params.config.ttsEndPointSecured | std::string |  |
+| params.config.language | std::string |  |
+| params.config.voice | std::string |  |
+| params.config.speechRate | std::string |  |
+| params.config.volume | integer |  |
+| params.config.rate | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.status | string | return status |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.TextToSpeech.setConfiguration",
+    "params": {
+        "ttsEndPoint": "",
+        "ttsEndPointSecured": "",
+        "language": "",
+        "voice": "",
+        "speechRate": "",
+        "volume": 0,
+        "rate": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextToSpeech.setConfiguration", "params": {"ttsEndPoint": "", "ttsEndPointSecured": "", "language": "", "voice": "", "speechRate": "", "volume": 0, "rate": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": {
+        "status": "TTS_OK"
+    }
+}
+```
+
+<a id="setFallbackText"></a>
+## *setFallbackText*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.scenario | string |  |
+| params.value | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.TextToSpeech.setFallbackText",
+    "params": {
+        "scenario": "",
+        "value": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextToSpeech.setFallbackText", "params": {"scenario": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": null
+}
+```
+
+<a id="setPrimaryVolDuck"></a>
+## *setPrimaryVolDuck*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.prim | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "method": "org.rdk.TextToSpeech.setPrimaryVolDuck",
+    "params": {
+        "prim": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextToSpeech.setPrimaryVolDuck", "params": {"prim": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "result": null
+}
+```
+
+<a id="speak"></a>
+## *speak*
+
+Speaks text provided
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callsign | string |  |
+| params.text | string | for conversion |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.speechid | integer | id of the text |
+| result.status | string | return status |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "method": "org.rdk.TextToSpeech.speak",
+    "params": {
+        "callsign": "",
+        "text": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextToSpeech.speak", "params": {"callsign": "", "text": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "result": {
+        "speechid": 0,
+        "status": "TTS_OK"
+    }
+}
+```
+
+
+<a id="Properties"></a>
+# Properties
+The following properties are provided by the TextToSpeech plugin:
+
+TextToSpeech interface properties:
+
+| Method | Description |
+| :-------- | :-------- |
+| [enable](#enable) | Query the status/enable tts |
+
+<a id="Enable"></a>
+## *Enable*
+
+Query the status/enable tts
+
+### Events
+Event details are missing in the header file documentation.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).enable | bool | status/enable |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "org.rdk.TextToSpeech.enable"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.TextToSpeech.enable"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "result": {
+        "enable": true
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "org.rdk.TextToSpeech.enable",
+    "params": {
+        "enable": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.TextToSpeech.enable", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "result": null
+}
+```
+
+
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.TextToSpeech plugin:
+The following events are provided by the TextToSpeech plugin:
 
 TextToSpeech interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onnetworkerror](#onnetworkerror) | Triggered when a network error occurs while fetching the audio from the endpoint |
-| [onplaybackerror](#onplaybackerror) | Triggered when an error occurs during playback including pipeline failures |
-| [onspeechcomplete](#onspeechcomplete) | Triggered when the speech completes |
-| [onspeechinterrupted](#onspeechinterrupted) | Triggered when the current speech is interrupted either by a next speech request, by calling `cancel` or by disabling TTS, when speech is in progress |
-| [onspeechpause](#onspeechpause) | Triggered when the ongoing speech pauses |
-| [onspeechresume](#onspeechresume) | Triggered when any paused speech resumes |
-| [onspeechstart](#onspeechstart) | Triggered when the speech start |
-| [onttsstatechanged](#onttsstatechanged) | Triggered when TTS is enabled or disabled |
-| [onvoicechanged](#onvoicechanged) | Triggered when the configured voice changes |
-| [onwillspeak](#onwillspeak) | Triggered when the text to speech conversion is about to start |
+| [enabled](#enabled) | Notify TTS enabled/disabled |
+| [networkError](#networkError) |  |
+| [playbackError](#playbackError) |  |
+| [speechComplete](#speechComplete) |  |
+| [speechInterrupted](#speechInterrupted) |  |
+| [speechPause](#speechPause) |  |
+| [speechResume](#speechResume) |  |
+| [speechStart](#speechStart) |  |
+| [voiceChanged](#voiceChanged) | Notify change in voice used for speaking |
+| [willSpeak](#willSpeak) | Notify speechid based on the speech state(eg: start,pause,..etc) |
 
+<a id="enabled"></a>
+## *enabled*
 
-<a name="onnetworkerror"></a>
-## *onnetworkerror*
-
-Triggered when a network error occurs while fetching the audio from the endpoint.
+Notify TTS enabled/disabled
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
+| params.state | bool | enabled/disabled |
 
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onnetworkerror",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onplaybackerror"></a>
-## *onplaybackerror*
-
-Triggered when an error occurs during playback including pipeline failures.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onplaybackerror",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onspeechcomplete"></a>
-## *onspeechcomplete*
-
-Triggered when the speech completes.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onspeechcomplete",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onspeechinterrupted"></a>
-## *onspeechinterrupted*
-
-Triggered when the current speech is interrupted either by a next speech request, by calling `cancel` or by disabling TTS, when speech is in progress.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onspeechinterrupted",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onspeechpause"></a>
-## *onspeechpause*
-
-Triggered when the ongoing speech pauses.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onspeechpause",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onspeechresume"></a>
-## *onspeechresume*
-
-Triggered when any paused speech resumes.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onspeechresume",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onspeechstart"></a>
-## *onspeechstart*
-
-Triggered when the speech start.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | number | The speech ID |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onspeechstart",
-    "params": {
-        "speechid": 1
-    }
-}
-```
-
-<a name="onttsstatechanged"></a>
-## *onttsstatechanged*
-
-Triggered when TTS is enabled or disabled.
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.state | boolean | `True` if TTS is enabled, otherwise `False` |
-
-### Example
-
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "client.events.onttsstatechanged",
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.TextToSpeech.enabled",
     "params": {
         "state": true
     }
 }
 ```
 
-<a name="onvoicechanged"></a>
-## *onvoicechanged*
+<a id="networkError"></a>
+## *networkError*
 
-Triggered when the configured voice changes.
+
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.voice | string | The TTS Voice |
+| params.speechid | integer | id of the text |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onvoicechanged",
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.TextToSpeech.networkError",
     "params": {
-        "voice": "carol"
+        "speechid": 0
     }
 }
 ```
 
-<a name="onwillspeak"></a>
-## *onwillspeak*
+<a id="playbackError"></a>
+## *playbackError*
 
-Triggered when the text to speech conversion is about to start. It provides the speech ID, generated for the text input given in the speak 
+
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.speechid | number | The speech ID |
+| params.speechid | integer | id of the text |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onwillspeak",
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.TextToSpeech.playbackError",
     "params": {
-        "speechid": 1
+        "speechid": 0
     }
 }
 ```
 
+<a id="speechComplete"></a>
+## *speechComplete*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.TextToSpeech.speechComplete",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechInterrupted"></a>
+## *speechInterrupted*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.TextToSpeech.speechInterrupted",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechPause"></a>
+## *speechPause*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.TextToSpeech.speechPause",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechResume"></a>
+## *speechResume*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.TextToSpeech.speechResume",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechStart"></a>
+## *speechStart*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.TextToSpeech.speechStart",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="voiceChanged"></a>
+## *voiceChanged*
+
+Notify change in voice used for speaking
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.voice | string | voice changed |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "method": "org.rdk.TextToSpeech.voiceChanged",
+    "params": {
+        "voice": ""
+    }
+}
+```
+
+<a id="willSpeak"></a>
+## *willSpeak*
+
+Notify speechid based on the speech state(eg: start,pause,..etc)
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "method": "org.rdk.TextToSpeech.willSpeak",
+    "params": {
+        "speechid": 0
+    }
+}
+```
