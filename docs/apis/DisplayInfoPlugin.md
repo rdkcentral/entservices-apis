@@ -1,33 +1,33 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.DisplayInfo_Plugin"></a>
+<a id="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/DisplayInfo/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo)**
 
 A DisplayInfo plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Properties](#head.Properties)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Properties](#Properties)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `DisplayInfo` plugin provides an interface for DisplayInfo.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -39,7 +39,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDisplayInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the DisplayInfo plugin:
@@ -48,13 +48,13 @@ DisplayInfo interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [configure](#method.configure) |  |
-| [eDID](#method.eDID) | TV's Extended Display Identification Data |
-| [heightInCentimeters](#method.heightInCentimeters) | Vertical size in centimeters |
-| [widthInCentimeters](#method.widthInCentimeters) | Horizontal size in centimeters |
+| [configure](#configure) |  |
+| [eDID](#eDID) | TV's Extended Display Identification Data |
+| [heightInCentimeters](#heightInCentimeters) | Vertical size in centimeters |
+| [widthInCentimeters](#widthInCentimeters) | Horizontal size in centimeters |
 
-<a id="method.configure"></a>
-## *configure [<sup>method</sup>](#head.Methods)*
+<a id="configure"></a>
+## *configure*
 
 
 
@@ -104,8 +104,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.eDID"></a>
-## *eDID [<sup>method</sup>](#head.Methods)*
+<a id="eDID"></a>
+## *eDID*
 
 TV's Extended Display Identification Data
 
@@ -160,8 +160,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.heightInCentimeters"></a>
-## *heightInCentimeters [<sup>method</sup>](#head.Methods)*
+<a id="heightInCentimeters"></a>
+## *heightInCentimeters*
 
 Vertical size in centimeters
 
@@ -208,8 +208,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.widthInCentimeters"></a>
-## *widthInCentimeters [<sup>method</sup>](#head.Methods)*
+<a id="widthInCentimeters"></a>
+## *widthInCentimeters*
 
 Horizontal size in centimeters
 
@@ -257,7 +257,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 
-<a id="head.Properties"></a>
+<a id="Properties"></a>
 # Properties
 The following properties are provided by the DisplayInfo plugin:
 
@@ -265,27 +265,27 @@ DisplayInfo interface properties:
 
 | Method | Description |
 | :-------- | :-------- |
-| [colorSpace](#property.colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
-| [colorimetry](#property.colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
-| [colourDepth](#property.colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
-| [connected](#property.connected)<sup>RO</sup> | Current HDMI connection status |
-| [eOTF](#property.eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
-| [frameRate](#property.frameRate)<sup>RO</sup> | Provides access to Frame Rate |
-| [freeGpuRam](#property.freeGpuRam)<sup>RO</sup> | Free GPU DRAM memory (in bytes) |
-| [hDCPProtection](#property.hDCPProtection) | HDCP protocol used for transmission |
-| [hDRSetting](#property.hDRSetting)<sup>RO</sup> | HDR format in use |
-| [height](#property.height)<sup>RO</sup> | Vertical resolution of TV |
-| [isAudioPassthrough](#property.isAudioPassthrough)<sup>RO</sup> | Current audio passthrough status on HDMI |
-| [portName](#property.portName)<sup>RO</sup> | Video output port on the STB used for connection to TV |
-| [quantizationRange](#property.quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
-| [sTBCapabilities](#property.sTBCapabilities)<sup>RO</sup> | HDR formats supported by STB |
-| [tVCapabilities](#property.tVCapabilities)<sup>RO</sup> | HDR formats supported by TV |
-| [totalGpuRam](#property.totalGpuRam)<sup>RO</sup> | Total GPU DRAM memory (in bytes) |
-| [verticalFreq](#property.verticalFreq)<sup>RO</sup> | Vertical Frequency |
-| [width](#property.width)<sup>RO</sup> | Horizontal resolution of TV |
+| [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
+| [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
+| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
+| [connected](#connected)<sup>RO</sup> | Current HDMI connection status |
+| [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
+| [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
+| [freeGpuRam](#freeGpuRam)<sup>RO</sup> | Free GPU DRAM memory (in bytes) |
+| [hDCPProtection](#hDCPProtection) | HDCP protocol used for transmission |
+| [hDRSetting](#hDRSetting)<sup>RO</sup> | HDR format in use |
+| [height](#height)<sup>RO</sup> | Vertical resolution of TV |
+| [isAudioPassthrough](#isAudioPassthrough)<sup>RO</sup> | Current audio passthrough status on HDMI |
+| [portName](#portName)<sup>RO</sup> | Video output port on the STB used for connection to TV |
+| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
+| [sTBCapabilities](#sTBCapabilities)<sup>RO</sup> | HDR formats supported by STB |
+| [tVCapabilities](#tVCapabilities)<sup>RO</sup> | HDR formats supported by TV |
+| [totalGpuRam](#totalGpuRam)<sup>RO</sup> | Total GPU DRAM memory (in bytes) |
+| [verticalFreq](#verticalFreq)<sup>RO</sup> | Vertical Frequency |
+| [width](#width)<sup>RO</sup> | Horizontal resolution of TV |
 
-<a id="property.ColorSpace"></a>
-## *ColorSpace [<sup>property</sup>](#head.Properties)*
+<a id="ColorSpace"></a>
+## *ColorSpace*
 
 Provides access to the display's Colour space (chroma subsampling format)
 
@@ -330,8 +330,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="property.Colorimetry"></a>
-## *Colorimetry [<sup>property</sup>](#head.Properties)*
+<a id="Colorimetry"></a>
+## *Colorimetry*
 
 Provides access to display's colorimetry
 
@@ -377,8 +377,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="property.ColourDepth"></a>
-## *ColourDepth [<sup>property</sup>](#head.Properties)*
+<a id="ColourDepth"></a>
+## *ColourDepth*
 
 Provides access to display's colour Depth
 
@@ -423,8 +423,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="property.Connected"></a>
-## *Connected [<sup>property</sup>](#head.Properties)*
+<a id="Connected"></a>
+## *Connected*
 
 Current HDMI connection status
 
@@ -469,8 +469,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="property.EOTF"></a>
-## *EOTF [<sup>property</sup>](#head.Properties)*
+<a id="EOTF"></a>
+## *EOTF*
 
 Provides access to display's Electro optical transfer function
 
@@ -515,8 +515,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="property.FrameRate"></a>
-## *FrameRate [<sup>property</sup>](#head.Properties)*
+<a id="FrameRate"></a>
+## *FrameRate*
 
 Provides access to Frame Rate
 
@@ -561,8 +561,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="property.FreeGpuRam"></a>
-## *FreeGpuRam [<sup>property</sup>](#head.Properties)*
+<a id="FreeGpuRam"></a>
+## *FreeGpuRam*
 
 Free GPU DRAM memory (in bytes)
 
@@ -607,8 +607,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="property.HDCPProtection"></a>
-## *HDCPProtection [<sup>property</sup>](#head.Properties)*
+<a id="HDCPProtection"></a>
+## *HDCPProtection*
 
 HDCP protocol used for transmission
 
@@ -684,8 +684,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="property.HDRSetting"></a>
-## *HDRSetting [<sup>property</sup>](#head.Properties)*
+<a id="HDRSetting"></a>
+## *HDRSetting*
 
 HDR format in use
 
@@ -730,8 +730,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="property.Height"></a>
-## *Height [<sup>property</sup>](#head.Properties)*
+<a id="Height"></a>
+## *Height*
 
 Vertical resolution of TV
 
@@ -776,8 +776,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="property.IsAudioPassthrough"></a>
-## *IsAudioPassthrough [<sup>property</sup>](#head.Properties)*
+<a id="IsAudioPassthrough"></a>
+## *IsAudioPassthrough*
 
 Current audio passthrough status on HDMI
 
@@ -822,8 +822,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="property.PortName"></a>
-## *PortName [<sup>property</sup>](#head.Properties)*
+<a id="PortName"></a>
+## *PortName*
 
 Video output port on the STB used for connection to TV
 
@@ -868,8 +868,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="property.QuantizationRange"></a>
-## *QuantizationRange [<sup>property</sup>](#head.Properties)*
+<a id="QuantizationRange"></a>
+## *QuantizationRange*
 
 Provides access to display's Qauntization Range
 
@@ -914,8 +914,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="property.STBCapabilities"></a>
-## *STBCapabilities [<sup>property</sup>](#head.Properties)*
+<a id="STBCapabilities"></a>
+## *STBCapabilities*
 
 HDR formats supported by STB
 
@@ -961,8 +961,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="property.TVCapabilities"></a>
-## *TVCapabilities [<sup>property</sup>](#head.Properties)*
+<a id="TVCapabilities"></a>
+## *TVCapabilities*
 
 HDR formats supported by TV
 
@@ -1008,8 +1008,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="property.TotalGpuRam"></a>
-## *TotalGpuRam [<sup>property</sup>](#head.Properties)*
+<a id="TotalGpuRam"></a>
+## *TotalGpuRam*
 
 Total GPU DRAM memory (in bytes)
 
@@ -1054,8 +1054,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="property.VerticalFreq"></a>
-## *VerticalFreq [<sup>property</sup>](#head.Properties)*
+<a id="VerticalFreq"></a>
+## *VerticalFreq*
 
 Vertical Frequency
 
@@ -1100,8 +1100,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="property.Width"></a>
-## *Width [<sup>property</sup>](#head.Properties)*
+<a id="Width"></a>
+## *Width*
 
 Horizontal resolution of TV
 
@@ -1147,10 +1147,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the DisplayInfo plugin:
 
@@ -1158,10 +1158,10 @@ DisplayInfo interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [updated](#event.updated) |  |
+| [updated](#updated) |  |
 
-<a id="event.updated"></a>
-## *updated [<sup>event</sup>](#head.Notifications)*
+<a id="updated"></a>
+## *updated*
 
 
 

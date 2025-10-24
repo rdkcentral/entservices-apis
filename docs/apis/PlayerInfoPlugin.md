@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.PlayerInfo_Plugin"></a>
+<a id="PlayerInfo_Plugin"></a>
 # PlayerInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/PlayerInfo/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo)**
 
 A PlayerInfo plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Properties](#head.Properties)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Properties](#Properties)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `PlayerInfo` plugin provides an interface for PlayerInfo.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -39,7 +39,7 @@ The table below lists configuration options of the plugin.
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 
-<a id="head.Properties"></a>
+<a id="Properties"></a>
 # Properties
 The following properties are provided by the PlayerInfo plugin:
 
@@ -47,17 +47,17 @@ PlayerInfo interface properties:
 
 | Method | Description |
 | :-------- | :-------- |
-| [audioCodecs](#property.audioCodecs)<sup>RO</sup> |  |
-| [isAudioEquivalenceEnabled](#property.isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
-| [resolution](#property.resolution)<sup>RO</sup> | Current Video playback resolution |
-| [videoCodecs](#property.videoCodecs)<sup>RO</sup> |  |
-| [dolby_atmosmetadata](#property.dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
-| [dolby_enableatmosoutput](#property.dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
-| [dolby_mode](#property.dolby_mode) | Dolby Mode |
-| [dolby_soundmode](#property.dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
+| [audioCodecs](#audioCodecs)<sup>RO</sup> |  |
+| [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
+| [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
+| [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
+| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
+| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
+| [dolby_mode](#dolby_mode) | Dolby Mode |
+| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
-<a id="property.AudioCodecs"></a>
-## *AudioCodecs [<sup>property</sup>](#head.Properties)*
+<a id="AudioCodecs"></a>
+## *AudioCodecs*
 
 
 
@@ -103,8 +103,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="property.IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled [<sup>property</sup>](#head.Properties)*
+<a id="IsAudioEquivalenceEnabled"></a>
+## *IsAudioEquivalenceEnabled*
 
 Checks Loudness Equivalence in platform
 
@@ -149,8 +149,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="property.Resolution"></a>
-## *Resolution [<sup>property</sup>](#head.Properties)*
+<a id="Resolution"></a>
+## *Resolution*
 
 Current Video playback resolution
 
@@ -195,8 +195,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="property.VideoCodecs"></a>
-## *VideoCodecs [<sup>property</sup>](#head.Properties)*
+<a id="VideoCodecs"></a>
+## *VideoCodecs*
 
 
 
@@ -242,8 +242,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="property.AtmosMetadata"></a>
-## *AtmosMetadata [<sup>property</sup>](#head.Properties)*
+<a id="AtmosMetadata"></a>
+## *AtmosMetadata*
 
 Atmos capabilities of Sink
 
@@ -288,8 +288,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="property.EnableAtmosOutput"></a>
-## *EnableAtmosOutput [<sup>property</sup>](#head.Properties)*
+<a id="EnableAtmosOutput"></a>
+## *EnableAtmosOutput*
 
 Enable Atmos Audio Output
 
@@ -335,8 +335,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="property.Mode"></a>
-## *Mode [<sup>property</sup>](#head.Properties)*
+<a id="Mode"></a>
+## *Mode*
 
 Dolby Mode
 
@@ -412,8 +412,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="property.SoundMode"></a>
-## *SoundMode [<sup>property</sup>](#head.Properties)*
+<a id="SoundMode"></a>
+## *SoundMode*
 
 Sound Mode - Mono/Stereo/Surround
 
@@ -459,10 +459,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the PlayerInfo plugin:
 
@@ -470,10 +470,10 @@ PlayerInfo interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [dolby_audiomodechanged](#event.dolby_audiomodechanged) |  |
+| [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
 
-<a id="event.audioModeChanged"></a>
-## *audioModeChanged [<sup>event</sup>](#head.Notifications)*
+<a id="audioModeChanged"></a>
+## *audioModeChanged*
 
 
 

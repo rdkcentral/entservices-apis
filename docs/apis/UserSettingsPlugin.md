@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.UserSettings_Plugin"></a>
+<a id="UserSettings_Plugin"></a>
 # UserSettings Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/UserSettings/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UserSettings)**
 
 A UserSettings plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `UserSettings` plugin provides an interface for UserSettings.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUserSettings.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the UserSettings plugin:
@@ -47,49 +47,49 @@ UserSettings interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getAudioDescription](#method.getAudioDescription) | Gets the current AudioDescription setting |
-| [getBlockNotRatedContent](#method.getBlockNotRatedContent) | Gets the BlockNotRatedContent setting |
-| [getCaptions](#method.getCaptions) | Gets the Captions setting. |
-| [getContentPin](#method.getContentPin) | Gets the ContentPin. |
-| [getHighContrast](#method.getHighContrast) | Gets the current highContrast setting. |
-| [getLiveWatershed](#method.getLiveWatershed) | Gets the LiveWatershed setting |
-| [getMigrationState](#method.getMigrationState) | Get the migration state of the respective key |
-| [getMigrationStates](#method.getMigrationStates) | Get the migration state of all the defined keys |
-| [getPinControl](#method.getPinControl) | Gets the PinControl setting |
-| [getPinOnPurchase](#method.getPinOnPurchase) | Gets the PinOnPurchase setting |
-| [getPlaybackWatershed](#method.getPlaybackWatershed) | Gets the PlaybackWatershed setting |
-| [getPreferredAudioLanguages](#method.getPreferredAudioLanguages) | Gets the current PreferredAudioLanguages setting |
-| [getPreferredCaptionsLanguages](#method.getPreferredCaptionsLanguages) | Gets the current PreferredCaptionsLanguages setting. |
-| [getPreferredClosedCaptionService](#method.getPreferredClosedCaptionService) | Gets the current PreferredClosedCaptionService setting. |
-| [getPresentationLanguage](#method.getPresentationLanguage) | Gets the presentationLanguage |
-| [getPrivacyMode](#method.getPrivacyMode) | Gets the current PrivacyMode setting. |
-| [getViewingRestrictions](#method.getViewingRestrictions) | Gets the current ViewingRestrictions. |
-| [getViewingRestrictionsWindow](#method.getViewingRestrictionsWindow) | Gets the current ViewingRestrictionsWindow. |
-| [getVoiceGuidance](#method.getVoiceGuidance) | Gets the current voiceGuidance setting. |
-| [getVoiceGuidanceHints](#method.getVoiceGuidanceHints) | Gets the current voiceGuidanceHints setting. |
-| [getVoiceGuidanceRate](#method.getVoiceGuidanceRate) | Gets the current voiceGuidanceRate setting. |
-| [setAudioDescription](#method.setAudioDescription) | Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled |
-| [setBlockNotRatedContent](#method.setBlockNotRatedContent) | Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project. |
-| [setCaptions](#method.setCaptions) | brief Sets Captions ON/OFF. |
-| [setContentPin](#method.setContentPin) | Sets the ContentPin. |
-| [setHighContrast](#method.setHighContrast) | Sets highContrast. Whether the app should display with high contrast or not. |
-| [setLiveWatershed](#method.setLiveWatershed) | Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project. |
-| [setPinControl](#method.setPinControl) | Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled. |
-| [setPinOnPurchase](#method.setPinOnPurchase) | Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted. |
-| [setPlaybackWatershed](#method.setPlaybackWatershed) | Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project. |
-| [setPreferredAudioLanguages](#method.setPreferredAudioLanguages) | A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track. |
-| [setPreferredCaptionsLanguages](#method.setPreferredCaptionsLanguages) | Set preferred languages for captions. |
-| [setPreferredClosedCaptionService](#method.setPreferredClosedCaptionService) | Sets the PreferredClosedCaptionService. |
-| [setPresentationLanguage](#method.setPresentationLanguage) | Sets the presentationLanguage in a full BCP 47 value, including script, region, variant |
-| [setPrivacyMode](#method.setPrivacyMode) | Sets the PrivacyMode. |
-| [setViewingRestrictions](#method.setViewingRestrictions) | Sets the ViewingRestrictions. |
-| [setViewingRestrictionsWindow](#method.setViewingRestrictionsWindow) | Sets the ViewingRestrictionsWindow. |
-| [setVoiceGuidance](#method.setVoiceGuidance) | Sets voiceGuidance. Whether Voice Guidance is enabled or not. |
-| [setVoiceGuidanceHints](#method.setVoiceGuidanceHints) | Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not. |
-| [setVoiceGuidanceRate](#method.setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive. |
+| [getAudioDescription](#getAudioDescription) | Gets the current AudioDescription setting |
+| [getBlockNotRatedContent](#getBlockNotRatedContent) | Gets the BlockNotRatedContent setting |
+| [getCaptions](#getCaptions) | Gets the Captions setting. |
+| [getContentPin](#getContentPin) | Gets the ContentPin. |
+| [getHighContrast](#getHighContrast) | Gets the current highContrast setting. |
+| [getLiveWatershed](#getLiveWatershed) | Gets the LiveWatershed setting |
+| [getMigrationState](#getMigrationState) | Get the migration state of the respective key |
+| [getMigrationStates](#getMigrationStates) | Get the migration state of all the defined keys |
+| [getPinControl](#getPinControl) | Gets the PinControl setting |
+| [getPinOnPurchase](#getPinOnPurchase) | Gets the PinOnPurchase setting |
+| [getPlaybackWatershed](#getPlaybackWatershed) | Gets the PlaybackWatershed setting |
+| [getPreferredAudioLanguages](#getPreferredAudioLanguages) | Gets the current PreferredAudioLanguages setting |
+| [getPreferredCaptionsLanguages](#getPreferredCaptionsLanguages) | Gets the current PreferredCaptionsLanguages setting. |
+| [getPreferredClosedCaptionService](#getPreferredClosedCaptionService) | Gets the current PreferredClosedCaptionService setting. |
+| [getPresentationLanguage](#getPresentationLanguage) | Gets the presentationLanguage |
+| [getPrivacyMode](#getPrivacyMode) | Gets the current PrivacyMode setting. |
+| [getViewingRestrictions](#getViewingRestrictions) | Gets the current ViewingRestrictions. |
+| [getViewingRestrictionsWindow](#getViewingRestrictionsWindow) | Gets the current ViewingRestrictionsWindow. |
+| [getVoiceGuidance](#getVoiceGuidance) | Gets the current voiceGuidance setting. |
+| [getVoiceGuidanceHints](#getVoiceGuidanceHints) | Gets the current voiceGuidanceHints setting. |
+| [getVoiceGuidanceRate](#getVoiceGuidanceRate) | Gets the current voiceGuidanceRate setting. |
+| [setAudioDescription](#setAudioDescription) | Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled |
+| [setBlockNotRatedContent](#setBlockNotRatedContent) | Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project. |
+| [setCaptions](#setCaptions) | brief Sets Captions ON/OFF. |
+| [setContentPin](#setContentPin) | Sets the ContentPin. |
+| [setHighContrast](#setHighContrast) | Sets highContrast. Whether the app should display with high contrast or not. |
+| [setLiveWatershed](#setLiveWatershed) | Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project. |
+| [setPinControl](#setPinControl) | Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled. |
+| [setPinOnPurchase](#setPinOnPurchase) | Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted. |
+| [setPlaybackWatershed](#setPlaybackWatershed) | Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project. |
+| [setPreferredAudioLanguages](#setPreferredAudioLanguages) | A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track. |
+| [setPreferredCaptionsLanguages](#setPreferredCaptionsLanguages) | Set preferred languages for captions. |
+| [setPreferredClosedCaptionService](#setPreferredClosedCaptionService) | Sets the PreferredClosedCaptionService. |
+| [setPresentationLanguage](#setPresentationLanguage) | Sets the presentationLanguage in a full BCP 47 value, including script, region, variant |
+| [setPrivacyMode](#setPrivacyMode) | Sets the PrivacyMode. |
+| [setViewingRestrictions](#setViewingRestrictions) | Sets the ViewingRestrictions. |
+| [setViewingRestrictionsWindow](#setViewingRestrictionsWindow) | Sets the ViewingRestrictionsWindow. |
+| [setVoiceGuidance](#setVoiceGuidance) | Sets voiceGuidance. Whether Voice Guidance is enabled or not. |
+| [setVoiceGuidanceHints](#setVoiceGuidanceHints) | Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not. |
+| [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive. |
 
-<a id="method.getAudioDescription"></a>
-## *getAudioDescription [<sup>method</sup>](#head.Methods)*
+<a id="getAudioDescription"></a>
+## *getAudioDescription*
 
 Gets the current AudioDescription setting
 
@@ -136,8 +136,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getBlockNotRatedContent"></a>
-## *getBlockNotRatedContent [<sup>method</sup>](#head.Methods)*
+<a id="getBlockNotRatedContent"></a>
+## *getBlockNotRatedContent*
 
 Gets the BlockNotRatedContent setting
 
@@ -184,8 +184,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getCaptions"></a>
-## *getCaptions [<sup>method</sup>](#head.Methods)*
+<a id="getCaptions"></a>
+## *getCaptions*
 
 Gets the Captions setting.
 
@@ -232,8 +232,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getContentPin"></a>
-## *getContentPin [<sup>method</sup>](#head.Methods)*
+<a id="getContentPin"></a>
+## *getContentPin*
 
 Gets the ContentPin.
 
@@ -280,8 +280,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getHighContrast"></a>
-## *getHighContrast [<sup>method</sup>](#head.Methods)*
+<a id="getHighContrast"></a>
+## *getHighContrast*
 
 Gets the current highContrast setting.
 
@@ -328,8 +328,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.getLiveWatershed"></a>
-## *getLiveWatershed [<sup>method</sup>](#head.Methods)*
+<a id="getLiveWatershed"></a>
+## *getLiveWatershed*
 
 Gets the LiveWatershed setting
 
@@ -376,8 +376,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getMigrationState"></a>
-## *getMigrationState [<sup>method</sup>](#head.Methods)*
+<a id="getMigrationState"></a>
+## *getMigrationState*
 
 Get the migration state of the respective key
 
@@ -430,8 +430,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.getMigrationStates"></a>
-## *getMigrationStates [<sup>method</sup>](#head.Methods)*
+<a id="getMigrationStates"></a>
+## *getMigrationStates*
 
 Get the migration state of all the defined keys
 
@@ -483,8 +483,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.getPinControl"></a>
-## *getPinControl [<sup>method</sup>](#head.Methods)*
+<a id="getPinControl"></a>
+## *getPinControl*
 
 Gets the PinControl setting
 
@@ -531,8 +531,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.getPinOnPurchase"></a>
-## *getPinOnPurchase [<sup>method</sup>](#head.Methods)*
+<a id="getPinOnPurchase"></a>
+## *getPinOnPurchase*
 
 Gets the PinOnPurchase setting
 
@@ -579,8 +579,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.getPlaybackWatershed"></a>
-## *getPlaybackWatershed [<sup>method</sup>](#head.Methods)*
+<a id="getPlaybackWatershed"></a>
+## *getPlaybackWatershed*
 
 Gets the PlaybackWatershed setting
 
@@ -627,8 +627,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.getPreferredAudioLanguages"></a>
-## *getPreferredAudioLanguages [<sup>method</sup>](#head.Methods)*
+<a id="getPreferredAudioLanguages"></a>
+## *getPreferredAudioLanguages*
 
 Gets the current PreferredAudioLanguages setting
 
@@ -675,8 +675,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.getPreferredCaptionsLanguages"></a>
-## *getPreferredCaptionsLanguages [<sup>method</sup>](#head.Methods)*
+<a id="getPreferredCaptionsLanguages"></a>
+## *getPreferredCaptionsLanguages*
 
 Gets the current PreferredCaptionsLanguages setting.
 
@@ -723,8 +723,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.getPreferredClosedCaptionService"></a>
-## *getPreferredClosedCaptionService [<sup>method</sup>](#head.Methods)*
+<a id="getPreferredClosedCaptionService"></a>
+## *getPreferredClosedCaptionService*
 
 Gets the current PreferredClosedCaptionService setting.
 
@@ -771,8 +771,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.getPresentationLanguage"></a>
-## *getPresentationLanguage [<sup>method</sup>](#head.Methods)*
+<a id="getPresentationLanguage"></a>
+## *getPresentationLanguage*
 
 Gets the presentationLanguage
 
@@ -819,8 +819,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.getPrivacyMode"></a>
-## *getPrivacyMode [<sup>method</sup>](#head.Methods)*
+<a id="getPrivacyMode"></a>
+## *getPrivacyMode*
 
 Gets the current PrivacyMode setting.
 
@@ -867,8 +867,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.getViewingRestrictions"></a>
-## *getViewingRestrictions [<sup>method</sup>](#head.Methods)*
+<a id="getViewingRestrictions"></a>
+## *getViewingRestrictions*
 
 Gets the current ViewingRestrictions.
 
@@ -915,8 +915,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.getViewingRestrictionsWindow"></a>
-## *getViewingRestrictionsWindow [<sup>method</sup>](#head.Methods)*
+<a id="getViewingRestrictionsWindow"></a>
+## *getViewingRestrictionsWindow*
 
 Gets the current ViewingRestrictionsWindow.
 
@@ -963,8 +963,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.getVoiceGuidance"></a>
-## *getVoiceGuidance [<sup>method</sup>](#head.Methods)*
+<a id="getVoiceGuidance"></a>
+## *getVoiceGuidance*
 
 Gets the current voiceGuidance setting.
 
@@ -1011,8 +1011,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.getVoiceGuidanceHints"></a>
-## *getVoiceGuidanceHints [<sup>method</sup>](#head.Methods)*
+<a id="getVoiceGuidanceHints"></a>
+## *getVoiceGuidanceHints*
 
 Gets the current voiceGuidanceHints setting.
 
@@ -1059,8 +1059,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="method.getVoiceGuidanceRate"></a>
-## *getVoiceGuidanceRate [<sup>method</sup>](#head.Methods)*
+<a id="getVoiceGuidanceRate"></a>
+## *getVoiceGuidanceRate*
 
 Gets the current voiceGuidanceRate setting.
 
@@ -1107,8 +1107,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="method.setAudioDescription"></a>
-## *setAudioDescription [<sup>method</sup>](#head.Methods)*
+<a id="setAudioDescription"></a>
+## *setAudioDescription*
 
 Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
 
@@ -1158,8 +1158,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="method.setBlockNotRatedContent"></a>
-## *setBlockNotRatedContent [<sup>method</sup>](#head.Methods)*
+<a id="setBlockNotRatedContent"></a>
+## *setBlockNotRatedContent*
 
 Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
 
@@ -1209,8 +1209,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="method.setCaptions"></a>
-## *setCaptions [<sup>method</sup>](#head.Methods)*
+<a id="setCaptions"></a>
+## *setCaptions*
 
 A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
 
@@ -1260,8 +1260,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="method.setContentPin"></a>
-## *setContentPin [<sup>method</sup>](#head.Methods)*
+<a id="setContentPin"></a>
+## *setContentPin*
 
 ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
 
@@ -1311,8 +1311,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="method.setHighContrast"></a>
-## *setHighContrast [<sup>method</sup>](#head.Methods)*
+<a id="setHighContrast"></a>
+## *setHighContrast*
 
 Sets highContrast. Whether the app should display with high contrast or not.
 
@@ -1362,8 +1362,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-<a id="method.setLiveWatershed"></a>
-## *setLiveWatershed [<sup>method</sup>](#head.Methods)*
+<a id="setLiveWatershed"></a>
+## *setLiveWatershed*
 
 Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
@@ -1413,8 +1413,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
-<a id="method.setPinControl"></a>
-## *setPinControl [<sup>method</sup>](#head.Methods)*
+<a id="setPinControl"></a>
+## *setPinControl*
 
 Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
 
@@ -1464,8 +1464,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
-<a id="method.setPinOnPurchase"></a>
-## *setPinOnPurchase [<sup>method</sup>](#head.Methods)*
+<a id="setPinOnPurchase"></a>
+## *setPinOnPurchase*
 
 Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
 
@@ -1515,8 +1515,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
-<a id="method.setPlaybackWatershed"></a>
-## *setPlaybackWatershed [<sup>method</sup>](#head.Methods)*
+<a id="setPlaybackWatershed"></a>
+## *setPlaybackWatershed*
 
 Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
@@ -1566,8 +1566,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 }
 ```
 
-<a id="method.setPreferredAudioLanguages"></a>
-## *setPreferredAudioLanguages [<sup>method</sup>](#head.Methods)*
+<a id="setPreferredAudioLanguages"></a>
+## *setPreferredAudioLanguages*
 
 A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
 
@@ -1617,8 +1617,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
-<a id="method.setPreferredCaptionsLanguages"></a>
-## *setPreferredCaptionsLanguages [<sup>method</sup>](#head.Methods)*
+<a id="setPreferredCaptionsLanguages"></a>
+## *setPreferredCaptionsLanguages*
 
 A prioritized list of ISO 639-2/B codes for the preferred Captions languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the subtitle track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred subtitle track.
 
@@ -1668,8 +1668,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 }
 ```
 
-<a id="method.setPreferredClosedCaptionService"></a>
-## *setPreferredClosedCaptionService [<sup>method</sup>](#head.Methods)*
+<a id="setPreferredClosedCaptionService"></a>
+## *setPreferredClosedCaptionService*
 
 The setting should be honored by the player. The behaviour of AUTO may be player specific. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
@@ -1719,8 +1719,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 }
 ```
 
-<a id="method.setPresentationLanguage"></a>
-## *setPresentationLanguage [<sup>method</sup>](#head.Methods)*
+<a id="setPresentationLanguage"></a>
+## *setPresentationLanguage*
 
 Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
 
@@ -1770,8 +1770,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 }
 ```
 
-<a id="method.setPrivacyMode"></a>
-## *setPrivacyMode [<sup>method</sup>](#head.Methods)*
+<a id="setPrivacyMode"></a>
+## *setPrivacyMode*
 
 The setting should be honored by the Telemetry. If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
 
@@ -1821,8 +1821,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 }
 ```
 
-<a id="method.setViewingRestrictions"></a>
-## *setViewingRestrictions [<sup>method</sup>](#head.Methods)*
+<a id="setViewingRestrictions"></a>
+## *setViewingRestrictions*
 
 A JSON document that escribes the rating scheme(s) and ratings that are blocked.
 
@@ -1872,8 +1872,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 }
 ```
 
-<a id="method.setViewingRestrictionsWindow"></a>
-## *setViewingRestrictionsWindow [<sup>method</sup>](#head.Methods)*
+<a id="setViewingRestrictionsWindow"></a>
+## *setViewingRestrictionsWindow*
 
 A project-specific representation of the time interval when viewing restrictions are to be applied, if applicable for the project
 
@@ -1923,8 +1923,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 }
 ```
 
-<a id="method.setVoiceGuidance"></a>
-## *setVoiceGuidance [<sup>method</sup>](#head.Methods)*
+<a id="setVoiceGuidance"></a>
+## *setVoiceGuidance*
 
 Sets voiceGuidance. Whether Voice Guidance is enabled or not.
 
@@ -1974,8 +1974,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 }
 ```
 
-<a id="method.setVoiceGuidanceHints"></a>
-## *setVoiceGuidanceHints [<sup>method</sup>](#head.Methods)*
+<a id="setVoiceGuidanceHints"></a>
+## *setVoiceGuidanceHints*
 
 Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
 
@@ -2025,8 +2025,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 }
 ```
 
-<a id="method.setVoiceGuidanceRate"></a>
-## *setVoiceGuidanceRate [<sup>method</sup>](#head.Methods)*
+<a id="setVoiceGuidanceRate"></a>
+## *setVoiceGuidanceRate*
 
 Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
 
@@ -2078,10 +2078,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the UserSettings plugin:
 
@@ -2089,28 +2089,28 @@ UserSettings interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onAudioDescriptionChanged](#event.onAudioDescriptionChanged) | The AudioDescription setting has changed. |
-| [onBlockNotRatedContentChanged](#event.onBlockNotRatedContentChanged) | The BlockNotRatedContent setting has changed. |
-| [onCaptionsChanged](#event.onCaptionsChanged) | The Captions setting has changed. |
-| [onContentPinChanged](#event.onContentPinChanged) | The ContentPin setting has changed. |
-| [onHighContrastChanged](#event.onHighContrastChanged) | Triggered after the high contrast settings changes. |
-| [onLiveWatershedChanged](#event.onLiveWatershedChanged) | The LiveWatershed setting has changed. |
-| [onPinControlChanged](#event.onPinControlChanged) | The PinControl setting has changed. |
-| [onPinOnPurchaseChanged](#event.onPinOnPurchaseChanged) | The PinOnPurchase setting has changed. |
-| [onPlaybackWatershedChanged](#event.onPlaybackWatershedChanged) | The PlaybackWatershed setting has changed. |
-| [onPreferredAudioLanguagesChanged](#event.onPreferredAudioLanguagesChanged) | The preferredLanguages setting has changed. |
-| [onPreferredCaptionsLanguagesChanged](#event.onPreferredCaptionsLanguagesChanged) | The PreferredCaptionsLanguages setting has changed. |
-| [onPreferredClosedCaptionServiceChanged](#event.onPreferredClosedCaptionServiceChanged) | The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]". |
-| [onPresentationLanguageChanged](#event.onPresentationLanguageChanged) | The PresentationLanguages setting has changed. |
-| [onPrivacyModeChanged](#event.onPrivacyModeChanged) | The PrivacyMode setting has changed. |
-| [onViewingRestrictionsChanged](#event.onViewingRestrictionsChanged) | The ViewingRestrictions setting has changed. |
-| [onViewingRestrictionsWindowChanged](#event.onViewingRestrictionsWindowChanged) | The ViewingRestrictionsWindow setting has changed. |
-| [onVoiceGuidanceChanged](#event.onVoiceGuidanceChanged) | Triggered after the voice guidance enabled settings changes. |
-| [onVoiceGuidanceHintsChanged](#event.onVoiceGuidanceHintsChanged) | Triggered after the voice guidance hints changes. |
-| [onVoiceGuidanceRateChanged](#event.onVoiceGuidanceRateChanged) | Triggered after the voice guidance rate changed. |
+| [onAudioDescriptionChanged](#onAudioDescriptionChanged) | The AudioDescription setting has changed. |
+| [onBlockNotRatedContentChanged](#onBlockNotRatedContentChanged) | The BlockNotRatedContent setting has changed. |
+| [onCaptionsChanged](#onCaptionsChanged) | The Captions setting has changed. |
+| [onContentPinChanged](#onContentPinChanged) | The ContentPin setting has changed. |
+| [onHighContrastChanged](#onHighContrastChanged) | Triggered after the high contrast settings changes. |
+| [onLiveWatershedChanged](#onLiveWatershedChanged) | The LiveWatershed setting has changed. |
+| [onPinControlChanged](#onPinControlChanged) | The PinControl setting has changed. |
+| [onPinOnPurchaseChanged](#onPinOnPurchaseChanged) | The PinOnPurchase setting has changed. |
+| [onPlaybackWatershedChanged](#onPlaybackWatershedChanged) | The PlaybackWatershed setting has changed. |
+| [onPreferredAudioLanguagesChanged](#onPreferredAudioLanguagesChanged) | The preferredLanguages setting has changed. |
+| [onPreferredCaptionsLanguagesChanged](#onPreferredCaptionsLanguagesChanged) | The PreferredCaptionsLanguages setting has changed. |
+| [onPreferredClosedCaptionServiceChanged](#onPreferredClosedCaptionServiceChanged) | The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]". |
+| [onPresentationLanguageChanged](#onPresentationLanguageChanged) | The PresentationLanguages setting has changed. |
+| [onPrivacyModeChanged](#onPrivacyModeChanged) | The PrivacyMode setting has changed. |
+| [onViewingRestrictionsChanged](#onViewingRestrictionsChanged) | The ViewingRestrictions setting has changed. |
+| [onViewingRestrictionsWindowChanged](#onViewingRestrictionsWindowChanged) | The ViewingRestrictionsWindow setting has changed. |
+| [onVoiceGuidanceChanged](#onVoiceGuidanceChanged) | Triggered after the voice guidance enabled settings changes. |
+| [onVoiceGuidanceHintsChanged](#onVoiceGuidanceHintsChanged) | Triggered after the voice guidance hints changes. |
+| [onVoiceGuidanceRateChanged](#onVoiceGuidanceRateChanged) | Triggered after the voice guidance rate changed. |
 
-<a id="event.onAudioDescriptionChanged"></a>
-## *onAudioDescriptionChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onAudioDescriptionChanged"></a>
+## *onAudioDescriptionChanged*
 
 The AudioDescription setting has changed.
 
@@ -2133,8 +2133,8 @@ The AudioDescription setting has changed.
 }
 ```
 
-<a id="event.onBlockNotRatedContentChanged"></a>
-## *onBlockNotRatedContentChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onBlockNotRatedContentChanged"></a>
+## *onBlockNotRatedContentChanged*
 
 The BlockNotRatedContent setting has changed.
 
@@ -2157,8 +2157,8 @@ The BlockNotRatedContent setting has changed.
 }
 ```
 
-<a id="event.onCaptionsChanged"></a>
-## *onCaptionsChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onCaptionsChanged"></a>
+## *onCaptionsChanged*
 
 The Captions setting has changed.
 
@@ -2181,8 +2181,8 @@ The Captions setting has changed.
 }
 ```
 
-<a id="event.onContentPinChanged"></a>
-## *onContentPinChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onContentPinChanged"></a>
+## *onContentPinChanged*
 
 The ContentPin setting has changed.
 
@@ -2205,8 +2205,8 @@ The ContentPin setting has changed.
 }
 ```
 
-<a id="event.onHighContrastChanged"></a>
-## *onHighContrastChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onHighContrastChanged"></a>
+## *onHighContrastChanged*
 
 Triggered after the high contrast settings changes.
 
@@ -2229,8 +2229,8 @@ Triggered after the high contrast settings changes.
 }
 ```
 
-<a id="event.onLiveWatershedChanged"></a>
-## *onLiveWatershedChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onLiveWatershedChanged"></a>
+## *onLiveWatershedChanged*
 
 The LiveWatershed setting has changed.
 
@@ -2253,8 +2253,8 @@ The LiveWatershed setting has changed.
 }
 ```
 
-<a id="event.onPinControlChanged"></a>
-## *onPinControlChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPinControlChanged"></a>
+## *onPinControlChanged*
 
 The PinControl setting has changed.
 
@@ -2277,8 +2277,8 @@ The PinControl setting has changed.
 }
 ```
 
-<a id="event.onPinOnPurchaseChanged"></a>
-## *onPinOnPurchaseChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPinOnPurchaseChanged"></a>
+## *onPinOnPurchaseChanged*
 
 The PinOnPurchase setting has changed.
 
@@ -2301,8 +2301,8 @@ The PinOnPurchase setting has changed.
 }
 ```
 
-<a id="event.onPlaybackWatershedChanged"></a>
-## *onPlaybackWatershedChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPlaybackWatershedChanged"></a>
+## *onPlaybackWatershedChanged*
 
 The PlaybackWatershed setting has changed.
 
@@ -2325,8 +2325,8 @@ The PlaybackWatershed setting has changed.
 }
 ```
 
-<a id="event.onPreferredAudioLanguagesChanged"></a>
-## *onPreferredAudioLanguagesChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPreferredAudioLanguagesChanged"></a>
+## *onPreferredAudioLanguagesChanged*
 
 The preferredLanguages setting has changed.
 
@@ -2349,8 +2349,8 @@ The preferredLanguages setting has changed.
 }
 ```
 
-<a id="event.onPreferredCaptionsLanguagesChanged"></a>
-## *onPreferredCaptionsLanguagesChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPreferredCaptionsLanguagesChanged"></a>
+## *onPreferredCaptionsLanguagesChanged*
 
 The PreferredCaptionsLanguages setting has changed.
 
@@ -2373,8 +2373,8 @@ The PreferredCaptionsLanguages setting has changed.
 }
 ```
 
-<a id="event.onPreferredClosedCaptionServiceChanged"></a>
-## *onPreferredClosedCaptionServiceChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPreferredClosedCaptionServiceChanged"></a>
+## *onPreferredClosedCaptionServiceChanged*
 
 The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
 
@@ -2397,8 +2397,8 @@ The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]"
 }
 ```
 
-<a id="event.onPresentationLanguageChanged"></a>
-## *onPresentationLanguageChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPresentationLanguageChanged"></a>
+## *onPresentationLanguageChanged*
 
 The PresentationLanguages setting has changed.
 
@@ -2421,8 +2421,8 @@ The PresentationLanguages setting has changed.
 }
 ```
 
-<a id="event.onPrivacyModeChanged"></a>
-## *onPrivacyModeChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onPrivacyModeChanged"></a>
+## *onPrivacyModeChanged*
 
 The PrivacyMode setting has changed.
 
@@ -2445,8 +2445,8 @@ The PrivacyMode setting has changed.
 }
 ```
 
-<a id="event.onViewingRestrictionsChanged"></a>
-## *onViewingRestrictionsChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onViewingRestrictionsChanged"></a>
+## *onViewingRestrictionsChanged*
 
 The ViewingRestrictions setting has changed.
 
@@ -2469,8 +2469,8 @@ The ViewingRestrictions setting has changed.
 }
 ```
 
-<a id="event.onViewingRestrictionsWindowChanged"></a>
-## *onViewingRestrictionsWindowChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onViewingRestrictionsWindowChanged"></a>
+## *onViewingRestrictionsWindowChanged*
 
 The ViewingRestrictionsWindow setting has changed.
 
@@ -2493,8 +2493,8 @@ The ViewingRestrictionsWindow setting has changed.
 }
 ```
 
-<a id="event.onVoiceGuidanceChanged"></a>
-## *onVoiceGuidanceChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onVoiceGuidanceChanged"></a>
+## *onVoiceGuidanceChanged*
 
 Triggered after the voice guidance enabled settings changes.
 
@@ -2517,8 +2517,8 @@ Triggered after the voice guidance enabled settings changes.
 }
 ```
 
-<a id="event.onVoiceGuidanceHintsChanged"></a>
-## *onVoiceGuidanceHintsChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onVoiceGuidanceHintsChanged"></a>
+## *onVoiceGuidanceHintsChanged*
 
 Triggered after the voice guidance hints changes.
 
@@ -2541,8 +2541,8 @@ Triggered after the voice guidance hints changes.
 }
 ```
 
-<a id="event.onVoiceGuidanceRateChanged"></a>
-## *onVoiceGuidanceRateChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onVoiceGuidanceRateChanged"></a>
+## *onVoiceGuidanceRateChanged*
 
 Triggered after the voice guidance rate changed.
 

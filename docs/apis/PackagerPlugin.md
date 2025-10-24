@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.Packager_Plugin"></a>
+<a id="Packager_Plugin"></a>
 # Packager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Packager/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Packager)**
 
 A Packager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `Packager` plugin provides an interface for Packager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPackager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the Packager plugin:
@@ -47,20 +47,20 @@ Packager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [abort](#method.abort) |  |
-| [appName](#method.appName) |  |
-| [architecture](#method.architecture) |  |
-| [configure](#method.configure) |  |
-| [errorCode](#method.errorCode) |  |
-| [install](#method.install) |  |
-| [name](#method.name) |  |
-| [progress](#method.progress) |  |
-| [state](#method.state) |  |
-| [synchronizeRepository](#method.synchronizeRepository) |  |
-| [version](#method.version) |  |
+| [abort](#abort) |  |
+| [appName](#appName) |  |
+| [architecture](#architecture) |  |
+| [configure](#configure) |  |
+| [errorCode](#errorCode) |  |
+| [install](#install) |  |
+| [name](#name) |  |
+| [progress](#progress) |  |
+| [state](#state) |  |
+| [synchronizeRepository](#synchronizeRepository) |  |
+| [version](#version) |  |
 
-<a id="method.abort"></a>
-## *abort [<sup>method</sup>](#head.Methods)*
+<a id="abort"></a>
+## *abort*
 
 
 
@@ -104,8 +104,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.appName"></a>
-## *appName [<sup>method</sup>](#head.Methods)*
+<a id="appName"></a>
+## *appName*
 
 
 
@@ -149,8 +149,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.architecture"></a>
-## *architecture [<sup>method</sup>](#head.Methods)*
+<a id="architecture"></a>
+## *architecture*
 
 
 
@@ -194,8 +194,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.configure"></a>
-## *configure [<sup>method</sup>](#head.Methods)*
+<a id="configure"></a>
+## *configure*
 
 
 
@@ -245,8 +245,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.errorCode"></a>
-## *errorCode [<sup>method</sup>](#head.Methods)*
+<a id="errorCode"></a>
+## *errorCode*
 
 
 
@@ -290,8 +290,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.install"></a>
-## *install [<sup>method</sup>](#head.Methods)*
+<a id="install"></a>
+## *install*
 
 
 
@@ -345,8 +345,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.name"></a>
-## *name [<sup>method</sup>](#head.Methods)*
+<a id="name"></a>
+## *name*
 
 
 
@@ -390,8 +390,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.progress"></a>
-## *progress [<sup>method</sup>](#head.Methods)*
+<a id="progress"></a>
+## *progress*
 
 
 
@@ -435,8 +435,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.state"></a>
-## *state [<sup>method</sup>](#head.Methods)*
+<a id="state"></a>
+## *state*
 
 
 
@@ -480,8 +480,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.synchronizeRepository"></a>
-## *synchronizeRepository [<sup>method</sup>](#head.Methods)*
+<a id="synchronizeRepository"></a>
+## *synchronizeRepository*
 
 
 
@@ -525,8 +525,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.version"></a>
-## *version [<sup>method</sup>](#head.Methods)*
+<a id="version"></a>
+## *version*
 
 
 
@@ -572,10 +572,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the Packager plugin:
 
@@ -583,11 +583,11 @@ Packager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [repositorySynchronize](#event.repositorySynchronize) |  |
-| [stateChange](#event.stateChange) |  |
+| [repositorySynchronize](#repositorySynchronize) |  |
+| [stateChange](#stateChange) |  |
 
-<a id="event.repositorySynchronize"></a>
-## *repositorySynchronize [<sup>event</sup>](#head.Notifications)*
+<a id="repositorySynchronize"></a>
+## *repositorySynchronize*
 
 
 
@@ -610,8 +610,8 @@ Packager interface events:
 }
 ```
 
-<a id="event.stateChange"></a>
-## *stateChange [<sup>event</sup>](#head.Notifications)*
+<a id="stateChange"></a>
+## *stateChange*
 
 
 

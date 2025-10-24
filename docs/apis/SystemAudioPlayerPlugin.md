@@ -1,31 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.SystemAudioPlayer_Plugin"></a>
+<a id="SystemAudioPlayer_Plugin"></a>
 # SystemAudioPlayer Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/SystemAudioPlayer/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemAudioPlayer)**
 
 A SystemAudioPlayer plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `SystemAudioPlayer` plugin provides an interface for SystemAudioPlayer.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSystemAudioPlayer.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the SystemAudioPlayer plugin:
@@ -46,23 +47,22 @@ SystemAudioPlayer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [close](#method.close) |  |
-| [config](#method.config) |  |
-| [configure](#method.configure) |  |
-| [getPlayerSessionId](#method.getPlayerSessionId) |  |
-| [isPlaying](#method.isPlaying) |  |
-| [onSAPEvents](#method.onSAPEvents) |  |
-| [open](#method.open) |  |
-| [pause](#method.pause) |  |
-| [play](#method.play) |  |
-| [playBuffer](#method.playBuffer) |  |
-| [resume](#method.resume) |  |
-| [setMixerLevels](#method.setMixerLevels) |  |
-| [setSmartVolControl](#method.setSmartVolControl) |  |
-| [stop](#method.stop) |  |
+| [close](#close) |  |
+| [config](#config) |  |
+| [configure](#configure) |  |
+| [getPlayerSessionId](#getPlayerSessionId) |  |
+| [isPlaying](#isPlaying) |  |
+| [open](#open) |  |
+| [pause](#pause) |  |
+| [play](#play) |  |
+| [playBuffer](#playBuffer) |  |
+| [resume](#resume) |  |
+| [setMixerLevels](#setMixerLevels) |  |
+| [setSmartVolControl](#setSmartVolControl) |  |
+| [stop](#stop) |  |
 
-<a id="method.close"></a>
-## *close [<sup>method</sup>](#head.Methods)*
+<a id="close"></a>
+## *close*
 
 
 
@@ -115,8 +115,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.config"></a>
-## *config [<sup>method</sup>](#head.Methods)*
+<a id="config"></a>
+## *config*
 
 
 
@@ -169,8 +169,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.configure"></a>
-## *configure [<sup>method</sup>](#head.Methods)*
+<a id="configure"></a>
+## *configure*
 
 
 
@@ -220,8 +220,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getPlayerSessionId"></a>
-## *getPlayerSessionId [<sup>method</sup>](#head.Methods)*
+<a id="getPlayerSessionId"></a>
+## *getPlayerSessionId*
 
 
 
@@ -274,8 +274,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.isPlaying"></a>
-## *isPlaying [<sup>method</sup>](#head.Methods)*
+<a id="isPlaying"></a>
+## *isPlaying*
 
 
 
@@ -328,59 +328,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.onSAPEvents"></a>
-## *onSAPEvents [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.data | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.SystemAudioPlayer.onSAPEvents",
-    "params": {
-        "data": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemAudioPlayer.onSAPEvents", "params": {"data": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
-}
-```
-
-<a id="method.open"></a>
-## *open [<sup>method</sup>](#head.Methods)*
+<a id="open"></a>
+## *open*
 
 
 
@@ -405,7 +354,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "method": "org.rdk.SystemAudioPlayer.open",
     "params": {
         "input": ""
@@ -417,7 +366,61 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemAudioPlayer.open", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemAudioPlayer.open", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": {
+        "output": ""
+    }
+}
+```
+
+<a id="pause"></a>
+## *pause*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.input | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.output | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.SystemAudioPlayer.pause",
+    "params": {
+        "input": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemAudioPlayer.pause", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -433,8 +436,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.pause"></a>
-## *pause [<sup>method</sup>](#head.Methods)*
+<a id="play"></a>
+## *play*
 
 
 
@@ -460,60 +463,6 @@ Event details are missing in the header file documentation.
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "method": "org.rdk.SystemAudioPlayer.pause",
-    "params": {
-        "input": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemAudioPlayer.pause", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "output": ""
-    }
-}
-```
-
-<a id="method.play"></a>
-## *play [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.input | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.output | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
     "method": "org.rdk.SystemAudioPlayer.play",
     "params": {
         "input": ""
@@ -525,7 +474,61 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemAudioPlayer.play", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemAudioPlayer.play", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": {
+        "output": ""
+    }
+}
+```
+
+<a id="playBuffer"></a>
+## *playBuffer*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.input | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.output | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.SystemAudioPlayer.playBuffer",
+    "params": {
+        "input": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemAudioPlayer.playBuffer", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -541,8 +544,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.playBuffer"></a>
-## *playBuffer [<sup>method</sup>](#head.Methods)*
+<a id="resume"></a>
+## *resume*
 
 
 
@@ -568,60 +571,6 @@ Event details are missing in the header file documentation.
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "method": "org.rdk.SystemAudioPlayer.playBuffer",
-    "params": {
-        "input": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemAudioPlayer.playBuffer", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "output": ""
-    }
-}
-```
-
-<a id="method.resume"></a>
-## *resume [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.input | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.output | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
     "method": "org.rdk.SystemAudioPlayer.resume",
     "params": {
         "input": ""
@@ -633,7 +582,61 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemAudioPlayer.resume", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemAudioPlayer.resume", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": {
+        "output": ""
+    }
+}
+```
+
+<a id="setMixerLevels"></a>
+## *setMixerLevels*
+
+
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.input | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.output | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.SystemAudioPlayer.setMixerLevels",
+    "params": {
+        "input": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemAudioPlayer.setMixerLevels", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -649,8 +652,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.setMixerLevels"></a>
-## *setMixerLevels [<sup>method</sup>](#head.Methods)*
+<a id="setSmartVolControl"></a>
+## *setSmartVolControl*
 
 
 
@@ -676,60 +679,6 @@ Event details are missing in the header file documentation.
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "method": "org.rdk.SystemAudioPlayer.setMixerLevels",
-    "params": {
-        "input": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemAudioPlayer.setMixerLevels", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "output": ""
-    }
-}
-```
-
-<a id="method.setSmartVolControl"></a>
-## *setSmartVolControl [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.input | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.output | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
     "method": "org.rdk.SystemAudioPlayer.setSmartVolControl",
     "params": {
         "input": ""
@@ -741,7 +690,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemAudioPlayer.setSmartVolControl", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemAudioPlayer.setSmartVolControl", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -750,15 +699,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 11,
     "result": {
         "output": ""
     }
 }
 ```
 
-<a id="method.stop"></a>
-## *stop [<sup>method</sup>](#head.Methods)*
+<a id="stop"></a>
+## *stop*
 
 
 
@@ -783,7 +732,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "method": "org.rdk.SystemAudioPlayer.stop",
     "params": {
         "input": ""
@@ -795,7 +744,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.SystemAudioPlayer.stop", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemAudioPlayer.stop", "params": {"input": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -804,7 +753,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "result": {
         "output": ""
     }
@@ -812,3 +761,40 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 
+
+<a id="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the SystemAudioPlayer plugin:
+
+SystemAudioPlayer interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onSAPEvents](#onSAPEvents) |  |
+
+<a id="onSAPEvents"></a>
+## *onSAPEvents*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.data | string |  |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.SystemAudioPlayer.onSAPEvents",
+    "params": {
+        "data": ""
+    }
+}
+```

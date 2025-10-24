@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.SystemMode_Plugin"></a>
+<a id="SystemMode_Plugin"></a>
 # SystemMode Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/SystemMode/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode)**
 
 A SystemMode plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `SystemMode` plugin provides an interface for SystemMode.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSystemMode.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the SystemMode plugin:
@@ -46,14 +46,14 @@ SystemMode interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clientActivated](#method.clientActivated) | To put client plugin entry in map. |
-| [clientDeactivated](#method.clientDeactivated) | To put client plugin entry in map. |
-| [getState](#method.getState) | Gets the current state for a given system property |
-| [requestState](#method.requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
-| [request](#method.request) |  |
+| [clientActivated](#clientActivated) | To put client plugin entry in map. |
+| [clientDeactivated](#clientDeactivated) | To put client plugin entry in map. |
+| [getState](#getState) | Gets the current state for a given system property |
+| [requestState](#requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
+| [request](#request) |  |
 
-<a id="method.clientActivated"></a>
-## *clientActivated [<sup>method</sup>](#head.Methods)*
+<a id="clientActivated"></a>
+## *clientActivated*
 
 To put client plugin entry in map.
 
@@ -105,8 +105,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.clientDeactivated"></a>
-## *clientDeactivated [<sup>method</sup>](#head.Methods)*
+<a id="clientDeactivated"></a>
+## *clientDeactivated*
 
 To put client plugin entry in map.
 
@@ -158,8 +158,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getState"></a>
-## *getState [<sup>method</sup>](#head.Methods)*
+<a id="getState"></a>
+## *getState*
 
 Gets the current state for a given system property
 
@@ -212,8 +212,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.requestState"></a>
-## *requestState [<sup>method</sup>](#head.Methods)*
+<a id="requestState"></a>
+## *requestState*
 
 Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
 
@@ -265,8 +265,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.request"></a>
-## *request [<sup>method</sup>](#head.Methods)*
+<a id="request"></a>
+## *request*
 
 
 

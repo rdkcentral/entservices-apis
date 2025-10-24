@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.RDKShell_Plugin"></a>
+<a id="RDKShell_Plugin"></a>
 # RDKShell Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/RDKShell/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RDKShell)**
 
 A RDKShell plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `RDKShell` plugin provides an interface for RDKShell.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRDKShell.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the RDKShell plugin:
@@ -46,12 +46,12 @@ RDKShell interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [capture](#method.capture) |  |
-| [r8_G8_B8_A8](#method.r8_G8_B8_A8) |  |
-| [focused](#method.focused) | focused state |
+| [capture](#capture) |  |
+| [r8_G8_B8_A8](#r8_G8_B8_A8) |  |
+| [focused](#focused) | focused state |
 
-<a id="method.capture"></a>
-## *capture [<sup>method</sup>](#head.Methods)*
+<a id="capture"></a>
+## *capture*
 
 
 
@@ -101,8 +101,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.r8_G8_B8_A8"></a>
-## *r8_G8_B8_A8 [<sup>method</sup>](#head.Methods)*
+<a id="r8_G8_B8_A8"></a>
+## *r8_G8_B8_A8*
 
 
 
@@ -154,8 +154,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.focused"></a>
-## *focused [<sup>method</sup>](#head.Methods)*
+<a id="focused"></a>
+## *focused*
 
 focused state
 

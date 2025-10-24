@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.Warehouse_Plugin"></a>
+<a id="Warehouse_Plugin"></a>
 # Warehouse Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Warehouse/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse)**
 
 A Warehouse plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `Warehouse` plugin provides an interface for Warehouse.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkWarehouse.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the Warehouse plugin:
@@ -47,15 +47,15 @@ Warehouse interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [executeHardwareTest](#method.executeHardwareTest) | Starts a hardware test on the device |
-| [getHardwareTestResults](#method.getHardwareTestResults) | Returns the results of the last hardware test. |
-| [internalReset](#method.internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
-| [isClean](#method.isClean) | Checks the locations on the device where customer data may be stored. |
-| [lightReset](#method.lightReset) | Resets the application data. |
-| [resetDevice](#method.resetDevice) | Resets the STB to the warehouse state. |
+| [executeHardwareTest](#executeHardwareTest) | Starts a hardware test on the device |
+| [getHardwareTestResults](#getHardwareTestResults) | Returns the results of the last hardware test. |
+| [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
+| [isClean](#isClean) | Checks the locations on the device where customer data may be stored. |
+| [lightReset](#lightReset) | Resets the application data. |
+| [resetDevice](#resetDevice) | Resets the STB to the warehouse state. |
 
-<a id="method.executeHardwareTest"></a>
-## *executeHardwareTest [<sup>method</sup>](#head.Methods)*
+<a id="executeHardwareTest"></a>
+## *executeHardwareTest*
 
 Starts a hardware test on the device
 
@@ -102,8 +102,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getHardwareTestResults"></a>
-## *getHardwareTestResults [<sup>method</sup>](#head.Methods)*
+<a id="getHardwareTestResults"></a>
+## *getHardwareTestResults*
 
 Returns the results of the last hardware test.
 
@@ -152,8 +152,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.internalReset"></a>
-## *internalReset [<sup>method</sup>](#head.Methods)*
+<a id="internalReset"></a>
+## *internalReset*
 
 Invokes the internal reset script, which reboots the Warehouse service
 
@@ -209,8 +209,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.isClean"></a>
-## *isClean [<sup>method</sup>](#head.Methods)*
+<a id="isClean"></a>
+## *isClean*
 
 Checks the locations on the device where customer data may be stored.
 
@@ -272,8 +272,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.lightReset"></a>
-## *lightReset [<sup>method</sup>](#head.Methods)*
+<a id="lightReset"></a>
+## *lightReset*
 
 Resets the application data.
 
@@ -323,8 +323,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.resetDevice"></a>
-## *resetDevice [<sup>method</sup>](#head.Methods)*
+<a id="resetDevice"></a>
+## *resetDevice*
 
 Resets the STB to the warehouse state.
 
@@ -384,10 +384,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the Warehouse plugin:
 
@@ -395,10 +395,10 @@ Warehouse interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [resetDone](#event.resetDone) | Notifies subscribers about the status of the warehouse reset operation |
+| [resetDone](#resetDone) | Notifies subscribers about the status of the warehouse reset operation |
 
-<a id="event.resetDone"></a>
-## *resetDone [<sup>event</sup>](#head.Notifications)*
+<a id="resetDone"></a>
+## *resetDone*
 
 Notifies subscribers about the status of the warehouse reset operation
 

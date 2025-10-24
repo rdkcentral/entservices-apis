@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.NativeJS_Plugin"></a>
+<a id="NativeJS_Plugin"></a>
 # NativeJS Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/NativeJS/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/NativeJS)**
 
 A NativeJS plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `NativeJS` plugin provides an interface for NativeJS.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkNativeJS.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the NativeJS plugin:
@@ -46,14 +46,14 @@ NativeJS interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [createApplication](#method.createApplication) | Create a NativeJS application. |
-| [getApplications](#method.getApplications) | Get details of existing plugin. |
-| [runApplication](#method.runApplication) | run a NativeJS application. |
-| [runJavaScript](#method.runJavaScript) | run a NativeJS code. |
-| [terminateApplication](#method.terminateApplication) | Destroy a running NativeJS application. |
+| [createApplication](#createApplication) | Create a NativeJS application. |
+| [getApplications](#getApplications) | Get details of existing plugin. |
+| [runApplication](#runApplication) | run a NativeJS application. |
+| [runJavaScript](#runJavaScript) | run a NativeJS code. |
+| [terminateApplication](#terminateApplication) | Destroy a running NativeJS application. |
 
-<a id="method.createApplication"></a>
-## *createApplication [<sup>method</sup>](#head.Methods)*
+<a id="createApplication"></a>
+## *createApplication*
 
 Create a NativeJS application.
 
@@ -106,8 +106,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getApplications"></a>
-## *getApplications [<sup>method</sup>](#head.Methods)*
+<a id="getApplications"></a>
+## *getApplications*
 
 Get details of existing plugin.
 
@@ -151,8 +151,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.runApplication"></a>
-## *runApplication [<sup>method</sup>](#head.Methods)*
+<a id="runApplication"></a>
+## *runApplication*
 
 run a NativeJS application.
 
@@ -204,8 +204,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.runJavaScript"></a>
-## *runJavaScript [<sup>method</sup>](#head.Methods)*
+<a id="runJavaScript"></a>
+## *runJavaScript*
 
 run a NativeJS code.
 
@@ -257,8 +257,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.terminateApplication"></a>
-## *terminateApplication [<sup>method</sup>](#head.Methods)*
+<a id="terminateApplication"></a>
+## *terminateApplication*
 
 Destroy a running NativeJS application.
 

@@ -1,209 +1,203 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.Migration_Plugin"></a>
+<a id="Migration_Plugin"></a>
 # Migration Plugin
 
-A org.rdk.Migration plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Migration)**
+
+A Migration plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
-The `Migration` plugin provides the status of the migration.
+The `Migration` plugin provides an interface for Migration.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.Migration*) |
-| classname | string | Class name: *org.rdk.Migration* |
+| callsign | string | Plugin instance name (default: org.rdk.Migration) |
+| classname | string | Class name: *Migration* |
 | locator | string | Library name: *libWPEFrameworkMigration.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the Migration plugin:
 
-IMigration interface methods:
+Migration interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBootTypeInfo](#getBootTypeInfo) | Getting Boot Type |
-| [getMigrationStatus](#getMigrationStatus) | Getting the device Migration Status |
-| [setMigrationStatus](#method.setMigrationStatus) | Setting the device Migration Status |
+| [getBootTypeInfo](#getBootTypeInfo) | query the BootType details |
+| [getMigrationStatus](#getMigrationStatus) | get the MigrationStatus details |
+| [setMigrationStatus](#setMigrationStatus) | sets the tr181 MigrationStatus parameter |
 
-<a name="getBootTypeInfo"></a>
+<a id="getBootTypeInfo"></a>
 ## *getBootTypeInfo*
 
-Getting Boot Type.
+query the BootType details
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string | BOOT Type Info. one of the following "BOOT_INIT", "BOOT_NORMAL", "BOOT_MIGRATION", "BOOT_UPDATE" |
+| result.bootType | string |  |
 
-### Errors
+### Examples
 
-| Message | Description |
-| :-------- | :-------- |
-| ```ERROR_NONE``` | Success |
-| ```ERROR_FILE_IO``` | File Read or Write error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.Migration.getBootTypeInfo"
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Migration.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
-        "bootType": "BOOT_NORMAL"
+        "bootType": "BOOT_TYPE_INIT"
     }
 }
 ```
 
-<a name="getMigrationStatus"></a>
+<a id="getMigrationStatus"></a>
 ## *getMigrationStatus*
 
-Getting the device Migration Status.
+get the MigrationStatus details
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.migrationStatus | string |  Migration Status  One of the following: "NOT_STARTED","NOT_NEEDED","STARTED","PRIORITY_SETTINGS_MIGRATED","DEVICE_SETTINGS_MIGRATED","CLOUD_SETTINGS_MIGRATED","APP_DATA_MIGRATED","MIGRATION_COMPLETED" |
+| result.migrationStatus | string |  |
 
-### Errors
+### Examples
 
-| Message | Description |
-| :-------- | :-------- |
-| ```ERROR_NONE``` | Success |
-| ```ERROR_FILE_IO``` | File Read or Write error |
-
-### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.Migration.getMigrationStatus"
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Migration.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
-        "migrationStatus": "NOT_NEEDED"
+        "migrationStatus": "MIGRATION_STATUS_NOT_STARTED"
     }
 }
 ```
 
-<a name="setMigrationStatus"></a>
+<a id="setMigrationStatus"></a>
 ## *setMigrationStatus*
 
-Setting the device Migration Status.
+sets the tr181 MigrationStatus parameter
 
 ### Events
-
-No Events
-
+Event details are missing in the header file documentation.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | Status of Migration process One of the following: "NOT_STARTED","NOT_NEEDED","STARTED","PRIORITY_SETTINGS_MIGRATED","DEVICE_SETTINGS_MIGRATED","CLOUD_SETTINGS_MIGRATED","APP_DATA_MIGRATED","MIGRATION_COMPLETED" |
-
-### Errors
-
-| Message | Description |
-| :-------- | :-------- |
-| ```ERROR_NONE``` | Success |
-| ```ERROR_FILE_IO``` | File Read or Write error |
-| ```ERROR_INVALID_PARAMETER``` | Invalid Request |
-
-### Result
-
+| params.status | string | enum |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean |  Whether the request succeeded|
+| result.success | bool |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
-        "status": "NOT_STARTED"
+        "status": "MIGRATION_STATUS_NOT_STARTED"
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "MIGRATION_STATUS_NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
         "success": true
     }
 }
 ```
+
+

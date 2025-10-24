@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.OCIContainer_Plugin"></a>
+<a id="OCIContainer_Plugin"></a>
 # OCIContainer Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/OCIContainer/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/OCIContainer)**
 
 A OCIContainer plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `OCIContainer` plugin provides an interface for OCIContainer.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkOCIContainer.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the OCIContainer plugin:
@@ -47,24 +47,24 @@ OCIContainer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [annotate](#method.annotate) |  |
-| [executeCommand](#method.executeCommand) |  |
-| [getContainerInfo](#method.getContainerInfo) |  |
-| [getContainerState](#method.getContainerState) |  |
-| [hibernateContainer](#method.hibernateContainer) |  |
-| [listContainers](#method.listContainers) |  |
-| [mount](#method.mount) |  |
-| [pauseContainer](#method.pauseContainer) |  |
-| [removeAnnotation](#method.removeAnnotation) |  |
-| [resumeContainer](#method.resumeContainer) |  |
-| [startContainer](#method.startContainer) |  |
-| [startContainerFromDobbySpec](#method.startContainerFromDobbySpec) |  |
-| [stopContainer](#method.stopContainer) |  |
-| [unmount](#method.unmount) |  |
-| [wakeupContainer](#method.wakeupContainer) |  |
+| [annotate](#annotate) |  |
+| [executeCommand](#executeCommand) |  |
+| [getContainerInfo](#getContainerInfo) |  |
+| [getContainerState](#getContainerState) |  |
+| [hibernateContainer](#hibernateContainer) |  |
+| [listContainers](#listContainers) |  |
+| [mount](#mount) |  |
+| [pauseContainer](#pauseContainer) |  |
+| [removeAnnotation](#removeAnnotation) |  |
+| [resumeContainer](#resumeContainer) |  |
+| [startContainer](#startContainer) |  |
+| [startContainerFromDobbySpec](#startContainerFromDobbySpec) |  |
+| [stopContainer](#stopContainer) |  |
+| [unmount](#unmount) |  |
+| [wakeupContainer](#wakeupContainer) |  |
 
-<a id="method.annotate"></a>
-## *annotate [<sup>method</sup>](#head.Methods)*
+<a id="annotate"></a>
+## *annotate*
 
 
 
@@ -123,8 +123,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.executeCommand"></a>
-## *executeCommand [<sup>method</sup>](#head.Methods)*
+<a id="executeCommand"></a>
+## *executeCommand*
 
 
 
@@ -183,8 +183,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getContainerInfo"></a>
-## *getContainerInfo [<sup>method</sup>](#head.Methods)*
+<a id="getContainerInfo"></a>
+## *getContainerInfo*
 
 
 
@@ -241,8 +241,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getContainerState"></a>
-## *getContainerState [<sup>method</sup>](#head.Methods)*
+<a id="getContainerState"></a>
+## *getContainerState*
 
 
 
@@ -299,8 +299,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.hibernateContainer"></a>
-## *hibernateContainer [<sup>method</sup>](#head.Methods)*
+<a id="hibernateContainer"></a>
+## *hibernateContainer*
 
 
 
@@ -357,8 +357,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.listContainers"></a>
-## *listContainers [<sup>method</sup>](#head.Methods)*
+<a id="listContainers"></a>
+## *listContainers*
 
 
 
@@ -409,8 +409,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.mount"></a>
-## *mount [<sup>method</sup>](#head.Methods)*
+<a id="mount"></a>
+## *mount*
 
 
 
@@ -473,8 +473,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.pauseContainer"></a>
-## *pauseContainer [<sup>method</sup>](#head.Methods)*
+<a id="pauseContainer"></a>
+## *pauseContainer*
 
 
 
@@ -529,8 +529,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.removeAnnotation"></a>
-## *removeAnnotation [<sup>method</sup>](#head.Methods)*
+<a id="removeAnnotation"></a>
+## *removeAnnotation*
 
 
 
@@ -587,8 +587,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.resumeContainer"></a>
-## *resumeContainer [<sup>method</sup>](#head.Methods)*
+<a id="resumeContainer"></a>
+## *resumeContainer*
 
 
 
@@ -643,8 +643,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.startContainer"></a>
-## *startContainer [<sup>method</sup>](#head.Methods)*
+<a id="startContainer"></a>
+## *startContainer*
 
 
 
@@ -707,8 +707,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.startContainerFromDobbySpec"></a>
-## *startContainerFromDobbySpec [<sup>method</sup>](#head.Methods)*
+<a id="startContainerFromDobbySpec"></a>
+## *startContainerFromDobbySpec*
 
 
 
@@ -771,8 +771,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.stopContainer"></a>
-## *stopContainer [<sup>method</sup>](#head.Methods)*
+<a id="stopContainer"></a>
+## *stopContainer*
 
 
 
@@ -829,8 +829,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.unmount"></a>
-## *unmount [<sup>method</sup>](#head.Methods)*
+<a id="unmount"></a>
+## *unmount*
 
 
 
@@ -887,8 +887,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.wakeupContainer"></a>
-## *wakeupContainer [<sup>method</sup>](#head.Methods)*
+<a id="wakeupContainer"></a>
+## *wakeupContainer*
 
 
 
@@ -945,10 +945,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the OCIContainer plugin:
 
@@ -956,13 +956,13 @@ OCIContainer interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerFailed](#event.onContainerFailed) | Notifies failure in container execution |
-| [onContainerStarted](#event.onContainerStarted) | Notifies container is started |
-| [onContainerStateChanged](#event.onContainerStateChanged) | Notifies state change of container |
-| [onContainerStopped](#event.onContainerStopped) | Notifies container is stopped |
+| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution |
+| [onContainerStarted](#onContainerStarted) | Notifies container is started |
+| [onContainerStateChanged](#onContainerStateChanged) | Notifies state change of container |
+| [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
 
-<a id="event.onContainerFailed"></a>
-## *onContainerFailed [<sup>event</sup>](#head.Notifications)*
+<a id="onContainerFailed"></a>
+## *onContainerFailed*
 
 Notifies failure in container execution
 
@@ -989,8 +989,8 @@ Notifies failure in container execution
 }
 ```
 
-<a id="event.onContainerStarted"></a>
-## *onContainerStarted [<sup>event</sup>](#head.Notifications)*
+<a id="onContainerStarted"></a>
+## *onContainerStarted*
 
 Notifies container is started
 
@@ -1015,8 +1015,8 @@ Notifies container is started
 }
 ```
 
-<a id="event.onContainerStateChanged"></a>
-## *onContainerStateChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onContainerStateChanged"></a>
+## *onContainerStateChanged*
 
 Notifies state change of container
 
@@ -1041,8 +1041,8 @@ Notifies state change of container
 }
 ```
 
-<a id="event.onContainerStopped"></a>
-## *onContainerStopped [<sup>event</sup>](#head.Notifications)*
+<a id="onContainerStopped"></a>
+## *onContainerStopped*
 
 Notifies container is stopped
 

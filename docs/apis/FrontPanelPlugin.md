@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.FrontPanel_Plugin"></a>
+<a id="FrontPanel_Plugin"></a>
 # FrontPanel Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/FrontPanel/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrontPanel)**
 
 A FrontPanel plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `FrontPanel` plugin provides an interface for FrontPanel.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkFrontPanel.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the FrontPanel plugin:
@@ -46,16 +46,16 @@ FrontPanel interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBrightness](#method.getBrightness) | Gets the status of the Front Panel |
-| [getFrontPanelLights](#method.getFrontPanelLights) | Gets the front panel lights |
-| [powerLedOff](#method.powerLedOff) | Switches the specified LED off |
-| [powerLedOn](#method.powerLedOn) | Switches the specified LED on |
-| [setBlink](#method.setBlink) | Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) |
-| [setBrightness](#method.setBrightness) | Sets the brightness of the specified LED |
-| [setLED](#method.setLED) | Sets the LED with the specified color and brightness |
+| [getBrightness](#getBrightness) | Gets the status of the Front Panel |
+| [getFrontPanelLights](#getFrontPanelLights) | Gets the front panel lights |
+| [powerLedOff](#powerLedOff) | Switches the specified LED off |
+| [powerLedOn](#powerLedOn) | Switches the specified LED on |
+| [setBlink](#setBlink) | Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) |
+| [setBrightness](#setBrightness) | Sets the brightness of the specified LED |
+| [setLED](#setLED) | Sets the LED with the specified color and brightness |
 
-<a id="method.getBrightness"></a>
-## *getBrightness [<sup>method</sup>](#head.Methods)*
+<a id="getBrightness"></a>
+## *getBrightness*
 
 Gets the status of the Front Panel
 
@@ -110,8 +110,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getFrontPanelLights"></a>
-## *getFrontPanelLights [<sup>method</sup>](#head.Methods)*
+<a id="getFrontPanelLights"></a>
+## *getFrontPanelLights*
 
 Gets the front panel lights
 
@@ -165,8 +165,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.powerLedOff"></a>
-## *powerLedOff [<sup>method</sup>](#head.Methods)*
+<a id="powerLedOff"></a>
+## *powerLedOff*
 
 Switches the specified LED off
 
@@ -219,8 +219,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.powerLedOn"></a>
-## *powerLedOn [<sup>method</sup>](#head.Methods)*
+<a id="powerLedOn"></a>
+## *powerLedOn*
 
 Switches the specified LED on
 
@@ -273,8 +273,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.setBlink"></a>
-## *setBlink [<sup>method</sup>](#head.Methods)*
+<a id="setBlink"></a>
+## *setBlink*
 
 Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
 
@@ -327,8 +327,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.setBrightness"></a>
-## *setBrightness [<sup>method</sup>](#head.Methods)*
+<a id="setBrightness"></a>
+## *setBrightness*
 
 Sets the brightness of the specified LED
 
@@ -383,8 +383,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.setLED"></a>
-## *setLED [<sup>method</sup>](#head.Methods)*
+<a id="setLED"></a>
+## *setLED*
 
 Sets the LED with the specified color and brightness
 

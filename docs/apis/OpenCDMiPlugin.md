@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.OpenCDMi_Plugin"></a>
+<a id="OpenCDMi_Plugin"></a>
 # OpenCDMi Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/OpenCDMi/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/OpenCDMi)**
 
 A OpenCDMi plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `OpenCDMi` plugin provides an interface for OpenCDMi.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkOpenCDMi.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the OpenCDMi plugin:
@@ -47,52 +47,52 @@ OpenCDMi interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancelChallengeDataExt](#method.cancelChallengeDataExt) |  |
-| [cleanDecryptContext](#method.cleanDecryptContext) |  |
-| [close](#method.close) |  |
-| [deinitialize](#method.deinitialize) |  |
-| [deleteKeyStore](#method.deleteKeyStore) |  |
-| [deleteSecureStore](#method.deleteSecureStore) |  |
-| [disable](#method.disable) |  |
-| [enable](#method.enable) |  |
-| [enableSecureStop](#method.enableSecureStop) |  |
-| [getChallengeDataExt](#method.getChallengeDataExt) |  |
-| [getDrmSystemTime](#method.getDrmSystemTime) |  |
-| [getHeight](#method.getHeight) |  |
-| [getLdlSessionLimit](#method.getLdlSessionLimit) |  |
-| [getMediaType](#method.getMediaType) |  |
-| [getSessionIdExt](#method.getSessionIdExt) |  |
-| [getVersionExt](#method.getVersionExt) |  |
-| [getWidth](#method.getWidth) |  |
-| [initLength](#method.initLength) |  |
-| [initialize](#method.initialize) |  |
-| [isSecureStopEnabled](#method.isSecureStopEnabled) |  |
-| [load](#method.load) |  |
-| [metrics](#method.metrics) |  |
-| [onKeyStatusUpdate](#method.onKeyStatusUpdate) |  |
-| [onKeyStatusesUpdated](#method.onKeyStatusesUpdated) |  |
-| [remove](#method.remove) |  |
-| [resetSecureStops](#method.resetSecureStops) |  |
-| [selectKeyId](#method.selectKeyId) |  |
-| [setDrmHeader](#method.setDrmHeader) |  |
-| [storeLicenseData](#method.storeLicenseData) |  |
-| [reset](#method.reset) |  |
-| [bufferId](#method.bufferId) |  |
-| [bufferIdExt](#method.bufferIdExt) |  |
-| [createSessionBuffer](#method.createSessionBuffer) |  |
-| [isTypeSupported](#method.isTypeSupported) |  |
-| [metadata](#method.metadata) |  |
-| [onError](#method.onError) |  |
-| [onKeyMessage](#method.onKeyMessage) |  |
-| [resetOutputProtection](#method.resetOutputProtection) |  |
-| [revoke](#method.revoke) |  |
-| [sessionId](#method.sessionId) |  |
-| [sessionIdExt](#method.sessionIdExt) |  |
-| [setParameter](#method.setParameter) |  |
-| [status](#method.status) |  |
+| [cancelChallengeDataExt](#cancelChallengeDataExt) |  |
+| [cleanDecryptContext](#cleanDecryptContext) |  |
+| [close](#close) |  |
+| [deinitialize](#deinitialize) |  |
+| [deleteKeyStore](#deleteKeyStore) |  |
+| [deleteSecureStore](#deleteSecureStore) |  |
+| [disable](#disable) |  |
+| [enable](#enable) |  |
+| [enableSecureStop](#enableSecureStop) |  |
+| [getChallengeDataExt](#getChallengeDataExt) |  |
+| [getDrmSystemTime](#getDrmSystemTime) |  |
+| [getHeight](#getHeight) |  |
+| [getLdlSessionLimit](#getLdlSessionLimit) |  |
+| [getMediaType](#getMediaType) |  |
+| [getSessionIdExt](#getSessionIdExt) |  |
+| [getVersionExt](#getVersionExt) |  |
+| [getWidth](#getWidth) |  |
+| [initLength](#initLength) |  |
+| [initialize](#initialize) |  |
+| [isSecureStopEnabled](#isSecureStopEnabled) |  |
+| [load](#load) |  |
+| [metrics](#metrics) |  |
+| [onKeyStatusUpdate](#onKeyStatusUpdate) |  |
+| [onKeyStatusesUpdated](#onKeyStatusesUpdated) |  |
+| [remove](#remove) |  |
+| [resetSecureStops](#resetSecureStops) |  |
+| [selectKeyId](#selectKeyId) |  |
+| [setDrmHeader](#setDrmHeader) |  |
+| [storeLicenseData](#storeLicenseData) |  |
+| [reset](#reset) |  |
+| [bufferId](#bufferId) |  |
+| [bufferIdExt](#bufferIdExt) |  |
+| [createSessionBuffer](#createSessionBuffer) |  |
+| [isTypeSupported](#isTypeSupported) |  |
+| [metadata](#metadata) |  |
+| [onError](#onError) |  |
+| [onKeyMessage](#onKeyMessage) |  |
+| [resetOutputProtection](#resetOutputProtection) |  |
+| [revoke](#revoke) |  |
+| [sessionId](#sessionId) |  |
+| [sessionIdExt](#sessionIdExt) |  |
+| [setParameter](#setParameter) |  |
+| [status](#status) |  |
 
-<a id="method.cancelChallengeDataExt"></a>
-## *cancelChallengeDataExt [<sup>method</sup>](#head.Methods)*
+<a id="cancelChallengeDataExt"></a>
+## *cancelChallengeDataExt*
 
 
 
@@ -136,8 +136,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.cleanDecryptContext"></a>
-## *cleanDecryptContext [<sup>method</sup>](#head.Methods)*
+<a id="cleanDecryptContext"></a>
+## *cleanDecryptContext*
 
 
 
@@ -181,8 +181,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.close"></a>
-## *close [<sup>method</sup>](#head.Methods)*
+<a id="close"></a>
+## *close*
 
 
 
@@ -226,8 +226,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.deinitialize"></a>
-## *deinitialize [<sup>method</sup>](#head.Methods)*
+<a id="deinitialize"></a>
+## *deinitialize*
 
 
 
@@ -277,8 +277,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.deleteKeyStore"></a>
-## *deleteKeyStore [<sup>method</sup>](#head.Methods)*
+<a id="deleteKeyStore"></a>
+## *deleteKeyStore*
 
 
 
@@ -328,8 +328,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.deleteSecureStore"></a>
-## *deleteSecureStore [<sup>method</sup>](#head.Methods)*
+<a id="deleteSecureStore"></a>
+## *deleteSecureStore*
 
 
 
@@ -379,8 +379,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.disable"></a>
-## *disable [<sup>method</sup>](#head.Methods)*
+<a id="disable"></a>
+## *disable*
 
 
 
@@ -424,8 +424,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.enable"></a>
-## *enable [<sup>method</sup>](#head.Methods)*
+<a id="enable"></a>
+## *enable*
 
 
 
@@ -469,8 +469,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.enableSecureStop"></a>
-## *enableSecureStop [<sup>method</sup>](#head.Methods)*
+<a id="enableSecureStop"></a>
+## *enableSecureStop*
 
 
 
@@ -520,8 +520,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.getChallengeDataExt"></a>
-## *getChallengeDataExt [<sup>method</sup>](#head.Methods)*
+<a id="getChallengeDataExt"></a>
+## *getChallengeDataExt*
 
 
 
@@ -575,8 +575,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.getDrmSystemTime"></a>
-## *getDrmSystemTime [<sup>method</sup>](#head.Methods)*
+<a id="getDrmSystemTime"></a>
+## *getDrmSystemTime*
 
 
 
@@ -626,8 +626,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.getHeight"></a>
-## *getHeight [<sup>method</sup>](#head.Methods)*
+<a id="getHeight"></a>
+## *getHeight*
 
 
 
@@ -671,8 +671,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.getLdlSessionLimit"></a>
-## *getLdlSessionLimit [<sup>method</sup>](#head.Methods)*
+<a id="getLdlSessionLimit"></a>
+## *getLdlSessionLimit*
 
 
 
@@ -722,8 +722,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.getMediaType"></a>
-## *getMediaType [<sup>method</sup>](#head.Methods)*
+<a id="getMediaType"></a>
+## *getMediaType*
 
 
 
@@ -767,8 +767,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.getSessionIdExt"></a>
-## *getSessionIdExt [<sup>method</sup>](#head.Methods)*
+<a id="getSessionIdExt"></a>
+## *getSessionIdExt*
 
 
 
@@ -812,8 +812,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.getVersionExt"></a>
-## *getVersionExt [<sup>method</sup>](#head.Methods)*
+<a id="getVersionExt"></a>
+## *getVersionExt*
 
 
 
@@ -863,8 +863,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.getWidth"></a>
-## *getWidth [<sup>method</sup>](#head.Methods)*
+<a id="getWidth"></a>
+## *getWidth*
 
 
 
@@ -908,8 +908,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.initLength"></a>
-## *initLength [<sup>method</sup>](#head.Methods)*
+<a id="initLength"></a>
+## *initLength*
 
 
 
@@ -953,8 +953,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.initialize"></a>
-## *initialize [<sup>method</sup>](#head.Methods)*
+<a id="initialize"></a>
+## *initialize*
 
 
 
@@ -1004,8 +1004,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.isSecureStopEnabled"></a>
-## *isSecureStopEnabled [<sup>method</sup>](#head.Methods)*
+<a id="isSecureStopEnabled"></a>
+## *isSecureStopEnabled*
 
 
 
@@ -1055,8 +1055,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.load"></a>
-## *load [<sup>method</sup>](#head.Methods)*
+<a id="load"></a>
+## *load*
 
 
 
@@ -1100,8 +1100,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.metrics"></a>
-## *metrics [<sup>method</sup>](#head.Methods)*
+<a id="metrics"></a>
+## *metrics*
 
 
 
@@ -1153,8 +1153,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="method.onKeyStatusUpdate"></a>
-## *onKeyStatusUpdate [<sup>method</sup>](#head.Methods)*
+<a id="onKeyStatusUpdate"></a>
+## *onKeyStatusUpdate*
 
 
 
@@ -1208,8 +1208,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.onKeyStatusesUpdated"></a>
-## *onKeyStatusesUpdated [<sup>method</sup>](#head.Methods)*
+<a id="onKeyStatusesUpdated"></a>
+## *onKeyStatusesUpdated*
 
 
 
@@ -1253,8 +1253,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.remove"></a>
-## *remove [<sup>method</sup>](#head.Methods)*
+<a id="remove"></a>
+## *remove*
 
 
 
@@ -1298,8 +1298,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="method.resetSecureStops"></a>
-## *resetSecureStops [<sup>method</sup>](#head.Methods)*
+<a id="resetSecureStops"></a>
+## *resetSecureStops*
 
 
 
@@ -1349,8 +1349,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="method.selectKeyId"></a>
-## *selectKeyId [<sup>method</sup>](#head.Methods)*
+<a id="selectKeyId"></a>
+## *selectKeyId*
 
 
 
@@ -1402,8 +1402,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
-<a id="method.setDrmHeader"></a>
-## *setDrmHeader [<sup>method</sup>](#head.Methods)*
+<a id="setDrmHeader"></a>
+## *setDrmHeader*
 
 
 
@@ -1455,8 +1455,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
-<a id="method.storeLicenseData"></a>
-## *storeLicenseData [<sup>method</sup>](#head.Methods)*
+<a id="storeLicenseData"></a>
+## *storeLicenseData*
 
 
 
@@ -1510,8 +1510,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
-<a id="method.reset"></a>
-## *reset [<sup>method</sup>](#head.Methods)*
+<a id="reset"></a>
+## *reset*
 
 
 
@@ -1555,8 +1555,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.bufferId"></a>
-## *bufferId [<sup>method</sup>](#head.Methods)*
+<a id="bufferId"></a>
+## *bufferId*
 
 
 
@@ -1600,8 +1600,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.bufferIdExt"></a>
-## *bufferIdExt [<sup>method</sup>](#head.Methods)*
+<a id="bufferIdExt"></a>
+## *bufferIdExt*
 
 
 
@@ -1645,8 +1645,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.createSessionBuffer"></a>
-## *createSessionBuffer [<sup>method</sup>](#head.Methods)*
+<a id="createSessionBuffer"></a>
+## *createSessionBuffer*
 
 
 
@@ -1693,8 +1693,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.isTypeSupported"></a>
-## *isTypeSupported [<sup>method</sup>](#head.Methods)*
+<a id="isTypeSupported"></a>
+## *isTypeSupported*
 
 
 
@@ -1746,8 +1746,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.metadata"></a>
-## *metadata [<sup>method</sup>](#head.Methods)*
+<a id="metadata"></a>
+## *metadata*
 
 
 
@@ -1800,8 +1800,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.onError"></a>
-## *onError [<sup>method</sup>](#head.Methods)*
+<a id="onError"></a>
+## *onError*
 
 
 
@@ -1855,8 +1855,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.onKeyMessage"></a>
-## *onKeyMessage [<sup>method</sup>](#head.Methods)*
+<a id="onKeyMessage"></a>
+## *onKeyMessage*
 
 
 
@@ -1910,8 +1910,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.resetOutputProtection"></a>
-## *resetOutputProtection [<sup>method</sup>](#head.Methods)*
+<a id="resetOutputProtection"></a>
+## *resetOutputProtection*
 
 
 
@@ -1955,8 +1955,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="method.revoke"></a>
-## *revoke [<sup>method</sup>](#head.Methods)*
+<a id="revoke"></a>
+## *revoke*
 
 
 
@@ -2006,8 +2006,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="method.sessionId"></a>
-## *sessionId [<sup>method</sup>](#head.Methods)*
+<a id="sessionId"></a>
+## *sessionId*
 
 
 
@@ -2051,8 +2051,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="method.sessionIdExt"></a>
-## *sessionIdExt [<sup>method</sup>](#head.Methods)*
+<a id="sessionIdExt"></a>
+## *sessionIdExt*
 
 
 
@@ -2096,8 +2096,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="method.setParameter"></a>
-## *setParameter [<sup>method</sup>](#head.Methods)*
+<a id="setParameter"></a>
+## *setParameter*
 
 
 
@@ -2149,8 +2149,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-<a id="method.status"></a>
-## *status [<sup>method</sup>](#head.Methods)*
+<a id="status"></a>
+## *status*
 
 
 
@@ -2204,10 +2204,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the OpenCDMi plugin:
 
@@ -2215,10 +2215,10 @@ OpenCDMi interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [initializationStatus](#event.initializationStatus) | initialization status. |
+| [initializationStatus](#initializationStatus) | initialization status. |
 
-<a id="event.initializationStatus"></a>
-## *initializationStatus [<sup>event</sup>](#head.Notifications)*
+<a id="initializationStatus"></a>
+## *initializationStatus*
 
 initialization status.
 

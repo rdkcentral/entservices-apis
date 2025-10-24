@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.PackageManager_Plugin"></a>
+<a id="PackageManager_Plugin"></a>
 # PackageManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/PackageManager/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PackageManager)**
 
 A PackageManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `PackageManager` plugin provides an interface for PackageManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPackageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the PackageManager plugin:
@@ -47,35 +47,36 @@ PackageManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancel](#method.cancel) | Cancel |
-| [clearAuxMetadata](#method.clearAuxMetadata) | Clears the specified metadata key. |
-| [download](#method.download) | Download |
-| [getList](#method.getList) | Retrieves list of installed apps matching given filters. |
-| [getLockInfo](#method.getLockInfo) | Provides lock reason and owner for an app. |
-| [getMetadata](#method.getMetadata) | Retrieves metadata and auxiliary resource list for an application. |
-| [getProgress](#method.getProgress) | Provides the current progress of an ongoing operation. |
-| [getStorageDetails](#method.getStorageDetails) | GetStorageDetails |
-| [install](#method.install) | Install |
-| [lock](#method.lock) | Lock |
-| [offer](#method.offer) |  |
-| [operationStatusUpdate](#method.operationStatusUpdate) |  |
-| [reset](#method.reset) | Deletes all persistent local data of the application. |
-| [revoke](#method.revoke) |  |
-| [setAuxMetadata](#method.setAuxMetadata) | Sets a key-value pair of metadata for the application. |
-| [uninstall](#method.uninstall) | Uninstall |
-| [unlock](#method.unlock) | Unlock |
-| [config](#method.config) | Config |
-| [delete](#method.delete) | Delete |
-| [getLockedInfo](#method.getLockedInfo) | GetLockedInfo |
-| [listPackages](#method.listPackages) | ListPackages |
-| [packageState](#method.packageState) | PackageState |
-| [pause](#method.pause) | Pause |
-| [progress](#method.progress) | Delete |
-| [rateLimit](#method.rateLimit) | RateLimit |
-| [resume](#method.resume) | Resume |
+| [cancel](#cancel) | Cancel |
+| [clearAuxMetadata](#clearAuxMetadata) | Clears the specified metadata key. |
+| [download](#download) | Download |
+| [getList](#getList) | Retrieves list of installed apps matching given filters. |
+| [getLockInfo](#getLockInfo) | Provides lock reason and owner for an app. |
+| [getMetadata](#getMetadata) | Retrieves metadata and auxiliary resource list for an application. |
+| [getProgress](#getProgress) | Provides the current progress of an ongoing operation. |
+| [getStorageDetails](#getStorageDetails) | GetStorageDetails |
+| [install](#install) | Install |
+| [lock](#lock) | Lock |
+| [offer](#offer) |  |
+| [operationStatusUpdate](#operationStatusUpdate) |  |
+| [reset](#reset) | Deletes all persistent local data of the application. |
+| [revoke](#revoke) |  |
+| [setAuxMetadata](#setAuxMetadata) | Sets a key-value pair of metadata for the application. |
+| [uninstall](#uninstall) | Uninstall |
+| [unlock](#unlock) | Unlock |
+| [config](#config) | Config |
+| [delete](#delete) | Delete |
+| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
+| [getLockedInfo](#getLockedInfo) | GetLockedInfo |
+| [listPackages](#listPackages) | ListPackages |
+| [packageState](#packageState) | PackageState |
+| [pause](#pause) | Pause |
+| [progress](#progress) | Progress |
+| [rateLimit](#rateLimit) | RateLimit |
+| [resume](#resume) | Resume |
 
-<a id="method.cancel"></a>
-## *cancel [<sup>method</sup>](#head.Methods)*
+<a id="cancel"></a>
+## *cancel*
 
 Cancel
 
@@ -85,7 +86,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Download id |
+| params.downloadId | string | Download ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -125,8 +126,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.clearAuxMetadata"></a>
-## *clearAuxMetadata [<sup>method</sup>](#head.Methods)*
+<a id="clearAuxMetadata"></a>
+## *clearAuxMetadata*
 
 Clears the specified metadata key.
 
@@ -137,7 +138,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.key | string |  |
 ### Results
@@ -182,8 +183,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.download"></a>
-## *download [<sup>method</sup>](#head.Methods)*
+<a id="download"></a>
+## *download*
 
 Download
 
@@ -202,7 +203,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.downloadId | string | Download id |
+| result.downloadId | string | Download ID |
 
 ### Examples
 
@@ -245,8 +246,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getList"></a>
-## *getList [<sup>method</sup>](#head.Methods)*
+<a id="getList"></a>
+## *getList*
 
 Retrieves list of installed apps matching given filters.
 
@@ -257,7 +258,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.appName | string |  |
 | params.category | string |  |
@@ -312,8 +313,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getLockInfo"></a>
-## *getLockInfo [<sup>method</sup>](#head.Methods)*
+<a id="getLockInfo"></a>
+## *getLockInfo*
 
 Provides lock reason and owner for an app.
 
@@ -324,7 +325,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 ### Results
 | Name | Type | Description |
@@ -373,8 +374,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.getMetadata"></a>
-## *getMetadata [<sup>method</sup>](#head.Methods)*
+<a id="getMetadata"></a>
+## *getMetadata*
 
 Retrieves metadata and auxiliary resource list for an application.
 
@@ -385,7 +386,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 ### Results
 | Name | Type | Description |
@@ -444,8 +445,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getProgress"></a>
-## *getProgress [<sup>method</sup>](#head.Methods)*
+<a id="getProgress"></a>
+## *getProgress*
 
 Provides the current progress of an ongoing operation.
 
@@ -498,8 +499,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.getStorageDetails"></a>
-## *getStorageDetails [<sup>method</sup>](#head.Methods)*
+<a id="getStorageDetails"></a>
+## *getStorageDetails*
 
 GetStorageDetails
 
@@ -511,8 +512,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.quotaKb | integer |  |
-| result.usedKb | integer |  |
+| result.quotaKb | string |  |
+| result.usedKb | string |  |
 
 ### Examples
 
@@ -522,7 +523,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "method": "org.rdk.PackageManager.getStorageDetails"
 }
 ```
@@ -531,7 +532,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getStorageDetails"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.getStorageDetails"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -540,16 +541,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "result": {
-        "quotaKb": 0,
-        "usedKb": 0
+        "quotaKb": "",
+        "usedKb": ""
     }
 }
 ```
 
-<a id="method.install"></a>
-## *install [<sup>method</sup>](#head.Methods)*
+<a id="install"></a>
+## *install*
 
 Install
 
@@ -562,7 +563,7 @@ Event details are missing in the header file documentation.
 | params.packageId | string | Package Id |
 | params.version | string | Version |
 | params.additionalMetadata | IPackageInstaller::IKeyValueIterator | Additional Metadata |
-| params.fileLocator | string | FileLocator |
+| params.fileLocator | string | File Locator |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -577,7 +578,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "method": "org.rdk.PackageManager.install",
     "params": {
         "packageId": "",
@@ -592,7 +593,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": "", "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": "", "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -601,15 +602,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "result": {
         "failReason": "NONE"
     }
 }
 ```
 
-<a id="method.lock"></a>
-## *lock [<sup>method</sup>](#head.Methods)*
+<a id="lock"></a>
+## *lock*
 
 Lock
 
@@ -661,7 +662,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "method": "org.rdk.PackageManager.lock",
     "params": {
         "packageId": "",
@@ -675,7 +676,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManager.lock", "params": {"packageId": "", "version": "", "lockReason": "SYSTEM_APP"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.lock", "params": {"packageId": "", "version": "", "lockReason": "SYSTEM_APP"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -684,7 +685,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "result": {
         "lockId": 0,
         "unpackedPath": "",
@@ -717,8 +718,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.offer"></a>
-## *offer [<sup>method</sup>](#head.Methods)*
+<a id="offer"></a>
+## *offer*
 
 
 
@@ -768,8 +769,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.operationStatusUpdate"></a>
-## *operationStatusUpdate [<sup>method</sup>](#head.Methods)*
+<a id="operationStatusUpdate"></a>
+## *operationStatusUpdate*
 
 
 
@@ -782,7 +783,7 @@ Event details are missing in the header file documentation.
 | params.handle | string |  |
 | params.operation | string |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.status | string |  |
 | params.details | string |  |
@@ -831,8 +832,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.reset"></a>
-## *reset [<sup>method</sup>](#head.Methods)*
+<a id="reset"></a>
+## *reset*
 
 Deletes all persistent local data of the application.
 
@@ -843,7 +844,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.resetType | string |  |
 ### Results
@@ -888,8 +889,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.revoke"></a>
-## *revoke [<sup>method</sup>](#head.Methods)*
+<a id="revoke"></a>
+## *revoke*
 
 
 
@@ -939,8 +940,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.setAuxMetadata"></a>
-## *setAuxMetadata [<sup>method</sup>](#head.Methods)*
+<a id="setAuxMetadata"></a>
+## *setAuxMetadata*
 
 Sets a key-value pair of metadata for the application.
 
@@ -951,7 +952,7 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.key | string |  |
 | params.value | string |  |
@@ -998,8 +999,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.uninstall"></a>
-## *uninstall [<sup>method</sup>](#head.Methods)*
+<a id="uninstall"></a>
+## *uninstall*
 
 Uninstall
 
@@ -1024,7 +1025,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 15,
     "method": "org.rdk.PackageManager.uninstall",
     "params": {
         "packageId": ""
@@ -1036,7 +1037,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.PackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1045,15 +1046,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 15,
     "result": {
         "errorReason": ""
     }
 }
 ```
 
-<a id="method.unlock"></a>
-## *unlock [<sup>method</sup>](#head.Methods)*
+<a id="unlock"></a>
+## *unlock*
 
 Unlock
 
@@ -1078,7 +1079,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 16,
     "method": "org.rdk.PackageManager.unlock",
     "params": {
         "packageId": "",
@@ -1091,7 +1092,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.PackageManager.unlock", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.PackageManager.unlock", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1100,13 +1101,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 16,
     "result": null
 }
 ```
 
-<a id="method.config"></a>
-## *config [<sup>method</sup>](#head.Methods)*
+<a id="config"></a>
+## *config*
 
 Config
 
@@ -1204,8 +1205,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.delete"></a>
-## *delete [<sup>method</sup>](#head.Methods)*
+<a id="delete"></a>
+## *delete*
 
 Delete
 
@@ -1215,7 +1216,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.fileLocator | string | FileLocator |
+| params.fileLocator | string | File Locator |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1255,8 +1256,111 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getLockedInfo"></a>
-## *getLockedInfo [<sup>method</sup>](#head.Methods)*
+<a id="getConfigForPackage"></a>
+## *getConfigForPackage*
+
+getConfigForPackage
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.fileLocator | string | File Locator |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.id | string | package id |
+| result.version | string | Version |
+| result.config | RuntimeConfig | metadata of package |
+| result.config.dial | bool |  |
+| result.config.wanLanAccess | bool |  |
+| result.config.thunder | bool |  |
+| result.config.systemMemoryLimit | integer |  |
+| result.config.gpuMemoryLimit | integer |  |
+| result.config.envVariables | std::string |  |
+| result.config.userId | integer |  |
+| result.config.groupId | integer |  |
+| result.config.dataImageSize | integer |  |
+| result.config.resourceManagerClientEnabled | bool |  |
+| result.config.dialId | std::string |  |
+| result.config.command | std::string |  |
+| result.config.appType | std::string |  |
+| result.config.appPath | std::string |  |
+| result.config.runtimePath | std::string |  |
+| result.config.logFilePath | std::string |  |
+| result.config.logFileMaxSize | integer |  |
+| result.config.logLevels | std::string | json array of strings |
+| result.config.mapi | bool |  |
+| result.config.fkpsFiles | std::string | json array of strings |
+| result.config.fireboltVersion | std::string |  |
+| result.config.enableDebugger | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.PackageManager.getConfigForPackage",
+    "params": {
+        "fileLocator": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PackageManager.getConfigForPackage", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "id": "",
+        "version": "",
+        "config": {
+            "dial": true,
+            "wanLanAccess": true,
+            "thunder": true,
+            "systemMemoryLimit": 0,
+            "gpuMemoryLimit": 0,
+            "envVariables": "",
+            "userId": 0,
+            "groupId": 0,
+            "dataImageSize": 0,
+            "resourceManagerClientEnabled": true,
+            "dialId": "",
+            "command": "",
+            "appType": "",
+            "appPath": "",
+            "runtimePath": "",
+            "logFilePath": "",
+            "logFileMaxSize": 0,
+            "logLevels": "",
+            "mapi": true,
+            "fkpsFiles": "",
+            "fireboltVersion": "",
+            "enableDebugger": true
+        }
+    }
+}
+```
+
+<a id="getLockedInfo"></a>
+## *getLockedInfo*
 
 GetLockedInfo
 
@@ -1307,7 +1411,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.PackageManager.getLockedInfo",
     "params": {
         "packageId": "",
@@ -1320,7 +1424,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PackageManager.getLockedInfo", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getLockedInfo", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1329,7 +1433,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "result": {
         "unpackedPath": "",
         "configMetadata": {
@@ -1362,8 +1466,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.listPackages"></a>
-## *listPackages [<sup>method</sup>](#head.Methods)*
+<a id="listPackages"></a>
+## *listPackages*
 
 ListPackages
 
@@ -1390,7 +1494,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "method": "org.rdk.PackageManager.listPackages"
 }
 ```
@@ -1399,7 +1503,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1408,7 +1512,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "result": [
         {
             "packageId": "",
@@ -1421,8 +1525,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.packageState"></a>
-## *packageState [<sup>method</sup>](#head.Methods)*
+<a id="packageState"></a>
+## *packageState*
 
 PackageState
 
@@ -1448,7 +1552,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "method": "org.rdk.PackageManager.packageState",
     "params": {
         "packageId": "",
@@ -1461,7 +1565,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1470,15 +1574,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "result": {
         "state": "INSTALLING"
     }
 }
 ```
 
-<a id="method.pause"></a>
-## *pause [<sup>method</sup>](#head.Methods)*
+<a id="pause"></a>
+## *pause*
 
 Pause
 
@@ -1488,7 +1592,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Download id |
+| params.downloadId | string | Download ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1502,7 +1606,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "method": "org.rdk.PackageManager.pause",
     "params": {
         "downloadId": ""
@@ -1514,7 +1618,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1523,15 +1627,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "result": null
 }
 ```
 
-<a id="method.progress"></a>
-## *progress [<sup>method</sup>](#head.Methods)*
+<a id="progress"></a>
+## *progress*
 
-Delete
+Progress
 
 ### Events
 Event details are missing in the header file documentation.
@@ -1539,12 +1643,12 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Download id |
+| params.downloadId | string | Download ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.percent | integer |  |
+| result.progress | integer |  |
 
 ### Examples
 
@@ -1554,7 +1658,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "method": "org.rdk.PackageManager.progress",
     "params": {
         "downloadId": ""
@@ -1566,7 +1670,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1575,15 +1679,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "result": {
-        "percent": 0
+        "progress": 0
     }
 }
 ```
 
-<a id="method.rateLimit"></a>
-## *rateLimit [<sup>method</sup>](#head.Methods)*
+<a id="rateLimit"></a>
+## *rateLimit*
 
 RateLimit
 
@@ -1593,7 +1697,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Download id |
+| params.downloadId | string | Download ID |
 | params.limit | integer | Limit |
 ### Results
 | Name | Type | Description |
@@ -1608,7 +1712,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "method": "org.rdk.PackageManager.rateLimit",
     "params": {
         "downloadId": "",
@@ -1621,7 +1725,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1630,13 +1734,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "result": null
 }
 ```
 
-<a id="method.resume"></a>
-## *resume [<sup>method</sup>](#head.Methods)*
+<a id="resume"></a>
+## *resume*
 
 Resume
 
@@ -1646,7 +1750,7 @@ Event details are missing in the header file documentation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Download id |
+| params.downloadId | string | Download ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1660,7 +1764,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 14,
     "method": "org.rdk.PackageManager.resume",
     "params": {
         "downloadId": ""
@@ -1672,7 +1776,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1681,17 +1785,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 14,
     "result": null
 }
 ```
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the PackageManager plugin:
 
@@ -1699,10 +1803,10 @@ PackageManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [operationStatus](#event.operationStatus) | Notifies completion of an asynchronous operation. |
+| [operationStatus](#operationStatus) | Notifies completion of an asynchronous operation. |
 
-<a id="event.operationStatus"></a>
-## *operationStatus [<sup>event</sup>](#head.Notifications)*
+<a id="operationStatus"></a>
+## *operationStatus*
 
 Notifies completion of an asynchronous operation.
 
@@ -1713,7 +1817,7 @@ Notifies completion of an asynchronous operation.
 | params.handle | string |  |
 | params.operation | string |  |
 | params.type | string |  |
-| params.id | string |  |
+| params.id | string | package id |
 | params.version | string | Version |
 | params.status | string |  |
 | params.details | string |  |

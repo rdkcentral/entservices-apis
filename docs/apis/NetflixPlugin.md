@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.Netflix_Plugin"></a>
+<a id="Netflix_Plugin"></a>
 # Netflix Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Netflix/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Netflix)**
 
 A Netflix plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `Netflix` plugin provides an interface for Netflix.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkNetflix.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the Netflix plugin:
@@ -47,22 +47,22 @@ Netflix interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [factoryReset](#method.factoryReset) |  |
-| [getESN](#method.getESN) |  |
-| [language](#method.language) |  |
-| [setVisible](#method.setVisible) |  |
-| [systemCommand](#method.systemCommand) |  |
-| [voiceCommand](#method.voiceCommand) |  |
-| [getNFREnabled](#method.getNFREnabled) |  |
-| [setNFREnabled](#method.setNFREnabled) |  |
-| [deriveKeys](#method.deriveKeys) |  |
-| [eSN](#method.eSN) |  |
-| [encryptionKey](#method.encryptionKey) |  |
-| [hMACKey](#method.hMACKey) |  |
-| [wrappingKey](#method.wrappingKey) |  |
+| [factoryReset](#factoryReset) |  |
+| [getESN](#getESN) |  |
+| [language](#language) |  |
+| [setVisible](#setVisible) |  |
+| [systemCommand](#systemCommand) |  |
+| [voiceCommand](#voiceCommand) |  |
+| [getNFREnabled](#getNFREnabled) |  |
+| [setNFREnabled](#setNFREnabled) |  |
+| [deriveKeys](#deriveKeys) |  |
+| [eSN](#eSN) |  |
+| [encryptionKey](#encryptionKey) |  |
+| [hMACKey](#hMACKey) |  |
+| [wrappingKey](#wrappingKey) |  |
 
-<a id="method.factoryReset"></a>
-## *factoryReset [<sup>method</sup>](#head.Methods)*
+<a id="factoryReset"></a>
+## *factoryReset*
 
 
 
@@ -106,8 +106,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getESN"></a>
-## *getESN [<sup>method</sup>](#head.Methods)*
+<a id="getESN"></a>
+## *getESN*
 
 
 
@@ -151,8 +151,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.language"></a>
-## *language [<sup>method</sup>](#head.Methods)*
+<a id="language"></a>
+## *language*
 
 
 
@@ -202,8 +202,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.setVisible"></a>
-## *setVisible [<sup>method</sup>](#head.Methods)*
+<a id="setVisible"></a>
+## *setVisible*
 
 
 
@@ -253,8 +253,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.systemCommand"></a>
-## *systemCommand [<sup>method</sup>](#head.Methods)*
+<a id="systemCommand"></a>
+## *systemCommand*
 
 
 
@@ -304,8 +304,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.voiceCommand"></a>
-## *voiceCommand [<sup>method</sup>](#head.Methods)*
+<a id="voiceCommand"></a>
+## *voiceCommand*
 
 
 
@@ -355,8 +355,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getNFREnabled"></a>
-## *getNFREnabled [<sup>method</sup>](#head.Methods)*
+<a id="getNFREnabled"></a>
+## *getNFREnabled*
 
 
 
@@ -400,8 +400,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.setNFREnabled"></a>
-## *setNFREnabled [<sup>method</sup>](#head.Methods)*
+<a id="setNFREnabled"></a>
+## *setNFREnabled*
 
 
 
@@ -451,8 +451,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.deriveKeys"></a>
-## *deriveKeys [<sup>method</sup>](#head.Methods)*
+<a id="deriveKeys"></a>
+## *deriveKeys*
 
 
 
@@ -513,8 +513,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.eSN"></a>
-## *eSN [<sup>method</sup>](#head.Methods)*
+<a id="eSN"></a>
+## *eSN*
 
 
 
@@ -558,8 +558,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.encryptionKey"></a>
-## *encryptionKey [<sup>method</sup>](#head.Methods)*
+<a id="encryptionKey"></a>
+## *encryptionKey*
 
 
 
@@ -603,8 +603,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.hMACKey"></a>
-## *hMACKey [<sup>method</sup>](#head.Methods)*
+<a id="hMACKey"></a>
+## *hMACKey*
 
 
 
@@ -648,8 +648,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.wrappingKey"></a>
-## *wrappingKey [<sup>method</sup>](#head.Methods)*
+<a id="wrappingKey"></a>
+## *wrappingKey*
 
 
 
@@ -695,10 +695,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the Netflix plugin:
 
@@ -706,12 +706,12 @@ Netflix interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [exit](#event.exit) |  |
-| [notifyClient](#event.notifyClient) |  |
-| [stateChange](#event.stateChange) |  |
+| [exit](#exit) |  |
+| [notifyClient](#notifyClient) |  |
+| [stateChange](#stateChange) |  |
 
-<a id="event.exit"></a>
-## *exit [<sup>event</sup>](#head.Notifications)*
+<a id="exit"></a>
+## *exit*
 
 
 
@@ -734,8 +734,8 @@ Netflix interface events:
 }
 ```
 
-<a id="event.notifyClient"></a>
-## *notifyClient [<sup>event</sup>](#head.Notifications)*
+<a id="notifyClient"></a>
+## *notifyClient*
 
 
 
@@ -758,8 +758,8 @@ Netflix interface events:
 }
 ```
 
-<a id="event.stateChange"></a>
-## *stateChange [<sup>event</sup>](#head.Notifications)*
+<a id="stateChange"></a>
+## *stateChange*
 
 
 

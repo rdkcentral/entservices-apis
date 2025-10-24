@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.RDKWindowManager_Plugin"></a>
+<a id="RDKWindowManager_Plugin"></a>
 # RDKWindowManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/RDKWindowManager/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RDKWindowManager)**
 
 A RDKWindowManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `RDKWindowManager` plugin provides an interface for RDKWindowManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRDKWindowManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the RDKWindowManager plugin:
@@ -47,30 +47,30 @@ RDKWindowManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [addKeyIntercept](#method.addKeyIntercept) | Registers a key intercept for a specific key code and client |
-| [addKeyIntercepts](#method.addKeyIntercepts) | Registers multiple key intercepts in a single operation. |
-| [addKeyListener](#method.addKeyListener) | Registers listeners for specific keys. |
-| [createDisplay](#method.createDisplay) | Create the display window |
-| [enableDisplayRender](#method.enableDisplayRender) | Enable or disable the rendering of a Wayland display |
-| [enableInactivityReporting](#method.enableInactivityReporting) | Enables the inactivity reporting |
-| [enableInputEvents](#method.enableInputEvents) | Enables KeyInputEvents for list of clients specified |
-| [enableKeyRepeats](#method.enableKeyRepeats) | Key repeats are enabled/disabled |
-| [generateKey](#method.generateKey) | Generates a key event for the specified keys and client. |
-| [getApps](#method.getApps) | Get the list of Apps which are currently active and available |
-| [getKeyRepeatsEnabled](#method.getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
-| [ignoreKeyInputs](#method.ignoreKeyInputs) | Ignore key inputs |
-| [injectKey](#method.injectKey) | Simulates a key press event with optional modifiers. |
-| [keyRepeatConfig](#method.keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
-| [removeKeyIntercept](#method.removeKeyIntercept) | Removes a key intercept for a specific key code and client. |
-| [removeKeyListener](#method.removeKeyListener) | Removes listeners for specific keys. |
-| [renderReady](#method.renderReady) | To get the status of first frame is rendered or not |
-| [resetInactivityTime](#method.resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
-| [setFocus](#method.setFocus) | Sets the focus to the app with the app id |
-| [setInactivityInterval](#method.setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
-| [setVisible](#method.setVisible) | Sets the visibility of the given client or appInstanceId |
+| [addKeyIntercept](#addKeyIntercept) | Registers a key intercept for a specific key code and client |
+| [addKeyIntercepts](#addKeyIntercepts) | Registers multiple key intercepts in a single operation. |
+| [addKeyListener](#addKeyListener) | Registers listeners for specific keys. |
+| [createDisplay](#createDisplay) | Create the display window |
+| [enableDisplayRender](#enableDisplayRender) | Enable or disable the rendering of a Wayland display |
+| [enableInactivityReporting](#enableInactivityReporting) | Enables the inactivity reporting |
+| [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
+| [enableKeyRepeats](#enableKeyRepeats) | Key repeats are enabled/disabled |
+| [generateKey](#generateKey) | Generates a key event for the specified keys and client. |
+| [getApps](#getApps) | Get the list of Apps which are currently active and available |
+| [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
+| [ignoreKeyInputs](#ignoreKeyInputs) | Ignore key inputs |
+| [injectKey](#injectKey) | Simulates a key press event with optional modifiers. |
+| [keyRepeatConfig](#keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
+| [removeKeyIntercept](#removeKeyIntercept) | Removes a key intercept for a specific key code and client. |
+| [removeKeyListener](#removeKeyListener) | Removes listeners for specific keys. |
+| [renderReady](#renderReady) | To get the status of first frame is rendered or not |
+| [resetInactivityTime](#resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
+| [setFocus](#setFocus) | Sets the focus to the app with the app id |
+| [setInactivityInterval](#setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
+| [setVisible](#setVisible) | Sets the visibility of the given client or appInstanceId |
 
-<a id="method.addKeyIntercept"></a>
-## *addKeyIntercept [<sup>method</sup>](#head.Methods)*
+<a id="addKeyIntercept"></a>
+## *addKeyIntercept*
 
 Registers a key intercept for a specific key code and client
 
@@ -120,8 +120,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.addKeyIntercepts"></a>
-## *addKeyIntercepts [<sup>method</sup>](#head.Methods)*
+<a id="addKeyIntercepts"></a>
+## *addKeyIntercepts*
 
 Registers multiple key intercepts in a single operation.
 
@@ -171,8 +171,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.addKeyListener"></a>
-## *addKeyListener [<sup>method</sup>](#head.Methods)*
+<a id="addKeyListener"></a>
+## *addKeyListener*
 
 Registers listeners for specific keys.
 
@@ -222,8 +222,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.createDisplay"></a>
-## *createDisplay [<sup>method</sup>](#head.Methods)*
+<a id="createDisplay"></a>
+## *createDisplay*
 
 Create the display window
 
@@ -273,8 +273,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.enableDisplayRender"></a>
-## *enableDisplayRender [<sup>method</sup>](#head.Methods)*
+<a id="enableDisplayRender"></a>
+## *enableDisplayRender*
 
 Enable or disable the rendering of a Wayland display
 
@@ -326,8 +326,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.enableInactivityReporting"></a>
-## *enableInactivityReporting [<sup>method</sup>](#head.Methods)*
+<a id="enableInactivityReporting"></a>
+## *enableInactivityReporting*
 
 Enables the inactivity reporting
 
@@ -377,8 +377,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.enableInputEvents"></a>
-## *enableInputEvents [<sup>method</sup>](#head.Methods)*
+<a id="enableInputEvents"></a>
+## *enableInputEvents*
 
 Enables KeyInputEvents for list of clients specified
 
@@ -430,8 +430,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.enableKeyRepeats"></a>
-## *enableKeyRepeats [<sup>method</sup>](#head.Methods)*
+<a id="enableKeyRepeats"></a>
+## *enableKeyRepeats*
 
 Key repeats are enabled/disabled
 
@@ -481,8 +481,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.generateKey"></a>
-## *generateKey [<sup>method</sup>](#head.Methods)*
+<a id="generateKey"></a>
+## *generateKey*
 
 Generates a key event for the specified keys and client.
 
@@ -534,8 +534,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.getApps"></a>
-## *getApps [<sup>method</sup>](#head.Methods)*
+<a id="getApps"></a>
+## *getApps*
 
 Get the list of Apps which are currently active and available
 
@@ -582,8 +582,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.getKeyRepeatsEnabled"></a>
-## *getKeyRepeatsEnabled [<sup>method</sup>](#head.Methods)*
+<a id="getKeyRepeatsEnabled"></a>
+## *getKeyRepeatsEnabled*
 
 Retrieves the flag determining whether keyRepeat true/false
 
@@ -630,8 +630,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.ignoreKeyInputs"></a>
-## *ignoreKeyInputs [<sup>method</sup>](#head.Methods)*
+<a id="ignoreKeyInputs"></a>
+## *ignoreKeyInputs*
 
 Ignore key inputs
 
@@ -681,8 +681,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.injectKey"></a>
-## *injectKey [<sup>method</sup>](#head.Methods)*
+<a id="injectKey"></a>
+## *injectKey*
 
 Simulates a key press event with optional modifiers.
 
@@ -734,8 +734,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.keyRepeatConfig"></a>
-## *keyRepeatConfig [<sup>method</sup>](#head.Methods)*
+<a id="keyRepeatConfig"></a>
+## *keyRepeatConfig*
 
 Enables KeyInputEvents for list of clients specified
 
@@ -787,8 +787,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.removeKeyIntercept"></a>
-## *removeKeyIntercept [<sup>method</sup>](#head.Methods)*
+<a id="removeKeyIntercept"></a>
+## *removeKeyIntercept*
 
 Removes a key intercept for a specific key code and client.
 
@@ -838,8 +838,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.removeKeyListener"></a>
-## *removeKeyListener [<sup>method</sup>](#head.Methods)*
+<a id="removeKeyListener"></a>
+## *removeKeyListener*
 
 Removes listeners for specific keys.
 
@@ -889,8 +889,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.renderReady"></a>
-## *renderReady [<sup>method</sup>](#head.Methods)*
+<a id="renderReady"></a>
+## *renderReady*
 
 To get the status of first frame is rendered or not
 
@@ -943,8 +943,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.resetInactivityTime"></a>
-## *resetInactivityTime [<sup>method</sup>](#head.Methods)*
+<a id="resetInactivityTime"></a>
+## *resetInactivityTime*
 
 Resets inactivity interval if EnableUserInactivity feature is enabled
 
@@ -988,8 +988,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.setFocus"></a>
-## *setFocus [<sup>method</sup>](#head.Methods)*
+<a id="setFocus"></a>
+## *setFocus*
 
 Sets the focus to the app with the app id
 
@@ -1039,8 +1039,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.setInactivityInterval"></a>
-## *setInactivityInterval [<sup>method</sup>](#head.Methods)*
+<a id="setInactivityInterval"></a>
+## *setInactivityInterval*
 
 Sets inactivity interval if EnableUserInactivity feature is enabled
 
@@ -1090,8 +1090,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="method.setVisible"></a>
-## *setVisible [<sup>method</sup>](#head.Methods)*
+<a id="setVisible"></a>
+## *setVisible*
 
 Sets the visibility of the given client or appInstanceId
 
@@ -1145,10 +1145,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the RDKWindowManager plugin:
 
@@ -1156,17 +1156,17 @@ RDKWindowManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [OnBlur](#event.OnBlur) | Notifies when an application is blurred |
-| [onConnected](#event.onConnected) | Notifies when an application is connected |
-| [onDisconnected](#event.onDisconnected) | Notifies when an application is disconnected |
-| [OnFocus](#event.OnFocus) | Notifies when an application is in focus |
-| [OnHidden](#event.OnHidden) | Notifies when an application is hidden |
-| [onReady](#event.onReady) | Posting the client for first frame ready. |
-| [onUserInactivity](#event.onUserInactivity) | Posting the client is inactive state |
-| [onVisible](#event.onVisible) | Notifies when an application is visible |
+| [OnBlur](#OnBlur) | Notifies when an application is blurred |
+| [onConnected](#onConnected) | Notifies when an application is connected |
+| [onDisconnected](#onDisconnected) | Notifies when an application is disconnected |
+| [OnFocus](#OnFocus) | Notifies when an application is in focus |
+| [OnHidden](#OnHidden) | Notifies when an application is hidden |
+| [onReady](#onReady) | Posting the client for first frame ready. |
+| [onUserInactivity](#onUserInactivity) | Posting the client is inactive state |
+| [onVisible](#onVisible) | Notifies when an application is visible |
 
-<a id="event.onBlur"></a>
-## *onBlur [<sup>event</sup>](#head.Notifications)*
+<a id="onBlur"></a>
+## *onBlur*
 
 Notifies when an application is blurred
 
@@ -1189,8 +1189,8 @@ Notifies when an application is blurred
 }
 ```
 
-<a id="event.onConnected"></a>
-## *onConnected [<sup>event</sup>](#head.Notifications)*
+<a id="onConnected"></a>
+## *onConnected*
 
 Notifies when an application is connected
 
@@ -1213,8 +1213,8 @@ Notifies when an application is connected
 }
 ```
 
-<a id="event.onDisconnected"></a>
-## *onDisconnected [<sup>event</sup>](#head.Notifications)*
+<a id="onDisconnected"></a>
+## *onDisconnected*
 
 Notifies when an application is disconnected
 
@@ -1237,8 +1237,8 @@ Notifies when an application is disconnected
 }
 ```
 
-<a id="event.onFocus"></a>
-## *onFocus [<sup>event</sup>](#head.Notifications)*
+<a id="onFocus"></a>
+## *onFocus*
 
 Notifies when an application is in focus
 
@@ -1261,8 +1261,8 @@ Notifies when an application is in focus
 }
 ```
 
-<a id="event.onHidden"></a>
-## *onHidden [<sup>event</sup>](#head.Notifications)*
+<a id="onHidden"></a>
+## *onHidden*
 
 Notifies when an application is hidden
 
@@ -1285,8 +1285,8 @@ Notifies when an application is hidden
 }
 ```
 
-<a id="event.onReady"></a>
-## *onReady [<sup>event</sup>](#head.Notifications)*
+<a id="onReady"></a>
+## *onReady*
 
 Posting the client for first frame ready.
 
@@ -1309,8 +1309,8 @@ Posting the client for first frame ready.
 }
 ```
 
-<a id="event.onUserInactivity"></a>
-## *onUserInactivity [<sup>event</sup>](#head.Notifications)*
+<a id="onUserInactivity"></a>
+## *onUserInactivity*
 
 Posting the client is inactive state
 
@@ -1333,8 +1333,8 @@ Posting the client is inactive state
 }
 ```
 
-<a id="event.onVisible"></a>
-## *onVisible [<sup>event</sup>](#head.Notifications)*
+<a id="onVisible"></a>
+## *onVisible*
 
 Notifies when an application is visible
 

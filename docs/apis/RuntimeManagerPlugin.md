@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.RuntimeManager_Plugin"></a>
+<a id="RuntimeManager_Plugin"></a>
 # RuntimeManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/RuntimeManager/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RuntimeManager)**
 
 A RuntimeManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `RuntimeManager` plugin provides an interface for RuntimeManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRuntimeManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the RuntimeManager plugin:
@@ -47,20 +47,20 @@ RuntimeManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [annotate](#method.annotate) | annotates are sent to Dobby for recording |
-| [getInfo](#method.getInfo) | get info of the application |
-| [hibernate](#method.hibernate) | Hibernate the application |
-| [kill](#method.kill) | Kill the application |
-| [mount](#method.mount) | mounts a new host directory/device inside container |
-| [resume](#method.resume) | Resume the application |
-| [run](#method.run) | Run the application |
-| [suspend](#method.suspend) | Suspend the application |
-| [terminate](#method.terminate) | Terminate the application |
-| [unmount](#method.unmount) | unmounts a new host directory/device inside container |
-| [wake](#method.wake) | Wake the application to given state |
+| [annotate](#annotate) | annotates are sent to Dobby for recording |
+| [getInfo](#getInfo) | get info of the application |
+| [hibernate](#hibernate) | Hibernate the application |
+| [kill](#kill) | Kill the application |
+| [mount](#mount) | mounts a new host directory/device inside container |
+| [resume](#resume) | Resume the application |
+| [run](#run) | Run the application |
+| [suspend](#suspend) | Suspend the application |
+| [terminate](#terminate) | Terminate the application |
+| [unmount](#unmount) | unmounts a new host directory/device inside container |
+| [wake](#wake) | Wake the application to given state |
 
-<a id="method.annotate"></a>
-## *annotate [<sup>method</sup>](#head.Methods)*
+<a id="annotate"></a>
+## *annotate*
 
 annotates are sent to Dobby for recording
 
@@ -114,8 +114,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getInfo"></a>
-## *getInfo [<sup>method</sup>](#head.Methods)*
+<a id="getInfo"></a>
+## *getInfo*
 
 get info of the application
 
@@ -168,8 +168,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.hibernate"></a>
-## *hibernate [<sup>method</sup>](#head.Methods)*
+<a id="hibernate"></a>
+## *hibernate*
 
 Hibernate the application
 
@@ -219,8 +219,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.kill"></a>
-## *kill [<sup>method</sup>](#head.Methods)*
+<a id="kill"></a>
+## *kill*
 
 Kill the application
 
@@ -270,8 +270,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.mount"></a>
-## *mount [<sup>method</sup>](#head.Methods)*
+<a id="mount"></a>
+## *mount*
 
 mounts a new host directory/device inside container
 
@@ -315,8 +315,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.resume"></a>
-## *resume [<sup>method</sup>](#head.Methods)*
+<a id="resume"></a>
+## *resume*
 
 Resume the application
 
@@ -366,8 +366,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.run"></a>
-## *run [<sup>method</sup>](#head.Methods)*
+<a id="run"></a>
+## *run*
 
 Run the application
 
@@ -487,8 +487,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.suspend"></a>
-## *suspend [<sup>method</sup>](#head.Methods)*
+<a id="suspend"></a>
+## *suspend*
 
 Suspend the application
 
@@ -538,8 +538,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.terminate"></a>
-## *terminate [<sup>method</sup>](#head.Methods)*
+<a id="terminate"></a>
+## *terminate*
 
 Terminate the application
 
@@ -589,8 +589,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.unmount"></a>
-## *unmount [<sup>method</sup>](#head.Methods)*
+<a id="unmount"></a>
+## *unmount*
 
 unmounts a new host directory/device inside container
 
@@ -634,8 +634,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.wake"></a>
-## *wake [<sup>method</sup>](#head.Methods)*
+<a id="wake"></a>
+## *wake*
 
 Wake the application to given state
 
@@ -689,10 +689,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the RuntimeManager plugin:
 
@@ -700,13 +700,13 @@ RuntimeManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFailure](#event.onFailure) | Notifies failure in container execution |
-| [onStarted](#event.onStarted) | Notifies container is started |
-| [onStateChanged](#event.onStateChanged) | Notifies state of container |
-| [onTerminated](#event.onTerminated) | Notifies container is shutdown |
+| [onFailure](#onFailure) | Notifies failure in container execution |
+| [onStarted](#onStarted) | Notifies container is started |
+| [onStateChanged](#onStateChanged) | Notifies state of container |
+| [onTerminated](#onTerminated) | Notifies container is shutdown |
 
-<a id="event.onFailure"></a>
-## *onFailure [<sup>event</sup>](#head.Notifications)*
+<a id="onFailure"></a>
+## *onFailure*
 
 Notifies failure in container execution
 
@@ -731,8 +731,8 @@ Notifies failure in container execution
 }
 ```
 
-<a id="event.onStarted"></a>
-## *onStarted [<sup>event</sup>](#head.Notifications)*
+<a id="onStarted"></a>
+## *onStarted*
 
 Notifies container is started
 
@@ -755,8 +755,8 @@ Notifies container is started
 }
 ```
 
-<a id="event.onStateChanged"></a>
-## *onStateChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onStateChanged"></a>
+## *onStateChanged*
 
 Notifies state of container
 
@@ -781,8 +781,8 @@ Notifies state of container
 }
 ```
 
-<a id="event.onTerminated"></a>
-## *onTerminated [<sup>event</sup>](#head.Notifications)*
+<a id="onTerminated"></a>
+## *onTerminated*
 
 Notifies container is shutdown
 

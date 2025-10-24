@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.HdmiCecSink_Plugin"></a>
+<a id="HdmiCecSink_Plugin"></a>
 # HdmiCecSink Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/HdmiCecSink/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdmiCecSink)**
 
 A HdmiCecSink plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `HdmiCecSink` plugin provides an interface for HdmiCecSink.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkHdmiCecSink.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the HdmiCecSink plugin:
@@ -47,35 +47,35 @@ HdmiCecSink interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getActiveRoute](#method.getActiveRoute) | Gets the Active Route(s) of the HDMI CEC Sink |
-| [getActiveSource](#method.getActiveSource) | Gets the status of the current active source |
-| [getAudioDeviceConnectedStatus](#method.getAudioDeviceConnectedStatus) | Gets audio device connected status |
-| [getDeviceList](#method.getDeviceList) | Gets the list of devices connected to the HDMI CEC sink |
-| [getEnabled](#method.getEnabled) | Gets the status of the HDMI CEC Sink |
-| [getOSDName](#method.getOSDName) | Gets the OSD name of the HDMI CEC Sink |
-| [getVendorId](#method.getVendorId) | Gets the vendor ID of the HDMI CEC Sink |
-| [printDeviceList](#method.printDeviceList) | This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices |
-| [requestActiveSource](#method.requestActiveSource) | Request the active source in the network |
-| [requestAudioDevicePowerStatus](#method.requestAudioDevicePowerStatus) | Requests the audio device power status. |
-| [requestShortAudioDescriptor](#method.requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an |
-| [sendAudioDevicePowerOnMessage](#method.sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network. |
-| [sendGetAudioStatusMessage](#method.sendGetAudioStatusMessage) | Sends the CEC <Give Audio Status> message to request the audio status. |
-| [sendKeyPressEvent](#method.sendKeyPressEvent) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
-| [sendStandbyMessage](#method.sendStandbyMessage) | Sends the CEC <Standby> message to another CEC device |
-| [sendUserControlPressed](#method.sendUserControlPressed) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
-| [sendUserControlReleased](#method.sendUserControlReleased) | Sends the CEC <User Control Released> message when TV remote key is released. |
-| [setActivePath](#method.setActivePath) | Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state. |
-| [setActiveSource](#method.setActiveSource) | Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps. |
-| [setEnabled](#method.setEnabled) | Sets the status of the HDMI CEC Sink |
-| [setLatencyInfo](#method.setLatencyInfo) | Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature. |
-| [setMenuLanguage](#method.setMenuLanguage) | Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message. |
-| [setOSDName](#method.setOSDName) | Sets the OSD name of the HDMI CEC Sink |
-| [setRoutingChange](#method.setRoutingChange) | Changes routing while switching between HDMI inputs and TV. |
-| [setVendorId](#method.setVendorId) | Sets the vendor ID of the HDMI CEC Sink |
-| [setupARCRouting](#method.setupARCRouting) | Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent. |
+| [getActiveRoute](#getActiveRoute) | Gets the Active Route(s) of the HDMI CEC Sink |
+| [getActiveSource](#getActiveSource) | Gets the status of the current active source |
+| [getAudioDeviceConnectedStatus](#getAudioDeviceConnectedStatus) | Gets audio device connected status |
+| [getDeviceList](#getDeviceList) | Gets the list of devices connected to the HDMI CEC sink |
+| [getEnabled](#getEnabled) | Gets the status of the HDMI CEC Sink |
+| [getOSDName](#getOSDName) | Gets the OSD name of the HDMI CEC Sink |
+| [getVendorId](#getVendorId) | Gets the vendor ID of the HDMI CEC Sink |
+| [printDeviceList](#printDeviceList) | This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices |
+| [requestActiveSource](#requestActiveSource) | Request the active source in the network |
+| [requestAudioDevicePowerStatus](#requestAudioDevicePowerStatus) | Requests the audio device power status. |
+| [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an |
+| [sendAudioDevicePowerOnMessage](#sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network. |
+| [sendGetAudioStatusMessage](#sendGetAudioStatusMessage) | Sends the CEC <Give Audio Status> message to request the audio status. |
+| [sendKeyPressEvent](#sendKeyPressEvent) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
+| [sendStandbyMessage](#sendStandbyMessage) | Sends the CEC <Standby> message to another CEC device |
+| [sendUserControlPressed](#sendUserControlPressed) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
+| [sendUserControlReleased](#sendUserControlReleased) | Sends the CEC <User Control Released> message when TV remote key is released. |
+| [setActivePath](#setActivePath) | Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state. |
+| [setActiveSource](#setActiveSource) | Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps. |
+| [setEnabled](#setEnabled) | Sets the status of the HDMI CEC Sink |
+| [setLatencyInfo](#setLatencyInfo) | Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature. |
+| [setMenuLanguage](#setMenuLanguage) | Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message. |
+| [setOSDName](#setOSDName) | Sets the OSD name of the HDMI CEC Sink |
+| [setRoutingChange](#setRoutingChange) | Changes routing while switching between HDMI inputs and TV. |
+| [setVendorId](#setVendorId) | Sets the vendor ID of the HDMI CEC Sink |
+| [setupARCRouting](#setupARCRouting) | Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent. |
 
-<a id="method.getActiveRoute"></a>
-## *getActiveRoute [<sup>method</sup>](#head.Methods)*
+<a id="getActiveRoute"></a>
+## *getActiveRoute*
 
 Gets the Active Route(s) of the HDMI CEC Sink
 
@@ -143,8 +143,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getActiveSource"></a>
-## *getActiveSource [<sup>method</sup>](#head.Methods)*
+<a id="getActiveSource"></a>
+## *getActiveSource*
 
 Gets the status of the current active source
 
@@ -209,8 +209,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getAudioDeviceConnectedStatus"></a>
-## *getAudioDeviceConnectedStatus [<sup>method</sup>](#head.Methods)*
+<a id="getAudioDeviceConnectedStatus"></a>
+## *getAudioDeviceConnectedStatus*
 
 Gets audio device connected status
 
@@ -259,8 +259,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#head.Methods)*
+<a id="getDeviceList"></a>
+## *getDeviceList*
 
 Gets the list of devices connected to the HDMI CEC sink
 
@@ -330,8 +330,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getEnabled"></a>
-## *getEnabled [<sup>method</sup>](#head.Methods)*
+<a id="getEnabled"></a>
+## *getEnabled*
 
 Gets the status of the HDMI CEC Sink
 
@@ -380,8 +380,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.getOSDName"></a>
-## *getOSDName [<sup>method</sup>](#head.Methods)*
+<a id="getOSDName"></a>
+## *getOSDName*
 
 Gets the OSD name of the HDMI CEC Sink
 
@@ -430,8 +430,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getVendorId"></a>
-## *getVendorId [<sup>method</sup>](#head.Methods)*
+<a id="getVendorId"></a>
+## *getVendorId*
 
 Gets the vendor ID of the HDMI CEC Sink
 
@@ -480,8 +480,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.printDeviceList"></a>
-## *printDeviceList [<sup>method</sup>](#head.Methods)*
+<a id="printDeviceList"></a>
+## *printDeviceList*
 
 This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices
 
@@ -530,8 +530,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.requestActiveSource"></a>
-## *requestActiveSource [<sup>method</sup>](#head.Methods)*
+<a id="requestActiveSource"></a>
+## *requestActiveSource*
 
 Request the active source in the network
 
@@ -578,8 +578,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.requestAudioDevicePowerStatus"></a>
-## *requestAudioDevicePowerStatus [<sup>method</sup>](#head.Methods)*
+<a id="requestAudioDevicePowerStatus"></a>
+## *requestAudioDevicePowerStatus*
 
 Requests the audio device power status.
 
@@ -626,8 +626,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.requestShortAudioDescriptor"></a>
-## *requestShortAudioDescriptor [<sup>method</sup>](#head.Methods)*
+<a id="requestShortAudioDescriptor"></a>
+## *requestShortAudioDescriptor*
 
 Sends the CEC Request Short Audio Descriptor (SAD) message as an
 
@@ -674,8 +674,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.sendAudioDevicePowerOnMessage"></a>
-## *sendAudioDevicePowerOnMessage [<sup>method</sup>](#head.Methods)*
+<a id="sendAudioDevicePowerOnMessage"></a>
+## *sendAudioDevicePowerOnMessage*
 
 This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
 
@@ -722,8 +722,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.sendGetAudioStatusMessage"></a>
-## *sendGetAudioStatusMessage [<sup>method</sup>](#head.Methods)*
+<a id="sendGetAudioStatusMessage"></a>
+## *sendGetAudioStatusMessage*
 
 Sends the CEC <Give Audio Status> message to request the audio status.
 
@@ -770,8 +770,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.sendKeyPressEvent"></a>
-## *sendKeyPressEvent [<sup>method</sup>](#head.Methods)*
+<a id="sendKeyPressEvent"></a>
+## *sendKeyPressEvent*
 
 Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
@@ -826,8 +826,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.sendStandbyMessage"></a>
-## *sendStandbyMessage [<sup>method</sup>](#head.Methods)*
+<a id="sendStandbyMessage"></a>
+## *sendStandbyMessage*
 
 Sends the CEC <Standby> message to another CEC device
 
@@ -874,8 +874,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.sendUserControlPressed"></a>
-## *sendUserControlPressed [<sup>method</sup>](#head.Methods)*
+<a id="sendUserControlPressed"></a>
+## *sendUserControlPressed*
 
 Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
@@ -930,8 +930,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.sendUserControlReleased"></a>
-## *sendUserControlReleased [<sup>method</sup>](#head.Methods)*
+<a id="sendUserControlReleased"></a>
+## *sendUserControlReleased*
 
 Sends the CEC <User Control Released> message when TV remote key is released.
 
@@ -984,8 +984,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.setActivePath"></a>
-## *setActivePath [<sup>method</sup>](#head.Methods)*
+<a id="setActivePath"></a>
+## *setActivePath*
 
 Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state.
 
@@ -1038,8 +1038,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.setActiveSource"></a>
-## *setActiveSource [<sup>method</sup>](#head.Methods)*
+<a id="setActiveSource"></a>
+## *setActiveSource*
 
 Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
 
@@ -1086,8 +1086,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.setEnabled"></a>
-## *setEnabled [<sup>method</sup>](#head.Methods)*
+<a id="setEnabled"></a>
+## *setEnabled*
 
 Sets the status of the HDMI CEC Sink
 
@@ -1140,8 +1140,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="method.setLatencyInfo"></a>
-## *setLatencyInfo [<sup>method</sup>](#head.Methods)*
+<a id="setLatencyInfo"></a>
+## *setLatencyInfo*
 
 Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
 
@@ -1200,8 +1200,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="method.setMenuLanguage"></a>
-## *setMenuLanguage [<sup>method</sup>](#head.Methods)*
+<a id="setMenuLanguage"></a>
+## *setMenuLanguage*
 
 Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
 
@@ -1254,8 +1254,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="method.setOSDName"></a>
-## *setOSDName [<sup>method</sup>](#head.Methods)*
+<a id="setOSDName"></a>
+## *setOSDName*
 
 Sets the OSD name of the HDMI CEC Sink
 
@@ -1308,8 +1308,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="method.setRoutingChange"></a>
-## *setRoutingChange [<sup>method</sup>](#head.Methods)*
+<a id="setRoutingChange"></a>
+## *setRoutingChange*
 
 Changes routing while switching between HDMI inputs and TV.
 
@@ -1364,8 +1364,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="method.setVendorId"></a>
-## *setVendorId [<sup>method</sup>](#head.Methods)*
+<a id="setVendorId"></a>
+## *setVendorId*
 
 Sets the vendor ID of the HDMI CEC Sink
 
@@ -1418,8 +1418,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="method.setupARCRouting"></a>
-## *setupARCRouting [<sup>method</sup>](#head.Methods)*
+<a id="setupARCRouting"></a>
+## *setupARCRouting*
 
 Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
 
@@ -1474,10 +1474,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the HdmiCecSink plugin:
 
@@ -1485,27 +1485,27 @@ HdmiCecSink interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [arcInitiationEvent](#event.arcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established. |
-| [arcTerminationEvent](#event.arcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates. |
-| [onActiveSourceChange](#event.onActiveSourceChange) | Triggered when the active source device changes. |
-| [onDeviceAdded](#event.onDeviceAdded) | Triggered when a new device is added to the CEC network. |
-| [onDeviceInfoUpdated](#event.onDeviceInfoUpdated) | Triggered when device information changes. |
-| [onDeviceRemoved](#event.onDeviceRemoved) | Triggered when a device is removed from the CEC network. |
-| [onImageViewOnMsg](#event.onImageViewOnMsg) | Triggered when an <Image View ON> CEC message is received from the source device. |
-| [onInActiveSource](#event.onInActiveSource) | Triggered when the source is no longer active. |
-| [onTextViewOnMsg](#event.onTextViewOnMsg) | Triggered when a <Text View ON> CEC message is received from the source device. |
-| [onWakeupFromStandby](#event.onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device. |
-| [reportAudioDeviceConnectedStatus](#event.reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed. |
-| [reportAudioDevicePowerStatus](#event.reportAudioDevicePowerStatus) | Triggered when the source device changes. |
-| [reportAudioStatusEvent](#event.reportAudioStatusEvent) | Triggered when CEC <Report Audio Status> message of device is received. |
-| [reportCecEnabledEvent](#event.reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled. |
-| [reportFeatureAbortEvent](#event.reportFeatureAbortEvent) | Triggered when CEC <Feature Abort> message of device is received. |
-| [setSystemAudioModeEvent](#event.setSystemAudioModeEvent) | Triggered when CEC <Set System Audio Mode> message of device is received. |
-| [shortAudiodescriptorEvent](#event.shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor. |
-| [standbyMessageReceived](#event.standbyMessageReceived) | Triggered when the source device changes status to STANDBY. |
+| [arcInitiationEvent](#arcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established. |
+| [arcTerminationEvent](#arcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates. |
+| [onActiveSourceChange](#onActiveSourceChange) | Triggered when the active source device changes. |
+| [onDeviceAdded](#onDeviceAdded) | Triggered when a new device is added to the CEC network. |
+| [onDeviceInfoUpdated](#onDeviceInfoUpdated) | Triggered when device information changes. |
+| [onDeviceRemoved](#onDeviceRemoved) | Triggered when a device is removed from the CEC network. |
+| [onImageViewOnMsg](#onImageViewOnMsg) | Triggered when an <Image View ON> CEC message is received from the source device. |
+| [onInActiveSource](#onInActiveSource) | Triggered when the source is no longer active. |
+| [onTextViewOnMsg](#onTextViewOnMsg) | Triggered when a <Text View ON> CEC message is received from the source device. |
+| [onWakeupFromStandby](#onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device. |
+| [reportAudioDeviceConnectedStatus](#reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed. |
+| [reportAudioDevicePowerStatus](#reportAudioDevicePowerStatus) | Triggered when the source device changes. |
+| [reportAudioStatusEvent](#reportAudioStatusEvent) | Triggered when CEC <Report Audio Status> message of device is received. |
+| [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled. |
+| [reportFeatureAbortEvent](#reportFeatureAbortEvent) | Triggered when CEC <Feature Abort> message of device is received. |
+| [setSystemAudioModeEvent](#setSystemAudioModeEvent) | Triggered when CEC <Set System Audio Mode> message of device is received. |
+| [shortAudiodescriptorEvent](#shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor. |
+| [standbyMessageReceived](#standbyMessageReceived) | Triggered when the source device changes status to STANDBY. |
 
-<a id="event.arcInitiationEvent"></a>
-## *arcInitiationEvent [<sup>event</sup>](#head.Notifications)*
+<a id="arcInitiationEvent"></a>
+## *arcInitiationEvent*
 
 Triggered when routing though the HDMI ARC port is successfully established.
 
@@ -1528,8 +1528,8 @@ Triggered when routing though the HDMI ARC port is successfully established.
 }
 ```
 
-<a id="event.arcTerminationEvent"></a>
-## *arcTerminationEvent [<sup>event</sup>](#head.Notifications)*
+<a id="arcTerminationEvent"></a>
+## *arcTerminationEvent*
 
 Triggered when routing though the HDMI ARC port terminates.
 
@@ -1552,8 +1552,8 @@ Triggered when routing though the HDMI ARC port terminates.
 }
 ```
 
-<a id="event.onActiveSourceChange"></a>
-## *onActiveSourceChange [<sup>event</sup>](#head.Notifications)*
+<a id="onActiveSourceChange"></a>
+## *onActiveSourceChange*
 
 Triggered when the active source device changes.
 
@@ -1578,8 +1578,8 @@ Triggered when the active source device changes.
 }
 ```
 
-<a id="event.onDeviceAdded"></a>
-## *onDeviceAdded [<sup>event</sup>](#head.Notifications)*
+<a id="onDeviceAdded"></a>
+## *onDeviceAdded*
 
 Triggered when a new device is added to the CEC network.
 
@@ -1602,8 +1602,8 @@ Triggered when a new device is added to the CEC network.
 }
 ```
 
-<a id="event.onDeviceInfoUpdated"></a>
-## *onDeviceInfoUpdated [<sup>event</sup>](#head.Notifications)*
+<a id="onDeviceInfoUpdated"></a>
+## *onDeviceInfoUpdated*
 
 Triggered when device information changes.
 
@@ -1626,8 +1626,8 @@ Triggered when device information changes.
 }
 ```
 
-<a id="event.onDeviceRemoved"></a>
-## *onDeviceRemoved [<sup>event</sup>](#head.Notifications)*
+<a id="onDeviceRemoved"></a>
+## *onDeviceRemoved*
 
 Triggered when a device is removed from the CEC network.
 
@@ -1650,8 +1650,8 @@ Triggered when a device is removed from the CEC network.
 }
 ```
 
-<a id="event.onImageViewOnMsg"></a>
-## *onImageViewOnMsg [<sup>event</sup>](#head.Notifications)*
+<a id="onImageViewOnMsg"></a>
+## *onImageViewOnMsg*
 
 Triggered when an <Image View ON> CEC message is received from the source device.
 
@@ -1674,8 +1674,8 @@ Triggered when an <Image View ON> CEC message is received from the source device
 }
 ```
 
-<a id="event.onInActiveSource"></a>
-## *onInActiveSource [<sup>event</sup>](#head.Notifications)*
+<a id="onInActiveSource"></a>
+## *onInActiveSource*
 
 Triggered when the source is no longer active.
 
@@ -1700,8 +1700,8 @@ Triggered when the source is no longer active.
 }
 ```
 
-<a id="event.onTextViewOnMsg"></a>
-## *onTextViewOnMsg [<sup>event</sup>](#head.Notifications)*
+<a id="onTextViewOnMsg"></a>
+## *onTextViewOnMsg*
 
 Triggered when a <Text View ON> CEC message is received from the source device.
 
@@ -1724,8 +1724,8 @@ Triggered when a <Text View ON> CEC message is received from the source device.
 }
 ```
 
-<a id="event.onWakeupFromStandby"></a>
-## *onWakeupFromStandby [<sup>event</sup>](#head.Notifications)*
+<a id="onWakeupFromStandby"></a>
+## *onWakeupFromStandby*
 
 Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device.
 
@@ -1748,8 +1748,8 @@ Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text 
 }
 ```
 
-<a id="event.reportAudioDeviceConnectedStatus"></a>
-## *reportAudioDeviceConnectedStatus [<sup>event</sup>](#head.Notifications)*
+<a id="reportAudioDeviceConnectedStatus"></a>
+## *reportAudioDeviceConnectedStatus*
 
 Triggered when an audio device is added or removed.
 
@@ -1774,8 +1774,8 @@ Triggered when an audio device is added or removed.
 }
 ```
 
-<a id="event.reportAudioDevicePowerStatus"></a>
-## *reportAudioDevicePowerStatus [<sup>event</sup>](#head.Notifications)*
+<a id="reportAudioDevicePowerStatus"></a>
+## *reportAudioDevicePowerStatus*
 
 Triggered when the source device changes.
 
@@ -1798,8 +1798,8 @@ Triggered when the source device changes.
 }
 ```
 
-<a id="event.reportAudioStatusEvent"></a>
-## *reportAudioStatusEvent [<sup>event</sup>](#head.Notifications)*
+<a id="reportAudioStatusEvent"></a>
+## *reportAudioStatusEvent*
 
 Triggered when CEC <Report Audio Status> message of device is received.
 
@@ -1824,8 +1824,8 @@ Triggered when CEC <Report Audio Status> message of device is received.
 }
 ```
 
-<a id="event.reportCecEnabledEvent"></a>
-## *reportCecEnabledEvent [<sup>event</sup>](#head.Notifications)*
+<a id="reportCecEnabledEvent"></a>
+## *reportCecEnabledEvent*
 
 Triggered when the HDMI-CEC is enabled.
 
@@ -1848,8 +1848,8 @@ Triggered when the HDMI-CEC is enabled.
 }
 ```
 
-<a id="event.reportFeatureAbortEvent"></a>
-## *reportFeatureAbortEvent [<sup>event</sup>](#head.Notifications)*
+<a id="reportFeatureAbortEvent"></a>
+## *reportFeatureAbortEvent*
 
 Triggered when CEC <Feature Abort> message of device is received.
 
@@ -1876,8 +1876,8 @@ Triggered when CEC <Feature Abort> message of device is received.
 }
 ```
 
-<a id="event.setSystemAudioModeEvent"></a>
-## *setSystemAudioModeEvent [<sup>event</sup>](#head.Notifications)*
+<a id="setSystemAudioModeEvent"></a>
+## *setSystemAudioModeEvent*
 
 Triggered when CEC <Set System Audio Mode> message of device is received.
 
@@ -1900,8 +1900,8 @@ Triggered when CEC <Set System Audio Mode> message of device is received.
 }
 ```
 
-<a id="event.shortAudiodescriptorEvent"></a>
-## *shortAudiodescriptorEvent [<sup>event</sup>](#head.Notifications)*
+<a id="shortAudiodescriptorEvent"></a>
+## *shortAudiodescriptorEvent*
 
 Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
 
@@ -1924,8 +1924,8 @@ Triggered when SAD is received from the connected audio device. See requestShort
 }
 ```
 
-<a id="event.standbyMessageReceived"></a>
-## *standbyMessageReceived [<sup>event</sup>](#head.Notifications)*
+<a id="standbyMessageReceived"></a>
+## *standbyMessageReceived*
 
 Triggered when the source device changes status to STANDBY.
 

@@ -25,7 +25,7 @@ HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
 <a id="{classname}_Plugin"></a>
 # {classname} Plugin
 
-**Version: [{version}](https://github.com/rdkcentral/rdkservices/blob/main/{classname}/CHANGELOG.md)**
+**Version: [{version}](https://github.com/rdkcentral/entservices-apis/tree/main/{foldername})**
 
 A {classname} plugin for Thunder framework.
 
@@ -160,11 +160,11 @@ def to_camel_case(name):
     """Convert UpperCamelCase to lowerCamelCase."""
     return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-def generate_header_toc(classname, document_object, version):
+def generate_header_toc(classname, document_object, version, foldername):
     """
     Generate the header table of contents for the markdown file.
     """
-    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version)
+    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=foldername)
     if len(document_object.methods.values()) > 0:
         toc += "- [Methods](#Methods)\n"
     if len(document_object.properties.values()) > 0:

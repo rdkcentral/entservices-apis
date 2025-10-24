@@ -1,33 +1,33 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.AppManager_Plugin"></a>
+<a id="AppManager_Plugin"></a>
 # AppManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/AppManager/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppManager)**
 
 A AppManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Properties](#head.Properties)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Properties](#Properties)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `AppManager` plugin provides an interface for AppManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -39,7 +39,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAppManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the AppManager plugin:
@@ -48,25 +48,25 @@ AppManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clearAllAppData](#method.clearAllAppData) | Clears all persistent data for all apps. |
-| [clearAppData](#method.clearAppData) | Clears all persistent data for a given appId. |
-| [closeApp](#method.closeApp) | closeApp moves the state from Active to Running state |
-| [getAppMetadata](#method.getAppMetadata) | Retrieves meta data about an installed app |
-| [getAppProperty](#method.getAppProperty) | Gets a property for a given app. |
-| [getInstalledApps](#method.getInstalledApps) | Function fetches the details of all applications currently installed |
-| [getLoadedApps](#method.getLoadedApps) | Retrieves a list of applications currently loaded on the system. |
-| [isInstalled](#method.isInstalled) | check whether the Application is installed or not |
-| [killApp](#method.killApp) | killApp will terminate forcefully |
-| [launchApp](#method.launchApp) | Launch an Application and app will be in ACTIVE state. |
-| [preloadApp](#method.preloadApp) | Preloads an Application and app will be in the RUNNING state (hidden). |
-| [sendIntent](#method.sendIntent) | Sends an intent to a loaded app. |
-| [setAppProperty](#method.setAppProperty) | Sets a property for a given app |
-| [startSystemApp](#method.startSystemApp) | Start the System Application |
-| [stopSystemApp](#method.stopSystemApp) | Stop the System Application |
-| [terminateApp](#method.terminateApp) | TerminateApp will terminate gracefully |
+| [clearAllAppData](#clearAllAppData) | Clears all persistent data for all apps. |
+| [clearAppData](#clearAppData) | Clears all persistent data for a given appId. |
+| [closeApp](#closeApp) | closeApp moves the state from Active to Running state |
+| [getAppMetadata](#getAppMetadata) | Retrieves meta data about an installed app |
+| [getAppProperty](#getAppProperty) | Gets a property for a given app. |
+| [getInstalledApps](#getInstalledApps) | Function fetches the details of all applications currently installed |
+| [getLoadedApps](#getLoadedApps) | Retrieves a list of applications currently loaded on the system. |
+| [isInstalled](#isInstalled) | check whether the Application is installed or not |
+| [killApp](#killApp) | killApp will terminate forcefully |
+| [launchApp](#launchApp) | Launch an Application and app will be in ACTIVE state. |
+| [preloadApp](#preloadApp) | Preloads an Application and app will be in the RUNNING state (hidden). |
+| [sendIntent](#sendIntent) | Sends an intent to a loaded app. |
+| [setAppProperty](#setAppProperty) | Sets a property for a given app |
+| [startSystemApp](#startSystemApp) | Start the System Application |
+| [stopSystemApp](#stopSystemApp) | Stop the System Application |
+| [terminateApp](#terminateApp) | TerminateApp will terminate gracefully |
 
-<a id="method.clearAllAppData"></a>
-## *clearAllAppData [<sup>method</sup>](#head.Methods)*
+<a id="clearAllAppData"></a>
+## *clearAllAppData*
 
 Clears all persistent data for all apps.
 
@@ -110,8 +110,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.clearAppData"></a>
-## *clearAppData [<sup>method</sup>](#head.Methods)*
+<a id="clearAppData"></a>
+## *clearAppData*
 
 Clears all persistent data for a given appId.
 
@@ -161,8 +161,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.closeApp"></a>
-## *closeApp [<sup>method</sup>](#head.Methods)*
+<a id="closeApp"></a>
+## *closeApp*
 
 closeApp moves the state from Active to Running state
 
@@ -212,8 +212,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getAppMetadata"></a>
-## *getAppMetadata [<sup>method</sup>](#head.Methods)*
+<a id="getAppMetadata"></a>
+## *getAppMetadata*
 
 Retrieves meta data about an installed app
 
@@ -268,8 +268,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getAppProperty"></a>
-## *getAppProperty [<sup>method</sup>](#head.Methods)*
+<a id="getAppProperty"></a>
+## *getAppProperty*
 
 Gets a property for a given app.
 
@@ -324,8 +324,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.getInstalledApps"></a>
-## *getInstalledApps [<sup>method</sup>](#head.Methods)*
+<a id="getInstalledApps"></a>
+## *getInstalledApps*
 
 Function fetches the details of all applications currently installed
 
@@ -372,8 +372,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getLoadedApps"></a>
-## *getLoadedApps [<sup>method</sup>](#head.Methods)*
+<a id="getLoadedApps"></a>
+## *getLoadedApps*
 
 Retrieves a list of applications currently loaded on the system.
 
@@ -385,7 +385,12 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.apps | string | A list containing the details of installed applications. |
+| result.apps | ILoadedAppInfoIterator | A list containing the details of loaded applications |
+| result.apps[#].appId | string |  |
+| result.apps[#].appInstanceId | string |  |
+| result.apps[#].activeSessionId | string |  |
+| result.apps[#].targetLifecycleState | string |  |
+| result.apps[#].currentLifecycleState | string |  |
 
 ### Examples
 
@@ -414,14 +419,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "apps": ""
-    }
+    "result": [
+        {
+            "appId": "",
+            "appInstanceId": "",
+            "activeSessionId": "",
+            "targetLifecycleState": "APP_STATE_UNKNOWN",
+            "currentLifecycleState": "APP_STATE_UNKNOWN"
+        }
+    ]
 }
 ```
 
-<a id="method.isInstalled"></a>
-## *isInstalled [<sup>method</sup>](#head.Methods)*
+<a id="isInstalled"></a>
+## *isInstalled*
 
 check whether the Application is installed or not
 
@@ -435,7 +446,8 @@ Event details are missing in the header file documentation.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | bool | if it is installed then return true otherwise false |
+| result | object |  |
+| result.installed | bool | if it is installed then return true otherwise false |
 
 ### Examples
 
@@ -467,12 +479,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": true
+    "result": {
+        "installed": true
+    }
 }
 ```
 
-<a id="method.killApp"></a>
-## *killApp [<sup>method</sup>](#head.Methods)*
+<a id="killApp"></a>
+## *killApp*
 
 killApp will terminate forcefully
 
@@ -522,8 +536,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.launchApp"></a>
-## *launchApp [<sup>method</sup>](#head.Methods)*
+<a id="launchApp"></a>
+## *launchApp*
 
 Launch an Application and app will be in ACTIVE state.
 
@@ -577,8 +591,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.preloadApp"></a>
-## *preloadApp [<sup>method</sup>](#head.Methods)*
+<a id="preloadApp"></a>
+## *preloadApp*
 
 Preloads an Application and app will be in the RUNNING state (hidden).
 
@@ -593,7 +607,8 @@ Event details are missing in the header file documentation.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | string | if success = false it holds the appropriate error reason. |
+| result | object |  |
+| result.error | string | if success = false it holds the appropriate error reason. |
 
 ### Examples
 
@@ -626,12 +641,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": ""
+    "result": {
+        "error": ""
+    }
 }
 ```
 
-<a id="method.sendIntent"></a>
-## *sendIntent [<sup>method</sup>](#head.Methods)*
+<a id="sendIntent"></a>
+## *sendIntent*
 
 Sends an intent to a loaded app.
 
@@ -683,8 +700,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.setAppProperty"></a>
-## *setAppProperty [<sup>method</sup>](#head.Methods)*
+<a id="setAppProperty"></a>
+## *setAppProperty*
 
 Sets a property for a given app
 
@@ -738,8 +755,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.startSystemApp"></a>
-## *startSystemApp [<sup>method</sup>](#head.Methods)*
+<a id="startSystemApp"></a>
+## *startSystemApp*
 
 Start the System Application
 
@@ -789,8 +806,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.stopSystemApp"></a>
-## *stopSystemApp [<sup>method</sup>](#head.Methods)*
+<a id="stopSystemApp"></a>
+## *stopSystemApp*
 
 Stop the System Application
 
@@ -840,8 +857,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.terminateApp"></a>
-## *terminateApp [<sup>method</sup>](#head.Methods)*
+<a id="terminateApp"></a>
+## *terminateApp*
 
 TerminateApp will terminate gracefully
 
@@ -892,7 +909,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 
-<a id="head.Properties"></a>
+<a id="Properties"></a>
 # Properties
 The following properties are provided by the AppManager plugin:
 
@@ -900,13 +917,13 @@ AppManager interface properties:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getMaxHibernatedApps](#property.getMaxHibernatedApps)<sup>RO</sup> | Get the maximum number of apps to maintain in the hibernated state |
-| [getMaxHibernatedFlashUsage](#property.getMaxHibernatedFlashUsage)<sup>RO</sup> | Gets the max size of flash to use for hibernated apps (in mebibytes) |
-| [getMaxInactiveRamUsage](#property.getMaxInactiveRamUsage)<sup>RO</sup> | Gets the max amount of ram available for inactive apps (in mebibytes) |
-| [getMaxRunningApps](#property.getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state |
+| [getMaxHibernatedApps](#getMaxHibernatedApps)<sup>RO</sup> | Get the maximum number of apps to maintain in the hibernated state |
+| [getMaxHibernatedFlashUsage](#getMaxHibernatedFlashUsage)<sup>RO</sup> | Gets the max size of flash to use for hibernated apps (in mebibytes) |
+| [getMaxInactiveRamUsage](#getMaxInactiveRamUsage)<sup>RO</sup> | Gets the max amount of ram available for inactive apps (in mebibytes) |
+| [getMaxRunningApps](#getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state |
 
-<a id="property.GetMaxHibernatedApps"></a>
-## *GetMaxHibernatedApps [<sup>property</sup>](#head.Properties)*
+<a id="GetMaxHibernatedApps"></a>
+## *GetMaxHibernatedApps*
 
 Get the maximum number of apps to maintain in the hibernated state
 
@@ -951,8 +968,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="property.GetMaxHibernatedFlashUsage"></a>
-## *GetMaxHibernatedFlashUsage [<sup>property</sup>](#head.Properties)*
+<a id="GetMaxHibernatedFlashUsage"></a>
+## *GetMaxHibernatedFlashUsage*
 
 Gets the max size of flash to use for hibernated apps (in mebibytes)
 
@@ -997,8 +1014,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="property.GetMaxInactiveRamUsage"></a>
-## *GetMaxInactiveRamUsage [<sup>property</sup>](#head.Properties)*
+<a id="GetMaxInactiveRamUsage"></a>
+## *GetMaxInactiveRamUsage*
 
 Gets the max amount of ram available for inactive apps (in mebibytes)
 
@@ -1043,8 +1060,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="property.GetMaxRunningApps"></a>
-## *GetMaxRunningApps [<sup>property</sup>](#head.Properties)*
+<a id="GetMaxRunningApps"></a>
+## *GetMaxRunningApps*
 
 Gets the maximum number of apps to maintain in the running or suspended state
 
@@ -1090,10 +1107,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the AppManager plugin:
 
@@ -1101,14 +1118,14 @@ AppManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onAppInstalled](#event.onAppInstalled) | Triggered whenever the App is installed. |
-| [onAppLaunchRequest](#event.onAppLaunchRequest) | Triggered whenever there is a request for App Launch. |
-| [onAppLifecycleStateChanged](#event.onAppLifecycleStateChanged) | Triggered whenever there is a change in the lifecycle state of a running app. |
-| [onAppUninstalled](#event.onAppUninstalled) | Triggered whenever the App is uninstalled. |
-| [onAppUnloaded](#event.onAppUnloaded) | Triggered whenever the App is unloaded(terminated). |
+| [onAppInstalled](#onAppInstalled) | Triggered whenever the App is installed. |
+| [onAppLaunchRequest](#onAppLaunchRequest) | Triggered whenever there is a request for App Launch. |
+| [onAppLifecycleStateChanged](#onAppLifecycleStateChanged) | Triggered whenever there is a change in the lifecycle state of a running app. |
+| [onAppUninstalled](#onAppUninstalled) | Triggered whenever the App is uninstalled. |
+| [onAppUnloaded](#onAppUnloaded) | Triggered whenever the App is unloaded(terminated). |
 
-<a id="event.onAppInstalled"></a>
-## *onAppInstalled [<sup>event</sup>](#head.Notifications)*
+<a id="onAppInstalled"></a>
+## *onAppInstalled*
 
 Triggered whenever the App is installed.
 
@@ -1133,8 +1150,8 @@ Triggered whenever the App is installed.
 }
 ```
 
-<a id="event.onAppLaunchRequest"></a>
-## *onAppLaunchRequest [<sup>event</sup>](#head.Notifications)*
+<a id="onAppLaunchRequest"></a>
+## *onAppLaunchRequest*
 
 Triggered whenever there is a request for App Launch.
 
@@ -1161,8 +1178,8 @@ Triggered whenever there is a request for App Launch.
 }
 ```
 
-<a id="event.onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onAppLifecycleStateChanged"></a>
+## *onAppLifecycleStateChanged*
 
 Triggered whenever there is a change in the lifecycle state of a running app.
 
@@ -1193,8 +1210,8 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 }
 ```
 
-<a id="event.onAppUninstalled"></a>
-## *onAppUninstalled [<sup>event</sup>](#head.Notifications)*
+<a id="onAppUninstalled"></a>
+## *onAppUninstalled*
 
 Triggered whenever the App is uninstalled.
 
@@ -1217,8 +1234,8 @@ Triggered whenever the App is uninstalled.
 }
 ```
 
-<a id="event.onAppUnloaded"></a>
-## *onAppUnloaded [<sup>event</sup>](#head.Notifications)*
+<a id="onAppUnloaded"></a>
+## *onAppUnloaded*
 
 Triggered whenever the App is unloaded(terminated).
 

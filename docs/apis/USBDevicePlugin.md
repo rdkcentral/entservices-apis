@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.USBDevice_Plugin"></a>
+<a id="USBDevice_Plugin"></a>
 # USBDevice Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/USBDevice/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice)**
 
 A USBDevice plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `USBDevice` plugin provides an interface for USBDevice.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBDevice.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the USBDevice plugin:
@@ -47,13 +47,13 @@ USBDevice interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [bindDriver](#method.bindDriver) | Bind the respective driver for the device |
-| [getDeviceInfo](#method.getDeviceInfo) | Get the extended USB device information for the provided device name |
-| [getDeviceList](#method.getDeviceList) | Get the basic information about list of devices connected with the system. |
-| [unbindDriver](#method.unbindDriver) | Unbind the respective driver for the device |
+| [bindDriver](#bindDriver) | Bind the respective driver for the device |
+| [getDeviceInfo](#getDeviceInfo) | Get the extended USB device information for the provided device name |
+| [getDeviceList](#getDeviceList) | Get the basic information about list of devices connected with the system. |
+| [unbindDriver](#unbindDriver) | Unbind the respective driver for the device |
 
-<a id="method.bindDriver"></a>
-## *bindDriver [<sup>method</sup>](#head.Methods)*
+<a id="bindDriver"></a>
+## *bindDriver*
 
 Bind the respective driver for the device
 
@@ -103,8 +103,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getDeviceInfo"></a>
-## *getDeviceInfo [<sup>method</sup>](#head.Methods)*
+<a id="getDeviceInfo"></a>
+## *getDeviceInfo*
 
 Get the extended USB device information for the provided device name
 
@@ -235,8 +235,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#head.Methods)*
+<a id="getDeviceList"></a>
+## *getDeviceList*
 
 Get the basic information about list of devices connected with the system.
 
@@ -292,8 +292,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.unbindDriver"></a>
-## *unbindDriver [<sup>method</sup>](#head.Methods)*
+<a id="unbindDriver"></a>
+## *unbindDriver*
 
 Unbind the respective driver for the device
 
@@ -345,10 +345,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the USBDevice plugin:
 
@@ -356,11 +356,11 @@ USBDevice interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDevicePluggedIn](#event.onDevicePluggedIn) | Device Plugged in notification |
-| [onDevicePluggedOut](#event.onDevicePluggedOut) | Device Plugged out notification |
+| [onDevicePluggedIn](#onDevicePluggedIn) | Device Plugged in notification |
+| [onDevicePluggedOut](#onDevicePluggedOut) | Device Plugged out notification |
 
-<a id="event.onDevicePluggedIn"></a>
-## *onDevicePluggedIn [<sup>event</sup>](#head.Notifications)*
+<a id="onDevicePluggedIn"></a>
+## *onDevicePluggedIn*
 
 Device Plugged in notification
 
@@ -390,8 +390,8 @@ Device Plugged in notification
 }
 ```
 
-<a id="event.onDevicePluggedOut"></a>
-## *onDevicePluggedOut [<sup>event</sup>](#head.Notifications)*
+<a id="onDevicePluggedOut"></a>
+## *onDevicePluggedOut*
 
 Device Plugged out notification
 

@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.SharedStorage_Plugin"></a>
+<a id="SharedStorage_Plugin"></a>
 # SharedStorage Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/SharedStorage/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SharedStorage)**
 
 A SharedStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `SharedStorage` plugin provides an interface for SharedStorage.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSharedStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the SharedStorage plugin:
@@ -47,19 +47,19 @@ SharedStorage interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#method.deleteKey) | Deletes a key from the specified namespace |
-| [deleteNamespace](#method.deleteNamespace) | Deletes the specified namespace |
-| [flushCache](#method.flushCache) | Flushes the device cache |
-| [getKeys](#method.getKeys) | Returns the keys that are stored in the specified namespace |
-| [getNamespaceStorageLimit](#method.getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
-| [getNamespaces](#method.getNamespaces) | Returns the namespaces |
-| [getStorageSizes](#method.getStorageSizes) | Returns the size occupied by each namespace |
-| [getValue](#method.getValue) | Returns the value of a key from the specified namespace. |
-| [setNamespaceStorageLimit](#method.setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
-| [setValue](#method.setValue) | Sets the value of a key in the the specified namespace |
+| [deleteKey](#deleteKey) | Deletes a key from the specified namespace |
+| [deleteNamespace](#deleteNamespace) | Deletes the specified namespace |
+| [flushCache](#flushCache) | Flushes the device cache |
+| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
+| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
+| [getNamespaces](#getNamespaces) | Returns the namespaces |
+| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
+| [getValue](#getValue) | Returns the value of a key from the specified namespace. |
+| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
+| [setValue](#setValue) | Sets the value of a key in the the specified namespace |
 
-<a id="method.deleteKey"></a>
-## *deleteKey [<sup>method</sup>](#head.Methods)*
+<a id="deleteKey"></a>
+## *deleteKey*
 
 Deletes a key from the specified namespace
 
@@ -116,8 +116,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.deleteNamespace"></a>
-## *deleteNamespace [<sup>method</sup>](#head.Methods)*
+<a id="deleteNamespace"></a>
+## *deleteNamespace*
 
 Deletes the specified namespace
 
@@ -172,8 +172,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.flushCache"></a>
-## *flushCache [<sup>method</sup>](#head.Methods)*
+<a id="flushCache"></a>
+## *flushCache*
 
 Flushes the device cache
 
@@ -217,8 +217,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getKeys"></a>
-## *getKeys [<sup>method</sup>](#head.Methods)*
+<a id="getKeys"></a>
+## *getKeys*
 
 Returns the keys that are stored in the specified namespace
 
@@ -278,8 +278,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
+<a id="getNamespaceStorageLimit"></a>
+## *getNamespaceStorageLimit*
 
 Returns the storage limit for a given namespace
 
@@ -334,8 +334,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.getNamespaces"></a>
-## *getNamespaces [<sup>method</sup>](#head.Methods)*
+<a id="getNamespaces"></a>
+## *getNamespaces*
 
 Returns the namespaces
 
@@ -393,8 +393,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.getStorageSizes"></a>
-## *getStorageSizes [<sup>method</sup>](#head.Methods)*
+<a id="getStorageSizes"></a>
+## *getStorageSizes*
 
 Returns the size occupied by each namespace
 
@@ -456,8 +456,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.getValue"></a>
-## *getValue [<sup>method</sup>](#head.Methods)*
+<a id="getValue"></a>
+## *getValue*
 
 Returns the value of a key from the specified namespace.
 
@@ -518,8 +518,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit [<sup>method</sup>](#head.Methods)*
+<a id="setNamespaceStorageLimit"></a>
+## *setNamespaceStorageLimit*
 
 Sets the storage limit for a given namespace
 
@@ -576,8 +576,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.setValue"></a>
-## *setValue [<sup>method</sup>](#head.Methods)*
+<a id="setValue"></a>
+## *setValue*
 
 Sets the value of a key in the the specified namespace
 
@@ -640,10 +640,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the SharedStorage plugin:
 
@@ -651,10 +651,10 @@ SharedStorage interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onValueChanged](#event.onValueChanged) | Values stored are changed using setValue |
+| [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
 
-<a id="event.onValueChanged"></a>
-## *onValueChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onValueChanged"></a>
+## *onValueChanged*
 
 Values stored are changed using setValue
 

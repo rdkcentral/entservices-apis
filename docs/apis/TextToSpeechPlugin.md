@@ -1,32 +1,33 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.TextToSpeech_Plugin"></a>
+<a id="TextToSpeech_Plugin"></a>
 # TextToSpeech Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/TextToSpeech/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextToSpeech)**
 
 A TextToSpeech plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Properties](#head.Properties)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Properties](#Properties)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `TextToSpeech` plugin provides an interface for TextToSpeech.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +39,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkTextToSpeech.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the TextToSpeech plugin:
@@ -47,32 +48,22 @@ TextToSpeech interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancel](#method.cancel) | Cancel the speech |
-| [enabled](#method.enabled) | Notify TTS enabled/disabled |
-| [getConfiguration](#method.getConfiguration) | Retrieve tts configuration attributes |
-| [getSpeechState](#method.getSpeechState) | Get speech status |
-| [listVoices](#method.listVoices) | List voices available |
-| [networkError](#method.networkError) |  |
-| [pause](#method.pause) | Pause the speech |
-| [playbackError](#method.playbackError) |  |
-| [registerWithCallsign](#method.registerWithCallsign) |  |
-| [resume](#method.resume) | Resume the speech |
-| [setACL](#method.setACL) |  |
-| [setAPIKey](#method.setAPIKey) |  |
-| [setConfiguration](#method.setConfiguration) | Set the tts configuration attributes |
-| [setFallbackText](#method.setFallbackText) |  |
-| [setPrimaryVolDuck](#method.setPrimaryVolDuck) |  |
-| [speak](#method.speak) | Speaks text provided |
-| [speechComplete](#method.speechComplete) |  |
-| [speechInterrupted](#method.speechInterrupted) |  |
-| [speechPause](#method.speechPause) |  |
-| [speechResume](#method.speechResume) |  |
-| [speechStart](#method.speechStart) |  |
-| [voiceChanged](#method.voiceChanged) | Notify change in voice used for speaking |
-| [willSpeak](#method.willSpeak) | Notify speechid based on the speech state(eg: start,pause,..etc) |
+| [cancel](#cancel) | Cancel the speech |
+| [getConfiguration](#getConfiguration) | Retrieve tts configuration attributes |
+| [getSpeechState](#getSpeechState) | Get speech status |
+| [listVoices](#listVoices) | List voices available |
+| [pause](#pause) | Pause the speech |
+| [registerWithCallsign](#registerWithCallsign) |  |
+| [resume](#resume) | Resume the speech |
+| [setACL](#setACL) |  |
+| [setAPIKey](#setAPIKey) |  |
+| [setConfiguration](#setConfiguration) | Set the tts configuration attributes |
+| [setFallbackText](#setFallbackText) |  |
+| [setPrimaryVolDuck](#setPrimaryVolDuck) |  |
+| [speak](#speak) | Speaks text provided |
 
-<a id="method.cancel"></a>
-## *cancel [<sup>method</sup>](#head.Methods)*
+<a id="cancel"></a>
+## *cancel*
 
 Cancel the speech
 
@@ -122,59 +113,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.enabled"></a>
-## *enabled [<sup>method</sup>](#head.Methods)*
-
-Notify TTS enabled/disabled
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.state | bool | enabled/disabled |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.TextToSpeech.enabled",
-    "params": {
-        "state": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextToSpeech.enabled", "params": {"state": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
-}
-```
-
-<a id="method.getConfiguration"></a>
-## *getConfiguration [<sup>method</sup>](#head.Methods)*
+<a id="getConfiguration"></a>
+## *getConfiguration*
 
 Retrieve tts configuration attributes
 
@@ -203,7 +143,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 1,
     "method": "org.rdk.TextToSpeech.getConfiguration"
 }
 ```
@@ -212,7 +152,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextToSpeech.getConfiguration"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextToSpeech.getConfiguration"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -221,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 1,
     "result": {
         "ttsEndPoint": "",
         "ttsEndPointSecured": "",
@@ -234,8 +174,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.getSpeechState"></a>
-## *getSpeechState [<sup>method</sup>](#head.Methods)*
+<a id="getSpeechState"></a>
+## *getSpeechState*
 
 Get speech status
 
@@ -260,7 +200,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 2,
     "method": "org.rdk.TextToSpeech.getSpeechState",
     "params": {
         "speechid": 0
@@ -272,7 +212,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextToSpeech.getSpeechState", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextToSpeech.getSpeechState", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -281,15 +221,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 2,
     "result": {
         "state": "SPEECH_PENDING"
     }
 }
 ```
 
-<a id="method.listVoices"></a>
-## *listVoices [<sup>method</sup>](#head.Methods)*
+<a id="listVoices"></a>
+## *listVoices*
 
 List voices available
 
@@ -315,7 +255,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 3,
     "method": "org.rdk.TextToSpeech.listVoices",
     "params": {
         "language": ""
@@ -327,7 +267,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextToSpeech.listVoices", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextToSpeech.listVoices", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -336,66 +276,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 3,
     "result": [
         ""
     ]
 }
 ```
 
-<a id="method.networkError"></a>
-## *networkError [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.TextToSpeech.networkError",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextToSpeech.networkError", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
-}
-```
-
-<a id="method.pause"></a>
-## *pause [<sup>method</sup>](#head.Methods)*
+<a id="pause"></a>
+## *pause*
 
 Pause the speech
 
@@ -420,7 +309,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 4,
     "method": "org.rdk.TextToSpeech.pause",
     "params": {
         "speechid": 0
@@ -432,7 +321,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextToSpeech.pause", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextToSpeech.pause", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -441,66 +330,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 4,
     "result": {
         "status": "TTS_OK"
     }
 }
 ```
 
-<a id="method.playbackError"></a>
-## *playbackError [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.TextToSpeech.playbackError",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextToSpeech.playbackError", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": null
-}
-```
-
-<a id="method.registerWithCallsign"></a>
-## *registerWithCallsign [<sup>method</sup>](#head.Methods)*
+<a id="registerWithCallsign"></a>
+## *registerWithCallsign*
 
 
 
@@ -525,7 +363,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 5,
     "method": "org.rdk.TextToSpeech.registerWithCallsign",
     "params": {
         "callsign": "",
@@ -538,7 +376,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextToSpeech.registerWithCallsign", "params": {"callsign": "", "sink": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextToSpeech.registerWithCallsign", "params": {"callsign": "", "sink": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -547,13 +385,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 5,
     "result": null
 }
 ```
 
-<a id="method.resume"></a>
-## *resume [<sup>method</sup>](#head.Methods)*
+<a id="resume"></a>
+## *resume*
 
 Resume the speech
 
@@ -578,7 +416,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 6,
     "method": "org.rdk.TextToSpeech.resume",
     "params": {
         "speechid": 0
@@ -590,7 +428,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextToSpeech.resume", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextToSpeech.resume", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -599,15 +437,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 6,
     "result": {
         "status": "TTS_OK"
     }
 }
 ```
 
-<a id="method.setACL"></a>
-## *setACL [<sup>method</sup>](#head.Methods)*
+<a id="setACL"></a>
+## *setACL*
 
 
 
@@ -632,7 +470,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 7,
     "method": "org.rdk.TextToSpeech.setACL",
     "params": {
         "method": "",
@@ -645,7 +483,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextToSpeech.setACL", "params": {"method": "", "apps": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextToSpeech.setACL", "params": {"method": "", "apps": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -654,13 +492,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 7,
     "result": null
 }
 ```
 
-<a id="method.setAPIKey"></a>
-## *setAPIKey [<sup>method</sup>](#head.Methods)*
+<a id="setAPIKey"></a>
+## *setAPIKey*
 
 
 
@@ -684,7 +522,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 8,
     "method": "org.rdk.TextToSpeech.setAPIKey",
     "params": {
         "apikey": ""
@@ -696,7 +534,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextToSpeech.setAPIKey", "params": {"apikey": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextToSpeech.setAPIKey", "params": {"apikey": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -705,13 +543,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 8,
     "result": null
 }
 ```
 
-<a id="method.setConfiguration"></a>
-## *setConfiguration [<sup>method</sup>](#head.Methods)*
+<a id="setConfiguration"></a>
+## *setConfiguration*
 
 Set the tts configuration attributes
 
@@ -743,7 +581,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 9,
     "method": "org.rdk.TextToSpeech.setConfiguration",
     "params": {
         "ttsEndPoint": "",
@@ -761,7 +599,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextToSpeech.setConfiguration", "params": {"ttsEndPoint": "", "ttsEndPointSecured": "", "language": "", "voice": "", "speechRate": "", "volume": 0, "rate": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextToSpeech.setConfiguration", "params": {"ttsEndPoint": "", "ttsEndPointSecured": "", "language": "", "voice": "", "speechRate": "", "volume": 0, "rate": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -770,15 +608,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 9,
     "result": {
         "status": "TTS_OK"
     }
 }
 ```
 
-<a id="method.setFallbackText"></a>
-## *setFallbackText [<sup>method</sup>](#head.Methods)*
+<a id="setFallbackText"></a>
+## *setFallbackText*
 
 
 
@@ -803,7 +641,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 10,
     "method": "org.rdk.TextToSpeech.setFallbackText",
     "params": {
         "scenario": "",
@@ -816,7 +654,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextToSpeech.setFallbackText", "params": {"scenario": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextToSpeech.setFallbackText", "params": {"scenario": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -825,13 +663,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 10,
     "result": null
 }
 ```
 
-<a id="method.setPrimaryVolDuck"></a>
-## *setPrimaryVolDuck [<sup>method</sup>](#head.Methods)*
+<a id="setPrimaryVolDuck"></a>
+## *setPrimaryVolDuck*
 
 
 
@@ -855,7 +693,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 11,
     "method": "org.rdk.TextToSpeech.setPrimaryVolDuck",
     "params": {
         "prim": 0
@@ -867,7 +705,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextToSpeech.setPrimaryVolDuck", "params": {"prim": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextToSpeech.setPrimaryVolDuck", "params": {"prim": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -876,13 +714,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 11,
     "result": null
 }
 ```
 
-<a id="method.speak"></a>
-## *speak [<sup>method</sup>](#head.Methods)*
+<a id="speak"></a>
+## *speak*
 
 Speaks text provided
 
@@ -909,7 +747,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 12,
     "method": "org.rdk.TextToSpeech.speak",
     "params": {
         "callsign": "",
@@ -922,7 +760,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextToSpeech.speak", "params": {"callsign": "", "text": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextToSpeech.speak", "params": {"callsign": "", "text": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -931,7 +769,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 12,
     "result": {
         "speechid": 0,
         "status": "TTS_OK"
@@ -939,365 +777,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.speechComplete"></a>
-## *speechComplete [<sup>method</sup>](#head.Methods)*
 
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.TextToSpeech.speechComplete",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextToSpeech.speechComplete", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": null
-}
-```
-
-<a id="method.speechInterrupted"></a>
-## *speechInterrupted [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.TextToSpeech.speechInterrupted",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextToSpeech.speechInterrupted", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": null
-}
-```
-
-<a id="method.speechPause"></a>
-## *speechPause [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.TextToSpeech.speechPause",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.TextToSpeech.speechPause", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": null
-}
-```
-
-<a id="method.speechResume"></a>
-## *speechResume [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.TextToSpeech.speechResume",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.TextToSpeech.speechResume", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "result": null
-}
-```
-
-<a id="method.speechStart"></a>
-## *speechStart [<sup>method</sup>](#head.Methods)*
-
-
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.TextToSpeech.speechStart",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.TextToSpeech.speechStart", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "result": null
-}
-```
-
-<a id="method.voiceChanged"></a>
-## *voiceChanged [<sup>method</sup>](#head.Methods)*
-
-Notify change in voice used for speaking
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.voice | string | voice changed |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "method": "org.rdk.TextToSpeech.voiceChanged",
-    "params": {
-        "voice": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.TextToSpeech.voiceChanged", "params": {"voice": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "result": null
-}
-```
-
-<a id="method.willSpeak"></a>
-## *willSpeak [<sup>method</sup>](#head.Methods)*
-
-Notify speechid based on the speech state(eg: start,pause,..etc)
-
-### Events
-Event details are missing in the header file documentation.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.speechid | integer | id of the text |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.TextToSpeech.willSpeak",
-    "params": {
-        "speechid": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.TextToSpeech.willSpeak", "params": {"speechid": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": null
-}
-```
-
-
-<a id="head.Properties"></a>
+<a id="Properties"></a>
 # Properties
 The following properties are provided by the TextToSpeech plugin:
 
@@ -1305,10 +786,10 @@ TextToSpeech interface properties:
 
 | Method | Description |
 | :-------- | :-------- |
-| [enable](#property.enable) | Query the status/enable tts |
+| [enable](#enable) | Query the status/enable tts |
 
-<a id="property.Enable"></a>
-## *Enable [<sup>property</sup>](#head.Properties)*
+<a id="Enable"></a>
+## *Enable*
 
 Query the status/enable tts
 
@@ -1384,3 +865,265 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
+
+<a id="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the TextToSpeech plugin:
+
+TextToSpeech interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [enabled](#enabled) | Notify TTS enabled/disabled |
+| [networkError](#networkError) |  |
+| [playbackError](#playbackError) |  |
+| [speechComplete](#speechComplete) |  |
+| [speechInterrupted](#speechInterrupted) |  |
+| [speechPause](#speechPause) |  |
+| [speechResume](#speechResume) |  |
+| [speechStart](#speechStart) |  |
+| [voiceChanged](#voiceChanged) | Notify change in voice used for speaking |
+| [willSpeak](#willSpeak) | Notify speechid based on the speech state(eg: start,pause,..etc) |
+
+<a id="enabled"></a>
+## *enabled*
+
+Notify TTS enabled/disabled
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.state | bool | enabled/disabled |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.TextToSpeech.enabled",
+    "params": {
+        "state": true
+    }
+}
+```
+
+<a id="networkError"></a>
+## *networkError*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.TextToSpeech.networkError",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="playbackError"></a>
+## *playbackError*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.TextToSpeech.playbackError",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechComplete"></a>
+## *speechComplete*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.TextToSpeech.speechComplete",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechInterrupted"></a>
+## *speechInterrupted*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.TextToSpeech.speechInterrupted",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechPause"></a>
+## *speechPause*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.TextToSpeech.speechPause",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechResume"></a>
+## *speechResume*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.TextToSpeech.speechResume",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="speechStart"></a>
+## *speechStart*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.TextToSpeech.speechStart",
+    "params": {
+        "speechid": 0
+    }
+}
+```
+
+<a id="voiceChanged"></a>
+## *voiceChanged*
+
+Notify change in voice used for speaking
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.voice | string | voice changed |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "method": "org.rdk.TextToSpeech.voiceChanged",
+    "params": {
+        "voice": ""
+    }
+}
+```
+
+<a id="willSpeak"></a>
+## *willSpeak*
+
+Notify speechid based on the speech state(eg: start,pause,..etc)
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.speechid | integer | id of the text |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "method": "org.rdk.TextToSpeech.willSpeak",
+    "params": {
+        "speechid": 0
+    }
+}
+```

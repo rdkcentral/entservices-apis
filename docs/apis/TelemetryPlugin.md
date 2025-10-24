@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.Telemetry_Plugin"></a>
+<a id="Telemetry_Plugin"></a>
 # Telemetry Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/Telemetry/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Telemetry)**
 
 A Telemetry plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `Telemetry` plugin provides an interface for Telemetry.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkTelemetry.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the Telemetry plugin:
@@ -47,13 +47,15 @@ Telemetry interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [abortReport](#method.abortReport) | Abort report upload |
-| [logApplicationEvent](#method.logApplicationEvent) | Logs an application |
-| [setReportProfileStatus](#method.setReportProfileStatus) | Sets the status of telemetry reporting |
-| [uploadReport](#method.uploadReport) | Uploading of telemetry report |
+| [abortReport](#abortReport) | Abort report upload |
+| [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
+| [logApplicationEvent](#logApplicationEvent) | Logs an application |
+| [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
+| [setReportProfileStatus](#setReportProfileStatus) | Sets the status of telemetry reporting |
+| [uploadReport](#uploadReport) | Uploading of telemetry report |
 
-<a id="method.abortReport"></a>
-## *abortReport [<sup>method</sup>](#head.Methods)*
+<a id="abortReport"></a>
+## *abortReport*
 
 Abort report upload
 
@@ -97,8 +99,58 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.logApplicationEvent"></a>
-## *logApplicationEvent [<sup>method</sup>](#head.Methods)*
+<a id="isOptOutTelemetry"></a>
+## *isOptOutTelemetry*
+
+Checks the telemetry opt-out status.
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.Opt-Out | bool |  |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.Telemetry.isOptOutTelemetry"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Telemetry.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "Opt-Out": true,
+        "success": true
+    }
+}
+```
+
+<a id="logApplicationEvent"></a>
+## *logApplicationEvent*
 
 Logs an application
 
@@ -123,7 +175,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "method": "org.rdk.Telemetry.logApplicationEvent",
     "params": {
         "eventName": "",
@@ -136,7 +188,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "", "eventValue": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "", "eventValue": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -145,13 +197,67 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "result": null
 }
 ```
 
-<a id="method.setReportProfileStatus"></a>
-## *setReportProfileStatus [<sup>method</sup>](#head.Methods)*
+<a id="setOptOutTelemetry"></a>
+## *setOptOutTelemetry*
+
+Sets the telemetry opt-out status.
+
+### Events
+Event details are missing in the header file documentation.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.Opt-Out | bool |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.Telemetry.setOptOutTelemetry",
+    "params": {
+        "Opt-Out": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Telemetry.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a id="setReportProfileStatus"></a>
+## *setReportProfileStatus*
 
 Sets the status of telemetry reporting
 
@@ -175,7 +281,7 @@ Event details are missing in the header file documentation.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "method": "org.rdk.Telemetry.setReportProfileStatus",
     "params": {
         "status": ""
@@ -187,7 +293,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -196,13 +302,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "result": null
 }
 ```
 
-<a id="method.uploadReport"></a>
-## *uploadReport [<sup>method</sup>](#head.Methods)*
+<a id="uploadReport"></a>
+## *uploadReport*
 
 Uploading of telemetry report
 
@@ -223,7 +329,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "method": "org.rdk.Telemetry.uploadReport"
 }
 ```
@@ -232,7 +338,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Telemetry.uploadReport"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Telemetry.uploadReport"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -241,17 +347,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "result": null
 }
 ```
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the Telemetry plugin:
 
@@ -259,10 +365,10 @@ Telemetry interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onReportUpload](#event.onReportUpload) | Triggered by callback from Telemetry after report uploading |
+| [onReportUpload](#onReportUpload) | Triggered by callback from Telemetry after report uploading |
 
-<a id="event.onReportUpload"></a>
-## *onReportUpload [<sup>event</sup>](#head.Notifications)*
+<a id="onReportUpload"></a>
+## *onReportUpload*
 
 Triggered by callback from Telemetry after report uploading
 
@@ -277,7 +383,7 @@ Triggered by callback from Telemetry after report uploading
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "method": "org.rdk.Telemetry.onReportUpload",
     "params": {
         "telemetryUploadStatus": ""

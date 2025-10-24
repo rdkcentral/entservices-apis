@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.DeviceInfo_Plugin"></a>
+<a id="DeviceInfo_Plugin"></a>
 # DeviceInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/DeviceInfo/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceInfo)**
 
 A DeviceInfo plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `DeviceInfo` plugin provides an interface for DeviceInfo.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDeviceInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the DeviceInfo plugin:
@@ -46,32 +46,32 @@ DeviceInfo interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [audioCapabilities](#method.audioCapabilities) |  |
-| [brand](#method.brand) |  |
-| [chipSet](#method.chipSet) |  |
-| [defaultResolution](#method.defaultResolution) |  |
-| [deviceType](#method.deviceType) |  |
-| [distributorId](#method.distributorId) |  |
-| [hostEDID](#method.hostEDID) |  |
-| [mS12Capabilities](#method.mS12Capabilities) |  |
-| [make](#method.make) |  |
-| [model](#method.model) |  |
-| [releaseVersion](#method.releaseVersion) |  |
-| [serialNumber](#method.serialNumber) |  |
-| [sku](#method.sku) |  |
-| [socName](#method.socName) |  |
-| [supportedAudioPorts](#method.supportedAudioPorts) |  |
-| [supportedHdcp](#method.supportedHdcp) |  |
-| [supportedMS12AudioProfiles](#method.supportedMS12AudioProfiles) |  |
-| [supportedResolutions](#method.supportedResolutions) |  |
-| [supportedVideoDisplays](#method.supportedVideoDisplays) |  |
-| [imagename](#method.imagename) |  |
-| [mediarite](#method.mediarite) |  |
-| [sdk](#method.sdk) |  |
-| [yocto](#method.yocto) |  |
+| [audioCapabilities](#audioCapabilities) |  |
+| [brand](#brand) |  |
+| [chipSet](#chipSet) |  |
+| [defaultResolution](#defaultResolution) |  |
+| [deviceType](#deviceType) |  |
+| [distributorId](#distributorId) |  |
+| [hostEDID](#hostEDID) |  |
+| [mS12Capabilities](#mS12Capabilities) |  |
+| [make](#make) |  |
+| [model](#model) |  |
+| [releaseVersion](#releaseVersion) |  |
+| [serialNumber](#serialNumber) |  |
+| [sku](#sku) |  |
+| [socName](#socName) |  |
+| [supportedAudioPorts](#supportedAudioPorts) |  |
+| [supportedHdcp](#supportedHdcp) |  |
+| [supportedMS12AudioProfiles](#supportedMS12AudioProfiles) |  |
+| [supportedResolutions](#supportedResolutions) |  |
+| [supportedVideoDisplays](#supportedVideoDisplays) |  |
+| [imagename](#imagename) |  |
+| [mediarite](#mediarite) |  |
+| [sdk](#sdk) |  |
+| [yocto](#yocto) |  |
 
-<a id="method.audioCapabilities"></a>
-## *audioCapabilities [<sup>method</sup>](#head.Methods)*
+<a id="audioCapabilities"></a>
+## *audioCapabilities*
 
 
 
@@ -125,8 +125,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.brand"></a>
-## *brand [<sup>method</sup>](#head.Methods)*
+<a id="brand"></a>
+## *brand*
 
 
 
@@ -173,8 +173,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.chipSet"></a>
-## *chipSet [<sup>method</sup>](#head.Methods)*
+<a id="chipSet"></a>
+## *chipSet*
 
 
 
@@ -221,8 +221,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.defaultResolution"></a>
-## *defaultResolution [<sup>method</sup>](#head.Methods)*
+<a id="defaultResolution"></a>
+## *defaultResolution*
 
 
 
@@ -275,8 +275,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.deviceType"></a>
-## *deviceType [<sup>method</sup>](#head.Methods)*
+<a id="deviceType"></a>
+## *deviceType*
 
 
 
@@ -323,8 +323,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.distributorId"></a>
-## *distributorId [<sup>method</sup>](#head.Methods)*
+<a id="distributorId"></a>
+## *distributorId*
 
 
 
@@ -371,8 +371,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.hostEDID"></a>
-## *hostEDID [<sup>method</sup>](#head.Methods)*
+<a id="hostEDID"></a>
+## *hostEDID*
 
 
 
@@ -419,8 +419,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.mS12Capabilities"></a>
-## *mS12Capabilities [<sup>method</sup>](#head.Methods)*
+<a id="mS12Capabilities"></a>
+## *mS12Capabilities*
 
 
 
@@ -474,8 +474,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.make"></a>
-## *make [<sup>method</sup>](#head.Methods)*
+<a id="make"></a>
+## *make*
 
 
 
@@ -522,8 +522,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.model"></a>
-## *model [<sup>method</sup>](#head.Methods)*
+<a id="model"></a>
+## *model*
 
 
 
@@ -570,8 +570,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.releaseVersion"></a>
-## *releaseVersion [<sup>method</sup>](#head.Methods)*
+<a id="releaseVersion"></a>
+## *releaseVersion*
 
 
 
@@ -618,8 +618,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.serialNumber"></a>
-## *serialNumber [<sup>method</sup>](#head.Methods)*
+<a id="serialNumber"></a>
+## *serialNumber*
 
 
 
@@ -666,8 +666,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.sku"></a>
-## *sku [<sup>method</sup>](#head.Methods)*
+<a id="sku"></a>
+## *sku*
 
 
 
@@ -714,8 +714,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.socName"></a>
-## *socName [<sup>method</sup>](#head.Methods)*
+<a id="socName"></a>
+## *socName*
 
 
 
@@ -762,8 +762,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.supportedAudioPorts"></a>
-## *supportedAudioPorts [<sup>method</sup>](#head.Methods)*
+<a id="supportedAudioPorts"></a>
+## *supportedAudioPorts*
 
 
 
@@ -811,8 +811,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.supportedHdcp"></a>
-## *supportedHdcp [<sup>method</sup>](#head.Methods)*
+<a id="supportedHdcp"></a>
+## *supportedHdcp*
 
 
 
@@ -865,8 +865,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.supportedMS12AudioProfiles"></a>
-## *supportedMS12AudioProfiles [<sup>method</sup>](#head.Methods)*
+<a id="supportedMS12AudioProfiles"></a>
+## *supportedMS12AudioProfiles*
 
 
 
@@ -920,8 +920,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.supportedResolutions"></a>
-## *supportedResolutions [<sup>method</sup>](#head.Methods)*
+<a id="supportedResolutions"></a>
+## *supportedResolutions*
 
 
 
@@ -975,8 +975,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.supportedVideoDisplays"></a>
-## *supportedVideoDisplays [<sup>method</sup>](#head.Methods)*
+<a id="supportedVideoDisplays"></a>
+## *supportedVideoDisplays*
 
 
 
@@ -1024,8 +1024,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.imagename"></a>
-## *imagename [<sup>method</sup>](#head.Methods)*
+<a id="imagename"></a>
+## *imagename*
 
 
 
@@ -1072,8 +1072,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.mediarite"></a>
-## *mediarite [<sup>method</sup>](#head.Methods)*
+<a id="mediarite"></a>
+## *mediarite*
 
 
 
@@ -1120,8 +1120,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.sdk"></a>
-## *sdk [<sup>method</sup>](#head.Methods)*
+<a id="sdk"></a>
+## *sdk*
 
 
 
@@ -1168,8 +1168,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.yocto"></a>
-## *yocto [<sup>method</sup>](#head.Methods)*
+<a id="yocto"></a>
+## *yocto*
 
 
 

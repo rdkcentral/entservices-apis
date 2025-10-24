@@ -31,8 +31,8 @@ class HeaderFileParser:
     """
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
-        ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
-        ('version', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
+        ('plugindesc',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
+        ('version',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),

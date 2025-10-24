@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.DeviceDiagnostics_Plugin"></a>
+<a id="DeviceDiagnostics_Plugin"></a>
 # DeviceDiagnostics Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/DeviceDiagnostics/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics)**
 
 A DeviceDiagnostics plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
-This API provides access to device diagnostics information and functionalities such as retrieving configuration parameters, logging milestones, and monitoring AV decoder status changes.
+The `DeviceDiagnostics` plugin provides an interface for DeviceDiagnostics.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDeviceDiagnostics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the DeviceDiagnostics plugin:
@@ -47,13 +47,13 @@ DeviceDiagnostics interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getAVDecoderStatus](#method.getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
-| [getConfiguration](#method.getConfiguration) | Gets the values associated with the corresponding property names |
-| [getMilestones](#method.getMilestones) | Returns the list of milestones |
-| [logMilestone](#method.logMilestone) | Log marker string to rdk milestones log |
+| [getAVDecoderStatus](#getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
+| [getConfiguration](#getConfiguration) | Gets the values associated with the corresponding property names |
+| [getMilestones](#getMilestones) | Returns the list of milestones |
+| [logMilestone](#logMilestone) | Log marker string to rdk milestones log |
 
-<a id="method.getAVDecoderStatus"></a>
-## *getAVDecoderStatus [<sup>method</sup>](#head.Methods)*
+<a id="getAVDecoderStatus"></a>
+## *getAVDecoderStatus*
 
 Gets the most active status of audio/video decoder/pipeline
 
@@ -100,8 +100,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.getConfiguration"></a>
-## *getConfiguration [<sup>method</sup>](#head.Methods)*
+<a id="getConfiguration"></a>
+## *getConfiguration*
 
 Gets the values associated with the corresponding property names
 
@@ -132,11 +132,9 @@ Event details are missing in the header file documentation.
     "jsonrpc": 2.0,
     "id": 1,
     "method": "org.rdk.DeviceDiagnostics.getConfiguration",
-    "params": {
-        "names": [
-            ""
-        ]
-    }
+    "params": [
+        ""
+    ]
 }
 ```
 
@@ -144,7 +142,7 @@ Event details are missing in the header file documentation.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": {"names": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -166,8 +164,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.getMilestones"></a>
-## *getMilestones [<sup>method</sup>](#head.Methods)*
+<a id="getMilestones"></a>
+## *getMilestones*
 
 Returns the list of milestones
 
@@ -219,8 +217,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.logMilestone"></a>
-## *logMilestone [<sup>method</sup>](#head.Methods)*
+<a id="logMilestone"></a>
+## *logMilestone*
 
 Log marker string to rdk milestones log
 
@@ -236,10 +234,6 @@ Event details are missing in the header file documentation.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | boolean |
-### Errors
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ERROR_GENERAL | General error |
 
 ### Examples
 
@@ -279,10 +273,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the DeviceDiagnostics plugin:
 
@@ -290,10 +284,10 @@ DeviceDiagnostics interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onAVDecoderStatusChanged](#event.onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
+| [onAVDecoderStatusChanged](#onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
 
-<a id="event.onAVDecoderStatusChanged"></a>
-## *onAVDecoderStatusChanged [<sup>event</sup>](#head.Notifications)*
+<a id="onAVDecoderStatusChanged"></a>
+## *onAVDecoderStatusChanged*
 
 Triggered when the most active status of audio/video decoder/pipeline changes
 

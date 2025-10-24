@@ -1,32 +1,32 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.LISA_Plugin"></a>
+<a id="LISA_Plugin"></a>
 # LISA Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/LISA/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LISA)**
 
 A LISA plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `LISA` plugin provides an interface for LISA.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -38,7 +38,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkLISA.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the LISA plugin:
@@ -47,46 +47,46 @@ LISA interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [appName](#method.appName) |  |
-| [apps](#method.apps) |  |
-| [auxMetadata](#method.auxMetadata) |  |
-| [cancel](#method.cancel) | Cancel asynchronous request. |
-| [category](#method.category) |  |
-| [clearAuxMetadata](#method.clearAuxMetadata) | Clears an arbitrary metadata. |
-| [configure](#method.configure) |  |
-| [current](#method.current) |  |
-| [download](#method.download) | Download arbitrary application's resource file. |
-| [getList](#method.getList) | List installed applications. |
-| [getLockInfo](#method.getLockInfo) | Get lock info. |
-| [getMetadata](#method.getMetadata) | Get application metadata. |
-| [getProgress](#method.getProgress) | Estimated progress of a request. |
-| [getStorageDetails](#method.getStorageDetails) | Information on the storage usage. |
-| [handle](#method.handle) |  |
-| [id](#method.id) |  |
-| [install](#method.install) | Download the application bundle. |
-| [installed](#method.installed) |  |
-| [isValid](#method.isValid) |  |
-| [key](#method.key) |  |
-| [lock](#method.lock) | Lock the application. Preventing uninstallation. |
-| [next](#method.next) |  |
-| [owner](#method.owner) |  |
-| [path](#method.path) |  |
-| [persistent](#method.persistent) |  |
-| [quotaKB](#method.quotaKB) |  |
-| [reason](#method.reason) |  |
-| [reset](#method.reset) |  |
-| [resources](#method.resources) |  |
-| [setAuxMetadata](#method.setAuxMetadata) | Set an arbitrary metadata. |
-| [type](#method.type) |  |
-| [uninstall](#method.uninstall) | Uninstall the application. |
-| [unlock](#method.unlock) | Unlock application. |
-| [url](#method.url) |  |
-| [usedKB](#method.usedKB) |  |
-| [value](#method.value) |  |
-| [version](#method.version) |  |
+| [appName](#appName) |  |
+| [apps](#apps) |  |
+| [auxMetadata](#auxMetadata) |  |
+| [cancel](#cancel) | Cancel asynchronous request. |
+| [category](#category) |  |
+| [clearAuxMetadata](#clearAuxMetadata) | Clears an arbitrary metadata. |
+| [configure](#configure) |  |
+| [current](#current) |  |
+| [download](#download) | Download arbitrary application's resource file. |
+| [getList](#getList) | List installed applications. |
+| [getLockInfo](#getLockInfo) | Get lock info. |
+| [getMetadata](#getMetadata) | Get application metadata. |
+| [getProgress](#getProgress) | Estimated progress of a request. |
+| [getStorageDetails](#getStorageDetails) | Information on the storage usage. |
+| [handle](#handle) |  |
+| [id](#id) |  |
+| [install](#install) | Download the application bundle. |
+| [installed](#installed) |  |
+| [isValid](#isValid) |  |
+| [key](#key) |  |
+| [lock](#lock) | Lock the application. Preventing uninstallation. |
+| [next](#next) |  |
+| [owner](#owner) |  |
+| [path](#path) |  |
+| [persistent](#persistent) |  |
+| [quotaKB](#quotaKB) |  |
+| [reason](#reason) |  |
+| [reset](#reset) |  |
+| [resources](#resources) |  |
+| [setAuxMetadata](#setAuxMetadata) | Set an arbitrary metadata. |
+| [type](#type) |  |
+| [uninstall](#uninstall) | Uninstall the application. |
+| [unlock](#unlock) | Unlock application. |
+| [url](#url) |  |
+| [usedKB](#usedKB) |  |
+| [value](#value) |  |
+| [version](#version) |  |
 
-<a id="method.appName"></a>
-## *appName [<sup>method</sup>](#head.Methods)*
+<a id="appName"></a>
+## *appName*
 
 
 
@@ -133,8 +133,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="method.apps"></a>
-## *apps [<sup>method</sup>](#head.Methods)*
+<a id="apps"></a>
+## *apps*
 
 
 
@@ -181,8 +181,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="method.auxMetadata"></a>
-## *auxMetadata [<sup>method</sup>](#head.Methods)*
+<a id="auxMetadata"></a>
+## *auxMetadata*
 
 
 
@@ -229,8 +229,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="method.cancel"></a>
-## *cancel [<sup>method</sup>](#head.Methods)*
+<a id="cancel"></a>
+## *cancel*
 
 Cancel asynchronous request.
 
@@ -280,8 +280,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="method.category"></a>
-## *category [<sup>method</sup>](#head.Methods)*
+<a id="category"></a>
+## *category*
 
 
 
@@ -328,8 +328,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="method.clearAuxMetadata"></a>
-## *clearAuxMetadata [<sup>method</sup>](#head.Methods)*
+<a id="clearAuxMetadata"></a>
+## *clearAuxMetadata*
 
 Clears an arbitrary metadata.
 
@@ -385,8 +385,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="method.configure"></a>
-## *configure [<sup>method</sup>](#head.Methods)*
+<a id="configure"></a>
+## *configure*
 
 
 
@@ -436,8 +436,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="method.current"></a>
-## *current [<sup>method</sup>](#head.Methods)*
+<a id="current"></a>
+## *current*
 
 
 
@@ -484,8 +484,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="method.download"></a>
-## *download [<sup>method</sup>](#head.Methods)*
+<a id="download"></a>
+## *download*
 
 Download arbitrary application's resource file.
 
@@ -546,8 +546,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="method.getList"></a>
-## *getList [<sup>method</sup>](#head.Methods)*
+<a id="getList"></a>
+## *getList*
 
 List installed applications.
 
@@ -608,8 +608,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="method.getLockInfo"></a>
-## *getLockInfo [<sup>method</sup>](#head.Methods)*
+<a id="getLockInfo"></a>
+## *getLockInfo*
 
 Get lock info.
 
@@ -666,8 +666,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="method.getMetadata"></a>
-## *getMetadata [<sup>method</sup>](#head.Methods)*
+<a id="getMetadata"></a>
+## *getMetadata*
 
 Get application metadata.
 
@@ -724,8 +724,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="method.getProgress"></a>
-## *getProgress [<sup>method</sup>](#head.Methods)*
+<a id="getProgress"></a>
+## *getProgress*
 
 Estimated progress of a request.
 
@@ -778,8 +778,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="method.getStorageDetails"></a>
-## *getStorageDetails [<sup>method</sup>](#head.Methods)*
+<a id="getStorageDetails"></a>
+## *getStorageDetails*
 
 Information on the storage usage.
 
@@ -836,8 +836,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="method.handle"></a>
-## *handle [<sup>method</sup>](#head.Methods)*
+<a id="handle"></a>
+## *handle*
 
 
 
@@ -884,8 +884,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="method.id"></a>
-## *id [<sup>method</sup>](#head.Methods)*
+<a id="id"></a>
+## *id*
 
 
 
@@ -932,8 +932,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="method.install"></a>
-## *install [<sup>method</sup>](#head.Methods)*
+<a id="install"></a>
+## *install*
 
 Download the application bundle.
 
@@ -996,8 +996,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="method.installed"></a>
-## *installed [<sup>method</sup>](#head.Methods)*
+<a id="installed"></a>
+## *installed*
 
 
 
@@ -1044,8 +1044,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="method.isValid"></a>
-## *isValid [<sup>method</sup>](#head.Methods)*
+<a id="isValid"></a>
+## *isValid*
 
 
 
@@ -1092,8 +1092,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="method.key"></a>
-## *key [<sup>method</sup>](#head.Methods)*
+<a id="key"></a>
+## *key*
 
 
 
@@ -1140,8 +1140,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="method.lock"></a>
-## *lock [<sup>method</sup>](#head.Methods)*
+<a id="lock"></a>
+## *lock*
 
 Lock the application. Preventing uninstallation.
 
@@ -1202,8 +1202,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="method.next"></a>
-## *next [<sup>method</sup>](#head.Methods)*
+<a id="next"></a>
+## *next*
 
 
 
@@ -1250,8 +1250,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="method.owner"></a>
-## *owner [<sup>method</sup>](#head.Methods)*
+<a id="owner"></a>
+## *owner*
 
 
 
@@ -1298,8 +1298,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="method.path"></a>
-## *path [<sup>method</sup>](#head.Methods)*
+<a id="path"></a>
+## *path*
 
 
 
@@ -1346,8 +1346,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="method.persistent"></a>
-## *persistent [<sup>method</sup>](#head.Methods)*
+<a id="persistent"></a>
+## *persistent*
 
 
 
@@ -1394,8 +1394,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="method.quotaKB"></a>
-## *quotaKB [<sup>method</sup>](#head.Methods)*
+<a id="quotaKB"></a>
+## *quotaKB*
 
 
 
@@ -1442,8 +1442,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-<a id="method.reason"></a>
-## *reason [<sup>method</sup>](#head.Methods)*
+<a id="reason"></a>
+## *reason*
 
 
 
@@ -1490,8 +1490,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
-<a id="method.reset"></a>
-## *reset [<sup>method</sup>](#head.Methods)*
+<a id="reset"></a>
+## *reset*
 
 
 
@@ -1535,8 +1535,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
-<a id="method.resources"></a>
-## *resources [<sup>method</sup>](#head.Methods)*
+<a id="resources"></a>
+## *resources*
 
 
 
@@ -1583,8 +1583,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
-<a id="method.setAuxMetadata"></a>
-## *setAuxMetadata [<sup>method</sup>](#head.Methods)*
+<a id="setAuxMetadata"></a>
+## *setAuxMetadata*
 
 Set an arbitrary metadata.
 
@@ -1642,8 +1642,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 }
 ```
 
-<a id="method.type"></a>
-## *type [<sup>method</sup>](#head.Methods)*
+<a id="type"></a>
+## *type*
 
 
 
@@ -1690,8 +1690,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
-<a id="method.uninstall"></a>
-## *uninstall [<sup>method</sup>](#head.Methods)*
+<a id="uninstall"></a>
+## *uninstall*
 
 Uninstall the application.
 
@@ -1750,8 +1750,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 }
 ```
 
-<a id="method.unlock"></a>
-## *unlock [<sup>method</sup>](#head.Methods)*
+<a id="unlock"></a>
+## *unlock*
 
 Unlock application.
 
@@ -1801,8 +1801,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 }
 ```
 
-<a id="method.url"></a>
-## *url [<sup>method</sup>](#head.Methods)*
+<a id="url"></a>
+## *url*
 
 
 
@@ -1849,8 +1849,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 }
 ```
 
-<a id="method.usedKB"></a>
-## *usedKB [<sup>method</sup>](#head.Methods)*
+<a id="usedKB"></a>
+## *usedKB*
 
 
 
@@ -1897,8 +1897,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 }
 ```
 
-<a id="method.value"></a>
-## *value [<sup>method</sup>](#head.Methods)*
+<a id="value"></a>
+## *value*
 
 
 
@@ -1945,8 +1945,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 }
 ```
 
-<a id="method.version"></a>
-## *version [<sup>method</sup>](#head.Methods)*
+<a id="version"></a>
+## *version*
 
 
 
@@ -1995,10 +1995,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 
 
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the LISA plugin:
 
@@ -2006,10 +2006,10 @@ LISA interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [operationStatus](#event.operationStatus) | Completion of asynchronous operation. |
+| [operationStatus](#operationStatus) | Completion of asynchronous operation. |
 
-<a id="event.operationStatus"></a>
-## *operationStatus [<sup>event</sup>](#head.Notifications)*
+<a id="operationStatus"></a>
+## *operationStatus*
 
 Completion of asynchronous operation.
 
