@@ -322,7 +322,11 @@ namespace Exchange {
         ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
         ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
 
-        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430 
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x470,
+        ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1
+
     }; // enum IDS
 
 } // namespace Exchange
