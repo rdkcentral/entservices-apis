@@ -63,7 +63,6 @@ org.rdk.PowerManager interface methods:
 | [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
 | [setWakeupSourceConfig](#setWakeupSourceConfig) | This API enables or disables provided wakeup sources for the device to wakeup from deep sleep mode |
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | This API returns the currently configured values of all available wakeup sources that can be used to wakeup the device from deep sleep mode |
-| [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
 
@@ -959,64 +958,6 @@ This method takes no parameters.
             "enabled": true
         }
     ]
-}
-```
-
-<a name="setSystemMode"></a>
-## *setSystemMode*
-
-Sets the mode of the set-top box for a specific duration before returning to normal mode. Valid modes are:  
-* `NORMAL` - The set-top box is operating in normal mode.  
-* `EAS` - The set-top box is operating in Emergency Alert System (EAS) mode. This mode is set when the device needs to perform certain tasks when entering EAS mode, such as setting the clock display or preventing the user from using the diagnostics menu.  
-* `WAREHOUSE` - The set-top box is operating in warehouse mode.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.currentMode | integer | Indicates the current operating mode of the STB (must be one of the following: *UNKNOWN*, *NORMAL*, *EAS*, *WAREHOUSE*) |
-| params.newMode | integer | Sets the desired operating mode for the STB (must be one of the following: *UNKNOWN*, *NORMAL*, *EAS*, *WAREHOUSE*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | string | On success null will be returned |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | General error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.PowerManager.setSystemMode",
-    "params": {
-        "currentMode": 2,
-        "newMode": 1
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": "null"
 }
 ```
 
