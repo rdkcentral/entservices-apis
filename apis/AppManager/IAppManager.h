@@ -93,7 +93,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
         string appId ;
         string appInstanceId ;
         string activeSessionId;
-	string type;
+        string type;
         AppLifecycleState targetLifecycleState;
         AppLifecycleState lifecycleState;
     };
