@@ -19,6 +19,8 @@
 
 # logger.py
 
+import os 
+
 class Logger:
     """
     A simple logger class to log messages to a file.
@@ -32,6 +34,7 @@ class Logger:
             log_file_path (str): Path to the log file.
         """
         self.log_file_path = log_file_path
+        log_dir = os.path.dirname(log_file_path)
         os.makedirs(log_dir, exist_ok=True)
         self.log_file = open(log_file_path, 'w', encoding='utf-8')
         self.warning_msgs = []
