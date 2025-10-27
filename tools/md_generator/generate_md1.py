@@ -127,6 +127,8 @@ def main():
     postprocess_md()
     print()
     print()
+    # Update sidebar after postprocessing
+    os.system('python3 ./update_sidebar.py')
     end = time.time()
     print("The time taken to execute the above program is :", end - start)
     if os.path.exists("./json2md/__pycache__"):
