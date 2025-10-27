@@ -85,14 +85,14 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @text onDeviceMounted
         // @param deviceInfo: name and device path of the mounted device.
         // @param mountPoints: List of mountpoints information for the device mounted.
-        virtual void OnDeviceMounted(const USBStorageDeviceInfo &deviceInfo /* @in */, IUSBStorageMountInfoIterator* const mountPoints /* @in */) {};
+        virtual void OnDeviceMounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
 
         // @brief Device Unmounted notification
         // @@iterator
         // @text onDeviceUnMounted
         // @param deviceInfo: name and device path of the mounted device.
         // @param mountPoints: List of mountpoints information for the device unmounted.
-        virtual void OnDeviceUnmounted(const USBStorageDeviceInfo &deviceInfo /* @in */, IUSBStorageMountInfoIterator* const mountPoints /* @in */) {};
+        virtual void OnDeviceUnmounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
     };
 
     // @json:omit
@@ -111,14 +111,14 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @brief Get mount points information for a specified device
     // @param deviceName: name of the device for which mount points are to be retrieved
     // @param mountPoints: List of mountpoints information for a given device.
-    virtual Core::hresult GetMountPoints(const string &deviceName /* @in */, IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
+    virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
     /** Get partition information for a given partition.*/
     // @text getPartitionInfo
     // @brief Get partition information for a given partition
     // @param mountPath : mount path of the partition for which more info is required
     // @param partitionInfo: partition info details
-    virtual Core::hresult GetPartitionInfo(const string &mountPath /* @in @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
+    virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
 };
 } // namespace Exchange
