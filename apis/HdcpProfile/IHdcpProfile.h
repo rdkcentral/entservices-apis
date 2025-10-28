@@ -50,8 +50,8 @@
                 // @param HDCPStatus: Contains HDCP-related data as separate properties
                 virtual void OnDisplayConnectionChanged(const HDCPStatus hdcpStatus/* @text HDCPStatus*/) {};
             };
-            virtual Core::hresult Register(IHdcpProfile::INotification* notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IHdcpProfile::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(IHdcpProfile::INotification* notification) = 0;
+            virtual Core::hresult Unregister(IHdcpProfile::INotification* notification ) = 0;
              
             /**********************getHDCPStatus() - start****************************/
             // @text getHDCPStatus
