@@ -47,6 +47,9 @@ def combine_header_structures(main_structure, additional_structure):
     main_structure.iterators_registry.update(additional_structure.iterators_registry)
     main_structure.enums_registry.update(additional_structure.enums_registry)
     main_structure.structs_registry.update(additional_structure.structs_registry)
+    main_structure.configuration_options.update(additional_structure.configuration_options)
+    if main_structure.plugindescription == '':
+        main_structure.plugindescription = additional_structure.plugindescription
 
 
 def get_header_files(folder_path):
@@ -100,15 +103,19 @@ def write_markdown_sections(file, header_structure, classname):
                 event_name, event_info, header_structure.symbols_registry, classname))
 
 
-def generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, foldername):
+def generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, header_file_path):
     """Generate markdown file from a single header structure."""
+    plugin_version = getattr(header_structure, 'plugin_version', '')
+    # if no @json tag present in the header file
+    # if plugin_version == '':
+    #     return
     output_file_path = os.path.join(output_doc_folder_path, f'{classname}Plugin.md')
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     
     with open(output_file_path, 'w', encoding='utf-8') as file:
         # Write header sections
         file.write(generate_header_toc(
-            classname, header_structure, getattr(header_structure, 'plugin_version', '1.0.0'), foldername))
+            classname, header_structure, plugin_version, header_file_path))
         file.write(generate_header_description_markdown(
             classname, getattr(header_structure, 'plugindescription', '')))
         file.write(generate_configuration_options_section(header_structure.configuration_options))
@@ -129,7 +136,7 @@ def process_individual_headers(input_plugin_folder_path, output_doc_folder_path)
         classname = os.path.splitext(header_file)[0][1:]  # Remove leading 'I'
         logger = create_logger(classname)
         header_structure = parse_header_file(header_file_path, classname, logger)
-        generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, input_plugin_folder_path)
+        generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, header_file_path)
 
 
 def process_combined_headers(input_plugin_folder_path, output_doc_folder_path):
@@ -151,7 +158,7 @@ def process_combined_headers(input_plugin_folder_path, output_doc_folder_path):
         additional_structure = parse_header_file(header_file_path, classname, logger)
         combine_header_structures(main_structure, additional_structure)
 
-    generate_md_from_individual_header_file(main_structure, output_doc_folder_path, classname, logger, input_plugin_folder_path)
+    generate_md_from_individual_header_file(main_structure, output_doc_folder_path, classname, logger, main_header_file_path)
 
 
 def generate_md_from_header(input_plugin_folder_path, output_doc_folder_path, individual=False):

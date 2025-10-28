@@ -164,6 +164,7 @@ def generate_header_toc(classname, document_object, version, foldername):
     """
     Generate the header table of contents for the markdown file.
     """
+    version = version if version else "1.0.0"
     toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=foldername)
     if len(document_object.methods.values()) > 0:
         toc += "- [Methods](#Methods)\n"
@@ -349,7 +350,7 @@ def generate_events_section(events, all_events=None):
             camel_event = to_camel_case(event)
             markdown += f"- [{camel_event}](#{camel_event})\n"
     else:
-        markdown += "Event details are missing in the header file documentation.\n"
+        markdown += "Event details will be updated soon.\n"
     return markdown
 
 def generate_properties_toc(properties, classname):

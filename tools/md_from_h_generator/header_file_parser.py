@@ -31,7 +31,7 @@ class HeaderFileParser:
     """
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
-        ('plugindesc',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
+        ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
         ('version',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
@@ -41,7 +41,8 @@ class HeaderFileParser:
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
-        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
+        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
+        ('json',        'doxygen', re,compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)(?:.*)'))
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
@@ -108,7 +109,8 @@ class HeaderFileParser:
         self.latest_tag = ''
         self.in_event = False
         self.plugindescription = ''
-        self.plugin_version = '1.0.0'
+        self.plugin_version = ''
+        self.in_json_tag = False
 
         # main logic to create header file structure
         self.process_header_file()
@@ -272,10 +274,13 @@ class HeaderFileParser:
             self.latest_tag = 'plugindesc'
         elif line_tag == 'version':
             self.plugin_version = groups[0]
-            self.latest_tag = 'version'
+            self.latest_tag = ''
         elif line_tag == 'event':
             self.in_event = True
-            self.latest_tag = 'event'
+            self.latest_tag = ''
+        elif line_tag == 'json':
+            self.in_json_tag = True
+            self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
@@ -283,7 +288,7 @@ class HeaderFileParser:
             self.latest_tag = 'config'
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
-            self.latest_tag = 'text'
+            self.latest_tag = ''
         elif line_tag == 'params':
             self.latest_param = groups[1]
             self.latest_tag = 'params'
@@ -457,6 +462,9 @@ class HeaderFileParser:
 
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
 
+            # if the interface struct does not have a @json tag, skip registering the methods
+            if '_HasJsonTag' not in scope[-1]:
+                return
             if 'property' in doxy_tags:
                 self.properties[method_name] = method_info
             elif scope[-1] == 'INotification':
@@ -615,6 +623,9 @@ class HeaderFileParser:
             if self.in_event:
                 scope_name = 'INotification'
                 self.in_event = False
+            elif self.in_json_tag:
+                scope_name = scope_name + '_HasJsonTag'
+                self.in_json_tag = False
             scope.append(scope_name)
             brace_count.append(0)
             brace_count[-1] += self.count_braces(line)
