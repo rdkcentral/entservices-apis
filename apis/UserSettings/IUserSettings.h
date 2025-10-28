@@ -141,13 +141,13 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     };
 
-    virtual Core::hresult Register(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
-    virtual Core::hresult Unregister(Exchange::IUserSettings::INotification* notification /* @in */) = 0;
+    virtual Core::hresult Register(Exchange::IUserSettings::INotification* notification ) = 0;
+    virtual Core::hresult Unregister(Exchange::IUserSettings::INotification* notification ) = 0;
 
     // @text setAudioDescription
     // @brief Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
     // @param enabled: Enabled/Disabled
-    virtual Core::hresult SetAudioDescription(const bool enabled /* @in */) = 0;
+    virtual Core::hresult SetAudioDescription(const bool enabled ) = 0;
 
     // @text getAudioDescription
     // @brief Gets the current AudioDescription setting
@@ -161,7 +161,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // this list. In the absence of a matching track, the player should by best
     // effort select the preferred audio track.
     // @param preferredLanguages: PreferredLanguages
-    virtual Core::hresult SetPreferredAudioLanguages(const string& preferredLanguages  /* @in @text preferredLanguages */) = 0;
+    virtual Core::hresult SetPreferredAudioLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
 
     // @text getPreferredAudioLanguages
     // @brief Gets the current PreferredAudioLanguages setting
@@ -171,7 +171,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @text setPresentationLanguage
     // @brief Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
     // @param presentationLanguage: "en-US", "es-US", "en-CA", "fr-CA"
-    virtual Core::hresult SetPresentationLanguage(const string& presentationLanguage /* @in @text presentationLanguage */) = 0;
+    virtual Core::hresult SetPresentationLanguage(const string& presentationLanguage /* @text presentationLanguage */) = 0;
 
     // @text getPresentationLanguage
     // @brief Gets the presentationLanguage
@@ -190,7 +190,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media
     // players or apps that decode-display internally 
     // @param enabled: Sets the state
-    virtual Core::hresult SetCaptions(const bool enabled  /* @in */) = 0;
+    virtual Core::hresult SetCaptions(const bool enabled  ) = 0;
 
     // @text getCaptions
     // @brief Gets the Captions setting.
@@ -205,7 +205,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // this list. In the absence of a matching track, the player should by best
     // effort select the preferred subtitle track. 
     // @param preferredLanguages: Is the list to set (e.g. "eng,fra")
-    virtual Core::hresult SetPreferredCaptionsLanguages(const string& preferredLanguages  /* @in @text preferredLanguages */) = 0;
+    virtual Core::hresult SetPreferredCaptionsLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
 
     // @text getPreferredCaptionsLanguages
     // @brief Gets the current PreferredCaptionsLanguages setting.
@@ -217,7 +217,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details The setting should be honored by the player. The behaviour of AUTO may be player specific.
     // Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
     // @param service: Identifies the service to display e.g. "CC3".
-    virtual Core::hresult SetPreferredClosedCaptionService(const string& service  /* @in */) = 0;
+    virtual Core::hresult SetPreferredClosedCaptionService(const string& service  ) = 0;
 
     // @text getPreferredClosedCaptionService
     // @brief Gets the current PreferredClosedCaptionService setting.
@@ -229,7 +229,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details The setting should be honored by the Telemetry.
     // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
     // @param privacyMode: "SHARE", "DO_NOT_SHARE"
-    virtual uint32_t SetPrivacyMode(const string& privacyMode /* @in @text privacyMode*/) = 0;
+    virtual uint32_t SetPrivacyMode(const string& privacyMode /* @text privacyMode*/) = 0;
 
     // @text getPrivacyMode
     // @brief Gets the current PrivacyMode setting.
@@ -239,7 +239,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @alt setPinControl
     // @brief Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
     // @param pinControl: Enabled/Disabled
-    virtual Core::hresult SetPinControl(const bool pinControl /* @in */) = 0;
+    virtual Core::hresult SetPinControl(const bool pinControl ) = 0;
 
     // @text getPinControl
     // @brief Gets the PinControl setting
@@ -250,7 +250,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets the ViewingRestrictions.
     // @details A JSON document that escribes the rating scheme(s) and ratings that are blocked.
     // @param viewingRestrictions: A JSON document that describes the rating scheme(s) and ratings that are blocked.
-    virtual Core::hresult SetViewingRestrictions(const string& viewingRestrictions /* @in @text viewingRestrictions */) = 0;
+    virtual Core::hresult SetViewingRestrictions(const string& viewingRestrictions /* @text viewingRestrictions */) = 0;
 
     // @text getViewingRestrictions
     // @brief Gets the current ViewingRestrictions.
@@ -262,7 +262,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details A project-specific representation of the time interval when viewing
     // restrictions are to be applied, if applicable for the project
     // @param viewingRestrictionsWindow: A project-specific representation of the time interval.Eg: "ALWAYS"
-    virtual Core::hresult SetViewingRestrictionsWindow(const string &viewingRestrictionsWindow /* @in @text viewingRestrictionsWindow */) = 0;
+    virtual Core::hresult SetViewingRestrictionsWindow(const string &viewingRestrictionsWindow /* @text viewingRestrictionsWindow */) = 0;
 
     // @text getViewingRestrictionsWindow
     // @brief Gets the current ViewingRestrictionsWindow.
@@ -273,7 +273,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets LiveWatershed ON/OFF.Whether project-specific watershed rules
     // should be applied for live content, if applicable for the project.
     // @param liveWatershed: Enabled/Disabled
-    virtual Core::hresult SetLiveWatershed(const bool liveWatershed /* @in */) = 0;
+    virtual Core::hresult SetLiveWatershed(const bool liveWatershed ) = 0;
 
     // @text getLiveWatershed
     // @brief Gets the LiveWatershed setting
@@ -284,7 +284,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
     // should be applied for non-live content, if applicable for the project.
     // @param playbackWatershed: Enabled/Disabled
-    virtual Core::hresult SetPlaybackWatershed(const bool playbackWatershed /* @in */) = 0;
+    virtual Core::hresult SetPlaybackWatershed(const bool playbackWatershed ) = 0;
 
     // @text getPlaybackWatershed
     // @brief Gets the PlaybackWatershed setting
@@ -295,7 +295,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be
     // blocked, if applicable for the project.
     // @param blockNotRatedContent: Enabled/Disabled
-    virtual Core::hresult SetBlockNotRatedContent(const bool blockNotRatedContent /* @in */) = 0;
+    virtual Core::hresult SetBlockNotRatedContent(const bool blockNotRatedContent ) = 0;
 
     // @text getBlockNotRatedContent
     // @brief Gets the BlockNotRatedContent setting
@@ -306,7 +306,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made
     // when a purchase is attempted.
     // @param pinOnPurchase: Enabled/Disabled
-    virtual Core::hresult SetPinOnPurchase(const bool pinOnPurchase /* @in */) = 0;
+    virtual Core::hresult SetPinOnPurchase(const bool pinOnPurchase ) = 0;
 
     // @text getPinOnPurchase
     // @brief Gets the PinOnPurchase setting
@@ -316,7 +316,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @text setHighContrast
     // @brief Sets highContrast. Whether the app should display with high contrast or not.
     // @param enabled: Enabled/Disabled
-    virtual Core::hresult SetHighContrast(const bool enabled /* @in */) = 0;
+    virtual Core::hresult SetHighContrast(const bool enabled ) = 0;
 
     // @text getHighContrast
     // @brief Gets the current highContrast setting.
@@ -326,7 +326,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @text setVoiceGuidance
     // @brief Sets voiceGuidance. Whether Voice Guidance is enabled or not.
     // @param enabled: Enabled/Disabled
-    virtual Core::hresult SetVoiceGuidance(const bool enabled /* @in */) = 0;
+    virtual Core::hresult SetVoiceGuidance(const bool enabled ) = 0;
 
     // @text getVoiceGuidance
     // @brief Gets the current voiceGuidance setting.
@@ -336,7 +336,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @text setVoiceGuidanceRate
     // @brief Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
     // @param rate: Sets Voice Guidance rate
-    virtual Core::hresult SetVoiceGuidanceRate(const double rate /* @in */) = 0;
+    virtual Core::hresult SetVoiceGuidanceRate(const double rate ) = 0;
 
     // @text getVoiceGuidanceRate
     // @brief Gets the current voiceGuidanceRate setting.
@@ -346,7 +346,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @text setVoiceGuidanceHints
     // @brief Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
     // @param hints: Enabled/Disabled
-    virtual Core::hresult SetVoiceGuidanceHints(const bool hints /* @in */) = 0;
+    virtual Core::hresult SetVoiceGuidanceHints(const bool hints ) = 0;
 
     // @text getVoiceGuidanceHints
     // @brief Gets the current voiceGuidanceHints setting.
