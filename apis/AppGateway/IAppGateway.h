@@ -90,6 +90,16 @@ namespace WPEFramework
             // @brief Get the sessionId for a given application provided to the delegate
             virtual Core::hresult GetSessionId(const string& appId /* @in */ , string& sessionId /* @out */) = 0;
 
+            // ---- CheckPermissionGroup ----
+            // @json:omit
+            // @text CheckPermissionGroup
+            // @param appId: AppId of the current application.
+            // @param permissionGroup: Permission group to check
+            // @brief Check if the application belongs to a given permission group
+            virtual Core::hresult CheckPermissionGroup(const string& appId /* @in */,
+                                                       const string& permissionGroup /* @in */,
+                                                       bool& allowed /* @out */) = 0;
+
         };
 
         // @text:keep
