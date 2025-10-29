@@ -32,7 +32,6 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
-        ('version',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@json\s+([\d\.]+)\s*@text:keep(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
@@ -42,7 +41,7 @@ class HeaderFileParser:
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
-        ('json',        'doxygen', re,compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)(?:.*)'))
+        ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
@@ -280,6 +279,8 @@ class HeaderFileParser:
             self.latest_tag = ''
         elif line_tag == 'json':
             self.in_json_tag = True
+            if groups[1]:
+                self.plugin_version = groups[1]
             self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
@@ -463,12 +464,13 @@ class HeaderFileParser:
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
 
             # if the interface struct does not have a @json tag, skip registering the methods
+
+            if scope[-1] == 'INotification' or '_HasEventTag' in scope[-1]:
+                self.events[method_name] = method_info
             if '_HasJsonTag' not in scope[-1]:
                 return
             if 'property' in doxy_tags:
                 self.properties[method_name] = method_info
-            elif scope[-1] == 'INotification':
-                self.events[method_name] = method_info
             else:
                 self.methods[method_name] = method_info
         else:
@@ -621,7 +623,7 @@ class HeaderFileParser:
         if external_struct_tracker_match:
             scope_name = external_struct_tracker_match.group(1)
             if self.in_event:
-                scope_name = 'INotification'
+                scope_name = scope_name + '_HasEventTag'
                 self.in_event = False
             elif self.in_json_tag:
                 scope_name = scope_name + '_HasJsonTag'
