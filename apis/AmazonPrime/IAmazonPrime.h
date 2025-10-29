@@ -51,9 +51,9 @@ namespace Exchange {
         virtual ~IAmazon() {}
 
         /** Register notification interface */
-        virtual Core::hresult Register(IAmazon::INotification* amazon /* @in */) = 0;
+        virtual Core::hresult Register(IAmazon::INotification* amazon) = 0;
         /** Unregister notification interface */
-        virtual Core::hresult Unregister(IAmazon::INotification* amazon /* @in */) = 0;
+        virtual Core::hresult Unregister(IAmazon::INotification* amazon) = 0;
 
         /** To send deeplink command to amazon prime application **/
         // @text setDeepLink

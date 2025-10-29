@@ -1,0 +1,48 @@
+#ifndef ENTSERVICES_ERRORCODES_H
+#define ENTSERVICES_ERRORCODES_H
+#pragma once
+#include <stdio.h>
+
+// 1. A list of Plugin specific errors.
+// As per https://www.jsonrpc.org/specification#error_object, implementation defined error range is -32000 to -32099
+// So, we have room for only 100 errors across all entertainment services in RDK. 
+// Please define error code in reusable form (or generic form), wherever possible. 
+// Always consult Thunder Framework defined errors before defining a new error.
+#define ERROR_LIST \
+    X(ERROR_INVALID_DEVICENAME, "Invalid device name") \
+    X(ERROR_INVALID_MOUNTPOINT, "Invalid mount path") \
+    X(ERROR_FIRMWAREUPDATE_INPROGRESS, "Firmware update already in progress") \
+    X(ERROR_FIRMWAREUPDATE_UPTODATE, "Firmware is already upto date") \
+    X(ERROR_FILE_IO, "File Read or Write error") \
+
+
+/******** PLEASE DO NOT MODIFY ANYTHING BELOW THIS **********/
+// 2. Define the 'X' macro to generate the enum.
+#define X(name, string) name,
+enum ErrorCodeEnum{
+    // Start the first error code at 1000
+    ERROR_BASE = 1000,
+    ERROR_LIST
+    MAX_ERROR_CODE
+};
+// Undefine 'X' to avoid conflicts.
+#undef X
+
+// 3. Define the 'X' macro to generate the string array.
+#define X(name, string) string,
+const char* const error_strings[] = {
+    "Error base",
+    ERROR_LIST
+    "Unknown error code"
+};
+
+//4.Check if Error code is within the entservices error code range.
+#define IS_ENTSERVICES_ERRORCODE(errorcode) \
+    ((errorcode) >= ERROR_BASE && \
+     (errorcode) <  MAX_ERROR_CODE)
+
+
+//5.Fetch Error strings
+#define ERROR_MESSAGE(errorcode) (error_strings[(errorcode) - ERROR_BASE])
+
+#endif //ENTSERVICES_ERRORCODES_H

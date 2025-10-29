@@ -96,6 +96,12 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @text setFirmwareRebootDelay
   virtual Core::hresult SetFirmwareRebootDelay (const uint32_t delaySeconds, bool& success /* @out */) = 0;
 
+  // @brief Enable or disable the AutoReboot feature.
+  // @param[in] enable Boolean to enable or disable AutoReboot
+  // @returns Core::hresult
+  // @text setAutoReboot
+  virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework

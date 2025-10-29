@@ -54,6 +54,7 @@ HdmiCecSink interface methods:
 | [getVendorId](#getVendorId) | Gets the current vendor ID used by host device |
 | [printDeviceList](#printDeviceList) | This is a helper debug command for developers |
 | [requestActiveSource](#requestActiveSource) | Requests the active source in the network |
+| [requestAudioDevicePowerStatus](#requestAudioDevicePowerStatus) | Requests the audio device power status |
 | [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an event |
 | [sendAudioDevicePowerOnMessage](#sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device |
 | [sendGetAudioStatusMessage](#sendGetAudioStatusMessage) | Sends the CEC \<Give Audio Status\> message to request the audio status |
@@ -545,6 +546,51 @@ This method takes no parameters.
 }
 ```
 
+<a name="requestAudioDevicePowerStatus"></a>
+## *requestAudioDevicePowerStatus*
+
+Requests the audio device power status.
+
+### Events
+
+| Event | Description |
+| :-------- | :-------- |
+| [reportAudioDevicePowerStatus](#reportAudioDevicePowerStatus) | Triggered when the audio device power status is received. |
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.HdmiCecSink.requestAudioDevicePowerStatus"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a name="requestShortAudioDescriptor"></a>
 ## *requestShortAudioDescriptor*
 
@@ -554,7 +600,7 @@ Sends the CEC Request Short Audio Descriptor (SAD) message as an
 
 | Event | Description |
 | :-------- | :-------- |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device. |
+| [shortAudiodescriptorEvent](#shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device. |
 ### Parameters
 
 This method takes no parameters.
@@ -1355,11 +1401,12 @@ HdmiCecSink interface events:
 | [onTextViewOnMsg](#onTextViewOnMsg) | Triggered when a \<Text View ON\> CEC message is received from the source device |
 | [onWakeupFromStandby](#onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives \<Image View ON\>/ \<Text View ON\>/ \<Active Source\> CEC message from the connected source device |
 | [reportAudioDeviceConnectedStatus](#reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed |
+| [reportAudioDevicePowerStatus](#reportAudioDevicePowerStatus) | Triggered when the audio device power status is received |
 | [reportAudioStatusEvent](#reportAudioStatusEvent) | Triggered when CEC \<Report Audio Status\> message of device is received |
 | [reportFeatureAbortEvent](#reportFeatureAbortEvent) | Triggered when CEC \<Feature Abort\> message of device is received |
 | [reportCecEnabledEvent](#reportCecEnabledEvent) | Triggered when the HDMI-CEC is enabled |
 | [setSystemAudioModeEvent](#setSystemAudioModeEvent) | Triggered when CEC \<Set System Audio Mode\> message of device is received |
-| [shortAudiodesciptorEvent](#shortAudiodesciptorEvent) | Triggered when SAD is received from the connected audio device |
+| [shortAudiodescriptorEvent](#shortAudiodescriptorEvent) | Triggered when SAD is received from the connected audio device |
 | [standbyMessageReceived](#standbyMessageReceived) | Triggered when the source device changes status to `STANDBY` |
 
 
@@ -1633,6 +1680,30 @@ Triggered when an audio device is added or removed.
 }
 ```
 
+<a name="reportAudioDevicePowerStatus"></a>
+## *reportAudioDevicePowerStatus*
+
+Triggered when the audio device power status is received.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.powerStatus | integer | The power status of the audio device |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.reportAudioDevicePowerStatus",
+    "params": {
+        "powerStatus": 0
+    }
+}
+```
+
 <a name="reportAudioStatusEvent"></a>
 ## *reportAudioStatusEvent*
 
@@ -1735,8 +1806,8 @@ Triggered when CEC \<Set System Audio Mode\> message of device is received.
 }
 ```
 
-<a name="shortAudiodesciptorEvent"></a>
-## *shortAudiodesciptorEvent*
+<a name="shortAudiodescriptorEvent"></a>
+## *shortAudiodescriptorEvent*
 
 Triggered when SAD is received from the connected audio device. See `requestShortAudioDescriptor`.
 
@@ -1753,7 +1824,7 @@ Triggered when SAD is received from the connected audio device. See `requestShor
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.shortAudiodesciptorEvent",
+    "method": "client.events.shortAudiodescriptorEvent",
     "params": {
         "ShortAudioDescriptor": [
             [
