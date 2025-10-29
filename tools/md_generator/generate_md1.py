@@ -43,7 +43,8 @@ def generate_md():
             print(f"[TOOL] Would generate md from {h_files} using the required tool.")
         else:
             print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
-            convert_json_to_md(plugin_path)
+            json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../json_generator/output/{plugin}"))
+            convert_json_to_md(json_plugin_path)
             used_json_method = True
     if not used_json_method:
         print("No plugin folders required convert_json_to_md().")
