@@ -45,10 +45,12 @@ class HeaderFileParser:
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
+        ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
         ('method',      'cpp_obj', re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)')),
         ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
+        
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
@@ -101,6 +103,7 @@ class HeaderFileParser:
         self.symbols_registry = {}
         self.configuration_options = {}
         self.logger = logger
+        self.notification_names = ['INotification']
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -110,6 +113,7 @@ class HeaderFileParser:
         self.plugindescription = ''
         self.plugin_version = ''
         self.in_json_tag = False
+        self.in_omit_tag = False
 
         # main logic to create header file structure
         self.process_header_file()
@@ -282,6 +286,9 @@ class HeaderFileParser:
             if groups[1]:
                 self.plugin_version = groups[1]
             self.latest_tag = ''
+        elif line_tag == 'omit':
+            self.doxy_tags['omit'] = 'omit'
+            self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
@@ -451,25 +458,23 @@ class HeaderFileParser:
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
+
+            method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
             # ignore these methods
             if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
                 return
+            # if the interface struct does not have a @json tag, skip registering the methods
+            if '_HasJsonTag' not in scope[-1]:
+                return
+            if '_HasEventTag' in scope[-1] or 'INotification' in scope[-1]:
+                self.events[method_name] = method_info
             # if we are parsing a method that has the same name as a property we have already
             # encountered/parsed, that means we are encountering the getter/setter version definition
             # of a property, thus the property is read & write
-            if method_name in self.properties:
+            elif method_name in self.properties:
                 self.properties[method_name]['property'] = 'read write'
                 return
-
-            method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
-
-            # if the interface struct does not have a @json tag, skip registering the methods
-
-            if scope[-1] == 'INotification' or '_HasEventTag' in scope[-1]:
-                self.events[method_name] = method_info
-            if '_HasJsonTag' not in scope[-1]:
-                return
-            if 'property' in doxy_tags:
+            elif 'property' in doxy_tags:
                 self.properties[method_name] = method_info
             else:
                 self.methods[method_name] = method_info
@@ -521,6 +526,8 @@ class HeaderFileParser:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if symbol_type == 'RPC::IStringIterator':
                 self.register_iterator(symbol_type)
+            if symbol_type in self.notification_names:
+                self.doxy_tags['omit'] = 'omit'
             overridden_name = symbol_name
             if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
                 overridden_name = custom_name
@@ -623,9 +630,11 @@ class HeaderFileParser:
         if external_struct_tracker_match:
             scope_name = external_struct_tracker_match.group(1)
             if self.in_event:
+                if scope_name not in self.notification_names:
+                    self.notification_names.append(scope_name)
                 scope_name = scope_name + '_HasEventTag'
                 self.in_event = False
-            elif self.in_json_tag:
+            if self.in_json_tag or '_HasJsonTag' in scope[-1]:
                 scope_name = scope_name + '_HasJsonTag'
                 self.in_json_tag = False
             scope.append(scope_name)
