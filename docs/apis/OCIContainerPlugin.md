@@ -1032,7 +1032,9 @@ Triggered when the container execution is failed.
 <a name="event.OnContainerStateChanged"></a>
 ## *OnContainerStateChanged [<sup>event</sup>](#head.Notifications)*
 
-Triggered when the container state has changed.
+Triggered when the container state has changed.This event is only fired for Started, Stopped, Hibernated, and Awoken state transitions.
+
+**Note:** When a container is awakening, the event is triggered with the "Running" state rather than "Awakening".
 
 ### Parameters
 
@@ -1040,7 +1042,7 @@ Triggered when the container state has changed.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.containerId | string | The ID of a container as returned by `listContainers` |
-| params.state | string | The container state (must be one of the following: *Invalid*, *Starting*, *Running*, *Stopping*, *Paused*, *Stopped*, *Hibernating*, *Hibernated*, *Awakening*) |
+| params.state | string | The container state (must be one of the following: *Running*, *Stopped*, *Hibernated*) |
 
 ### Example
 
