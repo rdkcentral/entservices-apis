@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework
 {
     namespace Exchange
@@ -46,18 +48,17 @@ namespace WPEFramework
         };
 
         enum WakeupSrcType : uint16_t {
-            WAKEUP_SRC_UNKNOWN          = 0         /* @text UNKNOWN */,
-            WAKEUP_SRC_VOICE            = 1         /* @text VOICE */,
-            WAKEUP_SRC_PRESENCEDETECTED = 1 << 1    /* @text PRESENCEDETECTED */,
-            WAKEUP_SRC_BLUETOOTH        = 1 << 2    /* @text BLUETOOTH */,
-            WAKEUP_SRC_WIFI             = 1 << 3    /* @text WIFI */,
-            WAKEUP_SRC_IR               = 1 << 4    /* @text IR */,
-            WAKEUP_SRC_POWERKEY         = 1 << 5    /* @text POWERKEY */,
-            WAKEUP_SRC_TIMER            = 1 << 6    /* @text TIMER */,
-            WAKEUP_SRC_CEC              = 1 << 7    /* @text CEC */,
-            WAKEUP_SRC_LAN              = 1 << 8    /* @text LAN */,
-            WAKEUP_SRC_RF4CE            = 1 << 9    /* @text RF4CE */,
-            WAKEUP_SRC_MAX              = 1 << 10
+            WAKEUP_SRC_UNKNOWN          = 0    /* @text UNKNOWN */,
+            WAKEUP_SRC_VOICE            = 1    /* @text VOICE */,
+            WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text PRESENCEDETECTED */,
+            WAKEUP_SRC_BLUETOOTH        = 3    /* @text BLUETOOTH */,
+            WAKEUP_SRC_WIFI             = 4    /* @text WIFI */,
+            WAKEUP_SRC_IR               = 5    /* @text IR */,
+            WAKEUP_SRC_POWERKEY         = 6    /* @text POWERKEY */,
+            WAKEUP_SRC_TIMER            = 7    /* @text TIMER */,
+            WAKEUP_SRC_CEC              = 8    /* @text CEC */,
+            WAKEUP_SRC_LAN              = 9    /* @text LAN */,
+            WAKEUP_SRC_RF4CE            = 10   /* @text RF4CE (IMPORTANT: Add any new wakeupsrc before this)*/
         };
 
         enum WakeupReason : uint8_t {
@@ -88,6 +89,13 @@ namespace WPEFramework
             SYSTEM_MODE_WAREHOUSE   = 3  /* @text WAREHOUSE */
         };
 
+        struct WakeupSourceConfig {
+            WakeupSrcType wakeupSource;
+            bool          enabled;
+        };
+
+        using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
+
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
         {
@@ -99,8 +107,8 @@ namespace WPEFramework
             // @param rebootRequestor: Reboot requested by
             virtual void OnRebootBegin(const string &rebootReasonCustom, const string &rebootReasonOther, const string &rebootRequestor) {};
         };
-        virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(const Exchange::IPowerManager::IRebootNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(Exchange::IPowerManager::IRebootNotification* notification ) = 0;
+        virtual Core::hresult Unregister(const Exchange::IPowerManager::IRebootNotification* notification ) = 0;
 
         // @event
         struct EXTERNAL IModePreChangeNotification : virtual public Core::IUnknown
@@ -115,11 +123,11 @@ namespace WPEFramework
             virtual void OnPowerModePreChange(const PowerState currentState, const PowerState newState, const int transactionId, const int stateChangeAfter) {};
         };
         // @brief Register for Power Mode pre-change event
-        virtual Core::hresult Register(IModePreChangeNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(IModePreChangeNotification* notification ) = 0;
         // @brief Unregister for Power Mode pre-change event
         //       IMPORTANT: If client is also engaged in power mode pre-change operation (requested via AddPowerModePreChangeClient API),
         //                  make sure to disengage (using RemovePowerModePreChangeClient API) before calling Unregister.
-        virtual Core::hresult Unregister(const IModePreChangeNotification* notification /* @in */) = 0;
+        virtual Core::hresult Unregister(const IModePreChangeNotification* notification ) = 0;
 
         // @event
         struct EXTERNAL IModeChangedNotification : virtual public Core::IUnknown
@@ -131,8 +139,8 @@ namespace WPEFramework
             // @param newState: New Power State
             virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) {};
         };
-        virtual Core::hresult Register(IModeChangedNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(const IModeChangedNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(IModeChangedNotification* notification ) = 0;
+        virtual Core::hresult Unregister(const IModeChangedNotification* notification ) = 0;
 
         // @event
         struct EXTERNAL IDeepSleepTimeoutNotification : virtual public Core::IUnknown
@@ -143,8 +151,8 @@ namespace WPEFramework
             // @param wakeupTimeout: Deep sleep wakeup timeout in seconds
             virtual void OnDeepSleepTimeout(const int wakeupTimeout) {};
         };
-        virtual Core::hresult Register(IDeepSleepTimeoutNotification* notification /* @in */) = 0;
-        virtual Core::hresult Unregister(const IDeepSleepTimeoutNotification* notification /* @in */) = 0;
+        virtual Core::hresult Register(IDeepSleepTimeoutNotification* notification ) = 0;
+        virtual Core::hresult Unregister(const IDeepSleepTimeoutNotification* notification ) = 0;
 
          // @event
          struct EXTERNAL INetworkStandbyModeChangedNotification : virtual public Core::IUnknown
@@ -155,8 +163,8 @@ namespace WPEFramework
              // @param enabled: network standby enabled or disabled
              virtual void OnNetworkStandbyModeChanged(const bool enabled) {};
          };
-         virtual Core::hresult Register(INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
-         virtual Core::hresult Unregister(const INetworkStandbyModeChangedNotification* notification /* @in */) = 0;
+         virtual Core::hresult Register(INetworkStandbyModeChangedNotification* notification ) = 0;
+         virtual Core::hresult Unregister(const INetworkStandbyModeChangedNotification* notification ) = 0;
 
          // @event
          struct EXTERNAL IThermalModeChangedNotification : virtual public Core::IUnknown
@@ -169,8 +177,8 @@ namespace WPEFramework
              // @param currentTemperature: current temperature
              virtual void OnThermalModeChanged(const ThermalTemperature currentThermalLevel, const ThermalTemperature newThermalLevel, const float currentTemperature) {};
          };
-         virtual Core::hresult Register(IThermalModeChangedNotification* notification /* @in */) = 0;
-         virtual Core::hresult Unregister(const IThermalModeChangedNotification* notification /* @in */) = 0;
+         virtual Core::hresult Register(IThermalModeChangedNotification* notification ) = 0;
+         virtual Core::hresult Unregister(const IThermalModeChangedNotification* notification ) = 0;
 
         /** Engage a client in power mode change operation. */
         // @text addPowerModePreChangeClient
@@ -187,21 +195,21 @@ namespace WPEFramework
         // @param clientName: Name of the client
         // @param clientId: Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) 
         //                  or to delay the power mode change (`DelayPowerModeChangeBy`)
-        virtual Core::hresult AddPowerModePreChangeClient(const string& clientName /* @in */, uint32_t& clientId /* @out */) = 0;
+        virtual Core::hresult AddPowerModePreChangeClient(const string& clientName , uint32_t& clientId /* @out */) = 0;
 
         /** Disengage a client from the power mode change operation. */
         // @text removePowerModePreChangeClient
         // @brief Removes a registered client from participating in power mode pre-change operations.
         //        NOTE client will still continue to receive pre-change notifications.
         // @param clientId: Unique identifier for the client. See `AddPowerModePreChangeClient`
-        virtual Core::hresult RemovePowerModePreChangeClient(const uint32_t clientId /* @in */) = 0;
+        virtual Core::hresult RemovePowerModePreChangeClient(const uint32_t clientId ) = 0;
 
         /** Sets Power State . */
         // @text setPowerState
         // @brief Set Power State
         // @param powerState: Set power to this state
         // @param reason: Reason for moving to the power state
-        virtual Core::hresult SetPowerState(const int keyCode /* @in */, const PowerState powerState /* @in */,const string &reason /* @in */) = 0;
+        virtual Core::hresult SetPowerState(const int keyCode , const PowerState powerState ,const string &reason ) = 0;
 
         /** Gets the Power State.*/
         // @text getPowerState
@@ -220,7 +228,7 @@ namespace WPEFramework
         // @brief Set Temperature Thresholds
         // @param high: high threshold
         // @param critical : critical threshold
-        virtual Core::hresult SetTemperatureThresholds(float high /* @in */, float critical /* @in */) = 0;
+        virtual Core::hresult SetTemperatureThresholds(float high , float critical ) = 0;
 
         /** Gets the current Temperature Thresholds.*/
         // @text getTemperatureThresholds
@@ -234,7 +242,7 @@ namespace WPEFramework
         // @text setOvertempGraceInterval
         // @brief Set Temperature Thresholds
         // @param graceInterval: interval in secs?
-        virtual Core::hresult SetOvertempGraceInterval(const int graceInterval /* @in */) = 0;
+        virtual Core::hresult SetOvertempGraceInterval(const int graceInterval ) = 0;
 
         /** Gets the current Temperature Thresholds.*/
         // @property
@@ -248,7 +256,7 @@ namespace WPEFramework
         // @text setDeepSleepTimer
         // @brief Set Deep sleep timer for timeOut period
         // @param timeOut: deep sleep timeout
-        virtual Core::hresult SetDeepSleepTimer(const int timeOut /* @in */) = 0;
+        virtual Core::hresult SetDeepSleepTimer(const int timeOut ) = 0;
 
         /** Get Last Wakeup reason */
         // @property
@@ -267,14 +275,14 @@ namespace WPEFramework
         /** Perform Reboot */
         // @text reboot
         // @brief Reboot device
-        virtual Core::hresult Reboot(const string &rebootRequestor /* @in */, const string &rebootReasonCustom /* @in */, const string &rebootReasonOther /* @in */) = 0;
+        virtual Core::hresult Reboot(const string &rebootRequestor , const string &rebootReasonCustom , const string &rebootReasonOther ) = 0;
 
         /** Set Network Standby Mode */
         // @property
         // @text setNetworkStandbyMode
         // @brief Set the standby mode for Network
         // @param standbyMode: Network standby mode
-        virtual Core::hresult SetNetworkStandbyMode(const bool standbyMode /* @in */) = 0;
+        virtual Core::hresult SetNetworkStandbyMode(const bool standbyMode ) = 0;
 
         /** Get Network Standby Mode */
         // @text getNetworkStandbyMode
@@ -283,27 +291,16 @@ namespace WPEFramework
         virtual Core::hresult GetNetworkStandbyMode(bool &standbyMode /* @out */) = 0;
 
         /** Set Wakeup source configuration */
-        // @text setWakeupSrcConfig
+        // @text setWakeupSourceConfig
         // @brief Set the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param wakeSrcType: source type
-        // @param config: config
-        virtual Core::hresult SetWakeupSrcConfig(const int powerMode /* @in */, const int wakeSrcType /* @in */, int config /* @in */ ) = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* const wakeupSources) = 0;
 
         /** Get Wakeup source configuration */
-        // @text getWakeupSrcConfig
+        // @text getWakeupSourceConfig
         // @brief Get the source configuration for device wakeup
-        // @param powerMode: power mode
-        // @param srcType: source type
-        // @param config: config
-        virtual Core::hresult GetWakeupSrcConfig(int &powerMode /* @out */, int &srcType /* @out */, int &config /* @out */) const = 0;
-
-        /** Initiate System mode change */
-        // @text setSystemMode
-        // @brief System mode change
-        // @param oldMode: old mode
-        // @param newMode: new mode
-        virtual Core::hresult SetSystemMode(const SystemMode currentMode /* @in */, const SystemMode newMode /* @in */) const = 0;
+        // @param wakeupSources: Wake up sources array
+        virtual Core::hresult GetWakeupSourceConfig(IWakeupSourceConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Get Power State before reboot */
         // @text getPowerStateBeforeReboot
@@ -316,7 +313,7 @@ namespace WPEFramework
         // @brief Pre power mode handling complete for given client and transation id
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
-        virtual Core::hresult PowerModePreChangeComplete(const uint32_t clientId /* @in */, const int transactionId /* @in */) = 0;
+        virtual Core::hresult PowerModePreChangeComplete(const uint32_t clientId , const int transactionId ) = 0;
 
         /** Delay Powermode change by given time */
         // @text delayPowerModeChangeBy
@@ -324,7 +321,7 @@ namespace WPEFramework
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
-        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId /* @in */, const int transactionId /* @in */, const int delayPeriod /* @in */) = 0;
+        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
     };
 
 } // namespace Exchange

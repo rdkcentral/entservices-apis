@@ -172,6 +172,7 @@ namespace Exchange {
         ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT           = ID_POWER_MANAGER + 4,
         ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
         ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
+        ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR                       = ID_POWER_MANAGER + 7,
 
 	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
@@ -203,6 +204,7 @@ namespace Exchange {
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
+	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
         ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,
@@ -315,8 +317,16 @@ namespace Exchange {
         ID_AV_INPUT_NOTIFICATION_VIDEO_STREAM_INFO_UPDATE       = ID_AV_INPUT + 4,
         ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE     = ID_AV_INPUT + 5,
         ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE        = ID_AV_INPUT + 6,
-        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7
-        
+        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7,
+
+        ID_PREINSTALL_MANAGER                           = ID_ENTOS_OFFSET + 0x410,
+        ID_PREINSTALL_MANAGER_NOTIFICATION              = ID_PREINSTALL_MANAGER + 1,
+        ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR     = ID_PREINSTALL_MANAGER + 2,
+
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
+
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430 
     }; // enum IDS
 
 } // namespace Exchange
