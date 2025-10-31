@@ -42,7 +42,7 @@ namespace Exchange {
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
-        enum Reason : uint8_t {
+        enum class Reason : uint8_t {
             NONE,                    // XXX: Not in HLA
             DOWNLOAD_FAILURE,
             DISK_PERSISTENCE_FAILURE
@@ -153,17 +153,18 @@ namespace Exchange {
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
-        enum InstallState : uint8_t{
+        enum class InstallState : uint8_t{
             INSTALLING,                 // XXX: necessary ?!
             INSTALLATION_BLOCKED,
             INSTALL_FAILURE,
             INSTALLED,
             UNINSTALLING,               // XXX: necessary ?!
+            UNINSTALL_BLOCKED,
             UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
-        enum FailReason : uint8_t {
+        enum class FailReason : uint8_t {
             NONE,                       // XXX: Not in HLA
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
@@ -275,7 +276,7 @@ namespace Exchange {
 
         ~IPackageHandler() override = default;
 
-        enum LockReason : uint8_t {
+        enum class LockReason : uint8_t {
             SYSTEM_APP,
             LAUNCH
         };
