@@ -48,28 +48,28 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @param[in] systemMode       The system mode.
   // @param[in] state            The requested state.
   // @returns Core::hresult
-  virtual Core::hresult RequestState(const SystemMode systemMode /* @in @text systemMode */ , const State state /* @in @text state */ ) = 0;
+  virtual Core::hresult RequestState(const SystemMode systemMode /* @text systemMode */ , const State state /* @text state */ ) = 0;
 
   // @text getState
   // @brief Gets the current state for a given system property
   // @param[in] systemMode       The system mode to get the state of.
   // @param[out] state           Receives the state of the system mode.
   // @returns Core::hresult
-  virtual Core::hresult GetState(const SystemMode systemMode /* @in @text systemMode */ , GetStateResult& getStateResult /* @out */) const = 0;
+  virtual Core::hresult GetState(const SystemMode systemMode /* @text systemMode */ , GetStateResult& getStateResult /* @out */) const = 0;
 
   // @text clientActivated
   // @brief To put client plugin entry in map.
   // @param[in] callsign       callsign of client.
   // @param[in] systemMode       The system mode.
   // @returns Core::hresult
-  virtual Core::hresult ClientActivated(const string& callsign /* @in @text callsign*/ ,const string& systemMode) = 0;
+  virtual Core::hresult ClientActivated(const string& callsign /* @text callsign*/ ,const string& systemMode) = 0;
 
   // @text clientDeactivated
   // @brief To put client plugin entry in map.
   // @param[in] callsign       callsign of client.
   // @param[in] systemMode       The system mode.
   // @returns Core::hresult
-  virtual Core::hresult ClientDeactivated(const string& callsign /* @in @text callsign*/, const string& systemMode) = 0;
+  virtual Core::hresult ClientDeactivated(const string& callsign /* @text callsign*/, const string& systemMode) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

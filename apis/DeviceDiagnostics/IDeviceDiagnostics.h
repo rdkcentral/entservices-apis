@@ -55,15 +55,15 @@ namespace WPEFramework
                 virtual void OnAVDecoderStatusChanged(const string& avDecoderStatusChange) {};
             };
 
-            virtual Core::hresult Register(IDeviceDiagnostics::INotification* notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IDeviceDiagnostics::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(IDeviceDiagnostics::INotification* notification ) = 0;
+            virtual Core::hresult Unregister(IDeviceDiagnostics::INotification* notification ) = 0;
 
             // @text getConfiguration
             // @brief Gets the values associated with the corresponding property names
             // @param names - in - String array of property names
             // @param paramList - out - specified properties and their values
             // @param success - out - boolean
-            virtual Core::hresult GetConfiguration(IStringIterator* const& names /* @in */, IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetConfiguration(IStringIterator* const& names , IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
 
             // @text getMilestones
             // @brief Returns the list of milestones
@@ -75,7 +75,7 @@ namespace WPEFramework
             // @brief Log marker string to rdk milestones log
             // @param marker - in - string
             // @param success - out - boolean
-            virtual Core::hresult LogMilestone(const string& marker /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult LogMilestone(const string& marker , bool& success /* @out */) = 0;
 
             // @text getAVDecoderStatus
             // @brief Gets the most active status of audio/video decoder/pipeline

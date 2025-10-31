@@ -46,8 +46,8 @@ namespace WPEFramework
                 virtual void UploadComplete(const bool& status, const string& message, const string& call_guid ) {};
             };
 
-            virtual Core::hresult Register(IScreenCapture::INotification* notification /* @in */) = 0;
-            virtual Core::hresult Unregister(IScreenCapture::INotification* notification /* @in */) = 0;
+            virtual Core::hresult Register(IScreenCapture::INotification* notification ) = 0;
+            virtual Core::hresult Unregister(IScreenCapture::INotification* notification ) = 0;
 
 
             /**********************uploadScreenCapture() - start*******************************/
@@ -56,7 +56,7 @@ namespace WPEFramework
             // @param url - in - string
             // @param callGUID - in - string
             // @returns Core::hresult
-            virtual Core::hresult UploadScreenCapture(const string& url /* @in */, const string& callGUID /* @in */, Result &result /* @out  */ ) = 0;
+            virtual Core::hresult UploadScreenCapture(const string& url , const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************uploadScreenCapture() - end*********************************/
         };
     } // namespace Exchange

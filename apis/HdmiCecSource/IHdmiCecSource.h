@@ -58,34 +58,34 @@ namespace WPEFramework
                 // @brief Notifies when CEC device removed from CEC network
                 // @text onDeviceRemoved
                 // @param logicalAddress: Logical address of the removed device
-                virtual void OnDeviceRemoved(const int logicalAddress /* @in */) {};
+                virtual void OnDeviceRemoved(const int logicalAddress ) {};
     
                 // @brief Notifies when CEC device info updated
                 // @text onDeviceInfoUpdated
                 // @param deviceInfo: Device info of the updated device
-                virtual void OnDeviceInfoUpdated(const int logicalAddress/* @in */) {};
+                virtual void OnDeviceInfoUpdated(const int logicalAddress) {};
     
                 // @brief Notifies when the active source status is updated
                 // @text onActiveSourceStatusUpdated
                 // @param isActiveSource: Is the active source active or not
-                virtual void OnActiveSourceStatusUpdated(const bool status /* @in */) {};
+                virtual void OnActiveSourceStatusUpdated(const bool status ) {};
     
                 // @brief Notifies when CEC standby message received from the other CEC device
                 // @text standbyMessageReceived
                 // @param logicalAddress: Logical address of the device
-                virtual void StandbyMessageReceived(const int logicalAddress /* @in */) {};
+                virtual void StandbyMessageReceived(const int logicalAddress ) {};
 
                 // @brief Notifies when a key release CEC message is received from other CEC device
                 // @text onKeyReleaseEvent
                 // @param logicalAddress: Logical address of the device
-                virtual void OnKeyReleaseEvent(const int logicalAddress /* @in */) {};
+                virtual void OnKeyReleaseEvent(const int logicalAddress ) {};
 
 
                 // @brief Notifies when a key press CEC message is received from other CEC device
                 // @text onKeyPressEvent
                 // @param logicalAddress: Logical address of the device
                 // @param keyCode: Key code of the key press event
-                virtual void OnKeyPressEvent(const int logicalAddress /* @in */, const int keyCode /* @in */) {};
+                virtual void OnKeyPressEvent(const int logicalAddress , const int keyCode ) {};
             };
 
             // @json:omit
@@ -135,7 +135,7 @@ namespace WPEFramework
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
+            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sends a standby message to another CEC device
             // @text sendStandbyMessage
@@ -146,25 +146,25 @@ namespace WPEFramework
             // @text setEnabled
             // @param enabled: Is the HDMI CEC source enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC source
             // @text setOSDName
             // @param osdName: OSD name of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetOSDName(const string &name /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetOSDName(const string &name , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OTP enabled status of the HDMI CEC source
             // @text setOTPEnabled
             // @param enabled: Is the OTP enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetOTPEnabled(const bool &enabled /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetOTPEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC source
             // @text setVendorId
             // @param vendorId: Vendor ID of the HDMI CEC source
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetVendorId(const string &vendorid /* @in */, HdmiCecSourceSuccess &success /* @out */) = 0;
+            virtual Core::hresult SetVendorId(const string &vendorid , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Gets the list of devices connected to the HDMI CEC source
             // @text getDeviceList
