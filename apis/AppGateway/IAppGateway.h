@@ -27,7 +27,7 @@ namespace WPEFramework
 {
     namespace Exchange
     {
-        struct GatewayContext
+        struct EXTERNAL GatewayContext
         {
                 uint32_t requestId;       // @brief Unique identifier for the request.
                 uint32_t connectionId; // @brief Unique identifier for the execution/session context.
@@ -48,7 +48,7 @@ namespace WPEFramework
             // @brief Adds additional Resolution paths to the gateway
             // @param paths: Adds set of paths in the order of override to be used by gateway to update the resolutions
             // @returns Core::hresult
-            virtual Core::hresult Configure(IStringIterator *const& paths /* @in */) = 0;
+            virtual Core::hresult Configure(IStringIterator *const& paths ) = 0;
 
 
             // @json:omit
@@ -61,10 +61,10 @@ namespace WPEFramework
             // @param params (optional): the parameters to resolve
             // @param result: Result of the resolution can be empty
             // @returns Core::hresult
-            virtual Core::hresult Resolve(const GatewayContext& context /* @in */,
-                                          const string& origin /* @in */,
-                                          const string& method /* @in */,
-                                          const string& params /* @in @opaque */,
+            virtual Core::hresult Resolve(const GatewayContext& context ,
+                                          const string& origin ,
+                                          const string& method ,
+                                          const string& params /*@opaque */,
                                           string& result /*@out @opaque */) = 0;
         };
 
@@ -81,14 +81,14 @@ namespace WPEFramework
             // @text Authenticate
             // @param sessionId: Session Id provided by a given application.
             // @brief Authenticate an incoming connection
-            virtual Core::hresult Authenticate(const string& sessionId /* @in */, string& appId /* @out */) = 0;
+            virtual Core::hresult Authenticate(const string& sessionId , string& appId /* @out */) = 0;
 
             // ---- GetSessionId ----
             // @json:omit
             // @text GetSessionId
             // @param appId: AppId of the current application.
             // @brief Get the sessionId for a given application provided to the delegate
-            virtual Core::hresult GetSessionId(const string& appId /* @in */ , string& sessionId /* @out */) = 0;
+            virtual Core::hresult GetSessionId(const string& appId  , string& sessionId /* @out */) = 0;
 
             // ---- CheckPermissionGroup ----
             // @json:omit
@@ -96,8 +96,8 @@ namespace WPEFramework
             // @param appId: AppId of the current application.
             // @param permissionGroup: Permission group to check
             // @brief Check if the application belongs to a given permission group
-            virtual Core::hresult CheckPermissionGroup(const string& appId /* @in */,
-                                                       const string& permissionGroup /* @in */,
+            virtual Core::hresult CheckPermissionGroup(const string& appId ,
+                                                       const string& permissionGroup ,
                                                        bool& allowed /* @out */) = 0;
 
         };
@@ -116,8 +116,8 @@ namespace WPEFramework
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
             // @returns Core::hresult
-            virtual Core::hresult Respond(const GatewayContext& context /* @in */,
-                                          const string& payload /* @in @opaque */) = 0;
+            virtual Core::hresult Respond(const GatewayContext& context ,
+                                          const string& payload /*@opaque */) = 0;
 
             // @json:omit
             // @text Emit
@@ -125,8 +125,8 @@ namespace WPEFramework
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
             // @returns Core::hresult
-            virtual Core::hresult Emit(const GatewayContext& context /* @in */,
-                const string& method /* @in */, const string& payload /* @in @opaque */) = 0;
+            virtual Core::hresult Emit(const GatewayContext& context ,
+                const string& method , const string& payload /*@opaque */) = 0;
 
             // @json:omit
             // @text Request
@@ -136,8 +136,8 @@ namespace WPEFramework
             // @param method: Method
             // @param params: Params string object
             // @returns Core::hresult
-            virtual Core::hresult Request(const uint32_t connectionId /* @in */, 
-                const uint32_t id /* @in */, const string& method /* @in */, const string& params /* @in @opaque */) = 0;
+            virtual Core::hresult Request(const uint32_t connectionId , 
+                const uint32_t id , const string& method , const string& params /*@opaque */) = 0;
 
             
             // @json:omit
@@ -147,8 +147,8 @@ namespace WPEFramework
             // @param contextKey: Connection Id
             // @param contextValue: response value
             // @returns Core::hresult
-            virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId /* @in */,
-                const string& contextKey /* @in */,
+            virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
+                const string& contextKey ,
                 string& contextValue /* @out */) = 0;
 
 
@@ -187,9 +187,9 @@ namespace WPEFramework
             // @param payload: the request payload
             // @param result: Response for the given request. Can be empty.
             // @returns Core::hresult
-            virtual Core::hresult HandleAppGatewayRequest(const GatewayContext& context /* @in */,
-                                          const string& method /* @in */,
-                                          const string& payload /* @in @opaque */,
+            virtual Core::hresult HandleAppGatewayRequest(const GatewayContext& context ,
+                                          const string& method ,
+                                          const string& payload /*@opaque */,
                                           string& result /*@out @opaque */) = 0;
 
         };
