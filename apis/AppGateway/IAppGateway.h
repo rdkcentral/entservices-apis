@@ -29,9 +29,9 @@ namespace WPEFramework
     {
         struct EXTERNAL GatewayContext
         {
-                uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
-                string appId;        // @brief Application identifier (Firebolt appId).
+                uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */ 
+                uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
+                string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
         };
         
         // @json 1.0.0 @text:keep

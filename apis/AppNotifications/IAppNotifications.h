@@ -35,14 +35,10 @@ namespace WPEFramework
 
             struct EXTERNAL AppNotificationContext
             {
-                uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
-                string appId;        // @brief Application identifier (Firebolt appId).
-                string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway).
-
-                bool operator==(const AppNotificationContext& other) const {
-                    return this->requestId == other.requestId && this->connectionId == other.connectionId && this->appId == other.appId;
-                }
+                uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */
+                uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
+                string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
+                string origin;           /* @text origin */ /* @brief Origin of the request (e.g., org.rdk.AppGateway). */
             };
 
             // @json:omit
