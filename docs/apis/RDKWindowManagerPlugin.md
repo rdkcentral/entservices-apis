@@ -284,7 +284,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 | params.enable | bool | flag to true/false the feature |
 ### Results
 | Name | Type | Description |
@@ -493,7 +493,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -900,7 +900,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -999,7 +999,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1101,7 +1101,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | std::string | the identifier of the disconnected application |
+| params.client | string | the identifier of the disconnected application |
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1174,7 +1174,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1198,7 +1198,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1222,7 +1222,7 @@ Notifies when an application is disconnected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | std::string | the identifier of the disconnected application |
+| params.client | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1246,7 +1246,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1270,7 +1270,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1294,7 +1294,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1342,7 +1342,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 

@@ -521,7 +521,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedGameFeatures | WPEFramework::Exchange::IAVInput::IStringIterator | The supported game Features |
+| result.supportedGameFeatures | IStringIterator | The supported game Features |
+| result.supportedGameFeatures[#] | string |  |
 | result.success | bool | success |
 
 ### Examples
@@ -552,7 +553,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": {
-        "supportedGameFeatures": "",
+        "supportedGameFeatures": [
+            ""
+        ],
         "success": true
     }
 }

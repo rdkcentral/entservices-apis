@@ -362,7 +362,7 @@ The following properties are provided by the WebKitBrowser plugin:
 
 WebKitBrowser interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [contentLink](#contentLink)<sup>WO</sup> | URI of the associated application-specific content |
 | [identifier](#identifier)<sup>RO</sup> | Application-specific identification string |

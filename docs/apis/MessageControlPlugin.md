@@ -113,7 +113,7 @@ The following properties are provided by the MessageControl plugin:
 
 MessageControl interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls |
 

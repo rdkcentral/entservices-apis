@@ -63,7 +63,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.options | std::string | Additional options for creating the application. |
+| params.options | string | Additional options for creating the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -163,7 +163,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | integer | This should have the id of the created application |
-| params.url | std::string | URL for the application to run. |
+| params.url | string | URL for the application to run. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -216,7 +216,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | integer | This should have the id of the created application |
-| params.code | std::string |  |
+| params.code | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

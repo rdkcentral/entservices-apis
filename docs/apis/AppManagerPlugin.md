@@ -915,7 +915,7 @@ The following properties are provided by the AppManager plugin:
 
 AppManager interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [getMaxHibernatedApps](#getMaxHibernatedApps)<sup>RO</sup> | Get the maximum number of apps to maintain in the hibernated state |
 | [getMaxHibernatedFlashUsage](#getMaxHibernatedFlashUsage)<sup>RO</sup> | Gets the max size of flash to use for hibernated apps (in mebibytes) |

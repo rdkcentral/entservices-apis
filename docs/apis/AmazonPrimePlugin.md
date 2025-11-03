@@ -268,7 +268,7 @@ Triggered whenever the App state changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | IAmazon::State | current state of amazon prime |
+| params.state | string | current state of amazon prime |
 
 ### Examples
 
@@ -278,7 +278,7 @@ Triggered whenever the App state changes
     "id": 4,
     "method": "org.rdk.AmazonPrime.stateChange",
     "params": {
-        "state": ""
+        "state": "PLAYING"
     }
 }
 ```

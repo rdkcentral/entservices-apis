@@ -45,7 +45,7 @@ The following properties are provided by the PlayerInfo plugin:
 
 PlayerInfo interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [audioCodecs](#audioCodecs)<sup>RO</sup> |  |
 | [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
@@ -345,7 +345,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | Dolby::IOutput::Type | dolby mode type |
+| (property).mode | string | dolby mode type |
 
 ### Examples
 
@@ -375,7 +375,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "mode": ""
+        "mode": "DIGITAL_PCM"
     }
 }
 ```
@@ -389,7 +389,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "method": "org.rdk.PlayerInfo.mode",
     "params": {
-        "mode": ""
+        "mode": "DIGITAL_PCM"
     }
 }
 ```
@@ -398,7 +398,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -423,7 +423,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | Dolby::IOutput::SoundModes |  |
+| (property).mode | string |  |
 
 ### Examples
 
@@ -453,7 +453,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "mode": ""
+        "mode": "UNKNOWN"
     }
 }
 ```
@@ -481,7 +481,7 @@ PlayerInfo interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mode | Dolby::IOutput::SoundModes |  |
+| params.mode | string |  |
 | params.enabled | bool |  |
 
 ### Examples
@@ -492,7 +492,7 @@ PlayerInfo interface events:
     "id": 0,
     "method": "org.rdk.PlayerInfo.audioModeChanged",
     "params": {
-        "mode": "",
+        "mode": "UNKNOWN",
         "enabled": true
     }
 }

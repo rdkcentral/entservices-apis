@@ -211,7 +211,7 @@ The following properties are provided by the DisplayInfo plugin:
 
 DisplayInfo interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
 | [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |

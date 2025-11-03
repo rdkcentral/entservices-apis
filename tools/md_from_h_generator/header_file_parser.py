@@ -524,7 +524,9 @@ class HeaderFileParser:
         for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
-            if symbol_type == 'RPC::IStringIterator':
+            if '::' in symbol_type:
+                symbol_type = self.sanitize_resolution_operator_from_type(symbol_type)
+            if symbol_type == 'IStringIterator':
                 self.register_iterator(symbol_type)
             if symbol_type in self.notification_names:
                 self.doxy_tags['omit'] = 'omit'
@@ -931,6 +933,9 @@ class HeaderFileParser:
             if symbol_info.get('example') == "":
                 if self.logger:
                     self.logger.log("INFO", f"Missing example: {symbol_name}")
+
+    def sanitize_resolution_operator_from_type(self, type):
+        return type.split('::')[-1]
 
     def count_parentheses(self, line):
         """

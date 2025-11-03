@@ -236,8 +236,8 @@ Notifies the new state
 | params | object |  |
 | params.appId | string |  |
 | params.appInstanceId | string |  |
-| params.oldState | ILifecycleManager::LifecycleState | The previous state of the application instance before the update. |
-| params.newState | ILifecycleManager::LifecycleState | The new state to transition the application. |
+| params.oldState | LifecycleState | The previous state of the application instance before the update. |
+| params.newState | LifecycleState | The new state to transition the application. |
 | params.navigationIntent | string | navigation intent during active state |
 
 ### Examples

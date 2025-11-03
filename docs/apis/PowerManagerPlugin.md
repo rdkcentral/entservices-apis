@@ -853,7 +853,7 @@ The following properties are provided by the PowerManager plugin:
 
 PowerManager interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode)<sup>RO</sup> | Get the key code that can be used for wakeup |
 | [getLastWakeupReason](#getLastWakeupReason)<sup>RO</sup> | Get Last Wake up reason |

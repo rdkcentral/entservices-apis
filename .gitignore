@@ -3,3 +3,5 @@ tools/md_from_h_generator/generated_docs/
 tools/md_from_h_generator/__pycache__/
 batch_doc_gen.sh
 compare_linked_events.py
+markdown_comparison/
+comparison_results.csv

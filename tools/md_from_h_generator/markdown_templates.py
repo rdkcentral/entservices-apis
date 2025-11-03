@@ -89,7 +89,7 @@ The following properties are provided by the {classname} plugin:
 
 {classname} interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 """
 

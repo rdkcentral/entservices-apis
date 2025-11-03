@@ -394,8 +394,12 @@ Event details will be updated soon.
 | result.metadata.type | string |  |
 | result.metadata.category | string |  |
 | result.metadata.url | string |  |
-| result.resources | IPackageManager::IKeyValueIterator |  |
-| result.auxMetadata | IPackageManager::IKeyValueIterator |  |
+| result.resources | IKeyValueIterator |  |
+| result.resources[#].key | string |  |
+| result.resources[#].value | string |  |
+| result.auxMetadata | IKeyValueIterator |  |
+| result.auxMetadata[#].key | string |  |
+| result.auxMetadata[#].value | string |  |
 
 ### Examples
 
@@ -436,8 +440,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
             "category": "",
             "url": ""
         },
-        "resources": "",
-        "auxMetadata": ""
+        "resources": [
+            {
+                "key": "",
+                "value": ""
+            }
+        ],
+        "auxMetadata": [
+            {
+                "key": "",
+                "value": ""
+            }
+        ]
     }
 }
 ```
@@ -559,7 +573,9 @@ Event details will be updated soon.
 | params | object |  |
 | params.packageId | string | Package Id |
 | params.version | string | Version |
-| params.additionalMetadata | IPackageInstaller::IKeyValueIterator | Additional Metadata |
+| params.additionalMetadata | IKeyValueIterator | Additional Metadata |
+| params.additionalMetadata[#].name | string |  |
+| params.additionalMetadata[#].value | string |  |
 | params.fileLocator | string | File Locator |
 ### Results
 | Name | Type | Description |
@@ -580,7 +596,12 @@ Event details will be updated soon.
     "params": {
         "packageId": "",
         "version": "",
-        "additionalMetadata": "",
+        "additionalMetadata": [
+            {
+                "name": "",
+                "value": ""
+            }
+        ],
         "fileLocator": ""
     }
 }
@@ -590,7 +611,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": "", "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -649,7 +670,9 @@ Event details will be updated soon.
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
-| result.appMetadata | IPackageHandler::ILockIterator | App Metadata |
+| result.appMetadata | ILockIterator | App Metadata |
+| result.appMetadata[#].packageId | string |  |
+| result.appMetadata[#].version | string |  |
 
 ### Examples
 
@@ -710,7 +733,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
             "fireboltVersion": "",
             "enableDebugger": true
         },
-        "appMetadata": ""
+        "appMetadata": [
+            {
+                "packageId": "",
+                "version": ""
+            }
+        ]
     }
 }
 ```
