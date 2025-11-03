@@ -20,6 +20,8 @@
 #pragma once
 
 #include "Module.h"
+#include "DeviceInfo/IDeviceInfo.h"
+// @stubgen:include "DeviceInfo/IDeviceInfo.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -34,7 +36,9 @@ namespace Exchange {
 
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
-
+#if 0
+         using ScreenResolution = IDeviceVideoCapabilities::ScreenResolution;
+#else
         enum ScreenResolution : uint8_t {
             SCREENRESOLUTION_UNKNOWN = 0,
             SCREENRESOLUTION_480I = 1,
@@ -62,6 +66,7 @@ namespace Exchange {
             SCREENRESOLUTION_4320P30HZ = 23,
             SCREENRESOLUTION_4320P60HZ = 24
         };
+#endif
 
         /**
          * @brief factor to be used to remove the need of using float values on the interface.
