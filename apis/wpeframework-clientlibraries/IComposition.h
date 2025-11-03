@@ -21,7 +21,10 @@
 
 #include "Module.h"
 
+// @insert <com/IIteratorType.h>
+
 #include <DeviceInfo/IDeviceInfo.h>
+// @insert <DeviceInfo/IDeviceInfo.h>
 
 namespace WPEFramework {
 namespace Exchange {
