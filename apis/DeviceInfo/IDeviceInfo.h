@@ -70,8 +70,8 @@ namespace Exchange {
             string mac;
             string ip;
         };
-        
-        typedef RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR> IAddressesInfoIterator;
+
+        using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
 
         // @property
         // @text serialnumber
