@@ -144,12 +144,6 @@ namespace Exchange {
         // @brief Provides access to the system general information
         // @param systeminfo: System general information
         virtual Core::hresult SystemInfo(SystemInfos& systemInfo /* @out */) const = 0;
-
-        // @property
-        // @text addresses
-        // @brief Provides access to the network interface addresses.
-        // @param addressesInfo: Network interface addresses
-        virtual Core::hresult Addresses(IAddressesInfoIterator*& addressesInfo /* @out */) const = 0;
         
         // @property
         // @text ethmac
