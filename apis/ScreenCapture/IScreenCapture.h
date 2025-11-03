@@ -56,6 +56,7 @@ namespace WPEFramework
             // @param url - in - string
             // @param callGUID - in - string
             // @returns Core::hresult
+            // @see uploadComplete : Triggered after uploading a screen capture
             virtual Core::hresult UploadScreenCapture(const string& url , const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************uploadScreenCapture() - end*********************************/
         };
