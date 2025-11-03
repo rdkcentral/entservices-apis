@@ -21,8 +21,6 @@
 
 #include "Module.h"
 
-// @insert <com/IIteratorType.h>
-
 #include <DeviceInfo/IDeviceInfo.h>
 // @insert <DeviceInfo/IDeviceInfo.h>
 
