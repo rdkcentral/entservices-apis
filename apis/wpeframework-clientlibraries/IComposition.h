@@ -22,7 +22,7 @@
 #include "Module.h"
 
 #include <DeviceInfo/IDeviceInfo.h>
-
+// @stubgen:include <com/IIteratorType.h>
 // @insert <DeviceInfo/IDeviceInfo.h>
 
 namespace WPEFramework {
