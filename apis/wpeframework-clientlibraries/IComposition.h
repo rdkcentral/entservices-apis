@@ -20,8 +20,8 @@
 #pragma once
 
 #include "Module.h"
-#include "DeviceInfo/IDeviceInfo.h"
-// @stubgen:include "DeviceInfo/IDeviceInfo.h"
+#include "../DeviceInfo/IDeviceInfo.h"
+// @stubgen:include "../DeviceInfo/IDeviceInfo.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -36,7 +36,7 @@ namespace Exchange {
 
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
-#if 0
+#if 1
          using ScreenResolution = IDeviceVideoCapabilities::ScreenResolution;
 #else
         enum ScreenResolution : uint8_t {
