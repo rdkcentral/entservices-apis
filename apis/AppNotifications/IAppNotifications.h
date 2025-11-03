@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2024 RDK Management
+ * Copyright 2025 RDK Management.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #pragma once
-
 #include "Module.h"
-
 namespace WPEFramework
 {
     namespace Exchange
@@ -33,16 +30,12 @@ namespace WPEFramework
                 ID = ID_APP_NOTIFICATIONS
             };
 
-            struct AppNotificationContext
+            struct EXTERNAL AppNotificationContext
             {
-                uint32_t requestId;       // @brief Unique identifier for the request.
-                uint32_t connectionId; // @brief Unique identifier for the execution/session context.
-                string appId;        // @brief Application identifier (Firebolt appId).
-                string origin;      // @brief Origin of the request (e.g., org.rdk.AppGateway).
-
-                bool operator==(const AppNotificationContext& other) const {
-                    return this->requestId == other.requestId && this->connectionId == other.connectionId && this->appId == other.appId;
-                }
+                uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */
+                uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
+                string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
+                string origin;           /* @text origin */ /* @brief Origin of the request (e.g., org.rdk.AppGateway). */
             };
 
             // @json:omit
@@ -53,10 +46,10 @@ namespace WPEFramework
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
             // @returns Core::hresult 
-            virtual Core::hresult Subscribe(const AppNotificationContext& context /* @in */,
-                                            bool listen /* @in */,
-                                            const string& module /* @in */,
-                                            const string& event /* @in */) = 0;
+            virtual Core::hresult Subscribe(const AppNotificationContext& context ,
+                                            bool listen ,
+                                            const string& module ,
+                                            const string& event ) = 0;
 
             // @json:omit
             // @text emit
@@ -65,9 +58,9 @@ namespace WPEFramework
             // @param payload: the payload to emit
             // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
             // @returns Core::hresult
-            virtual Core::hresult Emit(const string& event /* @in */,
-                                       const string& payload /* @in @opaque */,
-                                       const string& appId /* @in */) = 0;
+            virtual Core::hresult Emit(const string& event ,
+                                       const string& payload /* @opaque */,
+                                       const string& appId ) = 0;
 
             // @json:omit
             // @text Cleanup
@@ -75,7 +68,7 @@ namespace WPEFramework
             // @param connectionId: connection id for a given context
             // @param origin: origin of the context
             // @returns Core::hresult
-            virtual Core::hresult Cleanup(const uint32_t connectionId /* @in */, const string& origin /* @in */) = 0;
+            virtual Core::hresult Cleanup(const uint32_t connectionId , const string& origin ) = 0;
 
         };
 
