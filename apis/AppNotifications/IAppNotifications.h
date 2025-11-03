@@ -80,14 +80,33 @@ namespace WPEFramework
                 ID = ID_APP_NOTIFICATIONS_HANDLER_INTERNAL
             };
 
+
+            struct EXTERNAL IEmitter : virtual public Core::IUnknown
+            {
+                enum { ID = ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER };
+                virtual ~IEmitter() override = default;
+
+                // @json:omit
+                // @text emit
+                // @brief Dispatch event for a given registration, if appId is provided the dispatch happens for a given App.
+                // @param event: the event to emit
+                // @param payload: the payload to emit
+                // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
+                virtual void Emit(const string &event /* @in */,
+                                  const string &payload /* @in @opaque */,
+                                  const string &appId /* @in */) = 0;
+
+            };
+
             // @json:omit
             // @text handleAppEventNotifier
-            // @brief Handle AppEvent Notfier expectations for a given event
+            // @brief Handle AppEvent Notifier expectations for a given event
+            // @param emitCb: the emit callback interface
             // @param event: the event for registration
             // @param listen: whether to listen
             // @param status: status to be filled in
             // @returns Core::hresult
-            virtual Core::hresult HandleAppEventNotifier(const string& event , const bool& listen , bool& status /* @out */) = 0;
+            virtual Core::hresult HandleAppEventNotifier(IEmitter *emitCb, const string& event /* @in */, bool listen /* @in */, bool& status /* @out */) = 0;
 
         };
     } // namespace Exchange
