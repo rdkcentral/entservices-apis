@@ -21,7 +21,6 @@
 
 #include "Module.h"
 #include "../DeviceInfo/IDeviceInfo.h"
-// @stubgen:include "../DeviceInfo/IDeviceInfo.h"
 
 namespace WPEFramework {
 namespace Exchange {
