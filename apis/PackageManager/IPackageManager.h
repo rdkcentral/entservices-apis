@@ -220,7 +220,7 @@ namespace Exchange {
     struct EXTERNAL IPackageManagerCallback : virtual public Core::IUnknown {
 
                 enum { ID = ID_PACKAGEMANAGER_CALLBACK };
-
+                // @see OperationStatus : Triggered upon completion of an asynchronous operation.
                 virtual void OperationStatusUpdate(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;
 

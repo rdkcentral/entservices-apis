@@ -209,6 +209,7 @@ namespace WPEFramework
         // @brief Set Power State
         // @param powerState: Set power to this state
         // @param reason: Reason for moving to the power state
+        // @see onPowerModeChanged : Triggered when the power manager detects a device power state change
         virtual Core::hresult SetPowerState(const int keyCode /* @in */, const PowerState powerState /* @in */,const string &reason /* @in */) = 0;
 
         /** Gets the Power State.*/
@@ -275,6 +276,7 @@ namespace WPEFramework
         /** Perform Reboot */
         // @text reboot
         // @brief Reboot device
+        // @see onRebootBegin : Triggered when an application invokes the reboot method
         virtual Core::hresult Reboot(const string &rebootRequestor /* @in */, const string &rebootReasonCustom /* @in */, const string &rebootReasonOther /* @in */) = 0;
 
         /** Set Network Standby Mode */
@@ -333,4 +335,3 @@ namespace WPEFramework
 
 } // namespace Exchange
 } // namespace WPEFramework
-
