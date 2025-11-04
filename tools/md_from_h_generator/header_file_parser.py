@@ -40,13 +40,17 @@ class HeaderFileParser:
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
-        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit)')),
+        ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
+        ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
+        ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
+        ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
         ('method',      'cpp_obj', re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)')),
         ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
+        
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
@@ -99,12 +103,17 @@ class HeaderFileParser:
         self.symbols_registry = {}
         self.configuration_options = {}
         self.logger = logger
-        self.plugindescription = ''
+        self.notification_names = ['INotification']
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
         self.latest_param = ''
         self.latest_tag = ''
+        self.in_event = False
+        self.plugindescription = ''
+        self.plugin_version = ''
+        self.in_json_tag = False
+        self.in_omit_tag = False
 
         # main logic to create header file structure
         self.process_header_file()
@@ -266,6 +275,20 @@ class HeaderFileParser:
         if line_tag == 'plugindesc':
             self.plugindescription = groups[0]
             self.latest_tag = 'plugindesc'
+        elif line_tag == 'version':
+            self.plugin_version = groups[0]
+            self.latest_tag = ''
+        elif line_tag == 'event':
+            self.in_event = True
+            self.latest_tag = ''
+        elif line_tag == 'json':
+            self.in_json_tag = True
+            if groups[1]:
+                self.plugin_version = groups[1]
+            self.latest_tag = ''
+        elif line_tag == 'omit':
+            self.doxy_tags['omit'] = 'omit'
+            self.latest_tag = ''
         elif line_tag == 'config':
             type = groups[1]
             description = groups[2]
@@ -273,7 +296,7 @@ class HeaderFileParser:
             self.latest_tag = 'config'
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
-            self.latest_tag = 'text'
+            self.latest_tag = ''
         elif line_tag == 'params':
             self.latest_param = groups[1]
             self.latest_tag = 'params'
@@ -435,22 +458,24 @@ class HeaderFileParser:
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
+
+            method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
             # ignore these methods
             if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
                 return
+            # if the interface struct does not have a @json tag, skip registering the methods
+            if '_HasJsonTag' not in scope[-1]:
+                return
+            if '_HasEventTag' in scope[-1] or 'INotification' in scope[-1]:
+                self.events[method_name] = method_info
             # if we are parsing a method that has the same name as a property we have already
             # encountered/parsed, that means we are encountering the getter/setter version definition
             # of a property, thus the property is read & write
-            if method_name in self.properties:
+            elif method_name in self.properties:
                 self.properties[method_name]['property'] = 'read write'
                 return
-
-            method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
-
-            if 'property' in doxy_tags:
+            elif 'property' in doxy_tags:
                 self.properties[method_name] = method_info
-            elif scope[-1] == 'INotification':
-                self.events[method_name] = method_info
             else:
                 self.methods[method_name] = method_info
         else:
@@ -499,8 +524,12 @@ class HeaderFileParser:
         for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
-            if symbol_type == 'RPC::IStringIterator':
+            if '::' in symbol_type:
+                symbol_type = self.sanitize_resolution_operator_from_type(symbol_type)
+            if symbol_type == 'IStringIterator':
                 self.register_iterator(symbol_type)
+            if symbol_type in self.notification_names:
+                self.doxy_tags['omit'] = 'omit'
             overridden_name = symbol_name
             if custom_name and custom_name != symbol_name and custom_name in normalized_param_info:
                 overridden_name = custom_name
@@ -597,11 +626,20 @@ class HeaderFileParser:
         Tracks the current scope of the line being processed. Currently used to determine when
         the notification section is parsed.
         """
-        external_struct_tracker_regex = re.compile(r'struct\s+EXTERNAL\s+([\w\d]+).*\{?')
+        external_struct_tracker_regex = re.compile(r'struct(?:\s+EXTERNAL)?\s+([\w\d]+?)\s*\:\s*virtual\s+public\s+Core\:\:IUnknown.*\{?')
         external_struct_tracker_match = external_struct_tracker_regex.match(line)
         # if this line contains the declaration of an external structure, update it as the scope
         if external_struct_tracker_match:
-            scope.append(external_struct_tracker_match.group(1))
+            scope_name = external_struct_tracker_match.group(1)
+            if self.in_event:
+                if scope_name not in self.notification_names:
+                    self.notification_names.append(scope_name)
+                scope_name = scope_name + '_HasEventTag'
+                self.in_event = False
+            if self.in_json_tag or '_HasJsonTag' in scope[-1]:
+                scope_name = scope_name + '_HasJsonTag'
+                self.in_json_tag = False
+            scope.append(scope_name)
             brace_count.append(0)
             brace_count[-1] += self.count_braces(line)
         else:
@@ -895,6 +933,9 @@ class HeaderFileParser:
             if symbol_info.get('example') == "":
                 if self.logger:
                     self.logger.log("INFO", f"Missing example: {symbol_name}")
+
+    def sanitize_resolution_operator_from_type(self, type):
+        return type.split('::')[-1]
 
     def count_parentheses(self, line):
         """
