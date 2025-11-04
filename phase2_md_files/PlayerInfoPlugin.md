@@ -2,19 +2,19 @@
 <a id="PlayerInfo_Plugin"></a>
 # PlayerInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo/IPlayerInfo.h)**
 
 A PlayerInfo plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Properties](#Properties)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -45,241 +45,25 @@ The following properties are provided by the PlayerInfo plugin:
 
 PlayerInfo interface properties:
 
-| Method | Description | Event |
+| Property | Description | Event |
 | :-------- | :-------- |:-------- |
-| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink | NA |
-| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output | NA |
-| [dolby_mode](#dolby_mode) | Dolby Mode | NA |
-| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround | NA |
 | [audioCodecs](#audioCodecs)<sup>RO</sup> |  | NA |
 | [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform | NA |
 | [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution | NA |
 | [videoCodecs](#videoCodecs)<sup>RO</sup> |  | NA |
-
-<a id="AtmosMetadata"></a>
-## *AtmosMetadata [<sup>property</sup>](#Properties)*
-
-Atmos capabilities of Sink
-
-> This property is read-only.
-### Events
-No Events are associated with this method.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).supported | bool |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.PlayerInfo.atmosMetadata"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.atmosMetadata"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "supported": true
-    }
-}
-```
-
-<a id="EnableAtmosOutput"></a>
-## *EnableAtmosOutput [<sup>property</sup>](#Properties)*
-
-Enable Atmos Audio Output
-
-> This property is write-only.
-### Events
-No Events are associated with this method.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).enable | bool | enable/disable |
-
-### Examples
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.PlayerInfo.enableAtmosOutput",
-    "params": {
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.enableAtmosOutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": null
-}
-```
-
-<a id="Mode"></a>
-## *Mode [<sup>property</sup>](#Properties)*
-
-Dolby Mode
-
-### Events
-No Events are associated with this method.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).mode | Dolby::IOutput::Type | dolby mode type |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PlayerInfo.mode"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "mode": ""
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PlayerInfo.mode",
-    "params": {
-        "mode": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
-}
-```
-
-<a id="SoundMode"></a>
-## *SoundMode [<sup>property</sup>](#Properties)*
-
-Sound Mode - Mono/Stereo/Surround
-
-> This property is read-only.
-### Events
-No Events are associated with this method.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).mode | Dolby::IOutput::SoundModes |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.PlayerInfo.soundMode"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.soundMode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "mode": ""
-    }
-}
-```
+| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink | NA |
+| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output | NA |
+| [dolby_mode](#dolby_mode) | Dolby Mode | NA |
+| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround | NA |
 
 <a id="AudioCodecs"></a>
-## *AudioCodecs [<sup>property</sup>](#Properties)*
+## *AudioCodecs*
 
 
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -320,13 +104,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled [<sup>property</sup>](#Properties)*
+## *IsAudioEquivalenceEnabled*
 
 Checks Loudness Equivalence in platform
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -366,13 +150,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="Resolution"></a>
-## *Resolution [<sup>property</sup>](#Properties)*
+## *Resolution*
 
 Current Video playback resolution
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -412,13 +196,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="VideoCodecs"></a>
-## *VideoCodecs [<sup>property</sup>](#Properties)*
+## *VideoCodecs*
 
 
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -458,6 +242,222 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
+<a id="AtmosMetadata"></a>
+## *AtmosMetadata*
+
+Atmos capabilities of Sink
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).supported | bool |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.PlayerInfo.atmosMetadata"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.atmosMetadata"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "supported": true
+    }
+}
+```
+
+<a id="EnableAtmosOutput"></a>
+## *EnableAtmosOutput*
+
+Enable Atmos Audio Output
+
+> This property is write-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).enable | bool | enable/disable |
+
+### Examples
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.PlayerInfo.enableAtmosOutput",
+    "params": {
+        "enable": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.enableAtmosOutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": null
+}
+```
+
+<a id="Mode"></a>
+## *Mode*
+
+Dolby Mode
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).mode | string | dolby mode type |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.PlayerInfo.mode"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "mode": "DIGITAL_PCM"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.PlayerInfo.mode",
+    "params": {
+        "mode": "DIGITAL_PCM"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": null
+}
+```
+
+<a id="SoundMode"></a>
+## *SoundMode*
+
+Sound Mode - Mono/Stereo/Surround
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).mode | string |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.PlayerInfo.soundMode"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.soundMode"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "mode": "UNKNOWN"
+    }
+}
+```
+
 
 <a id="Notifications"></a>
 # Notifications
@@ -473,7 +473,7 @@ PlayerInfo interface events:
 | [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
 
 <a id="audioModeChanged"></a>
-## *audioModeChanged [<sup>event</sup>](#Notifications)*
+## *audioModeChanged*
 
 
 
@@ -481,7 +481,7 @@ PlayerInfo interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mode | Dolby::IOutput::SoundModes |  |
+| params.mode | string |  |
 | params.enabled | bool |  |
 
 ### Examples
@@ -492,7 +492,7 @@ PlayerInfo interface events:
     "id": 0,
     "method": "org.rdk.PlayerInfo.audioModeChanged",
     "params": {
-        "mode": "",
+        "mode": "UNKNOWN",
         "enabled": true
     }
 }

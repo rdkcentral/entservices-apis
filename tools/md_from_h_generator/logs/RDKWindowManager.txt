@@ -1,0 +1,100 @@
+### Warnings
+- virtual Core::hresult Register(INotification *notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(INotification *notification) = 0; has no doxygen tags.
+- Event OnBlur is not associated with a method.
+- Event OnConnected is not associated with a method.
+- Event OnDisconnected is not associated with a method.
+- Event OnFocus is not associated with a method.
+- Event OnHidden is not associated with a method.
+- Event OnReady is not associated with a method.
+- Event OnUserInactivity is not associated with a method.
+- Event OnVisible is not associated with a method.
+
+### Errors
+- Could not extract parameter information from: 
+- Event onUserInactivity  tagged with SetInactivityInterval does not exist.
+
+### Info
+- Processing param: symbol_name=minutes, symbol_type=double, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=service, symbol_type=PluginHost::IShell, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=service, symbol_type=PluginHost::IShell, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=displayParams, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appsIds, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=intercept, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=intercepts, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=intercept, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyListeners, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyListeners, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyCode, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=modifiers, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keys, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enable, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=interval, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enable, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyRepeat, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=ignore, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=clients, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enable, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=input, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyConfig, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=visible, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=client, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=client, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enable, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Generated missing example for minutes-double
+- Generated missing example for client-string
+- Generated missing example for appInstanceId-string
+- Generated missing example for notification-INotification
+- Generated missing example for service-IShell
+- Generated missing example for displayParams-string
+- Generated missing example for appsIds-string
+- Generated missing example for intercept-string
+- Generated missing example for intercepts-string
+- Generated missing example for keyListeners-string
+- Generated missing example for keyCode-integer
+- Generated missing example for modifiers-string
+- Generated missing example for keys-string
+- Generated missing example for enable-bool
+- Generated missing example for interval-integer
+- Generated missing example for keyRepeat-bool
+- Generated missing example for ignore-bool
+- Generated missing example for clients-string
+- Generated missing example for input-string
+- Generated missing example for keyConfig-string
+- Generated missing example for visible-bool
+- Generated missing example for status-bool
+- Filled missing desc for enable in method EnableInputEvents
+- Filled missing desc for modifiers in method InjectKey
+- Filled missing desc for client in method SetFocus
+- Missing example: client-string
+- Missing example: appInstanceId-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing description: service-IShell
+- Missing example: service-IShell
+- Missing example: displayParams-string
+- Missing example: appsIds-string
+- Missing example: intercept-string
+- Missing example: intercepts-string
+- Missing example: keyListeners-string
+- Missing description: modifiers-string
+- Missing example: modifiers-string
+- Missing example: keys-string
+- Missing example: clients-string
+- Missing example: input-string
+- Missing example: keyConfig-string
+
+### End of Log

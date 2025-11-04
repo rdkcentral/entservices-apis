@@ -2,19 +2,19 @@
 <a id="DownloadManager_Plugin"></a>
 # DownloadManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DownloadManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DownloadManager/IDownloadManager.h)**
 
 A DownloadManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -57,12 +57,12 @@ DownloadManager interface methods:
 | [resume](#resume) | Resume a paused download session | NA |
 
 <a id="cancel"></a>
-## *cancel [<sup>method</sup>](#Methods)*
+## *cancel*
 
 Cancel an ongoing download session
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -108,12 +108,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="delete"></a>
-## *delete [<sup>method</sup>](#Methods)*
+## *delete*
 
 Delete a downloaded file from the system using its locator path
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -159,12 +159,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="download"></a>
-## *download [<sup>method</sup>](#Methods)*
+## *download*
 
 Download Start downloading a file from a specified URL with custom options
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -222,12 +222,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getStorageDetails"></a>
-## *getStorageDetails [<sup>method</sup>](#Methods)*
+## *getStorageDetails*
 
 GetStorageDetails Get information about storage space availability
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -272,12 +272,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="pause"></a>
-## *pause [<sup>method</sup>](#Methods)*
+## *pause*
 
 Pause an active download session
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -323,12 +323,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="progress"></a>
-## *progress [<sup>method</sup>](#Methods)*
+## *progress*
 
 Progress Query current download progress
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -377,12 +377,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="rateLimit"></a>
-## *rateLimit [<sup>method</sup>](#Methods)*
+## *rateLimit*
 
 RateLimit Set rate limiting for a specific download session
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -430,12 +430,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="resume"></a>
-## *resume [<sup>method</sup>](#Methods)*
+## *resume*
 
 Resume a paused download session
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -496,7 +496,7 @@ DownloadManager interface events:
 | [onAppDownloadStatus](#onAppDownloadStatus) | OnAppDownloadStatus Callback for status changes of app downloads |
 
 <a id="onAppDownloadStatus"></a>
-## *onAppDownloadStatus [<sup>event</sup>](#Notifications)*
+## *onAppDownloadStatus*
 
 OnAppDownloadStatus Callback for status changes of app downloads
 

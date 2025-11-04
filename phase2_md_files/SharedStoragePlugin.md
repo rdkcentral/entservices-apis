@@ -2,19 +2,19 @@
 <a id="SharedStorage_Plugin"></a>
 # SharedStorage Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SharedStorage)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SharedStorage/ISharedStorage.h)**
 
 A SharedStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -59,12 +59,12 @@ SharedStorage interface methods:
 | [setValue](#setValue) | Sets the value of a key in the the specified namespace | NA |
 
 <a id="deleteKey"></a>
-## *deleteKey [<sup>method</sup>](#Methods)*
+## *deleteKey*
 
 Deletes a key from the specified namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -117,12 +117,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="deleteNamespace"></a>
-## *deleteNamespace [<sup>method</sup>](#Methods)*
+## *deleteNamespace*
 
 Deletes the specified namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -173,12 +173,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="flushCache"></a>
-## *flushCache [<sup>method</sup>](#Methods)*
+## *flushCache*
 
 Flushes the device cache
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -218,12 +218,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getKeys"></a>
-## *getKeys [<sup>method</sup>](#Methods)*
+## *getKeys*
 
 Returns the keys that are stored in the specified namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -279,12 +279,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit [<sup>method</sup>](#Methods)*
+## *getNamespaceStorageLimit*
 
 Returns the storage limit for a given namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -335,12 +335,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getNamespaces"></a>
-## *getNamespaces [<sup>method</sup>](#Methods)*
+## *getNamespaces*
 
 Returns the namespaces
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -394,12 +394,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getStorageSizes"></a>
-## *getStorageSizes [<sup>method</sup>](#Methods)*
+## *getStorageSizes*
 
 Returns the size occupied by each namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -457,12 +457,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getValue"></a>
-## *getValue [<sup>method</sup>](#Methods)*
+## *getValue*
 
 Returns the value of a key from the specified namespace.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -519,12 +519,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit [<sup>method</sup>](#Methods)*
+## *setNamespaceStorageLimit*
 
 Sets the storage limit for a given namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -577,12 +577,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="setValue"></a>
-## *setValue [<sup>method</sup>](#Methods)*
+## *setValue*
 
 Sets the value of a key in the the specified namespace
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -654,7 +654,7 @@ SharedStorage interface events:
 | [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
 
 <a id="onValueChanged"></a>
-## *onValueChanged [<sup>event</sup>](#Notifications)*
+## *onValueChanged*
 
 Values stored are changed using setValue
 

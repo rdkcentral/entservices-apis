@@ -2,20 +2,20 @@
 <a id="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IConfiguration.h)**
 
 A DisplayInfo plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Properties](#Properties)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -48,69 +48,17 @@ DisplayInfo interface methods:
 
 | Method | Description | Event |
 | :-------- | :-------- |:-------- |
-| [configure](#configure) |  | NA |
 | [eDID](#eDID) | TV's Extended Display Identification Data | NA |
 | [heightInCentimeters](#heightInCentimeters) | Vertical size in centimeters | NA |
 | [widthInCentimeters](#widthInCentimeters) | Horizontal size in centimeters | NA |
 
-<a id="configure"></a>
-## *configure [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.framework | PluginHost::IShell |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.DisplayInfo.configure",
-    "params": {
-        "framework": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DisplayInfo.configure", "params": {"framework": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
 <a id="eDID"></a>
-## *eDID [<sup>method</sup>](#Methods)*
+## *eDID*
 
 TV's Extended Display Identification Data
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -161,12 +109,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="heightInCentimeters"></a>
-## *heightInCentimeters [<sup>method</sup>](#Methods)*
+## *heightInCentimeters*
 
 Vertical size in centimeters
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -209,12 +157,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="widthInCentimeters"></a>
-## *widthInCentimeters [<sup>method</sup>](#Methods)*
+## *widthInCentimeters*
 
 Horizontal size in centimeters
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -263,7 +211,7 @@ The following properties are provided by the DisplayInfo plugin:
 
 DisplayInfo interface properties:
 
-| Method | Description | Event |
+| Property | Description | Event |
 | :-------- | :-------- |:-------- |
 | [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) | NA |
 | [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry | NA |
@@ -285,13 +233,13 @@ DisplayInfo interface properties:
 | [width](#width)<sup>RO</sup> | Horizontal resolution of TV | NA |
 
 <a id="ColorSpace"></a>
-## *ColorSpace [<sup>property</sup>](#Properties)*
+## *ColorSpace*
 
 Provides access to the display's Colour space (chroma subsampling format)
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -331,13 +279,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="Colorimetry"></a>
-## *Colorimetry [<sup>property</sup>](#Properties)*
+## *Colorimetry*
 
 Provides access to display's colorimetry
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -378,13 +326,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="ColourDepth"></a>
-## *ColourDepth [<sup>property</sup>](#Properties)*
+## *ColourDepth*
 
 Provides access to display's colour Depth
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -424,13 +372,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="Connected"></a>
-## *Connected [<sup>property</sup>](#Properties)*
+## *Connected*
 
 Current HDMI connection status
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -470,13 +418,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="EOTF"></a>
-## *EOTF [<sup>property</sup>](#Properties)*
+## *EOTF*
 
 Provides access to display's Electro optical transfer function
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -516,13 +464,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="FrameRate"></a>
-## *FrameRate [<sup>property</sup>](#Properties)*
+## *FrameRate*
 
 Provides access to Frame Rate
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -562,13 +510,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="FreeGpuRam"></a>
-## *FreeGpuRam [<sup>property</sup>](#Properties)*
+## *FreeGpuRam*
 
 Free GPU DRAM memory (in bytes)
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -608,12 +556,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="HDCPProtection"></a>
-## *HDCPProtection [<sup>property</sup>](#Properties)*
+## *HDCPProtection*
 
 HDCP protocol used for transmission
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -685,13 +633,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="HDRSetting"></a>
-## *HDRSetting [<sup>property</sup>](#Properties)*
+## *HDRSetting*
 
 HDR format in use
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -731,13 +679,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="Height"></a>
-## *Height [<sup>property</sup>](#Properties)*
+## *Height*
 
 Vertical resolution of TV
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -777,13 +725,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="IsAudioPassthrough"></a>
-## *IsAudioPassthrough [<sup>property</sup>](#Properties)*
+## *IsAudioPassthrough*
 
 Current audio passthrough status on HDMI
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -823,13 +771,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="PortName"></a>
-## *PortName [<sup>property</sup>](#Properties)*
+## *PortName*
 
 Video output port on the STB used for connection to TV
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -869,13 +817,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="QuantizationRange"></a>
-## *QuantizationRange [<sup>property</sup>](#Properties)*
+## *QuantizationRange*
 
 Provides access to display's Qauntization Range
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -915,13 +863,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="STBCapabilities"></a>
-## *STBCapabilities [<sup>property</sup>](#Properties)*
+## *STBCapabilities*
 
 HDR formats supported by STB
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -962,13 +910,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="TVCapabilities"></a>
-## *TVCapabilities [<sup>property</sup>](#Properties)*
+## *TVCapabilities*
 
 HDR formats supported by TV
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1009,13 +957,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="TotalGpuRam"></a>
-## *TotalGpuRam [<sup>property</sup>](#Properties)*
+## *TotalGpuRam*
 
 Total GPU DRAM memory (in bytes)
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1055,13 +1003,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="VerticalFreq"></a>
-## *VerticalFreq [<sup>property</sup>](#Properties)*
+## *VerticalFreq*
 
 Vertical Frequency
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1101,13 +1049,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="Width"></a>
-## *Width [<sup>property</sup>](#Properties)*
+## *Width*
 
 Horizontal resolution of TV
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1161,7 +1109,7 @@ DisplayInfo interface events:
 | [updated](#updated) |  |
 
 <a id="updated"></a>
-## *updated [<sup>event</sup>](#Notifications)*
+## *updated*
 
 
 

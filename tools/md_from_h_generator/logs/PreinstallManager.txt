@@ -1,0 +1,20 @@
+### Warnings
+- virtual Core::hresult Register(INotification *notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(INotification *notification) = 0; has no doxygen tags.
+- Event OnAppInstallationStatus is not associated with a method.
+
+### Errors
+
+### Info
+- Processing param: symbol_name=jsonresponse, symbol_type=string, custom_name=None, direction=in, symbol_inline_comment= @opaque 
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=forceInstall, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Generated missing example for jsonresponse-string
+- Generated missing example for notification-INotification
+- Generated missing example for forceInstall-bool
+- Missing example: jsonresponse-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+
+### End of Log

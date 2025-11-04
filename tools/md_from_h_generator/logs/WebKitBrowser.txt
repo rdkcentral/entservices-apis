@@ -1,0 +1,208 @@
+### Warnings
+- virtual void Register(INotification* sink) = 0; has no doxygen tags.
+- virtual void Unregister(INotification* sink) = 0; has no doxygen tags.
+- virtual uint32_t LaunchPoint(const launchpointtype&) = 0; has no doxygen tags.
+- virtual uint32_t Visible(const bool&) = 0; has no doxygen tags.
+- virtual uint32_t Language(const string&) = 0; has no doxygen tags.
+- Event VisibilityChange is not associated with a method.
+- virtual uint64_t Resident() const = 0; has no doxygen tags.
+- virtual uint64_t Allocated() const = 0; has no doxygen tags.
+- virtual uint64_t Shared() const = 0; has no doxygen tags.
+- virtual uint8_t Processes() const = 0; has no doxygen tags.
+- virtual bool IsOperational() const = 0; has no doxygen tags.
+- virtual uint32_t Identifier() const = 0; has no doxygen tags.
+- virtual string Name() const = 0; has no doxygen tags.
+- virtual uint32_t Processes(IStringIterator*& processnames /* @out */) const = 0; has no doxygen tags.
+- virtual uint32_t Process(const string& processname, IProcessMemory*& process /* @out */ ) const = 0; has no doxygen tags.
+- virtual void LoadFinished(const string& URL) = 0; has no doxygen tags.
+- virtual void URLChanged(const string& URL) = 0; has no doxygen tags.
+- virtual void Hidden(const bool hidden) = 0; has no doxygen tags.
+- virtual void Closure() = 0; has no doxygen tags.
+- virtual void Register(IBrowser::INotification* sink) = 0; has no doxygen tags.
+- virtual void Unregister(IBrowser::INotification* sink) = 0; has no doxygen tags.
+- virtual void SetURL(const string& URL) = 0; has no doxygen tags.
+- virtual string GetURL() const = 0; has no doxygen tags.
+- virtual uint32_t GetFPS() const = 0; has no doxygen tags.
+- virtual void Hide(const bool hidden) = 0; has no doxygen tags.
+- virtual void Register(INotification* sink) = 0; has no doxygen tags.
+- virtual void Unregister(INotification* sink) = 0; has no doxygen tags.
+- virtual uint32_t URL(const string& url) = 0; has no doxygen tags.
+- virtual uint32_t Visibility(const VisibilityType visible) = 0; has no doxygen tags.
+- virtual uint32_t UserAgent(const string& useragent) = 0; has no doxygen tags.
+- virtual uint32_t LocalStorageEnabled(const bool enabled) = 0; has no doxygen tags.
+- virtual uint32_t HTTPCookieAcceptPolicy(const HTTPCookieAcceptPolicyType policy) = 0; has no doxygen tags.
+- virtual uint32_t UserScripts(IStringIterator* const uris) = 0; has no doxygen tags.
+- virtual uint32_t UserStyleSheets(IStringIterator* const uris) = 0; has no doxygen tags.
+- virtual uint32_t SecurityProfile(const string& profile) = 0; has no doxygen tags.
+- virtual uint32_t MixedContentPolicy(const MixedContentPolicyType policy) = 0; has no doxygen tags.
+- virtual void Register(INotification* sink) = 0; has no doxygen tags.
+- virtual void Unregister(INotification* sink) = 0; has no doxygen tags.
+- Event CookieJarChanged is not associated with a method.
+- Event LoadFailed is not associated with a method.
+- Event LoadFinished is not associated with a method.
+- Event PageClosure is not associated with a method.
+- Event URLChange is not associated with a method.
+- Event VisibilityChange is not associated with a method.
+
+### Errors
+- Could not extract parameter information from: launchpointtype
+- Could not extract parameter information from: bool
+- Could not extract parameter information from: string
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not register iterator: IStringIterator
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+
+### Info
+- Processing param: symbol_name=hidden, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=resettype, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=link, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=point, symbol_type=launchpointtype, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=visiblity, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=language, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for hidden-bool
+- Generated missing example for sink-INotification
+- Generated missing example for type-resettype
+- Generated missing example for id-string
+- Generated missing example for link-string
+- Generated missing example for point-launchpointtype
+- Generated missing example for visiblity-bool
+- Generated missing example for language-string
+- Filled missing desc for point in property LaunchPoint
+- Filled missing desc for visiblity in property Visible
+- Missing description: sink-INotification
+- Missing example: sink-INotification
+- Missing example: id-string
+- Missing example: link-string
+- Missing description: point-launchpointtype
+- Missing description: visiblity-bool
+- Missing example: language-string
+- Processing param: symbol_name=processnames, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=processname, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=process, symbol_type=IProcessMemory, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for processnames-IStringIterator
+- Generated missing example for processname-string
+- Generated missing example for process-IProcessMemory
+- Missing description: processnames-IStringIterator
+- Missing description: processname-string
+- Missing example: processname-string
+- Missing description: process-IProcessMemory
+- Missing example: process-IProcessMemory
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=hidden, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=IBrowser::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=IBrowser::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=hidden, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=httpstatus, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=URL, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=loaded, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=hidden, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=message, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=visible, symbol_type=VisibilityType, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=visible, symbol_type=VisibilityType, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=fps, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=headerlist, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=headerlist, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=useragent, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=useragent, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=policy, symbol_type=HTTPCookieAcceptPolicyType, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=policy, symbol_type=HTTPCookieAcceptPolicyType, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=payload, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=payload, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=header, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=header, symbol_type=IStringIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=uris, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=uris, symbol_type=IStringIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=uris, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=uris, symbol_type=IStringIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=profile, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=profile, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=policy, symbol_type=MixedContentPolicyType, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=policy, symbol_type=MixedContentPolicyType, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=script, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=script, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=topFrameOnly, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=checksum, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=payload, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=version, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=checksum, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=payload, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Generated missing example for URL-string
+- Generated missing example for hidden-bool
+- Generated missing example for sink-INotification
+- Generated missing example for httpstatus-integer
+- Generated missing example for loaded-bool
+- Generated missing example for message-string
+- Generated missing example for url-string
+- Generated missing example for visible-VisibilityType
+- Generated missing example for fps-integer
+- Generated missing example for headerlist-string
+- Generated missing example for useragent-string
+- Generated missing example for enabled-bool
+- Generated missing example for policy-HTTPCookieAcceptPolicyType
+- Generated missing example for payload-string
+- Generated missing example for header-IStringIterator
+- Generated missing example for uris-IStringIterator
+- Generated missing example for profile-string
+- Generated missing example for policy-MixedContentPolicyType
+- Generated missing example for script-string
+- Generated missing example for topFrameOnly-bool
+- Generated missing example for version-integer
+- Generated missing example for checksum-integer
+- Filled missing desc for topFrameOnly in method AddUserScript
+- Filled missing desc for version in method CookieJar
+- Filled missing desc for checksum in method CookieJar
+- Filled missing desc for payload in method CookieJar
+- Filled missing desc for enabled in property LocalStorageEnabled
+- Missing description: CookieJar
+- Missing example: URL-string
+- Missing description: sink-INotification
+- Missing example: sink-INotification
+- Missing description: message-string
+- Missing example: message-string
+- Missing example: url-string
+- Missing description: headerlist-string
+- Missing example: headerlist-string
+- Missing example: useragent-string
+- Missing description: enabled-bool
+- Missing example: payload-string
+- Missing example: profile-string
+- Missing example: script-string
+- Missing description: topFrameOnly-bool
+- Missing description: version-integer
+- Missing description: checksum-integer
+
+### End of Log

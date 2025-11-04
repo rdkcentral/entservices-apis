@@ -1,0 +1,54 @@
+### Warnings
+- virtual Core::hresult Register(IWarehouse::INotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(IWarehouse::INotification* notification) = 0; has no doxygen tags.
+- Event ResetDone is not associated with a method.
+
+### Errors
+- Could not register iterator: IStringIterator
+- Event resetDone  tagged with ResetDevice does not exist.
+
+### Info
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=error, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IWarehouse::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IWarehouse::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=WarehouseSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=testResults, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=passPhrase, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successErr, symbol_type=WarehouseSuccessErr, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=age, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=clean, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=files, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=error, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=successErr, symbol_type=WarehouseSuccessErr, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=suppressReboot, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=resetType, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successErr, symbol_type=WarehouseSuccessErr, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for success-bool
+- Generated missing example for error-string
+- Generated missing example for notification-INotification
+- Generated missing example for success-WarehouseSuccess
+- Generated missing example for testResults-string
+- Generated missing example for passPhrase-string
+- Generated missing example for successErr-WarehouseSuccessErr
+- Generated missing example for age-int
+- Generated missing example for clean-bool
+- Generated missing example for files-IStringIterator
+- Generated missing example for suppressReboot-bool
+- Generated missing example for resetType-string
+- Filled missing desc for success in method ExecuteHardwareTest
+- Filled missing desc for successErr in method InternalReset
+- Filled missing desc for successErr in method LightReset
+- Filled missing desc for successErr in method ResetDevice
+- Missing example: error-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing description: success-WarehouseSuccess
+- Missing example: testResults-string
+- Missing example: passPhrase-string
+- Missing description: successErr-WarehouseSuccessErr
+- Missing example: resetType-string
+
+### End of Log

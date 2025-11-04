@@ -2,19 +2,19 @@
 <a id="OCIContainer_Plugin"></a>
 # OCIContainer Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/OCIContainer)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/OCIContainer/IOCIContainer.h)**
 
 A OCIContainer plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -64,12 +64,12 @@ OCIContainer interface methods:
 | [wakeupContainer](#wakeupContainer) |  | NA |
 
 <a id="annotate"></a>
-## *annotate [<sup>method</sup>](#Methods)*
+## *annotate*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -124,12 +124,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="executeCommand"></a>
-## *executeCommand [<sup>method</sup>](#Methods)*
+## *executeCommand*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -184,12 +184,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getContainerInfo"></a>
-## *getContainerInfo [<sup>method</sup>](#Methods)*
+## *getContainerInfo*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -242,12 +242,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getContainerState"></a>
-## *getContainerState [<sup>method</sup>](#Methods)*
+## *getContainerState*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -300,12 +300,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="hibernateContainer"></a>
-## *hibernateContainer [<sup>method</sup>](#Methods)*
+## *hibernateContainer*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -358,12 +358,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="listContainers"></a>
-## *listContainers [<sup>method</sup>](#Methods)*
+## *listContainers*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -410,12 +410,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="mount"></a>
-## *mount [<sup>method</sup>](#Methods)*
+## *mount*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -474,12 +474,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="pauseContainer"></a>
-## *pauseContainer [<sup>method</sup>](#Methods)*
+## *pauseContainer*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -530,12 +530,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="removeAnnotation"></a>
-## *removeAnnotation [<sup>method</sup>](#Methods)*
+## *removeAnnotation*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -588,12 +588,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="resumeContainer"></a>
-## *resumeContainer [<sup>method</sup>](#Methods)*
+## *resumeContainer*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -644,14 +644,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="startContainer"></a>
-## *startContainer [<sup>method</sup>](#Methods)*
+## *startContainer*
 
 
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerStarted ](#onContainerStarted ) |  Triggers when a new container starts running. |
+| [onContainerStarted ](#event.onContainerStarted ) |  Triggers when a new container starts running. |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -710,14 +710,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="startContainerFromDobbySpec"></a>
-## *startContainerFromDobbySpec [<sup>method</sup>](#Methods)*
+## *startContainerFromDobbySpec*
 
 
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerStarted ](#onContainerStarted ) |  Triggers when a new container starts running. |
+| [onContainerStarted ](#event.onContainerStarted ) |  Triggers when a new container starts running. |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -776,14 +776,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="stopContainer"></a>
-## *stopContainer [<sup>method</sup>](#Methods)*
+## *stopContainer*
 
 
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerStopped ](#onContainerStopped ) |  Triggers when the container stops running. |
+| [onContainerStopped ](#event.onContainerStopped ) |  Triggers when the container stops running. |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -836,12 +836,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="unmount"></a>
-## *unmount [<sup>method</sup>](#Methods)*
+## *unmount*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -894,12 +894,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="wakeupContainer"></a>
-## *wakeupContainer [<sup>method</sup>](#Methods)*
+## *wakeupContainer*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -968,7 +968,7 @@ OCIContainer interface events:
 | [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
 
 <a id="onContainerFailed"></a>
-## *onContainerFailed [<sup>event</sup>](#Notifications)*
+## *onContainerFailed*
 
 Notifies failure in container execution
 
@@ -996,7 +996,7 @@ Notifies failure in container execution
 ```
 
 <a id="onContainerStarted"></a>
-## *onContainerStarted [<sup>event</sup>](#Notifications)*
+## *onContainerStarted*
 
 Notifies container is started
 
@@ -1022,7 +1022,7 @@ Notifies container is started
 ```
 
 <a id="onContainerStateChanged"></a>
-## *onContainerStateChanged [<sup>event</sup>](#Notifications)*
+## *onContainerStateChanged*
 
 Notifies state change of container
 
@@ -1048,7 +1048,7 @@ Notifies state change of container
 ```
 
 <a id="onContainerStopped"></a>
-## *onContainerStopped [<sup>event</sup>](#Notifications)*
+## *onContainerStopped*
 
 Notifies container is stopped
 

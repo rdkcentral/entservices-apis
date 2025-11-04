@@ -1,0 +1,44 @@
+### Warnings
+- virtual Core::hresult Register(IDeviceDiagnostics::INotification* notification ) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(IDeviceDiagnostics::INotification* notification ) = 0; has no doxygen tags.
+- Event OnAVDecoderStatusChanged is not associated with a method.
+
+### Errors
+- Could not register iterator: IStringIterator
+- Could not register iterator: IStringIterator
+
+### Info
+- Processing param: symbol_name=avDecoderStatusChange, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IDeviceDiagnostics::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IDeviceDiagnostics::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=names, symbol_type=IStringIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=paramList, symbol_type=IDeviceDiagnosticsParamListIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=milestones, symbol_type=IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=marker, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=AVDecoderStatus, symbol_type=AvDecoderStatusResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for name-string
+- Generated missing example for value-string
+- Generated missing example for avDecoderStatus-string
+- Generated missing example for avDecoderStatusChange-string
+- Generated missing example for notification-INotification
+- Generated missing example for names-IStringIterator
+- Generated missing example for paramList-IDeviceDiagnosticsParamListIterator
+- Generated missing example for success-bool
+- Generated missing example for milestones-IStringIterator
+- Generated missing example for marker-string
+- Generated missing example for AVDecoderStatus-AvDecoderStatusResult
+- Filled missing desc for AVDecoderStatus in method GetAVDecoderStatus
+- Missing example: name-string
+- Missing example: value-string
+- Missing description: avDecoderStatus-string
+- Missing example: avDecoderStatus-string
+- Missing example: avDecoderStatusChange-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: marker-string
+- Missing description: AVDecoderStatus-AvDecoderStatusResult
+
+### End of Log

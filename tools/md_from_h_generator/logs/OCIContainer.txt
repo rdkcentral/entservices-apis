@@ -1,0 +1,198 @@
+### Warnings
+- virtual Core::hresult Register(INotification *notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(INotification *notification) = 0; has no doxygen tags.
+- Event OnContainerFailed is not associated with a method.
+- Event OnContainerStarted is not associated with a method.
+- Event OnContainerStateChanged is not associated with a method.
+- Event OnContainerStopped is not associated with a method.
+
+### Errors
+- Event onContainerStarted  tagged with StartContainer does not exist.
+- Event onContainerStarted  tagged with StartContainerFromDobbySpec does not exist.
+- Event onContainerStopped  tagged with StopContainer does not exist.
+
+### Info
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=name, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=name, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=name, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=error, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=state, symbol_type=ContainerState, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=containers, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out @opaque 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=info, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out @opaque 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=state, symbol_type=ContainerState, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=bundlePath, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=command, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=westerosSocket, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=descriptor, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=dobbySpec, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=command, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=westerosSocket, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=descriptor, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=force, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=options, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=options, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=command, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=value, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=source, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=target, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=options, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=containerId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=target, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for containerId-string
+- Generated missing example for name-string
+- Generated missing example for error-integer
+- Generated missing example for state-ContainerState
+- Generated missing example for notification-INotification
+- Generated missing example for containers-string
+- Generated missing example for success-bool
+- Generated missing example for errorReason-string
+- Generated missing example for info-string
+- Generated missing example for bundlePath-string
+- Generated missing example for command-string
+- Generated missing example for westerosSocket-string
+- Generated missing example for descriptor-integer
+- Generated missing example for dobbySpec-string
+- Generated missing example for force-bool
+- Generated missing example for options-string
+- Generated missing example for key-string
+- Generated missing example for value-string
+- Generated missing example for source-string
+- Generated missing example for target-string
+- Generated missing example for type-string
+- Filled missing desc for success in method Annotate
+- Filled missing desc for errorReason in method Annotate
+- Filled missing desc for success in method ExecuteCommand
+- Filled missing desc for errorReason in method ExecuteCommand
+- Filled missing desc for info in method GetContainerInfo
+- Filled missing desc for success in method GetContainerInfo
+- Filled missing desc for errorReason in method GetContainerInfo
+- Filled missing desc for state in method GetContainerState
+- Filled missing desc for success in method GetContainerState
+- Filled missing desc for errorReason in method GetContainerState
+- Filled missing desc for options in method HibernateContainer
+- Filled missing desc for success in method HibernateContainer
+- Filled missing desc for errorReason in method HibernateContainer
+- Filled missing desc for success in method ListContainers
+- Filled missing desc for errorReason in method ListContainers
+- Filled missing desc for success in method Mount
+- Filled missing desc for errorReason in method Mount
+- Filled missing desc for success in method PauseContainer
+- Filled missing desc for errorReason in method PauseContainer
+- Filled missing desc for success in method RemoveAnnotation
+- Filled missing desc for errorReason in method RemoveAnnotation
+- Filled missing desc for success in method ResumeContainer
+- Filled missing desc for errorReason in method ResumeContainer
+- Filled missing desc for descriptor in method StartContainer
+- Filled missing desc for success in method StartContainer
+- Filled missing desc for errorReason in method StartContainer
+- Filled missing desc for descriptor in method StartContainerFromDobbySpec
+- Filled missing desc for success in method StartContainerFromDobbySpec
+- Filled missing desc for errorReason in method StartContainerFromDobbySpec
+- Filled missing desc for success in method StopContainer
+- Filled missing desc for errorReason in method StopContainer
+- Filled missing desc for success in method Unmount
+- Filled missing desc for errorReason in method Unmount
+- Filled missing desc for success in method WakeupContainer
+- Filled missing desc for errorReason in method WakeupContainer
+- Filled missing desc for containerId in event OnContainerFailed
+- Filled missing desc for name in event OnContainerFailed
+- Filled missing desc for error in event OnContainerFailed
+- Filled missing desc for containerId in event OnContainerStarted
+- Filled missing desc for name in event OnContainerStarted
+- Filled missing desc for containerId in event OnContainerStateChanged
+- Filled missing desc for state in event OnContainerStateChanged
+- Filled missing desc for containerId in event OnContainerStopped
+- Filled missing desc for name in event OnContainerStopped
+- Missing description: Annotate
+- Missing description: ExecuteCommand
+- Missing description: GetContainerInfo
+- Missing description: GetContainerState
+- Missing description: HibernateContainer
+- Missing description: ListContainers
+- Missing description: Mount
+- Missing description: PauseContainer
+- Missing description: RemoveAnnotation
+- Missing description: ResumeContainer
+- Missing description: StartContainer
+- Missing description: StartContainerFromDobbySpec
+- Missing description: StopContainer
+- Missing description: Unmount
+- Missing description: WakeupContainer
+- Missing example: containerId-string
+- Missing description: name-string
+- Missing example: name-string
+- Missing description: error-integer
+- Missing description: state-ContainerState
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: containers-string
+- Missing description: success-bool
+- Missing description: errorReason-string
+- Missing example: errorReason-string
+- Missing description: info-string
+- Missing example: info-string
+- Missing example: bundlePath-string
+- Missing example: command-string
+- Missing example: westerosSocket-string
+- Missing description: descriptor-integer
+- Missing example: dobbySpec-string
+- Missing example: options-string
+- Missing example: key-string
+- Missing example: value-string
+- Missing example: source-string
+- Missing example: target-string
+- Missing example: type-string
+
+### End of Log

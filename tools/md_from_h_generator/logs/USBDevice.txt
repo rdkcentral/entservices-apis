@@ -1,0 +1,60 @@
+### Warnings
+- virtual Core::hresult Register(Exchange::IUSBDevice::INotification *notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(Exchange::IUSBDevice::INotification *notification) = 0; has no doxygen tags.
+- Event OnDevicePluggedIn is not associated with a method.
+- Event OnDevicePluggedOut is not associated with a method.
+
+### Errors
+
+### Info
+- Processing param: symbol_name=device, symbol_type=USBDevice, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=device, symbol_type=USBDevice, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=Exchange::IUSBDevice::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=Exchange::IUSBDevice::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=devices, symbol_type=IUSBDeviceIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=deviceName, symbol_type=string, custom_name=deviceName, direction=in, symbol_inline_comment= @text deviceName 
+- Processing param: symbol_name=deviceInfo, symbol_type=USBDeviceInfo, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=deviceName, symbol_type=string, custom_name=deviceName, direction=in, symbol_inline_comment= @text deviceName 
+- Processing param: symbol_name=deviceName, symbol_type=string, custom_name=deviceName, direction=in, symbol_inline_comment= @text deviceName 
+- Generated missing example for deviceClass-integer
+- Generated missing example for deviceSubclass-integer
+- Generated missing example for deviceName-string
+- Generated missing example for devicePath-string
+- Generated missing example for device-USBDevice
+- Generated missing example for notification-INotification
+- Generated missing example for languageId-integer
+- Generated missing example for serialNumber-string
+- Generated missing example for manufacturer-string
+- Generated missing example for product-string
+- Generated missing example for parentId-integer
+- Generated missing example for deviceStatus-integer
+- Generated missing example for deviceLevel-integer
+- Generated missing example for portNumber-integer
+- Generated missing example for vendorId-integer
+- Generated missing example for productId-integer
+- Generated missing example for protocol-integer
+- Generated missing example for flags-USBDeviceFlags
+- Generated missing example for features-integer
+- Generated missing example for busSpeed-USBDeviceSpeed
+- Generated missing example for numLanguageIds-integer
+- Generated missing example for productInfo1-USBProductInfo
+- Generated missing example for productInfo2-USBProductInfo
+- Generated missing example for productInfo3-USBProductInfo
+- Generated missing example for productInfo4-USBProductInfo
+- Generated missing example for devices-IUSBDeviceIterator
+- Generated missing example for deviceInfo-USBDeviceInfo
+- Filled missing desc for device in event OnDevicePluggedIn
+- Filled missing desc for device in event OnDevicePluggedOut
+- Missing example: deviceName-string
+- Missing example: devicePath-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: serialNumber-string
+- Missing example: manufacturer-string
+- Missing example: product-string
+- Missing description: productInfo1-USBProductInfo
+- Missing description: productInfo2-USBProductInfo
+- Missing description: productInfo3-USBProductInfo
+- Missing description: productInfo4-USBProductInfo
+
+### End of Log

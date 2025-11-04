@@ -2,19 +2,19 @@
 <a id="AVInput_Plugin"></a>
 # AVInput Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AVInput)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AVInput/IAVInput.h)**
 
 A AVInput plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -61,11 +61,6 @@ AVInput interface methods:
 | [numberOfInputs](#numberOfInputs) | Returns an integer that specifies the number of available inputs | NA |
 | [onDevicesChanged](#onDevicesChanged) | Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input | NA |
 | [readEDID](#readEDID) | Returns the current EDID value. | NA |
-| [registerAviContentTypeUpdateNotification](#registerAviContentTypeUpdateNotification) |  | NA |
-| [registerGameFeatureStatusUpdateNotification](#registerGameFeatureStatusUpdateNotification) |  | NA |
-| [registerInputStatusChangedNotification](#registerInputStatusChangedNotification) |  | NA |
-| [registerSignalChangedNotification](#registerSignalChangedNotification) |  | NA |
-| [registerVideoStreamInfoUpdateNotification](#registerVideoStreamInfoUpdateNotification) |  | NA |
 | [setEdid2AllmSupport](#setEdid2AllmSupport) | Sets an HDMI ALLM bit in EDID. | NA |
 | [setEdidVersion](#setEdidVersion) | Sets an HDMI EDID version | NA |
 | [setMixerLevels](#setMixerLevels) | Sets the audio mixer level for given audio input. | NA |
@@ -73,20 +68,15 @@ AVInput interface methods:
 | [setVideoRectangle](#setVideoRectangle) | Sets an HDMI/Composite Input video window. | NA |
 | [startInput](#startInput) | Activates the specified HDMI/Composite Input port as the primary video source. | onInputStatusChanged, onSignalChanged |
 | [stopInput](#stopInput) | Deactivates the HDMI/Composite Input port currently selected as the primary video source. | onInputStatusChanged |
-| [unregisterAviContentTypeUpdateNotification](#unregisterAviContentTypeUpdateNotification) |  | NA |
-| [unregisterGameFeatureStatusUpdateNotification](#unregisterGameFeatureStatusUpdateNotification) |  | NA |
-| [unregisterInputStatusChangedNotification](#unregisterInputStatusChangedNotification) |  | NA |
-| [unregisterSignalChangedNotification](#unregisterSignalChangedNotification) |  | NA |
-| [unregisterVideoStreamInfoUpdateNotification](#unregisterVideoStreamInfoUpdateNotification) |  | NA |
 | [writeEDID](#writeEDID) | Changes a current EDID value. | NA |
 
 <a id="contentProtected"></a>
-## *contentProtected [<sup>method</sup>](#Methods)*
+## *contentProtected*
 
 Returns whether the content is protected for the specified input device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -131,12 +121,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="currentVideoMode"></a>
-## *currentVideoMode [<sup>method</sup>](#Methods)*
+## *currentVideoMode*
 
 Returns the current video mode for the specified input device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -181,12 +171,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getEdid2AllmSupport"></a>
-## *getEdid2AllmSupport [<sup>method</sup>](#Methods)*
+## *getEdid2AllmSupport*
 
 Returns the ALLM bit in EDID
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -237,12 +227,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getEdidVersion"></a>
-## *getEdidVersion [<sup>method</sup>](#Methods)*
+## *getEdidVersion*
 
 Returns the EDID version
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -293,12 +283,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getGameFeatureStatus"></a>
-## *getGameFeatureStatus [<sup>method</sup>](#Methods)*
+## *getGameFeatureStatus*
 
 Returns the Game Feature Status. For example: ALLM.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -351,12 +341,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getHdmiVersion"></a>
-## *getHdmiVersion [<sup>method</sup>](#Methods)*
+## *getHdmiVersion*
 
 Gets the maximum hdmi compatibility version supported for the given port.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -407,12 +397,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getRawSPD"></a>
-## *getRawSPD [<sup>method</sup>](#Methods)*
+## *getRawSPD*
 
 Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -463,12 +453,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getSPD"></a>
-## *getSPD [<sup>method</sup>](#Methods)*
+## *getSPD*
 
 Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -519,19 +509,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="getSupportedGameFeatures"></a>
-## *getSupportedGameFeatures [<sup>method</sup>](#Methods)*
+## *getSupportedGameFeatures*
 
 Returns the list of supported game features.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedGameFeatures | WPEFramework::Exchange::IAVInput::IStringIterator | The supported game Features |
+| result.supportedGameFeatures | IStringIterator | The supported game Features |
+| result.supportedGameFeatures[#] | string |  |
 | result.success | bool | success |
 
 ### Examples
@@ -562,19 +553,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": {
-        "supportedGameFeatures": "",
+        "supportedGameFeatures": [
+            ""
+        ],
         "success": true
     }
 }
 ```
 
 <a id="getVRRFrameRate"></a>
-## *getVRRFrameRate [<sup>method</sup>](#Methods)*
+## *getVRRFrameRate*
 
 Returns the current VRR frame rate for the specified input device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -625,12 +618,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="getVRRSupport"></a>
-## *getVRRSupport [<sup>method</sup>](#Methods)*
+## *getVRRSupport*
 
 Returns the VRR support bit in EDID
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -681,12 +674,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="numberOfInputs"></a>
-## *numberOfInputs [<sup>method</sup>](#Methods)*
+## *numberOfInputs*
 
 Returns an integer that specifies the number of available inputs
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -731,12 +724,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="onDevicesChanged"></a>
-## *onDevicesChanged [<sup>method</sup>](#Methods)*
+## *onDevicesChanged*
 
 Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -789,12 +782,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="readEDID"></a>
-## *readEDID [<sup>method</sup>](#Methods)*
+## *readEDID*
 
 Returns the current EDID value.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -844,268 +837,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="registerAviContentTypeUpdateNotification"></a>
-## *registerAviContentTypeUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IAviContentTypeUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.AVInput.registerAviContentTypeUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.registerAviContentTypeUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": null
-}
-```
-
-<a id="registerGameFeatureStatusUpdateNotification"></a>
-## *registerGameFeatureStatusUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IGameFeatureStatusUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.AVInput.registerGameFeatureStatusUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.registerGameFeatureStatusUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": null
-}
-```
-
-<a id="registerInputStatusChangedNotification"></a>
-## *registerInputStatusChangedNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IInputStatusChangedNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.AVInput.registerInputStatusChangedNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.registerInputStatusChangedNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": null
-}
-```
-
-<a id="registerSignalChangedNotification"></a>
-## *registerSignalChangedNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | ISignalChangedNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.AVInput.registerSignalChangedNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.registerSignalChangedNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": null
-}
-```
-
-<a id="registerVideoStreamInfoUpdateNotification"></a>
-## *registerVideoStreamInfoUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IVideoStreamInfoUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.AVInput.registerVideoStreamInfoUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.registerVideoStreamInfoUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": null
-}
-```
-
 <a id="setEdid2AllmSupport"></a>
-## *setEdid2AllmSupport [<sup>method</sup>](#Methods)*
+## *setEdid2AllmSupport*
 
 Sets an HDMI ALLM bit in EDID.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1126,7 +864,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 14,
     "method": "org.rdk.AVInput.setEdid2AllmSupport",
     "params": {
         "portId": "",
@@ -1139,7 +877,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1148,7 +886,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 14,
     "result": {
         "success": true
     }
@@ -1156,12 +894,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="setEdidVersion"></a>
-## *setEdidVersion [<sup>method</sup>](#Methods)*
+## *setEdidVersion*
 
 Sets an HDMI EDID version
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1182,7 +920,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 15,
     "method": "org.rdk.AVInput.setEdidVersion",
     "params": {
         "portId": "",
@@ -1195,7 +933,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1204,7 +942,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 15,
     "result": {
         "success": true
     }
@@ -1212,12 +950,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="setMixerLevels"></a>
-## *setMixerLevels [<sup>method</sup>](#Methods)*
+## *setMixerLevels*
 
 Sets the audio mixer level for given audio input.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1238,7 +976,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 16,
     "method": "org.rdk.AVInput.setMixerLevels",
     "params": {
         "primaryVolume": 0,
@@ -1251,7 +989,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1260,7 +998,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 16,
     "result": {
         "success": true
     }
@@ -1268,12 +1006,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="setVRRSupport"></a>
-## *setVRRSupport [<sup>method</sup>](#Methods)*
+## *setVRRSupport*
 
 Sets an HDMI VRR support bit in EDID
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1294,7 +1032,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 17,
     "method": "org.rdk.AVInput.setVRRSupport",
     "params": {
         "portId": "",
@@ -1307,7 +1045,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1316,7 +1054,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 17,
     "result": {
         "success": true
     }
@@ -1324,12 +1062,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="setVideoRectangle"></a>
-## *setVideoRectangle [<sup>method</sup>](#Methods)*
+## *setVideoRectangle*
 
 Sets an HDMI/Composite Input video window.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1353,7 +1091,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 18,
     "method": "org.rdk.AVInput.setVideoRectangle",
     "params": {
         "x": 0,
@@ -1369,7 +1107,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1378,7 +1116,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 18,
     "result": {
         "success": true
     }
@@ -1386,15 +1124,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="startInput"></a>
-## *startInput [<sup>method</sup>](#Methods)*
+## *startInput*
 
 Activates the specified HDMI/Composite Input port as the primary video source.
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onInputStatusChanged ](#onInputStatusChanged ) |  Triggers the event when HDMI/Composite Input source is activated and Input status changes to `started` |
-| [onSignalChanged ](#onSignalChanged ) |  Triggers the event when HDMI/Composite Input signal changes (must be one of the following:noSignal, unstableSignal, notSupportedSignal, stableSignal) |
+| [onInputStatusChanged ](#event.onInputStatusChanged ) |  Triggers the event when HDMI/Composite Input source is activated and Input status changes to `started` |
+| [onSignalChanged ](#event.onSignalChanged ) |  Triggers the event when HDMI/Composite Input signal changes (must be one of the following:noSignal, unstableSignal, notSupportedSignal, stableSignal) |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1418,7 +1156,7 @@ Activates the specified HDMI/Composite Input port as the primary video source.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 19,
     "method": "org.rdk.AVInput.startInput",
     "params": {
         "portId": "",
@@ -1434,7 +1172,7 @@ Activates the specified HDMI/Composite Input port as the primary video source.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1443,7 +1181,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 19,
     "result": {
         "success": true
     }
@@ -1451,14 +1189,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```
 
 <a id="stopInput"></a>
-## *stopInput [<sup>method</sup>](#Methods)*
+## *stopInput*
 
 Deactivates the HDMI/Composite Input port currently selected as the primary video source.
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onInputStatusChanged ](#onInputStatusChanged ) |  Triggers the event when HDMI/Composite Input source is deactivated and Input status changes to `stopped` |
+| [onInputStatusChanged ](#event.onInputStatusChanged ) |  Triggers the event when HDMI/Composite Input source is deactivated and Input status changes to `stopped` |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1478,7 +1216,7 @@ Deactivates the HDMI/Composite Input port currently selected as the primary vide
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 20,
     "method": "org.rdk.AVInput.stopInput",
     "params": {
         "typeOfInput": ""
@@ -1490,7 +1228,7 @@ Deactivates the HDMI/Composite Input port currently selected as the primary vide
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1499,275 +1237,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 20,
     "result": {
         "success": true
     }
 }
 ```
 
-<a id="unregisterAviContentTypeUpdateNotification"></a>
-## *unregisterAviContentTypeUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IAviContentTypeUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.AVInput.unregisterAviContentTypeUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.AVInput.unregisterAviContentTypeUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "result": null
-}
-```
-
-<a id="unregisterGameFeatureStatusUpdateNotification"></a>
-## *unregisterGameFeatureStatusUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IGameFeatureStatusUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "method": "org.rdk.AVInput.unregisterGameFeatureStatusUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.AVInput.unregisterGameFeatureStatusUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "result": null
-}
-```
-
-<a id="unregisterInputStatusChangedNotification"></a>
-## *unregisterInputStatusChangedNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IInputStatusChangedNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "method": "org.rdk.AVInput.unregisterInputStatusChangedNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.AVInput.unregisterInputStatusChangedNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "result": null
-}
-```
-
-<a id="unregisterSignalChangedNotification"></a>
-## *unregisterSignalChangedNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | ISignalChangedNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.AVInput.unregisterSignalChangedNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.AVInput.unregisterSignalChangedNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "result": null
-}
-```
-
-<a id="unregisterVideoStreamInfoUpdateNotification"></a>
-## *unregisterVideoStreamInfoUpdateNotification [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.notification | IVideoStreamInfoUpdateNotification |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "method": "org.rdk.AVInput.unregisterVideoStreamInfoUpdateNotification",
-    "params": {
-        "notification": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.AVInput.unregisterVideoStreamInfoUpdateNotification", "params": {"notification": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "result": null
-}
-```
-
 <a id="writeEDID"></a>
-## *writeEDID [<sup>method</sup>](#Methods)*
+## *writeEDID*
 
 Changes a current EDID value.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1788,7 +1271,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 31,
+    "id": 21,
     "method": "org.rdk.AVInput.writeEDID",
     "params": {
         "portId": "",
@@ -1801,7 +1284,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1810,7 +1293,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 31,
+    "id": 21,
     "result": {
         "success": true
     }
@@ -1837,7 +1320,7 @@ AVInput interface events:
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI/Composite Input video stream info |
 
 <a id="aviContentTypeUpdate"></a>
-## *aviContentTypeUpdate [<sup>event</sup>](#Notifications)*
+## *aviContentTypeUpdate*
 
 Triggered whenever AV Infoframe content type changes for an HDMI Input
 
@@ -1853,7 +1336,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 32,
+    "id": 22,
     "method": "org.rdk.AVInput.aviContentTypeUpdate",
     "params": {
         "id": 0,
@@ -1863,7 +1346,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```
 
 <a id="gameFeatureStatusUpdate"></a>
-## *gameFeatureStatusUpdate [<sup>event</sup>](#Notifications)*
+## *gameFeatureStatusUpdate*
 
 Triggered whenever game feature(ALLM) status changes for an HDMI Input
 
@@ -1880,7 +1363,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 33,
+    "id": 23,
     "method": "org.rdk.AVInput.gameFeatureStatusUpdate",
     "params": {
         "id": 0,
@@ -1891,7 +1374,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```
 
 <a id="onInputStatusChanged"></a>
-## *onInputStatusChanged [<sup>event</sup>](#Notifications)*
+## *onInputStatusChanged*
 
 Triggered whenever the status changes for an HDMI/Composite Input
 
@@ -1909,7 +1392,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 34,
+    "id": 24,
     "method": "org.rdk.AVInput.onInputStatusChanged",
     "params": {
         "id": 0,
@@ -1921,7 +1404,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 ```
 
 <a id="onSignalChanged"></a>
-## *onSignalChanged [<sup>event</sup>](#Notifications)*
+## *onSignalChanged*
 
 Triggered whenever the signal status changes for an HDMI/Composite Input
 
@@ -1938,7 +1421,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 25,
     "method": "org.rdk.AVInput.onSignalChanged",
     "params": {
         "id": 0,
@@ -1949,7 +1432,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 ```
 
 <a id="videoStreamInfoUpdate"></a>
-## *videoStreamInfoUpdate [<sup>event</sup>](#Notifications)*
+## *videoStreamInfoUpdate*
 
 Triggered whenever there is an update in HDMI/Composite Input video stream info
 
@@ -1970,7 +1453,7 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 26,
     "method": "org.rdk.AVInput.videoStreamInfoUpdate",
     "params": {
         "id": 0,

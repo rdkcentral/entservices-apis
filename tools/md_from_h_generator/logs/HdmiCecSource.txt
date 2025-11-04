@@ -1,0 +1,84 @@
+### Warnings
+- Event OnActiveSourceStatusUpdated is not associated with a method.
+- Event OnDeviceAdded is not associated with a method.
+- Event OnDeviceInfoUpdated is not associated with a method.
+- Event OnDeviceRemoved is not associated with a method.
+- Event OnKeyPressEvent is not associated with a method.
+- Event OnKeyReleaseEvent is not associated with a method.
+- Event StandbyMessageReceived is not associated with a method.
+
+### Errors
+
+### Info
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=logicalAddress, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyCode, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=Exchange::IHdmiCecSource::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=Exchange::IHdmiCecSource::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=service, symbol_type=PluginHost::IShell, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=name, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=vendorid, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=logicalAddress, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=keyCode, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=name, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=vendorid, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=success, symbol_type=HdmiCecSourceSuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=numberofdevices, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=deviceList, symbol_type=IHdmiCecSourceDeviceListIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for logicalAddress-integer
+- Generated missing example for vendorID-string
+- Generated missing example for osdName-string
+- Generated missing example for success-bool
+- Generated missing example for logicalAddress-int
+- Generated missing example for status-bool
+- Generated missing example for keyCode-int
+- Generated missing example for notification-INotification
+- Generated missing example for service-IShell
+- Generated missing example for enabled-bool
+- Generated missing example for name-string
+- Generated missing example for vendorid-string
+- Generated missing example for success-HdmiCecSourceSuccess
+- Generated missing example for keyCode-integer
+- Generated missing example for numberofdevices-integer
+- Generated missing example for deviceList-IHdmiCecSourceDeviceListIterator
+- Filled missing desc for enabled in method GetOTPEnabled
+- Filled missing desc for vendorid in method GetVendorId
+- Filled missing desc for name in method SetOSDName
+- Filled missing desc for vendorid in method SetVendorId
+- Filled missing desc for status in event OnActiveSourceStatusUpdated
+- Filled missing desc for logicalAddress in event OnDeviceInfoUpdated
+- Missing description: vendorID-string
+- Missing example: vendorID-string
+- Missing description: osdName-string
+- Missing example: osdName-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing description: service-IShell
+- Missing example: service-IShell
+- Missing example: name-string
+- Missing description: vendorid-string
+- Missing example: vendorid-string
+
+### End of Log

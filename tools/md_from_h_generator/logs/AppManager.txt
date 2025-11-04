@@ -1,0 +1,108 @@
+### Warnings
+- virtual Core::hresult Register(INotification *notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(INotification *notification) = 0; has no doxygen tags.
+- Event OnAppInstalled is not associated with a method.
+- Event OnAppLaunchRequest is not associated with a method.
+- Event OnAppLifecycleStateChanged is not associated with a method.
+- Event OnAppUninstalled is not associated with a method.
+- Event OnAppUnloaded is not associated with a method.
+
+### Errors
+- Could not extract parameter information from: 
+- Event OnAppLaunchRequest  tagged with LaunchApp does not exist.
+
+### Info
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=newState, symbol_type=AppLifecycleState, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=oldState, symbol_type=AppLifecycleState, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=errorReason, symbol_type=AppErrorReason, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=intent, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=source, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appInstanceId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=apps, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out @opaque 
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=installed, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=apps, symbol_type=ILoadedAppInfoIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=intent, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=launchArgs, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=launchArgs, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=error, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=intent, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=metaData, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=result, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=value, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=appId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=value, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=maxRunningApps, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=maxHibernatedApps, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=maxHibernatedFlashUsage, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=maxInactiveRamUsage, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for dial-bool
+- Generated missing example for appId-string
+- Generated missing example for appInstanceId-string
+- Generated missing example for activeSessionId-string
+- Generated missing example for targetLifecycleState-AppLifecycleState
+- Generated missing example for currentLifecycleState-AppLifecycleState
+- Generated missing example for version-string
+- Generated missing example for newState-AppLifecycleState
+- Generated missing example for oldState-AppLifecycleState
+- Generated missing example for errorReason-AppErrorReason
+- Generated missing example for intent-string
+- Generated missing example for source-string
+- Generated missing example for notification-INotification
+- Generated missing example for apps-string
+- Generated missing example for installed-bool
+- Generated missing example for apps-ILoadedAppInfoIterator
+- Generated missing example for launchArgs-string
+- Generated missing example for error-string
+- Generated missing example for metaData-string
+- Generated missing example for result-string
+- Generated missing example for key-string
+- Generated missing example for value-string
+- Generated missing example for maxRunningApps-integer
+- Generated missing example for maxHibernatedApps-integer
+- Generated missing example for maxHibernatedFlashUsage-integer
+- Generated missing example for maxInactiveRamUsage-integer
+- Filled missing desc for appId in method IsInstalled
+- Missing description: dial-bool
+- Missing example: appId-string
+- Missing example: appInstanceId-string
+- Missing description: activeSessionId-string
+- Missing example: activeSessionId-string
+- Missing description: targetLifecycleState-AppLifecycleState
+- Missing description: currentLifecycleState-AppLifecycleState
+- Missing example: version-string
+- Missing example: intent-string
+- Missing example: source-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: apps-string
+- Missing example: launchArgs-string
+- Missing example: error-string
+- Missing example: metaData-string
+- Missing example: result-string
+- Missing example: key-string
+- Missing example: value-string
+
+### End of Log

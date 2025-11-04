@@ -2,19 +2,19 @@
 <a id="MessageControl_Plugin"></a>
 # MessageControl Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MessageControl)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MessageControl/IMessageControl.h)**
 
 A MessageControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Properties](#Properties)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -50,12 +50,12 @@ MessageControl interface methods:
 | [enable](#enable) | Enables/disables a message control | NA |
 
 <a id="enable"></a>
-## *enable [<sup>method</sup>](#Methods)*
+## *enable*
 
 Enables/disables a message control
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,18 +113,18 @@ The following properties are provided by the MessageControl plugin:
 
 MessageControl interface properties:
 
-| Method | Description | Event |
+| Property | Description | Event |
 | :-------- | :-------- |:-------- |
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls | NA |
 
 <a id="Controls"></a>
-## *Controls [<sup>property</sup>](#Properties)*
+## *Controls*
 
 Retrieves a list of current message controls
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

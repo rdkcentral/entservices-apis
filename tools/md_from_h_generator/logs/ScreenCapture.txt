@@ -1,0 +1,35 @@
+### Warnings
+- virtual Core::hresult Register(IScreenCapture::INotification* notification ) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(IScreenCapture::INotification* notification ) = 0; has no doxygen tags.
+- Event UploadComplete is not associated with a method.
+
+### Errors
+- Event uploadComplete  tagged with UploadScreenCapture does not exist.
+
+### Info
+- Processing param: symbol_name=status, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=message, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=call_guid, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IScreenCapture::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IScreenCapture::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=callGUID, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out  
+- Generated missing example for success-bool
+- Generated missing example for status-bool
+- Generated missing example for message-string
+- Generated missing example for call_guid-string
+- Generated missing example for notification-INotification
+- Generated missing example for url-string
+- Generated missing example for callGUID-string
+- Generated missing example for result-Result
+- Filled missing desc for result in method UploadScreenCapture
+- Missing example: message-string
+- Missing example: call_guid-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: url-string
+- Missing example: callGUID-string
+- Missing description: result-Result
+
+### End of Log

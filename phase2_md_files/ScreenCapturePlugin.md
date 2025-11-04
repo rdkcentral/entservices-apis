@@ -2,19 +2,19 @@
 <a id="ScreenCapture_Plugin"></a>
 # ScreenCapture Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ScreenCapture)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ScreenCapture/IScreenCapture.h)**
 
 A ScreenCapture plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -50,14 +50,14 @@ ScreenCapture interface methods:
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL | uploadComplete |
 
 <a id="uploadScreenCapture"></a>
-## *uploadScreenCapture [<sup>method</sup>](#Methods)*
+## *uploadScreenCapture*
 
 Takes a screenshot and uploads it to the specified URL
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [uploadComplete ](#uploadComplete ) |  Triggered after uploading a screen capture |
+| [uploadComplete ](#event.uploadComplete ) |  Triggered after uploading a screen capture |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -123,7 +123,7 @@ ScreenCapture interface events:
 | [uploadComplete](#uploadComplete) | Triggered after uploading a screen capture |
 
 <a id="uploadComplete"></a>
-## *uploadComplete [<sup>event</sup>](#Notifications)*
+## *uploadComplete*
 
 Triggered after uploading a screen capture
 

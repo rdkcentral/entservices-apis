@@ -2,19 +2,19 @@
 <a id="AmazonPrime_Plugin"></a>
 # AmazonPrime Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AmazonPrime)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AmazonPrime/IAmazonPrime.h)**
 
 A AmazonPrime plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -53,12 +53,12 @@ AmazonPrime interface methods:
 | [setLaunchReason](#setLaunchReason) | Set launch reason for amazon prime app | NA |
 
 <a id="factoryResetRequest"></a>
-## *factoryResetRequest [<sup>method</sup>](#Methods)*
+## *factoryResetRequest*
 
 Factory reset amazon prime app data
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -98,12 +98,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="personalInfoRequest"></a>
-## *personalInfoRequest [<sup>method</sup>](#Methods)*
+## *personalInfoRequest*
 
 Request for personal access token to amazon prime app
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -143,12 +143,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setDeepLink"></a>
-## *setDeepLink [<sup>method</sup>](#Methods)*
+## *setDeepLink*
 
 Set the deeplink command for amazon prime
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -194,12 +194,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setLaunchReason"></a>
-## *setLaunchReason [<sup>method</sup>](#Methods)*
+## *setLaunchReason*
 
 Set launch reason for amazon prime app
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -260,7 +260,7 @@ AmazonPrime interface events:
 | [StateChange](#StateChange) | Triggered whenever the App state changes |
 
 <a id="stateChange"></a>
-## *stateChange [<sup>event</sup>](#Notifications)*
+## *stateChange*
 
 Triggered whenever the App state changes
 
@@ -268,7 +268,7 @@ Triggered whenever the App state changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | IAmazon::State | current state of amazon prime |
+| params.state | string | current state of amazon prime |
 
 ### Examples
 
@@ -278,7 +278,7 @@ Triggered whenever the App state changes
     "id": 4,
     "method": "org.rdk.AmazonPrime.stateChange",
     "params": {
-        "state": ""
+        "state": "PLAYING"
     }
 }
 ```

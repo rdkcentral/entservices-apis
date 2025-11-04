@@ -2,19 +2,19 @@
 <a id="USBDevice_Plugin"></a>
 # USBDevice Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice/IUSBDevice.h)**
 
 A USBDevice plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -53,12 +53,12 @@ USBDevice interface methods:
 | [unbindDriver](#unbindDriver) | Unbind the respective driver for the device | NA |
 
 <a id="bindDriver"></a>
-## *bindDriver [<sup>method</sup>](#Methods)*
+## *bindDriver*
 
 Bind the respective driver for the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -104,12 +104,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getDeviceInfo"></a>
-## *getDeviceInfo [<sup>method</sup>](#Methods)*
+## *getDeviceInfo*
 
 Get the extended USB device information for the provided device name
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -236,12 +236,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#Methods)*
+## *getDeviceList*
 
 Get the basic information about list of devices connected with the system.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -293,12 +293,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="unbindDriver"></a>
-## *unbindDriver [<sup>method</sup>](#Methods)*
+## *unbindDriver*
 
 Unbind the respective driver for the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -360,7 +360,7 @@ USBDevice interface events:
 | [onDevicePluggedOut](#onDevicePluggedOut) | Device Plugged out notification |
 
 <a id="onDevicePluggedIn"></a>
-## *onDevicePluggedIn [<sup>event</sup>](#Notifications)*
+## *onDevicePluggedIn*
 
 Device Plugged in notification
 
@@ -391,7 +391,7 @@ Device Plugged in notification
 ```
 
 <a id="onDevicePluggedOut"></a>
-## *onDevicePluggedOut [<sup>event</sup>](#Notifications)*
+## *onDevicePluggedOut*
 
 Device Plugged out notification
 

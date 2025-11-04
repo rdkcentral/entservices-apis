@@ -2,20 +2,20 @@
 <a id="AppManager_Plugin"></a>
 # AppManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppManager/IAppManager.h)**
 
 A AppManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Properties](#Properties)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -66,12 +66,12 @@ AppManager interface methods:
 | [terminateApp](#terminateApp) | TerminateApp will terminate gracefully | NA |
 
 <a id="clearAllAppData"></a>
-## *clearAllAppData [<sup>method</sup>](#Methods)*
+## *clearAllAppData*
 
 Clears all persistent data for all apps.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -111,12 +111,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clearAppData"></a>
-## *clearAppData [<sup>method</sup>](#Methods)*
+## *clearAppData*
 
 Clears all persistent data for a given appId.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -162,12 +162,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="closeApp"></a>
-## *closeApp [<sup>method</sup>](#Methods)*
+## *closeApp*
 
 closeApp moves the state from Active to Running state
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -213,12 +213,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getAppMetadata"></a>
-## *getAppMetadata [<sup>method</sup>](#Methods)*
+## *getAppMetadata*
 
 Retrieves meta data about an installed app
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -269,12 +269,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getAppProperty"></a>
-## *getAppProperty [<sup>method</sup>](#Methods)*
+## *getAppProperty*
 
 Gets a property for a given app.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -325,12 +325,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getInstalledApps"></a>
-## *getInstalledApps [<sup>method</sup>](#Methods)*
+## *getInstalledApps*
 
 Function fetches the details of all applications currently installed
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -373,12 +373,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getLoadedApps"></a>
-## *getLoadedApps [<sup>method</sup>](#Methods)*
+## *getLoadedApps*
 
 Retrieves a list of applications currently loaded on the system.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -432,12 +432,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="isInstalled"></a>
-## *isInstalled [<sup>method</sup>](#Methods)*
+## *isInstalled*
 
 check whether the Application is installed or not
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -486,12 +486,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="killApp"></a>
-## *killApp [<sup>method</sup>](#Methods)*
+## *killApp*
 
 killApp will terminate forcefully
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -537,14 +537,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="launchApp"></a>
-## *launchApp [<sup>method</sup>](#Methods)*
+## *launchApp*
 
 Launch an Application and app will be in ACTIVE state.
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onAppLaunchRequest ](#onAppLaunchRequest ) |  Triggered whenever there is a request for App Launch. |
+| [onAppLaunchRequest ](#event.onAppLaunchRequest ) |  Triggered whenever there is a request for App Launch. |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -594,12 +594,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="preloadApp"></a>
-## *preloadApp [<sup>method</sup>](#Methods)*
+## *preloadApp*
 
 Preloads an Application and app will be in the RUNNING state (hidden).
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -650,12 +650,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="sendIntent"></a>
-## *sendIntent [<sup>method</sup>](#Methods)*
+## *sendIntent*
 
 Sends an intent to a loaded app.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -703,12 +703,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="setAppProperty"></a>
-## *setAppProperty [<sup>method</sup>](#Methods)*
+## *setAppProperty*
 
 Sets a property for a given app
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -758,12 +758,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="startSystemApp"></a>
-## *startSystemApp [<sup>method</sup>](#Methods)*
+## *startSystemApp*
 
 Start the System Application
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -809,12 +809,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="stopSystemApp"></a>
-## *stopSystemApp [<sup>method</sup>](#Methods)*
+## *stopSystemApp*
 
 Stop the System Application
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -860,12 +860,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="terminateApp"></a>
-## *terminateApp [<sup>method</sup>](#Methods)*
+## *terminateApp*
 
 TerminateApp will terminate gracefully
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -917,7 +917,7 @@ The following properties are provided by the AppManager plugin:
 
 AppManager interface properties:
 
-| Method | Description | Event |
+| Property | Description | Event |
 | :-------- | :-------- |:-------- |
 | [getMaxHibernatedApps](#getMaxHibernatedApps)<sup>RO</sup> | Get the maximum number of apps to maintain in the hibernated state | NA |
 | [getMaxHibernatedFlashUsage](#getMaxHibernatedFlashUsage)<sup>RO</sup> | Gets the max size of flash to use for hibernated apps (in mebibytes) | NA |
@@ -925,13 +925,13 @@ AppManager interface properties:
 | [getMaxRunningApps](#getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state | NA |
 
 <a id="GetMaxHibernatedApps"></a>
-## *GetMaxHibernatedApps [<sup>property</sup>](#Properties)*
+## *GetMaxHibernatedApps*
 
 Get the maximum number of apps to maintain in the hibernated state
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -971,13 +971,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="GetMaxHibernatedFlashUsage"></a>
-## *GetMaxHibernatedFlashUsage [<sup>property</sup>](#Properties)*
+## *GetMaxHibernatedFlashUsage*
 
 Gets the max size of flash to use for hibernated apps (in mebibytes)
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1017,13 +1017,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="GetMaxInactiveRamUsage"></a>
-## *GetMaxInactiveRamUsage [<sup>property</sup>](#Properties)*
+## *GetMaxInactiveRamUsage*
 
 Gets the max amount of ram available for inactive apps (in mebibytes)
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1063,13 +1063,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="GetMaxRunningApps"></a>
-## *GetMaxRunningApps [<sup>property</sup>](#Properties)*
+## *GetMaxRunningApps*
 
 Gets the maximum number of apps to maintain in the running or suspended state
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1127,7 +1127,7 @@ AppManager interface events:
 | [onAppUnloaded](#onAppUnloaded) | Triggered whenever the App is unloaded(terminated). |
 
 <a id="onAppInstalled"></a>
-## *onAppInstalled [<sup>event</sup>](#Notifications)*
+## *onAppInstalled*
 
 Triggered whenever the App is installed.
 
@@ -1153,7 +1153,7 @@ Triggered whenever the App is installed.
 ```
 
 <a id="onAppLaunchRequest"></a>
-## *onAppLaunchRequest [<sup>event</sup>](#Notifications)*
+## *onAppLaunchRequest*
 
 Triggered whenever there is a request for App Launch.
 
@@ -1181,7 +1181,7 @@ Triggered whenever there is a request for App Launch.
 ```
 
 <a id="onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged [<sup>event</sup>](#Notifications)*
+## *onAppLifecycleStateChanged*
 
 Triggered whenever there is a change in the lifecycle state of a running app.
 
@@ -1213,7 +1213,7 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 ```
 
 <a id="onAppUninstalled"></a>
-## *onAppUninstalled [<sup>event</sup>](#Notifications)*
+## *onAppUninstalled*
 
 Triggered whenever the App is uninstalled.
 
@@ -1237,7 +1237,7 @@ Triggered whenever the App is uninstalled.
 ```
 
 <a id="onAppUnloaded"></a>
-## *onAppUnloaded [<sup>event</sup>](#Notifications)*
+## *onAppUnloaded*
 
 Triggered whenever the App is unloaded(terminated).
 

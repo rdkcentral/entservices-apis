@@ -2,19 +2,19 @@
 <a id="FrameRate_Plugin"></a>
 # FrameRate Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrameRate)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrameRate/IFrameRate.h)**
 
 A FrameRate plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -57,12 +57,12 @@ FrameRate interface methods:
 | [updateFps](#updateFps) | Update the FPS value | NA |
 
 <a id="getDisplayFrameRate"></a>
-## *getDisplayFrameRate [<sup>method</sup>](#Methods)*
+## *getDisplayFrameRate*
 
 Gets the current display frame rate values.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -107,12 +107,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getFrmMode"></a>
-## *getFrmMode [<sup>method</sup>](#Methods)*
+## *getFrmMode*
 
 Gets the current auto framerate mode.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -157,12 +157,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setCollectionFrequency"></a>
-## *setCollectionFrequency [<sup>method</sup>](#Methods)*
+## *setCollectionFrequency*
 
 Sets the FPS data collection interval.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -211,15 +211,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setDisplayFrameRate"></a>
-## *setDisplayFrameRate [<sup>method</sup>](#Methods)*
+## *setDisplayFrameRate*
 
 Sets the display framerate values.
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onDisplayFrameRateChanging ](#onDisplayFrameRateChanging ) |  Triggered when the framerate changes started. |
-| [onDisplayFrameRateChanged ](#onDisplayFrameRateChanged ) |  Triggered when the framerate changed |
+| [onDisplayFrameRateChanging ](#event.onDisplayFrameRateChanging ) |  Triggered when the framerate changes started. |
+| [onDisplayFrameRateChanged ](#event.onDisplayFrameRateChanged ) |  Triggered when the framerate changed |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -268,12 +268,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setFrmMode"></a>
-## *setFrmMode [<sup>method</sup>](#Methods)*
+## *setFrmMode*
 
 Set the Frm mode.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -322,14 +322,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="startFpsCollection"></a>
-## *startFpsCollection [<sup>method</sup>](#Methods)*
+## *startFpsCollection*
 
 Starts the FPS data collection. Starts the FPS data collection
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onFpsEvent ](#onFpsEvent ) |  Triggered at the end of each interval as defined by the setCollectionFrequency |
+| [onFpsEvent ](#event.onFpsEvent ) |  Triggered at the end of each interval as defined by the setCollectionFrequency |
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -372,14 +372,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="stopFpsCollection"></a>
-## *stopFpsCollection [<sup>method</sup>](#Methods)*
+## *stopFpsCollection*
 
 Stops the FPS data collection
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onFpsEvent ](#onFpsEvent ) |  Triggered once after the stopFpsCollection method is invoked. |
+| [onFpsEvent ](#event.onFpsEvent ) |  Triggered once after the stopFpsCollection method is invoked. |
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -422,12 +422,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="updateFps"></a>
-## *updateFps [<sup>method</sup>](#Methods)*
+## *updateFps*
 
 Update the FPS value
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -493,7 +493,7 @@ FrameRate interface events:
 | [onFpsEvent](#onFpsEvent) | Triggered by callback from FrameRate after onFpsEvent |
 
 <a id="onDisplayFrameRateChanged"></a>
-## *onDisplayFrameRateChanged [<sup>event</sup>](#Notifications)*
+## *onDisplayFrameRateChanged*
 
 Triggered when the framerate changed.
 
@@ -517,7 +517,7 @@ Triggered when the framerate changed.
 ```
 
 <a id="onDisplayFrameRateChanging"></a>
-## *onDisplayFrameRateChanging [<sup>event</sup>](#Notifications)*
+## *onDisplayFrameRateChanging*
 
 Triggered when the framerate changes started
 
@@ -541,7 +541,7 @@ Triggered when the framerate changes started
 ```
 
 <a id="onFpsEvent"></a>
-## *onFpsEvent [<sup>event</sup>](#Notifications)*
+## *onFpsEvent*
 
 Triggered by callback from FrameRate after onFpsEvent
 

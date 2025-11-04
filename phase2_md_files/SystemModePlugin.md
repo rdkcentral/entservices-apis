@@ -2,18 +2,18 @@
 <a id="SystemMode_Plugin"></a>
 # SystemMode Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/ISystemMode.h)**
 
 A SystemMode plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -46,70 +46,18 @@ SystemMode interface methods:
 
 | Method | Description | Event |
 | :-------- | :-------- |:-------- |
-| [request](#request) |  | NA |
 | [clientActivated](#clientActivated) | To put client plugin entry in map. | NA |
 | [clientDeactivated](#clientDeactivated) | To put client plugin entry in map. | NA |
 | [getState](#getState) | Gets the current state for a given system property | NA |
 | [requestState](#requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. | NA |
 
-<a id="request"></a>
-## *request [<sup>method</sup>](#Methods)*
-
-
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.newState | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.SystemMode.request",
-    "params": {
-        "newState": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.request", "params": {"newState": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
 <a id="clientActivated"></a>
-## *clientActivated [<sup>method</sup>](#Methods)*
+## *clientActivated*
 
 To put client plugin entry in map.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -157,12 +105,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clientDeactivated"></a>
-## *clientDeactivated [<sup>method</sup>](#Methods)*
+## *clientDeactivated*
 
 To put client plugin entry in map.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -210,12 +158,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getState"></a>
-## *getState [<sup>method</sup>](#Methods)*
+## *getState*
 
 Gets the current state for a given system property
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -264,12 +212,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="requestState"></a>
-## *requestState [<sup>method</sup>](#Methods)*
+## *requestState*
 
 Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

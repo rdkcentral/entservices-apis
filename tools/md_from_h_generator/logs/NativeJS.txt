@@ -1,0 +1,29 @@
+### Warnings
+
+### Errors
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+
+### Info
+- Processing param: symbol_name=waylandDisplay, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=options, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=id, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=code, symbol_type=std::string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Generated missing example for waylandDisplay-string
+- Generated missing example for options-string
+- Generated missing example for id-integer
+- Generated missing example for url-string
+- Generated missing example for code-string
+- Filled missing desc for code in method RunJavaScript
+- Missing description: waylandDisplay-string
+- Missing example: waylandDisplay-string
+- Missing example: options-string
+- Missing example: url-string
+- Missing description: code-string
+- Missing example: code-string
+
+### End of Log

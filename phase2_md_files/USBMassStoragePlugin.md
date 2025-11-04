@@ -2,19 +2,19 @@
 <a id="USBMassStorage_Plugin"></a>
 # USBMassStorage Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBMassStorage)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBMassStorage/IUSBMassStorage.h)**
 
 A USBMassStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -52,12 +52,12 @@ USBMassStorage interface methods:
 | [getPartitionInfo](#getPartitionInfo) | Get partition information for a given partition | NA |
 
 <a id="getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#Methods)*
+## *getDeviceList*
 
 Get list of devices that are currently mounted in the system
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -105,12 +105,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getMountPoints"></a>
-## *getMountPoints [<sup>method</sup>](#Methods)*
+## *getMountPoints*
 
 Get mount points information for a specified device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -168,12 +168,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getPartitionInfo"></a>
-## *getPartitionInfo [<sup>method</sup>](#Methods)*
+## *getPartitionInfo*
 
 Get partition information for a given partition
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -253,7 +253,7 @@ USBMassStorage interface events:
 | [onDeviceUnMounted](#onDeviceUnMounted) | Device Unmounted notification @@iterator |
 
 <a id="onDeviceMounted"></a>
-## *onDeviceMounted [<sup>event</sup>](#Notifications)*
+## *onDeviceMounted*
 
 Device Mounted notification @@iterator
 
@@ -295,7 +295,7 @@ Device Mounted notification @@iterator
 ```
 
 <a id="onDeviceUnmounted"></a>
-## *onDeviceUnmounted [<sup>event</sup>](#Notifications)*
+## *onDeviceUnmounted*
 
 Device Unmounted notification @@iterator
 

@@ -1,0 +1,79 @@
+### Warnings
+- Event OnStateChange is not associated with a method.
+
+### Errors
+
+### Info
+- Processing param: symbol_name=clientName, symbol_type=string, custom_name=name, direction=in, symbol_inline_comment= @text name 
+- Processing param: symbol_name=clientMac, symbol_type=string, custom_name=mac, direction=in, symbol_inline_comment= @text mac 
+- Processing param: symbol_name=playerState, symbol_type=State, custom_name=state, direction=in, symbol_inline_comment= @text state 
+- Processing param: symbol_name=reasonCode, symbol_type=string, custom_name=reason_code, direction=in, symbol_inline_comment= @text reason_code 
+- Processing param: symbol_name=reasonDescription, symbol_type=ReasonCode, custom_name=reason, direction=in, symbol_inline_comment= @text reason 
+- Overridden name for param reasonDescription found in doxy tags as reason
+- Processing param: symbol_name=notification, symbol_type=Exchange::IMiracastPlayer::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=Exchange::IMiracastPlayer::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=deviceParam, symbol_type=DeviceParameters, custom_name=device_parameters, direction=in, symbol_inline_comment= @text device_parameters 
+- Processing param: symbol_name=videoRect, symbol_type=VideoRectangle, custom_name=video_rectangle, direction=in, symbol_inline_comment= @text video_rectangle 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=clientMac, symbol_type=string, custom_name=mac, direction=in, symbol_inline_comment= @text mac 
+- Processing param: symbol_name=clientName, symbol_type=string, custom_name=name, direction=in, symbol_inline_comment= @text name 
+- Processing param: symbol_name=reasonCode, symbol_type=int, custom_name=reason_code, direction=in, symbol_inline_comment= @text reason_code 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=startX, symbol_type=int, custom_name=X, direction=in, symbol_inline_comment= @text X 
+- Processing param: symbol_name=startY, symbol_type=int, custom_name=Y, direction=in, symbol_inline_comment= @text Y 
+- Processing param: symbol_name=width, symbol_type=int, custom_name=W, direction=in, symbol_inline_comment= @text W 
+- Processing param: symbol_name=height, symbol_type=int, custom_name=H, direction=in, symbol_inline_comment= @text H 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=westerosArgs, symbol_type=IEnvArgumentsIterator, custom_name=westerosArgs, direction=in, symbol_inline_comment= @text westerosArgs 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=envArgs, symbol_type=IEnvArgumentsIterator, custom_name=envArgs, direction=in, symbol_inline_comment= @text envArgs 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=result, symbol_type=Result, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for sourceDeviceIP-string
+- Generated missing example for sourceDeviceMac-string
+- Generated missing example for sourceDeviceName-string
+- Generated missing example for sinkDeviceIP-string
+- Generated missing example for startX-int
+- Generated missing example for startY-int
+- Generated missing example for width-int
+- Generated missing example for height-int
+- Generated missing example for message-string
+- Generated missing example for success-bool
+- Generated missing example for argName-string
+- Generated missing example for argValue-string
+- Generated missing example for clientName-string
+- Generated missing example for clientMac-string
+- Generated missing example for playerState-State
+- Generated missing example for reasonCode-string
+- Generated missing example for reasonDescription-ReasonCode
+- Generated missing example for notification-INotification
+- Generated missing example for deviceParam-DeviceParameters
+- Generated missing example for videoRect-VideoRectangle
+- Generated missing example for result-Result
+- Generated missing example for reasonCode-int
+- Generated missing example for westerosArgs-IEnvArgumentsIterator
+- Generated missing example for envArgs-IEnvArgumentsIterator
+- Filled missing desc for result in method PlayRequest
+- Filled missing desc for result in method SetEnvArguments
+- Filled missing desc for result in method SetVideoRectangle
+- Filled missing desc for result in method SetWesterosEnvironment
+- Filled missing desc for result in method StopRequest
+- Filled missing desc for result in method UnsetEnvArguments
+- Filled missing desc for result in method UnsetWesterosEnvironment
+- Missing example: sourceDeviceIP-string
+- Missing example: sourceDeviceMac-string
+- Missing example: sourceDeviceName-string
+- Missing example: sinkDeviceIP-string
+- Missing example: message-string
+- Missing description: success-bool
+- Missing example: argName-string
+- Missing example: argValue-string
+- Missing example: clientName-string
+- Missing example: clientMac-string
+- Missing example: reasonCode-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing description: result-Result
+
+### End of Log

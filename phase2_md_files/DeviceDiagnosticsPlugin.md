@@ -2,19 +2,19 @@
 <a id="DeviceDiagnostics_Plugin"></a>
 # DeviceDiagnostics Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics/IDeviceDiagnostics.h)**
 
 A DeviceDiagnostics plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -53,12 +53,12 @@ DeviceDiagnostics interface methods:
 | [logMilestone](#logMilestone) | Log marker string to rdk milestones log | NA |
 
 <a id="getAVDecoderStatus"></a>
-## *getAVDecoderStatus [<sup>method</sup>](#Methods)*
+## *getAVDecoderStatus*
 
 Gets the most active status of audio/video decoder/pipeline
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -101,12 +101,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getConfiguration"></a>
-## *getConfiguration [<sup>method</sup>](#Methods)*
+## *getConfiguration*
 
 Gets the values associated with the corresponding property names
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -165,12 +165,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getMilestones"></a>
-## *getMilestones [<sup>method</sup>](#Methods)*
+## *getMilestones*
 
 Returns the list of milestones
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -218,12 +218,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="logMilestone"></a>
-## *logMilestone [<sup>method</sup>](#Methods)*
+## *logMilestone*
 
 Log marker string to rdk milestones log
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -287,7 +287,7 @@ DeviceDiagnostics interface events:
 | [onAVDecoderStatusChanged](#onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
 
 <a id="onAVDecoderStatusChanged"></a>
-## *onAVDecoderStatusChanged [<sup>event</sup>](#Notifications)*
+## *onAVDecoderStatusChanged*
 
 Triggered when the most active status of audio/video decoder/pipeline changes
 

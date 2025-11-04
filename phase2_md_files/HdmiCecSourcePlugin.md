@@ -2,19 +2,19 @@
 <a id="HdmiCecSource_Plugin"></a>
 # HdmiCecSource Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdmiCecSource)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdmiCecSource/IHdmiCecSource.h)**
 
 A HdmiCecSource plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -62,12 +62,12 @@ HdmiCecSource interface methods:
 | [setVendorId](#setVendorId) | Sets the vendor ID of the HDMI CEC source | NA |
 
 <a id="getActiveSourceStatus"></a>
-## *getActiveSourceStatus [<sup>method</sup>](#Methods)*
+## *getActiveSourceStatus*
 
 Gets the status if the device is the current active source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -112,12 +112,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getDeviceList"></a>
-## *getDeviceList [<sup>method</sup>](#Methods)*
+## *getDeviceList*
 
 Gets the list of devices connected to the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -173,12 +173,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getEnabled"></a>
-## *getEnabled [<sup>method</sup>](#Methods)*
+## *getEnabled*
 
 Gets the status of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -223,12 +223,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getOSDName"></a>
-## *getOSDName [<sup>method</sup>](#Methods)*
+## *getOSDName*
 
 Gets the OSD name of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -273,12 +273,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getOTPEnabled"></a>
-## *getOTPEnabled [<sup>method</sup>](#Methods)*
+## *getOTPEnabled*
 
 Gets the OTP enabled status of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -323,12 +323,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getVendorId"></a>
-## *getVendorId [<sup>method</sup>](#Methods)*
+## *getVendorId*
 
 Gets the vendor ID of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -373,12 +373,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="performOTPAction"></a>
-## *performOTPAction [<sup>method</sup>](#Methods)*
+## *performOTPAction*
 
 Performs the OTP action
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -421,12 +421,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="sendKeyPressEvent"></a>
-## *sendKeyPressEvent [<sup>method</sup>](#Methods)*
+## *sendKeyPressEvent*
 
 Sends a key press event to the HDMI CEC device.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -477,12 +477,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="sendStandbyMessage"></a>
-## *sendStandbyMessage [<sup>method</sup>](#Methods)*
+## *sendStandbyMessage*
 
 Sends a standby message to another CEC device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -525,12 +525,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="setEnabled"></a>
-## *setEnabled [<sup>method</sup>](#Methods)*
+## *setEnabled*
 
 Sets the status of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -579,12 +579,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="setOSDName"></a>
-## *setOSDName [<sup>method</sup>](#Methods)*
+## *setOSDName*
 
 Sets the OSD name of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -633,12 +633,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="setOTPEnabled"></a>
-## *setOTPEnabled [<sup>method</sup>](#Methods)*
+## *setOTPEnabled*
 
 Sets the OTP enabled status of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -687,12 +687,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="setVendorId"></a>
-## *setVendorId [<sup>method</sup>](#Methods)*
+## *setVendorId*
 
 Sets the vendor ID of the HDMI CEC source
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -762,7 +762,7 @@ HdmiCecSource interface events:
 | [standbyMessageReceived](#standbyMessageReceived) | Notifies when CEC standby message received from the other CEC device |
 
 <a id="onActiveSourceStatusUpdated"></a>
-## *onActiveSourceStatusUpdated [<sup>event</sup>](#Notifications)*
+## *onActiveSourceStatusUpdated*
 
 Notifies when the active source status is updated
 
@@ -786,7 +786,7 @@ Notifies when the active source status is updated
 ```
 
 <a id="onDeviceAdded"></a>
-## *onDeviceAdded [<sup>event</sup>](#Notifications)*
+## *onDeviceAdded*
 
 Notifies when CEC device added to CEC network
 
@@ -810,7 +810,7 @@ Notifies when CEC device added to CEC network
 ```
 
 <a id="onDeviceInfoUpdated"></a>
-## *onDeviceInfoUpdated [<sup>event</sup>](#Notifications)*
+## *onDeviceInfoUpdated*
 
 Notifies when CEC device info updated
 
@@ -834,7 +834,7 @@ Notifies when CEC device info updated
 ```
 
 <a id="onDeviceRemoved"></a>
-## *onDeviceRemoved [<sup>event</sup>](#Notifications)*
+## *onDeviceRemoved*
 
 Notifies when CEC device removed from CEC network
 
@@ -858,7 +858,7 @@ Notifies when CEC device removed from CEC network
 ```
 
 <a id="onKeyPressEvent"></a>
-## *onKeyPressEvent [<sup>event</sup>](#Notifications)*
+## *onKeyPressEvent*
 
 Notifies when a key press CEC message is received from other CEC device
 
@@ -884,7 +884,7 @@ Notifies when a key press CEC message is received from other CEC device
 ```
 
 <a id="onKeyReleaseEvent"></a>
-## *onKeyReleaseEvent [<sup>event</sup>](#Notifications)*
+## *onKeyReleaseEvent*
 
 Notifies when a key release CEC message is received from other CEC device
 
@@ -908,7 +908,7 @@ Notifies when a key release CEC message is received from other CEC device
 ```
 
 <a id="standbyMessageReceived"></a>
-## *standbyMessageReceived [<sup>event</sup>](#Notifications)*
+## *standbyMessageReceived*
 
 Notifies when CEC standby message received from the other CEC device
 

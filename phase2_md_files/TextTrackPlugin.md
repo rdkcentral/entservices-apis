@@ -2,19 +2,19 @@
 <a id="TextTrack_Plugin"></a>
 # TextTrack Plugin
 
-**Version: [1.3.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack)**
+**Version: [1.3.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
 
 A TextTrack plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -89,12 +89,12 @@ TextTrack interface methods:
 | [unMuteSession](#unMuteSession) | UnMute will unhide the rendering of Captions. | NA |
 
 <a id="closeSession"></a>
-## *closeSession [<sup>method</sup>](#Methods)*
+## *closeSession*
 
 Any created windows and surfaces is destroyed
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -140,12 +140,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getBackgroundColor"></a>
-## *getBackgroundColor [<sup>method</sup>](#Methods)*
+## *getBackgroundColor*
 
 Getter for BackgroundColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -188,12 +188,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getBackgroundOpacity"></a>
-## *getBackgroundOpacity [<sup>method</sup>](#Methods)*
+## *getBackgroundOpacity*
 
 Getter for BackgroundOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -236,12 +236,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getClosedCaptionsStyle"></a>
-## *getClosedCaptionsStyle [<sup>method</sup>](#Methods)*
+## *getClosedCaptionsStyle*
 
 Gets the current ClosedCaptionsStyle settings.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -303,12 +303,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getFontColor"></a>
-## *getFontColor [<sup>method</sup>](#Methods)*
+## *getFontColor*
 
 Getter for FontColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -351,12 +351,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getFontEdge"></a>
-## *getFontEdge [<sup>method</sup>](#Methods)*
+## *getFontEdge*
 
 Getter for FontEdge
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -399,12 +399,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getFontEdgeColor"></a>
-## *getFontEdgeColor [<sup>method</sup>](#Methods)*
+## *getFontEdgeColor*
 
 Getter for FontEdgeColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -447,12 +447,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getFontFamily"></a>
-## *getFontFamily [<sup>method</sup>](#Methods)*
+## *getFontFamily*
 
 Getter for FontFamily
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -495,12 +495,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="getFontOpacity"></a>
-## *getFontOpacity [<sup>method</sup>](#Methods)*
+## *getFontOpacity*
 
 Getter for FontOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -543,12 +543,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="getFontSize"></a>
-## *getFontSize [<sup>method</sup>](#Methods)*
+## *getFontSize*
 
 Getter for FontSize
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -591,12 +591,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="getTtmlStyleOverrides"></a>
-## *getTtmlStyleOverrides [<sup>method</sup>](#Methods)*
+## *getTtmlStyleOverrides*
 
 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -639,12 +639,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="getWindowColor"></a>
-## *getWindowColor [<sup>method</sup>](#Methods)*
+## *getWindowColor*
 
 Getter for WindowColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -687,12 +687,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="getWindowOpacity"></a>
-## *getWindowOpacity [<sup>method</sup>](#Methods)*
+## *getWindowOpacity*
 
 Getter for WindowOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -735,12 +735,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="muteSession"></a>
-## *muteSession [<sup>method</sup>](#Methods)*
+## *muteSession*
 
 Mute will hide rendering of Captions
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -786,12 +786,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="openSession"></a>
-## *openSession [<sup>method</sup>](#Methods)*
+## *openSession*
 
 If a session is already running on the supplied displayHandle, the sessionId for this session is returned. If the session is instead newly opened, the session type is not set and display is muted. Use one of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -840,12 +840,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="pauseSession"></a>
-## *pauseSession [<sup>method</sup>](#Methods)*
+## *pauseSession*
 
 Any text rendered remains on screen and any text due to be rendered soon is held until the render session is resumed.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -891,12 +891,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="resetSession"></a>
-## *resetSession [<sup>method</sup>](#Methods)*
+## *resetSession*
 
 The state will be like after calling OpenSession()
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -942,12 +942,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="resumeSession"></a>
-## *resumeSession [<sup>method</sup>](#Methods)*
+## *resumeSession*
 
 Resumed a paused session
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -993,12 +993,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="sendSessionData"></a>
-## *sendSessionData [<sup>method</sup>](#Methods)*
+## *sendSessionData*
 
 Sends data of Closed Captions, Captions or Timed Text data to a render session.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1050,12 +1050,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="sendSessionTimestamp"></a>
-## *sendSessionTimestamp [<sup>method</sup>](#Methods)*
+## *sendSessionTimestamp*
 
 The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1103,12 +1103,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="setBackgroundColor"></a>
-## *setBackgroundColor [<sup>method</sup>](#Methods)*
+## *setBackgroundColor*
 
 Setter for BackgroundColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1154,12 +1154,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="setBackgroundOpacity"></a>
-## *setBackgroundOpacity [<sup>method</sup>](#Methods)*
+## *setBackgroundOpacity*
 
 Setter for BackgroundOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1205,12 +1205,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="setClosedCaptionsStyle"></a>
-## *setClosedCaptionsStyle [<sup>method</sup>](#Methods)*
+## *setClosedCaptionsStyle*
 
 For all values it is possible to keep or override the stream default. The style setting will take effect immediately in all running (Closed Captions) sessions, which has not applied a custom style.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1275,12 +1275,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="setFontColor"></a>
-## *setFontColor [<sup>method</sup>](#Methods)*
+## *setFontColor*
 
 Setter for FontColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1326,12 +1326,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="setFontEdge"></a>
-## *setFontEdge [<sup>method</sup>](#Methods)*
+## *setFontEdge*
 
 Setter for FontEdge
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1377,12 +1377,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```
 
 <a id="setFontEdgeColor"></a>
-## *setFontEdgeColor [<sup>method</sup>](#Methods)*
+## *setFontEdgeColor*
 
 Setter for FontEdgeColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1428,12 +1428,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```
 
 <a id="setFontFamily"></a>
-## *setFontFamily [<sup>method</sup>](#Methods)*
+## *setFontFamily*
 
 Setter for FontFamily
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1479,12 +1479,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```
 
 <a id="setFontOpacity"></a>
-## *setFontOpacity [<sup>method</sup>](#Methods)*
+## *setFontOpacity*
 
 Setter for FontOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1530,12 +1530,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```
 
 <a id="setFontSize"></a>
-## *setFontSize [<sup>method</sup>](#Methods)*
+## *setFontSize*
 
 Setter for FontSize
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1581,12 +1581,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```
 
 <a id="setPreviewText"></a>
-## *setPreviewText [<sup>method</sup>](#Methods)*
+## *setPreviewText*
 
 The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1634,12 +1634,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 ```
 
 <a id="setSessionClosedCaptionsService"></a>
-## *setSessionClosedCaptionsService [<sup>method</sup>](#Methods)*
+## *setSessionClosedCaptionsService*
 
 Selecting the specified CC service to decode and display in the specified render session. This should be done before starting the injection of data. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1687,12 +1687,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 ```
 
 <a id="setSessionDvbSubtitleSelection"></a>
-## *setSessionDvbSubtitleSelection [<sup>method</sup>](#Methods)*
+## *setSessionDvbSubtitleSelection*
 
 Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1742,12 +1742,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 ```
 
 <a id="setSessionSCTESelection"></a>
-## *setSessionSCTESelection [<sup>method</sup>](#Methods)*
+## *setSessionSCTESelection*
 
 Set the render session into SCTE mode
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1793,12 +1793,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 ```
 
 <a id="setSessionTTMLSelection"></a>
-## *setSessionTTMLSelection [<sup>method</sup>](#Methods)*
+## *setSessionTTMLSelection*
 
 Set the render session into TTML mode
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1844,12 +1844,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 ```
 
 <a id="setSessionTeletextSelection"></a>
-## *setSessionTeletextSelection [<sup>method</sup>](#Methods)*
+## *setSessionTeletextSelection*
 
 Set the render session into Teletext mode, providing the teletext caption page for presentation
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1897,12 +1897,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 ```
 
 <a id="setSessionWebVTTSelection"></a>
-## *setSessionWebVTTSelection [<sup>method</sup>](#Methods)*
+## *setSessionWebVTTSelection*
 
 Set the render session into WebVTT mode
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1948,12 +1948,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 ```
 
 <a id="setTtmlStyleOverrides"></a>
-## *setTtmlStyleOverrides [<sup>method</sup>](#Methods)*
+## *setTtmlStyleOverrides*
 
 The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1999,12 +1999,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 ```
 
 <a id="setWindowColor"></a>
-## *setWindowColor [<sup>method</sup>](#Methods)*
+## *setWindowColor*
 
 Setter for WindowColor
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2050,12 +2050,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 ```
 
 <a id="setWindowOpacity"></a>
-## *setWindowOpacity [<sup>method</sup>](#Methods)*
+## *setWindowOpacity*
 
 Setter for WindowOpacity
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2101,12 +2101,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 ```
 
 <a id="unMuteSession"></a>
-## *unMuteSession [<sup>method</sup>](#Methods)*
+## *unMuteSession*
 
 A newly created session is muted and should be unmuted to me visible
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2178,7 +2178,7 @@ TextTrack interface events:
 | [onWindowOpacityChanged](#onWindowOpacityChanged) | Notify windowOpacity Changed |
 
 <a id="onBackgroundColorChanged"></a>
-## *onBackgroundColorChanged [<sup>event</sup>](#Notifications)*
+## *onBackgroundColorChanged*
 
 Notify backgroundColor Changed
 
@@ -2202,7 +2202,7 @@ Notify backgroundColor Changed
 ```
 
 <a id="onBackgroundOpacityChanged"></a>
-## *onBackgroundOpacityChanged [<sup>event</sup>](#Notifications)*
+## *onBackgroundOpacityChanged*
 
 Notify backgroundOpacity Changed
 
@@ -2226,7 +2226,7 @@ Notify backgroundOpacity Changed
 ```
 
 <a id="onClosedCaptionsStyleChanged"></a>
-## *onClosedCaptionsStyleChanged [<sup>event</sup>](#Notifications)*
+## *onClosedCaptionsStyleChanged*
 
 The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to get the new settings.
 
@@ -2269,7 +2269,7 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 ```
 
 <a id="onFontColorChanged"></a>
-## *onFontColorChanged [<sup>event</sup>](#Notifications)*
+## *onFontColorChanged*
 
 Notify fontColor Changed
 
@@ -2293,7 +2293,7 @@ Notify fontColor Changed
 ```
 
 <a id="onFontEdgeChanged"></a>
-## *onFontEdgeChanged [<sup>event</sup>](#Notifications)*
+## *onFontEdgeChanged*
 
 Notify fontEdge Changed
 
@@ -2317,7 +2317,7 @@ Notify fontEdge Changed
 ```
 
 <a id="onFontEdgeColorChanged"></a>
-## *onFontEdgeColorChanged [<sup>event</sup>](#Notifications)*
+## *onFontEdgeColorChanged*
 
 Notify fontEdgeColor Changed
 
@@ -2341,7 +2341,7 @@ Notify fontEdgeColor Changed
 ```
 
 <a id="onFontFamilyChanged"></a>
-## *onFontFamilyChanged [<sup>event</sup>](#Notifications)*
+## *onFontFamilyChanged*
 
 Notify fontFamily Changed
 
@@ -2365,7 +2365,7 @@ Notify fontFamily Changed
 ```
 
 <a id="onFontOpacityChanged"></a>
-## *onFontOpacityChanged [<sup>event</sup>](#Notifications)*
+## *onFontOpacityChanged*
 
 Notify fontOpacity Changed
 
@@ -2389,7 +2389,7 @@ Notify fontOpacity Changed
 ```
 
 <a id="onFontSizeChanged"></a>
-## *onFontSizeChanged [<sup>event</sup>](#Notifications)*
+## *onFontSizeChanged*
 
 Notify fontSize Changed
 
@@ -2413,7 +2413,7 @@ Notify fontSize Changed
 ```
 
 <a id="onTtmlStyleOverridesChanged"></a>
-## *onTtmlStyleOverridesChanged [<sup>event</sup>](#Notifications)*
+## *onTtmlStyleOverridesChanged*
 
 The TTML Style override settings has changed.
 
@@ -2437,7 +2437,7 @@ The TTML Style override settings has changed.
 ```
 
 <a id="onWindowColorChanged"></a>
-## *onWindowColorChanged [<sup>event</sup>](#Notifications)*
+## *onWindowColorChanged*
 
 Notify windowColor Changed
 
@@ -2461,7 +2461,7 @@ Notify windowColor Changed
 ```
 
 <a id="onWindowOpacityChanged"></a>
-## *onWindowOpacityChanged [<sup>event</sup>](#Notifications)*
+## *onWindowOpacityChanged*
 
 Notify windowOpacity Changed
 

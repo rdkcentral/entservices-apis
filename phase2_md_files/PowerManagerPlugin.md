@@ -2,20 +2,20 @@
 <a id="PowerManager_Plugin"></a>
 # PowerManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PowerManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PowerManager/IPowerManager.h)**
 
 A PowerManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Properties](#Properties)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -60,17 +60,16 @@ PowerManager interface methods:
 | [reboot](#reboot) | Reboot device | onRebootBegin |
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications. | NA |
 | [setPowerState](#setPowerState) | Set Power State | onPowerModeChanged |
-| [setSystemMode](#setSystemMode) | System mode change | NA |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Set Temperature Thresholds | NA |
 | [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup | NA |
 
 <a id="addPowerModePreChangeClient"></a>
-## *addPowerModePreChangeClient [<sup>method</sup>](#Methods)*
+## *addPowerModePreChangeClient*
 
 Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`. 
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -119,12 +118,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="delayPowerModeChangeBy"></a>
-## *delayPowerModeChangeBy [<sup>method</sup>](#Methods)*
+## *delayPowerModeChangeBy*
 
 Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -174,12 +173,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getNetworkStandbyMode"></a>
-## *getNetworkStandbyMode [<sup>method</sup>](#Methods)*
+## *getNetworkStandbyMode*
 
 Get the standby mode for Network
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -222,12 +221,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getPowerState"></a>
-## *getPowerState [<sup>method</sup>](#Methods)*
+## *getPowerState*
 
 Get Power State
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -272,12 +271,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getPowerStateBeforeReboot"></a>
-## *getPowerStateBeforeReboot [<sup>method</sup>](#Methods)*
+## *getPowerStateBeforeReboot*
 
 Get Power state before reboot
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -320,12 +319,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getTemperatureThresholds"></a>
-## *getTemperatureThresholds [<sup>method</sup>](#Methods)*
+## *getTemperatureThresholds*
 
 Get Temperature Thresholds
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -370,12 +369,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getThermalState"></a>
-## *getThermalState [<sup>method</sup>](#Methods)*
+## *getThermalState*
 
 Get Current Thermal State (temperature)
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -418,12 +417,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getWakeupSourceConfig"></a>
-## *getWakeupSourceConfig [<sup>method</sup>](#Methods)*
+## *getWakeupSourceConfig*
 
 Get the source configuration for device wakeup
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -471,12 +470,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="powerModePreChangeComplete"></a>
-## *powerModePreChangeComplete [<sup>method</sup>](#Methods)*
+## *powerModePreChangeComplete*
 
 Pre power mode handling complete for given client and transation id
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -524,14 +523,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="reboot"></a>
-## *reboot [<sup>method</sup>](#Methods)*
+## *reboot*
 
 Reboot device
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onRebootBegin ](#onRebootBegin ) |  Triggered when an application invokes the reboot method |
+| [onRebootBegin ](#event.onRebootBegin ) |  Triggered when an application invokes the reboot method |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -581,12 +580,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="removePowerModePreChangeClient"></a>
-## *removePowerModePreChangeClient [<sup>method</sup>](#Methods)*
+## *removePowerModePreChangeClient*
 
 Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -632,14 +631,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="setPowerState"></a>
-## *setPowerState [<sup>method</sup>](#Methods)*
+## *setPowerState*
 
 Set Power State
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onPowerModeChanged ](#onPowerModeChanged ) |  Triggered when the power manager detects a device power state change |
+| [onPowerModeChanged ](#event.onPowerModeChanged ) |  Triggered when the power manager detects a device power state change |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -688,66 +687,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="setSystemMode"></a>
-## *setSystemMode [<sup>method</sup>](#Methods)*
-
-System mode change
-
-### Events
-No Events are associated with this method.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.currentMode | string |  |
-| params.newMode | string | new mode |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.PowerManager.setSystemMode",
-    "params": {
-        "currentMode": "SYSTEM_MODE_UNKNOWN",
-        "newMode": "SYSTEM_MODE_UNKNOWN"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.setSystemMode", "params": {"currentMode": "SYSTEM_MODE_UNKNOWN", "newMode": "SYSTEM_MODE_UNKNOWN"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": null
-}
-```
-
 <a id="setTemperatureThresholds"></a>
-## *setTemperatureThresholds [<sup>method</sup>](#Methods)*
+## *setTemperatureThresholds*
 
 Set Temperature Thresholds
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -767,7 +713,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "method": "org.rdk.PowerManager.setTemperatureThresholds",
     "params": {
         "high": 0.0,
@@ -780,7 +726,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PowerManager.setTemperatureThresholds", "params": {"high": 0.0, "critical": 0.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.setTemperatureThresholds", "params": {"high": 0.0, "critical": 0.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -789,18 +735,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "result": null
 }
 ```
 
 <a id="setWakeupSourceConfig"></a>
-## *setWakeupSourceConfig [<sup>method</sup>](#Methods)*
+## *setWakeupSourceConfig*
 
 Set the source configuration for device wakeup
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -821,7 +767,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "method": "org.rdk.PowerManager.setWakeupSourceConfig",
     "params": [
         {
@@ -836,7 +782,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "WAKEUP_SRC_UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "WAKEUP_SRC_UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -845,7 +791,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "result": null
 }
 ```
@@ -857,7 +803,7 @@ The following properties are provided by the PowerManager plugin:
 
 PowerManager interface properties:
 
-| Method | Description | Event |
+| Property | Description | Event |
 | :-------- | :-------- |:-------- |
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode)<sup>RO</sup> | Get the key code that can be used for wakeup | NA |
 | [getLastWakeupReason](#getLastWakeupReason)<sup>RO</sup> | Get Last Wake up reason | NA |
@@ -867,13 +813,13 @@ PowerManager interface properties:
 | [setOvertempGraceInterval](#setOvertempGraceInterval)<sup>WO</sup> | Set Temperature Thresholds | NA |
 
 <a id="GetLastWakeupKeyCode"></a>
-## *GetLastWakeupKeyCode [<sup>property</sup>](#Properties)*
+## *GetLastWakeupKeyCode*
 
 Get the key code that can be used for wakeup
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -887,7 +833,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 20,
     "method": "org.rdk.PowerManager.getLastWakeupKeyCode"
 }
 ```
@@ -896,7 +842,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.PowerManager.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.PowerManager.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -905,7 +851,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 20,
     "result": {
         "keycode": 0
     }
@@ -913,13 +859,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="GetLastWakeupReason"></a>
-## *GetLastWakeupReason [<sup>property</sup>](#Properties)*
+## *GetLastWakeupReason*
 
 Get Last Wake up reason
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -933,7 +879,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 21,
     "method": "org.rdk.PowerManager.getLastWakeupReason"
 }
 ```
@@ -942,7 +888,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.PowerManager.getLastWakeupReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.PowerManager.getLastWakeupReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -951,7 +897,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 21,
     "result": {
         "wakeupReason": "WAKEUP_REASON_UNKNOWN"
     }
@@ -959,13 +905,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="GetOvertempGraceInterval"></a>
-## *GetOvertempGraceInterval [<sup>property</sup>](#Properties)*
+## *GetOvertempGraceInterval*
 
 Get Temperature Grace interval
 
 > This property is read-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -979,7 +925,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 22,
     "method": "org.rdk.PowerManager.getOvertempGraceInterval"
 }
 ```
@@ -988,7 +934,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.PowerManager.getOvertempGraceInterval"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.PowerManager.getOvertempGraceInterval"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -997,7 +943,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 22,
     "result": {
         "graceInterval": 0
     }
@@ -1005,13 +951,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="SetDeepSleepTimer"></a>
-## *SetDeepSleepTimer [<sup>property</sup>](#Properties)*
+## *SetDeepSleepTimer*
 
 Set Deep sleep timer for timeOut period
 
 > This property is write-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1025,7 +971,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 23,
     "method": "org.rdk.PowerManager.setDeepSleepTimer",
     "params": {
         "timeOut": 0
@@ -1037,7 +983,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.PowerManager.setDeepSleepTimer", "params": {"timeOut": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.PowerManager.setDeepSleepTimer", "params": {"timeOut": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1046,19 +992,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 23,
     "result": null
 }
 ```
 
 <a id="SetNetworkStandbyMode"></a>
-## *SetNetworkStandbyMode [<sup>property</sup>](#Properties)*
+## *SetNetworkStandbyMode*
 
 Set the standby mode for Network
 
 > This property is write-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1072,7 +1018,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 24,
     "method": "org.rdk.PowerManager.setNetworkStandbyMode",
     "params": {
         "standbyMode": true
@@ -1084,7 +1030,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.PowerManager.setNetworkStandbyMode", "params": {"standbyMode": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.PowerManager.setNetworkStandbyMode", "params": {"standbyMode": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1093,19 +1039,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 24,
     "result": null
 }
 ```
 
 <a id="SetOvertempGraceInterval"></a>
-## *SetOvertempGraceInterval [<sup>property</sup>](#Properties)*
+## *SetOvertempGraceInterval*
 
 Set Temperature Thresholds
 
 > This property is write-only.
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1119,7 +1065,7 @@ No Events are associated with this method.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 25,
     "method": "org.rdk.PowerManager.setOvertempGraceInterval",
     "params": {
         "graceInterval": 0
@@ -1131,7 +1077,7 @@ No Events are associated with this method.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.PowerManager.setOvertempGraceInterval", "params": {"graceInterval": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.PowerManager.setOvertempGraceInterval", "params": {"graceInterval": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1140,7 +1086,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 25,
     "result": null
 }
 ```
@@ -1165,7 +1111,7 @@ PowerManager interface events:
 | [onThermalModeChanged](#onThermalModeChanged) | Thermal Mode changed event |
 
 <a id="onDeepSleepTimeout"></a>
-## *onDeepSleepTimeout [<sup>event</sup>](#Notifications)*
+## *onDeepSleepTimeout*
 
 Deep sleep timeout event
 
@@ -1180,7 +1126,7 @@ Deep sleep timeout event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "method": "org.rdk.PowerManager.onDeepSleepTimeout",
     "params": {
         "wakeupTimeout": 0
@@ -1189,7 +1135,7 @@ Deep sleep timeout event
 ```
 
 <a id="onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged [<sup>event</sup>](#Notifications)*
+## *onNetworkStandbyModeChanged*
 
 Network Standby Mode changed event - only on XIone
 
@@ -1204,7 +1150,7 @@ Network Standby Mode changed event - only on XIone
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "method": "org.rdk.PowerManager.onNetworkStandbyModeChanged",
     "params": {
         "enabled": true
@@ -1213,7 +1159,7 @@ Network Standby Mode changed event - only on XIone
 ```
 
 <a id="onPowerModeChanged"></a>
-## *onPowerModeChanged [<sup>event</sup>](#Notifications)*
+## *onPowerModeChanged*
 
 Power mode changed
 
@@ -1229,7 +1175,7 @@ Power mode changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "method": "org.rdk.PowerManager.onPowerModeChanged",
     "params": {
         "currentState": "POWER_STATE_UNKNOWN",
@@ -1239,7 +1185,7 @@ Power mode changed
 ```
 
 <a id="onPowerModePreChange"></a>
-## *onPowerModePreChange [<sup>event</sup>](#Notifications)*
+## *onPowerModePreChange*
 
 Power mode Pre-change event
 
@@ -1257,7 +1203,7 @@ Power mode Pre-change event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 17,
     "method": "org.rdk.PowerManager.onPowerModePreChange",
     "params": {
         "currentState": "POWER_STATE_UNKNOWN",
@@ -1269,7 +1215,7 @@ Power mode Pre-change event
 ```
 
 <a id="onRebootBegin"></a>
-## *onRebootBegin [<sup>event</sup>](#Notifications)*
+## *onRebootBegin*
 
 Reboot begin event
 
@@ -1286,7 +1232,7 @@ Reboot begin event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 18,
     "method": "org.rdk.PowerManager.onRebootBegin",
     "params": {
         "rebootReasonCustom": "",
@@ -1297,7 +1243,7 @@ Reboot begin event
 ```
 
 <a id="onThermalModeChanged"></a>
-## *onThermalModeChanged [<sup>event</sup>](#Notifications)*
+## *onThermalModeChanged*
 
 Thermal Mode changed event
 
@@ -1314,7 +1260,7 @@ Thermal Mode changed event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 19,
     "method": "org.rdk.PowerManager.onThermalModeChanged",
     "params": {
         "currentThermalLevel": "THERMAL_TEMPERATURE_UNKNOWN",

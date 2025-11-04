@@ -2,19 +2,19 @@
 <a id="FirmwareUpdate_Plugin"></a>
 # FirmwareUpdate Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FirmwareUpdate)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FirmwareUpdate/IFirmwareUpdate.h)**
 
 A FirmwareUpdate plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -52,12 +52,12 @@ FirmwareUpdate interface methods:
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. | NA |
 
 <a id="getUpdateState"></a>
-## *getUpdateState [<sup>method</sup>](#Methods)*
+## *getUpdateState*
 
 Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -103,12 +103,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="setAutoReboot"></a>
-## *setAutoReboot [<sup>method</sup>](#Methods)*
+## *setAutoReboot*
 
 Enable or disable the AutoReboot feature.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -157,12 +157,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="updateFirmware"></a>
-## *updateFirmware [<sup>method</sup>](#Methods)*
+## *updateFirmware*
 
 Initiates a firmware update.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -229,7 +229,7 @@ FirmwareUpdate interface events:
 | [onUpdateStateChange](#onUpdateStateChange) | notify Firmware update state change. |
 
 <a id="onFlashingStateChange"></a>
-## *onFlashingStateChange [<sup>event</sup>](#Notifications)*
+## *onFlashingStateChange*
 
 This notification is raised between flashing started state and flashing succeeded/failed.
 
@@ -253,7 +253,7 @@ This notification is raised between flashing started state and flashing succeede
 ```
 
 <a id="onUpdateStateChange"></a>
-## *onUpdateStateChange [<sup>event</sup>](#Notifications)*
+## *onUpdateStateChange*
 
 notify Firmware update state change.
 

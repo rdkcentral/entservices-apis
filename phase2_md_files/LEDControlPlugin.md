@@ -2,18 +2,18 @@
 <a id="LEDControl_Plugin"></a>
 # LEDControl Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LEDControl)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LEDControl/ILEDControl.h)**
 
 A LEDControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -51,12 +51,12 @@ LEDControl interface methods:
 | [setLEDState](#setLEDState) | Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. | NA |
 
 <a id="getLEDState"></a>
-## *getLEDState [<sup>method</sup>](#Methods)*
+## *getLEDState*
 
 Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -99,12 +99,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getSupportedLEDStates"></a>
-## *getSupportedLEDStates [<sup>method</sup>](#Methods)*
+## *getSupportedLEDStates*
 
 Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -152,12 +152,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setLEDState"></a>
-## *setLEDState [<sup>method</sup>](#Methods)*
+## *setLEDState*
 
 Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

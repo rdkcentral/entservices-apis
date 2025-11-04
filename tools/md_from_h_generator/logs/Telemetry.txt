@@ -1,0 +1,42 @@
+### Warnings
+- virtual Core::hresult Register(ITelemetry::INotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(ITelemetry::INotification* notification) = 0; has no doxygen tags.
+- Event OnReportUpload is not associated with a method.
+
+### Errors
+- Could not extract parameter information from: 
+- Could not extract parameter information from: 
+- Event onReportUpload  tagged with UploadReport does not exist.
+
+### Info
+- Processing param: symbol_name=telemetryUploadStatus, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=ITelemetry::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=ITelemetry::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=eventName, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=eventValue, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=optOut, symbol_type=bool, custom_name=Opt-Out, direction=in, symbol_inline_comment= @text Opt-Out 
+- Processing param: symbol_name=successResult, symbol_type=TelemetrySuccess, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=optOut, symbol_type=bool, custom_name=Opt-Out, direction=out, symbol_inline_comment= @out @text Opt-Out
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for success-bool
+- Generated missing example for telemetryUploadStatus-string
+- Generated missing example for notification-INotification
+- Generated missing example for status-string
+- Generated missing example for eventName-string
+- Generated missing example for eventValue-string
+- Generated missing example for optOut-bool
+- Generated missing example for successResult-TelemetrySuccess
+- Filled missing desc for optOut in method IsOptOutTelemetry
+- Filled missing desc for optOut in method SetOptOutTelemetry
+- Filled missing desc for successResult in method SetOptOutTelemetry
+- Missing example: telemetryUploadStatus-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing example: status-string
+- Missing example: eventName-string
+- Missing example: eventValue-string
+- Missing description: optOut-bool
+- Missing description: successResult-TelemetrySuccess
+
+### End of Log

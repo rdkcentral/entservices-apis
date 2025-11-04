@@ -2,19 +2,19 @@
 <a id="MiracastPlayer_Plugin"></a>
 # MiracastPlayer Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Miracast)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Miracast/IMiracastPlayer.h)**
 
 A MiracastPlayer plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -56,12 +56,12 @@ MiracastPlayer interface methods:
 | [unsetWesterosEnvironment](#unsetWesterosEnvironment) | To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead. | NA |
 
 <a id="playRequest"></a>
-## *playRequest [<sup>method</sup>](#Methods)*
+## *playRequest*
 
 To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -133,12 +133,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="setEnvArguments"></a>
-## *setEnvArguments [<sup>method</sup>](#Methods)*
+## *setEnvArguments*
 
 To configure the environment arguments for the Miracast Player
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -195,12 +195,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setVideoRectangle"></a>
-## *setVideoRectangle [<sup>method</sup>](#Methods)*
+## *setVideoRectangle*
 
 Set the Video Rectangle.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -258,12 +258,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setWesterosEnvironment"></a>
-## *setWesterosEnvironment [<sup>method</sup>](#Methods)*
+## *setWesterosEnvironment*
 
 To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -320,12 +320,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="stopRequest"></a>
-## *stopRequest [<sup>method</sup>](#Methods)*
+## *stopRequest*
 
 To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -381,12 +381,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="unsetEnvArguments"></a>
-## *unsetEnvArguments [<sup>method</sup>](#Methods)*
+## *unsetEnvArguments*
 
 To reset the environment arguments for the Miracast Player
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -432,12 +432,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="unsetWesterosEnvironment"></a>
-## *unsetWesterosEnvironment [<sup>method</sup>](#Methods)*
+## *unsetWesterosEnvironment*
 
 To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -498,7 +498,7 @@ MiracastPlayer interface events:
 | [onStateChange](#onStateChange) | Notifies when a Miracast source device wants to connect |
 
 <a id="onStateChange"></a>
-## *onStateChange [<sup>event</sup>](#Notifications)*
+## *onStateChange*
 
 Notifies when a Miracast source device wants to connect
 

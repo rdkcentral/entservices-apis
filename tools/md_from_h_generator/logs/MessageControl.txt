@@ -1,0 +1,21 @@
+### Warnings
+
+### Errors
+
+### Info
+- Processing param: symbol_name=type, symbol_type=MessageType, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=category, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=module, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=enabled, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=control, symbol_type=IControlIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for type-MessageType
+- Generated missing example for category-string
+- Generated missing example for module-string
+- Generated missing example for enabled-bool
+- Generated missing example for control-IControlIterator
+- Filled missing desc for control in property Controls
+- Missing example: category-string
+- Missing example: module-string
+- Missing description: control-IControlIterator
+
+### End of Log

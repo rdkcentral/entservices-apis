@@ -2,19 +2,19 @@
 <a id="LifecycleManager_Plugin"></a>
 # LifecycleManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManagerState.h)**
 
 A LifecycleManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -52,17 +52,17 @@ LifecycleManager interface methods:
 | [stateChangeComplete](#stateChangeComplete) | Response api call to appLifecycleStateChanged API | NA |
 
 <a id="appReady"></a>
-## *appReady [<sup>method</sup>](#Methods)*
+## *appReady*
 
 Response api call to appInitializing API
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -103,17 +103,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="closeApp"></a>
-## *closeApp [<sup>method</sup>](#Methods)*
+## *closeApp*
 
 close the app
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string |  |
 | params.closeReason | string | closed reason for application |
 ### Results
 | Name | Type | Description |
@@ -156,17 +156,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="stateChangeComplete"></a>
-## *stateChangeComplete [<sup>method</sup>](#Methods)*
+## *stateChangeComplete*
 
 Response api call to appLifecycleStateChanged API
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string |  |
 | params.stateChangedId | integer | state changed identifier |
 | params.success | bool |  |
 ### Results
@@ -226,7 +226,7 @@ LifecycleManager interface events:
 | [onAppLifecycleStateChanged](#onAppLifecycleStateChanged) | Notifies the new state |
 
 <a id="onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged [<sup>event</sup>](#Notifications)*
+## *onAppLifecycleStateChanged*
 
 Notifies the new state
 
@@ -234,10 +234,10 @@ Notifies the new state
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
-| params.oldState | ILifecycleManager::LifecycleState | The previous state of the application instance before the update. |
-| params.newState | ILifecycleManager::LifecycleState | The new state to transition the application. |
+| params.appId | string |  |
+| params.appInstanceId | string |  |
+| params.oldState | LifecycleState | The previous state of the application instance before the update. |
+| params.newState | LifecycleState | The new state to transition the application. |
 | params.navigationIntent | string | navigation intent during active state |
 
 ### Examples

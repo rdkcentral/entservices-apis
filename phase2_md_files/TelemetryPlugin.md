@@ -2,19 +2,19 @@
 <a id="Telemetry_Plugin"></a>
 # Telemetry Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Telemetry)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Telemetry/ITelemetry.h)**
 
 A Telemetry plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -55,12 +55,12 @@ Telemetry interface methods:
 | [uploadReport](#uploadReport) | Uploading of telemetry report | onReportUpload |
 
 <a id="abortReport"></a>
-## *abortReport [<sup>method</sup>](#Methods)*
+## *abortReport*
 
 Abort report upload
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -100,12 +100,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="isOptOutTelemetry"></a>
-## *isOptOutTelemetry [<sup>method</sup>](#Methods)*
+## *isOptOutTelemetry*
 
 Checks the telemetry opt-out status.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -150,12 +150,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="logApplicationEvent"></a>
-## *logApplicationEvent [<sup>method</sup>](#Methods)*
+## *logApplicationEvent*
 
 Logs an application
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -203,12 +203,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setOptOutTelemetry"></a>
-## *setOptOutTelemetry [<sup>method</sup>](#Methods)*
+## *setOptOutTelemetry*
 
 Sets the telemetry opt-out status.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -257,12 +257,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setReportProfileStatus"></a>
-## *setReportProfileStatus [<sup>method</sup>](#Methods)*
+## *setReportProfileStatus*
 
 Sets the status of telemetry reporting
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -308,14 +308,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="uploadReport"></a>
-## *uploadReport [<sup>method</sup>](#Methods)*
+## *uploadReport*
 
 Uploading of telemetry report
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onReportUpload ](#onReportUpload ) |  Triggered by callback from Telemetry after report uploading |
+| [onReportUpload ](#event.onReportUpload ) |  Triggered by callback from Telemetry after report uploading |
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -370,7 +370,7 @@ Telemetry interface events:
 | [onReportUpload](#onReportUpload) | Triggered by callback from Telemetry after report uploading |
 
 <a id="onReportUpload"></a>
-## *onReportUpload [<sup>event</sup>](#Notifications)*
+## *onReportUpload*
 
 Triggered by callback from Telemetry after report uploading
 

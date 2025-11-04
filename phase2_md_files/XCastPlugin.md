@@ -2,19 +2,19 @@
 <a id="XCast_Plugin"></a>
 # XCast Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/XCast)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/XCast/IXCast.h)**
 
 A XCast plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -63,12 +63,12 @@ XCast interface methods:
 | [unregisterApplications](#unregisterApplications) | Unregisters an application | NA |
 
 <a id="getEnabled"></a>
-## *getEnabled [<sup>method</sup>](#Methods)*
+## *getEnabled*
 
 Reports whether xcast plugin is enabled or disabled
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -113,12 +113,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getFriendlyName"></a>
-## *getFriendlyName [<sup>method</sup>](#Methods)*
+## *getFriendlyName*
 
 Returns the friendly name set by setFriendlyName API
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -163,12 +163,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getManufacturerName"></a>
-## *getManufacturerName [<sup>method</sup>](#Methods)*
+## *getManufacturerName*
 
 Returns the manufacturer name set by setManufacturerName API
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -213,12 +213,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getModelName"></a>
-## *getModelName [<sup>method</sup>](#Methods)*
+## *getModelName*
 
 Returns the model name set by setModelName API
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -263,12 +263,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getProtocolVersion"></a>
-## *getProtocolVersion [<sup>method</sup>](#Methods)*
+## *getProtocolVersion*
 
 Returns the DIAL protocol version supported by the server
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -313,12 +313,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getStandbyBehavior"></a>
-## *getStandbyBehavior [<sup>method</sup>](#Methods)*
+## *getStandbyBehavior*
 
 Return current standby behavior option string set uisng setStandbyBehavior or default value
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -363,12 +363,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="registerApplications"></a>
-## *registerApplications [<sup>method</sup>](#Methods)*
+## *registerApplications*
 
 Registers an application
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -430,12 +430,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="setApplicationState"></a>
-## *setApplicationState [<sup>method</sup>](#Methods)*
+## *setApplicationState*
 
 Triggered when the cast service receives an application state change notification from a client
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -490,12 +490,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="setEnabled"></a>
-## *setEnabled [<sup>method</sup>](#Methods)*
+## *setEnabled*
 
 Enable or disable XCAST service @parm enabled: true for enabled or false for disabled
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -544,12 +544,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="setFriendlyName"></a>
-## *setFriendlyName [<sup>method</sup>](#Methods)*
+## *setFriendlyName*
 
 Sets the friendly name of the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -598,12 +598,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="setManufacturerName"></a>
-## *setManufacturerName [<sup>method</sup>](#Methods)*
+## *setManufacturerName*
 
 Sets the manufacturer name of the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -652,12 +652,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="setModelName"></a>
-## *setModelName [<sup>method</sup>](#Methods)*
+## *setModelName*
 
 Sets the model name of the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -706,12 +706,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="setStandbyBehavior"></a>
-## *setStandbyBehavior [<sup>method</sup>](#Methods)*
+## *setStandbyBehavior*
 
 Sets the expected xcast behavior in standby mode
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -760,12 +760,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="unregisterApplications"></a>
-## *unregisterApplications [<sup>method</sup>](#Methods)*
+## *unregisterApplications*
 
 Unregisters an application
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -835,7 +835,7 @@ XCast interface events:
 | [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
 
 <a id="onApplicationHideRequest"></a>
-## *onApplicationHideRequest [<sup>event</sup>](#Notifications)*
+## *onApplicationHideRequest*
 
 Triggered when the cast service receives a hide request from a client
 
@@ -861,7 +861,7 @@ Triggered when the cast service receives a hide request from a client
 ```
 
 <a id="onApplicationLaunchRequest"></a>
-## *onApplicationLaunchRequest [<sup>event</sup>](#Notifications)*
+## *onApplicationLaunchRequest*
 
 Triggered when the cast service receives a launch request from a client with launch params
 
@@ -887,7 +887,7 @@ Triggered when the cast service receives a launch request from a client with lau
 ```
 
 <a id="onApplicationLaunchRequestWithParam"></a>
-## *onApplicationLaunchRequestWithParam [<sup>event</sup>](#Notifications)*
+## *onApplicationLaunchRequestWithParam*
 
 Triggered when the cast service receives a launch request from a client with launch params
 
@@ -917,7 +917,7 @@ Triggered when the cast service receives a launch request from a client with lau
 ```
 
 <a id="onApplicationResumeRequest"></a>
-## *onApplicationResumeRequest [<sup>event</sup>](#Notifications)*
+## *onApplicationResumeRequest*
 
 Triggered when the cast service receives a resume request from a client
 
@@ -943,7 +943,7 @@ Triggered when the cast service receives a resume request from a client
 ```
 
 <a id="onApplicationStateRequest"></a>
-## *onApplicationStateRequest [<sup>event</sup>](#Notifications)*
+## *onApplicationStateRequest*
 
 Triggered when the cast service needs an update of the application state
 
@@ -969,7 +969,7 @@ Triggered when the cast service needs an update of the application state
 ```
 
 <a id="onApplicationStopRequest"></a>
-## *onApplicationStopRequest [<sup>event</sup>](#Notifications)*
+## *onApplicationStopRequest*
 
 Triggered when the cast service receives a stop request from a client
 

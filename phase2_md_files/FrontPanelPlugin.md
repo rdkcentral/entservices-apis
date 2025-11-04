@@ -2,18 +2,18 @@
 <a id="FrontPanel_Plugin"></a>
 # FrontPanel Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrontPanel)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrontPanel/IFrontPanel.h)**
 
 A FrontPanel plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -55,12 +55,12 @@ FrontPanel interface methods:
 | [setLED](#setLED) | Sets the LED with the specified color and brightness | NA |
 
 <a id="getBrightness"></a>
-## *getBrightness [<sup>method</sup>](#Methods)*
+## *getBrightness*
 
 Gets the status of the Front Panel
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -111,12 +111,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getFrontPanelLights"></a>
-## *getFrontPanelLights [<sup>method</sup>](#Methods)*
+## *getFrontPanelLights*
 
 Gets the front panel lights
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -166,12 +166,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="powerLedOff"></a>
-## *powerLedOff [<sup>method</sup>](#Methods)*
+## *powerLedOff*
 
 Switches the specified LED off
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -220,12 +220,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="powerLedOn"></a>
-## *powerLedOn [<sup>method</sup>](#Methods)*
+## *powerLedOn*
 
 Switches the specified LED on
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -274,12 +274,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setBlink"></a>
-## *setBlink [<sup>method</sup>](#Methods)*
+## *setBlink*
 
 Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -328,12 +328,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="setBrightness"></a>
-## *setBrightness [<sup>method</sup>](#Methods)*
+## *setBrightness*
 
 Sets the brightness of the specified LED
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -384,12 +384,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="setLED"></a>
-## *setLED [<sup>method</sup>](#Methods)*
+## *setLED*
 
 Sets the LED with the specified color and brightness
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

@@ -1,0 +1,441 @@
+### Warnings
+- Line 154 should have only one Method param per line.
+- virtual Core::hresult Register(IPackageManager::INotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(IPackageManager::INotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult Offer(IPackageManager* packagemanager) = 0; has no doxygen tags.
+- virtual Core::hresult Revoke(const IPackageManager* packagemanager) = 0; has no doxygen tags.
+- Line 225 should have only one Method param per line.
+- Event OperationStatus is not associated with a method.
+- Comment on line 47 should come before comma/semicolon.
+- Comment on line 158 should come before comma/semicolon.
+- Comment on line 162 should come before comma/semicolon.
+- Comment on line 168 should come before comma/semicolon.
+- virtual Core::hresult Register(IPackageInstaller::INotification *sink) = 0; has no doxygen tags.
+- virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0; has no doxygen tags.
+
+### Errors
+- Could not register method: virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
+- Could not register method: virtual void OnAppInstallationStatus(const string& jsonresponse) {
+
+### Info
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appName, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=category, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=uninstallType, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=resKey, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=resetType, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=storageinfo, symbol_type=StorageInfo, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=value, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=key, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=metadata, symbol_type=MetadataPayload, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=resources, symbol_type=IPackageManager::IKeyValueIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=auxMetadata, symbol_type=IPackageManager::IKeyValueIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=progress, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=operation, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=details, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IPackageManager::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IPackageManager::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=appName, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=category, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=installedIds, symbol_type=IPackageKeyIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=reason, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=owner, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=result, symbol_type=LockInfo, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packagemanager, symbol_type=IPackageManager, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=packagemanager, symbol_type=IPackageManager, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=handle, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=operation, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=type, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=details, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Generated missing example for type-string
+- Generated missing example for id-string
+- Generated missing example for version-string
+- Generated missing example for url-string
+- Generated missing example for appName-string
+- Generated missing example for category-string
+- Generated missing example for handle-string
+- Generated missing example for uninstallType-string
+- Generated missing example for resKey-string
+- Generated missing example for resetType-string
+- Generated missing example for EXTERNAL-struct
+- Generated missing example for path-string
+- Generated missing example for quotaKB-string
+- Generated missing example for usedKB-string
+- Generated missing example for storageinfo-StorageInfo
+- Generated missing example for key-string
+- Generated missing example for value-string
+- Generated missing example for metadata-MetadataPayload
+- Generated missing example for resources-IKeyValueIterator
+- Generated missing example for auxMetadata-IKeyValueIterator
+- Generated missing example for progress-integer
+- Generated missing example for operation-string
+- Generated missing example for status-string
+- Generated missing example for details-string
+- Generated missing example for notification-INotification
+- Generated missing example for installedIds-IPackageKeyIterator
+- Generated missing example for reason-string
+- Generated missing example for owner-string
+- Generated missing example for result-LockInfo
+- Generated missing example for packagemanager-IPackageManager
+- Filled missing desc for handle in method Cancel
+- Filled missing desc for type in method ClearAuxMetadata
+- Filled missing desc for id in method ClearAuxMetadata
+- Filled missing desc for version in method ClearAuxMetadata
+- Filled missing desc for key in method ClearAuxMetadata
+- Filled missing desc for type in method Download
+- Filled missing desc for id in method Download
+- Filled missing desc for version in method Download
+- Filled missing desc for resKey in method Download
+- Filled missing desc for url in method Download
+- Filled missing desc for handle in method Download
+- Filled missing desc for type in method GetList
+- Filled missing desc for id in method GetList
+- Filled missing desc for version in method GetList
+- Filled missing desc for appName in method GetList
+- Filled missing desc for category in method GetList
+- Filled missing desc for installedIds in method GetList
+- Filled missing desc for type in method GetLockInfo
+- Filled missing desc for id in method GetLockInfo
+- Filled missing desc for version in method GetLockInfo
+- Filled missing desc for result in method GetLockInfo
+- Filled missing desc for type in method GetMetadata
+- Filled missing desc for id in method GetMetadata
+- Filled missing desc for version in method GetMetadata
+- Filled missing desc for metadata in method GetMetadata
+- Filled missing desc for resources in method GetMetadata
+- Filled missing desc for auxMetadata in method GetMetadata
+- Filled missing desc for handle in method GetProgress
+- Filled missing desc for progress in method GetProgress
+- Filled missing desc for type in method GetStorageDetails
+- Filled missing desc for id in method GetStorageDetails
+- Filled missing desc for version in method GetStorageDetails
+- Filled missing desc for storageinfo in method GetStorageDetails
+- Filled missing desc for type in method Install
+- Filled missing desc for id in method Install
+- Filled missing desc for version in method Install
+- Filled missing desc for url in method Install
+- Filled missing desc for appName in method Install
+- Filled missing desc for category in method Install
+- Filled missing desc for handle in method Install
+- Filled missing desc for type in method Lock
+- Filled missing desc for id in method Lock
+- Filled missing desc for version in method Lock
+- Filled missing desc for reason in method Lock
+- Filled missing desc for owner in method Lock
+- Filled missing desc for handle in method Lock
+- Filled missing desc for type in method Reset
+- Filled missing desc for id in method Reset
+- Filled missing desc for version in method Reset
+- Filled missing desc for resetType in method Reset
+- Filled missing desc for type in method SetAuxMetadata
+- Filled missing desc for id in method SetAuxMetadata
+- Filled missing desc for version in method SetAuxMetadata
+- Filled missing desc for key in method SetAuxMetadata
+- Filled missing desc for value in method SetAuxMetadata
+- Filled missing desc for type in method Uninstall
+- Filled missing desc for id in method Uninstall
+- Filled missing desc for version in method Uninstall
+- Filled missing desc for uninstallType in method Uninstall
+- Filled missing desc for handle in method Uninstall
+- Filled missing desc for handle in method Unlock
+- Filled missing desc for handle in event OperationStatus
+- Filled missing desc for operation in event OperationStatus
+- Filled missing desc for type in event OperationStatus
+- Filled missing desc for id in event OperationStatus
+- Filled missing desc for version in event OperationStatus
+- Filled missing desc for status in event OperationStatus
+- Filled missing desc for details in event OperationStatus
+- Missing description: type-string
+- Missing example: type-string
+- Missing description: id-string
+- Missing example: id-string
+- Missing description: version-string
+- Missing example: version-string
+- Missing description: url-string
+- Missing example: url-string
+- Missing description: appName-string
+- Missing example: appName-string
+- Missing description: category-string
+- Missing example: category-string
+- Missing description: handle-string
+- Missing example: handle-string
+- Missing description: uninstallType-string
+- Missing example: uninstallType-string
+- Missing description: resKey-string
+- Missing example: resKey-string
+- Missing description: resetType-string
+- Missing example: resetType-string
+- Missing description: EXTERNAL-struct
+- Missing example: EXTERNAL-struct
+- Missing description: path-string
+- Missing example: path-string
+- Missing description: quotaKB-string
+- Missing example: quotaKB-string
+- Missing description: usedKB-string
+- Missing example: usedKB-string
+- Missing description: storageinfo-StorageInfo
+- Missing description: key-string
+- Missing example: key-string
+- Missing description: value-string
+- Missing example: value-string
+- Missing description: metadata-MetadataPayload
+- Missing description: resources-IKeyValueIterator
+- Missing description: auxMetadata-IKeyValueIterator
+- Missing description: progress-integer
+- Missing description: operation-string
+- Missing example: operation-string
+- Missing description: status-string
+- Missing example: status-string
+- Missing description: details-string
+- Missing example: details-string
+- Missing description: notification-INotification
+- Missing example: notification-INotification
+- Missing description: installedIds-IPackageKeyIterator
+- Missing description: reason-string
+- Missing example: reason-string
+- Missing description: owner-string
+- Missing example: owner-string
+- Missing description: result-LockInfo
+- Missing description: packagemanager-IPackageManager
+- Missing example: packagemanager-IPackageManager
+- Processing param: symbol_name=sink, symbol_type=IPackageDownloader::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=IPackageDownloader::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=service, symbol_type=PluginHost::IShell, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=service, symbol_type=PluginHost::IShell, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=url, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=options, symbol_type=Options, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=downloadId, symbol_type=DownloadId, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=downloadId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=downloadId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=downloadId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=fileLocator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=downloadId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=progress, symbol_type=ProgressInfo, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=quotaKb, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=usedKb, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=downloadId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=limit, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=IPackageInstaller::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=sink, symbol_type=IPackageInstaller::INotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=additionalMetadata, symbol_type=IPackageInstaller::IKeyValueIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=fileLocator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=failReason, symbol_type=FailReason, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=errorReason, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packages, symbol_type=IPackageIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=configMetadata, symbol_type=RuntimeConfig, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=state, symbol_type=InstallState, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=fileLocator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=config, symbol_type=RuntimeConfig, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=lockReason, symbol_type=LockReason, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=lockId, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=unpackedPath, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=configMetadata, symbol_type=RuntimeConfig, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=appMetadata, symbol_type=IPackageHandler::ILockIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=packageId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=version, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=unpackedPath, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=configMetadata, symbol_type=RuntimeConfig, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=gatewayMetadataPath, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=locked, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for dial-bool
+- Generated missing example for wanLanAccess-bool
+- Generated missing example for thunder-bool
+- Generated missing example for systemMemoryLimit-integer
+- Generated missing example for gpuMemoryLimit-integer
+- Generated missing example for envVariables-std::string
+- Generated missing example for userId-integer
+- Generated missing example for groupId-integer
+- Generated missing example for dataImageSize-integer
+- Generated missing example for resourceManagerClientEnabled-bool
+- Generated missing example for dialId-std::string
+- Generated missing example for command-std::string
+- Generated missing example for appType-std::string
+- Generated missing example for appPath-std::string
+- Generated missing example for runtimePath-std::string
+- Generated missing example for logFilePath-std::string
+- Generated missing example for logFileMaxSize-integer
+- Generated missing example for logLevels-std::string
+- Generated missing example for mapi-bool
+- Generated missing example for fkpsFiles-std::string
+- Generated missing example for fireboltVersion-std::string
+- Generated missing example for enableDebugger-bool
+- Generated missing example for downloadId-string
+- Generated missing example for fileLocator-string
+- Generated missing example for reason-Reason
+- Generated missing example for sink-INotification
+- Generated missing example for service-IShell
+- Generated missing example for priority-bool
+- Generated missing example for retries-integer
+- Generated missing example for rateLimit-integer
+- Generated missing example for url-string
+- Generated missing example for options-Options
+- Generated missing example for downloadId-DownloadId
+- Generated missing example for progress-integer
+- Generated missing example for progress-ProgressInfo
+- Generated missing example for quotaKb-string
+- Generated missing example for usedKb-string
+- Generated missing example for limit-integer
+- Generated missing example for packageId-string
+- Generated missing example for version-string
+- Generated missing example for state-InstallState
+- Generated missing example for digest-string
+- Generated missing example for sizeKb-integer
+- Generated missing example for name-string
+- Generated missing example for value-string
+- Generated missing example for additionalMetadata-IKeyValueIterator
+- Generated missing example for failReason-FailReason
+- Generated missing example for errorReason-string
+- Generated missing example for packages-IPackageIterator
+- Generated missing example for configMetadata-RuntimeConfig
+- Generated missing example for id-string
+- Generated missing example for config-RuntimeConfig
+- Generated missing example for lockReason-LockReason
+- Generated missing example for lockId-integer
+- Generated missing example for unpackedPath-string
+- Generated missing example for appMetadata-ILockIterator
+- Generated missing example for gatewayMetadataPath-string
+- Generated missing example for locked-bool
+- Filled missing desc for configMetadata in method Config
+- Filled missing desc for downloadId in method Download
+- Filled missing desc for unpackedPath in method GetLockedInfo
+- Filled missing desc for configMetadata in method GetLockedInfo
+- Filled missing desc for gatewayMetadataPath in method GetLockedInfo
+- Filled missing desc for locked in method GetLockedInfo
+- Filled missing desc for quotaKb in method GetStorageDetails
+- Filled missing desc for usedKb in method GetStorageDetails
+- Filled missing desc for failReason in method Install
+- Filled missing desc for packages in method ListPackages
+- Filled missing desc for state in method PackageState
+- Filled missing desc for progress in method Progress
+- Filled missing desc for errorReason in method Uninstall
+- Missing description: dial-bool
+- Missing description: wanLanAccess-bool
+- Missing description: thunder-bool
+- Missing description: systemMemoryLimit-integer
+- Missing description: gpuMemoryLimit-integer
+- Missing description: envVariables-std::string
+- Missing example: envVariables-std::string
+- Missing description: userId-integer
+- Missing description: groupId-integer
+- Missing description: dataImageSize-integer
+- Missing description: resourceManagerClientEnabled-bool
+- Missing description: dialId-std::string
+- Missing example: dialId-std::string
+- Missing description: command-std::string
+- Missing example: command-std::string
+- Missing description: appType-std::string
+- Missing example: appType-std::string
+- Missing description: appPath-std::string
+- Missing example: appPath-std::string
+- Missing description: runtimePath-std::string
+- Missing example: runtimePath-std::string
+- Missing description: logFilePath-std::string
+- Missing example: logFilePath-std::string
+- Missing description: logFileMaxSize-integer
+- Missing example: logLevels-std::string
+- Missing description: mapi-bool
+- Missing example: fkpsFiles-std::string
+- Missing description: fireboltVersion-std::string
+- Missing example: fireboltVersion-std::string
+- Missing description: enableDebugger-bool
+- Missing example: downloadId-string
+- Missing example: fileLocator-string
+- Missing description: sink-INotification
+- Missing example: sink-INotification
+- Missing description: service-IShell
+- Missing example: service-IShell
+- Missing description: priority-bool
+- Missing description: retries-integer
+- Missing description: rateLimit-integer
+- Missing example: url-string
+- Missing description: downloadId-DownloadId
+- Missing description: progress-integer
+- Missing description: progress-ProgressInfo
+- Missing description: quotaKb-string
+- Missing example: quotaKb-string
+- Missing description: usedKb-string
+- Missing example: usedKb-string
+- Missing example: packageId-string
+- Missing example: version-string
+- Missing description: state-InstallState
+- Missing description: digest-string
+- Missing example: digest-string
+- Missing description: sizeKb-integer
+- Missing description: name-string
+- Missing example: name-string
+- Missing description: value-string
+- Missing example: value-string
+- Missing description: failReason-FailReason
+- Missing description: errorReason-string
+- Missing example: errorReason-string
+- Missing description: packages-IPackageIterator
+- Missing example: id-string
+- Missing example: unpackedPath-string
+- Missing description: gatewayMetadataPath-string
+- Missing example: gatewayMetadataPath-string
+- Missing description: locked-bool
+
+### End of Log

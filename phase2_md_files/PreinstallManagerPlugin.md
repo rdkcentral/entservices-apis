@@ -2,19 +2,19 @@
 <a id="PreinstallManager_Plugin"></a>
 # PreinstallManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PreinstallManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PreinstallManager/IPreinstallManager.h)**
 
 A PreinstallManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -50,12 +50,12 @@ PreinstallManager interface methods:
 | [startPreinstall](#startPreinstall) | Checks the preinstall directory for packages to be preinstalled and installs them as needed. | NA |
 
 <a id="startPreinstall"></a>
-## *startPreinstall [<sup>method</sup>](#Methods)*
+## *startPreinstall*
 
 Checks the preinstall directory for packages to be preinstalled and installs them as needed.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -116,7 +116,7 @@ PreinstallManager interface events:
 | [onAppInstallationStatus](#onAppInstallationStatus) | Emitted when the installation of a preinstalled app succeeds or fails. |
 
 <a id="onAppInstallationStatus"></a>
-## *onAppInstallationStatus [<sup>event</sup>](#Notifications)*
+## *onAppInstallationStatus*
 
 Emitted when the installation of a preinstalled app succeeds or fails.
 

@@ -2,19 +2,19 @@
 <a id="RDKWindowManager_Plugin"></a>
 # RDKWindowManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RDKWindowManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RDKWindowManager/IRDKWindowManager.h)**
 
 A RDKWindowManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -70,12 +70,12 @@ RDKWindowManager interface methods:
 | [setVisible](#setVisible) | Sets the visibility of the given client or appInstanceId | NA |
 
 <a id="addKeyIntercept"></a>
-## *addKeyIntercept [<sup>method</sup>](#Methods)*
+## *addKeyIntercept*
 
 Registers a key intercept for a specific key code and client
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -121,12 +121,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="addKeyIntercepts"></a>
-## *addKeyIntercepts [<sup>method</sup>](#Methods)*
+## *addKeyIntercepts*
 
 Registers multiple key intercepts in a single operation.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -172,12 +172,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="addKeyListener"></a>
-## *addKeyListener [<sup>method</sup>](#Methods)*
+## *addKeyListener*
 
 Registers listeners for specific keys.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -223,12 +223,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="createDisplay"></a>
-## *createDisplay [<sup>method</sup>](#Methods)*
+## *createDisplay*
 
 Create the display window
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -274,17 +274,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="enableDisplayRender"></a>
-## *enableDisplayRender [<sup>method</sup>](#Methods)*
+## *enableDisplayRender*
 
 Enable or disable the rendering of a Wayland display
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 | params.enable | bool | flag to true/false the feature |
 ### Results
 | Name | Type | Description |
@@ -327,12 +327,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="enableInactivityReporting"></a>
-## *enableInactivityReporting [<sup>method</sup>](#Methods)*
+## *enableInactivityReporting*
 
 Enables the inactivity reporting
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -378,12 +378,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="enableInputEvents"></a>
-## *enableInputEvents [<sup>method</sup>](#Methods)*
+## *enableInputEvents*
 
 Enables KeyInputEvents for list of clients specified
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -431,12 +431,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="enableKeyRepeats"></a>
-## *enableKeyRepeats [<sup>method</sup>](#Methods)*
+## *enableKeyRepeats*
 
 Key repeats are enabled/disabled
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -482,18 +482,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="generateKey"></a>
-## *generateKey [<sup>method</sup>](#Methods)*
+## *generateKey*
 
 Generates a key event for the specified keys and client.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -535,12 +535,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="getApps"></a>
-## *getApps [<sup>method</sup>](#Methods)*
+## *getApps*
 
 Get the list of Apps which are currently active and available
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -583,12 +583,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="getKeyRepeatsEnabled"></a>
-## *getKeyRepeatsEnabled [<sup>method</sup>](#Methods)*
+## *getKeyRepeatsEnabled*
 
 Retrieves the flag determining whether keyRepeat true/false
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -631,12 +631,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="ignoreKeyInputs"></a>
-## *ignoreKeyInputs [<sup>method</sup>](#Methods)*
+## *ignoreKeyInputs*
 
 Ignore key inputs
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -682,12 +682,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="injectKey"></a>
-## *injectKey [<sup>method</sup>](#Methods)*
+## *injectKey*
 
 Simulates a key press event with optional modifiers.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -735,12 +735,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="keyRepeatConfig"></a>
-## *keyRepeatConfig [<sup>method</sup>](#Methods)*
+## *keyRepeatConfig*
 
 Enables KeyInputEvents for list of clients specified
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -788,12 +788,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="removeKeyIntercept"></a>
-## *removeKeyIntercept [<sup>method</sup>](#Methods)*
+## *removeKeyIntercept*
 
 Removes a key intercept for a specific key code and client.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -839,12 +839,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="removeKeyListener"></a>
-## *removeKeyListener [<sup>method</sup>](#Methods)*
+## *removeKeyListener*
 
 Removes listeners for specific keys.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -890,17 +890,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="renderReady"></a>
-## *renderReady [<sup>method</sup>](#Methods)*
+## *renderReady*
 
 To get the status of first frame is rendered or not
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -944,12 +944,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="resetInactivityTime"></a>
-## *resetInactivityTime [<sup>method</sup>](#Methods)*
+## *resetInactivityTime*
 
 Resets inactivity interval if EnableUserInactivity feature is enabled
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -989,17 +989,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="setFocus"></a>
-## *setFocus [<sup>method</sup>](#Methods)*
+## *setFocus*
 
 Sets the focus to the app with the app id
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1040,14 +1040,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="setInactivityInterval"></a>
-## *setInactivityInterval [<sup>method</sup>](#Methods)*
+## *setInactivityInterval*
 
 Sets inactivity interval if EnableUserInactivity feature is enabled
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [onUserInactivity ](#onUserInactivity ) |  Triggers only if the device is inactive for the specified time interval |
+| [onUserInactivity ](#event.onUserInactivity ) |  Triggers only if the device is inactive for the specified time interval |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1093,17 +1093,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="setVisible"></a>
-## *setVisible [<sup>method</sup>](#Methods)*
+## *setVisible*
 
 Sets the visibility of the given client or appInstanceId
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | std::string | the identifier of the disconnected application |
+| params.client | string | the identifier of the disconnected application |
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1168,7 +1168,7 @@ RDKWindowManager interface events:
 | [onVisible](#onVisible) | Notifies when an application is visible |
 
 <a id="onBlur"></a>
-## *onBlur [<sup>event</sup>](#Notifications)*
+## *onBlur*
 
 Notifies when an application is blurred
 
@@ -1176,7 +1176,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1192,7 +1192,7 @@ Notifies when an application is blurred
 ```
 
 <a id="onConnected"></a>
-## *onConnected [<sup>event</sup>](#Notifications)*
+## *onConnected*
 
 Notifies when an application is connected
 
@@ -1200,7 +1200,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1216,7 +1216,7 @@ Notifies when an application is connected
 ```
 
 <a id="onDisconnected"></a>
-## *onDisconnected [<sup>event</sup>](#Notifications)*
+## *onDisconnected*
 
 Notifies when an application is disconnected
 
@@ -1224,7 +1224,7 @@ Notifies when an application is disconnected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | std::string | the identifier of the disconnected application |
+| params.client | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1240,7 +1240,7 @@ Notifies when an application is disconnected
 ```
 
 <a id="onFocus"></a>
-## *onFocus [<sup>event</sup>](#Notifications)*
+## *onFocus*
 
 Notifies when an application is in focus
 
@@ -1248,7 +1248,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1264,7 +1264,7 @@ Notifies when an application is in focus
 ```
 
 <a id="onHidden"></a>
-## *onHidden [<sup>event</sup>](#Notifications)*
+## *onHidden*
 
 Notifies when an application is hidden
 
@@ -1272,7 +1272,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1288,7 +1288,7 @@ Notifies when an application is hidden
 ```
 
 <a id="onReady"></a>
-## *onReady [<sup>event</sup>](#Notifications)*
+## *onReady*
 
 Posting the client for first frame ready.
 
@@ -1296,7 +1296,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | notify first frame event received for client or application instance ID |
+| params.client | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1312,7 +1312,7 @@ Posting the client for first frame ready.
 ```
 
 <a id="onUserInactivity"></a>
-## *onUserInactivity [<sup>event</sup>](#Notifications)*
+## *onUserInactivity*
 
 Posting the client is inactive state
 
@@ -1336,7 +1336,7 @@ Posting the client is inactive state
 ```
 
 <a id="onVisible"></a>
-## *onVisible [<sup>event</sup>](#Notifications)*
+## *onVisible*
 
 Notifies when an application is visible
 
@@ -1344,7 +1344,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | std::string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the connected application |
 
 ### Examples
 

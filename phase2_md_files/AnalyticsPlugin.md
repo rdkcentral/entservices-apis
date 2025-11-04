@@ -2,18 +2,18 @@
 <a id="Analytics_Plugin"></a>
 # Analytics Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Analytics)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Analytics/IAnalytics.h)**
 
 A Analytics plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -49,12 +49,12 @@ Analytics interface methods:
 | [sendEvent](#sendEvent) | Send an event to the analytics server | NA |
 
 <a id="sendEvent"></a>
-## *sendEvent [<sup>method</sup>](#Methods)*
+## *sendEvent*
 
 Send an event to the analytics server
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

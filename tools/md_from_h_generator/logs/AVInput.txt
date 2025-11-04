@@ -1,0 +1,206 @@
+### Warnings
+- virtual Core::hresult RegisterSignalChangedNotification(ISignalChangedNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult UnregisterSignalChangedNotification(ISignalChangedNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult RegisterInputStatusChangedNotification(IInputStatusChangedNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult UnregisterInputStatusChangedNotification(IInputStatusChangedNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult RegisterVideoStreamInfoUpdateNotification(IVideoStreamInfoUpdateNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult UnregisterVideoStreamInfoUpdateNotification(IVideoStreamInfoUpdateNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult RegisterGameFeatureStatusUpdateNotification(IGameFeatureStatusUpdateNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult UnregisterGameFeatureStatusUpdateNotification(IGameFeatureStatusUpdateNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult RegisterAviContentTypeUpdateNotification(IAviContentTypeUpdateNotification* notification) = 0; has no doxygen tags.
+- virtual Core::hresult UnregisterAviContentTypeUpdateNotification(IAviContentTypeUpdateNotification* notification) = 0; has no doxygen tags.
+- Event AviContentTypeUpdate is not associated with a method.
+- Event GameFeatureStatusUpdate is not associated with a method.
+- Event OnInputStatusChanged is not associated with a method.
+- Event OnSignalChanged is not associated with a method.
+- Event VideoStreamInfoUpdate is not associated with a method.
+
+### Errors
+- Could not register iterator: IStringIterator
+- Event onInputStatusChanged  tagged with StartInput does not exist.
+- Event onSignalChanged  tagged with StartInput does not exist.
+- Event onInputStatusChanged  tagged with StopInput does not exist.
+
+### Info
+- Processing param: symbol_name=devices, symbol_type=IInputDeviceIterator, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IDevicesChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IDevicesChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=locator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=signalStatus, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=ISignalChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=ISignalChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=locator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=status, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=plane, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IInputStatusChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IInputStatusChangedNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=locator, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=width, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=height, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=progressive, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=frameRateN, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=frameRateD, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IVideoStreamInfoUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IVideoStreamInfoUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=gameFeature, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=mode, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IGameFeatureStatusUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IGameFeatureStatusUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=id, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=aviContentType, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IAviContentTypeUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=notification, symbol_type=IAviContentTypeUpdateNotification, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=numberOfInputs, symbol_type=integer, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=message, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=EDID, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=HDMISPD, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=HDMISPD, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=edidVersion, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=edidVersion, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=allmSupport, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=allmSupport, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=vrrSupport, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=vrrSupport, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=HdmiCapabilityVersion, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=primaryVolume, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=inputVolume, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=typeOfInput, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=requestAudioMix, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=plane, symbol_type=int, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=topMost, symbol_type=bool, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=typeOfInput, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=x, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=y, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=w, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=h, symbol_type=integer, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=typeOfInput, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=successResult, symbol_type=SuccessResult, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=currentVideoMode, symbol_type=string, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=isContentProtected, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=supportedGameFeatures, symbol_type=WPEFramework::Exchange::IAVInput::IStringIterator, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=gameFeature, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=mode, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=portId, symbol_type=string, custom_name=None, direction=None, symbol_inline_comment=None
+- Processing param: symbol_name=currentVRRVideoFrameRate, symbol_type=double, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Processing param: symbol_name=success, symbol_type=bool, custom_name=None, direction=out, symbol_inline_comment= @out 
+- Generated missing example for id-int
+- Generated missing example for locator-string
+- Generated missing example for connected-bool
+- Generated missing example for success-bool
+- Generated missing example for devices-IInputDeviceIterator
+- Generated missing example for notification-IDevicesChangedNotification
+- Generated missing example for signalStatus-string
+- Generated missing example for notification-ISignalChangedNotification
+- Generated missing example for status-string
+- Generated missing example for plane-int
+- Generated missing example for notification-IInputStatusChangedNotification
+- Generated missing example for width-int
+- Generated missing example for height-int
+- Generated missing example for progressive-bool
+- Generated missing example for frameRateN-int
+- Generated missing example for frameRateD-int
+- Generated missing example for notification-IVideoStreamInfoUpdateNotification
+- Generated missing example for gameFeature-string
+- Generated missing example for mode-bool
+- Generated missing example for notification-IGameFeatureStatusUpdateNotification
+- Generated missing example for aviContentType-int
+- Generated missing example for notification-IAviContentTypeUpdateNotification
+- Generated missing example for numberOfInputs-integer
+- Generated missing example for portId-string
+- Generated missing example for message-string
+- Generated missing example for successResult-SuccessResult
+- Generated missing example for EDID-string
+- Generated missing example for HDMISPD-string
+- Generated missing example for edidVersion-string
+- Generated missing example for allmSupport-bool
+- Generated missing example for vrrSupport-bool
+- Generated missing example for HdmiCapabilityVersion-string
+- Generated missing example for primaryVolume-int
+- Generated missing example for inputVolume-int
+- Generated missing example for typeOfInput-string
+- Generated missing example for requestAudioMix-bool
+- Generated missing example for topMost-bool
+- Generated missing example for x-integer
+- Generated missing example for y-integer
+- Generated missing example for w-integer
+- Generated missing example for h-integer
+- Generated missing example for currentVideoMode-string
+- Generated missing example for isContentProtected-bool
+- Generated missing example for supportedGameFeatures-IStringIterator
+- Generated missing example for currentVRRVideoFrameRate-double
+- Filled missing desc for portId in method GetVRRSupport
+- Filled missing desc for success in method GetVRRSupport
+- Filled missing desc for devices in method OnDevicesChanged
+- Filled missing desc for successResult in method SetEdid2AllmSupport
+- Filled missing desc for successResult in method SetEdidVersion
+- Filled missing desc for successResult in method SetMixerLevels
+- Filled missing desc for portId in method SetVRRSupport
+- Filled missing desc for successResult in method SetVRRSupport
+- Filled missing desc for successResult in method SetVideoRectangle
+- Filled missing desc for successResult in method StartInput
+- Filled missing desc for successResult in method StopInput
+- Filled missing desc for successResult in method WriteEDID
+- Missing example: locator-string
+- Missing description: devices-IInputDeviceIterator
+- Missing description: notification-IDevicesChangedNotification
+- Missing example: notification-IDevicesChangedNotification
+- Missing example: signalStatus-string
+- Missing description: notification-ISignalChangedNotification
+- Missing example: notification-ISignalChangedNotification
+- Missing example: status-string
+- Missing description: notification-IInputStatusChangedNotification
+- Missing example: notification-IInputStatusChangedNotification
+- Missing description: notification-IVideoStreamInfoUpdateNotification
+- Missing example: notification-IVideoStreamInfoUpdateNotification
+- Missing example: gameFeature-string
+- Missing description: notification-IGameFeatureStatusUpdateNotification
+- Missing example: notification-IGameFeatureStatusUpdateNotification
+- Missing description: notification-IAviContentTypeUpdateNotification
+- Missing example: notification-IAviContentTypeUpdateNotification
+- Missing example: portId-string
+- Missing example: message-string
+- Missing description: successResult-SuccessResult
+- Missing example: EDID-string
+- Missing example: HDMISPD-string
+- Missing example: edidVersion-string
+- Missing example: HdmiCapabilityVersion-string
+- Missing example: typeOfInput-string
+- Missing example: currentVideoMode-string
+
+### End of Log

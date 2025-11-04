@@ -2,19 +2,19 @@
 <a id="Warehouse_Plugin"></a>
 # Warehouse Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse/IWarehouse.h)**
 
 A Warehouse plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -55,12 +55,12 @@ Warehouse interface methods:
 | [resetDevice](#resetDevice) | Resets the STB to the warehouse state. | resetDone |
 
 <a id="executeHardwareTest"></a>
-## *executeHardwareTest [<sup>method</sup>](#Methods)*
+## *executeHardwareTest*
 
 Starts a hardware test on the device
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -103,12 +103,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getHardwareTestResults"></a>
-## *getHardwareTestResults [<sup>method</sup>](#Methods)*
+## *getHardwareTestResults*
 
 Returns the results of the last hardware test.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -153,12 +153,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="internalReset"></a>
-## *internalReset [<sup>method</sup>](#Methods)*
+## *internalReset*
 
 Invokes the internal reset script, which reboots the Warehouse service
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -210,12 +210,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="isClean"></a>
-## *isClean [<sup>method</sup>](#Methods)*
+## *isClean*
 
 Checks the locations on the device where customer data may be stored.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -273,12 +273,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="lightReset"></a>
-## *lightReset [<sup>method</sup>](#Methods)*
+## *lightReset*
 
 Resets the application data.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -324,14 +324,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="resetDevice"></a>
-## *resetDevice [<sup>method</sup>](#Methods)*
+## *resetDevice*
 
 Resets the STB to the warehouse state.
 
 ### Events
 | Event | Description |
 | :-------- | :-------- |
-| [resetDone ](#resetDone ) |  Triggers when the device reset is finished indicating a successful reset or failure |
+| [resetDone ](#event.resetDone ) |  Triggers when the device reset is finished indicating a successful reset or failure |
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -400,7 +400,7 @@ Warehouse interface events:
 | [resetDone](#resetDone) | Notifies subscribers about the status of the warehouse reset operation |
 
 <a id="resetDone"></a>
-## *resetDone [<sup>event</sup>](#Notifications)*
+## *resetDone*
 
 Notifies subscribers about the status of the warehouse reset operation
 

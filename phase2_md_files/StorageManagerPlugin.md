@@ -2,18 +2,18 @@
 <a id="StorageManager_Plugin"></a>
 # StorageManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/StorageManager)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/StorageManager/IStorageManager.h)**
 
 A StorageManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -50,12 +50,12 @@ StorageManager interface methods:
 | [clearAll](#clearAll) | Called by IUI.  This also clears device storage as well | NA |
 
 <a id="clear"></a>
-## *clear [<sup>method</sup>](#Methods)*
+## *clear*
 
 Called by IUI.  This also clears device storage as well
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -104,12 +104,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clearAll"></a>
-## *clearAll [<sup>method</sup>](#Methods)*
+## *clearAll*
 
 Called by IUI.  This also clears device storage as well
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

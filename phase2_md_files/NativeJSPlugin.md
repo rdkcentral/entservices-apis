@@ -2,18 +2,18 @@
 <a id="NativeJS_Plugin"></a>
 # NativeJS Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/NativeJS)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/NativeJS/INativeJS.h)**
 
 A NativeJS plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -53,17 +53,17 @@ NativeJS interface methods:
 | [terminateApplication](#terminateApplication) | Destroy a running NativeJS application. | NA |
 
 <a id="createApplication"></a>
-## *createApplication [<sup>method</sup>](#Methods)*
+## *createApplication*
 
 Create a NativeJS application.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.options | std::string | Additional options for creating the application. |
+| params.options | string | Additional options for creating the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -107,12 +107,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getApplications"></a>
-## *getApplications [<sup>method</sup>](#Methods)*
+## *getApplications*
 
 Get details of existing plugin.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -152,18 +152,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="runApplication"></a>
-## *runApplication [<sup>method</sup>](#Methods)*
+## *runApplication*
 
 run a NativeJS application.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | integer | This should have the id of the created application |
-| params.url | std::string | URL for the application to run. |
+| params.url | string | URL for the application to run. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -205,18 +205,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="runJavaScript"></a>
-## *runJavaScript [<sup>method</sup>](#Methods)*
+## *runJavaScript*
 
 run a NativeJS code.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | integer | This should have the id of the created application |
-| params.code | std::string |  |
+| params.code | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -258,12 +258,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="terminateApplication"></a>
-## *terminateApplication [<sup>method</sup>](#Methods)*
+## *terminateApplication*
 
 Destroy a running NativeJS application.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

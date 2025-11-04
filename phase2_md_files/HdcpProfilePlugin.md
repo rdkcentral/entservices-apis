@@ -2,19 +2,19 @@
 <a id="HdcpProfile_Plugin"></a>
 # HdcpProfile Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdcpProfile)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdcpProfile/IHdcpProfile.h)**
 
 A HdcpProfile plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a id="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
@@ -51,12 +51,12 @@ HdcpProfile interface methods:
 | [getSettopHDCPSupport](#getSettopHDCPSupport) | Returns which version of HDCP is supported by the STB. | NA |
 
 <a id="getHDCPStatus"></a>
-## *getHDCPStatus [<sup>method</sup>](#Methods)*
+## *getHDCPStatus*
 
 Returns HDCP-related data.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -116,12 +116,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getSettopHDCPSupport"></a>
-## *getSettopHDCPSupport [<sup>method</sup>](#Methods)*
+## *getSettopHDCPSupport*
 
 Returns which version of HDCP is supported by the STB.
 
 ### Events
-No Events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -183,7 +183,7 @@ HdcpProfile interface events:
 | [onDisplayConnectionChanged](#onDisplayConnectionChanged) | Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug |
 
 <a id="onDisplayConnectionChanged"></a>
-## *onDisplayConnectionChanged [<sup>event</sup>](#Notifications)*
+## *onDisplayConnectionChanged*
 
 Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
 
