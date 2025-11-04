@@ -51,7 +51,7 @@ LEDControl interface methods:
 | [setLEDState](#setLEDState) | Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. | NA |
 
 <a id="getLEDState"></a>
-## *getLEDState*
+## *getLEDState [<sup>method</sup>](#Methods)*
 
 Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
 
@@ -99,7 +99,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getSupportedLEDStates"></a>
-## *getSupportedLEDStates*
+## *getSupportedLEDStates [<sup>method</sup>](#Methods)*
 
 Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
 
@@ -152,7 +152,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setLEDState"></a>
-## *setLEDState*
+## *setLEDState [<sup>method</sup>](#Methods)*
 
 Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
 

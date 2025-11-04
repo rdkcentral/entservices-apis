@@ -71,7 +71,7 @@ AVInput interface methods:
 | [writeEDID](#writeEDID) | Changes a current EDID value. | NA |
 
 <a id="contentProtected"></a>
-## *contentProtected*
+## *contentProtected [<sup>method</sup>](#Methods)*
 
 Returns whether the content is protected for the specified input device
 
@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="currentVideoMode"></a>
-## *currentVideoMode*
+## *currentVideoMode [<sup>method</sup>](#Methods)*
 
 Returns the current video mode for the specified input device
 
@@ -171,7 +171,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getEdid2AllmSupport"></a>
-## *getEdid2AllmSupport*
+## *getEdid2AllmSupport [<sup>method</sup>](#Methods)*
 
 Returns the ALLM bit in EDID
 
@@ -227,7 +227,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getEdidVersion"></a>
-## *getEdidVersion*
+## *getEdidVersion [<sup>method</sup>](#Methods)*
 
 Returns the EDID version
 
@@ -283,7 +283,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getGameFeatureStatus"></a>
-## *getGameFeatureStatus*
+## *getGameFeatureStatus [<sup>method</sup>](#Methods)*
 
 Returns the Game Feature Status. For example: ALLM.
 
@@ -341,7 +341,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getHdmiVersion"></a>
-## *getHdmiVersion*
+## *getHdmiVersion [<sup>method</sup>](#Methods)*
 
 Gets the maximum hdmi compatibility version supported for the given port.
 
@@ -397,7 +397,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getRawSPD"></a>
-## *getRawSPD*
+## *getRawSPD [<sup>method</sup>](#Methods)*
 
 Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device as raw bits
 
@@ -453,7 +453,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getSPD"></a>
-## *getSPD*
+## *getSPD [<sup>method</sup>](#Methods)*
 
 Returns the Source Data Product Descriptor (SPD) infoFrame packet information for the specified HDMI Input device
 
@@ -509,7 +509,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="getSupportedGameFeatures"></a>
-## *getSupportedGameFeatures*
+## *getSupportedGameFeatures [<sup>method</sup>](#Methods)*
 
 Returns the list of supported game features.
 
@@ -562,7 +562,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="getVRRFrameRate"></a>
-## *getVRRFrameRate*
+## *getVRRFrameRate [<sup>method</sup>](#Methods)*
 
 Returns the current VRR frame rate for the specified input device
 
@@ -618,7 +618,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="getVRRSupport"></a>
-## *getVRRSupport*
+## *getVRRSupport [<sup>method</sup>](#Methods)*
 
 Returns the VRR support bit in EDID
 
@@ -674,7 +674,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="numberOfInputs"></a>
-## *numberOfInputs*
+## *numberOfInputs [<sup>method</sup>](#Methods)*
 
 Returns an integer that specifies the number of available inputs
 
@@ -724,7 +724,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="onDevicesChanged"></a>
-## *onDevicesChanged*
+## *onDevicesChanged [<sup>method</sup>](#Methods)*
 
 Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
 
@@ -782,7 +782,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="readEDID"></a>
-## *readEDID*
+## *readEDID [<sup>method</sup>](#Methods)*
 
 Returns the current EDID value.
 
@@ -838,7 +838,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="setEdid2AllmSupport"></a>
-## *setEdid2AllmSupport*
+## *setEdid2AllmSupport [<sup>method</sup>](#Methods)*
 
 Sets an HDMI ALLM bit in EDID.
 
@@ -894,7 +894,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="setEdidVersion"></a>
-## *setEdidVersion*
+## *setEdidVersion [<sup>method</sup>](#Methods)*
 
 Sets an HDMI EDID version
 
@@ -950,7 +950,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="setMixerLevels"></a>
-## *setMixerLevels*
+## *setMixerLevels [<sup>method</sup>](#Methods)*
 
 Sets the audio mixer level for given audio input.
 
@@ -1006,7 +1006,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="setVRRSupport"></a>
-## *setVRRSupport*
+## *setVRRSupport [<sup>method</sup>](#Methods)*
 
 Sets an HDMI VRR support bit in EDID
 
@@ -1062,7 +1062,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="setVideoRectangle"></a>
-## *setVideoRectangle*
+## *setVideoRectangle [<sup>method</sup>](#Methods)*
 
 Sets an HDMI/Composite Input video window.
 
@@ -1124,7 +1124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="startInput"></a>
-## *startInput*
+## *startInput [<sup>method</sup>](#Methods)*
 
 Activates the specified HDMI/Composite Input port as the primary video source.
 
@@ -1189,7 +1189,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="stopInput"></a>
-## *stopInput*
+## *stopInput [<sup>method</sup>](#Methods)*
 
 Deactivates the HDMI/Composite Input port currently selected as the primary video source.
 
@@ -1245,7 +1245,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="writeEDID"></a>
-## *writeEDID*
+## *writeEDID [<sup>method</sup>](#Methods)*
 
 Changes a current EDID value.
 
@@ -1320,7 +1320,7 @@ AVInput interface events:
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI/Composite Input video stream info |
 
 <a id="aviContentTypeUpdate"></a>
-## *aviContentTypeUpdate*
+## *aviContentTypeUpdate [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever AV Infoframe content type changes for an HDMI Input
 
@@ -1346,7 +1346,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```
 
 <a id="gameFeatureStatusUpdate"></a>
-## *gameFeatureStatusUpdate*
+## *gameFeatureStatusUpdate [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever game feature(ALLM) status changes for an HDMI Input
 
@@ -1374,7 +1374,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```
 
 <a id="onInputStatusChanged"></a>
-## *onInputStatusChanged*
+## *onInputStatusChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the status changes for an HDMI/Composite Input
 
@@ -1404,7 +1404,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 ```
 
 <a id="onSignalChanged"></a>
-## *onSignalChanged*
+## *onSignalChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the signal status changes for an HDMI/Composite Input
 
@@ -1432,7 +1432,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 ```
 
 <a id="videoStreamInfoUpdate"></a>
-## *videoStreamInfoUpdate*
+## *videoStreamInfoUpdate [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever there is an update in HDMI/Composite Input video stream info
 

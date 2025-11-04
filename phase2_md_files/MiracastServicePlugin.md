@@ -55,7 +55,7 @@ MiracastService interface methods:
 | [updatePlayerState](#updatePlayerState) | Update the Miracast Player State to the Miracast Service Plugin | NA |
 
 <a id="acceptClientConnection"></a>
-## *acceptClientConnection*
+## *acceptClientConnection [<sup>method</sup>](#Methods)*
 
 To accept or reject new client connection requests for the Miracast feature
 
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getEnabled"></a>
-## *getEnabled*
+## *getEnabled [<sup>method</sup>](#Methods)*
 
 To get the enable status of the Miracast feature
 
@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setEnabled"></a>
-## *setEnabled*
+## *setEnabled [<sup>method</sup>](#Methods)*
 
 To enable or disable the Miracast feature
 
@@ -219,7 +219,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setP2PBackendDiscovery"></a>
-## *setP2PBackendDiscovery*
+## *setP2PBackendDiscovery [<sup>method</sup>](#Methods)*
 
 Sets the status of the MiracastService backend discovery
 
@@ -276,7 +276,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="stopClientConnection"></a>
-## *stopClientConnection*
+## *stopClientConnection [<sup>method</sup>](#Methods)*
 
 To abort the ongoing connection after accepted connection request
 
@@ -335,7 +335,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="updatePlayerState"></a>
-## *updatePlayerState*
+## *updatePlayerState [<sup>method</sup>](#Methods)*
 
 Update the Miracast Player State to the Miracast Service Plugin
 
@@ -413,7 +413,7 @@ MiracastService interface events:
 | [onLaunchRequest](#onLaunchRequest) | Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player |
 
 <a id="onClientConnectionError"></a>
-## *onClientConnectionError*
+## *onClientConnectionError [<sup>event</sup>](#head.Notifications)*
 
 It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming
 
@@ -443,7 +443,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
 ```
 
 <a id="onClientConnectionRequest"></a>
-## *onClientConnectionRequest*
+## *onClientConnectionRequest [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the Miracast Service plugin receives a new connection request from a client
 
@@ -469,7 +469,7 @@ Triggered when the Miracast Service plugin receives a new connection request fro
 ```
 
 <a id="onLaunchRequest"></a>
-## *onLaunchRequest*
+## *onLaunchRequest [<sup>event</sup>](#head.Notifications)*
 
 Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player
 

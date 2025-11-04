@@ -50,7 +50,7 @@ StorageManager interface methods:
 | [clearAll](#clearAll) | Called by IUI.  This also clears device storage as well | NA |
 
 <a id="clear"></a>
-## *clear*
+## *clear [<sup>method</sup>](#Methods)*
 
 Called by IUI.  This also clears device storage as well
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clearAll"></a>
-## *clearAll*
+## *clearAll [<sup>method</sup>](#Methods)*
 
 Called by IUI.  This also clears device storage as well
 

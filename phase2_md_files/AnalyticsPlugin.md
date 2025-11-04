@@ -49,7 +49,7 @@ Analytics interface methods:
 | [sendEvent](#sendEvent) | Send an event to the analytics server | NA |
 
 <a id="sendEvent"></a>
-## *sendEvent*
+## *sendEvent [<sup>method</sup>](#Methods)*
 
 Send an event to the analytics server
 

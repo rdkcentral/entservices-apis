@@ -57,7 +57,7 @@ DownloadManager interface methods:
 | [resume](#resume) | Resume a paused download session | NA |
 
 <a id="cancel"></a>
-## *cancel*
+## *cancel [<sup>method</sup>](#Methods)*
 
 Cancel an ongoing download session
 
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="delete"></a>
-## *delete*
+## *delete [<sup>method</sup>](#Methods)*
 
 Delete a downloaded file from the system using its locator path
 
@@ -159,7 +159,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="download"></a>
-## *download*
+## *download [<sup>method</sup>](#Methods)*
 
 Download Start downloading a file from a specified URL with custom options
 
@@ -222,7 +222,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getStorageDetails"></a>
-## *getStorageDetails*
+## *getStorageDetails [<sup>method</sup>](#Methods)*
 
 GetStorageDetails Get information about storage space availability
 
@@ -272,7 +272,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="pause"></a>
-## *pause*
+## *pause [<sup>method</sup>](#Methods)*
 
 Pause an active download session
 
@@ -323,7 +323,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="progress"></a>
-## *progress*
+## *progress [<sup>method</sup>](#Methods)*
 
 Progress Query current download progress
 
@@ -377,7 +377,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="rateLimit"></a>
-## *rateLimit*
+## *rateLimit [<sup>method</sup>](#Methods)*
 
 RateLimit Set rate limiting for a specific download session
 
@@ -430,7 +430,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="resume"></a>
-## *resume*
+## *resume [<sup>method</sup>](#Methods)*
 
 Resume a paused download session
 
@@ -496,7 +496,7 @@ DownloadManager interface events:
 | [onAppDownloadStatus](#onAppDownloadStatus) | OnAppDownloadStatus Callback for status changes of app downloads |
 
 <a id="onAppDownloadStatus"></a>
-## *onAppDownloadStatus*
+## *onAppDownloadStatus [<sup>event</sup>](#head.Notifications)*
 
 OnAppDownloadStatus Callback for status changes of app downloads
 

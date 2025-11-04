@@ -53,7 +53,7 @@ USBDevice interface methods:
 | [unbindDriver](#unbindDriver) | Unbind the respective driver for the device | NA |
 
 <a id="bindDriver"></a>
-## *bindDriver*
+## *bindDriver [<sup>method</sup>](#Methods)*
 
 Bind the respective driver for the device
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getDeviceInfo"></a>
-## *getDeviceInfo*
+## *getDeviceInfo [<sup>method</sup>](#Methods)*
 
 Get the extended USB device information for the provided device name
 
@@ -236,7 +236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getDeviceList"></a>
-## *getDeviceList*
+## *getDeviceList [<sup>method</sup>](#Methods)*
 
 Get the basic information about list of devices connected with the system.
 
@@ -293,7 +293,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="unbindDriver"></a>
-## *unbindDriver*
+## *unbindDriver [<sup>method</sup>](#Methods)*
 
 Unbind the respective driver for the device
 
@@ -360,7 +360,7 @@ USBDevice interface events:
 | [onDevicePluggedOut](#onDevicePluggedOut) | Device Plugged out notification |
 
 <a id="onDevicePluggedIn"></a>
-## *onDevicePluggedIn*
+## *onDevicePluggedIn [<sup>event</sup>](#head.Notifications)*
 
 Device Plugged in notification
 
@@ -391,7 +391,7 @@ Device Plugged in notification
 ```
 
 <a id="onDevicePluggedOut"></a>
-## *onDevicePluggedOut*
+## *onDevicePluggedOut [<sup>event</sup>](#head.Notifications)*
 
 Device Plugged out notification
 

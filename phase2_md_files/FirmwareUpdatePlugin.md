@@ -52,7 +52,7 @@ FirmwareUpdate interface methods:
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. | NA |
 
 <a id="getUpdateState"></a>
-## *getUpdateState*
+## *getUpdateState [<sup>method</sup>](#Methods)*
 
 Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
 
@@ -103,7 +103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="setAutoReboot"></a>
-## *setAutoReboot*
+## *setAutoReboot [<sup>method</sup>](#Methods)*
 
 Enable or disable the AutoReboot feature.
 
@@ -157,7 +157,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="updateFirmware"></a>
-## *updateFirmware*
+## *updateFirmware [<sup>method</sup>](#Methods)*
 
 Initiates a firmware update.
 
@@ -229,7 +229,7 @@ FirmwareUpdate interface events:
 | [onUpdateStateChange](#onUpdateStateChange) | notify Firmware update state change. |
 
 <a id="onFlashingStateChange"></a>
-## *onFlashingStateChange*
+## *onFlashingStateChange [<sup>event</sup>](#head.Notifications)*
 
 This notification is raised between flashing started state and flashing succeeded/failed.
 
@@ -253,7 +253,7 @@ This notification is raised between flashing started state and flashing succeede
 ```
 
 <a id="onUpdateStateChange"></a>
-## *onUpdateStateChange*
+## *onUpdateStateChange [<sup>event</sup>](#head.Notifications)*
 
 notify Firmware update state change.
 

@@ -57,7 +57,7 @@ PlayerInfo interface properties:
 | [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround | NA |
 
 <a id="AudioCodecs"></a>
-## *AudioCodecs*
+## *AudioCodecs [<sup>property</sup>](#Properties)*
 
 
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled*
+## *IsAudioEquivalenceEnabled [<sup>property</sup>](#Properties)*
 
 Checks Loudness Equivalence in platform
 
@@ -150,7 +150,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="Resolution"></a>
-## *Resolution*
+## *Resolution [<sup>property</sup>](#Properties)*
 
 Current Video playback resolution
 
@@ -196,7 +196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="VideoCodecs"></a>
-## *VideoCodecs*
+## *VideoCodecs [<sup>property</sup>](#Properties)*
 
 
 
@@ -243,7 +243,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="AtmosMetadata"></a>
-## *AtmosMetadata*
+## *AtmosMetadata [<sup>property</sup>](#Properties)*
 
 Atmos capabilities of Sink
 
@@ -289,7 +289,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="EnableAtmosOutput"></a>
-## *EnableAtmosOutput*
+## *EnableAtmosOutput [<sup>property</sup>](#Properties)*
 
 Enable Atmos Audio Output
 
@@ -336,7 +336,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="Mode"></a>
-## *Mode*
+## *Mode [<sup>property</sup>](#Properties)*
 
 Dolby Mode
 
@@ -413,7 +413,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="SoundMode"></a>
-## *SoundMode*
+## *SoundMode [<sup>property</sup>](#Properties)*
 
 Sound Mode - Mono/Stereo/Surround
 
@@ -473,7 +473,7 @@ PlayerInfo interface events:
 | [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
 
 <a id="audioModeChanged"></a>
-## *audioModeChanged*
+## *audioModeChanged [<sup>event</sup>](#head.Notifications)*
 
 
 

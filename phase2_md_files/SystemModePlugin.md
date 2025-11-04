@@ -52,7 +52,7 @@ SystemMode interface methods:
 | [requestState](#requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. | NA |
 
 <a id="clientActivated"></a>
-## *clientActivated*
+## *clientActivated [<sup>method</sup>](#Methods)*
 
 To put client plugin entry in map.
 
@@ -105,7 +105,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clientDeactivated"></a>
-## *clientDeactivated*
+## *clientDeactivated [<sup>method</sup>](#Methods)*
 
 To put client plugin entry in map.
 
@@ -158,7 +158,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getState"></a>
-## *getState*
+## *getState [<sup>method</sup>](#Methods)*
 
 Gets the current state for a given system property
 
@@ -212,7 +212,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="requestState"></a>
-## *requestState*
+## *requestState [<sup>method</sup>](#Methods)*
 
 Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
 

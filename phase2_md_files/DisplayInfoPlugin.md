@@ -53,7 +53,7 @@ DisplayInfo interface methods:
 | [widthInCentimeters](#widthInCentimeters) | Horizontal size in centimeters | NA |
 
 <a id="eDID"></a>
-## *eDID*
+## *eDID [<sup>method</sup>](#Methods)*
 
 TV's Extended Display Identification Data
 
@@ -109,7 +109,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="heightInCentimeters"></a>
-## *heightInCentimeters*
+## *heightInCentimeters [<sup>method</sup>](#Methods)*
 
 Vertical size in centimeters
 
@@ -157,7 +157,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="widthInCentimeters"></a>
-## *widthInCentimeters*
+## *widthInCentimeters [<sup>method</sup>](#Methods)*
 
 Horizontal size in centimeters
 
@@ -233,7 +233,7 @@ DisplayInfo interface properties:
 | [width](#width)<sup>RO</sup> | Horizontal resolution of TV | NA |
 
 <a id="ColorSpace"></a>
-## *ColorSpace*
+## *ColorSpace [<sup>property</sup>](#Properties)*
 
 Provides access to the display's Colour space (chroma subsampling format)
 
@@ -279,7 +279,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="Colorimetry"></a>
-## *Colorimetry*
+## *Colorimetry [<sup>property</sup>](#Properties)*
 
 Provides access to display's colorimetry
 
@@ -326,7 +326,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="ColourDepth"></a>
-## *ColourDepth*
+## *ColourDepth [<sup>property</sup>](#Properties)*
 
 Provides access to display's colour Depth
 
@@ -372,7 +372,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="Connected"></a>
-## *Connected*
+## *Connected [<sup>property</sup>](#Properties)*
 
 Current HDMI connection status
 
@@ -418,7 +418,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="EOTF"></a>
-## *EOTF*
+## *EOTF [<sup>property</sup>](#Properties)*
 
 Provides access to display's Electro optical transfer function
 
@@ -464,7 +464,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="FrameRate"></a>
-## *FrameRate*
+## *FrameRate [<sup>property</sup>](#Properties)*
 
 Provides access to Frame Rate
 
@@ -510,7 +510,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="FreeGpuRam"></a>
-## *FreeGpuRam*
+## *FreeGpuRam [<sup>property</sup>](#Properties)*
 
 Free GPU DRAM memory (in bytes)
 
@@ -556,7 +556,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="HDCPProtection"></a>
-## *HDCPProtection*
+## *HDCPProtection [<sup>property</sup>](#Properties)*
 
 HDCP protocol used for transmission
 
@@ -633,7 +633,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="HDRSetting"></a>
-## *HDRSetting*
+## *HDRSetting [<sup>property</sup>](#Properties)*
 
 HDR format in use
 
@@ -679,7 +679,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="Height"></a>
-## *Height*
+## *Height [<sup>property</sup>](#Properties)*
 
 Vertical resolution of TV
 
@@ -725,7 +725,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="IsAudioPassthrough"></a>
-## *IsAudioPassthrough*
+## *IsAudioPassthrough [<sup>property</sup>](#Properties)*
 
 Current audio passthrough status on HDMI
 
@@ -771,7 +771,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="PortName"></a>
-## *PortName*
+## *PortName [<sup>property</sup>](#Properties)*
 
 Video output port on the STB used for connection to TV
 
@@ -817,7 +817,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="QuantizationRange"></a>
-## *QuantizationRange*
+## *QuantizationRange [<sup>property</sup>](#Properties)*
 
 Provides access to display's Qauntization Range
 
@@ -863,7 +863,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="STBCapabilities"></a>
-## *STBCapabilities*
+## *STBCapabilities [<sup>property</sup>](#Properties)*
 
 HDR formats supported by STB
 
@@ -910,7 +910,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="TVCapabilities"></a>
-## *TVCapabilities*
+## *TVCapabilities [<sup>property</sup>](#Properties)*
 
 HDR formats supported by TV
 
@@ -957,7 +957,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="TotalGpuRam"></a>
-## *TotalGpuRam*
+## *TotalGpuRam [<sup>property</sup>](#Properties)*
 
 Total GPU DRAM memory (in bytes)
 
@@ -1003,7 +1003,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="VerticalFreq"></a>
-## *VerticalFreq*
+## *VerticalFreq [<sup>property</sup>](#Properties)*
 
 Vertical Frequency
 
@@ -1049,7 +1049,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="Width"></a>
-## *Width*
+## *Width [<sup>property</sup>](#Properties)*
 
 Horizontal resolution of TV
 
@@ -1109,7 +1109,7 @@ DisplayInfo interface events:
 | [updated](#updated) |  |
 
 <a id="updated"></a>
-## *updated*
+## *updated [<sup>event</sup>](#head.Notifications)*
 
 
 

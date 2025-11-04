@@ -52,7 +52,7 @@ LifecycleManager interface methods:
 | [stateChangeComplete](#stateChangeComplete) | Response api call to appLifecycleStateChanged API | NA |
 
 <a id="appReady"></a>
-## *appReady*
+## *appReady [<sup>method</sup>](#Methods)*
 
 Response api call to appInitializing API
 
@@ -103,7 +103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="closeApp"></a>
-## *closeApp*
+## *closeApp [<sup>method</sup>](#Methods)*
 
 close the app
 
@@ -156,7 +156,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="stateChangeComplete"></a>
-## *stateChangeComplete*
+## *stateChangeComplete [<sup>method</sup>](#Methods)*
 
 Response api call to appLifecycleStateChanged API
 
@@ -226,7 +226,7 @@ LifecycleManager interface events:
 | [onAppLifecycleStateChanged](#onAppLifecycleStateChanged) | Notifies the new state |
 
 <a id="onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged*
+## *onAppLifecycleStateChanged [<sup>event</sup>](#head.Notifications)*
 
 Notifies the new state
 

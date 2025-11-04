@@ -55,7 +55,7 @@ Warehouse interface methods:
 | [resetDevice](#resetDevice) | Resets the STB to the warehouse state. | resetDone |
 
 <a id="executeHardwareTest"></a>
-## *executeHardwareTest*
+## *executeHardwareTest [<sup>method</sup>](#Methods)*
 
 Starts a hardware test on the device
 
@@ -103,7 +103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getHardwareTestResults"></a>
-## *getHardwareTestResults*
+## *getHardwareTestResults [<sup>method</sup>](#Methods)*
 
 Returns the results of the last hardware test.
 
@@ -153,7 +153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="internalReset"></a>
-## *internalReset*
+## *internalReset [<sup>method</sup>](#Methods)*
 
 Invokes the internal reset script, which reboots the Warehouse service
 
@@ -210,7 +210,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="isClean"></a>
-## *isClean*
+## *isClean [<sup>method</sup>](#Methods)*
 
 Checks the locations on the device where customer data may be stored.
 
@@ -273,7 +273,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="lightReset"></a>
-## *lightReset*
+## *lightReset [<sup>method</sup>](#Methods)*
 
 Resets the application data.
 
@@ -324,7 +324,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="resetDevice"></a>
-## *resetDevice*
+## *resetDevice [<sup>method</sup>](#Methods)*
 
 Resets the STB to the warehouse state.
 
@@ -400,7 +400,7 @@ Warehouse interface events:
 | [resetDone](#resetDone) | Notifies subscribers about the status of the warehouse reset operation |
 
 <a id="resetDone"></a>
-## *resetDone*
+## *resetDone [<sup>event</sup>](#head.Notifications)*
 
 Notifies subscribers about the status of the warehouse reset operation
 

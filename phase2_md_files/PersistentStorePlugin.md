@@ -53,7 +53,7 @@ PersistentStore interface methods:
 | [setValue](#setValue) |  | NA |
 
 <a id="deleteKey"></a>
-## *deleteKey*
+## *deleteKey [<sup>method</sup>](#Methods)*
 
 
 
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="deleteNamespace"></a>
-## *deleteNamespace*
+## *deleteNamespace [<sup>method</sup>](#Methods)*
 
 
 
@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getValue"></a>
-## *getValue*
+## *getValue [<sup>method</sup>](#Methods)*
 
 
 
@@ -221,7 +221,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setValue"></a>
-## *setValue*
+## *setValue [<sup>method</sup>](#Methods)*
 
 
 
@@ -295,7 +295,7 @@ PersistentStore interface events:
 | [onValueChanged](#onValueChanged) |  |
 
 <a id="valueChanged"></a>
-## *valueChanged*
+## *valueChanged [<sup>event</sup>](#head.Notifications)*
 
 
 

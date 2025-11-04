@@ -59,7 +59,7 @@ SharedStorage interface methods:
 | [setValue](#setValue) | Sets the value of a key in the the specified namespace | NA |
 
 <a id="deleteKey"></a>
-## *deleteKey*
+## *deleteKey [<sup>method</sup>](#Methods)*
 
 Deletes a key from the specified namespace
 
@@ -117,7 +117,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="deleteNamespace"></a>
-## *deleteNamespace*
+## *deleteNamespace [<sup>method</sup>](#Methods)*
 
 Deletes the specified namespace
 
@@ -173,7 +173,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="flushCache"></a>
-## *flushCache*
+## *flushCache [<sup>method</sup>](#Methods)*
 
 Flushes the device cache
 
@@ -218,7 +218,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getKeys"></a>
-## *getKeys*
+## *getKeys [<sup>method</sup>](#Methods)*
 
 Returns the keys that are stored in the specified namespace
 
@@ -279,7 +279,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit*
+## *getNamespaceStorageLimit [<sup>method</sup>](#Methods)*
 
 Returns the storage limit for a given namespace
 
@@ -335,7 +335,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getNamespaces"></a>
-## *getNamespaces*
+## *getNamespaces [<sup>method</sup>](#Methods)*
 
 Returns the namespaces
 
@@ -394,7 +394,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getStorageSizes"></a>
-## *getStorageSizes*
+## *getStorageSizes [<sup>method</sup>](#Methods)*
 
 Returns the size occupied by each namespace
 
@@ -457,7 +457,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getValue"></a>
-## *getValue*
+## *getValue [<sup>method</sup>](#Methods)*
 
 Returns the value of a key from the specified namespace.
 
@@ -519,7 +519,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit*
+## *setNamespaceStorageLimit [<sup>method</sup>](#Methods)*
 
 Sets the storage limit for a given namespace
 
@@ -577,7 +577,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="setValue"></a>
-## *setValue*
+## *setValue [<sup>method</sup>](#Methods)*
 
 Sets the value of a key in the the specified namespace
 
@@ -654,7 +654,7 @@ SharedStorage interface events:
 | [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
 
 <a id="onValueChanged"></a>
-## *onValueChanged*
+## *onValueChanged [<sup>event</sup>](#head.Notifications)*
 
 Values stored are changed using setValue
 

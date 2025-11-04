@@ -50,7 +50,7 @@ ScreenCapture interface methods:
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL | uploadComplete |
 
 <a id="uploadScreenCapture"></a>
-## *uploadScreenCapture*
+## *uploadScreenCapture [<sup>method</sup>](#Methods)*
 
 Takes a screenshot and uploads it to the specified URL
 
@@ -123,7 +123,7 @@ ScreenCapture interface events:
 | [uploadComplete](#uploadComplete) | Triggered after uploading a screen capture |
 
 <a id="uploadComplete"></a>
-## *uploadComplete*
+## *uploadComplete [<sup>event</sup>](#head.Notifications)*
 
 Triggered after uploading a screen capture
 

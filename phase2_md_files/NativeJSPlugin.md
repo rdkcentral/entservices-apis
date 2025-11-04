@@ -53,7 +53,7 @@ NativeJS interface methods:
 | [terminateApplication](#terminateApplication) | Destroy a running NativeJS application. | NA |
 
 <a id="createApplication"></a>
-## *createApplication*
+## *createApplication [<sup>method</sup>](#Methods)*
 
 Create a NativeJS application.
 
@@ -107,7 +107,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getApplications"></a>
-## *getApplications*
+## *getApplications [<sup>method</sup>](#Methods)*
 
 Get details of existing plugin.
 
@@ -152,7 +152,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="runApplication"></a>
-## *runApplication*
+## *runApplication [<sup>method</sup>](#Methods)*
 
 run a NativeJS application.
 
@@ -205,7 +205,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="runJavaScript"></a>
-## *runJavaScript*
+## *runJavaScript [<sup>method</sup>](#Methods)*
 
 run a NativeJS code.
 
@@ -258,7 +258,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="terminateApplication"></a>
-## *terminateApplication*
+## *terminateApplication [<sup>method</sup>](#Methods)*
 
 Destroy a running NativeJS application.
 

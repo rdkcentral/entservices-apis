@@ -55,7 +55,7 @@ FrontPanel interface methods:
 | [setLED](#setLED) | Sets the LED with the specified color and brightness | NA |
 
 <a id="getBrightness"></a>
-## *getBrightness*
+## *getBrightness [<sup>method</sup>](#Methods)*
 
 Gets the status of the Front Panel
 
@@ -111,7 +111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getFrontPanelLights"></a>
-## *getFrontPanelLights*
+## *getFrontPanelLights [<sup>method</sup>](#Methods)*
 
 Gets the front panel lights
 
@@ -166,7 +166,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="powerLedOff"></a>
-## *powerLedOff*
+## *powerLedOff [<sup>method</sup>](#Methods)*
 
 Switches the specified LED off
 
@@ -220,7 +220,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="powerLedOn"></a>
-## *powerLedOn*
+## *powerLedOn [<sup>method</sup>](#Methods)*
 
 Switches the specified LED on
 
@@ -274,7 +274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setBlink"></a>
-## *setBlink*
+## *setBlink [<sup>method</sup>](#Methods)*
 
 Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
 
@@ -328,7 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="setBrightness"></a>
-## *setBrightness*
+## *setBrightness [<sup>method</sup>](#Methods)*
 
 Sets the brightness of the specified LED
 
@@ -384,7 +384,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="setLED"></a>
-## *setLED*
+## *setLED [<sup>method</sup>](#Methods)*
 
 Sets the LED with the specified color and brightness
 

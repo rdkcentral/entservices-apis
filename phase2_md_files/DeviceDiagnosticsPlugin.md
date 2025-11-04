@@ -53,7 +53,7 @@ DeviceDiagnostics interface methods:
 | [logMilestone](#logMilestone) | Log marker string to rdk milestones log | NA |
 
 <a id="getAVDecoderStatus"></a>
-## *getAVDecoderStatus*
+## *getAVDecoderStatus [<sup>method</sup>](#Methods)*
 
 Gets the most active status of audio/video decoder/pipeline
 
@@ -101,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getConfiguration"></a>
-## *getConfiguration*
+## *getConfiguration [<sup>method</sup>](#Methods)*
 
 Gets the values associated with the corresponding property names
 
@@ -165,7 +165,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getMilestones"></a>
-## *getMilestones*
+## *getMilestones [<sup>method</sup>](#Methods)*
 
 Returns the list of milestones
 
@@ -218,7 +218,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="logMilestone"></a>
-## *logMilestone*
+## *logMilestone [<sup>method</sup>](#Methods)*
 
 Log marker string to rdk milestones log
 
@@ -287,7 +287,7 @@ DeviceDiagnostics interface events:
 | [onAVDecoderStatusChanged](#onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
 
 <a id="onAVDecoderStatusChanged"></a>
-## *onAVDecoderStatusChanged*
+## *onAVDecoderStatusChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the most active status of audio/video decoder/pipeline changes
 

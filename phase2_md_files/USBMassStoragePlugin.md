@@ -52,7 +52,7 @@ USBMassStorage interface methods:
 | [getPartitionInfo](#getPartitionInfo) | Get partition information for a given partition | NA |
 
 <a id="getDeviceList"></a>
-## *getDeviceList*
+## *getDeviceList [<sup>method</sup>](#Methods)*
 
 Get list of devices that are currently mounted in the system
 
@@ -105,7 +105,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getMountPoints"></a>
-## *getMountPoints*
+## *getMountPoints [<sup>method</sup>](#Methods)*
 
 Get mount points information for a specified device
 
@@ -168,7 +168,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getPartitionInfo"></a>
-## *getPartitionInfo*
+## *getPartitionInfo [<sup>method</sup>](#Methods)*
 
 Get partition information for a given partition
 
@@ -253,7 +253,7 @@ USBMassStorage interface events:
 | [onDeviceUnMounted](#onDeviceUnMounted) | Device Unmounted notification @@iterator |
 
 <a id="onDeviceMounted"></a>
-## *onDeviceMounted*
+## *onDeviceMounted [<sup>event</sup>](#head.Notifications)*
 
 Device Mounted notification @@iterator
 
@@ -295,7 +295,7 @@ Device Mounted notification @@iterator
 ```
 
 <a id="onDeviceUnmounted"></a>
-## *onDeviceUnmounted*
+## *onDeviceUnmounted [<sup>event</sup>](#head.Notifications)*
 
 Device Unmounted notification @@iterator
 

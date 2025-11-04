@@ -57,7 +57,7 @@ FrameRate interface methods:
 | [updateFps](#updateFps) | Update the FPS value | NA |
 
 <a id="getDisplayFrameRate"></a>
-## *getDisplayFrameRate*
+## *getDisplayFrameRate [<sup>method</sup>](#Methods)*
 
 Gets the current display frame rate values.
 
@@ -107,7 +107,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getFrmMode"></a>
-## *getFrmMode*
+## *getFrmMode [<sup>method</sup>](#Methods)*
 
 Gets the current auto framerate mode.
 
@@ -157,7 +157,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setCollectionFrequency"></a>
-## *setCollectionFrequency*
+## *setCollectionFrequency [<sup>method</sup>](#Methods)*
 
 Sets the FPS data collection interval.
 
@@ -211,7 +211,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setDisplayFrameRate"></a>
-## *setDisplayFrameRate*
+## *setDisplayFrameRate [<sup>method</sup>](#Methods)*
 
 Sets the display framerate values.
 
@@ -268,7 +268,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setFrmMode"></a>
-## *setFrmMode*
+## *setFrmMode [<sup>method</sup>](#Methods)*
 
 Set the Frm mode.
 
@@ -322,7 +322,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="startFpsCollection"></a>
-## *startFpsCollection*
+## *startFpsCollection [<sup>method</sup>](#Methods)*
 
 Starts the FPS data collection. Starts the FPS data collection
 
@@ -372,7 +372,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="stopFpsCollection"></a>
-## *stopFpsCollection*
+## *stopFpsCollection [<sup>method</sup>](#Methods)*
 
 Stops the FPS data collection
 
@@ -422,7 +422,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="updateFps"></a>
-## *updateFps*
+## *updateFps [<sup>method</sup>](#Methods)*
 
 Update the FPS value
 
@@ -493,7 +493,7 @@ FrameRate interface events:
 | [onFpsEvent](#onFpsEvent) | Triggered by callback from FrameRate after onFpsEvent |
 
 <a id="onDisplayFrameRateChanged"></a>
-## *onDisplayFrameRateChanged*
+## *onDisplayFrameRateChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the framerate changed.
 
@@ -517,7 +517,7 @@ Triggered when the framerate changed.
 ```
 
 <a id="onDisplayFrameRateChanging"></a>
-## *onDisplayFrameRateChanging*
+## *onDisplayFrameRateChanging [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the framerate changes started
 
@@ -541,7 +541,7 @@ Triggered when the framerate changes started
 ```
 
 <a id="onFpsEvent"></a>
-## *onFpsEvent*
+## *onFpsEvent [<sup>event</sup>](#head.Notifications)*
 
 Triggered by callback from FrameRate after onFpsEvent
 

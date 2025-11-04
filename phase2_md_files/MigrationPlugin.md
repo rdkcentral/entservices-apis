@@ -51,7 +51,7 @@ Migration interface methods:
 | [setMigrationStatus](#setMigrationStatus) | sets the tr181 MigrationStatus parameter | NA |
 
 <a id="getBootTypeInfo"></a>
-## *getBootTypeInfo*
+## *getBootTypeInfo [<sup>method</sup>](#Methods)*
 
 query the BootType details
 
@@ -99,7 +99,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getMigrationStatus"></a>
-## *getMigrationStatus*
+## *getMigrationStatus [<sup>method</sup>](#Methods)*
 
 get the MigrationStatus details
 
@@ -147,7 +147,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setMigrationStatus"></a>
-## *setMigrationStatus*
+## *setMigrationStatus [<sup>method</sup>](#Methods)*
 
 sets the tr181 MigrationStatus parameter
 

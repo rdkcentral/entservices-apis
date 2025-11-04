@@ -50,7 +50,7 @@ PreinstallManager interface methods:
 | [startPreinstall](#startPreinstall) | Checks the preinstall directory for packages to be preinstalled and installs them as needed. | NA |
 
 <a id="startPreinstall"></a>
-## *startPreinstall*
+## *startPreinstall [<sup>method</sup>](#Methods)*
 
 Checks the preinstall directory for packages to be preinstalled and installs them as needed.
 
@@ -116,7 +116,7 @@ PreinstallManager interface events:
 | [onAppInstallationStatus](#onAppInstallationStatus) | Emitted when the installation of a preinstalled app succeeds or fails. |
 
 <a id="onAppInstallationStatus"></a>
-## *onAppInstallationStatus*
+## *onAppInstallationStatus [<sup>event</sup>](#head.Notifications)*
 
 Emitted when the installation of a preinstalled app succeeds or fails.
 

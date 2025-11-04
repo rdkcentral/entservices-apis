@@ -66,7 +66,7 @@ AppManager interface methods:
 | [terminateApp](#terminateApp) | TerminateApp will terminate gracefully | NA |
 
 <a id="clearAllAppData"></a>
-## *clearAllAppData*
+## *clearAllAppData [<sup>method</sup>](#Methods)*
 
 Clears all persistent data for all apps.
 
@@ -111,7 +111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clearAppData"></a>
-## *clearAppData*
+## *clearAppData [<sup>method</sup>](#Methods)*
 
 Clears all persistent data for a given appId.
 
@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="closeApp"></a>
-## *closeApp*
+## *closeApp [<sup>method</sup>](#Methods)*
 
 closeApp moves the state from Active to Running state
 
@@ -213,7 +213,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getAppMetadata"></a>
-## *getAppMetadata*
+## *getAppMetadata [<sup>method</sup>](#Methods)*
 
 Retrieves meta data about an installed app
 
@@ -269,7 +269,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getAppProperty"></a>
-## *getAppProperty*
+## *getAppProperty [<sup>method</sup>](#Methods)*
 
 Gets a property for a given app.
 
@@ -325,7 +325,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getInstalledApps"></a>
-## *getInstalledApps*
+## *getInstalledApps [<sup>method</sup>](#Methods)*
 
 Function fetches the details of all applications currently installed
 
@@ -373,7 +373,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getLoadedApps"></a>
-## *getLoadedApps*
+## *getLoadedApps [<sup>method</sup>](#Methods)*
 
 Retrieves a list of applications currently loaded on the system.
 
@@ -432,7 +432,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="isInstalled"></a>
-## *isInstalled*
+## *isInstalled [<sup>method</sup>](#Methods)*
 
 check whether the Application is installed or not
 
@@ -486,7 +486,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="killApp"></a>
-## *killApp*
+## *killApp [<sup>method</sup>](#Methods)*
 
 killApp will terminate forcefully
 
@@ -537,7 +537,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="launchApp"></a>
-## *launchApp*
+## *launchApp [<sup>method</sup>](#Methods)*
 
 Launch an Application and app will be in ACTIVE state.
 
@@ -594,7 +594,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="preloadApp"></a>
-## *preloadApp*
+## *preloadApp [<sup>method</sup>](#Methods)*
 
 Preloads an Application and app will be in the RUNNING state (hidden).
 
@@ -650,7 +650,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="sendIntent"></a>
-## *sendIntent*
+## *sendIntent [<sup>method</sup>](#Methods)*
 
 Sends an intent to a loaded app.
 
@@ -703,7 +703,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="setAppProperty"></a>
-## *setAppProperty*
+## *setAppProperty [<sup>method</sup>](#Methods)*
 
 Sets a property for a given app
 
@@ -758,7 +758,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="startSystemApp"></a>
-## *startSystemApp*
+## *startSystemApp [<sup>method</sup>](#Methods)*
 
 Start the System Application
 
@@ -809,7 +809,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="stopSystemApp"></a>
-## *stopSystemApp*
+## *stopSystemApp [<sup>method</sup>](#Methods)*
 
 Stop the System Application
 
@@ -860,7 +860,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="terminateApp"></a>
-## *terminateApp*
+## *terminateApp [<sup>method</sup>](#Methods)*
 
 TerminateApp will terminate gracefully
 
@@ -925,7 +925,7 @@ AppManager interface properties:
 | [getMaxRunningApps](#getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state | NA |
 
 <a id="GetMaxHibernatedApps"></a>
-## *GetMaxHibernatedApps*
+## *GetMaxHibernatedApps [<sup>property</sup>](#Properties)*
 
 Get the maximum number of apps to maintain in the hibernated state
 
@@ -971,7 +971,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="GetMaxHibernatedFlashUsage"></a>
-## *GetMaxHibernatedFlashUsage*
+## *GetMaxHibernatedFlashUsage [<sup>property</sup>](#Properties)*
 
 Gets the max size of flash to use for hibernated apps (in mebibytes)
 
@@ -1017,7 +1017,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="GetMaxInactiveRamUsage"></a>
-## *GetMaxInactiveRamUsage*
+## *GetMaxInactiveRamUsage [<sup>property</sup>](#Properties)*
 
 Gets the max amount of ram available for inactive apps (in mebibytes)
 
@@ -1063,7 +1063,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="GetMaxRunningApps"></a>
-## *GetMaxRunningApps*
+## *GetMaxRunningApps [<sup>property</sup>](#Properties)*
 
 Gets the maximum number of apps to maintain in the running or suspended state
 
@@ -1127,7 +1127,7 @@ AppManager interface events:
 | [onAppUnloaded](#onAppUnloaded) | Triggered whenever the App is unloaded(terminated). |
 
 <a id="onAppInstalled"></a>
-## *onAppInstalled*
+## *onAppInstalled [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the App is installed.
 
@@ -1153,7 +1153,7 @@ Triggered whenever the App is installed.
 ```
 
 <a id="onAppLaunchRequest"></a>
-## *onAppLaunchRequest*
+## *onAppLaunchRequest [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever there is a request for App Launch.
 
@@ -1181,7 +1181,7 @@ Triggered whenever there is a request for App Launch.
 ```
 
 <a id="onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged*
+## *onAppLifecycleStateChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever there is a change in the lifecycle state of a running app.
 
@@ -1213,7 +1213,7 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 ```
 
 <a id="onAppUninstalled"></a>
-## *onAppUninstalled*
+## *onAppUninstalled [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the App is uninstalled.
 
@@ -1237,7 +1237,7 @@ Triggered whenever the App is uninstalled.
 ```
 
 <a id="onAppUnloaded"></a>
-## *onAppUnloaded*
+## *onAppUnloaded [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the App is unloaded(terminated).
 

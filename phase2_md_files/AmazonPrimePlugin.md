@@ -53,7 +53,7 @@ AmazonPrime interface methods:
 | [setLaunchReason](#setLaunchReason) | Set launch reason for amazon prime app | NA |
 
 <a id="factoryResetRequest"></a>
-## *factoryResetRequest*
+## *factoryResetRequest [<sup>method</sup>](#Methods)*
 
 Factory reset amazon prime app data
 
@@ -98,7 +98,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="personalInfoRequest"></a>
-## *personalInfoRequest*
+## *personalInfoRequest [<sup>method</sup>](#Methods)*
 
 Request for personal access token to amazon prime app
 
@@ -143,7 +143,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="setDeepLink"></a>
-## *setDeepLink*
+## *setDeepLink [<sup>method</sup>](#Methods)*
 
 Set the deeplink command for amazon prime
 
@@ -194,7 +194,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setLaunchReason"></a>
-## *setLaunchReason*
+## *setLaunchReason [<sup>method</sup>](#Methods)*
 
 Set launch reason for amazon prime app
 
@@ -260,7 +260,7 @@ AmazonPrime interface events:
 | [StateChange](#StateChange) | Triggered whenever the App state changes |
 
 <a id="stateChange"></a>
-## *stateChange*
+## *stateChange [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the App state changes
 

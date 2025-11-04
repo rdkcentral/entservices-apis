@@ -51,7 +51,7 @@ HdcpProfile interface methods:
 | [getSettopHDCPSupport](#getSettopHDCPSupport) | Returns which version of HDCP is supported by the STB. | NA |
 
 <a id="getHDCPStatus"></a>
-## *getHDCPStatus*
+## *getHDCPStatus [<sup>method</sup>](#Methods)*
 
 Returns HDCP-related data.
 
@@ -116,7 +116,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getSettopHDCPSupport"></a>
-## *getSettopHDCPSupport*
+## *getSettopHDCPSupport [<sup>method</sup>](#Methods)*
 
 Returns which version of HDCP is supported by the STB.
 
@@ -183,7 +183,7 @@ HdcpProfile interface events:
 | [onDisplayConnectionChanged](#onDisplayConnectionChanged) | Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug |
 
 <a id="onDisplayConnectionChanged"></a>
-## *onDisplayConnectionChanged*
+## *onDisplayConnectionChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
 

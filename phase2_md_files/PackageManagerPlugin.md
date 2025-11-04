@@ -73,7 +73,7 @@ PackageManager interface methods:
 | [resume](#resume) | Resume | NA |
 
 <a id="cancel"></a>
-## *cancel*
+## *cancel [<sup>method</sup>](#Methods)*
 
 Cancel
 
@@ -124,7 +124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="clearAuxMetadata"></a>
-## *clearAuxMetadata*
+## *clearAuxMetadata [<sup>method</sup>](#Methods)*
 
 Clears the specified metadata key.
 
@@ -181,7 +181,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="download"></a>
-## *download*
+## *download [<sup>method</sup>](#Methods)*
 
 Download
 
@@ -244,7 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getList"></a>
-## *getList*
+## *getList [<sup>method</sup>](#Methods)*
 
 Retrieves list of installed apps matching given filters.
 
@@ -311,7 +311,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getLockInfo"></a>
-## *getLockInfo*
+## *getLockInfo [<sup>method</sup>](#Methods)*
 
 Provides lock reason and owner for an app.
 
@@ -372,7 +372,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getMetadata"></a>
-## *getMetadata*
+## *getMetadata [<sup>method</sup>](#Methods)*
 
 Retrieves metadata and auxiliary resource list for an application.
 
@@ -457,7 +457,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getProgress"></a>
-## *getProgress*
+## *getProgress [<sup>method</sup>](#Methods)*
 
 Provides the current progress of an ongoing operation.
 
@@ -511,7 +511,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getStorageDetails"></a>
-## *getStorageDetails*
+## *getStorageDetails [<sup>method</sup>](#Methods)*
 
 GetStorageDetails
 
@@ -561,7 +561,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="install"></a>
-## *install*
+## *install [<sup>method</sup>](#Methods)*
 
 Install
 
@@ -628,7 +628,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="lock"></a>
-## *lock*
+## *lock [<sup>method</sup>](#Methods)*
 
 Lock
 
@@ -744,7 +744,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="reset"></a>
-## *reset*
+## *reset [<sup>method</sup>](#Methods)*
 
 Deletes all persistent local data of the application.
 
@@ -801,7 +801,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="setAuxMetadata"></a>
-## *setAuxMetadata*
+## *setAuxMetadata [<sup>method</sup>](#Methods)*
 
 Sets a key-value pair of metadata for the application.
 
@@ -860,7 +860,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="uninstall"></a>
-## *uninstall*
+## *uninstall [<sup>method</sup>](#Methods)*
 
 Uninstall
 
@@ -914,7 +914,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="unlock"></a>
-## *unlock*
+## *unlock [<sup>method</sup>](#Methods)*
 
 Unlock
 
@@ -967,7 +967,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="config"></a>
-## *config*
+## *config [<sup>method</sup>](#Methods)*
 
 Config
 
@@ -1066,7 +1066,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="delete"></a>
-## *delete*
+## *delete [<sup>method</sup>](#Methods)*
 
 Delete
 
@@ -1117,7 +1117,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getConfigForPackage"></a>
-## *getConfigForPackage*
+## *getConfigForPackage [<sup>method</sup>](#Methods)*
 
 getConfigForPackage
 
@@ -1220,7 +1220,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getLockedInfo"></a>
-## *getLockedInfo*
+## *getLockedInfo [<sup>method</sup>](#Methods)*
 
 GetLockedInfo
 
@@ -1327,7 +1327,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="listPackages"></a>
-## *listPackages*
+## *listPackages [<sup>method</sup>](#Methods)*
 
 ListPackages
 
@@ -1386,7 +1386,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="packageState"></a>
-## *packageState*
+## *packageState [<sup>method</sup>](#Methods)*
 
 PackageState
 
@@ -1442,7 +1442,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="pause"></a>
-## *pause*
+## *pause [<sup>method</sup>](#Methods)*
 
 Pause
 
@@ -1493,7 +1493,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="progress"></a>
-## *progress*
+## *progress [<sup>method</sup>](#Methods)*
 
 Progress
 
@@ -1547,7 +1547,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="rateLimit"></a>
-## *rateLimit*
+## *rateLimit [<sup>method</sup>](#Methods)*
 
 RateLimit
 
@@ -1600,7 +1600,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="resume"></a>
-## *resume*
+## *resume [<sup>method</sup>](#Methods)*
 
 Resume
 
@@ -1666,7 +1666,7 @@ PackageManager interface events:
 | [operationStatus](#operationStatus) | Notifies completion of an asynchronous operation. |
 
 <a id="operationStatus"></a>
-## *operationStatus*
+## *operationStatus [<sup>event</sup>](#head.Notifications)*
 
 Notifies completion of an asynchronous operation.
 

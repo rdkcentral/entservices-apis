@@ -64,7 +64,7 @@ OCIContainer interface methods:
 | [wakeupContainer](#wakeupContainer) |  | NA |
 
 <a id="annotate"></a>
-## *annotate*
+## *annotate [<sup>method</sup>](#Methods)*
 
 
 
@@ -124,7 +124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="executeCommand"></a>
-## *executeCommand*
+## *executeCommand [<sup>method</sup>](#Methods)*
 
 
 
@@ -184,7 +184,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getContainerInfo"></a>
-## *getContainerInfo*
+## *getContainerInfo [<sup>method</sup>](#Methods)*
 
 
 
@@ -242,7 +242,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getContainerState"></a>
-## *getContainerState*
+## *getContainerState [<sup>method</sup>](#Methods)*
 
 
 
@@ -300,7 +300,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="hibernateContainer"></a>
-## *hibernateContainer*
+## *hibernateContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -358,7 +358,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="listContainers"></a>
-## *listContainers*
+## *listContainers [<sup>method</sup>](#Methods)*
 
 
 
@@ -410,7 +410,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="mount"></a>
-## *mount*
+## *mount [<sup>method</sup>](#Methods)*
 
 
 
@@ -474,7 +474,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="pauseContainer"></a>
-## *pauseContainer*
+## *pauseContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -530,7 +530,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="removeAnnotation"></a>
-## *removeAnnotation*
+## *removeAnnotation [<sup>method</sup>](#Methods)*
 
 
 
@@ -588,7 +588,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="resumeContainer"></a>
-## *resumeContainer*
+## *resumeContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -644,7 +644,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="startContainer"></a>
-## *startContainer*
+## *startContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -710,7 +710,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="startContainerFromDobbySpec"></a>
-## *startContainerFromDobbySpec*
+## *startContainerFromDobbySpec [<sup>method</sup>](#Methods)*
 
 
 
@@ -776,7 +776,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="stopContainer"></a>
-## *stopContainer*
+## *stopContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -836,7 +836,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="unmount"></a>
-## *unmount*
+## *unmount [<sup>method</sup>](#Methods)*
 
 
 
@@ -894,7 +894,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="wakeupContainer"></a>
-## *wakeupContainer*
+## *wakeupContainer [<sup>method</sup>](#Methods)*
 
 
 
@@ -968,7 +968,7 @@ OCIContainer interface events:
 | [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
 
 <a id="onContainerFailed"></a>
-## *onContainerFailed*
+## *onContainerFailed [<sup>event</sup>](#head.Notifications)*
 
 Notifies failure in container execution
 
@@ -996,7 +996,7 @@ Notifies failure in container execution
 ```
 
 <a id="onContainerStarted"></a>
-## *onContainerStarted*
+## *onContainerStarted [<sup>event</sup>](#head.Notifications)*
 
 Notifies container is started
 
@@ -1022,7 +1022,7 @@ Notifies container is started
 ```
 
 <a id="onContainerStateChanged"></a>
-## *onContainerStateChanged*
+## *onContainerStateChanged [<sup>event</sup>](#head.Notifications)*
 
 Notifies state change of container
 
@@ -1048,7 +1048,7 @@ Notifies state change of container
 ```
 
 <a id="onContainerStopped"></a>
-## *onContainerStopped*
+## *onContainerStopped [<sup>event</sup>](#head.Notifications)*
 
 Notifies container is stopped
 

@@ -56,7 +56,7 @@ WebKitBrowser interface methods:
 | [runJavaScript](#runJavaScript) | Run javascript in main frame. | NA |
 
 <a id="reset"></a>
-## *reset*
+## *reset [<sup>method</sup>](#Methods)*
 
 Resets application data
 
@@ -107,7 +107,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="addUserScript"></a>
-## *addUserScript*
+## *addUserScript [<sup>method</sup>](#Methods)*
 
 Add user script to be executed at document start.
 
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="collectGarbage"></a>
-## *collectGarbage*
+## *collectGarbage [<sup>method</sup>](#Methods)*
 
 Initiate garbage collection
 
@@ -205,7 +205,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="cookieJar"></a>
-## *cookieJar*
+## *cookieJar [<sup>method</sup>](#Methods)*
 
 
 
@@ -260,7 +260,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="removeAllUserScripts"></a>
-## *removeAllUserScripts*
+## *removeAllUserScripts [<sup>method</sup>](#Methods)*
 
 Remove all user scripts.
 
@@ -305,7 +305,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="runJavaScript"></a>
-## *runJavaScript*
+## *runJavaScript [<sup>method</sup>](#Methods)*
 
 Run javascript in main frame.
 
@@ -383,7 +383,7 @@ WebKitBrowser interface properties:
 | [visibility](#visibility) | Browser window visibility state | VisibilityChange |
 
 <a id="ContentLink"></a>
-## *ContentLink*
+## *ContentLink [<sup>property</sup>](#Properties)*
 
 URI of the associated application-specific content
 
@@ -430,7 +430,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="Identifier"></a>
-## *Identifier*
+## *Identifier [<sup>property</sup>](#Properties)*
 
 Application-specific identification string
 
@@ -476,7 +476,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="Language"></a>
-## *Language*
+## *Language [<sup>property</sup>](#Properties)*
 
 Current application user interface language
 
@@ -553,7 +553,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="LaunchPoint"></a>
-## *LaunchPoint*
+## *LaunchPoint [<sup>property</sup>](#Properties)*
 
 Application launching point
 
@@ -630,7 +630,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="Visible"></a>
-## *Visible*
+## *Visible [<sup>property</sup>](#Properties)*
 
 Current application visibility
 
@@ -707,7 +707,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="BridgeEvent"></a>
-## *BridgeEvent*
+## *BridgeEvent [<sup>property</sup>](#Properties)*
 
 Send legacy $badger event.
 
@@ -754,7 +754,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="BridgeReply"></a>
-## *BridgeReply*
+## *BridgeReply [<sup>property</sup>](#Properties)*
 
 Response for legacy $badger.
 
@@ -801,7 +801,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="FPS"></a>
-## *FPS*
+## *FPS [<sup>property</sup>](#Properties)*
 
 Current framerate the browser is rendering at
 
@@ -847,7 +847,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="HTTPCookieAcceptPolicy"></a>
-## *HTTPCookieAcceptPolicy*
+## *HTTPCookieAcceptPolicy [<sup>property</sup>](#Properties)*
 
 HTTP cookies accept policy
 
@@ -924,7 +924,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="LocalStorageEnabled"></a>
-## *LocalStorageEnabled*
+## *LocalStorageEnabled [<sup>property</sup>](#Properties)*
 
 Controls the local storage availability
 
@@ -1001,7 +1001,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="MixedContentPolicy"></a>
-## *MixedContentPolicy*
+## *MixedContentPolicy [<sup>property</sup>](#Properties)*
 
 Mixed content policy
 
@@ -1078,7 +1078,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="SecurityProfile"></a>
-## *SecurityProfile*
+## *SecurityProfile [<sup>property</sup>](#Properties)*
 
 Security profile for secure connections
 
@@ -1155,7 +1155,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="URL"></a>
-## *URL*
+## *URL [<sup>property</sup>](#Properties)*
 
 Page loaded in the browser
 
@@ -1236,7 +1236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="UserAgent"></a>
-## *UserAgent*
+## *UserAgent [<sup>property</sup>](#Properties)*
 
 UserAgent string used by the browser
 
@@ -1313,7 +1313,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="UserScripts"></a>
-## *UserScripts*
+## *UserScripts [<sup>property</sup>](#Properties)*
 
 User scripts used by the browser
 
@@ -1391,7 +1391,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="UserStyleSheets"></a>
-## *UserStyleSheets*
+## *UserStyleSheets [<sup>property</sup>](#Properties)*
 
 User style sheets used by the browser
 
@@ -1469,7 +1469,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="Visibility"></a>
-## *Visibility*
+## *Visibility [<sup>property</sup>](#Properties)*
 
 Browser window visibility state
 
@@ -1567,7 +1567,7 @@ WebKitBrowser interface events:
 | [uRLChange](#uRLChange) | Signals a URL change in the browser |
 
 <a id="visibilityChange"></a>
-## *visibilityChange*
+## *visibilityChange [<sup>event</sup>](#head.Notifications)*
 
 Signals a visibility change of the browser
 
@@ -1591,7 +1591,7 @@ Signals a visibility change of the browser
 ```
 
 <a id="cookieJarChanged"></a>
-## *cookieJarChanged*
+## *cookieJarChanged [<sup>event</sup>](#head.Notifications)*
 
 Notifies that cookies were added, removed or modified.
 
@@ -1609,7 +1609,7 @@ This method takes no parameters.
 ```
 
 <a id="loadFailed"></a>
-## *loadFailed*
+## *loadFailed [<sup>event</sup>](#head.Notifications)*
 
 Browser failed to load page
 
@@ -1633,7 +1633,7 @@ Browser failed to load page
 ```
 
 <a id="loadFinished"></a>
-## *loadFinished*
+## *loadFinished [<sup>event</sup>](#head.Notifications)*
 
 Initial HTML document has been completely loaded and parsed
 
@@ -1659,7 +1659,7 @@ Initial HTML document has been completely loaded and parsed
 ```
 
 <a id="pageClosure"></a>
-## *pageClosure*
+## *pageClosure [<sup>event</sup>](#head.Notifications)*
 
 Notifies that the web page requests to close its window
 
@@ -1677,7 +1677,7 @@ This method takes no parameters.
 ```
 
 <a id="uRLChange"></a>
-## *uRLChange*
+## *uRLChange [<sup>event</sup>](#head.Notifications)*
 
 Signals a URL change in the browser
 

@@ -64,7 +64,7 @@ PowerManager interface methods:
 | [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup | NA |
 
 <a id="addPowerModePreChangeClient"></a>
-## *addPowerModePreChangeClient*
+## *addPowerModePreChangeClient [<sup>method</sup>](#Methods)*
 
 Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`. 
 
@@ -118,7 +118,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="delayPowerModeChangeBy"></a>
-## *delayPowerModeChangeBy*
+## *delayPowerModeChangeBy [<sup>method</sup>](#Methods)*
 
 Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
 
@@ -173,7 +173,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getNetworkStandbyMode"></a>
-## *getNetworkStandbyMode*
+## *getNetworkStandbyMode [<sup>method</sup>](#Methods)*
 
 Get the standby mode for Network
 
@@ -221,7 +221,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getPowerState"></a>
-## *getPowerState*
+## *getPowerState [<sup>method</sup>](#Methods)*
 
 Get Power State
 
@@ -271,7 +271,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getPowerStateBeforeReboot"></a>
-## *getPowerStateBeforeReboot*
+## *getPowerStateBeforeReboot [<sup>method</sup>](#Methods)*
 
 Get Power state before reboot
 
@@ -319,7 +319,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getTemperatureThresholds"></a>
-## *getTemperatureThresholds*
+## *getTemperatureThresholds [<sup>method</sup>](#Methods)*
 
 Get Temperature Thresholds
 
@@ -369,7 +369,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getThermalState"></a>
-## *getThermalState*
+## *getThermalState [<sup>method</sup>](#Methods)*
 
 Get Current Thermal State (temperature)
 
@@ -417,7 +417,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getWakeupSourceConfig"></a>
-## *getWakeupSourceConfig*
+## *getWakeupSourceConfig [<sup>method</sup>](#Methods)*
 
 Get the source configuration for device wakeup
 
@@ -470,7 +470,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="powerModePreChangeComplete"></a>
-## *powerModePreChangeComplete*
+## *powerModePreChangeComplete [<sup>method</sup>](#Methods)*
 
 Pre power mode handling complete for given client and transation id
 
@@ -523,7 +523,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="reboot"></a>
-## *reboot*
+## *reboot [<sup>method</sup>](#Methods)*
 
 Reboot device
 
@@ -580,7 +580,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="removePowerModePreChangeClient"></a>
-## *removePowerModePreChangeClient*
+## *removePowerModePreChangeClient [<sup>method</sup>](#Methods)*
 
 Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications.
 
@@ -631,7 +631,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="setPowerState"></a>
-## *setPowerState*
+## *setPowerState [<sup>method</sup>](#Methods)*
 
 Set Power State
 
@@ -688,7 +688,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="setTemperatureThresholds"></a>
-## *setTemperatureThresholds*
+## *setTemperatureThresholds [<sup>method</sup>](#Methods)*
 
 Set Temperature Thresholds
 
@@ -741,7 +741,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="setWakeupSourceConfig"></a>
-## *setWakeupSourceConfig*
+## *setWakeupSourceConfig [<sup>method</sup>](#Methods)*
 
 Set the source configuration for device wakeup
 
@@ -813,7 +813,7 @@ PowerManager interface properties:
 | [setOvertempGraceInterval](#setOvertempGraceInterval)<sup>WO</sup> | Set Temperature Thresholds | NA |
 
 <a id="GetLastWakeupKeyCode"></a>
-## *GetLastWakeupKeyCode*
+## *GetLastWakeupKeyCode [<sup>property</sup>](#Properties)*
 
 Get the key code that can be used for wakeup
 
@@ -859,7 +859,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="GetLastWakeupReason"></a>
-## *GetLastWakeupReason*
+## *GetLastWakeupReason [<sup>property</sup>](#Properties)*
 
 Get Last Wake up reason
 
@@ -905,7 +905,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="GetOvertempGraceInterval"></a>
-## *GetOvertempGraceInterval*
+## *GetOvertempGraceInterval [<sup>property</sup>](#Properties)*
 
 Get Temperature Grace interval
 
@@ -951,7 +951,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="SetDeepSleepTimer"></a>
-## *SetDeepSleepTimer*
+## *SetDeepSleepTimer [<sup>property</sup>](#Properties)*
 
 Set Deep sleep timer for timeOut period
 
@@ -998,7 +998,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="SetNetworkStandbyMode"></a>
-## *SetNetworkStandbyMode*
+## *SetNetworkStandbyMode [<sup>property</sup>](#Properties)*
 
 Set the standby mode for Network
 
@@ -1045,7 +1045,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```
 
 <a id="SetOvertempGraceInterval"></a>
-## *SetOvertempGraceInterval*
+## *SetOvertempGraceInterval [<sup>property</sup>](#Properties)*
 
 Set Temperature Thresholds
 
@@ -1111,7 +1111,7 @@ PowerManager interface events:
 | [onThermalModeChanged](#onThermalModeChanged) | Thermal Mode changed event |
 
 <a id="onDeepSleepTimeout"></a>
-## *onDeepSleepTimeout*
+## *onDeepSleepTimeout [<sup>event</sup>](#head.Notifications)*
 
 Deep sleep timeout event
 
@@ -1135,7 +1135,7 @@ Deep sleep timeout event
 ```
 
 <a id="onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged*
+## *onNetworkStandbyModeChanged [<sup>event</sup>](#head.Notifications)*
 
 Network Standby Mode changed event - only on XIone
 
@@ -1159,7 +1159,7 @@ Network Standby Mode changed event - only on XIone
 ```
 
 <a id="onPowerModeChanged"></a>
-## *onPowerModeChanged*
+## *onPowerModeChanged [<sup>event</sup>](#head.Notifications)*
 
 Power mode changed
 
@@ -1185,7 +1185,7 @@ Power mode changed
 ```
 
 <a id="onPowerModePreChange"></a>
-## *onPowerModePreChange*
+## *onPowerModePreChange [<sup>event</sup>](#head.Notifications)*
 
 Power mode Pre-change event
 
@@ -1215,7 +1215,7 @@ Power mode Pre-change event
 ```
 
 <a id="onRebootBegin"></a>
-## *onRebootBegin*
+## *onRebootBegin [<sup>event</sup>](#head.Notifications)*
 
 Reboot begin event
 
@@ -1243,7 +1243,7 @@ Reboot begin event
 ```
 
 <a id="onThermalModeChanged"></a>
-## *onThermalModeChanged*
+## *onThermalModeChanged [<sup>event</sup>](#head.Notifications)*
 
 Thermal Mode changed event
 

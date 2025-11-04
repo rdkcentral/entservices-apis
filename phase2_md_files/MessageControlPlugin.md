@@ -50,7 +50,7 @@ MessageControl interface methods:
 | [enable](#enable) | Enables/disables a message control | NA |
 
 <a id="enable"></a>
-## *enable*
+## *enable [<sup>method</sup>](#Methods)*
 
 Enables/disables a message control
 
@@ -118,7 +118,7 @@ MessageControl interface properties:
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls | NA |
 
 <a id="Controls"></a>
-## *Controls*
+## *Controls [<sup>property</sup>](#Properties)*
 
 Retrieves a list of current message controls
 

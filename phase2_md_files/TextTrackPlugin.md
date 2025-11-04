@@ -89,7 +89,7 @@ TextTrack interface methods:
 | [unMuteSession](#unMuteSession) | UnMute will unhide the rendering of Captions. | NA |
 
 <a id="closeSession"></a>
-## *closeSession*
+## *closeSession [<sup>method</sup>](#Methods)*
 
 Any created windows and surfaces is destroyed
 
@@ -140,7 +140,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="getBackgroundColor"></a>
-## *getBackgroundColor*
+## *getBackgroundColor [<sup>method</sup>](#Methods)*
 
 Getter for BackgroundColor
 
@@ -188,7 +188,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="getBackgroundOpacity"></a>
-## *getBackgroundOpacity*
+## *getBackgroundOpacity [<sup>method</sup>](#Methods)*
 
 Getter for BackgroundOpacity
 
@@ -236,7 +236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="getClosedCaptionsStyle"></a>
-## *getClosedCaptionsStyle*
+## *getClosedCaptionsStyle [<sup>method</sup>](#Methods)*
 
 Gets the current ClosedCaptionsStyle settings.
 
@@ -303,7 +303,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="getFontColor"></a>
-## *getFontColor*
+## *getFontColor [<sup>method</sup>](#Methods)*
 
 Getter for FontColor
 
@@ -351,7 +351,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="getFontEdge"></a>
-## *getFontEdge*
+## *getFontEdge [<sup>method</sup>](#Methods)*
 
 Getter for FontEdge
 
@@ -399,7 +399,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```
 
 <a id="getFontEdgeColor"></a>
-## *getFontEdgeColor*
+## *getFontEdgeColor [<sup>method</sup>](#Methods)*
 
 Getter for FontEdgeColor
 
@@ -447,7 +447,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```
 
 <a id="getFontFamily"></a>
-## *getFontFamily*
+## *getFontFamily [<sup>method</sup>](#Methods)*
 
 Getter for FontFamily
 
@@ -495,7 +495,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```
 
 <a id="getFontOpacity"></a>
-## *getFontOpacity*
+## *getFontOpacity [<sup>method</sup>](#Methods)*
 
 Getter for FontOpacity
 
@@ -543,7 +543,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="getFontSize"></a>
-## *getFontSize*
+## *getFontSize [<sup>method</sup>](#Methods)*
 
 Getter for FontSize
 
@@ -591,7 +591,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```
 
 <a id="getTtmlStyleOverrides"></a>
-## *getTtmlStyleOverrides*
+## *getTtmlStyleOverrides [<sup>method</sup>](#Methods)*
 
 
 
@@ -639,7 +639,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```
 
 <a id="getWindowColor"></a>
-## *getWindowColor*
+## *getWindowColor [<sup>method</sup>](#Methods)*
 
 Getter for WindowColor
 
@@ -687,7 +687,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```
 
 <a id="getWindowOpacity"></a>
-## *getWindowOpacity*
+## *getWindowOpacity [<sup>method</sup>](#Methods)*
 
 Getter for WindowOpacity
 
@@ -735,7 +735,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```
 
 <a id="muteSession"></a>
-## *muteSession*
+## *muteSession [<sup>method</sup>](#Methods)*
 
 Mute will hide rendering of Captions
 
@@ -786,7 +786,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```
 
 <a id="openSession"></a>
-## *openSession*
+## *openSession [<sup>method</sup>](#Methods)*
 
 If a session is already running on the supplied displayHandle, the sessionId for this session is returned. If the session is instead newly opened, the session type is not set and display is muted. Use one of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
 
@@ -840,7 +840,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```
 
 <a id="pauseSession"></a>
-## *pauseSession*
+## *pauseSession [<sup>method</sup>](#Methods)*
 
 Any text rendered remains on screen and any text due to be rendered soon is held until the render session is resumed.
 
@@ -891,7 +891,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```
 
 <a id="resetSession"></a>
-## *resetSession*
+## *resetSession [<sup>method</sup>](#Methods)*
 
 The state will be like after calling OpenSession()
 
@@ -942,7 +942,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```
 
 <a id="resumeSession"></a>
-## *resumeSession*
+## *resumeSession [<sup>method</sup>](#Methods)*
 
 Resumed a paused session
 
@@ -993,7 +993,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```
 
 <a id="sendSessionData"></a>
-## *sendSessionData*
+## *sendSessionData [<sup>method</sup>](#Methods)*
 
 Sends data of Closed Captions, Captions or Timed Text data to a render session.
 
@@ -1050,7 +1050,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="sendSessionTimestamp"></a>
-## *sendSessionTimestamp*
+## *sendSessionTimestamp [<sup>method</sup>](#Methods)*
 
 The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
 
@@ -1103,7 +1103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```
 
 <a id="setBackgroundColor"></a>
-## *setBackgroundColor*
+## *setBackgroundColor [<sup>method</sup>](#Methods)*
 
 Setter for BackgroundColor
 
@@ -1154,7 +1154,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```
 
 <a id="setBackgroundOpacity"></a>
-## *setBackgroundOpacity*
+## *setBackgroundOpacity [<sup>method</sup>](#Methods)*
 
 Setter for BackgroundOpacity
 
@@ -1205,7 +1205,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="setClosedCaptionsStyle"></a>
-## *setClosedCaptionsStyle*
+## *setClosedCaptionsStyle [<sup>method</sup>](#Methods)*
 
 For all values it is possible to keep or override the stream default. The style setting will take effect immediately in all running (Closed Captions) sessions, which has not applied a custom style.
 
@@ -1275,7 +1275,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```
 
 <a id="setFontColor"></a>
-## *setFontColor*
+## *setFontColor [<sup>method</sup>](#Methods)*
 
 Setter for FontColor
 
@@ -1326,7 +1326,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```
 
 <a id="setFontEdge"></a>
-## *setFontEdge*
+## *setFontEdge [<sup>method</sup>](#Methods)*
 
 Setter for FontEdge
 
@@ -1377,7 +1377,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```
 
 <a id="setFontEdgeColor"></a>
-## *setFontEdgeColor*
+## *setFontEdgeColor [<sup>method</sup>](#Methods)*
 
 Setter for FontEdgeColor
 
@@ -1428,7 +1428,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```
 
 <a id="setFontFamily"></a>
-## *setFontFamily*
+## *setFontFamily [<sup>method</sup>](#Methods)*
 
 Setter for FontFamily
 
@@ -1479,7 +1479,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```
 
 <a id="setFontOpacity"></a>
-## *setFontOpacity*
+## *setFontOpacity [<sup>method</sup>](#Methods)*
 
 Setter for FontOpacity
 
@@ -1530,7 +1530,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```
 
 <a id="setFontSize"></a>
-## *setFontSize*
+## *setFontSize [<sup>method</sup>](#Methods)*
 
 Setter for FontSize
 
@@ -1581,7 +1581,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```
 
 <a id="setPreviewText"></a>
-## *setPreviewText*
+## *setPreviewText [<sup>method</sup>](#Methods)*
 
 The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
 
@@ -1634,7 +1634,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 ```
 
 <a id="setSessionClosedCaptionsService"></a>
-## *setSessionClosedCaptionsService*
+## *setSessionClosedCaptionsService [<sup>method</sup>](#Methods)*
 
 Selecting the specified CC service to decode and display in the specified render session. This should be done before starting the injection of data. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
@@ -1687,7 +1687,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 ```
 
 <a id="setSessionDvbSubtitleSelection"></a>
-## *setSessionDvbSubtitleSelection*
+## *setSessionDvbSubtitleSelection [<sup>method</sup>](#Methods)*
 
 Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
 
@@ -1742,7 +1742,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 ```
 
 <a id="setSessionSCTESelection"></a>
-## *setSessionSCTESelection*
+## *setSessionSCTESelection [<sup>method</sup>](#Methods)*
 
 Set the render session into SCTE mode
 
@@ -1793,7 +1793,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 ```
 
 <a id="setSessionTTMLSelection"></a>
-## *setSessionTTMLSelection*
+## *setSessionTTMLSelection [<sup>method</sup>](#Methods)*
 
 Set the render session into TTML mode
 
@@ -1844,7 +1844,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 ```
 
 <a id="setSessionTeletextSelection"></a>
-## *setSessionTeletextSelection*
+## *setSessionTeletextSelection [<sup>method</sup>](#Methods)*
 
 Set the render session into Teletext mode, providing the teletext caption page for presentation
 
@@ -1897,7 +1897,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 ```
 
 <a id="setSessionWebVTTSelection"></a>
-## *setSessionWebVTTSelection*
+## *setSessionWebVTTSelection [<sup>method</sup>](#Methods)*
 
 Set the render session into WebVTT mode
 
@@ -1948,7 +1948,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 ```
 
 <a id="setTtmlStyleOverrides"></a>
-## *setTtmlStyleOverrides*
+## *setTtmlStyleOverrides [<sup>method</sup>](#Methods)*
 
 The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
 
@@ -1999,7 +1999,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 ```
 
 <a id="setWindowColor"></a>
-## *setWindowColor*
+## *setWindowColor [<sup>method</sup>](#Methods)*
 
 Setter for WindowColor
 
@@ -2050,7 +2050,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 ```
 
 <a id="setWindowOpacity"></a>
-## *setWindowOpacity*
+## *setWindowOpacity [<sup>method</sup>](#Methods)*
 
 Setter for WindowOpacity
 
@@ -2101,7 +2101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 ```
 
 <a id="unMuteSession"></a>
-## *unMuteSession*
+## *unMuteSession [<sup>method</sup>](#Methods)*
 
 A newly created session is muted and should be unmuted to me visible
 
@@ -2178,7 +2178,7 @@ TextTrack interface events:
 | [onWindowOpacityChanged](#onWindowOpacityChanged) | Notify windowOpacity Changed |
 
 <a id="onBackgroundColorChanged"></a>
-## *onBackgroundColorChanged*
+## *onBackgroundColorChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify backgroundColor Changed
 
@@ -2202,7 +2202,7 @@ Notify backgroundColor Changed
 ```
 
 <a id="onBackgroundOpacityChanged"></a>
-## *onBackgroundOpacityChanged*
+## *onBackgroundOpacityChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify backgroundOpacity Changed
 
@@ -2226,7 +2226,7 @@ Notify backgroundOpacity Changed
 ```
 
 <a id="onClosedCaptionsStyleChanged"></a>
-## *onClosedCaptionsStyleChanged*
+## *onClosedCaptionsStyleChanged [<sup>event</sup>](#head.Notifications)*
 
 The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to get the new settings.
 
@@ -2269,7 +2269,7 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 ```
 
 <a id="onFontColorChanged"></a>
-## *onFontColorChanged*
+## *onFontColorChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontColor Changed
 
@@ -2293,7 +2293,7 @@ Notify fontColor Changed
 ```
 
 <a id="onFontEdgeChanged"></a>
-## *onFontEdgeChanged*
+## *onFontEdgeChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontEdge Changed
 
@@ -2317,7 +2317,7 @@ Notify fontEdge Changed
 ```
 
 <a id="onFontEdgeColorChanged"></a>
-## *onFontEdgeColorChanged*
+## *onFontEdgeColorChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontEdgeColor Changed
 
@@ -2341,7 +2341,7 @@ Notify fontEdgeColor Changed
 ```
 
 <a id="onFontFamilyChanged"></a>
-## *onFontFamilyChanged*
+## *onFontFamilyChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontFamily Changed
 
@@ -2365,7 +2365,7 @@ Notify fontFamily Changed
 ```
 
 <a id="onFontOpacityChanged"></a>
-## *onFontOpacityChanged*
+## *onFontOpacityChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontOpacity Changed
 
@@ -2389,7 +2389,7 @@ Notify fontOpacity Changed
 ```
 
 <a id="onFontSizeChanged"></a>
-## *onFontSizeChanged*
+## *onFontSizeChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify fontSize Changed
 
@@ -2413,7 +2413,7 @@ Notify fontSize Changed
 ```
 
 <a id="onTtmlStyleOverridesChanged"></a>
-## *onTtmlStyleOverridesChanged*
+## *onTtmlStyleOverridesChanged [<sup>event</sup>](#head.Notifications)*
 
 The TTML Style override settings has changed.
 
@@ -2437,7 +2437,7 @@ The TTML Style override settings has changed.
 ```
 
 <a id="onWindowColorChanged"></a>
-## *onWindowColorChanged*
+## *onWindowColorChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify windowColor Changed
 
@@ -2461,7 +2461,7 @@ Notify windowColor Changed
 ```
 
 <a id="onWindowOpacityChanged"></a>
-## *onWindowOpacityChanged*
+## *onWindowOpacityChanged [<sup>event</sup>](#head.Notifications)*
 
 Notify windowOpacity Changed
 

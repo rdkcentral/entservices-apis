@@ -55,7 +55,7 @@ Telemetry interface methods:
 | [uploadReport](#uploadReport) | Uploading of telemetry report | onReportUpload |
 
 <a id="abortReport"></a>
-## *abortReport*
+## *abortReport [<sup>method</sup>](#Methods)*
 
 Abort report upload
 
@@ -100,7 +100,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 <a id="isOptOutTelemetry"></a>
-## *isOptOutTelemetry*
+## *isOptOutTelemetry [<sup>method</sup>](#Methods)*
 
 Checks the telemetry opt-out status.
 
@@ -150,7 +150,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 <a id="logApplicationEvent"></a>
-## *logApplicationEvent*
+## *logApplicationEvent [<sup>method</sup>](#Methods)*
 
 Logs an application
 
@@ -203,7 +203,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 <a id="setOptOutTelemetry"></a>
-## *setOptOutTelemetry*
+## *setOptOutTelemetry [<sup>method</sup>](#Methods)*
 
 Sets the telemetry opt-out status.
 
@@ -257,7 +257,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```
 
 <a id="setReportProfileStatus"></a>
-## *setReportProfileStatus*
+## *setReportProfileStatus [<sup>method</sup>](#Methods)*
 
 Sets the status of telemetry reporting
 
@@ -308,7 +308,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```
 
 <a id="uploadReport"></a>
-## *uploadReport*
+## *uploadReport [<sup>method</sup>](#Methods)*
 
 Uploading of telemetry report
 
@@ -370,7 +370,7 @@ Telemetry interface events:
 | [onReportUpload](#onReportUpload) | Triggered by callback from Telemetry after report uploading |
 
 <a id="onReportUpload"></a>
-## *onReportUpload*
+## *onReportUpload [<sup>event</sup>](#head.Notifications)*
 
 Triggered by callback from Telemetry after report uploading
 
