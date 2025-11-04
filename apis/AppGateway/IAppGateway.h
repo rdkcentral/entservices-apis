@@ -74,21 +74,21 @@ namespace WPEFramework
 
             // ---- Authenticate ----
             // @json:omit
-            // @text Authenticate
+            // @text authenticate
             // @param sessionId: Session Id provided by a given application.
             // @brief Authenticate an incoming connection
             virtual Core::hresult Authenticate(const string& sessionId , string& appId /* @out */) = 0;
 
             // ---- GetSessionId ----
             // @json:omit
-            // @text GetSessionId
+            // @text getSessionId
             // @param appId: AppId of the current application.
             // @brief Get the sessionId for a given application provided to the delegate
             virtual Core::hresult GetSessionId(const string& appId  , string& sessionId /* @out */) = 0;
 
             // ---- CheckPermissionGroup ----
             // @json:omit
-            // @text CheckPermissionGroup
+            // @text checkPermissionGroup
             // @param appId: AppId of the current application.
             // @param permissionGroup: Permission group to check
             // @brief Check if the application belongs to a given permission group
@@ -116,7 +116,7 @@ namespace WPEFramework
                                           const string& payload /*@opaque */) = 0;
 
             // @json:omit
-            // @text Emit
+            // @text emit
             // @brief Provides support for Emitting Notifications to a given context
             // @param context: Execution context containing requestId, connectionId, appId
             // @param payload: the response payload
@@ -125,7 +125,7 @@ namespace WPEFramework
                 const string& method , const string& payload /*@opaque */) = 0;
 
             // @json:omit
-            // @text Request
+            // @text request
             // @brief Forwards a Request to the Client. Needed for App Provider Patterns.
             // @param connectionId: Connection Id
             // @param id: Request id
@@ -137,7 +137,7 @@ namespace WPEFramework
 
             
             // @json:omit
-            // @text GetGatewayConnectionContext
+            // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
             // @param connectionId: Connection Id
             // @param contextKey: Connection Id
@@ -153,11 +153,11 @@ namespace WPEFramework
                 enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
 
                 // @brief Notifies App has either started or stopped a connection. App can create multiple connections.
-                // @text OnAppConnectionChanged
+                // @text onAppConnectionChanged
                 // @param appId App identifier for the application
                 // @param connectionId Unique identifier for the connection
                 // @param connected true if connection started, false if connection stopped
-                virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool& connected) {};
+                virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected) {};
             };
 
             /** Register notification interface */
@@ -177,9 +177,10 @@ namespace WPEFramework
             };
 
             // @json:omit
-            // @text respond
+            // @text handleAppGatewayRequest
             // @brief Provides support for responding to a given context
             // @param context: Execution context containing requestId, connectionId, appId
+            // @param method: the method to handle
             // @param payload: the request payload
             // @param result: Response for the given request. Can be empty.
             // @returns Core::hresult

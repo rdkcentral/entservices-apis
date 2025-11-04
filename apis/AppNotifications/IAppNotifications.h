@@ -42,7 +42,7 @@ namespace WPEFramework
             // @text subscribe
             // @brief Thunder register/unregister for Firebolt subscription requests
             // @param context: Execution context containing requestId, connectionId, appId
-            // @param register: boolean
+            // @param listen: boolean
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
             // @returns Core::hresult 
@@ -63,7 +63,7 @@ namespace WPEFramework
                                        const string& appId ) = 0;
 
             // @json:omit
-            // @text Cleanup
+            // @text cleanup
             // @brief Cleanup any context which has a given connectionId for a given origin
             // @param connectionId: connection id for a given context
             // @param origin: origin of the context
