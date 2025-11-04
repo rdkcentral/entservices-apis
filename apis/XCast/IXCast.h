@@ -213,13 +213,6 @@ namespace WPEFramework {
 			virtual Core::hresult RegisterApplications(IApplicationInfoIterator* const appInfoList /* @text applications */ , XCastSuccess& success /* @out */) = 0;
 			/****************************************registerApplications()**********************************/
 
-			/****************************************unregisterApplications()**********************************/
-			// @text unregisterApplications
-			// @brief Unregisters an application
-			// @param applications: One or more application name to unregister
-			// @param success: 	Whether the request succeeded
-			virtual Core::hresult UnregisterApplications(IStringIterator* const applications /* @text applications */, XCastSuccess& success /* @out */) = 0;
-			/****************************************unregisterApplications()**********************************/
 			
 
 		};
