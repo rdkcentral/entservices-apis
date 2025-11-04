@@ -64,8 +64,8 @@ jobs:
           IFS='.' read -r major minor patch <<< "$TOP_TAG"
           VERSION_TYPE=$(echo "$PR_DESC" | grep -oiP 'version\s*:\s*\K(major|minor|patch)' | tr '[:upper:]' '[:lower:]')
           if [[ -z "$VERSION_TYPE" ]]; then
-            echo "No version type found in PR description, defaulting to PATCH increment."
-            patch=$((patch + 1))
+            echo "No version type found in PR description.Please provide the valid version type(MAJOR/MINOR/PATCH) based on your change type."
+            exit 1
           elif [[ "$VERSION_TYPE" == "major" ]]; then
             major=$((major + 1))
             minor=0
