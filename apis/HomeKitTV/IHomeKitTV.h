@@ -35,28 +35,33 @@ namespace WPEFramework {
             };
             enum state : uint16_t {
                 STARTED = 1,
-                STOPPED = 2
+                STOPPED = 2,
+                paused = 3,
+                RE-START = 4 
             };
 
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_HOMEKITTV_NOTIFICATION };
-                virtual void StateChange(const IHomeKitTV::state state) = 0;
+                virtual void StateChange(const IHomeKitTV::state state) =  0;
                 virtual void Exit(const uint32_t exitCode) = 0;
                 virtual void dispatchOnAppStateChangeRequest(const string& params) = 0;
                 virtual void dispatchOnEnabledStatusChanged(const string& params) = 0;
                 virtual void dispatchOnInputSourceChanged(const string& params) = 0;
-                virtual void dispatchAirplayErrorEvent(const string& params) = 0;
-		virtual void dispatchOnConnectionStatusChanged(const string& params) = 0;
+                virtual void dispatchAirplayErrorEvent(const string& params)= 0;
+			    virtual void dispatchOnConnectionStatusChanged
+						(const string& params) = 0;
             };
 
             virtual void Register(IHomeKitTV::INotification* homeKitTV) = 0;
             virtual void Unregister(IHomeKitTV::INotification* homeKitTV) = 0;
+
             virtual void FactoryReset() = 0;
             virtual uint32_t requestAppLaunch(const string& origin, const string& reason, string& result /* @out */) = 0;
-	    virtual uint32_t setCurrentInputSource(const string& inputsource, string& response /* @out */) = 0;
-           virtual void getEnabledStatus(bool& result /* @out */) = 0;
-	        virtual void getConnectionStatus(bool& result /* @out */) = 0;
-	    virtual uint32_t setAppContainerIPAddress(const string& ipaddress) = 0;
+	        virtual uint32_t setCurrentInputSource(const string& inputsource, string& response /* @out */) = 0;
+            virtual void GetEnabledStatus(bool& result /* @out */) = 0;
+	        virtual void getConnectionStatus(bool& result /* @out */) =0;
+
+	        virtual uint32_t setAppContainerIPAddress(const string& ipaddress) = 0;
         };
     }
 }
