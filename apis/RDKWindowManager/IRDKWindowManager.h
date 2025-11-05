@@ -214,6 +214,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render
   virtual Core::hresult EnableDisplayRender(const string& client, bool enable) = 0;
+
+  /** Get the last key press information */
+  // @text getLastKeyPress
+  // @brief Retrieves the information about the last key press
+  // @param keyCode: Returns the key code of the last pressed key
+  // @param modifiers: Returns the modifiers flags of the last pressed key
+  // @param timestampInSeconds: Returns the timestamp of the last key press in seconds
+  virtual Core::hresult GetLastKeyPress(uint32_t &keyCode /* @out */, uint32_t &modifiers /* @out */, uint64_t &timestampInSeconds /* @out */) const = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
