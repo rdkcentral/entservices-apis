@@ -322,7 +322,11 @@ namespace Exchange {
         ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
         ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
 
-        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430 
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x440,
+        ID_RESOURCEMANAGER_CLIENT_ITERATOR           = ID_RESOURCEMANAGER + 1,
+        ID_RESOURCEMANAGER_APPID_ITERATOR            = ID_RESOURCEMANAGER + 2,
     }; // enum IDS
 
 } // namespace Exchange
