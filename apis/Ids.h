@@ -322,7 +322,17 @@ namespace Exchange {
         ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
         ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
 
-        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430 
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
+        ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
+        ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
+        ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
+        ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+
+        ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1
+
     }; // enum IDS
 
 } // namespace Exchange
