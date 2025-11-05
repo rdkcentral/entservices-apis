@@ -302,13 +302,6 @@ namespace WPEFramework
         // @param wakeupSources: Wake up sources array
         virtual Core::hresult GetWakeupSourceConfig(IWakeupSourceConfigIterator*& wakeupSources /* @out */) const = 0;
 
-        /** Initiate System mode change */
-        // @text setSystemMode
-        // @brief System mode change
-        // @param oldMode: old mode
-        // @param newMode: new mode
-        virtual Core::hresult SetSystemMode(const SystemMode currentMode , const SystemMode newMode ) const = 0;
-
         /** Get Power State before reboot */
         // @text getPowerStateBeforeReboot
         // @brief Get Power state before reboot
