@@ -345,7 +345,7 @@
         "startPairing": {
             "summary": "Initiates pairing a remote with the STB on the specified network.",
             "events": {
-                "onStatus": "pairingState will be updated to relect the current status of the request, along with updated remoteData upon a successful pairing."
+                "onStatus": "pairingState will be updated to reflect the current status of the request, along with updated remoteData upon a successful pairing."
             },
             "params": {
                 "type": "object",
