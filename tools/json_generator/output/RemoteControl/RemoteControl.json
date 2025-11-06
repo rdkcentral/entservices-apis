@@ -179,7 +179,7 @@
             "summary": "The pairing code for manual pairing which consists of 3 key codes (KEY_*).",
             "type": "array",
             "items": {
-                "type":"integer",
+                "type": "integer",
                 "example": "[2, 3, 4] -> [KEY_1, KEY_2, KEY_3]"
             }
         },
