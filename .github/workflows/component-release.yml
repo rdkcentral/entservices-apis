@@ -22,7 +22,6 @@ jobs:
             exit 1
           fi
           echo "Validation passed: version field found."
-          
   release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
