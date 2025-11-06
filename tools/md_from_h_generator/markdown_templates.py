@@ -22,34 +22,34 @@ import re
 
 # Templates
 HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.{classname}_Plugin"></a>
+<a id="{classname}_Plugin"></a>
 # {classname} Plugin
 
-**Version: [{version}](https://github.com/rdkcentral/rdkservices/blob/main/{classname}/CHANGELOG.md)**
+**Version: [{version}](https://github.com/rdkcentral/entservices-apis/tree/main/{foldername})**
 
 A {classname} plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
 """
 
 HEADER_DESCRIPTION_TEMPLATE = """
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `{classname}` plugin provides an interface for {classname}.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -63,7 +63,7 @@ The table below lists configuration options of the plugin.
 """
 
 METHODS_TOC_TEMPLATE = """
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
 The following methods are provided by the {classname} plugin:
@@ -75,37 +75,37 @@ The following methods are provided by the {classname} plugin:
 """
 
 METHOD_MARKDOWN_TEMPLATE = """
-<a id="method.{method_name}"></a>
-## *{method_name} [<sup>method</sup>](#head.Methods)*
+<a id="{method_name}"></a>
+## *{method_name}*
 
 {method_description}
 
 """
 
 PROPERTIES_TOC_TEMPLATE = """
-<a id="head.Properties"></a>
+<a id="Properties"></a>
 # Properties
 The following properties are provided by the {classname} plugin:
 
 {classname} interface properties:
 
-| Method | Description |
+| Property | Description |
 | :-------- | :-------- |
 """
 
 PROPERTY_MARKDOWN_TEMPLATE = """
-<a id="property.{property_name}"></a>
-## *{property_name} [<sup>property</sup>](#head.Properties)*
+<a id="{property_name}"></a>
+## *{property_name}*
 
 {property_description}
 
 """
 
 EVENTS_TOC_TEMPLATE = """
-<a id="head.Notifications"></a>
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
 The following events are provided by the {classname} plugin:
 
@@ -116,8 +116,8 @@ The following events are provided by the {classname} plugin:
 """
 
 EVENT_MARKDOWN_TEMPLATE = """
-<a id="event.{event_name}"></a>
-## *{event_name} [<sup>event</sup>](#head.Notifications)*
+<a id="{event_name}"></a>
+## *{event_name}*
 
 {event_description}
 
@@ -160,17 +160,18 @@ def to_camel_case(name):
     """Convert UpperCamelCase to lowerCamelCase."""
     return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-def generate_header_toc(classname, document_object, version="1.0.0"):
+def generate_header_toc(classname, document_object, version, foldername):
     """
     Generate the header table of contents for the markdown file.
     """
-    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version)
+    version = version if version else "1.0.0"
+    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=foldername)
     if len(document_object.methods.values()) > 0:
-        toc += "- [Methods](#head.Methods)\n"
+        toc += "- [Methods](#Methods)\n"
     if len(document_object.properties.values()) > 0:
-        toc += "- [Properties](#head.Properties)\n"
+        toc += "- [Properties](#Properties)\n"
     if len(document_object.events.values()) > 0:
-        toc += "- [Notifications](#head.Notifications)\n"
+        toc += "- [Notifications](#Notifications)\n"
     return toc
 
 def generate_header_description_markdown(classname, plugindescription=None):
@@ -206,7 +207,7 @@ def generate_methods_toc(methods, classname):
     for method in methods:
         method_info = methods[method]
         method_name = method_info.get('text') or to_camel_case(method)
-        toc += f"| [{method_name}](#method.{method_name}) | {method_info['brief'] or method_info['details']} |\n"
+        toc += f"| [{method_name}](#{method_name}) | {method_info['brief'] or method_info['details']} |\n"
     return toc
 
 def flatten_canonical_dict(canonical_dict, parent_prefix):
@@ -347,9 +348,9 @@ def generate_events_section(events, all_events=None):
         # Only show a list of links to events, not a table
         for event in events:
             camel_event = to_camel_case(event)
-            markdown += f"- [{camel_event}](#event.{camel_event})\n"
+            markdown += f"- [{camel_event}](#{camel_event})\n"
     else:
-        markdown += "Event details are missing in the header file documentation.\n"
+        markdown += "Event details will be updated soon.\n"
     return markdown
 
 def generate_properties_toc(properties, classname):
@@ -365,7 +366,7 @@ def generate_properties_toc(properties, classname):
             super_script = "<sup>RO</sup>"
         elif property_info['property'] == 'write':
             super_script = "<sup>WO</sup>"
-        toc += f"| [{property_name}](#property.{property_name}){super_script} | {property_info['brief'] or property_info['details']} |\n"
+        toc += f"| [{property_name}](#{property_name}){super_script} | {property_info['brief'] or property_info['details']} |\n"
     return toc
 
 def generate_property_markdown(property_name, property_info, symbol_registry, classname):
@@ -414,7 +415,7 @@ def generate_notifications_toc(events, classname):
     for event in events:
         event_info = events[event]
         event_name = event_info.get('text') or to_camel_case(event)
-        toc += f"| [{event_name}](#event.{event_name}) | {event_info['brief'] or event_info['details']} |\n"
+        toc += f"| [{event_name}](#{event_name}) | {event_info['brief'] or event_info['details']} |\n"
     return toc
 
 def generate_notification_markdown(event_name, event_info, symbol_registry, classname):
