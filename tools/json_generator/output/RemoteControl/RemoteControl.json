@@ -254,7 +254,7 @@
             }
         },
         "result": {
-            "type":"object",
+            "type": "object",
             "properties": {
                 "success": {
                     "$ref": "#/definitions/success"
