@@ -621,6 +621,7 @@ No Events
 | (property)?.yocto | string | <sup>*(optional)*</sup> Yocto version (must be one of the following: *kirkstone*, *dunfell*, *morty*, *daisy*) |
 | (property)?.pdri | string | <sup>*(optional)*</sup> Pdri version |
 
+
 ### Errors
 
 | Code | Message | Description |
@@ -651,6 +652,7 @@ No Events
         "mediarite": "8.3.53",
         "yocto": "dunfell",
         "pdri":"COESST11AEI_PDRI_PROD_20240119170804_3.2.2.0.bin"
+
     }
 }
 ```
