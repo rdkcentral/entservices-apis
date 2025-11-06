@@ -19,13 +19,14 @@
 
 import json
 import re
+import os
 
 # Templates
 HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
 <a id="{classname}_Plugin"></a>
 # {classname} Plugin
 
-**Version: [{version}](https://github.com/rdkcentral/entservices-apis/tree/main/{foldername})**
+**Version: [{version}](https://github.com/rdkcentral/entservices-apis/tree/main/apis/{foldername})**
 
 A {classname} plugin for Thunder framework.
 
@@ -165,7 +166,10 @@ def generate_header_toc(classname, document_object, version, foldername):
     Generate the header table of contents for the markdown file.
     """
     version = version if version else "1.0.0"
-    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=foldername)
+    interface_name = os.path.basename(foldername)
+    parent_name = os.path.dirname(foldername)
+    directory_name = os.path.basename(parent_name)
+    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=os.path.join(directory_name,interface_name))
     if len(document_object.methods.values()) > 0:
         toc += "- [Methods](#Methods)\n"
     if len(document_object.properties.values()) > 0:
