@@ -115,19 +115,19 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     // @brief Get the extended USB device information for the provided device name
     // @param deviceName: device name
     // @param deviceInfo: Detailed device information
-    virtual Core::hresult GetDeviceInfo(const string &deviceName /* @in @text deviceName */, USBDeviceInfo& deviceInfo /* @out */) const = 0;
+    virtual Core::hresult GetDeviceInfo(const string &deviceName /* @text deviceName */, USBDeviceInfo& deviceInfo /* @out */) const = 0;
 
     /** Binds the respective driver for the device */
     // @text bindDriver
     // @brief Bind the respective driver for the device
     // @param deviceName: Name of the device
-    virtual Core::hresult BindDriver(const string &deviceName /* @in @text deviceName */) const = 0;
+    virtual Core::hresult BindDriver(const string &deviceName /* @text deviceName */) const = 0;
 
     /** Unbinds the respective driver for the device */
     // @text unbindDriver
     // @brief Unbind the respective driver for the device
     // @param deviceName: Name of the device
-    virtual Core::hresult UnbindDriver(const string &deviceName /* @in @text deviceName */) const = 0;
+    virtual Core::hresult UnbindDriver(const string &deviceName /* @text deviceName */) const = 0;
 };
 
 } // namespace Exchange

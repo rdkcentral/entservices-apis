@@ -1,220 +1,220 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="HdcpProfile_Plugin"></a>
+<a id="HdcpProfile_Plugin"></a>
 # HdcpProfile Plugin
 
-A org.rdk.HdcpProfile plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdcpProfile/IHdcpProfile.h)**
+
+A HdcpProfile plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a id="Description"></a>
 # Description
 
-The HdcpProfile plugin provides an interface for HDCP-related data and events.
+The `HdcpProfile` plugin provides an interface for HdcpProfile.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.HdcpProfile*) |
-| classname | string | Class name: *org.rdk.HdcpProfile* |
+| callsign | string | Plugin instance name (default: org.rdk.HdcpProfile) |
+| classname | string | Class name: *HdcpProfile* |
 | locator | string | Library name: *libWPEFrameworkHdcpProfile.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.HdcpProfile plugin:
+The following methods are provided by the HdcpProfile plugin:
 
 HdcpProfile interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getHDCPStatus](#getHDCPStatus) | Returns HDCP-related data |
-| [getSettopHDCPSupport](#getSettopHDCPSupport) | Returns which version of HDCP is supported by the STB |
+| [getHDCPStatus](#getHDCPStatus) | Returns HDCP-related data. |
+| [getSettopHDCPSupport](#getSettopHDCPSupport) | Returns which version of HDCP is supported by the STB. |
 
-
-<a name="getHDCPStatus"></a>
+<a id="getHDCPStatus"></a>
 ## *getHDCPStatus*
 
-Returns HDCP-related data.  
-**hdcpReason Argument Values**  
-* `0`: HDMI cable is not connected or rx sense status is `off`  
-* `1`: Rx device is connected with power ON state, and HDCP authentication is not initiated  
-* `2`: HDCP success  
-* `3`:  HDCP authentication failed after multiple retries  
-* `4`:  HDCP authentication in progress   
-* `5`: HDMI video port is disabled.
+Returns HDCP-related data.
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.HDCPStatus | object | Contains HDCP-related data as separate properties |
-| result.HDCPStatus.isConnected | boolean | Indicates whether a display is connected |
-| result.HDCPStatus.isHDCPCompliant | boolean | Indicates whether the display is HDCP compliant |
-| result.HDCPStatus.isHDCPEnabled | boolean | Indicates whether content is protected |
+| result.HDCPStatus | HDCPStatus | Contains HDCP-related data as separate properties |
+| result.HDCPStatus.isConnected | bool | Indicates whether a display is connected |
+| result.HDCPStatus.isHDCPCompliant | bool | Indicates whether the display is HDCP compliant |
+| result.HDCPStatus.isHDCPEnabled | bool | Indicates whether content is protected |
 | result.HDCPStatus.hdcpReason | integer | The HDCP status reason |
 | result.HDCPStatus.supportedHDCPVersion | string | Supported HDCP protocol version by the host device |
 | result.HDCPStatus.receiverHDCPVersion | string | Supported HDCP protocol version by the receiver device (display) |
 | result.HDCPStatus.currentHDCPVersion | string | Currently used HDCP protocol version |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | Indicates whether the operation was successful |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.HdcpProfile.getHDCPStatus"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.HdcpProfile.getHDCPStatus"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
         "HDCPStatus": {
-            "isConnected": false,
-            "isHDCPCompliant": false,
-            "isHDCPEnabled": false,
-            "hdcpReason": 1,
-            "supportedHDCPVersion": "2.2",
-            "receiverHDCPVersion": "1.4",
-            "currentHDCPVersion": "1.4"
+            "isConnected": true,
+            "isHDCPCompliant": true,
+            "isHDCPEnabled": true,
+            "hdcpReason": 0,
+            "supportedHDCPVersion": "",
+            "receiverHDCPVersion": "",
+            "currentHDCPVersion": ""
         },
         "success": true
     }
 }
 ```
 
-<a name="getSettopHDCPSupport"></a>
+<a id="getSettopHDCPSupport"></a>
 ## *getSettopHDCPSupport*
 
 Returns which version of HDCP is supported by the STB.
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.supportedHDCPVersion | string | Supported HDCP protocol version by the host device |
-| result.isHDCPSupported | boolean | Indicates whether HDCP is supported by the STB |
-| result.success | boolean | Whether the request succeeded |
+| result.isHDCPSupported | bool | Indicates whether HDCP is supported by the STB |
+| result.success | bool | Indicates whether the operation was successful |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
-        "supportedHDCPVersion": "2.2",
+        "supportedHDCPVersion": "",
         "isHDCPSupported": true,
         "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.HdcpProfile plugin:
+The following events are provided by the HdcpProfile plugin:
 
 HdcpProfile interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDisplayConnectionChanged](#onDisplayConnectionChanged) | Triggered if HDMI was connected or disconnected upon receiving `onHdmiOutputHotPlug` event |
+| [onDisplayConnectionChanged](#onDisplayConnectionChanged) | Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug |
 
-
-<a name="onDisplayConnectionChanged"></a>
+<a id="onDisplayConnectionChanged"></a>
 ## *onDisplayConnectionChanged*
 
-Triggered if HDMI was connected or disconnected upon receiving `onHdmiOutputHotPlug` 
+Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.HDCPStatus | object | Contains HDCP-related data as separate properties |
-| params.HDCPStatus.isConnected | boolean | Indicates whether a display is connected |
-| params.HDCPStatus.isHDCPCompliant | boolean | Indicates whether the display is HDCP compliant |
-| params.HDCPStatus.isHDCPEnabled | boolean | Indicates whether content is protected |
+| params.HDCPStatus | HDCPStatus | Contains HDCP-related data as separate properties |
+| params.HDCPStatus.isConnected | bool | Indicates whether a display is connected |
+| params.HDCPStatus.isHDCPCompliant | bool | Indicates whether the display is HDCP compliant |
+| params.HDCPStatus.isHDCPEnabled | bool | Indicates whether content is protected |
 | params.HDCPStatus.hdcpReason | integer | The HDCP status reason |
 | params.HDCPStatus.supportedHDCPVersion | string | Supported HDCP protocol version by the host device |
 | params.HDCPStatus.receiverHDCPVersion | string | Supported HDCP protocol version by the receiver device (display) |
 | params.HDCPStatus.currentHDCPVersion | string | Currently used HDCP protocol version |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDisplayConnectionChanged",
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
     "params": {
-        "HDCPStatus": {
-            "isConnected": false,
-            "isHDCPCompliant": false,
-            "isHDCPEnabled": false,
-            "hdcpReason": 1,
-            "supportedHDCPVersion": "2.2",
-            "receiverHDCPVersion": "1.4",
-            "currentHDCPVersion": "1.4"
-        }
+        "isConnected": true,
+        "isHDCPCompliant": true,
+        "isHDCPEnabled": true,
+        "hdcpReason": 0,
+        "supportedHDCPVersion": "",
+        "receiverHDCPVersion": "",
+        "currentHDCPVersion": ""
     }
 }
 ```
-
