@@ -167,9 +167,9 @@ def generate_header_toc(classname, document_object, version, foldername):
     """
     version = version if version else "1.0.0"
     interface_name = os.path.basename(foldername)
-    parent_name = os.path.dirname(foldername)
-    directory_name = os.path.basename(parent_name)
-    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=os.path.join(directory_name,interface_name))
+    directory_name = os.path.dirname(foldername)
+    parent_name = os.path.basename(directory_name)
+    toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=os.path.join(parent_name,interface_name))
     if len(document_object.methods.values()) > 0:
         toc += "- [Methods](#Methods)\n"
     if len(document_object.properties.values()) > 0:
