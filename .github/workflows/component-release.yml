@@ -17,7 +17,7 @@ jobs:
       - name: Validate PR description for version field
         run: |
           PR_DESC="${{ github.event.pull_request.body }}"
-          if ! echo "$PR_DESC" | grep -qiP 'version\s*:\s*(major|minor|patch)'; then
+          if ! echo "$PR_DESC" | grep -qiE 'version[[:space:]]*:[[:space:]]*(major|minor|patch)'; then
             echo "ERROR: PR description must include 'version: major|minor|patch'."
             exit 1
           fi
