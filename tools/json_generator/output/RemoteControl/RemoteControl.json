@@ -422,7 +422,7 @@
         "clearIRCodes": {
             "summary": "Clears the IR codes from the specified remote.",
             "events": {
-                "onStatus": "irProgState will be updated to relect the current status of the request"
+                "onStatus": "irProgState will be updated to reflect the current status of the request"
             },
             "params": {
                 "type": "object",
@@ -446,7 +446,7 @@
         "setIRCode": {
             "summary": "Programs an IR code into the specified remote control.",
             "events":{
-                "onStatus": "irProgState will be updated to relect the current status of the request"
+                "onStatus": "irProgState will be updated to reflect the current status of the request"
             },
             "params": {
                 "type": "object",

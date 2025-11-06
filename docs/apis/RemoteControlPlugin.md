@@ -229,7 +229,7 @@ Initiates pairing a remote with the STB on the specified network.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#onStatus) | pairingState will be updated to relect the current status of the request, along with updated remoteData upon a successful pairing. |
+| [onStatus](#onStatus) | pairingState will be updated to reflect the current status of the request, along with updated remoteData upon a successful pairing. |
 ### Parameters
 
 | Name | Type | Description |
@@ -391,7 +391,7 @@ Clears the IR codes from the specified remote.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#onStatus) | irProgState will be updated to relect the current status of the request |
+| [onStatus](#onStatus) | irProgState will be updated to reflect the current status of the request |
 ### Parameters
 
 | Name | Type | Description |
@@ -444,7 +444,7 @@ Programs an IR code into the specified remote control.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#onStatus) | irProgState will be updated to relect the current status of the request |
+| [onStatus](#onStatus) | irProgState will be updated to reflect the current status of the request |
 ### Parameters
 
 | Name | Type | Description |
