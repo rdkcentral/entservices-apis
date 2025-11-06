@@ -69,7 +69,7 @@
                     "name": {
                         "summary": "The remote name",
                         "type": "string",
-                        "example": "P073 SkyQ EC201"
+                        "example": "P073 MyQ EC201"
                     },
                     "remoteId": {
                         "summary": "This integer is the remote ID number, assigned by the network",

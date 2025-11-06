@@ -196,7 +196,7 @@ No Events
                 {
                     "macAddress": "E8:1C:FD:9A:07:1E",
                     "connected": true,
-                    "name": "P073 SkyQ EC201",
+                    "name": "P073 MyQ EC201",
                     "remoteId": 1,
                     "deviceId": 65,
                     "make": "Omni Remotes",
@@ -1272,7 +1272,7 @@ Triggered at any time when the status of any one of the supported STB remote net
                 {
                     "macAddress": "E8:1C:FD:9A:07:1E",
                     "connected": true,
-                    "name": "P073 SkyQ EC201",
+                    "name": "P073 MyQ EC201",
                     "remoteId": 1,
                     "deviceId": 65,
                     "make": "Omni Remotes",
