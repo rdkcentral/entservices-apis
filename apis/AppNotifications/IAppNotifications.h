@@ -92,9 +92,9 @@ namespace WPEFramework
                 // @param event: the event to emit
                 // @param payload: the payload to emit
                 // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
-                virtual void Emit(const string &event /* @in */,
-                                  const string &payload /* @in @opaque */,
-                                  const string &appId /* @in */) = 0;
+                virtual void Emit(const string &event,
+                                  const string &payload /*@opaque */,
+                                  const string &appId) {};
 
             };
 
@@ -106,7 +106,7 @@ namespace WPEFramework
             // @param listen: whether to listen
             // @param status: status to be filled in
             // @returns Core::hresult
-            virtual Core::hresult HandleAppEventNotifier(IEmitter *emitCb /* @in */, const string& event /* @in */, bool listen /* @in */, bool& status /* @out */) = 0;
+            virtual Core::hresult HandleAppEventNotifier(IEmitter *emitCb, const string& event, bool listen, bool& status /* @out */) = 0;
 
         };
     } // namespace Exchange
