@@ -174,6 +174,12 @@ namespace Exchange {
         // @brief Provides access to the STB IP addresses.
         // @param estbIp: STB IP addresses
         virtual Core::hresult EstbIp(string& estbIp /* @out */) const = 0;
+
+        // @property
+        // @text supportedaudioports
+        // @brief Provides access to the audio ports supported on the device.
+        // @param supportedAudioPorts: Audio ports supported on the device.
+        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
@@ -203,12 +209,6 @@ namespace Exchange {
         typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
 
-        // @property
-        // @text supportedaudioports
-        // @brief Provides access to the audio ports supported on the device.
-        // @param supportedAudioPorts: Audio ports supported on the device.
-        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */) const = 0;
-
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
@@ -227,6 +227,7 @@ namespace Exchange {
         // @param supportedMS12AudioProfiles: MS12 audio profiles
         virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
     };
+
 
     /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
