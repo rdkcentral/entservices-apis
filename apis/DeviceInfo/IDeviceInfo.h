@@ -182,45 +182,26 @@ namespace Exchange {
 
         virtual ~IDeviceAudioCapabilities() override = default;
 
-        enum AudioOutput : uint8_t {
-            AUDIO_OTHER,
-            AUDIO_RF_MODULATOR,
-            AUDIO_ANALOG,
-            AUDIO_SPDIF, //over RCA or TOSLINK
-            AUDIO_HDMI0,
-            AUDIO_HDMI1,
-            AUDIO_DISPLAYPORT
-        };
-
         enum AudioCapability : uint8_t {
-            AUDIOCAPABILITY_NONE,
-            ATMOS,
-            DD,
-            DDPLUS,
-            DAD,
-            DAPV2,
-            MS12
+            AUDIOCAPABILITY_NONE /* @text none */,
+            ATMOS /* @text ATMOS */,
+            DD /* @text DOLBY DIGITAL */,
+            DDPLUS /* @text DOLBY DIGITAL PLUS */,
+            DAD /* @text Dual Audio Decode */,
+            DAPV2 /* @text DAPv2 */,
+            MS12 /* @text MS12 */
         };
 
         enum MS12Capability : uint8_t {
-            MS12CAPABILITY_NONE,
-            DOLBYVOLUME,
-            INTELIGENTEQUALIZER,
-            DIALOGUEENHANCER
-        };
-
-        enum MS12Profile : uint8_t {
-            MS12PROFILE_NONE,
-            MUSIC,
-            MOVIE,
-            VOICE
+            MS12CAPABILITY_NONE /* @text none */,
+            DOLBYVOLUME /* @text Dolby Volume */,
+            INTELIGENTEQUALIZER /* @text Inteligent Equalizer */,
+            DIALOGUEENHANCER /* @text Dialogue Enhancer */
         };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-        typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT> IAudioOutputIterator;
         typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
-        typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
         // @property
         // @text supportedaudioports
