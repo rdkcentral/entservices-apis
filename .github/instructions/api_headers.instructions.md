@@ -155,7 +155,7 @@ This document details the guidelines for defining interface headers for RDK Ente
        // NOT: SetHdmiEnabled
 
 
-12. ### Documentation Tags Guidelines
+12. Documentation Tags Guidelines
       To ensure consistency and clarity in interface documentation, each method, event, and struct member must be annotated using the following tags. If any methods/events/struct members have not been annotated with the tags below, then they should be flagged as an error during PR review.
     
        ### Required Tags:
