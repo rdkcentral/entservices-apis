@@ -1346,4 +1346,7 @@ Generated for manual pairing validation.
 | params?.key | integer | <sup>*(optional)*</sup> A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode |
 
 ### Example
+<<<<<<< HEAD
 
+=======
+>>>>>>> ceaf464 (RDKEMW-9134: Update RemoteControlPlugin.md)
