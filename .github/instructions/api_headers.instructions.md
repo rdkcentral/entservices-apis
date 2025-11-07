@@ -97,7 +97,7 @@ This document details the guidelines for defining interface headers for RDK Ente
    ### Example:
       enum USBStorageMountFlags : uint8_t {
           READ_ONLY  = 1,  // READ ONLY
-          READ-WRITE = 2   // READ WRITE
+          READ_WRITE = 2   // READ WRITE
       };
 
       #### Exception:
