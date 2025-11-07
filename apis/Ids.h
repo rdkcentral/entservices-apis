@@ -120,7 +120,7 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 6,
         ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 7,
         ID_DEVICE_CAPABILITIES_RESOLUTION            = ID_DEVICE_INFO + 8,
-        ID_FIRMWARE_VERSION                          = ID_DEVICE_INFO + 9,
+        ID_DEVICE_INFO_ADDRESSES_ITERATOR            = ID_DEVICE_INFO + 9,
 
         ID_FOCUS                                     = ID_ENTOS_OFFSET + 0x0E0,
 

@@ -39,7 +39,33 @@ namespace Exchange {
         static constexpr uint32_t maxZOrder = 255;
         static constexpr uint32_t minZOrder = 0;
 
-        using ScreenResolution = IDeviceVideoCapabilities::ScreenResolution;
+        enum ScreenResolution : uint8_t {
+            SCREENRESOLUTION_UNKNOWN = 0,
+            SCREENRESOLUTION_480I = 1,
+            SCREENRESOLUTION_480P = 2,
+            SCREENRESOLUTION_576I = 3,
+            SCREENRESOLUTION_576P = 4,
+            SCREENRESOLUTION_576P50HZ = 5,
+            SCREENRESOLUTION_720P = 6,
+            SCREENRESOLUTION_720P50HZ = 7,
+            SCREENRESOLUTION_768P60HZ = 8,
+            SCREENRESOLUTION_1080I = 9,
+            SCREENRESOLUTION_1080I25HZ = 10,
+            SCREENRESOLUTION_1080I50HZ = 11,
+            SCREENRESOLUTION_1080P = 12,
+            SCREENRESOLUTION_1080P24HZ = 13,
+            SCREENRESOLUTION_1080P25HZ = 14,
+            SCREENRESOLUTION_1080P30HZ = 15,
+            SCREENRESOLUTION_1080P50HZ = 16,
+            SCREENRESOLUTION_1080P60HZ = 17,
+            SCREENRESOLUTION_2160P24HZ = 18,
+            SCREENRESOLUTION_2160P25HZ = 19,
+            SCREENRESOLUTION_2160P30HZ = 20,
+            SCREENRESOLUTION_2160P50HZ = 21,
+            SCREENRESOLUTION_2160P60HZ = 22,
+            SCREENRESOLUTION_4320P30HZ = 23,
+            SCREENRESOLUTION_4320P60HZ = 24
+        };
 
         /**
          * @brief factor to be used to remove the need of using float values on the interface.
