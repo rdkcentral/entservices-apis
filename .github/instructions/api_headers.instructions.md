@@ -183,10 +183,10 @@ This document details the guidelines for defining interface headers for RDK Ente
             // @retval ErrorCode::INTERNAL: Internal server error occurred
 
             virtual Core::hresult ApplicationStateChanged(
-                const string& applicationName /* @in @text applicationName */,
-                const State& state /* @in @text state */,
-                const string& applicationId /* @in @text applicationId */,
-                const ErrorCode& error /* @in @text error */
+                const string& applicationName /* @text applicationName */,
+                const State& state /* @text state */,
+                const string& applicationId /* @text applicationId */,
+                const ErrorCode& error /* @text error */
             ) = 0;
 
      ### Event Example:
