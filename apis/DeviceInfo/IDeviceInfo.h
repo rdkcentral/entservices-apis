@@ -193,20 +193,20 @@ namespace Exchange {
         };
 
         enum AudioCapability : uint8_t {
-            AUDIOCAPABILITY_NONE,
-            ATMOS,
-            DD,
-            DDPLUS,
-            DAD,
-            DAPV2,
-            MS12
+            AUDIOCAPABILITY_NONE = 0 /* @text none */,
+            ATMOS                = 1 /* @text ATMOS */,
+            DD                   = 2 /* @text DOLBY DIGITAL */,
+            DDPLUS               = 3 /* @text DOLBY DIGITAL PLUS */,
+            DAD                  = 4 /* @text Dual Audio Decode */,
+            DAPV2                = 5 /* @text DAPv2 */,
+            MS12                 = 6 /* @text MS12 */
         };
 
         enum MS12Capability : uint8_t {
-            MS12CAPABILITY_NONE,
-            DOLBYVOLUME,
-            INTELIGENTEQUALIZER,
-            DIALOGUEENHANCER
+            MS12CAPABILITY_NONE = 0 /* @text none */,
+            DOLBYVOLUME         = 1 /* @text Dolby Volume */,
+            INTELIGENTEQUALIZER = 2 /* @text Inteligent Equalizer */,
+            DIALOGUEENHANCER    = 3 /* @text Dialogue Enhancer */
         };
 
         enum MS12Profile : uint8_t {
@@ -266,39 +266,39 @@ namespace Exchange {
         };
 
         enum ScreenResolution : uint8_t {
-            SCREENRESOLUTION_UNKNOWN = 0,
-            SCREENRESOLUTION_480I = 1,
-            SCREENRESOLUTION_480P = 2,
-            SCREENRESOLUTION_576I = 3,
-            SCREENRESOLUTION_576P = 4,
-            SCREENRESOLUTION_576P50HZ = 5,
-            SCREENRESOLUTION_720P = 6,
-            SCREENRESOLUTION_720P50HZ = 7,
-            SCREENRESOLUTION_768P60HZ = 8,
-            SCREENRESOLUTION_1080I = 9,
-            SCREENRESOLUTION_1080I25HZ = 10,
-            SCREENRESOLUTION_1080I50HZ = 11,
-            SCREENRESOLUTION_1080P = 12,
-            SCREENRESOLUTION_1080P24HZ = 13,
-            SCREENRESOLUTION_1080P25HZ = 14,
-            SCREENRESOLUTION_1080P30HZ = 15,
-            SCREENRESOLUTION_1080P50HZ = 16,
-            SCREENRESOLUTION_1080P60HZ = 17,
-            SCREENRESOLUTION_2160P24HZ = 18,
-            SCREENRESOLUTION_2160P25HZ = 19,
-            SCREENRESOLUTION_2160P30HZ = 20,
-            SCREENRESOLUTION_2160P50HZ = 21,
-            SCREENRESOLUTION_2160P60HZ = 22,
-            SCREENRESOLUTION_4320P30HZ = 23,
-            SCREENRESOLUTION_4320P60HZ = 24
+            SCREENRESOLUTION_UNKNOWN = 0 /* @text unknown */,
+            SCREENRESOLUTION_480I = 1 /* @text 480i */,
+            SCREENRESOLUTION_480P = 2 /* @text 480p */,
+            SCREENRESOLUTION_576I = 3 /* @text 576i */,
+            SCREENRESOLUTION_576P = 4 /* @text 576p */,
+            SCREENRESOLUTION_576P50HZ = 5 /* @text 576p50 */,
+            SCREENRESOLUTION_720P = 6 /* @text 720p */,
+            SCREENRESOLUTION_720P50HZ = 7 /* @text 720p50 */,
+            SCREENRESOLUTION_768P60HZ = 8 /* @text 768p60 */,
+            SCREENRESOLUTION_1080I = 9 /* @text 1080i */,
+            SCREENRESOLUTION_1080I25HZ = 10 /* @text 1080i25 */,
+            SCREENRESOLUTION_1080I50HZ = 11 /* @text 1080i50 */,
+            SCREENRESOLUTION_1080P = 12 /* @text 1080p */,
+            SCREENRESOLUTION_1080P24HZ = 13 /* @text 1080p24 */,
+            SCREENRESOLUTION_1080P25HZ = 14 /* @text 1080p25 */,
+            SCREENRESOLUTION_1080P30HZ = 15 /* @text 1080p30 */,
+            SCREENRESOLUTION_1080P50HZ = 16 /* @text 1080p50 */,
+            SCREENRESOLUTION_1080P60HZ = 17 /* @text 1080p60 */,
+            SCREENRESOLUTION_2160P24HZ = 18 /* @text 2160p24 */,
+            SCREENRESOLUTION_2160P25HZ = 19 /* @text 2160p25 */,
+            SCREENRESOLUTION_2160P30HZ = 20 /* @text 2160p30 */,
+            SCREENRESOLUTION_2160P50HZ = 21 /* @text 2160p50 */,
+            SCREENRESOLUTION_2160P60HZ = 22 /* @text 2160p60 */,
+            SCREENRESOLUTION_4320P30HZ = 23 /* @text 4320p30 */,
+            SCREENRESOLUTION_4320P60HZ = 24 /* @text 4320p60 */
         };
 
         enum CopyProtection : uint8_t {
-            HDCP_UNAVAILABLE,
-            HDCP_14,
-            HDCP_20,
-            HDCP_21,
-            HDCP_22
+            HDCP_UNAVAILABLE = 0 /* @text unavailable */,
+            HDCP_14          = 1 /* @text 1.4 */,
+            HDCP_20          = 2 /* @text 2.0 */,
+            HDCP_21          = 3 /* @text 2.1 */,
+            HDCP_22          = 4 /* @text 2.2 */
         };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
