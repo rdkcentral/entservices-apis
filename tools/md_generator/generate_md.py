@@ -24,102 +24,88 @@ import os
 import glob
 import time
 import sys
+import argparse
 #from pathlib import Path, PureWindowsPath
 
 
-def generate_md():
-    print()
+def generate_md(logfile=None):
     print("*****   Generating md files under docs/apis   *****")
-    print()
     apis_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../apis"))
     plugin_folders = [f for f in os.listdir(apis_dir) if os.path.isdir(os.path.join(apis_dir, f))]
     used_json_method = False
+
     for plugin in plugin_folders:
         plugin_path = os.path.join(apis_dir, plugin)
         h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
         if h_files:
             print(f"Found I*.h files in {plugin_path}: {h_files}")
-            convert_h_to_md(plugin_path)
+            convert_h_to_md(plugin_path, logfile)
             print(f"[TOOL] Would generate md from {h_files} using the required tool.")
         else:
             print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
             json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../json_generator/output/{plugin}"))
             convert_json_to_md(json_plugin_path)
             used_json_method = True
+
     if not used_json_method:
         print("No plugin folders required convert_json_to_md().")
-    print()
     print("*****   MD generation completed   *****")
 
-
-# Fetching the json files from each plugin to generate md files
-# Under docs/apis folder
 def convert_json_to_md(plugin_path):
-    print()
     print(f"*****   Generating md files under docs/apis for {plugin_path}   *****")
-    dirname = os.path.dirname(__file__)
     jsongenpath = "python3 ./json2md/generator_json.py"
-    # Find all *Plugin.json files in the plugin_path
     flist = glob.glob(os.path.join(plugin_path, "*Plugin.json"))
     for file in flist:
-        os.system(r"{} --docs {} -o ../../../../docs/apis --no-interfaces-section".format(jsongenpath, file))
-    print()
+        os.system(f"{jsongenpath} --docs {file} -o ../../../../docs/apis --no-interfaces-section")
     print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
-def convert_h_to_md(plugin_path):
-    print()
+def convert_h_to_md(plugin_path, logfile=None):
     print(f"*****   Generating md files from headers under docs/apis for {plugin_path}   *****")
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
     script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../md_from_h_generator/generate_md_from_header.py"))
+
     cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
+    if logfile:
+        cmd += f" --logfile {logfile}"
+
     print(f"Running: {cmd}")
     os.system(cmd)
-    print()
     print(f"*****   Header-based md generation completed for {plugin_path}   *****")
 
-# Replacing the given strings in md files to fix the linking issues
 def postprocess_md():
-    print()
+    print("Postprocessing md files...")
     flist = glob.glob(os.path.join(r"./../../docs/apis/*Plugin.md"))
 
-    # Loop and replace the given words
     for file in flist:
-        # Open and Read the file
         with open(file, "r") as file_rd:
             rplce_file = file_rd.read()
             rplce_file_Org = rplce_file
-            list_rplce = (" [<sup>method</sup>](#head.Methods)",
-                          " [<sup>event</sup>](#head.Notifications)",
-                          " [<sup>property</sup>](#head.Properties)",
-                          "head.", "method.", "acronym.", "term.", "event.", "ref.", "property.")
-            print("postprocessing filename:", file)
+            list_rplce = (" #head.Methods", " #head.Notifications", " #head.Properties", "head.", "method.", "acronym.", "term.", "event.", "ref.", "property.")
 
-           # replace the words
+            print("postprocessing filename:", file)
             for word in list_rplce:
                 rplce_file = rplce_file.replace(word, "")
 
-            # Replace the file only if, the original file and
-            # current file are different
             if rplce_file != rplce_file_Org:
-               print("link fixing filename:", file)
-               with open(file, "w") as file_wr:
+                print("link fixing filename:", file)
+                with open(file, "w") as file_wr:
                     file_wr.writelines(rplce_file)
-    print()
     print("********************   Postprocessing completed   ********************")
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate and postprocess md files.")
+    parser.add_argument("--logfile", "-l", help="Optional log file path for header-based generation.")
+    args = parser.parse_args()
+
     start = time.time()
-    count = 0
-    generate_md()
-    print()
+    generate_md(args.logfile)
     print()
     postprocess_md()
     print()
-    print()
-    # Update sidebar after postprocessing
     os.system('python3 update_sidebar.py')
     end = time.time()
-    print("The time taken to execute the above program is :", end - start)
+    print("The time taken to execute the above program is:", end - start)
+
     if os.path.exists("./json2md/__pycache__"):
         os.system('rm -rf "./json2md/__pycache__"')
 
