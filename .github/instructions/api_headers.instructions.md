@@ -27,7 +27,7 @@ This document details the guidelines for defining interface headers for RDK Ente
                 // ...
             };
 
-4. Notification Interfaces
+3. Notification Interfaces
    ### Requirement:
       - Notification interfaces MUST provide default (empty) implementations for notification methods;
       - Do NOT use pure virtual methods.
@@ -48,14 +48,14 @@ This document details the guidelines for defining interface headers for RDK Ente
       };
 
 
-5.  Method Return Type
+4.  Method Return Type
     ### Requirement:
        - All methods MUST return Core::hresult.
-       - Notification Methods need not to return Core::hresult.
+       - Notification Methods need not return Core::hresult.
     ### Example:
        virtual Core::hresult BindDriver(const string& deviceName) const = 0;
 
-6.  API & Event Naming for Interface and JSON RPC
+5.  API & Event Naming for Interface and JSON RPC
     ### PascalCase in Interface Header and COMRPC:
        - Method & Event names SHOULD be in Pascal Case.
     
@@ -75,11 +75,11 @@ This document details the guidelines for defining interface headers for RDK Ente
     
       virtual void OnDevicePluggedIn(const USBDevice& device) {};
 
- 7. Parameter Naming & Tagging
+ 6. Parameter Naming & Tagging
     ### camelCase for JSON RPC:
        - All parameter names in JSON RPC requests/responses SHOULD use camelCase and be valid ASCII strings.
-       - Error out the parameter names that are defined in different cases other than camelCase.
-       - camelCase is the first letter must be the small-case followed by the first-letter of each words in capital case.
+       - Flag as errors any parameter names that are defined in different cases other than camelCase.
+       - In camelCase, the first letter must be lowercase, followed by the first letter of each subsequent word in uppercase.
          
     ### @out Tag for Output Parameters:
        - Use @out tag for output parameters.
@@ -89,7 +89,7 @@ This document details the guidelines for defining interface headers for RDK Ente
     ### Example
        - virtual Core::hresult GetPartitionInfo(const string& mountPath, USBStoragePartitionInfo& **partitionInfo** /* @out */) const = 0;
    
-8. Enum Naming
+7. Enum Naming
    ### Requirement:
       - Enum names SHOULD be ALL_UPPER_SNAKE_CASE.
       - Enum names SHOULD NOT contain any special characters other than underscore.
@@ -103,7 +103,7 @@ This document details the guidelines for defining interface headers for RDK Ente
       #### Exception:
             Standardized names (e.g., kHz) MAY be exempt.
 
-9. Getter/Setter Naming
+8. Getter/Setter Naming
    ### Requirement:
       - All the getter and setter method names should be in PascalCase.
       - All the getter and setter method names should be in camelCase when defining via annotations/tags.
@@ -111,10 +111,10 @@ This document details the guidelines for defining interface headers for RDK Ente
       virtual Core::hresult GetDefaultInterface(/* ... */) const = 0;
       virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
 
-10. Event Naming Convention
+9. Event Naming Convention
     ### Format:
        - Event names SHOULD follow on[Object][Action].
-       - Event names not starting with on and not following this naming convention order SHOULD BE FLAGGED AS ERRORS during code review.
+       - Event names not starting with on and not following this naming convention order should be flagged as errors during code review.
          
           - Object: Noun giving context.
           - Action: Verb (present/past tense for timing).
@@ -146,7 +146,7 @@ This document details the guidelines for defining interface headers for RDK Ente
             // ...
          }
 
-11. Acronym Capitalization
+10. Acronym Capitalization
     ### Requirement:
        - Acronyms SHOULD be fully capitalized.
 
@@ -155,7 +155,7 @@ This document details the guidelines for defining interface headers for RDK Ente
        // NOT: SetHdmiEnabled
 
 
-12. Documentation Tags Guidelines
+11. Documentation Tags Guidelines
       To ensure consistency and clarity in interface documentation, each method, event, and struct member must be annotated using the following tags. If any methods/events/struct members have not been annotated with the tags below, then they should be flagged as an error during PR review.
     
        ### Required Tags:
