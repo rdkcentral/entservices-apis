@@ -88,7 +88,7 @@ class HeaderFileParser:
         Args:
             header_file_path (str): path to the header file
             plugin_name (str): name of the plugin, used to derive the classname
-            logger (Logger): list of regex matching different components of the header file
+            logger (Logger): logger instance for logging warnings and errors
         """
         # objects to hold the different components and properties of the header file
         self.header_file_path = header_file_path
