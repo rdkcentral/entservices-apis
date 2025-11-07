@@ -21,10 +21,6 @@
 
 #include "Module.h"
 
-#include <DeviceInfo/IDeviceInfo.h>
-
-// @insert <DeviceInfo/IDeviceInfo.h>
-
 namespace WPEFramework {
 namespace Exchange {
 
