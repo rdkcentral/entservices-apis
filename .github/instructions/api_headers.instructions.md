@@ -3,6 +3,7 @@ applyTo: "apis/**/I*.h"
 ---
 
 When writing review comments, include a direct GitHub link to the exact line of the violated guideline in this file using this format:
+
 "Refer: https://github.com/<org>/<repo>/blob/main/api_headers.instructions.md#L<line_number>"
 
 # Interface Header Specification Instructions(apis/**/I*.h)
