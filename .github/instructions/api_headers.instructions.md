@@ -4,7 +4,7 @@ applyTo: "apis/**/I*.h"
 
 When writing review comments, include a direct GitHub link to the exact line of the violated guideline in this file using this format:
 
-"Refer: https://github.com/<org>/<repo>/blob/main/api_headers.instructions.md#L<line_number>"
+"Refer: https://github.com/rdkcentral/entservices-apis/blob/main/.github/instructions/api_headers.instructions.md#L<line_number>"
 
 # Interface Header Specification Instructions(apis/**/I*.h)
 This document details the guidelines for defining interface headers for RDK Entertainment Services APIs, to ensure consistency and compliance with Thunder Plugins Interface standards. These guidelines have to be taken into account for each review.
