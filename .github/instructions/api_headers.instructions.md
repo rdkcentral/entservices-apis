@@ -105,11 +105,14 @@ This document details the guidelines for defining interface headers for RDK Ente
 
 8. Getter/Setter Naming
    ### Requirement:
+      - API getters SHALL always start with get and Setters SHALL always start with set.
       - All the getter and setter method names should be in PascalCase.
-      - All the getter and setter method names should be in camelCase when defining via annotations/tags.
+      - All the getter and setter method names should be in camelCase when defining via @text annotations/tags.
    ### Example:
-      virtual Core::hresult GetDefaultInterface(/* ... */) const = 0;
-      virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
+         // @text getDefaultInterface
+         virtual Core::hresult GetDefaultInterface(/* ... */) const = 0; 
+         // @text setDefaultInterface
+         virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
 
 9. Event Naming Convention
     ### Format:
