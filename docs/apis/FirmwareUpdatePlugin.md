@@ -47,14 +47,14 @@ FirmwareUpdate interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getUpdateState](#getUpdateState) | Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method. |
+| [getUpdateState](#getUpdateState) | Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware  |
 | [setAutoReboot](#setAutoReboot) | Enable or disable the AutoReboot feature. |
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. |
 
 <a id="getUpdateState"></a>
 ## *getUpdateState*
 
-Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
+Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware 
 
 ### Events
 Event details will be updated soon.

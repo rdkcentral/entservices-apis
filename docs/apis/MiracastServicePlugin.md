@@ -2,7 +2,7 @@
 <a id="MiracastService_Plugin"></a>
 # MiracastService Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Miracast/IMiracastService.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MiracastService/IMiracastService.h)**
 
 A MiracastService plugin for Thunder framework.
 

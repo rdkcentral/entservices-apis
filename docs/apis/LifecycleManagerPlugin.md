@@ -2,7 +2,7 @@
 <a id="LifecycleManager_Plugin"></a>
 # LifecycleManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManagerState.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManager.h)**
 
 A LifecycleManager plugin for Thunder framework.
 
@@ -62,7 +62,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
+| params.appId | string | App identifier for the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,7 +113,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
+| params.appId | string | App identifier for the application. |
 | params.closeReason | string | closed reason for application |
 ### Results
 | Name | Type | Description |
@@ -166,7 +166,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
+| params.appId | string | App identifier for the application. |
 | params.stateChangedId | integer | state changed identifier |
 | params.success | bool |  |
 ### Results
@@ -234,8 +234,8 @@ Notifies the new state
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
-| params.appInstanceId | string |  |
+| params.appId | string | App identifier for the application. |
+| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
 | params.oldState | LifecycleState | The previous state of the application instance before the update. |
 | params.newState | LifecycleState | The new state to transition the application. |
 | params.navigationIntent | string | navigation intent during active state |
