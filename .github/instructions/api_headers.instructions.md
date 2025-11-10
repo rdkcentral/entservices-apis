@@ -114,7 +114,7 @@ This document details the guidelines for defining interface headers for RDK Ente
       - All the getter and setter method names should be in camelCase when defining via @text annotations/tags.
    ### Example:
          // @text getDefaultInterface
-         virtual Core::hresult GetDefaultInterface(/* ... */) const = 0; 
+         virtual Core::hresult GetDefaultInterface(/* ... */) const = 0;
          // @text setDefaultInterface
          virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
 
