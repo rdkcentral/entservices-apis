@@ -109,7 +109,7 @@ This document details the guidelines for defining interface headers for RDK Ente
 
 8. Getter/Setter Naming
    ### Requirement:
-      - API getters SHALL always start with get and Setters SHALL always start with set.
+      - API getters SHALL always start with get and setters SHALL always start with set.
       - All the getter and setter method names should be in PascalCase.
       - All the getter and setter method names should be in camelCase when defining via @text annotations/tags.
    ### Example:
