@@ -102,7 +102,8 @@ def main():
     print()
     postprocess_md()
     print()
-    os.system('python3 update_sidebar.py')
+    update_sidebar_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'update_sidebar.py'))
+    os.system(f'python3 "{update_sidebar_path}"')
     end = time.time()
     print("The time taken to execute the above program is:", end - start)
 
@@ -111,4 +112,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
