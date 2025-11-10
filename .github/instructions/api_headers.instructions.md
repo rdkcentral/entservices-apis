@@ -2,6 +2,10 @@
 applyTo: "apis/**/I*.h"
 ---
 
+When writing review comments, include a direct GitHub link to the exact line of the violated guideline in this file using this format:
+
+"Refer: https://github.com/rdkcentral/entservices-apis/blob/main/.github/instructions/api_headers.instructions.md?plain=1#L<line_number>"
+
 # Interface Header Specification Instructions(apis/**/I*.h)
 This document details the guidelines for defining interface headers for RDK Entertainment Services APIs, to ensure consistency and compliance with Thunder Plugins Interface standards. These guidelines have to be taken into account for each review.
 
@@ -105,11 +109,14 @@ This document details the guidelines for defining interface headers for RDK Ente
 
 8. Getter/Setter Naming
    ### Requirement:
+      - API getters SHALL always start with get and Setters SHALL always start with set.
       - All the getter and setter method names should be in PascalCase.
-      - All the getter and setter method names should be in camelCase when defining via annotations/tags.
+      - All the getter and setter method names should be in camelCase when defining via @text annotations/tags.
    ### Example:
-      virtual Core::hresult GetDefaultInterface(/* ... */) const = 0;
-      virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
+         // @text getDefaultInterface
+         virtual Core::hresult GetDefaultInterface(/* ... */) const = 0; 
+         // @text setDefaultInterface
+         virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
 
 9. Event Naming Convention
     ### Format:
