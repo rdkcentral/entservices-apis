@@ -358,15 +358,15 @@ namespace Exchange {
 
         struct EXTERNAL DefaultResln {
             string defaultResolution;
-        }
+        };
 
         struct EXTERNAL HostEdid {
             string EDID;
-        }
+        };
 
         struct EXTERNAL SupportedHDCPVer {
             CopyProtection supportedHDCPVersion;
-        }
+        };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
