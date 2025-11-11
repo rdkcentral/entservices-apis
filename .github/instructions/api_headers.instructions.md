@@ -2,18 +2,26 @@
 applyTo: "apis/**/I*.h"
 ---
 
+When writing review comments, include a direct GitHub link to the exact violated guideline in this file using this format:
+
+"Refer: https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#L<violated_guideline_link>"
+
+For Example:
+
+      https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#thunder-plugins-interface-compliance
+
 # Interface Header Specification Instructions(apis/**/I*.h)
 This document details the guidelines for defining interface headers for RDK Entertainment Services APIs, to ensure consistency and compliance with Thunder Plugins Interface standards. These guidelines have to be taken into account for each review.
 
 
-1. Thunder Plugins Interface Compliance:
+## Thunder Plugins Interface Compliance:
    
    ### Requirement:
       All interface headers MUST adhere to below Thunder Plugins Interface Guidelines.
    ### Implementation:
       The APIs SHOULD be implemented as Thunder Plugins within RDK Entertainment Services middleware.
 
-2. JSON RPC Tagging
+## JSON RPC Tagging
    ### Requirement:
       If an interface implements JSON-RPC and includes the @json tag, then:
          
@@ -27,7 +35,7 @@ This document details the guidelines for defining interface headers for RDK Ente
                 // ...
             };
 
-3. Notification Interfaces
+## Notification Interfaces
    ### Requirement:
       - Notification interfaces MUST provide default (empty) implementations for notification methods;
       - Do NOT use pure virtual methods.
@@ -48,14 +56,14 @@ This document details the guidelines for defining interface headers for RDK Ente
       };
 
 
-4.  Method Return Type
+##  Method Return Type
     ### Requirement:
        - All methods MUST return Core::hresult.
        - Notification Methods need not return Core::hresult.
     ### Example:
        virtual Core::hresult BindDriver(const string& deviceName) const = 0;
 
-5.  API & Event Naming for Interface and JSON RPC
+##  API & Event Naming for Interface and JSON RPC
     ### PascalCase in Interface Header and COMRPC:
        - Method & Event names SHOULD be in Pascal Case.
     
@@ -75,7 +83,7 @@ This document details the guidelines for defining interface headers for RDK Ente
     
       virtual void OnDevicePluggedIn(const USBDevice& device) {};
 
- 6. Parameter Naming & Tagging
+ ## Parameter Naming & Tagging
     ### camelCase for JSON RPC:
        - All parameter names in JSON RPC requests/responses SHOULD use camelCase and be valid ASCII strings.
        - Flag as errors any parameter names that are defined in different cases other than camelCase.
@@ -89,7 +97,7 @@ This document details the guidelines for defining interface headers for RDK Ente
     ### Example
        - virtual Core::hresult GetPartitionInfo(const string& mountPath, USBStoragePartitionInfo& **partitionInfo** /* @out */) const = 0;
    
-7. Enum Naming
+## Enum Naming
    ### Requirement:
       - Enum names SHOULD be ALL_UPPER_SNAKE_CASE.
       - Enum names SHOULD NOT contain any special characters other than underscore.
@@ -103,15 +111,18 @@ This document details the guidelines for defining interface headers for RDK Ente
       #### Exception:
             Standardized names (e.g., kHz) MAY be exempt.
 
-8. Getter/Setter Naming
+## Getter/Setter Naming
    ### Requirement:
+      - API getters SHALL always start with get and Setters SHALL always start with set.
       - All the getter and setter method names should be in PascalCase.
-      - All the getter and setter method names should be in camelCase when defining via annotations/tags.
+      - All the getter and setter method names should be in camelCase when defining via @text annotations/tags.
    ### Example:
-      virtual Core::hresult GetDefaultInterface(/* ... */) const = 0;
-      virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
+         // @text getDefaultInterface
+         virtual Core::hresult GetDefaultInterface(/* ... */) const = 0; 
+         // @text setDefaultInterface
+         virtual Core::hresult SetDefaultInterface(/* ... */) = 0;
 
-9. Event Naming Convention
+## Event Naming Convention
     ### Format:
        - Event names SHOULD follow on[Object][Action].
        - Event names not starting with on and not following this naming convention order should be flagged as errors during code review.
@@ -146,7 +157,7 @@ This document details the guidelines for defining interface headers for RDK Ente
             // ...
          }
 
-10. Acronym Capitalization
+## Acronym Capitalization
     ### Requirement:
        - Acronyms SHOULD be fully capitalized.
 
@@ -155,7 +166,7 @@ This document details the guidelines for defining interface headers for RDK Ente
        // NOT: SetHdmiEnabled
 
 
-11. Documentation Tags Guidelines
+## Documentation Tags Guidelines
       To ensure consistency and clarity in interface documentation, each method, event, and struct member must be annotated using the following tags. If any methods/events/struct members have not been annotated with the tags below, then they should be flagged as an error during PR review.
     
        ### Required Tags:
