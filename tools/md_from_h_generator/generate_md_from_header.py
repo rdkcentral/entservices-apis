@@ -57,9 +57,11 @@ def get_header_files(folder_path):
     return [f for f in os.listdir(folder_path) if f.endswith('.h')]
 
 
-def create_logger(classname):
-    """Create and return a logger instance."""
-    log_file_path = f'./tools/md_from_h_generator/logs/{classname}.txt'
+def create_logger(classname, logfile_path=None):
+    """Create and return a logger instance, or None if logfile_path is not provided."""
+    if logfile_path is None:
+        return None
+    log_file_path = os.path.join(logfile_path, f'{classname}.txt')
     return Logger(log_file_path)
 
 
@@ -125,28 +127,29 @@ def generate_md_from_individual_header_file(header_structure, output_doc_folder_
         # Write main content sections
         write_markdown_sections(file, header_structure, classname)
 
-    logger.write_log()
-    logger.close()
+    if logger is not None:
+        logger.write_log()
+        logger.close()
 
 
-def process_individual_headers(input_plugin_folder_path, output_doc_folder_path):
+def process_individual_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path=None):
     """Process each header file individually."""
     header_files = get_header_files(input_plugin_folder_path)
 
     for header_file in header_files:
         header_file_path = os.path.join(input_plugin_folder_path, header_file)
         classname = os.path.splitext(header_file)[0][1:]  # Remove leading 'I'
-        logger = create_logger(classname)
+        logger = create_logger(classname, logfile_path)
         header_structure = parse_header_file(header_file_path, classname, logger)
         generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, header_file_path)
 
 
-def process_combined_headers(input_plugin_folder_path, output_doc_folder_path):
+def process_combined_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path=None):
     """Process all header files combined into one output."""
     header_files = get_header_files(input_plugin_folder_path)
     plugin_name = os.path.basename(os.path.normpath(input_plugin_folder_path))
     classname = plugin_name
-    logger = create_logger(classname)
+    logger = create_logger(classname, logfile_path)
 
     # Find and parse main header file
     main_header_file = find_main_header_file(header_files, plugin_name)
@@ -163,7 +166,7 @@ def process_combined_headers(input_plugin_folder_path, output_doc_folder_path):
     generate_md_from_individual_header_file(main_structure, output_doc_folder_path, classname, logger, main_header_file_path)
 
 
-def generate_md_from_header(input_plugin_folder_path, output_doc_folder_path, individual=False):
+def generate_md_from_header(input_plugin_folder_path, output_doc_folder_path, individual=False, logfile_path=None):
     """
     Writes the markdown documentation from the header file.
 
@@ -171,11 +174,12 @@ def generate_md_from_header(input_plugin_folder_path, output_doc_folder_path, in
         input_plugin_folder_path (str): Path to the plugin folder containing header files.
         output_doc_folder_path (str): Path to the output documentation folder.
         individual (bool): Whether to generate separate files for each header.
+        logfile_path (str): Optional path to the log file directory.
     """
     if individual:
-        process_individual_headers(input_plugin_folder_path, output_doc_folder_path)
+        process_individual_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path)
     else:
-        process_combined_headers(input_plugin_folder_path, output_doc_folder_path)
+        process_combined_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path)
 
 
 if __name__ == '__main__':
@@ -184,8 +188,10 @@ if __name__ == '__main__':
                        help='Path to desired output folder')
     parser.add_argument('-i', '--input_plugin_folder', type=str, required=True, 
                        help='Path to plugin folder')
+    parser.add_argument('-l', '--logfile', type=str, required=False, default=None,
+                       help='Path to log file directory')
     parser.add_argument('--individual', action='store_true', 
                        help='Generate individual docs for each header file')
     args = parser.parse_args()
     
-    generate_md_from_header(args.input_plugin_folder, args.output_doc_folder, args.individual)
+    generate_md_from_header(args.input_plugin_folder, args.output_doc_folder, args.individual, args.logfile)
