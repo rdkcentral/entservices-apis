@@ -24,7 +24,7 @@
 
 namespace WPEFramework {
     namespace Exchange {
-        /* @json 1.0.0 @text:keep */
+        /* @json */
         struct EXTERNAL IAVInput : virtual public Core::IUnknown {
             enum {
                 ID = ID_AV_INPUT
