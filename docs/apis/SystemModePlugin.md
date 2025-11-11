@@ -2,7 +2,7 @@
 <a id="SystemMode_Plugin"></a>
 # SystemMode Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/ISystemMode.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/IDeviceOptimizeStateActivator.h)**
 
 A SystemMode plugin for Thunder framework.
 
