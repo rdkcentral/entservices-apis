@@ -71,67 +71,123 @@ namespace Exchange {
             string ip;
         };
 
+        struct EXTERNAL DeviceSerialNo {
+            string serialnumber;
+        };
+
+        struct EXTERNAL DeviceModelNo {
+            string sku;
+        };
+
+        struct EXTERNAL DeviceMake {
+            string make;
+        };
+
+        struct EXTERNAL DeviceModel {
+            string model;
+        };
+
+        struct EXTERNAL DeviceTypeInfos {
+            DeviceTypeInfo devicetype;
+        };
+
+        struct EXTERNAL DeviceSoc {
+            string socname;
+        };
+
+        struct EXTERNAL DeviceDistId {
+            string distributorid;
+        };
+
+        struct EXTERNAL DeviceBrand {
+            string brand;
+        };
+
+        struct EXTERNAL DeviceReleaseVer {
+            string releaseversion;
+        };
+
+        struct EXTERNAL DeviceChip {
+            string chipset;
+        };
+
+        struct EXTERNAL EthernetMac {
+            string ethMac /* @text eth_mac */;
+        };
+
+        struct EXTERNAL StbMac {
+            string estbMac /* @text estb_mac */;
+        };
+
+        struct EXTERNAL WiFiMac {
+            string wifiMac /* @text wifi_mac */;
+        };
+
+        struct EXTERNAL StbIp {
+            string estbIp /* @text estb_ip */;
+        };
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
 
         // @property
         // @text serialnumber
         // @brief Provides access to the serial number set by manufacture
         // @param serialNumber: Serial number set by manufacturer
-        virtual Core::hresult SerialNumber(string& serialNumber /* @out */) const = 0;
+        virtual Core::hresult SerialNumber(DeviceSerialNo& deviceSerialNo /* @out */) const = 0;
 
         // @property
         // @text modelid
         // @brief Provides access to the device model number
         // @param sku: device model number
-        virtual Core::hresult Sku(string& sku /* @out */) const = 0;
+        virtual Core::hresult Sku(DeviceModelNo& deviceModelNo /* @out */) const = 0;
 
         // @property
         // @text make
         // @brief Provides access to the device manufacturer.
         // @param serialNumber: Device manufacturer
-        virtual Core::hresult Make(string& make /* @out */) const = 0;
+        virtual Core::hresult Make(DeviceMake& deviceMake /* @out */) const = 0;
 
         // @property
         // @text modelname
         // @brief Provides access to the friendly device model name.
         // @param model: Device model name
-        virtual Core::hresult Model(string& model /* @out */) const = 0;
+        virtual Core::hresult Model(DeviceModel& deviceModel /* @out */) const = 0;
 
         // @property
         // @text devicetype
         // @brief Provides access to the device type.
         // @param devicetype: Device Type
-        virtual Core::hresult DeviceType(DeviceTypeInfo& devicetype /* @out */) const = 0;
+        virtual Core::hresult DeviceType(DeviceTypeInfos& deviceTypeInfos /* @out */) const = 0;
 
         // @property
         // @text socname
         // @brief Provides access to the SOC Name.
         // @param socname: Name of the SOC
-        virtual Core::hresult SocName(string& socname /* @out */) const = 0;
+        virtual Core::hresult SocName(DeviceSoc& deviceSoc /* @out */) const = 0;
 
         // @property
         // @text distributorid
         // @brief Provides access to the partner ID or distributor ID for device.
         // @param distributorid: Partner ID or distributor ID for device
-        virtual Core::hresult DistributorId(string& distributorId /* @out */) const = 0;
+        virtual Core::hresult DistributorId(DeviceDistId& deviceDistId /* @out */) const = 0;
 
         // @property
         // @text brandname
         // @brief Provides access to device brand name
         // @param brand: Device brand name
-        virtual Core::hresult Brand(string& brand /* @out */) const = 0;
+        virtual Core::hresult Brand(DeviceBrand& deviceBrand /* @out */) const = 0;
 
         // @property
         // @text releaseversion
         // @brief Provides access to the ReleaseVersion of the Image
         // @param releaseversion: ReleaseVersion of the Image
-        virtual Core::hresult ReleaseVersion(string& releaseversion /* @out */) const = 0;
+        virtual Core::hresult ReleaseVersion(DeviceReleaseVer& deviceReleaseVer /* @out */) const = 0;
 
         // @property
         // @text chipSet
         // @brief Provides access to the chipset of the device
         // @param chipSet: Chipset of the device
-        virtual Core::hresult ChipSet(string& chipSet /* @out */) const = 0;
+        virtual Core::hresult ChipSet(DeviceChip& deviceChip /* @out */) const = 0;
 
         // @property
         // @text firmwareversion
@@ -155,25 +211,25 @@ namespace Exchange {
         // @text ethmac
         // @brief Provides access to the Ethernet MAC addresses.
         // @param ethMac: Ethernet MAC addresses
-        virtual Core::hresult EthMac(string& ethMac /* @out */) const = 0;
+        virtual Core::hresult EthMac(EthernetMac& ethernetMac /* @out */) const = 0;
         
         // @property
         // @text estbmac
         // @brief Provides access to the STB MAC addresses.
         // @param estbMac: STB MAC addresses
-        virtual Core::hresult EstbMac(string& estbMac /* @out */) const = 0;
+        virtual Core::hresult EstbMac(StbMac& stbMac /* @out */) const = 0;
         
         // @property
         // @text wifimac
         // @brief Provides access to the WIFI MAC addresses.
         // @param wifiMac: WIFI MAC addresses
-        virtual Core::hresult WifiMac(string& wifiMac /* @out */) const = 0;
+        virtual Core::hresult WifiMac(WiFiMac& wiFiMac /* @out */) const = 0;
         
         // @property
         // @text estbip
         // @brief Provides access to the STB IP addresses.
         // @param estbIp: STB IP addresses
-        virtual Core::hresult EstbIp(string& estbIp /* @out */) const = 0;
+        virtual Core::hresult EstbIp(StbIp& stbIp /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
@@ -222,29 +278,28 @@ namespace Exchange {
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
         typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
-        // @property
         // @text supportedaudioports
         // @brief Provides access to the audio ports supported on the device.
         // @param supportedAudioPorts: Audio ports supported on the device.
-        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */) const = 0;
+        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
 
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
         // @param AudioCapabilities: Audio capability
-        virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& AudioCapabilities /* @out */) const = 0;
+        virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& AudioCapabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text ms12capabilities
         // @brief MS12 audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
         // @param MS12Capabilities: MS12 audio capability
-        virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& MS12Capabilities /* @out */) const = 0;
+        virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& MS12Capabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text supportedms12audioprofiles
         // @brief Supported MS12 audio profiles for the specified audio port.
         // @param audioPort: Audio port name
         // @param supportedMS12AudioProfiles: MS12 audio profiles
-        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
+        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */, bool& success /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
@@ -301,39 +356,50 @@ namespace Exchange {
             HDCP_22          = 4 /* @text 2.2 */
         };
 
+        struct EXTERNAL DefaultResln {
+            string defaultResolution;
+        }
+
+        struct EXTERNAL HostEdid {
+            string EDID;
+        }
+
+        struct EXTERNAL SupportedHDCPVer {
+            CopyProtection supportedHDCPVersion;
+        }
+
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
         typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
-        // @property
         // @text supportedvideodisplays
         // @brief Provides access to the video ports supported on the device.
         // @param supportedVideoDisplays: Video ports supported on the device
-        virtual Core::hresult SupportedVideoDisplays(IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
+        virtual Core::hresult SupportedVideoDisplays(IStringIterator*& supportedVideoDisplays /* @out */, bool& success /* @out */) const = 0;
 
         // @text defaultresolution
         // @brief Default resolution on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param defaultResolution: Default Resolutions
-        virtual Core::hresult DefaultResolution(const string& videoDisplay , string& defaultResolution /* @out */) const = 0;
+        virtual Core::hresult DefaultResolution(const string& videoDisplay , DefaultResln& defaultResln /* @out */) const = 0;
 
         // @text supportedresolutions
         // @brief Supported resolutions on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param supportedResolutions: Supported Resolutions
-        virtual Core::hresult SupportedResolutions(const string& videoDisplay, IStringIterator*& supportedResolutions /* @out */) const = 0;
+        virtual Core::hresult SupportedResolutions(const string& videoDisplay, IStringIterator*& supportedResolutions /* @out */, bool& success /* @out */ ) const = 0;
 
         // @property
         // @text hostedid
         // @brief Provides access to the EDID of the host.
         // @param EDID: EDID of the host
-        virtual Core::hresult HostEDID(string& EDID /* @out */) const = 0;
+        virtual Core::hresult HostEDID(HostEdid& hostEdid /* @out */) const = 0;
 
         // @text supportedhdcp
         // @brief Supported hdcp version on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param supportedHDCPVersion: HDCP support
-        virtual Core::hresult SupportedHdcp(const string& videoDisplay , CopyProtection& supportedHDCPVersion /* @out */) const = 0;
+        virtual Core::hresult SupportedHdcp(const string& videoDisplay , SupportedHDCPVer& supportedHDCPVer /* @out */) const = 0;
     };
 }
 }
