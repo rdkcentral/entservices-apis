@@ -6,6 +6,10 @@ When writing review comments, include a direct GitHub link to the exact violated
 
 "Refer: https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#L<viloated_guideline_link>"
 
+For Example:
+
+      https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#thunder-plugins-interface-compliance
+
 # Interface Header Specification Instructions(apis/**/I*.h)
 This document details the guidelines for defining interface headers for RDK Entertainment Services APIs, to ensure consistency and compliance with Thunder Plugins Interface standards. These guidelines have to be taken into account for each review.
 
