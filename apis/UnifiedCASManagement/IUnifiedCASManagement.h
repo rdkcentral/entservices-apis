@@ -31,6 +31,10 @@ namespace WPEFramework
         {
             enum { ID = ID_UNIFIEDCASMANAGEMENT };
 
+            struct EXTERNAL SuccessResult {
+                bool success;
+            };
+
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
@@ -54,33 +58,29 @@ namespace WPEFramework
             // @param managementType - in - string - Type of CAS management (MANAGE_NONE, MANAGE_FULL, MANAGE_NO_PSI, MANAGE_NO_TUNER)
             // @param casinitdata - in - string - CAS specific initdata for the selected media
             // @param casocdmid - in - string - The well-known OCDM ID of the CAS to use
-            // @param message - out - string
-            // @param success - out - bool
+            // @param successResult - out - struct
             virtual Core::hresult Manage(const string& mediaurl, 
                                        const string& mode, 
                                        const string& managementType, 
                                        const string& casinitdata, 
                                        const string& casocdmid,
-                                       string& message /* @out */,
-                                       bool& success /* @out */) = 0;
+                                       SuccessResult& successResult /* @out */) = 0;
             /**********************manage() - end******************************/
 
             /**********************unmanage() - start***************************/
             // @text unmanage
             // @brief Destroy a management session
-            // @param message - out - string
-            // @param success - out - bool
-            virtual Core::hresult Unmanage(string& message /* @out */, bool& success /* @out */) = 0;
+            // @param successResult - out - struct
+            virtual Core::hresult Unmanage(SuccessResult& successResult /* @out */) = 0;
             /**********************unmanage() - end*****************************/
 
             /**********************send() - start*******************************/
-            // @text send
+            // @text send 
             // @brief Sends data to the remote CAS
             // @param payload - in - string - Data to transfer. Can be base64 coded if required
             // @param source - in - string - Origin of the data (PUBLIC or PRIVATE)
-            // @param message - out - string
-            // @param success - out - bool
-            virtual Core::hresult Send(const string& payload, const string& source, string& message /* @out */, bool& success /* @out */) = 0;
+            // @param successResult - out - struct
+            virtual Core::hresult Send(const string& payload, const string& source, SuccessResult& successResult /* @out */) = 0;
             /**********************send() - end*********************************/
         };
     } // namespace Exchange
