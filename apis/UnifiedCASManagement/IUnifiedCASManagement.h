@@ -74,7 +74,7 @@ namespace WPEFramework
             /**********************unmanage() - end*****************************/
 
             /**********************send() - start*******************************/
-            // @text send
+            // @text send 
             // @brief Sends data to the remote CAS
             // @param payload - in - string - Data to transfer. Can be base64 coded if required
             // @param source - in - string - Origin of the data (PUBLIC or PRIVATE)
