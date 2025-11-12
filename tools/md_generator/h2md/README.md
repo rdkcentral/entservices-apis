@@ -2,16 +2,16 @@
 
 ## 1. Introduction
 
-This document provides guidelines for using the `md_from_h` documentation tool. The tool works using Python version 3.8.10 and greater. Use of the tool requires tagging C++ methods and data structures with Doxygen comments to ensure proper documentation generation. The `HeaderFileStructure` class in the provided Python file first parses C++ header files, extracting information from Doxygen tags, declared structs, enums, iterators, methods, events, and properties, then uses this information to generate a markdown file documenting the headerfile. Many aspects of the markdown are automatically generated without relying on Doxygen comments (such as the table of contents), but method/property/event and parameter/result/value descriptions and JSON examples rely on Doxygen tags. This is intended for use on RDK Services and EntServices plugin APIs. Below are the details of the supported tags and additional features.
+This document provides guidelines for using the `h2md` documentation tool. The tool works using Python version 3.8.10 and greater. Use of the tool requires tagging C++ methods and data structures with Doxygen comments to ensure proper documentation generation. The `HeaderFileStructure` class in the provided Python file first parses C++ header files, extracting information from Doxygen tags, declared structs, enums, iterators, methods, events, and properties, then uses this information to generate a markdown file documenting the headerfile. Many aspects of the markdown are automatically generated without relying on Doxygen comments (such as the table of contents), but method/property/event and parameter/result/value descriptions and JSON examples rely on Doxygen tags. This is intended for use on RDK Services and EntServices plugin APIs. Below are the details of the supported tags and additional features.
 
 ---
 ## 2. Running the Tool
 
-The md_from_h tool is currently run automatically on a weekly basis from a Jenkins job. However, to run the tool locally on individual header files, navigate to the top level of the repo, and run:
+The md_from_h tool is currently run automatically on a weekly basis from a Jenkins job. However, to run the tool locally on individual plugins, navigate to the top level of the repo, and run:
 
-`python3 ./tools/md_from_h_generator/generate_md_from_header.py -i ./apis/<header_file_folder> -o <target_folder>`
+`python3 tools/md_generator/h2md/generate_md_from_header.py -i apis/<plugin_folder> -o <target_folder>`
 
-This will create a folder in the current directory named "generated_docs", where "generated_docs" contains the generated markdown file for the header file.
+There are also two optional parameters. Firstly, if a plugin folder contains multiple header files, and a user would like to generate a separate markdown file for each header file, the command can include the `--individual` flag. Secondly, if a user would like to utilize the tool's logging feature, the command can include the `-l <logfile_path>` CLI argument.
 
 ---
 
