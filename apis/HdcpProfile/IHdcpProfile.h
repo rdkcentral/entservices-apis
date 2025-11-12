@@ -24,7 +24,7 @@
  {
      namespace Exchange
      {
-         /* @json 1.0.0*/
+         /* @json 1.0.0 @text:keep */
          struct EXTERNAL IHdcpProfile : virtual public Core::IUnknown 
          {
             enum { ID = ID_HDCPPROFILE };
