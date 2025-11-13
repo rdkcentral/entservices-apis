@@ -184,7 +184,7 @@ namespace Exchange {
         virtual Core::hresult ReleaseVersion(DeviceReleaseVer& deviceReleaseVer /* @out */) const = 0;
 
         // @property
-        // @text chipSet
+        // @text chipset
         // @brief Provides access to the chipset of the device
         // @param chipSet: Chipset of the device
         virtual Core::hresult ChipSet(DeviceChip& deviceChip /* @out */) const = 0;
@@ -251,18 +251,18 @@ namespace Exchange {
         enum AudioCapability : uint8_t {
             AUDIOCAPABILITY_NONE = 0 /* @text none */,
             ATMOS                = 1 /* @text ATMOS */,
-            DD                   = 2 /* @text DOLBY DIGITAL */,
-            DDPLUS               = 3 /* @text DOLBY DIGITAL PLUS */,
-            DAD                  = 4 /* @text Dual Audio Decode */,
+            DD                   = 2 /* @text DOLBY_DIGITAL */,
+            DDPLUS               = 3 /* @text DOLBY_DIGITAL_PLUS */,
+            DAD                  = 4 /* @text Dual_Audio_Decode */,
             DAPV2                = 5 /* @text DAPv2 */,
             MS12                 = 6 /* @text MS12 */
         };
 
         enum MS12Capability : uint8_t {
             MS12CAPABILITY_NONE = 0 /* @text none */,
-            DOLBYVOLUME         = 1 /* @text Dolby Volume */,
-            INTELIGENTEQUALIZER = 2 /* @text Inteligent Equalizer */,
-            DIALOGUEENHANCER    = 3 /* @text Dialogue Enhancer */
+            DOLBYVOLUME         = 1 /* @text Dolby_Volume */,
+            INTELIGENTEQUALIZER = 2 /* @text Inteligent_Equalizer */,
+            DIALOGUEENHANCER    = 3 /* @text Dialogue_Enhancer */
         };
 
         enum MS12Profile : uint8_t {
