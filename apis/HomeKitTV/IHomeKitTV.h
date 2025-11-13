@@ -42,7 +42,7 @@ namespace WPEFramework {
 
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 enum { ID = ID_HOMEKITTV_NOTIFICATION };
-                virtual void StateChange(const IHomeKitTV::state state) =  0;
+                virtual void StateChange(const IHomeKitTV::state state) {}
                 virtual void Exit(const uint32_t exitCode) = 0;
                 virtual void dispatchOnAppStateChangeRequest(const string& params) = 0;
                 virtual void dispatchOnEnabledStatusChanged(const string& params) = 0;
