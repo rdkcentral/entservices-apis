@@ -27,31 +27,54 @@ namespace Exchange {
 #ifndef RUNTIME_CONFIG
 struct RuntimeConfig
 {
+    // @brief Enable or disable DIAL protocol support
     bool dial;
+    // @brief Enable or disable WAN/LAN access
     bool wanLanAccess;
+    // @brief Enable or disable Thunder framework integration
     bool thunder;
+    // @brief System memory limit in bytes
     int32_t systemMemoryLimit;
+    // @brief GPU memory limit in bytes
     int32_t gpuMemoryLimit;
+    // @brief Environment variables for the application runtime
     std::string envVariables;
+    // @brief User ID for the application process
     uint32_t userId;
+    // @brief Group ID for the application process
     uint32_t groupId;
+    // @brief Data image size in bytes
     uint32_t dataImageSize;
 
+    // @brief Enable or disable resource manager client
     bool resourceManagerClientEnabled;
+    // @brief DIAL identifier for the application
     std::string dialId;
+    // @brief Command to execute the application
     std::string command;
+    // @brief Type of the application
     std::string appType;
+    // @brief Path to the application
     std::string appPath;
+    // @brief Path to the runtime environment
     std::string runtimePath;
 
+    // @brief Path to the application log file
     std::string logFilePath;
+    // @brief Maximum size of the log file in bytes
     uint32_t logFileMaxSize;
-    std::string logLevels;          //json array of strings
+    // @brief Log levels configuration (JSON array of strings)
+    std::string logLevels;
+    // @brief Enable or disable MAPI (Management API)
     bool mapi;
-    std::string fkpsFiles;          //json array of strings
+    // @brief FKPS files configuration (JSON array of strings)
+    std::string fkpsFiles;
 
+    // @brief Firebolt version supported by the application
     std::string fireboltVersion;
+    // @brief Enable or disable debugger support
     bool enableDebugger;
+    // @brief Path to the unpacked application directory
     string unpackedPath;
 };
 #define RUNTIME_CONFIG
