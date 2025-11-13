@@ -196,7 +196,6 @@ namespace WPEFramework {
 
 			/****************************************getFriendlyName()**********************************/
 			// @text getFriendlyName
-			// @brief Returns the friendly name set by setFriendlyName API
 			// @param friendlyname: The friendly name of the device which used to display on the client device list
 			// @param success: Whether the request succeeded
 			virtual Core::hresult GetFriendlyName(string &friendlyname /* @out @text friendlyname */, bool &success /* @out */) = 0;
@@ -211,10 +210,6 @@ namespace WPEFramework {
 			/****************************************registerApplications()**********************************/
 
 			/****************************************unregisterApplications()**********************************/
-			// @text unregisterApplications
-			// @brief Unregisters an application
-			// @param applications: One or more application name to unregister
-			// @param success: 	Whether the request succeeded
 			virtual Core::hresult UnregisterApplications(IStringIterator* const applications /* @text applications */, XCastSuccess& success /* @out */) = 0;
 			/****************************************unregisterApplications()**********************************/
 			
