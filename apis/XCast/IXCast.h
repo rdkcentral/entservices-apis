@@ -158,7 +158,7 @@ namespace WPEFramework {
 			/***************************************** getModelName() *********************************/
 
 			/****************************************setEnabled()**********************************/
-			// @text Enabled
+			// @text setEnabled
 			// @brief Enable or disable XCAST service
 			// @parm enabled: true for enabled or false for disabled
 			// @param success: 	Whether the request succeeded
