@@ -2,7 +2,7 @@
 <a id="MiracastPlayer_Plugin"></a>
 # MiracastPlayer Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Miracast/IMiracastPlayer.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MiracastPlayer/IMiracastPlayer.h)**
 
 A MiracastPlayer plugin for Thunder framework.
 
