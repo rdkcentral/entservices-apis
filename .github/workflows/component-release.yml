@@ -5,11 +5,23 @@ permissions:
   
 on:
   pull_request:
-    types: [closed]
+    types: [opened, edited, ready_for_review, closed]
     branches:
       - develop
 
 jobs:
+  validate-version:
+    if: github.event.action == 'opened' || github.event.action == 'edited' || github.event.action == 'ready_for_review'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR description for version field
+        run: |
+          PR_DESC="${{ github.event.pull_request.body }}"
+          if ! echo "$PR_DESC" | grep -qiE 'version[[:space:]]*:[[:space:]]*(major|minor|patch)'; then
+            echo "ERROR: PR description must include 'version: major|minor|patch'."
+            exit 1
+          fi
+          echo "Validation passed: version field found."
   release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest

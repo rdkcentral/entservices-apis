@@ -1,112 +1,162 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="DeviceDiagnostics_Plugin"></a>
+<a id="DeviceDiagnostics_Plugin"></a>
 # DeviceDiagnostics Plugin
 
-A org.rdk.DeviceDiagnostics plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics/IDeviceDiagnostics.h)**
+
+A DeviceDiagnostics plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a id="Description"></a>
 # Description
 
-The `DeviceDiagnostics` plugin provides additional diagnostics information which includes device configuration and AV decoder status.
+The `DeviceDiagnostics` plugin provides an interface for DeviceDiagnostics.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.DeviceDiagnostics*) |
-| classname | string | Class name: *org.rdk.DeviceDiagnostics* |
+| callsign | string | Plugin instance name (default: org.rdk.DeviceDiagnostics) |
+| classname | string | Class name: *DeviceDiagnostics* |
 | locator | string | Library name: *libWPEFrameworkDeviceDiagnostics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.DeviceDiagnostics plugin:
+The following methods are provided by the DeviceDiagnostics plugin:
 
 DeviceDiagnostics interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [getAVDecoderStatus](#getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
 | [getConfiguration](#getConfiguration) | Gets the values associated with the corresponding property names |
 | [getMilestones](#getMilestones) | Returns the list of milestones |
 | [logMilestone](#logMilestone) | Log marker string to rdk milestones log |
-| [getAVDecoderStatus](#getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
 
+<a id="getAVDecoderStatus"></a>
+## *getAVDecoderStatus*
 
-<a name="getConfiguration"></a>
-## *getConfiguration*
-
-Gets the values associated with the corresponding property names.
+Gets the most active status of audio/video decoder/pipeline
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.names | array | String array of property names |
-| params.names[#] | string | Property names as represented in the data model like `Device.X_CISCO_COM_LED.RedPwm`, `Device.DeviceInfo.Manufacturer`, `Device.DeviceInfo.UpTime`, `Device.DeviceInfo.ProcessStatus.CPUUsage`, etc |
-
-### Result
-
+This method takes no parameters.
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.paramList | array | An array of JSON objects with the specified properties and their values |
-| result.paramList[#] | object |  |
-| result.paramList[#].name | string | The property name; Empty, if the property name is not supported |
-| result.paramList[#].value | string | The property value; Empty, if the property name is not supported |
-| result.success | boolean | Whether the request succeeded |
+| result.avDecoderStatus | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.DeviceDiagnostics.getConfiguration",
-    "params": {
-        "names": [
-            "Device.X_CISCO_COM_LED.RedPwm"
-        ]
-    }
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "avDecoderStatus": ""
+    }
+}
+```
+
+<a id="getConfiguration"></a>
+## *getConfiguration*
+
+Gets the values associated with the corresponding property names
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.names | IStringIterator | String array of property names |
+| params.names[#] | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.paramList | IDeviceDiagnosticsParamListIterator | specified properties and their values |
+| result.paramList[#].name | string | name |
+| result.paramList[#].value | string | value |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.DeviceDiagnostics.getConfiguration",
+    "params": [
+        ""
+    ]
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
         "paramList": [
             {
-                "name": "Device.X_CISCO_COM_LED.RedPwm",
-                "value": "123"
+                "name": "",
+                "value": ""
             }
         ],
         "success": true
@@ -114,158 +164,121 @@ No Events
 }
 ```
 
-<a name="getMilestones"></a>
+<a id="getMilestones"></a>
 ## *getMilestones*
 
-Returns the list of milestones.
+Returns the list of milestones
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.milestones | array | A string [] of milestones |
+| result.milestones | IStringIterator | A string [] of milestones |
 | result.milestones[#] | string |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.DeviceDiagnostics.getMilestones"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceDiagnostics.getMilestones"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
         "milestones": [
-            "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
+            ""
         ],
         "success": true
     }
 }
 ```
 
-<a name="logMilestone"></a>
+<a id="logMilestone"></a>
 ## *logMilestone*
 
-Log marker string to rdk milestones log.
+Log marker string to rdk milestones log
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.marker | string | Milestone marker string |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | boolean | Whether the request succeeded |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 1 | ```ERROR_GENERAL``` | General error |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.DeviceDiagnostics.logMilestone",
-    "params": {
-        "marker": "..."
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": true
-}
-```
-
-<a name="getAVDecoderStatus"></a>
-## *getAVDecoderStatus*
-
-Gets the most active status of audio/video decoder/pipeline. This API doesn't track individual pipelines. It will aggregate and report the pipeline status, and the pipeline states are prioritized from High to Low (`ACTIVE`, `PAUSED`, and `IDLE`). Therefore, if any of the pipelines is in active state, then `getAVDecoderStatus` will return `ACTIVE`. If none of the pipelines are active but one is in a paused state, then `getAVDecoderStatus` will return `PAUSED`, and if all the pipelines are idle only then, `IDLE` will be returned.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
+| params.marker | string | string |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDecoderStatus | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.DeviceDiagnostics.logMilestone",
+    "params": {
+        "marker": ""
+    }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
-        "avDecoderStatus": "ACTIVE"
+        "success": true
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.DeviceDiagnostics plugin:
+The following events are provided by the DeviceDiagnostics plugin:
 
 DeviceDiagnostics interface events:
 
@@ -273,28 +286,26 @@ DeviceDiagnostics interface events:
 | :-------- | :-------- |
 | [onAVDecoderStatusChanged](#onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
 
-
-<a name="onAVDecoderStatusChanged"></a>
+<a id="onAVDecoderStatusChanged"></a>
 ## *onAVDecoderStatusChanged*
 
-Triggered when the most active status of audio/video decoder/pipeline changes.
+Triggered when the most active status of audio/video decoder/pipeline changes
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDecoderStatusChange | string | The status. If AV decoder status is not supported, the default state will always be IDLE. (must be one of the following: *ACTIVE*, *PAUSED*, *IDLE*) |
+| params.avDecoderStatusChange | string | string |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onAVDecoderStatusChanged",
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.DeviceDiagnostics.onAVDecoderStatusChanged",
     "params": {
-        "avDecoderStatusChange": "ACTIVE"
+        "avDecoderStatusChange": ""
     }
 }
 ```
-

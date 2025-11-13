@@ -1,370 +1,395 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Warehouse_Plugin"></a>
+<a id="Warehouse_Plugin"></a>
 # Warehouse Plugin
 
-A org.rdk.Warehouse plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse/IWarehouse.h)**
+
+A Warehouse plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a id="Description"></a>
 # Description
 
-The `Warehouse` plugin performs various types of resets (data, warehouse, etc.).
+The `Warehouse` plugin provides an interface for Warehouse.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.Warehouse*) |
-| classname | string | Class name: *org.rdk.Warehouse* |
+| callsign | string | Plugin instance name (default: org.rdk.Warehouse) |
+| classname | string | Class name: *Warehouse* |
 | locator | string | Library name: *libWPEFrameworkWarehouse.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.Warehouse plugin:
+The following methods are provided by the Warehouse plugin:
 
 Warehouse interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
 | [executeHardwareTest](#executeHardwareTest) | Starts a hardware test on the device |
-| [getHardwareTestResults](#getHardwareTestResults) | Returns the results of the last hardware test |
-| [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service (`/rebootNow |
-| [isClean](#isClean) | Checks the locations on the device where customer data may be stored |
-| [lightReset](#lightReset) | Resets the application data |
-| [resetDevice](#resetDevice) | Resets the STB to the warehouse state |
+| [getHardwareTestResults](#getHardwareTestResults) | Returns the results of the last hardware test. |
+| [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
+| [isClean](#isClean) | Checks the locations on the device where customer data may be stored. |
+| [lightReset](#lightReset) | Resets the application data. |
+| [resetDevice](#resetDevice) | Resets the STB to the warehouse state. |
 
-
-<a name="executeHardwareTest"></a>
+<a id="executeHardwareTest"></a>
 ## *executeHardwareTest*
 
-Starts a hardware test on the device. See `getHardwareTestResults`.
+Starts a hardware test on the device
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.Warehouse.executeHardwareTest"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.executeHardwareTest"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
         "success": true
     }
 }
 ```
 
-<a name="getHardwareTestResults"></a>
+<a id="getHardwareTestResults"></a>
 ## *getHardwareTestResults*
 
 Returns the results of the last hardware test.
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.testResults | string | The test results |
-
-### Result
-
+This method takes no parameters.
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
+| result.success | bool | boolean |
+| result.testResults | string | string |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Warehouse.getHardwareTestResults",
-    "params": {
-        "testResults": "Timezone: NA 2021-04-15 10:35:06 Test execution start, remote trigger ver. 0011 2021-04-15 10:35:10 Test result: Audio/Video Decoder:PASSED 2021-04-15 10:35:06 Test result: Dynamic RAM:PASSED 2021-04-15 10:35:06 Test result: Flash Memory:PASSED 2021-04-15 10:35:06 Test result: HDMI Output:PASSED 2021-04-15 10:35:38 Test result: IR Remote Interface:WARNING_IR_Not_Detected 2021-04-15 10:35:06 Test result: Bluetooth:PASSED 2021-04-15 10:35:06 Test result: SD Card:PASSED 2021-04-15 10:35:06 Test result: WAN:PASSED 2021-04-15 10:35:38 Test execution completed:PASSED"
-    }
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.Warehouse.getHardwareTestResults"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.getHardwareTestResults"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
-        "success": true
+        "success": true,
+        "testResults": ""
     }
 }
 ```
 
-<a name="internalReset"></a>
+<a id="internalReset"></a>
 ## *internalReset*
 
-Invokes the internal reset script, which reboots the Warehouse service (`/rebootNow.sh -s WarehouseService &`). Note that this method checks the `/version.txt` file for the image name and fails to run if the STB image version is marked as production (`PROD`).
+Invokes the internal reset script, which reboots the Warehouse service
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.passPhrase | string | The passphrase for running the internal reset (`FOR TEST PURPOSES ONLY`) |
-
-### Result
-
+| params.passPhrase | string | string |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
-| result?.error | string | <sup>*(optional)*</sup> An error message in case of a failure |
+| result.successErr | WarehouseSuccessErr |  |
+| result.successErr.success | bool |  |
+| result.successErr.error | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.Warehouse.internalReset",
     "params": {
-        "passPhrase": "FOR TEST PURPOSES ONLY"
+        "passPhrase": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
         "success": true,
-        "error": "..."
+        "error": ""
     }
 }
 ```
 
-<a name="isClean"></a>
+<a id="isClean"></a>
 ## *isClean*
 
-Checks the locations on the device where customer data may be stored. If there are contents contained in those folders, then the device is not clean.
+Checks the locations on the device where customer data may be stored.
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.age | integer | <sup>*(optional)*</sup> Ignore files/folders for the isClean checkup that were created/updated within the last age (in seconds) when this API is called |
-
-### Result
-
+| params.age | int | integer |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clean | boolean | If `true`, then the device has no customer data, otherwise `false` |
-| result.files | array | A string [] of file locations for each file that is found that should have been deleted in the cleaning process. If the `clean` property is `true`, then this array is empty or `null` |
+| result.clean | bool | boolean |
+| result.files | IStringIterator | string [] of file locations for each file |
 | result.files[#] | string |  |
-| result.success | boolean | Whether the request succeeded |
-| result.error | string | An error message in case of a failure |
+| result.success | bool | boolean |
+| result.error | string | string |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.Warehouse.isClean",
     "params": {
-        "age": 300
+        "age": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.isClean", "params": {"age": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
-        "clean": false,
+        "clean": true,
         "files": [
-            "/opt/ctrlm.sql"
+            ""
         ],
         "success": true,
-        "error": "..."
+        "error": ""
     }
 }
 ```
 
-<a name="lightReset"></a>
+<a id="lightReset"></a>
 ## *lightReset*
 
 Resets the application data.
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
-| result?.error | string | <sup>*(optional)*</sup> An error message in case of a failure |
+| result.successErr | WarehouseSuccessErr |  |
+| result.successErr.success | bool |  |
+| result.successErr.error | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.Warehouse.lightReset"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Warehouse.lightReset"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
         "success": true,
-        "error": "..."
+        "error": ""
     }
 }
 ```
 
-<a name="resetDevice"></a>
+<a id="resetDevice"></a>
 ## *resetDevice*
 
 Resets the STB to the warehouse state.
 
 ### Events
-
-| Event | Description |
-| :-------- | :-------- |
-| [resetDone](#resetDone) | Triggers when the device reset is finished indicating a successful reset or failure |
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.suppressReboot | boolean | if `true`, the STB should not be rebooted, otherwise `false`. Only the `WAREHOUSE` reset type supports suppressing the reboot |
-| params.resetType | string | The reset type. If `resetType` is not specified, then `WAREHOUSE` is the default. (must be one of the following: *WAREHOUSE*, *FACTORY*, *USERFACTORY*, *COLDFACTORY*) |
-
-### Result
-
+| params.suppressReboot | bool | bool |
+| params.resetType | string | string |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | boolean | Whether the request succeeded |
-| result?.error | string | <sup>*(optional)*</sup> An error message in case of a failure |
+| result.successErr | WarehouseSuccessErr |  |
+| result.successErr.success | bool |  |
+| result.successErr.error | string |  |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.Warehouse.resetDevice",
     "params": {
         "suppressReboot": true,
-        "resetType": "WAREHOUSE"
+        "resetType": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
         "success": true,
-        "error": "..."
+        "error": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.Warehouse plugin:
+The following events are provided by the Warehouse plugin:
 
 Warehouse interface events:
 
@@ -372,30 +397,28 @@ Warehouse interface events:
 | :-------- | :-------- |
 | [resetDone](#resetDone) | Notifies subscribers about the status of the warehouse reset operation |
 
-
-<a name="resetDone"></a>
+<a id="resetDone"></a>
 ## *resetDone*
 
-Notifies subscribers about the status of the warehouse reset operation.
+Notifies subscribers about the status of the warehouse reset operation
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.success | boolean | Whether the request succeeded |
-| params?.error | string | <sup>*(optional)*</sup> An error message in case of a failure |
+| params.success | bool | boolean |
+| params.error | string | string |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.resetDone",
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.Warehouse.resetDone",
     "params": {
         "success": true,
-        "error": "..."
+        "error": ""
     }
 }
 ```
-

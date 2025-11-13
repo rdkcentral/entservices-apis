@@ -1,325 +1,337 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="USBMassStorage_Plugin"></a>
+<a id="USBMassStorage_Plugin"></a>
 # USBMassStorage Plugin
 
-A org.rdk.UsbMassStorage plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBMassStorage/IUSBMassStorage.h)**
+
+A USBMassStorage plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
 - [Notifications](#Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a id="Description"></a>
 # Description
 
-The `USBMassStorage` plugin is using For mounting the file system on mass storage and enumeration of mount points.
+The `USBMassStorage` plugin provides an interface for USBMassStorage.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.UsbMassStorage*) |
-| classname | string | Class name: *org.rdk.UsbMassStorage* |
+| callsign | string | Plugin instance name (default: org.rdk.USBMassStorage) |
+| classname | string | Class name: *USBMassStorage* |
 | locator | string | Library name: *libWPEFrameworkUSBMassStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.UsbMassStorage plugin:
+The following methods are provided by the USBMassStorage plugin:
 
-org.rdk.UsbMassStorage interface methods:
+USBMassStorage interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDeviceList](#getDeviceList) | Retrieve the list of connected USB storage devices |
-| [getMountPoints](#getMountPoints) | Retrieve the mount info list by given USB storage device name |
-| [getPartitionInfo](#getPartitionInfo) | Get the partition information for the given mount path |
+| [getDeviceList](#getDeviceList) | Get list of devices that are currently mounted in the system |
+| [getMountPoints](#getMountPoints) | Get mount points information for a specified device |
+| [getPartitionInfo](#getPartitionInfo) | Get partition information for a given partition |
 
-
-<a name="getDeviceList"></a>
+<a id="getDeviceList"></a>
 ## *getDeviceList*
 
-Retrieve the list of connected USB storage devices.
+Get list of devices that are currently mounted in the system
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | array | On success, a list of USB storage devices will be returned |
-| result[#] | object | Information about a USB storage device |
-| result[#].devicePath | string | The path to the USB device |
-| result[#].deviceName | string | The name of the USB device |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.UsbMassStorage.getDeviceList"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": [
-        {
-            "devicePath": "/dev/sda",
-            "deviceName": "001/006"
-        }
-    ]
-}
-```
-
-<a name="getMountPoints"></a>
-## *getMountPoints*
-
-Retrieve the mount info list by given USB storage device name.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceName | string | Name of the USB storage device |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | array | On success, mount info list of a USB storage device will be returned |
-| result[#] | object |  |
-| result[#].partitionName | string | The name of the partition being mounted |
-| result[#].mountFlags | string | Flags indicating how the partition is mounted |
-| result[#].mountPath | string | The mount point path in the file system |
-| result[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.UsbMassStorage.getMountPoints",
-    "params": {
-        "deviceName": "001/006"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": [
-        {
-            "partitionName": "/dev/sda1",
-            "mountFlags": "READ_ONLY",
-            "mountPath": "/tmp/media/usb2",
-            "fileSystem": "VFAT"
-        }
-    ]
-}
-```
-
-<a name="getPartitionInfo"></a>
-## *getPartitionInfo*
-
-Get the partition information for the given mount path.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mountPath | string | Name of the USB storage device |
-
-### Result
-
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.fileSystem | string | The file system of the partition |
-| result.size | integer | Total size of the partition in MB |
-| result.startSector | integer | The starting sector of the partition |
-| result.numSectors | integer | The number of sectors in the partition |
-| result.sectorSize | integer | The size of each sector in bytes |
-| result.totalSpace | integer | Total space of the partition in MB |
-| result.usedSpace | integer | Used space of the partition in MB |
-| result.availableSpace | integer | Available space in the partition in MB |
+| result.deviceInfo | IUSBStorageDeviceInfoIterator | Device info for devices that are currently mounted. |
+| result.deviceInfo[#].devicePath | string | Device path in the file system (sysfs) |
+| result.deviceInfo[#].deviceName | string | Device name identifying the device |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.UsbMassStorage.getPartitionInfo",
-    "params": {
-        "mountPath": "/tmp/media/usb2"
-    }
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.USBMassStorage.getDeviceList"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBMassStorage.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "fileSystem": "VFAT",
-        "size": 1024,
-        "startSector": 2048,
-        "numSectors": 4096,
-        "sectorSize": 512,
-        "totalSpace": 1024,
-        "usedSpace": 512,
-        "availableSpace": 512
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": [
+        {
+            "devicePath": "",
+            "deviceName": ""
+        }
+    ]
+}
+```
+
+<a id="getMountPoints"></a>
+## *getMountPoints*
+
+Get mount points information for a specified device
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.deviceName | string | Device name identifying the device |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| result.mountPoints[#].partitionName | string | name of the partition |
+| result.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| result.mountPoints[#].mountPath | string | path at which the partition is mounted on |
+| result.mountPoints[#].fileSystem | string | file system of the partition |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.USBMassStorage.getMountPoints",
+    "params": {
+        "deviceName": ""
     }
 }
 ```
 
-<a name="Notifications"></a>
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBMassStorage.getMountPoints", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": [
+        {
+            "partitionName": "",
+            "mountFlags": "READ_ONLY",
+            "mountPath": "",
+            "fileSystem": "UNKNOWN"
+        }
+    ]
+}
+```
+
+<a id="getPartitionInfo"></a>
+## *getPartitionInfo*
+
+Get partition information for a given partition
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.mountPath | string | path at which the partition is mounted on |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.partitionInfo | USBStoragePartitionInfo | partition info details |
+| result.partitionInfo.fileSystem | string | file system of the partition |
+| result.partitionInfo.size | integer | total size of the partition in MB |
+| result.partitionInfo.startSector | integer | start sector of the partition |
+| result.partitionInfo.numSectors | integer | number of sectors in the partition |
+| result.partitionInfo.sectorSize | integer | size of the sector in the partition in bytes |
+| result.partitionInfo.totalSpace | integer | total space of the partition in MB |
+| result.partitionInfo.usedSpace | integer | used space in the partition in MB |
+| result.partitionInfo.availableSpace | integer | available space in the partition in MB |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.USBMassStorage.getPartitionInfo",
+    "params": {
+        "mountPath": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBMassStorage.getPartitionInfo", "params": {"mountPath": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "fileSystem": "UNKNOWN",
+        "size": 0,
+        "startSector": 0,
+        "numSectors": 0,
+        "sectorSize": 0,
+        "totalSpace": 0,
+        "usedSpace": 0,
+        "availableSpace": 0
+    }
+}
+```
+
+
+
+<a id="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the org.rdk.UsbMassStorage plugin:
+The following events are provided by the USBMassStorage plugin:
 
-org.rdk.UsbMassStorage interface events:
+USBMassStorage interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDeviceMounted](#onDeviceMounted) | Triggered after the device partitions are mounted |
-| [onDeviceUnmounted](#onDeviceUnmounted) | Triggered after the device partitions are unmounted |
+| [onDeviceMounted](#onDeviceMounted) | Device Mounted notification @@iterator |
+| [onDeviceUnMounted](#onDeviceUnMounted) | Device Unmounted notification @@iterator |
 
-
-<a name="onDeviceMounted"></a>
+<a id="onDeviceMounted"></a>
 ## *onDeviceMounted*
 
-Triggered after the device partitions are mounted.
+Device Mounted notification @@iterator
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceinfo | object |  |
-| params.deviceinfo.devicePath | string | The device path |
-| params.deviceinfo.deviceName | string | The name of the device |
-| params.mountPoints | array | mount info list of a USB storage device will be returned |
-| params.mountPoints[#] | object |  |
-| params.mountPoints[#].partitionName | string | The name of the partition being mounted |
-| params.mountPoints[#].mountFlags | string | Flags indicating how the partition is mounted |
-| params.mountPoints[#].mountPath | string | The mount point path in the file system |
-| params.mountPoints[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
+| params.deviceInfo | USBStorageDeviceInfo | name and device path of the mounted device. |
+| params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
+| params.deviceInfo.deviceName | string | Device name identifying the device |
+| params.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| params.mountPoints[#].partitionName | string | name of the partition |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
+| params.mountPoints[#].fileSystem | string | file system of the partition |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDeviceMounted",
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.USBMassStorage.onDeviceMounted",
     "params": {
-        "deviceinfo": {
-            "devicePath": "/dev/sda",
-            "deviceName": "001/022"
+        "deviceInfo": {
+            "devicePath": "",
+            "deviceName": ""
         },
         "mountPoints": [
             {
-                "partitionName": "/dev/sda1",
+                "partitionName": "",
                 "mountFlags": "READ_ONLY",
-                "mountPath": "/tmp/media/usb2",
-                "fileSystem": "VFAT"
+                "mountPath": "",
+                "fileSystem": "UNKNOWN"
             }
         ]
     }
 }
 ```
 
-<a name="onDeviceUnmounted"></a>
+<a id="onDeviceUnmounted"></a>
 ## *onDeviceUnmounted*
 
-Triggered after the device partitions are unmounted.
+Device Unmounted notification @@iterator
 
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceinfo | object |  |
-| params.deviceinfo.devicePath | string | The device path |
-| params.deviceinfo.deviceName | string | The name of the device |
-| params.mountPoints | array | mount info list of a USB storage device will be returned |
-| params.mountPoints[#] | object |  |
-| params.mountPoints[#].partitionName | string | The name of the partition being mounted |
-| params.mountPoints[#].mountFlags | string | Flags indicating how the partition is mounted |
-| params.mountPoints[#].mountPath | string | The mount point path in the file system |
-| params.mountPoints[#]?.fileSystem | string | <sup>*(optional)*</sup> File system |
+| params.deviceInfo | USBStorageDeviceInfo | name and device path of the mounted device. |
+| params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
+| params.deviceInfo.deviceName | string | Device name identifying the device |
+| params.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| params.mountPoints[#].partitionName | string | name of the partition |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
+| params.mountPoints[#].fileSystem | string | file system of the partition |
 
-### Example
+### Examples
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onDeviceUnmounted",
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.USBMassStorage.onDeviceUnmounted",
     "params": {
-        "deviceinfo": {
-            "devicePath": "/dev/sda",
-            "deviceName": "001/022"
+        "deviceInfo": {
+            "devicePath": "",
+            "deviceName": ""
         },
         "mountPoints": [
             {
-                "partitionName": "/dev/sda1",
+                "partitionName": "",
                 "mountFlags": "READ_ONLY",
-                "mountPath": "/tmp/media/usb2",
-                "fileSystem": "VFAT"
+                "mountPath": "",
+                "fileSystem": "UNKNOWN"
             }
         ]
     }
 }
 ```
-

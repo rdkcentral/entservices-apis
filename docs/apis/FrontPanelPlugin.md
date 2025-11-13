@@ -1,74 +1,76 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="head.FrontPanel_Plugin"></a>
+<a id="FrontPanel_Plugin"></a>
 # FrontPanel Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/rdkservices/blob/main/FrontPanel/CHANGELOG.md)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrontPanel/IFrontPanel.h)**
 
 A FrontPanel plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
 
-<a id="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
-[[Refer to this link](userguide/aat.md)]
+[[Refer to this link](overview/aat.md)]
 
-<a id="head.Description"></a>
+<a id="Description"></a>
 # Description
 
 The `FrontPanel` plugin provides an interface for FrontPanel.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a id="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.FrontPanel*) |
-| classname | string | Class name: *org.rdk.FrontPanel* |
+| callsign | string | Plugin instance name (default: org.rdk.FrontPanel) |
+| classname | string | Class name: *FrontPanel* |
 | locator | string | Library name: *libWPEFrameworkFrontPanel.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.FrontPanel plugin:
+The following methods are provided by the FrontPanel plugin:
 
 FrontPanel interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [GetBrightness](#method.GetBrightness) | Gets the status of the Front Panel |
-| [GetFrontPanelLights](#method.GetFrontPanelLights) | Gets the front panel lights |
-| [PowerLedOff](#method.PowerLedOff) | Switches the specified LED off |
-| [PowerLedOn](#method.PowerLedOn) | Switches the specified LED on |
-| [SetBlink](#method.SetBlink) | Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) |
-| [SetBrightness](#method.SetBrightness) | Sets the brightness of the specified LED |
-| [SetLED](#method.SetLED) | Sets the LED with the specified color and brightness |
+| [getBrightness](#getBrightness) | Gets the status of the Front Panel |
+| [getFrontPanelLights](#getFrontPanelLights) | Gets the front panel lights |
+| [powerLedOff](#powerLedOff) | Switches the specified LED off |
+| [powerLedOn](#powerLedOn) | Switches the specified LED on |
+| [setBlink](#setBlink) | Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) |
+| [setBrightness](#setBrightness) | Sets the brightness of the specified LED |
+| [setLED](#setLED) | Sets the LED with the specified color and brightness |
 
-<a id="method.getBrightness"></a>
-## *GetBrightness [<sup>method</sup>](#head.Methods)*
+<a id="getBrightness"></a>
+## *getBrightness*
 
 Gets the status of the Front Panel
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.index | string | Index of the brightness level |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.brightness | uint32_t | Brightness level |
+| result | object |  |
+| result.brightness | integer | Brightness level |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -78,8 +80,8 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.FrontPanel.getBrightness",
     "params": {
         "index": ""
@@ -87,31 +89,41 @@ No events are associated with this method.
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.FrontPanel.getBrightness", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": {
-        "brightness": "0",
-        "success": "true"
+        "brightness": 0,
+        "success": true
     }
 }
 ```
-<a id="method.getFrontPanelLights"></a>
-## *GetFrontPanelLights [<sup>method</sup>](#head.Methods)*
+
+<a id="getFrontPanelLights"></a>
+## *getFrontPanelLights*
 
 Gets the front panel lights
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.supportedLights | FrontPanelLightsListIterator | List of supported front panel lights |
+| result | object |  |
+| result.supportedLights | IFrontPanelLightsListIterator | List of supported front panel lights |
 | result.supportedLights[#] | string |  |
 | result.supportedLightsInfo | string | Information about the supported front panel lights |
 | result.success | bool | Is the operation successful or not |
@@ -123,52 +135,52 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.FrontPanel.getFrontPanelLights"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.FrontPanel.getFrontPanelLights"}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": {
         "supportedLights": [
-            "power_led"
+            ""
         ],
-        "supportedLightsInfo": {
-            "power_led": {
-                "range": "int",
-                "min": 0,
-                "max": 100,
-                "step": 10,
-                "colorMode": 2,
-                "colors": [
-                    "red"
-                ]
-            }
-        },
-        "success": "true"
+        "supportedLightsInfo": "",
+        "success": true
     }
 }
 ```
-<a id="method.PowerLedOff"></a>
-## *PowerLedOff [<sup>method</sup>](#head.Methods)*
+
+<a id="powerLedOff"></a>
+## *powerLedOff*
 
 Switches the specified LED off
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.index | string | Index of the brightness level |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -178,8 +190,8 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "method": "org.rdk.FrontPanel.powerLedOff",
     "params": {
         "index": ""
@@ -187,33 +199,42 @@ No events are associated with this method.
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FrontPanel.powerLedOff", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 2,
     "result": {
-        "success": {
-            "success": "true"
-        }
+        "success": true
     }
 }
 ```
-<a id="method.PowerLedOn"></a>
-## *PowerLedOn [<sup>method</sup>](#head.Methods)*
+
+<a id="powerLedOn"></a>
+## *powerLedOn*
 
 Switches the specified LED on
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.index | string | Index of the brightness level |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -223,8 +244,8 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "method": "org.rdk.FrontPanel.powerLedOn",
     "params": {
         "index": ""
@@ -232,33 +253,42 @@ No events are associated with this method.
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.FrontPanel.powerLedOn", "params": {"index": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 3,
     "result": {
-        "success": {
-            "success": "true"
-        }
+        "success": true
     }
 }
 ```
-<a id="method.SetBlink"></a>
-## *SetBlink [<sup>method</sup>](#head.Methods)*
+
+<a id="setBlink"></a>
+## *setBlink*
 
 Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.blinkInfo | string | JSON string with blink pattern information containing ledIndicator, iterations, and pattern array with brightness, duration(milliseconds), and optional color and red/green/blue values. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -268,56 +298,52 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "method": "org.rdk.FrontPanel.setBlink",
     "params": {
-        "blinkInfo": {
-            "ledIndicator": "power_led",
-            "iterations": 10,
-            "pattern": [
-                {
-                    "brightness": 50,
-                    "duration": 100,
-                    "color": "red",
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0
-                }
-            ]
-        },
+        "blinkInfo": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 4,
     "result": {
-        "success": {
-            "success": "true"
-        }
+        "success": true
     }
 }
 ```
-<a id="method.SetBrightness"></a>
-## *SetBrightness [<sup>method</sup>](#head.Methods)*
+
+<a id="setBrightness"></a>
+## *setBrightness*
 
 Sets the brightness of the specified LED
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.index | string | Index of the brightness level |
-| params.brightness | uint32_t | Brightness level |
+| params.brightness | integer | Brightness level |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -327,48 +353,57 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "method": "org.rdk.FrontPanel.setBrightness",
     "params": {
         "index": "",
-        "brightness": "0"
+        "brightness": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.FrontPanel.setBrightness", "params": {"index": "", "brightness": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 5,
     "result": {
-        "success": {
-            "success": "true"
-        }
+        "success": true
     }
 }
 ```
-<a id="method.SetLED"></a>
-## *SetLED [<sup>method</sup>](#head.Methods)*
+
+<a id="setLED"></a>
+## *setLED*
 
 Sets the LED with the specified color and brightness
 
 ### Events
-No events are associated with this method.
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| params | object |  |
 | params.ledIndicator | string | LED indicator to set |
-| params.brightness | uint32_t | Brightness level |
+| params.brightness | integer | Brightness level |
 | params.color | string | Color of the LED |
-| params.red | uint32_t | Red component of the LED color |
-| params.green | uint32_t | Green component of the LED color |
-| params.blue | uint32_t | Blue component of the LED color |
+| params.red | integer | Red component of the LED color |
+| params.green | integer | Green component of the LED color |
+| params.blue | integer | Blue component of the LED color |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| result | object |  |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -378,31 +413,38 @@ No events are associated with this method.
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "method": "org.rdk.FrontPanel.setLED",
     "params": {
         "ledIndicator": "",
-        "brightness": "0",
+        "brightness": 0,
         "color": "",
-        "red": "0",
-        "green": "0",
-        "blue": "0"
+        "red": 0,
+        "green": 0,
+        "blue": 0
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.FrontPanel.setLED", "params": {"ledIndicator": "", "brightness": 0, "color": "", "red": 0, "green": 0, "blue": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 6,
     "result": {
-        "success": {
-            "success": "true"
-        }
+        "success": true
     }
 }
 ```
+
 
