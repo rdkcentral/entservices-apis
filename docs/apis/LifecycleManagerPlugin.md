@@ -1,245 +1,258 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.LifecycleManager_Plugin"></a>
+<a id="LifecycleManager_Plugin"></a>
 # LifecycleManager Plugin
 
-A org.rdk.LifecycleManager plugin for Thunder framework.
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManager.h)**
+
+A LifecycleManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a id="Description"></a>
 # Description
 
-The `LifecycleManagerState` this is responsible for maintaining the states of Application.
+The `LifecycleManager` plugin provides an interface for LifecycleManager.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
-<a name="head.Configuration"></a>
+<a id="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: *org.rdk.LifecycleManager*) |
-| classname | string | Class name: *org.rdk.LifecycleManager* |
+| callsign | string | Plugin instance name (default: org.rdk.LifecycleManager) |
+| classname | string | Class name: *LifecycleManager* |
 | locator | string | Library name: *libWPEFrameworkLifecycleManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a id="Methods"></a>
 # Methods
 
-The following methods are provided by the org.rdk.LifecycleManager plugin:
+The following methods are provided by the LifecycleManager plugin:
 
-org.rdk.LifecycleManager interface methods:
+LifecycleManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [appReady](#method.appReady) | Response API call to appInitializing API |
-| [stateChangeComplete](#method.stateChangeComplete) | Response API call to appLifecycleStateChanged API |
-| [closeApp](#method.closeApp) | Close the app |
+| [appReady](#appReady) | Response api call to appInitializing API |
+| [closeApp](#closeApp) | close the app |
+| [stateChangeComplete](#stateChangeComplete) | Response api call to appLifecycleStateChanged API |
 
+<a id="appReady"></a>
+## *appReady*
 
-<a name="method.appReady"></a>
-## *appReady [<sup>method</sup>](#head.Methods)*
-
-Response API call to appInitializing API.
+Response api call to appInitializing API
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | The unique identifier of the application to check |
-
-### Result
-
+| params.appId | string | App identifier for the application. |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Returns null on success or an error code string on failure |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "method": "org.rdk.LifecycleManager.appReady",
     "params": {
-        "appId": "YouTube"
+        "appId": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.LifecycleManager.appReady", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
 
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 0,
     "result": null
 }
 ```
 
-<a name="method.stateChangeComplete"></a>
-## *stateChangeComplete [<sup>method</sup>](#head.Methods)*
+<a id="closeApp"></a>
+## *closeApp*
 
-Response API call to appLifecycleStateChanged API.
+close the app
 
 ### Events
-
-No Events
-
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | The unique identifier of the application to check |
-| params.stateChangedId | integer | State changed identifier |
-| params.success | boolean | Indicates whether the state change was successful |
-
-### Result
-
+| params.appId | string | App identifier for the application. |
+| params.closeReason | string | closed reason for application |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | Returns null on success or an error code string on failure |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
 
 #### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.LifecycleManager.stateChangeComplete",
-    "params": {
-        "appId": "YouTube",
-        "stateChangedId": 101,
-        "success": true
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": null
-}
-```
-
-<a name="method.closeApp"></a>
-## *closeApp [<sup>method</sup>](#head.Methods)*
-
-Close the app.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | The unique identifier of the application to check |
-| params.closeReason | string | Possible close reasons of an application (must be one of the following: *USER_EXIT*, *ERROR*, *KILL_AND_RUN*, *KILL_AND_ACTIVATE*) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | Returns null on success or an error code string on failure |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "method": "org.rdk.LifecycleManager.closeApp",
     "params": {
-        "appId": "YouTube",
+        "appId": "",
         "closeReason": "USER_EXIT"
     }
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.LifecycleManager.closeApp", "params": {"appId": "", "closeReason": "USER_EXIT"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
 #### Response
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": 42,
+    "jsonrpc": 2.0,
+    "id": 1,
     "result": null
 }
 ```
 
-<a name="head.Notifications"></a>
-# Notifications
+<a id="stateChangeComplete"></a>
+## *stateChangeComplete*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Response api call to appLifecycleStateChanged API
 
-The following events are provided by the org.rdk.LifecycleManager plugin:
-
-org.rdk.LifecycleManager interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [onAppLifecycleStateChanged](#event.onAppLifecycleStateChanged) | Triggered when the lifecycle state of an application changes |
-
-
-<a name="event.onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged [<sup>event</sup>](#head.Notifications)*
-
-Triggered when the lifecycle state of an application changes.
-
+### Events
+Event details will be updated soon.
 ### Parameters
-
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | The unique identifier of the application to check |
-| params.appInstanceId | string | Instance identifier of the application |
-| params.newState | string |  (must be one of the following: *UNLOADED*, *LOADING*, *INITIALIZING*, *PAUSED*, *ACTIVE*, *SUSPENDED*, *HIBERNATED*, *TERMINATING*) |
-| params.oldState | string |  (must be one of the following: *UNLOADED*, *LOADING*, *INITIALIZING*, *PAUSED*, *ACTIVE*, *SUSPENDED*, *HIBERNATED*, *TERMINATING*) |
-| params?.navigationIntent | string | <sup>*(optional)*</sup> Intent string for navigation or state transition |
+| params.appId | string | App identifier for the application. |
+| params.stateChangedId | integer | state changed identifier |
+| params.success | bool |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
 
-### Example
+### Examples
+
+
+#### Request
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "method": "client.events.onAppLifecycleStateChanged",
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.LifecycleManager.stateChangeComplete",
     "params": {
-        "appId": "YouTube",
-        "appInstanceId": "80df148e-b52e-4c0f-8964-0de4c090426f",
-        "newState": "ACTIVE",
-        "oldState": "UNLOADED",
-        "navigationIntent": "launch_home"
+        "appId": "",
+        "stateChangedId": 0,
+        "success": true
     }
 }
 ```
 
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.LifecycleManager.stateChangeComplete", "params": {"appId": "", "stateChangedId": 0, "success": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": null
+}
+```
+
+
+
+<a id="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the LifecycleManager plugin:
+
+LifecycleManager interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onAppLifecycleStateChanged](#onAppLifecycleStateChanged) | Notifies the new state |
+
+<a id="onAppLifecycleStateChanged"></a>
+## *onAppLifecycleStateChanged*
+
+Notifies the new state
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.appId | string | App identifier for the application. |
+| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
+| params.oldState | LifecycleState | The previous state of the application instance before the update. |
+| params.newState | LifecycleState | The new state to transition the application. |
+| params.navigationIntent | string | navigation intent during active state |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.LifecycleManager.onAppLifecycleStateChanged",
+    "params": {
+        "appId": "",
+        "appInstanceId": "",
+        "oldState": "",
+        "newState": "",
+        "navigationIntent": ""
+    }
+}
+```

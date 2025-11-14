@@ -30,7 +30,7 @@ namespace Exchange {
 
         /// Requests the component to asynchronously transition to the new state.
         /// @param[in] newState     The new target state to transition to.
-        virtual Core::hresult Request(const string&  newState  /* @in @text newState*/) = 0;
+        virtual Core::hresult Request(const string&  newState  /* @text newState*/) = 0;
     };
 }
 }

@@ -172,6 +172,7 @@ namespace Exchange {
         ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT           = ID_POWER_MANAGER + 4,
         ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
         ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
+        ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR                       = ID_POWER_MANAGER + 7,
 
 	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
@@ -203,6 +204,7 @@ namespace Exchange {
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
+	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
         ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,
@@ -313,10 +315,31 @@ namespace Exchange {
         ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE        = ID_AV_INPUT + 6,
         ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7,
 
-        ID_LINCHPIN_BROKER                                      = ID_ENTOS_OFFSET + 0x410,
+        ID_PREINSTALL_MANAGER                           = ID_ENTOS_OFFSET + 0x410,
+        ID_PREINSTALL_MANAGER_NOTIFICATION              = ID_PREINSTALL_MANAGER + 1,
+        ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR     = ID_PREINSTALL_MANAGER + 2,
+
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
+
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
+        ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
+        ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
+        ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
+        ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+
+        ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2
+
+        // <pca>
+        ID_LINCHPIN_BROKER                                      = ID_ENTOS_OFFSET + 0x460,
         ID_LINCHPIN_BROKER_NOTIFICATION                         = ID_LINCHPIN_BROKER + 1,
         ID_LINCHPIN_BROKER_TOPIC_INFO_ITERATOR                  = ID_LINCHPIN_BROKER + 2
-        
+        // </pca>
+
     }; // enum IDS
 
 } // namespace Exchange
