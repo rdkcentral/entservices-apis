@@ -63,7 +63,7 @@ namespace Exchange {
             string sdk;
             string mediarite;
             string yocto;
-	    string pdri;
+	        string pdri;
         };
 
         struct EXTERNAL AddressesInfo {
