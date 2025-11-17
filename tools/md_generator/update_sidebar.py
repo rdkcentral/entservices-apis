@@ -38,8 +38,8 @@ def update_sidebar():
         new_sidebar_lines.append('\n__INSERT_MD_LIST__\n')
 
     # Build new apis md list
-    md_links = [f"  - [{os.path.splitext(f)[0]}](apis/{f})\n" for f in md_files_sorted]
-
+    md_links = [f"  - [{os.path.splitext(f)[0].replace('Plugin', '')}](apis/{f})\n" for f in md_files_sorted]
+ 
     # Replace marker with new list
     final_sidebar = []
     for line in new_sidebar_lines:
