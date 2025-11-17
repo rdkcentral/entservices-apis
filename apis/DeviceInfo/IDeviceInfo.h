@@ -25,24 +25,215 @@
 
 namespace WPEFramework {
 namespace Exchange {
-
+    /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceInfo : virtual public Core::IUnknown {
         enum { ID = ID_DEVICE_INFO };
 
         virtual ~IDeviceInfo() override = default;
 
-        virtual Core::hresult SerialNumber(string& serialNumber /* @out */) const = 0;
-        virtual Core::hresult Sku(string& sku /* @out */) const = 0;
-        virtual Core::hresult Make(string& make /* @out */) const = 0;
-        virtual Core::hresult Model(string& model /* @out */) const = 0;
-        virtual Core::hresult DeviceType(string& deviceType /* @out */) const = 0;
-        virtual Core::hresult SocName(string& socName /* @out */) const = 0;
-        virtual Core::hresult DistributorId(string& distributorId /* @out */) const = 0;
-        virtual Core::hresult Brand(string& brand /* @out */) const = 0;
-        virtual Core::hresult ReleaseVersion(string& releaseVersion /* @out */) const = 0;
-        virtual Core::hresult ChipSet(string& chipSet /* @out */) const = 0;
+        enum DeviceTypeInfo : uint8_t
+        {
+            DEVICE_TYPE_IPTV     = 0  /* @text IpTv */,
+            DEVICE_TYPE_IPSTB    = 1  /* @text IpStb  */,
+            DEVICE_TYPE_QAMIPSTB = 2  /* @text QamIpStb */
+        };
+
+        struct EXTERNAL CpuLoadAvg {
+            uint32_t avg1min;
+            uint32_t avg5min;
+            uint32_t avg15min;
+        };
+
+        struct EXTERNAL SystemInfos {
+            string version;
+            uint32_t uptime;
+            uint32_t totalram;
+            uint32_t freeram;
+            uint32_t totalswap;
+            uint32_t freeswap;
+            string devicename;
+            string cpuload;
+            CpuLoadAvg cpuloadavg;
+            string serialnumber;
+            string time;
+        };
+
+        struct EXTERNAL FirmwareversionInfo {
+            string imagename;
+            string sdk;
+            string mediarite;
+            string yocto;
+	    string pdri;
+        };
+
+        struct EXTERNAL AddressesInfo {
+            string name;
+            string mac;
+            string ip;
+        };
+
+        struct EXTERNAL DeviceSerialNo {
+            string serialnumber;
+        };
+
+        struct EXTERNAL DeviceModelNo {
+            string sku;
+        };
+
+        struct EXTERNAL DeviceMake {
+            string make;
+        };
+
+        struct EXTERNAL DeviceModel {
+            string model;
+        };
+
+        struct EXTERNAL DeviceTypeInfos {
+            DeviceTypeInfo devicetype;
+        };
+
+        struct EXTERNAL DeviceSoc {
+            string socname;
+        };
+
+        struct EXTERNAL DeviceDistId {
+            string distributorid;
+        };
+
+        struct EXTERNAL DeviceBrand {
+            string brand;
+        };
+
+        struct EXTERNAL DeviceReleaseVer {
+            string releaseversion;
+        };
+
+        struct EXTERNAL DeviceChip {
+            string chipset;
+        };
+
+        struct EXTERNAL EthernetMac {
+            string ethMac /* @text eth_mac */;
+        };
+
+        struct EXTERNAL StbMac {
+            string estbMac /* @text estb_mac */;
+        };
+
+        struct EXTERNAL WiFiMac {
+            string wifiMac /* @text wifi_mac */;
+        };
+
+        struct EXTERNAL StbIp {
+            string estbIp /* @text estb_ip */;
+        };
+
+        using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
+
+        // @property
+        // @text serialnumber
+        // @brief Provides access to the serial number set by manufacture
+        // @param serialNumber: Serial number set by manufacturer
+        virtual Core::hresult SerialNumber(DeviceSerialNo& deviceSerialNo /* @out */) const = 0;
+
+        // @property
+        // @text modelid
+        // @brief Provides access to the device model number
+        // @param sku: device model number
+        virtual Core::hresult Sku(DeviceModelNo& deviceModelNo /* @out */) const = 0;
+
+        // @property
+        // @text make
+        // @brief Provides access to the device manufacturer.
+        // @param serialNumber: Device manufacturer
+        virtual Core::hresult Make(DeviceMake& deviceMake /* @out */) const = 0;
+
+        // @property
+        // @text modelname
+        // @brief Provides access to the friendly device model name.
+        // @param model: Device model name
+        virtual Core::hresult Model(DeviceModel& deviceModel /* @out */) const = 0;
+
+        // @property
+        // @text devicetype
+        // @brief Provides access to the device type.
+        // @param devicetype: Device Type
+        virtual Core::hresult DeviceType(DeviceTypeInfos& deviceTypeInfos /* @out */) const = 0;
+
+        // @property
+        // @text socname
+        // @brief Provides access to the SOC Name.
+        // @param socname: Name of the SOC
+        virtual Core::hresult SocName(DeviceSoc& deviceSoc /* @out */) const = 0;
+
+        // @property
+        // @text distributorid
+        // @brief Provides access to the partner ID or distributor ID for device.
+        // @param distributorid: Partner ID or distributor ID for device
+        virtual Core::hresult DistributorId(DeviceDistId& deviceDistId /* @out */) const = 0;
+
+        // @property
+        // @text brandname
+        // @brief Provides access to device brand name
+        // @param brand: Device brand name
+        virtual Core::hresult Brand(DeviceBrand& deviceBrand /* @out */) const = 0;
+
+        // @property
+        // @text releaseversion
+        // @brief Provides access to the ReleaseVersion of the Image
+        // @param releaseversion: ReleaseVersion of the Image
+        virtual Core::hresult ReleaseVersion(DeviceReleaseVer& deviceReleaseVer /* @out */) const = 0;
+
+        // @property
+        // @text chipset
+        // @brief Provides access to the chipset of the device
+        // @param chipSet: Chipset of the device
+        virtual Core::hresult ChipSet(DeviceChip& deviceChip /* @out */) const = 0;
+
+        // @property
+        // @text firmwareversion
+        // @brief Provides access to the versions maintained in version.txt.
+        // @param firmwareVersionInfo: Version information
+        virtual Core::hresult FirmwareVersion(FirmwareversionInfo& firmwareVersionInfo/* @out */) const = 0;
+
+        // @property
+        // @text systeminfo
+        // @brief Provides access to the system general information
+        // @param systeminfo: System general information
+        virtual Core::hresult SystemInfo(SystemInfos& systemInfo /* @out */) const = 0;
+
+        // @property
+        // @text addresses
+        // @brief Provides access to the network interface addresses.
+        // @param addressesInfo: Network interface addresses
+        virtual Core::hresult Addresses(IAddressesInfoIterator*& addressesInfo /* @out */) const = 0;
+
+        // @property
+        // @text ethmac
+        // @brief Provides access to the Ethernet MAC addresses.
+        // @param ethMac: Ethernet MAC addresses
+        virtual Core::hresult EthMac(EthernetMac& ethernetMac /* @out */) const = 0;
+
+        // @property
+        // @text estbmac
+        // @brief Provides access to the STB MAC addresses.
+        // @param estbMac: STB MAC addresses
+        virtual Core::hresult EstbMac(StbMac& stbMac /* @out */) const = 0;
+
+        // @property
+        // @text wifimac
+        // @brief Provides access to the WIFI MAC addresses.
+        // @param wifiMac: WIFI MAC addresses
+        virtual Core::hresult WifiMac(WiFiMac& wiFiMac /* @out */) const = 0;
+
+        // @property
+        // @text estbip
+        // @brief Provides access to the STB IP addresses.
+        // @param estbIp: STB IP addresses
+        virtual Core::hresult EstbIp(StbIp& stbIp /* @out */) const = 0;
     };
 
+    /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {
         enum { ID = ID_DEVICE_CAPABILITIES_AUDIO };
 
@@ -59,20 +250,20 @@ namespace Exchange {
         };
 
         enum AudioCapability : uint8_t {
-            AUDIOCAPABILITY_NONE,
-            ATMOS,
-            DD,
-            DDPLUS,
-            DAD,
-            DAPV2,
-            MS12
+            AUDIOCAPABILITY_NONE = 0 /* @text none */,
+            ATMOS                = 1 /* @text ATMOS */,
+            DD                   = 2 /* @text DOLBY_DIGITAL */,
+            DDPLUS               = 3 /* @text DOLBY_DIGITAL_PLUS */,
+            DAD                  = 4 /* @text Dual_Audio_Decode */,
+            DAPV2                = 5 /* @text DAPv2 */,
+            MS12                 = 6 /* @text MS12 */
         };
 
         enum MS12Capability : uint8_t {
-            MS12CAPABILITY_NONE,
-            DOLBYVOLUME,
-            INTELIGENTEQUALIZER,
-            DIALOGUEENHANCER
+            MS12CAPABILITY_NONE = 0 /* @text none */,
+            DOLBYVOLUME         = 1 /* @text Dolby_Volume */,
+            INTELIGENTEQUALIZER = 2 /* @text Inteligent_Equalizer */,
+            DIALOGUEENHANCER    = 3 /* @text Dialogue_Enhancer */
         };
 
         enum MS12Profile : uint8_t {
@@ -82,17 +273,37 @@ namespace Exchange {
             VOICE
         };
 
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT> IAudioOutputIterator;
         typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
         typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
-        virtual Core::hresult SupportedAudioPorts(RPC::IStringIterator*& supportedAudioPorts /* @out */) const = 0;
-        virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& audioCapabilities /* @out */) const = 0;
-        virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& ms12Capabilities /* @out */) const = 0;
-        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , RPC::IStringIterator*& supportedMS12AudioProfiles /* @out */) const = 0;
+        // @text supportedaudioports
+        // @brief Provides access to the audio ports supported on the device.
+        // @param supportedAudioPorts: Audio ports supported on the device.
+        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
+
+        // @text audiocapabilities
+        // @brief Audio capabilities for the specified audio port.
+        // @param audioPort: Audio port name
+        // @param AudioCapabilities: Audio capability
+        virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& AudioCapabilities /* @out */, bool& success /* @out */) const = 0;
+
+        // @text ms12capabilities
+        // @brief MS12 audio capabilities for the specified audio port.
+        // @param audioPort: Audio port name
+        // @param MS12Capabilities: MS12 audio capability
+        virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& MS12Capabilities /* @out */, bool& success /* @out */) const = 0;
+
+        // @text supportedms12audioprofiles
+        // @brief Supported MS12 audio profiles for the specified audio port.
+        // @param audioPort: Audio port name
+        // @param supportedMS12AudioProfiles: MS12 audio profiles
+        virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */, bool& success /* @out */) const = 0;
     };
 
+    /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
         enum { ID = ID_DEVICE_CAPABILITIES_VIDEO };
 
@@ -111,49 +322,85 @@ namespace Exchange {
         };
 
         enum ScreenResolution : uint8_t {
-            SCREENRESOLUTION_UNKNOWN = 0,
-            SCREENRESOLUTION_480I = 1,
-            SCREENRESOLUTION_480P = 2,
-            SCREENRESOLUTION_576I = 3,
-            SCREENRESOLUTION_576P = 4,
-            SCREENRESOLUTION_576P50HZ = 5,
-            SCREENRESOLUTION_720P = 6,
-            SCREENRESOLUTION_720P50HZ = 7,
-            SCREENRESOLUTION_768P60HZ = 8,
-            SCREENRESOLUTION_1080I = 9,
-            SCREENRESOLUTION_1080I25HZ = 10,
-            SCREENRESOLUTION_1080I50HZ = 11,
-            SCREENRESOLUTION_1080P = 12,
-            SCREENRESOLUTION_1080P24HZ = 13,
-            SCREENRESOLUTION_1080P25HZ = 14,
-            SCREENRESOLUTION_1080P30HZ = 15,
-            SCREENRESOLUTION_1080P50HZ = 16,
-            SCREENRESOLUTION_1080P60HZ = 17,
-            SCREENRESOLUTION_2160P24HZ = 18,
-            SCREENRESOLUTION_2160P25HZ = 19,
-            SCREENRESOLUTION_2160P30HZ = 20,
-            SCREENRESOLUTION_2160P50HZ = 21,
-            SCREENRESOLUTION_2160P60HZ = 22,
-            SCREENRESOLUTION_4320P30HZ = 23,
-            SCREENRESOLUTION_4320P60HZ = 24
+            SCREENRESOLUTION_UNKNOWN = 0 /* @text unknown */,
+            SCREENRESOLUTION_480I = 1 /* @text 480i */,
+            SCREENRESOLUTION_480P = 2 /* @text 480p */,
+            SCREENRESOLUTION_576I = 3 /* @text 576i */,
+            SCREENRESOLUTION_576P = 4 /* @text 576p */,
+            SCREENRESOLUTION_576P50HZ = 5 /* @text 576p50 */,
+            SCREENRESOLUTION_720P = 6 /* @text 720p */,
+            SCREENRESOLUTION_720P50HZ = 7 /* @text 720p50 */,
+            SCREENRESOLUTION_768P60HZ = 8 /* @text 768p60 */,
+            SCREENRESOLUTION_1080I = 9 /* @text 1080i */,
+            SCREENRESOLUTION_1080I25HZ = 10 /* @text 1080i25 */,
+            SCREENRESOLUTION_1080I50HZ = 11 /* @text 1080i50 */,
+            SCREENRESOLUTION_1080P = 12 /* @text 1080p */,
+            SCREENRESOLUTION_1080P24HZ = 13 /* @text 1080p24 */,
+            SCREENRESOLUTION_1080P25HZ = 14 /* @text 1080p25 */,
+            SCREENRESOLUTION_1080P30HZ = 15 /* @text 1080p30 */,
+            SCREENRESOLUTION_1080P50HZ = 16 /* @text 1080p50 */,
+            SCREENRESOLUTION_1080P60HZ = 17 /* @text 1080p60 */,
+            SCREENRESOLUTION_2160P24HZ = 18 /* @text 2160p24 */,
+            SCREENRESOLUTION_2160P25HZ = 19 /* @text 2160p25 */,
+            SCREENRESOLUTION_2160P30HZ = 20 /* @text 2160p30 */,
+            SCREENRESOLUTION_2160P50HZ = 21 /* @text 2160p50 */,
+            SCREENRESOLUTION_2160P60HZ = 22 /* @text 2160p60 */,
+            SCREENRESOLUTION_4320P30HZ = 23 /* @text 4320p30 */,
+            SCREENRESOLUTION_4320P60HZ = 24 /* @text 4320p60 */
         };
 
         enum CopyProtection : uint8_t {
-            HDCP_UNAVAILABLE,
-            HDCP_14,
-            HDCP_20,
-            HDCP_21,
-            HDCP_22
+            HDCP_UNAVAILABLE = 0 /* @text unavailable */,
+            HDCP_14          = 1 /* @text 1.4 */,
+            HDCP_20          = 2 /* @text 2.0 */,
+            HDCP_21          = 3 /* @text 2.1 */,
+            HDCP_22          = 4 /* @text 2.2 */
         };
 
+        struct EXTERNAL DefaultResln {
+            string defaultResolution;
+        };
+
+        struct EXTERNAL HostEdid {
+            string EDID;
+        };
+
+        struct EXTERNAL SupportedHDCPVer {
+            CopyProtection supportedHDCPVersion;
+        };
+
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
         typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
-        virtual Core::hresult SupportedVideoDisplays(RPC::IStringIterator*& supportedVideoDisplays /* @out */) const = 0;
-        virtual Core::hresult DefaultResolution(const string& videoDisplay , string& defaultResolution /* @out */) const = 0;
-        virtual Core::hresult SupportedResolutions(const string& videoDisplay , RPC::IStringIterator*& supportedResolutions /* @out */) const = 0;
-        virtual Core::hresult HostEDID(string& edid /* @out */) const = 0;
-        virtual Core::hresult SupportedHdcp(const string& videoDisplay , CopyProtection& supportedHDCPVersion /* @out */) const = 0;
+        // @text supportedvideodisplays
+        // @brief Provides access to the video ports supported on the device.
+        // @param supportedVideoDisplays: Video ports supported on the device
+        virtual Core::hresult SupportedVideoDisplays(IStringIterator*& supportedVideoDisplays /* @out */, bool& success /* @out */) const = 0;
+
+        // @text defaultresolution
+        // @brief Default resolution on the selected video display port.
+        // @param videoDisplay: Video display port name
+        // @param defaultResolution: Default Resolutions
+        virtual Core::hresult DefaultResolution(const string& videoDisplay , DefaultResln& defaultResln /* @out */) const = 0;
+
+        // @text supportedresolutions
+        // @brief Supported resolutions on the selected video display port.
+        // @param videoDisplay: Video display port name
+        // @param supportedResolutions: Supported Resolutions
+        virtual Core::hresult SupportedResolutions(const string& videoDisplay, IStringIterator*& supportedResolutions /* @out */, bool& success /* @out */ ) const = 0;
+
+        // @property
+        // @text hostedid
+        // @brief Provides access to the EDID of the host.
+        // @param EDID: EDID of the host
+        virtual Core::hresult HostEDID(HostEdid& hostEdid /* @out */) const = 0;
+
+        // @text supportedhdcp
+        // @brief Supported hdcp version on the selected video display port.
+        // @param videoDisplay: Video display port name
+        // @param supportedHDCPVersion: HDCP support
+        virtual Core::hresult SupportedHdcp(const string& videoDisplay , SupportedHDCPVer& supportedHDCPVer /* @out */) const = 0;
     };
 }
 }
