@@ -71,7 +71,7 @@ Bluetooth interface methods:
 
 
 <a name="connect"></a>
-## *connect [<sup>method</sup>](#Methods)*
+## *connect*
 
 Initiates the connection with the given Bluetooth device. Triggers `onStatusChanged` 
 
@@ -126,7 +126,7 @@ Initiates the connection with the given Bluetooth device. Triggers `onStatusChan
 ```
 
 <a name="disable"></a>
-## *disable [<sup>method</sup>](#Methods)*
+## *disable*
 
 Disables the Bluetooth stack.
 
@@ -170,7 +170,7 @@ This method takes no parameters.
 ```
 
 <a name="disconnect"></a>
-## *disconnect [<sup>method</sup>](#Methods)*
+## *disconnect*
 
 Disconnects the given device from this device ID and triggers `onStatusChanged` Event.
 
@@ -223,7 +223,7 @@ Disconnects the given device from this device ID and triggers `onStatusChanged` 
 ```
 
 <a name="enable"></a>
-## *enable [<sup>method</sup>](#Methods)*
+## *enable*
 
 Enables the Bluetooth stack.
 
@@ -267,7 +267,7 @@ This method takes no parameters.
 ```
 
 <a name="getAudioInfo"></a>
-## *getAudioInfo [<sup>method</sup>](#Methods)*
+## *getAudioInfo*
 
 Provides information on the currently playing song/audio from an external source. The returned information from Bluetooth-In device provides information that could be displayed on a TV screen.
 
@@ -334,7 +334,7 @@ No Events
 ```
 
 <a name="getConnectedDevices"></a>
-## *getConnectedDevices [<sup>method</sup>](#Methods)*
+## *getConnectedDevices*
 
 Returns a list of devices connected to this device.
 
@@ -396,7 +396,7 @@ This method takes no parameters.
 ```
 
 <a name="getDeviceInfo"></a>
-## *getDeviceInfo [<sup>method</sup>](#Methods)*
+## *getDeviceInfo*
 
 Returns information for the given device ID.
 
@@ -471,7 +471,7 @@ No Events
 ```
 
 <a name="getDiscoveredDevices"></a>
-## *getDiscoveredDevices [<sup>method</sup>](#Methods)*
+## *getDiscoveredDevices*
 
 This method should be called after getting at least one event `onDiscoveredDevice` event and it returns an array of discovered devices.
 
@@ -535,7 +535,7 @@ This method takes no parameters.
 ```
 
 <a name="getName"></a>
-## *getName [<sup>method</sup>](#Methods)*
+## *getName*
 
 Returns the name of this device as seen by other Bluetooth devices.
 
@@ -581,7 +581,7 @@ This method takes no parameters.
 ```
 
 <a name="getPairedDevices"></a>
-## *getPairedDevices [<sup>method</sup>](#Methods)*
+## *getPairedDevices*
 
 Returns a list of devices that have paired with this device.
 
@@ -643,7 +643,7 @@ This method takes no parameters.
 ```
 
 <a name="isDiscoverable"></a>
-## *isDiscoverable [<sup>method</sup>](#Methods)*
+## *isDiscoverable*
 
 Returns `true`, if this device can be discovered by other Bluetooth devices.
 
@@ -689,7 +689,7 @@ This method takes no parameters.
 ```
 
 <a name="pair"></a>
-## *pair [<sup>method</sup>](#Methods)*
+## *pair*
 
 Pairs this device with device ID of Bluetooth. Triggers `onStatusChanged` and `onRequestFailed` events.
 
@@ -741,7 +741,7 @@ Pairs this device with device ID of Bluetooth. Triggers `onStatusChanged` and `o
 ```
 
 <a name="respondToEvent"></a>
-## *respondToEvent [<sup>method</sup>](#Methods)*
+## *respondToEvent*
 
 Provides the ability to respond the client Bluetooth  For example, this device can respond to a pairing or connection event and indicate the proper response to the requested device, such as the connection request accepted.
 
@@ -795,7 +795,7 @@ No Events
 ```
 
 <a name="sendAudioPlaybackCommand"></a>
-## *sendAudioPlaybackCommand [<sup>method</sup>](#Methods)*
+## *sendAudioPlaybackCommand*
 
 Provides control over the connected source. Requests can have one of the following values: PLAY, PAUSE, RESUME, STOP, SKIP_NEXT, SKIP_PREV, RESTART, MUTE, UNMUTE, VOLUME_UP, VOLUME_DOWN.
 
@@ -847,7 +847,7 @@ No Events
 ```
 
 <a name="setAudioStream"></a>
-## *setAudioStream [<sup>method</sup>](#Methods)*
+## *setAudioStream*
 
 Sets the primary or secondary audio-out to the given Bluetooth device.
 
@@ -899,7 +899,7 @@ No Events
 ```
 
 <a name="setDiscoverable"></a>
-## *setDiscoverable [<sup>method</sup>](#Methods)*
+## *setDiscoverable*
 
 When true, this device can be discovered by other Bluetooth devices. When false, this device is not discoverable.
 
@@ -951,7 +951,7 @@ No Events
 ```
 
 <a name="setName"></a>
-## *setName [<sup>method</sup>](#Methods)*
+## *setName*
 
 Sets the name of this device as seen by other Bluetooth devices.
 
@@ -1001,7 +1001,7 @@ No Events
 ```
 
 <a name="startScan"></a>
-## *startScan [<sup>method</sup>](#Methods)*
+## *startScan*
 
 Starts scanning for other Bluetooth devices that match the given profile. 
  Supported profiles include:  
@@ -1067,7 +1067,7 @@ Starts scanning for other Bluetooth devices that match the given profile.
 ```
 
 <a name="stopScan"></a>
-## *stopScan [<sup>method</sup>](#Methods)*
+## *stopScan*
 
 Stops scanning for Bluetooth devices  if already scan is in-progress and triggers `onStatusChanged` 
 
@@ -1112,7 +1112,7 @@ This method takes no parameters.
 ```
 
 <a name="unpair"></a>
-## *unpair [<sup>method</sup>](#Methods)*
+## *unpair*
 
 Unpairs the given device ID from this device. Triggers `onStatusChanged` 
 
@@ -1163,7 +1163,7 @@ Unpairs the given device ID from this device. Triggers `onStatusChanged`
 ```
 
 <a name="getDeviceVolumeMuteInfo"></a>
-## *getDeviceVolumeMuteInfo [<sup>method</sup>](#Methods)*
+## *getDeviceVolumeMuteInfo*
 
 Gets the volume information of the given Bluetooth device ID.
 
@@ -1222,7 +1222,7 @@ No Events
 ```
 
 <a name="setDeviceVolumeMuteInfo"></a>
-## *setDeviceVolumeMuteInfo [<sup>method</sup>](#Methods)*
+## *setDeviceVolumeMuteInfo*
 
 Sets the volume of the connected Bluetooth device ID.  Triggers `onDeviceMediaStatus` 
 
@@ -1279,7 +1279,7 @@ Sets the volume of the connected Bluetooth device ID.  Triggers `onDeviceMediaSt
 ```
 
 <a name="getApiVersionNumber"></a>
-## *getApiVersionNumber [<sup>method</sup>](#Methods)*
+## *getApiVersionNumber*
 
 Provides the current API version number.
 
@@ -1350,7 +1350,7 @@ Bluetooth interface events:
 
 
 <a name="onConnectionRequest"></a>
-## *onConnectionRequest [<sup>event</sup>](#Notifications)*
+## *onConnectionRequest*
 
 Triggered when a connection is requested by third party device that has already been paired to the set-top box.
 
@@ -1384,7 +1384,7 @@ Triggered when a connection is requested by third party device that has already 
 ```
 
 <a name="onDiscoveredDevice"></a>
-## *onDiscoveredDevice [<sup>event</sup>](#Notifications)*
+## *onDiscoveredDevice*
 
 Triggered during device discovery when a new device is discovered or a discovered device has been lost in real time.
 
@@ -1422,7 +1422,7 @@ Triggered during device discovery when a new device is discovered or a discovere
 ```
 
 <a name="onPairingRequest"></a>
-## *onPairingRequest [<sup>event</sup>](#Notifications)*
+## *onPairingRequest*
 
 Triggered when pairing is requested by a third party device that supports A2DP profile. The set-top box must be enabled as an A2DP Sink device (is put in discoverable mode). 
  
@@ -1462,7 +1462,7 @@ Triggered when pairing is requested by a third party device that supports A2DP p
 ```
 
 <a name="onPlaybackChange"></a>
-## *onPlaybackChange [<sup>event</sup>](#Notifications)*
+## *onPlaybackChange*
 
 Triggered when playback is interrupted or changed. Note that there is no resume  After the previously paused playback is resumed, it is followed by `onPlaybackProgress` events.
 
@@ -1492,7 +1492,7 @@ Triggered when playback is interrupted or changed. Note that there is no resume 
 ```
 
 <a name="onPlaybackNewTrack"></a>
-## *onPlaybackNewTrack [<sup>event</sup>](#Notifications)*
+## *onPlaybackNewTrack*
 
 Triggered whenever the user plays a new track or when the music player selects a next track automatically from its playlist.
 
@@ -1530,7 +1530,7 @@ Triggered whenever the user plays a new track or when the music player selects a
 ```
 
 <a name="onPlaybackProgress"></a>
-## *onPlaybackProgress [<sup>event</sup>](#Notifications)*
+## *onPlaybackProgress*
 
 Triggered in one second intervals as long as the status of the playback is playing.
 
@@ -1558,7 +1558,7 @@ Triggered in one second intervals as long as the status of the playback is playi
 ```
 
 <a name="onPlaybackRequest"></a>
-## *onPlaybackRequest [<sup>event</sup>](#Notifications)*
+## *onPlaybackRequest*
 
 Triggered when playback is requested by third party device that has already been paired to the set-top box.
 
@@ -1592,7 +1592,7 @@ Triggered when playback is requested by third party device that has already been
 ```
 
 <a name="onRequestFailed"></a>
-## *onRequestFailed [<sup>event</sup>](#Notifications)*
+## *onRequestFailed*
 
 Triggered when the previous request to pair or connect failed. In absence of a failure, XRE receives `statusChanged` when pairing or connecting succeeds.
 
@@ -1632,7 +1632,7 @@ Triggered when the previous request to pair or connect failed. In absence of a f
 ```
 
 <a name="onStatusChanged"></a>
-## *onStatusChanged [<sup>event</sup>](#Notifications)*
+## *onStatusChanged*
 
 Triggered when the Bluetooth functionality status changes. Supported statuses are:  
 * `PAIRING_CHANGE` - Pairing status changed. Applications get the device which got paired/unpaired as part of this message, but it's up to the application to obtain an updated list of paired devices by calling [getPairedDevices](#getpaireddevices).  
@@ -1676,7 +1676,7 @@ Triggered when the Bluetooth functionality status changes. Supported statuses ar
 ```
 
 <a name="onDeviceFound"></a>
-## *onDeviceFound [<sup>event</sup>](#Notifications)*
+## *onDeviceFound*
 
 Triggered when the new device got discovered.
 
@@ -1710,7 +1710,7 @@ Triggered when the new device got discovered.
 ```
 
 <a name="onDeviceLost"></a>
-## *onDeviceLost [<sup>event</sup>](#Notifications)*
+## *onDeviceLost*
 
 Triggered when any discovered device lost or out of range.
 
@@ -1744,7 +1744,7 @@ Triggered when any discovered device lost or out of range.
 ```
 
 <a name="onDeviceMediaStatus"></a>
-## *onDeviceMediaStatus [<sup>event</sup>](#Notifications)*
+## *onDeviceMediaStatus*
 
 Triggered when any change occurs to Device Media like volume or mute. Supported Audio Media Control commands are:  
 * `MUTE` - BT audio device muted using remote or external BT device.  

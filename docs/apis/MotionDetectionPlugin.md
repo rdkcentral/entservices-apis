@@ -59,7 +59,7 @@ MotionDetection interface methods:
 
 
 <a name="arm"></a>
-## *arm [<sup>method</sup>](#Methods)*
+## *arm*
 
 Enables a motion detector in the mode requested. This enables a single shot  Once an event is sent, the device is in the disarmed state. If the application wishes to receive another event, then the application must re-arm.
 
@@ -111,7 +111,7 @@ No Events
 ```
 
 <a name="disarm"></a>
-## *disarm [<sup>method</sup>](#Methods)*
+## *disarm*
 
 Disables the specified motion detector.
 
@@ -161,7 +161,7 @@ No Events
 ```
 
 <a name="getLastMotionEventElapsedTime"></a>
-## *getLastMotionEventElapsedTime [<sup>method</sup>](#Methods)*
+## *getLastMotionEventElapsedTime*
 
 Returns the elapsed time since the last motion event occurred for the specified motion detector.
 
@@ -213,7 +213,7 @@ No Events
 ```
 
 <a name="getMotionDetectors"></a>
-## *getMotionDetectors [<sup>method</sup>](#Methods)*
+## *getMotionDetectors*
 
 Returns the available motion detectors and then lists information for each detector including their supported sensitivity mode.  
   
@@ -285,7 +285,7 @@ This method takes no parameters.
 ```
 
 <a name="getMotionEventsActivePeriod"></a>
-## *getMotionEventsActivePeriod [<sup>method</sup>](#Methods)*
+## *getMotionEventsActivePeriod*
 
 Returns the configured times during the day when the motion sensor is active and detecting motion.
 
@@ -339,7 +339,7 @@ This method takes no parameters.
 ```
 
 <a name="getNoMotionPeriod"></a>
-## *getNoMotionPeriod [<sup>method</sup>](#Methods)*
+## *getNoMotionPeriod*
 
 Returns the no-motion period for the specified motion detector.
 
@@ -391,7 +391,7 @@ No Events
 ```
 
 <a name="getSensitivity"></a>
-## *getSensitivity [<sup>method</sup>](#Methods)*
+## *getSensitivity*
 
 Returns the current sensitivity configuration for the specified motion detector. The result is either a `name` property with the sensitivity name or a `value` property with the sensitivity number. See `getMotionDetectors`.
 
@@ -443,7 +443,7 @@ No Events
 ```
 
 <a name="isarmed"></a>
-## *isarmed [<sup>method</sup>](#Methods)*
+## *isarmed*
 
 Returns whether the specified motion detector is enabled.
 
@@ -495,7 +495,7 @@ No Events
 ```
 
 <a name="setMotionEventsActivePeriod"></a>
-## *setMotionEventsActivePeriod [<sup>method</sup>](#Methods)*
+## *setMotionEventsActivePeriod*
 
 Sets the period of time during the day when the motion sensor is active and detecting motion. Any motion notifications outside of this period should be deferred until the start of the active period or cancelled if the notification is no longer valid. If this method is not called, then the active period is considered disabled and the sensor is armed 24 hours per day.  
 **Note:** The start time may be a higher value than the end time (for example, when a configured activation period spans across midnight from 09:00 pm to 01:00 am). Also, Daylight savings time (DST) may apply to the time zone where this feature is being used and the caller should be aware of the 23 hour and 25 hour days which occur during the shift days. For this reason it is advised that the caller reprograms the active period the day before and the day after the shift days to ensure reliable operation. If the caller is reprogramming this value every 24 hours then this should not be an issue.
@@ -558,7 +558,7 @@ No Events
 ```
 
 <a name="setNoMotionPeriod"></a>
-## *setNoMotionPeriod [<sup>method</sup>](#Methods)*
+## *setNoMotionPeriod*
 
 Sets the no-motion period, in seconds, for the specified motion detector. When a motion detector is set to detect motion, this is the period of time, in seconds, that MUST elapse with no motion before a motion event is generated. If motion is detected within this period of time, then the time is reset and the countdown begins again. When a motion detector is set to detect no motion, then this is the period of time with no motion detected that MUST elapse before a no-motion event is generated.
 
@@ -610,7 +610,7 @@ No Events
 ```
 
 <a name="setSensitivity"></a>
-## *setSensitivity [<sup>method</sup>](#Methods)*
+## *setSensitivity*
 
 Sets the sensitivity of the sensor for the specified motion detector. The argument required depends on the supported sensitivity mode and can be one of:  
 * `name`: Used when `sensitivityMode` is set to `2` requiring a sensitivity name.  
@@ -680,7 +680,7 @@ MotionDetection interface events:
 
 
 <a name="onMotionEvent"></a>
-## *onMotionEvent [<sup>event</sup>](#Notifications)*
+## *onMotionEvent*
 
 Triggered when a motion detector is enabled and either motion or no motion is detected (as indicated by the mode setting).
 

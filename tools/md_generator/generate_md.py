@@ -54,9 +54,10 @@ def generate_md(logfile=None):
 def convert_json_to_md(plugin_path):
     print(f"*****   Generating md files under docs/apis for {plugin_path}   *****")
     jsongenpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "json2md/generator_json.py"))
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
     flist = glob.glob(os.path.join(plugin_path, "*Plugin.json"))
     for file in flist:
-        os.system(f"python3 {jsongenpath} --docs {file} -o ../../../../docs/apis --no-interfaces-section")
+        os.system(f"python3 {jsongenpath} --docs {file} -o {output_dir} --no-interfaces-section")
     print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
 def convert_h_to_md(plugin_path, logfile=None):
@@ -82,7 +83,10 @@ def postprocess_md():
         with open(file, "r") as file_rd:
             rplce_file = file_rd.read()
             rplce_file_Org = rplce_file
-            list_rplce = (" #head.Methods", " #head.Notifications", " #head.Properties", "head.", "method.", "acronym.", "term.", "event.", "ref.", "property.")
+            list_rplce = (" [<sup>method</sup>](#head.Methods)",
+                          " [<sup>event</sup>](#head.Notifications)",
+                          " [<sup>property</sup>](#head.Properties)",
+                          "head.", "method.", "acronym.", "term.", "event.", "ref.", "property.")
 
             print("postprocessing filename:", file)
             for word in list_rplce:

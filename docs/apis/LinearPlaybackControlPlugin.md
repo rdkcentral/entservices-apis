@@ -45,7 +45,7 @@ LinearPlaybackControl interface properties:
 
 
 <a name="channel"></a>
-## *channel [<sup>property</sup>](#Properties)*
+## *channel*
 
 Provides access to the current channel.
 
@@ -118,7 +118,7 @@ No Events
 ```
 
 <a name="seek"></a>
-## *seek [<sup>property</sup>](#Properties)*
+## *seek*
 
 Provides access to the TSB seek position offset, from live position, in seconds.
 
@@ -191,7 +191,7 @@ No Events
 ```
 
 <a name="trickPlay"></a>
-## *trickPlay [<sup>property</sup>](#Properties)*
+## *trickPlay*
 
 Provides access to the trick play speed and direction.
 
@@ -264,7 +264,7 @@ No Events
 ```
 
 <a name="status"></a>
-## *status [<sup>property</sup>](#Properties)*
+## *status*
 
 Provides access to the current TSB status information containing buffer size, seek position and health status.
 
@@ -328,7 +328,7 @@ No Events
 ```
 
 <a name="tracing"></a>
-## *tracing [<sup>property</sup>](#Properties)*
+## *tracing*
 
 Provides access to the tracing enable/disable flag.
 
@@ -412,7 +412,7 @@ LinearPlaybackControl interface events:
 
 
 <a name="speedchanged"></a>
-## *speedchanged [<sup>event</sup>](#Notifications)*
+## *speedchanged*
 
 Indicates that the trick play speed has changed.
 

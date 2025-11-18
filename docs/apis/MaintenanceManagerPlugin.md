@@ -54,7 +54,7 @@ MaintenanceManager interface methods:
 
 
 <a name="getMaintenanceActivityStatus"></a>
-## *getMaintenanceActivityStatus [<sup>method</sup>](#Methods)*
+## *getMaintenanceActivityStatus*
 
 Gets the maintenance activity status details.  
 **Maintenance Status**  
@@ -112,7 +112,7 @@ This method takes no parameters.
 ```
 
 <a name="getMaintenanceStartTime"></a>
-## *getMaintenanceStartTime [<sup>method</sup>](#Methods)*
+## *getMaintenanceStartTime*
 
 Gets the scheduled maintenance start time.
 
@@ -158,7 +158,7 @@ This method takes no parameters.
 ```
 
 <a name="setMaintenanceMode"></a>
-## *setMaintenanceMode [<sup>method</sup>](#Methods)*
+## *setMaintenanceMode*
 
 Sets the maintenance mode and software upgrade opt-out mode.  
 *Opt-Out Modes*  
@@ -215,7 +215,7 @@ No Events
 ```
 
 <a name="startMaintenance"></a>
-## *startMaintenance [<sup>method</sup>](#Methods)*
+## *startMaintenance*
 
 Starts maintenance activities.
 
@@ -260,7 +260,7 @@ This method takes no parameters.
 ```
 
 <a name="stopMaintenance"></a>
-## *stopMaintenance [<sup>method</sup>](#Methods)*
+## *stopMaintenance*
 
 Stops maintenance activities.
 
@@ -305,7 +305,7 @@ This method takes no parameters.
 ```
 
 <a name="getMaintenanceMode"></a>
-## *getMaintenanceMode [<sup>method</sup>](#Methods)*
+## *getMaintenanceMode*
 
 Gets the current maintenance mode and software upgrade opt-out mode which are stored in the persistent location.
 
@@ -367,7 +367,7 @@ MaintenanceManager interface events:
 
 
 <a name="onMaintenanceStatusChange"></a>
-## *onMaintenanceStatusChange [<sup>event</sup>](#Notifications)*
+## *onMaintenanceStatusChange*
 
 Triggered when the maintenance manager status changes. See `getMaintenanceActivityStatus` for a list of statuses.
 

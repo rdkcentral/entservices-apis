@@ -51,7 +51,7 @@ Monitor interface methods:
 
 
 <a name="restartlimits"></a>
-## *restartlimits [<sup>method</sup>](#Methods)*
+## *restartlimits*
 
 Sets new restart limits for a service.
 
@@ -105,7 +105,7 @@ No Events
 ```
 
 <a name="resetstats"></a>
-## *resetstats [<sup>method</sup>](#Methods)*
+## *resetstats*
 
 Resets memory and process statistics for a single service watched by the Monitor.
 
@@ -225,7 +225,7 @@ Monitor interface properties:
 
 
 <a name="status"></a>
-## *status [<sup>property</sup>](#Properties)*
+## *status*
 
 Provides access to the service statistics.
 
@@ -344,7 +344,7 @@ Monitor interface events:
 
 
 <a name="action"></a>
-## *action [<sup>event</sup>](#Notifications)*
+## *action*
 
 Signals an action taken by the Monitor.
 

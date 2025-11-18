@@ -67,7 +67,7 @@ RemoteControl interface methods:
 
 
 <a name="getApiVersionNumber"></a>
-## *getApiVersionNumber [<sup>method</sup>](#Methods)*
+## *getApiVersionNumber*
 
 Gets the current API version number.
 
@@ -113,7 +113,7 @@ This method takes no parameters.
 ```
 
 <a name="getNetStatus"></a>
-## *getNetStatus [<sup>method</sup>](#Methods)*
+## *getNetStatus*
 
 Returns the status information provided by the last `onStatus` event for the specified network.
 
@@ -221,7 +221,7 @@ No Events
 ```
 
 <a name="startPairing"></a>
-## *startPairing [<sup>method</sup>](#Methods)*
+## *startPairing*
 
 Initiates pairing a remote with the STB on the specified network.
 
@@ -281,7 +281,7 @@ Initiates pairing a remote with the STB on the specified network.
 ```
 
 <a name="stopPairing"></a>
-## *stopPairing [<sup>method</sup>](#Methods)*
+## *stopPairing*
 
 Cancels pairing a remote with the STB on the specified network.
 
@@ -333,7 +333,7 @@ No Events
 ```
 
 <a name="initializeIRDB"></a>
-## *initializeIRDB [<sup>method</sup>](#Methods)*
+## *initializeIRDB*
 
 Initializes the IR database.
 
@@ -383,7 +383,7 @@ No Events
 ```
 
 <a name="clearIRCodes"></a>
-## *clearIRCodes [<sup>method</sup>](#Methods)*
+## *clearIRCodes*
 
 Clears the IR codes from the specified remote.
 
@@ -436,7 +436,7 @@ Clears the IR codes from the specified remote.
 ```
 
 <a name="setIRCode"></a>
-## *setIRCode [<sup>method</sup>](#Methods)*
+## *setIRCode*
 
 Programs an IR code into the specified remote control.
 
@@ -493,7 +493,7 @@ Programs an IR code into the specified remote control.
 ```
 
 <a name="getIRCodesByAutoLookup"></a>
-## *getIRCodesByAutoLookup [<sup>method</sup>](#Methods)*
+## *getIRCodesByAutoLookup*
 
 Returns a list of available IR codes for the TV and AVRs specified by the input parameters.
 
@@ -561,7 +561,7 @@ No Events
 ```
 
 <a name="getIRCodesByNames"></a>
-## *getIRCodesByNames [<sup>method</sup>](#Methods)*
+## *getIRCodesByNames*
 
 Returns a list of IR codes for the AV device specified by the input parameters.
 
@@ -628,7 +628,7 @@ No Events
 ```
 
 <a name="getIRDBManufacturers"></a>
-## *getIRDBManufacturers [<sup>method</sup>](#Methods)*
+## *getIRDBManufacturers*
 
 Returns a list of manufacturer names based on the specified input parameters.
 
@@ -689,7 +689,7 @@ No Events
 ```
 
 <a name="getIRDBModels"></a>
-## *getIRDBModels [<sup>method</sup>](#Methods)*
+## *getIRDBModels*
 
 Returns a list of model names based on the specified input parameters.
 
@@ -754,7 +754,7 @@ No Events
 ```
 
 <a name="getLastKeypressSource"></a>
-## *getLastKeypressSource [<sup>method</sup>](#Methods)*
+## *getLastKeypressSource*
 
 Returns last key press source data.
 
@@ -818,7 +818,7 @@ No Events
 ```
 
 <a name="configureWakeupKeys"></a>
-## *configureWakeupKeys [<sup>method</sup>](#Methods)*
+## *configureWakeupKeys*
 
 Configures which keys on the remote will wake the target from deepsleep.
 
@@ -872,7 +872,7 @@ No Events
 ```
 
 <a name="findMyRemote"></a>
-## *findMyRemote [<sup>method</sup>](#Methods)*
+## *findMyRemote*
 
 Tells the most recently used remote to beep.
 
@@ -924,7 +924,7 @@ No Events
 ```
 
 <a name="factoryReset"></a>
-## *factoryReset [<sup>method</sup>](#Methods)*
+## *factoryReset*
 
 Tells all paired and connected remotes to factory reset.
 
@@ -968,7 +968,7 @@ This method takes no parameters.
 ```
 
 <a name="unpair"></a>
-## *unpair [<sup>method</sup>](#Methods)*
+## *unpair*
 
 Unpairs a given or all remote(s) from the STB.
 
@@ -1021,7 +1021,7 @@ No Events
 ```
 
 <a name="startFirmwareUpdate"></a>
-## *startFirmwareUpdate [<sup>method</sup>](#Methods)*
+## *startFirmwareUpdate*
 
 Starts a firmware image update session for the specified remote(s).
 
@@ -1086,7 +1086,7 @@ Starts a firmware image update session for the specified remote(s).
 ```
 
 <a name="statusFirmwareUpdate"></a>
-## *statusFirmwareUpdate [<sup>method</sup>](#Methods)*
+## *statusFirmwareUpdate*
 
 Returns the status of an active firmware image update session.
 
@@ -1150,7 +1150,7 @@ No Events
 ```
 
 <a name="cancelFirmwareUpdate"></a>
-## *cancelFirmwareUpdate [<sup>method</sup>](#Methods)*
+## *cancelFirmwareUpdate*
 
 Cancels an active firmware image update session.
 
@@ -1216,7 +1216,7 @@ RemoteControl interface events:
 
 
 <a name="onStatus"></a>
-## *onStatus [<sup>event</sup>](#Notifications)*
+## *onStatus*
 
 Triggered at any time when the status of any one of the supported STB remote networks changes.
 
@@ -1296,7 +1296,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 ```
 
 <a name="onFirmwareUpdateProgress"></a>
-## *onFirmwareUpdateProgress [<sup>event</sup>](#Notifications)*
+## *onFirmwareUpdateProgress*
 
 Generated at 0 and 100 percent and each time a download percent increment is reached.
 
@@ -1331,7 +1331,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 ```
 
 <a name="onValidation"></a>
-## *onValidation [<sup>event</sup>](#Notifications)*
+## *onValidation*
 
 Generated for manual pairing validation.
 

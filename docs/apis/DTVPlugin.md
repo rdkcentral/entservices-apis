@@ -55,7 +55,7 @@ DTV interface methods:
 
 
 <a name="addLnb"></a>
-## *addLnb [<sup>method</sup>](#Methods)*
+## *addLnb*
 
 Add a new LNB to the database.
 
@@ -128,7 +128,7 @@ No Events
 ```
 
 <a name="addSatellite"></a>
-## *addSatellite [<sup>method</sup>](#Methods)*
+## *addSatellite*
 
 Add a new satellite to the database.
 
@@ -179,7 +179,7 @@ No Events
 ```
 
 <a name="startServiceSearch"></a>
-## *startServiceSearch [<sup>method</sup>](#Methods)*
+## *startServiceSearch*
 
 Starts a service search.
 
@@ -273,7 +273,7 @@ Starts a service search.
 ```
 
 <a name="finishServiceSearch"></a>
-## *finishServiceSearch [<sup>method</sup>](#Methods)*
+## *finishServiceSearch*
 
 Finishes a service search.
 
@@ -322,7 +322,7 @@ No Events
 ```
 
 <a name="startPlaying"></a>
-## *startPlaying [<sup>method</sup>](#Methods)*
+## *startPlaying*
 
 Starts playing the specified service.
 
@@ -378,7 +378,7 @@ Starts playing the specified service.
 ```
 
 <a name="stopPlaying"></a>
-## *stopPlaying [<sup>method</sup>](#Methods)*
+## *stopPlaying*
 
 Stops playing the specified service.
 
@@ -448,7 +448,7 @@ DTV interface properties:
 
 
 <a name="numberOfCountries"></a>
-## *numberOfCountries [<sup>property</sup>](#Properties)*
+## *numberOfCountries*
 
 Provides access to the number of country configurations available.
 
@@ -487,7 +487,7 @@ No Events
 ```
 
 <a name="countryList"></a>
-## *countryList [<sup>property</sup>](#Properties)*
+## *countryList*
 
 Provides access to the array containing the name and 3 character ISO country code for all the available country configurations.
 
@@ -534,7 +534,7 @@ No Events
 ```
 
 <a name="country"></a>
-## *country [<sup>property</sup>](#Properties)*
+## *country*
 
 Provides access to the country configuration using the ISO 3-character country code.
 
@@ -592,7 +592,7 @@ No Events
 ```
 
 <a name="lnbList"></a>
-## *lnbList [<sup>property</sup>](#Properties)*
+## *lnbList*
 
 Provides access to the array of LNBs defined in the database.
 
@@ -663,7 +663,7 @@ No Events
 ```
 
 <a name="satelliteList"></a>
-## *satelliteList [<sup>property</sup>](#Properties)*
+## *satelliteList*
 
 Provides access to the array of satellites defined in the database.
 
@@ -712,7 +712,7 @@ No Events
 ```
 
 <a name="numberOfServices"></a>
-## *numberOfServices [<sup>property</sup>](#Properties)*
+## *numberOfServices*
 
 Provides access to the total number of services in the service database.
 
@@ -751,7 +751,7 @@ No Events
 ```
 
 <a name="serviceList"></a>
-## *serviceList [<sup>property</sup>](#Properties)*
+## *serviceList*
 
 Provides access to the list of services for the given type of tuner, transport (version 2), or all services if neither is given.
 
@@ -816,7 +816,7 @@ No Events
 ```
 
 <a name="serviceInfo"></a>
-## *serviceInfo [<sup>property</sup>](#Properties)*
+## *serviceInfo*
 
 Provides access to the information for the given service as defined by its DVB triplet URI.
 
@@ -878,7 +878,7 @@ No Events
 ```
 
 <a name="serviceComponents"></a>
-## *serviceComponents [<sup>property</sup>](#Properties)*
+## *serviceComponents*
 
 Provides access to the (Version 2) array of components for the given service defined by its URI.
 
@@ -970,7 +970,7 @@ No Events
 ```
 
 <a name="transportInfo"></a>
-## *transportInfo [<sup>property</sup>](#Properties)*
+## *transportInfo*
 
 Provides access to the information for the given transport as defined by its DVB doublet URI.
 
@@ -1061,7 +1061,7 @@ No Events
 ```
 
 <a name="nowNextEvents"></a>
-## *nowNextEvents [<sup>property</sup>](#Properties)*
+## *nowNextEvents*
 
 Provides access to the now and next events (EITp/f) for the given service.
 
@@ -1155,7 +1155,7 @@ No Events
 ```
 
 <a name="scheduleEvents"></a>
-## *scheduleEvents [<sup>property</sup>](#Properties)*
+## *scheduleEvents*
 
 Provides access to the events which are scheduled (EITsched) for the given service.
 
@@ -1223,7 +1223,7 @@ No Events
 ```
 
 <a name="extendedEventInfo"></a>
-## *extendedEventInfo [<sup>property</sup>](#Properties)*
+## *extendedEventInfo*
 
 Provides access to the extended event info for the given service and event ID (version 2).
 
@@ -1277,7 +1277,7 @@ No Events
 ```
 
 <a name="status"></a>
-## *status [<sup>property</sup>](#Properties)*
+## *status*
 
 Provides access to the information related to the play handle defined by the index.
 
@@ -1329,7 +1329,7 @@ No Events
 ```
 
 <a name="signalInfo"></a>
-## *signalInfo [<sup>property</sup>](#Properties)*
+## *signalInfo*
 
 Provides access to the strength and quality of the currently tuned signal for the given play handle (version 2).
 
@@ -1398,7 +1398,7 @@ DTV interface events:
 
 
 <a name="searchstatus"></a>
-## *searchstatus [<sup>event</sup>](#Notifications)*
+## *searchstatus*
 
 Triggered during the course of a service search.
 
@@ -1480,7 +1480,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="serviceupdated"></a>
-## *serviceupdated [<sup>event</sup>](#Notifications)*
+## *serviceupdated*
 
 (Version 2) Notification sent when details of a service have changed, such as its name, service type, running or scrambled state.
 
@@ -1527,7 +1527,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="serviceadded"></a>
-## *serviceadded [<sup>event</sup>](#Notifications)*
+## *serviceadded*
 
 (Version 2) Notification sent when a new service has been dynamically added to the service list.
 
@@ -1574,7 +1574,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="servicedeleted"></a>
-## *servicedeleted [<sup>event</sup>](#Notifications)*
+## *servicedeleted*
 
 (Version 2) Notification sent when a service has been deleted from the service list.
 
@@ -1621,7 +1621,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="videochanged"></a>
-## *videochanged [<sup>event</sup>](#Notifications)*
+## *videochanged*
 
 (Version 2) Notification sent when the video PID or codec has changed.
 
@@ -1668,7 +1668,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="audiochanged"></a>
-## *audiochanged [<sup>event</sup>](#Notifications)*
+## *audiochanged*
 
 (Version 2) Notification sent when the audio PID or codec has changed.
 
@@ -1715,7 +1715,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="subtitleschanged"></a>
-## *subtitleschanged [<sup>event</sup>](#Notifications)*
+## *subtitleschanged*
 
 (Version 2) Notification sent when the subtitles have changed.
 
@@ -1762,7 +1762,7 @@ Triggered during the course of a service search.
 ```
 
 <a name="eventchanged"></a>
-## *eventchanged [<sup>event</sup>](#Notifications)*
+## *eventchanged*
 
 (Version 2) Notification sent when the EIT 'now' event is received when starting to play a service and when the 'now' event changes.
 

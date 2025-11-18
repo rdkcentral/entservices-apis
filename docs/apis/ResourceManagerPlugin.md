@@ -51,7 +51,7 @@ ResourceManager interface methods:
 
 
 <a name="setAVBlocked"></a>
-## *setAVBlocked [<sup>method</sup>](#Methods)*
+## *setAVBlocked*
 
 adds/removes the list of applications with the given callsigns to/from the blacklist.
 
@@ -103,7 +103,7 @@ No Events
 ```
 
 <a name="getBlockedAVApplications"></a>
-## *getBlockedAVApplications [<sup>method</sup>](#Methods)*
+## *getBlockedAVApplications*
 
 Gets a list of blacklisted clients.
 
@@ -152,7 +152,7 @@ This method takes no parameters.
 ```
 
 <a name="reserveTTSResourceForApps"></a>
-## *reserveTTSResourceForApps [<sup>method</sup>](#Methods)*
+## *reserveTTSResourceForApps*
 
 Reserves the Text To speech Resource for specified clients.
 
@@ -205,7 +205,7 @@ No Events
 ```
 
 <a name="reserveTTSResource"></a>
-## *reserveTTSResource [<sup>method</sup>](#Methods)*
+## *reserveTTSResource*
 
 Reserves the Text To speech Resource for specified client.
 

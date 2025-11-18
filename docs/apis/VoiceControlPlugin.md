@@ -57,7 +57,7 @@ VoiceControl interface methods:
 
 
 <a name="configureVoice"></a>
-## *configureVoice [<sup>method</sup>](#Methods)*
+## *configureVoice*
 
 Configures the RDK's voice stack. NOTE: The URL Scheme determines which API protocol is used. Supported URL schemes include:
 
@@ -142,7 +142,7 @@ No Events
 ```
 
 <a name="sendVoiceMessage"></a>
-## *sendVoiceMessage [<sup>method</sup>](#Methods)*
+## *sendVoiceMessage*
 
 Sends a message to the Voice Server. The specification of this message is not in the scope of this document. Example use cases for this API call include sending context or sending ASR blobs to the server.
 
@@ -198,7 +198,7 @@ No Events
 ```
 
 <a name="setVoiceInit"></a>
-## *setVoiceInit [<sup>method</sup>](#Methods)*
+## *setVoiceInit*
 
 Sets the application metadata in the INIT message that gets sent to the Voice Server. The specification of this blob is not in the scope of this document, but it MUST be a JSON blob.
 
@@ -253,7 +253,7 @@ No Events
 ```
 
 <a name="voiceSessionByText"></a>
-## *voiceSessionByText [<sup>method</sup>](#Methods)*
+## *voiceSessionByText*
 
 Sends a voice session with a transcription string to simulate a real voice session for QA. Example use cases for this API call include rack and automation testing.
 
@@ -312,7 +312,7 @@ Sends a voice session with a transcription string to simulate a real voice sessi
 ```
 
 <a name="voiceSessionTypes"></a>
-## *voiceSessionTypes [<sup>method</sup>](#Methods)*
+## *voiceSessionTypes*
 
 Retrieves the types of voice sessions which are supported by the platform.
 
@@ -374,7 +374,7 @@ This method takes no parameters.
 ```
 
 <a name="voiceSessionRequest"></a>
-## *voiceSessionRequest [<sup>method</sup>](#Methods)*
+## *voiceSessionRequest*
 
 Requests a voice session using the specified request type and optional parameters.
 
@@ -435,7 +435,7 @@ Requests a voice session using the specified request type and optional parameter
 ```
 
 <a name="voiceSessionTerminate"></a>
-## *voiceSessionTerminate [<sup>method</sup>](#Methods)*
+## *voiceSessionTerminate*
 
 Terminates a voice session using the specified session identifier.
 
@@ -485,7 +485,7 @@ No Events
 ```
 
 <a name="voiceSessionAudioStreamStart"></a>
-## *voiceSessionAudioStreamStart [<sup>method</sup>](#Methods)*
+## *voiceSessionAudioStreamStart*
 
 Starts a subsequent audio stream for the voice session indicated by the session identifier.
 
@@ -535,7 +535,7 @@ No Events
 ```
 
 <a name="voiceStatus"></a>
-## *voiceStatus [<sup>method</sup>](#Methods)*
+## *voiceStatus*
 
 Returns the current status of the RDK voice stack. This includes which URLs the stack is currently configured for along with the status for each device type.
 
@@ -628,7 +628,7 @@ VoiceControl interface events:
 
 
 <a name="onKeywordVerification"></a>
-## *onKeywordVerification [<sup>event</sup>](#Notifications)*
+## *onKeywordVerification*
 
 Triggered when a keyword verification result is received.
 
@@ -656,7 +656,7 @@ Triggered when a keyword verification result is received.
 ```
 
 <a name="onServerMessage"></a>
-## *onServerMessage [<sup>event</sup>](#Notifications)*
+## *onServerMessage*
 
 Triggered when a message is received from the Voice Server. The `params` value is a contract between the Voice Server and the Application. The definition of this object is outside of the scope of this document.
 
@@ -686,7 +686,7 @@ Triggered when a message is received from the Voice Server. The `params` value i
 ```
 
 <a name="onSessionBegin"></a>
-## *onSessionBegin [<sup>event</sup>](#Notifications)*
+## *onSessionBegin*
 
 Triggered when a voice session begins.
 
@@ -716,7 +716,7 @@ Triggered when a voice session begins.
 ```
 
 <a name="onSessionEnd"></a>
-## *onSessionEnd [<sup>event</sup>](#Notifications)*
+## *onSessionEnd*
 
 Triggered when the interaction with the server has concluded.
 
@@ -781,7 +781,7 @@ Triggered when the interaction with the server has concluded.
 ```
 
 <a name="onStreamBegin"></a>
-## *onStreamBegin [<sup>event</sup>](#Notifications)*
+## *onStreamBegin*
 
 Triggered when a device starts streaming voice data to the RDK. This event is optional, and will most likely be used for follow up sessions.
 
@@ -807,7 +807,7 @@ Triggered when a device starts streaming voice data to the RDK. This event is op
 ```
 
 <a name="onStreamEnd"></a>
-## *onStreamEnd [<sup>event</sup>](#Notifications)*
+## *onStreamEnd*
 
 Triggered when the device has stopped streaming audio.
 
