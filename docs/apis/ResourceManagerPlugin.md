@@ -1,29 +1,29 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="ResourceManager_Plugin"></a>
+<a name="head.ResourceManager_Plugin"></a>
 # ResourceManager Plugin
 
 A org.rdk.ResourceManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a name="head.Description"></a>
 # Description
 
 The `ResourceManager`plugin controls the management of platform resource reservations.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a name="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -35,7 +35,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkResourceManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a name="head.Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.ResourceManager plugin:
@@ -44,14 +44,14 @@ ResourceManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [setAVBlocked](#setAVBlocked) | adds/removes the list of applications with the given callsigns to/from the blacklist |
-| [getBlockedAVApplications](#getBlockedAVApplications) | Gets a list of blacklisted clients |
-| [reserveTTSResourceForApps](#reserveTTSResourceForApps) | Reserves the Text To speech Resource for specified clients |
-| [reserveTTSResource](#reserveTTSResource) | Reserves the Text To speech Resource for specified client |
+| [setAVBlocked](#method.setAVBlocked) | adds/removes the list of applications with the given callsigns to/from the blacklist |
+| [getBlockedAVApplications](#method.getBlockedAVApplications) | Gets a list of blacklisted clients |
+| [reserveTTSResourceForApps](#method.reserveTTSResourceForApps) | Reserves the Text To speech Resource for specified clients |
+| [reserveTTSResource](#method.reserveTTSResource) | Reserves the Text To speech Resource for specified client |
 
 
-<a name="setAVBlocked"></a>
-## *setAVBlocked*
+<a name="method.setAVBlocked"></a>
+## *setAVBlocked [<sup>method</sup>](#head.Methods)*
 
 adds/removes the list of applications with the given callsigns to/from the blacklist.
 
@@ -102,8 +102,8 @@ No Events
 }
 ```
 
-<a name="getBlockedAVApplications"></a>
-## *getBlockedAVApplications*
+<a name="method.getBlockedAVApplications"></a>
+## *getBlockedAVApplications [<sup>method</sup>](#head.Methods)*
 
 Gets a list of blacklisted clients.
 
@@ -151,8 +151,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="reserveTTSResourceForApps"></a>
-## *reserveTTSResourceForApps*
+<a name="method.reserveTTSResourceForApps"></a>
+## *reserveTTSResourceForApps [<sup>method</sup>](#head.Methods)*
 
 Reserves the Text To speech Resource for specified clients.
 
@@ -204,8 +204,8 @@ No Events
 }
 ```
 
-<a name="reserveTTSResource"></a>
-## *reserveTTSResource*
+<a name="method.reserveTTSResource"></a>
+## *reserveTTSResource [<sup>method</sup>](#head.Methods)*
 
 Reserves the Text To speech Resource for specified client.
 

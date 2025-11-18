@@ -1,31 +1,31 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Monitor_Plugin"></a>
+<a name="head.Monitor_Plugin"></a>
 # Monitor Plugin
 
 A Monitor plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Properties](#head.Properties)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a name="head.Description"></a>
 # Description
 
 The `Monitor` plugin provides a watchdog-like functionality for framework processes.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a name="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -37,7 +37,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMonitor.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a name="head.Methods"></a>
 # Methods
 
 The following methods are provided by the Monitor plugin:
@@ -46,12 +46,12 @@ Monitor interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [restartlimits](#restartlimits) | Sets new restart limits for a service |
-| [resetstats](#resetstats) | Resets memory and process statistics for a single service watched by the Monitor |
+| [restartlimits](#method.restartlimits) | Sets new restart limits for a service |
+| [resetstats](#method.resetstats) | Resets memory and process statistics for a single service watched by the Monitor |
 
 
-<a name="restartlimits"></a>
-## *restartlimits*
+<a name="method.restartlimits"></a>
+## *restartlimits [<sup>method</sup>](#head.Methods)*
 
 Sets new restart limits for a service.
 
@@ -104,8 +104,8 @@ No Events
 }
 ```
 
-<a name="resetstats"></a>
-## *resetstats*
+<a name="method.resetstats"></a>
+## *resetstats [<sup>method</sup>](#head.Methods)*
 
 Resets memory and process statistics for a single service watched by the Monitor.
 
@@ -212,7 +212,7 @@ No Events
 }
 ```
 
-<a name="Properties"></a>
+<a name="head.Properties"></a>
 # Properties
 
 The following properties are provided by the Monitor plugin:
@@ -221,11 +221,11 @@ Monitor interface properties:
 
 | Property | Description |
 | :-------- | :-------- |
-| [status](#status) <sup>RO</sup> | Service statistics |
+| [status](#property.status) <sup>RO</sup> | Service statistics |
 
 
-<a name="status"></a>
-## *status*
+<a name="property.status"></a>
+## *status [<sup>property</sup>](#head.Properties)*
 
 Provides access to the service statistics.
 
@@ -329,10 +329,10 @@ No Events
 }
 ```
 
-<a name="Notifications"></a>
+<a name="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
 The following events are provided by the Monitor plugin:
 
@@ -340,11 +340,11 @@ Monitor interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [action](#action) | Signals an action taken by the Monitor |
+| [action](#event.action) | Signals an action taken by the Monitor |
 
 
-<a name="action"></a>
-## *action*
+<a name="event.action"></a>
+## *action [<sup>event</sup>](#head.Notifications)*
 
 Signals an action taken by the Monitor.
 

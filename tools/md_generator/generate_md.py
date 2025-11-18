@@ -53,16 +53,16 @@ def generate_md(logfile=None):
 
 def convert_json_to_md(plugin_path):
     print(f"*****   Generating md files under docs/apis for {plugin_path}   *****")
-    jsongenpath = "python3 ./json2md/generator_json.py"
+    jsongenpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "json2md/generator_json.py"))
     flist = glob.glob(os.path.join(plugin_path, "*Plugin.json"))
     for file in flist:
-        os.system(f"{jsongenpath} --docs {file} -o ../../../../docs/apis --no-interfaces-section")
+        os.system(f"python3 {jsongenpath} --docs {file} -o ../../../../docs/apis --no-interfaces-section")
     print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
 def convert_h_to_md(plugin_path, logfile=None):
     print(f"*****   Generating md files from headers under docs/apis for {plugin_path}   *****")
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
-    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../md_from_h_generator/generate_md_from_header.py"))
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
 
     cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
     if logfile:

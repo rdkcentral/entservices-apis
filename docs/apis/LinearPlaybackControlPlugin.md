@@ -1,22 +1,22 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Linear_Playback_Control_Plugin"></a>
+<a name="head.Linear_Playback_Control_Plugin"></a>
 # Linear Playback Control Plugin
 
 A LinearPlaybackControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Configuration](#Configuration)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Configuration](#head.Configuration)
+- [Properties](#head.Properties)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Configuration"></a>
+<a name="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -28,7 +28,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkLinearPlaybackControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Properties"></a>
+<a name="head.Properties"></a>
 # Properties
 
 The following properties are provided by the LinearPlaybackControl plugin:
@@ -37,15 +37,15 @@ LinearPlaybackControl interface properties:
 
 | Property | Description |
 | :-------- | :-------- |
-| [channel](#channel) | Current channel |
-| [seek](#seek) | TSB seek position offset, from live position, in seconds |
-| [trickPlay](#trickPlay) | Trick play speed and direction |
-| [status](#status) <sup>RO</sup> | Current TSB status information containing buffer size, seek position and health status |
-| [tracing](#tracing) | Tracing enable/disable flag |
+| [channel](#property.channel) | Current channel |
+| [seek](#property.seek) | TSB seek position offset, from live position, in seconds |
+| [trickPlay](#property.trickPlay) | Trick play speed and direction |
+| [status](#property.status) <sup>RO</sup> | Current TSB status information containing buffer size, seek position and health status |
+| [tracing](#property.tracing) | Tracing enable/disable flag |
 
 
-<a name="channel"></a>
-## *channel*
+<a name="property.channel"></a>
+## *channel [<sup>property</sup>](#head.Properties)*
 
 Provides access to the current channel.
 
@@ -117,8 +117,8 @@ No Events
 }
 ```
 
-<a name="seek"></a>
-## *seek*
+<a name="property.seek"></a>
+## *seek [<sup>property</sup>](#head.Properties)*
 
 Provides access to the TSB seek position offset, from live position, in seconds.
 
@@ -190,8 +190,8 @@ No Events
 }
 ```
 
-<a name="trickPlay"></a>
-## *trickPlay*
+<a name="property.trickPlay"></a>
+## *trickPlay [<sup>property</sup>](#head.Properties)*
 
 Provides access to the trick play speed and direction.
 
@@ -263,8 +263,8 @@ No Events
 }
 ```
 
-<a name="status"></a>
-## *status*
+<a name="property.status"></a>
+## *status [<sup>property</sup>](#head.Properties)*
 
 Provides access to the current TSB status information containing buffer size, seek position and health status.
 
@@ -327,8 +327,8 @@ No Events
 }
 ```
 
-<a name="tracing"></a>
-## *tracing*
+<a name="property.tracing"></a>
+## *tracing [<sup>property</sup>](#head.Properties)*
 
 Provides access to the tracing enable/disable flag.
 
@@ -397,10 +397,10 @@ No Events
 }
 ```
 
-<a name="Notifications"></a>
+<a name="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
 The following events are provided by the LinearPlaybackControl plugin:
 
@@ -408,11 +408,11 @@ LinearPlaybackControl interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [speedchanged](#speedchanged) | Indicates that the trick play speed has changed |
+| [speedchanged](#event.speedchanged) | Indicates that the trick play speed has changed |
 
 
-<a name="speedchanged"></a>
-## *speedchanged*
+<a name="event.speedchanged"></a>
+## *speedchanged [<sup>event</sup>](#head.Notifications)*
 
 Indicates that the trick play speed has changed.
 

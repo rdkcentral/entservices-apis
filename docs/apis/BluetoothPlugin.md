@@ -1,30 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Bluetooth_Plugin"></a>
+<a name="head.Bluetooth_Plugin"></a>
 # Bluetooth Plugin
 
 A org.rdk.Bluetooth plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a name="head.Description"></a>
 # Description
 
 The Bluetooth Plugin allows applications to interact with the Bluetooth stack and manage Bluetooth devices.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a name="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -36,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkBluetooth.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a name="head.Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.Bluetooth plugin:
@@ -45,41 +45,41 @@ Bluetooth interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [connect](#connect) | Initiates the connection with the given Bluetooth device |
-| [disable](#disable) | Disables the Bluetooth stack |
-| [disconnect](#disconnect) | Disconnects the given device from this device ID and triggers `onStatusChanged` Event |
-| [enable](#enable) | Enables the Bluetooth stack |
-| [getAudioInfo](#getAudioInfo) | Provides information on the currently playing song/audio from an external source |
-| [getConnectedDevices](#getConnectedDevices) | Returns a list of devices connected to this device |
-| [getDeviceInfo](#getDeviceInfo) | Returns information for the given device ID |
-| [getDiscoveredDevices](#getDiscoveredDevices) | This method should be called after getting at least one event `onDiscoveredDevice` event and it returns an array of discovered devices |
-| [getName](#getName) | Returns the name of this device as seen by other Bluetooth devices |
-| [getPairedDevices](#getPairedDevices) | Returns a list of devices that have paired with this device |
-| [isDiscoverable](#isDiscoverable) | Returns `true`, if this device can be discovered by other Bluetooth devices |
-| [pair](#pair) | Pairs this device with device ID of Bluetooth |
-| [respondToEvent](#respondToEvent) | Provides the ability to respond the client Bluetooth event |
-| [sendAudioPlaybackCommand](#sendAudioPlaybackCommand) | Provides control over the connected source |
-| [setAudioStream](#setAudioStream) | Sets the primary or secondary audio-out to the given Bluetooth device |
-| [setDiscoverable](#setDiscoverable) | When true, this device can be discovered by other Bluetooth devices |
-| [setName](#setName) | Sets the name of this device as seen by other Bluetooth devices |
-| [startScan](#startScan) | Starts scanning for other Bluetooth devices that match the given profile |
-| [stopScan](#stopScan) | Stops scanning for Bluetooth devices  if already scan is in-progress and triggers `onStatusChanged` event |
-| [unpair](#unpair) | Unpairs the given device ID from this device |
-| [getDeviceVolumeMuteInfo](#getDeviceVolumeMuteInfo) | Gets the volume information of the given Bluetooth device ID |
-| [setDeviceVolumeMuteInfo](#setDeviceVolumeMuteInfo) | Sets the volume of the connected Bluetooth device ID |
-| [getApiVersionNumber](#getApiVersionNumber) | Provides the current API version number |
+| [connect](#method.connect) | Initiates the connection with the given Bluetooth device |
+| [disable](#method.disable) | Disables the Bluetooth stack |
+| [disconnect](#method.disconnect) | Disconnects the given device from this device ID and triggers `onStatusChanged` Event |
+| [enable](#method.enable) | Enables the Bluetooth stack |
+| [getAudioInfo](#method.getAudioInfo) | Provides information on the currently playing song/audio from an external source |
+| [getConnectedDevices](#method.getConnectedDevices) | Returns a list of devices connected to this device |
+| [getDeviceInfo](#method.getDeviceInfo) | Returns information for the given device ID |
+| [getDiscoveredDevices](#method.getDiscoveredDevices) | This method should be called after getting at least one event `onDiscoveredDevice` event and it returns an array of discovered devices |
+| [getName](#method.getName) | Returns the name of this device as seen by other Bluetooth devices |
+| [getPairedDevices](#method.getPairedDevices) | Returns a list of devices that have paired with this device |
+| [isDiscoverable](#method.isDiscoverable) | Returns `true`, if this device can be discovered by other Bluetooth devices |
+| [pair](#method.pair) | Pairs this device with device ID of Bluetooth |
+| [respondToEvent](#method.respondToEvent) | Provides the ability to respond the client Bluetooth event |
+| [sendAudioPlaybackCommand](#method.sendAudioPlaybackCommand) | Provides control over the connected source |
+| [setAudioStream](#method.setAudioStream) | Sets the primary or secondary audio-out to the given Bluetooth device |
+| [setDiscoverable](#method.setDiscoverable) | When true, this device can be discovered by other Bluetooth devices |
+| [setName](#method.setName) | Sets the name of this device as seen by other Bluetooth devices |
+| [startScan](#method.startScan) | Starts scanning for other Bluetooth devices that match the given profile |
+| [stopScan](#method.stopScan) | Stops scanning for Bluetooth devices  if already scan is in-progress and triggers `onStatusChanged` event |
+| [unpair](#method.unpair) | Unpairs the given device ID from this device |
+| [getDeviceVolumeMuteInfo](#method.getDeviceVolumeMuteInfo) | Gets the volume information of the given Bluetooth device ID |
+| [setDeviceVolumeMuteInfo](#method.setDeviceVolumeMuteInfo) | Sets the volume of the connected Bluetooth device ID |
+| [getApiVersionNumber](#method.getApiVersionNumber) | Provides the current API version number |
 
 
-<a name="connect"></a>
-## *connect*
+<a name="method.connect"></a>
+## *connect [<sup>method</sup>](#head.Methods)*
 
-Initiates the connection with the given Bluetooth device. Triggers `onStatusChanged` 
+Initiates the connection with the given Bluetooth device. Triggers `onStatusChanged` event.
 
 ### Events
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggers `onStatusChanged` event once it is  connected to the given deviceID. |
+| [onStatusChanged](#event.onStatusChanged) | Triggers `onStatusChanged` event once it is  connected to the given deviceID. |
 ### Parameters
 
 | Name | Type | Description |
@@ -87,7 +87,7 @@ Initiates the connection with the given Bluetooth device. Triggers `onStatusChan
 | params | object |  |
 | params.deviceID | string | ID that is derived from the Bluetooth MAC address. 6 byte MAC value is packed into 8 byte with leading zeros for first 2 bytes |
 | params.deviceType | string | Device class (for example: `headset`, `speakers`, etc.) |
-| params.connectedProfile | string | Profile of the connected device. See [startscan](#startscan) for supported profiles |
+| params.connectedProfile | string | Profile of the connected device. See [startscan](#method.startscan) for supported profiles |
 
 ### Result
 
@@ -125,8 +125,8 @@ Initiates the connection with the given Bluetooth device. Triggers `onStatusChan
 }
 ```
 
-<a name="disable"></a>
-## *disable*
+<a name="method.disable"></a>
+## *disable [<sup>method</sup>](#head.Methods)*
 
 Disables the Bluetooth stack.
 
@@ -169,8 +169,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="disconnect"></a>
-## *disconnect*
+<a name="method.disconnect"></a>
+## *disconnect [<sup>method</sup>](#head.Methods)*
 
 Disconnects the given device from this device ID and triggers `onStatusChanged` Event.
 
@@ -178,7 +178,7 @@ Disconnects the given device from this device ID and triggers `onStatusChanged` 
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggers `onStatusChanged` event once it is disconnected from given deviceID. |
+| [onStatusChanged](#event.onStatusChanged) | Triggers `onStatusChanged` event once it is disconnected from given deviceID. |
 ### Parameters
 
 | Name | Type | Description |
@@ -222,8 +222,8 @@ Disconnects the given device from this device ID and triggers `onStatusChanged` 
 }
 ```
 
-<a name="enable"></a>
-## *enable*
+<a name="method.enable"></a>
+## *enable [<sup>method</sup>](#head.Methods)*
 
 Enables the Bluetooth stack.
 
@@ -266,8 +266,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="getAudioInfo"></a>
-## *getAudioInfo*
+<a name="method.getAudioInfo"></a>
+## *getAudioInfo [<sup>method</sup>](#head.Methods)*
 
 Provides information on the currently playing song/audio from an external source. The returned information from Bluetooth-In device provides information that could be displayed on a TV screen.
 
@@ -333,8 +333,8 @@ No Events
 }
 ```
 
-<a name="getConnectedDevices"></a>
-## *getConnectedDevices*
+<a name="method.getConnectedDevices"></a>
+## *getConnectedDevices [<sup>method</sup>](#head.Methods)*
 
 Returns a list of devices connected to this device.
 
@@ -395,8 +395,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="getDeviceInfo"></a>
-## *getDeviceInfo*
+<a name="method.getDeviceInfo"></a>
+## *getDeviceInfo [<sup>method</sup>](#head.Methods)*
 
 Returns information for the given device ID.
 
@@ -470,8 +470,8 @@ No Events
 }
 ```
 
-<a name="getDiscoveredDevices"></a>
-## *getDiscoveredDevices*
+<a name="method.getDiscoveredDevices"></a>
+## *getDiscoveredDevices [<sup>method</sup>](#head.Methods)*
 
 This method should be called after getting at least one event `onDiscoveredDevice` event and it returns an array of discovered devices.
 
@@ -534,8 +534,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="getName"></a>
-## *getName*
+<a name="method.getName"></a>
+## *getName [<sup>method</sup>](#head.Methods)*
 
 Returns the name of this device as seen by other Bluetooth devices.
 
@@ -580,8 +580,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="getPairedDevices"></a>
-## *getPairedDevices*
+<a name="method.getPairedDevices"></a>
+## *getPairedDevices [<sup>method</sup>](#head.Methods)*
 
 Returns a list of devices that have paired with this device.
 
@@ -642,8 +642,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="isDiscoverable"></a>
-## *isDiscoverable*
+<a name="method.isDiscoverable"></a>
+## *isDiscoverable [<sup>method</sup>](#head.Methods)*
 
 Returns `true`, if this device can be discovered by other Bluetooth devices.
 
@@ -688,8 +688,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="pair"></a>
-## *pair*
+<a name="method.pair"></a>
+## *pair [<sup>method</sup>](#head.Methods)*
 
 Pairs this device with device ID of Bluetooth. Triggers `onStatusChanged` and `onRequestFailed` events.
 
@@ -697,8 +697,8 @@ Pairs this device with device ID of Bluetooth. Triggers `onStatusChanged` and `o
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggers onStatusChanged event when the device gets paired to given device ID. |
-| [onRequestFailed](#onRequestFailed) | Triggers onRequestFailed event, when the device is unable to pair (BluetoothState: PAIRING_FAILED) |
+| [onStatusChanged](#event.onStatusChanged) | Triggers onStatusChanged event when the device gets paired to given device ID. |
+| [onRequestFailed](#event.onRequestFailed) | Triggers onRequestFailed event, when the device is unable to pair (BluetoothState: PAIRING_FAILED) |
 ### Parameters
 
 | Name | Type | Description |
@@ -740,10 +740,10 @@ Pairs this device with device ID of Bluetooth. Triggers `onStatusChanged` and `o
 }
 ```
 
-<a name="respondToEvent"></a>
-## *respondToEvent*
+<a name="method.respondToEvent"></a>
+## *respondToEvent [<sup>method</sup>](#head.Methods)*
 
-Provides the ability to respond the client Bluetooth  For example, this device can respond to a pairing or connection event and indicate the proper response to the requested device, such as the connection request accepted.
+Provides the ability to respond the client Bluetooth event. For example, this device can respond to a pairing or connection event and indicate the proper response to the requested device, such as the connection request accepted.
 
 ### Events
 
@@ -794,8 +794,8 @@ No Events
 }
 ```
 
-<a name="sendAudioPlaybackCommand"></a>
-## *sendAudioPlaybackCommand*
+<a name="method.sendAudioPlaybackCommand"></a>
+## *sendAudioPlaybackCommand [<sup>method</sup>](#head.Methods)*
 
 Provides control over the connected source. Requests can have one of the following values: PLAY, PAUSE, RESUME, STOP, SKIP_NEXT, SKIP_PREV, RESTART, MUTE, UNMUTE, VOLUME_UP, VOLUME_DOWN.
 
@@ -846,8 +846,8 @@ No Events
 }
 ```
 
-<a name="setAudioStream"></a>
-## *setAudioStream*
+<a name="method.setAudioStream"></a>
+## *setAudioStream [<sup>method</sup>](#head.Methods)*
 
 Sets the primary or secondary audio-out to the given Bluetooth device.
 
@@ -898,8 +898,8 @@ No Events
 }
 ```
 
-<a name="setDiscoverable"></a>
-## *setDiscoverable*
+<a name="method.setDiscoverable"></a>
+## *setDiscoverable [<sup>method</sup>](#head.Methods)*
 
 When true, this device can be discovered by other Bluetooth devices. When false, this device is not discoverable.
 
@@ -950,8 +950,8 @@ No Events
 }
 ```
 
-<a name="setName"></a>
-## *setName*
+<a name="method.setName"></a>
+## *setName [<sup>method</sup>](#head.Methods)*
 
 Sets the name of this device as seen by other Bluetooth devices.
 
@@ -1000,8 +1000,8 @@ No Events
 }
 ```
 
-<a name="startScan"></a>
-## *startScan*
+<a name="method.startScan"></a>
+## *startScan [<sup>method</sup>](#head.Methods)*
 
 Starts scanning for other Bluetooth devices that match the given profile. 
  Supported profiles include:  
@@ -1019,8 +1019,8 @@ Starts scanning for other Bluetooth devices that match the given profile.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggered onStatusChangedevent when device starts scanning the other available Bluetooth devices or when timeout (timeout param) is completed or the StopScan method called. |
-| [onDiscoveredDevice](#onDiscoveredDevice) | Triggered onDiscoveredDevice event when device is in scanning mode and at least one device is discovered or when the scanned device is lost. |
+| [onStatusChanged](#event.onStatusChanged) | Triggered onStatusChangedevent when device starts scanning the other available Bluetooth devices or when timeout (timeout param) is completed or the StopScan method called. |
+| [onDiscoveredDevice](#event.onDiscoveredDevice) | Triggered onDiscoveredDevice event when device is in scanning mode and at least one device is discovered or when the scanned device is lost. |
 ### Parameters
 
 | Name | Type | Description |
@@ -1066,16 +1066,16 @@ Starts scanning for other Bluetooth devices that match the given profile.
 }
 ```
 
-<a name="stopScan"></a>
-## *stopScan*
+<a name="method.stopScan"></a>
+## *stopScan [<sup>method</sup>](#head.Methods)*
 
-Stops scanning for Bluetooth devices  if already scan is in-progress and triggers `onStatusChanged` 
+Stops scanning for Bluetooth devices  if already scan is in-progress and triggers `onStatusChanged` event.
 
 ### Events
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggered onStatusChanged event when scan is stopped. |
+| [onStatusChanged](#event.onStatusChanged) | Triggered onStatusChanged event when scan is stopped. |
 ### Parameters
 
 This method takes no parameters.
@@ -1111,16 +1111,16 @@ This method takes no parameters.
 }
 ```
 
-<a name="unpair"></a>
-## *unpair*
+<a name="method.unpair"></a>
+## *unpair [<sup>method</sup>](#head.Methods)*
 
-Unpairs the given device ID from this device. Triggers `onStatusChanged` 
+Unpairs the given device ID from this device. Triggers `onStatusChanged` event.
 
 ### Events
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatusChanged](#onStatusChanged) | Triggers onStatusChanged event when device is unpaired. |
+| [onStatusChanged](#event.onStatusChanged) | Triggers onStatusChanged event when device is unpaired. |
 ### Parameters
 
 | Name | Type | Description |
@@ -1162,8 +1162,8 @@ Unpairs the given device ID from this device. Triggers `onStatusChanged`
 }
 ```
 
-<a name="getDeviceVolumeMuteInfo"></a>
-## *getDeviceVolumeMuteInfo*
+<a name="method.getDeviceVolumeMuteInfo"></a>
+## *getDeviceVolumeMuteInfo [<sup>method</sup>](#head.Methods)*
 
 Gets the volume information of the given Bluetooth device ID.
 
@@ -1221,16 +1221,16 @@ No Events
 }
 ```
 
-<a name="setDeviceVolumeMuteInfo"></a>
-## *setDeviceVolumeMuteInfo*
+<a name="method.setDeviceVolumeMuteInfo"></a>
+## *setDeviceVolumeMuteInfo [<sup>method</sup>](#head.Methods)*
 
-Sets the volume of the connected Bluetooth device ID.  Triggers `onDeviceMediaStatus` 
+Sets the volume of the connected Bluetooth device ID.  Triggers `onDeviceMediaStatus` event.
 
 ### Events
 
 | Event | Description |
 | :-------- | :-------- |
-| [onDeviceMediaStatus](#onDeviceMediaStatus) | Triggers onDeviceMediaStatus event once volume of connected given deviceID is increased or decreased or when connected given deviceID is muted or unmuted or when unknown key is pressed on connected given deviceID. |
+| [onDeviceMediaStatus](#event.onDeviceMediaStatus) | Triggers onDeviceMediaStatus event once volume of connected given deviceID is increased or decreased or when connected given deviceID is muted or unmuted or when unknown key is pressed on connected given deviceID. |
 ### Parameters
 
 | Name | Type | Description |
@@ -1278,8 +1278,8 @@ Sets the volume of the connected Bluetooth device ID.  Triggers `onDeviceMediaSt
 }
 ```
 
-<a name="getApiVersionNumber"></a>
-## *getApiVersionNumber*
+<a name="method.getApiVersionNumber"></a>
+## *getApiVersionNumber [<sup>method</sup>](#head.Methods)*
 
 Provides the current API version number.
 
@@ -1324,10 +1324,10 @@ This method takes no parameters.
 }
 ```
 
-<a name="Notifications"></a>
+<a name="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.Bluetooth plugin:
 
@@ -1335,22 +1335,22 @@ Bluetooth interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onConnectionRequest](#onConnectionRequest) | Triggered when a connection is requested by third party device that has already been paired to the set-top box |
-| [onDiscoveredDevice](#onDiscoveredDevice) | Triggered during device discovery when a new device is discovered or a discovered device has been lost in real time |
-| [onPairingRequest](#onPairingRequest) | Triggered when pairing is requested by a third party device that supports A2DP profile |
-| [onPlaybackChange](#onPlaybackChange) | Triggered when playback is interrupted or changed |
-| [onPlaybackNewTrack](#onPlaybackNewTrack) | Triggered whenever the user plays a new track or when the music player selects a next track automatically from its playlist |
-| [onPlaybackProgress](#onPlaybackProgress) | Triggered in one second intervals as long as the status of the playback is playing |
-| [onPlaybackRequest](#onPlaybackRequest) | Triggered when playback is requested by third party device that has already been paired to the set-top box |
-| [onRequestFailed](#onRequestFailed) | Triggered when the previous request to pair or connect failed |
-| [onStatusChanged](#onStatusChanged) | Triggered when the Bluetooth functionality status changes |
-| [onDeviceFound](#onDeviceFound) | Triggered when the new device got discovered |
-| [onDeviceLost](#onDeviceLost) | Triggered when any discovered device lost or out of range |
-| [onDeviceMediaStatus](#onDeviceMediaStatus) | Triggered when any change occurs to Device Media like volume or mute |
+| [onConnectionRequest](#event.onConnectionRequest) | Triggered when a connection is requested by third party device that has already been paired to the set-top box |
+| [onDiscoveredDevice](#event.onDiscoveredDevice) | Triggered during device discovery when a new device is discovered or a discovered device has been lost in real time |
+| [onPairingRequest](#event.onPairingRequest) | Triggered when pairing is requested by a third party device that supports A2DP profile |
+| [onPlaybackChange](#event.onPlaybackChange) | Triggered when playback is interrupted or changed |
+| [onPlaybackNewTrack](#event.onPlaybackNewTrack) | Triggered whenever the user plays a new track or when the music player selects a next track automatically from its playlist |
+| [onPlaybackProgress](#event.onPlaybackProgress) | Triggered in one second intervals as long as the status of the playback is playing |
+| [onPlaybackRequest](#event.onPlaybackRequest) | Triggered when playback is requested by third party device that has already been paired to the set-top box |
+| [onRequestFailed](#event.onRequestFailed) | Triggered when the previous request to pair or connect failed |
+| [onStatusChanged](#event.onStatusChanged) | Triggered when the Bluetooth functionality status changes |
+| [onDeviceFound](#event.onDeviceFound) | Triggered when the new device got discovered |
+| [onDeviceLost](#event.onDeviceLost) | Triggered when any discovered device lost or out of range |
+| [onDeviceMediaStatus](#event.onDeviceMediaStatus) | Triggered when any change occurs to Device Media like volume or mute |
 
 
-<a name="onConnectionRequest"></a>
-## *onConnectionRequest*
+<a name="event.onConnectionRequest"></a>
+## *onConnectionRequest [<sup>event</sup>](#head.Notifications)*
 
 Triggered when a connection is requested by third party device that has already been paired to the set-top box.
 
@@ -1383,8 +1383,8 @@ Triggered when a connection is requested by third party device that has already 
 }
 ```
 
-<a name="onDiscoveredDevice"></a>
-## *onDiscoveredDevice*
+<a name="event.onDiscoveredDevice"></a>
+## *onDiscoveredDevice [<sup>event</sup>](#head.Notifications)*
 
 Triggered during device discovery when a new device is discovered or a discovered device has been lost in real time.
 
@@ -1421,8 +1421,8 @@ Triggered during device discovery when a new device is discovered or a discovere
 }
 ```
 
-<a name="onPairingRequest"></a>
-## *onPairingRequest*
+<a name="event.onPairingRequest"></a>
+## *onPairingRequest [<sup>event</sup>](#head.Notifications)*
 
 Triggered when pairing is requested by a third party device that supports A2DP profile. The set-top box must be enabled as an A2DP Sink device (is put in discoverable mode). 
  
@@ -1461,10 +1461,10 @@ Triggered when pairing is requested by a third party device that supports A2DP p
 }
 ```
 
-<a name="onPlaybackChange"></a>
-## *onPlaybackChange*
+<a name="event.onPlaybackChange"></a>
+## *onPlaybackChange [<sup>event</sup>](#head.Notifications)*
 
-Triggered when playback is interrupted or changed. Note that there is no resume  After the previously paused playback is resumed, it is followed by `onPlaybackProgress` events.
+Triggered when playback is interrupted or changed. Note that there is no resume event. After the previously paused playback is resumed, it is followed by `onPlaybackProgress` events.
 
 ### Parameters
 
@@ -1491,8 +1491,8 @@ Triggered when playback is interrupted or changed. Note that there is no resume 
 }
 ```
 
-<a name="onPlaybackNewTrack"></a>
-## *onPlaybackNewTrack*
+<a name="event.onPlaybackNewTrack"></a>
+## *onPlaybackNewTrack [<sup>event</sup>](#head.Notifications)*
 
 Triggered whenever the user plays a new track or when the music player selects a next track automatically from its playlist.
 
@@ -1529,8 +1529,8 @@ Triggered whenever the user plays a new track or when the music player selects a
 }
 ```
 
-<a name="onPlaybackProgress"></a>
-## *onPlaybackProgress*
+<a name="event.onPlaybackProgress"></a>
+## *onPlaybackProgress [<sup>event</sup>](#head.Notifications)*
 
 Triggered in one second intervals as long as the status of the playback is playing.
 
@@ -1557,8 +1557,8 @@ Triggered in one second intervals as long as the status of the playback is playi
 }
 ```
 
-<a name="onPlaybackRequest"></a>
-## *onPlaybackRequest*
+<a name="event.onPlaybackRequest"></a>
+## *onPlaybackRequest [<sup>event</sup>](#head.Notifications)*
 
 Triggered when playback is requested by third party device that has already been paired to the set-top box.
 
@@ -1591,8 +1591,8 @@ Triggered when playback is requested by third party device that has already been
 }
 ```
 
-<a name="onRequestFailed"></a>
-## *onRequestFailed*
+<a name="event.onRequestFailed"></a>
+## *onRequestFailed [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the previous request to pair or connect failed. In absence of a failure, XRE receives `statusChanged` when pairing or connecting succeeds.
 
@@ -1631,13 +1631,13 @@ Triggered when the previous request to pair or connect failed. In absence of a f
 }
 ```
 
-<a name="onStatusChanged"></a>
-## *onStatusChanged*
+<a name="event.onStatusChanged"></a>
+## *onStatusChanged [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the Bluetooth functionality status changes. Supported statuses are:  
-* `PAIRING_CHANGE` - Pairing status changed. Applications get the device which got paired/unpaired as part of this message, but it's up to the application to obtain an updated list of paired devices by calling [getPairedDevices](#getpaireddevices).  
-* `CONNECTION_CHANGE` - one or more Bluetooth connections changed status. Applications get the device that got connected/disconnected as part of this message, but it's up to the application to obtain an updated list of connected devices by calling [getConnectedDevices](#getconnecteddevices).  
-* `DISCOVERY_COMPLETED` - Bluetooth device discovery is complete, at least one device is available. Applications should obtain an updated list of discovered devices by calling [getDiscoveredDevices](#getdiscovereddevices)  
+* `PAIRING_CHANGE` - Pairing status changed. Applications get the device which got paired/unpaired as part of this message, but it's up to the application to obtain an updated list of paired devices by calling [getPairedDevices](#method.getpaireddevices).  
+* `CONNECTION_CHANGE` - one or more Bluetooth connections changed status. Applications get the device that got connected/disconnected as part of this message, but it's up to the application to obtain an updated list of connected devices by calling [getConnectedDevices](#method.getconnecteddevices).  
+* `DISCOVERY_COMPLETED` - Bluetooth device discovery is complete, at least one device is available. Applications should obtain an updated list of discovered devices by calling [getDiscoveredDevices](#method.getdiscovereddevices)  
 * `DISCOVERY_STARTED`- The Bluetooth device discovery will be triggered, after startScan method started.
 
 ### Parameters
@@ -1675,8 +1675,8 @@ Triggered when the Bluetooth functionality status changes. Supported statuses ar
 }
 ```
 
-<a name="onDeviceFound"></a>
-## *onDeviceFound*
+<a name="event.onDeviceFound"></a>
+## *onDeviceFound [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the new device got discovered.
 
@@ -1709,8 +1709,8 @@ Triggered when the new device got discovered.
 }
 ```
 
-<a name="onDeviceLost"></a>
-## *onDeviceLost*
+<a name="event.onDeviceLost"></a>
+## *onDeviceLost [<sup>event</sup>](#head.Notifications)*
 
 Triggered when any discovered device lost or out of range.
 
@@ -1743,8 +1743,8 @@ Triggered when any discovered device lost or out of range.
 }
 ```
 
-<a name="onDeviceMediaStatus"></a>
-## *onDeviceMediaStatus*
+<a name="event.onDeviceMediaStatus"></a>
+## *onDeviceMediaStatus [<sup>event</sup>](#head.Notifications)*
 
 Triggered when any change occurs to Device Media like volume or mute. Supported Audio Media Control commands are:  
 * `MUTE` - BT audio device muted using remote or external BT device.  

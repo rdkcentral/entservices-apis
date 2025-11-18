@@ -1,30 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="VoiceControl_Plugin"></a>
+<a name="head.VoiceControl_Plugin"></a>
 # VoiceControl Plugin
 
 A org.rdk.VoiceControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
+- [Description](#head.Description)
+- [Configuration](#head.Configuration)
+- [Methods](#head.Methods)
+- [Notifications](#head.Notifications)
 
-<a name="Abbreviation,_Acronyms_and_Terms"></a>
+<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="Description"></a>
+<a name="head.Description"></a>
 # Description
 
 The `VoiceControl` plugin manages voice control sessions.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
 
-<a name="Configuration"></a>
+<a name="head.Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -36,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkVoiceControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="Methods"></a>
+<a name="head.Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.VoiceControl plugin:
@@ -45,19 +45,19 @@ VoiceControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [configureVoice](#configureVoice) | Configures the RDK's voice stack |
-| [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
-| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server |
-| [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA |
-| [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
-| [voiceSessionRequest](#voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
-| [voiceSessionTerminate](#voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
-| [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
-| [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
+| [configureVoice](#method.configureVoice) | Configures the RDK's voice stack |
+| [sendVoiceMessage](#method.sendVoiceMessage) | Sends a message to the Voice Server |
+| [setVoiceInit](#method.setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server |
+| [voiceSessionByText](#method.voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA |
+| [voiceSessionTypes](#method.voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
+| [voiceSessionRequest](#method.voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
+| [voiceSessionTerminate](#method.voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
+| [voiceSessionAudioStreamStart](#method.voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
+| [voiceStatus](#method.voiceStatus) | Returns the current status of the RDK voice stack |
 
 
-<a name="configureVoice"></a>
-## *configureVoice*
+<a name="method.configureVoice"></a>
+## *configureVoice [<sup>method</sup>](#head.Methods)*
 
 Configures the RDK's voice stack. NOTE: The URL Scheme determines which API protocol is used. Supported URL schemes include:
 
@@ -141,8 +141,8 @@ No Events
 }
 ```
 
-<a name="sendVoiceMessage"></a>
-## *sendVoiceMessage*
+<a name="method.sendVoiceMessage"></a>
+## *sendVoiceMessage [<sup>method</sup>](#head.Methods)*
 
 Sends a message to the Voice Server. The specification of this message is not in the scope of this document. Example use cases for this API call include sending context or sending ASR blobs to the server.
 
@@ -197,8 +197,8 @@ No Events
 }
 ```
 
-<a name="setVoiceInit"></a>
-## *setVoiceInit*
+<a name="method.setVoiceInit"></a>
+## *setVoiceInit [<sup>method</sup>](#head.Methods)*
 
 Sets the application metadata in the INIT message that gets sent to the Voice Server. The specification of this blob is not in the scope of this document, but it MUST be a JSON blob.
 
@@ -252,8 +252,8 @@ No Events
 }
 ```
 
-<a name="voiceSessionByText"></a>
-## *voiceSessionByText*
+<a name="method.voiceSessionByText"></a>
+## *voiceSessionByText [<sup>method</sup>](#head.Methods)*
 
 Sends a voice session with a transcription string to simulate a real voice session for QA. Example use cases for this API call include rack and automation testing.
 
@@ -263,11 +263,11 @@ Sends a voice session with a transcription string to simulate a real voice sessi
 
 | Event | Description |
 | :-------- | :-------- |
-| [onSessionBegin](#onSessionBegin) | Triggers if the voice session begins |
-| [onStreamBegin](#onStreamBegin) | Triggers if a device starts streaming voice data to the RDK |
-| [onServerMessage](#onServerMessage) | Triggers if a message is received from the Voice Server |
-| [onStreamEnd](#onStreamEnd) | Triggers if streaming audio is stopped from the device |
-| [onSessionEnd](#onSessionEnd) | Triggers if interaction with the server is end |
+| [onSessionBegin](#event.onSessionBegin) | Triggers if the voice session begins |
+| [onStreamBegin](#event.onStreamBegin) | Triggers if a device starts streaming voice data to the RDK |
+| [onServerMessage](#event.onServerMessage) | Triggers if a message is received from the Voice Server |
+| [onStreamEnd](#event.onStreamEnd) | Triggers if streaming audio is stopped from the device |
+| [onSessionEnd](#event.onSessionEnd) | Triggers if interaction with the server is end |
 ### Parameters
 
 | Name | Type | Description |
@@ -311,8 +311,8 @@ Sends a voice session with a transcription string to simulate a real voice sessi
 }
 ```
 
-<a name="voiceSessionTypes"></a>
-## *voiceSessionTypes*
+<a name="method.voiceSessionTypes"></a>
+## *voiceSessionTypes [<sup>method</sup>](#head.Methods)*
 
 Retrieves the types of voice sessions which are supported by the platform.
 
@@ -373,8 +373,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="voiceSessionRequest"></a>
-## *voiceSessionRequest*
+<a name="method.voiceSessionRequest"></a>
+## *voiceSessionRequest [<sup>method</sup>](#head.Methods)*
 
 Requests a voice session using the specified request type and optional parameters.
 
@@ -382,11 +382,11 @@ Requests a voice session using the specified request type and optional parameter
 
 | Event | Description |
 | :-------- | :-------- |
-| [onSessionBegin](#onSessionBegin) | Triggers if the voice session begins |
-| [onStreamBegin](#onStreamBegin) | Triggers if a device starts streaming voice data to the RDK |
-| [onServerMessage](#onServerMessage) | Triggers if a message is received from the Voice Server |
-| [onStreamEnd](#onStreamEnd) | Triggers if streaming audio is stopped from the device |
-| [onSessionEnd](#onSessionEnd) | Triggers if interaction with the server is end |
+| [onSessionBegin](#event.onSessionBegin) | Triggers if the voice session begins |
+| [onStreamBegin](#event.onStreamBegin) | Triggers if a device starts streaming voice data to the RDK |
+| [onServerMessage](#event.onServerMessage) | Triggers if a message is received from the Voice Server |
+| [onStreamEnd](#event.onStreamEnd) | Triggers if streaming audio is stopped from the device |
+| [onSessionEnd](#event.onSessionEnd) | Triggers if interaction with the server is end |
 ### Parameters
 
 | Name | Type | Description |
@@ -395,7 +395,7 @@ Requests a voice session using the specified request type and optional parameter
 | params?.transcription | string | <sup>*(optional)*</sup> The transcription text to be sent to the voice server for request types "ptt_transcription" and "mic_transcription" |
 | params?.audio_file | string | <sup>*(optional)*</sup> The full path to the audio file to be sent to the voice server for request types "ptt_audio_file" and "mic_audio_file" |
 | params?.name | string | <sup>*(optional)*</sup> The name of the application requesting the voice session |
-| params.type | string | The request type to initiate the voice session (see [voiceSessionTypes](#voiceSessionTypes) API for list of request types) |
+| params.type | string | The request type to initiate the voice session (see [voiceSessionTypes](#method.voiceSessionTypes) API for list of request types) |
 
 ### Result
 
@@ -434,8 +434,8 @@ Requests a voice session using the specified request type and optional parameter
 }
 ```
 
-<a name="voiceSessionTerminate"></a>
-## *voiceSessionTerminate*
+<a name="method.voiceSessionTerminate"></a>
+## *voiceSessionTerminate [<sup>method</sup>](#head.Methods)*
 
 Terminates a voice session using the specified session identifier.
 
@@ -448,7 +448,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The session identifier of the session from the [onSessionBegin](#onSessionBegin) event |
+| params.sessionId | string | The session identifier of the session from the [onSessionBegin](#event.onSessionBegin) event |
 
 ### Result
 
@@ -484,8 +484,8 @@ No Events
 }
 ```
 
-<a name="voiceSessionAudioStreamStart"></a>
-## *voiceSessionAudioStreamStart*
+<a name="method.voiceSessionAudioStreamStart"></a>
+## *voiceSessionAudioStreamStart [<sup>method</sup>](#head.Methods)*
 
 Starts a subsequent audio stream for the voice session indicated by the session identifier.
 
@@ -498,7 +498,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The session identifier of the session from the [onSessionBegin](#onSessionBegin) event |
+| params.sessionId | string | The session identifier of the session from the [onSessionBegin](#event.onSessionBegin) event |
 
 ### Result
 
@@ -534,8 +534,8 @@ No Events
 }
 ```
 
-<a name="voiceStatus"></a>
-## *voiceStatus*
+<a name="method.voiceStatus"></a>
+## *voiceStatus [<sup>method</sup>](#head.Methods)*
 
 Returns the current status of the RDK voice stack. This includes which URLs the stack is currently configured for along with the status for each device type.
 
@@ -608,10 +608,10 @@ This method takes no parameters.
 }
 ```
 
-<a name="Notifications"></a>
+<a name="head.Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.VoiceControl plugin:
 
@@ -619,16 +619,16 @@ VoiceControl interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onKeywordVerification](#onKeywordVerification) | Triggered when a keyword verification result is received |
-| [onServerMessage](#onServerMessage) | Triggered when a message is received from the Voice Server |
-| [onSessionBegin](#onSessionBegin) | Triggered when a voice session begins |
-| [onSessionEnd](#onSessionEnd) | Triggered when the interaction with the server has concluded |
-| [onStreamBegin](#onStreamBegin) | Triggered when a device starts streaming voice data to the RDK |
-| [onStreamEnd](#onStreamEnd) | Triggered when the device has stopped streaming audio |
+| [onKeywordVerification](#event.onKeywordVerification) | Triggered when a keyword verification result is received |
+| [onServerMessage](#event.onServerMessage) | Triggered when a message is received from the Voice Server |
+| [onSessionBegin](#event.onSessionBegin) | Triggered when a voice session begins |
+| [onSessionEnd](#event.onSessionEnd) | Triggered when the interaction with the server has concluded |
+| [onStreamBegin](#event.onStreamBegin) | Triggered when a device starts streaming voice data to the RDK |
+| [onStreamEnd](#event.onStreamEnd) | Triggered when the device has stopped streaming audio |
 
 
-<a name="onKeywordVerification"></a>
-## *onKeywordVerification*
+<a name="event.onKeywordVerification"></a>
+## *onKeywordVerification [<sup>event</sup>](#head.Notifications)*
 
 Triggered when a keyword verification result is received.
 
@@ -655,8 +655,8 @@ Triggered when a keyword verification result is received.
 }
 ```
 
-<a name="onServerMessage"></a>
-## *onServerMessage*
+<a name="event.onServerMessage"></a>
+## *onServerMessage [<sup>event</sup>](#head.Notifications)*
 
 Triggered when a message is received from the Voice Server. The `params` value is a contract between the Voice Server and the Application. The definition of this object is outside of the scope of this document.
 
@@ -685,8 +685,8 @@ Triggered when a message is received from the Voice Server. The `params` value i
 }
 ```
 
-<a name="onSessionBegin"></a>
-## *onSessionBegin*
+<a name="event.onSessionBegin"></a>
+## *onSessionBegin [<sup>event</sup>](#head.Notifications)*
 
 Triggered when a voice session begins.
 
@@ -715,8 +715,8 @@ Triggered when a voice session begins.
 }
 ```
 
-<a name="onSessionEnd"></a>
-## *onSessionEnd*
+<a name="event.onSessionEnd"></a>
+## *onSessionEnd [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the interaction with the server has concluded.
 
@@ -780,8 +780,8 @@ Triggered when the interaction with the server has concluded.
 }
 ```
 
-<a name="onStreamBegin"></a>
-## *onStreamBegin*
+<a name="event.onStreamBegin"></a>
+## *onStreamBegin [<sup>event</sup>](#head.Notifications)*
 
 Triggered when a device starts streaming voice data to the RDK. This event is optional, and will most likely be used for follow up sessions.
 
@@ -806,8 +806,8 @@ Triggered when a device starts streaming voice data to the RDK. This event is op
 }
 ```
 
-<a name="onStreamEnd"></a>
-## *onStreamEnd*
+<a name="event.onStreamEnd"></a>
+## *onStreamEnd [<sup>event</sup>](#head.Notifications)*
 
 Triggered when the device has stopped streaming audio.
 
@@ -833,3 +833,4 @@ Triggered when the device has stopped streaming audio.
     }
 }
 ```
+
