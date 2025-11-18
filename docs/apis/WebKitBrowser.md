@@ -364,7 +364,7 @@ WebKitBrowser interface properties:
 
 | Property | Description |
 | :-------- | :-------- |
-| [bridgeEvent](#bridgeEvent)<sup>WO</sup> | Send legacy $badger event. |
+| [bridgeEvent](#bridgeEvent)<sup>WO</sup> | Send legacy $badger  |
 | [bridgeReply](#bridgeReply)<sup>WO</sup> | Response for legacy $badger. |
 | [fPS](#fPS)<sup>RO</sup> | Current framerate the browser is rendering at |
 | [hTTPCookieAcceptPolicy](#hTTPCookieAcceptPolicy) | HTTP cookies accept policy |
@@ -385,7 +385,7 @@ WebKitBrowser interface properties:
 <a id="BridgeEvent"></a>
 ## *BridgeEvent*
 
-Send legacy $badger event.
+Send legacy $badger 
 
 > This property is write-only.
 ### Events

@@ -1,30 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.MotionDetectionPlugin"></a>
+<a name="MotionDetectionPlugin"></a>
 # MotionDetectionPlugin
 
 A org.rdk.MotionDetection plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `MotionDetection` plugin allows you to control the motion sensors that are available on a set-top box.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -36,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMotionDetection.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.MotionDetection plugin:
@@ -45,23 +45,23 @@ MotionDetection interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [arm](#method.arm) | Enables a motion detector in the mode requested |
-| [disarm](#method.disarm) | Disables the specified motion detector |
-| [getLastMotionEventElapsedTime](#method.getLastMotionEventElapsedTime) | Returns the elapsed time since the last motion event occurred for the specified motion detector |
-| [getMotionDetectors](#method.getMotionDetectors) | Returns the available motion detectors and then lists information for each detector including their supported sensitivity mode |
-| [getMotionEventsActivePeriod](#method.getMotionEventsActivePeriod) | Returns the configured times during the day when the motion sensor is active and detecting motion |
-| [getNoMotionPeriod](#method.getNoMotionPeriod) | Returns the no-motion period for the specified motion detector |
-| [getSensitivity](#method.getSensitivity) | Returns the current sensitivity configuration for the specified motion detector |
-| [isarmed](#method.isarmed) | Returns whether the specified motion detector is enabled |
-| [setMotionEventsActivePeriod](#method.setMotionEventsActivePeriod) | Sets the period of time during the day when the motion sensor is active and detecting motion |
-| [setNoMotionPeriod](#method.setNoMotionPeriod) | Sets the no-motion period, in seconds, for the specified motion detector |
-| [setSensitivity](#method.setSensitivity) | Sets the sensitivity of the sensor for the specified motion detector |
+| [arm](#arm) | Enables a motion detector in the mode requested |
+| [disarm](#disarm) | Disables the specified motion detector |
+| [getLastMotionEventElapsedTime](#getLastMotionEventElapsedTime) | Returns the elapsed time since the last motion event occurred for the specified motion detector |
+| [getMotionDetectors](#getMotionDetectors) | Returns the available motion detectors and then lists information for each detector including their supported sensitivity mode |
+| [getMotionEventsActivePeriod](#getMotionEventsActivePeriod) | Returns the configured times during the day when the motion sensor is active and detecting motion |
+| [getNoMotionPeriod](#getNoMotionPeriod) | Returns the no-motion period for the specified motion detector |
+| [getSensitivity](#getSensitivity) | Returns the current sensitivity configuration for the specified motion detector |
+| [isarmed](#isarmed) | Returns whether the specified motion detector is enabled |
+| [setMotionEventsActivePeriod](#setMotionEventsActivePeriod) | Sets the period of time during the day when the motion sensor is active and detecting motion |
+| [setNoMotionPeriod](#setNoMotionPeriod) | Sets the no-motion period, in seconds, for the specified motion detector |
+| [setSensitivity](#setSensitivity) | Sets the sensitivity of the sensor for the specified motion detector |
 
 
-<a name="method.arm"></a>
-## *arm [<sup>method</sup>](#head.Methods)*
+<a name="arm"></a>
+## *arm [<sup>method</sup>](#Methods)*
 
-Enables a motion detector in the mode requested. This enables a single shot event. Once an event is sent, the device is in the disarmed state. If the application wishes to receive another event, then the application must re-arm.
+Enables a motion detector in the mode requested. This enables a single shot  Once an event is sent, the device is in the disarmed state. If the application wishes to receive another event, then the application must re-arm.
 
 ### Events
 
@@ -110,8 +110,8 @@ No Events
 }
 ```
 
-<a name="method.disarm"></a>
-## *disarm [<sup>method</sup>](#head.Methods)*
+<a name="disarm"></a>
+## *disarm [<sup>method</sup>](#Methods)*
 
 Disables the specified motion detector.
 
@@ -160,8 +160,8 @@ No Events
 }
 ```
 
-<a name="method.getLastMotionEventElapsedTime"></a>
-## *getLastMotionEventElapsedTime [<sup>method</sup>](#head.Methods)*
+<a name="getLastMotionEventElapsedTime"></a>
+## *getLastMotionEventElapsedTime [<sup>method</sup>](#Methods)*
 
 Returns the elapsed time since the last motion event occurred for the specified motion detector.
 
@@ -212,8 +212,8 @@ No Events
 }
 ```
 
-<a name="method.getMotionDetectors"></a>
-## *getMotionDetectors [<sup>method</sup>](#head.Methods)*
+<a name="getMotionDetectors"></a>
+## *getMotionDetectors [<sup>method</sup>](#Methods)*
 
 Returns the available motion detectors and then lists information for each detector including their supported sensitivity mode.  
   
@@ -240,7 +240,7 @@ This method takes no parameters.
 | result.supportedMotionDetectorsInfo.FP_MD.type | string | The motion detector type. For example, PIR, Microwave, video, hybrid, etc |
 | result.supportedMotionDetectorsInfo.FP_MD.distance | integer | The range, in cm, of the motion detection field |
 | result.supportedMotionDetectorsInfo.FP_MD.angle | integer | Field of view angle |
-| result.supportedMotionDetectorsInfo.FP_MD.sensitivityMode | integer | The supported sensitivity mode. Valid values are `0`: motion sensitivity cannot be changed, `1`: motion sensitivity can be set using an integer within the range defined by the `min`, `max`, and `step` properties, `2`: motion sensitivity can be set using the names listed in the `sensitivities` property. (must be one of the following: *0*, *1*, *2*) |
+| result.supportedMotionDetectorsInfo.FP_MD.sensitivityMode | integer | The supported sensitivity mode. Valid values are `0`: motion sensitivity cannot be changed, `1`: motion sensitivity can be set using an integer within the range defined by the `min`, `max`, and `step` properties, `2`: motion sensitivity can be set using the names listed in the `sensitivities`  (must be one of the following: *0*, *1*, *2*) |
 | result.supportedMotionDetectorsInfo.FP_MD?.sensitivities | array | <sup>*(optional)*</sup> A string [] of sensitivity names that can be set for a motion detector. This property is only valid if the `SensitivityMode` property is set to `2` |
 | result.supportedMotionDetectorsInfo.FP_MD?.sensitivities[#] | string | <sup>*(optional)*</sup>  |
 | result.success | boolean | Whether the request succeeded |
@@ -284,8 +284,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getMotionEventsActivePeriod"></a>
-## *getMotionEventsActivePeriod [<sup>method</sup>](#head.Methods)*
+<a name="getMotionEventsActivePeriod"></a>
+## *getMotionEventsActivePeriod [<sup>method</sup>](#Methods)*
 
 Returns the configured times during the day when the motion sensor is active and detecting motion.
 
@@ -338,8 +338,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getNoMotionPeriod"></a>
-## *getNoMotionPeriod [<sup>method</sup>](#head.Methods)*
+<a name="getNoMotionPeriod"></a>
+## *getNoMotionPeriod [<sup>method</sup>](#Methods)*
 
 Returns the no-motion period for the specified motion detector.
 
@@ -390,8 +390,8 @@ No Events
 }
 ```
 
-<a name="method.getSensitivity"></a>
-## *getSensitivity [<sup>method</sup>](#head.Methods)*
+<a name="getSensitivity"></a>
+## *getSensitivity [<sup>method</sup>](#Methods)*
 
 Returns the current sensitivity configuration for the specified motion detector. The result is either a `name` property with the sensitivity name or a `value` property with the sensitivity number. See `getMotionDetectors`.
 
@@ -442,8 +442,8 @@ No Events
 }
 ```
 
-<a name="method.isarmed"></a>
-## *isarmed [<sup>method</sup>](#head.Methods)*
+<a name="isarmed"></a>
+## *isarmed [<sup>method</sup>](#Methods)*
 
 Returns whether the specified motion detector is enabled.
 
@@ -494,8 +494,8 @@ No Events
 }
 ```
 
-<a name="method.setMotionEventsActivePeriod"></a>
-## *setMotionEventsActivePeriod [<sup>method</sup>](#head.Methods)*
+<a name="setMotionEventsActivePeriod"></a>
+## *setMotionEventsActivePeriod [<sup>method</sup>](#Methods)*
 
 Sets the period of time during the day when the motion sensor is active and detecting motion. Any motion notifications outside of this period should be deferred until the start of the active period or cancelled if the notification is no longer valid. If this method is not called, then the active period is considered disabled and the sensor is armed 24 hours per day.  
 **Note:** The start time may be a higher value than the end time (for example, when a configured activation period spans across midnight from 09:00 pm to 01:00 am). Also, Daylight savings time (DST) may apply to the time zone where this feature is being used and the caller should be aware of the 23 hour and 25 hour days which occur during the shift days. For this reason it is advised that the caller reprograms the active period the day before and the day after the shift days to ensure reliable operation. If the caller is reprogramming this value every 24 hours then this should not be an issue.
@@ -557,8 +557,8 @@ No Events
 }
 ```
 
-<a name="method.setNoMotionPeriod"></a>
-## *setNoMotionPeriod [<sup>method</sup>](#head.Methods)*
+<a name="setNoMotionPeriod"></a>
+## *setNoMotionPeriod [<sup>method</sup>](#Methods)*
 
 Sets the no-motion period, in seconds, for the specified motion detector. When a motion detector is set to detect motion, this is the period of time, in seconds, that MUST elapse with no motion before a motion event is generated. If motion is detected within this period of time, then the time is reset and the countdown begins again. When a motion detector is set to detect no motion, then this is the period of time with no motion detected that MUST elapse before a no-motion event is generated.
 
@@ -609,8 +609,8 @@ No Events
 }
 ```
 
-<a name="method.setSensitivity"></a>
-## *setSensitivity [<sup>method</sup>](#head.Methods)*
+<a name="setSensitivity"></a>
+## *setSensitivity [<sup>method</sup>](#Methods)*
 
 Sets the sensitivity of the sensor for the specified motion detector. The argument required depends on the supported sensitivity mode and can be one of:  
 * `name`: Used when `sensitivityMode` is set to `2` requiring a sensitivity name.  
@@ -665,10 +665,10 @@ No Events
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.MotionDetection plugin:
 
@@ -676,11 +676,11 @@ MotionDetection interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onMotionEvent](#event.onMotionEvent) | Triggered when a motion detector is enabled and either motion or no motion is detected (as indicated by the mode setting) |
+| [onMotionEvent](#onMotionEvent) | Triggered when a motion detector is enabled and either motion or no motion is detected (as indicated by the mode setting) |
 
 
-<a name="event.onMotionEvent"></a>
-## *onMotionEvent [<sup>event</sup>](#head.Notifications)*
+<a name="onMotionEvent"></a>
+## *onMotionEvent [<sup>event</sup>](#Notifications)*
 
 Triggered when a motion detector is enabled and either motion or no motion is detected (as indicated by the mode setting).
 

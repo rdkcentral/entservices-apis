@@ -1,30 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.MaintenanceManagerPlugin"></a>
+<a name="MaintenanceManagerPlugin"></a>
 # MaintenanceManagerPlugin
 
 A org.rdk.MaintenanceManager plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `MaintenanceManager` plugin allows you to control and monitor maintenance activities on set-top devices.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -36,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMaintenanceManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.MaintenanceManager plugin:
@@ -45,16 +45,16 @@ MaintenanceManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getMaintenanceActivityStatus](#method.getMaintenanceActivityStatus) | Gets the maintenance activity status details |
-| [getMaintenanceStartTime](#method.getMaintenanceStartTime) | Gets the scheduled maintenance start time |
-| [setMaintenanceMode](#method.setMaintenanceMode) | Sets the maintenance mode and software upgrade opt-out mode |
-| [startMaintenance](#method.startMaintenance) | Starts maintenance activities |
-| [stopMaintenance](#method.stopMaintenance) | Stops maintenance activities |
-| [getMaintenanceMode](#method.getMaintenanceMode) | Gets the current maintenance mode and software upgrade opt-out mode which are stored in the persistent location |
+| [getMaintenanceActivityStatus](#getMaintenanceActivityStatus) | Gets the maintenance activity status details |
+| [getMaintenanceStartTime](#getMaintenanceStartTime) | Gets the scheduled maintenance start time |
+| [setMaintenanceMode](#setMaintenanceMode) | Sets the maintenance mode and software upgrade opt-out mode |
+| [startMaintenance](#startMaintenance) | Starts maintenance activities |
+| [stopMaintenance](#stopMaintenance) | Stops maintenance activities |
+| [getMaintenanceMode](#getMaintenanceMode) | Gets the current maintenance mode and software upgrade opt-out mode which are stored in the persistent location |
 
 
-<a name="method.getMaintenanceActivityStatus"></a>
-## *getMaintenanceActivityStatus [<sup>method</sup>](#head.Methods)*
+<a name="getMaintenanceActivityStatus"></a>
+## *getMaintenanceActivityStatus [<sup>method</sup>](#Methods)*
 
 Gets the maintenance activity status details.  
 **Maintenance Status**  
@@ -111,8 +111,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getMaintenanceStartTime"></a>
-## *getMaintenanceStartTime [<sup>method</sup>](#head.Methods)*
+<a name="getMaintenanceStartTime"></a>
+## *getMaintenanceStartTime [<sup>method</sup>](#Methods)*
 
 Gets the scheduled maintenance start time.
 
@@ -157,8 +157,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setMaintenanceMode"></a>
-## *setMaintenanceMode [<sup>method</sup>](#head.Methods)*
+<a name="setMaintenanceMode"></a>
+## *setMaintenanceMode [<sup>method</sup>](#Methods)*
 
 Sets the maintenance mode and software upgrade opt-out mode.  
 *Opt-Out Modes*  
@@ -214,8 +214,8 @@ No Events
 }
 ```
 
-<a name="method.startMaintenance"></a>
-## *startMaintenance [<sup>method</sup>](#head.Methods)*
+<a name="startMaintenance"></a>
+## *startMaintenance [<sup>method</sup>](#Methods)*
 
 Starts maintenance activities.
 
@@ -223,7 +223,7 @@ Starts maintenance activities.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onMaintenanceStatusChange](#event.onMaintenanceStatusChange) | Triggers whenever the maintenance status changes |
+| [onMaintenanceStatusChange](#onMaintenanceStatusChange) | Triggers whenever the maintenance status changes |
 ### Parameters
 
 This method takes no parameters.
@@ -259,8 +259,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.stopMaintenance"></a>
-## *stopMaintenance [<sup>method</sup>](#head.Methods)*
+<a name="stopMaintenance"></a>
+## *stopMaintenance [<sup>method</sup>](#Methods)*
 
 Stops maintenance activities.
 
@@ -268,7 +268,7 @@ Stops maintenance activities.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onMaintenanceStatusChange](#event.onMaintenanceStatusChange) | Triggers whenever the maintenance status changes |
+| [onMaintenanceStatusChange](#onMaintenanceStatusChange) | Triggers whenever the maintenance status changes |
 ### Parameters
 
 This method takes no parameters.
@@ -304,8 +304,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getMaintenanceMode"></a>
-## *getMaintenanceMode [<sup>method</sup>](#head.Methods)*
+<a name="getMaintenanceMode"></a>
+## *getMaintenanceMode [<sup>method</sup>](#Methods)*
 
 Gets the current maintenance mode and software upgrade opt-out mode which are stored in the persistent location.
 
@@ -323,7 +323,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.maintenanceMode | string | The maintenance mode. The `FOREGROUND` mode runs all maintenance tasks. The `BACKGROUND` mode aborts activities currently running, if the task can't run in the background (if maintenance was already started with FOREGROUND mode) and executes tasks without impacting the user experience, if it is set before calling startMaintenance. (must be one of the following: *FOREGROUND*, *BACKGROUND*) |
-| result.optOut | string | The opt-out mode. See [setMaintenanceMode](#method.setMaintenanceMode) for a description of each opt-out mode (must be one of the following: *NONE*, *ENFORCE_OPTOUT*, *BYPASS_OPTOUT*, *IGNORE_UPDATE*) |
+| result.optOut | string | The opt-out mode. See [setMaintenanceMode](#setMaintenanceMode) for a description of each opt-out mode (must be one of the following: *NONE*, *ENFORCE_OPTOUT*, *BYPASS_OPTOUT*, *IGNORE_UPDATE*) |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -352,10 +352,10 @@ This method takes no parameters.
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.MaintenanceManager plugin:
 
@@ -363,11 +363,11 @@ MaintenanceManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onMaintenanceStatusChange](#event.onMaintenanceStatusChange) | Triggered when the maintenance manager status changes |
+| [onMaintenanceStatusChange](#onMaintenanceStatusChange) | Triggered when the maintenance manager status changes |
 
 
-<a name="event.onMaintenanceStatusChange"></a>
-## *onMaintenanceStatusChange [<sup>event</sup>](#head.Notifications)*
+<a name="onMaintenanceStatusChange"></a>
+## *onMaintenanceStatusChange [<sup>event</sup>](#Notifications)*
 
 Triggered when the maintenance manager status changes. See `getMaintenanceActivityStatus` for a list of statuses.
 

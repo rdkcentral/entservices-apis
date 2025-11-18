@@ -74,7 +74,9 @@ def convert_h_to_md(plugin_path, logfile=None):
 
 def postprocess_md():
     print("Postprocessing md files...")
-    flist = glob.glob(os.path.join(r"./../../docs/apis/*Plugin.md"))
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    apis_dir = os.path.abspath(os.path.join(script_dir, "../../docs/apis"))
+    flist = glob.glob(os.path.join(apis_dir, "*.md"))
 
     for file in flist:
         with open(file, "r") as file_rd:

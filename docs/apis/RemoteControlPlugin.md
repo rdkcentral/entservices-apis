@@ -1,30 +1,30 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.RemoteControl_Plugin"></a>
+<a name="RemoteControl_Plugin"></a>
 # RemoteControl Plugin
 
 A org.rdk.RemoteControl plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `RemoteControl` plugin provides the ability to pair and IR-program remote controls.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
@@ -36,7 +36,7 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRemoteControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.RemoteControl plugin:
@@ -45,29 +45,29 @@ RemoteControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getApiVersionNumber](#method.getApiVersionNumber) | Gets the current API version number |
-| [getNetStatus](#method.getNetStatus) | Returns the status information provided by the last `onStatus` event for the specified network |
-| [startPairing](#method.startPairing) | Initiates pairing a remote with the STB on the specified network |
-| [stopPairing](#method.stopPairing) | Cancels pairing a remote with the STB on the specified network |
-| [initializeIRDB](#method.initializeIRDB) | Initializes the IR database |
-| [clearIRCodes](#method.clearIRCodes) | Clears the IR codes from the specified remote |
-| [setIRCode](#method.setIRCode) | Programs an IR code into the specified remote control |
-| [getIRCodesByAutoLookup](#method.getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
-| [getIRCodesByNames](#method.getIRCodesByNames) | Returns a list of IR codes for the AV device specified by the input parameters |
-| [getIRDBManufacturers](#method.getIRDBManufacturers) | Returns a list of manufacturer names based on the specified input parameters |
-| [getIRDBModels](#method.getIRDBModels) | Returns a list of model names based on the specified input parameters |
-| [getLastKeypressSource](#method.getLastKeypressSource) | Returns last key press source data |
-| [configureWakeupKeys](#method.configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
-| [findMyRemote](#method.findMyRemote) | Tells the most recently used remote to beep |
-| [factoryReset](#method.factoryReset) | Tells all paired and connected remotes to factory reset |
-| [unpair](#method.unpair) | Unpairs a given or all remote(s) from the STB |
-| [startFirmwareUpdate](#method.startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
-| [statusFirmwareUpdate](#method.statusFirmwareUpdate) | Returns the status of an active firmware image update session |
-| [cancelFirmwareUpdate](#method.cancelFirmwareUpdate) | Cancels an active firmware image update session |
+| [getApiVersionNumber](#getApiVersionNumber) | Gets the current API version number |
+| [getNetStatus](#getNetStatus) | Returns the status information provided by the last `onStatus` event for the specified network |
+| [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network |
+| [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network |
+| [initializeIRDB](#initializeIRDB) | Initializes the IR database |
+| [clearIRCodes](#clearIRCodes) | Clears the IR codes from the specified remote |
+| [setIRCode](#setIRCode) | Programs an IR code into the specified remote control |
+| [getIRCodesByAutoLookup](#getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
+| [getIRCodesByNames](#getIRCodesByNames) | Returns a list of IR codes for the AV device specified by the input parameters |
+| [getIRDBManufacturers](#getIRDBManufacturers) | Returns a list of manufacturer names based on the specified input parameters |
+| [getIRDBModels](#getIRDBModels) | Returns a list of model names based on the specified input parameters |
+| [getLastKeypressSource](#getLastKeypressSource) | Returns last key press source data |
+| [configureWakeupKeys](#configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
+| [findMyRemote](#findMyRemote) | Tells the most recently used remote to beep |
+| [factoryReset](#factoryReset) | Tells all paired and connected remotes to factory reset |
+| [unpair](#unpair) | Unpairs a given or all remote(s) from the STB |
+| [startFirmwareUpdate](#startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
+| [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
+| [cancelFirmwareUpdate](#cancelFirmwareUpdate) | Cancels an active firmware image update session |
 
 
-<a name="method.getApiVersionNumber"></a>
-## *getApiVersionNumber [<sup>method</sup>](#head.Methods)*
+<a name="getApiVersionNumber"></a>
+## *getApiVersionNumber [<sup>method</sup>](#Methods)*
 
 Gets the current API version number.
 
@@ -112,8 +112,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getNetStatus"></a>
-## *getNetStatus [<sup>method</sup>](#head.Methods)*
+<a name="getNetStatus"></a>
+## *getNetStatus [<sup>method</sup>](#Methods)*
 
 Returns the status information provided by the last `onStatus` event for the specified network.
 
@@ -220,8 +220,8 @@ No Events
 }
 ```
 
-<a name="method.startPairing"></a>
-## *startPairing [<sup>method</sup>](#head.Methods)*
+<a name="startPairing"></a>
+## *startPairing [<sup>method</sup>](#Methods)*
 
 Initiates pairing a remote with the STB on the specified network.
 
@@ -229,7 +229,7 @@ Initiates pairing a remote with the STB on the specified network.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#event.onStatus) | pairingState will be updated to reflect the current status of the request, along with updated remoteData upon a successful pairing. |
+| [onStatus](#onStatus) | pairingState will be updated to reflect the current status of the request, along with updated remoteData upon a successful pairing. |
 ### Parameters
 
 | Name | Type | Description |
@@ -280,8 +280,8 @@ Initiates pairing a remote with the STB on the specified network.
 }
 ```
 
-<a name="method.stopPairing"></a>
-## *stopPairing [<sup>method</sup>](#head.Methods)*
+<a name="stopPairing"></a>
+## *stopPairing [<sup>method</sup>](#Methods)*
 
 Cancels pairing a remote with the STB on the specified network.
 
@@ -332,8 +332,8 @@ No Events
 }
 ```
 
-<a name="method.initializeIRDB"></a>
-## *initializeIRDB [<sup>method</sup>](#head.Methods)*
+<a name="initializeIRDB"></a>
+## *initializeIRDB [<sup>method</sup>](#Methods)*
 
 Initializes the IR database.
 
@@ -382,8 +382,8 @@ No Events
 }
 ```
 
-<a name="method.clearIRCodes"></a>
-## *clearIRCodes [<sup>method</sup>](#head.Methods)*
+<a name="clearIRCodes"></a>
+## *clearIRCodes [<sup>method</sup>](#Methods)*
 
 Clears the IR codes from the specified remote.
 
@@ -391,7 +391,7 @@ Clears the IR codes from the specified remote.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#event.onStatus) | irProgState will be updated to reflect the current status of the request |
+| [onStatus](#onStatus) | irProgState will be updated to reflect the current status of the request |
 ### Parameters
 
 | Name | Type | Description |
@@ -435,8 +435,8 @@ Clears the IR codes from the specified remote.
 }
 ```
 
-<a name="method.setIRCode"></a>
-## *setIRCode [<sup>method</sup>](#head.Methods)*
+<a name="setIRCode"></a>
+## *setIRCode [<sup>method</sup>](#Methods)*
 
 Programs an IR code into the specified remote control.
 
@@ -444,7 +444,7 @@ Programs an IR code into the specified remote control.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#event.onStatus) | irProgState will be updated to reflect the current status of the request |
+| [onStatus](#onStatus) | irProgState will be updated to reflect the current status of the request |
 ### Parameters
 
 | Name | Type | Description |
@@ -492,8 +492,8 @@ Programs an IR code into the specified remote control.
 }
 ```
 
-<a name="method.getIRCodesByAutoLookup"></a>
-## *getIRCodesByAutoLookup [<sup>method</sup>](#head.Methods)*
+<a name="getIRCodesByAutoLookup"></a>
+## *getIRCodesByAutoLookup [<sup>method</sup>](#Methods)*
 
 Returns a list of available IR codes for the TV and AVRs specified by the input parameters.
 
@@ -560,8 +560,8 @@ No Events
 }
 ```
 
-<a name="method.getIRCodesByNames"></a>
-## *getIRCodesByNames [<sup>method</sup>](#head.Methods)*
+<a name="getIRCodesByNames"></a>
+## *getIRCodesByNames [<sup>method</sup>](#Methods)*
 
 Returns a list of IR codes for the AV device specified by the input parameters.
 
@@ -627,8 +627,8 @@ No Events
 }
 ```
 
-<a name="method.getIRDBManufacturers"></a>
-## *getIRDBManufacturers [<sup>method</sup>](#head.Methods)*
+<a name="getIRDBManufacturers"></a>
+## *getIRDBManufacturers [<sup>method</sup>](#Methods)*
 
 Returns a list of manufacturer names based on the specified input parameters.
 
@@ -688,8 +688,8 @@ No Events
 }
 ```
 
-<a name="method.getIRDBModels"></a>
-## *getIRDBModels [<sup>method</sup>](#head.Methods)*
+<a name="getIRDBModels"></a>
+## *getIRDBModels [<sup>method</sup>](#Methods)*
 
 Returns a list of model names based on the specified input parameters.
 
@@ -753,8 +753,8 @@ No Events
 }
 ```
 
-<a name="method.getLastKeypressSource"></a>
-## *getLastKeypressSource [<sup>method</sup>](#head.Methods)*
+<a name="getLastKeypressSource"></a>
+## *getLastKeypressSource [<sup>method</sup>](#Methods)*
 
 Returns last key press source data.
 
@@ -817,8 +817,8 @@ No Events
 }
 ```
 
-<a name="method.configureWakeupKeys"></a>
-## *configureWakeupKeys [<sup>method</sup>](#head.Methods)*
+<a name="configureWakeupKeys"></a>
+## *configureWakeupKeys [<sup>method</sup>](#Methods)*
 
 Configures which keys on the remote will wake the target from deepsleep.
 
@@ -871,8 +871,8 @@ No Events
 }
 ```
 
-<a name="method.findMyRemote"></a>
-## *findMyRemote [<sup>method</sup>](#head.Methods)*
+<a name="findMyRemote"></a>
+## *findMyRemote [<sup>method</sup>](#Methods)*
 
 Tells the most recently used remote to beep.
 
@@ -923,8 +923,8 @@ No Events
 }
 ```
 
-<a name="method.factoryReset"></a>
-## *factoryReset [<sup>method</sup>](#head.Methods)*
+<a name="factoryReset"></a>
+## *factoryReset [<sup>method</sup>](#Methods)*
 
 Tells all paired and connected remotes to factory reset.
 
@@ -967,8 +967,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.unpair"></a>
-## *unpair [<sup>method</sup>](#head.Methods)*
+<a name="unpair"></a>
+## *unpair [<sup>method</sup>](#Methods)*
 
 Unpairs a given or all remote(s) from the STB.
 
@@ -1020,8 +1020,8 @@ No Events
 }
 ```
 
-<a name="method.startFirmwareUpdate"></a>
-## *startFirmwareUpdate [<sup>method</sup>](#head.Methods)*
+<a name="startFirmwareUpdate"></a>
+## *startFirmwareUpdate [<sup>method</sup>](#Methods)*
 
 Starts a firmware image update session for the specified remote(s).
 
@@ -1029,7 +1029,7 @@ Starts a firmware image update session for the specified remote(s).
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFirmwareUpdateProgress](#event.onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
+| [onFirmwareUpdateProgress](#onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
 ### Parameters
 
 | Name | Type | Description |
@@ -1085,8 +1085,8 @@ Starts a firmware image update session for the specified remote(s).
 }
 ```
 
-<a name="method.statusFirmwareUpdate"></a>
-## *statusFirmwareUpdate [<sup>method</sup>](#head.Methods)*
+<a name="statusFirmwareUpdate"></a>
+## *statusFirmwareUpdate [<sup>method</sup>](#Methods)*
 
 Returns the status of an active firmware image update session.
 
@@ -1149,8 +1149,8 @@ No Events
 }
 ```
 
-<a name="method.cancelFirmwareUpdate"></a>
-## *cancelFirmwareUpdate [<sup>method</sup>](#head.Methods)*
+<a name="cancelFirmwareUpdate"></a>
+## *cancelFirmwareUpdate [<sup>method</sup>](#Methods)*
 
 Cancels an active firmware image update session.
 
@@ -1199,10 +1199,10 @@ No Events
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.RemoteControl plugin:
 
@@ -1210,13 +1210,13 @@ RemoteControl interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onStatus](#event.onStatus) | Triggered at any time when the status of any one of the supported STB remote networks changes |
-| [onFirmwareUpdateProgress](#event.onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
-| [onValidation](#event.onValidation) | Generated for manual pairing validation |
+| [onStatus](#onStatus) | Triggered at any time when the status of any one of the supported STB remote networks changes |
+| [onFirmwareUpdateProgress](#onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
+| [onValidation](#onValidation) | Generated for manual pairing validation |
 
 
-<a name="event.onStatus"></a>
-## *onStatus [<sup>event</sup>](#head.Notifications)*
+<a name="onStatus"></a>
+## *onStatus [<sup>event</sup>](#Notifications)*
 
 Triggered at any time when the status of any one of the supported STB remote networks changes.
 
@@ -1295,8 +1295,8 @@ Triggered at any time when the status of any one of the supported STB remote net
 }
 ```
 
-<a name="event.onFirmwareUpdateProgress"></a>
-## *onFirmwareUpdateProgress [<sup>event</sup>](#head.Notifications)*
+<a name="onFirmwareUpdateProgress"></a>
+## *onFirmwareUpdateProgress [<sup>event</sup>](#Notifications)*
 
 Generated at 0 and 100 percent and each time a download percent increment is reached.
 
@@ -1330,8 +1330,8 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 }
 ```
 
-<a name="event.onValidation"></a>
-## *onValidation [<sup>event</sup>](#head.Notifications)*
+<a name="onValidation"></a>
+## *onValidation [<sup>event</sup>](#Notifications)*
 
 Generated for manual pairing validation.
 
