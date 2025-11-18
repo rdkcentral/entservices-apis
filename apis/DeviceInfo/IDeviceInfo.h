@@ -39,92 +39,128 @@ namespace Exchange {
         };
 
         struct EXTERNAL CpuLoadAvg {
+            /* @brief 1min cpuload average */
             uint32_t avg1min;
+            /* @brief 5min cpuload average */
             uint32_t avg5min;
+            /* @brief 15min cpuload average */
             uint32_t avg15min;
         };
 
         struct EXTERNAL SystemInfos {
+            /* @brief Software version (in form version#hashtag) */
             string version;
+            /* @brief System uptime (in seconds) */
             uint32_t uptime;
+            /* @brief Total installed system RAM memory (in bytes) */
             uint32_t totalram;
+            /* @brief Free system RAM memory (in bytes) */
             uint32_t freeram;
+            /* @brief Total swap space (in bytes) */
             uint32_t totalswap;
+            /* @brief Swap space still available (in bytes) */
             uint32_t freeswap;
+            /* @brief Host name */
             string devicename;
+            /* @brief Current CPU load (percentage) */
             string cpuload;
+            /* @brief CPU load average */
             CpuLoadAvg cpuloadavg;
+            /* @brief Device serial number */
             string serialnumber;
+            /* @brief Current system date and time */
             string time;
         };
 
         struct EXTERNAL FirmwareversionInfo {
+            /* @brief Image name */
             string imagename;
+            /* @brief sdk version */
             string sdk;
+            /* @brief mediarite */
             string mediarite;
+            /* @brief yocto version */
             string yocto;
+            /* @brief pdri version */
 	        string pdri;
         };
 
         struct EXTERNAL AddressesInfo {
+            /* @brief Interface name */
             string name;
+            /* @brief Interface MAC address */
             string mac;
+            /* @brief Interface IP address */
             string ip;
         };
 
         struct EXTERNAL DeviceSerialNo {
+            /* @brief Serial number set by manufacturer */
             string serialnumber;
         };
 
         struct EXTERNAL DeviceModelNo {
+            /* @brief Device model number or SKU */
             string sku;
         };
 
         struct EXTERNAL DeviceMake {
+            /* @brief Device manufacturer */
             string make;
         };
 
         struct EXTERNAL DeviceModel {
+            /* @brief Friendly device model name */
             string model;
         };
 
         struct EXTERNAL DeviceTypeInfos {
+            /* @brief Device type (must be one of the following: tv, IpStb, QamIpStb) */
             DeviceTypeInfo devicetype;
         };
 
         struct EXTERNAL DeviceSoc {
+            /* @brief SOC Name */
             string socname;
         };
 
         struct EXTERNAL DeviceDistId {
+            /* @brief Partner ID or distributor ID for device */
             string distributorid;
         };
 
         struct EXTERNAL DeviceBrand {
+            /* @brief Brand Name */
             string brand;
         };
 
         struct EXTERNAL DeviceReleaseVer {
+            /* @brief Release version */
             string releaseversion;
         };
 
         struct EXTERNAL DeviceChip {
+            /* @brief Device chip set Name */
             string chipset;
         };
 
         struct EXTERNAL EthernetMac {
+            /* @brief Ethernet Mac Address */
             string ethMac /* @text eth_mac */;
         };
 
         struct EXTERNAL StbMac {
+            /* @brief STB Mac Address */
             string estbMac /* @text estb_mac */;
         };
 
         struct EXTERNAL WiFiMac {
+            /* @brief Wifi Mac Address */
             string wifiMac /* @text wifi_mac */;
         };
 
         struct EXTERNAL StbIp {
+            /* @brief STB IP Address */
             string estbIp /* @text estb_ip */;
         };
 
@@ -134,102 +170,136 @@ namespace Exchange {
         // @text serialnumber
         // @brief Provides access to the serial number set by manufacture
         // @param serialNumber: Serial number set by manufacturer
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SerialNumber(DeviceSerialNo& deviceSerialNo /* @out */) const = 0;
 
         // @property
         // @text modelid
         // @brief Provides access to the device model number
         // @param sku: device model number
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Sku(DeviceModelNo& deviceModelNo /* @out */) const = 0;
 
         // @property
         // @text make
         // @brief Provides access to the device manufacturer.
         // @param serialNumber: Device manufacturer
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Make(DeviceMake& deviceMake /* @out */) const = 0;
 
         // @property
         // @text modelname
         // @brief Provides access to the friendly device model name.
         // @param model: Device model name
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Model(DeviceModel& deviceModel /* @out */) const = 0;
 
         // @property
         // @text devicetype
         // @brief Provides access to the device type.
         // @param devicetype: Device Type
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DeviceType(DeviceTypeInfos& deviceTypeInfos /* @out */) const = 0;
 
         // @property
         // @text socname
         // @brief Provides access to the SOC Name.
         // @param socname: Name of the SOC
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SocName(DeviceSoc& deviceSoc /* @out */) const = 0;
 
         // @property
         // @text distributorid
         // @brief Provides access to the partner ID or distributor ID for device.
         // @param distributorid: Partner ID or distributor ID for device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DistributorId(DeviceDistId& deviceDistId /* @out */) const = 0;
 
         // @property
         // @text brandname
         // @brief Provides access to device brand name
         // @param brand: Device brand name
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Brand(DeviceBrand& deviceBrand /* @out */) const = 0;
 
         // @property
         // @text releaseversion
         // @brief Provides access to the ReleaseVersion of the Image
         // @param releaseversion: ReleaseVersion of the Image
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult ReleaseVersion(DeviceReleaseVer& deviceReleaseVer /* @out */) const = 0;
 
         // @property
         // @text chipset
         // @brief Provides access to the chipset of the device
         // @param chipSet: Chipset of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult ChipSet(DeviceChip& deviceChip /* @out */) const = 0;
 
         // @property
         // @text firmwareversion
         // @brief Provides access to the versions maintained in version.txt.
         // @param firmwareVersionInfo: Version information
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult FirmwareVersion(FirmwareversionInfo& firmwareVersionInfo/* @out */) const = 0;
 
         // @property
         // @text systeminfo
         // @brief Provides access to the system general information
         // @param systeminfo: System general information
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SystemInfo(SystemInfos& systemInfo /* @out */) const = 0;
 
         // @property
         // @text addresses
         // @brief Provides access to the network interface addresses.
         // @param addressesInfo: Network interface addresses
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Addresses(IAddressesInfoIterator*& addressesInfo /* @out */) const = 0;
 
         // @property
         // @text ethmac
         // @brief Provides access to the Ethernet MAC addresses.
         // @param ethMac: Ethernet MAC addresses
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EthMac(EthernetMac& ethernetMac /* @out */) const = 0;
 
         // @property
         // @text estbmac
         // @brief Provides access to the STB MAC addresses.
         // @param estbMac: STB MAC addresses
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EstbMac(StbMac& stbMac /* @out */) const = 0;
 
         // @property
         // @text wifimac
         // @brief Provides access to the WIFI MAC addresses.
         // @param wifiMac: WIFI MAC addresses
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult WifiMac(WiFiMac& wiFiMac /* @out */) const = 0;
 
         // @property
         // @text estbip
         // @brief Provides access to the STB IP addresses.
         // @param estbIp: STB IP addresses
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EstbIp(StbIp& stbIp /* @out */) const = 0;
     };
 
@@ -282,24 +352,32 @@ namespace Exchange {
         // @text supportedaudioports
         // @brief Provides access to the audio ports supported on the device.
         // @param supportedAudioPorts: Audio ports supported on the device.
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
 
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
         // @param AudioCapabilities: Audio capability
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& AudioCapabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text ms12capabilities
         // @brief MS12 audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
         // @param MS12Capabilities: MS12 audio capability
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& MS12Capabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text supportedms12audioprofiles
         // @brief Supported MS12 audio profiles for the specified audio port.
         // @param audioPort: Audio port name
         // @param supportedMS12AudioProfiles: MS12 audio profiles
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */, bool& success /* @out */) const = 0;
     };
 
@@ -358,14 +436,17 @@ namespace Exchange {
         };
 
         struct EXTERNAL DefaultResln {
+            /* @brief Resolution supported by the device */
             string defaultResolution;
         };
 
         struct EXTERNAL HostEdid {
+            /* @brief A base64 encoded byte array string representing the EDID */
             string EDID;
         };
 
         struct EXTERNAL SupportedHDCPVer {
+            /* @brief HDCP support (must be one of the following: unavailable, 1.4, 2.0, 2.1, 2.2) */
             CopyProtection supportedHDCPVersion;
         };
 
@@ -376,30 +457,40 @@ namespace Exchange {
         // @text supportedvideodisplays
         // @brief Provides access to the video ports supported on the device.
         // @param supportedVideoDisplays: Video ports supported on the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedVideoDisplays(IStringIterator*& supportedVideoDisplays /* @out */, bool& success /* @out */) const = 0;
 
         // @text defaultresolution
         // @brief Default resolution on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param defaultResolution: Default Resolutions
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DefaultResolution(const string& videoDisplay , DefaultResln& defaultResln /* @out */) const = 0;
 
         // @text supportedresolutions
         // @brief Supported resolutions on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param supportedResolutions: Supported Resolutions
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedResolutions(const string& videoDisplay, IStringIterator*& supportedResolutions /* @out */, bool& success /* @out */ ) const = 0;
 
         // @property
         // @text hostedid
         // @brief Provides access to the EDID of the host.
         // @param EDID: EDID of the host
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult HostEDID(HostEdid& hostEdid /* @out */) const = 0;
 
         // @text supportedhdcp
         // @brief Supported hdcp version on the selected video display port.
         // @param videoDisplay: Video display port name
         // @param supportedHDCPVersion: HDCP support
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedHdcp(const string& videoDisplay , SupportedHDCPVer& supportedHDCPVer /* @out */) const = 0;
     };
 }
