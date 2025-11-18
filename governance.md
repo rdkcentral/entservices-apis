@@ -89,6 +89,12 @@ The key objective of the API governance is to ensure, the APIs are
     > GetDefaultInterface and SetDefaultInterface (in Interface headers)
     > getDefaultInterface and setDefaultInterface (in JSON RPC)
 
+  - Usage of documentation tags in Interface header
+    > @brief -> It gives short description about the function, events and struct members.
+    > @param -> It is associated with a function/property. This tag adds the description about the specified parameter in the generated code and in the generated document.
+    > @details -> Just like @brief starts a brief description, @details starts the detailed description.There it will be captured in the description section for the method. 
+    > @retval -> The syntax for this tag is @retval <ErrorCode>: <Description>. It is associated with function/property.It adds description about each return codes
+    
   - Event names SHALL follow the convention: on[Object][Action].
     - Object SHALL be a noun and provide useful context on the event.
     - Action SHALL be a verb.
