@@ -73,7 +73,7 @@ Event details will be updated soon.
 | params?.epochTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, epoch time, in ms UTC |
 | params?.uptimeTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, uptime of the device, in ms. ONLY to be used when Time quality is not good |
 | params?.appId | string | <sup>*(optional)*</sup> Durable App ID string |
-| params.eventPayload | object | Custom payload of the event in JSON format. User defined colection of objects and keys. May be an empty object |
+| params.eventPayload | object | Custom payload of the event in JSON format. User defined collection of objects and keys. May be an empty object |
 | params.eventPayload.keyOrObject | string | User defined custom key or object |
 | params?.additionalContext | string | <sup>*(optional)*</sup> Additional context for the event in JSON format. Opaque string passed through without schema validation |
 
