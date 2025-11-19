@@ -332,13 +332,7 @@ namespace Exchange {
 
         ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
         ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
-        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2,
-
-        // <pca>
-        ID_LINCHPIN_BROKER                                      = ID_ENTOS_OFFSET + 0x460,
-        ID_LINCHPIN_BROKER_NOTIFICATION                         = ID_LINCHPIN_BROKER + 1,
-        ID_LINCHPIN_BROKER_TOPIC_INFO_ITERATOR                  = ID_LINCHPIN_BROKER + 2
-        // </pca>
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2
 
     }; // enum IDS
 
