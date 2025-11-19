@@ -362,6 +362,7 @@ namespace Exchange {
         // @param AudioCapabilities: Audio capability
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult AudioCapabilities(const string& audioPort , IAudioCapabilityIterator*& AudioCapabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text ms12capabilities
@@ -370,6 +371,7 @@ namespace Exchange {
         // @param MS12Capabilities: MS12 audio capability
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult MS12Capabilities(const string& audioPort , IMS12CapabilityIterator*& MS12Capabilities /* @out */, bool& success /* @out */) const = 0;
 
         // @text supportedms12audioprofiles
@@ -378,6 +380,7 @@ namespace Exchange {
         // @param supportedMS12AudioProfiles: MS12 audio profiles
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult SupportedMS12AudioProfiles(const string& audioPort , IStringIterator*& supportedMS12AudioProfiles /* @out */, bool& success /* @out */) const = 0;
     };
 
@@ -459,6 +462,7 @@ namespace Exchange {
         // @param supportedVideoDisplays: Video ports supported on the device
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult SupportedVideoDisplays(IStringIterator*& supportedVideoDisplays /* @out */, bool& success /* @out */) const = 0;
 
         // @text defaultresolution
@@ -467,6 +471,7 @@ namespace Exchange {
         // @param defaultResolution: Default Resolutions
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult DefaultResolution(const string& videoDisplay , DefaultResln& defaultResln /* @out */) const = 0;
 
         // @text supportedresolutions
@@ -475,6 +480,7 @@ namespace Exchange {
         // @param supportedResolutions: Supported Resolutions
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+         // @deprecated
         virtual Core::hresult SupportedResolutions(const string& videoDisplay, IStringIterator*& supportedResolutions /* @out */, bool& success /* @out */ ) const = 0;
 
         // @property
@@ -483,6 +489,7 @@ namespace Exchange {
         // @param EDID: EDID of the host
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult HostEDID(HostEdid& hostEdid /* @out */) const = 0;
 
         // @text supportedhdcp
@@ -491,6 +498,7 @@ namespace Exchange {
         // @param supportedHDCPVersion: HDCP support
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        // @deprecated
         virtual Core::hresult SupportedHdcp(const string& videoDisplay , SupportedHDCPVer& supportedHDCPVer /* @out */) const = 0;
     };
 }
