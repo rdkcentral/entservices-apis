@@ -165,6 +165,7 @@ namespace Exchange {
         };
 
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // @property
         // @text serialnumber
@@ -301,6 +302,13 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EstbIp(StbIp& stbIp /* @out */) const = 0;
+
+        // @text supportedaudioports
+        // @brief Provides access to the audio ports supported on the device.
+        // @param supportedAudioPorts: Audio ports supported on the device.
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
@@ -348,13 +356,6 @@ namespace Exchange {
         typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
         typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
         typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
-
-        // @text supportedaudioports
-        // @brief Provides access to the audio ports supported on the device.
-        // @param supportedAudioPorts: Audio ports supported on the device.
-        // @retval ErrorCode::ERROR_NONE: Indicates success
-        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
 
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
