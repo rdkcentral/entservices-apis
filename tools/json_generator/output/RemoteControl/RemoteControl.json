@@ -180,7 +180,7 @@
             "type": "array",
             "items": {
                 "type": "integer",
-                "example": "[2, 3, 4]"
+                "example": "2, 3, 4"
             }
         },
         "validationKey": {

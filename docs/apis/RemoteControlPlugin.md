@@ -1356,11 +1356,9 @@ Generated for manual pairing validation.
         "status": {
             "status": "PENDING",
             "code": [
-                [
-                    2,
-                    3,
-                    4
-                ]
+                2,
+                3,
+                4
             ],
             "key": 2
         }
