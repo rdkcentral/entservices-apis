@@ -36,11 +36,6 @@ The table below lists configuration options of the plugin.
 | classname | string | Class name: *Analytics* |
 | locator | string | Library name: *libWPEFrameworkAnalytics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-| configuration | object |  |
-| configuration.loggername | string | Logger name used by backend |
-| configuration.loggerversion | string | Logger version used by backend |
-| configuration?.eventsmap | string | <sup>*(optional)*</sup> Optional path to json file with array of mapped events name |
-| configuration.backendlib | string | Name of backend library |
 
 <a id="Methods"></a>
 # Methods
@@ -70,15 +65,12 @@ Event details will be updated soon.
 | params.eventSourceVersion | string | Version of the event source |
 | params.cetList | IStringIterator | List of CETs |
 | params.cetList[#] | string |  |
-| params?.epochTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, epoch time, in ms UTC |
-| params?.uptimeTimestamp | integer | <sup>*(optional)*</sup> Timestamp for the START of this event, uptime of the device, in ms. ONLY to be used when Time quality is not good |
-| params?.appId | string | <sup>*(optional)*</sup> Durable App ID string |
-| params.eventPayload | object | Custom payload of the event in JSON format. User defined collection of objects and keys. May be an empty object |
-| params.eventPayload.keyOrObject | string | User defined custom key or object |
-| params?.additionalContext | string | <sup>*(optional)*</sup> Additional context for the event in JSON format. Opaque string passed through without schema validation |
-
-### Result
-
+| params.epochTimestamp | integer | Epoch timestamp of the event |
+| params.uptimeTimestamp | integer | Uptime timestamp of the event |
+| params.appId | string | Durable App Id string |
+| params.eventPayload | string | Payload of the event |
+| params.additionalContext | string | Additional context for the event |
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | null | On success null will be returned. |
@@ -101,13 +93,11 @@ Event details will be updated soon.
         "cetList": [
             ""
         ],
-        "epochTimestamp": 1721906631000,
-        "uptimeTimestamp": 35000,
-        "appId": "app-id-app1",
-        "eventPayload": {
-            "keyOrObject": "value1"
-        },
-        "additionalContext": "{}"
+        "epochTimestamp": 0,
+        "uptimeTimestamp": 0,
+        "appId": "",
+        "eventPayload": "",
+        "additionalContext": ""
     }
 }
 ```
@@ -116,7 +106,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": "", "additionalContext": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
