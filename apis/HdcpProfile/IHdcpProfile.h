@@ -58,7 +58,7 @@
             // @brief Returns HDCP-related data.
             // @param HDCPStatus: Contains HDCP-related data as separate properties
             // @param success: Indicates whether the operation was successful
-            virtual Core::hresult GetHDCPStatus(HDCPStatus& hdcpStatus /* @out @text HDCPStatus*/,bool& success  /* @out */) = 0;
+            virtual Core::hresult getHDCPStatus(HDCPStatus& hdcpStatus /* @out @text HDCPStatus*/,bool& success  /* @out */) = 0;
             /**********************getHDCPStatus() - end******************************/
              
             /**********************getSettopHDCPSupport() - start*********************************/
