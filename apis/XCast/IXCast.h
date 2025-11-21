@@ -75,7 +75,7 @@ namespace WPEFramework {
 				// @param strPayLoad: Payload string to be passed to the application
 				// @param strQuery: Query string to be appended in launch request
 				// @param strAddDataUrl: Additional data URL to be passed to the application
-				virtual void OnApplicationLaunchRequestWithParam(const string& appName /* @text applicationName */ , const string& strPayLoad /* @text strPayLoad */, const string& strQuery /* @text strQuery */, const string& strAddDataUrl /* @text strAddDataUrl */) {};
+				virtual void ONApplicationLaunchRequestWithParam(const string& appName /* @text applicationName */ , const string& strPayLoad /* @text strPayLoad */, const string& strQuery /* @text strQuery */, const string& strAddDataUrl /* @text strAddDataUrl */) {};
 				// @text onApplicationLaunchRequest
 				// @brief Triggered when the cast service receives a launch request from a client with launch params
 				// @param applicationName: Registered application name
