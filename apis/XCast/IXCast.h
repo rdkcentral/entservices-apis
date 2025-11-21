@@ -33,7 +33,7 @@ namespace WPEFramework {
 			enum State : uint8_t {
 				RUNNING = 0 /* @text running */,
 				STOPPED = 1/* @text stopped */,
-				HIDDEN = 2 /* @text suspended */
+				HIDDEn = 2 /* @text suspended */
      	 	};
 
 			enum StandbyBehavior : uint8_t {
