@@ -62,22 +62,22 @@ namespace Exchange {
             // Signal changes on the subscribed namespace
             // @brief Notify TTS enabled/disabled
             // @param state enabled/disabled
-            virtual void Enabled(const bool state) {}
+            virtual void Enabled(const bool /*state*/) {}
 
             // @brief Notify change in voice used for speaking
             // @param voice voice changed 
-            virtual void VoiceChanged(const string voice) {}
+            virtual void VoiceChanged(const string /*voice*/) {}
 
             // @brief Notify speechid based on the speech state(eg: start,pause,..etc)
             // @param speechid id of the text
-            virtual void WillSpeak(const uint32_t speechid) {}
-            virtual void SpeechStart(const uint32_t speechid) {}
-            virtual void SpeechPause(const uint32_t speechid) {}
-            virtual void SpeechResume(const uint32_t speechid) {}
-            virtual void SpeechInterrupted(const uint32_t speechid) {}
-            virtual void NetworkError(const uint32_t speechid) {}
-            virtual void PlaybackError(const uint32_t speechid) {}
-            virtual void SpeechComplete(const uint32_t speechid) {}
+            virtual void WillSpeak(const uint32_t /*speechid*/) {}
+            virtual void SpeechStart(const uint32_t /*speechid*/) {}
+            virtual void SpeechPause(const uint32_t /*speechid*/) {}
+            virtual void SpeechResume(const uint32_t /*speechid*/) {}
+            virtual void SpeechInterrupted(const uint32_t /*speechid*/) {}
+            virtual void NetworkError(const uint32_t /*speechid*/) {}
+            virtual void PlaybackError(const uint32_t /*speechid*/) {}
+            virtual void SpeechComplete(const uint32_t /*speechid*/) {}
         };
 
         ~ITextToSpeech() override = default;
