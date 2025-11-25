@@ -4,7 +4,7 @@ applyTo: "apis/**/I*.h"
 
 When writing review comments, include a direct GitHub link to the exact violated guideline in this file using this format:
 
-"Refer: https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#L<violated_guideline_link>"
+"Refer: https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#<guideline-anchor>"
 
 For Example:
 
