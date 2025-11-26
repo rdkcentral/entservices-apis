@@ -48,17 +48,22 @@ applyTo: "apis/**/I*.h"
          };
 
       ### Struct Member Example:
-             struct EXTERNAL ApplicationInfo {
-                   // @brief Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail
-                   string appName /* @text names */;
-                   // @brief If the application name in request URI does not match the list of names, it must contain one of the prefixes. If the application name in request URI does not match any names or prefixes, then the request shall fail
-                   string prefixes /* @text prefixes */;
-                   // @brief A set of origins allowed for the application. This must not be empty
-                   string cors /* @text cors */;
-                   // @brief Query string that needs to be appended in launch request
-                   string query /* @text query */;
-                   // @brief Optional payload string that needs to be appended in launch request
-                   string payload /* @text payload */;
-                   // @brief Indicates whether the application (matching name list or prefix list) is allowed to stop (no PID presence) after launch
-                   int allowStop /* @text allowStop */;
+              struct EXTERNAL ApplicationInfo {
+                   string appName /* @text names */ 
+                                /* @brief Group of acceptable names for a related application. Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail */;
+                   
+                   string prefixes /* @text prefixes */ 
+                                   /* @brief If the application name in request URI does not match the list of names, it must contain one of the prefixes. If the application name in request URI does not match any names or prefixes, then the request shall fail */;
+                   
+                   string cors /* @text cors */ 
+                               /* @brief A set of origins allowed for the application. This must not be empty */;
+                   
+                   string query /* @text query */ 
+                                /* @brief Query string that needs to be appended in launch request */;
+                   
+                   string payload /* @text payload */ 
+                                  /* @brief Optional payload string that needs to be appended in launch request */;
+                   
+                   int allowStop /* @text allowStop */ 
+                                 /* @brief Indicates whether the application (matching name list or prefix list) is allowed to stop (no PID presence) after launch */;
                };
