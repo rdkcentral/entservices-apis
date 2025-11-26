@@ -33,6 +33,7 @@ namespace Exchange {
         virtual Core::hresult Sdk(string& sdk /* @out */) const = 0;
         virtual Core::hresult Mediarite(string& mediarite /* @out */) const = 0;
         virtual Core::hresult Yocto(string& yocto /* @out */) const = 0;
+        virtual Core::hresult Pdri(string& pdri /* @out */) const = 0;
     };
 }
 }
