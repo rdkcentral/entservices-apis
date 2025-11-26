@@ -7,10 +7,10 @@ applyTo: "apis/**/I*.h"
     
        ### Required Tags:
     
-          - @brief — A concise description of the purpose or behavior.
-          - @param — Description of each parameter, including its name and purpose.
-          - @retval <ErrorCode>: <Description> — Used to describe each return code associated with a function or property. These descriptions will be included in the generated markdown documentation.
-          - @details (optional) — Additional information or extended explanation.
+        - @brief — A concise description of the purpose or behavior.
+        - @param — Description of each parameter, including its name and purpose.
+        - @retval <ErrorCode>: <Description> — Used to describe each return code associated with a function or property. These descriptions will be included in the generated markdown documentation.
+        - @details (optional) — Additional information or extended explanation.
 
       ### Method Example:
             // @text onApplicationStateChanged
