@@ -22,6 +22,8 @@ applyTo: "apis/**/I*.h"
             // @retval ErrorCode::NONE: Indicates successful state change
             // @retval ErrorCode::FORBIDDEN: Operation is not permitted
             // @retval ErrorCode::UNAVAILABLE: Requested resource is not available
+            // @retval ErrorCode::INVALID: Provided state is not recognized
+            // @retval ErrorCode::INTERNAL: Internal server error occurred
             virtual Core::hresult ApplicationStateChanged(
                 const string& applicationName /* @text applicationName */,
                 const State& state /* @text state */,
