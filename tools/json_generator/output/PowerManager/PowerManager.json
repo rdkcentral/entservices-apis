@@ -529,35 +529,6 @@
                     }
             }
         },
-        "setSystemMode":{
-            "summary": "Sets the mode of the set-top box for a specific duration before returning to normal mode. Valid modes are:  \n* `NORMAL` - The set-top box is operating in normal mode.  \n* `EAS` - The set-top box is operating in Emergency Alert System (EAS) mode. This mode is set when the device needs to perform certain tasks when entering EAS mode, such as setting the clock display or preventing the user from using the diagnostics menu.  \n* `WAREHOUSE` - The set-top box is operating in warehouse mode.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "currentMode": {
-                        "$ref": "#/definitions/currentMode"
-                    },
-                    "newMode": {
-                        "$ref": "#/definitions/newMode"
-                    }
-                },
-                "required": [
-                    "currentMode",
-                    "newMode"
-                ]
-            },
-            "result": {
-                "summary": "On success null will be returned",
-                "type": "string",
-                "example": "null"
-            },
-            "errors": [
-                {
-                    "description": "General error",
-                    "$ref": "#/common/errors/general"
-                }
-            ]
-        },
         "getPowerStateBeforeReboot":{
             "summary": "Returns the power state before reboot.",
             "result": {

@@ -90,7 +90,7 @@ namespace WPEFramework
             // @brief Set the Frm mode.
             // @param frmmode - in - int
             // @param success - out - boolean
-            virtual Core::hresult SetFrmMode(const int frmmode /* @in */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetFrmMode(const int frmmode, bool& success /* @out */) = 0;
 
             /** Starts the FPS data collection */
             // @text startFpsCollection

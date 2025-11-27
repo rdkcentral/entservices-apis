@@ -24,35 +24,62 @@ import os
 import glob
 import time
 import sys
+import argparse
 #from pathlib import Path, PureWindowsPath
 
-# Fetching the json files from each plugin to generate md files
-# Under docs/apis folder
-def convert_json_to_md():
-    print()
+
+def generate_md(logfile=None):
     print("*****   Generating md files under docs/apis   *****")
-    print()
-    dirname = os.path.dirname(__file__)
-    print("Directory path:", dirname)
-    print()
-    filename = os.path.join(dirname, r"../json_generator/output/*/*Plugin.json")
-    flist = glob.glob(os.path.join(filename))
-    jsongenpath ="python3 ./json2md/generator_json.py"
+    apis_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../apis"))
+    plugin_folders = [f for f in os.listdir(apis_dir) if os.path.isdir(os.path.join(apis_dir, f))]
+    used_json_method = False
 
+    for plugin in plugin_folders:
+        plugin_path = os.path.join(apis_dir, plugin)
+        h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
+        if h_files:
+            print(f"Found I*.h files in {plugin_path}: {h_files}")
+            convert_h_to_md(plugin_path, logfile)
+            print(f"[TOOL] Would generate md from {h_files} using the required tool.")
+        else:
+            print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
+            json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../json_generator/output/{plugin}"))
+            convert_json_to_md(json_plugin_path)
+            used_json_method = True
+
+    if not used_json_method:
+        print("No plugin folders required convert_json_to_md().")
+    print("*****   MD generation completed   *****")
+
+def convert_json_to_md(plugin_path):
+    print(f"*****   Generating md files under docs/apis for {plugin_path}   *****")
+    jsongenpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "json2md/generator_json.py"))
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
+    flist = glob.glob(os.path.join(plugin_path, "*Plugin.json"))
     for file in flist:
-        os.system(r"{} --docs "
-                   r"{} -o ../../../../docs/apis --no-interfaces-section".format(jsongenpath, file))
-    print()
-    print("*****   Generated md files under docs/apis   *****")
+        os.system(f"python3 {jsongenpath} --docs {file} -o {output_dir} --no-interfaces-section")
+    print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
-# Replacing the given strings in md files to fix the linking issues
+def convert_h_to_md(plugin_path, logfile=None):
+    print(f"*****   Generating md files from headers under docs/apis for {plugin_path}   *****")
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
+
+    cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
+    if logfile:
+        cmd += f" --logfile {logfile}"
+
+    print(f"Running: {cmd}")
+    os.system(cmd)
+    print(f"*****   Header-based md generation completed for {plugin_path}   *****")
+
 def postprocess_md():
-    print()
-    flist = glob.glob(os.path.join(r"./../../docs/apis/*Plugin.md"))
+    print("Postprocessing md files...")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    apis_dir = os.path.abspath(os.path.join(script_dir, "../../docs/apis"))
+    flist = glob.glob(os.path.join(apis_dir, "*.md"))
 
-    # Loop and replace the given words
     for file in flist:
-        # Open and Read the file
         with open(file, "r") as file_rd:
             rplce_file = file_rd.read()
             rplce_file_Org = rplce_file
@@ -60,35 +87,36 @@ def postprocess_md():
                           " [<sup>event</sup>](#head.Notifications)",
                           " [<sup>property</sup>](#head.Properties)",
                           "head.", "method.", "acronym.", "term.", "event.", "ref.", "property.")
-            print("postprocessing filename:", file)
 
-           # replace the words
+            print("postprocessing filename:", file)
             for word in list_rplce:
                 rplce_file = rplce_file.replace(word, "")
 
-            # Replace the file only if, the original file and
-            # current file are different
             if rplce_file != rplce_file_Org:
-               print("link fixing filename:", file)
-               with open(file, "w") as file_wr:
+                print("link fixing filename:", file)
+                with open(file, "w") as file_wr:
                     file_wr.writelines(rplce_file)
-    print()
     print("********************   Postprocessing completed   ********************")
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate and postprocess md files.")
+    parser.add_argument("--logfile", "-l", help="Optional log file path for header-based generation.")
+    args = parser.parse_args()
+
     start = time.time()
-    count = 0
-    convert_json_to_md()
-    print()
+    generate_md(args.logfile)
     print()
     postprocess_md()
     print()
-    print()
+    update_sidebar_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'update_sidebar.py'))
+    os.system(f'python3 "{update_sidebar_path}"')
     end = time.time()
-    print("The time taken to execute the above program is :", end - start)
+    print("The time taken to execute the above program is:", end - start)
+
     if os.path.exists("./json2md/__pycache__"):
         os.system('rm -rf "./json2md/__pycache__"')
 
 if __name__ == "__main__":
     main()
+
 

@@ -53,7 +53,7 @@ namespace WPEFramework {
             virtual void Unregister(IHomeKitTV::INotification* homeKitTV) = 0;
             virtual void FactoryReset() = 0;
             virtual uint32_t requestAppLaunch(const string& origin, const string& reason, string& result /* @out */) = 0;
-	    virtual uint32_t setCurrentInputSource(const string& inputsource /* @in */, string& response /* @out */) = 0;
+	    virtual uint32_t setCurrentInputSource(const string& inputsource, string& response /* @out */) = 0;
            virtual void getEnabledStatus(bool& result /* @out */) = 0;
 	        virtual void getConnectionStatus(bool& result /* @out */) = 0;
 	    virtual uint32_t setAppContainerIPAddress(const string& ipaddress) = 0;
