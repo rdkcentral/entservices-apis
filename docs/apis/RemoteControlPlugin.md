@@ -1340,10 +1340,29 @@ Generated for manual pairing validation.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | The validation status of the manual pairing request. (must be one of the following: *SUCCESS*, *PENDING*, *TIMEOUT*, *COLLISION*, *FAILURE*, *ABORT*, *FULL_ABORT*, *FAILED*, *BIND_TABLE_FULL*, *IN_PROGRESS*, *CTRLM_RESTART*) |
-| params?.code | array | <sup>*(optional)*</sup> The pairing code for manual pairing which consists of 3 key codes (KEY_*) |
-| params?.code[#] | integer | <sup>*(optional)*</sup>  |
-| params?.key | integer | <sup>*(optional)*</sup> A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode |
+| params.status | object |  |
+| params.status.status | string | The validation status of the manual pairing request. (must be one of the following: *SUCCESS*, *PENDING*, *TIMEOUT*, *COLLISION*, *FAILURE*, *ABORT*, *FULL_ABORT*, *FAILED*, *BIND_TABLE_FULL*, *IN_PROGRESS*, *CTRLM_RESTART*) |
+| params.status?.code | array | <sup>*(optional)*</sup> The pairing code for manual pairing which consists of 3 key codes (KEY_*) |
+| params.status?.code[#] | integer | <sup>*(optional)*</sup>  |
+| params.status?.key | integer | <sup>*(optional)*</sup> A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode |
 
 ### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onValidation",
+    "params": {
+        "status": {
+            "status": "PENDING",
+            "code": [
+                2,
+                3,
+                4
+            ],
+            "key": 2
+        }
+    }
+}
+```
 
