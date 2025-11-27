@@ -160,7 +160,7 @@ def validate_header(file_path, issues, ids_lines):
                 member_parts = member.split('/*')
                 member_name = member_parts[0].split()[-1].rstrip(';')
                 # Check if member name follows camelCase convention, including array brackets
-                member_name_base = re.split(r'\[|\]', member_name)[0]
+                member_name = re.sub(r'(\{[^}]*\}|=[^;]*)', '', member_name).strip()
                 if not re.match(r'^[a-z][a-zA-Z0-9]*$', member_name_base):
                     for i, line in enumerate(lines):
                         if member_name in line:
