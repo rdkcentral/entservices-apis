@@ -60,61 +60,92 @@ namespace Exchange {
             ~INotification() override = default;
 
             // Signal changes on the subscribed namespace
+            // @text onSpeechEnabled
             // @brief Notify TTS enabled/disabled
-            // @param state enabled/disabled
+            // @param state: enabled/disabled
             virtual void onSpeechEnabled(const bool /*state*/) {}
 
+            // @text onToneChanged
             // @brief Notify change in voice used for speaking
-            // @param voice voice changed 
+            // @param voice: voice changed
             virtual void onToneChanged(const string /*voice*/) {}
 
-            // @brief Notify speechid based on the speech state(eg: start,pause,..etc)
-            // @param speechid id of the text
+            // @text onSpeechPossible
+            // @brief Notify that speech is possible
+            // @param speechid: id of the text
             virtual void onSpeechPossible(const uint32_t /*speechid*/) {}
+
+            // @text onSpeechBegin
+            // @brief Notify that speech is started
+            // @param speechid: id of the text
             virtual void onSpeechBegin(const uint32_t /*speechid*/) {}
+            
+            // @text onSpeechBreak
+            // @brief Notify that speech is paused
+            // @param speechid: id of the text
             virtual void onSpeechBreak(const uint32_t /*speechid*/) {}
+            
+            // @text onSpeechContinue
+            // @brief Notify that speech is continued
+            // @param speechid: id of the text
             virtual void onSpeechContinue(const uint32_t /*speechid*/) {}
+            
+            // @text onSpeechDisrupt
+            // @brief Notify that speech is interrupted
+            // @param speechid: id of the text
             virtual void onSpeechDisrupt(const uint32_t /*speechid*/) {}
+            
+            // @text onConnectionLost
+            // @brief Notify that network connection is lost
+            // @param speechid: id of the text
             virtual void onConnectionLost(const uint32_t /*speechid*/) {}
+            
+            // @text onAudioIssue
+            // @brief Notify that there is an playback failure
+            // @param speechid: id of the text
             virtual void onAudioIssue(const uint32_t /*speechid*/) {}
+
+            // @text onSpeechDone
+            // @brief Notify that speech is completed
+            // @param speechid: id of the text
             virtual void onSpeechDone(const uint32_t /*speechid*/) {}
         };
 
         ~ITextToSpeech() override = default;
 
-        // @text Register
+        // @text register
         // @brief Register notification interface
         // @param sink: notification interface pointer
         // @retval ErrorCode::NONE: Indicates successful registration of sink
         virtual Core::hresult Register(ITextToSpeech::INotification* sink) = 0;
 
-        // @text Unregister
+        // @text unregister
         // @brief Unregister notification interface
         // @param sink: notification interface pointer
         // @retval ErrorCode::NONE: Indicates successful unregistration of sink
         virtual Core::hresult Unregister(ITextToSpeech::INotification* sink) = 0;
 
-        // @text RegisterWithCallsign
+        // @text registerWithCallsign
         // @brief Register notification interface with callsign
         // @param sink: notification interface pointer
         // @retval ErrorCode::NONE: Indicates successful registration of sink with callsign
         virtual Core::hresult RegisterWithCallsign(const string callsign,ITextToSpeech::INotification* sink) = 0;
         
         // @property
-        // @text Enable
+        // @text enable
         // @brief enable/disable tts
         // @param enable: flag to enable/disable tts
         // @retval ErrorCode::NONE: Indicates successful state change
         // @retval ErrorCode::ERROR_GENERAL: Indicates state change got failed
         virtual Core::hresult Enable(const bool enable) = 0;
 
-        // @text IsTTSActive
+        // @text getTTSStatus
         // @brief Query whether TTS enabled or disabled
         // @param enable: tts status
         // @retval ErrorCode::NONE: Indicates TTS state retrieved successfully
-        virtual Core::hresult IsTTSActive(bool &enable /* @out */) const = 0;
+        virtual Core::hresult GetTTSStatus(bool &enable /* @out */) const = 0;
         
-        // @text SetConfiguration
+        // @text setConfiguration
         // @brief Set the tts configuration attributes
         // @param config: tts configuration
         // @param status: return status
@@ -122,27 +153,27 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates configuration set got failed
         virtual Core::hresult SetConfiguration(const Configuration &config,TTSErrorDetail &status/* @out */) = 0;
 
-        // @text SetFallbackText
+        // @text setFallbackText
         // @brief Set the tts fallback text
         // @param scenario: scenario for fallback text
         // @param value: fallback text
         // @retval ErrorCode::NONE: Indicates successful set of fallback text
         virtual Core::hresult SetFallbackText(const string scenario,const string value) = 0;
 
-        // @text SetAPIKey
+        // @text setAPIKey
         // @brief Set the api key for TTS endpoint
         // @param apikey: api key for TTS
         // @retval ErrorCode::NONE: Indicates successful set of api key
         virtual Core::hresult SetAPIKey(const string apikey) = 0;
 
-        // @text SetPrimaryVolDuck
+        // @text setPrimaryVolDuck
         // @brief Set the primary volume ducking level
         // @param prim: primary volume ducking level
         // @retval ErrorCode::NONE: Indicates successful configuration set of primary vol duck
         // @retval ErrorCode::ERROR_GENERAL: Indicates configuration set of primary vol duck got failed
         virtual Core::hresult SetPrimaryVolDuck(const uint8_t prim) = 0;
 
-        // @text SetACL
+        // @text setACL
         // @brief Set the access control list for TTS
         // @param method: method name
         // @param apps: applications allowed
@@ -150,14 +181,14 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates update of access control list got failed
         virtual Core::hresult SetACL(const string method,const string apps) = 0;
 
-        // @text GetConfiguration
+        // @text getConfiguration
         // @brief Retrieve tts configuration attributes 
         // @param config: tts configuration
         // @retval ErrorCode::NONE: Indicates successful retrieval of configuration
         // @retval ErrorCode::ERROR_GENERAL: Indicates retrieval of configuration got failed
         virtual Core::hresult GetConfiguration(Configuration &config/* @out */) const = 0;
         
-        // @text ListVoices
+        // @text listVoices
         // @brief List voices available 
         // @param language: input
         // @param voices: list of voices
@@ -165,7 +196,7 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates retrieval of voices list got failed
         virtual Core::hresult ListVoices(const string language,RPC::IStringIterator*& voices/* @out */) const = 0;
         
-        // @text Speak
+        // @text speak
         // @brief Speaks text provided
         // @param text: for conversion
         // @param speechid: returns id for the text 
@@ -174,14 +205,14 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates conversion of text to speech got failed
         virtual Core::hresult Speak(const string callsign,const string text,uint32_t &speechid/* @out */,TTSErrorDetail &status/* @out */) = 0;
         
-        // @text Cancel
+        // @text cancel
         // @brief Cancel the speech
         // @param speechid: id of text to be cancelled
         // @retval ErrorCode::NONE: Indicates successful cancellation of speech in progress
         // @retval ErrorCode::ERROR_GENERAL: Indicates cancellation of speech got failed
         virtual Core::hresult Cancel(const uint32_t speechid) = 0;
         
-        // @text Pause
+        // @text pause
         // @brief Pause the speech
         // @param speechid: id of text to be paused
         // @param status: return status
@@ -189,7 +220,7 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates pause of speech got failed
         virtual Core::hresult Pause(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
-        // @text Resume
+        // @text resume
         // @brief Resume the speech
         // @param speechid: id of text to be resumed
         // @param status: return status
@@ -197,7 +228,7 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_GENERAL: Indicates resume of speech got failed
         virtual Core::hresult Resume(const uint32_t speechid,TTSErrorDetail &status /* @out */) = 0;
         
-        // @text GetSpeechState
+        // @text getSpeechState
         // @brief Get speech status
         // @param speechid: id of text to get status
         // @param state: speech state
