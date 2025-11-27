@@ -173,20 +173,29 @@
                 "IN_PROGRESS",
                 "CTRLM_RESTART"
             ],
-            "example": "SUCCESS"
+            "example": "PENDING"
         },
         "validationCode": {
             "summary": "The pairing code for manual pairing which consists of 3 key codes (KEY_*).",
             "type": "array",
             "items": {
                 "type": "integer",
-                "example": "[2, 3, 4] -> [KEY_1, KEY_2, KEY_3]"
+                "example": "2, 3, 4"
             }
         },
         "validationKey": {
             "summary": "A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode.",
             "type": "integer",
-            "example": "2 -> KEY_1"
+            "example": 2
+        },
+        "validationStatusObject": {
+            "type": "object",
+            "properties": {
+                "status": { "$ref": "#/definitions/validationStatus" },
+                "code":   { "$ref": "#/definitions/validationCode"   },
+                "key":    { "$ref": "#/definitions/validationKey"    }
+            },
+            "required": [ "status" ]
         },
         "avDevType": {
             "summary": "Whether the device is a video (TV) or audio (AVR, amplifier, or soundbar) device",
@@ -1029,13 +1038,7 @@
                 "type": "object",
                 "properties": {
                     "status": {
-                        "$ref": "#/definitions/validationStatus"
-                    },
-                    "code": {
-                        "$ref": "#/definitions/validationCode"
-                    },
-                    "key": {
-                        "$ref": "#/definitions/validationKey"
+                        "$ref": "#/definitions/validationStatusObject"
                     }
                 },
                 "required": [
