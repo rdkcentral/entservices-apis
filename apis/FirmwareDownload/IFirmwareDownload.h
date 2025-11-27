@@ -30,14 +30,17 @@ namespace WPEFramework
             enum { ID = ID_FIRMWARE_DOWNLOAD };
 
             struct EXTERNAL FirmwareDownloadPercent {
+                /* @brief Current download percentage (0-100) */
                 int downloadPercent;
             };
 
             struct EXTERNAL FirmwareDownloadState {
+                /* @brief current state of the download process */
                 string downloadState;
             };
 
             struct EXTERNAL DownloadFailureReason {
+                /* @brief firmware download failure reason */
                 string failureReason;
             };
             
@@ -46,11 +49,11 @@ namespace WPEFramework
                 enum { ID = ID_FIRMWARE_DOWNLOAD_NOTIFICATION };
 
                 // @brief Triggered when the SearchFirmware asynchronous method is invoked
-                // @param searchStatus - in - integer
-                // @param serverResponse - in - string
-                // @param firmwareAvailable - in - boolean
-                // @param firmwareVersion - in - string
-                // @param rebootImmediately - in - boolean
+                // @param searchStatus: Status of the firmware search operation
+                // @param serverResponse: Response message from the server
+                // @param firmwareAvailable: Indicates whether new firmware is available
+                // @param firmwareVersion: Version string of the available firmware
+                // @param rebootImmediately: Indicates whether immediate reboot is required
                 // @text onFirmwareAvailable
                 virtual void OnFirmwareAvailable (const int searchStatus, const string& serverResponse, const bool firmwareAvailable, const string& firmwareVersion, const bool rebootImmediately) {};  
             };
@@ -60,15 +63,15 @@ namespace WPEFramework
 
             // @text getDownloadedFirmwareInfo
             // @brief Returns information about firmware downloads.
-            // @param currentFWVersion - out - string
-            // @param downloadedFWVersion - out - string
-            // @param downloadedFWLocation - out - string
-            // @param isRebootDeferred -out - boolean
+            // @param currentFWVersion: The current firmware version
+            // @param downloadedFWVersion: The downloaded firmware version
+            // @param downloadedFWLocation: The location of the downloaded firmware
+            // @param isRebootDeferred: Whether the device should be rebooted
             virtual Core::hresult GetDownloadedFirmwareInfo(string& currentFWVersion /* @out */, string& downloadedFWVersion /* @out */, string& downloadedFWLocation /* @out */, bool& isRebootDeferred /* @out */) = 0;
 
             // @text getFirmwareDownloadPercent
             // @brief Gets the current download percentage.
-            // @param firmwareDownloadPercent -out - struct
+            // @param firmwareDownloadPercent: Current download percentage
             virtual Core::hresult GetFirmwareDownloadPercent( FirmwareDownloadPercent& firmwareDownloadPercent /* @out */) = 0;
 
             // @text searchFirmware
@@ -77,12 +80,12 @@ namespace WPEFramework
             
             // @text getDownloadState
             // @brief Retrieve the current state of the download process.
-            // @param FirmwareDownloadState -out - struct
+            // @param FirmwareDownloadState: current firmware download state
             virtual Core::hresult GetDownloadState( FirmwareDownloadState& downloadState /* @out */) = 0;
             
             // @text getDownloadFailureReason
             // @brief Gets the last firmware download failure reason.
-            // @param DownloadFailureReason -out - struct
+            // @param DownloadFailureReason: firmware download failure reason
             virtual Core::hresult GetDownloadFailureReason( DownloadFailureReason& downloadFailureReason /* @out */) = 0;
         };
     } // namespace Exchange
