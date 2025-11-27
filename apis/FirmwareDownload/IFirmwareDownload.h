@@ -31,7 +31,7 @@ namespace WPEFramework
 
             struct EXTERNAL FirmwareDownloadPercent {
                 /* @brief Current download percentage (0-100) */
-                int downloadPercent;
+                uint32_t downloadPercent;
             };
 
             struct EXTERNAL FirmwareDownloadState {
