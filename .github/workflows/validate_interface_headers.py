@@ -158,13 +158,24 @@ def validate_header(file_path, issues, ids_lines):
                     continue
                 # Handle struct members with comments
                 member_parts = member.split('/*')
-                member_name = member_parts[0].split()[-1].rstrip(';')
-                # Check if member name follows camelCase convention, including array brackets
-                member_name = re.sub(r'(\{[^}]*\}|=[^;]*)', '', member_name).strip()
-                if not re.match(r'^[a-z][a-zA-Z0-9]*$', member_name_base):
+                declaration = member_parts[0].strip().rstrip(';').strip()
+                
+                # Use regex to extract member name, stopping at initializers or brackets
+                # Pattern: <type> <name> where name stops at {, =, [, or end
+                member_match = re.search(r'\b(\w+)\s*(?:[{=\[]|$)', declaration)
+                if not member_match:
+                    continue
+                
+                # Get the last identifier before any initializer
+                tokens = re.split(r'[{=\[]', declaration)[0].split()
+                if len(tokens) < 2:
+                    continue
+                member_name_base = tokens[-1]
+                
+                if member_name_base and not re.match(r'^[a-z][a-zA-Z0-9]*$', member_name_base):
                     for i, line in enumerate(lines):
-                        if member_name in line:
-                            issues.append(f"Line {i + 1}: Struct member of struct '{struct_name}' in file '{file_path}' does not follow camelCase convention: '{member_name}'")
+                        if member_name_base in line:
+                            issues.append(f"Line {i + 1}: Struct member of struct '{struct_name}' in file '{file_path}' does not follow camelCase convention: '{member_name_base}'")
                             break
                     
     # Find the INotification interface declaration
