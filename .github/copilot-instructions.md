@@ -7,7 +7,7 @@ When writing review comments, include a direct GitHub link to the specific viola
       
       https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers.instructions.md#enum-naming
 
-      https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/tags.instructions.md#json-rpc-tagging
+      https://github.com/rdkcentral/entservices-apis/blob/develop/.github/instructions/api_headers_tags.instructions.md#json-rpc-tagging      
 
       Incorrect Example:
       
