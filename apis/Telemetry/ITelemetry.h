@@ -91,6 +91,29 @@ namespace WPEFramework
             // @param success - out - boolean
             virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
             /**********************isOptOutTelemetry() - end*****************************************/
+
+            /***************************Record() - start**********************************/
+            /** @brief Record the telementryMetrics add new hash values to existing hash */
+            // @json:omit
+            // @text record
+            // @param id  string identifier for the telemetry record.
+            // @param telemetryMetrics  jsonString hash  contains key value pair of telemetryData
+            // @param markerName Groups related metrics
+            virtual Core::hresult Record(const string& id, const string& telemetryMetrics, const string& markerName) = 0;
+            /***************************Record() - end************************************/
+
+            /***************************Publish() - start*********************************/
+            /** @brief Publish the Telemetry Data 
+                    makes a T2 call that records all the key / value pairs in 
+                    hash. The existing id and hash are cleared after publish.*/
+            // @json:omit
+            // @text publish
+            // @param id string identifier for the telemetry record.
+            // @param markerName Groups related metrics
+            virtual Core::hresult Publish(const string& id, const string& markerName) = 0;
+            /***************************Publish() - end***********************************/
+
+
         };
     } // namespace Exchange
 } // namespace WPEFramework
