@@ -55,7 +55,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
         // @text onContainerStopped
         virtual void OnContainerStopped(const string& containerId, const string& name) {}
 
-        // @brief Notifies failure in container execution
+        // @brief Notifies failure in container execution, Only triggered for states start, stop, hibernate, wakeup.
         // @text onContainerFailed
         virtual void OnContainerFailed(const string& containerId, const string& name, uint32_t error) {}
 
@@ -71,22 +71,22 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     /** Unregister notification interface */
     virtual Core::hresult Unregister(INotification *notification) = 0;
 
-    /** Provide list of containers */
+    // @brief Provide list of containers
     // @text listContainers
     // @param containers - out/json - string
     virtual Core::hresult ListContainers(string& containers /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Get the information about container */
+    // @brief Get the information about container
     // @text getContainerInfo
     // @param containerId Identifier of container
     virtual Core::hresult GetContainerInfo(const string& containerId , string& info /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Get the state of container */
+    // @brief Get the state of container
     // @text getContainerState
     // @param containerId Identifier of container
     virtual Core::hresult GetContainerState(const string& containerId , ContainerState& state /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Start the container from bundle */
+    // @brief Start the container from bundle
     // @text startContainer
     // @param containerId Identifier of container
     // @param bundlePath path of application bundle
@@ -94,7 +94,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param westerosSocket(optional) Westeros socket container need to connect
     virtual Core::hresult StartContainer(const string& containerId , const string& bundlePath , const string& command , const string& westerosSocket , int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Start the container from dobby specification */
+    // @brief Start the container from dobby specification
     // @text startContainerFromDobbySpec
     // @param containerId Identifier of container
     // @param dobbySpec dobby specification as json string
@@ -102,53 +102,53 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param westerosSocket(optional) Westeros socket container need to connect
     virtual Core::hresult StartContainerFromDobbySpec(const string& containerId , const string& dobbySpec , const string& command , const string& westerosSocket , int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Stop the container */
+    // @brief Stop the container
     // @text stopContainer
     // @param containerId Identifier of container
     // @param force(optional) Metion forceful or graceful termination of container
     virtual Core::hresult StopContainer(const string& containerId , bool force , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Pause the container */
+    // @brief Pause the container
     // @text pauseContainer
     // @param containerId Identifier of container
     virtual Core::hresult PauseContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Resume the container */
+    // @brief Resume the container
     // @text resumeContainer
     // @param containerId Identifier of container
     virtual Core::hresult ResumeContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Hibernate the container */
+    // @brief Hibernate the container
     // @text hibernateContainer
     // @param containerId Identifier of container
     virtual Core::hresult HibernateContainer(const string& containerId , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Wakeup the container */
+    // @brief Wakeup the container
     // @text wakeupContainer
     // @param containerId Identifier of container
     virtual Core::hresult WakeupContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Execute the command in container */
+    // @brief Execute the command in container
     // @text executeCommand
     // @param containerId Identifier of container
     // @param options(optional) options to be passed to command
     // @param command command to run in container
     virtual Core::hresult ExecuteCommand(const string& containerId , const string& options , const string& command , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** update container properties */
+    // @brief Update container properties
     // @text annotate
     // @param containerId Identifier of container
     // @param key name of property
     // @param value property data
     virtual Core::hresult Annotate(const string& containerId , const string& key , const string& value , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Remove container property */
+    // @brief Remove container property
     // @text removeAnnotation
     // @param containerId Identifier of container
     // @param key name of property
     virtual Core::hresult RemoveAnnotation(const string& containerId , const string& key , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Mount a path in container */
+    // @brief Mount a path in container
     // @text mount
     // @param containerId Identifier of container
     // @param source path source to mount
@@ -157,7 +157,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param options options for mounting
     virtual Core::hresult Mount(const string& containerId , const string& source , const string& target , const string& type , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
-    /** Unmount a path in container */
+    // @brief Unmount a path in container
     // @text unmount
     // @param containerId Identifier of container
     // @param target path to unmount from container
