@@ -94,7 +94,6 @@ namespace WPEFramework
 
             /***************************Record() - start**********************************/
             /** @brief Record the telementryMetrics add new hash values to existing hash */
-            // @json:omit
             // @text record
             // @param id  string identifier for the telemetry record.
             // @param telemetryMetrics  jsonString hash  contains key value pair of telemetryData
@@ -103,15 +102,17 @@ namespace WPEFramework
             /***************************Record() - end************************************/
 
             /***************************Publish() - start*********************************/
-            /** @brief Publish the Telemetry Data 
-                    makes a T2 call that records all the key / value pairs in 
-                    hash. The existing id and hash are cleared after publish.*/
-            // @json:omit
+            /** @brief Publish the Telemetry Data
+            //        makes a T2 call that records all the key / value pairs in
+            //        hash. The existing id and hash are cleared after publish.*/
             // @text publish
             // @param id string identifier for the telemetry record.
             // @param markerName Groups related metrics
-            virtual Core::hresult Publish(const string& id, const string& markerName) = 0;
+            // @param mergeKey Used to merge multiple records under same key
+            virtual Core::hresult Publish(const string& id, const string& markerName, const string& mergeKey) = 0;
             /***************************Publish() - end***********************************/
+
+            // todo remove jsonrpc from record and publish
 
 
         };
