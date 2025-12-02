@@ -40,18 +40,18 @@ def get_plugin_from_path(file_path):
         if len(parts) > apis_idx + 1:
             return parts[apis_idx + 1]
     
-    # For tools/json_generator/output/PluginName/...
-    if 'output' in parts:
-        output_idx = parts.index('output')
-        if len(parts) > output_idx + 1:
-            return parts[output_idx + 1]
+    # For tools/md_generator/json/PluginName/...
+    if 'json' in parts and 'md_generator' in parts:
+        json_idx = parts.index('json')
+        if len(parts) > json_idx + 1:
+            return parts[json_idx + 1]
     
     return None
 
 
 def validate_json_changes(changed_files):
     """
-    Validate that JSON changes in apis/ have corresponding output files.
+    Validate that JSON changes in apis/ have corresponding output files in tools/md_generator/json/.
     Returns (is_valid, missing_plugins)
     """
     apis_json_changes = [f for f in changed_files if f.startswith('apis/') and f.endswith('.json')]
@@ -68,13 +68,13 @@ def validate_json_changes(changed_files):
         
         # Check if corresponding output file exists in changed files OR on filesystem
         output_in_changes = any(
-            f.startswith(f'tools/json_generator/output/{plugin}/') and f.endswith('.json')
+            f.startswith(f'tools/md_generator/json/{plugin}/') and f.endswith('.json')
             for f in changed_files
         )
         
         if not output_in_changes:
             # Also check if it exists on disk (for cases where output wasn't changed but exists)
-            output_pattern = f"tools/json_generator/output/{plugin}/*Plugin.json"
+            output_pattern = f"tools/md_generator/json/{plugin}/*Plugin.json"
             output_files = glob.glob(output_pattern)
             if not output_files:
                 missing_plugins.append(plugin)
@@ -97,7 +97,7 @@ def get_plugins_to_process(changed_files):
         # Determine file type
         if file_path.startswith('apis/') and file_path.endswith('.h'):
             file_type = 'header'
-        elif file_path.startswith('tools/json_generator/output/') and file_path.endswith('.json'):
+        elif file_path.startswith('tools/md_generator/json/') and file_path.endswith('.json'):
             file_type = 'json_output'
         elif file_path.startswith('apis/') and file_path.endswith('.json'):
             # These should trigger json_output generation, but we'll track them
@@ -145,7 +145,7 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
     
     # Check if we should generate from JSON output
     if 'json_output' in file_types or 'apis_json' in file_types:
-        json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../json_generator/output/{plugin_name}"))
+        json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../md_generator/json/{plugin_name}"))
         json_files = glob.glob(os.path.join(json_plugin_path, "*Plugin.json"))
         
         if json_files:
@@ -251,12 +251,10 @@ def main():
         print("VALIDATION FAILED")
         print("!"*60)
         print("\nThe following plugins have JSON changes in apis/ but no corresponding")
-        print("output files in tools/json_generator/output/:")
+        print("output files in tools/md_generator/json/:")
         for plugin in missing_plugins:
             print(f"  - {plugin}")
-        print("\nPlease run the JSON generator first to create the output files:")
-        print("  cd tools/json_generator")
-        print("  python3 generate_json.py")
+        print("\nPlease ensure the JSON files exist in tools/md_generator/json/ directory.")
         print()
         sys.exit(1)
     
