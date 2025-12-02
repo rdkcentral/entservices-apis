@@ -25,7 +25,6 @@ This is used by the automated documentation workflow.
 import os
 import sys
 import glob
-import json
 import argparse
 from pathlib import Path
 
