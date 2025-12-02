@@ -1,7 +1,6 @@
 import os
 import re
 import glob
-import sys
 
 def load_ids(ids_file_path):
     with open(ids_file_path, 'r') as file:
@@ -182,7 +181,6 @@ def validate_header(file_path, issues, ids_lines):
     # Find the INotification interface declaration
     interface_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?I\w*Notification\s*:\s*virtual\s+public\s+Core::IUnknown\s*')
     matches = interface_pattern.finditer(content)
-
     for match in matches:
         start_index = match.start()
         end_index = find_matching_brace(content, start_index) + 1
@@ -245,7 +243,7 @@ def validate_header(file_path, issues, ids_lines):
                 if id_value_pattern.search(line):
                     issues.append(f"Line {i + 1}: An enum ID of file {os.path.basename(file_path)} has not been defined with offset in Ids.h file: {id_value}")
                     break
-    
+                    
     # Check for @in tag usage in method parameters (but allow @inout)
     in_tag_pattern = re.compile(r'/\*[^*]*@in(?!out)[^*]*\*/')
     for i, line in enumerate(lines):
@@ -253,26 +251,18 @@ def validate_header(file_path, issues, ids_lines):
             issues.append(f"Line {i + 1}: Usage of @in tag is not allowed in file '{file_path}'. Method parameters are input by default: {line.strip()}")
     
 
-def main(changed_files_path):
+def main():
     ids_file_path = 'apis/Ids.h'
     ids_lines = load_ids(ids_file_path)
     
-    '''directories = glob.glob('apis/*')
+    directories = glob.glob('apis/*')
     issues = []
     for directory in directories:
         for root, _, files in os.walk(directory):
             for file in files:
                 if file.endswith('.h'):
                     file_path = os.path.join(root, file)
-                    validate_header(file_path, issues, ids_lines)'''
-
-    with open(changed_files_path, 'r') as f:
-        changed_files = f.read().splitlines()
-    
-    issues = []
-    for file_path in changed_files:
-        if file_path.startswith('apis/') and file_path.endswith('.h'):
-            validate_header(file_path, issues, ids_lines)
+                    validate_header(file_path, issues, ids_lines)
     
     if issues:
         print("The following issues were found in the header files:")
@@ -283,5 +273,4 @@ def main(changed_files_path):
         print("No issues found.")
 
 if __name__ == "__main__":
-    changed_files_path = sys.argv[1]
-    main(changed_files_path)
+    main()
