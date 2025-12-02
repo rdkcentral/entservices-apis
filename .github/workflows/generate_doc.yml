@@ -76,8 +76,8 @@ jobs:
     - name: Commit and push documentation changes to PR branch
       if: steps.check_changes.outputs.docs_changed == 'true' && github.event_name == 'pull_request'
       run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
+        git config --local user.email "187267378+rdkcm-rdke@users.noreply.github.com"
+        git config --local user.name "RDKCM"
         git add docs/apis/
         git add docs/_sidebar.md
         git commit -m "chore: auto-generate documentation from interface changes"
@@ -89,8 +89,8 @@ jobs:
         # Create topic branch with date format: topic/doc-DDMMYY
         TOPIC_BRANCH="topic/doc-$(date +%d%m%y)"
         
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
+        git config --local user.email "187267378+rdkcm-rdke@users.noreply.github.com"
+        git config --local user.name "RDKCM"
         
         # Create and checkout new topic branch
         git checkout -b "$TOPIC_BRANCH"
