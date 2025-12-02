@@ -7,7 +7,7 @@ on:
     paths:
       - 'apis/**/*.h'
       - 'apis/**/*.json'
-      - 'tools/json_generator/output/**/*.json'
+      - 'tools/md_generator/json/**/*.json'
   workflow_dispatch:
     inputs:
       regenerate_all:
