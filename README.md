@@ -59,14 +59,9 @@ TO BE UPDATED!!
 
 - By default, the APIs are defined / described using header file so COMRPC is inherently supported by default (Refer entservices-apis/apis/<service name>/<servicename>.h for example)
 
-- When the implementation of a given Ent Service is expected to support JSONRPC in addition to COMRPC, then the tool available under tools/json_generator/generate_json.py SHALL be used to generate the required JSON Schema files from the headerfile defined for COMRPC.
+- When the implementation of a given Ent Service is expected to support JSONRPC in addition to COMRPC, then interface definition must have "@json 1.0.0" and "@text:keep" 
 
-- When the implementation of a given Ent Service is expected to support only JSONRPC, the APIs are described using [JSON Schema](https://json-schema.org/). In this case, the required JSON schema files SHALL be created manually as per the details provided below.
-
-  - JSON Schema provides a standard approach for describing APIs and ensures consistency across all APIs. There are two schemas that are used to describe a service:
-
-  - * [plugin.schema.json](https://github.com/rdkcentral/entservices-apis/blob/main/tools/md_generator/json2md/schemas/plugin.schema.json): A schema for defining a service.
-  - * [interface.schema.json](https://github.com/rdkcentral/entservices-apis/blob/main/tools/md_generator/json2md/schemas/interface.schema.json): A schema for defining the properties, methods, and events of a service.
+- When the implementation of a given Ent Service is expected to support only JSONRPC, then use @stubgen:omit tag at struct/class to omit proxystub generation for COM-RPC support.
 
 Markdown files are generated from the header file / JSON definitions using the md_generator tool (`tools/md_generator/generate_md.py`).
 
@@ -89,20 +84,33 @@ pip install jsonref
 
 ### Generating Markdown for a Single Service ###
 
-To generate markdown for a single service:
+
+#### Generating Markdown for a Single Service from interface header###
+To generate markdown for a single service from header :
+
+1. Change directories to `tools/md_generator/h2md`
+2. Run `generate_md_from_header.py` and provide the location of the header file using the `-i` argument and the output directory using the `-o` argument.
+
+	```shell
+	python3 generate_md_from_header.py -i ../../../apis/MyService -o ../../../docs/apis/ 
+	```
+
+
+#### Generating Markdown for a Single Service from json###
+To generate markdown for a single service from json :
 
 1. Change directories to `tools/md_generator/json2md`.
 2. Run `generator_json.py` and provide the location of the service JSON plugin file using the `-d` argument and the output directory using the `-o` argument. You must also include the `--no-interfaces-section` argument; otherwise, an interface section is added to the markdown. Make certain that you are pointing to the plugin definition and not the interface definition. Here is an example of using the tool:
 
     ```shell
-    python ./generator_json.py -d ../../../apis/MyService/MyServicePlugin.json  -o ../../../docs/apis --no-interfaces-section --verbose $files
+    python ./generator_json.py -d ../json/MyService/MyServicePlugin.json  -o ../../../docs/apis --no-interfaces-section --verbose $files
     ```
 
     The `MyServicePlugin.md` file is written to the `../../../docs/apis` folder. This is the standard directory where all the service API markdown files are written.
 
 ### Generating Markdown for All Services ###
 
-A script is provided to generate the markdown for all services and does a complete build of the documentation. The script only generates the markdown for a service if the JSON definition has been updated. In addition, the script post-processes the generated markdown files to create standard link anchors and to clean the build.
+A script is provided to generate the markdown for all services and does a complete build of the documentation. The script only generates the markdown for a service if the header definition has been updated. In addition, the script post-processes the generated markdown files to create standard link anchors and to clean the build.
 
 To generate markdown for all services:
 
@@ -174,4 +182,3 @@ If you have any questions or concerns reach out to [Ramasamy Thalavay Pillai](ma
 
 For a service specific question, maintainers might refer you to the service owner(s).
 <br><br>
-
