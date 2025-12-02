@@ -113,6 +113,14 @@ def get_plugins_to_process(changed_files):
 
 def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
     """Generate documentation for a specific plugin."""
+    # Skip JSON-based documentation generation for 'common' plugin
+    if plugin_name.lower() == 'common' and 'json_output' in file_types:
+        print(f"\n{'='*60}")
+        print(f"Skipping JSON-based documentation for plugin: {plugin_name}")
+        print(f"Reason: 'common' plugin does not require JSON documentation")
+        print(f"{'='*60}\n")
+        return True
+    
     print(f"\n{'='*60}")
     print(f"Generating documentation for plugin: {plugin_name}")
     print(f"File types changed: {', '.join(file_types)}")
