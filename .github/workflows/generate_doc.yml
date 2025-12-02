@@ -83,7 +83,7 @@ jobs:
         git config --local user.name "RDKCM"
         git add docs/apis/
         git add docs/_sidebar.md
-        git commit -m "chore: auto-generate documentation from interface changes"
+        git commit -m "Auto-generate documentation from interface changes"
         git push
     
     - name: Create topic branch and push documentation changes (manual)
@@ -101,7 +101,7 @@ jobs:
         # Add and commit changes
         git add docs/apis/
         git add docs/_sidebar.md
-        git commit -m "chore: manually regenerate all documentation"
+        git commit -m "Manually regenerate all documentation"
         
         # Push to topic branch
         git push origin "$TOPIC_BRANCH"
