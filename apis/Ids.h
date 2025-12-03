@@ -319,8 +319,25 @@ namespace Exchange {
         ID_PREINSTALL_MANAGER_NOTIFICATION              = ID_PREINSTALL_MANAGER + 1,
         ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR     = ID_PREINSTALL_MANAGER + 2,
 
-	ID_BARTONMATTER                             = ID_ENTOS_OFFSET + 0x420,
+		ID_BARTONMATTER                             = ID_ENTOS_OFFSET + 0x420,
 
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
+
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
+        ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
+        ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
+        ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
+        ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+
+        ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2,
+
+        ID_FIRMWARE_DOWNLOAD                         = ID_ENTOS_OFFSET + 0x460,
+        ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1
     }; // enum IDS
 
 } // namespace Exchange
