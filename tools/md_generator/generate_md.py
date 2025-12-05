@@ -43,7 +43,7 @@ def generate_md(logfile=None):
             print(f"[TOOL] Would generate md from {h_files} using the required tool.")
         else:
             print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
-            json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"../json_generator/output/{plugin}"))
+            json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"json/{plugin}"))
             convert_json_to_md(json_plugin_path)
             used_json_method = True
 
@@ -113,8 +113,8 @@ def main():
     end = time.time()
     print("The time taken to execute the above program is:", end - start)
 
-    if os.path.exists("./json2md/__pycache__"):
-        os.system('rm -rf "./json2md/__pycache__"')
+    if os.path.exists("./h2md/__pycache__"):
+        os.system('rm -rf "./h2md/__pycache__"')
 
 if __name__ == "__main__":
     main()

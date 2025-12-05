@@ -236,8 +236,8 @@ Notifies the new state
 | params | object |  |
 | params.appId | string | App identifier for the application. |
 | params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
-| params.oldState | LifecycleState | The previous state of the application instance before the update. |
-| params.newState | LifecycleState | The new state to transition the application. |
+| params.oldLifecycleState | LifecycleState | The previous state of the application instance before the update. |
+| params.newLifecycleState | LifecycleState | The new state to transition the application. |
 | params.navigationIntent | string | navigation intent during active state |
 
 ### Examples
@@ -250,8 +250,8 @@ Notifies the new state
     "params": {
         "appId": "",
         "appInstanceId": "",
-        "oldState": "",
-        "newState": "",
+        "oldLifecycleState": "",
+        "newLifecycleState": "",
         "navigationIntent": ""
     }
 }
