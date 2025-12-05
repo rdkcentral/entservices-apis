@@ -91,6 +91,33 @@ namespace WPEFramework
             // @param success - out - boolean
             virtual Core::hresult IsOptOutTelemetry(bool& optOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
             /**********************isOptOutTelemetry() - end*****************************************/
+
+            /***************************Record() - start**********************************/
+            // @brief Record the telementryMetrics add new hash values to existing hash
+            // @text record
+            // @param id: string identifier for the telemetry record.
+            // @param telemetryMetrics:  jsonString hash  contains key value pair of telemetryData
+            // @param markerName: Groups related metrics
+            // @retval Core::ERROR_NONE: Successfully recorded telemetry data
+            // @retval Core::ERROR_GENERAL: Failed to record telemetry data
+            // @json:omit
+            virtual Core::hresult Record(const string& id, const string& telemetryMetrics, const string& markerName) = 0;
+            /***************************Record() - end************************************/
+
+            /***************************Publish() - start*********************************/
+            // @brief Makes a T2 call that publishes select key/value pairs in hash; existing id and hash are cleared after publish.
+            // @text publish
+            // @param id: string identifier for the telemetry record.
+            // @param markerName: Groups related metrics
+            // @retval Core::ERROR_NONE: Successfully published telemetry data
+            // @retval Core::ERROR_GENERAL: Failed to publish telemetry data
+            // @json:omit
+            virtual Core::hresult Publish(const string& id /* @text id */, const string& markerName /* @text markerName */) = 0;
+            /***************************Publish() - end***********************************/
+
+            // todo remove jsonrpc from record and publish
+
+
         };
     } // namespace Exchange
 } // namespace WPEFramework
