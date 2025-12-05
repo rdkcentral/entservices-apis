@@ -47,26 +47,26 @@ OCIContainer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [annotate](#annotate) |  |
-| [executeCommand](#executeCommand) |  |
-| [getContainerInfo](#getContainerInfo) |  |
-| [getContainerState](#getContainerState) |  |
-| [hibernateContainer](#hibernateContainer) |  |
-| [listContainers](#listContainers) |  |
-| [mount](#mount) |  |
-| [pauseContainer](#pauseContainer) |  |
-| [removeAnnotation](#removeAnnotation) |  |
-| [resumeContainer](#resumeContainer) |  |
-| [startContainer](#startContainer) |  |
-| [startContainerFromDobbySpec](#startContainerFromDobbySpec) |  |
-| [stopContainer](#stopContainer) |  |
-| [unmount](#unmount) |  |
-| [wakeupContainer](#wakeupContainer) |  |
+| [annotate](#annotate) | Update container properties |
+| [executeCommand](#executeCommand) | Execute the command in container |
+| [getContainerInfo](#getContainerInfo) | Get the information about container |
+| [getContainerState](#getContainerState) | Get the state of container |
+| [hibernateContainer](#hibernateContainer) | Hibernate the container |
+| [listContainers](#listContainers) | Provide list of containers |
+| [mount](#mount) | Mount a path in container |
+| [pauseContainer](#pauseContainer) | Pause the container |
+| [removeAnnotation](#removeAnnotation) | Remove container property |
+| [resumeContainer](#resumeContainer) | Resume the container |
+| [startContainer](#startContainer) | Start the container from bundle |
+| [startContainerFromDobbySpec](#startContainerFromDobbySpec) | Start the container from dobby specification |
+| [stopContainer](#stopContainer) | Stop the container |
+| [unmount](#unmount) | Unmount a path in container |
+| [wakeupContainer](#wakeupContainer) | Wakeup the container |
 
 <a id="annotate"></a>
 ## *annotate*
 
-
+Update container properties
 
 ### Events
 Event details will be updated soon.
@@ -126,7 +126,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="executeCommand"></a>
 ## *executeCommand*
 
-
+Execute the command in container
 
 ### Events
 Event details will be updated soon.
@@ -186,7 +186,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getContainerInfo"></a>
 ## *getContainerInfo*
 
-
+Get the information about container
 
 ### Events
 Event details will be updated soon.
@@ -244,7 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getContainerState"></a>
 ## *getContainerState*
 
-
+Get the state of container
 
 ### Events
 Event details will be updated soon.
@@ -302,7 +302,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="hibernateContainer"></a>
 ## *hibernateContainer*
 
-
+Hibernate the container
 
 ### Events
 Event details will be updated soon.
@@ -360,7 +360,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="listContainers"></a>
 ## *listContainers*
 
-
+Provide list of containers
 
 ### Events
 Event details will be updated soon.
@@ -412,7 +412,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="mount"></a>
 ## *mount*
 
-
+Mount a path in container
 
 ### Events
 Event details will be updated soon.
@@ -476,7 +476,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="pauseContainer"></a>
 ## *pauseContainer*
 
-
+Pause the container
 
 ### Events
 Event details will be updated soon.
@@ -532,7 +532,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="removeAnnotation"></a>
 ## *removeAnnotation*
 
-
+Remove container property
 
 ### Events
 Event details will be updated soon.
@@ -590,7 +590,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="resumeContainer"></a>
 ## *resumeContainer*
 
-
+Resume the container
 
 ### Events
 Event details will be updated soon.
@@ -646,7 +646,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="startContainer"></a>
 ## *startContainer*
 
-
+Start the container from bundle
 
 ### Events
 Event details will be updated soon.
@@ -710,7 +710,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="startContainerFromDobbySpec"></a>
 ## *startContainerFromDobbySpec*
 
-
+Start the container from dobby specification
 
 ### Events
 Event details will be updated soon.
@@ -774,7 +774,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="stopContainer"></a>
 ## *stopContainer*
 
-
+Stop the container
 
 ### Events
 Event details will be updated soon.
@@ -832,7 +832,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="unmount"></a>
 ## *unmount*
 
-
+Unmount a path in container
 
 ### Events
 Event details will be updated soon.
@@ -890,7 +890,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="wakeupContainer"></a>
 ## *wakeupContainer*
 
-
+Wakeup the container
 
 ### Events
 Event details will be updated soon.
@@ -956,7 +956,7 @@ OCIContainer interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution |
+| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution, Only triggered for states start, stop, hibernate, wakeup. |
 | [onContainerStarted](#onContainerStarted) | Notifies container is started |
 | [onContainerStateChanged](#onContainerStateChanged) | Notifies state change of container |
 | [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
@@ -964,7 +964,7 @@ OCIContainer interface events:
 <a id="onContainerFailed"></a>
 ## *onContainerFailed*
 
-Notifies failure in container execution
+Notifies failure in container execution, Only triggered for states start, stop, hibernate, wakeup.
 
 ### Parameters
 | Name | Type | Description |
