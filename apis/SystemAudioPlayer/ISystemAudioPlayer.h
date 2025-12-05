@@ -59,84 +59,84 @@ namespace Exchange {
         virtual Core::hresult Unregister(INotification* sink) = 0;
 
         // @text open
-        // @brief open player instance
+        // @brief Open player instance
         // @param input: parameters needed for player
         // @param output: response params
         // @retval Core::NONE: Indicates successful opening of audio player
         virtual Core::hresult Open(const string &input, string &output /* @out */) = 0;
 
         // @text play
-        // @brief start playback of audio.
+        // @brief Start playback of audio.
         // @param input: parameters needed for audio playback
         // @param output: response params
-        // @retval Core::NONE: Indicates successful opening of audio player
+        // @retval Core::NONE: Indicates successful playstate change of audio player
         virtual Core::hresult Play(const string &input, string &output /* @out */) = 0;
 
         // @text playBuffer
-        // @brief start playback of audiobuffer.
+        // @brief Start playback of audiobuffer.
         // @param input: Base64 encoded audio data
         // @param output: response params
         // @retval Core::NONE: Indicates successful playstate change of audio player
         virtual Core::hresult PlayBuffer(const string &input, string &output /* @out */) = 0;
 
         // @text pause
-        // @brief pausing audio playback
+        // @brief Pausing audio playback
         // @param input: audio player id
         // @param output: response params
         // @retval Core::NONE: Indicates successful pausing of audio player
         virtual Core::hresult Pause(const string &input, string &output /* @out */) = 0;
 
         // @text resume
-        // @brief resuming audio playback
+        // @brief Resuming audio playback
         // @param input: audio player id
         // @param output: response params
         // @retval Core::NONE: Indicates successful resume of audio player
         virtual Core::hresult Resume(const string &input, string &output /* @out */) = 0;
 
         // @text stop
-        // @brief stopping audio playback
+        // @brief Stopping audio playback
         // @param input: audio player id
         // @param output: response params
         // @retval Core::NONE: Indicates successful stop of audio player
         virtual Core::hresult Stop(const string &input, string &output /* @out */) = 0;
 
         // @text close
-        // @brief closing audio playback
+        // @brief Closing audio playback
         // @param input: audio player id
         // @param output: response params
         // @retval Core::NONE: Indicates successful close of audio player
         virtual Core::hresult Close(const string &input, string &output /* @out */) = 0;
 
         // @text setMixerLevels
-        // @brief setting mixer levels
+        // @brief Setting mixer levels
         // @param input: audio player id
         // @param output: response params
         // @retval Core::NONE: Indicates successful setting of mixer levels
         virtual Core::hresult SetMixerLevels(const string &input, string &output /* @out */) = 0;
 
         // @text setSmartVolControl
-        // @brief setting smart volume level
+        // @brief Setting smart volume level
         // @param input: audio player id and smart volume params
         // @param output: response params
         // @retval Core::NONE: Indicates successful setting of smart volume level
         virtual Core::hresult SetSmartVolControl(const string &input, string &output /* @out */) = 0;
 
         // @text isPlaying
-        // @brief get state of audio player
+        // @brief playing state of audio player
         // @param input: audio player details
         // @param output: response params
-        // @retval Core::NONE: Indicates audio player state retrieved successfuly
+        // @retval Core::NONE: Indicates audio player state retrieved successfully
         virtual Core::hresult IsPlaying(const string &input, string &output /* @out */) = 0;
 
         // @text config
-        // @brief setting audio player configuration
+        // @brief Setting audio player configuration
         // @param input: configuration details
         // @param output: response params
         // @retval Core::NONE: Indicates proper set of audio player configuration
         virtual Core::hresult Config(const string &input, string &output /* @out */) = 0;
 
         // @text getPlayerSessionId
-        // @brief getting audio player session id
+        // @brief Getting audio player session id
         // @param input: player details
         // @param output: response params
         // @retval Core::NONE: Indicates GetPlayerSessionId retrieved successfuly
