@@ -34,6 +34,7 @@ namespace Exchange {
 
         std::string fireboltVersion;
         bool enableDebugger;
+	std::string ralfPkgPath; //Json string containing ralf dependency details.
     };
     #define RUNTIME_CONFIG
 #endif
