@@ -69,6 +69,7 @@ Event details will be updated soon.
 | params.uptimeTimestamp | integer | Uptime timestamp of the event |
 | params.appId | string | Durable App Id string |
 | params.eventPayload | string | Payload of the event |
+| params.additionalContext | string | Additional context for the event |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -95,7 +96,8 @@ Event details will be updated soon.
         "epochTimestamp": 0,
         "uptimeTimestamp": 0,
         "appId": "",
-        "eventPayload": ""
+        "eventPayload": "",
+        "additionalContext": ""
     }
 }
 ```
@@ -104,7 +106,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": "", "additionalContext": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
