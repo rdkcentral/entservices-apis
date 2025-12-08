@@ -99,7 +99,7 @@ namespace WPEFramework
             // @param telemetryMetrics:  jsonString hash  contains key value pair of telemetryData
             // @retval Core::ERROR_NONE: Successfully recorded telemetry data
             // @retval Core::ERROR_GENERAL: Failed to record telemetry data
-            // @json:omit
+            // omit
             virtual Core::hresult Record(const string& id /* @text id */, const string& telemetryMetrics /* @text telemetryMetrics */) = 0;
             /***************************Record() - end************************************/
 
@@ -109,7 +109,7 @@ namespace WPEFramework
             // @param id: string identifier for the telemetry record.
             // @retval Core::ERROR_NONE: Successfully published telemetry data
             // @retval Core::ERROR_GENERAL: Failed to publish telemetry data
-            // @json:omit
+            //omit
             virtual Core::hresult Publish(const string& id /* @text id */) = 0;
             /***************************Publish() - end***********************************/
 
