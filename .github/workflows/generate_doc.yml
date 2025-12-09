@@ -75,6 +75,11 @@ jobs:
       id: check_changes
       run: |
         git diff --exit-code docs/apis/ || echo "docs_changed=true" >> $GITHUB_OUTPUT
+
+        # Check for untracked (new) files
+        if git ls-files --others --exclude-standard docs/apis/ docs/_sidebar.md | grep .; then
+          echo "docs_changed=true" >> $GITHUB_OUTPUT
+        fi
     
     - name: Commit and push documentation changes to PR branch
       if: steps.check_changes.outputs.docs_changed == 'true' && github.event_name == 'pull_request'
