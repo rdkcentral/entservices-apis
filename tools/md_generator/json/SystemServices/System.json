@@ -1271,6 +1271,7 @@
                 "$ref": "#/common/result"
             }
         },
+    },
     "events": {
         "onFirmwareUpdateInfoReceived":{
             "summary": "Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked.  \nUpdate details are:  \n* `0` - A new firmware version is available.  \n* `1` - The firmware version is at the current version.  \n* `2` - XCONF did not return a firmware version (timeout or other XCONF error).  \n* `3` - The device is configured not to update the firmware (`swupdate.conf` exists on the device)",
