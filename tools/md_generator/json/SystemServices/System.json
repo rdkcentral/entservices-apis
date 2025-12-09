@@ -1270,7 +1270,7 @@
             "result": {
                 "$ref": "#/common/result"
             }
-        },
+        }
     },
     "events": {
         "onFirmwareUpdateInfoReceived":{
