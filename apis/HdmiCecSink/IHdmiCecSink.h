@@ -255,20 +255,20 @@
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Pressed> message when TV remote key is pressed.
             // @text sendUserControlPressed
             // @param logicalAddress: Logical address of the device
             // @param keyCode: Key code of the key press event
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendUserControlPressed(const uint32_t &logicalAddress /* @in */, const uint32_t &keyCode /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SendUserControlPressed(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Released> message when TV remote key is released.
             // @text sendUserControlReleased
             // @param logicalAddress: Logical address of the device
             // @param success: Is the operation successful or not
-            virtual Core::hresult SendUserControlReleased(const uint32_t &logicalAddress /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SendUserControlReleased(const uint32_t &logicalAddress , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <Standby> message to another CEC device
             // @text sendStandbyMessage
@@ -279,7 +279,7 @@
             // @text setActivePath
             // @param activePath: Active path of the device
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetActivePath(const string &activePath /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetActivePath(const string &activePath , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
             // @text setActiveSource
@@ -290,38 +290,38 @@
             // @text setEnabled
             // @param enabled: Is the HDMI CEC Sink enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetEnabled(const bool &enabled /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetEnabled(const bool &enabled , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
             // @text setMenuLanguage
             // @param language: Menu language to be set
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetMenuLanguage(const string &language /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetMenuLanguage(const string &language , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC Sink
             // @text setOSDName
             // @param osdName: OSD name of the HDMI CEC Sink
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetOSDName(const string &name /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetOSDName(const string &name , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Changes routing while switching between HDMI inputs and TV.
             // @text setRoutingChange
             // @param oldPort: Old port number
             // @param newPort: New port number
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetRoutingChange(const string &oldPort /* @in */, const string &newPort /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetRoutingChange(const string &oldPort , const string &newPort , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
             // @text setupARCRouting
             // @param enabled: Is the HDMI-CEC ARC routing enabled or not
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetupARCRouting(const bool &enabled /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetupARCRouting(const bool &enabled , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC Sink
             // @text setVendorId
             // @param vendorId: Vendor ID of the HDMI CEC Sink
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetVendorId(const string &vendorid /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetVendorId(const string &vendorid , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
             // @text setLatencyInfo
@@ -330,7 +330,7 @@
             // @param audioOutputCompensated: Audio Output Compensated value
             // @param audioOutputDelay: Audio Output Delay value
             // @param success: Is the operation successful or not
-            virtual Core::hresult SetLatencyInfo(const string &videoLatency /* @in */, const string &lowLatencyMode /* @in */, const string &audioOutputCompensated /* @in */, const string &audioOutputDelay /* @in */, HdmiCecSinkSuccess &successResult /* @out */) = 0;
+            virtual Core::hresult SetLatencyInfo(const string &videoLatency , const string &lowLatencyMode , const string &audioOutputCompensated , const string &audioOutputDelay , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Requests the audio device power status.
             // @text requestAudioDevicePowerStatus

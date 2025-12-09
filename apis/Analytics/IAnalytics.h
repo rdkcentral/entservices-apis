@@ -45,16 +45,17 @@ namespace Exchange {
         // @param uptimeTimestamp: Uptime timestamp of the event
         // @param appId: Durable App Id string
         // @param eventPayload: Payload of the event
-
-        virtual Core::hresult SendEvent(const string& eventName /* @in */,
-                                   const string& eventVersion /* @in */,
-                                   const string& eventSource /* @in */,
-                                   const string& eventSourceVersion /* @in */,
-                                   IStringIterator* const& cetList /* @in */,
-                                   const uint64_t epochTimestamp /* @in */,
-                                   const uint64_t uptimeTimestamp /* @in */,
-                                   const string& appId /* @in */,
-                                   const string& eventPayload /* @in */ ) = 0;
+        // @param additionalContext: Additional context for the event
+        virtual Core::hresult SendEvent(const string& eventName,
+                                   const string& eventVersion,
+                                   const string& eventSource,
+                                   const string& eventSourceVersion,
+                                   IStringIterator* const& cetList,
+                                   const uint64_t epochTimestamp,
+                                   const uint64_t uptimeTimestamp,
+                                   const string& appId,
+                                   const string& eventPayload,
+                                   const string& additionalContext /* @opaque */) = 0;
     };
 }
 }
