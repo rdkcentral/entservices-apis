@@ -546,9 +546,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | (property).addressesInfo | IAddressesInfoIterator | Network interface addresses @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
-| (property).addressesInfo[#].name | string |  |
-| (property).addressesInfo[#].mac | string |  |
-| (property).addressesInfo[#].ip | string |  |
+| (property).addressesInfo[#].name | string | Interface name |
+| (property).addressesInfo[#].mac | string | Interface MAC address |
+| (property).addressesInfo[#].ip | string | Interface IP address |
 
 ### Examples
 
@@ -598,7 +598,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).brand | string |  |
+| (property).brand | string | Brand Name |
 
 ### Examples
 
@@ -644,7 +644,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).chipset | string |  |
+| (property).chipset | string | Device chip set Name |
 
 ### Examples
 
@@ -690,7 +690,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).devicetype | string |  |
+| (property).devicetype | string | Device type (must be one of the following: tv, IpStb, QamIpStb) |
 
 ### Examples
 
@@ -736,7 +736,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).distributorid | string |  |
+| (property).distributorid | string | Partner ID or distributor ID for device |
 
 ### Examples
 
@@ -782,7 +782,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).estb_ip | string | estb_ip |
+| (property).estb_ip | string | STB IP Address |
 
 ### Examples
 
@@ -828,7 +828,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).estb_mac | string | estb_mac |
+| (property).estb_mac | string | STB Mac Address |
 
 ### Examples
 
@@ -874,7 +874,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).eth_mac | string | eth_mac |
+| (property).eth_mac | string | Ethernet Mac Address |
 
 ### Examples
 
@@ -921,11 +921,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | (property).firmwareVersionInfo | FirmwareversionInfo | Version information @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
-| (property).firmwareVersionInfo.imagename | string |  |
-| (property).firmwareVersionInfo.sdk | string |  |
-| (property).firmwareVersionInfo.mediarite | string |  |
-| (property).firmwareVersionInfo.yocto | string |  |
-| (property).firmwareVersionInfo.pdri | string |  |
+| (property).firmwareVersionInfo.imagename | string | Image name |
+| (property).firmwareVersionInfo.sdk | string | sdk version |
+| (property).firmwareVersionInfo.mediarite | string | mediarite |
+| (property).firmwareVersionInfo.yocto | string | yocto version |
+| (property).firmwareVersionInfo.pdri | string | pdri version |
 
 ### Examples
 
@@ -1021,7 +1021,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).make | string |  |
+| (property).make | string | Device manufacturer |
 
 ### Examples
 
@@ -1067,7 +1067,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).model | string |  |
+| (property).model | string | Friendly device model name |
 
 ### Examples
 
@@ -1113,7 +1113,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).releaseversion | string |  |
+| (property).releaseversion | string | Release version |
 
 ### Examples
 
@@ -1159,7 +1159,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).serialnumber | string |  |
+| (property).serialnumber | string | Device serial number |
 
 ### Examples
 
@@ -1205,7 +1205,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).sku | string |  |
+| (property).sku | string | Device model number or SKU |
 
 ### Examples
 
@@ -1251,7 +1251,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).socname | string |  |
+| (property).socname | string | SOC Name |
 
 ### Examples
 
@@ -1298,20 +1298,20 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | (property).systemInfo | SystemInfos |  |
-| (property).systemInfo.version | string |  |
-| (property).systemInfo.uptime | integer |  |
-| (property).systemInfo.totalram | integer |  |
-| (property).systemInfo.freeram | integer |  |
-| (property).systemInfo.totalswap | integer |  |
-| (property).systemInfo.freeswap | integer |  |
-| (property).systemInfo.devicename | string |  |
-| (property).systemInfo.cpuload | string |  |
-| (property).systemInfo.cpuloadavg | CpuLoadAvg |  |
-| (property).systemInfo.cpuloadavg.avg1min | integer |  |
-| (property).systemInfo.cpuloadavg.avg5min | integer |  |
-| (property).systemInfo.cpuloadavg.avg15min | integer |  |
-| (property).systemInfo.serialnumber | string |  |
-| (property).systemInfo.time | string |  |
+| (property).systemInfo.version | string | Software version (in form version#hashtag) |
+| (property).systemInfo.uptime | integer | System uptime (in seconds) |
+| (property).systemInfo.totalram | integer | Total installed system RAM memory (in bytes) |
+| (property).systemInfo.freeram | integer | Free system RAM memory (in bytes) |
+| (property).systemInfo.totalswap | integer | Total swap space (in bytes) |
+| (property).systemInfo.freeswap | integer | Swap space still available (in bytes) |
+| (property).systemInfo.devicename | string | Host name |
+| (property).systemInfo.cpuload | string | Current CPU load (percentage) |
+| (property).systemInfo.cpuloadavg | CpuLoadAvg | CPU load average |
+| (property).systemInfo.cpuloadavg.avg1min | integer | 1min cpuload average |
+| (property).systemInfo.cpuloadavg.avg5min | integer | 5min cpuload average |
+| (property).systemInfo.cpuloadavg.avg15min | integer | 15min cpuload average |
+| (property).systemInfo.serialnumber | string | Device serial number |
+| (property).systemInfo.time | string | Current system date and time |
 
 ### Examples
 
@@ -1371,7 +1371,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).wifi_mac | string | wifi_mac |
+| (property).wifi_mac | string | Wifi Mac Address |
 
 ### Examples
 
