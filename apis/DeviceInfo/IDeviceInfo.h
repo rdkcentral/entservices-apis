@@ -39,129 +39,93 @@ namespace Exchange {
         };
 
         struct EXTERNAL CpuLoadAvg {
-            /* @brief 1min cpuload average */
-            uint32_t avg1min;
-            /* @brief 5min cpuload average */
-            uint32_t avg5min;
-            /* @brief 15min cpuload average */
-            uint32_t avg15min;
+            uint32_t avg1min /* @brief 1min cpuload average */;
+            uint32_t avg5min /* @brief 5min cpuload average */;
+            uint32_t avg15min /* @brief 15min cpuload average */;
         };
 
         struct EXTERNAL SystemInfos {
-            /* @brief Software version (in form version#hashtag) */
-            string version;
-            /* @brief System uptime (in seconds) */
-            uint32_t uptime;
-            /* @brief Total installed system RAM memory (in bytes) */
-            uint32_t totalram;
-            /* @brief Free system RAM memory (in bytes) */
-            uint32_t freeram;
-            /* @brief Total swap space (in bytes) */
-            uint32_t totalswap;
-            /* @brief Swap space still available (in bytes) */
-            uint32_t freeswap;
-            /* @brief Host name */
-            string devicename;
-            /* @brief Current CPU load (percentage) */
-            string cpuload;
-            /* @brief CPU load average */
-            CpuLoadAvg cpuloadavg;
-            /* @brief Device serial number */
-            string serialnumber;
-            /* @brief Current system date and time */
-            string time;
+            string version /* @brief Software version (in form version#hashtag) */;
+            uint32_t uptime /* @brief System uptime (in seconds) */;
+            uint32_t totalram /* @brief Total installed system RAM memory (in bytes) */;
+            uint32_t freeram /* @brief Free system RAM memory (in bytes) */;
+            uint32_t totalswap /* @brief Total swap space (in bytes) */;
+            uint32_t freeswap /* @brief Swap space still available (in bytes) */;
+            string devicename /* @brief Host name */;
+            string cpuload /* @brief Current CPU load (percentage) */;
+            CpuLoadAvg cpuloadavg /* @brief CPU load average */;
+            string serialnumber /* @brief Device serial number */;
+            string time /* @brief Current system date and time */;
         };
 
         struct EXTERNAL FirmwareversionInfo {
-            /* @brief Image name */
-            string imagename;
-            /* @brief sdk version */
-            string sdk;
-            /* @brief mediarite */
-            string mediarite;
-            /* @brief yocto version */
-            string yocto;
-            /* @brief pdri version */
-	        string pdri;
+            string imagename /* @brief Image name */;
+            string sdk /* @brief sdk version */;
+            string mediarite /* @brief mediarite */;
+            string yocto /* @brief yocto version */;
+	        string pdri /* @brief pdri version */;
         };
 
         struct EXTERNAL AddressesInfo {
-            /* @brief Interface name */
-            string name;
-            /* @brief Interface MAC address */
-            string mac;
-            /* @brief Interface IP address */
-            string ip;
+            string name /* @brief Interface name */;
+            string mac /* @brief Interface MAC address */;
+            string ip /* @brief Interface IP address */;
         };
 
         struct EXTERNAL DeviceSerialNo {
-            /* @brief Serial number set by manufacturer */
-            string serialnumber;
+            string serialnumber /* @brief Serial number set by manufacturer */;
         };
 
         struct EXTERNAL DeviceModelNo {
-            /* @brief Device model number or SKU */
-            string sku;
+            string sku /* @brief Device model number or SKU */;
         };
 
         struct EXTERNAL DeviceMake {
-            /* @brief Device manufacturer */
-            string make;
+            string make /* @brief Device manufacturer */;
         };
 
         struct EXTERNAL DeviceModel {
-            /* @brief Friendly device model name */
-            string model;
+            string model /* @brief Friendly device model name */;
         };
 
         struct EXTERNAL DeviceTypeInfos {
-            /* @brief Device type (must be one of the following: tv, IpStb, QamIpStb) */
-            DeviceTypeInfo devicetype;
+            DeviceTypeInfo devicetype /* @brief Device type (must be one of the following: tv, IpStb, QamIpStb) */;
         };
 
         struct EXTERNAL DeviceSoc {
-            /* @brief SOC Name */
-            string socname;
+            string socname /* @brief SOC Name */;
         };
 
         struct EXTERNAL DeviceDistId {
-            /* @brief Partner ID or distributor ID for device */
-            string distributorid;
+            string distributorid /* @brief Partner ID or distributor ID for device */;
         };
 
         struct EXTERNAL DeviceBrand {
-            /* @brief Brand Name */
-            string brand;
+            string brand /* @brief Brand Name */;
         };
 
         struct EXTERNAL DeviceReleaseVer {
-            /* @brief Release version */
-            string releaseversion;
+            string releaseversion /* @brief Release version */;
         };
 
         struct EXTERNAL DeviceChip {
-            /* @brief Device chip set Name */
-            string chipset;
+            string chipset /* @brief Device chip set Name */;
         };
 
         struct EXTERNAL EthernetMac {
-            /* @brief Ethernet Mac Address */
-            string ethMac /* @text eth_mac */;
+            string ethMac /* @text eth_mac */ /* @brief Ethernet Mac Address */;
         };
 
         struct EXTERNAL StbMac {
-            /* @brief STB Mac Address */
-            string estbMac /* @text estb_mac */;
+            string estbMac /* @text estb_mac */ /* @brief STB Mac Address */;
         };
 
         struct EXTERNAL WiFiMac {
-            /* @brief Wifi Mac Address */
-            string wifiMac /* @text wifi_mac */;
+            string wifiMac /* @text wifi_mac */ /* @brief Wifi Mac Address */;
         };
 
         struct EXTERNAL StbIp {
-            /* @brief STB IP Address */
-            string estbIp /* @text estb_ip */;
+            string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
