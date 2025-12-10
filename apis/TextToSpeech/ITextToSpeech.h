@@ -60,71 +60,84 @@ namespace Exchange {
             ~INotification() override = default;
 
             // Signal changes on the subscribed namespace
-            // @text onTTSEnabled
+            // @text onTTSStateChanged
+            // @alt onttsstatechanged
             // @brief Notify TTS enabled/disabled
             // @param state: enabled/disabled
-            virtual void onTTSEnabled(const bool /*state*/) {}
+            virtual void OnTTSStateChanged(const bool /*state*/) {}
 
-            // @text onVoiceUpdated
+            // @text onVoiceChanged
+            // @alt onvoicechanged
             // @brief Notify change in voice used for speaking
             // @param voice: voice changed
-            virtual void onVoiceUpdated(const string /*voice*/) {}
+            virtual void OnVoiceChanged(const string /*voice*/) {}
 
             // @text onSpeechReady
+            // @alt onWillSpeak
             // @brief Notify that speech is possible
             // @param speechid: id of the text
-            virtual void onSpeechReady(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechReady(const uint32_t /*speechid*/) {}
 
             // @text onSpeechStarted
+            // @alt onspeechstart
             // @brief Notify that speech is started
             // @param speechid: id of the text
-            virtual void onSpeechStarted(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechStarted(const uint32_t /*speechid*/) {}
             
             // @text onSpeechPaused
+            // @alt onspeechpause
             // @brief Notify that speech is paused
             // @param speechid: id of the text
-            virtual void onSpeechPaused(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechPaused(const uint32_t /*speechid*/) {}
             
             // @text onSpeechResumed
+            // @alt onspeechresume
             // @brief Notify that speech is continued
             // @param speechid: id of the text
-            virtual void onSpeechResumed(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechResumed(const uint32_t /*speechid*/) {}
             
-            // @text onSpeechDisrupted
+            // @text onSpeechInterrupted
+            // @alt onspeechinterrupted
             // @brief Notify that speech is interrupted
             // @param speechid: id of the text
-            virtual void onSpeechDisrupted(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechInterrupted(const uint32_t /*speechid*/) {}
             
-            // @text onConnectionLost
+            // @text networkError
+            // @alt onnetworkerror
             // @brief Notify that network connection is lost
             // @param speechid: id of the text
-            virtual void onConnectionLost(const uint32_t /*speechid*/) {}
+            virtual void NetworkError(const uint32_t /*speechid*/) {}
             
-            // @text onPlaybackFailed
+            // @text playbackError
+            // @alt onplaybackerror
             // @brief Notify that there is a playback failure
             // @param speechid: id of the text
-            virtual void onPlaybackFailed(const uint32_t /*speechid*/) {}
+            virtual void PlaybackError(const uint32_t /*speechid*/) {}
 
-            // @text onSpeechCompleted
+            // @text onSpeechComplete
+            // @alt onspeechcomplete
             // @brief Notify that speech is completed
             // @param speechid: id of the text
-            virtual void onSpeechCompleted(const uint32_t /*speechid*/) {}
+            virtual void OnSpeechComplete(const uint32_t /*speechid*/) {}
         };
 
         ~ITextToSpeech() override = default;
 
+        /* @json:omit */
         // @text register
         // @brief Register notification interface
         // @param sink: notification interface pointer
         // @retval Core::NONE: Indicates successful registration of sink
         virtual Core::hresult Register(ITextToSpeech::INotification* sink) = 0;
 
+        /* @json:omit */
         // @text unregister
         // @brief Unregister notification interface
         // @param sink: notification interface pointer
         // @retval Core::NONE: Indicates successful unregistration of sink
         virtual Core::hresult Unregister(ITextToSpeech::INotification* sink) = 0;
 
+        /* @json:omit */
         // @text registerWithCallsign
         // @brief Register notification interface with callsign
         // @param sink: notification interface pointer
@@ -139,11 +152,11 @@ namespace Exchange {
         // @retval Core::ERROR_GENERAL: Indicates state change got failed
         virtual Core::hresult Enable(const bool enable) = 0;
 
-        // @text getTTSStatus
+        // @text Enable
         // @brief Query whether TTS enabled or disabled
         // @param enable: tts status
         // @retval Core::NONE: Indicates TTS state retrieved successfully
-        virtual Core::hresult GetTTSStatus(bool &enable /* @out */) const = 0;
+        virtual Core::hresult Enable(bool &enable /* @out */) const = 0;
         
         // @text setConfiguration
         // @brief Set the tts configuration attributes
