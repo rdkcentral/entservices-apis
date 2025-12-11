@@ -48,6 +48,21 @@ jobs:
       run: |
         # For PRs, compare against the base branch
         git fetch origin ${{ github.base_ref }}
+        
+        echo "========================================"
+        echo "GIT DIFF COMPARISON DETAILS:"
+        echo "========================================"
+        echo "Repository root: $(pwd)"
+        echo "Base branch: origin/${{ github.base_ref }}"
+        echo "Head branch: HEAD"
+        echo "Complete git diff command: git diff --name-only origin/${{ github.base_ref }}...HEAD"
+        echo ""
+        echo "Full paths being compared:"
+        echo "  Base: $(git rev-parse origin/${{ github.base_ref }})"
+        echo "  Head: $(git rev-parse HEAD)"
+        echo "========================================"
+        echo ""
+        
         CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(h|json)$' | tr '\n' ' ')
         echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
         echo "Changed files: $CHANGED_FILES"
@@ -62,7 +77,8 @@ jobs:
     - name: Generate documentation (incremental)
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
       run: |
-        python3 tools/md_generator/generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
+        cd tools/md_generator
+        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
     
     - name: Generate documentation (full)
       if: github.event_name == 'workflow_dispatch'
@@ -73,7 +89,35 @@ jobs:
     - name: Check for documentation changes
       id: check_changes
       run: |
-        git diff --exit-code docs/apis/ || echo "docs_changed=true" >> $GITHUB_OUTPUT
+        echo "========================================"
+        echo "DOCUMENTATION DIFF PATHS:"
+        echo "========================================"
+        echo "Repository root: $(pwd)"
+        echo "Documentation directory (relative): docs/apis/"
+        echo "Documentation directory (absolute): $(pwd)/docs/apis/"
+        echo ""
+        echo "Git diff command: git diff docs/apis/"
+        echo "This compares:"
+        echo "  - Working directory: $(pwd)/docs/apis/"
+        echo "  - Against: Git index (staged files)"
+        echo "========================================"
+        echo ""
+        
+        if ! git diff --exit-code docs/apis/; then
+          echo "docs_changed=true" >> $GITHUB_OUTPUT
+          echo ""
+          echo ">>> Documentation files were modified!"
+          echo ""
+          echo "Modified files:"
+          git diff --name-only docs/apis/
+          echo ""
+          echo "Full paths of modified files:"
+          for file in $(git diff --name-only docs/apis/); do
+            echo "  $(pwd)/$file"
+          done
+        else
+          echo ">>> No documentation changes detected"
+        fi
 
         # Check for untracked (new) files
         if git ls-files --others --exclude-standard docs/apis/ | grep .; then
