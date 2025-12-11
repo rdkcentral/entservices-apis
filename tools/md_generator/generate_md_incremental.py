@@ -134,41 +134,12 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
     if 'header' in file_types:
         h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
         if h_files:
-            print(f"\n[STEP 1] Found {len(h_files)} header file(s) to process:")
-            for hf in h_files:
-                print(f"  - {os.path.basename(hf)}")
-            
-            print(f"\n[STEP 2] Reading header files to show current changes...")
-            for hf in h_files:
-                print(f"\n  >>> Analyzing: {os.path.basename(hf)}")
-                try:
-                    with open(hf, 'r') as f:
-                        content = f.read()
-                    
-                    # Look for method signatures with parameter types
-                    lines = content.split('\n')
-                    for i, line in enumerate(lines):
-                        if 'virtual' in line and '(' in line:
-                            # Found a method, show it with context
-                            start = max(0, i-1)
-                            end = min(len(lines), i+3)
-                            method_snippet = '\n'.join(lines[start:end])
-                            if any(keyword in method_snippet.lower() for keyword in ['storage', 'quota', 'used', 'getinfo', 'getdetails']):
-                                print(f"\n  Method signature found (lines {start+1}-{end}):")
-                                for j in range(start, end):
-                                    print(f"    {j+1}: {lines[j]}")
-                except Exception as e:
-                    print(f"  Error reading file: {e}")
-            
-            output_file = os.path.join(output_dir, f"{plugin_name}.md")
-            print(f"\n[STEP 3] Output will be written to: {output_file}")
-            
+            print(f"Found header files: {h_files}")
             script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
             cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
             if logfile:
                 cmd += f" --logfile {logfile}"
-            print(f"\n[STEP 4] Executing documentation generator:")
-            print(f"  Command: {cmd}")
+            print(f"Running: {cmd}")
             result = os.system(cmd)
             if result != 0:
                 print(f"\n{'!'*60}")
@@ -176,89 +147,7 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
                 print(f"Command exit code: {result}")
                 print(f"{'!'*60}\n")
                 return False
-            
-            print(f"\n[STEP 5] Documentation generation completed successfully!")
-            print(f"[DEBUG] About to analyze output file: {output_file}")
-            
-            # Show the generated documentation
-            try:
-                if not os.path.exists(output_file):
-                    print(f"\n[ERROR] Output file not found: {output_file}")
-                    print(f"[DEBUG] Checking directory contents...")
-                    import os as os_module
-                    if os_module.path.exists(output_dir):
-                        files = os_module.listdir(output_dir)
-                        print(f"[DEBUG] Files in {output_dir}: {files[:10]}")
-                    return True
-                
-                print(f"\n[STEP 6] Analyzing generated documentation file...")
-                print(f"  File: {output_file}")
-                import time
-                mtime = os.path.getmtime(output_file)
-                size = os.path.getsize(output_file)
-                print(f"  Modified: {time.ctime(mtime)}")
-                print(f"  Size: {size} bytes")
-                print(f"[DEBUG] File exists and has size {size}, proceeding to read...")
-                
-                with open(output_file, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                print(f"[DEBUG] Successfully read {len(content)} characters from file")
-                
-                lines = content.split('\n')
-                
-                print(f"\n[STEP 7] Showing generated documentation content:")
-                print(f"  Total lines: {len(lines)}")
-                
-                # Show methods table
-                print(f"\n  >>> Searching for Methods section...")
-                found_methods = False
-                for i, line in enumerate(lines):
-                    if '## Methods' in line or '# Methods' in line:
-                        found_methods = True
-                        print(f"\n  Found Methods table at line {i+1}:")
-                        end_line = min(i+40, len(lines))
-                        for j in range(i, end_line):
-                            print(f"    {j+1}: {lines[j]}")
-                        break
-                
-                if not found_methods:
-                    print(f"  [WARNING] Methods section not found!")
-                
-                # Show relevant method details (storage, quota, etc.)
-                print(f"\n  >>> Searching for method implementations...")
-                in_method = False
-                method_name = ""
-                line_count = 0
-                methods_found = []
-                for i, line in enumerate(lines):
-                    if line.startswith('## *') and '*' in line[4:]:
-                        # New method found
-                        if any(keyword in line.lower() for keyword in ['storage', 'quota', 'info', 'details']):
-                            methods_found.append(line.strip())
-                            in_method = True
-                            method_name = line.strip()
-                            line_count = 0
-                            print(f"\n  Found relevant method at line {i+1}: {method_name}")
-                    
-                    if in_method:
-                        print(f"    {i+1}: {lines[i]}")
-                        line_count += 1
-                        if line_count > 50 or (line.startswith('##') and line_count > 1):
-                            in_method = False
-                
-                print(f"\n[DEBUG] Total relevant methods found: {len(methods_found)}")
-                if methods_found:
-                    print(f"[DEBUG] Methods: {', '.join(methods_found)}")
-                    
-            except Exception as e:
-                print(f"\n[ERROR] Exception during documentation analysis:")
-                print(f"  Type: {type(e).__name__}")
-                print(f"  Message: {str(e)}")
-                import traceback
-                print(f"  Traceback:")
-                traceback.print_exc()
-            
-            print(f"\n✓ Successfully generated docs from headers for {plugin_name}")
+            print(f"✓ Successfully generated docs from headers for {plugin_name}")
             return True
     
     # Check if we should generate from JSON output
@@ -299,14 +188,12 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
 def postprocess_md():
     """Postprocess generated markdown files."""
     print("\n" + "="*60)
-    print("[POSTPROCESSING] Cleaning up markdown files...")
+    print("Postprocessing markdown files...")
     print("="*60 + "\n")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
     apis_dir = os.path.abspath(os.path.join(script_dir, "../../docs/apis"))
     flist = glob.glob(os.path.join(apis_dir, "*.md"))
-    
-    print(f"Found {len(flist)} markdown files to postprocess")
 
     for file in flist:
         with open(file, "r") as file_rd:
@@ -321,11 +208,10 @@ def postprocess_md():
                 rplce_file = rplce_file.replace(word, "")
 
             if rplce_file != rplce_file_Org:
-                print(f"  Cleaned: {os.path.basename(file)}")
                 with open(file, "w") as file_wr:
                     file_wr.writelines(rplce_file)
     
-    print("\n✓ Postprocessing completed\n")
+    print("✓ Postprocessing completed\n")
 
 
 def update_sidebar():
