@@ -71,6 +71,13 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     // @brief returns the list of all connected devices
     //@param deviceList: list off all connected devices
      virtual Core::hresult ListDevices(std::string& deviceList /* @out */) =0;
+
+
+     /**Retrieves the product name*/
+     //@text GetCommissionedDeviceInfo
+     //@brief retrieves the product name of the device
+     //@param: deviceInfo device uuid and product name
+     virtual Core::hresult GetCommissionedDeviceInfo(std::string& deviceInfo /* @out */) = 0;
 };
 
 } // Exchange
