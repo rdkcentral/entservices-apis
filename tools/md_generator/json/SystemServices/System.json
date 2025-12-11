@@ -371,132 +371,6 @@
         }
     },
     "methods": {
-        "clearLastDeepSleepReason":{
-            "deprecated" : true,
-            "summary": "Clears the last deep sleep reason.",
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "deletePersistentPath": {
-            "deprecated" : true,
-            "summary": "Deletes persistent path associated with a callsign.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "callsign": {
-                        "description": "Callsign of the service to delete persistent path",
-                        "type": "string",
-                        "example": "HtmlApp"
-                    },
-                    "type": {
-                        "description": "The type of execution environment. (can be used instead of callsign)",
-                        "type": "string",
-                        "example": "HtmlApp"
-                    }
-                },
-                "required": [
-                    ""
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "enableMoca":{
-            "deprecated" : true,
-            "summary": "Enables (or disables) Moca support for the platform.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "value": {
-                        "summary": "`true` to enable Moca support or `false` to disable Moca support.",
-                        "type": "boolean",
-                        "example": true
-                    }
-                },
-                "required": [
-                    "value"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "enableXREConnectionRetention":{
-            "deprecated" : true,
-            "summary": "Enables (or disables) XRE Connection Retention option.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "enable": {
-                        "summary": "`true` to enable XRE connection retention or `false` to disable.",
-                        "type": "boolean",
-                        "example": true
-                    }
-                },
-                "required": [
-                    "enable"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "fireFirmwarePendingReboot":{
-            "deprecated" : true,
-            "summary": "Notifies the device about a pending reboot.",
-            "events": {
-                "onFirmwarePendingReboot" : "Triggers when the firmware has a pending reboot"
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "getAvailableStandbyModes": {
-            "deprecated" : true,
-            "summary": "Queries the available standby modes.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "supportedStandbyModes": {
-                        "summary": "The supported standby modes",
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "example": "LIGHT_SLEEP"
-                        }
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "supportedStandbyModes",
-                    "success"
-                ]
-            }
-        },
-        "getCoreTemperature":{
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getthermalstate",
-            "summary": "Returns the core temperature of the device. Not supported on all devices.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "temperature": {
-                        "$ref": "#/definitions/temperature"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "temperature",
-                    "success"
-                ]
-            }
-        },
         "getDeviceInfo":{
             "deprecated" : true,
             "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=properties",
@@ -641,27 +515,6 @@
                 ]
             }
         },
-        "getLastDeepSleepReason":{
-            "deprecated" : true,
-            "summary": "Retrieves the last deep sleep reason.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "reason": {
-                        "summary": "The deep sleep reason",
-                        "type": "string",
-                        "example": "thermal_deepsleep_critical_threshold"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "reason",
-                    "success"
-                ]
-            }
-        },
         "getLastFirmwareFailureReason": {
             "summary": "Retrieves the last firmware failure reason.",
             "result": {
@@ -703,7 +556,6 @@
             }
         },
         "getMacAddresses":{
-            "deprecated" : true,
             "summary": "Gets the MAC address of the device.",
             "events": {
                 "onMacAddressesRetreived" : "Triggers when the MAC addresses are requested"
@@ -753,50 +605,6 @@
                 ]
             }
         },
-        "getMilestones": {
-	        "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/DeviceDiagnosticsPlugin?id=getmilestones",
-            "summary": "Returns the list of milestones.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "milestones": {
-                        "summary": "A string [] of milestones",
-                        "type": "array",
-                        "items": {
-                            "type":"string",
-                            "example": "2020 Jan 28 08:24:06.762355 abcdpq1 systemd[1]: Starting Log RDK Started Service..."
-                        }
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "milestones",
-                    "success"
-                ]
-            }
-        },
-        "getMode":{
-            "deprecated" : true,
-            "summary": "Returns the currently set mode information.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "modeInfo": {
-                        "$ref": "#/definitions/modeInfo"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "modeInfo",
-                    "success"
-                ]
-            }
-        },
         "getNetworkStandbyMode": {
             "summary": "Returns the network standby mode of the device. If network standby is `true`, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR (S3) mode.",
             "result": {
@@ -815,28 +623,7 @@
                 ]
             }
         },
-        "getOvertempGraceInterval": {
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getovertempgraceinterval",
-            "summary": "Returns the over-temperature grace interval value. Not supported on all devices.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "graceInterval": {
-                        "$ref": "#/definitions/graceInterval"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "graceInterval",
-                    "success"
-                ]
-            }
-        },
         "getPlatformConfiguration": {
-            "deprecated" : true,
             "summary": "Returns the supported features and device/account info.",
             "params": {
                 "type": "object",
@@ -899,153 +686,6 @@
                 },
                 "required": [
                     "state",
-                    "success"
-                ]
-            }
-        },
-        "getPowerStateIsManagedByDevice": {
-            "summary": "Checks whether the power state is managed by the device.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "powerStateManagedByDevice": {
-                        "summary": "`true` if power state is managed by the device, `false` otherwise",
-                        "type": "boolean",
-                        "example": false
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "powerStateManagedByDevice",
-                    "success"
-                ]
-            }
-        },
-        "getPreferredStandbyMode":{
-            "summary": "Returns the preferred standby mode. This method returns an empty string if the preferred mode has not been set.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "preferredStandbyMode": {
-                        "$ref": "#/definitions/preferredStandbyMode"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "preferredStandbyMode",
-                    "success"
-                ]
-            }
-        },
-        "getPreviousRebootInfo":{
-            "deprecated" : true,
-            "summary": "Returns basic information about a reboot.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "timestamp": {
-                        "summary": "The last reboot time",
-                        "type": "string",
-                        "example": "20200128083540"
-                    },
-                    "reason": {
-                        "$ref": "#/definitions/reason"
-                    },
-                    "source": {
-                        "summary": "Source that trigerred reboot",
-                        "type": "string",
-                        "example": "-sh"
-                    },
-                    "customReason": {
-                        "summary": "A custom reason",
-                                "type": "string",
-                                "example": "API Validation"
-                    },
-                    "otherReason": {
-                        "summary": "Other reasons for reboot",
-                        "type": "string",
-                        "example": "API Validation"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "timestamp",
-                    "reason",
-                    "source",
-                    "customReason",
-                    "otherReason",
-                    "success"
-                ]
-            }
-        },
-        "getPreviousRebootInfo2":{
-            "deprecated" : true,
-            "summary": "Returns detailed information about a reboot.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "rebootInfo" :{
-                        "type": "object",
-                        "properties": {
-                            "timestamp": {
-                                "$ref": "#/definitions/timestamp"
-                            },
-                            "source": {
-                                "$ref": "#/definitions/source"
-                            },
-                            "reason": {
-                                "$ref": "#/definitions/reason"
-                            },
-                            "customReason":{
-                                "summary": "A custom reason",
-                                "type": "string",
-                                "example": "API Validation"
-                            },
-                            "lastHardPowerReset": {
-                                "summary": "The timestamp of the last hard power reset",
-                                "type": "string",
-                                "example": "Tue Jan 28 08:22:22 UTC 2020"
-                            }
-                        },
-                        "required": [
-                            "timestamp",
-                            "source",
-                            "reason",
-                            "customReason",
-                            "lastHardPowerReset"
-                        ]
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "rebootInfo",
-                    "success"
-                ]
-            }
-        },
-        "getPreviousRebootReason":{
-            "deprecated" : true,
-            "summary": "Returns the last reboot reason.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "reason": {
-                        "$ref": "#/definitions/reason"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "reason",
                     "success"
                 ]
             }
@@ -1114,58 +754,6 @@
                 ]
             }
         },
-        "getStateInfo":{
-            "deprecated" : true,
-            "summary": "Queries device state information of various properties.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "param": {
-                        "summary": "The property to query as a string",
-                        "type": "string",
-                        "example": "com.comcast.channel_map"
-                    }
-                },
-                "required": [
-                    "param"
-                ]
-            },
-            "result": {
-                "type": "object",
-                "properties": {
-                    "com.comcast.channel_map": {
-                        "summary": "The specified property",
-                        "type": "number",
-                        "example": 2
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "success"
-                ]
-            }
-        },
-        "getStoreDemoLink":{
-            "summary": "Returns the store demo video link.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "fileURL": {
-                        "summary": "The file URL of stored demo video",
-                        "type": "string",
-                        "example": "http://127.0.0.1:50050/store-mode-video/videoFile.mp4"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "success"
-                ]
-            }
-        },
         "getSystemVersions":{
             "summary": "Returns system version details.",
             "result": {
@@ -1194,42 +782,6 @@
                     "stbVersion",
                     "receiverVersion",
                     "stbTimestamp",
-                    "success"
-                ]
-            }
-        },
-        "getTemperatureThresholds":{
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=gettemperaturethresholds",
-            "summary": "Returns temperature threshold values. Not supported on all devices.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "temperatureThresholds" :{
-                        "type": "object",
-                        "properties": {
-                            "WARN": {
-                                "$ref": "#/definitions/WARN"
-                            },
-                            "MAX": {
-                                "$ref": "#/definitions/MAX"
-                            },
-                            "temperature": {
-                                "$ref": "#/definitions/temperature"
-                            }
-                        },
-                        "required": [
-                            "WARN",
-                            "MAX",
-                            "temperature"
-                        ]
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "temperatureThresholds",
                     "success"
                 ]
             }
@@ -1386,72 +938,6 @@
                 ]
             }
         },
-        "getXconfParams":{
-            "summary": "Returns XCONF configuration parameters for the device.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "xconfParams": {
-                        "summary": "A timezone area",
-                        "type": "object",
-                        "properties": {
-                            "env": {
-                                "summary": "The environment",
-                                "type": "string",
-                                "example": "vbn"
-                            },
-                            "eStbMac": {
-                                "summary": "The embedded set-top box MAC address",
-                                "type": "string",
-                                "example": "20:F1:9E:EE:62:08"
-                            },
-                            "model": {
-                                "summary": "The device model number",
-                                "type": "string",
-                                "example": "AB121AEI"
-                            },
-                            "firmwareVersion": {
-                                "summary": "The firmware version",
-                                "type": "string",
-                                "example": "AB121AEI_VBN_1911_sprint_20200109040424sdy"
-                            }
-                        },
-                        "required": [
-                            "env",
-                            "eStbMac",
-                            "model",
-                            "firmwareVersion"
-                        ]
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "xconfParams",
-                    "success"
-                ]
-            }
-        },
-        "isGzEnabled":{
-	    "deprecated" : true,
-            "summary": "Checks whether GZ is enabled.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "enabled": {
-                        "$ref": "#/definitions/enabled"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "enabled",
-                    "success"
-                ]
-            }
-        },
         "isOptOutTelemetry": {
             "summary": "Checks the telemetry opt-out status.",
             "result": {
@@ -1470,27 +956,6 @@
                 ]
             }
 
-        },
-        "queryMocaStatus":{
-            "deprecated" : true,
-            "summary": "Checks whether MOCA is enabled.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "mocaEnabled": {
-                        "summary": "`true` if MOCA is enabled, otherwise `false`",
-                        "type": "boolean",
-                        "example": true
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "mocaEnabled",
-                    "success"
-                ]
-            }
         },
         "reboot":{
             "summary": "Requests that the system performs a reboot of the set-top box.",
@@ -1546,24 +1011,6 @@
                 ]
             }
         },
-        "setBootLoaderPattern":{
-            "deprecated" : true,
-            "summary": "Sets the boot loader pattern mode in MFR.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "pattern": {
-                        "$ref": "#/definitions/pattern"
-                    }
-                },
-                "required": [
-                    "pattern"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
         "setDeepSleepTimer": {
             "summary": "Sets the deep sleep timeout period.",
             "params": {
@@ -1594,44 +1041,6 @@
                 },
                 "required": [
                     "enable"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "setFirmwareRebootDelay": {
-           "deprecated" : true,
-            "summary": "Delays the firmware reboot.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "delaySeconds": {
-                        "summary": "The reboot delay in seconds",
-                        "type": "integer",
-                        "example": 60
-                    }
-                },
-                "required": [
-                    "delaySeconds"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "setGzEnabled": {
-            "deprecated" : true,
-            "summary": "Enables or disables GZ.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "enabled": {
-                        "$ref": "#/definitions/enabled"
-                    }
-                },
-                "required": [
-                    "enabled"
                 ]
             },
             "result": {
@@ -1692,25 +1101,6 @@
                 "$ref": "#/common/result"
             }
         },
-        "setOvertempGraceInterval":{
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=setovertempgraceinterval",
-            "summary": "Sets the over-temperature grace interval value. Not supported on all devices.",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "graceInterval": {
-                        "$ref": "#/definitions/graceInterval"
-                    }
-                },
-                "required": [
-                    "graceInterval"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
         "setPowerState":{
             "summary": "Sets the power state of the device.",
             "events": {
@@ -1731,55 +1121,6 @@
                 "required": [
                     "powerState",
                     "standbyReason"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "setPreferredStandbyMode":{
-            "deprecated" : true,
-            "summary": "Sets and persists the preferred standby mode. See [getAvailableStandbyModes](#getAvailableStandbyModes) for valid modes. Invoking this function does not change the power state of the device. It only sets the user preference for the preferred action when the [setPowerState](#setPowerState) method is invoked with a value of `STANDBY`.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "standbyMode": {
-                        "$ref": "#/definitions/preferredStandbyMode"
-                    }
-                },
-                "required": [
-                    "standbyMode"
-                ]
-            },
-            "result": {
-                "$ref": "#/common/result"
-            }
-        },
-        "setTemperatureThresholds":{
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=settemperaturethresholds",
-            "summary": "Sets the temperature threshold values. Not supported on all devices.",
-            "params": {
-                "type":"object",
-                "properties": {
-                    "thresholds" :{
-                        "type": "object",
-                        "properties": {
-                            "WARN": {
-                                "$ref": "#/definitions/WARN"
-                            },
-                            "MAX": {
-                                "$ref": "#/definitions/MAX"
-                            }
-                        },
-                        "required": [
-                            "WARN",
-                            "MAX"
-                        ]
-                    }
-                },
-                "required": [
-                    "thresholds"
                 ]
             },
             "result": {
@@ -1906,30 +1247,6 @@
                 "$ref": "#/common/result"
             }
         },
-        "getWakeupSrcConfiguration":{
-            "deprecated" : true,
-            "referenceUrl" : "https://rdkcentral.github.io/entservices-apis/#/apis/PowerManagerPlugin?id=getwakeupsrcconfig",
-            "summary": "Returns all the supported wakeup configurations and powerState",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "powerState": {
-                        "$ref": "#/definitions/powerState"
-                    },
-                    "wakeupSources": {
-                        "$ref": "#/definitions/wakeupSources"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "powerState",
-                    "wakeupSources",
-                    "success"
-                ]
-            }
-        },
         "updateFirmware":{
             "summary": "Initiates a firmware update. This method has no affect if an update is not available.",
             "result": {
@@ -1953,46 +1270,9 @@
             "result": {
                 "$ref": "#/common/result"
             }
-        },
-        "getThunderStartReason":{
-            "deprecated" : true,
-            "summary": "Returns the Thunder start reason.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "startReason": {
-                        "$ref": "#/definitions/startReason"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "startReason",
-                    "success"
-                ]
-            }
         }
     },
     "events": {
-        "onFirmwarePendingReboot":{
-            "summary": "Triggered when the `fireFirmwarePendingReboot` method is invoked",
-            "params": {
-                "type" :"object",
-                "properties": {
-                    "fireFirmwarePendingReboot": {
-                        "$ref": "#/definitions/seconds"
-                    },
-                    "success": {
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "fireFirmwarePendingReboot",
-                    "success"
-                ]
-            }               
-        },
         "onFirmwareUpdateInfoReceived":{
             "summary": "Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked.  \nUpdate details are:  \n* `0` - A new firmware version is available.  \n* `1` - The firmware version is at the current version.  \n* `2` - XCONF did not return a firmware version (timeout or other XCONF error).  \n* `3` - The device is configured not to update the firmware (`swupdate.conf` exists on the device)",
             "params": {
