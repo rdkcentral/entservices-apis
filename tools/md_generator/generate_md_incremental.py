@@ -30,55 +30,60 @@ from pathlib import Path
 
 
 def normalize_file_path(file_path):
-    """
-    Normalize a file path to be relative to the repository root.
-    Handles both absolute paths and relative paths from any directory.
-    """
-    # Get the repository root (2 levels up from this script)
+    """Normalize file path to be relative to repository root."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.abspath(os.path.join(script_dir, "../.."))
     
-    # If it's already an absolute path
     if os.path.isabs(file_path):
-        # Make it relative to repo root
         try:
-            return os.path.relpath(file_path, repo_root)
+            normalized = os.path.relpath(file_path, repo_root)
+            print(f"[DEBUG] Normalized absolute path: {file_path} -> {normalized}")
+            return normalized
         except ValueError:
-            # Path is on different drive (Windows), return as-is
+            print(f"[DEBUG] Could not normalize absolute path: {file_path}")
             return file_path
     
-    # Normalize the relative path
     normalized = os.path.normpath(file_path)
-    
-    # If the normalized path goes up (starts with ..), resolve it from current directory
     if normalized.startswith('..'):
         abs_path = os.path.abspath(file_path)
         try:
-            return os.path.relpath(abs_path, repo_root)
+            result = os.path.relpath(abs_path, repo_root)
+            print(f"[DEBUG] Normalized relative path: {file_path} -> {result}")
+            return result
         except ValueError:
+            print(f"[DEBUG] Could not normalize relative path: {file_path}")
             return normalized
     
+    print(f"[DEBUG] Path already normalized: {file_path}")
     return normalized
 
 
 def get_plugin_from_path(file_path):
     """Extract plugin name from a file path."""
-    # Normalize the path first
-    normalized_path = normalize_file_path(file_path)
-    parts = Path(normalized_path).parts
+    normalized = normalize_file_path(file_path)
+    parts = Path(normalized).parts
+    
+    print(f"[DEBUG] Extracting plugin from path: {file_path}")
+    print(f"[DEBUG]   Normalized: {normalized}")
+    print(f"[DEBUG]   Parts: {parts}")
     
     # For apis/PluginName/...
     if 'apis' in parts:
         apis_idx = parts.index('apis')
         if len(parts) > apis_idx + 1:
-            return parts[apis_idx + 1]
+            plugin = parts[apis_idx + 1]
+            print(f"[DEBUG]   Found plugin: {plugin}")
+            return plugin
     
     # For tools/md_generator/json/PluginName/...
     if 'json' in parts and 'md_generator' in parts:
         json_idx = parts.index('json')
         if len(parts) > json_idx + 1:
-            return parts[json_idx + 1]
+            plugin = parts[json_idx + 1]
+            print(f"[DEBUG]   Found plugin in json path: {plugin}")
+            return plugin
     
+    print(f"[DEBUG]   No plugin found")
     return None
 
 
@@ -87,9 +92,7 @@ def validate_json_changes(changed_files):
     Validate that JSON changes in apis/ have corresponding output files in tools/md_generator/json/.
     Returns (is_valid, missing_plugins)
     """
-    # Normalize all file paths first
-    normalized_files = [normalize_file_path(f) for f in changed_files]
-    apis_json_changes = [f for f in normalized_files if f.startswith('apis/') and f.endswith('.json')]
+    apis_json_changes = [f for f in changed_files if f.startswith('apis/') and f.endswith('.json')]
     
     if not apis_json_changes:
         return True, []
@@ -104,7 +107,7 @@ def validate_json_changes(changed_files):
         # Check if corresponding output file exists in changed files OR on filesystem
         output_in_changes = any(
             f.startswith(f'tools/md_generator/json/{plugin}/') and f.endswith('.json')
-            for f in normalized_files
+            for f in changed_files
         )
         
         if not output_in_changes:
@@ -124,27 +127,32 @@ def get_plugins_to_process(changed_files):
     """
     plugins = {}
     
+    print("\n[DEBUG] Processing changed files to identify plugins...")
     for file_path in changed_files:
-        # Normalize the path first
-        normalized_path = normalize_file_path(file_path)
-        plugin = get_plugin_from_path(normalized_path)
+        normalized = normalize_file_path(file_path)
+        plugin = get_plugin_from_path(file_path)
         if not plugin:
+            print(f"[DEBUG] Skipping file (no plugin found): {file_path}")
             continue
         
         # Determine file type
-        if normalized_path.startswith('apis/') and normalized_path.endswith('.h'):
+        if normalized.startswith('apis/') and normalized.endswith('.h'):
             file_type = 'header'
-        elif normalized_path.startswith('tools/md_generator/json/') and normalized_path.endswith('.json'):
+            print(f"[DEBUG] Detected header file for {plugin}: {file_path}")
+        elif normalized.startswith('tools/md_generator/json/') and normalized.endswith('.json'):
             file_type = 'json_output'
-        elif normalized_path.startswith('apis/') and normalized_path.endswith('.json'):
-            # These should trigger json_output generation, but we'll track them
+            print(f"[DEBUG] Detected JSON output file for {plugin}: {file_path}")
+        elif normalized.startswith('apis/') and normalized.endswith('.json'):
             file_type = 'apis_json'
+            print(f"[DEBUG] Detected APIs JSON file for {plugin}: {file_path}")
         else:
+            print(f"[DEBUG] Skipping file (unknown type): {file_path}")
             continue
         
         if plugin not in plugins:
             plugins[plugin] = set()
         plugins[plugin].add(file_type)
+        print(f"[DEBUG] Added {file_type} to plugin {plugin}")
     
     return {k: list(v) for k, v in plugins.items()}
 
@@ -172,19 +180,48 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
     if 'header' in file_types:
         h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
         if h_files:
-            print(f"Found header files: {h_files}")
+            print(f"Found header files ({len(h_files)}):")
+            for hf in h_files:
+                print(f"  - {hf}")
+            
+            # Check output file before generation
+            output_file = os.path.join(output_dir, f"{plugin_name}.md")
+            print(f"\n[DEBUG] Output documentation file: {output_file}")
+            if os.path.exists(output_file):
+                print(f"[DEBUG] Output file exists, will be updated")
+                # Get file modification time
+                import time
+                mtime = os.path.getmtime(output_file)
+                print(f"[DEBUG] Current modification time: {time.ctime(mtime)}")
+            else:
+                print(f"[DEBUG] Output file does not exist, will be created")
+            
             script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
             cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
             if logfile:
                 cmd += f" --logfile {logfile}"
-            print(f"Running: {cmd}")
+            print(f"\n[DEBUG] Executing command: {cmd}")
             result = os.system(cmd)
+            
             if result != 0:
                 print(f"\n{'!'*60}")
                 print(f"ERROR: Failed to generate docs from headers for {plugin_name}")
                 print(f"Command exit code: {result}")
                 print(f"{'!'*60}\n")
                 return False
+            
+            # Check output file after generation
+            if os.path.exists(output_file):
+                import time
+                mtime = os.path.getmtime(output_file)
+                print(f"\n[DEBUG] Documentation generated successfully")
+                print(f"[DEBUG] New modification time: {time.ctime(mtime)}")
+                # Show file size
+                size = os.path.getsize(output_file)
+                print(f"[DEBUG] File size: {size} bytes")
+            else:
+                print(f"\n[WARNING] Output file not created: {output_file}")
+            
             print(f"✓ Successfully generated docs from headers for {plugin_name}")
             return True
     
