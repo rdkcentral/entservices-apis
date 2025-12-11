@@ -29,9 +29,43 @@ import argparse
 from pathlib import Path
 
 
+def normalize_file_path(file_path):
+    """
+    Normalize a file path to be relative to the repository root.
+    Handles both absolute paths and relative paths from any directory.
+    """
+    # Get the repository root (2 levels up from this script)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    
+    # If it's already an absolute path
+    if os.path.isabs(file_path):
+        # Make it relative to repo root
+        try:
+            return os.path.relpath(file_path, repo_root)
+        except ValueError:
+            # Path is on different drive (Windows), return as-is
+            return file_path
+    
+    # Normalize the relative path
+    normalized = os.path.normpath(file_path)
+    
+    # If the normalized path goes up (starts with ..), resolve it from current directory
+    if normalized.startswith('..'):
+        abs_path = os.path.abspath(file_path)
+        try:
+            return os.path.relpath(abs_path, repo_root)
+        except ValueError:
+            return normalized
+    
+    return normalized
+
+
 def get_plugin_from_path(file_path):
     """Extract plugin name from a file path."""
-    parts = Path(file_path).parts
+    # Normalize the path first
+    normalized_path = normalize_file_path(file_path)
+    parts = Path(normalized_path).parts
     
     # For apis/PluginName/...
     if 'apis' in parts:
@@ -53,7 +87,9 @@ def validate_json_changes(changed_files):
     Validate that JSON changes in apis/ have corresponding output files in tools/md_generator/json/.
     Returns (is_valid, missing_plugins)
     """
-    apis_json_changes = [f for f in changed_files if f.startswith('apis/') and f.endswith('.json')]
+    # Normalize all file paths first
+    normalized_files = [normalize_file_path(f) for f in changed_files]
+    apis_json_changes = [f for f in normalized_files if f.startswith('apis/') and f.endswith('.json')]
     
     if not apis_json_changes:
         return True, []
@@ -68,7 +104,7 @@ def validate_json_changes(changed_files):
         # Check if corresponding output file exists in changed files OR on filesystem
         output_in_changes = any(
             f.startswith(f'tools/md_generator/json/{plugin}/') and f.endswith('.json')
-            for f in changed_files
+            for f in normalized_files
         )
         
         if not output_in_changes:
@@ -89,16 +125,18 @@ def get_plugins_to_process(changed_files):
     plugins = {}
     
     for file_path in changed_files:
-        plugin = get_plugin_from_path(file_path)
+        # Normalize the path first
+        normalized_path = normalize_file_path(file_path)
+        plugin = get_plugin_from_path(normalized_path)
         if not plugin:
             continue
         
         # Determine file type
-        if file_path.startswith('apis/') and file_path.endswith('.h'):
+        if normalized_path.startswith('apis/') and normalized_path.endswith('.h'):
             file_type = 'header'
-        elif file_path.startswith('tools/md_generator/json/') and file_path.endswith('.json'):
+        elif normalized_path.startswith('tools/md_generator/json/') and normalized_path.endswith('.json'):
             file_type = 'json_output'
-        elif file_path.startswith('apis/') and file_path.endswith('.json'):
+        elif normalized_path.startswith('apis/') and normalized_path.endswith('.json'):
             # These should trigger json_output generation, but we'll track them
             file_type = 'apis_json'
         else:
