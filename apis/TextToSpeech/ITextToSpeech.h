@@ -102,17 +102,17 @@ namespace Exchange {
             // @param speechid: id of the text
             virtual void OnSpeechInterrupted(const uint32_t /*speechid*/) {}
             
-            // @text onNetworkError
+            // @text networkError
             // @alt onnetworkerror
             // @brief Notify that network connection is lost
             // @param speechid: id of the text
-            virtual void OnNetworkError(const uint32_t /*speechid*/) {}
+            virtual void NetworkError(const uint32_t /*speechid*/) {}
             
-            // @text onPlaybackError
+            // @text playbackError
             // @alt onplaybackerror
             // @brief Notify that there is a playback failure
             // @param speechid: id of the text
-            virtual void OnPlaybackError(const uint32_t /*speechid*/) {}
+            virtual void PlaybackError(const uint32_t /*speechid*/) {}
 
             // @text onSpeechComplete
             // @alt onspeechcomplete
