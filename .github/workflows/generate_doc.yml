@@ -57,6 +57,17 @@ jobs:
         echo "=========================================="
         echo "Total changed files: $(echo $CHANGED_FILES | wc -w)"
         echo "=========================================="
+        echo ""
+        echo "Showing diffs of changed header files:"
+        for file in $CHANGED_FILES; do
+          if [[ $file == *.h ]]; then
+            echo "=========================================="
+            echo "DIFF: $file"
+            echo "=========================================="
+            git diff origin/${{ github.base_ref }}...HEAD -- "$file" | head -50
+            echo ""
+          fi
+        done
     
     - name: Validate JSON changes
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
@@ -103,8 +114,23 @@ jobs:
         echo "Detailed git diff:"
         git diff --stat docs/apis/
         echo ""
-        echo "Full diff (first 100 lines):"
-        git diff docs/apis/ | head -100
+        echo "Full diff (first 200 lines):"
+        git diff docs/apis/ | head -200
+        echo ""
+        
+        # Show specific sections from PackageManager.md if changed
+        if git diff --name-only docs/apis/ | grep -q "PackageManager.md"; then
+          echo "=========================================="
+          echo "PACKAGEMANAGER.MD CHANGES DETECTED"
+          echo "=========================================="
+          echo "Searching for getStorageDetails section..."
+          if [ -f "docs/apis/PackageManager.md" ]; then
+            echo ""
+            echo "New getStorageDetails documentation:"
+            sed -n '/## \*getStorageDetails\*/,/^## \*/p' docs/apis/PackageManager.md | head -60
+            echo "=========================================="
+          fi
+        fi
         echo ""
         
         if ! git diff --exit-code docs/apis/; then
