@@ -137,6 +137,8 @@ namespace Exchange {
 
         // @brief GetStorageDetails
         // @text getStorageDetails
+	// @param quotaKb: Storage quota in kilobytes
+	// @param usedKb: Used storage in kilobytes
         virtual Core::hresult GetStorageDetails(
             uint32_t &quotaKb /* @out */,
             uint32_t &usedKb  /* @out */) = 0;
