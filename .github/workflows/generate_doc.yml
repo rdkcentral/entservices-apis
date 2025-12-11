@@ -58,15 +58,13 @@ jobs:
         echo "Total changed files: $(echo $CHANGED_FILES | wc -w)"
         echo "=========================================="
         echo ""
-        echo "Showing diffs of changed header files:"
+        echo "Showing diffs of all changed interface files:"
         for file in $CHANGED_FILES; do
-          if [[ $file == *.h ]]; then
-            echo "=========================================="
-            echo "DIFF: $file"
-            echo "=========================================="
-            git diff origin/${{ github.base_ref }}...HEAD -- "$file" | head -50
-            echo ""
-          fi
+          echo "=========================================="
+          echo "DIFF: $file"
+          echo "=========================================="
+          git diff origin/${{ github.base_ref }}...HEAD -- "$file" | head -80
+          echo ""
         done
     
     - name: Validate JSON changes
@@ -118,18 +116,36 @@ jobs:
         git diff docs/apis/ | head -200
         echo ""
         
-        # Show specific sections from PackageManager.md if changed
-        if git diff --name-only docs/apis/ | grep -q "PackageManager.md"; then
+        # Show specific sections from any changed documentation files
+        CHANGED_DOCS=$(git diff --name-only docs/apis/ | grep '\.md$')
+        if [ -n "$CHANGED_DOCS" ]; then
           echo "=========================================="
-          echo "PACKAGEMANAGER.MD CHANGES DETECTED"
+          echo "GENERATED DOCUMENTATION PREVIEW"
           echo "=========================================="
-          echo "Searching for getStorageDetails section..."
-          if [ -f "docs/apis/PackageManager.md" ]; then
+          for doc_file in $CHANGED_DOCS; do
+            echo "----------------------------------------"
+            echo "File: $doc_file"
+            echo "----------------------------------------"
+            # Extract plugin name from file path
+            PLUGIN_NAME=$(basename "$doc_file" .md)
+            echo "Showing key sections from $PLUGIN_NAME documentation:"
+            
+            # Show methods table if exists
+            if grep -q "## Methods" "$doc_file"; then
+              echo ""
+              echo "Methods Table:"
+              sed -n '/## Methods/,/^## /p' "$doc_file" | head -40
+            fi
+            
+            # Show any methods that were likely changed (look for common terms)
+            if grep -qi "storage\|quota\|size\|limit" "$doc_file"; then
+              echo ""
+              echo "Storage/Quota related sections:"
+              grep -A 30 -i "storage\|quota" "$doc_file" | head -50
+            fi
             echo ""
-            echo "New getStorageDetails documentation:"
-            sed -n '/## \*getStorageDetails\*/,/^## \*/p' docs/apis/PackageManager.md | head -60
-            echo "=========================================="
-          fi
+          done
+          echo "=========================================="
         fi
         echo ""
         
