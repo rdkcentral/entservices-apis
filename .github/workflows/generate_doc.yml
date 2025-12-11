@@ -50,7 +50,13 @@ jobs:
         git fetch origin ${{ github.base_ref }}
         CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(h|json)$' | tr '\n' ' ')
         echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-        echo "Changed files: $CHANGED_FILES"
+        echo "=========================================="
+        echo "CHANGED FILES DETECTED:"
+        echo "=========================================="
+        echo "$CHANGED_FILES" | tr ' ' '\n'
+        echo "=========================================="
+        echo "Total changed files: $(echo $CHANGED_FILES | wc -w)"
+        echo "=========================================="
     
     - name: Validate JSON changes
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
@@ -62,8 +68,22 @@ jobs:
     - name: Generate documentation (incremental)
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
       run: |
+        echo "=========================================="
+        echo "GENERATING DOCUMENTATION (INCREMENTAL)"
+        echo "=========================================="
+        echo "Current directory: $(pwd)"
+        echo "Repository root files:"
+        ls -la ../../
+        echo ""
         cd tools/md_generator
+        echo "Working directory: $(pwd)"
+        echo "Running incremental generator..."
+        echo ""
         python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
+        echo ""
+        echo "=========================================="
+        echo "DOCUMENTATION GENERATION COMPLETE"
+        echo "=========================================="
     
     - name: Generate documentation (full)
       if: github.event_name == 'workflow_dispatch'
@@ -74,12 +94,34 @@ jobs:
     - name: Check for documentation changes
       id: check_changes
       run: |
-        git diff --exit-code docs/apis/ || echo "docs_changed=true" >> $GITHUB_OUTPUT
+        echo "=========================================="
+        echo "CHECKING FOR DOCUMENTATION CHANGES"
+        echo "=========================================="
+        echo "Modified files in docs/apis/:"
+        git status docs/apis/
+        echo ""
+        echo "Detailed git diff:"
+        git diff --stat docs/apis/
+        echo ""
+        echo "Full diff (first 100 lines):"
+        git diff docs/apis/ | head -100
+        echo ""
+        
+        if ! git diff --exit-code docs/apis/; then
+          echo "docs_changed=true" >> $GITHUB_OUTPUT
+          echo "✓ Documentation changes detected (modified files)"
+        fi
 
         # Check for untracked (new) files
         if git ls-files --others --exclude-standard docs/apis/ | grep .; then
           echo "docs_changed=true" >> $GITHUB_OUTPUT
+          echo "✓ Documentation changes detected (new files)"
         fi
+        
+        if [ -z "$(git diff docs/apis/)" ] && [ -z "$(git ls-files --others --exclude-standard docs/apis/)" ]; then
+          echo "⚠ No documentation changes detected"
+        fi
+        echo "=========================================="
     
     - name: Commit and push documentation changes to PR branch
       if: steps.check_changes.outputs.docs_changed == 'true' && github.event_name == 'pull_request'
