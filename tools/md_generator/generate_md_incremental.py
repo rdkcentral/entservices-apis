@@ -219,6 +219,33 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
                 # Show file size
                 size = os.path.getsize(output_file)
                 print(f"[DEBUG] File size: {size} bytes")
+                
+                # Show a sample of generated content for debugging
+                print(f"\n[DEBUG] Searching for 'getStorageDetails' in generated documentation...")
+                try:
+                    with open(output_file, 'r') as f:
+                        content = f.read()
+                        # Find and print the getStorageDetails section
+                        if 'getStorageDetails' in content:
+                            lines = content.split('\n')
+                            for i, line in enumerate(lines):
+                                if '## *getStorageDetails*' in line:
+                                    print(f"[DEBUG] Found getStorageDetails at line {i+1}")
+                                    print(f"[DEBUG] Showing next 40 lines:")
+                                    print("\n".join(lines[i:min(i+40, len(lines))]))
+                                    break
+                            # Also search for quotaKb to show type
+                            for i, line in enumerate(lines):
+                                if 'quotaKb' in line or 'quotaKB' in line:
+                                    print(f"\n[DEBUG] Found quotaKb reference at line {i+1}: {line}")
+                                    if i > 0:
+                                        print(f"[DEBUG] Previous line: {lines[i-1]}")
+                                    if i < len(lines) - 1:
+                                        print(f"[DEBUG] Next line: {lines[i+1]}")
+                        else:
+                            print(f"[DEBUG] 'getStorageDetails' not found in documentation")
+                except Exception as e:
+                    print(f"[DEBUG] Error reading output file: {e}")
             else:
                 print(f"\n[WARNING] Output file not created: {output_file}")
             
