@@ -221,29 +221,51 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
                 print(f"[DEBUG] File size: {size} bytes")
                 
                 # Show a sample of generated content for debugging
-                print(f"\n[DEBUG] Searching for 'getStorageDetails' in generated documentation...")
+                print(f"\n[DEBUG] Analyzing generated documentation for {plugin_name}...")
                 try:
                     with open(output_file, 'r') as f:
                         content = f.read()
-                        # Find and print the getStorageDetails section
-                        if 'getStorageDetails' in content:
-                            lines = content.split('\n')
-                            for i, line in enumerate(lines):
-                                if '## *getStorageDetails*' in line:
-                                    print(f"[DEBUG] Found getStorageDetails at line {i+1}")
-                                    print(f"[DEBUG] Showing next 40 lines:")
-                                    print("\n".join(lines[i:min(i+40, len(lines))]))
+                        lines = content.split('\n')
+                        
+                    # Show methods table
+                    print(f"[DEBUG] Searching for Methods table...")
+                    for i, line in enumerate(lines):
+                        if '## Methods' in line or '# Methods' in line:
+                            print(f"[DEBUG] Found Methods section at line {i+1}")
+                            print(f"[DEBUG] Showing next 30 lines:")
+                            print("\n".join(lines[i:min(i+30, len(lines))]))
+                            break
+                    
+                    # Search for common type indicators to show what changed
+                    type_indicators = ['string', 'number', 'integer', 'uint32_t', 'int32_t', 'boolean']
+                    print(f"\n[DEBUG] Searching for type definitions in results/parameters...")
+                    in_results = False
+                    result_count = 0
+                    for i, line in enumerate(lines):
+                        if '### Results' in line or '### Parameters' in line:
+                            in_results = True
+                            result_count = 0
+                        if in_results:
+                            # Check if line contains type information
+                            for type_ind in type_indicators:
+                                if type_ind in line.lower() and '|' in line:
+                                    print(f"[DEBUG] Line {i+1}: {line.strip()}")
                                     break
-                            # Also search for quotaKb to show type
-                            for i, line in enumerate(lines):
-                                if 'quotaKb' in line or 'quotaKB' in line:
-                                    print(f"\n[DEBUG] Found quotaKb reference at line {i+1}: {line}")
-                                    if i > 0:
-                                        print(f"[DEBUG] Previous line: {lines[i-1]}")
-                                    if i < len(lines) - 1:
-                                        print(f"[DEBUG] Next line: {lines[i+1]}")
-                        else:
-                            print(f"[DEBUG] 'getStorageDetails' not found in documentation")
+                            result_count += 1
+                            if result_count > 15:  # Show first 15 lines of results
+                                in_results = False
+                    
+                    # Show any sections with changed method signatures
+                    print(f"\n[DEBUG] Sample method documentation:")
+                    method_count = 0
+                    for i, line in enumerate(lines):
+                        if line.startswith('## *') and '*' in line[4:]:
+                            method_count += 1
+                            if method_count <= 3:  # Show first 3 methods
+                                print(f"\n[DEBUG] Method found at line {i+1}:")
+                                print("\n".join(lines[i:min(i+25, len(lines))]))
+                                print("...")
+                            
                 except Exception as e:
                     print(f"[DEBUG] Error reading output file: {e}")
             else:
