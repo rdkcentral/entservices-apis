@@ -178,9 +178,19 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
                 return False
             
             print(f"\n[STEP 5] Documentation generation completed successfully!")
+            print(f"[DEBUG] About to analyze output file: {output_file}")
             
             # Show the generated documentation
-            if os.path.exists(output_file):
+            try:
+                if not os.path.exists(output_file):
+                    print(f"\n[ERROR] Output file not found: {output_file}")
+                    print(f"[DEBUG] Checking directory contents...")
+                    import os as os_module
+                    if os_module.path.exists(output_dir):
+                        files = os_module.listdir(output_dir)
+                        print(f"[DEBUG] Files in {output_dir}: {files[:10]}")
+                    return True
+                
                 print(f"\n[STEP 6] Analyzing generated documentation file...")
                 print(f"  File: {output_file}")
                 import time
@@ -188,49 +198,65 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
                 size = os.path.getsize(output_file)
                 print(f"  Modified: {time.ctime(mtime)}")
                 print(f"  Size: {size} bytes")
+                print(f"[DEBUG] File exists and has size {size}, proceeding to read...")
                 
-                try:
-                    with open(output_file, 'r') as f:
-                        content = f.read()
-                    lines = content.split('\n')
+                with open(output_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                print(f"[DEBUG] Successfully read {len(content)} characters from file")
+                
+                lines = content.split('\n')
+                
+                print(f"\n[STEP 7] Showing generated documentation content:")
+                print(f"  Total lines: {len(lines)}")
+                
+                # Show methods table
+                print(f"\n  >>> Searching for Methods section...")
+                found_methods = False
+                for i, line in enumerate(lines):
+                    if '## Methods' in line or '# Methods' in line:
+                        found_methods = True
+                        print(f"\n  Found Methods table at line {i+1}:")
+                        end_line = min(i+40, len(lines))
+                        for j in range(i, end_line):
+                            print(f"    {j+1}: {lines[j]}")
+                        break
+                
+                if not found_methods:
+                    print(f"  [WARNING] Methods section not found!")
+                
+                # Show relevant method details (storage, quota, etc.)
+                print(f"\n  >>> Searching for method implementations...")
+                in_method = False
+                method_name = ""
+                line_count = 0
+                methods_found = []
+                for i, line in enumerate(lines):
+                    if line.startswith('## *') and '*' in line[4:]:
+                        # New method found
+                        if any(keyword in line.lower() for keyword in ['storage', 'quota', 'info', 'details']):
+                            methods_found.append(line.strip())
+                            in_method = True
+                            method_name = line.strip()
+                            line_count = 0
+                            print(f"\n  Found relevant method at line {i+1}: {method_name}")
                     
-                    print(f"\n[STEP 7] Showing generated documentation content:")
-                    print(f"  Total lines: {len(lines)}")
+                    if in_method:
+                        print(f"    {i+1}: {lines[i]}")
+                        line_count += 1
+                        if line_count > 50 or (line.startswith('##') and line_count > 1):
+                            in_method = False
+                
+                print(f"\n[DEBUG] Total relevant methods found: {len(methods_found)}")
+                if methods_found:
+                    print(f"[DEBUG] Methods: {', '.join(methods_found)}")
                     
-                    # Show methods table
-                    print(f"\n  >>> Searching for Methods section...")
-                    for i, line in enumerate(lines):
-                        if '## Methods' in line or '# Methods' in line:
-                            print(f"\n  Found Methods table at line {i+1}:")
-                            end_line = min(i+40, len(lines))
-                            for j in range(i, end_line):
-                                print(f"    {j+1}: {lines[j]}")
-                            break
-                    
-                    # Show relevant method details (storage, quota, etc.)
-                    print(f"\n  >>> Searching for method implementations...")
-                    in_method = False
-                    method_name = ""
-                    line_count = 0
-                    for i, line in enumerate(lines):
-                        if line.startswith('## *') and '*' in line[4:]:
-                            # New method found
-                            if any(keyword in line.lower() for keyword in ['storage', 'quota', 'info', 'details']):
-                                in_method = True
-                                method_name = line.strip()
-                                line_count = 0
-                                print(f"\n  Found relevant method at line {i+1}: {method_name}")
-                        
-                        if in_method:
-                            print(f"    {i+1}: {lines[i]}")
-                            line_count += 1
-                            if line_count > 50 or (line.startswith('##') and line_count > 1):
-                                in_method = False
-                    
-                except Exception as e:
-                    print(f"  Error analyzing documentation: {e}")
-            else:
-                print(f"  WARNING: Output file not found: {output_file}")
+            except Exception as e:
+                print(f"\n[ERROR] Exception during documentation analysis:")
+                print(f"  Type: {type(e).__name__}")
+                print(f"  Message: {str(e)}")
+                import traceback
+                print(f"  Traceback:")
+                traceback.print_exc()
             
             print(f"\n✓ Successfully generated docs from headers for {plugin_name}")
             return True
