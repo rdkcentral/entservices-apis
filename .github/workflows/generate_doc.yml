@@ -76,8 +76,7 @@ jobs:
     - name: Generate documentation (incremental)
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
       run: |
-        cd tools/md_generator
-        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
+        python3 tools/md_generator/generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
     
     - name: Generate documentation (full)
       if: github.event_name == 'workflow_dispatch'
