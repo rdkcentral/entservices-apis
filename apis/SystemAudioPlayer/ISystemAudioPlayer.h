@@ -33,25 +33,29 @@ namespace Exchange {
             virtual ~INotification() {}
 
             // @text onSAPEvents
+            // @alt onsapevents
             // @brief Notify SAP events
             // @param data: SAP event data
             virtual void OnSAPEvents(const string &data) {}        
         };
 
         virtual ~ISystemAudioPlayer() {}
-
+        
+        // @json:omit
         // @text configure
         // @brief Configure SAP plugin
         // @param service: interface instance
         // @retval Core::NONE: Indicates successful configuration of SAP plugin
         virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
 
+        // @json:omit
         // @text register
         // @brief Register notification interface
         // @param sink: notification interface pointer
         // @retval Core::NONE: Indicates successful registration of sink
         virtual Core::hresult Register(INotification* sink) = 0;
 
+        // @json:omit
         // @text unregister
         // @brief Unregister notification interface
         // @param sink: notification interface pointer
