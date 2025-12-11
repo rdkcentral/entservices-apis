@@ -27,7 +27,6 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageManager : virtual public Core::IUnknown {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
