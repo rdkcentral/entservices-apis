@@ -79,6 +79,21 @@ jobs:
       run: |
         cd tools/md_generator
         python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
+        
+        echo ""
+        echo "========================================"
+        echo "GENERATED DOCUMENTATION CONTENT:"
+        echo "========================================"
+        if [ -f "../../docs/apis/PackageManager.md" ]; then
+          echo "Printing complete PackageManager.md file:"
+          echo "----------------------------------------"
+          cat ../../docs/apis/PackageManager.md
+          echo "----------------------------------------"
+          echo "END OF DOCUMENT"
+        else
+          echo "ERROR: PackageManager.md not found!"
+        fi
+        echo "========================================"
     
     - name: Generate documentation (full)
       if: github.event_name == 'workflow_dispatch'
