@@ -27,6 +27,8 @@ namespace WPEFramework {
 namespace Exchange {
 
     // @json 1.0.0
+    // @docs:config configuration string 
+    // @docs:config configuration.MaxStoreSize num 1000000 bytes
     struct EXTERNAL IStore2 : virtual public Core::IUnknown {
         enum { ID = ID_STORE2 };
 
