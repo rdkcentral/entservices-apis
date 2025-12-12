@@ -53,7 +53,7 @@ PackageManager interface methods:
 | [download](#download) | Downloads a resource file for an application. |
 | [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
 | [getLockedInfo](#getLockedInfo) | GetLockedInfo |
-| [getStorageDetails](#getStorageDetails) | Retrieves details about app and persistent storage usage. |
+| [getStorageInformation](#getStorageInformation) | GetStorageInformation |
 | [install](#install) | Downloads and installs an application bundle. |
 | [listPackages](#listPackages) | ListPackages |
 | [lock](#lock) | Locks an application to prevent uninstallation. |
@@ -69,6 +69,7 @@ PackageManager interface methods:
 | [getLockInfo](#getLockInfo) | Provides lock reason and owner for an app. |
 | [getMetadata](#getMetadata) | Retrieves metadata and auxiliary resource list for an application. |
 | [getProgress](#getProgress) | Provides the current progress of an ongoing operation. |
+| [getStorageDetails](#getStorageDetails) | Retrieves details about app and persistent storage usage. |
 | [reset](#reset) | Deletes all persistent local data of the application. |
 | [setAuxMetadata](#setAuxMetadata) | Sets a key-value pair of metadata for the application. |
 
@@ -545,29 +546,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="getStorageDetails"></a>
-## *getStorageDetails*
+<a id="getStorageInformation"></a>
+## *getStorageInformation*
 
-Retrieves details about app and persistent storage usage.
+GetStorageInformation
 
 ### Events
 Event details will be updated soon.
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string |  |
-| params.version | string |  |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.storageinfo | StorageInfo |  |
-| result.storageinfo.EXTERNAL | struct |  |
-| result.storageinfo.path | string |  |
-| result.storageinfo.quotaKB | string |  |
-| result.storageinfo.usedKB | string |  |
+| result.quotaKb | integer | Storage quota in kilobytes |
+| result.usedKb | integer | Used storage in kilobytes |
 
 ### Examples
 
@@ -577,13 +570,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.PackageManager.getStorageDetails",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": ""
-    }
+    "id": 6,
+    "method": "org.rdk.PackageManager.getStorageInformation"
 }
 ```
 
@@ -591,7 +579,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.getStorageDetails", "params": {"type": "", "id": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -600,12 +588,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 6,
     "result": {
-        "EXTERNAL": "",
-        "path": "",
-        "quotaKB": "",
-        "usedKB": ""
+        "quotaKb": 0,
+        "usedKb": 0
     }
 }
 ```
@@ -1491,6 +1477,71 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "id": 6,
     "result": {
         "progress": 0
+    }
+}
+```
+
+<a id="getStorageDetails"></a>
+## *getStorageDetails*
+
+Retrieves details about app and persistent storage usage.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.type | string |  |
+| params.id | string |  |
+| params.version | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.storageinfo | StorageInfo |  |
+| result.storageinfo.EXTERNAL | struct |  |
+| result.storageinfo.path | string |  |
+| result.storageinfo.quotaKB | string |  |
+| result.storageinfo.usedKB | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.PackageManager.getStorageDetails",
+    "params": {
+        "type": "",
+        "id": "",
+        "version": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.getStorageDetails", "params": {"type": "", "id": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": {
+        "EXTERNAL": "",
+        "path": "",
+        "quotaKB": "",
+        "usedKB": ""
     }
 }
 ```
