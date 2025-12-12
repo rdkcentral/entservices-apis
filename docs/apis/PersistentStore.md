@@ -2,7 +2,7 @@
 <a id="PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStoreCache.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
 
 A PersistentStore plugin for Thunder framework.
 
