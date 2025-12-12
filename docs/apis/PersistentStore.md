@@ -2,7 +2,7 @@
 <a id="PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStoreCache.h)**
 
 A PersistentStore plugin for Thunder framework.
 
@@ -37,7 +37,10 @@ The table below lists configuration options of the plugin.
 | classname | string | Class name: *PersistentStore* |
 | locator | string | Library name: *libWPEFrameworkPersistentStore.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-| configuration.MaxStoreSize | num | 1000000 bytes |
+| configuration | object |  |
+| configuration.MaxStoreSize | num | 1MB (Maximum size of the store in bytes) |
+| configuration.MaxValue | num | 3KB (Maximum size of a single value in bytes) |
+| configuration.Limit | num | 10KB (Maximum size of a namespace in bytes) |
 
 <a id="Methods"></a>
 # Methods
