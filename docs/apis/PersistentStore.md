@@ -37,6 +37,7 @@ The table below lists configuration options of the plugin.
 | classname | string | Class name: *PersistentStore* |
 | locator | string | Library name: *libWPEFrameworkPersistentStore.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
+| configuration.MaxStoreSize | num | 1000000 bytes |
 
 <a id="Methods"></a>
 # Methods
