@@ -29,22 +29,61 @@ import argparse
 from pathlib import Path
 
 
+def normalize_file_path(file_path):
+    """Normalize file path to be relative to repository root."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.abspath(os.path.join(script_dir, "../.."))
+    
+    if os.path.isabs(file_path):
+        try:
+            normalized = os.path.relpath(file_path, repo_root)
+            print(f"[DEBUG] Normalized absolute path: {file_path} -> {normalized}")
+            return normalized
+        except ValueError:
+            print(f"[DEBUG] Could not normalize absolute path: {file_path}")
+            return file_path
+    
+    normalized = os.path.normpath(file_path)
+    if normalized.startswith('..'):
+        abs_path = os.path.abspath(file_path)
+        try:
+            result = os.path.relpath(abs_path, repo_root)
+            print(f"[DEBUG] Normalized relative path: {file_path} -> {result}")
+            return result
+        except ValueError:
+            print(f"[DEBUG] Could not normalize relative path: {file_path}")
+            return normalized
+    
+    print(f"[DEBUG] Path already normalized: {file_path}")
+    return normalized
+
+
 def get_plugin_from_path(file_path):
     """Extract plugin name from a file path."""
-    parts = Path(file_path).parts
+    normalized = normalize_file_path(file_path)
+    parts = Path(normalized).parts
+    
+    print(f"[DEBUG] Extracting plugin from path: {file_path}")
+    print(f"[DEBUG]   Normalized: {normalized}")
+    print(f"[DEBUG]   Parts: {parts}")
     
     # For apis/PluginName/...
     if 'apis' in parts:
         apis_idx = parts.index('apis')
         if len(parts) > apis_idx + 1:
-            return parts[apis_idx + 1]
+            plugin = parts[apis_idx + 1]
+            print(f"[DEBUG]   Found plugin: {plugin}")
+            return plugin
     
     # For tools/md_generator/json/PluginName/...
     if 'json' in parts and 'md_generator' in parts:
         json_idx = parts.index('json')
         if len(parts) > json_idx + 1:
-            return parts[json_idx + 1]
+            plugin = parts[json_idx + 1]
+            print(f"[DEBUG]   Found plugin in json path: {plugin}")
+            return plugin
     
+    print(f"[DEBUG]   No plugin found")
     return None
 
 
@@ -88,25 +127,32 @@ def get_plugins_to_process(changed_files):
     """
     plugins = {}
     
+    print("\n[DEBUG] Processing changed files to identify plugins...")
     for file_path in changed_files:
+        normalized = normalize_file_path(file_path)
         plugin = get_plugin_from_path(file_path)
         if not plugin:
+            print(f"[DEBUG] Skipping file (no plugin found): {file_path}")
             continue
         
         # Determine file type
-        if file_path.startswith('apis/') and file_path.endswith('.h'):
+        if normalized.startswith('apis/') and normalized.endswith('.h'):
             file_type = 'header'
-        elif file_path.startswith('tools/md_generator/json/') and file_path.endswith('.json'):
+            print(f"[DEBUG] Detected header file for {plugin}: {file_path}")
+        elif normalized.startswith('tools/md_generator/json/') and normalized.endswith('.json'):
             file_type = 'json_output'
-        elif file_path.startswith('apis/') and file_path.endswith('.json'):
-            # These should trigger json_output generation, but we'll track them
+            print(f"[DEBUG] Detected JSON output file for {plugin}: {file_path}")
+        elif normalized.startswith('apis/') and normalized.endswith('.json'):
             file_type = 'apis_json'
+            print(f"[DEBUG] Detected APIs JSON file for {plugin}: {file_path}")
         else:
+            print(f"[DEBUG] Skipping file (unknown type): {file_path}")
             continue
         
         if plugin not in plugins:
             plugins[plugin] = set()
         plugins[plugin].add(file_type)
+        print(f"[DEBUG] Added {file_type} to plugin {plugin}")
     
     return {k: list(v) for k, v in plugins.items()}
 
@@ -134,19 +180,97 @@ def generate_docs_for_plugin(plugin_name, file_types, logfile=None):
     if 'header' in file_types:
         h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
         if h_files:
-            print(f"Found header files: {h_files}")
+            print(f"Found header files ({len(h_files)}):")
+            for hf in h_files:
+                print(f"  - {hf}")
+            
+            # Check output file before generation
+            output_file = os.path.join(output_dir, f"{plugin_name}.md")
+            print(f"\n[DEBUG] Output documentation file: {output_file}")
+            if os.path.exists(output_file):
+                print(f"[DEBUG] Output file exists, will be updated")
+                # Get file modification time
+                import time
+                mtime = os.path.getmtime(output_file)
+                print(f"[DEBUG] Current modification time: {time.ctime(mtime)}")
+            else:
+                print(f"[DEBUG] Output file does not exist, will be created")
+            
             script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
             cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
             if logfile:
                 cmd += f" --logfile {logfile}"
-            print(f"Running: {cmd}")
+            print(f"\n[DEBUG] Executing command: {cmd}")
             result = os.system(cmd)
+            
             if result != 0:
                 print(f"\n{'!'*60}")
                 print(f"ERROR: Failed to generate docs from headers for {plugin_name}")
                 print(f"Command exit code: {result}")
                 print(f"{'!'*60}\n")
                 return False
+            
+            # Check output file after generation
+            if os.path.exists(output_file):
+                import time
+                mtime = os.path.getmtime(output_file)
+                print(f"\n[DEBUG] Documentation generated successfully")
+                print(f"[DEBUG] New modification time: {time.ctime(mtime)}")
+                # Show file size
+                size = os.path.getsize(output_file)
+                print(f"[DEBUG] File size: {size} bytes")
+                
+                # Show a sample of generated content for debugging
+                print(f"\n[DEBUG] Analyzing generated documentation for {plugin_name}...")
+                try:
+                    with open(output_file, 'r') as f:
+                        content = f.read()
+                        lines = content.split('\n')
+                        
+                    # Show methods table
+                    print(f"[DEBUG] Searching for Methods table...")
+                    for i, line in enumerate(lines):
+                        if '## Methods' in line or '# Methods' in line:
+                            print(f"[DEBUG] Found Methods section at line {i+1}")
+                            print(f"[DEBUG] Showing next 30 lines:")
+                            print("\n".join(lines[i:min(i+30, len(lines))]))
+                            break
+                    
+                    # Search for common type indicators to show what changed
+                    type_indicators = ['string', 'number', 'integer', 'uint32_t', 'int32_t', 'boolean']
+                    print(f"\n[DEBUG] Searching for type definitions in results/parameters...")
+                    in_results = False
+                    result_count = 0
+                    for i, line in enumerate(lines):
+                        if '### Results' in line or '### Parameters' in line:
+                            in_results = True
+                            result_count = 0
+                        if in_results:
+                            # Check if line contains type information
+                            for type_ind in type_indicators:
+                                if type_ind in line.lower() and '|' in line:
+                                    print(f"[DEBUG] Line {i+1}: {line.strip()}")
+                                    break
+                            result_count += 1
+                            if result_count > 15:  # Show first 15 lines of results
+                                in_results = False
+                    
+                    # Show any sections with changed method signatures
+                    print(f"\n[DEBUG] Sample method documentation:")
+                    method_count = 0
+                    for i, line in enumerate(lines):
+                        if line.startswith('## *') and '*' in line[4:]:
+                            method_count += 1
+                            if method_count <= 3:  # Show first 3 methods
+                                print(f"\n[DEBUG] Method found at line {i+1}:")
+                                print("\n".join(lines[i:min(i+25, len(lines))]))
+                                print("...")
+                            
+                except Exception as e:
+                    print(f"[DEBUG] Error reading output file: {e}")
+            else:
+                print(f"\n[WARNING] Output file not created: {output_file}")
+            
             print(f"✓ Successfully generated docs from headers for {plugin_name}")
             return True
     
