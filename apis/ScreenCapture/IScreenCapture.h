@@ -59,13 +59,12 @@ namespace WPEFramework
             virtual Core::hresult UploadScreenCapture(const string& url , const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************uploadScreenCapture() - end*********************************/
 
-              /**********************uploadScreenCapture() - start*******************************/
-            // @text uploadScreenCapture
+              /**********************sendScreenshot() - start*******************************/
+            // @text SendScreenshot
             // @brief Takes a screenshot and uploads it to the specified URL
             // @param callGUID - in - string
             // @returns Core::hresult
-            virtual Core::hresult UploadScreenCapture(const string& callGUID , Result &result /* @out  */ ) = 0;
-            /**********************uploadScreenCapture() - end*********************************/
-        };
+            virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
+       };
     } // namespace Exchange
 } // namespace WPEFramework
