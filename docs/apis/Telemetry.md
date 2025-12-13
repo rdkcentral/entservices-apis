@@ -50,6 +50,8 @@ Telemetry interface methods:
 | [abortReport](#abortReport) | Abort report upload |
 | [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
 | [logApplicationEvent](#logApplicationEvent) | Logs an application |
+| [publish](#publish) | Makes a T2 call that publishes select key/value pairs in hash; existing id and hash are cleared after publish. |
+| [record](#record) | Record the telementryMetrics add new hash values to existing hash |
 | [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
 | [setReportProfileStatus](#setReportProfileStatus) | Sets the status of telemetry reporting |
 | [uploadReport](#uploadReport) | Uploading of telemetry report |
@@ -202,6 +204,110 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+<a id="publish"></a>
+## *publish*
+
+Makes a T2 call that publishes select key/value pairs in hash; existing id and hash are cleared after publish.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.id | string | string identifier for the telemetry record. |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.Telemetry.publish",
+    "params": {
+        "id": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Telemetry.publish", "params": {"id": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": null
+}
+```
+
+<a id="record"></a>
+## *record*
+
+Record the telementryMetrics add new hash values to existing hash
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.id | string | string identifier for the telemetry record. |
+| params.telemetryMetrics | string | jsonString hash  contains key value pair of telemetryData @retval Core::ERROR_NONE: Successfully recorded telemetry data @retval Core::ERROR_GENERAL: Failed to record telemetry data omit |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.Telemetry.record",
+    "params": {
+        "id": "",
+        "telemetryMetrics": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.record", "params": {"id": "", "telemetryMetrics": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
@@ -228,7 +334,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "method": "org.rdk.Telemetry.setOptOutTelemetry",
     "params": {
         "Opt-Out": true
@@ -240,7 +346,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Telemetry.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Telemetry.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -249,7 +355,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "result": {
         "success": true
     }
@@ -281,7 +387,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "method": "org.rdk.Telemetry.setReportProfileStatus",
     "params": {
         "status": ""
@@ -293,7 +399,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -302,7 +408,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "result": null
 }
 ```
@@ -329,7 +435,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "method": "org.rdk.Telemetry.uploadReport"
 }
 ```
@@ -338,7 +444,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Telemetry.uploadReport"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.Telemetry.uploadReport"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -347,7 +453,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "result": null
 }
 ```
@@ -383,7 +489,7 @@ Triggered by callback from Telemetry after report uploading
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 8,
     "method": "org.rdk.Telemetry.onReportUpload",
     "params": {
         "telemetryUploadStatus": ""
