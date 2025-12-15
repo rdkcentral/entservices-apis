@@ -47,13 +47,13 @@ ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
 
 <a id="sendScreenshot"></a>
 ## *sendScreenshot*
 
-Takes a screenshot and uploads it to the specified URL
+Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
 
 ### Events
 Event details will be updated soon.
