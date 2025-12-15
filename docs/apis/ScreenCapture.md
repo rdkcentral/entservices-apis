@@ -66,7 +66,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the screenshot was successfully uploaded |
 
 ### Examples
 
