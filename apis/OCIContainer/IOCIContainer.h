@@ -74,16 +74,19 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @brief Provide list of containers
     // @text listContainers
     // @param containers - out/json - string
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult ListContainers(string& containers /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Get the information about container
     // @text getContainerInfo
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult GetContainerInfo(const string& containerId , string& info /* @out @opaque */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Get the state of container
     // @text getContainerState
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult GetContainerState(const string& containerId , ContainerState& state /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Start the container from bundle
@@ -92,6 +95,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param bundlePath path of application bundle
     // @param command(optional) command to run in container
     // @param westerosSocket(optional) Westeros socket container need to connect
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult StartContainer(const string& containerId , const string& bundlePath , const string& command , const string& westerosSocket , int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Start the container from dobby specification
@@ -100,32 +104,38 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param dobbySpec dobby specification as json string
     // @param command(optional) command to run in container
     // @param westerosSocket(optional) Westeros socket container need to connect
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult StartContainerFromDobbySpec(const string& containerId , const string& dobbySpec , const string& command , const string& westerosSocket , int32_t& descriptor /* @out */, bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Stop the container
     // @text stopContainer
     // @param containerId Identifier of container
     // @param force(optional) Metion forceful or graceful termination of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult StopContainer(const string& containerId , bool force , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Pause the container
     // @text pauseContainer
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult PauseContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Resume the container
     // @text resumeContainer
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult ResumeContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Hibernate the container
     // @text hibernateContainer
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult HibernateContainer(const string& containerId , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Wakeup the container
     // @text wakeupContainer
     // @param containerId Identifier of container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult WakeupContainer(const string& containerId , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Execute the command in container
@@ -133,6 +143,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param containerId Identifier of container
     // @param options(optional) options to be passed to command
     // @param command command to run in container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult ExecuteCommand(const string& containerId , const string& options , const string& command , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Update container properties
@@ -140,12 +151,14 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param containerId Identifier of container
     // @param key name of property
     // @param value property data
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult Annotate(const string& containerId , const string& key , const string& value , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Remove container property
     // @text removeAnnotation
     // @param containerId Identifier of container
     // @param key name of property
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult RemoveAnnotation(const string& containerId , const string& key , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Mount a path in container
@@ -155,12 +168,14 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @param target mount target inside container
     // @param type type of mounting
     // @param options options for mounting
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult Mount(const string& containerId , const string& source , const string& target , const string& type , const string& options , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
     // @brief Unmount a path in container
     // @text unmount
     // @param containerId Identifier of container
     // @param target path to unmount from container
+    // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult Unmount(const string& containerId , const string& target , bool& success /* @out */, string& errorReason /* @out */) = 0;
 };
 } // namespace Exchange
