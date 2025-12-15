@@ -956,7 +956,7 @@ OCIContainer interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution, Only triggered for states start, stop, hibernate, wakeup. |
+| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup. |
 | [onContainerStarted](#onContainerStarted) | Notifies container is started |
 | [onContainerStateChanged](#onContainerStateChanged) | Notifies state change of container |
 | [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
@@ -964,7 +964,7 @@ OCIContainer interface events:
 <a id="onContainerFailed"></a>
 ## *onContainerFailed*
 
-Notifies failure in container execution, Only triggered for states start, stop, hibernate, wakeup.
+Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup.
 
 ### Parameters
 | Name | Type | Description |
