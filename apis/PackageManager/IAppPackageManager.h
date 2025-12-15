@@ -42,37 +42,37 @@ namespace Exchange {
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
-        enum Reason : uint8_t {
+        enum class Reason : uint8_t {
             NONE,                    // XXX: Not in HLA
             DOWNLOAD_FAILURE,
             DISK_PERSISTENCE_FAILURE
         };
 
-        //struct PackageInfo {
-        //    string downloadId;
-        //    string fileLocator;
-        //    Reason reason;
-        //};
+        struct PackageInfo {
+           string downloadId;   /*@brief Download ID*/
+           string fileLocator;  /*@brief File Locator*/
+           Reason reason;       /*@brief Reason for the download status*/
+        };
 
         //typedef std::vector<PackageInfo> PackageInfoList;
-        //using IPackageIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
+        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
 
-        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
             ~INotification() override = default;
 
             // @brief Signal changes on the status
             // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(const string& jsonresponse) {
-                // Thunder does not support neither standard collection nor RPC::IIteratorType in notification
+            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
             }
         };
 
         ~IPackageDownloader() override = default;
 
         // Register for any changes
+        // @json:omit
         virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
+        // @json:omit
         virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
 
         // @json:omit
@@ -124,20 +124,22 @@ namespace Exchange {
         // @param fileLocator: FileLocator
         virtual Core::hresult Delete(const string &fileLocator) = 0;
 
-        struct Percent {
-            uint8_t percent;
+        struct ProgressInfo {
+            uint8_t progress;
         };
 
-        // @brief Delete
+        // @brief Progress
         // @text progress
         // @param downloadId: Download id
         virtual Core::hresult Progress(
             const string &downloadId,
-            Percent &percent /* @out */) = 0;
+            ProgressInfo &progress /* @out */) = 0;
 
-        // @brief GetStorageDetails
-        // @text getStorageDetails
-        virtual Core::hresult GetStorageDetails(
+        // @brief GetStorageInformation
+        // @text getStorageInformation
+        // @param quotaKb: Storage quota in kilobytes
+        // @param usedKb: Used storage in kilobytes
+        virtual Core::hresult GetStorageInformation(
             uint32_t &quotaKb /* @out */,
             uint32_t &usedKb  /* @out */) = 0;
 
@@ -153,17 +155,18 @@ namespace Exchange {
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
-        enum InstallState : uint8_t{
+        enum class InstallState : uint8_t{
             INSTALLING,                 // XXX: necessary ?!
             INSTALLATION_BLOCKED,
             INSTALL_FAILURE,
             INSTALLED,
             UNINSTALLING,               // XXX: necessary ?!
+            UNINSTALL_BLOCKED,
             UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
-        enum FailReason : uint8_t {
+        enum class FailReason : uint8_t {
             NONE,                       // XXX: Not in HLA
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
@@ -258,6 +261,14 @@ namespace Exchange {
             const string &version,
             InstallState &state /* @out */
             ) = 0;
+
+        // @brief getConfigForPackage
+        // @text getConfigForPackage
+        // @param fileLocator: locator of package
+        // @param id: package id
+        // @param version: version of package
+        // @param config: metadata of package
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
    };
 
 
@@ -267,7 +278,7 @@ namespace Exchange {
 
         ~IPackageHandler() override = default;
 
-        enum LockReason : uint8_t {
+        enum class LockReason : uint8_t {
             SYSTEM_APP,
             LAUNCH
         };
