@@ -60,7 +60,7 @@ namespace WPEFramework
             /**********************uploadScreenCapture() - end*********************************/
 
               /**********************sendScreenshot() - start*******************************/
-            // @text SendScreenshot
+            // @text sendScreenshot
             // @brief Takes a screenshot and uploads it to the specified URL
             // @param callGUID - in - string
             // @returns Core::hresult
