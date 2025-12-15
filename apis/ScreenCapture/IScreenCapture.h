@@ -66,6 +66,7 @@ namespace WPEFramework
             // @param Success - Whether the request succeeded
             // @returns Core::hresult
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
+            /**********************sendScreenshot() - end*********************************/
         };
     } // namespace Exchange
 } // namespace WPEFramework
