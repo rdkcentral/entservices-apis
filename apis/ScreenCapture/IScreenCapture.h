@@ -65,6 +65,6 @@ namespace WPEFramework
             // @param callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
             // @returns Core::hresult
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
-       };
+        };
     } // namespace Exchange
 } // namespace WPEFramework
