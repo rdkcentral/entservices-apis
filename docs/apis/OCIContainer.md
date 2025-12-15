@@ -783,7 +783,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
-| params?.force | bool | <sup>(optional)</sup>Metion forceful or graceful termination of container @retval ErrorCode::NONE: Indicates successful state change |
+| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
