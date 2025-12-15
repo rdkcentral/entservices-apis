@@ -110,7 +110,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @brief Stop the container
     // @text stopContainer
     // @param containerId Identifier of container
-    // @param force(optional) Metion forceful or graceful termination of container
+    // @param force(optional) Mention forceful or graceful termination of container
     // @retval ErrorCode::NONE: Indicates successful state change
     virtual Core::hresult StopContainer(const string& containerId , bool force , bool& success /* @out */, string& errorReason /* @out */) = 0;
 
