@@ -47,7 +47,7 @@ ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [SendScreenshot](#SendScreenshot) | Takes a screenshot and uploads it to the specified URL |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
 
 <a id="sendScreenshot"></a>
