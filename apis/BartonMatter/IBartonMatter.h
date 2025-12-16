@@ -78,6 +78,13 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
      //@brief retrieves the product name of the device
      //@param: deviceInfo device uuid and product name
      virtual Core::hresult GetCommissionedDeviceInfo(std::string& deviceInfo /* @out */) = 0;
+
+    /** Removes the device from db*/
+    //@text RemoveDevice
+    //@brief removes the device from database
+    //@param: deviceUuid: nodeid of the device to remove
+     virtual Core::hresult RemoveDevice(const std::string deviceUuid /* @in */) = 0;
+
 };
 
 } // Exchange
