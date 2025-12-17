@@ -53,6 +53,7 @@ struct RuntimeConfig
     std::string fireboltVersion;
     bool enableDebugger{false};
     std::string unpackedPath;
+    std::string ralfPkgPath; //Json string containing ralf dependency details.
 };
 #define RUNTIME_CONFIG
 #endif
