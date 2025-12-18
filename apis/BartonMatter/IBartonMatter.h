@@ -85,6 +85,14 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     //@param: deviceUuid: nodeid of the device to remove
      virtual Core::hresult RemoveDevice(const std::string deviceUuid /* @in */) = 0;
 
+    /** Opens the commissioning window*/
+    //@text OpenCommissioningWindow
+    //@brief  Opens the commissioning window
+    //@param: timeoutSeconds timeperiod for commissioning window
+    //@param: commissioningInfo returns the commissioning info like passcode
+     virtual Core::hresult OpenCommissioningWindow(const uint16_t timeoutSeconds /* @in */, std::string& commissioningInfo /* @out */) =0;
+
+
 };
 
 } // Exchange
