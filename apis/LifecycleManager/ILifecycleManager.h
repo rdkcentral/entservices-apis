@@ -26,6 +26,7 @@ namespace Exchange {
 
 #ifndef RUNTIME_CONFIG
 struct RuntimeConfig {
+
     bool dial;
     bool wanLanAccess;
     bool thunder;
@@ -48,11 +49,11 @@ struct RuntimeConfig {
     std::string logLevels;          //json array of strings
     bool mapi;
     std::string fkpsFiles;          //json array of strings
+    std::string ralfPkgPath; //Json string containing ralf dependency details.
 
     std::string fireboltVersion;
     bool enableDebugger;
     string unpackedPath;
-    std::string ralfPkgPath; //Json string containing ralf dependency details.
 };
 #define RUNTIME_CONFIG
 #endif
