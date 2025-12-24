@@ -2,7 +2,7 @@
 <a id="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IDisplayInfo.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IDeviceInfo.h)**
 
 A DisplayInfo plugin for Thunder framework.
 
