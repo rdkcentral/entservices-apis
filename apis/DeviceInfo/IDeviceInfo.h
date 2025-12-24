@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @insert <com/ICOM.h>
+
 // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
