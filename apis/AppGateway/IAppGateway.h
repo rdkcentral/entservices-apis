@@ -190,5 +190,45 @@ namespace WPEFramework
                                           string& result /*@out @opaque */) = 0;
 
         };
+
+        // @text:keep
+        struct EXTERNAL IAppGatewayTelemetry : virtual public Core::IUnknown
+        {
+            enum
+            {
+                ID = ID_APP_GATEWAY_TELEMETRY
+            };
+
+            // @json:omit
+            // @text recordTelemetryEvent
+            // @brief Records a telemetry event with gateway context information
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param eventName: Name of the telemetry event to record
+            // @param eventData: JSON string containing telemetry event data
+            // @retval Core::ERROR_NONE: Event recorded successfully
+            // @retval Core::ERROR_GENERAL: Failed to record the event
+            // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
+            // @returns Core::hresult
+            virtual Core::hresult RecordTelemetryEvent(const GatewayContext& context /* @text context */,
+                                                       const string& eventName /* @text eventName */,
+                                                       const string& eventData /* @text eventData */ /*@opaque */) = 0;
+
+            // @json:omit
+            // @text recordTelemetryMetric
+            // @brief Records a telemetry metric with gateway context information
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param metricName: Name of the telemetry metric to record
+            // @param metricValue: Value of the metric
+            // @param metricUnit: Unit of measurement for the metric
+            // @retval Core::ERROR_NONE: Metric recorded successfully
+            // @retval Core::ERROR_GENERAL: Failed to record the metric
+            // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
+            // @returns Core::hresult
+            virtual Core::hresult RecordTelemetryMetric(const GatewayContext& context /* @text context */,
+                                                        const string& metricName /* @text metricName */,
+                                                        const string& metricValue /* @text metricValue */,
+                                                        const string& metricUnit /* @text metricUnit */) = 0;
+
+        };
     } // namespace Exchange
 } // namespace WPEFramework
