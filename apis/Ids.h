@@ -337,7 +337,7 @@ namespace Exchange {
         ID_FIRMWARE_DOWNLOAD                         = ID_ENTOS_OFFSET + 0x460,
         ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1,
 
-        ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x470
+        ID_L2TEST                        = ID_ENTOS_OFFSET + 0x470
     }; // enum IDS
 
 } // namespace Exchange
