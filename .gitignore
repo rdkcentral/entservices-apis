@@ -1,0 +1,13 @@
+# Build artifacts
+build/CMakeFiles/
+build/CMakeCache.txt
+build/cmake_install.cmake
+build/generated/
+build/*.so
+build/*.a
+build/Makefile
+
+# Temporary files
+*.swp
+*~
+.DS_Store
