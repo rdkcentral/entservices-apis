@@ -218,7 +218,7 @@ namespace WPEFramework
             // @brief Records a telemetry metric with gateway context information
             // @param context: Execution context containing requestId, connectionId, appId
             // @param metricName: Name of the telemetry metric to record
-            // @param metricValue: Value of the metric
+            // @param metricValue: Numeric value of the metric
             // @param metricUnit: Unit of measurement for the metric
             // @retval Core::ERROR_NONE: Metric recorded successfully
             // @retval Core::ERROR_GENERAL: Failed to record the metric
@@ -226,7 +226,7 @@ namespace WPEFramework
             // @returns Core::hresult
             virtual Core::hresult RecordTelemetryMetric(const GatewayContext& context /* @text context */,
                                                         const string& metricName /* @text metricName */,
-                                                        const string& metricValue /* @text metricValue */,
+                                                        const double metricValue /* @text metricValue */,
                                                         const string& metricUnit /* @text metricUnit */) = 0;
 
         };
