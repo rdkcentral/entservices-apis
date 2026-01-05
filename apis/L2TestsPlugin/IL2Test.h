@@ -27,8 +27,10 @@ namespace Exchange {
     struct EXTERNAL IL2Test : virtual public Core::IUnknown {
         enum { ID = ID_L2TEST };
 
-        // Example: Pass parameters as JSON string, return status as uint32_t
-        virtual Core::hresult PerformL2Tests(const string& parameters, string& response) = 0;
+        // @brief Perform L2 tests
+        // @param parameters: Input parameters as a JSON string
+        // @param response: Output response as a JSON string
+        virtual Core::hresult PerformL2Tests(const string& parameters, string& response /* @out */) = 0;
     };
 
 } // namespace Exchange
