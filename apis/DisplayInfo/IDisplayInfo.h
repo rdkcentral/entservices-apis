@@ -32,12 +32,12 @@ namespace Exchange {
         // @property
         // @brief Total GPU DRAM memory (in bytes)
         // @return total: Total GPU RAM
-        virtual uint32_t TotalGpuRam(uint64_t& total /* @out */) const = 0;
+        virtual Core::hresult TotalGpuRam(uint64_t& total /* @out */) const = 0;
 
         // @property
         // @brief Free GPU DRAM memory (in bytes)
         // @return free: Free GPU RAM
-        virtual uint32_t FreeGpuRam(uint64_t& free /* @out */) const = 0;
+        virtual Core::hresult FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
 
     /* @json @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
@@ -45,7 +45,7 @@ namespace Exchange {
         enum { ID = ID_CONNECTION_PROPERTIES };
 
         enum HDCPProtectionType : uint8_t {
-            HDCP_Unencrypted,
+            HDCP_UNENCRYPTED,
             HDCP_1X,
             HDCP_2X,
             HDCP_AUTO
@@ -65,56 +65,56 @@ namespace Exchange {
             virtual void Updated(const Source event) = 0;
         };
 
-        virtual uint32_t Register(INotification*) = 0;
-        virtual uint32_t Unregister(INotification*) = 0;
+        virtual Core::hresult Register(INotification*) = 0;
+        virtual Core::hresult Unregister(INotification*) = 0;
 
         // @property
         // @brief Current audio passthrough status on HDMI
         // @param passthru: enabled/disabled
-        virtual uint32_t IsAudioPassthrough (bool& passthru /* @out */) const = 0;
+        virtual Core::hresult IsAudioPassthrough (bool& passthru /* @out */) const = 0;
 
         // @property
         // @brief Current HDMI connection status
         // @param isconnected: connected/disconnected
-        virtual uint32_t Connected(bool& isconnected /* @out */) const = 0;
+        virtual Core::hresult Connected(bool& isconnected /* @out */) const = 0;
 
         // @property
         // @brief Horizontal resolution of TV
         // @param width:  width of TV in pixels
-        virtual uint32_t Width(uint32_t& width /* @out */) const = 0;
+        virtual Core::hresult Width(uint32_t& width /* @out */) const = 0;
 
         // @property
         // @brief Vertical resolution of TV
         // @param height:  height of TV in pixels
-        virtual uint32_t Height(uint32_t& height /* @out */) const = 0;
+        virtual Core::hresult Height(uint32_t& height /* @out */) const = 0;
 
         // @property
         // @brief Vertical Frequency
         // @param vf: vertical freq
-        virtual uint32_t VerticalFreq(uint32_t& vf /* @out */) const = 0;
+        virtual Core::hresult VerticalFreq(uint32_t& vf /* @out */) const = 0;
 
         // @brief TV's Extended Display Identification Data
         // @param edid: edid byte string
-        virtual uint32_t EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
+        virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
 
         // @brief Horizontal size in centimeters
         // @param width: width in cm
-        virtual uint32_t WidthInCentimeters(uint8_t& width /* @out */) const = 0;
+        virtual Core::hresult WidthInCentimeters(uint8_t& width /* @out */) const = 0;
 
         // @brief Vertical size in centimeters
         // @param width: height in cm
-        virtual uint32_t HeightInCentimeters(uint8_t& height /* @out */) const = 0;
+        virtual Core::hresult HeightInCentimeters(uint8_t& height /* @out */) const = 0;
 
         // @property
         // @brief HDCP protocol used for transmission
         // @param value: protocol
-        virtual uint32_t HDCPProtection (HDCPProtectionType& value /* @out */) const = 0;
-        virtual uint32_t HDCPProtection (const HDCPProtectionType value) = 0;
+        virtual Core::hresult HDCPProtection (HDCPProtectionType& value /* @out */) const = 0;
+        virtual Core::hresult HDCPProtection (const HDCPProtectionType value) = 0;
 
         // @property
         // @brief Video output port on the STB used for connection to TV
         // @param name: video output port name
-        virtual uint32_t PortName (string& name /* @out */) const = 0;
+        virtual Core::hresult PortName (string& name /* @out */) const = 0;
 
     };
 
@@ -137,17 +137,17 @@ namespace Exchange {
         // @property
         // @brief HDR formats supported by TV
         // @return HDRType: array of HDR formats
-        virtual uint32_t TVCapabilities(IHDRIterator*& type /* @out */) const = 0;
+        virtual Core::hresult TVCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
         // @brief HDR formats supported by STB
         // @return HDRType: array of HDR formats
-        virtual uint32_t STBCapabilities(IHDRIterator*& type /* @out */) const = 0;
+        virtual Core::hresult STBCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
         // @brief HDR format in use
         // @param type: HDR format
-        virtual uint32_t HDRSetting(HDRType& type /* @out */) const = 0;
+        virtual Core::hresult HDRSetting(HDRType& type /* @out */) const = 0;
     };
 
     /* @json */
@@ -219,32 +219,32 @@ namespace Exchange {
         // @property
         // @brief Provides access to the display's Colour space (chroma subsampling format)
         // @param cs: colour space
-        virtual uint32_t ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
+        virtual Core::hresult ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
 
         // @property
         // @brief Provides access to Frame Rate
         // @param rate: frame rate
-        virtual uint32_t FrameRate(FrameRateType& rate /* @out */) const = 0;
+        virtual Core::hresult FrameRate(FrameRateType& rate /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colour Depth
         // @param colour: colour depth
-        virtual uint32_t ColourDepth(ColourDepthType& colour /* @out */) const = 0;
+        virtual Core::hresult ColourDepth(ColourDepthType& colour /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colorimetry
         // @param colorimetry: display colorimetry
-        virtual uint32_t Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
+        virtual Core::hresult Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Qauntization Range
         // @param qr: quantization range
-        virtual uint32_t QuantizationRange(QuantizationRangeType& qr /* @out */) const = 0;
+        virtual Core::hresult QuantizationRange(QuantizationRangeType& qr /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Electro optical transfer function
         // @param eotf: display's EOTF
-        virtual uint32_t EOTF(EotfType& eotf /* @out */) const = 0;
+        virtual Core::hresult EOTF(EotfType& eotf /* @out */) const = 0;
     };
 }
 }
