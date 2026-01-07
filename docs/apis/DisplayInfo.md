@@ -2,7 +2,7 @@
 <a id="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IDisplayInfo.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IConfiguration.h)**
 
 A DisplayInfo plugin for Thunder framework.
 
@@ -595,7 +595,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": {
-        "value": "HDCP_Unencrypted"
+        "value": "HDCP_UNENCRYPTED"
     }
 }
 ```
@@ -609,7 +609,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "id": 11,
     "method": "org.rdk.DisplayInfo.hDCPProtection",
     "params": {
-        "value": "HDCP_Unencrypted"
+        "value": "HDCP_UNENCRYPTED"
     }
 }
 ```
@@ -618,7 +618,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_Unencrypted"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_UNENCRYPTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
