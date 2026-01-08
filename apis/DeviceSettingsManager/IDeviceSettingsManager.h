@@ -301,7 +301,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param sadList: SAD array 
         // @param count: number of items in sadList (max 15)
-        virtual Core::hresult SetSAD(const int32_t handle , const uint8_t sadList[] /* @in @length:count @maxlength:count */, const uint8_t count ) = 0;
+        virtual Core::hresult SetSAD(const int32_t handle , const uint8_t sadList[] /* @length:count @maxlength:count */, const uint8_t count ) = 0;
 
         /** Enable ARC */
         // @text enableARC
@@ -1575,7 +1575,7 @@ namespace Exchange {
         // @brief Get EDID to ALLM Supported or not
         // @param port: Port number
         // @param allmSupport: ALLM supported (true) or not (false)
-        virtual Core::hresult SetHDMIInEdid2AllmSupport(const HDMIInPort port , bool allmSupport /* @in*/) = 0;
+        virtual Core::hresult SetHDMIInEdid2AllmSupport(const HDMIInPort port , bool allmSupport) = 0;
 
         /** Get EDID bytes. */
         // @text getEdidBytes
@@ -2148,7 +2148,7 @@ namespace Exchange {
         // @param enable: enable (true) or disable (false) 
         // @param hdcpKey: hdcp key 
         // @param hdcpKeySize: number of bytes in hdcpKey array
-        virtual Core::hresult EnableHDCPOnVideoPort(const int32_t handle , const bool hdcpEnable , const uint8_t hdcpKey[] /* @in @length:hdcpKeySize @maxlength:hdcpKeySize */, const uint16_t hdcpKeySize ) = 0;
+        virtual Core::hresult EnableHDCPOnVideoPort(const int32_t handle , const bool hdcpEnable , const uint8_t hdcpKey[] /* @length:hdcpKeySize @maxlength:hdcpKeySize */, const uint16_t hdcpKeySize ) = 0;
 
         /** Is HDCP enabled on Video port. */
         // @text isHDCPEnabledOnVideoPort
