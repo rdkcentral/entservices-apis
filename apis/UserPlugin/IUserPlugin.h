@@ -42,7 +42,7 @@ namespace Exchange {
         // @brief Get Volume Level
 	// @param[in] port, from which port they need an audio level
         // @param[volumeLevel] response, audio level
-        virtual Core::hresult GetVolumeLevel (const std::string& port /* @in */, std::string& volumeLevel /* @out */) const = 0;
+        virtual Core::hresult GetVolumeLevel (const std::string& port, std::string& volumeLevel /* @out */) const = 0;
     };
 }
 }
