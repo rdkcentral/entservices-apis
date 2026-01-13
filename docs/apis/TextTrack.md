@@ -50,8 +50,8 @@ TextTrack interface methods:
 | [closeSession](#closeSession) | Closes a previously opened render session. |
 | [getBackgroundColor](#getBackgroundColor) | Getter for BackgroundColor |
 | [getBackgroundOpacity](#getBackgroundOpacity) | Getter for BackgroundOpacity |
-| [getCapabilities](#getCapabilities) |  |
-| [getCapability](#getCapability) |  |
+| [getCapabilities](#getCapabilities) | Retrieves an iterator over all supported text track capabilities. |
+| [getCapability](#getCapability) | Queries whether a specific text track capability is supported by the implementation. |
 | [getClosedCaptionsStyle](#getClosedCaptionsStyle) | Gets the current ClosedCaptionsStyle settings. |
 | [getFontColor](#getFontColor) | Getter for FontColor |
 | [getFontEdge](#getFontEdge) | Getter for FontEdge |
@@ -240,7 +240,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getCapabilities"></a>
 ## *getCapabilities*
 
-
+Retrieves an iterator over all supported text track capabilities.
 
 ### Events
 Event details will be updated soon.
@@ -250,7 +250,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.capabilities | IIterator |  |
+| result.capabilities | IIterator | Iterator providing the list of supported capabilities. @retval Core::ERROR_NONE: The list of capabilities was retrieved successfully. @retval Core::ERROR_UNAVAILABLE: The list of capabilities is not available. @retval Core::ERROR_NOT_SUPPORTED: Retrieving capabilities is not supported. |
 | result.capabilities[#] | string |  |
 
 ### Examples
@@ -289,7 +289,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="getCapability"></a>
 ## *getCapability*
 
-
+Queries whether a specific text track capability is supported by the implementation.
 
 ### Events
 Event details will be updated soon.
@@ -297,12 +297,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.key | string |  |
+| params.capability | string | The capability to query. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.hasCapability | bool |  |
+| result.hasCapability | bool | Indicates whether the queried capability is supported. @retval Core::ERROR_NONE: The capability query completed successfully. @retval Core::ERROR_UNAVAILABLE: The capability information is not available. @retval Core::ERROR_NOT_SUPPORTED: Capability querying is not supported. |
 
 ### Examples
 
@@ -315,7 +315,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.TextTrack.getCapability",
     "params": {
-        "key": "UNSET"
+        "capability": "UNSET"
     }
 }
 ```
@@ -324,7 +324,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.getCapability", "params": {"key": "UNSET"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "UNSET"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
