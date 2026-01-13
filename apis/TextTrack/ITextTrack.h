@@ -570,8 +570,8 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
     };
 
     enum class Capability : uint32_t {
-        UNSET = 0, //< Filler
-        FIREBOLT_MIGRATION = 1, //< Have the CC style settings from Firebolt been migrated into TextTrack?
+        UNSET = 0 /* @text UNSET */, //< Filler
+        FIREBOLT_MIGRATION = 1 /* @text FIREBOLT_MIGRATION */, //< Have the CC style settings from Firebolt been migrated into TextTrack?
     };
 
     using IIterator = RPC::IIteratorType<Capability, RPC::ID_VALUEITERATOR>;
