@@ -98,6 +98,11 @@ namespace WPEFramework
                 // @text onLaunchRequest
                 // @param DeviceParameters: Contains Source and Sink Device related properties
                 virtual void OnLaunchRequest(const DeviceParameters &deviceParameters/* @text device_parameters*/) {};
+
+		// @brief Miracast Service Plugin raises this Event to notify that the presentation language has changed
+                // @text onPresentationLanguageChanged
+                // @param language: The new presentation language
+                virtual void OnPresentationLanguageChanged(const string& language /* @text language */) {};
             };
 
             // @json:omit
