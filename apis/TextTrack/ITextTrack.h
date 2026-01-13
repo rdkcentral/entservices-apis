@@ -20,8 +20,9 @@
 #pragma once
 
 #include "Module.h"
+// @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 3
+#define ITEXTTRACK_VERSION 4
 
 namespace WPEFramework {
 namespace Exchange {
@@ -348,7 +349,7 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
     virtual Core::hresult SetTtmlStyleOverrides(const string& style) = 0;
 
     /**
-     * @briet Gets the global TTML style overrides
+     * @brief Gets the global TTML style overrides
      * @param style will receive the style overrides
      * @text getTtmlStyleOverrides
      */
@@ -359,7 +360,7 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 /*
     This is the COM-RPC interface for handling TextTrack sessions.
 */
-/* @json 1.3.0 @text:keep */
+/* @json 1.4.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     enum {
         ID = ID_TEXT_TRACK
@@ -543,6 +544,43 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      */
     virtual Core::hresult AssociateVideoDecoder(const uint32_t sessionId, const string &handle) { return Core::ERROR_NOT_SUPPORTED; }
 
+    /**
+     * @brief Return the interface version implemented
+     * @details This allows to query the running plugin for the version of the interface
+     * it was compiled to support. This information can be helpful in determining whether
+     * a certain functionality can be expected to be present.
+     * Added in version 4
+     * @param version will receive the version number
+     * @text getInterfaceVersion
+     * @returns ERROR_NOT_SUPPORTED if the function is not implemented
+     * @returns ERROR_OK on success
+     */
+    virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) { return Core::ERROR_NOT_SUPPORTED; }
 };
+
+/*
+ * This is the COM-RPC interface for querying TextTrack capabilities.
+ * The list of capabilities can be extended over time and future versions.
+ * Added in version 4
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
+    enum {
+        ID = ID_TEXT_TRACK_CAPABILITIES
+    };
+
+    enum class Capability : uint32_t {
+        UNSET = 0, //< Filler
+        FIREBOLT_MIGRATION = 1, //< Have the CC style settings from Firebolt been migrated into TextTrack?
+    };
+
+    using IIterator = RPC::IIteratorType<Capability, RPC::ID_VALUEITERATOR>;
+
+    /* @text getCapability */
+    virtual Core::hresult GetCapability(Capability key, bool &hasCapability /* @out */) = 0;
+    /* @text getCapabilities */
+    virtual Core::hresult GetCapabilities(IIterator *&capabilities /* @out */) = 0;
+};
+
 } // namespace Exchange
 } // namespace WPEFramework
