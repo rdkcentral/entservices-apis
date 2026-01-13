@@ -576,9 +576,21 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
 
     using IIterator = RPC::IIteratorType<Capability, RPC::ID_VALUEITERATOR>;
 
-    /* @text getCapability */
-    virtual Core::hresult GetCapability(Capability key, bool &hasCapability /* @out */) = 0;
-    /* @text getCapabilities */
+    // @text getCapability
+    // @brief Queries whether a specific text track capability is supported by the implementation.
+    // @param capability: The capability to query.
+    // @param hasCapability: Indicates whether the queried capability is supported.
+    // @retval Core::ERROR_NONE: The capability query completed successfully.
+    // @retval Core::ERROR_UNAVAILABLE: The capability information is not available.
+    // @retval Core::ERROR_NOT_SUPPORTED: Capability querying is not supported.
+    virtual Core::hresult GetCapability(Capability capability, bool &hasCapability /* @out */) = 0;
+
+    // @text getCapabilities
+    // @brief Retrieves an iterator over all supported text track capabilities.
+    // @param capabilities: Iterator providing the list of supported capabilities.
+    // @retval Core::ERROR_NONE: The list of capabilities was retrieved successfully.
+    // @retval Core::ERROR_UNAVAILABLE: The list of capabilities is not available.
+    // @retval Core::ERROR_NOT_SUPPORTED: Retrieving capabilities is not supported.
     virtual Core::hresult GetCapabilities(IIterator *&capabilities /* @out */) = 0;
 };
 
