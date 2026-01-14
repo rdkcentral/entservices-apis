@@ -1,0 +1,66 @@
+Category,Type,Name,PR,Date,Description
+New Plugin,Core,FirmwareDownload,#565,2025-11-27,Create a skeleton plugin for FirmwareDownload
+New Plugin,Core,Migration,#546,2025-10-17,Create a Migration plugin and add the corresponding APIs
+New Plugin,Core,Telemetry,#542,2025-09-25,Add Telemetry Plugin
+New Plugin,Core,Amazon Prime,#113,2025-04-01,Add Amazon Prime plugin interfaces
+New Plugin,Enhancement,DeviceIdentification,#513,2025-09-23,Add DeviceIdentification and MessageControl plugin
+New Plugin,Enhancement,MessageControl,#513,2025-09-23,Add DeviceIdentification and MessageControl plugin
+New Plugin,Enhancement,SharedStorage,#405,2025-07-22,Create the SharedStorage plugin entservice-apis doc
+New Plugin,Enhancement,UserPreferences,N/A,2025-02-25,Create UserPreferencesPlugin.md
+COM-RPC Support,Plugin,DeviceInfo,#635,2025-12-15,COM-RPC support for DeviceInfo plugin
+COM-RPC Support,Plugin,AVInput,#656,2025-12-02,Add COM-RPC support to AVInput plugin
+COM-RPC Support,Plugin,HdmiCecSink,#438,2025-09-03,Fix HdmiCecSink COM-RPC issues
+COM-RPC Support,Plugin,MiracastPlayer,#261,2025-07-02,Miracast COMRPC support
+COM-RPC Support,Plugin,MiracastService,#261,2025-07-02,Miracast COMRPC support
+COM-RPC Support,Plugin,HdmiCecSink,#114,2025-06-20,HDMICEC SINK COMRPC
+COM-RPC Support,Plugin,SharedStorage,#220,2025-06-17,COM-RPC support for SharedStorage
+COM-RPC Support,Plugin,LEDControl,#157,2025-05-28,Add COM-RPC support to LEDControl plugin
+COM-RPC Support,Plugin,HdcpProfile,#173,2025-05-01,Add COM-RPC support to HdcpProfile plugin
+COM-RPC Support,Plugin,Warehouse,#110,2025-04-24,Add COM-RPC support to Warehouse plugin
+COM-RPC Support,Plugin,DeviceDiagnostics,#43,2025-04-04,Add COM-RPC support to DeviceDiagnostics plugin
+COM-RPC Support,Plugin,ScreenCapture,#76,2025-04-04,Add COM-RPC support to ScreenCapture plugin
+COM-RPC Support,Plugin,Telemetry,#4,2025-02-27,Add COM-RPC support to Telemetry plugin
+New Interface,App Management,IAppGateway,#594,2025-11-05,Added new interfaces to support App Gateway effort
+New Interface,App Management,IAppNotifications,#594,2025-11-05,Added new interfaces to support App Gateway effort
+New Interface,App Management,IAppManager Stats,#603,2025-12-04,RDKAppmanager Add stats interface
+New Interface,Package Management,IDownloader,N/A,2025-10-09,Create IDownloader interface
+New Interface,Package Management,IPreInstallerManager,#456,2025-10-07,Create IPreInstallerManager interface
+New Interface,Package Management,IRuntimeManager,#15,2025-02-19,Create IRuntimeManager Interface Header Definition
+New Interface,Package Management,IPackageManager,#457,2025-08-29,IPackageManager.h Interface updates
+New Interface,Media,ILinearPlaybackControl,#432,2025-07-29,Add LinearPlaybackControl json interface
+New Interface,Media,IFrameRate,#259,2025-06-17,Add Framerate interface header & IDs
+New Interface,Media,ITextTrack,#200,2025-05-21,Add ITextTrack interfaces for TTML overrides
+New Interface,System,IOCIContainer,#23,2025-02-19,Add Thunder Interface for OCIContainer
+New Interface,System,ISystemMode,#219,2025-05-28,ISystemMode.h Interface header updates
+New Interface,System,IFirmwareUpdate,#218,2025-05-28,IFirmwareUpdate.h Interface header updates
+New Interface,Display,IRDKWindowManager setVisible,#198,2025-05-20,Add setVisible thunder interface
+New Interface,Display,IRDKWindowManager setFocus,#131,2025-04-14,Add setFocus thunder interface
+New API,Window Manager,getLastKeyPress,#605,2025-12-04,Add getLastKeyPress method to windowmanager
+New API,Window Manager,setVisible,#198,2025-05-20,Add setVisible thunder interface
+New API,Window Manager,setFocus,#131,2025-04-14,Add setFocus thunder interface
+New API,Device Info,brandname,#66,2025-03-13,Add DeviceInfo API to return brandname
+New API,Device Info,manufacturerName,#68,2025-03-25,Added the set/get for ManufacturerName
+New API,Device Info,modelName,#68,2025-03-25,Added the set/get for ModelName
+New API,Display Settings,pdri property,#574,2025-11-13,Add new property named pdri
+New API,Display Settings,768 resolution,#623,2025-11-12,added support for 768 resolution
+New API,User Settings,contentPin,#204,2025-05-20,Add new property in contentPin in Usersettings
+New API,User Settings,Accessibility settings,#36,2025-02-20,Add accessibility settings to user settings plugin
+New API,User Settings,privacyMode,#133,2025-06-03,Added privacyMode related calls
+New API,Package Manager,getConfigForPackage,#485,2025-09-24,Add getConfigForPackage in IPackageInstaller
+New API,Package Manager,additionalMetadata,#188,2025-05-09,pass additionalMetadata in IPackageImpl.Install
+New API,Package Manager,Caching support,#248,2025-06-12,Implement Caching in New PackageManager
+New API,Package Manager,Initialize/Deinitialize,#103,2025-04-01,Get config values from PackageManager.json
+New API,Text Track,CC HAL support,#441,2025-08-15,Add CC HAL support to ITextTrack
+New API,Text Track,TTML overrides,#200,2025-05-21,Add ITextTrack interfaces for TTML overrides
+New API,Other,appId parameter,#64,2025-03-07,Add appId parameter to run api
+New API,Other,AuthService IDs,#86,2025-03-19,Added AuthService related Ids
+New API,Other,Error codes,#507,2025-09-12,Add support for plugin specific error codes
+New Event,Analytics,additionalContext,#582,2025-12-08,Added additionalContext to sendEvent
+New Event,Analytics,appId,#280,2025-06-20,Add Analytics sendEvent.appId
+New Event,Network,onDisconnected,#117,2025-04-01,Add onDisconnected event support
+New Event,Lifecycle,onAppLifecycleStateChanged,#17,2025-02-19,Add notification event
+Documentation,Tooling,Automated documentation,#652,2025-12-03,Add workflow to automate document generation
+Documentation,Tooling,Python tool updates,#606,2025-11-10,Update generate_md script
+Documentation,Tooling,Header generator,#142,2025-05-01,Create md_from_h_generator tool
+Documentation,Tooling,Interface validation,#63,2025-03-07,Workflow to detect interface guidelines errors
+Documentation,Tooling,Coding guidelines,#609,2025-11-07,Integrate Coding Guidelines with Copilot reviews
