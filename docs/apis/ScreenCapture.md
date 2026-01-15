@@ -47,7 +47,62 @@ ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [sendScreenshot](#sendScreenshot) |Takes screenshot and uploads it to a specified URL, where the URL value is retrieved from an RFC parameter named Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.URL and Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.Enable that check whether screencapture is enabled.@param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+
+<a id="sendScreenshot"></a>
+## *sendScreenshot*
+
+Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callGUID | string | string |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.ScreenCapture.sendScreenshot",
+    "params": {
+        "callGUID": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "success": true
+    }
+}
+```
 
 <a id="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
@@ -76,7 +131,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
         "url": "",
@@ -89,7 +144,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -98,7 +153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "result": {
         "success": true
     }
@@ -138,7 +193,7 @@ Triggered after uploading a screen capture
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {
         "status": true,

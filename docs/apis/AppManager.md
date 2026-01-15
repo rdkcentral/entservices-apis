@@ -121,7 +121,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -172,7 +172,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -223,7 +223,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.metaData | string | the name of the meta-data |
 ### Results
 | Name | Type | Description |
@@ -279,7 +279,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.key | string | the name of the property to get |
 ### Results
 | Name | Type | Description |
@@ -386,11 +386,12 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.apps | ILoadedAppInfoIterator | A list containing the details of loaded applications |
-| result.apps[#].appId | string |  |
-| result.apps[#].appInstanceId | string |  |
-| result.apps[#].activeSessionId | string |  |
-| result.apps[#].targetLifecycleState | string |  |
-| result.apps[#].currentLifecycleState | string |  |
+| result.apps[#].appId | string | appId |
+| result.apps[#].appInstanceId | string | appInstanceId |
+| result.apps[#].activeSessionId | string | activeSessionId |
+| result.apps[#].type | string | type |
+| result.apps[#].targetLifecycleState | string | targetLifecycleState |
+| result.apps[#].lifecycleState | string | lifecycleState |
 
 ### Examples
 
@@ -424,8 +425,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
             "appId": "",
             "appInstanceId": "",
             "activeSessionId": "",
+            "type": "",
             "targetLifecycleState": "APP_STATE_UNKNOWN",
-            "currentLifecycleState": "APP_STATE_UNKNOWN"
+            "lifecycleState": "APP_STATE_UNKNOWN"
         }
     ]
 }
@@ -442,7 +444,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -496,7 +498,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -547,7 +549,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params?.intent | string | <sup>(optional)</sup>A reference to the intent string that specifies the action or request to be processed. |
 | params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
 ### Results
@@ -602,7 +604,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
 ### Results
 | Name | Type | Description |
@@ -658,7 +660,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.intent | string | A reference to the intent string that specifies the action or request to be processed. |
 ### Results
 | Name | Type | Description |
@@ -711,7 +713,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.key | string | the name of the property to get |
 | params.value | string | the value of the key |
 ### Results
@@ -766,7 +768,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -817,7 +819,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -868,7 +870,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1133,7 +1135,7 @@ Triggered whenever the App is installed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.version | string | The version number of the application in string format |
 
 ### Examples
@@ -1159,7 +1161,7 @@ Triggered whenever there is a request for App Launch.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 | params.intent | string | A reference to the intent string that specifies the action or request to be processed. |
 | params.source | string | A string indicating the source of the intent |
 
@@ -1187,8 +1189,8 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
+| params.appId | string | appId |
+| params.appInstanceId | string | appInstanceId |
 | params.newState | string | The new state to transition the application. |
 | params.oldState | string | The previous state of the application instance before the update. |
 | params.errorReason | string | The reason for any error encountered during the state transition |
@@ -1219,7 +1221,7 @@ Triggered whenever the App is uninstalled.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
+| params.appId | string | appId |
 
 ### Examples
 
@@ -1243,8 +1245,8 @@ Triggered whenever the App is unloaded(terminated).
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
+| params.appId | string | appId |
+| params.appInstanceId | string | appInstanceId |
 
 ### Examples
 

@@ -9,7 +9,7 @@
   - [AVInput](apis/AVInput.md)
   - [Bluetooth<sup>@</sup>](apis/BluetoothPlugin.md)
   - [DeviceDiagnostics](apis/DeviceDiagnostics.md)
-  - [DeviceInfo<sup>@</sup>](apis/DeviceInfoPlugin.md)
+  - [DeviceInfo](apis/DeviceInfo.md)
   - [DisplayInfo](apis/DisplayInfo.md)
   - [DisplaySettings<sup>@</sup>](apis/DisplaySettingsPlugin.md)
   - [DownloadManager](apis/DownloadManager.md)
