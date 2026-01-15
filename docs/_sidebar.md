@@ -21,6 +21,7 @@
   - [HdmiCecSink](apis/HdmiCecSink.md)
   - [HdmiCecSource](apis/HdmiCecSource.md)
   - [HomeKitTV<sup>@</sup>](apis/HomeKitTVPlugin.md)
+  - [L2Tests<sup>@</sup>](apis/L2TestsPlugin.md)
   - [LEDControl](apis/LEDControl.md)
   - [LifecycleManager](apis/LifecycleManager.md)
   - [LinearPlaybackControl<sup>@</sup>](apis/LinearPlaybackControlPlugin.md)
