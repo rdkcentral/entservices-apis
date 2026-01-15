@@ -126,7 +126,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 
 ### Result
 
@@ -170,9 +169,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.RemoteControl.getNetStatus",
-    "params": {
-        "netType": 21
-    }
+    "params": {}
 }
 ```
 
@@ -346,7 +343,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 
 ### Result
 
@@ -364,9 +360,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.RemoteControl.initializeIRDB",
-    "params": {
-        "netType": 21
-    }
+    "params": {}
 }
 ```
 
@@ -398,7 +392,6 @@ Clears the IR codes from the specified remote.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network |
-| params.netType | integer | The type of network |
 
 ### Result
 
@@ -417,8 +410,7 @@ Clears the IR codes from the specified remote.
     "id": 42,
     "method": "org.rdk.RemoteControl.clearIRCodes",
     "params": {
-        "remoteId": 1,
-        "netType": 21
+        "remoteId": 1
     }
 }
 ```
@@ -451,7 +443,6 @@ Programs an IR code into the specified remote control.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network |
-| params.netType | integer | The type of network |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AVR, amplifier, or soundbar) device (must be one of the following: *TV*, *AMP*) |
 | params.code | string | The IR code being programmed into the remote |
 
@@ -473,7 +464,6 @@ Programs an IR code into the specified remote control.
     "method": "org.rdk.RemoteControl.setIRCode",
     "params": {
         "remoteId": 1,
-        "netType": 21,
         "avDevType": "AMP",
         "code": "M3320"
     }
@@ -506,7 +496,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 
 ### Result
 
@@ -532,9 +521,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
-    "params": {
-        "netType": 21
-    }
+    "params": {}
 }
 ```
 
@@ -574,7 +561,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AVR, amplifier, or soundbar) device (must be one of the following: *TV*, *AMP*) |
 | params.manufacturer | string | The manufacturer name of the AV device |
 | params.model | string | The model name of the AV device |
@@ -601,7 +587,6 @@ No Events
     "id": 42,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "netType": 21,
         "avDevType": "AMP",
         "manufacturer": "TvManfacName",
         "model": "AH5901068L"
@@ -641,7 +626,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AVR, amplifier, or soundbar) device (must be one of the following: *TV*, *AMP*) |
 | params.manufacturer | string | A part of the name of the manufacturer of the AV device |
 
@@ -665,7 +649,6 @@ No Events
     "id": 42,
     "method": "org.rdk.RemoteControl.getIRDBManufacturers",
     "params": {
-        "netType": 21,
         "avDevType": "AMP",
         "manufacturer": "Sa"
     }
@@ -702,7 +685,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AVR, amplifier, or soundbar) device (must be one of the following: *TV*, *AMP*) |
 | params.manufacturer | string | The manufacturer name of the AV device |
 | params.model | string | A part (minimum of 3 characters) of the model name of the AV device |
@@ -728,7 +710,6 @@ No Events
     "id": 42,
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
-        "netType": 21,
         "avDevType": "AMP",
         "manufacturer": "TvManfacName",
         "model": "AH5"
@@ -767,7 +748,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 
 ### Result
 
@@ -792,9 +772,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "method": "org.rdk.RemoteControl.getLastKeypressSource",
-    "params": {
-        "netType": 21
-    }
+    "params": {}
 }
 ```
 
@@ -831,7 +809,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network.(currently on Bluetooth Low Energy network supports this feature) |
 | params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. (possible values: all - all keys on the remote will wake target from deepsleep, none - no keys on the remote will wake target from deepsleep, custom - the custom list of Linux key codes provided in customKeys will wake target from deepsleep) (must be one of the following: *all*, *none*, *custom*) |
 | params?.customKeys | string | <sup>*(optional)*</sup> Mandatory param only if wakeupConfig is custom, otherwise it should be omitted. This parameter is a list of linux keycodes that can wake the target from deepsleep |
 
@@ -852,7 +829,6 @@ No Events
     "id": 42,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "netType": 1,
         "wakeupConfig": "custom",
         "customKeys": "3,1"
     }
@@ -885,7 +861,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network |
 | params.level | string | The level at which the remote will beep (must be one of the following: *off*, *mid*, *high*) |
 
 ### Result
@@ -905,7 +880,6 @@ No Events
     "id": 42,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "netType": 21,
         "level": "mid"
     }
 }
