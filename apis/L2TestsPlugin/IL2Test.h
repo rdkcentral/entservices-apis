@@ -24,12 +24,16 @@
 namespace WPEFramework {
 namespace Exchange {
 
+    /* @json 1.0.0 @text:keep */
     struct EXTERNAL IL2Test : virtual public Core::IUnknown {
         enum { ID = ID_L2TEST };
 
+        // @text performL2Tests
         // @brief Perform L2 tests
         // @param parameters: Input parameters as a JSON string
         // @param response: Output response as a JSON string
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult PerformL2Tests(const string& parameters, string& response /* @out */) = 0;
     };
 
