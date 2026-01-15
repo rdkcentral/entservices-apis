@@ -39,4 +39,3 @@ namespace Exchange {
 
 } // namespace Exchange
 } // namespace WPEFramework
- 
