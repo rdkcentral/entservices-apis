@@ -47,26 +47,26 @@ OCIContainer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [annotate](#annotate) |  |
-| [executeCommand](#executeCommand) |  |
-| [getContainerInfo](#getContainerInfo) |  |
-| [getContainerState](#getContainerState) |  |
-| [hibernateContainer](#hibernateContainer) |  |
-| [listContainers](#listContainers) |  |
-| [mount](#mount) |  |
-| [pauseContainer](#pauseContainer) |  |
-| [removeAnnotation](#removeAnnotation) |  |
-| [resumeContainer](#resumeContainer) |  |
-| [startContainer](#startContainer) |  |
-| [startContainerFromDobbySpec](#startContainerFromDobbySpec) |  |
-| [stopContainer](#stopContainer) |  |
-| [unmount](#unmount) |  |
-| [wakeupContainer](#wakeupContainer) |  |
+| [annotate](#annotate) | Update container properties |
+| [executeCommand](#executeCommand) | Execute the command in container |
+| [getContainerInfo](#getContainerInfo) | Get the information about container |
+| [getContainerState](#getContainerState) | Get the state of container |
+| [hibernateContainer](#hibernateContainer) | Hibernate the container |
+| [listContainers](#listContainers) | Provide list of containers |
+| [mount](#mount) | Mount a path in container |
+| [pauseContainer](#pauseContainer) | Pause the container |
+| [removeAnnotation](#removeAnnotation) | Remove container property |
+| [resumeContainer](#resumeContainer) | Resume the container |
+| [startContainer](#startContainer) | Start the container from bundle |
+| [startContainerFromDobbySpec](#startContainerFromDobbySpec) | Start the container from dobby specification |
+| [stopContainer](#stopContainer) | Stop the container |
+| [unmount](#unmount) | Unmount a path in container |
+| [wakeupContainer](#wakeupContainer) | Wakeup the container |
 
 <a id="annotate"></a>
 ## *annotate*
 
-
+Update container properties
 
 ### Events
 Event details will be updated soon.
@@ -74,9 +74,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.key | string | name of property |
-| params.value | string | property data |
+| params.value | string | property data @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -126,7 +126,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="executeCommand"></a>
 ## *executeCommand*
 
-
+Execute the command in container
 
 ### Events
 Event details will be updated soon.
@@ -134,7 +134,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params?.options | string | <sup>(optional)</sup>options to be passed to command |
 | params.command | string | command to run in container |
 ### Results
@@ -186,7 +186,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getContainerInfo"></a>
 ## *getContainerInfo*
 
-
+Get the information about container
 
 ### Events
 Event details will be updated soon.
@@ -194,7 +194,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -244,7 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getContainerState"></a>
 ## *getContainerState*
 
-
+Get the state of container
 
 ### Events
 Event details will be updated soon.
@@ -252,7 +252,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -302,7 +302,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="hibernateContainer"></a>
 ## *hibernateContainer*
 
-
+Hibernate the container
 
 ### Events
 Event details will be updated soon.
@@ -310,7 +310,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.options | string | options to be passed to command |
 ### Results
 | Name | Type | Description |
@@ -360,7 +360,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="listContainers"></a>
 ## *listContainers*
 
-
+Provide list of containers
 
 ### Events
 Event details will be updated soon.
@@ -370,7 +370,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.containers | string | /json - string |
+| result.containers | string | /json - string @retval ErrorCode::NONE: Indicates successful state change |
 | result.success | bool |  |
 | result.errorReason | string |  |
 
@@ -412,7 +412,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="mount"></a>
 ## *mount*
 
-
+Mount a path in container
 
 ### Events
 Event details will be updated soon.
@@ -420,7 +420,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.source | string | path source to mount |
 | params.target | string | mount target inside container |
 | params.type | string | type of mounting |
@@ -476,7 +476,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="pauseContainer"></a>
 ## *pauseContainer*
 
-
+Pause the container
 
 ### Events
 Event details will be updated soon.
@@ -484,7 +484,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -532,7 +532,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="removeAnnotation"></a>
 ## *removeAnnotation*
 
-
+Remove container property
 
 ### Events
 Event details will be updated soon.
@@ -540,7 +540,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.key | string | name of property |
 ### Results
 | Name | Type | Description |
@@ -590,7 +590,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="resumeContainer"></a>
 ## *resumeContainer*
 
-
+Resume the container
 
 ### Events
 Event details will be updated soon.
@@ -598,7 +598,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -646,7 +646,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="startContainer"></a>
 ## *startContainer*
 
-
+Start the container from bundle
 
 ### Events
 Event details will be updated soon.
@@ -654,10 +654,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.bundlePath | string | path of application bundle |
 | params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
+| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -710,7 +710,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="startContainerFromDobbySpec"></a>
 ## *startContainerFromDobbySpec*
 
-
+Start the container from dobby specification
 
 ### Events
 Event details will be updated soon.
@@ -718,10 +718,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.dobbySpec | string | dobby specification as json string |
 | params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
+| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -774,7 +774,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="stopContainer"></a>
 ## *stopContainer*
 
-
+Stop the container
 
 ### Events
 Event details will be updated soon.
@@ -782,8 +782,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
-| params?.force | bool | <sup>(optional)</sup>Metion forceful or graceful termination of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -832,7 +832,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="unmount"></a>
 ## *unmount*
 
-
+Unmount a path in container
 
 ### Events
 Event details will be updated soon.
@@ -840,7 +840,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.target | string | mount target inside container |
 ### Results
 | Name | Type | Description |
@@ -890,7 +890,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="wakeupContainer"></a>
 ## *wakeupContainer*
 
-
+Wakeup the container
 
 ### Events
 Event details will be updated soon.
@@ -898,7 +898,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -956,7 +956,7 @@ OCIContainer interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution |
+| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup. |
 | [onContainerStarted](#onContainerStarted) | Notifies container is started |
 | [onContainerStateChanged](#onContainerStateChanged) | Notifies state change of container |
 | [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
@@ -964,13 +964,13 @@ OCIContainer interface events:
 <a id="onContainerFailed"></a>
 ## *onContainerFailed*
 
-Notifies failure in container execution
+Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.name | string |  |
 | params.error | integer |  |
 
@@ -998,7 +998,7 @@ Notifies container is started
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.name | string |  |
 
 ### Examples
@@ -1024,7 +1024,7 @@ Notifies state change of container
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.state | string |  |
 
 ### Examples
@@ -1050,7 +1050,7 @@ Notifies container is stopped
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container |
+| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
 | params.name | string |  |
 
 ### Examples

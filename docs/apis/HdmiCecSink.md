@@ -1909,7 +1909,7 @@ Triggered when SAD is received from the connected audio device. See requestShort
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.jsonresponse | string | JSON response containing the Short Audio Descriptor (SAD) information |
+| params.shortAudioDescriptor | string | JSON response containing the Short Audio Descriptor (SAD) information |
 
 ### Examples
 
@@ -1919,7 +1919,7 @@ Triggered when SAD is received from the connected audio device. See requestShort
     "id": 42,
     "method": "org.rdk.HdmiCecSink.shortAudiodescriptorEvent",
     "params": {
-        "jsonresponse": ""
+        "shortAudioDescriptor": ""
     }
 }
 ```
