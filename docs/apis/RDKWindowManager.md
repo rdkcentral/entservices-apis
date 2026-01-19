@@ -1209,11 +1209,11 @@ RDKWindowManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [OnBlur](#OnBlur) | Notifies when an application is blurred |
+| [onBlur](#onBlur) | Notifies when an application is blurred |
 | [onConnected](#onConnected) | Notifies when an application is connected |
 | [onDisconnected](#onDisconnected) | Notifies when an application is disconnected |
-| [OnFocus](#OnFocus) | Notifies when an application is in focus |
-| [OnHidden](#OnHidden) | Notifies when an application is hidden |
+| [onFocus](#onFocus) | Notifies when an application is in focus |
+| [onHidden](#onHidden) | Notifies when an application is hidden |
 | [onReady](#onReady) | Posting the client for first frame ready. |
 | [onUserInactivity](#onUserInactivity) | Posting the client is inactive state |
 | [onVisible](#onVisible) | Notifies when an application is visible |
