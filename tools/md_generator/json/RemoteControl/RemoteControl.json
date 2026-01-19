@@ -303,12 +303,8 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    }
                 },
                 "required": [
-                    "netType"
                 ]
             },
             "result": {
@@ -416,12 +412,8 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    }
                 },
                 "required": [
-                    "netType"
                 ]
             },
             "result": {
@@ -438,14 +430,10 @@
                 "properties": {
                     "remoteId": {
                         "$ref": "#/definitions/remoteId"
-                    },
-                    "netType": {
-                        "$ref": "#/definitions/netType"
                     }
                 },
                 "required": [
-                    "remoteId",
-                    "netType"
+                    "remoteId"
                 ]
             },
             "result": {
@@ -463,9 +451,6 @@
                     "remoteId": {
                         "$ref": "#/definitions/remoteId"
                     },
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    },
                     "avDevType": {
                         "$ref": "#/definitions/avDevType"
                     },
@@ -477,7 +462,6 @@
                 },
                 "required": [
                     "remoteId",
-                    "netType",
                     "avDevType",
                     "code"
                 ]
@@ -491,12 +475,8 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    }
                 },
                 "required": [
-                    "netType"
                 ]
             },
             "result": {
@@ -554,9 +534,6 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    },
                     "avDevType": {
                         "$ref": "#/definitions/avDevType"
                     },
@@ -568,7 +545,6 @@
                     }
                 },
                 "required": [
-                    "netType",
                     "avDevType",
                     "manufacturer",
                     "model"
@@ -612,9 +588,6 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    },
                     "avDevType": {
                         "$ref": "#/definitions/avDevType"
                     },
@@ -625,7 +598,6 @@
                     }
                 },
                 "required": [
-                    "netType",
                     "avDevType",
                     "manufacturer"
                 ]
@@ -660,9 +632,6 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    },
                     "avDevType": {
                         "$ref": "#/definitions/avDevType"
                     },
@@ -676,7 +645,6 @@
                     }
                 },
                 "required": [
-                    "netType",
                     "avDevType",
                     "manufacturer",
                     "model"
@@ -716,12 +684,8 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    }
                 },
                 "required": [
-                    "netType"
                 ]
             },
             "result": {
@@ -783,11 +747,6 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "summary": "The type of network.(currently on Bluetooth Low Energy network supports this feature)",
-                        "type": "integer",
-                        "example": 1
-                    },
                     "wakeupConfig": {
                         "summary": "The deepsleep wakeup key configuration of the remote. (possible values: all - all keys on the remote will wake target from deepsleep, none - no keys on the remote will wake target from deepsleep, custom - the custom list of Linux key codes provided in customKeys will wake target from deepsleep)",
                         "type": "string",
@@ -805,7 +764,6 @@
                     }
                 },
                 "required": [
-                    "netType",
                     "wakeupConfig"
                 ]
             },
@@ -818,9 +776,6 @@
             "params": {
                 "type": "object",
                 "properties": {
-                    "netType": {
-                        "$ref": "#/definitions/netType"
-                    },
                     "level": {
                         "summary": "The level at which the remote will beep",
                         "type": "string",
@@ -833,7 +788,6 @@
                     }
                 },
                 "required": [
-                    "netType",
                     "level"
                 ]
             },

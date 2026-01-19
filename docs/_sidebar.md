@@ -10,7 +10,6 @@
   - [Bluetooth<sup>@</sup>](apis/BluetoothPlugin.md)
   - [DeviceDiagnostics](apis/DeviceDiagnostics.md)
   - [DeviceInfo](apis/DeviceInfo.md)
-  - [DeviceInfo<sup>@</sup>](apis/DeviceInfoPlugin.md)
   - [DisplayInfo](apis/DisplayInfo.md)
   - [DisplaySettings<sup>@</sup>](apis/DisplaySettingsPlugin.md)
   - [DownloadManager](apis/DownloadManager.md)
