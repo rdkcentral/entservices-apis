@@ -47,6 +47,8 @@ TextTrack interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [applyCustomTtmlStyleOverridesToSession](#applyCustomTtmlStyleOverridesToSession) | Applies a custom TTML styling with overrides that is applied on all elements |
+| [associateVideoDecoder](#associateVideoDecoder) | Associate a video decoder with the given session |
 | [closeSession](#closeSession) | Closes a previously opened render session. |
 | [getBackgroundColor](#getBackgroundColor) | Getter for BackgroundColor |
 | [getBackgroundOpacity](#getBackgroundOpacity) | Getter for BackgroundOpacity |
@@ -59,6 +61,7 @@ TextTrack interface methods:
 | [getFontFamily](#getFontFamily) | Getter for FontFamily |
 | [getFontOpacity](#getFontOpacity) | Getter for FontOpacity |
 | [getFontSize](#getFontSize) | Getter for FontSize |
+| [getInterfaceVersion](#getInterfaceVersion) | Return the interface version implemented |
 | [getTtmlStyleOverrides](#getTtmlStyleOverrides) | Gets the global TTML style overrides |
 | [getWindowColor](#getWindowColor) | Getter for WindowColor |
 | [getWindowOpacity](#getWindowOpacity) | Getter for WindowOpacity |
@@ -90,6 +93,112 @@ TextTrack interface methods:
 | [setWindowOpacity](#setWindowOpacity) | Setter for WindowOpacity |
 | [unMuteSession](#unMuteSession) | UnMute will unhide the rendering of Captions. |
 
+<a id="applyCustomTtmlStyleOverridesToSession"></a>
+## *applyCustomTtmlStyleOverridesToSession*
+
+When a custom styling override is applied on a specific TTML session, the styling carried on the data for the specified element is overridden. For styling options, see https://www.w3.org/TR/2018/REC-ttml1-20181108/#styling-vocabulary-style The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported) Styles not mentioned in the list will not be affected. Added in version 2
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | On success the returned session id  |
+| params.style | string | Contains the chosen override for styles |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.TextTrack.applyCustomTtmlStyleOverridesToSession",
+    "params": {
+        "sessionId": 1,
+        "style": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextTrack.applyCustomTtmlStyleOverridesToSession", "params": {"sessionId": 1, "style": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
+}
+```
+
+<a id="associateVideoDecoder"></a>
+## *associateVideoDecoder*
+
+This will ask TextTrack to subscribe to Closed Captions data from the decoder and display these in the given session. Depending on the support on the platform, this may not be possible to do. The association is active until CloseSession() or ResetSession() is called, and can also be cancelled by calling AssociateVideoDecoder() with an empty string for handle. After associating the video decoder, further calls to SendSessionData will be ignored. Added in version 3
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | On success the returned session id  |
+| params.handle | string | is a textual representation of the video decoder handle |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.TextTrack.associateVideoDecoder",
+    "params": {
+        "sessionId": 1,
+        "handle": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextTrack.associateVideoDecoder", "params": {"sessionId": 1, "handle": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": null
+}
+```
+
 <a id="closeSession"></a>
 ## *closeSession*
 
@@ -115,7 +224,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 2,
     "method": "org.rdk.TextTrack.closeSession",
     "params": {
         "sessionId": 1
@@ -127,7 +236,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -136,7 +245,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 2,
     "result": null
 }
 ```
@@ -164,7 +273,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 3,
     "method": "org.rdk.TextTrack.getBackgroundColor"
 }
 ```
@@ -173,7 +282,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextTrack.getBackgroundColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextTrack.getBackgroundColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -182,7 +291,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 3,
     "result": {
         "color": ""
     }
@@ -212,7 +321,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "method": "org.rdk.TextTrack.getBackgroundOpacity"
 }
 ```
@@ -221,7 +330,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextTrack.getBackgroundOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.getBackgroundOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -230,7 +339,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "result": {
         "opacity": 0
     }
@@ -250,7 +359,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.capabilities | IIterator | Iterator providing the list of supported capabilities. @retval Core::ERROR_NONE The list of capabilities was retrieved successfully. @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported. |
+| result.capabilities | IIterator | Iterator providing the list of supported capabilities. |
 | result.capabilities[#] | string |  |
 
 ### Examples
@@ -261,7 +370,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "method": "org.rdk.TextTrack.getCapabilities"
 }
 ```
@@ -270,7 +379,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -279,7 +388,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "result": [
         "UNSET"
     ]
@@ -302,7 +411,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.hasCapability | bool | Indicates whether the queried capability is supported. @retval Core::ERROR_NONE The capability query completed successfully. @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported. |
+| result.hasCapability | bool | Indicates whether the queried capability is supported. |
 
 ### Examples
 
@@ -312,7 +421,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "method": "org.rdk.TextTrack.getCapability",
     "params": {
         "capability": "FIREBOLT_MIGRATION"
@@ -324,7 +433,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -333,7 +442,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "result": {
         "hasCapability": true
     }
@@ -373,7 +482,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "method": "org.rdk.TextTrack.getClosedCaptionsStyle"
 }
 ```
@@ -382,7 +491,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextTrack.getClosedCaptionsStyle"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextTrack.getClosedCaptionsStyle"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -391,7 +500,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "result": {
         "fontFamily": "CONTENT_DEFAULT",
         "fontSize": "CONTENT_DEFAULT",
@@ -430,7 +539,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 8,
     "method": "org.rdk.TextTrack.getFontColor"
 }
 ```
@@ -439,7 +548,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextTrack.getFontColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextTrack.getFontColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -448,7 +557,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 8,
     "result": {
         "color": ""
     }
@@ -478,7 +587,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 9,
     "method": "org.rdk.TextTrack.getFontEdge"
 }
 ```
@@ -487,7 +596,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextTrack.getFontEdge"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextTrack.getFontEdge"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -496,7 +605,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 9,
     "result": {
         "edge": "CONTENT_DEFAULT"
     }
@@ -526,7 +635,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 10,
     "method": "org.rdk.TextTrack.getFontEdgeColor"
 }
 ```
@@ -535,7 +644,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextTrack.getFontEdgeColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextTrack.getFontEdgeColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -544,7 +653,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 10,
     "result": {
         "color": ""
     }
@@ -574,7 +683,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 11,
     "method": "org.rdk.TextTrack.getFontFamily"
 }
 ```
@@ -583,7 +692,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextTrack.getFontFamily"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextTrack.getFontFamily"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -592,7 +701,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 11,
     "result": {
         "font": "CONTENT_DEFAULT"
     }
@@ -622,7 +731,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 12,
     "method": "org.rdk.TextTrack.getFontOpacity"
 }
 ```
@@ -631,7 +740,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextTrack.getFontOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextTrack.getFontOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -640,7 +749,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 12,
     "result": {
         "opacity": 0
     }
@@ -670,7 +779,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 13,
     "method": "org.rdk.TextTrack.getFontSize"
 }
 ```
@@ -679,7 +788,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextTrack.getFontSize"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextTrack.getFontSize"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -688,9 +797,57 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 13,
     "result": {
         "size": "CONTENT_DEFAULT"
+    }
+}
+```
+
+<a id="getInterfaceVersion"></a>
+## *getInterfaceVersion*
+
+This allows to query the running plugin for the version of the interface it was compiled to support. This information can be helpful in determining whether a certain functionality can be expected to be present. Added in version 4
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.version | integer | will receive the version number  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.TextTrack.getInterfaceVersion"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextTrack.getInterfaceVersion"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "result": {
+        "version": 4
     }
 }
 ```
@@ -718,7 +875,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 15,
     "method": "org.rdk.TextTrack.getTtmlStyleOverrides"
 }
 ```
@@ -727,7 +884,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -736,7 +893,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 15,
     "result": {
         "style": ""
     }
@@ -766,7 +923,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 16,
     "method": "org.rdk.TextTrack.getWindowColor"
 }
 ```
@@ -775,7 +932,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextTrack.getWindowColor"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.getWindowColor"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -784,7 +941,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 16,
     "result": {
         "color": ""
     }
@@ -814,7 +971,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 17,
     "method": "org.rdk.TextTrack.getWindowOpacity"
 }
 ```
@@ -823,7 +980,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextTrack.getWindowOpacity"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextTrack.getWindowOpacity"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -832,7 +989,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 17,
     "result": {
         "opacity": 0
     }
@@ -864,7 +1021,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 18,
     "method": "org.rdk.TextTrack.muteSession",
     "params": {
         "sessionId": 1
@@ -876,7 +1033,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -885,7 +1042,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 18,
     "result": null
 }
 ```
@@ -916,7 +1073,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 19,
     "method": "org.rdk.TextTrack.openSession",
     "params": {
         "displayHandle": ""
@@ -928,7 +1085,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -937,7 +1094,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 19,
     "result": {
         "sessionId": 1
     }
@@ -969,7 +1126,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 20,
     "method": "org.rdk.TextTrack.pauseSession",
     "params": {
         "sessionId": 1
@@ -981,7 +1138,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -990,7 +1147,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 20,
     "result": null
 }
 ```
@@ -1020,7 +1177,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 21,
     "method": "org.rdk.TextTrack.resetSession",
     "params": {
         "sessionId": 1
@@ -1032,7 +1189,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1041,7 +1198,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 21,
     "result": null
 }
 ```
@@ -1071,7 +1228,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 22,
     "method": "org.rdk.TextTrack.resumeSession",
     "params": {
         "sessionId": 1
@@ -1083,7 +1240,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1092,7 +1249,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 22,
     "result": null
 }
 ```
@@ -1125,7 +1282,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 23,
     "method": "org.rdk.TextTrack.sendSessionData",
     "params": {
         "sessionId": 1,
@@ -1140,7 +1297,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "PES", "displayOffsetMs": 0, "data": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "PES", "displayOffsetMs": 0, "data": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1149,7 +1306,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 23,
     "result": null
 }
 ```
@@ -1180,7 +1337,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 24,
     "method": "org.rdk.TextTrack.sendSessionTimestamp",
     "params": {
         "sessionId": 1,
@@ -1193,7 +1350,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1202,7 +1359,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 24,
     "result": null
 }
 ```
@@ -1232,7 +1389,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 25,
     "method": "org.rdk.TextTrack.setBackgroundColor",
     "params": {
         "color": ""
@@ -1244,7 +1401,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.TextTrack.setBackgroundColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.TextTrack.setBackgroundColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1253,7 +1410,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 25,
     "result": null
 }
 ```
@@ -1283,7 +1440,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 26,
     "method": "org.rdk.TextTrack.setBackgroundOpacity",
     "params": {
         "opacity": 0
@@ -1295,7 +1452,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.TextTrack.setBackgroundOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.TextTrack.setBackgroundOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1304,7 +1461,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 26,
     "result": null
 }
 ```
@@ -1344,7 +1501,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 27,
     "method": "org.rdk.TextTrack.setClosedCaptionsStyle",
     "params": {
         "fontFamily": "CONTENT_DEFAULT",
@@ -1365,7 +1522,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.TextTrack.setClosedCaptionsStyle", "params": {"fontFamily": "CONTENT_DEFAULT", "fontSize": "CONTENT_DEFAULT", "fontColor": "", "fontOpacity": 0, "fontEdge": "CONTENT_DEFAULT", "fontEdgeColor": "", "backgroundColor": "", "backgroundOpacity": 0, "windowColor": "", "windowOpacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.TextTrack.setClosedCaptionsStyle", "params": {"fontFamily": "CONTENT_DEFAULT", "fontSize": "CONTENT_DEFAULT", "fontColor": "", "fontOpacity": 0, "fontEdge": "CONTENT_DEFAULT", "fontEdgeColor": "", "backgroundColor": "", "backgroundOpacity": 0, "windowColor": "", "windowOpacity": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1374,7 +1531,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 27,
     "result": null
 }
 ```
@@ -1404,7 +1561,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 28,
     "method": "org.rdk.TextTrack.setFontColor",
     "params": {
         "color": ""
@@ -1416,7 +1573,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.TextTrack.setFontColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.TextTrack.setFontColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1425,7 +1582,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 28,
     "result": null
 }
 ```
@@ -1455,7 +1612,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 29,
     "method": "org.rdk.TextTrack.setFontEdge",
     "params": {
         "edge": "CONTENT_DEFAULT"
@@ -1467,7 +1624,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.TextTrack.setFontEdge", "params": {"edge": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.TextTrack.setFontEdge", "params": {"edge": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1476,7 +1633,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 29,
     "result": null
 }
 ```
@@ -1506,7 +1663,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 30,
     "method": "org.rdk.TextTrack.setFontEdgeColor",
     "params": {
         "color": ""
@@ -1518,7 +1675,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.TextTrack.setFontEdgeColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.TextTrack.setFontEdgeColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1527,7 +1684,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 30,
     "result": null
 }
 ```
@@ -1557,7 +1714,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 31,
     "method": "org.rdk.TextTrack.setFontFamily",
     "params": {
         "font": "CONTENT_DEFAULT"
@@ -1569,7 +1726,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.TextTrack.setFontFamily", "params": {"font": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.TextTrack.setFontFamily", "params": {"font": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1578,7 +1735,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 31,
     "result": null
 }
 ```
@@ -1608,7 +1765,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
+    "id": 32,
     "method": "org.rdk.TextTrack.setFontOpacity",
     "params": {
         "opacity": 0
@@ -1620,7 +1777,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.TextTrack.setFontOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.TextTrack.setFontOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1629,7 +1786,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
+    "id": 32,
     "result": null
 }
 ```
@@ -1659,7 +1816,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 30,
+    "id": 33,
     "method": "org.rdk.TextTrack.setFontSize",
     "params": {
         "size": "CONTENT_DEFAULT"
@@ -1671,7 +1828,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.TextTrack.setFontSize", "params": {"size": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.TextTrack.setFontSize", "params": {"size": "CONTENT_DEFAULT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1680,7 +1837,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 30,
+    "id": 33,
     "result": null
 }
 ```
@@ -1711,7 +1868,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 31,
+    "id": 34,
     "method": "org.rdk.TextTrack.setPreviewText",
     "params": {
         "sessionId": 1,
@@ -1724,7 +1881,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1733,7 +1890,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 31,
+    "id": 34,
     "result": null
 }
 ```
@@ -1764,7 +1921,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 32,
+    "id": 35,
     "method": "org.rdk.TextTrack.setSessionClosedCaptionsService",
     "params": {
         "sessionId": 1,
@@ -1777,7 +1934,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1786,7 +1943,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 32,
+    "id": 35,
     "result": null
 }
 ```
@@ -1818,7 +1975,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 33,
+    "id": 36,
     "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection",
     "params": {
         "sessionId": 1,
@@ -1832,7 +1989,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 0, "ancillaryPageId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 0, "ancillaryPageId": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1841,7 +1998,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 33,
+    "id": 36,
     "result": null
 }
 ```
@@ -1871,7 +2028,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 34,
+    "id": 37,
     "method": "org.rdk.TextTrack.setSessionSCTESelection",
     "params": {
         "sessionId": 1
@@ -1883,7 +2040,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1892,7 +2049,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 34,
+    "id": 37,
     "result": null
 }
 ```
@@ -1922,7 +2079,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 38,
     "method": "org.rdk.TextTrack.setSessionTTMLSelection",
     "params": {
         "sessionId": 1
@@ -1934,7 +2091,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1943,7 +2100,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 38,
     "result": null
 }
 ```
@@ -1974,7 +2131,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 39,
     "method": "org.rdk.TextTrack.setSessionTeletextSelection",
     "params": {
         "sessionId": 1,
@@ -1987,7 +2144,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1996,7 +2153,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 39,
     "result": null
 }
 ```
@@ -2026,7 +2183,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 37,
+    "id": 40,
     "method": "org.rdk.TextTrack.setSessionWebVTTSelection",
     "params": {
         "sessionId": 1
@@ -2038,7 +2195,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2047,7 +2204,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 37,
+    "id": 40,
     "result": null
 }
 ```
@@ -2077,7 +2234,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 38,
+    "id": 41,
     "method": "org.rdk.TextTrack.setTtmlStyleOverrides",
     "params": {
         "style": ""
@@ -2089,7 +2246,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2098,7 +2255,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 38,
+    "id": 41,
     "result": null
 }
 ```
@@ -2128,7 +2285,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 42,
     "method": "org.rdk.TextTrack.setWindowColor",
     "params": {
         "color": ""
@@ -2140,7 +2297,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.TextTrack.setWindowColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.TextTrack.setWindowColor", "params": {"color": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2149,7 +2306,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 42,
     "result": null
 }
 ```
@@ -2179,7 +2336,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 40,
+    "id": 43,
     "method": "org.rdk.TextTrack.setWindowOpacity",
     "params": {
         "opacity": 0
@@ -2191,7 +2348,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.TextTrack.setWindowOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.TextTrack.setWindowOpacity", "params": {"opacity": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2200,7 +2357,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 40,
+    "id": 43,
     "result": null
 }
 ```
@@ -2230,7 +2387,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 44,
     "method": "org.rdk.TextTrack.unMuteSession",
     "params": {
         "sessionId": 1
@@ -2242,7 +2399,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2251,7 +2408,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 44,
     "result": null
 }
 ```
@@ -2298,7 +2455,7 @@ Notify backgroundColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 42,
+    "id": 45,
     "method": "org.rdk.TextTrack.onBackgroundColorChanged",
     "params": {
         "color": ""
@@ -2322,7 +2479,7 @@ Notify backgroundOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 46,
     "method": "org.rdk.TextTrack.onBackgroundOpacityChanged",
     "params": {
         "opacity": 0
@@ -2356,7 +2513,7 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 44,
+    "id": 47,
     "method": "org.rdk.TextTrack.onClosedCaptionsStyleChanged",
     "params": {
         "fontFamily": "CONTENT_DEFAULT",
@@ -2389,7 +2546,7 @@ Notify fontColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 45,
+    "id": 48,
     "method": "org.rdk.TextTrack.onFontColorChanged",
     "params": {
         "color": ""
@@ -2413,7 +2570,7 @@ Notify fontEdge Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 46,
+    "id": 49,
     "method": "org.rdk.TextTrack.onFontEdgeChanged",
     "params": {
         "edge": "CONTENT_DEFAULT"
@@ -2437,7 +2594,7 @@ Notify fontEdgeColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 47,
+    "id": 50,
     "method": "org.rdk.TextTrack.onFontEdgeColorChanged",
     "params": {
         "color": ""
@@ -2461,7 +2618,7 @@ Notify fontFamily Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 48,
+    "id": 51,
     "method": "org.rdk.TextTrack.onFontFamilyChanged",
     "params": {
         "font": "CONTENT_DEFAULT"
@@ -2485,7 +2642,7 @@ Notify fontOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 49,
+    "id": 52,
     "method": "org.rdk.TextTrack.onFontOpacityChanged",
     "params": {
         "opacity": 0
@@ -2509,7 +2666,7 @@ Notify fontSize Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 50,
+    "id": 53,
     "method": "org.rdk.TextTrack.onFontSizeChanged",
     "params": {
         "size": "CONTENT_DEFAULT"
@@ -2533,7 +2690,7 @@ The TTML Style override settings has changed.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 51,
+    "id": 54,
     "method": "org.rdk.TextTrack.onTtmlStyleOverridesChanged",
     "params": {
         "style": ""
@@ -2557,7 +2714,7 @@ Notify windowColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 52,
+    "id": 55,
     "method": "org.rdk.TextTrack.onWindowColorChanged",
     "params": {
         "color": ""
@@ -2581,7 +2738,7 @@ Notify windowOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 53,
+    "id": 56,
     "method": "org.rdk.TextTrack.onWindowOpacityChanged",
     "params": {
         "opacity": 0

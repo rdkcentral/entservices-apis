@@ -74,9 +74,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.key | string | name of property |
-| params.value | string | property data @retval ErrorCode::NONE: Indicates successful state change |
+| params.value | string | property data |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -134,7 +134,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params?.options | string | <sup>(optional)</sup>options to be passed to command |
 | params.command | string | command to run in container |
 ### Results
@@ -194,7 +194,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -252,7 +252,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -310,7 +310,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.options | string | options to be passed to command |
 ### Results
 | Name | Type | Description |
@@ -370,7 +370,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.containers | string | /json - string @retval ErrorCode::NONE: Indicates successful state change |
+| result.containers | string | /json - string |
 | result.success | bool |  |
 | result.errorReason | string |  |
 
@@ -420,7 +420,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.source | string | path source to mount |
 | params.target | string | mount target inside container |
 | params.type | string | type of mounting |
@@ -484,7 +484,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -540,7 +540,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.key | string | name of property |
 ### Results
 | Name | Type | Description |
@@ -598,7 +598,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -654,10 +654,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.bundlePath | string | path of application bundle |
 | params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect @retval ErrorCode::NONE: Indicates successful state change |
+| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -718,10 +718,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.dobbySpec | string | dobby specification as json string |
 | params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect @retval ErrorCode::NONE: Indicates successful state change |
+| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -782,8 +782,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
-| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
+| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -840,7 +840,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.target | string | mount target inside container |
 ### Results
 | Name | Type | Description |
@@ -898,7 +898,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -970,7 +970,7 @@ Notifies failure in container execution, only triggered for states start, stop, 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.name | string |  |
 | params.error | integer |  |
 
@@ -998,7 +998,7 @@ Notifies container is started
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.name | string |  |
 
 ### Examples
@@ -1024,7 +1024,7 @@ Notifies state change of container
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.state | string |  |
 
 ### Examples
@@ -1050,7 +1050,7 @@ Notifies container is stopped
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.containerId | string | Identifier of container @retval ErrorCode::NONE: Indicates successful state change |
+| params.containerId | string | Identifier of container |
 | params.name | string |  |
 
 ### Examples

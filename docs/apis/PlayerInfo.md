@@ -2,7 +2,7 @@
 <a id="PlayerInfo_Plugin"></a>
 # PlayerInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo/IPlayerInfo.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo/IDolby.h)**
 
 A PlayerInfo plugin for Thunder framework.
 
@@ -47,200 +47,14 @@ PlayerInfo interface properties:
 
 | Property | Description |
 | :-------- | :-------- |
-| [audioCodecs](#audioCodecs)<sup>RO</sup> |  |
-| [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
-| [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
-| [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
 | [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
 | [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
 | [dolby_mode](#dolby_mode) | Dolby Mode |
 | [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
-
-<a id="AudioCodecs"></a>
-## *AudioCodecs*
-
-
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).codec | IAudioCodecIterator |  |
-| (property).codec[#] | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.PlayerInfo.audioCodecs"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PlayerInfo.audioCodecs"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": [
-        "AUDIO_UNDEFINED"
-    ]
-}
-```
-
-<a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled*
-
-Checks Loudness Equivalence in platform
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).ae | bool | enabled/disabled |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "ae": true
-    }
-}
-```
-
-<a id="Resolution"></a>
-## *Resolution*
-
-Current Video playback resolution
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).res | string | resolution |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.PlayerInfo.resolution"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.resolution"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "res": "RESOLUTION_UNKNOWN"
-    }
-}
-```
-
-<a id="VideoCodecs"></a>
-## *VideoCodecs*
-
-
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).codec | IVideoCodecIterator |  |
-| (property).codec[#] | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PlayerInfo.videoCodecs"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.videoCodecs"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": [
-        "VIDEO_UNDEFINED"
-    ]
-}
-```
+| [audioCodecs](#audioCodecs)<sup>RO</sup> |  |
+| [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
+| [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
+| [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
 
 <a id="AtmosMetadata"></a>
 ## *AtmosMetadata*
@@ -455,6 +269,192 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "result": {
         "mode": "UNKNOWN"
     }
+}
+```
+
+<a id="AudioCodecs"></a>
+## *AudioCodecs*
+
+
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).codec | IAudioCodecIterator |  |
+| (property).codec[#] | string |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.PlayerInfo.audioCodecs"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PlayerInfo.audioCodecs"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": [
+        "AUDIO_UNDEFINED"
+    ]
+}
+```
+
+<a id="IsAudioEquivalenceEnabled"></a>
+## *IsAudioEquivalenceEnabled*
+
+Checks Loudness Equivalence in platform
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).ae | bool | enabled/disabled |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.isAudioEquivalenceEnabled"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "ae": true
+    }
+}
+```
+
+<a id="Resolution"></a>
+## *Resolution*
+
+Current Video playback resolution
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).res | string | resolution |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.PlayerInfo.resolution"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.resolution"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "res": "RESOLUTION_UNKNOWN"
+    }
+}
+```
+
+<a id="VideoCodecs"></a>
+## *VideoCodecs*
+
+
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).codec | IVideoCodecIterator |  |
+| (property).codec[#] | string |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.PlayerInfo.videoCodecs"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.videoCodecs"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": [
+        "VIDEO_UNDEFINED"
+    ]
 }
 ```
 
