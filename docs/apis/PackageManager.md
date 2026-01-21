@@ -162,6 +162,7 @@ Event details will be updated soon.
 | result.configMetadata.logLevels | std::string | json array of strings |
 | result.configMetadata.mapi | bool |  |
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
+| result.configMetadata.ralfPkgPath | std::string | Json string containing ralf dependency details. |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
 
@@ -217,6 +218,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
         "logLevels": "",
         "mapi": true,
         "fkpsFiles": "",
+        "ralfPkgPath": "",
         "fireboltVersion": "",
         "enableDebugger": true
     }
@@ -375,6 +377,7 @@ Event details will be updated soon.
 | result.config.logLevels | std::string | json array of strings |
 | result.config.mapi | bool |  |
 | result.config.fkpsFiles | std::string | json array of strings |
+| result.config.ralfPkgPath | std::string | Json string containing ralf dependency details. |
 | result.config.fireboltVersion | std::string |  |
 | result.config.enableDebugger | bool |  |
 
@@ -432,6 +435,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
             "logLevels": "",
             "mapi": true,
             "fkpsFiles": "",
+            "ralfPkgPath": "",
             "fireboltVersion": "",
             "enableDebugger": true
         }
@@ -478,6 +482,7 @@ Event details will be updated soon.
 | result.configMetadata.logLevels | std::string | json array of strings |
 | result.configMetadata.mapi | bool |  |
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
+| result.configMetadata.ralfPkgPath | std::string | Json string containing ralf dependency details. |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
 | result.gatewayMetadataPath | string |  |
@@ -537,6 +542,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
             "logLevels": "",
             "mapi": true,
             "fkpsFiles": "",
+            "ralfPkgPath": "",
             "fireboltVersion": "",
             "enableDebugger": true
         },
