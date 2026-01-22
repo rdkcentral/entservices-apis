@@ -375,7 +375,7 @@ namespace Exchange {
         // @brief Get HDMI Supported Version
         // @param port: Port number
         // @param capabilityVersion: supported capability version
-        virtual Core::hresult GetHDMIVersion(const HDMIInPort port , HDMIInCapabilityVersion capabilityVersion /* @out */) = 0;
+        virtual Core::hresult GetHDMIVersion(const HDMIInPort port , HDMIInCapabilityVersion &capabilityVersion /* @out */) = 0;
 
         /** Set HDMI VRR Support. */
         // @text setVRRSupport
