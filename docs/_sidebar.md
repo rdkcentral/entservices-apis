@@ -62,6 +62,7 @@
   - [UnifiedCASManagement](apis/UnifiedCASManagement.md)
   - [USBDevice](apis/USBDevice.md)
   - [USBMassStorage](apis/USBMassStorage.md)
+  - [User<sup>@</sup>](apis/UserPlugin.md)
   - [UserSettings](apis/UserSettings.md)
   - [VoiceControl<sup>@</sup>](apis/VoiceControlPlugin.md)
   - [Warehouse](apis/Warehouse.md)
