@@ -168,6 +168,7 @@ namespace Exchange {
 
         enum class FailReason : uint8_t {
             NONE,                       // XXX: Not in HLA
+            GENERAL_FAILURE,
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
