@@ -345,6 +345,10 @@ namespace Exchange {
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
 
         ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
+
+        ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
+        ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
