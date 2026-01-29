@@ -132,7 +132,7 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     virtual Core::hresult SendIntentToActiveApp(const string& appInstanceId , const string& intent , string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     //hello with name of user printed
-    virtual Core::string HelloName(const string& name)=0;
+    virtual Core::hresult HelloName(const string& name)=0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
