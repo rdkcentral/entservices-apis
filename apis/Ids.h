@@ -179,6 +179,7 @@ namespace Exchange {
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
+        ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
