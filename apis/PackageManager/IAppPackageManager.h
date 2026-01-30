@@ -269,10 +269,18 @@ namespace Exchange {
         // @param version: version of package
         // @param config: metadata of package
         virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
+
+
+        // @brief getConfigForInstalledPackage
+        // @text getConfigForInstalledPackage
+        // @param packageId: Package Id
+        // @param version: Version
+        // @param config: metadata of package
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, String& config /* @out @opaque */) = 0;
    };
 
 
-    // @json 1.0.0 @text:keep
+    // 1.0.0 @text:keep
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_HANDLER };
 
@@ -330,6 +338,17 @@ namespace Exchange {
             RuntimeConfig &configMetadata /* @out */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
+            ) = 0;
+
+        // @brief GetAppSecrets
+        // @text getAppSecrets
+        // @param packageId: Package Id
+        // @param version: Version
+        // @param secrets: App Secrets
+        virtual Core::hresult GetAppSecrets(
+            const string &packageId,
+            const string &version,
+            string &secrets /* @out @opaque */
             ) = 0;
     };
 
