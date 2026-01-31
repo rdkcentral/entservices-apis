@@ -23,6 +23,7 @@
   - [HomeKitTV<sup>@</sup>](apis/HomeKitTVPlugin.md)
   - [LEDControl](apis/LEDControl.md)
   - [LifecycleManager](apis/LifecycleManager.md)
+  - [LinearPlaybackControl](apis/LinearPlaybackControl.md)
   - [LinearPlaybackControl<sup>@</sup>](apis/LinearPlaybackControlPlugin.md)
   - [MaintenanceManager<sup>@</sup>](apis/MaintenanceManagerPlugin.md)
   - [MessageControl](apis/MessageControl.md)
