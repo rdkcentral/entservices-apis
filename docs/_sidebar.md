@@ -45,6 +45,7 @@
   - [RDKShell<sup>@</sup>](apis/RDKShellPlugin.md)
   - [RDKWindowManager](apis/RDKWindowManager.md)
   - [RemoteControl<sup>@</sup>](apis/RemoteControlPlugin.md)
+  - [ResourceManager](apis/ResourceManager.md)
   - [ResourceManager<sup>@</sup>](apis/ResourceManagerPlugin.md)
   - [ScreenCapture](apis/ScreenCapture.md)
   - [SharedStorage](apis/SharedStorage.md)
