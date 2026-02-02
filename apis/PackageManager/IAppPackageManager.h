@@ -237,8 +237,8 @@ namespace Exchange {
         // @text listPackages
         virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
         
-        // @brief ListPackages
-        // @text listPackages
+        // @brief HelloName
+        // @text helloName
         virtual Core::hresult HelloName(const string& name , const string& result/*@out*/)=0;
 
 
