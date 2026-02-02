@@ -54,7 +54,7 @@ PackageManager interface methods:
 | [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
 | [getLockedInfo](#getLockedInfo) | GetLockedInfo |
 | [getStorageInformation](#getStorageInformation) | GetStorageInformation |
-| [listPackages](#listPackages) | ListPackages |
+| [helloName](#helloName) | HelloName |
 | [install](#install) | Downloads and installs an application bundle. |
 | [listPackages](#listPackages) | ListPackages |
 | [lock](#lock) | Locks an application to prevent uninstallation. |
@@ -600,7 +600,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="helloName"></a>
 ## *helloName*
 
-ListPackages
+HelloName
 
 ### Events
 Event details will be updated soon.
