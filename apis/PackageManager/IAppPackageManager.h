@@ -239,7 +239,7 @@ namespace Exchange {
         
         // @brief HelloName
         // @text helloName
-        virtual Core::hresult HelloName(const string& name , const string& result/*@out*/)=0;
+        virtual Core::hresult HelloName(const string& name , string& result/*@out*/)=0;
 
 
         // @brief Config
