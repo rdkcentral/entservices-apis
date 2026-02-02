@@ -269,6 +269,10 @@ namespace Exchange {
         // @param version: version of package
         // @param config: metadata of package
         virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
+
+        // @brief DumpInfo
+        // @text dumpInfo
+        virtual Core::hresult DumpInfo(string& dump /* @out */) = 0;
    };
 
 
