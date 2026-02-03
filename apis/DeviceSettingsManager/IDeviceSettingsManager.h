@@ -157,7 +157,7 @@ namespace Exchange {
             uint8_t boost;      /* @text Value of boost level. 0 -96 */
         };
 
-        enum StereoMode : uint8_t {
+        enum StereoModes : uint8_t {
             AUDIO_STEREO_UNKNOWN     = 0,
             AUDIO_STEREO_MONO        = 1,
             AUDIO_STEREO_STEREO      = 2,
