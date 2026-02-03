@@ -20,7 +20,9 @@
 #pragma once
 #include "Module.h"
 
+#if THUNDER_VERSION >= 5
 // @insert <com/ICOM.h>
+#endif
 
 // @stubgen:include <com/IIteratorType.h>
 
