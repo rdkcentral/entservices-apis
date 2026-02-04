@@ -353,7 +353,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.config | String | metadata of package |
+| result.config | string | metadata of package |
 
 ### Examples
 
