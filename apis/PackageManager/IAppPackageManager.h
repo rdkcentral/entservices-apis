@@ -276,7 +276,7 @@ namespace Exchange {
         // @param packageId: Package Id
         // @param version: Version
         // @param config: metadata of package
-        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, String& config /* @out @opaque */) = 0;
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string& config /* @out @opaque */) = 0;
    };
 
 
