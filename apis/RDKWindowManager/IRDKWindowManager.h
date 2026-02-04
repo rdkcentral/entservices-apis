@@ -57,17 +57,17 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     virtual void OnVisible(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is hidden
-    // @text OnHidden
+    // @text onHidden
     // @param appInstanceId: the identifier of the hidden application
     virtual void OnHidden(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is in focus
-    // @text OnFocus
+    // @text onFocus
     // @param appInstanceId: the identifier of the focussed application
     virtual void OnFocus(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is blurred
-    // @text OnBlur
+    // @text onBlur
     // @param appInstanceId: the identifier of the blurred application
     virtual void OnBlur(const std::string& appInstanceId){};
   };

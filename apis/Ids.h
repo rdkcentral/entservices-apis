@@ -179,6 +179,7 @@ namespace Exchange {
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
+        ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
@@ -329,6 +330,7 @@ namespace Exchange {
         ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
         ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
         ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+        ID_APP_GATEWAY_TELEMETRY                     = ID_APP_GATEWAY + 5,
 
         ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
         ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
