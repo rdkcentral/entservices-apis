@@ -168,6 +168,7 @@ namespace Exchange {
 
         enum class FailReason : uint8_t {
             NONE,                       // XXX: Not in HLA
+            GENERAL_FAILURE,
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
@@ -272,7 +273,6 @@ namespace Exchange {
    };
 
 
-    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_HANDLER };
 
