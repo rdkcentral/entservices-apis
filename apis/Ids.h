@@ -330,13 +330,20 @@ namespace Exchange {
         ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
         ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
         ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+        ID_APP_GATEWAY_TELEMETRY                     = ID_APP_GATEWAY + 5,
 
         ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
         ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
         ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2,
 
         ID_FIRMWARE_DOWNLOAD                         = ID_ENTOS_OFFSET + 0x460,
-        ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1
+        ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1,
+
+        ID_GOOGLE_CAST                               = ID_ENTOS_OFFSET + 0x470,
+        ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
+        ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
+        ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+
     }; // enum IDS
 
 } // namespace Exchange
