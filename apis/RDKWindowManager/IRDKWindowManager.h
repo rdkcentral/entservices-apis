@@ -229,7 +229,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
-  virtual Core::hresult SetZOrder(const string& appInstanceId, int32_t zOrder) = 0;
+  virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
   // @text getZOrder
