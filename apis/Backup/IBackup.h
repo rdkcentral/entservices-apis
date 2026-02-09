@@ -70,10 +70,10 @@ namespace Exchange {
 
         // @text restore
         // @brief Restore settings that belong to this component.
-        // @param scenario: Scenario for which the backup to happen
+        // @param scenario: Scenario for which the restore to happen
         virtual Core::hresult Restore(const Scenario scenario) const = 0;
 
-    }; 
+    };
 }
 }
 
