@@ -48,16 +48,9 @@ SystemServices interface methods:
 | Method | Description |
 | :-------- | :-------- |
 | [abortLogUpload](#abortLogUpload) | Stops background process to upload logs. |
-| [clearLastDeepSleepReason](#clearLastDeepSleepReason) | Clears the last deep sleep reason |
-| [deletePersistentPath](#deletePersistentPath) | Deletes persistent path associated with a callsign. |
-| [enableMoca](#enableMoca) | Enables (or disables) Moca support for the platform. |
-| [enableXREConnectionRetention](#enableXREConnectionRetention) | Enables (or disables) XRE Connection Retention option. |
-| [fireFirmwarePendingReboot](#fireFirmwarePendingReboot) | Notifies the device about a pending reboot. |
-| [getAvailableStandbyModes](#getAvailableStandbyModes) | Queries the available standby modes. |
 | [getBlocklistFlag](#getBlocklistFlag) | Get block list falg. |
 | [getBootTypeInfo](#getBootTypeInfo) | Get the FSR flag from the emmc raw area. |
 | [getBuildType](#getBuildType) | Returns build type of the image flashed on the device. |
-| [getCoreTemperature](#getCoreTemperature) | Returns the core temperature of the device. |
 | [getDeviceInfo](#getDeviceInfo) | Collects device details |
 | [getDownloadedFirmwareInfo](#getDownloadedFirmwareInfo) | Returns information about firmware downloads. |
 | [getFSRFlag](#getFSRFlag) | Get the FSR flag from the emmc raw area. |
@@ -65,61 +58,41 @@ SystemServices interface methods:
 | [getFirmwareUpdateInfo](#getFirmwareUpdateInfo) | Checks the firmware update information. |
 | [getFirmwareUpdateState](#getFirmwareUpdateState) | Checks the state of the firmware update. |
 | [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API or default value. |
-| [getLastDeepSleepReason](#getLastDeepSleepReason) | Retrieves the last deep sleep reason. |
 | [getLastFirmwareFailureReason](#getLastFirmwareFailureReason) | Retrieves the last firmware failure reason. |
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode. |
 | [getMacAddresses](#getMacAddresses) | Gets the MAC address of the device. |
 | [getMfgSerialNumber](#getMfgSerialNumber) | Gets the Manufacturing Serial Number. |
 | [getMigrationStatus](#getMigrationStatus) | set the Migration Status of the device |
-| [getMode](#getMode) | Returns the currently set mode information. |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device. |
-| [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value. |
+| [getPlatformConfiguration](#getPlatformConfiguration) | Returns the supported features and device/account info |
 | [getPowerState](#getPowerState) | Returns the power state of the device. |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot. |
-| [getPowerStateIsManagedByDevice](#getPowerStateIsManagedByDevice) | Checks whether the power state is managed by the device. |
-| [getPreferredStandbyMode](#getPreferredStandbyMode) | Returns the preferred standby mode. |
-| [getPreviousRebootInfo](#getPreviousRebootInfo) | Returns the preferred standby mode. |
-| [getPreviousRebootInfo2](#getPreviousRebootInfo2) | Returns detailed information about a reboot. |
-| [getPreviousRebootReason](#getPreviousRebootReason) | Returns the last reboot reason. |
-| [getPrivacyMode](#getPrivacyMode) | Getting Privacy Mode. |
 | [getRFCConfig](#getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations. |
 | [getSerialNumber](#getSerialNumber) | Returns the device serial number. |
-| [getStateInfo](#getStateInfo) | Queries device state information of various properties. |
-| [getStoreDemoLink](#getStoreDemoLink) | Returns the store demo video link. |
 | [getSystemVersions](#getSystemVersions) | Returns system version details. |
-| [getTemperatureThresholds](#getTemperatureThresholds) | Returns temperature threshold values. |
 | [getTerritory](#getTerritory) | Gets the configured system territory and region. |
-| [getThunderStartReason](#getThunderStartReason) | Returns the Thunder start reason. |
 | [getTimeZoneDST](#getTimeZoneDST) | Gets the available timezones from the system’s time zone database. |
 | [getTimeZones](#getTimeZones) | Returns the friendly name set by setFriendlyName API or default value. |
 | [getWakeupReason](#getWakeupReason) | Returns the reason for the device coming out of deep sleep. |
-| [getWakeupSrcConfiguration](#getWakeupSrcConfiguration) | Returns all the supported wakeup configurations and powerState. |
-| [getXconfParams](#getXconfParams) | Returns XCONF configuration parameters for the device. |
 | [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
-| [queryMocaStatus](#queryMocaStatus) | Checks whether MOCA is enabled. |
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box. |
 | [requestSystemUptime](#requestSystemUptime) | Returns the device uptime. |
 | [setBlocklistFlag](#setBlocklistFlag) | To update Blocklist flag. |
-| [setBootLoaderPattern](#setBootLoaderPattern) | Sets the boot loader pattern mode in MFR. |
 | [setBootLoaderSplashScreen](#setBootLoaderSplashScreen) | Install or update the BootLoader Splash Screens. |
 | [setDeepSleepTimer](#setDeepSleepTimer) | Sets the deep sleep timeout period. |
 | [setFSRFlag](#setFSRFlag) | Set the FSR flag into the emmc raw area. |
 | [setFirmwareAutoReboot](#setFirmwareAutoReboot) | Enables or disables the AutoReboot Feature. |
-| [setFirmwareRebootDelay](#setFirmwareRebootDelay) | Delays the firmware reboot. |
 | [setFriendlyName](#setFriendlyName) | Sets the friendly name of device. |
 | [setMigrationStatus](#setMigrationStatus) | set the Migration Status of the device. |
 | [setMode](#setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode. |
 | [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
-| [setOvertempGraceInterval](#setOvertempGraceInterval) | Sets the over-temperature grace interval value. Not supported on all devices. |
 | [setPowerState](#setPowerState) | Sets the power state of the device. |
-| [setPreferredStandbyMode](#setPreferredStandbyMode) | Sets and persists the preferred standby mode. |
-| [setPrivacyMode](#setPrivacyMode) | Setting Privacy Mode. |
-| [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values. |
 | [setTerritory](#setTerritory) | Sets the system territory and region. |
 | [setTimeZoneDST](#setTimeZoneDST) | Sets the system time zone. |
 | [setWakeupSrcConfiguration](#setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState. |
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. |
 | [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs. |
+| [setNetworkStandbyMode](#setNetworkStandbyMode) | Enables or disables the AutoReboot Feature. |
 
 <a id="abortLogUpload"></a>
 ## *abortLogUpload*
@@ -134,7 +107,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -169,319 +142,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="clearLastDeepSleepReason"></a>
-## *clearLastDeepSleepReason*
-
-Clears the last deep sleep reason
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.SystemServices.clearLastDeepSleepReason"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemServices.clearLastDeepSleepReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="deletePersistentPath"></a>
-## *deletePersistentPath*
-
-Deletes persistent path associated with a callsign.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.callsign | string | string |
-| params.type | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.SystemServices.deletePersistentPath",
-    "params": {
-        "callsign": "",
-        "type": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemServices.deletePersistentPath", "params": {"callsign": "", "type": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="enableMoca"></a>
-## *enableMoca*
-
-Enables (or disables) Moca support for the platform.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.value | bool | bool |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.SystemServices.enableMoca",
-    "params": {
-        "value": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemServices.enableMoca", "params": {"value": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="enableXREConnectionRetention"></a>
-## *enableXREConnectionRetention*
-
-Enables (or disables) XRE Connection Retention option.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enable | bool | bool |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.SystemServices.enableXREConnectionRetention",
-    "params": {
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SystemServices.enableXREConnectionRetention", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="fireFirmwarePendingReboot"></a>
-## *fireFirmwarePendingReboot*
-
-Notifies the device about a pending reboot.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.SystemServices.fireFirmwarePendingReboot"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemServices.fireFirmwarePendingReboot"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="getAvailableStandbyModes"></a>
-## *getAvailableStandbyModes*
-
-Queries the available standby modes.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedStandbyModes | IStringIterator | array of supported standby modes |
-| result.supportedStandbyModes[#] | string |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.SystemServices.getAvailableStandbyModes"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemServices.getAvailableStandbyModes"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "supportedStandbyModes": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
 <a id="getBlocklistFlag"></a>
 ## *getBlocklistFlag*
 
@@ -496,10 +156,10 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.result | BlocklistResult |  |
-| result.result.error | ErrorInfo |  |
-| result.result.error.message | string |  |
-| result.result.error.code | string |  |
-| result.result.success | bool |  |
+| result.result.error | ErrorInfo | Error Information |
+| result.result.error.message | string | Error Message |
+| result.result.error.code | string | Error Code |
+| result.result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -509,7 +169,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 1,
     "method": "org.rdk.SystemServices.getBlocklistFlag"
 }
 ```
@@ -518,7 +178,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemServices.getBlocklistFlag"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemServices.getBlocklistFlag"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -527,7 +187,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 1,
     "result": {
         "error": {
             "message": "",
@@ -551,8 +211,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string | string |
-| result.success | bool | bool |
+| result.bootType | string | BOOT Type Info |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -562,7 +222,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 2,
     "method": "org.rdk.SystemServices.getBootTypeInfo"
 }
 ```
@@ -571,7 +231,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemServices.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemServices.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -580,7 +240,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 2,
     "result": {
         "bootType": "",
         "success": true
@@ -601,8 +261,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.build_type | string | string |
-| result.success | bool | bool |
+| result.build_type | string | Image build type |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -612,7 +272,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 3,
     "method": "org.rdk.SystemServices.getBuildType"
 }
 ```
@@ -621,7 +281,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemServices.getBuildType"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemServices.getBuildType"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -630,59 +290,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 3,
     "result": {
         "build_type": "",
-        "success": true
-    }
-}
-```
-
-<a id="getCoreTemperature"></a>
-## *getCoreTemperature*
-
-Returns the core temperature of the device.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.temperature | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.SystemServices.getCoreTemperature"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemServices.getCoreTemperature"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "temperature": "",
         "success": true
     }
 }
@@ -705,8 +315,21 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.estb_mac | string | string |
-| result.success | bool | bool |
+| result.deviceInfo | DeviceInfo | Device Information @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.deviceInfo.make | string | Device manufacturer |
+| result.deviceInfo.bluetooth_mac | string | Bluetooth MAC Address |
+| result.deviceInfo.boxIP | string | STB IP Address |
+| result.deviceInfo.build_type | string | Image build type |
+| result.deviceInfo.device_type | string | Device type |
+| result.deviceInfo.estb_mac | string | STB MAC Address |
+| result.deviceInfo.eth_mac | string | Ethernet MAC Address |
+| result.deviceInfo.friendly_id | string | friendly device model name |
+| result.deviceInfo.imageVersion | string | Image version |
+| result.deviceInfo.version | string | Version Info |
+| result.deviceInfo.software_version | string | Software version |
+| result.deviceInfo.model_number | string | Device model number |
+| result.deviceInfo.wifi_mac | string | WIFI Mac Address |
+| result.deviceInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -716,7 +339,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 4,
     "method": "org.rdk.SystemServices.getDeviceInfo",
     "params": [
         ""
@@ -728,7 +351,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemServices.getDeviceInfo", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SystemServices.getDeviceInfo", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -737,9 +360,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 4,
     "result": {
+        "make": "",
+        "bluetooth_mac": "",
+        "boxIP": "",
+        "build_type": "",
+        "device_type": "",
         "estb_mac": "",
+        "eth_mac": "",
+        "friendly_id": "",
+        "imageVersion": "",
+        "version": "",
+        "software_version": "",
+        "model_number": "",
+        "wifi_mac": "",
         "success": true
     }
 }
@@ -759,11 +394,11 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.downloadedFirmwareInfo | DownloadedFirmwareInfo |  |
-| result.downloadedFirmwareInfo.currentFWVersion | string |  |
-| result.downloadedFirmwareInfo.downloadedFWVersion | string |  |
-| result.downloadedFirmwareInfo.downloadedFWLocation | string |  |
-| result.downloadedFirmwareInfo.isRebootDeferred | bool |  |
-| result.downloadedFirmwareInfo.success | bool |  |
+| result.downloadedFirmwareInfo.currentFWVersion | string | The current firmware version |
+| result.downloadedFirmwareInfo.downloadedFWVersion | string | The downloaded firmware version |
+| result.downloadedFirmwareInfo.downloadedFWLocation | string | The location of the downloaded firmware |
+| result.downloadedFirmwareInfo.isRebootDeferred | bool | Whether the device should be rebooted |
+| result.downloadedFirmwareInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -773,7 +408,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 5,
     "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"
 }
 ```
@@ -782,7 +417,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -791,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 5,
     "result": {
         "currentFWVersion": "",
         "downloadedFWVersion": "",
@@ -815,8 +450,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.fsrFlag | bool | bool |
-| result.success | bool | bool |
+| result.fsrFlag | bool | FSR flag |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -826,7 +461,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 6,
     "method": "org.rdk.SystemServices.getFSRFlag"
 }
 ```
@@ -835,7 +470,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.SystemServices.getFSRFlag"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemServices.getFSRFlag"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -844,7 +479,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 6,
     "result": {
         "fsrFlag": true,
         "success": true
@@ -865,8 +500,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.downloadPercent | int | int |
-| result.success | bool | bool |
+| result.downloadPercent | integer | Current download percentage (0-100) |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -876,7 +511,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 7,
     "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"
 }
 ```
@@ -885,7 +520,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -894,7 +529,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 7,
     "result": {
         "downloadPercent": 0,
         "success": true
@@ -913,13 +548,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.GUID | string | string |
+| params.GUID | string | A unique identifier |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.asyncResponse | bool | bool |
-| result.success | bool | bool |
+| result.asyncResponse | bool | Whether the event notification succeeded |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -929,7 +564,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 8,
     "method": "org.rdk.SystemServices.getFirmwareUpdateInfo",
     "params": {
         "GUID": ""
@@ -941,7 +576,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.SystemServices.getFirmwareUpdateInfo", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemServices.getFirmwareUpdateInfo", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -950,7 +585,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 8,
     "result": {
         "asyncResponse": true,
         "success": true
@@ -971,8 +606,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.firmwareUpdateState | int | int |
-| result.success | bool | bool |
+| result.firmwareUpdateState | int | The state (must be one of the following: Uninitialized, Requesting, Downloading, Failed, DownLoad Complete, Validation Complete, Preparing to Reboot) |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -982,7 +617,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 9,
     "method": "org.rdk.SystemServices.getFirmwareUpdateState"
 }
 ```
@@ -991,7 +626,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.SystemServices.getFirmwareUpdateState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemServices.getFirmwareUpdateState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1000,7 +635,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 9,
     "result": {
         "firmwareUpdateState": 0,
         "success": true
@@ -1021,8 +656,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.friendlyName | string | string |
-| result.success | bool | bool |
+| result.friendlyName | string | The friendly name of the device which used to display on the client device list |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1032,7 +667,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 10,
     "method": "org.rdk.SystemServices.getFriendlyName"
 }
 ```
@@ -1041,7 +676,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemServices.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1050,59 +685,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 10,
     "result": {
         "friendlyName": "",
-        "success": true
-    }
-}
-```
-
-<a id="getLastDeepSleepReason"></a>
-## *getLastDeepSleepReason*
-
-Retrieves the last deep sleep reason.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.reason | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.SystemServices.getLastDeepSleepReason"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.SystemServices.getLastDeepSleepReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": {
-        "reason": "",
         "success": true
     }
 }
@@ -1121,8 +706,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.failReason | string | string |
-| result.success | bool | bool |
+| result.failReason | string | The reason the failure occurred |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1132,7 +717,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 11,
     "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"
 }
 ```
@@ -1141,7 +726,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1150,7 +735,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 11,
     "result": {
         "failReason": "",
         "success": true
@@ -1171,8 +756,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.wakeupKeyCode | string | string |
-| result.success | bool | bool |
+| result.wakeupKeyCode | string | The last wakeup keycode |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1182,7 +767,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 12,
     "method": "org.rdk.SystemServices.getLastWakeupKeyCode"
 }
 ```
@@ -1191,7 +776,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.SystemServices.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemServices.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1200,7 +785,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 12,
     "result": {
         "wakeupKeyCode": "",
         "success": true
@@ -1219,13 +804,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.GUID | string | string |
+| params.GUID | string | A unique identifier |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.asyncResponse | bool | bool |
-| result.success | bool | bool |
+| result.asyncResponse | bool | Whether the event notification succeeded |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1235,7 +820,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 13,
     "method": "org.rdk.SystemServices.getMacAddresses",
     "params": {
         "GUID": ""
@@ -1247,7 +832,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.SystemServices.getMacAddresses", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.SystemServices.getMacAddresses", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1256,7 +841,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 13,
     "result": {
         "asyncResponse": true,
         "success": true
@@ -1277,8 +862,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.mfgSerialNumber | string | string |
-| result.success | bool | bool |
+| result.mfgSerialNumber | string | Manufacturing Serial Number |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1288,7 +873,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 14,
     "method": "org.rdk.SystemServices.getMfgSerialNumber"
 }
 ```
@@ -1297,7 +882,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.SystemServices.getMfgSerialNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.SystemServices.getMfgSerialNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1306,7 +891,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 14,
     "result": {
         "mfgSerialNumber": "",
         "success": true
@@ -1327,8 +912,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.MigrationStatus | string | string |
-| result.success | bool | bool |
+| result.MigrationStatus | string | Migration Status |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1338,7 +923,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 15,
     "method": "org.rdk.SystemServices.getMigrationStatus"
 }
 ```
@@ -1347,7 +932,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.SystemServices.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.SystemServices.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1356,65 +941,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 15,
     "result": {
         "MigrationStatus": "",
-        "success": true
-    }
-}
-```
-
-<a id="getMode"></a>
-## *getMode*
-
-Returns the currently set mode information.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.systemMode | SystemModeInfo |  |
-| result.systemMode.modeinfo | ModeInfo |  |
-| result.systemMode.modeinfo.mode | string |  |
-| result.systemMode.modeinfo.duration | int |  |
-| result.systemMode.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "method": "org.rdk.SystemServices.getMode"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.SystemServices.getMode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "result": {
-        "modeinfo": {
-            "mode": "",
-            "duration": 0
-        },
         "success": true
     }
 }
@@ -1433,8 +962,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.nwStandby | bool | bool |
-| result.success | bool | bool |
+| result.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1444,7 +973,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 16,
     "method": "org.rdk.SystemServices.getNetworkStandbyMode"
 }
 ```
@@ -1453,7 +982,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.SystemServices.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.SystemServices.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1462,7 +991,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 16,
     "result": {
         "nwStandby": true,
         "success": true
@@ -1470,10 +999,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-<a id="getOvertempGraceInterval"></a>
-## *getOvertempGraceInterval*
+<a id="getPlatformConfiguration"></a>
+## *getPlatformConfiguration*
 
-Returns the over-temperature grace interval value.
+Returns the supported features and device/account info
 
 ### Events
 Event details will be updated soon.
@@ -1483,8 +1012,30 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.graceInterval | string | string |
-| result.success | bool | bool |
+| result.platformConfig | PlatformConfig | Platform Configuration Details @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.platformConfig.AccountInfo | AccountInfoDetails | AccountInfo Details |
+| result.platformConfig.AccountInfo.accountId | string | Account Id |
+| result.platformConfig.AccountInfo.x1DeviceId | string | X1 Device Id |
+| result.platformConfig.AccountInfo.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
+| result.platformConfig.AccountInfo.experience | string | Experience |
+| result.platformConfig.AccountInfo.deviceMACAddress | string | Device MAC Address |
+| result.platformConfig.AccountInfo.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
+| result.platformConfig.DeviceInfo | DeviceInfoDetails | DeviceInfo Details |
+| result.platformConfig.DeviceInfo.quirks | string | The list of installed “quirks” |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
+| result.platformConfig.DeviceInfo.features | Features | features |
+| result.platformConfig.DeviceInfo.mimeTypes | string | mime Types |
+| result.platformConfig.DeviceInfo.model | string |  |
+| result.platformConfig.DeviceInfo.deviceType | string |  |
+| result.platformConfig.DeviceInfo.supportsTrueSD | bool |  |
+| result.platformConfig.DeviceInfo.webBrowser | WebBrowserInfo |  |
+| result.platformConfig.DeviceInfo.webBrowser.browserType | string | Browser Type |
+| result.platformConfig.DeviceInfo.webBrowser.version | string | Version |
+| result.platformConfig.DeviceInfo.webBrowser.userAgent | string | User Agent |
+| result.platformConfig.DeviceInfo.HdrCapability | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
+| result.platformConfig.DeviceInfo.canMixPCMWithSurround | bool |  |
+| result.platformConfig.DeviceInfo.publicIP | string | Public IP |
+| result.platformConfig.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1494,8 +1045,8 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.SystemServices.getOvertempGraceInterval"
+    "id": 17,
+    "method": "org.rdk.SystemServices.getPlatformConfiguration"
 }
 ```
 
@@ -1503,7 +1054,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.SystemServices.getOvertempGraceInterval"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1512,9 +1063,33 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 17,
     "result": {
-        "graceInterval": "",
+        "AccountInfo": {
+            "accountId": "",
+            "x1DeviceId": "",
+            "XCALSessionTokenAvailable": true,
+            "experience": "",
+            "deviceMACAddress": "",
+            "firmwareUpdateDisabled": true
+        },
+        "DeviceInfo": {
+            "quirks": "",
+            "mimeTypeExclusions": {},
+            "features": {},
+            "mimeTypes": "",
+            "model": "",
+            "deviceType": "",
+            "supportsTrueSD": true,
+            "webBrowser": {
+                "browserType": "",
+                "version": "",
+                "userAgent": ""
+            },
+            "HdrCapability": "",
+            "canMixPCMWithSurround": true,
+            "publicIP": ""
+        },
         "success": true
     }
 }
@@ -1533,8 +1108,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.powerState | string | string |
-| result.success | bool | bool |
+| result.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1544,7 +1119,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 18,
     "method": "org.rdk.SystemServices.getPowerState"
 }
 ```
@@ -1553,7 +1128,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.SystemServices.getPowerState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.SystemServices.getPowerState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1562,7 +1137,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 18,
     "result": {
         "powerState": "",
         "success": true
@@ -1583,8 +1158,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | string |
-| result.success | bool | bool |
+| result.state | string | The power state |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1594,7 +1169,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 19,
     "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"
 }
 ```
@@ -1603,7 +1178,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1612,329 +1187,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 19,
     "result": {
         "state": "",
-        "success": true
-    }
-}
-```
-
-<a id="getPowerStateIsManagedByDevice"></a>
-## *getPowerStateIsManagedByDevice*
-
-Checks whether the power state is managed by the device.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.powerStateManagedByDevice | bool | bool |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.SystemServices.getPowerStateIsManagedByDevice"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.SystemServices.getPowerStateIsManagedByDevice"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "result": {
-        "powerStateManagedByDevice": true,
-        "success": true
-    }
-}
-```
-
-<a id="getPreferredStandbyMode"></a>
-## *getPreferredStandbyMode*
-
-Returns the preferred standby mode.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.preferredStandbyMode | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "method": "org.rdk.SystemServices.getPreferredStandbyMode"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.SystemServices.getPreferredStandbyMode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "result": {
-        "preferredStandbyMode": "",
-        "success": true
-    }
-}
-```
-
-<a id="getPreviousRebootInfo"></a>
-## *getPreviousRebootInfo*
-
-Returns the preferred standby mode.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.previousRebootInfo | PreviousRebootInfo |  |
-| result.previousRebootInfo.timestamp | string |  |
-| result.previousRebootInfo.reason | string |  |
-| result.previousRebootInfo.source | string |  |
-| result.previousRebootInfo.customReason | string |  |
-| result.previousRebootInfo.otherReason | string |  |
-| result.previousRebootInfo.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "method": "org.rdk.SystemServices.getPreviousRebootInfo"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.SystemServices.getPreviousRebootInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "result": {
-        "timestamp": "",
-        "reason": "",
-        "source": "",
-        "customReason": "",
-        "otherReason": "",
-        "success": true
-    }
-}
-```
-
-<a id="getPreviousRebootInfo2"></a>
-## *getPreviousRebootInfo2*
-
-Returns detailed information about a reboot.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.rebootInfo | RebootInfo |  |
-| result.rebootInfo.timestamp | string |  |
-| result.rebootInfo.reason | string |  |
-| result.rebootInfo.source | string |  |
-| result.rebootInfo.customReason | string |  |
-| result.rebootInfo.otherReason | string |  |
-| result.rebootInfo.lastHardPowerReset | string |  |
-| result.rebootInfo.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "method": "org.rdk.SystemServices.getPreviousRebootInfo2"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.SystemServices.getPreviousRebootInfo2"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "result": {
-        "timestamp": "",
-        "reason": "",
-        "source": "",
-        "customReason": "",
-        "otherReason": "",
-        "lastHardPowerReset": "",
-        "success": true
-    }
-}
-```
-
-<a id="getPreviousRebootReason"></a>
-## *getPreviousRebootReason*
-
-Returns the last reboot reason.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.reason | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 33,
-    "method": "org.rdk.SystemServices.getPreviousRebootReason"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.SystemServices.getPreviousRebootReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 33,
-    "result": {
-        "reason": "",
-        "success": true
-    }
-}
-```
-
-<a id="getPrivacyMode"></a>
-## *getPrivacyMode*
-
-Getting Privacy Mode.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.privacyMode | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "method": "org.rdk.SystemServices.getPrivacyMode"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.SystemServices.getPrivacyMode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "result": {
-        "privacyMode": "",
         "success": true
     }
 }
@@ -1959,7 +1214,7 @@ Event details will be updated soon.
 | result | object |  |
 | result.RFCConfig | IStringIterator | A list of specified RFC properties |
 | result.RFCConfig[#] | string |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1969,7 +1224,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 20,
     "method": "org.rdk.SystemServices.getRFCConfig",
     "params": [
         ""
@@ -1981,7 +1236,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.SystemServices.getRFCConfig", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.SystemServices.getRFCConfig", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1990,7 +1245,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 20,
     "result": {
         "RFCConfig": [
             ""
@@ -2013,8 +1268,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.serialNumber | string | string |
-| result.success | bool | bool |
+| result.serialNumber | string | The serial number |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2024,7 +1279,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 21,
     "method": "org.rdk.SystemServices.getSerialNumber"
 }
 ```
@@ -2033,7 +1288,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.SystemServices.getSerialNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.SystemServices.getSerialNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2042,115 +1297,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 21,
     "result": {
         "serialNumber": "",
-        "success": true
-    }
-}
-```
-
-<a id="getStateInfo"></a>
-## *getStateInfo*
-
-Queries device state information of various properties.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.param | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.paramValue | int | int |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "method": "org.rdk.SystemServices.getStateInfo",
-    "params": {
-        "param": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.getStateInfo", "params": {"param": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "result": {
-        "paramValue": 0,
-        "success": true
-    }
-}
-```
-
-<a id="getStoreDemoLink"></a>
-## *getStoreDemoLink*
-
-Returns the store demo video link.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.fileURL | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "method": "org.rdk.SystemServices.getStoreDemoLink"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.getStoreDemoLink"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "result": {
-        "fileURL": "",
         "success": true
     }
 }
@@ -2170,10 +1319,10 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.systemVersionsInfo | SystemVersionsInfo |  |
-| result.systemVersionsInfo.stbVersion | string |  |
-| result.systemVersionsInfo.receiverVersion | string |  |
-| result.systemVersionsInfo.stbTimestamp | string |  |
-| result.systemVersionsInfo.success | bool |  |
+| result.systemVersionsInfo.stbVersion | string | The STB version |
+| result.systemVersionsInfo.receiverVersion | string | The receiver version |
+| result.systemVersionsInfo.stbTimestamp | string | The STB timestamp |
+| result.systemVersionsInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2183,7 +1332,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 22,
     "method": "org.rdk.SystemServices.getSystemVersions"
 }
 ```
@@ -2192,7 +1341,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.getSystemVersions"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.SystemServices.getSystemVersions"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2201,69 +1350,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 22,
     "result": {
         "stbVersion": "",
         "receiverVersion": "",
         "stbTimestamp": "",
-        "success": true
-    }
-}
-```
-
-<a id="getTemperatureThresholds"></a>
-## *getTemperatureThresholds*
-
-Returns temperature threshold values.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.temperatureThresholdsInfo | TemperatureThresholdsInfo |  |
-| result.temperatureThresholdsInfo.temperatureThresholds | TemperatureThresholds |  |
-| result.temperatureThresholdsInfo.temperatureThresholds.WARN | string |  |
-| result.temperatureThresholdsInfo.temperatureThresholds.MAX | string |  |
-| result.temperatureThresholdsInfo.temperatureThresholds.temperature | string |  |
-| result.temperatureThresholdsInfo.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 40,
-    "method": "org.rdk.SystemServices.getTemperatureThresholds"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.getTemperatureThresholds"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 40,
-    "result": {
-        "temperatureThresholds": {
-            "WARN": "",
-            "MAX": "",
-            "temperature": ""
-        },
         "success": true
     }
 }
@@ -2282,9 +1373,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.territory | string | string |
-| result.region | string | string |
-| result.success | bool | bool |
+| result.territory | string | territory name |
+| result.region | string | region name |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2294,7 +1385,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 23,
     "method": "org.rdk.SystemServices.getTerritory"
 }
 ```
@@ -2303,7 +1394,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.getTerritory"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.SystemServices.getTerritory"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2312,60 +1403,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 23,
     "result": {
         "territory": "",
         "region": "",
-        "success": true
-    }
-}
-```
-
-<a id="getThunderStartReason"></a>
-## *getThunderStartReason*
-
-Returns the Thunder start reason.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.startReason | string | string |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 42,
-    "method": "org.rdk.SystemServices.getThunderStartReason"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.getThunderStartReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 42,
-    "result": {
-        "startReason": "",
         "success": true
     }
 }
@@ -2384,9 +1425,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.timeZone | string | string |
-| result.accuracy | string | string |
-| result.success | bool | bool |
+| result.timeZone | string | The timezone |
+| result.accuracy | string | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2396,7 +1437,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 24,
     "method": "org.rdk.SystemServices.getTimeZoneDST"
 }
 ```
@@ -2405,7 +1446,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.getTimeZoneDST"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.SystemServices.getTimeZoneDST"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2414,7 +1455,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 24,
     "result": {
         "timeZone": "",
         "accuracy": "",
@@ -2437,13 +1478,13 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.timeZoneInfo | TimeZoneInfo |  |
-| result.timeZoneInfo.zoneinfo | Zoneinfo |  |
-| result.timeZoneInfo.zoneinfo.America | AmericaInfo |  |
-| result.timeZoneInfo.zoneinfo.America.New_York | string |  |
-| result.timeZoneInfo.zoneinfo.America.Los_Angeles | string |  |
-| result.timeZoneInfo.zoneinfo.Europe | EuropeInfo |  |
-| result.timeZoneInfo.zoneinfo.Europe.London | string |  |
-| result.timeZoneInfo.success | bool |  |
+| result.timeZoneInfo.zoneinfo | Zoneinfo | Error Information |
+| result.timeZoneInfo.zoneinfo.America | AmericaInfo | Error Information |
+| result.timeZoneInfo.zoneinfo.America.New_York | string | Error Information |
+| result.timeZoneInfo.zoneinfo.America.Los_Angeles | string | Error Information |
+| result.timeZoneInfo.zoneinfo.Europe | EuropeInfo | Error Information |
+| result.timeZoneInfo.zoneinfo.Europe.London | string | Error Information |
+| result.timeZoneInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2453,7 +1494,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 44,
+    "id": 25,
     "method": "org.rdk.SystemServices.getTimeZones"
 }
 ```
@@ -2462,7 +1503,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.getTimeZones"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.SystemServices.getTimeZones"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2471,7 +1512,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 44,
+    "id": 25,
     "result": {
         "zoneinfo": {
             "America": {
@@ -2500,8 +1541,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.WakeupReason | string | string |
-| result.success | bool | bool |
+| result.WakeupReason | string | The reason |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2511,7 +1552,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 45,
+    "id": 26,
     "method": "org.rdk.SystemServices.getWakeupReason"
 }
 ```
@@ -2520,7 +1561,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.getWakeupReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.SystemServices.getWakeupReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2529,142 +1570,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 45,
+    "id": 26,
     "result": {
         "WakeupReason": "",
-        "success": true
-    }
-}
-```
-
-<a id="getWakeupSrcConfiguration"></a>
-## *getWakeupSrcConfiguration*
-
-Returns all the supported wakeup configurations and powerState.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.powerState | string | string |
-| result.wakeupSources | ISystemServicesWakeupSourcesIterator | Boolean Array of Key value pair with wake up sources and its configurations |
-| result.wakeupSources[#].WAKEUPSRC_VOICE | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_WIFI | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_IR | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_CEC | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_LAN | bool |  |
-| result.wakeupSources[#].WAKEUPSRC_TIMER | bool |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 46,
-    "method": "org.rdk.SystemServices.getWakeupSrcConfiguration"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "method": "org.rdk.SystemServices.getWakeupSrcConfiguration"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 46,
-    "result": {
-        "powerState": "",
-        "wakeupSources": [
-            {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
-            }
-        ],
-        "success": true
-    }
-}
-```
-
-<a id="getXconfParams"></a>
-## *getXconfParams*
-
-Returns XCONF configuration parameters for the device.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.xconfParamsResult | XconfParamsResult |  |
-| result.xconfParamsResult.xconfParams | XconfParams |  |
-| result.xconfParamsResult.xconfParams.env | string |  |
-| result.xconfParamsResult.xconfParams.eStbMac | string |  |
-| result.xconfParamsResult.xconfParams.model | string |  |
-| result.xconfParamsResult.xconfParams.firmwareVersion | string |  |
-| result.xconfParamsResult.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 47,
-    "method": "org.rdk.SystemServices.getXconfParams"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 47, "method": "org.rdk.SystemServices.getXconfParams"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 47,
-    "result": {
-        "xconfParams": {
-            "env": "",
-            "eStbMac": "",
-            "model": "",
-            "firmwareVersion": ""
-        },
         "success": true
     }
 }
@@ -2683,8 +1591,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.Opt-Out | bool | boolean |
-| result.success | bool | bool |
+| result.Opt-Out | bool | true for opt-out, otherwise false |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2694,7 +1602,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 48,
+    "id": 27,
     "method": "org.rdk.SystemServices.isOptOutTelemetry"
 }
 ```
@@ -2703,7 +1611,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 48, "method": "org.rdk.SystemServices.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.SystemServices.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2712,59 +1620,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 48, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 48,
+    "id": 27,
     "result": {
         "Opt-Out": true,
-        "success": true
-    }
-}
-```
-
-<a id="queryMocaStatus"></a>
-## *queryMocaStatus*
-
-Checks whether MOCA is enabled.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.mocaEnabled | bool | boolean |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 49,
-    "method": "org.rdk.SystemServices.queryMocaStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 49, "method": "org.rdk.SystemServices.queryMocaStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 49,
-    "result": {
-        "mocaEnabled": true,
         "success": true
     }
 }
@@ -2781,13 +1639,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rebootReason | string | string |
+| params.rebootReason | string | The reboot reason |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.IARM_Bus_Call_STATUS | int | int |
-| result.success | bool | bool |
+| result.IARM_Bus_Call_STATUS | int | IARM BUS status |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2797,7 +1655,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 50,
+    "id": 28,
     "method": "org.rdk.SystemServices.reboot",
     "params": {
         "rebootReason": ""
@@ -2809,7 +1667,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 50, "method": "org.rdk.SystemServices.reboot", "params": {"rebootReason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.SystemServices.reboot", "params": {"rebootReason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2818,7 +1676,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 50, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 50,
+    "id": 28,
     "result": {
         "IARM_Bus_Call_STATUS": 0,
         "success": true
@@ -2839,8 +1697,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.systemUptime | string | string |
-| result.success | bool | bool |
+| result.systemUptime | string | The uptime, in seconds, of the device |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2850,7 +1708,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 51,
+    "id": 29,
     "method": "org.rdk.SystemServices.requestSystemUptime"
 }
 ```
@@ -2859,7 +1717,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 51, "method": "org.rdk.SystemServices.requestSystemUptime"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.SystemServices.requestSystemUptime"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2868,7 +1726,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 51, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 51,
+    "id": 29,
     "result": {
         "systemUptime": "",
         "success": true
@@ -2887,16 +1745,16 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blocklist | bool | bool |
+| params.blocklist | bool | Blocklist flag |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.result | BlocklistResult |  |
-| result.result.error | ErrorInfo |  |
-| result.result.error.message | string |  |
-| result.result.error.code | string |  |
-| result.result.success | bool |  |
+| result.result.error | ErrorInfo | Error Information |
+| result.result.error.message | string | Error Message |
+| result.result.error.code | string | Error Code |
+| result.result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2906,7 +1764,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 52,
+    "id": 30,
     "method": "org.rdk.SystemServices.setBlocklistFlag",
     "params": {
         "blocklist": true
@@ -2918,7 +1776,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 52, "method": "org.rdk.SystemServices.setBlocklistFlag", "params": {"blocklist": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.SystemServices.setBlocklistFlag", "params": {"blocklist": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2927,66 +1785,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 52, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 52,
+    "id": 30,
     "result": {
         "error": {
             "message": "",
             "code": ""
         },
-        "success": true
-    }
-}
-```
-
-<a id="setBootLoaderPattern"></a>
-## *setBootLoaderPattern*
-
-Sets the boot loader pattern mode in MFR.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.pattern | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 53,
-    "method": "org.rdk.SystemServices.setBootLoaderPattern",
-    "params": {
-        "pattern": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 53, "method": "org.rdk.SystemServices.setBootLoaderPattern", "params": {"pattern": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 53,
-    "result": {
         "success": true
     }
 }
@@ -3003,12 +1807,15 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.path | string | string |
+| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.error | ErrorInfo | Error Information |
+| result.error.message | string | Error Message |
+| result.error.code | string | Error Code |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3018,7 +1825,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 54,
+    "id": 31,
     "method": "org.rdk.SystemServices.setBootLoaderSplashScreen",
     "params": {
         "path": ""
@@ -3030,7 +1837,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 54, "method": "org.rdk.SystemServices.setBootLoaderSplashScreen", "params": {"path": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.SystemServices.setBootLoaderSplashScreen", "params": {"path": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3039,8 +1846,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 54, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 54,
+    "id": 31,
     "result": {
+        "error": {
+            "message": "",
+            "code": ""
+        },
         "success": true
     }
 }
@@ -3057,12 +1868,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.seconds | int | int |
+| params.seconds | int | The deep sleep timeout in seconds |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3072,7 +1883,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 55,
+    "id": 32,
     "method": "org.rdk.SystemServices.setDeepSleepTimer",
     "params": {
         "seconds": 0
@@ -3084,7 +1895,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 55, "method": "org.rdk.SystemServices.setDeepSleepTimer", "params": {"seconds": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.SystemServices.setDeepSleepTimer", "params": {"seconds": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3093,7 +1904,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 55, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 55,
+    "id": 32,
     "result": {
         "success": true
     }
@@ -3111,12 +1922,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.fsrFlag | bool | bool |
+| params.fsrFlag | bool | FSR flag |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3126,7 +1937,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 56,
+    "id": 33,
     "method": "org.rdk.SystemServices.setFSRFlag",
     "params": {
         "fsrFlag": true
@@ -3138,7 +1949,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 56, "method": "org.rdk.SystemServices.setFSRFlag", "params": {"fsrFlag": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.SystemServices.setFSRFlag", "params": {"fsrFlag": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3147,7 +1958,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 56, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 56,
+    "id": 33,
     "result": {
         "success": true
     }
@@ -3165,12 +1976,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enable | bool | bool |
+| params.enable | bool | true to enable Autoreboot or false to disable |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3180,7 +1991,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 57,
+    "id": 34,
     "method": "org.rdk.SystemServices.setFirmwareAutoReboot",
     "params": {
         "enable": true
@@ -3192,7 +2003,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 57, "method": "org.rdk.SystemServices.setFirmwareAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.SystemServices.setFirmwareAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3201,61 +2012,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 57, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 57,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setFirmwareRebootDelay"></a>
-## *setFirmwareRebootDelay*
-
-Delays the firmware reboot.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.delaySeconds | int | int |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 58,
-    "method": "org.rdk.SystemServices.setFirmwareRebootDelay",
-    "params": {
-        "delaySeconds": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 58, "method": "org.rdk.SystemServices.setFirmwareRebootDelay", "params": {"delaySeconds": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 58,
+    "id": 34,
     "result": {
         "success": true
     }
@@ -3273,12 +2030,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.friendlyName | string | string |
+| params.friendlyName | string | The friendly name of the device which used to display on the client device list |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3288,7 +2045,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 59,
+    "id": 35,
     "method": "org.rdk.SystemServices.setFriendlyName",
     "params": {
         "friendlyName": ""
@@ -3300,7 +2057,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 59, "method": "org.rdk.SystemServices.setFriendlyName", "params": {"friendlyName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.SystemServices.setFriendlyName", "params": {"friendlyName": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3309,7 +2066,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 59, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 59,
+    "id": 35,
     "result": {
         "success": true
     }
@@ -3327,12 +2084,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | string |
+| params.status | bool | Migration Status |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3342,7 +2099,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 60,
+    "id": 36,
     "method": "org.rdk.SystemServices.setMigrationStatus",
     "params": {
         "status": true
@@ -3354,7 +2111,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 60, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3363,7 +2120,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 60, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 60,
+    "id": 36,
     "result": {
         "success": true
     }
@@ -3381,14 +2138,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.modeinfo | ModeInfo |  |
-| params.modeinfo.mode | string |  |
-| params.modeinfo.duration | int |  |
+| params.modeinfo | ModeInfo | The mode information |
+| params.modeinfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
+| params.modeinfo.duration | int | The duration |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3398,7 +2155,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 61,
+    "id": 37,
     "method": "org.rdk.SystemServices.setMode",
     "params": {
         "mode": "",
@@ -3411,7 +2168,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 61, "method": "org.rdk.SystemServices.setMode", "params": {"mode": "", "duration": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMode", "params": {"mode": "", "duration": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3420,7 +2177,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 61, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 61,
+    "id": 37,
     "result": {
         "success": true
     }
@@ -3438,12 +2195,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Opt-Out | bool | boolean |
+| params.Opt-Out | bool | true for opt-out, otherwise false |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3453,7 +2210,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 62,
+    "id": 38,
     "method": "org.rdk.SystemServices.setOptOutTelemetry",
     "params": {
         "Opt-Out": true
@@ -3465,7 +2222,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 62, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3474,61 +2231,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 62, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 62,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setOvertempGraceInterval"></a>
-## *setOvertempGraceInterval*
-
-Sets the over-temperature grace interval value. Not supported on all devices.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.graceInterval | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 63,
-    "method": "org.rdk.SystemServices.setOvertempGraceInterval",
-    "params": {
-        "graceInterval": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 63, "method": "org.rdk.SystemServices.setOvertempGraceInterval", "params": {"graceInterval": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 63,
+    "id": 38,
     "result": {
         "success": true
     }
@@ -3546,13 +2249,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | string | string |
-| params.standbyReason | string | string |
+| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.standbyReason | string | The reason for a standby state |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3562,7 +2265,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 64,
+    "id": 39,
     "method": "org.rdk.SystemServices.setPowerState",
     "params": {
         "powerState": "",
@@ -3575,7 +2278,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 64, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3584,172 +2287,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 64, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 64,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setPreferredStandbyMode"></a>
-## *setPreferredStandbyMode*
-
-Sets and persists the preferred standby mode.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.standbyMode | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 65,
-    "method": "org.rdk.SystemServices.setPreferredStandbyMode",
-    "params": {
-        "standbyMode": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 65, "method": "org.rdk.SystemServices.setPreferredStandbyMode", "params": {"standbyMode": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 65,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setPrivacyMode"></a>
-## *setPrivacyMode*
-
-Setting Privacy Mode.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.privacyMode | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 66,
-    "method": "org.rdk.SystemServices.setPrivacyMode",
-    "params": {
-        "privacyMode": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 66, "method": "org.rdk.SystemServices.setPrivacyMode", "params": {"privacyMode": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 66,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setTemperatureThresholds"></a>
-## *setTemperatureThresholds*
-
-Sets the temperature threshold values.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.thresholds | TemperatureThresholdsSet |  |
-| params.thresholds.WARN | string |  |
-| params.thresholds.MAX | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | bool |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 67,
-    "method": "org.rdk.SystemServices.setTemperatureThresholds",
-    "params": {
-        "WARN": "",
-        "MAX": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 67, "method": "org.rdk.SystemServices.setTemperatureThresholds", "params": {"WARN": "", "MAX": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 67,
+    "id": 39,
     "result": {
         "success": true
     }
@@ -3767,13 +2305,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.territory | string | string |
-| params.region | string | string |
+| params.territory | string | territory name |
+| params.region | string | region name |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.message | string | Error Message |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3783,7 +2322,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 68,
+    "id": 40,
     "method": "org.rdk.SystemServices.setTerritory",
     "params": {
         "territory": "",
@@ -3796,7 +2335,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 68, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3805,8 +2344,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 68, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 68,
+    "id": 40,
     "result": {
+        "error": {
+            "message": ""
+        },
         "success": true
     }
 }
@@ -3823,13 +2365,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.timeZone | string | string |
-| params.accuracy | string | string |
+| params.timeZone | string | The timezone |
+| params.accuracy | string | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3839,7 +2381,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 69,
+    "id": 41,
     "method": "org.rdk.SystemServices.setTimeZoneDST",
     "params": {
         "timeZone": "",
@@ -3852,7 +2394,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 69, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3861,7 +2403,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 69, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 69,
+    "id": 41,
     "result": {
         "success": true
     }
@@ -3879,8 +2421,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | string | string |
-| params.wakeupSources | ISystemServicesWakeupSourcesIterator | Boolean Array of Key value pair with wake up sources and its configurations |
+| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.wakeupSources | ISystemServicesWakeupSourcesIterator | Array of Key value pair with wake up sources and its configurations |
 | params.wakeupSources[#].WAKEUPSRC_VOICE | bool |  |
 | params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool |  |
 | params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool |  |
@@ -3894,7 +2436,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3904,7 +2446,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 70,
+    "id": 42,
     "method": "org.rdk.SystemServices.setWakeupSrcConfiguration",
     "params": {
         "powerState": "",
@@ -3929,7 +2471,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 70, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3938,7 +2480,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 70, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 70,
+    "id": 42,
     "result": {
         "success": true
     }
@@ -3958,7 +2500,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3968,7 +2510,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 71,
+    "id": 43,
     "method": "org.rdk.SystemServices.updateFirmware"
 }
 ```
@@ -3977,7 +2519,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 71, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -3986,7 +2528,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 71, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 71,
+    "id": 43,
     "result": {
         "success": true
     }
@@ -4006,7 +2548,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | bool |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -4016,7 +2558,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 72,
+    "id": 44,
     "method": "org.rdk.SystemServices.uploadLogsAsync"
 }
 ```
@@ -4025,7 +2567,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 72, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -4034,7 +2576,61 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 72, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 72,
+    "id": 44,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a id="setNetworkStandbyMode"></a>
+## *setNetworkStandbyMode*
+
+Enables or disables the AutoReboot Feature.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 45,
+    "method": "org.rdk.SystemServices.setNetworkStandbyMode",
+    "params": {
+        "nwStandby": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 45,
     "result": {
         "success": true
     }
@@ -4054,102 +2650,14 @@ SystemServices interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onBlocklistChanged](#onBlocklistChanged) | Triggers when the blocklist flag is modified. |
-| [onDeviceMgtUpdateReceived](#onDeviceMgtUpdateReceived) | Triggered when the device management update completes. |
-| [OnFirmwarePendingReboot](#OnFirmwarePendingReboot) | Triggered when the fireFirmwarePendingReboot method is invoked. |
 | [onFirmwareUpdateInfoReceived](#onFirmwareUpdateInfoReceived) | Triggered when the getFirmwareUpdateInfo asynchronous method is invoked. |
-| [onFirmwareUpdateStateChange](#onFirmwareUpdateStateChange) | Triggered when the state of a firmware update changes. |
-| [onFriendlyNameChanged](#onFriendlyNameChanged) | Triggered when the device friendly name change. |
 | [onLogUpload](#onLogUpload) | Triggered when logs upload process is done or stopped. |
-| [onMacAddressesRetreived](#onMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked. |
-| [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes. |
-| [onRebootRequest](#onRebootRequest) | Triggered when an application invokes the reboot |
-| [onSystemClockSet](#onSystemClockSet) | Triggered when the clock on the set-top device is updated. |
-| [onSystemModeChanged](#onSystemModeChanged) | Triggered when the device operating mode changes. |
+| [OnMacAddressesRetreived](#OnMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked. |
+| [onRebootRequest](#onRebootRequest) | Triggers when a device reboot request is made |
+| [onSystemModeChanged](#onSystemModeChanged) | Triggers when the system mode is changed successfully. |
 | [onSystemPowerStateChanged](#onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change. |
-| [onTemperatureThresholdChanged](#onTemperatureThresholdChanged) | Triggered when the device temperature changes beyond the WARN or MAX limits. |
 | [onTerritoryChanged](#onTerritoryChanged) | Triggered when the device territory changed. |
 | [onTimeZoneDSTChanged](#onTimeZoneDSTChanged) | Triggered when device time zone changed. |
-
-<a id="onBlocklistChanged"></a>
-## *onBlocklistChanged*
-
-Triggers when the blocklist flag is modified.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.oldBlocklistFlag | bool | bool |
-| params.newBlocklistFlag | bool | bool |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 73,
-    "method": "org.rdk.SystemServices.onBlocklistChanged",
-    "params": {
-        "oldBlocklistFlag": true,
-        "newBlocklistFlag": true
-    }
-}
-```
-
-<a id="onDeviceMgtUpdateReceived"></a>
-## *onDeviceMgtUpdateReceived*
-
-Triggered when the device management update completes.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.source | string | string |
-| params.type | string | string |
-| params.success | bool | bool |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 74,
-    "method": "org.rdk.SystemServices.onDeviceMgtUpdateReceived",
-    "params": {
-        "source": "",
-        "type": "",
-        "success": true
-    }
-}
-```
-
-<a id="onFirmwarePendingReboot"></a>
-## *onFirmwarePendingReboot*
-
-Triggered when the fireFirmwarePendingReboot method is invoked.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.fireFirmwarePendingReboot | int | int |
-| params.success | bool | bool |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 75,
-    "method": "org.rdk.SystemServices.onFirmwarePendingReboot",
-    "params": {
-        "fireFirmwarePendingReboot": 0,
-        "success": true
-    }
-}
-```
 
 <a id="onFirmwareUpdateInfoReceived"></a>
 ## *onFirmwareUpdateInfoReceived*
@@ -4161,20 +2669,20 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.firmwareUpdateInfo | FirmwareUpdateInfo |  |
-| params.firmwareUpdateInfo.status | int |  |
-| params.firmwareUpdateInfo.responseString | string |  |
-| params.firmwareUpdateInfo.firmwareUpdateVersion | string |  |
-| params.firmwareUpdateInfo.rebootImmediately | bool |  |
-| params.firmwareUpdateInfo.updateAvailable | bool |  |
-| params.firmwareUpdateInfo.updateAvailableEnum | int |  |
-| params.firmwareUpdateInfo.success | bool |  |
+| params.firmwareUpdateInfo.status | int | The firmware update status |
+| params.firmwareUpdateInfo.responseString | string | A custom response |
+| params.firmwareUpdateInfo.firmwareUpdateVersion | string | The next firmware update version |
+| params.firmwareUpdateInfo.rebootImmediately | bool | The value true indicates that the device has to be rebooted immediately or false otherwise |
+| params.firmwareUpdateInfo.updateAvailable | bool | The value false indicates that there is no update available |
+| params.firmwareUpdateInfo.updateAvailableEnum | int | The update available details (must be one of the following: 0, 1, 2, 3) |
+| params.firmwareUpdateInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 76,
+    "id": 46,
     "method": "org.rdk.SystemServices.onFirmwareUpdateInfoReceived",
     "params": {
         "status": 0,
@@ -4188,54 +2696,6 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 }
 ```
 
-<a id="onFirmwareUpdateStateChange"></a>
-## *onFirmwareUpdateStateChange*
-
-Triggered when the state of a firmware update changes.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.firmwareUpdateStateChange | int | int |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 77,
-    "method": "org.rdk.SystemServices.onFirmwareUpdateStateChange",
-    "params": {
-        "firmwareUpdateStateChange": 0
-    }
-}
-```
-
-<a id="onFriendlyNameChanged"></a>
-## *onFriendlyNameChanged*
-
-Triggered when the device friendly name change.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.friendlyName | string | string |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 78,
-    "method": "org.rdk.SystemServices.onFriendlyNameChanged",
-    "params": {
-        "friendlyName": ""
-    }
-}
-```
-
 <a id="onLogUpload"></a>
 ## *onLogUpload*
 
@@ -4245,14 +2705,14 @@ Triggered when logs upload process is done or stopped.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logUploadStatus | string | string |
+| params.logUploadStatus | string | Upload status (must be one of the following: UPLOAD_SUCCESS, UPLOAD_FAILURE, UPLOAD_ABORTED) |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 79,
+    "id": 47,
     "method": "org.rdk.SystemServices.onLogUpload",
     "params": {
         "logUploadStatus": ""
@@ -4270,21 +2730,22 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.macAddressesInfo | MacAddressesInfo |  |
-| params.macAddressesInfo.ecm_mac | string |  |
-| params.macAddressesInfo.estb_mac | string |  |
-| params.macAddressesInfo.moca_mac | string |  |
-| params.macAddressesInfo.eth_mac | string |  |
-| params.macAddressesInfo.wifi_mac | string |  |
-| params.macAddressesInfo.rf4ce_mac | string |  |
-| params.macAddressesInfo.info | string |  |
-| params.macAddressesInfo.success | bool |  |
+| params.macAddressesInfo.ecm_mac | string | The embedded cable modem MAC address |
+| params.macAddressesInfo.estb_mac | string | The embedded set-top box MAC address |
+| params.macAddressesInfo.moca_mac | string | The MOCA MAC address |
+| params.macAddressesInfo.eth_mac | string | The Ethernet MAC address |
+| params.macAddressesInfo.wifi_mac | string | The Wifi MAC address |
+| params.macAddressesInfo.bluetooth_mac | string | The Bluetooth MAC address |
+| params.macAddressesInfo.rf4ce_mac | string | The Rf4ce MAC address |
+| params.macAddressesInfo.info | string | Additional information (only if any of the above data is missing) |
+| params.macAddressesInfo.success | bool | Whether the request succeeded |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 80,
+    "id": 48,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
         "ecm_mac": "",
@@ -4292,6 +2753,7 @@ Triggered when the getMacAddresses asynchronous method is invoked.
         "moca_mac": "",
         "eth_mac": "",
         "wifi_mac": "",
+        "bluetooth_mac": "",
         "rf4ce_mac": "",
         "info": "",
         "success": true
@@ -4299,48 +2761,24 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 }
 ```
 
-<a id="onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged*
-
-Triggered when the network standby mode setting changes.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.nwStandby | bool | bool |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 81,
-    "method": "org.rdk.SystemServices.onNetworkStandbyModeChanged",
-    "params": {
-        "nwStandby": true
-    }
-}
-```
-
 <a id="onRebootRequest"></a>
 ## *onRebootRequest*
 
-Triggered when an application invokes the reboot
+Triggers when a device reboot request is made
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.requestedApp | string | string |
-| params.rebootReason | string | string |
+| params.requestedApp | string | The source of the reboot |
+| params.rebootReason | string | The reboot reason |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 82,
+    "id": 49,
     "method": "org.rdk.SystemServices.onRebootRequest",
     "params": {
         "requestedApp": "",
@@ -4349,41 +2787,23 @@ Triggered when an application invokes the reboot
 }
 ```
 
-<a id="onSystemClockSet"></a>
-## *onSystemClockSet*
-
-Triggered when the clock on the set-top device is updated.
-
-### Parameters
-This method takes no parameters.
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 83,
-    "method": "org.rdk.SystemServices.onSystemClockSet"
-}
-```
-
 <a id="onSystemModeChanged"></a>
 ## *onSystemModeChanged*
 
-Triggered when the device operating mode changes.
+Triggers when the system mode is changed successfully.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mode | string | string |
+| params.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 84,
+    "id": 50,
     "method": "org.rdk.SystemServices.onSystemModeChanged",
     "params": {
         "mode": ""
@@ -4400,47 +2820,19 @@ Triggered when the power manager detects a device power state change.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.powerState | string | string |
-| params.currentPowerState | string | string |
+| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.currentPowerState | string | The current power state |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 85,
+    "id": 51,
     "method": "org.rdk.SystemServices.onSystemPowerStateChanged",
     "params": {
         "powerState": "",
         "currentPowerState": ""
-    }
-}
-```
-
-<a id="onTemperatureThresholdChanged"></a>
-## *onTemperatureThresholdChanged*
-
-Triggered when the device temperature changes beyond the WARN or MAX limits.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.thresholdType | string | string |
-| params.exceeded | bool | bool |
-| params.temperature | string | string |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 86,
-    "method": "org.rdk.SystemServices.onTemperatureThresholdChanged",
-    "params": {
-        "thresholdType": "",
-        "exceeded": true,
-        "temperature": ""
     }
 }
 ```
@@ -4455,17 +2847,17 @@ Triggered when the device territory changed.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.territoryChangedInfo | TerritoryChangedInfo |  |
-| params.territoryChangedInfo.oldTerritory | string |  |
-| params.territoryChangedInfo.newTerritory | string |  |
-| params.territoryChangedInfo.oldRegion | string |  |
-| params.territoryChangedInfo.newRegion | string |  |
+| params.territoryChangedInfo.oldTerritory | string | old territory |
+| params.territoryChangedInfo.newTerritory | string | new territory |
+| params.territoryChangedInfo.oldRegion | string | old region |
+| params.territoryChangedInfo.newRegion | string | new region |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 87,
+    "id": 52,
     "method": "org.rdk.SystemServices.onTerritoryChanged",
     "params": {
         "oldTerritory": "",
@@ -4486,17 +2878,17 @@ Triggered when device time zone changed.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.timeZoneDSTChangedInfo | TimeZoneDSTChangedInfo |  |
-| params.timeZoneDSTChangedInfo.oldTimeZone | string |  |
-| params.timeZoneDSTChangedInfo.newTimeZone | string |  |
-| params.timeZoneDSTChangedInfo.oldAccuracy | string |  |
-| params.timeZoneDSTChangedInfo.newAccuracy | string |  |
+| params.timeZoneDSTChangedInfo.oldTimeZone | string | old time zone |
+| params.timeZoneDSTChangedInfo.newTimeZone | string | new time zone |
+| params.timeZoneDSTChangedInfo.oldAccuracy | string | old time zone accuracy |
+| params.timeZoneDSTChangedInfo.newAccuracy | string | new time zone accuracy |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 88,
+    "id": 53,
     "method": "org.rdk.SystemServices.onTimeZoneDSTChanged",
     "params": {
         "oldTimeZone": "",
