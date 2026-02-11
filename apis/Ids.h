@@ -344,6 +344,10 @@ namespace Exchange {
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
 
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x480,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2
+
     }; // enum IDS
 
 } // namespace Exchange
