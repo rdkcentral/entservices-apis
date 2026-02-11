@@ -1,0 +1,72 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "OpenCMDi API",
+        "class": "OCDM",
+        "description": "The `OpenCDMi` plugin allows you view Open Content Decryption Module (OCDM) properties"
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "keysystem": {
+            "summary": "An identifier of a key system",
+            "type": "string",
+            "example": "com.microsoft.playready"
+        },
+        "drm": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "summary": "The name of the DRM system",
+                    "type": "string",                    
+                    "example": "PlayReady"
+                },
+                "keysystems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/keysystem"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "keysystems"
+            ]
+        }
+    },
+    "properties": {
+        "drms": {
+            "summary": "Supported DRM systems",
+            "readonly": true,
+            "params": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/drm"
+                }
+            }
+        },
+        "keysystems": {
+            "summary": "DRM key systems",
+            "index": {
+                "name": "DRM system",
+                "example": "PlayReady"
+            },
+            "readonly": true,
+            "params": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/keysystem"
+                }
+            },
+            "errors": [
+                {
+                    "description": "Invalid DRM name",
+                    "$ref": "#/common/errors/badrequest"
+                }
+            ]
+        }
+    }
+}
+    

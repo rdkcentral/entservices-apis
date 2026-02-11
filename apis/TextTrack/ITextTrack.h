@@ -20,8 +20,9 @@
 #pragma once
 
 #include "Module.h"
+// @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 2
+#define ITEXTTRACK_VERSION 4
 
 namespace WPEFramework {
 namespace Exchange {
@@ -308,6 +309,7 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
 
 /*
  * This is the COM-RPC interface for global TTML style overrides.
+ * Added in version 2
  */
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
@@ -347,7 +349,7 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
     virtual Core::hresult SetTtmlStyleOverrides(const string& style) = 0;
 
     /**
-     * @briet Gets the global TTML style overrides
+     * @brief Gets the global TTML style overrides
      * @param style will receive the style overrides
      * @text getTtmlStyleOverrides
      */
@@ -356,9 +358,43 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 };
 
 /*
+ * This is the COM-RPC interface for querying TextTrack capabilities.
+ * The list of capabilities can be extended over time and future versions.
+ * Added in version 4
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
+    enum {
+        ID = ID_TEXT_TRACK_CAPABILITIES
+    };
+
+    enum class Capability : uint32_t {
+        UNSET = 0, //< Filler value; will never be used as a capability
+        FIREBOLT_MIGRATION = 1, //< Have the CC style settings from Firebolt been migrated into TextTrack?
+    };
+
+    using IIterator = RPC::IIteratorType<Capability, RPC::ID_VALUEITERATOR>;
+
+    // @text getCapability
+    // @brief Queries whether a specific TextTrack capability is supported by the implementation.
+    // @param capability The capability to query ex: FIREBOLT_MIGRATION
+    // @param hasCapability Indicates whether the queried capability is supported.
+    // @retval Core::ERROR_NONE The capability query completed successfully.
+    // @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
+    virtual Core::hresult GetCapability(Capability capability, bool &hasCapability /* @out */) const = 0;
+
+    // @text getCapabilities
+    // @brief Retrieves an iterator over all supported TextTrack capabilities.
+    // @param capabilities Iterator providing the list of supported capabilities.
+    // @retval Core::ERROR_NONE The list of capabilities was retrieved successfully.
+    // @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported.
+    virtual Core::hresult GetCapabilities(IIterator *&capabilities /* @out */) const = 0;
+};
+
+/*
     This is the COM-RPC interface for handling TextTrack sessions.
 */
-/* @json 1.1.0 @text:keep */
+/* @json 1.4.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     enum {
         ID = ID_TEXT_TRACK
@@ -374,10 +410,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     // Sessions
     /**
      * @brief Opens a new renderSession.
-     * @details If a session is already running on the supplied the supplied displayHandle already has a running session, the sessionId for this session is
-     * returned
-     * @param displayHandle The displayHandle is an encoding of the wayland display name  optionally including the and window ID
-     * @param sessionId On success the returned session id
+     * @details If a session is already running on the supplied displayHandle, the sessionId for this session is
+     * returned. If the session is instead newly opened, the session type is not set and display is muted. Use one
+     * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
+     * @param displayHandle is an encoding of the wayland display name
+     * @param sessionId On success the returned session id ex: 1
      * @text openSession
      */
     virtual Core::hresult OpenSession(const string &displayHandle, uint32_t &sessionId /* @out */) = 0;
@@ -390,7 +427,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     virtual Core::hresult CloseSession(const uint32_t sessionId) = 0;
     /**
      * @brief Resets a previously opened render session back to its opened state.
-     * @details The text render display is cleared by the render session.
+     * @details The state will be like after calling OpenSession()
      * @param sessionId Is the session to reset
      * @text resetSession
      */
@@ -431,7 +468,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @param data Is the data to display, properly formatted as per the expectations of the type used
      * @text sendSessionData
      */
-    virtual Core::hresult SendSessionData(const uint32_t sessionId, const DataType type, const int32_t displayOffsetMs, const string &data) = 0;
+    virtual Core::hresult SendSessionData(const uint32_t sessionId, const DataType type, const int64_t displayOffsetMs, const string &data) = 0;
     /**
      * @brief Sends the current timestamp from a media player to a render session.
      * @details The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
@@ -517,12 +554,41 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * overridden. For styling options, see https://www.w3.org/TR/2018/REC-ttml1-20181108/#styling-vocabulary-style
      * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
      * Styles not mentioned in the list will not be affected.
+     * Added in version 2
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the list of styles to be overridden
      * @text applyCustomTtmlStyleOverridesToSession
      */
     virtual Core::hresult ApplyCustomTtmlStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
 
+    /**
+     * @brief Associate a video decoder with the given session
+     * @details This will ask TextTrack to subscribe to Closed Captions data from the decoder and display
+     * these in the given session. Depending on the support on the platform, this may not be possible to do.
+     * The association is active until CloseSession() or ResetSession() is called, and can also be
+     * cancelled by calling AssociateVideoDecoder() with an empty string for handle.
+     * After associating the video decoder, further calls to SendSessionData will be ignored.
+     * Added in version 3
+     * @param sessionId is the session
+     * @param handle is a textual representation of the video decoder handle
+     * @text associateVideoDecoder
+     * @returns ERROR_NOT_SUPPORTED if the function is not implemented
+     * @returns ERROR_GENERAL if the association failed (whether bad handle is used or lack of support on the platform).
+     * @returns ERROR_OK on success
+     */
+    virtual Core::hresult AssociateVideoDecoder(const uint32_t sessionId, const string &handle) { return Core::ERROR_NOT_SUPPORTED; }
+
+    // @brief Return the interface version implemented
+    // @details This allows to query the running plugin for the version of the interface
+    // it was compiled to support. This information can be helpful in determining whether
+    // a certain functionality can be expected to be present.
+    // Added in version 4
+    // @param version will receive the version number ex: 4
+    // @text getInterfaceVersion
+    // @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+    // @retval Core::ERROR_OK on success
+    virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 };
+
 } // namespace Exchange
 } // namespace WPEFramework

@@ -56,7 +56,8 @@ namespace Exchange {
             VIDEO_MPEG4,
             VIDEO_VP8,
             VIDEO_VP9,
-            VIDEO_VP10
+            VIDEO_VP10,
+            VIDEO_AV1
         };
 
         enum PlaybackResolution : uint8_t {
@@ -86,6 +87,7 @@ namespace Exchange {
             RESOLUTION_720P30,
             RESOLUTION_720P50,
             RESOLUTION_720P,
+            RESOLUTION_768P,
             RESOLUTION_1080I24,
             RESOLUTION_1080I25,
             RESOLUTION_1080I30,

@@ -75,8 +75,8 @@ namespace Exchange {
         ID_CONTENTDECRYPTION                         = ID_ENTOS_OFFSET + 0x030,
         ID_CONTENTDECRYPTION_NOTIFICATION            = ID_CONTENTDECRYPTION + 1,
 
-        ID_PROVISIONING                              = ID_ENTOS_OFFSET + 0x040,
-        ID_PROVISIONING_NOTIFICATION                 = ID_PROVISIONING + 1,
+        ID_FRAMERATE                                 = ID_ENTOS_OFFSET + 0x040,
+        ID_FRAMERATE_NOTIFICATION                    = ID_FRAMERATE + 1,
 
         ID_CAPTURE                                   = ID_ENTOS_OFFSET + 0x050,
 
@@ -120,7 +120,7 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 6,
         ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 7,
         ID_DEVICE_CAPABILITIES_RESOLUTION            = ID_DEVICE_INFO + 8,
-        ID_FIRMWARE_VERSION                          = ID_DEVICE_INFO + 9,
+        ID_DEVICE_INFO_ADDRESSES_ITERATOR            = ID_DEVICE_INFO + 9,
 
         ID_FOCUS                                     = ID_ENTOS_OFFSET + 0x0E0,
 
@@ -172,12 +172,14 @@ namespace Exchange {
         ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT           = ID_POWER_MANAGER + 4,
         ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED = ID_POWER_MANAGER + 5,
         ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED         = ID_POWER_MANAGER + 6,
+        ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR                       = ID_POWER_MANAGER + 7,
 
 	ID_TEXT_TRACK                                = ID_ENTOS_OFFSET + 0x190,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE          = ID_TEXT_TRACK + 1,
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
+        ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
@@ -203,6 +205,7 @@ namespace Exchange {
 
 	ID_APPMANAGER                                = ID_ENTOS_OFFSET + 0x1F0,
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
+	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
         ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
         ID_LISA_NOTIFICATION                         = ID_LISA + 1,
@@ -246,7 +249,8 @@ namespace Exchange {
         ID_PACKAGE_INFO_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 7,
         ID_PACKAGE_ITERATOR                          = ID_APP_PACKAGE_MANAGER + 8,
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
-	
+        ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
+
 	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
@@ -263,12 +267,12 @@ namespace Exchange {
 
         ID_SCREEN_CAPTURE                            = ID_ENTOS_OFFSET + 0x360,
         ID_SCREEN_CAPTURE_NOTIFICATION               = ID_SCREEN_CAPTURE + 1,
-      
+
         ID_DEVICE_DIAGNOSTICS                        = ID_ENTOS_OFFSET + 0x370,
         ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR    = ID_DEVICE_DIAGNOSTICS + 1,
         ID_DEVICE_DIAGNOSTICS_NOTIFICATION           = ID_DEVICE_DIAGNOSTICS + 2,
 
-      
+
         ID_WAREHOUSE                                 = ID_ENTOS_OFFSET + 0x380,
 	ID_WAREHOUSE_NOTIFICATION                    = ID_WAREHOUSE + 1,
 
@@ -277,9 +281,70 @@ namespace Exchange {
 
         ID_LEDCONTROL                                = ID_ENTOS_OFFSET + 0x3A0,
 
-        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x3B0,
-        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
-        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2
-    };
-}
-}
+        ID_SHARED_STORAGE                            = ID_ENTOS_OFFSET + 0x3B0,
+        ID_SHARED_STORAGE_NOTIFICATION               = ID_SHARED_STORAGE + 1,
+        ID_SHARED_STORAGE_INSPECTOR                  = ID_SHARED_STORAGE + 2,
+        ID_SHARED_STORAGE_INSPECTOR_NAMESPACE_SIZE_ITERATOR = ID_SHARED_STORAGE + 3,
+        ID_SHARED_STORAGE_LIMIT                      = ID_SHARED_STORAGE + 4,
+        ID_SHARED_STORAGE_LIMIT_NOTIFICATION         = ID_SHARED_STORAGE + 5,
+        ID_SHARED_STORAGE_LIMIT_INSPECTOR            = ID_SHARED_STORAGE + 6,
+        ID_SHARED_STORAGE_CACHE                      = ID_SHARED_STORAGE + 7,
+
+        ID_HDMI_CEC_SINK                               = ID_ENTOS_OFFSET + 0x3C0,
+        ID_HDMI_CEC_SINK_ACTIVE_PATH_ITERATOR           = ID_HDMI_CEC_SINK + 1,
+        ID_HDMI_CEC_SINK_DEVICE_LIST_ITERATOR           = ID_HDMI_CEC_SINK + 2,
+        ID_HDMI_CEC_SINK_NOTIFICATION                   = ID_HDMI_CEC_SINK + 3,
+
+        ID_MIRACAST_SERVICE                          = ID_ENTOS_OFFSET + 0x3D0,
+        ID_MIRACAST_SERVICE_NOTIFICATION             = ID_MIRACAST_SERVICE + 1,
+        ID_MIRACAST_PLAYER                           = ID_MIRACAST_SERVICE + 2,
+        ID_MIRACAST_PLAYER_NOTIFICATION              = ID_MIRACAST_SERVICE + 3,
+        ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR    = ID_MIRACAST_SERVICE + 4,
+
+        ID_FRONT_PANEL                              = ID_ENTOS_OFFSET + 0x3E0,
+        ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR         = ID_FRONT_PANEL + 1,
+        ID_FRONT_PANEL_BLINK_INFO_LIST_ITERATOR     = ID_FRONT_PANEL + 2,
+
+        ID_TELEMETRYMETRICS                         = ID_ENTOS_OFFSET + 0x3F0,
+
+        ID_AV_INPUT                                             = ID_ENTOS_OFFSET + 0x400,
+        ID_AV_INPUT_NOTIFICATION_DEVICES_CHANGED                = ID_AV_INPUT + 1,
+        ID_AV_INPUT_NOTIFICATION_SIGNAL_CHANGED                 = ID_AV_INPUT + 2,
+        ID_AV_INPUT_NOTIFICATION_INPUT_STATUS_CHANGED           = ID_AV_INPUT + 3,
+        ID_AV_INPUT_NOTIFICATION_VIDEO_STREAM_INFO_UPDATE       = ID_AV_INPUT + 4,
+        ID_AV_INPUT_NOTIFICATION_GAME_FEATURE_STATUS_UPDATE     = ID_AV_INPUT + 5,
+        ID_AV_INPUT_NOTIFICATION_AVI_CONTENT_TYPE_UPDATE        = ID_AV_INPUT + 6,
+        ID_AV_INPUT_DEVICE_LIST_ITERATOR                        = ID_AV_INPUT + 7,
+
+        ID_PREINSTALL_MANAGER                           = ID_ENTOS_OFFSET + 0x410,
+        ID_PREINSTALL_MANAGER_NOTIFICATION              = ID_PREINSTALL_MANAGER + 1,
+        ID_PREINSTALL_MANAGER_INSTALL_INFO_ITERATOR     = ID_PREINSTALL_MANAGER + 2,
+
+        ID_DOWNLOAD_MANAGER                          = ID_ENTOS_OFFSET + 0x420,
+        ID_DOWNLOAD_MANAGER_NOTIFICATION             = ID_DOWNLOAD_MANAGER + 1,
+
+        ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
+
+        ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
+        ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
+        ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
+        ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
+        ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+        ID_APP_GATEWAY_TELEMETRY                     = ID_APP_GATEWAY + 5,
+
+        ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2,
+
+        ID_FIRMWARE_DOWNLOAD                         = ID_ENTOS_OFFSET + 0x460,
+        ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1,
+
+        ID_GOOGLE_CAST                               = ID_ENTOS_OFFSET + 0x470,
+        ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
+        ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
+        ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+
+    }; // enum IDS
+
+} // namespace Exchange
+} // namespace WPEFramework

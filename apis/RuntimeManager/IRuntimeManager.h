@@ -25,6 +25,39 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig {
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVariables;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+
+    bool resourceManagerClientEnabled;
+    std::string dialId;
+    std::string command;
+    std::string appType;
+    std::string appPath;
+    std::string runtimePath;
+
+    std::string logFilePath;
+    uint32_t logFileMaxSize;
+    std::string logLevels;          //json array of strings
+    bool mapi;
+    std::string fkpsFiles;          //json array of strings
+
+    std::string fireboltVersion;
+    bool enableDebugger;
+    string unpackedPath;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @text:keep
 struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     enum { ID = ID_RUNTIME_MANAGER };
@@ -44,27 +77,27 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
         RUNTIME_STATE_TERMINATED  = 8   /* @text RUNTIME_STATE_TERMINATED */
     };
 
-    // @event 
+    // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
         enum { ID = ID_RUNTIME_MANAGER_NOTIFICATION };
- 
+
         // @brief Notifies container is started
         // @text onStarted
         // @param appInstanceId App identifier for the application/container
         virtual void OnStarted(const string& appInstanceId) {};
- 
+
         // @brief Notifies container is shutdown
         // @text onTerminated
         // @param appInstanceId App identifier for the application/container
         virtual void OnTerminated(const string& appInstanceId) {};
- 
+
         // @brief Notifies failure in container execution
         // @text onFailure
         // @param appInstanceId App identifier for the application/container
         // @param error error string will send if there is failure
         virtual void OnFailure(const string& appInstanceId, const string& error) {};
- 
+
         // @brief Notifies state of container
         // @text onStateChanged
         // @param appInstanceId App identifier for the application/container
@@ -82,15 +115,12 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @text run
     // @param appId App identifier for the application/container
     // @param appInstanceId App identifier for the application/container
-    // @param appPath path of the container/application
-    // @param runtimePath(optional) run time path of the container/application
-    // @param envVars The tokens from the Firebolt Gateway will be passed as part of the environmentVars
     // @param userId userId used to identify the user
     // @param userId groupid used to represent a group
     // @param ports(optional) array of socket ports to allow
     // @param paths(optional) paths contains an additional set of files and directories to map into the container
     // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
-    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const string& appPath, const string& runtimePath, IStringIterator* const& envVars, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings) = 0;
+    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const RuntimeConfig& runtimeConfigObject) = 0;
 
     /** @brief Hibernate the application */
     // @text hibernate

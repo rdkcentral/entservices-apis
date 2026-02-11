@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "System Plugin",
+      "callsign": "org.rdk.System",
+      "locator": "libWPEFrameworkSystemServices.so",
+      "status": "production",
+      "description": "The `System` plugin is used to manage various system-level features such as power settings and firmware updates."
+    },
+    "interface": {
+      "$ref": "System.json#"
+    }
+}

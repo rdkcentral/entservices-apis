@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "SystemAudioPlayer Plugin",
+      "callsign": "org.rdk.SystemAudioPlayer",
+      "locator": "libWPEFrameworkSystemAudioPlayer.so",
+      "status": "production",
+      "description": "The `SystemAudioPlayer` plugin provides system audio playback functionality for client applications. It supports various audio types (viz., pcm, mp3, wav) and can play them from various sources (viz., websocket, httpsrc, filesrc, data buffer).  \n\n**Note**: MP3 playback development remains a work-in-progress."
+    },
+    "interface": {
+      "$ref": "SystemAudioPlayer.json#"
+    }
+}

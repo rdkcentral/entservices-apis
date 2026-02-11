@@ -40,6 +40,36 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onDisconnected
     // @param client: the identifier of the disconnected application
     virtual void OnDisconnected(const std::string& client){};
+
+    // @brief Posting the client for first frame ready.
+    // @text onReady
+    // @param client: notify first frame event received for client or application instance ID
+    virtual void OnReady(const string &client){};
+
+    // @brief Notifies when an application is connected
+    // @text onConnected
+    // @param appInstanceId: the identifier of the connected application
+    virtual void OnConnected(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is visible
+    // @text onVisible
+    // @param appInstanceId: the identifier of the visible application
+    virtual void OnVisible(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is hidden
+    // @text onHidden
+    // @param appInstanceId: the identifier of the hidden application
+    virtual void OnHidden(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is in focus
+    // @text onFocus
+    // @param appInstanceId: the identifier of the focussed application
+    virtual void OnFocus(const std::string& appInstanceId){};
+
+    // @brief Notifies when an application is blurred
+    // @text onBlur
+    // @param appInstanceId: the identifier of the blurred application
+    virtual void OnBlur(const std::string& appInstanceId){};
   };
 
   /** Register notification interface */
@@ -61,11 +91,11 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
   virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
 
-  /** Get the list of active Clients */
-  // @text getClients
-  // @brief get the list of Clients which are available
-  // @param clients: get the number of clients as a JSON string format
-  virtual Core::hresult GetClients(string &clients /* @out */) const = 0;
+  /** Get the list of active Apps */
+  // @text getApps
+  // @brief Get the list of Apps which are currently active and available
+  // @param appsIds: Returns the list of app IDs as a JSON string.
+  virtual Core::hresult GetApps(string &appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept
@@ -171,6 +201,28 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
   virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
 
+  /** Get the first-frame rendered status of the application */
+  // @text renderReady
+  // @brief To get the status of first frame is rendered or not
+  // @param client: client name or application instance ID
+  // @param status: Returns true if the application has rendered first frame, false if it has not yet.
+  virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
+
+  /** To enable/disable the rendering of a Wayland display in the window manager */
+  // @text enableDisplayRender
+  // @brief Enable or disable the rendering of a Wayland display
+  // @param client: client name or application instance ID
+  // @param enable: flag to true/false for controlling the wayland render
+  virtual Core::hresult EnableDisplayRender(const string& client, bool enable) = 0;
+
+  // @text getLastKeyInfo
+  // @brief Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed.
+  // @param keyCode: Output parameter. The key code of the last pressed key.
+  // @param modifiers: Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press.
+  // @param timestampInSeconds: Output parameter. The timestamp (in seconds) when the last key press occurred.
+  // @retval Core::ERROR_NONE: Successfully retrieved the last key press information.
+  // @retval Core::ERROR_UNAVAILABLE: No key press information is available.
+  virtual Core::hresult GetLastKeyInfo(uint32_t &keyCode /* @out */, uint32_t &modifiers /* @out */, uint64_t &timestampInSeconds /* @out */) const = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

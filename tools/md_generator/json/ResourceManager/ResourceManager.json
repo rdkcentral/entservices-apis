@@ -1,0 +1,115 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "ResourceManager API", 
+        "class": "ResourceManager", 
+        "description": "The ResourceManager plugin provides an interface to platform resources."
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "clients": {
+            "summary": "A list of clients",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "example": "org.rdk.Netflix"
+            }
+        },
+        "callsign": {
+            "summary": "The application callsign",
+            "type": "string",
+            "example": "Cobalt"
+        }
+    },
+    "methods": {
+        "setAVBlocked": {
+            "summary": "adds/removes the list of applications with the given callsigns to/from the blacklist.",
+            "params": {
+                "type": "object",
+                "properties":{
+                    "appId": {
+                        "summary": "The application callsign",
+                        "type": "string",
+                        "example": "searchanddiscovery"
+                    },
+                    "blocked": {
+                        "summary": "Whether to block (`true`) or unblock (`false`) AV for the callsign",
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "required": [
+                    "appId",
+                    "blocked"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
+            }
+        },
+        "getBlockedAVApplications": {
+            "summary": "Gets a list of blacklisted clients.",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "clients": {
+                        "$ref": "#/definitions/clients"
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "clients",
+                    "success"
+                ]
+            }
+        },
+	"reserveTTSResourceForApps": {
+            "summary": "Reserves the Text To speech Resource for specified clients",
+            "params": {
+                "type": "object",
+                "properties":{
+                    "appids": {
+                        "summary": "A list of application callsigns",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "xumo"
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": [
+                    "appids"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
+            }
+        },
+        "reserveTTSResource": {
+            "summary": "Reserves the Text To speech Resource for specified client.",
+            "params": {
+                "type": "object",
+                "properties":{
+                    "appId": {
+                        "summary": "The application callsign",
+                        "type": "string",
+                        "example": "xumo"
+                    }
+                },
+                "required": [
+                    "appId"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/result"
+            }
+        }
+    }
+}
+

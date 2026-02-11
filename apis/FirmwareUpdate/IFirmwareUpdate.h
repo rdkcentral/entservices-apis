@@ -89,6 +89,12 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @text getUpdateState
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
+  // @brief Enable or disable the AutoReboot feature.
+  // @param[in] enable Boolean to enable or disable AutoReboot
+  // @returns Core::hresult
+  // @text setAutoReboot
+  virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+  "info": {
+    "title": "PerformanceMetrics Plugin",
+    "callsign": "PerformanceMetrics",
+    "locator": "libWPEFrameworkPerformanceMetrics.so",
+    "status": "alpha",
+    "description": "The Performance Metrics plugin can output metrics on a plugin (e.g. uptime, resource usage).",
+    "version": "1.0"
+  }
+}

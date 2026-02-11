@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "DisplaySettings Plugin",
+      "callsign": "org.rdk.DisplaySettings",
+      "locator": "libWPEFrameworkDisplaySettings.so",
+      "status": "production",
+      "description": "The `DisplaySetting` plugin provides an interface for display information such as current video resolution, supported video displays, zoom setting, sound mode, and much more."
+    },
+    "interface": {
+      "$ref": "DisplaySettings.json#"
+    }
+}

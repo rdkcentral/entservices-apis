@@ -23,38 +23,64 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig {
+    bool dial;
+    bool wanLanAccess;
+    bool thunder;
+    int32_t systemMemoryLimit;
+    int32_t gpuMemoryLimit;
+    std::string envVariables;
+    uint32_t userId;
+    uint32_t groupId;
+    uint32_t dataImageSize;
+
+    bool resourceManagerClientEnabled;
+    std::string dialId;
+    std::string command;
+    std::string appType;
+    std::string appPath;
+    std::string runtimePath;
+
+    std::string logFilePath;
+    uint32_t logFileMaxSize;
+    std::string logLevels;          //json array of strings
+    bool mapi;
+    std::string fkpsFiles;          //json array of strings
+
+    std::string fireboltVersion;
+    bool enableDebugger;
+    string unpackedPath;
+};
+#define RUNTIME_CONFIG
+#endif
+
 // @text:keep
 struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
 
     enum LifecycleState : uint8_t {
+        UNLOADED,
         LOADING,
         INITIALIZING,
-        RUNREQUESTED,
-        RUNNING,
-        ACTIVATEREQUESTED,
+        PAUSED,
         ACTIVE,
-        DEACTIVATEREQUESTED,
-        SUSPENDREQUESTED,
         SUSPENDED,
-        RESUMEREQUESTED,
-        HIBERNATEREQUESTED,
         HIBERNATED,
-        WAKEREQUESTED,
-        TERMINATEREQUESTED,
         TERMINATING
     };
 
     enum { ID = ID_LIFECYCLE_MANAGER };
 
-    // @event 
+    // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
         enum { ID = ID_LIFECYCLE_MANAGER_NOTIFICATION };
- 
+
         // @brief Notifies the change of state of application
         // @text onnAppStateChanged
         // @json:omit
-        virtual void OnAppStateChanged(const string& appId, LifecycleState state, const string& errorReason) = 0;
+        virtual void OnAppStateChanged(const string& appId, LifecycleState state, const string& errorReason) {};
     };
 
     /** Register notification interface */
@@ -67,43 +93,43 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @json:omit
     // @text getLoadedApps
     // @brief Get the list of loaded applications, state and additional information
-    virtual Core::hresult GetLoadedApps(const bool verbose /* @in */, string& apps /* @out */) = 0;
+    virtual Core::hresult GetLoadedApps(const bool verbose , string& apps /* @out */) = 0;
 
     /** Tell whether application is loaded or not */
     // @json:omit
     // @text isAppLoaded
     // @brief Check whether the given application is loaded or not
-    virtual Core::hresult IsAppLoaded(const string& appId /* @in */, bool& loaded /* @out */) const = 0;
+    virtual Core::hresult IsAppLoaded(const string& appId , bool& loaded /* @out */) const = 0;
 
     /** Perform launching of application with window and runtime manager */
     // @json:omit
     // @text spawnApp
     // @brief Perform launching of application with window and runtime manager
-    virtual Core::hresult SpawnApp(const string& appId /* @in */, const string& appPath /* @in */, const string& appConfig /* @in */, const string& runtimeAppId /* @in */, const string& runtimePath /* @in */, const string& runtimeConfig /* @in */, const string& launchIntent /* @in */, const string& environmentVars /* @in */, const bool enableDebugger /* @in */, const LifecycleState targetLifecycleState /* @in */, const string& launchArgs /* @in */, string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult SpawnApp(const string& appId , const string& launchIntent , const LifecycleState targetLifecycleState , const RuntimeConfig& runtimeConfigObject , const string& launchArgs , string& appInstanceId /* @out */, string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** Get the list of loaded applications */
     // @json:omit
     // @text setTargetAppState
     // @brief Set the state for the application instance
-    virtual Core::hresult SetTargetAppState(const string& appInstanceId /* @in */, const LifecycleState targetLifecycleState /* @in */, const string& launchIntent /* @in */) = 0;
+    virtual Core::hresult SetTargetAppState(const string& appInstanceId , const LifecycleState targetLifecycleState , const string& launchIntent ) = 0;
 
     /** unload the application */
     // @json:omit
     // @text unloadApp
     // @brief Perform graceful termination and unload the application
-    virtual Core::hresult UnloadApp(const string& appInstanceId /* @in */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult UnloadApp(const string& appInstanceId , string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** kill the application */
     // @json:omit
     // @text killApp
     // @brief Perform forceful termination of the application
-    virtual Core::hresult KillApp(const string& appInstanceId /* @in */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult KillApp(const string& appInstanceId , string& errorReason /* @out */, bool& success /* @out */) = 0;
 
     /** send intent to target application */
     // @json:omit
     // @text sendIntentToActiveApp
     // @brief Send firebolt intent to target application
-    virtual Core::hresult SendIntentToActiveApp(const string& appInstanceId /* @in */, const string& intent /* @in */, string& errorReason /* @out */, bool& success /* @out */) = 0;
+    virtual Core::hresult SendIntentToActiveApp(const string& appInstanceId , const string& intent , string& errorReason /* @out */, bool& success /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

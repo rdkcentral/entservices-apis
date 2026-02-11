@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+  "info": {
+    "title": "DTV Plugin",
+    "callsign": "DTV",
+    "locator": "libWPEFrameworkDTV.so",
+    "status": "beta",
+    "description": "The DTV plugin provides access to DVB services provided by a DVB stack."
+  },
+  "interface": {
+    "$ref": "DTV.json#"
+  }
+}

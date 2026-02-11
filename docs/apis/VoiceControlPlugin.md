@@ -2,8 +2,6 @@
 <a name="VoiceControl_Plugin"></a>
 # VoiceControl Plugin
 
-**Version: [1.0.0]()**
-
 A org.rdk.VoiceControl plugin for Thunder framework.
 
 ### Table of Contents
@@ -259,7 +257,7 @@ No Events
 
 Sends a voice session with a transcription string to simulate a real voice session for QA. Example use cases for this API call include rack and automation testing.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/rdkservices/#/api/VoiceControlPlugin?id=voicesessionrequest)
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations. [Refer this link for the new api](https://rdkcentral.github.io/entservices-apis/#/apis/VoiceControlPlugin?id=voicesessionrequest)
 
 ### Events
 
@@ -396,6 +394,7 @@ Requests a voice session using the specified request type and optional parameter
 | params | object |  |
 | params?.transcription | string | <sup>*(optional)*</sup> The transcription text to be sent to the voice server for request types "ptt_transcription" and "mic_transcription" |
 | params?.audio_file | string | <sup>*(optional)*</sup> The full path to the audio file to be sent to the voice server for request types "ptt_audio_file" and "mic_audio_file" |
+| params?.name | string | <sup>*(optional)*</sup> The name of the application requesting the voice session |
 | params.type | string | The request type to initiate the voice session (see [voiceSessionTypes](#voiceSessionTypes) API for list of request types) |
 
 ### Result
@@ -417,6 +416,7 @@ Requests a voice session using the specified request type and optional parameter
     "params": {
         "transcription": "Watch Comedy Central",
         "audio_file": "/opt/audio_file.wav",
+        "name": "Application",
         "type": "ptt_transcription"
     }
 }

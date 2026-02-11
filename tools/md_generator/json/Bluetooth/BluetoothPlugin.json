@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "Bluetooth Plugin",
+      "callsign": "org.rdk.Bluetooth",
+      "locator": "libWPEFrameworkBluetooth.so",
+      "status": "production",
+      "description": "The Bluetooth Plugin allows applications to interact with the Bluetooth stack and manage Bluetooth devices."
+    },
+    "interface": {
+      "$ref": "Bluetooth.json#"
+    }
+}

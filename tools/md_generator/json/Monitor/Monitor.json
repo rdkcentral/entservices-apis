@@ -1,0 +1,231 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/interface.schema.json",
+    "jsonrpc": "2.0",
+    "info": {
+        "title": "Monitor API",
+        "class": "Monitor",
+        "description": "The `Monitor` plugin provides a watchdog-like functionality for framework processes"
+    },
+    "common": {
+        "$ref": "../common/common.json"
+    },
+    "definitions": {
+        "restart": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "description": "Maximum number of restarts to be attempted. If the limit parameter is not passed in request then, the default value is 0.",
+                    "type": "number",
+                    "size": 8,
+                    "signed": false,
+                    "example": 3
+                },
+                "window": {
+                    "description": "Time period (in seconds) within which failures must happen for the limit to be considered crossed. If the window parameter is not passed in request then, the default value is 0.",
+                    "type": "number",
+                    "size": 16,
+                    "signed": false,
+                    "example": 60
+                }
+            },
+            "required": [
+                "limit",
+                "window"
+            ]
+        },
+        "measurement": {
+            "type": "object",
+            "properties": {
+                "min": {
+                    "description": "Minimal value measured",
+                    "type": "number",
+                    "size": 64,
+                    "example": 0
+                },
+                "max": {
+                    "description": "Maximal value measured",
+                    "type": "number",
+                    "size": 64,
+                    "example": 100
+                },
+                "average": {
+                    "description": "Average of all measurements",
+                    "type": "number",
+                    "size": 64,
+                    "example": 50
+                },
+                "last": {
+                    "description": "Last measured value",
+                    "type": "number",
+                    "size": 64,
+                    "example": 100
+                }
+            },
+            "required": [
+                "min",
+                "max",
+                "average",
+                "last"
+            ]
+        },
+        "measurements": {
+            "type": "object",
+            "properties": {
+                "resident": {
+                    "description": "Resident memory measurement",
+                    "$ref": "#/definitions/measurement"
+                },
+                "allocated": {
+                    "description": "Allocated memory measurement",
+                    "$ref": "#/definitions/measurement"
+                },
+                "shared": {
+                    "description": "Shared memory measurement",
+                    "$ref": "#/definitions/measurement"
+                },
+                "process": {
+                    "description": "Processes measurement",
+                    "$ref": "#/definitions/measurement"
+                },
+                "operational": {
+                    "description": "Whether the service is up and running",
+                    "type": "boolean",
+                    "example": true
+                },
+                "count": {
+                    "description": "Number of measurements",
+                    "type": "number",
+                    "example": 100
+                }
+            },
+            "required": [
+                "resident",
+                "allocated",
+                "shared",
+                "process",
+                "operational",
+                "count"
+            ]
+        },
+        "info": {
+            "type": "object",
+                "properties": {
+                    "measurements": {
+                        "description": "Measurements for the service",
+                        "$ref": "#/definitions/measurements"
+                    },
+                    "observable": {
+                        "description": "A callsign of the watched service",
+                        "type": "string",
+                        "example": "callsign"
+                    },
+                    "restart": {
+                        "description": "Restart limits for failures applying to the service",
+                        "$ref": "#/definitions/restart"
+                    }
+                },
+                "required": [
+                    "measurements",
+                    "observable",
+                    "restart"
+                ]
+            }
+    },
+    "methods": {
+        "restartlimits": {
+            "summary": "Sets new restart limits for a service.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "callsign": {
+                        "description": "The callsign of a service for which measurement snapshots are reset.",
+                        "type": "string",
+                        "example": "WebServer"
+                    },
+                    "restart": {
+                        "$ref": "#/definitions/restart"
+                    }
+                },
+                "required": [
+                    "callsign",
+                    "restart"
+                ]
+            },
+            "result": {
+                "$ref": "#/common/results/void"
+            }
+        },
+        "resetstats": {
+            "summary": "Resets memory and process statistics for a single service watched by the Monitor.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "callsign": {
+                        "description": "The callsign of a service for which statistics are reset",
+                        "type": "string",
+                        "example": "WebServer"
+                    }
+                },
+                "required": [
+                    "callsign"
+                ]
+            },
+            "result": {
+                "description": "Measurements for the service before reset",
+                "$ref": "#/definitions/info"
+            }
+        }
+    },
+    "properties": {
+        "status": {
+            "summary": "Service statistics",
+            "readonly": true,
+            "params": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/info"
+                }
+            },
+            "index": {
+                "description": "If omitted then, all the observed objects are returned on read. Invalid callsign results are in empty result.",
+                "name": "Callsign",
+                "example": "WebServer"
+            }
+        }
+    },
+    "events": {
+        "action": {
+            "summary": "Signals an action taken by the Monitor",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "callsign": {
+                        "description": "Callsign of the service the Monitor acted upon",
+                        "type": "string",
+                        "example": "WebServer"
+                    },
+                    "action": {
+                        "description": "The action executed by the Monitor on a service",
+                        "type": "string",
+                        "enum": [
+                            "Activate",
+                            "Deactivate",
+                            "StoppedRestarting"
+                        ],
+                        "example": "Deactivate"
+                    },
+                    "reason": {
+                        "description": "A message describing the reason the action was taken",
+                        "type": "string",
+                        "example": "EXCEEDED_MEMORY"
+                    }
+                },
+                "required": [
+                    "callsign",
+                    "action",
+                    "reason"
+                ]
+            }
+        }
+    }
+}

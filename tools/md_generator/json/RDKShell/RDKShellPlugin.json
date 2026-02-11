@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "RDKShell Plugin",
+      "callsign": "org.rdk.RDKShell",
+      "locator": "libWPEFrameworkRDKShell.so",
+      "status": "production",
+      "description": "The `RDKShell` plugin controls the management of composition, layout, Z order, and key handling."
+    },
+    "interface": {
+      "$ref": "RDKShell.json#"
+    }
+}

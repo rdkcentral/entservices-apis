@@ -23,29 +23,96 @@
 
 namespace WPEFramework {
 namespace Exchange {
+
+#ifndef RUNTIME_CONFIG
+struct RuntimeConfig
+{
+    bool dial{false};
+    bool wanLanAccess{false};
+    bool thunder{false};
+    int32_t systemMemoryLimit{0};
+    int32_t gpuMemoryLimit{0};
+    std::string envVariables{};
+    uint32_t userId{0};
+    uint32_t groupId{0};
+    uint32_t dataImageSize{0};
+
+    bool resourceManagerClientEnabled{false};
+    std::string dialId;
+    std::string command;
+    std::string appType;
+    std::string appPath;
+    std::string runtimePath;
+
+    std::string logFilePath;
+    uint32_t logFileMaxSize{0};
+    std::string logLevels;          //json array of strings
+    bool mapi {false};
+    std::string fkpsFiles;          //json array of strings
+
+    std::string fireboltVersion;
+    bool enableDebugger{false};
+    std::string unpackedPath;
+};
+#define RUNTIME_CONFIG
+#endif
+
+// @stubgen:include <com/IIteratorType.h>
+
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   enum { ID = ID_APPMANAGER };
 
   enum AppLifecycleState : uint8_t {
-          APP_STATE_UNKNOWN     = 0   /* @text APP_STATE_UNKNOWN */,
-          APP_STATE_RUNNING     = 1   /* @text APP_STATE_RUNNING */,
-          APP_STATE_ACTIVE      = 2   /* @text APP_STATE_ACTIVE */,
-          APP_STATE_SUSPENDED   = 3   /* @text APP_STATE_SUSPENDED */,
-          APP_STATE_HIBERNATED  = 4   /* @text APP_STATE_HIBERNATED */,
-          APP_STATE_TERMINATED  = 5   /* @text APP_STATE_TERMINATED */
+          APP_STATE_UNKNOWN       = 0   /* @text APP_STATE_UNKNOWN */,
+          APP_STATE_UNLOADED      = 1   /* @text APP_STATE_UNLOADED */,
+          APP_STATE_LOADING       = 2   /* @text APP_STATE_LOADING */,
+          APP_STATE_INITIALIZING  = 3   /* @text APP_STATE_INITIALIZING */,
+          APP_STATE_PAUSED        = 4   /* @text APP_STATE_PAUSED */,
+          APP_STATE_RUNNING       = 5   /* @text APP_STATE_RUNNING */,
+          APP_STATE_ACTIVE        = 6   /* @text APP_STATE_ACTIVE */,
+          APP_STATE_SUSPENDED     = 7   /* @text APP_STATE_SUSPENDED */,
+          APP_STATE_HIBERNATED    = 8   /* @text APP_STATE_HIBERNATED */,
+          APP_STATE_TERMINATING   = 9   /* @text APP_STATE_TERMINATING */
       };
 
   enum AppErrorReason : uint8_t {
-          APP_ERROR_UNKNOWN          = 0     /* @text APP_ERROR_UNKNOWN */,
-          APP_ERROR_STATE_TIMEOUT    = 1     /* @text APP_ERROR_STATE_TIMEOUT */,
-          APP_ERROR_ABORT            = 2     /* @text APP_ERROR_ABORT */
+          APP_ERROR_NONE             = 0     /* @text APP_ERROR_NONE */,
+          APP_ERROR_UNKNOWN          = 1     /* @text APP_ERROR_UNKNOWN */,
+          APP_ERROR_STATE_TIMEOUT    = 2     /* @text APP_ERROR_STATE_TIMEOUT */,
+          APP_ERROR_ABORT            = 3     /* @text APP_ERROR_ABORT */,
+          APP_ERROR_INVALID_PARAM    = 4     /* @text APP_ERROR_INVALID_PARAM */,
+          APP_ERROR_CREATE_DISPLAY   = 5     /* @text APP_ERROR_CREATE_DISPLAY */,
+          APP_ERROR_DOBBY_SPEC       = 6     /* @text APP_ERROR_DOBBY_SPEC */,
+          APP_ERROR_NOT_INSTALLED    = 7     /* @text APP_ERROR_NOT_INSTALLED */,
+          APP_ERROR_PACKAGE_LOCK     = 8     /* @text APP_ERROR_PACKAGE_LOCK */
       };
 
-  // @event 
+  struct EXTERNAL LoadedAppInfo {
+          string appId /* @text appId */
+              /* @brief App identifier for the application */;
+
+          string appInstanceId /* @text appInstanceId */
+              /* @brief A numerical identifier for a specific instance of the application */;
+
+          string activeSessionId /* @text activeSessionId */
+              /* @brief Identifier for the active session associated with the application instance */;
+
+          string type /* @text type */
+              /* @brief The type or category of the application */;
+
+          AppLifecycleState targetLifecycleState /* @text targetLifecycleState */
+              /* @brief The desired lifecycle state that the application is transitioning to */;
+
+          AppLifecycleState lifecycleState /* @text lifecycleState */
+              /* @brief The current lifecycle state of the application instance */;
+      };
+  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
+
+  // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_APPMANAGER_NOTIFICATION };
- 
+
     // @text onAppInstalled
     // @brief Triggered whenever the App is installed.
     // @param appId:App identifier for the application.
@@ -89,7 +156,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @text getInstalledApps
   // @brief Function fetches the details of all applications currently installed
   // @param apps A list containing the details of installed applications.
-  virtual Core::hresult GetInstalledApps(string& apps /* @out */) = 0;
+  virtual Core::hresult GetInstalledApps(string& apps /* @out @opaque */) = 0;
 
   /** Check the specific application is installed on the system. **/
   // @text isInstalled
@@ -101,7 +168,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @text getLoadedApps
   // @brief Retrieves a list of applications currently loaded on the system.
   // @param apps A list containing the details of loaded applications
-  virtual Core::hresult GetLoadedApps(string& apps /* @out */) = 0;
+  virtual Core::hresult GetLoadedApps(ILoadedAppInfoIterator*& apps /* @out */) = 0;
 
   /** Launches an Application **/
   // @text launchApp
