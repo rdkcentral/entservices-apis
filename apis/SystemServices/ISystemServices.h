@@ -2,7 +2,7 @@
  * If not stated otherwise in this file or this component's LICENSE file the
  * following copyright and licenses apply:
  *
- * Copyright 2025 RDK Management
+ * Copyright 2026 RDK Management
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,157 +33,173 @@ namespace WPEFramework
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-            struct EXTERNAL SystemServicesSuccess {
-                bool success;
-            };
-
-            struct EXTERNAL ModeInfo {
-                string mode;
-                int duration;
-            };
-
-            struct EXTERNAL SystemModeInfo {
-                ModeInfo modeinfo;
-                bool success;
-            };
-
-            struct EXTERNAL PreviousRebootInfo {
-                string timestamp;
-                string reason;
-                string source;
-                string customReason;
-                string otherReason;
-                bool success;
-            };
-
-            struct EXTERNAL RebootInfo {
-                string timestamp;
-                string reason;
-                string source;
-                string customReason;
-                string otherReason;
-                string lastHardPowerReset;
-                bool success;
-            };
-
-            struct EXTERNAL SystemVersionsInfo {
-                string stbVersion;
-                string receiverVersion;
-                string stbTimestamp;
-                bool success;            
+            struct EXTERNAL DeviceInfo {
+                string make /* @brief Device manufacturer */;
+                string bluetooth_mac /* @brief Bluetooth MAC Address */;
+                string boxIP /* @brief STB IP Address */;
+                string build_type /* @brief Image build type */;
+                string device_type /* @brief Device type */;
+                string estb_mac /* @brief STB MAC Address */;
+                string eth_mac /* @brief Ethernet MAC Address */;
+                string friendly_id /* @brief friendly device model name */;
+                string imageVersion /* @brief Image version */;
+                string version /* @brief Version Info */;
+                string software_version /* @brief Software version */;
+                string model_number /* @brief Device model number */;
+                string wifi_mac /* @brief WIFI Mac Address */;
+                bool success /* @brief Whether the request succeeded */;
             };
 
             struct EXTERNAL DownloadedFirmwareInfo {
-                string currentFWVersion;
-                string downloadedFWVersion;
-                string downloadedFWLocation;
-                bool isRebootDeferred;
-                bool success;
+                string currentFWVersion /* @brief The current firmware version */;
+                string downloadedFWVersion /* @brief The downloaded firmware version */;
+                string downloadedFWLocation /* @brief The location of the downloaded firmware */;
+                bool isRebootDeferred /* @brief Whether the device should be rebooted */;
+                bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL FirmwareUpdateInfo {
-                int status;
-                string responseString;
-                string firmwareUpdateVersion;
-                bool rebootImmediately;
-                bool updateAvailable;
-                int updateAvailableEnum;
-                bool success;
-            };
-
-            struct EXTERNAL MacAddressesInfo {
-                string ecm_mac;
-                string estb_mac;
-                string moca_mac;
-                string eth_mac;
-                string wifi_mac;
-                string rf4ce_mac;
-                string info;
-                bool success;
-            };
-
-            struct EXTERNAL TerritoryChangedInfo {
-                string oldTerritory;
-                string newTerritory;
-                string oldRegion;
-                string newRegion;
-            };
-
-            struct EXTERNAL TimeZoneDSTChangedInfo {
-                string oldTimeZone;
-                string newTimeZone;
-                string oldAccuracy;
-                string newAccuracy;
-            };
-
-            struct EXTERNAL TemperatureThresholds {
-                string WARN;
-                string MAX;
-                string temperature;
-            };
-
-            struct EXTERNAL TemperatureThresholdsInfo {
-                TemperatureThresholds temperatureThresholds;
-                bool success;
+            struct EXTERNAL SystemError {
+                string message /* @brief Error Message */;
             };
 
             struct EXTERNAL ErrorInfo {
-                string message;
-                string code;
+                string message /* @brief Error Message */;
+                string code /* @brief Error Code */;
             };
 
             struct EXTERNAL BlocklistResult {
-                ErrorInfo error;
-                bool success;
+                ErrorInfo error /* @brief Error Information */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL SystemServicesSuccess {
+                bool success /* @brief Whether the request succeeded */;
             };
 
             struct EXTERNAL AmericaInfo {
-                string New_York;
-                string Los_Angeles;
+                string New_York /* @brief Error Information */;
+                string Los_Angeles /* @brief Error Information */;
             };
 
             struct EXTERNAL EuropeInfo {
-                string London;
+                string London /* @brief Error Information */;
             };
 
             struct EXTERNAL Zoneinfo {
-                AmericaInfo America;
-                EuropeInfo Europe;
+                AmericaInfo America /* @brief Error Information */;
+                EuropeInfo Europe /* @brief Error Information */;
             };
 
             struct EXTERNAL TimeZoneInfo {
-                Zoneinfo zoneinfo;
-                bool success;
+                Zoneinfo zoneinfo /* @brief Error Information */;
+                bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL WakeupSources {
+            struct EXTERNAL SystemVersionsInfo {
+                string stbVersion /* @brief The STB version */;
+                string receiverVersion /* @brief The receiver version */;
+                string stbTimestamp /* @brief The STB timestamp */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL ModeInfo {
+                string mode /* @brief The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) */;
+                int duration /* @brief The duration */;
+            };
+
+            struct EXTERNAL SystemModeInfo {
+                ModeInfo modeinfo /* @brief The mode information */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL AccountInfoDetails {
+                string accountId /* @brief Account Id */;
+                string x1DeviceId /* @brief X1 Device Id */;
+                bool XCALSessionTokenAvailable /* @brief XCAL Session Token Available */;
+                string experience /* @brief Experience*/;
+                string deviceMACAddress /* @brief Device MAC Address */;
+                bool firmwareUpdateDisabled /* @brief Whether the firmwareUpdate Disabled */;
+            };
+
+            struct EXTERNAL WebBrowserInfo {
+                string browserType /* @brief Browser Type*/;
+                string version /* @brief Version */;
+                string userAgent /* @brief User Agent*/;
+            };
+
+            struct EXTERNAL MIMETypeExclusions {
+            };
+
+            struct EXTERNAL Features {
+            };
+
+            struct EXTERNAL DeviceInfoDetails {
+                string quirks /* @brief The list of installed “quirks” */;
+                MIMETypeExclusions mimeTypeExclusions /* @brief mime Type Exclusions */;
+                Features features /* @brief features */;
+                string mimeTypes /* @brief mime Types*/;
+                string model /* @brief */;
+                string deviceType /* @brief */;
+                bool supportsTrueSD /* @brief */;
+                WebBrowserInfo webBrowser /* @brief */;
+                string HdrCapability /* @brief e.g. HDR10,Dolby Vision,Technicolor Prime */;
+                bool canMixPCMWithSurround /* @brief */;
+                string publicIP /* @brief Public IP */;
+            };
+
+            struct EXTERNAL PlatformConfig {
+                AccountInfoDetails AccountInfo /* @brief AccountInfo Details */;
+                DeviceInfoDetails DeviceInfo /* @brief DeviceInfo Details */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL MacAddressesInfo {
+                string ecm_mac /* @brief The embedded cable modem MAC address */;
+                string estb_mac /* @brief The embedded set-top box MAC address */;
+                string moca_mac /* @brief The MOCA MAC address */;
+                string eth_mac /* @brief The Ethernet MAC address */;
+                string wifi_mac /* @brief The Wifi MAC address */;
+                string bluetooth_mac /* @brief The Bluetooth MAC address */;
+                string rf4ce_mac /* @brief The Rf4ce MAC address */;
+                string info /* @brief Additional information (only if any of the above data is missing) */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL FirmwareUpdateInfo {
+                int status /* @brief The firmware update status */;
+                string responseString /* @brief A custom response */;
+                string firmwareUpdateVersion /* @brief The next firmware update version */;
+                bool rebootImmediately /* @brief The value true indicates that the device has to be rebooted immediately or false otherwise */;
+                bool updateAvailable /* @brief The value false indicates that there is no update available */;
+                int updateAvailableEnum /* @brief The update available details (must be one of the following: 0, 1, 2, 3) */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL TerritoryChangedInfo {
+                string oldTerritory /* @brief old territory */;
+                string newTerritory /* @brief new territory */;
+                string oldRegion /* @brief old region */;
+                string newRegion /* @brief new region */;
+            };
+
+            struct EXTERNAL TimeZoneDSTChangedInfo {
+                string oldTimeZone /* @brief old time zone */;
+                string newTimeZone /* @brief new time zone */;
+                string oldAccuracy /* @brief old time zone accuracy */;
+                string newAccuracy /* @brief new time zone accuracy */;
+            };
+
+             struct EXTERNAL WakeupSources {
                 bool WAKEUPSRC_VOICE;
                 bool WAKEUPSRC_PRESENCE_DETECTION;
-		bool WAKEUPSRC_BLUETOOTH;
+                bool WAKEUPSRC_BLUETOOTH;
                 bool WAKEUPSRC_WIFI;
-		bool WAKEUPSRC_IR;
+                bool WAKEUPSRC_IR;
                 bool WAKEUPSRC_POWER_KEY;
-		bool WAKEUPSRC_CEC;
+                bool WAKEUPSRC_CEC;
                 bool WAKEUPSRC_LAN;
-		bool WAKEUPSRC_TIMER;
+                bool WAKEUPSRC_TIMER;
             };
-
-            struct EXTERNAL XconfParams {
-                string env;
-        	string eStbMac;
-		string model;
-        	string firmwareVersion;
-	    };
-
-	    struct EXTERNAL XconfParamsResult {
-                XconfParams xconfParams;
-		bool success;
-            };
-
-            struct EXTERNAL TemperatureThresholdsSet {
-  		string WARN;
-        	string MAX;
-	    };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
@@ -192,536 +208,421 @@ namespace WPEFramework
             {
                 enum { ID = ID_SYSTEMSERVICES_NOTIFICATION };
 
-                // @text OnFirmwarePendingReboot
-                // @brief Triggered when the fireFirmwarePendingReboot method is invoked.
-                // @param fireFirmwarePendingReboot - in - int
-                // @param success - in - bool
-                virtual void OnFirmwarePendingReboot (const int fireFirmwarePendingReboot, const bool success) {};
-
                 // @text onFirmwareUpdateInfoReceived
                 // @brief Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
-                // @param FirmwareUpdateInfo - in - struct
-                virtual void OnFirmwareUpdateInfoReceived (const FirmwareUpdateInfo &firmwareUpdateInfo) {};
+                // @param FirmwareUpdateInfo: The firmware update information
+                virtual void OnFirmwareUpdateInfoReceived(const FirmwareUpdateInfo &firmwareUpdateInfo) {};
 
-                // @text onFirmwareUpdateStateChange
-                // @brief Triggered when the state of a firmware update changes.
-                // @param firmwareUpdateStateChange - in - int
-                virtual void OnFirmwareUpdateStateChange (const int firmwareUpdateStateChange) {};
-
-                // @text onMacAddressesRetreived
-                // @brief Triggered when the getMacAddresses asynchronous method is invoked.
-                // @param MacAddressesInfo - in - struct
-                virtual void OnMacAddressesRetreived (const MacAddressesInfo &macAddressesInfo) {};
-
-                // @text onNetworkStandbyModeChanged
-                // @brief Triggered when the network standby mode setting changes.
-                // @param nwStandby - in - bool
-                virtual void OnNetworkStandbyModeChanged (const bool nwStandby) {};
-                
                 // @text onRebootRequest
-                // @brief Triggered when an application invokes the reboot
-                // @param requestedApp - in - string
-                // @param rebootReason - in - string
-                virtual void OnRebootRequest (const string& requestedApp, const string& rebootReason) {};
-                
-                // @text onSystemClockSet
-                // @brief Triggered when the clock on the set-top device is updated.
-                virtual void OnSystemClockSet () {};
-                
-                // @text onSystemModeChanged
-                // @brief Triggered when the device operating mode changes.
-                // @param mode - in - string
-                virtual void OnSystemModeChanged (const string& mode) {};
-                
+                // @brief Triggers when a device reboot request is made
+                // @param requestedApp: The source of the reboot
+                // @param rebootReason: The reboot reason
+                virtual void OnRebootRequest(const string& requestedApp, const string& rebootReason) {};
+
                 // @text onSystemPowerStateChanged
                 // @brief Triggered when the power manager detects a device power state change.
-                // @param powerState - in - string
-                // @param currentPowerState - in - string
-                virtual void OnSystemPowerStateChanged (const string& powerState, const string& currentPowerState) {};
-                
-                // @text onFriendlyNameChanged
-                // @brief Triggered when the device friendly name change.
-                // @param friendlyName - in - string
-                virtual void OnFriendlyNameChanged (const string& friendlyName) {};
-                
-                // @text onTemperatureThresholdChanged
-                // @brief Triggered when the device temperature changes beyond the WARN or MAX limits.
-                // @param thresholdType - in - string
-                // @param exceeded - in - bool
-                // @param temperature - in - string
-                virtual void OnTemperatureThresholdChanged (const string& thresholdType, const bool exceeded, const string& temperature) {};
-                
+                // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
+                // @param currentPowerState: The current power state
+                virtual void OnSystemPowerStateChanged(const string& powerState, const string& currentPowerState) {};
+
                 // @text onTerritoryChanged
                 // @brief Triggered when the device territory changed.
-                // @param TerritoryChangedInfo - in - struct
-                virtual void OnTerritoryChanged (const TerritoryChangedInfo &territoryChangedInfo) {};
-                
-                // @text onDeviceMgtUpdateReceived
-                // @brief Triggered when the device management update completes.
-                // @param source - in - string
-                // @param type - in - string
-                // @param success - in - bool
-                virtual void OnDeviceMgtUpdateReceived (const string& source, const string& type, const bool success) {};
-                
+                // @param TerritoryChangedInfo: The Territory changed information
+                virtual void OnTerritoryChanged(const TerritoryChangedInfo &territoryChangedInfo) {};
+
                 // @text onTimeZoneDSTChanged
                 // @brief Triggered when device time zone changed.
-                // @param TimeZoneDSTChangedInfo - in - struct
-                virtual void OnTimeZoneDSTChanged (const TimeZoneDSTChangedInfo &timeZoneDSTChangedInfo) {};
-                
+                // @param TimeZoneDSTChangedInfo: The TimeZoneDST changed information
+                virtual void OnTimeZoneDSTChanged(const TimeZoneDSTChangedInfo& timeZoneDSTChangedInfo) {};
+
+                // @text OnMacAddressesRetreived
+                // @brief Triggered when the getMacAddresses asynchronous method is invoked.
+                // @param MacAddressesInfo: The Mac Addresses details 
+                virtual void OnMacAddressesRetreived(const MacAddressesInfo& macAddressesInfo) {};
+
+                // @text onSystemModeChanged
+                // @brief Triggers when the system mode is changed successfully.
+                // @param mode: The mode (must be one of the following: NORMAL, EAS, WAREHOUSE)
+                virtual void OnSystemModeChanged(const string& mode) {};
+
                 // @text onLogUpload
                 // @brief Triggered when logs upload process is done or stopped.
-                // @param logUploadStatus - in - string
-                virtual void OnLogUpload (const string& logUploadStatus) {};
-                
-                // @text onBlocklistChanged
-                // @brief Triggers when the blocklist flag is modified.
-                // @param oldBlocklistFlag - in - bool
-                // @param newBlocklistFlag - in - bool
-                virtual void OnBlocklistChanged (const bool oldBlocklistFlag, const bool newBlocklistFlag) {};
+                // @param logUploadStatus: Upload status (must be one of the following: UPLOAD_SUCCESS, UPLOAD_FAILURE, UPLOAD_ABORTED)
+                virtual void OnLogUpload(const string& logUploadStatus) {};
+
             };
 
             virtual Core::hresult Register(ISystemServices::INotification* notification) = 0;
             virtual Core::hresult Unregister(ISystemServices::INotification* notification) = 0;
-            
-            // @text clearLastDeepSleepReason
-            // @brief Clears the last deep sleep reason
-            // @param SystemServicesSuccess - out
-            virtual Core::hresult ClearLastDeepSleepReason(SystemServicesSuccess& success /* @out */) = 0;
-            
-            // @text deletePersistentPath
-            // @brief Deletes persistent path associated with a callsign.
-            // @param callsign - in - string
-            // @param type - in - string
-            // @param SystemServicesSuccess - out
-            virtual Core::hresult DeletePersistentPath(const string& callsign, const string& type, SystemServicesSuccess& success /* @out */) = 0;
-            
-            // @text enableMoca
-            // @brief Enables (or disables) Moca support for the platform.
-            // @param value - in - bool
-            // @param SystemServicesSuccess - out
-            virtual Core::hresult EnableMoca(const bool value, SystemServicesSuccess& success /* @out */) = 0;
-            
-            // @text enableXREConnectionRetention
-            // @brief Enables (or disables) XRE Connection Retention option.
-            // @param enable - in - bool
-            // @param SystemServicesSuccess - out
-            virtual Core::hresult EnableXREConnectionRetention(const bool enable, SystemServicesSuccess& success /* @out */) = 0;
-            
-            // @text fireFirmwarePendingReboot
-            // @brief Notifies the device about a pending reboot.
-            // @param SystemServicesSuccess - out
-            virtual Core::hresult FireFirmwarePendingReboot(SystemServicesSuccess& success /* @out */) = 0;
-            
-            // @text getAvailableStandbyModes
-            // @brief Queries the available standby modes.
-            // @param supportedStandbyModes - out - array of supported standby modes
-            // @param success - out - bool
-            virtual Core::hresult GetAvailableStandbyModes(IStringIterator*& supportedStandbyModes /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getCoreTemperature
-            // @brief Returns the core temperature of the device.
-            // @param temperature - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetCoreTemperature(string& temperature /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getDeviceInfo
             // @brief Collects device details
-            // @param params - in - A list of supported device keys
-            // @param estb_mac - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetDeviceInfo(IStringIterator* const& params, string& estb_mac /* @out */, bool& success /* @out */) = 0;
-            
+            // @param params: A list of supported device keys
+            // @param deviceInfo: Device Information
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetDeviceInfo(IStringIterator* const& params, DeviceInfo& deviceInfo /* @out */) = 0;
+
             // @text getDownloadedFirmwareInfo
             // @brief Returns information about firmware downloads.
-            // @param DownloadedFirmwareInfo - out - struct
+            // @param DownloadedFirmwareInfo: Downloaded Firmware information
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDownloadedFirmwareInfo(DownloadedFirmwareInfo& downloadedFirmwareInfo /* @out */) = 0;
-            
+
             // @text getFirmwareDownloadPercent
             // @brief Gets the current download percentage.
-            // @param downloadPercent - out - int
-            // @param success - out - bool
-            virtual Core::hresult GetFirmwareDownloadPercent(int& downloadPercent /* @out */, bool& success /* @out */) = 0;
-            
+            // @param downloadPercent: Current download percentage (0-100)
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetFirmwareDownloadPercent(uint32_t & downloadPercent /* @out */, bool& success /* @out */) = 0;
+
             // @text getFirmwareUpdateInfo
             // @brief Checks the firmware update information.
-            // @param GUID - in - string
-            // @param asyncResponse - out - bool
-            // @param success - out - bool
+            // @param GUID: A unique identifier
+            // @param asyncResponse: Whether the event notification succeeded
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFirmwareUpdateInfo(const string& GUID, bool &asyncResponse /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getFirmwareUpdateState
             // @brief Checks the state of the firmware update.
-            // @param firmwareUpdateState - out - int
-            // @param success - out - bool
+            // @param firmwareUpdateState: The state (must be one of the following: Uninitialized, Requesting, Downloading, Failed, DownLoad Complete, Validation Complete, Preparing to Reboot)
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFirmwareUpdateState(int& firmwareUpdateState /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getLastDeepSleepReason
-            // @brief Retrieves the last deep sleep reason.
-            // @param reason - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetLastDeepSleepReason(string& reason /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getLastFirmwareFailureReason
             // @brief Retrieves the last firmware failure reason.
-            // @param failReason - out - string
-            // @param success - out - bool
+            // @param failReason: The reason the failure occurred
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetLastFirmwareFailureReason(string& failReason /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getLastWakeupKeyCode
             // @brief Returns the last wakeup keycode.
-            // @param wakeupKeyCode - out - string
-            // @param success - out - bool
+            // @param wakeupKeyCode: The last wakeup keycode
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetLastWakeupKeyCode(string& wakeupKeyCode /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getMacAddresses
-            // @brief Gets the MAC address of the device.
-            // @param GUID - in - string
-            // @param asyncResponse - out - bool
-            // @param success - out - bool
-            virtual Core::hresult GetMacAddresses(const string& GUID, bool &asyncResponse /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getMfgSerialNumber
             // @brief Gets the Manufacturing Serial Number.
-            // @param mfgSerialNumber - out - string
-            // @param success - out - bool
+            // @param mfgSerialNumber: Manufacturing Serial Number
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetMfgSerialNumber(string& mfgSerialNumber /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getMode
-            // @brief Returns the currently set mode information.
-            // @param SystemModeInfo - out - struct
-            virtual Core::hresult GetMode(SystemModeInfo& systemMode /* @out */) = 0;
-            
+
             // @text getNetworkStandbyMode
             // @brief Returns the network standby mode of the device.
-            // @param nwStandby - out - bool
-            // @param success - out - bool
+            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetNetworkStandbyMode(bool& nwStandby /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getOvertempGraceInterval
-            // @brief Returns the over-temperature grace interval value.
-            // @param graceInterval - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetOvertempGraceInterval(string& graceInterval /* @out */, bool& success /* @out */) = 0;
-            
-            // getPlatformConfiguration // need to do
-            
+
             // @text getPowerState
             // @brief Returns the power state of the device.
-            // @param powerState - out - string
-            // @param success - out - bool
+            // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetPowerState(string& powerState /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getPowerStateBeforeReboot
             // @brief Returns the power state before reboot.
-            // @param state - out - string
-            // @param success - out - bool
+            // @param state: The power state
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetPowerStateBeforeReboot(string& state /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getPowerStateIsManagedByDevice
-            // @brief Checks whether the power state is managed by the device.
-            // @param powerStateManagedByDevice - out - bool
-            // @param success - out - bool
-            virtual Core::hresult GetPowerStateIsManagedByDevice(bool& powerStateManagedByDevice /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getPreferredStandbyMode
-            // @brief Returns the preferred standby mode.
-            // @param preferredStandbyMode - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetPreferredStandbyMode(string& preferredStandbyMode /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getPreviousRebootInfo
-            // @brief Returns the preferred standby mode.
-            // @param PreviousRebootInfo - out - struct
-            virtual Core::hresult GetPreviousRebootInfo(PreviousRebootInfo& previousRebootInfo /* @out */) = 0;
-            
-            // @text getPreviousRebootInfo2
-            // @brief Returns detailed information about a reboot.
-            // @param RebootInfo - out - struct
-            virtual Core::hresult GetPreviousRebootInfo2(RebootInfo& rebootInfo /* @out */) = 0;
-            
-            // @text getPreviousRebootReason
-            // @brief Returns the last reboot reason.
-            // @param reason - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetPreviousRebootReason(string& reason /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getRFCConfig
             // @brief Returns information that is related to RDK Feature Control (RFC) configurations.
-            // @param rfcList - in - A list of RFC properties to query
-            // @param RFCConfig - out - A list of specified RFC properties
-            // @param success - out - bool
+            // @param rfcList: A list of RFC properties to query
+            // @param RFCConfig: A list of specified RFC properties
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, IStringIterator*& RFCConfig /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getSerialNumber
             // @brief Returns the device serial number.
-            // @param serialNumber - out - string
-            // @param success - out - bool
+            // @param serialNumber: The serial number
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetSerialNumber(string& serialNumber /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getStateInfo
-            // @brief Queries device state information of various properties.
-            // @param param - in - string
-            // @param paramValue - out - int
-            // @param success - out - bool
-            virtual Core::hresult GetStateInfo(const string& param, int& paramValue /* @out @opaque */, bool& success /* @out */) = 0;
-            
-            // @text getStoreDemoLink
-            // @brief Returns the store demo video link.
-            // @param fileURL - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetStoreDemoLink(string& fileURL /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getSystemVersions
-            // @brief Returns system version details.
-            // @param SystemVersionsInfo - out - struct
-            virtual Core::hresult GetSystemVersions(SystemVersionsInfo& systemVersionsInfo /* @out */) = 0;
-            
-            // @text getTemperatureThresholds
-            // @brief Returns temperature threshold values.
-            // @param TemperatureThresholdsInfo - out - struct
-            virtual Core::hresult GetTemperatureThresholds(TemperatureThresholdsInfo& temperatureThresholdsInfo /* @out */) = 0;
-            
+
             // @text getFriendlyName
             // @brief Returns the friendly name set by setFriendlyName API or default value.
-            // @param friendlyName - out - string
-            // @param success - out - bool
+            // @param friendlyName: The friendly name of the device which used to display on the client device list
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFriendlyName(string& friendlyName /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getTerritory
             // @brief Gets the configured system territory and region.
-            // @param territory - out - string
-            // @param region - out - string
-            // @param success - out - bool
+            // @param territory: territory name
+            // @param region: region name
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetTerritory(string& territory /* @out */, string& region /* @out */, bool& success /* @out */) = 0;
 
             // @text getTimeZones
             // @brief Returns the friendly name set by setFriendlyName API or default value.
-            // @param TimeZoneInfo - out - struct
+            // @param TimeZoneInfo: A timezone area
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetTimeZones(TimeZoneInfo& timeZoneInfo /* @out */) = 0;
-            
+
             // @text getTimeZoneDST
             // @brief Gets the available timezones from the system’s time zone database.
-            // @param timeZone - out - string
-            // @param accuracy - out - string
-            // @param success - out - bool
+            // @param timeZone: The timezone
+            // @param accuracy: The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL)
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetTimeZoneDST(string& timeZone /* @out */, string& accuracy /* @out */, bool& success /* @out */) = 0;
-            
-            // @text setFSRFlag
-            // @brief Set the FSR flag into the emmc raw area.
-            // @param fsrFlag - in - bool
-            // @param success - out - bool
-            virtual Core::hresult SetFSRFlag(const bool fsrFlag, bool& success /* @out */) = 0;
-            
-            // @text getFSRFlag
-            // @brief Get the FSR flag from the emmc raw area.
-            // @param fsrFlag - out - bool
-            // @param success - out - bool
-            virtual Core::hresult GetFSRFlag(bool &fsrFlag /* @out */, bool& success /* @out */) = 0;
-            
-            // @text getBootTypeInfo
-            // @brief Get the FSR flag from the emmc raw area.
-            // @param bootType - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetBootTypeInfo(string &bootType /* @out */, bool& success /* @out */) = 0;
-            
-            // @text setBlocklistFlag
-            // @brief To update Blocklist flag.
-            // @param blocklist - in - bool
-            // @param BlocklistResult - out - struct
-            virtual Core::hresult SetBlocklistFlag(const bool blocklist, BlocklistResult& result /* @out */) = 0;
-            
-            // @text getBlocklistFlag
-            // @brief Get block list falg.
-            // @param BlocklistResult - out - struct
-            virtual Core::hresult GetBlocklistFlag(BlocklistResult& result /* @out */) = 0;
-            
-            // @text setMigrationStatus
-            // @brief set the Migration Status of the device.
-            // @param status - in - string
-            // @param success - out - bool
-            virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
-            
-            // @text getMigrationStatus
-            // @brief set the Migration Status of the device
-            // @param MigrationStatus - out - string
-            // @param success - out - bool
-            virtual Core::hresult GetMigrationStatus(string &MigrationStatus /* @out */, bool& success /* @out */) = 0;
-            
+
             // @text getWakeupReason
             // @brief Returns the reason for the device coming out of deep sleep.
-            // @param WakeupReason - out - string
-            // @param success - out - boolean
+            // @param WakeupReason: The reason 
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetWakeupReason(string& WakeupReason /* @out */, bool& success /* @out */) = 0;
 
-            // @text getXconfParams
-            // @brief Returns XCONF configuration parameters for the device.
-            // @param XconfParamsResult - out - struct
-            virtual Core::hresult GetXconfParams(XconfParamsResult& xconfParamsResult /* @out */ ) = 0;
-
-	    // @text isOptOutTelemetry
+            // @text isOptOutTelemetry
             // @brief Checks the telemetry opt-out status.
-            // @param OptOut  - out - boolean
-            // @param success - out - boolean
+            // @param OptOut: true for opt-out, otherwise false
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult IsOptOutTelemetry(bool& OptOut /* @out @text Opt-Out*/, bool& success /* @out */) = 0;
 
-	    // @text queryMocaStatus
-            // @brief Checks whether MOCA is enabled.
-            // @param mocaEnabled  - out - boolean
-            // @param success - out - boolean
-            virtual Core::hresult QueryMocaStatus(bool& mocaEnabled /* @out */, bool& success /* @out */) = 0;
-
-	    // @text reboot
+            // @text reboot
             // @brief Requests that the system performs a reboot of the set-top box.
-            // @param rebootReason  - in - string
-	    // @param IARM_Bus_Call_STATUS - out - int
-            // @param success - out - boolean
+            // @param rebootReason: The reboot reason
+            // @param IARM_Bus_Call_STATUS: IARM BUS status
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult Reboot(const string& rebootReason, int& IARM_Bus_Call_STATUS /* @out */, bool& success /* @out */) = 0;
 
-	    // @text requestSystemUptime
-            // @brief Returns the device uptime.
-            // @param systemUptime  - out - string
-            // @param success - out - boolean
-            virtual Core::hresult RequestSystemUptime(string& systemUptime /* @out */, bool& success /* @out */) = 0;
-
-	    // @text setBootLoaderPattern
-            // @brief Sets the boot loader pattern mode in MFR.
-            // @param pattern  - in - string
-            // @param success - out - boolean
-            virtual Core::hresult SetBootLoaderPattern(const string& pattern, bool& success /* @out */) = 0;
-
-	    // @text setDeepSleepTimer
+            // @text setDeepSleepTimer
             // @brief Sets the deep sleep timeout period.
-            // @param seconds  - in - int
-            // @param SystemServicesSuccess - out - struct
+            // @param seconds: The deep sleep timeout in seconds
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetDeepSleepTimer(const int seconds, SystemServicesSuccess& success /* @out */) = 0;
 
-	    // @text setFirmwareAutoReboot
+            // @text setFirmwareAutoReboot
             // @brief Enables or disables the AutoReboot Feature.
-            // @param enable  - in - boolean
-            // @param SystemServicesSuccess - out - struct
+            // @param enable: true to enable Autoreboot or false to disable
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetFirmwareAutoReboot(const bool enable, SystemServicesSuccess& success /* @out */) = 0;
-	    
- 	    // @text setFirmwareRebootDelay
-            // @brief Delays the firmware reboot.
-            // @param delaySeconds  - in - int
-            // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetFirmwareRebootDelay(const int delaySeconds, SystemServicesSuccess& success /* @out */) = 0;
 
-	    // @text setMode
-            // @brief Sets the mode of the set-top box for a specific duration before returning to normal mode.
-            // @param ModeInfo - in - struct
-	    // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetMode(const ModeInfo& modeinfo, SystemServicesSuccess& success /* @out */) = 0;
-	
-	    // @text setOptOutTelemetry
+            // @text setNetworkStandbyMode
+            // @brief Enables or disables the AutoReboot Feature.
+            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult setNetworkStandbyMode(const bool nwStandby, SystemServicesSuccess& success /* @out */) = 0;
+
+            // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
-            // @param OptOut  - in - boolean
-            // @param SystemServicesSuccess - out - struct
+            // @param OptOut: true for opt-out, otherwise false
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemServicesSuccess& success /* @out */) = 0;
 
-	    // @text setOvertempGraceInterval
-            // @brief Sets the over-temperature grace interval value. Not supported on all devices.
-            // @param graceInterval - in - string
-            // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetOvertempGraceInterval(const string& graceInterval, SystemServicesSuccess& success /* @out */) = 0;
-
-	    // @text setPowerState
+            // @text setPowerState
             // @brief Sets the power state of the device.
-            // @param powerState - in - string
-	    // @param standbyReason - in - string
-	    // @param SystemServicesSuccess - out - struct
+            // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
+            // @param standbyReason: The reason for a standby state
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetPowerState(const string &powerState, const string &standbyReason, SystemServicesSuccess& success /* @out */) = 0;
 
- 	    // @text setPreferredStandbyMode
-            // @brief Sets and persists the preferred standby mode.
-            // @param standbyMode - in - string
-	    // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetPreferredStandbyMode(const string& standbyMode, SystemServicesSuccess& success /* @out */) = 0;
-	 
-	    // @text setTemperatureThresholds
-            // @brief Sets the temperature threshold values.
-            // @param TemperatureThresholdsSet - in - struct
-	    // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetTemperatureThresholds(const TemperatureThresholdsSet& thresholds, SystemServicesSuccess& success /* @out */) = 0;
-
- 	    // @text setFriendlyName
+            // @text setFriendlyName
             // @brief Sets the friendly name of device.
-            // @param friendlyName - in - string
-	    // @param SystemServicesSuccess - out - struct
+            // @param friendlyName: The friendly name of the device which used to display on the client device list
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetFriendlyName(const string& friendlyName, SystemServicesSuccess& success /* @out */) = 0;
 
-	    // @text setBootLoaderSplashScreen
+            // @text setBootLoaderSplashScreen
             // @brief Install or update the BootLoader Splash Screens.
-            // @param path - in - string
-	    // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetBootLoaderSplashScreen(const string& path, SystemServicesSuccess& success /* @out */) = 0;
+            // @param path: Path to the pre-downloaded splash screen file location. Full path with file name
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetBootLoaderSplashScreen(const string& path, ErrorInfo& error /* @out */, bool& success /* @out */) = 0;
 
-	    // @text getBuildType
-            // @brief Returns build type of the image flashed on the device.
-            // @param build_type  - out - string
-            // @param success - out - boolean
-            virtual Core::hresult GetBuildType(string& build_type /* @out */, bool& success /* @out */) = 0;
-
-	    // @text setTerritory
+            // @text setTerritory
             // @brief Sets the system territory and region.
-            // @param territory - in - string
-	    // @param region - in - string
-	    // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetTerritory(const string& territory, const string& region, SystemServicesSuccess& success /* @out */) = 0;
+            // @param territory: territory name
+            // @param region: region name
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetTerritory(const string& territory, const string& region, SystemError& error /* @out */, bool& success /* @out */) = 0;
 
-	    // @text setTimeZoneDST
+            // @text setTimeZoneDST
             // @brief Sets the system time zone.
-            // @param timeZone - in - string
-	    // @param accuracy - in - string
-	    // @param SystemServicesSuccess - out - struct
+            // @param timeZone: The timezone
+            // @param accuracy: The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL)
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetTimeZoneDST(const string& timeZone, const string& accuracy, SystemServicesSuccess& success /* @out */) = 0;
 
-	    // @text setWakeupSrcConfiguration
-            // @brief Sets the wakeup source configuration for the input powerState.
-	    // @param powerState - in - string	
-            // @param wakeupSources - in - Boolean Array of Key value pair with wake up sources and its configurations
-            // @param SystemServicesSuccess - out - struct
-            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemServicesSuccess& success /* @out */) = 0;
-
-	    // @text getWakeupSrcConfiguration
-            // @brief Returns all the supported wakeup configurations and powerState.
-	    // @param powerState - out - string	
-            // @param wakeupSources - out - Boolean Array of Key value pair with wake up sources and its configurations
-            // @param success - out - boolean
-            virtual Core::hresult GetWakeupSrcConfiguration(string& powerState /* @out */, ISystemServicesWakeupSourcesIterator*& wakeupSources /* @out */, bool& success /* @out */) = 0;
-
-	    // @text updateFirmware
+            // @text updateFirmware
             // @brief Initiates a firmware update.
-            // @param SystemServicesSuccess - out - struct
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UpdateFirmware(SystemServicesSuccess& success /* @out */) = 0;
 
-  	    // @text uploadLogsAsync
+            // @text getBootTypeInfo
+            // @brief Get the FSR flag from the emmc raw area.
+            // @param bootType: BOOT Type Info
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetBootTypeInfo(string &bootType /* @out */, bool& success /* @out */) = 0;
+
+            // @text setMigrationStatus
+            // @brief set the Migration Status of the device.
+            // @param status: Migration Status
+            // @param success: Whether the request succeeded
+            virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
+
+            // @text getMigrationStatus
+            // @brief set the Migration Status of the device
+            // @param MigrationStatus: Migration Status
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetMigrationStatus(string &MigrationStatus /* @out */, bool& success /* @out */) = 0;
+
+            // @text getMacAddresses
+            // @brief Gets the MAC address of the device.
+            // @param GUID: A unique identifier
+            // @param asyncResponse: Whether the event notification succeeded
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetMacAddresses(const string& GUID, bool &asyncResponse /* @out */, bool& success /* @out */) = 0;
+
+            // @text getPlatformConfiguration
+            // @brief Returns the supported features and device/account info
+            // @param platformConfig: Platform Configuration Details
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetPlatformConfiguration (PlatformConfig& platformConfig /* @out */) = 0;
+
+            // @text setWakeupSrcConfiguration
+            // @brief Sets the wakeup source configuration for the input powerState.
+            // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
+            // @param wakeupSources: Array of Key value pair with wake up sources and its configurations
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemServicesSuccess& success /* @out */) = 0;
+
+            // @text getSystemVersions
+            // @brief Returns system version details.
+            // @param SystemVersionsInfo: system version details
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetSystemVersions(SystemVersionsInfo& systemVersionsInfo /* @out */) = 0;
+
+            // @text requestSystemUptime
+            // @brief Returns the device uptime.
+            // @param systemUptime: The uptime, in seconds, of the device
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult RequestSystemUptime(string& systemUptime /* @out */, bool& success /* @out */) = 0;
+
+            // @text setMode
+            // @brief Sets the mode of the set-top box for a specific duration before returning to normal mode.
+            // @param ModeInfo: The mode information
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetMode(const ModeInfo& modeinfo, SystemServicesSuccess& success /* @out */) = 0;
+
+            // @text uploadLogsAsync
             // @brief Starts background process to upload logs.
-            // @param SystemServicesSuccess - out - struct
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UploadLogsAsync(SystemServicesSuccess& success /* @out */) = 0;
 
-  	    // @text abortLogUpload
+            // @text abortLogUpload
             // @brief Stops background process to upload logs.
-            // @param SystemServicesSuccess - out - struct
+            // @param SystemServicesSuccess: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult AbortLogUpload(SystemServicesSuccess& success /* @out */) = 0;
- 
-	    // @text getThunderStartReason
-            // @brief Returns the Thunder start reason.
-            // @param startReason  - out - string
-            // @param success - out - boolean
-            virtual Core::hresult GetThunderStartReason(string& startReason /* @out */, bool& success /* @out */) = 0;
 
-   	    // @text setPrivacyMode
-            // @brief Setting Privacy Mode.
-            // @param privacyMode  - in - string
-            // @param success - out - boolean
-            virtual Core::hresult SetPrivacyMode(const string& privacyMode, bool& success /* @out */) = 0;
+            // @text setFSRFlag
+            // @brief Set the FSR flag into the emmc raw area.
+            // @param fsrFlag: FSR flag
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetFSRFlag(const bool fsrFlag, bool& success /* @out */) = 0;
 
- 	    // @text getPrivacyMode
-            // @brief Getting Privacy Mode.
-            // @param privacyMode - out - string
-            // @param success - out - string
-            virtual Core::hresult GetPrivacyMode(string& privacyMode /* @out */, bool& success /* @out */) = 0;
+            // @text getFSRFlag
+            // @brief Get the FSR flag from the emmc raw area.
+            // @param fsrFlag: FSR flag
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetFSRFlag(bool &fsrFlag /* @out */, bool& success /* @out */) = 0;
+
+            // @text setBlocklistFlag
+            // @brief To update Blocklist flag.
+            // @param blocklist: Blocklist flag
+            // @param BlocklistResult: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult SetBlocklistFlag(const bool blocklist, BlocklistResult& result /* @out */) = 0;
+
+            // @text getBlocklistFlag
+            // @brief Get block list falg.
+            // @param BlocklistResult: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetBlocklistFlag(BlocklistResult& result /* @out */) = 0;
+
+            // @text getBuildType
+            // @brief Returns build type of the image flashed on the device.
+            // @param build_type: Image build type
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetBuildType(string& buildType /* @out @text build_type */, bool& success /* @out */) = 0;
+
         };
-    } // namespace Exchange
-} // namespace WPEFramework
+    }
+}
