@@ -62,7 +62,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scenario | string | Scenario for which the backup to happen |
+| params.scenario | string | Scenario for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,7 +113,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scenario | string | Scenario for which the backup to happen |
+| params.scenario | string | Scenario for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -164,7 +164,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scenario | string | Scenario for which the backup to happen |
+| params.scenario | string | Scenario for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -215,7 +215,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scenario | string | Scenario for which the backup to happen |
+| params.scenario | string | Scenario for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
