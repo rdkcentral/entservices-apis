@@ -6,6 +6,7 @@
   - [Analytics](apis/Analytics.md)
   - [AppGateway](apis/AppGateway.md)
   - [AppManager](apis/AppManager.md)
+  - [AppStorageManager](apis/AppStorageManager.md)
   - [AVInput](apis/AVInput.md)
   - [Bluetooth<sup>@</sup>](apis/BluetoothPlugin.md)
   - [DeviceDiagnostics](apis/DeviceDiagnostics.md)
