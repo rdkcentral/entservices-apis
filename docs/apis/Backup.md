@@ -79,7 +79,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.Backup.backup",
     "params": {
-        "scenario": "SCENARIO_HOSPITALITY_RESET"
+        "scenario": "HOSPITALITY_RESET"
     }
 }
 ```
@@ -88,7 +88,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backup", "params": {"scenario": "SCENARIO_HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backup", "params": {"scenario": "HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -130,7 +130,7 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.Backup.backupSettings",
     "params": {
-        "scenario": "SCENARIO_HOSPITALITY_RESET"
+        "scenario": "HOSPITALITY_RESET"
     }
 }
 ```
@@ -139,7 +139,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "SCENARIO_HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -181,7 +181,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.Backup.restore",
     "params": {
-        "scenario": "SCENARIO_HOSPITALITY_RESET"
+        "scenario": "HOSPITALITY_RESET"
     }
 }
 ```
@@ -190,7 +190,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restore", "params": {"scenario": "SCENARIO_HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restore", "params": {"scenario": "HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -232,7 +232,7 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.Backup.restoreSettings",
     "params": {
-        "scenario": "SCENARIO_HOSPITALITY_RESET"
+        "scenario": "HOSPITALITY_RESET"
     }
 }
 ```
@@ -241,7 +241,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "SCENARIO_HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
