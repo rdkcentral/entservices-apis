@@ -62,7 +62,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.resetTime | integer | Time in UTC. Returns 0, if time is not available. |
+| result.resetTime | integer | Time in UTC. Returns 0, if time is not available. @retval Core::ERROR_NONE Last Checkout reset time is successfully retrieved |
 
 ### Examples
 
@@ -108,7 +108,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.resetTime | integer | Time in UTC. Returns 0, if time is not available. |
+| params.resetTime | integer | Time in UTC. Returns 0, if time is not available. @retval Core::ERROR_NONE Last Checkout reset time is successfully retrieved |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
