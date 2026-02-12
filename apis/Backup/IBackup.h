@@ -34,18 +34,18 @@ namespace Exchange {
         virtual ~IBackupManager() = default;
 
         enum Scenario : uint8_t {
-            SCENARIO_HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
+            HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
         };
 
         // @text backupSettings
         // @brief Backup settings across the system
         // @param scenario: Scenario for which the backup to happen
-        virtual Core::hresult BackupSettings(const Scenario scenario) const = 0;
+        virtual Core::hresult BackupSettings(const Scenario scenario) = 0;
 
         // @text restoreSettings
         // @brief Restore settings across the system
         // @param scenario: Scenario for which the restore to happen
-        virtual Core::hresult RestoreSettings(const Scenario scenario) const = 0;
+        virtual Core::hresult RestoreSettings(const Scenario scenario) = 0;
 
     };
 
@@ -60,18 +60,18 @@ namespace Exchange {
         virtual ~IBackupProvider() = default;
 
         enum Scenario : uint8_t {
-            SCENARIO_HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
+            HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
         };
 
         // @text backup
         // @brief Backup settings that belong to this component.
         // @param scenario: Scenario for which the backup to happen
-        virtual Core::hresult Backup(const Scenario scenario) const = 0;
+        virtual Core::hresult Backup(const Scenario scenario) = 0;
 
         // @text restore
         // @brief Restore settings that belong to this component.
         // @param scenario: Scenario for which the restore to happen
-        virtual Core::hresult Restore(const Scenario scenario) const = 0;
+        virtual Core::hresult Restore(const Scenario scenario) = 0;
 
     };
 }
