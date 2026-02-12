@@ -49,7 +49,6 @@
   - [ResourceManager<sup>@</sup>](apis/ResourceManagerPlugin.md)
   - [ScreenCapture](apis/ScreenCapture.md)
   - [SharedStorage](apis/SharedStorage.md)
-  - [StorageManager](apis/StorageManager.md)
   - [SystemAudioPlayer<sup>@</sup>](apis/SystemAudioPlayerPlugin.md)
   - [SystemMode](apis/SystemMode.md)
   - [System<sup>@</sup>](apis/SystemPlugin.md)
