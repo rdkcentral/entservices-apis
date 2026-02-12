@@ -240,6 +240,9 @@ namespace Exchange {
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
 
+        ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x270,
+        ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
+
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
         ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_APP_PACKAGE_MANAGER + 2,
