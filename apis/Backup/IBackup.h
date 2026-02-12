@@ -40,13 +40,14 @@ namespace Exchange {
         // @text backupSettings
         // @brief Backup settings across the system
         // @param scenario: Scenario for which the backup to happen
+        // @retval Core::ERROR_NONE Successfully backed up the settings
         virtual Core::hresult BackupSettings(const Scenario scenario) = 0;
 
         // @text restoreSettings
         // @brief Restore settings across the system
         // @param scenario: Scenario for which the restore to happen
+        // @retval Core::ERROR_NONE Successfully restored the settings
         virtual Core::hresult RestoreSettings(const Scenario scenario) = 0;
-
     };
 
     /*
@@ -66,13 +67,14 @@ namespace Exchange {
         // @text backup
         // @brief Backup settings that belong to this component.
         // @param scenario: Scenario for which the backup to happen
+        // @retval Core::ERROR_NONE Successfully backed up
         virtual Core::hresult Backup(const Scenario scenario) = 0;
 
         // @text restore
         // @brief Restore settings that belong to this component.
         // @param scenario: Scenario for which the restore to happen
+        // @retval Core::ERROR_NONE Successfully restored
         virtual Core::hresult Restore(const Scenario scenario) = 0;
-
     };
 }
 }

@@ -33,13 +33,14 @@ namespace Exchange {
         // @text getLastCheckoutResetTime
         // @brief Gets the last reset time for Hotel Checkout.
         // @param resetTime: Time in UTC. Returns 0, if time is not available.
+        // @retval Core::ERROR_NONE Last Checkout reset time is successfully retrieved
         virtual Core::hresult GetLastCheckoutResetTime(uint64_t& resetTime /* @out */) const = 0;
 
         // @text setLastCheckoutResetTime
         // @brief Sets the last reset time for Hotel Checkout.
         // @param resetTime: Time in UTC.
+        // @retval Core::ERROR_NONE Last Checkout reset time is successfully set
         virtual Core::hresult SetLastCheckoutResetTime(const uint64_t resetTime) = 0;
-
     };
 }
 }
