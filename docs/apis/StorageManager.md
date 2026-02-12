@@ -2,7 +2,7 @@
 <a id="StorageManager_Plugin"></a>
 # StorageManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/StorageManager/IStorageManager.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/StorageManager/IAppStorageManager.h)**
 
 A StorageManager plugin for Thunder framework.
 
