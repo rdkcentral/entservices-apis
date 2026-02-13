@@ -160,7 +160,7 @@ namespace WPEFramework {
 			/****************************************setEnabled()**********************************/
 			// @text setEnabled
 			// @brief Enable or disable XCAST service
-			// @parm enabled: true for enabled or false for disabled
+			// @param enabled: true for enabled or false for disabled
 			// @param success: 	Whether the request succeeded
 			virtual Core::hresult SetEnabled(const bool& enabled /* @text enabled */, XCastSuccess& success /* @out */) = 0;
 			/***************************************** setEnabled() **********************************/
