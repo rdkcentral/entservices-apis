@@ -89,6 +89,13 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @text getUpdateState
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
+  // @brief Delays the firmware reboot
+  // @param[in] delaySeconds :Number
+  // @param[out] success
+  // @returns Core::hresult
+  // @text setFirmwareRebootDelay
+  virtual Core::hresult SetFirmwareRebootDelay (const uint32_t delaySeconds, bool& success /* @out */) = 0;
+
   // @brief Enable or disable the AutoReboot feature.
   // @param[in] enable Boolean to enable or disable AutoReboot
   // @returns Core::hresult
