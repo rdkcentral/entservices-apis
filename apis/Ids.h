@@ -325,6 +325,9 @@ namespace Exchange {
 
         ID_MIGRATION                                = ID_ENTOS_OFFSET + 0x430,
 
+        ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x470,
+        ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
+
         ID_APP_GATEWAY                               = ID_ENTOS_OFFSET + 0x440,
         ID_APP_GATEWAY_RESPONDER                     = ID_APP_GATEWAY + 1,
         ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
