@@ -52,26 +52,25 @@ PackageManager interface methods:
 | [delete](#delete) | Delete |
 | [download](#download) | Downloads a resource file for an application. |
 | [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
-| [getLockedInfo](#getLockedInfo) | GetLockedInfo |
 | [getStorageInformation](#getStorageInformation) | GetStorageInformation |
 | [install](#install) | Downloads and installs an application bundle. |
 | [listPackages](#listPackages) | ListPackages |
-| [lock](#lock) | Locks an application to prevent uninstallation. |
 | [packageState](#packageState) | PackageState |
 | [pause](#pause) | Pause |
 | [progress](#progress) | Progress |
 | [rateLimit](#rateLimit) | RateLimit |
 | [resume](#resume) | Resume |
 | [uninstall](#uninstall) | Uninstalls an application. |
-| [unlock](#unlock) | Unlocks a previously locked application. |
 | [clearAuxMetadata](#clearAuxMetadata) | Clears the specified metadata key. |
 | [getList](#getList) | Retrieves list of installed apps matching given filters. |
 | [getLockInfo](#getLockInfo) | Provides lock reason and owner for an app. |
 | [getMetadata](#getMetadata) | Retrieves metadata and auxiliary resource list for an application. |
 | [getProgress](#getProgress) | Provides the current progress of an ongoing operation. |
 | [getStorageDetails](#getStorageDetails) | Retrieves details about app and persistent storage usage. |
+| [lock](#lock) | Locks an application to prevent uninstallation. |
 | [reset](#reset) | Deletes all persistent local data of the application. |
 | [setAuxMetadata](#setAuxMetadata) | Sets a key-value pair of metadata for the application. |
+| [unlock](#unlock) | Unlocks a previously locked application. |
 
 <a id="cancel"></a>
 ## *cancel*
@@ -162,7 +161,6 @@ Event details will be updated soon.
 | result.configMetadata.logLevels | std::string | json array of strings |
 | result.configMetadata.mapi | bool |  |
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
-| result.configMetadata.ralfPkgPath | std::string |  |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
 
@@ -218,7 +216,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
         "logLevels": "",
         "mapi": true,
         "fkpsFiles": "",
-        "ralfPkgPath": "",
         "fireboltVersion": "",
         "enableDebugger": true
     }
@@ -377,7 +374,6 @@ Event details will be updated soon.
 | result.config.logLevels | std::string | json array of strings |
 | result.config.mapi | bool |  |
 | result.config.fkpsFiles | std::string | json array of strings |
-| result.config.ralfPkgPath | std::string |  |
 | result.config.fireboltVersion | std::string |  |
 | result.config.enableDebugger | bool |  |
 
@@ -435,119 +431,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
             "logLevels": "",
             "mapi": true,
             "fkpsFiles": "",
-            "ralfPkgPath": "",
             "fireboltVersion": "",
             "enableDebugger": true
         }
-    }
-}
-```
-
-<a id="getLockedInfo"></a>
-## *getLockedInfo*
-
-GetLockedInfo
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.packageId | string | Package Id |
-| params.version | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.unpackedPath | string | Unpacked Path |
-| result.configMetadata | RuntimeConfig | Config Metadata |
-| result.configMetadata.dial | bool |  |
-| result.configMetadata.wanLanAccess | bool |  |
-| result.configMetadata.thunder | bool |  |
-| result.configMetadata.systemMemoryLimit | integer |  |
-| result.configMetadata.gpuMemoryLimit | integer |  |
-| result.configMetadata.envVariables | std::string |  |
-| result.configMetadata.userId | integer |  |
-| result.configMetadata.groupId | integer |  |
-| result.configMetadata.dataImageSize | integer |  |
-| result.configMetadata.resourceManagerClientEnabled | bool |  |
-| result.configMetadata.dialId | std::string |  |
-| result.configMetadata.command | std::string |  |
-| result.configMetadata.appType | std::string |  |
-| result.configMetadata.appPath | std::string |  |
-| result.configMetadata.runtimePath | std::string |  |
-| result.configMetadata.logFilePath | std::string |  |
-| result.configMetadata.logFileMaxSize | integer |  |
-| result.configMetadata.logLevels | std::string | json array of strings |
-| result.configMetadata.mapi | bool |  |
-| result.configMetadata.fkpsFiles | std::string | json array of strings |
-| result.configMetadata.ralfPkgPath | std::string |  |
-| result.configMetadata.fireboltVersion | std::string |  |
-| result.configMetadata.enableDebugger | bool |  |
-| result.gatewayMetadataPath | string |  |
-| result.locked | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.PackageManager.getLockedInfo",
-    "params": {
-        "packageId": "",
-        "version": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getLockedInfo", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "unpackedPath": "",
-        "configMetadata": {
-            "dial": true,
-            "wanLanAccess": true,
-            "thunder": true,
-            "systemMemoryLimit": 0,
-            "gpuMemoryLimit": 0,
-            "envVariables": "",
-            "userId": 0,
-            "groupId": 0,
-            "dataImageSize": 0,
-            "resourceManagerClientEnabled": true,
-            "dialId": "",
-            "command": "",
-            "appType": "",
-            "appPath": "",
-            "runtimePath": "",
-            "logFilePath": "",
-            "logFileMaxSize": 0,
-            "logLevels": "",
-            "mapi": true,
-            "fkpsFiles": "",
-            "ralfPkgPath": "",
-            "fireboltVersion": "",
-            "enableDebugger": true
-        },
-        "gatewayMetadataPath": "",
-        "locked": true
     }
 }
 ```
@@ -576,7 +462,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "method": "org.rdk.PackageManager.getStorageInformation"
 }
 ```
@@ -585,7 +471,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -594,7 +480,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "result": {
         "quotaKb": 0,
         "usedKb": 0
@@ -694,7 +580,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 7,
     "method": "org.rdk.PackageManager.listPackages"
 }
 ```
@@ -703,7 +589,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -712,7 +598,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 7,
     "result": [
         {
             "packageId": "",
@@ -722,68 +608,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
             "sizeKb": 0
         }
     ]
-}
-```
-
-<a id="lock"></a>
-## *lock*
-
-Locks an application to prevent uninstallation.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string |  |
-| params.version | string |  |
-| params.reason | string |  |
-| params.owner | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.handle | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.PackageManager.lock",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "reason": "",
-        "owner": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.lock", "params": {"type": "", "id": "", "version": "", "reason": "", "owner": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "handle": ""
-    }
 }
 ```
 
@@ -814,7 +638,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 8,
     "method": "org.rdk.PackageManager.packageState",
     "params": {
         "packageId": "",
@@ -827,7 +651,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -836,7 +660,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 8,
     "result": {
         "state": "INSTALLING"
     }
@@ -868,7 +692,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 9,
     "method": "org.rdk.PackageManager.pause",
     "params": {
         "downloadId": ""
@@ -880,7 +704,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -889,7 +713,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 9,
     "result": null
 }
 ```
@@ -920,7 +744,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 10,
     "method": "org.rdk.PackageManager.progress",
     "params": {
         "downloadId": ""
@@ -932,7 +756,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -941,7 +765,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 10,
     "result": {
         "progress": 0
     }
@@ -974,7 +798,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 11,
     "method": "org.rdk.PackageManager.rateLimit",
     "params": {
         "downloadId": "",
@@ -987,7 +811,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -996,7 +820,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 11,
     "result": null
 }
 ```
@@ -1026,7 +850,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 12,
     "method": "org.rdk.PackageManager.resume",
     "params": {
         "downloadId": ""
@@ -1038,7 +862,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1047,7 +871,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 12,
     "result": null
 }
 ```
@@ -1109,57 +933,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "result": {
         "handle": ""
     }
-}
-```
-
-<a id="unlock"></a>
-## *unlock*
-
-Unlocks a previously locked application.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.handle | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.PackageManager.unlock",
-    "params": {
-        "handle": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.unlock", "params": {"handle": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": null
 }
 ```
 
@@ -1552,6 +1325,68 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
+<a id="lock"></a>
+## *lock*
+
+Locks an application to prevent uninstallation.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.type | string |  |
+| params.id | string |  |
+| params.version | string |  |
+| params.reason | string |  |
+| params.owner | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.handle | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.PackageManager.lock",
+    "params": {
+        "type": "",
+        "id": "",
+        "version": "",
+        "reason": "",
+        "owner": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.lock", "params": {"type": "", "id": "", "version": "", "reason": "", "owner": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": {
+        "handle": ""
+    }
+}
+```
+
 <a id="reset"></a>
 ## *reset*
 
@@ -1664,6 +1499,57 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
+    "result": null
+}
+```
+
+<a id="unlock"></a>
+## *unlock*
+
+Unlocks a previously locked application.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.handle | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.PackageManager.unlock",
+    "params": {
+        "handle": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.unlock", "params": {"handle": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
     "result": null
 }
 ```
