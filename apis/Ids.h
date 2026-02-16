@@ -344,6 +344,11 @@ namespace Exchange {
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
 
+        ID_ACCOUNT                                     	= ID_ENTOS_OFFSET + 0x480,
+
+        ID_BACKUP_MANAGER                               = ID_ENTOS_OFFSET + 0x490,
+        ID_BACKUP_PROVIDER                              = ID_BACKUP_MANAGER + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
