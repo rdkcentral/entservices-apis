@@ -963,7 +963,7 @@ Event details will be updated soon.
 | result.configMetadata.logLevels | std::string | json array of strings |
 | result.configMetadata.mapi | bool |  |
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
-| result.configMetadata.ralfPkgPath | std::string |  |
+| result.configMetadata.ralfPkgPath | std::string | Filesystem path holding metadata info of ralf packages |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
 
@@ -1116,7 +1116,7 @@ Event details will be updated soon.
 | result.config.logLevels | std::string | json array of strings |
 | result.config.mapi | bool |  |
 | result.config.fkpsFiles | std::string | json array of strings |
-| result.config.ralfPkgPath | std::string |  |
+| result.config.ralfPkgPath | std::string | Filesystem path holding metadata info of ralf packages |
 | result.config.fireboltVersion | std::string |  |
 | result.config.enableDebugger | bool |  |
 
