@@ -280,7 +280,6 @@ namespace Exchange {
    };
 
 
-    // 1.0.0 @text:keep
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_HANDLER };
 
