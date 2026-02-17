@@ -1042,7 +1042,7 @@ This method takes no parameters.
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.postMessage | integer | htmlview.postMessage |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.urlpatterns | integer | htmlview.urlpatterns |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.keySource | integer |  |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.uhd_4k_decode | integer |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.uhd_4k_decode | integer | uhd_4k_decode |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypes | string | mime Types |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.model | string | model |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.deviceType | string | Device Type |
