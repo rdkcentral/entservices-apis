@@ -52,6 +52,7 @@
   - [SystemAudioPlayer<sup>@</sup>](apis/SystemAudioPlayerPlugin.md)
   - [SystemMode](apis/SystemMode.md)
   - [System<sup>@</sup>](apis/SystemPlugin.md)
+  - [SystemServices](apis/SystemServices.md)
   - [Telemetry](apis/Telemetry.md)
   - [TextToSpeech<sup>@</sup>](apis/TextToSpeechPlugin.md)
   - [TextTrack](apis/TextTrack.md)
