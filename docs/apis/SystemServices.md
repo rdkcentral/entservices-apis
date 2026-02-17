@@ -2736,13 +2736,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.macAddressesInfo | MacAddressesInfo |  |
-| params.macAddressesInfo.ecm_mac @brief The embedded cable modem MAC address | string | The embedded cable modem MAC address |
-| params.macAddressesInfo.estb_mac @brief The embedded set-top box MAC address | string | The embedded set-top box MAC address |
-| params.macAddressesInfo.moca_mac @brief The MOCA MAC address | string | The MOCA MAC address |
-| params.macAddressesInfo.eth_mac @brief The Ethernet MAC address | string | The Ethernet MAC address |
-| params.macAddressesInfo.wifi_mac @brief The Wifi MAC address | string | The Wifi MAC address |
-| params.macAddressesInfo.bluetoothMac @brief The Bluetooth MAC address | string | The Bluetooth MAC address |
-| params.macAddressesInfo.@brief The Rf4ce MAC address | string | The Rf4ce MAC address |
+| params.macAddressesInfo.ecm_mac | string | The embedded cable modem MAC address |
+| params.macAddressesInfo.estb_mac | string | The embedded set-top box MAC address |
+| params.macAddressesInfo.moca_mac | string | The MOCA MAC address |
+| params.macAddressesInfo.eth_mac | string | The Ethernet MAC address |
+| params.macAddressesInfo.wifi_mac | string | The Wifi MAC address |
+| params.macAddressesInfo.bluetoothMac | string | The Bluetooth MAC address |
+| params.macAddressesInfo.rf4ce_mac | string | The Rf4ce MAC address |
 | params.macAddressesInfo.info | string | Additional information (only if any of the above data is missing) |
 | params.macAddressesInfo.success | bool | Whether the request succeeded |
 
@@ -2754,13 +2754,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
     "id": 48,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
-        "ecm_mac @brief The embedded cable modem MAC address": "",
-        "estb_mac @brief The embedded set-top box MAC address": "",
-        "moca_mac @brief The MOCA MAC address": "",
-        "eth_mac @brief The Ethernet MAC address": "",
-        "wifi_mac @brief The Wifi MAC address": "",
-        "bluetoothMac @brief The Bluetooth MAC address": "",
-        "@brief The Rf4ce MAC address": "",
+        "ecm_mac": "",
+        "estb_mac": "",
+        "moca_mac": "",
+        "eth_mac": "",
+        "wifi_mac": "",
+        "bluetoothMac": "",
+        "rf4ce_mac": "",
         "info": "",
         "success": true
     }
