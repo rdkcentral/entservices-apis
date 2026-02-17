@@ -85,6 +85,7 @@ SystemServices interface methods:
 | [setFriendlyName](#setFriendlyName) | Sets the friendly name of device. |
 | [setMigrationStatus](#setMigrationStatus) | set the Migration Status of the device. |
 | [setMode](#setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode. |
+| [setNetworkStandbyMode](#setNetworkStandbyMode) | Enables or disables the AutoReboot Feature. |
 | [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
 | [setPowerState](#setPowerState) | Sets the power state of the device. |
 | [setTerritory](#setTerritory) | Sets the system territory and region. |
@@ -92,7 +93,6 @@ SystemServices interface methods:
 | [setWakeupSrcConfiguration](#setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState. |
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. |
 | [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs. |
-| [setNetworkStandbyMode](#setNetworkStandbyMode) | Enables or disables the AutoReboot Feature. |
 
 <a id="abortLogUpload"></a>
 ## *abortLogUpload*
@@ -309,7 +309,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | IStringIterator | A list of supported device keys |
+| params.params | IStringIterator | A list of Supported device keys |
 | params.params[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -1013,28 +1013,30 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.platformConfig | PlatformConfig | Platform Configuration Details @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
-| result.platformConfig.AccountInfo | AccountInfoDetails | AccountInfo Details |
-| result.platformConfig.AccountInfo.accountId | string | Account Id |
-| result.platformConfig.AccountInfo.x1DeviceId | string | X1 Device Id |
-| result.platformConfig.AccountInfo.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
-| result.platformConfig.AccountInfo.experience | string | Experience |
-| result.platformConfig.AccountInfo.deviceMACAddress | string | Device MAC Address |
-| result.platformConfig.AccountInfo.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
-| result.platformConfig.DeviceInfo | DeviceInfoDetails | DeviceInfo Details |
-| result.platformConfig.DeviceInfo.quirks | string | The list of installed “quirks” |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
-| result.platformConfig.DeviceInfo.features | Features | features |
-| result.platformConfig.DeviceInfo.mimeTypes | string | mime Types |
-| result.platformConfig.DeviceInfo.model | string |  |
-| result.platformConfig.DeviceInfo.deviceType | string |  |
-| result.platformConfig.DeviceInfo.supportsTrueSD | bool |  |
-| result.platformConfig.DeviceInfo.webBrowser | WebBrowserInfo |  |
-| result.platformConfig.DeviceInfo.webBrowser.browserType | string | Browser Type |
-| result.platformConfig.DeviceInfo.webBrowser.version | string | Version |
-| result.platformConfig.DeviceInfo.webBrowser.userAgent | string | User Agent |
-| result.platformConfig.DeviceInfo.HdrCapability | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
-| result.platformConfig.DeviceInfo.canMixPCMWithSurround | bool |  |
-| result.platformConfig.DeviceInfo.publicIP | string | Public IP |
+| result.platformConfig.AccountInfo @brief AccountInfo Details | AccountInfoDetails | AccountInfo Details |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.accountId | string | Account Id |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.x1DeviceId | string | X1 Device Id |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.experience | string | Experience |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.deviceMACAddress | string | Device MAC Address |
+| result.platformConfig.AccountInfo @brief AccountInfo Details.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details | DeviceInfoDetails | DeviceInfo Details |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.quirks | string | The list of installed “quirks” |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.mimeTypeExclusions | bool |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features | Features | features |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.features | bool |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypes | string | mime Types |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.model | string | model |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.deviceType | string | Device Type |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.supportsTrueSD | bool | SD Support |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser | WebBrowserInfo | webBrowser Info |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.browserType | string | Browser Type |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.version | string | Version |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.userAgent | string | User Agent |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.canMixPCMWithSurround | bool | PCM with Surround |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.publicIP | string | Public IP |
 | result.platformConfig.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1065,7 +1067,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "jsonrpc": 2.0,
     "id": 17,
     "result": {
-        "AccountInfo": {
+        "AccountInfo @brief AccountInfo Details": {
             "accountId": "",
             "x1DeviceId": "",
             "XCALSessionTokenAvailable": true,
@@ -1073,10 +1075,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
             "deviceMACAddress": "",
             "firmwareUpdateDisabled": true
         },
-        "DeviceInfo": {
+        "DeviceInfo @brief DeviceInfo Details": {
             "quirks": "",
-            "mimeTypeExclusions": {},
-            "features": {},
+            "mimeTypeExclusions": {
+                "mimeTypeExclusions": true
+            },
+            "features": {
+                "features": true
+            },
             "mimeTypes": "",
             "model": "",
             "deviceType": "",
@@ -1086,7 +1092,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
                 "version": "",
                 "userAgent": ""
             },
-            "HdrCapability": "",
+            "HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime": "",
             "canMixPCMWithSurround": true,
             "publicIP": ""
         },
@@ -2184,6 +2190,60 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 }
 ```
 
+<a id="setNetworkStandbyMode"></a>
+## *setNetworkStandbyMode*
+
+Enables or disables the AutoReboot Feature.
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "method": "org.rdk.SystemServices.setNetworkStandbyMode",
+    "params": {
+        "nwStandby": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
@@ -2210,7 +2270,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 38,
+    "id": 39,
     "method": "org.rdk.SystemServices.setOptOutTelemetry",
     "params": {
         "Opt-Out": true
@@ -2222,7 +2282,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2231,7 +2291,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 38,
+    "id": 39,
     "result": {
         "success": true
     }
@@ -2265,7 +2325,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 40,
     "method": "org.rdk.SystemServices.setPowerState",
     "params": {
         "powerState": "",
@@ -2278,7 +2338,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2287,7 +2347,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 40,
     "result": {
         "success": true
     }
@@ -2322,7 +2382,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 40,
+    "id": 41,
     "method": "org.rdk.SystemServices.setTerritory",
     "params": {
         "territory": "",
@@ -2335,7 +2395,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2344,7 +2404,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 40,
+    "id": 41,
     "result": {
         "error": {
             "message": ""
@@ -2381,7 +2441,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 42,
     "method": "org.rdk.SystemServices.setTimeZoneDST",
     "params": {
         "timeZone": "",
@@ -2394,7 +2454,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2403,7 +2463,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 42,
     "result": {
         "success": true
     }
@@ -2423,15 +2483,15 @@ Event details will be updated soon.
 | params | object |  |
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
 | params.wakeupSources | ISystemServicesWakeupSourcesIterator | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#].WAKEUPSRC_VOICE | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_WIFI | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_IR | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_CEC | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_LAN | bool |  |
-| params.wakeupSources[#].WAKEUPSRC_TIMER | bool |  |
+| params.wakeupSources[#].WAKEUPSRC_VOICE | bool | Voice Wake up |
+| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presense detection wake up |
+| params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool | Bluetooth Wakeup |
+| params.wakeupSources[#].WAKEUPSRC_WIFI | bool | WiFi Wake up |
+| params.wakeupSources[#].WAKEUPSRC_IR | bool | IR Remote Wake up |
+| params.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool | Power Button Wake up - GPIO |
+| params.wakeupSources[#].WAKEUPSRC_CEC | bool | HDMI CEC command Wake up |
+| params.wakeupSources[#].WAKEUPSRC_LAN | bool | LAN wake up |
+| params.wakeupSources[#].WAKEUPSRC_TIMER | bool | TImer Wake up |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2446,7 +2506,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 42,
+    "id": 43,
     "method": "org.rdk.SystemServices.setWakeupSrcConfiguration",
     "params": {
         "powerState": "",
@@ -2471,7 +2531,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2480,7 +2540,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 42,
+    "id": 43,
     "result": {
         "success": true
     }
@@ -2510,7 +2570,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 44,
     "method": "org.rdk.SystemServices.updateFirmware"
 }
 ```
@@ -2519,7 +2579,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2528,7 +2588,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 44,
     "result": {
         "success": true
     }
@@ -2558,7 +2618,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 44,
+    "id": 45,
     "method": "org.rdk.SystemServices.uploadLogsAsync"
 }
 ```
@@ -2567,61 +2627,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 44,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setNetworkStandbyMode"></a>
-## *setNetworkStandbyMode*
-
-Enables or disables the AutoReboot Feature.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 45,
-    "method": "org.rdk.SystemServices.setNetworkStandbyMode",
-    "params": {
-        "nwStandby": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2730,13 +2736,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.macAddressesInfo | MacAddressesInfo |  |
-| params.macAddressesInfo.ecm_mac | string | The embedded cable modem MAC address |
-| params.macAddressesInfo.estb_mac | string | The embedded set-top box MAC address |
-| params.macAddressesInfo.moca_mac | string | The MOCA MAC address |
-| params.macAddressesInfo.eth_mac | string | The Ethernet MAC address |
-| params.macAddressesInfo.wifi_mac | string | The Wifi MAC address |
-| params.macAddressesInfo.bluetooth_mac | string | The Bluetooth MAC address |
-| params.macAddressesInfo.rf4ce_mac | string | The Rf4ce MAC address |
+| params.macAddressesInfo.ecm_mac @brief The embedded cable modem MAC address | string | The embedded cable modem MAC address |
+| params.macAddressesInfo.estb_mac @brief The embedded set-top box MAC address | string | The embedded set-top box MAC address |
+| params.macAddressesInfo.moca_mac @brief The MOCA MAC address | string | The MOCA MAC address |
+| params.macAddressesInfo.eth_mac @brief The Ethernet MAC address | string | The Ethernet MAC address |
+| params.macAddressesInfo.wifi_mac @brief The Wifi MAC address | string | The Wifi MAC address |
+| params.macAddressesInfo.bluetoothMac @brief The Bluetooth MAC address | string | The Bluetooth MAC address |
+| params.macAddressesInfo.@brief The Rf4ce MAC address | string | The Rf4ce MAC address |
 | params.macAddressesInfo.info | string | Additional information (only if any of the above data is missing) |
 | params.macAddressesInfo.success | bool | Whether the request succeeded |
 
@@ -2748,13 +2754,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
     "id": 48,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
-        "ecm_mac": "",
-        "estb_mac": "",
-        "moca_mac": "",
-        "eth_mac": "",
-        "wifi_mac": "",
-        "bluetooth_mac": "",
-        "rf4ce_mac": "",
+        "ecm_mac @brief The embedded cable modem MAC address": "",
+        "estb_mac @brief The embedded set-top box MAC address": "",
+        "moca_mac @brief The MOCA MAC address": "",
+        "eth_mac @brief The Ethernet MAC address": "",
+        "wifi_mac @brief The Wifi MAC address": "",
+        "bluetoothMac @brief The Bluetooth MAC address": "",
+        "@brief The Rf4ce MAC address": "",
         "info": "",
         "success": true
     }
