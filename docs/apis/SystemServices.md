@@ -1023,9 +1023,26 @@ This method takes no parameters.
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details | DeviceInfoDetails | DeviceInfo Details |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.quirks | string | The list of installed “quirks” |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.mimeTypeExclusions | bool |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.CDVR | string | CDVR |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.DVR | string | DVR |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.EAS | string | EAS |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.IPDVR | string | IPDVR |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.IVOD | string | IVOD |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.LINEAR_TV | string | LINEAR_TV |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.VOD | string | VOD |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.features | Features | features |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.features | bool |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.allowSelfSignedWithIPAddress | integer |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.connection.supportsSecure | integer | connection.supportsSecure |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.callJavaScriptWithResult | integer | htmlview.callJavaScriptWithResult |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.cookies | integer | htmlview.cookies |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.disableCSSAnimations | integer | htmlview.disableCSSAnimations |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.evaluateJavaScript | integer | htmlview.evaluateJavaScript |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.headers | integer | htmlview.headers |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.httpCookies | integer | htmlview.httpCookies |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.postMessage | integer | htmlview.postMessage |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.urlpatterns | integer | htmlview.urlpatterns |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.keySource | integer |  |
+| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.uhd_4k_decode | integer |  |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypes | string | mime Types |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.model | string | model |
 | result.platformConfig.DeviceInfo @brief DeviceInfo Details.deviceType | string | Device Type |
@@ -1078,10 +1095,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
         "DeviceInfo @brief DeviceInfo Details": {
             "quirks": "",
             "mimeTypeExclusions": {
-                "mimeTypeExclusions": true
+                "CDVR": "",
+                "DVR": "",
+                "EAS": "",
+                "IPDVR": "",
+                "IVOD": "",
+                "LINEAR_TV": "",
+                "VOD": ""
             },
             "features": {
-                "features": true
+                "allowSelfSignedWithIPAddress": 0,
+                "connection.supportsSecure": 0,
+                "htmlview.callJavaScriptWithResult": 0,
+                "htmlview.cookies": 0,
+                "htmlview.disableCSSAnimations": 0,
+                "htmlview.evaluateJavaScript": 0,
+                "htmlview.headers": 0,
+                "htmlview.httpCookies": 0,
+                "htmlview.postMessage": 0,
+                "htmlview.urlpatterns": 0,
+                "keySource": 0,
+                "uhd_4k_decode": 0
             },
             "mimeTypes": "",
             "model": "",
