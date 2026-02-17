@@ -156,13 +156,13 @@ namespace WPEFramework
             };
 
             struct EXTERNAL MacAddressesInfo {
-                string ecmMac /* @text ecm_mac @brief The embedded cable modem MAC address */;
-                string estbMac /* @text estb_mac @brief The embedded set-top box MAC address */;
-                string mocaMac /* @text moca_mac @brief The MOCA MAC address */;
-                string ethMac /* @text eth_mac @brief The Ethernet MAC address */;
-                string wifiMac /* @text wifi_mac @brief The Wifi MAC address */;
-                string bluetoothMac /* @text bluetoothMac @brief The Bluetooth MAC address */;
-                string rf4ceMac /* rf4ce_mac @text @brief The Rf4ce MAC address */;
+                string ecmMac /* @text ecm_mac */ /* @brief The embedded cable modem MAC address */;
+                string estbMac /* @text estb_mac */ /* @brief The embedded set-top box MAC address */;
+                string mocaMac /* @text moca_mac */ /* @brief The MOCA MAC address */;
+                string ethMac /* @text eth_mac */ /* @brief The Ethernet MAC address */;
+                string wifiMac /* @text wifi_mac */ /* @brief The Wifi MAC address */;
+                string bluetoothMac /* @text bluetoothMac */ /* @brief The Bluetooth MAC address */;
+                string rf4ceMac /* @text rf4ce_mac */ /* @brief The Rf4ce MAC address */;
                 string info /* @brief Additional information (only if any of the above data is missing) */;
                 bool success /* @brief Whether the request succeeded */;
             };
