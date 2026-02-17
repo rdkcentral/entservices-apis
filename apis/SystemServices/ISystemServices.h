@@ -35,18 +35,18 @@ namespace WPEFramework
 
             struct EXTERNAL DeviceInfo {
                 string make /* @brief Device manufacturer */;
-                string bluetooth_mac /* @brief Bluetooth MAC Address */;
+                string bluetoothMac /* @text bluetooth_mac */ /* @brief Bluetooth MAC Address */;
                 string boxIP /* @brief STB IP Address */;
-                string build_type /* @brief Image build type */;
-                string device_type /* @brief Device type */;
-                string estb_mac /* @brief STB MAC Address */;
-                string eth_mac /* @brief Ethernet MAC Address */;
-                string friendly_id /* @brief friendly device model name */;
+                string buildType /* @text build_type */ /* @brief Image build type */;
+                string deviceType /* @text device_type */ /* @brief Device type */;
+                string estbMac /* @text estb_mac */ /* @brief STB MAC Address */;
+                string ethMac /* @text eth_mac */ /* @brief Ethernet MAC Address */;
+                string friendlyId /* @text friendly_id */ /* @brief friendly device model name */;
                 string imageVersion /* @brief Image version */;
                 string version /* @brief Version Info */;
-                string software_version /* @brief Software version */;
-                string model_number /* @brief Device model number */;
-                string wifi_mac /* @brief WIFI Mac Address */;
+                string softwareVersion /* @text software_version */ /* @brief Software version */;
+                string modelNumber /* @text model_number */ /* @brief Device model number */;
+                string wifiMac /* @text wifi_mac */ /* @brief WIFI Mac Address */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -77,17 +77,17 @@ namespace WPEFramework
             };
 
             struct EXTERNAL AmericaInfo {
-                string New_York /* @brief Error Information */;
-                string Los_Angeles /* @brief Error Information */;
+                string newYork /* @text New_York */ /* @brief Error Information */;
+                string losAngeles /* @text Los_Angeles */ /* @brief Error Information */;
             };
 
             struct EXTERNAL EuropeInfo {
-                string London /* @brief Error Information */;
+                string london /* @text London */ /* @brief Error Information */;
             };
 
             struct EXTERNAL Zoneinfo {
-                AmericaInfo America /* @brief Error Information */;
-                EuropeInfo Europe /* @brief Error Information */;
+                AmericaInfo america /* @text America */ /* @brief Error Information */;
+                EuropeInfo europe /* @text Europe */ /* @brief Error Information */;
             };
 
             struct EXTERNAL TimeZoneInfo {
@@ -115,8 +115,8 @@ namespace WPEFramework
             struct EXTERNAL AccountInfoDetails {
                 string accountId /* @brief Account Id */;
                 string x1DeviceId /* @brief X1 Device Id */;
-                bool XCALSessionTokenAvailable /* @brief XCAL Session Token Available */;
-                string experience /* @brief Experience*/;
+                bool xCALSessionTokenAvailable /* @text XCALSessionTokenAvailable */ /*@brief XCAL Session Token Available */;
+                string experience /* @brief Experience */;
                 string deviceMACAddress /* @brief Device MAC Address */;
                 bool firmwareUpdateDisabled /* @brief Whether the firmwareUpdate Disabled */;
             };
@@ -128,9 +128,11 @@ namespace WPEFramework
             };
 
             struct EXTERNAL MIMETypeExclusions {
+                bool mimeTypeExclusions;
             };
 
             struct EXTERNAL Features {
+                bool features;
             };
 
             struct EXTERNAL DeviceInfoDetails {
@@ -138,29 +140,29 @@ namespace WPEFramework
                 MIMETypeExclusions mimeTypeExclusions /* @brief mime Type Exclusions */;
                 Features features /* @brief features */;
                 string mimeTypes /* @brief mime Types*/;
-                string model /* @brief */;
-                string deviceType /* @brief */;
-                bool supportsTrueSD /* @brief */;
-                WebBrowserInfo webBrowser /* @brief */;
-                string HdrCapability /* @brief e.g. HDR10,Dolby Vision,Technicolor Prime */;
-                bool canMixPCMWithSurround /* @brief */;
+                string model /* @brief  model */;
+                string deviceType /* @brief Device Type*/;
+                bool supportsTrueSD /* @brief SD Support */;
+                WebBrowserInfo webBrowser /* @brief  webBrowser Info */;
+                string hdrCapability /* @text HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime */;
+                bool canMixPCMWithSurround /* @brief PCM with Surround */;
                 string publicIP /* @brief Public IP */;
             };
 
             struct EXTERNAL PlatformConfig {
-                AccountInfoDetails AccountInfo /* @brief AccountInfo Details */;
-                DeviceInfoDetails DeviceInfo /* @brief DeviceInfo Details */;
+                AccountInfoDetails acountInfo /* @text AccountInfo @brief AccountInfo Details */;
+                DeviceInfoDetails deviceInfo /* @text DeviceInfo @brief DeviceInfo Details */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
             struct EXTERNAL MacAddressesInfo {
-                string ecm_mac /* @brief The embedded cable modem MAC address */;
-                string estb_mac /* @brief The embedded set-top box MAC address */;
-                string moca_mac /* @brief The MOCA MAC address */;
-                string eth_mac /* @brief The Ethernet MAC address */;
-                string wifi_mac /* @brief The Wifi MAC address */;
-                string bluetooth_mac /* @brief The Bluetooth MAC address */;
-                string rf4ce_mac /* @brief The Rf4ce MAC address */;
+                string ecmMac /* @text ecm_mac @brief The embedded cable modem MAC address */;
+                string estbMac /* @text estb_mac @brief The embedded set-top box MAC address */;
+                string mocaMac /* @text moca_mac @brief The MOCA MAC address */;
+                string ethMac /* @text eth_mac @brief The Ethernet MAC address */;
+                string wifiMac /* @text wifi_mac @brief The Wifi MAC address */;
+                string bluetoothMac /* @text bluetoothMac @brief The Bluetooth MAC address */;
+                string rf4ceMac /* rf4ce_mac @text @brief The Rf4ce MAC address */;
                 string info /* @brief Additional information (only if any of the above data is missing) */;
                 bool success /* @brief Whether the request succeeded */;
             };
@@ -190,15 +192,15 @@ namespace WPEFramework
             };
 
              struct EXTERNAL WakeupSources {
-                bool WAKEUPSRC_VOICE;
-                bool WAKEUPSRC_PRESENCE_DETECTION;
-                bool WAKEUPSRC_BLUETOOTH;
-                bool WAKEUPSRC_WIFI;
-                bool WAKEUPSRC_IR;
-                bool WAKEUPSRC_POWER_KEY;
-                bool WAKEUPSRC_CEC;
-                bool WAKEUPSRC_LAN;
-                bool WAKEUPSRC_TIMER;
+                bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
+                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presense detection wake up */;
+                bool bluetooth /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */;
+                bool wifi /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/;
+                bool ir /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */;
+                bool powerKey /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */;
+                bool cec /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */;
+                bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
+                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief TImer Wake up */;
             };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
@@ -257,7 +259,7 @@ namespace WPEFramework
 
             // @text getDeviceInfo
             // @brief Collects device details
-            // @param params: A list of supported device keys
+            // @param params: A list of Supported device keys
             // @param deviceInfo: Device Information
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
@@ -440,7 +442,7 @@ namespace WPEFramework
             // @param SystemServicesSuccess: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult setNetworkStandbyMode(const bool nwStandby, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetNetworkStandbyMode(const bool nwStandby, SystemServicesSuccess& success /* @out */) = 0;
 
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
