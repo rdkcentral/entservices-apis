@@ -128,11 +128,28 @@ namespace WPEFramework
             };
 
             struct EXTERNAL MIMETypeExclusions {
-                bool mimeTypeExclusions;
+                string cdvr /* @text CDVR */;
+                string dvr /* @text DVR */;
+                string eas /* @text EAS */;
+                string ipdvr /* @text IPDVR */;
+                string ivod /* @text IVOD */;
+                string linearTV /* @text LINEAR_TV */;
+                string vod /* @text VOD */;
             };
 
             struct EXTERNAL Features {
-                bool features;
+                uint8_t allowSelfSignedWithIPAddress;
+                uint8_t supportsSecure /* @text connection.supportsSecure */;
+                uint8_t callJavaScriptWithResult /* @text htmlview.callJavaScriptWithResult */;
+                uint8_t cookies /* @text htmlview.cookies */;
+                uint8_t disableCSSAnimations /* @text htmlview.disableCSSAnimations */;
+                uint8_t evaluateJavaScript /* @text htmlview.evaluateJavaScript */;
+                uint8_t headers /* @text htmlview.headers */;
+                uint8_t httpCookies /* @text htmlview.httpCookies */;
+                uint8_t postMessage /* @text htmlview.postMessage */;
+                uint8_t urlpatterns /* @text htmlview.urlpatterns */;
+                uint8_t keySource;
+                uint8_t uhd_4k_decode;
             };
 
             struct EXTERNAL DeviceInfoDetails {
