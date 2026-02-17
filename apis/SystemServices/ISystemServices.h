@@ -149,7 +149,7 @@ namespace WPEFramework
                 uint8_t postMessage /* @text htmlview.postMessage */;
                 uint8_t urlpatterns /* @text htmlview.urlpatterns */;
                 uint8_t keySource;
-                uint8_t uhd_4k_decode;
+                uint8_t uhd4kDecode /* @text uhd_4k_decode */;
             };
 
             struct EXTERNAL DeviceInfoDetails {
