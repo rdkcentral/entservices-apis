@@ -271,7 +271,7 @@ namespace Exchange {
         virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
 
 
-        // @brief getConfigForInstalledPackage
+        // @brief getConfigForInstalledPackage method returns opaque configuration information of underlying packages.
         // @text getConfigForInstalledPackage
         // @param packageId: Package Id
         // @param version: Version
@@ -339,7 +339,7 @@ namespace Exchange {
             bool &locked /* @out */
             ) = 0;
 
-        // @brief GetAppSecrets
+        // @brief GetAppSecrets API is COM-RPC only API providing opaque secrets. Secrets handling is protected contract between Package Provider and consumer.
         // @text getAppSecrets
         // @param packageId: Package Id
         // @param version: Version
