@@ -323,7 +323,7 @@ namespace WPEFramework
 
             // @text getNetworkStandbyMode
             // @brief Returns the network standby mode of the device.
-            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false
+            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
@@ -438,7 +438,7 @@ namespace WPEFramework
 
             // @text setNetworkStandbyMode
             // @brief Enables or disables the AutoReboot Feature.
-            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false
+            // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false
             // @param SystemServicesSuccess: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
@@ -534,7 +534,7 @@ namespace WPEFramework
             virtual Core::hresult GetMacAddresses(const string& GUID, bool &asyncResponse /* @out */, bool& success /* @out */) = 0;
 
             // @text getPlatformConfiguration
-            // @brief Returns the supported features and device/account info
+            // @brief Returns the Supported features and device/account info
             // @param platformConfig: Platform Configuration Details
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
