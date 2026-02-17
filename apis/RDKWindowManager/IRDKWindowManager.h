@@ -223,6 +223,34 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE: Successfully retrieved the last key press information.
   // @retval Core::ERROR_UNAVAILABLE: No key press information is available.
   virtual Core::hresult GetLastKeyInfo(uint32_t &keyCode /* @out */, uint32_t &modifiers /* @out */, uint64_t &timestampInSeconds /* @out */) const = 0;
+
+  /** Sets the zOrder of the given client or appInstanceId */
+  // @text setZOrder
+  // @brief Sets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
+
+  /** Gets the zOrder of the given client or appInstanceId */
+  // @text getZOrder
+  // @brief Gets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder of the client
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+
+  /** Starts the VNC server */
+  // @text startVncServer
+  // @brief Starts the VNC server
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult StartVncServer() = 0;
+
+  /** Stops the VNC server */
+  // @text stopVncServer
+  // @brief Stops the VNC server
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult StopVncServer() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
