@@ -64,7 +64,7 @@ SystemServices interface methods:
 | [getMfgSerialNumber](#getMfgSerialNumber) | Gets the Manufacturing Serial Number. |
 | [getMigrationStatus](#getMigrationStatus) | set the Migration Status of the device |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device. |
-| [getPlatformConfiguration](#getPlatformConfiguration) | Returns the supported features and device/account info |
+| [getPlatformConfiguration](#getPlatformConfiguration) | Returns the Supported features and device/account info |
 | [getPowerState](#getPowerState) | Returns the power state of the device. |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot. |
 | [getRFCConfig](#getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations. |
@@ -962,7 +962,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
+| result.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1002,7 +1002,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="getPlatformConfiguration"></a>
 ## *getPlatformConfiguration*
 
-Returns the supported features and device/account info
+Returns the Supported features and device/account info
 
 ### Events
 Event details will be updated soon.
@@ -2201,7 +2201,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is supported (true); otherwise, false |
+| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
