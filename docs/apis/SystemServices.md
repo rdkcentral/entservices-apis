@@ -48,7 +48,7 @@ SystemServices interface methods:
 | Method | Description |
 | :-------- | :-------- |
 | [abortLogUpload](#abortLogUpload) | Stops background process to upload logs. |
-| [getBlocklistFlag](#getBlocklistFlag) | Get block list falg. |
+| [getBlocklistFlag](#getBlocklistFlag) | Get block list flag. |
 | [getBootTypeInfo](#getBootTypeInfo) | Get the FSR flag from the emmc raw area. |
 | [getBuildType](#getBuildType) | Returns build type of the image flashed on the device. |
 | [getDeviceInfo](#getDeviceInfo) | Collects device details |
@@ -62,7 +62,7 @@ SystemServices interface methods:
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode. |
 | [getMacAddresses](#getMacAddresses) | Gets the MAC address of the device. |
 | [getMfgSerialNumber](#getMfgSerialNumber) | Gets the Manufacturing Serial Number. |
-| [getMigrationStatus](#getMigrationStatus) | set the Migration Status of the device |
+| [getMigrationStatus](#getMigrationStatus) | get the Migration Status of the device |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device. |
 | [getPlatformConfiguration](#getPlatformConfiguration) | Returns the Supported features and device/account info |
 | [getPowerState](#getPowerState) | Returns the power state of the device. |
@@ -145,7 +145,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getBlocklistFlag"></a>
 ## *getBlocklistFlag*
 
-Get block list falg.
+Get block list flag.
 
 ### Events
 Event details will be updated soon.
@@ -902,7 +902,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 <a id="getMigrationStatus"></a>
 ## *getMigrationStatus*
 
-set the Migration Status of the device
+get the Migration Status of the device
 
 ### Events
 Event details will be updated soon.
@@ -2518,14 +2518,14 @@ Event details will be updated soon.
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
 | params.wakeupSources | ISystemServicesWakeupSourcesIterator | Array of Key value pair with wake up sources and its configurations |
 | params.wakeupSources[#].WAKEUPSRC_VOICE | bool | Voice Wake up |
-| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presense detection wake up |
+| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presence detection wake up |
 | params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool | Bluetooth Wakeup |
 | params.wakeupSources[#].WAKEUPSRC_WIFI | bool | WiFi Wake up |
 | params.wakeupSources[#].WAKEUPSRC_IR | bool | IR Remote Wake up |
 | params.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool | Power Button Wake up - GPIO |
 | params.wakeupSources[#].WAKEUPSRC_CEC | bool | HDMI CEC command Wake up |
 | params.wakeupSources[#].WAKEUPSRC_LAN | bool | LAN wake up |
-| params.wakeupSources[#].WAKEUPSRC_TIMER | bool | TImer Wake up |
+| params.wakeupSources[#].WAKEUPSRC_TIMER | bool | Timer Wake up |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2692,7 +2692,7 @@ SystemServices interface events:
 | :-------- | :-------- |
 | [onFirmwareUpdateInfoReceived](#onFirmwareUpdateInfoReceived) | Triggered when the getFirmwareUpdateInfo asynchronous method is invoked. |
 | [onLogUpload](#onLogUpload) | Triggered when logs upload process is done or stopped. |
-| [OnMacAddressesRetreived](#OnMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked. |
+| [onMacAddressesRetreived](#onMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked. |
 | [onRebootRequest](#onRebootRequest) | Triggers when a device reboot request is made |
 | [onSystemModeChanged](#onSystemModeChanged) | Triggers when the system mode is changed successfully. |
 | [onSystemPowerStateChanged](#onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change. |
