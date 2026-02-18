@@ -210,14 +210,14 @@ namespace WPEFramework
 
              struct EXTERNAL WakeupSources {
                 bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
-                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presense detection wake up */;
+                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
                 bool bluetooth /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */;
                 bool wifi /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/;
                 bool ir /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */;
                 bool powerKey /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */;
                 bool cec /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */;
                 bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
-                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief TImer Wake up */;
+                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
             };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
@@ -254,7 +254,7 @@ namespace WPEFramework
                 // @param TimeZoneDSTChangedInfo: The TimeZoneDST changed information
                 virtual void OnTimeZoneDSTChanged(const TimeZoneDSTChangedInfo& timeZoneDSTChangedInfo) {};
 
-                // @text OnMacAddressesRetreived
+                // @text onMacAddressesRetreived
                 // @brief Triggered when the getMacAddresses asynchronous method is invoked.
                 // @param MacAddressesInfo: The Mac Addresses details 
                 virtual void OnMacAddressesRetreived(const MacAddressesInfo& macAddressesInfo) {};
@@ -534,7 +534,7 @@ namespace WPEFramework
             virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
 
             // @text getMigrationStatus
-            // @brief set the Migration Status of the device
+            // @brief get the Migration Status of the device
             // @param MigrationStatus: Migration Status
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
@@ -628,7 +628,7 @@ namespace WPEFramework
             virtual Core::hresult SetBlocklistFlag(const bool blocklist, BlocklistResult& result /* @out */) = 0;
 
             // @text getBlocklistFlag
-            // @brief Get block list falg.
+            // @brief Get block list flag.
             // @param BlocklistResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
