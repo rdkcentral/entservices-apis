@@ -92,6 +92,12 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     //@param: commissioningInfo returns the commissioning info like passcode
      virtual Core::hresult OpenCommissioningWindow(const uint16_t timeoutSeconds /* @in */, std::string& commissioningInfo /* @out */) =0;
 
+     /** receives the voice comamnd*/
+     //@text OnVoiceCommandReceived
+     //@brief receives the voice commands
+     //@param: payload holds the json formatter data of voice command
+     virtual Core::hresult OnVoiceCommandReceived(const JsonObject& payload /* @in */) =0;
+
 
 };
 
