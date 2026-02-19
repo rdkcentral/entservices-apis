@@ -35,11 +35,11 @@ namespace WPEFramework {
     namespace Plugin {
 
         /* @json 1.0.0 @text:keep */
-        class VoiceControl : public PluginHost::IPlugin, public PluginHost::JSONRPC {
+        class IVoiceControl : public PluginHost::IPlugin, public PluginHost::JSONRPC {
         private:
             // We do not allow this plugin to be copied !!
-            VoiceControl(const VoiceControl&) = delete;
-            VoiceControl& operator=(const VoiceControl&) = delete;
+            IVoiceControl(const IVoiceControl&) = delete;
+            IVoiceControl& operator=(const IVoiceControl&) = delete;
 
             // Begin methods
             // @brief Get the API version number
@@ -135,14 +135,14 @@ namespace WPEFramework {
             // End events
 
         public:
-            VoiceControl();
-            virtual ~VoiceControl();
+            IVoiceControl();
+            virtual ~IVoiceControl();
             // IPlugin methods
             virtual const string Initialize(PluginHost::IShell* service) override;
             virtual void Deinitialize(PluginHost::IShell* service) override;
             virtual string Information() const override { return {}; }
 
-            BEGIN_INTERFACE_MAP(VoiceControl)
+            BEGIN_INTERFACE_MAP(IVoiceControl)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
             END_INTERFACE_MAP
@@ -158,7 +158,7 @@ namespace WPEFramework {
             void setApiVersionNumber(uint32_t apiVersionNumber);
             void getMaskPii_();
         public:
-            static VoiceControl* _instance;
+            static IVoiceControl* _instance;
         private:
             uint32_t m_apiVersionNumber;
             bool     m_hasOwnProcess;

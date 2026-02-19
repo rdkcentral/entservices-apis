@@ -50,7 +50,7 @@ namespace WPEFramework {
          * pairing, IRDB operations, firmware updates, and related notifications.
          */
         /* @json 1.0.0 @text:keep */
-        struct EXTERNAL RemoteControl : virtual public Core::IUnknown {
+        struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
         private:
             typedef Core::JSON::String JString;
             typedef Core::JSON::ArrayType<JString> JStringArray;
@@ -58,8 +58,8 @@ namespace WPEFramework {
             typedef Core::JSON::Boolean JBool;
 
             // We do not allow this plugin to be copied !!
-            RemoteControl(const RemoteControl&) = delete;
-            RemoteControl& operator=(const RemoteControl&) = delete;
+            IRemoteControl(const IRemoteControl&) = delete;
+            IRemoteControl& operator=(const IRemoteControl&) = delete;
 
             // Begin methods
             // @brief Get the API version number
@@ -192,14 +192,14 @@ namespace WPEFramework {
             // End events
 
         public:
-            RemoteControl();
-            virtual ~RemoteControl();
+            IRemoteControl();
+            virtual ~IRemoteControl();
             // IPlugin methods
             virtual const string Initialize(PluginHost::IShell* service) override;
             virtual void Deinitialize(PluginHost::IShell* service) override;
             virtual string Information() const override { return {}; }
 
-            BEGIN_INTERFACE_MAP(RemoteControl)
+            BEGIN_INTERFACE_MAP(IRemoteControl)
             INTERFACE_ENTRY(PluginHost::IPlugin)
             INTERFACE_ENTRY(PluginHost::IDispatcher)
             END_INTERFACE_MAP
@@ -215,7 +215,7 @@ namespace WPEFramework {
             void setApiVersionNumber(uint32_t apiVersionNumber);
 
         public:
-            static RemoteControl* _instance;
+            static IRemoteControl* _instance;
         private:
             // Generic members
             uint32_t   m_apiVersionNumber;
