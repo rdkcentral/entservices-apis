@@ -41,7 +41,7 @@ namespace WPEFramework {
             // @param parameters: Input parameters (unused)
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult getApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Send a notification event
             // @param eventName: Name of the event
@@ -52,55 +52,55 @@ namespace WPEFramework {
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceStatus(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult voiceStatus(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Configure voice settings
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t configureVoice(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult configureVoice(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Set voice initialization
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t setVoiceInit(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult setVoiceInit(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Send a voice message
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t sendVoiceMessage(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult sendVoiceMessage(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Voice session by text (DEPRECATED)
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceSessionByText(const JsonObject& parameters, JsonObject& response) = 0; // DEPRECATED
+            virtual Core::hresult voiceSessionByText(const JsonObject& parameters, JsonObject& response) = 0; // DEPRECATED
 
             // @brief Get voice session types
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceSessionTypes(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult voiceSessionTypes(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Request a voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceSessionRequest(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult voiceSessionRequest(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Terminate a voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceSessionTerminate(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult voiceSessionTerminate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start audio stream for voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t voiceSessionAudioStreamStart(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult voiceSessionAudioStreamStart(const JsonObject& parameters, JsonObject& response) = 0;
             // End methods
 
             // @event
