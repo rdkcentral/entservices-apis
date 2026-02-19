@@ -128,7 +128,9 @@ namespace WPEFramework {
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
+
                 enum { ID = ID_VOICECONTROL_NOTIFICATION };
+
                 // @brief Session begin event
                 // @text onSessionBegin
                 // @param eventData: Pointer to event data containing session begin information.

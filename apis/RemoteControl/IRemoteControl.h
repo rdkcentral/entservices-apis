@@ -43,6 +43,9 @@ namespace WPEFramework {
          */
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
+
+            enum { ID = ID_REMOTECONTROL };
+
             // Begin methods
             // @brief Get the API version number
             // @text getApiVersionNumber
@@ -199,6 +202,8 @@ namespace WPEFramework {
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_REMOTECONTROL_NOTIFICATION };
+
                 // @brief Status event
                 // @text onStatus
                 // @param eventData: Pointer to event data containing remote control status information.
