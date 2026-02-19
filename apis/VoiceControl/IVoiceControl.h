@@ -35,134 +35,100 @@ namespace WPEFramework {
     namespace Exchange {
 
         /* @json 1.0.0 @text:keep */
-        class IVoiceControl : virtual public Core::IUnknown  {
-        private:
-            // We do not allow this plugin to be copied !!
-            IVoiceControl(const IVoiceControl&) = delete;
-            IVoiceControl& operator=(const IVoiceControl&) = delete;
-
+        struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
             // Begin methods
             // @brief Get the API version number
             // @param parameters: Input parameters (unused)
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Send a notification event
             // @param eventName: Name of the event
             // @param parameters: JSON parameters for the event
-            void     sendNotify_(const char* eventName, JsonObject& parameters);
+            virtual void sendNotify_(const char* eventName, JsonObject& parameters) = 0;
 
             // @brief Get voice status
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceStatus(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t voiceStatus(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Configure voice settings
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t configureVoice(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t configureVoice(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Set voice initialization
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t setVoiceInit(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t setVoiceInit(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Send a voice message
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t sendVoiceMessage(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t sendVoiceMessage(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Voice session by text (DEPRECATED)
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceSessionByText(const JsonObject& parameters, JsonObject& response); // DEPRECATED
+            virtual uint32_t voiceSessionByText(const JsonObject& parameters, JsonObject& response) = 0; // DEPRECATED
 
             // @brief Get voice session types
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceSessionTypes(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t voiceSessionTypes(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Request a voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceSessionRequest(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t voiceSessionRequest(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Terminate a voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceSessionTerminate(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t voiceSessionTerminate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start audio stream for voice session
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t voiceSessionAudioStreamStart(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t voiceSessionAudioStreamStart(const JsonObject& parameters, JsonObject& response) = 0;
             // End methods
 
-            // Begin events
-            // @brief Notify session begin event
-            // @param eventData: Event data structure
-            void onSessionBegin(ctrlm_voice_iarm_event_json_t* eventData);
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                // @brief Session begin event
+                // @text onSessionBegin
+                virtual void OnSessionBegin(ctrlm_voice_iarm_event_json_t* eventData) {}
 
-            // @brief Notify stream begin event
-            // @param eventData: Event data structure
-            void onStreamBegin(ctrlm_voice_iarm_event_json_t* eventData);
+                // @brief Stream begin event
+                // @text onStreamBegin
+                virtual void OnStreamBegin(ctrlm_voice_iarm_event_json_t* eventData) {}
 
-            // @brief Notify keyword verification event
-            // @param eventData: Event data structure
-            void onKeywordVerification(ctrlm_voice_iarm_event_json_t* eventData);
+                // @brief Keyword verification event
+                // @text onKeywordVerification
+                virtual void OnKeywordVerification(ctrlm_voice_iarm_event_json_t* eventData) {}
 
-            // @brief Notify server message event
-            // @param eventData: Event data structure
-            void onServerMessage(ctrlm_voice_iarm_event_json_t* eventData);
+                // @brief Server message event
+                // @text onServerMessage
+                virtual void OnServerMessage(ctrlm_voice_iarm_event_json_t* eventData) {}
 
-            // @brief Notify stream end event
-            // @param eventData: Event data structure
-            void onStreamEnd(ctrlm_voice_iarm_event_json_t* eventData);
+                // @brief Stream end event
+                // @text onStreamEnd
+                virtual void OnStreamEnd(ctrlm_voice_iarm_event_json_t* eventData) {}
 
-            // @brief Notify session end event
-            // @param eventData: Event data structure
-            void onSessionEnd(ctrlm_voice_iarm_event_json_t* eventData);
-            // End events
-
-        public:
-            IVoiceControl();
-            virtual ~IVoiceControl();
-            // IPlugin methods
-            virtual const string Initialize(PluginHost::IShell* service) override;
-            virtual void Deinitialize(PluginHost::IShell* service) override;
-            virtual string Information() const override { return {}; }
-
-            BEGIN_INTERFACE_MAP(IVoiceControl)
-            INTERFACE_ENTRY(PluginHost::IPlugin)
-            INTERFACE_ENTRY(PluginHost::IDispatcher)
-            END_INTERFACE_MAP
-
-        private:
-            void InitializeIARM();
-            void DeinitializeIARM();
-            // Handlers for ControlMgr BT Remote events
-            static void voiceEventHandler(const char *owner, IARM_EventId_t eventId, void *data, size_t len);
-            void iarmEventHandler(const char *owner, IARM_EventId_t eventId, void *data, size_t len);
-
-            // Local utility methods
-            void setApiVersionNumber(uint32_t apiVersionNumber);
-            void getMaskPii_();
-        public:
-            static IVoiceControl* _instance;
-        private:
-            uint32_t m_apiVersionNumber;
-            bool     m_hasOwnProcess;
-            bool     m_maskPii;
+                // @brief Session end event
+                // @text onSessionEnd
+                virtual void OnSessionEnd(ctrlm_voice_iarm_event_json_t* eventData) {}
+            };
         };
     } // namespace Exchange
 } // namespace WPEFramework

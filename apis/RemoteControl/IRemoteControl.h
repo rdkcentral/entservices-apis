@@ -51,175 +51,136 @@ namespace WPEFramework {
          */
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
-        private:
-            typedef Core::JSON::String JString;
-            typedef Core::JSON::ArrayType<JString> JStringArray;
-            typedef Core::JSON::ArrayType<JsonObject> JObjectArray;
-            typedef Core::JSON::Boolean JBool;
-
-            // We do not allow this plugin to be copied !!
-            IRemoteControl(const IRemoteControl&) = delete;
-            IRemoteControl& operator=(const IRemoteControl&) = delete;
-
             // Begin methods
             // @brief Get the API version number
             // @param parameters: Input parameters (unused)
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start pairing process
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t startPairing(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t startPairing(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Stop pairing process
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t stopPairing(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t stopPairing(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get network status
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getNetStatus(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getNetStatus(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IRDB manufacturers
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getIRDBManufacturers(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getIRDBManufacturers(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IRDB models
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getIRDBModels(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getIRDBModels(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IR codes by auto lookup
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IR codes by names
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getIRCodesByNames(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getIRCodesByNames(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Set IR code
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t setIRCode(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t setIRCode(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Clear IR codes
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t clearIRCodes(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t clearIRCodes(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get last keypress source
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t getLastKeypressSource(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t getLastKeypressSource(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Configure wakeup keys
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t configureWakeupKeys(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t configureWakeupKeys(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Initialize IRDB
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t initializeIRDB(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t initializeIRDB(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Find my remote
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t findMyRemote(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t findMyRemote(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Factory reset
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t factoryReset(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t factoryReset(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Unpair remote
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t unpair(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t unpair(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start firmware update
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t startFirmwareUpdate(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t startFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Cancel firmware update
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t cancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t cancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get firmware update status
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            uint32_t statusFirmwareUpdate(const JsonObject& parameters, JsonObject& response);
+            virtual uint32_t statusFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
             // End methods
 
-            // Begin events
-            // @brief Notify status event
-            // @param eventData: Event data structure
-            void onStatus(ctrlm_main_iarm_event_json_t* eventData);
+            // @event
+            struct EXTERNAL INotification : virtual public Core::IUnknown {
+                // @brief Status event
+                // @text onStatus
+                virtual void OnStatus(ctrlm_main_iarm_event_json_t* eventData) {}
 
-            // @brief Notify validation event
-            // @param eventData: Event data structure
-            void onValidation(ctrlm_main_iarm_event_json_t* eventData);
+                // @brief Validation event
+                // @text onValidation
+                virtual void OnValidation(ctrlm_main_iarm_event_json_t* eventData) {}
 
-            // @brief Notify firmware update progress event
-            // @param eventData: Event data structure
-            void onFirmwareUpdateProgress(ctrlm_main_iarm_event_json_t* eventData);
-            // End events
-
-        public:
-            IRemoteControl();
-            virtual ~IRemoteControl();
-            // IPlugin methods
-            virtual const string Initialize(PluginHost::IShell* service) override;
-            virtual void Deinitialize(PluginHost::IShell* service) override;
-            virtual string Information() const override { return {}; }
-
-            BEGIN_INTERFACE_MAP(IRemoteControl)
-            INTERFACE_ENTRY(PluginHost::IPlugin)
-            INTERFACE_ENTRY(PluginHost::IDispatcher)
-            END_INTERFACE_MAP
-
-        private:
-            void InitializeIARM();
-            void DeinitializeIARM();
-            // Handlers for ControlMgr BT Remote events
-            static void remoteEventHandler(const char *owner, IARM_EventId_t eventId, void *data, size_t len);
-            void iarmEventHandler(const char *owner, IARM_EventId_t eventId, void *data, size_t len);
-
-            // Local utility methods
-            void setApiVersionNumber(uint32_t apiVersionNumber);
-
-        public:
-            static IRemoteControl* _instance;
-        private:
-            // Generic members
-            uint32_t   m_apiVersionNumber;
-            bool       m_hasOwnProcess;
+                // @brief Firmware update progress event
+                // @text onFirmwareUpdateProgress
+                virtual void OnFirmwareUpdateProgress(ctrlm_main_iarm_event_json_t* eventData) {}
+            };
         };
     } // namespace Exchange
 } // namespace WPEFramework
