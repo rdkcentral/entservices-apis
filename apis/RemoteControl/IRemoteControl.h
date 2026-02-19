@@ -35,18 +35,11 @@ namespace WPEFramework {
     namespace Exchange {
 
         /**
-         * @brief Server for a JSONRPC communication channel for remote control management.
+         * @brief Interface for the Remote Control JSONRPC API in WPEFramework.
          *
-         * This interface is a JSONRPC server for remote control management in WPEFramework.
-         * By inheriting from PluginHost::JSONRPC, it realizes the PluginHost::IDispatcher interface.
-         * The default methods implemented include exists, register, and unregister.
-         * Additional methods can be handled by registering them with PluginHost::JSONRPC.
-         * Registration and unregistration of notifications are managed by PluginHost::JSONRPC.
-         * The Notify() method allows all subscribed clients to receive JSONRPC notifications.
-         * Most of this functionality is now inherited from the AbstractPlugin class.
-         *
-         * This interface provides methods and events for managing remote control devices,
-         * pairing, IRDB operations, firmware updates, and related notifications.
+         * This interface defines the JSONRPC methods and events for remote control management,
+         * including pairing, IRDB operations, firmware updates, and related notifications.
+         * Implementations of this interface are expected to be registered with the Thunder framework.
          */
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
