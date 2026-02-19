@@ -35,7 +35,9 @@ namespace WPEFramework {
 
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
-                        enum { ID = ID_VOICECONTROL };
+            
+            enum { ID = ID_VOICECONTROL };
+            
             // Begin methods
             // @brief Get the API version number
             // @text getApiVersionNumber
