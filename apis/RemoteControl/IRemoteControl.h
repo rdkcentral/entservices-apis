@@ -28,8 +28,7 @@
 #include "ctrlm_ipc_rcu.h"
 #include "ctrlm_ipc_ble.h"
 
-#define IARM_REMOTECONTROL_PLUGIN_NAME    "Remote_Control"
-
+// @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
 
