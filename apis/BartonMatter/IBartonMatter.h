@@ -96,7 +96,7 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
      //@text OnVoiceCommandReceived
      //@brief receives the voice commands
      //@param: payload holds the json formatter data of voice command
-     virtual Core::hresult OnVoiceCommandReceived(const JsonObject& payload /* @in */) =0;
+     virtual Core::hresult OnVoiceCommandReceived(const std::string& payload /* @in */) =0;
 
 
 };
