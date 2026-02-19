@@ -49,133 +49,133 @@ namespace WPEFramework {
             // @param parameters: Input parameters (unused)
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetApiVersionNumber(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start pairing process
             // @text startPairing
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t startPairing(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult StartPairing(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Stop pairing process
             // @text stopPairing
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t stopPairing(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult StopPairing(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get network status
             // @text getNetStatus
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getNetStatus(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetNetStatus(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IRDB manufacturers
             // @text getIRDBManufacturers
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getIRDBManufacturers(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IRDB models
             // @text getIRDBModels
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getIRDBModels(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetIRDBModels(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IR codes by auto lookup
             // @text getIRCodesByAutoLookup
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get IR codes by names
             // @text getIRCodesByNames
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getIRCodesByNames(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetIRCodesByNames(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Set IR code
             // @text setIRCode
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t setIRCode(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult SetIRCode(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Clear IR codes
             // @text clearIRCodes
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t clearIRCodes(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult ClearIRCodes(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get last keypress source
             // @text getLastKeypressSource
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t getLastKeypressSource(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult GetLastKeypressSource(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Configure wakeup keys
             // @text configureWakeupKeys
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t configureWakeupKeys(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Initialize IRDB
             // @text initializeIRDB
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t initializeIRDB(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult InitializeIRDB(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Find my remote
             // @text findMyRemote
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t findMyRemote(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult FindMyRemote(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Factory reset
             // @text factoryReset
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t factoryReset(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult FactoryReset(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Unpair remote
             // @text unpair
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t unpair(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult Unpair(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Start firmware update
             // @text startFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t startFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Cancel firmware update
             // @text cancelFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t cancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
 
             // @brief Get firmware update status
             // @text statusFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object
             // @retval 0: Success
-            virtual uint32_t statusFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const JsonObject& parameters, JsonObject& response) = 0;
             // End methods
 
             // @event
