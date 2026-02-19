@@ -642,6 +642,15 @@ namespace WPEFramework
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetBuildType(string& buildType /* @out @text build_type */, bool& success /* @out */) = 0;
 
+            // @text getTimeStatus
+            // @brief Get the time status on the device.
+            // @param TimeQuality: Time Quality
+            // @param TimeSrc: Time Source
+            // @param Time: Current Time
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetTimeStatus(string& TimeQuality /* @out */, string& TimeSrc /* @out */, string& Time /* @out */, bool& success /* @out */) = 0;
         };
     }
 }
