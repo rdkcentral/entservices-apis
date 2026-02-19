@@ -48,133 +48,152 @@ namespace WPEFramework {
             // @text getApiVersionNumber
             // @param parameters: Input parameters (unused)
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Operation completed successfully.
+            // @retval ErrorCode::GENERAL: General failure.
             virtual Core::hresult GetApiVersionNumber(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Start pairing process
             // @text startPairing
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Pairing started successfully.
+            // @retval ErrorCode::GENERAL: Failed to start pairing.
             virtual Core::hresult StartPairing(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Stop pairing process
             // @text stopPairing
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Pairing stopped successfully.
+            // @retval ErrorCode::GENERAL: Failed to stop pairing.
             virtual Core::hresult StopPairing(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get network status
             // @text getNetStatus
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Network status retrieved successfully.
+            // @retval ErrorCode::GENERAL: Failed to retrieve network status.
             virtual Core::hresult GetNetStatus(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get IRDB manufacturers
             // @text getIRDBManufacturers
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
+            // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
             virtual Core::hresult GetIRDBManufacturers(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get IRDB models
             // @text getIRDBModels
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IRDB models retrieved successfully.
+            // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
             virtual Core::hresult GetIRDBModels(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get IR codes by auto lookup
             // @text getIRCodesByAutoLookup
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
+            // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
             virtual Core::hresult GetIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get IR codes by names
             // @text getIRCodesByNames
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
+            // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
             virtual Core::hresult GetIRCodesByNames(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Set IR code
             // @text setIRCode
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IR code set successfully.
+            // @retval ErrorCode::GENERAL: Failed to set IR code.
             virtual Core::hresult SetIRCode(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Clear IR codes
             // @text clearIRCodes
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IR codes cleared successfully.
+            // @retval ErrorCode::GENERAL: Failed to clear IR codes.
             virtual Core::hresult ClearIRCodes(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get last keypress source
             // @text getLastKeypressSource
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
+            // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
             virtual Core::hresult GetLastKeypressSource(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Configure wakeup keys
             // @text configureWakeupKeys
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Wakeup keys configured successfully.
+            // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
             virtual Core::hresult ConfigureWakeupKeys(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Initialize IRDB
             // @text initializeIRDB
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: IRDB initialized successfully.
+            // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
             virtual Core::hresult InitializeIRDB(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Find my remote
             // @text findMyRemote
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Find my remote executed successfully.
+            // @retval ErrorCode::GENERAL: Failed to execute find my remote.
             virtual Core::hresult FindMyRemote(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Factory reset
             // @text factoryReset
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Factory reset executed successfully.
+            // @retval ErrorCode::GENERAL: Failed to execute factory reset.
             virtual Core::hresult FactoryReset(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Unpair remote
             // @text unpair
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Remote unpaired successfully.
+            // @retval ErrorCode::GENERAL: Failed to unpair remote.
             virtual Core::hresult Unpair(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Start firmware update
             // @text startFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Firmware update started successfully.
+            // @retval ErrorCode::GENERAL: Failed to start firmware update.
             virtual Core::hresult StartFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Cancel firmware update
             // @text cancelFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Firmware update cancelled successfully.
+            // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
             virtual Core::hresult CancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
 
             // @brief Get firmware update status
             // @text statusFirmwareUpdate
             // @param parameters: JSON input parameters
             // @param response: JSON response object @out
-            // @retval 0: Success
+            // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
+            // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
             virtual Core::hresult StatusFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* @out */) = 0;
             // End methods
 
@@ -182,17 +201,17 @@ namespace WPEFramework {
             struct EXTERNAL INotification : virtual public Core::IUnknown {
                 // @brief Status event
                 // @text onStatus
-                // @param eventData: Event data containing remote control status information
+                // @param eventData: Pointer to event data containing remote control status information.
                 virtual void OnStatus(ctrlm_main_iarm_event_json_t* eventData) {}
 
                 // @brief Validation event
                 // @text onValidation
-                // @param eventData: Event data containing remote control validation information
+                // @param eventData: Pointer to event data containing remote control validation information.
                 virtual void OnValidation(ctrlm_main_iarm_event_json_t* eventData) {}
 
                 // @brief Firmware update progress event
                 // @text onFirmwareUpdateProgress
-                // @param eventData: Event data containing firmware update progress information
+                // @param eventData: Pointer to event data containing firmware update progress information.
                 virtual void OnFirmwareUpdateProgress(ctrlm_main_iarm_event_json_t* eventData) {}
             };
         };
