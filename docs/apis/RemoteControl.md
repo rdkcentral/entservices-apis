@@ -83,7 +83,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -137,7 +137,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -191,7 +191,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -245,7 +245,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -299,7 +299,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -353,7 +353,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -407,7 +407,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -461,7 +461,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -515,7 +515,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -569,7 +569,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -623,7 +623,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -677,7 +677,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -731,7 +731,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -785,7 +785,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -839,7 +839,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -893,7 +893,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -947,7 +947,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -1001,7 +1001,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -1055,7 +1055,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | JsonObject | JSON response object @out @retval 0: Success |
+| result.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -1119,7 +1119,7 @@ Firmware update progress event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Event data containing remote control status information |
+| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
 
 ### Examples
 
@@ -1143,7 +1143,7 @@ Status event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Event data containing remote control status information |
+| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
 
 ### Examples
 
@@ -1167,7 +1167,7 @@ Validation event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Event data containing remote control status information |
+| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
 
 ### Examples
 

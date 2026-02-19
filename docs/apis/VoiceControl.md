@@ -71,7 +71,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -124,7 +124,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -230,7 +230,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -283,7 +283,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -336,7 +336,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -389,7 +389,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -442,7 +442,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -495,7 +495,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -548,7 +548,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -601,7 +601,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval 0: Success |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -671,7 +671,7 @@ Keyword verification event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
@@ -695,7 +695,7 @@ Server message event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
@@ -719,7 +719,7 @@ Session begin event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
@@ -743,7 +743,7 @@ Session end event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
@@ -767,7 +767,7 @@ Stream begin event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
@@ -791,7 +791,7 @@ Stream end event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t |  |
+| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
 
 ### Examples
 
