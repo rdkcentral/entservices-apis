@@ -32,10 +32,10 @@
 
 namespace WPEFramework {
 
-    namespace Plugin {
+    namespace Exchange {
 
         /* @json 1.0.0 @text:keep */
-        class IVoiceControl : public PluginHost::IPlugin, public PluginHost::JSONRPC {
+        class IVoiceControl : virtual public Core::IUnknown  {
         private:
             // We do not allow this plugin to be copied !!
             IVoiceControl(const IVoiceControl&) = delete;
@@ -164,5 +164,5 @@ namespace WPEFramework {
             bool     m_hasOwnProcess;
             bool     m_maskPii;
         };
-    } // namespace Plugin
+    } // namespace Exchange
 } // namespace WPEFramework
