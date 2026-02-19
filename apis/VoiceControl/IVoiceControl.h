@@ -35,6 +35,7 @@ namespace WPEFramework {
 
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
+                        enum { ID = ID_VOICECONTROL };
             // Begin methods
             // @brief Get the API version number
             // @text getApiVersionNumber
@@ -125,6 +126,7 @@ namespace WPEFramework {
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
+                enum { ID = ID_VOICECONTROL_NOTIFICATION };
                 // @brief Session begin event
                 // @text onSessionBegin
                 // @param eventData: Pointer to event data containing session begin information.
