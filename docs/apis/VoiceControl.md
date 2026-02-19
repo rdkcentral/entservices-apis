@@ -71,7 +71,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -124,7 +124,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -230,7 +230,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -283,7 +283,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -336,7 +336,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -389,7 +389,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -442,7 +442,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -495,7 +495,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -548,7 +548,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -601,7 +601,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters (unused) |
-| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.response | JsonObject | JSON response object @out @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
