@@ -34,13 +34,8 @@ namespace WPEFramework
             // Define string iterator for ResourceManager
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-            // Result struct for SetAVBlocked operation
-            struct EXTERNAL SetAVBlockedResult {
-                bool success;
-            };
-
-            // Result struct for TTS operations
-            struct EXTERNAL TTSResult {
+            // Result struct for all ResourceManager operations
+            struct EXTERNAL Result {
                 bool success;
             };
 
@@ -49,8 +44,8 @@ namespace WPEFramework
             // @brief Sets AV blocking status for an application
             // @param appId - in - string
             // @param blocked - in - bool
-            // @param result - out - SetAVBlockedResult
-            virtual Core::hresult SetAVBlocked(const string& appId, const bool blocked, SetAVBlockedResult& result /* @out */) = 0;
+            // @param result - out - Result
+            virtual Core::hresult SetAVBlocked(const string& appId, const bool blocked, Result& result /* @out */) = 0;
             /**********************setAVBlocked() - end******************************/
 
             /**********************getBlockedAVApplications() - start***************/
@@ -65,16 +60,16 @@ namespace WPEFramework
             // @text reserveTTSResource
             // @brief Reserves TTS resource for a single application
             // @param appId - in - string
-            // @param ttsResult - out - TTSResult
-            virtual Core::hresult ReserveTTSResource(const string& appId, TTSResult& ttsResult /* @out */) = 0;
+            // @param result - out - Result
+            virtual Core::hresult ReserveTTSResource(const string& appId, Result& result /* @out */) = 0;
             /**********************reserveTTSResource() - end***********************/
 
             /**********************reserveTTSResourceForApps() - start***************/
             // @text reserveTTSResourceForApps
             // @brief Reserves TTS resource for multiple applications
             // @param appids: list of application IDs
-            // @param ttsResult: result of the TTS reservation
-            virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, TTSResult& ttsResult /* @out */) = 0;
+            // @param result: result of the TTS reservation
+            virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, Result& result /* @out */) = 0;
             /**********************reserveTTSResourceForApps() - end*****************/
         };
     } // namespace Exchange
