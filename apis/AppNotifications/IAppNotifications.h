@@ -36,6 +36,7 @@ namespace WPEFramework
                 uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
                 string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
                 string origin;           /* @text origin */ /* @brief Origin of the request (e.g., org.rdk.AppGateway). */
+                string version;           /* @text version */ /* @brief Version of the notification context can be semver */
             };
 
             // @json:omit
