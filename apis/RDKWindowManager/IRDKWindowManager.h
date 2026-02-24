@@ -112,8 +112,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Removes a key intercept */
   // @text removeKeyIntercept
   // @brief Removes a key intercept for a specific key code and client.
-  // @param intercept: JSON String format with the client/callSign, keyCode, modifiers
-  virtual Core::hresult RemoveKeyIntercept(const string &intercept) = 0;
+  // @param clientId: The client identifier, keyCode: The key code to remove, modifiers: JSON String format with one or more modifiers
+  virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */
   // @text addKeyListener
