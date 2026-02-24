@@ -28,7 +28,7 @@ namespace WPEFramework
                 uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */ 
                 uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
                 string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
-                string version;           /* @text version */ /* @brief Version of the gateway request can be semver */
+                string version;           /* @text version */ /* @brief Version of the gateway request can be semantic version */
         };
         
         // @json 1.0.0 @text:keep
