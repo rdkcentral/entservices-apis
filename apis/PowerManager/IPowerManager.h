@@ -322,6 +322,14 @@ namespace WPEFramework
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
+
+        /** Get the Wakeup Time */
+        // @text getTimeSinceWakeup
+        // @brief Get the the Wakeup Time
+        // @param secondsSinceWakeup: Wakeup time in seconds
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult GetTimeSinceWakeup(uint32 &secondsSinceWakeup /* @out */) = 0;
     };
 
 } // namespace Exchange
