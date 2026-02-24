@@ -140,7 +140,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param modifiers:  array of string with modifier names ("shift", "alt", "ctrl", etc)
   // @param duration: The integer key duration of the targetted key.
   // @param client: Name of the client/callSign requesting the key generation.
-  virtual Core::hresult GenerateKey(uint32_t &keyCode, string &modifiers, uint32_t &duration, const string& client) = 0;
+  virtual Core::hresult GenerateKey(const string& client, uint32_t &keyCode, const string &modifiers, uint32_t &duration) = 0;
 
   /** Enables the inactivity reporting feature */
   // @text enableInactivityReporting
