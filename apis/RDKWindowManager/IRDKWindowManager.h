@@ -136,9 +136,11 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /**  Generates a key event for the specified keys and client */
   // @text generateKey
   // @brief Generates a key event for the specified keys and client.
-  // @param keys: JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate
+  // @param keyCode: The integer key code requesting the key generation.
+  // @param modifiers:  array of string with modifier names ("shift", "alt", "ctrl", etc)
+  // @param duration: The integer key duration of the targetted key.
   // @param client: Name of the client/callSign requesting the key generation.
-  virtual Core::hresult GenerateKey(const string& keys, const string& client) = 0;
+  virtual Core::hresult GenerateKey(uint32_t &keyCode, string &modifiers, uint32_t &duration, const string& client) = 0;
 
   /** Enables the inactivity reporting feature */
   // @text enableInactivityReporting
