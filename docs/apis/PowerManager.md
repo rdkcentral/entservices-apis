@@ -55,7 +55,7 @@ PowerManager interface methods:
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Get Power state before reboot |
 | [getTemperatureThresholds](#getTemperatureThresholds) | Get Temperature Thresholds |
 | [getThermalState](#getThermalState) | Get Current Thermal State (temperature) |
-| [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the the Wakeup Time |
+| [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the Wakeup Time |
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
 | [reboot](#reboot) | Reboot device |
@@ -420,7 +420,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="getTimeSinceWakeup"></a>
 ## *getTimeSinceWakeup*
 
-Get the the Wakeup Time
+Get the Wakeup Time
 
 ### Events
 Event details will be updated soon.
@@ -430,7 +430,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.secondsSinceWakeup | uint32 | Wakeup time in seconds @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.secondsSinceWakeup | integer | Wakeup time in seconds @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
 
 ### Examples
 
@@ -460,7 +460,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "jsonrpc": 2.0,
     "id": 7,
     "result": {
-        "secondsSinceWakeup": ""
+        "secondsSinceWakeup": 0
     }
 }
 ```
