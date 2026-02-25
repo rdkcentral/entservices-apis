@@ -50,6 +50,7 @@ struct RuntimeConfig {
     std::string logLevels;          //json array of strings
     bool mapi;
     std::string fkpsFiles;          //json array of strings
+    std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
 
     std::string fireboltVersion;
     bool enableDebugger;

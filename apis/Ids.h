@@ -240,6 +240,9 @@ namespace Exchange {
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
 
+        //Reserved for L2 test plugin
+	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
+
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
         ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_APP_PACKAGE_MANAGER + 2,
@@ -344,7 +347,8 @@ namespace Exchange {
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
 
-	ID_APPLICATION_SERVICE_REQUEST               = ID_ENTOS_OFFSET + 0x480,
+        ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
+	ID_APPLICATION_SERVICE_REQUEST               = ID_ENTOS_OFFSET + 0x490,
         ID_APPLICATION_SERVICE_CONFIG                = ID_APPLICATION_SERVICE_REQUEST + 1,
         ID_APPLICATION_SERVICE_LISTENER              = ID_APPLICATION_SERVICE_REQUEST + 2,
         ID_APPLICATION_SERVICE_LISTENER_NOTIFICATION = ID_APPLICATION_SERVICE_REQUEST + 3,
