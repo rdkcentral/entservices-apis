@@ -430,7 +430,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.secondsSinceWakeup | integer | Wakeup time in seconds @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.secondsSinceWakeup | integer | Wakeup time in seconds |
 
 ### Examples
 
