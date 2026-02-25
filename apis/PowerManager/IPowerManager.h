@@ -94,6 +94,10 @@ namespace WPEFramework
             bool          enabled;
         };
 
+        struct EXTERNAL TimeSinceWakeup {
+            uint32_t secondsSinceWakeup /* @brief Wakeup time in seconds */;
+        };
+
         using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
@@ -326,10 +330,10 @@ namespace WPEFramework
         /** Get the Wakeup Time */
         // @text getTimeSinceWakeup
         // @brief Get the Wakeup Time
-        // @param secondsSinceWakeup: Wakeup time in seconds
+        // @param timeSinceWakeup: Wakeup time in seconds
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult GetTimeSinceWakeup(uint32_t &secondsSinceWakeup /* @out */) = 0;
+        virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
     };
 
 } // namespace Exchange
