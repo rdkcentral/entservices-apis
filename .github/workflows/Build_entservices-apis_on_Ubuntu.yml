@@ -61,6 +61,7 @@ jobs:
       - name: Cat JSON.h
         run: |
           cat /home/runner/work/entservices-apis/entservices-apis/install/include/WPEFramework/core/JSON.h
+          tail -n 1000 /home/runner/work/entservices-apis/entservices-apis/install/include/WPEFramework/core/JSON.h
 
       - name: Build entservices-apis
         run: |
