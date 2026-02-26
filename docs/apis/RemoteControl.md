@@ -79,11 +79,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -96,7 +96,8 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.RemoteControl.cancelFirmwareUpdate",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -105,7 +106,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -115,9 +116,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -133,11 +132,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -150,7 +149,8 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.RemoteControl.clearIRCodes",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -159,7 +159,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -169,9 +169,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -187,11 +185,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -204,7 +202,8 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -213,7 +212,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -223,9 +222,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -241,11 +238,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -258,7 +255,8 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.RemoteControl.factoryReset",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -267,7 +265,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RemoteControl.factoryReset", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RemoteControl.factoryReset", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -277,9 +275,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -295,11 +291,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -312,7 +308,8 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -321,7 +318,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -331,9 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -349,11 +344,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -366,7 +361,8 @@ Event details will be updated soon.
     "id": 5,
     "method": "org.rdk.RemoteControl.getApiVersionNumber",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -375,7 +371,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RemoteControl.getApiVersionNumber", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RemoteControl.getApiVersionNumber", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -385,9 +381,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -403,11 +397,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -420,7 +414,8 @@ Event details will be updated soon.
     "id": 6,
     "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -429,7 +424,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -439,9 +434,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -457,11 +450,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -474,7 +467,8 @@ Event details will be updated soon.
     "id": 7,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -483,7 +477,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -493,9 +487,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -511,11 +503,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -528,7 +520,8 @@ Event details will be updated soon.
     "id": 8,
     "method": "org.rdk.RemoteControl.getIRDBManufacturers",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -537,7 +530,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -547,9 +540,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -565,11 +556,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -582,7 +573,8 @@ Event details will be updated soon.
     "id": 9,
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -591,7 +583,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -601,9 +593,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -619,11 +609,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -636,7 +626,8 @@ Event details will be updated soon.
     "id": 10,
     "method": "org.rdk.RemoteControl.getLastKeypressSource",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -645,7 +636,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RemoteControl.getLastKeypressSource", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RemoteControl.getLastKeypressSource", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -655,9 +646,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -673,11 +662,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -690,7 +679,8 @@ Event details will be updated soon.
     "id": 11,
     "method": "org.rdk.RemoteControl.getNetStatus",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -699,7 +689,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -709,9 +699,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -727,11 +715,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -744,7 +732,8 @@ Event details will be updated soon.
     "id": 12,
     "method": "org.rdk.RemoteControl.initializeIRDB",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -753,7 +742,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -763,9 +752,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -781,11 +768,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -798,7 +785,8 @@ Event details will be updated soon.
     "id": 13,
     "method": "org.rdk.RemoteControl.setIRCode",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -807,7 +795,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -817,9 +805,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -835,11 +821,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -852,7 +838,8 @@ Event details will be updated soon.
     "id": 14,
     "method": "org.rdk.RemoteControl.startFirmwareUpdate",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -861,7 +848,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -871,9 +858,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 {
     "jsonrpc": 2.0,
     "id": 14,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -889,11 +874,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -906,7 +891,8 @@ Event details will be updated soon.
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -915,7 +901,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -925,9 +911,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -943,11 +927,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -960,7 +944,8 @@ Event details will be updated soon.
     "id": 16,
     "method": "org.rdk.RemoteControl.statusFirmwareUpdate",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -969,7 +954,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -979,9 +964,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -997,11 +980,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -1014,7 +997,8 @@ Event details will be updated soon.
     "id": 17,
     "method": "org.rdk.RemoteControl.stopPairing",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -1023,7 +1007,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1033,9 +1017,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -1051,11 +1033,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | JsonObject | @out: JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -1068,7 +1050,8 @@ Event details will be updated soon.
     "id": 18,
     "method": "org.rdk.RemoteControl.unpair",
     "params": {
-        "parameters": ""
+        "parameters": "",
+        "response": ""
     }
 }
 ```
@@ -1077,7 +1060,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"parameters": "", "response": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1087,9 +1070,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
