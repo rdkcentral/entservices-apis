@@ -161,6 +161,16 @@
                 // @param powerStatus: Power status of the device
                 virtual void ReportAudioDevicePowerStatus(const int powerStatus) {};
 
+                // @brief Notifies when a key release CEC message is received from other CEC device
+                // @text onKeyReleaseEvent
+                // @param logicalAddress: Logical address of the device
+                virtual void OnKeyReleaseEvent(const int logicalAddress ) {};
+
+                // @brief Notifies when a key press CEC message is received from other CEC device
+                // @text onKeyPressEvent
+                // @param logicalAddress: Logical address of the device
+                // @param keyCode: Key code of the key press event
+                virtual void OnKeyPressEvent(const int logicalAddress , const int keyCode ) {};
 
             };
 
