@@ -70,6 +70,12 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onBlur
     // @param appInstanceId: the identifier of the blurred application
     virtual void OnBlur(const std::string& appInstanceId){};
+
+    // @brief Notifies when a screenshot capture is complete
+    // @text onScreenshotComplete
+    // @param success: Indicates whether the screenshot was captured successfully
+    // @param imageData: Base64 encoded image data (PNG format)
+    virtual void OnScreenshotComplete(const bool success, const string& imageData){};
   };
 
   /** Register notification interface */
@@ -201,6 +207,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
   virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
 
+  /** Gets the visibility of the given client or appInstanceId */
+  // @text getVisibility
+  // @brief Gets the visibility of the given client or appInstanceId
+  // @param client: client name or application instance ID
+  // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
+
   /** Get the first-frame rendered status of the application */
   // @text renderReady
   // @brief To get the status of first frame is rendered or not
@@ -251,6 +265,13 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Stops the VNC server
   // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
+
+  /** Captures a screenshot of the current compositor output */
+  // @text getScreenshot
+  // @brief Captures the entire screen buffer as RGBA data. The screenshot is returned asynchronously via the onScreenshotComplete event.
+  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_GENERAL on failure
+  virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
