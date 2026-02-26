@@ -78,8 +78,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -131,8 +131,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -184,8 +184,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -237,8 +237,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -290,8 +290,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -343,8 +343,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -396,8 +396,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -449,8 +449,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -502,8 +502,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -555,8 +555,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -608,8 +608,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -661,8 +661,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -714,8 +714,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -767,8 +767,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -820,8 +820,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -873,8 +873,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -926,8 +926,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -979,8 +979,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1032,8 +1032,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | VariantContainer | Input parameters |
-| params.response | VariantContainer | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| params.parameters | JsonObject | Input parameters |
+| params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
