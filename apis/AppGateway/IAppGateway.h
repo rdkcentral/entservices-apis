@@ -141,12 +141,23 @@ namespace WPEFramework
             // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
             // @param connectionId: Connection Id
-            // @param contextKey: Connection Id
+            // @param contextKey: Context key
             // @param contextValue: response value
             // @returns Core::hresult
             virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
                 const string& contextKey ,
                 string& contextValue /* @out */) = 0;
+
+            // @json:omit
+            // @text recordGatewayConnectionContext
+            // @brief Allows other Firebolt based plugins to update connection context back to Gateway Socket Connection
+            // @param connectionId: Connection Id
+            // @param contextKey: Context Key
+            // @param contextValue: Context Value
+            // @returns Core::hresult
+            virtual Core::hresult RecordGatewayConnectionContext(const uint32_t connectionId ,
+                const string& contextKey ,
+                const string& contextValue) = 0;
 
 
             struct EXTERNAL INotification : virtual public Core::IUnknown
