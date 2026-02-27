@@ -339,7 +339,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | JsonObject | JSON input parameters |
+| params.parameters | string | Input parameters (unused) |
 | params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
 ### Results
 | Name | Type | Description |
@@ -446,7 +446,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | JsonObject | JSON input parameters |
+| params.parameters | string | Input parameters (unused) |
 | params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
 ### Results
 | Name | Type | Description |
@@ -499,7 +499,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | JsonObject | JSON input parameters |
+| params.parameters | string | Input parameters (unused) |
 | params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
 ### Results
 | Name | Type | Description |
@@ -552,7 +552,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | JsonObject | JSON input parameters |
+| params.parameters | string | Input parameters (unused) |
 | params.response | JsonObject | JSON response object @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
 ### Results
 | Name | Type | Description |
