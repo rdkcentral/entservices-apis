@@ -24,10 +24,12 @@
 
 #include "Module.h"
 #include "libIBus.h"
-#include "ctrlm_ipc.h"
-#include "ctrlm_ipc_voice.h"
+// #include "ctrlm_ipc.h"
+// #include "ctrlm_ipc_voice.h"
 
 // @stubgen:include <com/IIteratorType.h>
+
+struct ctrlm_voice_iarm_event_json_t;
 
 namespace WPEFramework {
 
