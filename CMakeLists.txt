@@ -56,8 +56,7 @@ add_library(${Target} SHARED
 add_dependencies(${NAMESPACE}Marshalling install_headers)
 file(GLOB INTERFACE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> 
-                                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>
-                                             $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/../Thunder/install/include/WPEFramework>)
+                                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
 
 foreach(dir ${INTERFACE_DIRS})
     target_include_directories(${Target} PRIVATE 
