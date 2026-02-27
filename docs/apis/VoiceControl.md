@@ -178,7 +178,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventName | char | Name of the event |
+| params.eventName | string | Name of the event |
 | params.parameters | string | Input parameters (unused) |
 ### Results
 | Name | Type | Description |
@@ -196,7 +196,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.VoiceControl.sendNotify_",
     "params": {
-        "eventName": "a",
+        "eventName": "",
         "parameters": ""
     }
 }
@@ -206,7 +206,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": "a", "parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": "", "parameters": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
