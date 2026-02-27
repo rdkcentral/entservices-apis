@@ -23,7 +23,6 @@
 #pragma once
 
 #include "Module.h"
-#include "core/JSON.h"
 #include "libIBus.h"
 #include "ctrlm_ipc.h"
 #include "ctrlm_ipc_rcu.h"
