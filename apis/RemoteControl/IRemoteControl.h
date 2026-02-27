@@ -53,7 +53,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
-            virtual Core::hresult GetApiVersionNumber(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetApiVersionNumber(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Start pairing process
             // @text startPairing
@@ -61,7 +61,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult StartPairing(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Stop pairing process
             // @text stopPairing
@@ -69,7 +69,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult StopPairing(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get network status
             // @text getNetStatus
@@ -77,7 +77,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetNetStatus(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get IRDB manufacturers
             // @text getIRDBManufacturers
@@ -85,7 +85,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get IRDB models
             // @text getIRDBModels
@@ -93,7 +93,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetIRDBModels(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get IR codes by auto lookup
             // @text getIRCodesByAutoLookup
@@ -101,7 +101,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get IR codes by names
             // @text getIRCodesByNames
@@ -109,7 +109,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Set IR code
             // @text setIRCode
@@ -117,7 +117,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult SetIRCode(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Clear IR codes
             // @text clearIRCodes
@@ -125,7 +125,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult ClearIRCodes(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get last keypress source
             // @text getLastKeypressSource
@@ -133,7 +133,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
-            virtual Core::hresult GetLastKeypressSource(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetLastKeypressSource(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Configure wakeup keys
             // @text configureWakeupKeys
@@ -141,7 +141,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Initialize IRDB
             // @text initializeIRDB
@@ -149,7 +149,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult InitializeIRDB(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Find my remote
             // @text findMyRemote
@@ -157,7 +157,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult FindMyRemote(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Factory reset
             // @text factoryReset
@@ -165,7 +165,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
-            virtual Core::hresult FactoryReset(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult FactoryReset(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Unpair remote
             // @text unpair
@@ -173,7 +173,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Remote unpaired successfully.
             // @retval ErrorCode::GENERAL: Failed to unpair remote.
-            virtual Core::hresult Unpair(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult Unpair(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Start firmware update
             // @text startFirmwareUpdate
@@ -181,7 +181,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Cancel firmware update
             // @text cancelFirmwareUpdate
@@ -189,7 +189,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Get firmware update status
             // @text statusFirmwareUpdate
@@ -197,7 +197,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
             // End methods
 
             // @event

@@ -45,13 +45,13 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
-            virtual Core::hresult GetApiVersionNumber(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult GetApiVersionNumber(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Send a notification event
             // @text sendNotify_
             // @param eventName: Name of the event
             // @param parameters: JSON parameters for the event
-            virtual void SendNotify_(const char* eventName, JsonObject& parameters) = 0;
+            virtual void SendNotify_(const char* eventName, string& parameters /* @opaque */) = 0;
 
             // @brief Get voice status
             // @text voiceStatus
@@ -59,7 +59,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult VoiceStatus(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult VoiceStatus(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Configure voice settings
             // @text configureVoice
@@ -67,7 +67,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult ConfigureVoice(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Set voice initialization
             // @text setVoiceInit
@@ -75,7 +75,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Send a voice message
             // @text sendVoiceMessage
@@ -83,7 +83,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const JsonObject& parameters, JsonObject& response /* out */) = 0;
+            virtual Core::hresult SendVoiceMessage(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Voice session by text (DEPRECATED)
             // @text voiceSessionByText
@@ -91,7 +91,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const JsonObject& parameters, JsonObject& response /* out */) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0; // DEPRECATED
 
             // @brief Get voice session types
             // @text voiceSessionTypes
