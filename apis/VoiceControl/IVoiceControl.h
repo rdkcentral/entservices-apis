@@ -134,32 +134,32 @@ namespace WPEFramework {
                 // @brief Session begin event
                 // @text onSessionBegin
                 // @param eventData: Pointer to event data containing session begin information.
-                virtual void OnSessionBegin(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnSessionBegin(const ctrlm_voice_iarm_event_json_t* eventData) {}
 
                 // @brief Stream begin event
                 // @text onStreamBegin
                 // @param eventData: Pointer to event data containing stream begin information.
-                virtual void OnStreamBegin(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnStreamBegin(const ctrlm_voice_iarm_event_json_t* eventData) {}
 
                 // @brief Keyword verification event
                 // @text onKeywordVerification
                 // @param eventData: Pointer to event data containing keyword verification information.
-                virtual void OnKeywordVerification(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnKeywordVerification(const ctrlm_voice_iarm_event_json_t* eventData) {}
 
                 // @brief Server message event
                 // @text onServerMessage
                 // @param eventData: Pointer to event data containing server message information.
-                virtual void OnServerMessage(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnServerMessage(const ctrlm_voice_iarm_event_json_t* eventData) {}
 
                 // @brief Stream end event
                 // @text onStreamEnd
                 // @param eventData: Pointer to event data containing stream end information.
-                virtual void OnStreamEnd(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnStreamEnd(const ctrlm_voice_iarm_event_json_t* eventData) {}
 
                 // @brief Session end event
                 // @text onSessionEnd
                 // @param eventData: Pointer to event data containing session end information.
-                virtual void OnSessionEnd(ctrlm_voice_iarm_event_json_t* eventData) {}
+                virtual void OnSessionEnd(const ctrlm_voice_iarm_event_json_t* eventData) {}
             };
         };
     } // namespace Exchange

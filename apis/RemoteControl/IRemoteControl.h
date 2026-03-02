@@ -206,17 +206,17 @@ namespace WPEFramework {
                 // @brief Status event
                 // @text onStatus
                 // @param eventData: Pointer to event data containing remote control status information.
-                virtual void OnStatus(ctrlm_main_iarm_event_json_t* eventData) {}
+                virtual void OnStatus(const ctrlm_main_iarm_event_json_t* eventData) {}
 
                 // @brief Validation event
                 // @text onValidation
                 // @param eventData: Pointer to event data containing remote control validation information.
-                virtual void OnValidation(ctrlm_main_iarm_event_json_t* eventData) {}
+                virtual void OnValidation(const ctrlm_main_iarm_event_json_t* eventData) {}
 
                 // @brief Firmware update progress event
                 // @text onFirmwareUpdateProgress
                 // @param eventData: Pointer to event data containing firmware update progress information.
-                virtual void OnFirmwareUpdateProgress(ctrlm_main_iarm_event_json_t* eventData) {}
+                virtual void OnFirmwareUpdateProgress(const ctrlm_main_iarm_event_json_t* eventData) {}
             };
         };
     } // namespace Exchange
