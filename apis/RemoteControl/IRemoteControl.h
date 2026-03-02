@@ -24,9 +24,6 @@
 
 #include "Module.h"
 #include "libIBus.h"
-// #include "ctrlm_ipc.h"
-// #include "ctrlm_ipc_rcu.h"
-// #include "ctrlm_ipc_ble.h"
 
 // @stubgen:include <com/IIteratorType.h>
 

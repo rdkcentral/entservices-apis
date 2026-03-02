@@ -101,7 +101,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult VoiceSessionTypes(const string& parameters /* @opaque */, JsonObject& response /* out */) = 0;
+            virtual Core::hresult VoiceSessionTypes(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Request a voice session
             // @text voiceSessionRequest
@@ -109,7 +109,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const string& parameters /* @opaque */, JsonObject& response /* out */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Terminate a voice session
             // @text voiceSessionTerminate
@@ -117,7 +117,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const string& parameters /* @opaque */, JsonObject& response /* out */) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
             // @brief Start audio stream for voice session
             // @text voiceSessionAudioStreamStart
@@ -125,7 +125,7 @@ namespace WPEFramework {
             // @param response: JSON response object
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const string& parameters /* @opaque */, JsonObject& response /* out */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
             // End methods
 
             // @event
