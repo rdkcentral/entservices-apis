@@ -23,7 +23,6 @@
 #pragma once
 
 #include "Module.h"
-#include "libIBus.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
