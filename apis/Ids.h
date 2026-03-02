@@ -348,6 +348,12 @@ namespace Exchange {
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
 
         ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
+
+        ID_REMOTECONTROL                             = ID_ENTOS_OFFSET + 0x490,
+        ID_REMOTECONTROL_NOTIFICATION                = ID_REMOTECONTROL + 1,
+
+        ID_VOICECONTROL                              = ID_ENTOS_OFFSET + 0x4A0,
+        ID_VOICECONTROL_NOTIFICATION                 = ID_VOICECONTROL + 1,
     }; // enum IDS
 
 } // namespace Exchange
