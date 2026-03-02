@@ -133,33 +133,33 @@ namespace WPEFramework {
 
                 // @brief Session begin event
                 // @text onSessionBegin
-                // @param eventData: Pointer to event data containing session begin information.
-                virtual void OnSessionBegin(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing session begin information.
+                virtual void OnSessionBegin(const string& params /* @opaque */) {}
 
                 // @brief Stream begin event
                 // @text onStreamBegin
-                // @param eventData: Pointer to event data containing stream begin information.
-                virtual void OnStreamBegin(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing stream begin information.
+                virtual void OnStreamBegin(const string& params /* @opaque */) {}
 
                 // @brief Keyword verification event
                 // @text onKeywordVerification
-                // @param eventData: Pointer to event data containing keyword verification information.
-                virtual void OnKeywordVerification(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing keyword verification information.
+                virtual void OnKeywordVerification(const string& params /* @opaque */) {}
 
                 // @brief Server message event
                 // @text onServerMessage
-                // @param eventData: Pointer to event data containing server message information.
-                virtual void OnServerMessage(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing server message information.
+                virtual void OnServerMessage(const string& params /* @opaque */) {}
 
                 // @brief Stream end event
                 // @text onStreamEnd
-                // @param eventData: Pointer to event data containing stream end information.
-                virtual void OnStreamEnd(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing stream end information.
+                virtual void OnStreamEnd(const string& params /* @opaque */) {}
 
                 // @brief Session end event
                 // @text onSessionEnd
-                // @param eventData: Pointer to event data containing session end information.
-                virtual void OnSessionEnd(const ctrlm_voice_iarm_event_json_t* eventData) {}
+                // @param params: Event data containing session end information.
+                virtual void OnSessionEnd(const string& params /* @opaque */) {}
             };
         };
     } // namespace Exchange
