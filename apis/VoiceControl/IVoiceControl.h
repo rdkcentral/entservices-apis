@@ -51,7 +51,9 @@ namespace WPEFramework {
             // @text sendNotify_
             // @param eventName: Name of the event
             // @param parameters: JSON parameters for the event
-            virtual void SendNotify_(const string& eventName, string& parameters /* @out @opaque */) = 0;
+            // @retval ErrorCode::NONE: Operation completed successfully.
+            // @retval ErrorCode::GENERAL: General failure.
+            virtual Core::hresult SendNotify_(const string& eventName, string& parameters /* @out @opaque */) = 0;
 
             // @brief Get voice status
             // @text voiceStatus
