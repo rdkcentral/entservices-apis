@@ -179,11 +179,11 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.eventName | string | Name of the event |
-| params.parameters | string | Input parameters (unused) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.parameters | string | Input parameters (unused) |
 
 ### Examples
 
@@ -196,8 +196,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.VoiceControl.sendNotify_",
     "params": {
-        "eventName": "",
-        "parameters": ""
+        "eventName": ""
     }
 }
 ```
@@ -206,7 +205,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": "", "parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -216,7 +215,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": null
+    "result": {
+        "parameters": ""
+    }
 }
 ```
 
