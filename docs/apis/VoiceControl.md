@@ -47,22 +47,22 @@ VoiceControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [configureVoice](#configureVoice) | Configure voice settings |
+| [configureVoice](#configureVoice) | Configures the RDK's voice stack |
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [sendNotify_](#sendNotify_) | Send a notification event |
-| [sendVoiceMessage](#sendVoiceMessage) | Send a voice message |
-| [setVoiceInit](#setVoiceInit) | Set voice initialization |
-| [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Start audio stream for voice session |
-| [voiceSessionByText](#voiceSessionByText) | Voice session by text (DEPRECATED) |
-| [voiceSessionRequest](#voiceSessionRequest) | Request a voice session |
-| [voiceSessionTerminate](#voiceSessionTerminate) | Terminate a voice session |
-| [voiceSessionTypes](#voiceSessionTypes) | Get voice session types |
-| [voiceStatus](#voiceStatus) | Get voice status |
+| [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
+| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server |
+| [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
+| [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
+| [voiceSessionRequest](#voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
+| [voiceSessionTerminate](#voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
+| [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
+| [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 
 <a id="configureVoice"></a>
 ## *configureVoice*
 
-Configure voice settings
+Configures the RDK's voice stack
 
 ### Events
 Event details will be updated soon.
@@ -224,7 +224,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="sendVoiceMessage"></a>
 ## *sendVoiceMessage*
 
-Send a voice message
+Sends a message to the Voice Server
 
 ### Events
 Event details will be updated soon.
@@ -278,7 +278,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="setVoiceInit"></a>
 ## *setVoiceInit*
 
-Set voice initialization
+Sets the application metadata in the INIT message that gets sent to the Voice Server
 
 ### Events
 Event details will be updated soon.
@@ -332,7 +332,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="voiceSessionAudioStreamStart"></a>
 ## *voiceSessionAudioStreamStart*
 
-Start audio stream for voice session
+Starts a subsequent audio stream for the voice session indicated by the session identifier
 
 ### Events
 Event details will be updated soon.
@@ -386,7 +386,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="voiceSessionByText"></a>
 ## *voiceSessionByText*
 
-Voice session by text (DEPRECATED)
+Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
 
 ### Events
 Event details will be updated soon.
@@ -440,7 +440,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="voiceSessionRequest"></a>
 ## *voiceSessionRequest*
 
-Request a voice session
+Requests a voice session using the specified request type and optional parameters
 
 ### Events
 Event details will be updated soon.
@@ -494,7 +494,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="voiceSessionTerminate"></a>
 ## *voiceSessionTerminate*
 
-Terminate a voice session
+Terminates a voice session using the specified session identifier
 
 ### Events
 Event details will be updated soon.
@@ -548,7 +548,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="voiceSessionTypes"></a>
 ## *voiceSessionTypes*
 
-Get voice session types
+Retrieves the types of voice sessions which are supported by the platform
 
 ### Events
 Event details will be updated soon.
@@ -602,7 +602,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="voiceStatus"></a>
 ## *voiceStatus*
 
-Get voice status
+Returns the current status of the RDK voice stack
 
 ### Events
 Event details will be updated soon.
@@ -666,17 +666,17 @@ VoiceControl interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onKeywordVerification](#onKeywordVerification) | Keyword verification event |
-| [onServerMessage](#onServerMessage) | Server message event |
-| [onSessionBegin](#onSessionBegin) | Session begin event |
-| [onSessionEnd](#onSessionEnd) | Session end event |
-| [onStreamBegin](#onStreamBegin) | Stream begin event |
-| [onStreamEnd](#onStreamEnd) | Stream end event |
+| [onKeywordVerification](#onKeywordVerification) | Triggered when a keyword verification result is received |
+| [onServerMessage](#onServerMessage) | Triggered when a message is received from the Voice Server |
+| [onSessionBegin](#onSessionBegin) | Triggered when a voice session begins |
+| [onSessionEnd](#onSessionEnd) | Triggered when the interaction with the server has concluded |
+| [onStreamBegin](#onStreamBegin) | Triggered when a device starts streaming voice data to the RDK |
+| [onStreamEnd](#onStreamEnd) | Triggered when the device has stopped streaming audio |
 
 <a id="onKeywordVerification"></a>
 ## *onKeywordVerification*
 
-Keyword verification event
+Triggered when a keyword verification result is received
 
 ### Parameters
 | Name | Type | Description |
@@ -700,7 +700,7 @@ Keyword verification event
 <a id="onServerMessage"></a>
 ## *onServerMessage*
 
-Server message event
+Triggered when a message is received from the Voice Server
 
 ### Parameters
 | Name | Type | Description |
@@ -724,7 +724,7 @@ Server message event
 <a id="onSessionBegin"></a>
 ## *onSessionBegin*
 
-Session begin event
+Triggered when a voice session begins
 
 ### Parameters
 | Name | Type | Description |
@@ -748,7 +748,7 @@ Session begin event
 <a id="onSessionEnd"></a>
 ## *onSessionEnd*
 
-Session end event
+Triggered when the interaction with the server has concluded
 
 ### Parameters
 | Name | Type | Description |
@@ -772,7 +772,7 @@ Session end event
 <a id="onStreamBegin"></a>
 ## *onStreamBegin*
 
-Stream begin event
+Triggered when a device starts streaming voice data to the RDK
 
 ### Parameters
 | Name | Type | Description |
@@ -796,7 +796,7 @@ Stream begin event
 <a id="onStreamEnd"></a>
 ## *onStreamEnd*
 
-Stream end event
+Triggered when the device has stopped streaming audio
 
 ### Parameters
 | Name | Type | Description |

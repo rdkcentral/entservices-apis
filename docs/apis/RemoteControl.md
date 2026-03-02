@@ -47,30 +47,30 @@ RemoteControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancelFirmwareUpdate](#cancelFirmwareUpdate) | Cancel firmware update |
-| [clearIRCodes](#clearIRCodes) | Clear IR codes |
-| [configureWakeupKeys](#configureWakeupKeys) | Configure wakeup keys |
-| [factoryReset](#factoryReset) | Factory reset |
-| [findMyRemote](#findMyRemote) | Find my remote |
-| [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
-| [getIRCodesByAutoLookup](#getIRCodesByAutoLookup) | Get IR codes by auto lookup |
-| [getIRCodesByNames](#getIRCodesByNames) | Get IR codes by names |
-| [getIRDBManufacturers](#getIRDBManufacturers) | Get IRDB manufacturers |
-| [getIRDBModels](#getIRDBModels) | Get IRDB models |
-| [getLastKeypressSource](#getLastKeypressSource) | Get last keypress source |
-| [getNetStatus](#getNetStatus) | Get network status |
-| [initializeIRDB](#initializeIRDB) | Initialize IRDB |
-| [setIRCode](#setIRCode) | Set IR code |
-| [startFirmwareUpdate](#startFirmwareUpdate) | Start firmware update |
-| [startPairing](#startPairing) | Start pairing process |
-| [statusFirmwareUpdate](#statusFirmwareUpdate) | Get firmware update status |
-| [stopPairing](#stopPairing) | Stop pairing process |
-| [unpair](#unpair) | Unpair remote |
+| [cancelFirmwareUpdate](#cancelFirmwareUpdate) | Cancels an active firmware image update session |
+| [clearIRCodes](#clearIRCodes) | Clears the IR codes from the specified remote |
+| [configureWakeupKeys](#configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
+| [factoryReset](#factoryReset) | Tells all paired and connected remotes to factory reset |
+| [findMyRemote](#findMyRemote) | Tells the most recently used remote to beep |
+| [getApiVersionNumber](#getApiVersionNumber) | Gets the current API version number. |
+| [getIRCodesByAutoLookup](#getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
+| [getIRCodesByNames](#getIRCodesByNames) | Returns a list of IR codes for the AV device specified by the input parameters |
+| [getIRDBManufacturers](#getIRDBManufacturers) | Returns a list of manufacturer names based on the specified input parameters |
+| [getIRDBModels](#getIRDBModels) | Returns a list of model names based on the specified input parameters |
+| [getLastKeypressSource](#getLastKeypressSource) | Returns last key press source data |
+| [getNetStatus](#getNetStatus) | Returns the status information provided by the last `onStatus` event for the specified network. |
+| [initializeIRDB](#initializeIRDB) | Initializes the IR database |
+| [setIRCode](#setIRCode) | Programs an IR code into the specified remote control |
+| [startFirmwareUpdate](#startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
+| [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network. |
+| [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
+| [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network. |
+| [unpair](#unpair) | Unpairs a given or all remote(s) from the STB |
 
 <a id="cancelFirmwareUpdate"></a>
 ## *cancelFirmwareUpdate*
 
-Cancel firmware update
+Cancels an active firmware image update session
 
 ### Events
 Event details will be updated soon.
@@ -124,7 +124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="clearIRCodes"></a>
 ## *clearIRCodes*
 
-Clear IR codes
+Clears the IR codes from the specified remote
 
 ### Events
 Event details will be updated soon.
@@ -178,7 +178,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="configureWakeupKeys"></a>
 ## *configureWakeupKeys*
 
-Configure wakeup keys
+Configures which keys on the remote will wake the target from deepsleep
 
 ### Events
 Event details will be updated soon.
@@ -232,7 +232,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="factoryReset"></a>
 ## *factoryReset*
 
-Factory reset
+Tells all paired and connected remotes to factory reset
 
 ### Events
 Event details will be updated soon.
@@ -286,7 +286,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="findMyRemote"></a>
 ## *findMyRemote*
 
-Find my remote
+Tells the most recently used remote to beep
 
 ### Events
 Event details will be updated soon.
@@ -340,7 +340,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="getApiVersionNumber"></a>
 ## *getApiVersionNumber*
 
-Get the API version number
+Gets the current API version number.
 
 ### Events
 Event details will be updated soon.
@@ -394,7 +394,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="getIRCodesByAutoLookup"></a>
 ## *getIRCodesByAutoLookup*
 
-Get IR codes by auto lookup
+Returns a list of available IR codes for the TV and AVRs specified by the input parameters
 
 ### Events
 Event details will be updated soon.
@@ -448,7 +448,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="getIRCodesByNames"></a>
 ## *getIRCodesByNames*
 
-Get IR codes by names
+Returns a list of IR codes for the AV device specified by the input parameters
 
 ### Events
 Event details will be updated soon.
@@ -502,7 +502,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="getIRDBManufacturers"></a>
 ## *getIRDBManufacturers*
 
-Get IRDB manufacturers
+Returns a list of manufacturer names based on the specified input parameters
 
 ### Events
 Event details will be updated soon.
@@ -556,7 +556,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="getIRDBModels"></a>
 ## *getIRDBModels*
 
-Get IRDB models
+Returns a list of model names based on the specified input parameters
 
 ### Events
 Event details will be updated soon.
@@ -610,7 +610,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="getLastKeypressSource"></a>
 ## *getLastKeypressSource*
 
-Get last keypress source
+Returns last key press source data
 
 ### Events
 Event details will be updated soon.
@@ -664,7 +664,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="getNetStatus"></a>
 ## *getNetStatus*
 
-Get network status
+Returns the status information provided by the last `onStatus` event for the specified network.
 
 ### Events
 Event details will be updated soon.
@@ -718,7 +718,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="initializeIRDB"></a>
 ## *initializeIRDB*
 
-Initialize IRDB
+Initializes the IR database
 
 ### Events
 Event details will be updated soon.
@@ -772,7 +772,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="setIRCode"></a>
 ## *setIRCode*
 
-Set IR code
+Programs an IR code into the specified remote control
 
 ### Events
 Event details will be updated soon.
@@ -826,7 +826,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="startFirmwareUpdate"></a>
 ## *startFirmwareUpdate*
 
-Start firmware update
+Starts a firmware image update session for the specified remote(s)
 
 ### Events
 Event details will be updated soon.
@@ -880,7 +880,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 <a id="startPairing"></a>
 ## *startPairing*
 
-Start pairing process
+Initiates pairing a remote with the STB on the specified network.
 
 ### Events
 Event details will be updated soon.
@@ -934,7 +934,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 <a id="statusFirmwareUpdate"></a>
 ## *statusFirmwareUpdate*
 
-Get firmware update status
+Returns the status of an active firmware image update session
 
 ### Events
 Event details will be updated soon.
@@ -988,7 +988,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="stopPairing"></a>
 ## *stopPairing*
 
-Stop pairing process
+Cancels pairing a remote with the STB on the specified network.
 
 ### Events
 Event details will be updated soon.
@@ -1042,7 +1042,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 <a id="unpair"></a>
 ## *unpair*
 
-Unpair remote
+Unpairs a given or all remote(s) from the STB
 
 ### Events
 Event details will be updated soon.
@@ -1106,14 +1106,14 @@ RemoteControl interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFirmwareUpdateProgress](#onFirmwareUpdateProgress) | Firmware update progress event |
-| [onStatus](#onStatus) | Status event |
-| [onValidation](#onValidation) | Validation event |
+| [onFirmwareUpdateProgress](#onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
+| [onStatus](#onStatus) | Triggered at any time when the status of any one of the supported STB remote networks changes |
+| [onValidation](#onValidation) | Generated for manual pairing validation |
 
 <a id="onFirmwareUpdateProgress"></a>
 ## *onFirmwareUpdateProgress*
 
-Firmware update progress event
+Generated at 0 and 100 percent and each time a download percent increment is reached
 
 ### Parameters
 | Name | Type | Description |
@@ -1137,7 +1137,7 @@ Firmware update progress event
 <a id="onStatus"></a>
 ## *onStatus*
 
-Status event
+Triggered at any time when the status of any one of the supported STB remote networks changes
 
 ### Parameters
 | Name | Type | Description |
@@ -1161,7 +1161,7 @@ Status event
 <a id="onValidation"></a>
 ## *onValidation*
 
-Validation event
+Generated for manual pairing validation
 
 ### Parameters
 | Name | Type | Description |
