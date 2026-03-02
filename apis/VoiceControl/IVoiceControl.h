@@ -54,7 +54,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: General failure.
             virtual Core::hresult SendNotify_(const string& eventName, string& parameters /* @out @opaque */) = 0;
 
-            // @brief Get voice status
+            // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -62,7 +62,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult VoiceStatus(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Configure voice settings
+            // @brief Configures the RDK's voice stack
             // @text configureVoice
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -70,7 +70,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
             virtual Core::hresult ConfigureVoice(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Set voice initialization
+            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -78,7 +78,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
             virtual Core::hresult SetVoiceInit(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Send a voice message
+            // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -86,7 +86,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to send voice message.
             virtual Core::hresult SendVoiceMessage(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Voice session by text (DEPRECATED)
+            // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -94,7 +94,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
             virtual Core::hresult VoiceSessionByText(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0; // DEPRECATED
 
-            // @brief Get voice session types
+            // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -102,7 +102,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
             virtual Core::hresult VoiceSessionTypes(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Request a voice session
+            // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -110,7 +110,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to request voice session.
             virtual Core::hresult VoiceSessionRequest(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Terminate a voice session
+            // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -118,7 +118,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
             virtual Core::hresult VoiceSessionTerminate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
 
-            // @brief Start audio stream for voice session
+            // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
             // @param parameters: JSON input parameters
             // @param response: JSON response object
@@ -132,32 +132,32 @@ namespace WPEFramework {
 
                 enum { ID = ID_VOICECONTROL_NOTIFICATION };
 
-                // @brief Session begin event
+                // @brief Triggered when a voice session begins
                 // @text onSessionBegin
                 // @param params: Event data containing session begin information.
                 virtual void OnSessionBegin(const string& params /* @opaque */) {}
 
-                // @brief Stream begin event
+                // @brief Triggered when a device starts streaming voice data to the RDK
                 // @text onStreamBegin
                 // @param params: Event data containing stream begin information.
                 virtual void OnStreamBegin(const string& params /* @opaque */) {}
 
-                // @brief Keyword verification event
+                // @brief Triggered when a keyword verification result is received
                 // @text onKeywordVerification
                 // @param params: Event data containing keyword verification information.
                 virtual void OnKeywordVerification(const string& params /* @opaque */) {}
 
-                // @brief Server message event
+                // @brief Triggered when a message is received from the Voice Server
                 // @text onServerMessage
                 // @param params: Event data containing server message information.
                 virtual void OnServerMessage(const string& params /* @opaque */) {}
 
-                // @brief Stream end event
+                // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
                 // @param params: Event data containing stream end information.
                 virtual void OnStreamEnd(const string& params /* @opaque */) {}
 
-                // @brief Session end event
+                // @brief Triggered when the interaction with the server has concluded
                 // @text onSessionEnd
                 // @param params: Event data containing session end information.
                 virtual void OnSessionEnd(const string& params /* @opaque */) {}
