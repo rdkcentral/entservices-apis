@@ -1119,7 +1119,7 @@ Firmware update progress event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
+| params.params | string | Event data containing remote control status information. |
 
 ### Examples
 
@@ -1129,7 +1129,7 @@ Firmware update progress event
     "id": 19,
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -1143,7 +1143,7 @@ Status event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
+| params.params | string | Event data containing remote control status information. |
 
 ### Examples
 
@@ -1153,7 +1153,7 @@ Status event
     "id": 20,
     "method": "org.rdk.RemoteControl.onStatus",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -1167,7 +1167,7 @@ Validation event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_main_iarm_event_json_t | Pointer to event data containing remote control status information. |
+| params.params | string | Event data containing remote control status information. |
 
 ### Examples
 
@@ -1177,7 +1177,7 @@ Validation event
     "id": 21,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```

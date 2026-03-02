@@ -682,7 +682,7 @@ Keyword verification event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -692,7 +692,7 @@ Keyword verification event
     "id": 11,
     "method": "org.rdk.VoiceControl.onKeywordVerification",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -706,7 +706,7 @@ Server message event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -716,7 +716,7 @@ Server message event
     "id": 12,
     "method": "org.rdk.VoiceControl.onServerMessage",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -730,7 +730,7 @@ Session begin event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -740,7 +740,7 @@ Session begin event
     "id": 13,
     "method": "org.rdk.VoiceControl.onSessionBegin",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -754,7 +754,7 @@ Session end event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -764,7 +764,7 @@ Session end event
     "id": 14,
     "method": "org.rdk.VoiceControl.onSessionEnd",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -778,7 +778,7 @@ Stream begin event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -788,7 +788,7 @@ Stream begin event
     "id": 15,
     "method": "org.rdk.VoiceControl.onStreamBegin",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
@@ -802,7 +802,7 @@ Stream end event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventData | ctrlm_voice_iarm_event_json_t | Pointer to event data containing session begin information. |
+| params.params | string | Event data containing session begin information. |
 
 ### Examples
 
@@ -812,7 +812,7 @@ Stream end event
     "id": 16,
     "method": "org.rdk.VoiceControl.onStreamEnd",
     "params": {
-        "eventData": ""
+        "params": ""
     }
 }
 ```
