@@ -1,40 +1,42 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="head.System_API"></a>
-# System API
+<a name="System_Plugin"></a>
+# System Plugin
 
 A org.rdk.System plugin for Thunder framework.
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#head.Abbreviation,_Acronyms_and_Terms)
-- [Description](#head.Description)
-- [Configuration](#head.Configuration)
-- [Methods](#head.Methods)
-- [Notifications](#head.Notifications)
+- [Abbreviation, Acronyms and Terms](#Abbreviation,_Acronyms_and_Terms)
+- [Description](#Description)
+- [Configuration](#Configuration)
+- [Methods](#Methods)
+- [Notifications](#Notifications)
 
-<a name="head.Abbreviation,_Acronyms_and_Terms"></a>
+<a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
 
 [[Refer to this link](overview/aat.md)]
 
-<a name="head.Description"></a>
+<a name="Description"></a>
 # Description
 
 The `System` plugin is used to manage various system-level features such as power settings and firmware updates.
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#ref.Thunder)].
+The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
-<a name="head.Configuration"></a>
+<a name="Configuration"></a>
 # Configuration
 
 The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
+| callsign | string | Plugin instance name (default: *org.rdk.System*) |
 | classname | string | Class name: *org.rdk.System* |
+| locator | string | Library name: *libWPEFrameworkSystemServices.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a name="head.Methods"></a>
+<a name="Methods"></a>
 # Methods
 
 The following methods are provided by the org.rdk.System plugin:
@@ -43,58 +45,58 @@ org.rdk.System interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getDeviceInfo](#method.getDeviceInfo) | Collects device details |
-| [getDownloadedFirmwareInfo](#method.getDownloadedFirmwareInfo) | Returns information about firmware downloads |
-| [getFirmwareDownloadPercent](#method.getFirmwareDownloadPercent) | Gets the current download percentage |
-| [getFirmwareUpdateInfo](#method.getFirmwareUpdateInfo) | Checks the firmware update information |
-| [getFirmwareUpdateState](#method.getFirmwareUpdateState) | Checks the state of the firmware update |
-| [getLastFirmwareFailureReason](#method.getLastFirmwareFailureReason) | Retrieves the last firmware failure reason |
-| [getLastWakeupKeyCode](#method.getLastWakeupKeyCode) | Returns the last wakeup keycode |
-| [getMacAddresses](#method.getMacAddresses) | Gets the MAC address of the device |
-| [getMfgSerialNumber](#method.getMfgSerialNumber) | Gets the Manufacturing Serial Number |
-| [getNetworkStandbyMode](#method.getNetworkStandbyMode) | Returns the network standby mode of the device |
-| [getPlatformConfiguration](#method.getPlatformConfiguration) | Returns the supported features and device/account info |
-| [getPowerState](#method.getPowerState) | Returns the power state of the device |
-| [getPowerStateBeforeReboot](#method.getPowerStateBeforeReboot) | Returns the power state before reboot |
-| [getRFCConfig](#method.getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations |
-| [getSerialNumber](#method.getSerialNumber) | Returns the device serial number |
-| [getSystemVersions](#method.getSystemVersions) | Returns system version details |
-| [getFriendlyName](#method.getFriendlyName) | Returns the friendly name set by setFriendlyName API or default value |
-| [getTerritory](#method.getTerritory) | Gets the configured system territory and region |
-| [getTimeZones](#method.getTimeZones) | (Version2) Gets the available timezones from the system's time zone database |
-| [getTimeZoneDST](#method.getTimeZoneDST) | Get the configured time zone from the file referenced by `TZ_FILE` |
-| [getWakeupReason](#method.getWakeupReason) | Returns the reason for the device coming out of deep sleep |
-| [getPreviousRebootInfo](#method.getPreviousRebootInfo) | Returns basic information about a reboot |
-| [isOptOutTelemetry](#method.isOptOutTelemetry) | Checks the telemetry opt-out status |
-| [reboot](#method.reboot) | Requests that the system performs a reboot of the set-top box |
-| [requestSystemUptime](#method.requestSystemUptime) | Returns the device uptime |
-| [setDeepSleepTimer](#method.setDeepSleepTimer) | Sets the deep sleep timeout period |
-| [setFirmwareAutoReboot](#method.setFirmwareAutoReboot) | Enables or disables the AutoReboot Feature |
-| [setMode](#method.setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
-| [setNetworkStandbyMode](#method.setNetworkStandbyMode) | This API will be deprecated in the future |
-| [setOptOutTelemetry](#method.setOptOutTelemetry) | Sets the telemetry opt-out status |
-| [setPowerState](#method.setPowerState) | Sets the power state of the device |
-| [setFriendlyName](#method.setFriendlyName) | Sets the friendly name of device |
-| [setBootLoaderSplashScreen](#method.setBootLoaderSplashScreen) | Install or update the BootLoader Splash Screens |
-| [getBuildType](#method.getBuildType) | Returns build type of the image flashed on the device |
-| [setTerritory](#method.setTerritory) | Sets the system territory and region |
-| [setTimeZoneDST](#method.setTimeZoneDST) | Sets the system time zone |
-| [setWakeupSrcConfiguration](#method.setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState |
-| [updateFirmware](#method.updateFirmware) | Initiates a firmware update |
-| [uploadLogsAsync](#method.uploadLogsAsync) | Starts background process to upload logs |
-| [abortLogUpload](#method.abortLogUpload) | Stops background process to upload logs |
-| [setFSRFlag](#method.setFSRFlag) | Set the FSR flag into the emmc raw area |
-| [getFSRFlag](#method.getFSRFlag) | Get the FSR flag from the emmc raw area |
-| [getBootTypeInfo](#method.getBootTypeInfo) | Getting Boot Type |
-| [setMigrationStatus](#method.setMigrationStatus) | sets the tr181 MigrationStatus parameter |
-| [getMigrationStatus](#method.getMigrationStatus) | get the Migration Status of the device |
-| [setBlocklistFlag](#method.setBlocklistFlag) | To update Blocklist flag |
-| [getBlocklistFlag](#method.getBlocklistFlag) | Get the FSR flag from the emmc raw area |
-| [getTimeStatus](#method.getTimeStatus) | Get the time status on the device |
+| [getDeviceInfo](#getDeviceInfo) | Collects device details |
+| [getDownloadedFirmwareInfo](#getDownloadedFirmwareInfo) | Returns information about firmware downloads |
+| [getFirmwareDownloadPercent](#getFirmwareDownloadPercent) | Gets the current download percentage |
+| [getFirmwareUpdateInfo](#getFirmwareUpdateInfo) | Checks the firmware update information |
+| [getFirmwareUpdateState](#getFirmwareUpdateState) | Checks the state of the firmware update |
+| [getLastFirmwareFailureReason](#getLastFirmwareFailureReason) | Retrieves the last firmware failure reason |
+| [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode |
+| [getMacAddresses](#getMacAddresses) | Gets the MAC address of the device |
+| [getMfgSerialNumber](#getMfgSerialNumber) | Gets the Manufacturing Serial Number |
+| [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device |
+| [getPlatformConfiguration](#getPlatformConfiguration) | Returns the supported features and device/account info |
+| [getPowerState](#getPowerState) | Returns the power state of the device |
+| [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
+| [getRFCConfig](#getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations |
+| [getSerialNumber](#getSerialNumber) | Returns the device serial number |
+| [getSystemVersions](#getSystemVersions) | Returns system version details |
+| [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API or default value |
+| [getTerritory](#getTerritory) | Gets the configured system territory and region |
+| [getTimeZones](#getTimeZones) | (Version2) Gets the available timezones from the system's time zone database |
+| [getTimeZoneDST](#getTimeZoneDST) | Get the configured time zone from the file referenced by `TZ_FILE` |
+| [getWakeupReason](#getWakeupReason) | Returns the reason for the device coming out of deep sleep |
+| [getPreviousRebootInfo](#getPreviousRebootInfo) | Returns basic information about a reboot |
+| [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status |
+| [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
+| [requestSystemUptime](#requestSystemUptime) | Returns the device uptime |
+| [setDeepSleepTimer](#setDeepSleepTimer) | Sets the deep sleep timeout period |
+| [setFirmwareAutoReboot](#setFirmwareAutoReboot) | Enables or disables the AutoReboot Feature |
+| [setMode](#setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
+| [setNetworkStandbyMode](#setNetworkStandbyMode) | This API will be deprecated in the future |
+| [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status |
+| [setPowerState](#setPowerState) | Sets the power state of the device |
+| [setFriendlyName](#setFriendlyName) | Sets the friendly name of device |
+| [setBootLoaderSplashScreen](#setBootLoaderSplashScreen) | Install or update the BootLoader Splash Screens |
+| [getBuildType](#getBuildType) | Returns build type of the image flashed on the device |
+| [setTerritory](#setTerritory) | Sets the system territory and region |
+| [setTimeZoneDST](#setTimeZoneDST) | Sets the system time zone |
+| [setWakeupSrcConfiguration](#setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState |
+| [updateFirmware](#updateFirmware) | Initiates a firmware update |
+| [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs |
+| [abortLogUpload](#abortLogUpload) | Stops background process to upload logs |
+| [setFSRFlag](#setFSRFlag) | Set the FSR flag into the emmc raw area |
+| [getFSRFlag](#getFSRFlag) | Get the FSR flag from the emmc raw area |
+| [getBootTypeInfo](#getBootTypeInfo) | Getting Boot Type |
+| [setMigrationStatus](#setMigrationStatus) | sets the tr181 MigrationStatus parameter |
+| [getMigrationStatus](#getMigrationStatus) | get the Migration Status of the device |
+| [setBlocklistFlag](#setBlocklistFlag) | To update Blocklist flag |
+| [getBlocklistFlag](#getBlocklistFlag) | Get the FSR flag from the emmc raw area |
+| [getTimeStatus](#getTimeStatus) | Get the time status on the device |
 
 
-<a name="method.getDeviceInfo"></a>
-## *getDeviceInfo [<sup>method</sup>](#head.Methods)*
+<a name="getDeviceInfo"></a>
+## *getDeviceInfo*
 
 Collects device details. Sample keys include:  
 * bluetooth_mac  
@@ -108,7 +110,7 @@ Collects device details. Sample keys include:
  System.getDeviceInfo is DEPRECATED use the following APIS 
 * make = [DeviceInfo.make](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=make)  
 * bluetooth_mac = DEPRECATED  
-* boxIP = [Network.GetIPSettings](https://github.com/rdkcentral/networkmanager/blob/main/docs/NetworkManagerPlugin.md#method.GetIPSettings)  
+* boxIP = [Network.GetIPSettings](https://github.com/rdkcentral/networkmanager/blob/main/docs/NetworkManagerPlugin.md#GetIPSettings)  
 * build_type = org.rdk.System.getBuildType  
 * device_type = DEPRECATED  
 * estb_mac = [DeviceInfo.addresses](https://rdkcentral.github.io/entservices-apis/#/apis/DeviceInfoPlugin?id=addresses)  
@@ -170,8 +172,8 @@ No Events
 }
 ```
 
-<a name="method.getDownloadedFirmwareInfo"></a>
-## *getDownloadedFirmwareInfo [<sup>method</sup>](#head.Methods)*
+<a name="getDownloadedFirmwareInfo"></a>
+## *getDownloadedFirmwareInfo*
 
 Returns information about firmware downloads.
 
@@ -222,8 +224,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getFirmwareDownloadPercent"></a>
-## *getFirmwareDownloadPercent [<sup>method</sup>](#head.Methods)*
+<a name="getFirmwareDownloadPercent"></a>
+## *getFirmwareDownloadPercent*
 
 Gets the current download percentage.
 
@@ -268,8 +270,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getFirmwareUpdateInfo"></a>
-## *getFirmwareUpdateInfo [<sup>method</sup>](#head.Methods)*
+<a name="getFirmwareUpdateInfo"></a>
+## *getFirmwareUpdateInfo*
 
 Checks the firmware update information.
 
@@ -277,7 +279,7 @@ Checks the firmware update information.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFirmwareUpdateInfoReceived](#event.onFirmwareUpdateInfoReceived) | Triggers when the firmware update information is requested |
+| [onFirmwareUpdateInfoReceived](#onFirmwareUpdateInfoReceived) | Triggers when the firmware update information is requested |
 ### Parameters
 
 | Name | Type | Description |
@@ -321,8 +323,8 @@ Checks the firmware update information.
 }
 ```
 
-<a name="method.getFirmwareUpdateState"></a>
-## *getFirmwareUpdateState [<sup>method</sup>](#head.Methods)*
+<a name="getFirmwareUpdateState"></a>
+## *getFirmwareUpdateState*
 
 Checks the state of the firmware update.
 
@@ -367,8 +369,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getLastFirmwareFailureReason"></a>
-## *getLastFirmwareFailureReason [<sup>method</sup>](#head.Methods)*
+<a name="getLastFirmwareFailureReason"></a>
+## *getLastFirmwareFailureReason*
 
 Retrieves the last firmware failure reason.
 
@@ -413,8 +415,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getLastWakeupKeyCode"></a>
-## *getLastWakeupKeyCode [<sup>method</sup>](#head.Methods)*
+<a name="getLastWakeupKeyCode"></a>
+## *getLastWakeupKeyCode*
 
 Returns the last wakeup keycode.
 
@@ -459,8 +461,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getMacAddresses"></a>
-## *getMacAddresses [<sup>method</sup>](#head.Methods)*
+<a name="getMacAddresses"></a>
+## *getMacAddresses*
 
 Gets the MAC address of the device.
 
@@ -468,7 +470,7 @@ Gets the MAC address of the device.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onMacAddressesRetreived](#event.onMacAddressesRetreived) | Triggers when the MAC addresses are requested |
+| [onMacAddressesRetreived](#onMacAddressesRetreived) | Triggers when the MAC addresses are requested |
 ### Parameters
 
 | Name | Type | Description |
@@ -512,8 +514,8 @@ Gets the MAC address of the device.
 }
 ```
 
-<a name="method.getMfgSerialNumber"></a>
-## *getMfgSerialNumber [<sup>method</sup>](#head.Methods)*
+<a name="getMfgSerialNumber"></a>
+## *getMfgSerialNumber*
 
 Gets the Manufacturing Serial Number.
 
@@ -558,8 +560,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getNetworkStandbyMode"></a>
-## *getNetworkStandbyMode [<sup>method</sup>](#head.Methods)*
+<a name="getNetworkStandbyMode"></a>
+## *getNetworkStandbyMode*
 
 Returns the network standby mode of the device. If network standby is `true`, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR (S3) mode.
 
@@ -604,8 +606,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getPlatformConfiguration"></a>
-## *getPlatformConfiguration [<sup>method</sup>](#head.Methods)*
+<a name="getPlatformConfiguration"></a>
+## *getPlatformConfiguration*
 
 Returns the supported features and device/account info.
 
@@ -707,8 +709,8 @@ No Events
 }
 ```
 
-<a name="method.getPowerState"></a>
-## *getPowerState [<sup>method</sup>](#head.Methods)*
+<a name="getPowerState"></a>
+## *getPowerState*
 
 Returns the power state of the device.
 
@@ -753,8 +755,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getPowerStateBeforeReboot"></a>
-## *getPowerStateBeforeReboot [<sup>method</sup>](#head.Methods)*
+<a name="getPowerStateBeforeReboot"></a>
+## *getPowerStateBeforeReboot*
 
 Returns the power state before reboot.
 
@@ -799,8 +801,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getRFCConfig"></a>
-## *getRFCConfig [<sup>method</sup>](#head.Methods)*
+<a name="getRFCConfig"></a>
+## *getRFCConfig*
 
 Returns information that is related to RDK Feature Control (RFC) configurations.
 
@@ -857,8 +859,8 @@ No Events
 }
 ```
 
-<a name="method.getSerialNumber"></a>
-## *getSerialNumber [<sup>method</sup>](#head.Methods)*
+<a name="getSerialNumber"></a>
+## *getSerialNumber*
 
 Returns the device serial number.
 
@@ -903,8 +905,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getSystemVersions"></a>
-## *getSystemVersions [<sup>method</sup>](#head.Methods)*
+<a name="getSystemVersions"></a>
+## *getSystemVersions*
 
 Returns system version details.
 
@@ -953,8 +955,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getFriendlyName"></a>
-## *getFriendlyName [<sup>method</sup>](#head.Methods)*
+<a name="getFriendlyName"></a>
+## *getFriendlyName*
 
 Returns the friendly name set by setFriendlyName API or default value.
 
@@ -999,8 +1001,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getTerritory"></a>
-## *getTerritory [<sup>method</sup>](#head.Methods)*
+<a name="getTerritory"></a>
+## *getTerritory*
 
 Gets the configured system territory and region. Territory is a ISO-3166-1 alpha-3 standard (see https://en.wikipedia.org/wiki/ISO_3166-1). Region is a ISO-3166-2 alpha-2 standard (see https://en.wikipedia.org/wiki/ISO_3166-2).
 
@@ -1047,8 +1049,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getTimeZones"></a>
-## *getTimeZones [<sup>method</sup>](#head.Methods)*
+<a name="getTimeZones"></a>
+## *getTimeZones*
 
 (Version2) Gets the available timezones from the system's time zone database. This method is useful for determining time offsets per zone.
 
@@ -1106,8 +1108,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getTimeZoneDST"></a>
-## *getTimeZoneDST [<sup>method</sup>](#head.Methods)*
+<a name="getTimeZoneDST"></a>
+## *getTimeZoneDST*
 
 Get the configured time zone from the file referenced by `TZ_FILE`. If the time zone is not set, then `null` is returned.
 
@@ -1154,8 +1156,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getWakeupReason"></a>
-## *getWakeupReason [<sup>method</sup>](#head.Methods)*
+<a name="getWakeupReason"></a>
+## *getWakeupReason*
 
 Returns the reason for the device coming out of deep sleep.
 
@@ -1200,8 +1202,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getPreviousRebootInfo"></a>
-## *getPreviousRebootInfo [<sup>method</sup>](#head.Methods)*
+<a name="getPreviousRebootInfo"></a>
+## *getPreviousRebootInfo*
 
 Returns basic information about a reboot.
 
@@ -1254,8 +1256,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.isOptOutTelemetry"></a>
-## *isOptOutTelemetry [<sup>method</sup>](#head.Methods)*
+<a name="isOptOutTelemetry"></a>
+## *isOptOutTelemetry*
 
 Checks the telemetry opt-out status.
 
@@ -1300,8 +1302,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.reboot"></a>
-## *reboot [<sup>method</sup>](#head.Methods)*
+<a name="reboot"></a>
+## *reboot*
 
 Requests that the system performs a reboot of the set-top box.
 
@@ -1309,7 +1311,7 @@ Requests that the system performs a reboot of the set-top box.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onRebootRequest](#event.onRebootRequest) | Triggers when a device reboot request is made |
+| [onRebootRequest](#onRebootRequest) | Triggers when a device reboot request is made |
 ### Parameters
 
 | Name | Type | Description |
@@ -1353,8 +1355,8 @@ Requests that the system performs a reboot of the set-top box.
 }
 ```
 
-<a name="method.requestSystemUptime"></a>
-## *requestSystemUptime [<sup>method</sup>](#head.Methods)*
+<a name="requestSystemUptime"></a>
+## *requestSystemUptime*
 
 Returns the device uptime.
 
@@ -1399,8 +1401,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setDeepSleepTimer"></a>
-## *setDeepSleepTimer [<sup>method</sup>](#head.Methods)*
+<a name="setDeepSleepTimer"></a>
+## *setDeepSleepTimer*
 
 Sets the deep sleep timeout period.
 
@@ -1449,8 +1451,8 @@ No Events
 }
 ```
 
-<a name="method.setFirmwareAutoReboot"></a>
-## *setFirmwareAutoReboot [<sup>method</sup>](#head.Methods)*
+<a name="setFirmwareAutoReboot"></a>
+## *setFirmwareAutoReboot*
 
 Enables or disables the AutoReboot Feature. This method internally sets the tr181 `AutoReboot.Enable` parameter to `true` or `false`.
 
@@ -1499,8 +1501,8 @@ No Events
 }
 ```
 
-<a name="method.setMode"></a>
-## *setMode [<sup>method</sup>](#head.Methods)*
+<a name="setMode"></a>
+## *setMode*
 
 Sets the mode of the set-top box for a specific duration before returning to normal mode. Valid modes are:  
 * `NORMAL` - The set-top box is operating in normal mode.  
@@ -1511,7 +1513,7 @@ Sets the mode of the set-top box for a specific duration before returning to nor
 
 | Event | Description |
 | :-------- | :-------- |
-| [onSystemModeChanged](#event.onSystemModeChanged) | Triggers when the system mode is changed successfully |
+| [onSystemModeChanged](#onSystemModeChanged) | Triggers when the system mode is changed successfully |
 ### Parameters
 
 | Name | Type | Description |
@@ -1558,8 +1560,8 @@ Sets the mode of the set-top box for a specific duration before returning to nor
 }
 ```
 
-<a name="method.setNetworkStandbyMode"></a>
-## *setNetworkStandbyMode [<sup>method</sup>](#head.Methods)*
+<a name="setNetworkStandbyMode"></a>
+## *setNetworkStandbyMode*
 
 This API will be deprecated in the future. Please refer setWakeupSrcConfiguration to Migrate. This API Enables or disables the network standby mode of the device. If network standby is enabled, the device supports `WakeOnLAN` and `WakeOnWLAN` actions in STR (S3) mode.
 
@@ -1608,8 +1610,8 @@ No Events
 }
 ```
 
-<a name="method.setOptOutTelemetry"></a>
-## *setOptOutTelemetry [<sup>method</sup>](#head.Methods)*
+<a name="setOptOutTelemetry"></a>
+## *setOptOutTelemetry*
 
 Sets the telemetry opt-out status.
 
@@ -1658,8 +1660,8 @@ No Events
 }
 ```
 
-<a name="method.setPowerState"></a>
-## *setPowerState [<sup>method</sup>](#head.Methods)*
+<a name="setPowerState"></a>
+## *setPowerState*
 
 Sets the power state of the device.
 
@@ -1667,7 +1669,7 @@ Sets the power state of the device.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onSystemPowerStateChanged](#event.onSystemPowerStateChanged) | Triggers when the system power state changes |
+| [onSystemPowerStateChanged](#onSystemPowerStateChanged) | Triggers when the system power state changes |
 ### Parameters
 
 | Name | Type | Description |
@@ -1711,8 +1713,8 @@ Sets the power state of the device.
 }
 ```
 
-<a name="method.setFriendlyName"></a>
-## *setFriendlyName [<sup>method</sup>](#head.Methods)*
+<a name="setFriendlyName"></a>
+## *setFriendlyName*
 
 Sets the friendly name of device. It allows an applications to set friendly name value which could be used by different applications to list this device on client mobile application. The provided name should not be empty. Friendly name is persisted on device and reuse after each reboot until updated by the user.
 
@@ -1761,8 +1763,8 @@ No Events
 }
 ```
 
-<a name="method.setBootLoaderSplashScreen"></a>
-## *setBootLoaderSplashScreen [<sup>method</sup>](#head.Methods)*
+<a name="setBootLoaderSplashScreen"></a>
+## *setBootLoaderSplashScreen*
 
 Install or update the BootLoader Splash Screens. This is typically called by Resident Apps to configure the Splash Screen shown during device boot up.
 
@@ -1811,8 +1813,8 @@ No Events
 }
 ```
 
-<a name="method.getBuildType"></a>
-## *getBuildType [<sup>method</sup>](#head.Methods)*
+<a name="getBuildType"></a>
+## *getBuildType*
 
 Returns build type of the image flashed on the device.
 
@@ -1857,8 +1859,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setTerritory"></a>
-## *setTerritory [<sup>method</sup>](#head.Methods)*
+<a name="setTerritory"></a>
+## *setTerritory*
 
 Sets the system territory and region.Territory is a ISO-3166-1 alpha-3 standard (see https://en.wikipedia.org/wiki/ISO_3166-1). Region is a ISO-3166-2 alpha-2 standard (see https://en.wikipedia.org/wiki/ISO_3166-2).
 
@@ -1866,7 +1868,7 @@ Sets the system territory and region.Territory is a ISO-3166-1 alpha-3 standard 
 
 | Event | Description |
 | :-------- | :-------- |
-| [onTerritoryChanged](#event.onTerritoryChanged) | Triggered when territory is set |
+| [onTerritoryChanged](#onTerritoryChanged) | Triggered when territory is set |
 ### Parameters
 
 | Name | Type | Description |
@@ -1910,8 +1912,8 @@ Sets the system territory and region.Territory is a ISO-3166-1 alpha-3 standard 
 }
 ```
 
-<a name="method.setTimeZoneDST"></a>
-## *setTimeZoneDST [<sup>method</sup>](#head.Methods)*
+<a name="setTimeZoneDST"></a>
+## *setTimeZoneDST*
 
 Sets the system time zone. See `getTimeZones` to get a list of available timezones on the system.
 
@@ -1919,7 +1921,7 @@ Sets the system time zone. See `getTimeZones` to get a list of available timezon
 
 | Event | Description |
 | :-------- | :-------- |
-| [onTimeZoneDSTChanged](#event.onTimeZoneDSTChanged) | Triggered when device time zone changed |
+| [onTimeZoneDSTChanged](#onTimeZoneDSTChanged) | Triggered when device time zone changed |
 ### Parameters
 
 | Name | Type | Description |
@@ -1963,8 +1965,8 @@ Sets the system time zone. See `getTimeZones` to get a list of available timezon
 }
 ```
 
-<a name="method.setWakeupSrcConfiguration"></a>
-## *setWakeupSrcConfiguration [<sup>method</sup>](#head.Methods)*
+<a name="setWakeupSrcConfiguration"></a>
+## *setWakeupSrcConfiguration*
 
 Sets the wakeup source configuration for the input powerState. if you are using setNetworkStandbyMode API, Please do not use this API to set LAN and WIFI wakeup. Please migrate to setWakeupSrcConfiguration API to control all wakeup source settings. This API does not persist. Please call this API on Every bootup to set the values.
 
@@ -2039,8 +2041,8 @@ No Events
 }
 ```
 
-<a name="method.updateFirmware"></a>
-## *updateFirmware [<sup>method</sup>](#head.Methods)*
+<a name="updateFirmware"></a>
+## *updateFirmware*
 
 Initiates a firmware update. This method has no affect if an update is not available.
 
@@ -2083,8 +2085,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.uploadLogsAsync"></a>
-## *uploadLogsAsync [<sup>method</sup>](#head.Methods)*
+<a name="uploadLogsAsync"></a>
+## *uploadLogsAsync*
 
 Starts background process to upload logs.
 
@@ -2092,7 +2094,7 @@ Starts background process to upload logs.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onLogUpload](#event.onLogUpload) | Triggered when logs upload process is done |
+| [onLogUpload](#onLogUpload) | Triggered when logs upload process is done |
 ### Parameters
 
 This method takes no parameters.
@@ -2128,8 +2130,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.abortLogUpload"></a>
-## *abortLogUpload [<sup>method</sup>](#head.Methods)*
+<a name="abortLogUpload"></a>
+## *abortLogUpload*
 
 Stops background process to upload logs.
 
@@ -2137,7 +2139,7 @@ Stops background process to upload logs.
 
 | Event | Description |
 | :-------- | :-------- |
-| [onLogUpload](#event.onLogUpload) | Triggered when logs upload process is stopped |
+| [onLogUpload](#onLogUpload) | Triggered when logs upload process is stopped |
 ### Parameters
 
 This method takes no parameters.
@@ -2173,8 +2175,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setFSRFlag"></a>
-## *setFSRFlag [<sup>method</sup>](#head.Methods)*
+<a name="setFSRFlag"></a>
+## *setFSRFlag*
 
 Set the FSR flag into the emmc raw area. This API will fail if you attempt to set the same value.
 
@@ -2219,8 +2221,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getFSRFlag"></a>
-## *getFSRFlag [<sup>method</sup>](#head.Methods)*
+<a name="getFSRFlag"></a>
+## *getFSRFlag*
 
 Get the FSR flag from the emmc raw area.
 
@@ -2265,8 +2267,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getBootTypeInfo"></a>
-## *getBootTypeInfo [<sup>method</sup>](#head.Methods)*
+<a name="getBootTypeInfo"></a>
+## *getBootTypeInfo*
 
 Getting Boot Type.
 
@@ -2309,8 +2311,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setMigrationStatus"></a>
-## *setMigrationStatus [<sup>method</sup>](#head.Methods)*
+<a name="setMigrationStatus"></a>
+## *setMigrationStatus*
 
 sets the tr181 MigrationStatus parameter.
 
@@ -2359,8 +2361,8 @@ No Events
 }
 ```
 
-<a name="method.getMigrationStatus"></a>
-## *getMigrationStatus [<sup>method</sup>](#head.Methods)*
+<a name="getMigrationStatus"></a>
+## *getMigrationStatus*
 
 get the Migration Status of the device.
 
@@ -2403,8 +2405,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.setBlocklistFlag"></a>
-## *setBlocklistFlag [<sup>method</sup>](#head.Methods)*
+<a name="setBlocklistFlag"></a>
+## *setBlocklistFlag*
 
 To update Blocklist flag.
 
@@ -2453,8 +2455,8 @@ No Events
 }
 ```
 
-<a name="method.getBlocklistFlag"></a>
-## *getBlocklistFlag [<sup>method</sup>](#head.Methods)*
+<a name="getBlocklistFlag"></a>
+## *getBlocklistFlag*
 
 Get the FSR flag from the emmc raw area.
 
@@ -2499,8 +2501,8 @@ This method takes no parameters.
 }
 ```
 
-<a name="method.getTimeStatus"></a>
-## *getTimeStatus [<sup>method</sup>](#head.Methods)*
+<a name="getTimeStatus"></a>
+## *getTimeStatus*
 
 Get the time status on the device.
 
@@ -2549,10 +2551,10 @@ This method takes no parameters.
 }
 ```
 
-<a name="head.Notifications"></a>
+<a name="Notifications"></a>
 # Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
 The following events are provided by the org.rdk.System plugin:
 
@@ -2560,24 +2562,24 @@ org.rdk.System interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onFirmwareUpdateInfoReceived](#event.onFirmwareUpdateInfoReceived) | Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked |
-| [onFirmwareUpdateStateChange](#event.onFirmwareUpdateStateChange) | Triggered when the state of a firmware update changes |
-| [onMacAddressesRetreived](#event.onMacAddressesRetreived) | Triggered when the `getMacAddresses` asynchronous method is invoked |
-| [onNetworkStandbyModeChanged](#event.onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
-| [onRebootRequest](#event.onRebootRequest) | Triggered when an application invokes the reboot method |
-| [onSystemClockSet](#event.onSystemClockSet) | Triggered when the clock on the set-top device is updated |
-| [onSystemModeChanged](#event.onSystemModeChanged) | Triggered when the device operating mode changes |
-| [onSystemPowerStateChanged](#event.onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change |
-| [onFriendlyNameChanged](#event.onFriendlyNameChanged) | Triggered when the device friendly name change |
-| [onTemperatureThresholdChanged](#event.onTemperatureThresholdChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
-| [onTerritoryChanged](#event.onTerritoryChanged) | Triggered when the device territory changed |
-| [onDeviceMgtUpdateReceived](#event.onDeviceMgtUpdateReceived) | Triggered when the device management update completes |
-| [onTimeZoneDSTChanged](#event.onTimeZoneDSTChanged) | Triggered when device time zone changed |
-| [onLogUpload](#event.onLogUpload) | Triggered when logs upload process is done or stopped |
+| [onFirmwareUpdateInfoReceived](#onFirmwareUpdateInfoReceived) | Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked |
+| [onFirmwareUpdateStateChange](#onFirmwareUpdateStateChange) | Triggered when the state of a firmware update changes |
+| [onMacAddressesRetreived](#onMacAddressesRetreived) | Triggered when the `getMacAddresses` asynchronous method is invoked |
+| [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
+| [onRebootRequest](#onRebootRequest) | Triggered when an application invokes the reboot method |
+| [onSystemClockSet](#onSystemClockSet) | Triggered when the clock on the set-top device is updated |
+| [onSystemModeChanged](#onSystemModeChanged) | Triggered when the device operating mode changes |
+| [onSystemPowerStateChanged](#onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change |
+| [onFriendlyNameChanged](#onFriendlyNameChanged) | Triggered when the device friendly name change |
+| [onTemperatureThresholdChanged](#onTemperatureThresholdChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
+| [onTerritoryChanged](#onTerritoryChanged) | Triggered when the device territory changed |
+| [onDeviceMgtUpdateReceived](#onDeviceMgtUpdateReceived) | Triggered when the device management update completes |
+| [onTimeZoneDSTChanged](#onTimeZoneDSTChanged) | Triggered when device time zone changed |
+| [onLogUpload](#onLogUpload) | Triggered when logs upload process is done or stopped |
 
 
-<a name="event.onFirmwareUpdateInfoReceived"></a>
-## *onFirmwareUpdateInfoReceived [<sup>event</sup>](#head.Notifications)*
+<a name="onFirmwareUpdateInfoReceived"></a>
+## *onFirmwareUpdateInfoReceived*
 
 Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked.  
 Update details are:  
@@ -2617,8 +2619,8 @@ Update details are:
 }
 ```
 
-<a name="event.onFirmwareUpdateStateChange"></a>
-## *onFirmwareUpdateStateChange [<sup>event</sup>](#head.Notifications)*
+<a name="onFirmwareUpdateStateChange"></a>
+## *onFirmwareUpdateStateChange*
 
 Triggered when the state of a firmware update changes.  
 State details are:  
@@ -2649,8 +2651,8 @@ State details are:
 }
 ```
 
-<a name="event.onMacAddressesRetreived"></a>
-## *onMacAddressesRetreived [<sup>event</sup>](#head.Notifications)*
+<a name="onMacAddressesRetreived"></a>
+## *onMacAddressesRetreived*
 
 Triggered when the `getMacAddresses` asynchronous method is invoked.
 
@@ -2689,8 +2691,8 @@ Triggered when the `getMacAddresses` asynchronous method is invoked.
 }
 ```
 
-<a name="event.onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onNetworkStandbyModeChanged"></a>
+## *onNetworkStandbyModeChanged*
 
 Triggered when the network standby mode setting changes.
 
@@ -2713,10 +2715,10 @@ Triggered when the network standby mode setting changes.
 }
 ```
 
-<a name="event.onRebootRequest"></a>
-## *onRebootRequest [<sup>event</sup>](#head.Notifications)*
+<a name="onRebootRequest"></a>
+## *onRebootRequest*
 
-Triggered when an application invokes the reboot method.
+Triggered when an application invokes the reboot 
 
 ### Parameters
 
@@ -2739,8 +2741,8 @@ Triggered when an application invokes the reboot method.
 }
 ```
 
-<a name="event.onSystemClockSet"></a>
-## *onSystemClockSet [<sup>event</sup>](#head.Notifications)*
+<a name="onSystemClockSet"></a>
+## *onSystemClockSet*
 
 Triggered when the clock on the set-top device is updated.
 
@@ -2757,8 +2759,8 @@ This event carries no parameters.
 }
 ```
 
-<a name="event.onSystemModeChanged"></a>
-## *onSystemModeChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onSystemModeChanged"></a>
+## *onSystemModeChanged*
 
 Triggered when the device operating mode changes.
 
@@ -2781,8 +2783,8 @@ Triggered when the device operating mode changes.
 }
 ```
 
-<a name="event.onSystemPowerStateChanged"></a>
-## *onSystemPowerStateChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onSystemPowerStateChanged"></a>
+## *onSystemPowerStateChanged*
 
 Triggered when the power manager detects a device power state change.
 
@@ -2807,8 +2809,8 @@ Triggered when the power manager detects a device power state change.
 }
 ```
 
-<a name="event.onFriendlyNameChanged"></a>
-## *onFriendlyNameChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onFriendlyNameChanged"></a>
+## *onFriendlyNameChanged*
 
 Triggered when the device friendly name change.
 
@@ -2831,8 +2833,8 @@ Triggered when the device friendly name change.
 }
 ```
 
-<a name="event.onTemperatureThresholdChanged"></a>
-## *onTemperatureThresholdChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onTemperatureThresholdChanged"></a>
+## *onTemperatureThresholdChanged*
 
 Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`). Not supported on all devices.
 
@@ -2859,8 +2861,8 @@ Triggered when the device temperature changes beyond the `WARN` or `MAX` limits 
 }
 ```
 
-<a name="event.onTerritoryChanged"></a>
-## *onTerritoryChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onTerritoryChanged"></a>
+## *onTerritoryChanged*
 
 Triggered when the device territory changed.
 
@@ -2889,8 +2891,8 @@ Triggered when the device territory changed.
 }
 ```
 
-<a name="event.onDeviceMgtUpdateReceived"></a>
-## *onDeviceMgtUpdateReceived [<sup>event</sup>](#head.Notifications)*
+<a name="onDeviceMgtUpdateReceived"></a>
+## *onDeviceMgtUpdateReceived*
 
 Triggered when the device management update completes.
 
@@ -2917,8 +2919,8 @@ Triggered when the device management update completes.
 }
 ```
 
-<a name="event.onTimeZoneDSTChanged"></a>
-## *onTimeZoneDSTChanged [<sup>event</sup>](#head.Notifications)*
+<a name="onTimeZoneDSTChanged"></a>
+## *onTimeZoneDSTChanged*
 
 Triggered when device time zone changed.
 
@@ -2947,8 +2949,8 @@ Triggered when device time zone changed.
 }
 ```
 
-<a name="event.onLogUpload"></a>
-## *onLogUpload [<sup>event</sup>](#head.Notifications)*
+<a name="onLogUpload"></a>
+## *onLogUpload*
 
 Triggered when logs upload process is done or stopped.
 
@@ -2970,3 +2972,4 @@ Triggered when logs upload process is done or stopped.
     }
 }
 ```
+
