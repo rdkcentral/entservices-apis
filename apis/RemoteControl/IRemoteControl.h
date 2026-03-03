@@ -192,10 +192,6 @@ namespace WPEFramework {
             string level /* @brief The level at which the remote will beep e.g. "off", "mid", "high" */;
         };
 
-        struct EXTERNAL UnpairRequest {
-            // No parameters for simplified version - unpairs all remotes
-        };
-
         struct EXTERNAL StartFirmwareUpdateRequest {
             string macAddress       /* @brief The MAC address of the target remote e.g. "AA:BB:CC:DD:EE:FF" */;
             string fileName         /* @brief The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin" */;
@@ -368,12 +364,11 @@ namespace WPEFramework {
             // @text factoryReset
             virtual Core::hresult FactoryReset() = 0;
 
-            // @brief Unpairs a given or all remote(s) from the STB
+            // @brief Unpairs all remotes from the STB
             // @text unpair
-            // @param request: The unpair request parameters
             // @retval ErrorCode::NONE: Remote unpaired successfully.
             // @retval ErrorCode::GENERAL: Failed to unpair remote.
-            virtual Core::hresult Unpair(const UnpairRequest& request) = 0;
+            virtual Core::hresult Unpair() = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
