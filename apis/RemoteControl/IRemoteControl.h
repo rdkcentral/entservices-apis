@@ -77,19 +77,19 @@ namespace WPEFramework {
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The get IRDB manufacturers request parameters
+            // @param response: The get IRDB manufacturers response
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const RemoteControlData::GetIRDBManufacturersRequest& request, RemoteControlData::GetIRDBManufacturersResponse& response /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The get IRDB models request parameters
+            // @param response: The get IRDB models response
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRDBModels(const RemoteControlData::GetIRDBModelsRequest& request, RemoteControlData::GetIRDBModelsResponse& response /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -101,11 +101,11 @@ namespace WPEFramework {
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The get IR codes by names request parameters
+            // @param response: The get IR codes by names response
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const RemoteControlData::GetIRCodesByNamesRequest& request, RemoteControlData::GetIRCodesByNamesResponse& response /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -123,19 +123,17 @@ namespace WPEFramework {
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param response: The last keypress source response
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
-            virtual Core::hresult GetLastKeypressSource(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetLastKeypressSource(RemoteControlData::GetLastKeypressSourceResponse& response /* @out */) = 0;
 
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The configure wakeup keys request parameters
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const RemoteControlData::ConfigureWakeupKeysRequest& request) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
@@ -146,51 +144,46 @@ namespace WPEFramework {
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The find my remote request parameters
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult FindMyRemote(const RemoteControlData::FindMyRemoteRequest& request) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
-            virtual Core::hresult FactoryReset(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult FactoryReset() = 0;
 
             // @brief Unpairs a given or all remote(s) from the STB
             // @text unpair
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The unpair request parameters
             // @retval ErrorCode::NONE: Remote unpaired successfully.
             // @retval ErrorCode::GENERAL: Failed to unpair remote.
-            virtual Core::hresult Unpair(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult Unpair(const RemoteControlData::UnpairRequest& request) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The start firmware update request parameters
+            // @param response: The start firmware update response
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const RemoteControlData::StartFirmwareUpdateRequest& request, RemoteControlData::StartFirmwareUpdateResponse& response /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The cancel firmware update request parameters
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const RemoteControlData::CancelFirmwareUpdateRequest& request) = 0;
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The status firmware update request parameters
+            // @param response: The status firmware update response
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const RemoteControlData::StatusFirmwareUpdateRequest& request, RemoteControlData::StatusFirmwareUpdateResponse& response /* @out */) = 0;
             // End methods
 
             // @event
@@ -199,18 +192,18 @@ namespace WPEFramework {
 
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
-                // @param params: Event data containing remote control status information.
-                virtual void OnStatus(const string& params /* @opaque */) {}
+                // @param status: Event data containing remote control status information.
+                virtual void OnStatus(const RemoteControlData::StatusEventData& status) {}
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
-                // @param params: Event data containing remote control validation information.
-                virtual void OnValidation(const string& params /* @opaque */) {}
+                // @param status: Event data containing remote control validation information.
+                virtual void OnValidation(const RemoteControlData::ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
                 // @text onFirmwareUpdateProgress
-                // @param params: Event data containing firmware update progress information.
-                virtual void OnFirmwareUpdateProgress(const string& params /* @opaque */) {}
+                // @param progress: Event data containing firmware update progress information.
+                virtual void OnFirmwareUpdateProgress(const RemoteControlData::FirmwareUpdateProgressEvent& progress) {}
             };
         };
     } // namespace Exchange

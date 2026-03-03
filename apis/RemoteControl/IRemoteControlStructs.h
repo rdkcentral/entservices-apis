@@ -412,7 +412,469 @@ namespace RemoteControlData {
         Core::JSON::ArrayType<Core::JSON::String> AvrCodes;
     };
 
-    // Add more request/response structures for other methods as needed...
+    // @json 1.0.0
+    struct GetIRCodesByNamesRequest : public Core::JSON::Container {
+        GetIRCodesByNamesRequest(const GetIRCodesByNamesRequest&) = delete;
+        GetIRCodesByNamesRequest& operator=(const GetIRCodesByNamesRequest&) = delete;
+
+        GetIRCodesByNamesRequest()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturer()
+            , Model()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturer"), &Manufacturer);
+            Add(_T("model"), &Model);
+        }
+
+        ~GetIRCodesByNamesRequest() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief The manufacturer name of the AV device
+        Core::JSON::String Manufacturer;
+        // @brief The model name of the AV device
+        Core::JSON::String Model;
+    };
+
+    // @json 1.0.0
+    struct GetIRCodesByNamesResponse : public Core::JSON::Container {
+        GetIRCodesByNamesResponse(const GetIRCodesByNamesResponse&) = delete;
+        GetIRCodesByNamesResponse& operator=(const GetIRCodesByNamesResponse&) = delete;
+
+        GetIRCodesByNamesResponse()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturer()
+            , Model()
+            , Codes()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturer"), &Manufacturer);
+            Add(_T("model"), &Model);
+            Add(_T("codes"), &Codes);
+        }
+
+        ~GetIRCodesByNamesResponse() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief The manufacturer name of the AV device
+        Core::JSON::String Manufacturer;
+        // @brief The model name of the AV device
+        Core::JSON::String Model;
+        // @brief A list of IR codes
+        Core::JSON::ArrayType<Core::JSON::String> Codes;
+    };
+
+    // @json 1.0.0
+    struct GetIRDBManufacturersRequest : public Core::JSON::Container {
+        GetIRDBManufacturersRequest(const GetIRDBManufacturersRequest&) = delete;
+        GetIRDBManufacturersRequest& operator=(const GetIRDBManufacturersRequest&) = delete;
+
+        GetIRDBManufacturersRequest()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturer()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturer"), &Manufacturer);
+        }
+
+        ~GetIRDBManufacturersRequest() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief A part of the name of the manufacturer of the AV device
+        Core::JSON::String Manufacturer;
+    };
+
+    // @json 1.0.0
+    struct GetIRDBManufacturersResponse : public Core::JSON::Container {
+        GetIRDBManufacturersResponse(const GetIRDBManufacturersResponse&) = delete;
+        GetIRDBManufacturersResponse& operator=(const GetIRDBManufacturersResponse&) = delete;
+
+        GetIRDBManufacturersResponse()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturers()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturers"), &Manufacturers);
+        }
+
+        ~GetIRDBManufacturersResponse() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief A list of manufacturer names
+        Core::JSON::ArrayType<Core::JSON::String> Manufacturers;
+    };
+
+    // @json 1.0.0
+    struct GetIRDBModelsRequest : public Core::JSON::Container {
+        GetIRDBModelsRequest(const GetIRDBModelsRequest&) = delete;
+        GetIRDBModelsRequest& operator=(const GetIRDBModelsRequest&) = delete;
+
+        GetIRDBModelsRequest()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturer()
+            , Model()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturer"), &Manufacturer);
+            Add(_T("model"), &Model);
+        }
+
+        ~GetIRDBModelsRequest() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief The manufacturer name of the AV device
+        Core::JSON::String Manufacturer;
+        // @brief A part (minimum of 3 characters) of the model name of the AV device
+        Core::JSON::String Model;
+    };
+
+    // @json 1.0.0
+    struct GetIRDBModelsResponse : public Core::JSON::Container {
+        GetIRDBModelsResponse(const GetIRDBModelsResponse&) = delete;
+        GetIRDBModelsResponse& operator=(const GetIRDBModelsResponse&) = delete;
+
+        GetIRDBModelsResponse()
+            : Core::JSON::Container()
+            , AvDevType()
+            , Manufacturer()
+            , Models()
+        {
+            Add(_T("avDevType"), &AvDevType);
+            Add(_T("manufacturer"), &Manufacturer);
+            Add(_T("models"), &Models);
+        }
+
+        ~GetIRDBModelsResponse() override = default;
+
+        // @brief Whether the device is a video (TV) or audio (AMP) device
+        Core::JSON::String AvDevType;
+        // @brief The manufacturer name of the AV device
+        Core::JSON::String Manufacturer;
+        // @brief A list of model names
+        Core::JSON::ArrayType<Core::JSON::String> Models;
+    };
+
+    // @json 1.0.0
+    struct GetLastKeypressSourceResponse : public Core::JSON::Container {
+        GetLastKeypressSourceResponse(const GetLastKeypressSourceResponse&) = delete;
+        GetLastKeypressSourceResponse& operator=(const GetLastKeypressSourceResponse&) = delete;
+
+        GetLastKeypressSourceResponse()
+            : Core::JSON::Container()
+            , ControllerId(0)
+            , Timestamp(0)
+            , SourceName()
+            , SourceType()
+            , SourceKeyCode(0)
+            , IsScreenBindMode(false)
+            , RemoteKeypadConfig(0)
+        {
+            Add(_T("controllerId"), &ControllerId);
+            Add(_T("timestamp"), &Timestamp);
+            Add(_T("sourceName"), &SourceName);
+            Add(_T("sourceType"), &SourceType);
+            Add(_T("sourceKeyCode"), &SourceKeyCode);
+            Add(_T("bIsScreenBindMode"), &IsScreenBindMode);
+            Add(_T("remoteKeypadConfig"), &RemoteKeypadConfig);
+        }
+
+        ~GetLastKeypressSourceResponse() override = default;
+
+        // @brief The controller ID of the target remote on the specified network
+        Core::JSON::DecUInt32 ControllerId;
+        // @brief The time of the last key press
+        Core::JSON::DecUInt64 Timestamp;
+        // @brief The source of the last key press
+        Core::JSON::String SourceName;
+        // @brief The source type of the last key press
+        Core::JSON::String SourceType;
+        // @brief The source key code
+        Core::JSON::DecUInt32 SourceKeyCode;
+        // @brief true if in screen bind mode, otherwise false
+        Core::JSON::Boolean IsScreenBindMode;
+        // @brief The configuration of the remote keypad
+        Core::JSON::DecUInt32 RemoteKeypadConfig;
+    };
+
+    // @json 1.0.0
+    struct ConfigureWakeupKeysRequest : public Core::JSON::Container {
+        ConfigureWakeupKeysRequest(const ConfigureWakeupKeysRequest&) = delete;
+        ConfigureWakeupKeysRequest& operator=(const ConfigureWakeupKeysRequest&) = delete;
+
+        ConfigureWakeupKeysRequest()
+            : Core::JSON::Container()
+            , WakeupConfig()
+            , CustomKeys()
+        {
+            Add(_T("wakeupConfig"), &WakeupConfig);
+            Add(_T("customKeys"), &CustomKeys);
+        }
+
+        ~ConfigureWakeupKeysRequest() override = default;
+
+        // @brief The deepsleep wakeup key configuration of the remote (all, none, custom)
+        Core::JSON::String WakeupConfig;
+        // @brief List of Linux key codes that can wake the target from deepsleep (mandatory if wakeupConfig is custom)
+        Core::JSON::String CustomKeys;
+    };
+
+    // @json 1.0.0
+    struct FindMyRemoteRequest : public Core::JSON::Container {
+        FindMyRemoteRequest(const FindMyRemoteRequest&) = delete;
+        FindMyRemoteRequest& operator=(const FindMyRemoteRequest&) = delete;
+
+        FindMyRemoteRequest()
+            : Core::JSON::Container()
+            , Level()
+        {
+            Add(_T("level"), &Level);
+        }
+
+        ~FindMyRemoteRequest() override = default;
+
+        // @brief The level at which the remote will beep (off, mid, high)
+        Core::JSON::String Level;
+    };
+
+    // @json 1.0.0
+    struct UnpairRequest : public Core::JSON::Container {
+        UnpairRequest(const UnpairRequest&) = delete;
+        UnpairRequest& operator=(const UnpairRequest&) = delete;
+
+        UnpairRequest()
+            : Core::JSON::Container()
+            , MacAddressList()
+        {
+            Add(_T("macAddressList"), &MacAddressList);
+        }
+
+        ~UnpairRequest() override = default;
+
+        // @brief A list of MAC addresses to unpair
+        Core::JSON::ArrayType<Core::JSON::String> MacAddressList;
+    };
+
+    // @json 1.0.0
+    struct StartFirmwareUpdateRequest : public Core::JSON::Container {
+        StartFirmwareUpdateRequest(const StartFirmwareUpdateRequest&) = delete;
+        StartFirmwareUpdateRequest& operator=(const StartFirmwareUpdateRequest&) = delete;
+
+        StartFirmwareUpdateRequest()
+            : Core::JSON::Container()
+            , MacAddress()
+            , FileName()
+            , FileType()
+            , PercentIncrement(0)
+        {
+            Add(_T("macAddress"), &MacAddress);
+            Add(_T("fileName"), &FileName);
+            Add(_T("fileType"), &FileType);
+            Add(_T("percentIncrement"), &PercentIncrement);
+        }
+
+        ~StartFirmwareUpdateRequest() override = default;
+
+        // @brief The MAC address of the target remote
+        Core::JSON::String MacAddress;
+        // @brief The full path and filename for the firmware image
+        Core::JSON::String FileName;
+        // @brief The type of firmware image file
+        Core::JSON::String FileType;
+        // @brief The increment change of a firmware update to notify (1-100 percent)
+        Core::JSON::DecUInt32 PercentIncrement;
+    };
+
+    // @json 1.0.0
+    struct StartFirmwareUpdateResponse : public Core::JSON::Container {
+        StartFirmwareUpdateResponse(const StartFirmwareUpdateResponse&) = delete;
+        StartFirmwareUpdateResponse& operator=(const StartFirmwareUpdateResponse&) = delete;
+
+        StartFirmwareUpdateResponse()
+            : Core::JSON::Container()
+            , SessionIdList()
+        {
+            Add(_T("sessionIdList"), &SessionIdList);
+        }
+
+        ~StartFirmwareUpdateResponse() override = default;
+
+        // @brief A list of session identifiers
+        Core::JSON::ArrayType<Core::JSON::DecUInt32> SessionIdList;
+    };
+
+    // @json 1.0.0
+    struct CancelFirmwareUpdateRequest : public Core::JSON::Container {
+        CancelFirmwareUpdateRequest(const CancelFirmwareUpdateRequest&) = delete;
+        CancelFirmwareUpdateRequest& operator=(const CancelFirmwareUpdateRequest&) = delete;
+
+        CancelFirmwareUpdateRequest()
+            : Core::JSON::Container()
+            , SessionId(0)
+        {
+            Add(_T("sessionId"), &SessionId);
+        }
+
+        ~CancelFirmwareUpdateRequest() override = default;
+
+        // @brief The session identifier
+        Core::JSON::DecUInt32 SessionId;
+    };
+
+    // @json 1.0.0
+    struct StatusFirmwareUpdateRequest : public Core::JSON::Container {
+        StatusFirmwareUpdateRequest(const StatusFirmwareUpdateRequest&) = delete;
+        StatusFirmwareUpdateRequest& operator=(const StatusFirmwareUpdateRequest&) = delete;
+
+        StatusFirmwareUpdateRequest()
+            : Core::JSON::Container()
+            , SessionId(0)
+        {
+            Add(_T("sessionId"), &SessionId);
+        }
+
+        ~StatusFirmwareUpdateRequest() override = default;
+
+        // @brief The session identifier
+        Core::JSON::DecUInt32 SessionId;
+    };
+
+    // @json 1.0.0
+    struct FirmwareUpdateStatus : public Core::JSON::Container {
+        FirmwareUpdateStatus(const FirmwareUpdateStatus&) = delete;
+        FirmwareUpdateStatus& operator=(const FirmwareUpdateStatus&) = delete;
+
+        FirmwareUpdateStatus()
+            : Core::JSON::Container()
+            , State()
+            , PercentComplete(0)
+        {
+            Add(_T("state"), &State);
+            Add(_T("percentComplete"), &PercentComplete);
+        }
+
+        ~FirmwareUpdateStatus() override = default;
+
+        // @brief The firmware update state
+        Core::JSON::String State;
+        // @brief The percentage complete (0-100)
+        Core::JSON::DecUInt32 PercentComplete;
+    };
+
+    // @json 1.0.0
+    struct StatusFirmwareUpdateResponse : public Core::JSON::Container {
+        StatusFirmwareUpdateResponse(const StatusFirmwareUpdateResponse&) = delete;
+        StatusFirmwareUpdateResponse& operator=(const StatusFirmwareUpdateResponse&) = delete;
+
+        StatusFirmwareUpdateResponse()
+            : Core::JSON::Container()
+            , Result()
+        {
+            Add(_T("result"), &Result);
+        }
+
+        ~StatusFirmwareUpdateResponse() override = default;
+
+        // @brief The firmware update status
+        FirmwareUpdateStatus Result;
+    };
+
+    // Event Structures
+
+    // @json 1.0.0
+    struct StatusEventData : public Core::JSON::Container {
+        StatusEventData(const StatusEventData&) = delete;
+        StatusEventData& operator=(const StatusEventData&) = delete;
+
+        StatusEventData()
+            : Core::JSON::Container()
+            , NetType(0)
+            , NetTypeSupported(false)
+            , PairingState()
+            , IrProgState()
+            , RemoteData()
+        {
+            Add(_T("netType"), &NetType);
+            Add(_T("netTypeSupported"), &NetTypeSupported);
+            Add(_T("pairingState"), &PairingState);
+            Add(_T("irProgState"), &IrProgState);
+            Add(_T("remoteData"), &RemoteData);
+        }
+
+        ~StatusEventData() override = default;
+
+        // @brief The type of remote control network
+        Core::JSON::DecUInt32 NetType;
+        // @brief Whether the network type is supported
+        Core::JSON::Boolean NetTypeSupported;
+        // @brief The pairing state
+        Core::JSON::EnumType<PairingState> PairingState;
+        // @brief The IR programming state
+        Core::JSON::EnumType<IRProgState> IrProgState;
+        // @brief Array of remote data for all remotes on the network
+        Core::JSON::ArrayType<RemoteControlData::RemoteData> RemoteData;
+    };
+
+    // @json 1.0.0
+    struct ValidationStatusObject : public Core::JSON::Container {
+        ValidationStatusObject(const ValidationStatusObject&) = delete;
+        ValidationStatusObject& operator=(const ValidationStatusObject&) = delete;
+
+        ValidationStatusObject()
+            : Core::JSON::Container()
+            , NetType(0)
+            , ValidationDigit1(0)
+            , ValidationDigit2(0)
+            , ValidationDigit3(0)
+        {
+            Add(_T("netType"), &NetType);
+            Add(_T("validationDigit1"), &ValidationDigit1);
+            Add(_T("validationDigit2"), &ValidationDigit2);
+            Add(_T("validationDigit3"), &ValidationDigit3);
+        }
+
+        ~ValidationStatusObject() override = default;
+
+        // @brief The type of remote control network
+        Core::JSON::DecUInt32 NetType;
+        // @brief The first validation digit
+        Core::JSON::DecUInt32 ValidationDigit1;
+        // @brief The second validation digit
+        Core::JSON::DecUInt32 ValidationDigit2;
+        // @brief The third validation digit
+        Core::JSON::DecUInt32 ValidationDigit3;
+    };
+
+    // @json 1.0.0
+    struct FirmwareUpdateProgressEvent : public Core::JSON::Container {
+        FirmwareUpdateProgressEvent(const FirmwareUpdateProgressEvent&) = delete;
+        FirmwareUpdateProgressEvent& operator=(const FirmwareUpdateProgressEvent&) = delete;
+
+        FirmwareUpdateProgressEvent()
+            : Core::JSON::Container()
+            , SessionId(0)
+            , Status()
+        {
+            Add(_T("sessionId"), &SessionId);
+            Add(_T("status"), &Status);
+        }
+
+        ~FirmwareUpdateProgressEvent() override = default;
+
+        // @brief The session identifier
+        Core::JSON::DecUInt32 SessionId;
+        // @brief The firmware update status
+        FirmwareUpdateStatus Status;
+    };
 
 } // namespace RemoteControlData
 } // namespace Exchange
