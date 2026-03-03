@@ -65,7 +65,7 @@ RemoteControl interface methods:
 | [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network. |
 | [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
 | [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network. |
-| [unpair](#unpair) | Unpairs a given or all remote(s) from the STB |
+| [unpair @retval ErrorCode::NONE: Remote unpaired successfully. @retval ErrorCode::GENERAL: Failed to unpair remote.](#unpair @retval ErrorCode::NONE: Remote unpaired successfully. @retval ErrorCode::GENERAL: Failed to unpair remote.) | Unpairs all remotes from the STB |
 
 <a id="cancelFirmwareUpdate"></a>
 ## *cancelFirmwareUpdate*
@@ -1115,15 +1115,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 <a id="unpair"></a>
 ## *unpair*
 
-Unpairs a given or all remote(s) from the STB
+Unpairs all remotes from the STB
 
 ### Events
 Event details will be updated soon.
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.request | UnpairRequest | The unpair request parameters @retval ErrorCode::NONE: Remote unpaired successfully. @retval ErrorCode::GENERAL: Failed to unpair remote. |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1138,8 +1135,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "method": "org.rdk.RemoteControl.unpair",
-    "params": {}
+    "method": "org.rdk.RemoteControl.unpair"
 }
 ```
 
@@ -1147,7 +1143,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
