@@ -2417,7 +2417,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blocklist | bool | Blocklist flag |
+| params.blocklist | boolean | Blocklist flag |
 
 ### Result
 
@@ -2430,3 +2430,543 @@ No Events
 
 #### Request
 
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.setBlocklistFlag",
+    "params": {
+        "blocklist": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="method.getBlocklistFlag"></a>
+## *getBlocklistFlag [<sup>method</sup>](#head.Methods)*
+
+Get the FSR flag from the emmc raw area.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.blocklist | string | block list string |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getBlocklistFlag"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "blocklist": "...",
+        "success": true
+    }
+}
+```
+
+<a name="method.getTimeStatus"></a>
+## *getTimeStatus [<sup>method</sup>](#head.Methods)*
+
+Get the time status on the device.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.TimeQuality | string | Time Quality |
+| result.TimeSrc | string | Time Source |
+| result.Time | string | Current Time |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getTimeStatus"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "TimeQuality": "...",
+        "TimeSrc": "...",
+        "Time": "...",
+        "success": true
+    }
+}
+```
+
+<a name="head.Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#ref.Thunder)] for information on how to register for a notification.
+
+The following events are provided by the org.rdk.System plugin:
+
+org.rdk.System interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onFirmwareUpdateInfoReceived](#event.onFirmwareUpdateInfoReceived) | Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked |
+| [onFirmwareUpdateStateChange](#event.onFirmwareUpdateStateChange) | Triggered when the state of a firmware update changes |
+| [onMacAddressesRetreived](#event.onMacAddressesRetreived) | Triggered when the `getMacAddresses` asynchronous method is invoked |
+| [onNetworkStandbyModeChanged](#event.onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
+| [onRebootRequest](#event.onRebootRequest) | Triggered when an application invokes the reboot method |
+| [onSystemClockSet](#event.onSystemClockSet) | Triggered when the clock on the set-top device is updated |
+| [onSystemModeChanged](#event.onSystemModeChanged) | Triggered when the device operating mode changes |
+| [onSystemPowerStateChanged](#event.onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change |
+| [onFriendlyNameChanged](#event.onFriendlyNameChanged) | Triggered when the device friendly name change |
+| [onTemperatureThresholdChanged](#event.onTemperatureThresholdChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
+| [onTerritoryChanged](#event.onTerritoryChanged) | Triggered when the device territory changed |
+| [onDeviceMgtUpdateReceived](#event.onDeviceMgtUpdateReceived) | Triggered when the device management update completes |
+| [onTimeZoneDSTChanged](#event.onTimeZoneDSTChanged) | Triggered when device time zone changed |
+| [onLogUpload](#event.onLogUpload) | Triggered when logs upload process is done or stopped |
+
+
+<a name="event.onFirmwareUpdateInfoReceived"></a>
+## *onFirmwareUpdateInfoReceived [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the `getFirmwareUpdateInfo` asynchronous method is invoked.  
+Update details are:  
+* `0` - A new firmware version is available.  
+* `1` - The firmware version is at the current version.  
+* `2` - XCONF did not return a firmware version (timeout or other XCONF error).  
+* `3` - The device is configured not to update the firmware (`swupdate.conf` exists on the device).
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.status | integer | The firmware update status |
+| params.responseString | string | A custom response |
+| params?.firmwareUpdateVersion | string | <sup>*(optional)*</sup> The next firmware update version |
+| params.rebootImmediately | boolean | The value `true` indicates that the device has to be rebooted immediately or `false` otherwise |
+| params.updateAvailable | boolean | The value `false` indicates that there is no update available, either because there was no firmware update version returned from XCONF, or because the version returned from XCONF matches the version already on the device. The value of `true` indicates there is a firmware version available for update |
+| params.updateAvailableEnum | integer | The update available details (must be one of the following: *0*, *1*, *2*, *3*) |
+| params.success | boolean | Whether the request succeeded |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onFirmwareUpdateInfoReceived",
+    "params": {
+        "status": 0,
+        "responseString": "...",
+        "firmwareUpdateVersion": "AB121AEI_VBN_1911_sprint_20200109040424sdy",
+        "rebootImmediately": true,
+        "updateAvailable": true,
+        "updateAvailableEnum": 0,
+        "success": true
+    }
+}
+```
+
+<a name="event.onFirmwareUpdateStateChange"></a>
+## *onFirmwareUpdateStateChange [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the state of a firmware update changes.  
+State details are:  
+* `0`: Uninitialized - there is no firmware update in progress  
+* `1`: Requesting - requesting firmware update information  
+* `2`: Downloading  
+* `3`: Failed  
+* `4`: Download Complete  
+* `5`: Validation Complete  
+* `6`: Preparing to Reboot.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.firmwareUpdateStateChange | integer | The state (must be one of the following: *Uninitialized*, *Requesting*, *Downloading*, *Failed*, *DownLoad Complete*, *Validation Complete*, *Preparing to Reboot*) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onFirmwareUpdateStateChange",
+    "params": {
+        "firmwareUpdateStateChange": 5
+    }
+}
+```
+
+<a name="event.onMacAddressesRetreived"></a>
+## *onMacAddressesRetreived [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the `getMacAddresses` asynchronous method is invoked.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.ecm_mac | string | The embedded cable modem MAC address |
+| params.estb_mac | string | The embedded set-top box MAC address |
+| params.moca_mac | string | The MOCA MAC address |
+| params.eth_mac | string | The Ethernet MAC address |
+| params.wifi_mac | string | The Wifi MAC address |
+| params.bluetooth_mac | string | The Bluetooth MAC address |
+| params.rf4ce_mac | string | The Rf4ce MAC address |
+| params?.info | string | <sup>*(optional)*</sup> Additional information (only if any of the above data is missing) |
+| params.success | boolean | Whether the request succeeded |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onMacAddressesRetreived",
+    "params": {
+        "ecm_mac": "A8:11:XX:FD:0C:XX",
+        "estb_mac": "A8:11:XX:FD:0C:XX",
+        "moca_mac": "00:15:5F:XX:20:5E:57:XX",
+        "eth_mac": "A8:11:XX:FD:0C:XX",
+        "wifi_mac": "A8:11:XX:FD:0C:XX",
+        "bluetooth_mac": "AA:AA:AA:AA:AA:AA",
+        "rf4ce_mac": "00:00:00:00:00:00",
+        "info": "Details fetch: all are not success",
+        "success": true
+    }
+}
+```
+
+<a name="event.onNetworkStandbyModeChanged"></a>
+## *onNetworkStandbyModeChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the network standby mode setting changes.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.nwStandby | boolean | Network standby mode |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onNetworkStandbyModeChanged",
+    "params": {
+        "nwStandby": true
+    }
+}
+```
+
+<a name="event.onRebootRequest"></a>
+## *onRebootRequest [<sup>event</sup>](#head.Notifications)*
+
+Triggered when an application invokes the reboot method.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.requestedApp | string | The source of the reboot |
+| params.rebootReason | string | The reboot reason |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onRebootRequest",
+    "params": {
+        "requestedApp": "SystemPlugin",
+        "rebootReason": "FIRMWARE_FAILURE"
+    }
+}
+```
+
+<a name="event.onSystemClockSet"></a>
+## *onSystemClockSet [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the clock on the set-top device is updated.
+
+### Parameters
+
+This event carries no parameters.
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onSystemClockSet"
+}
+```
+
+<a name="event.onSystemModeChanged"></a>
+## *onSystemModeChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the device operating mode changes.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.mode | string | The mode (must be one of the following: *NORMAL*, *EAS*, *WAREHOUSE*) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onSystemModeChanged",
+    "params": {
+        "mode": "NORMAL"
+    }
+}
+```
+
+<a name="event.onSystemPowerStateChanged"></a>
+## *onSystemPowerStateChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the power manager detects a device power state change.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.powerState | string | The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
+| params.currentPowerState | string | The current power state |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onSystemPowerStateChanged",
+    "params": {
+        "powerState": "ON",
+        "currentPowerState": "ON"
+    }
+}
+```
+
+<a name="event.onFriendlyNameChanged"></a>
+## *onFriendlyNameChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the device friendly name change.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.friendlyName | string | The friendly name of the device which used to display on the client device list |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onFriendlyNameChanged",
+    "params": {
+        "friendlyName": "My Device"
+    }
+}
+```
+
+<a name="event.onTemperatureThresholdChanged"></a>
+## *onTemperatureThresholdChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`). Not supported on all devices.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.thresholdType | string | The exceeded threshold (must be one of the following: *MAX*, *MIN*) |
+| params.exceeded | boolean | Whether the threshold exceeded the configured value |
+| params.temperature | string | The temperature |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onTemperatureThresholdChanged",
+    "params": {
+        "thresholdType": "MAX",
+        "exceeded": true,
+        "temperature": "48.000000"
+    }
+}
+```
+
+<a name="event.onTerritoryChanged"></a>
+## *onTerritoryChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the device territory changed.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.oldTerritory | string |  old territory |
+| params.newTerritory | string |  new territory |
+| params.oldRegion | string | old region |
+| params.newRegion | string | new region |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onTerritoryChanged",
+    "params": {
+        "oldTerritory": "GBR",
+        "newTerritory": "USA",
+        "oldRegion": "GB-ENG",
+        "newRegion": "US-NY"
+    }
+}
+```
+
+<a name="event.onDeviceMgtUpdateReceived"></a>
+## *onDeviceMgtUpdateReceived [<sup>event</sup>](#head.Notifications)*
+
+Triggered when the device management update completes.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.source | string | Source information from where the event on update is posted |
+| params.type | string |  Type of Update received currently it will be used as initial |
+| params.success | boolean | Status information of update whether success or failure |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onDeviceMgtUpdateReceived",
+    "params": {
+        "source": "rfc",
+        "type": "initial",
+        "success": true
+    }
+}
+```
+
+<a name="event.onTimeZoneDSTChanged"></a>
+## *onTimeZoneDSTChanged [<sup>event</sup>](#head.Notifications)*
+
+Triggered when device time zone changed.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.oldTimeZone | string | old time zone |
+| params.newTimeZone | string | new time zone |
+| params.oldAccuracy | string | old time zone accuracy |
+| params.newAccuracy | string | new time zone accuracy |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onTimeZoneDSTChanged",
+    "params": {
+        "oldTimeZone": "America/New_York",
+        "newTimeZone": "Europe/London",
+        "oldAccuracy": "INITIAL",
+        "newAccuracy": "FINAL"
+    }
+}
+```
+
+<a name="event.onLogUpload"></a>
+## *onLogUpload [<sup>event</sup>](#head.Notifications)*
+
+Triggered when logs upload process is done or stopped.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.logUploadStatus | string | Upload status (must be one of the following: *UPLOAD_SUCCESS*, *UPLOAD_FAILURE*, *UPLOAD_ABORTED*) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onLogUpload",
+    "params": {
+        "logUploadStatus": "UPLOAD_SUCCESS"
+    }
+}
+```
