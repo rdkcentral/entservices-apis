@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IVoiceControlStructs.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -40,11 +41,10 @@ namespace WPEFramework {
             // Begin methods
             // @brief Get the API version number
             // @text getApiVersionNumber
-            // @param parameters: Input parameters (unused)
-            // @param response: JSON response object
+            // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
-            virtual Core::hresult GetApiVersionNumber(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetApiVersionNumber(VoiceControlData::GetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Send a notification event
             // @text sendNotify_
@@ -56,75 +56,66 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param response: The voice status response
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult VoiceStatus(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceStatus(VoiceControlData::VoiceStatusResponse& response /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The configure voice request parameters
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult ConfigureVoice(const VoiceControlData::ConfigureVoiceRequest& request) = 0;
 
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice init request parameters
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult SetVoiceInit(const VoiceControlData::SetVoiceInitRequest& request) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice message request parameters
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult SendVoiceMessage(const VoiceControlData::SendVoiceMessageRequest& request) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice session by text request parameters
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const VoiceControlData::VoiceSessionByTextRequest& request) = 0; // DEPRECATED
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param response: The voice session types response
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult VoiceSessionTypes(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceSessionTypes(VoiceControlData::VoiceSessionTypesResponse& response /* @out */) = 0;
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice session request parameters
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceControlData::VoiceSessionRequestParams& request) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice session terminate request parameters
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const VoiceControlData::VoiceSessionTerminateRequest& request) = 0;
 
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The voice session audio stream start request parameters
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceControlData::VoiceSessionAudioStreamStartRequest& request) = 0;
             // End methods
 
             // @event

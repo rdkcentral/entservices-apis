@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IRemoteControlStructs.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -47,35 +48,32 @@ namespace WPEFramework {
             // Begin methods
             // @brief Gets the current API version number.
             // @text getApiVersionNumber
-            // @param parameters: Input parameters
-            // @param response: JSON response object
+            // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
-            virtual Core::hresult GetApiVersionNumber(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetApiVersionNumber(RemoteControlData::GetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The pairing request parameters
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult StartPairing(const RemoteControlData::StartPairingRequest& request) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The stop pairing request parameters
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult StopPairing(const RemoteControlData::StopPairingRequest& request) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The network status request parameters
+            // @param response: The network status response
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetNetStatus(const RemoteControlData::GetNetStatusRequest& request, RemoteControlData::GetNetStatusResponse& response /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -95,11 +93,11 @@ namespace WPEFramework {
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The get IR codes by auto lookup request parameters
+            // @param response: The IR codes by auto lookup response
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const RemoteControlData::GetIRCodesByAutoLookupRequest& request, RemoteControlData::GetIRCodesByAutoLookupResponse& response /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
@@ -111,19 +109,17 @@ namespace WPEFramework {
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The set IR code request parameters
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult SetIRCode(const RemoteControlData::SetIRCodeRequest& request) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The clear IR codes request parameters
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult ClearIRCodes(const RemoteControlData::ClearIRCodesRequest& request) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -143,11 +139,10 @@ namespace WPEFramework {
 
             // @brief Initializes the IR database
             // @text initializeIRDB
-            // @param parameters: JSON input parameters
-            // @param response: JSON response object
+            // @param request: The initialize IRDB request parameters
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const string& parameters /* @opaque */, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult InitializeIRDB(const RemoteControlData::InitializeIRDBRequest& request) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
