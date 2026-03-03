@@ -717,7 +717,7 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | KeywordVerificationEvent | Event data containing keyword verification information. |
+| params.params | KeywordVerificationEvent |  |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 | params.params.verified | bool | True if the keyword was verified, otherwise false |
@@ -746,7 +746,7 @@ Triggered when a message is received from the Voice Server
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | ServerMessageEvent | Event data containing server message information. |
+| params.params | ServerMessageEvent |  |
 | params.params.msgType | string | Message type from the server  |
 | params.params.trx | string | The unique id of the voice session  |
 | params.params.created | integer | The timestamp for server information in milliseconds since epoch |
@@ -777,7 +777,7 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | SessionBeginEvent | Event data containing session begin information. |
+| params.params | SessionBeginEvent |  |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 | params.params.deviceType | string | The type of voice device starting the session , "ff", "mic" |
@@ -808,7 +808,7 @@ Triggered when the interaction with the server has concluded
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | SessionEndEvent | Event data containing session end information. |
+| params.params | SessionEndEvent |  |
 | params.params.serverStats | ServerStats | Returns the voice server stats |
 | params.params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds e.g. 0.5 |
 | params.params.serverStats.serverIp | string | The IP of the voice server  |
@@ -846,7 +846,7 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | StreamBeginEvent | Event data containing stream begin information. |
+| params.params | StreamBeginEvent |  |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 
@@ -873,7 +873,7 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | StreamEndEvent | Event data containing stream end information. |
+| params.params | StreamEndEvent |  |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 | params.params.reason | integer | The reason code for why the device stopped streaming audio (0-6) e.g. 0 |
