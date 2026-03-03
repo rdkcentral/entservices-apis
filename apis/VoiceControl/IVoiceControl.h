@@ -89,7 +89,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
-            // types array would go here, but for POD struct we return success/failure only
+            IStringIterator* types /* @brief Array of strings indicating the voice session request types which are valid */;
             bool success /* @brief Whether the request succeeded */;
         };
 
@@ -109,6 +109,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceStatusResponse {
             bool maskPii   /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
+            IStringIterator* capabilities /* @brief A list of capabilities */;
             string urlPtt  /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
             string urlHf   /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
             bool prv       /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
@@ -180,18 +181,10 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param maskPii: Indicates if PII should be masked
-            // @param capabilities: A list of capabilities
-            // @param urlPtt: The PTT URL
-            // @param urlHf: The HF (ff and mic) URL
-            // @param prv: The Press & Release Voice feature
-            // @param wwFeedback: The Wake Word Feedback feature
-            // @param pttStatus: The status information for the PTT device type
-            // @param ffStatus: The status information for the FF device type
-            // @param micStatus: The status information for the MIC device type
+            // @param response: The voice status response
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult VoiceStatus(bool& maskPii /* @out */, IStringIterator*& capabilities /* @out */, string& urlPtt /* @out */, string& urlHf /* @out */, bool& prv /* @out */, bool& wwFeedback /* @out */, DeviceStatus& pttStatus /* @out */, DeviceStatus& ffStatus /* @out */, DeviceStatus& micStatus /* @out */) = 0;
+            virtual Core::hresult VoiceStatus(VoiceStatusResponse& response /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
@@ -228,10 +221,10 @@ namespace WPEFramework {
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
-            // @param types: Array of strings indicating the voice session request types which are valid
+            // @param response: The voice session types response
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult VoiceSessionTypes(IStringIterator*& types /* @out */) = 0;
+            virtual Core::hresult VoiceSessionTypes(VoiceSessionTypesResponse& response /* @out */) = 0;
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
