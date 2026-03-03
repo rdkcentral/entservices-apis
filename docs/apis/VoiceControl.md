@@ -70,8 +70,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureVoiceRequest | The configure voice request parameters |
-| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
+| params.request | ConfigureVoiceRequest | The configure voice request parameters @retval ErrorCode::NONE: Voice settings configured successfully. @retval ErrorCode::GENERAL: Failed to configure voice settings. |
+| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device e.g. "ws: |
 | params.request.urlPtt | string | The PTT URL e.g. "ws: |
 | params.request.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
 | params.request.urlMicTap | string | The microphone tap URL e.g. "ws: |
@@ -488,10 +488,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionRequestParams | The voice session request parameters |
-| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
-| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
-| params.request.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
+| params.request | VoiceSessionRequestParams | The voice session request parameters @retval ErrorCode::NONE: Voice session requested successfully. @retval ErrorCode::GENERAL: Failed to request voice session. |
+| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription types)  |
+| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file types) e.g. " |
+| params.request.type | string | The request type to initiate the voice session  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

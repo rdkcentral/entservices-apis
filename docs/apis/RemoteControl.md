@@ -189,9 +189,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters |
-| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in customKeys will wake target) |
-| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is "custom", otherwise should be omitted  |
+| params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters @retval ErrorCode::NONE: Wakeup keys configured successfully. @retval ErrorCode::GENERAL: Failed to configure wakeup keys. |
+| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote , "none", "custom" |
+| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep (mandatory if wakeupConfig is custom)  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1047,11 +1047,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | StatusFirmwareUpdateResponse | The status firmware update response @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
-| result.response.result | FirmwareUpdateStatus | The firmware update status |
-| result.response.result.state | string | The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED"  |
-| result.response.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
-| result.response.success | bool | Whether the request succeeded |
+| result.result | FirmwareUpdateStatus | The firmware update status |
+| result.result.state | string | The firmware update state , "COMPLETE", "FAILED" |
+| result.result.percentComplete | integer | The percentage complete (0-100) e.g. 50 |
 
 ### Examples
 
