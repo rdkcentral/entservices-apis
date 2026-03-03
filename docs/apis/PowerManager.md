@@ -55,7 +55,7 @@ PowerManager interface methods:
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Get Power state before reboot |
 | [getTemperatureThresholds](#getTemperatureThresholds) | Get Temperature Thresholds |
 | [getThermalState](#getThermalState) | Get Current Thermal State (temperature) |
-| [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the Wakeup Time |
+| [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the Wakeup Time in seconds since the device transitioned to the ON state. |
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
 | [reboot](#reboot) | Reboot device |
@@ -420,7 +420,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="getTimeSinceWakeup"></a>
 ## *getTimeSinceWakeup*
 
-Get the Wakeup Time
+Get the Wakeup Time in seconds since the device transitioned to the ON state.
 
 ### Events
 Event details will be updated soon.
