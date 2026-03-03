@@ -366,8 +366,6 @@ namespace WPEFramework {
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
-            // @retval ErrorCode::NONE: Remote unpaired successfully.
-            // @retval ErrorCode::GENERAL: Failed to unpair remote.
             virtual Core::hresult Unpair() = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
