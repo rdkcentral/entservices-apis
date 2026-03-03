@@ -77,8 +77,13 @@ namespace WPEFramework {
         using IUint32Iterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
+        struct EXTERNAL SuccessResponse {
+            bool success /* @brief Whether the request succeeded */;
+        };
+
         struct EXTERNAL GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number e.g. 1 */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL StartPairingRequest {
@@ -103,6 +108,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetNetStatusResponse {
             NetworkStatus status /* @brief The network status information */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL InitializeIRDBRequest {
@@ -130,6 +136,7 @@ namespace WPEFramework {
             string tvModel         /* @brief The TV model for which codes are provided e.g. "UN65JU750" */;
             string avrManufacturer /* @brief The AVR manufacturer for which codes are provided e.g. "Denon" */;
             string avrModel        /* @brief The AVR model for which codes are provided e.g. "AVR-S750H" */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL IRCodeList {
@@ -148,6 +155,7 @@ namespace WPEFramework {
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         using IManufacturerIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
@@ -160,6 +168,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetIRDBManufacturersResponse {
             string avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {
@@ -171,6 +180,7 @@ namespace WPEFramework {
         struct EXTERNAL GetIRDBModelsResponse {
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetLastKeypressSourceResponse {
@@ -181,6 +191,7 @@ namespace WPEFramework {
             uint32_t sourceKeyCode   /* @brief The source key code e.g. 195 */;
             bool isScreenBindMode    /* @brief true if in screen bind mode, otherwise false */;
             uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad e.g. 0 */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL ConfigureWakeupKeysRequest {
@@ -201,6 +212,7 @@ namespace WPEFramework {
 
         struct EXTERNAL StartFirmwareUpdateResponse {
             uint32_t sessionId /* @brief The session identifier for the firmware update e.g. 12345 */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL CancelFirmwareUpdateRequest {
@@ -218,6 +230,7 @@ namespace WPEFramework {
 
         struct EXTERNAL StatusFirmwareUpdateResponse {
             FirmwareUpdateStatus result /* @brief The firmware update status */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL StatusEventData {
@@ -262,16 +275,18 @@ namespace WPEFramework {
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
             // @param request: The pairing request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const StartPairingRequest& request) = 0;
+            virtual Core::hresult StartPairing(const StartPairingRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
             // @param request: The stop pairing request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const StopPairingRequest& request) = 0;
+            virtual Core::hresult StopPairing(const StopPairingRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -321,16 +336,18 @@ namespace WPEFramework {
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
             // @param request: The set IR code request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const SetIRCodeRequest& request) = 0;
+            virtual Core::hresult SetIRCode(const SetIRCodeRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
             // @param request: The clear IR codes request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request) = 0;
+            virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -342,31 +359,40 @@ namespace WPEFramework {
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
             // @param request: The configure wakeup keys request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
             // @param request: The initialize IRDB request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request) = 0;
+            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
             // @param request: The find my remote request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request) = 0;
+            virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
-            virtual Core::hresult FactoryReset() = 0;
+            // @param response: The response containing success status
+            // @retval ErrorCode::NONE: Factory reset executed successfully.
+            // @retval ErrorCode::GENERAL: Failed to execute factory reset.
+            virtual Core::hresult FactoryReset(SuccessResponse& response /* @out */) = 0;
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
-            virtual Core::hresult Unpair() = 0;
+            // @param response: The response containing success status
+            // @retval ErrorCode::NONE: Unpair executed successfully.
+            // @retval ErrorCode::GENERAL: Failed to execute unpair.
+            virtual Core::hresult Unpair(SuccessResponse& response /* @out */   ) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
@@ -379,9 +405,10 @@ namespace WPEFramework {
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
             // @param request: The cancel firmware update request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate

@@ -70,8 +70,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureVoiceRequest | The configure voice request parameters @retval ErrorCode::NONE: Voice settings configured successfully. @retval ErrorCode::GENERAL: Failed to configure voice settings. |
-| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device e.g. "ws: |
+| params.request | ConfigureVoiceRequest | The configure voice request parameters |
+| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
 | params.request.urlPtt | string | The PTT URL e.g. "ws: |
 | params.request.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
 | params.request.urlMicTap | string | The microphone tap URL e.g. "ws: |
@@ -87,7 +87,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -100,7 +101,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.VoiceControl.configureVoice",
     "params": {
-        "urlAll": "ws:",
+        "urlAll": "",
         "urlPtt": "ws:",
         "urlHf": "ws:",
         "urlMicTap": "ws:",
@@ -124,7 +125,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws:", "urlPtt": "ws:", "urlHf": "ws:", "urlMicTap": "ws:", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "", "urlPtt": "ws:", "urlHf": "ws:", "urlMicTap": "ws:", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -134,7 +135,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -151,7 +154,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.version | integer | The API version number e.g. 1 |
+| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.response.version | integer | The API version number e.g. 1 |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -181,7 +186,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "version": 0
+        "version": 0,
+        "success": true
     }
 }
 ```
@@ -251,7 +257,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | SendVoiceMessageRequest | The voice message request parameters @retval ErrorCode::NONE: Voice message sent successfully. @retval ErrorCode::GENERAL: Failed to send voice message. |
+| params.request | SendVoiceMessageRequest | The voice message request parameters |
 | params.request.msgType | string | Message type expected from server  |
 | params.request.trx | string | The unique id of the voice session  |
 | params.request.created | integer | The timestamp for server information in milliseconds since epoch |
@@ -259,7 +265,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -294,7 +301,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -315,7 +324,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -350,7 +360,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -369,7 +381,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -401,7 +414,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -416,13 +431,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionByTextRequest | The voice session by text request parameters @retval ErrorCode::NONE: Voice session by text executed successfully. @retval ErrorCode::GENERAL: Failed to execute voice session by text. |
+| params.request | VoiceSessionByTextRequest | The voice session by text request parameters |
 | params.request.transcription | string | The transcription text to be sent to the voice server  |
-| params.request.type | string | The device type to simulate the voice session from , "FF", "MIC" |
+| params.request.type | string | The device type to simulate the voice session from. Possible values: "PTT", "FF", "MIC"  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -455,7 +471,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -470,14 +488,15 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionRequestParams | The voice session request parameters @retval ErrorCode::NONE: Voice session requested successfully. @retval ErrorCode::GENERAL: Failed to request voice session. |
-| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription types)  |
-| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file types) e.g. " |
-| params.request.type | string | The request type to initiate the voice session  |
+| params.request | VoiceSessionRequestParams | The voice session request parameters |
+| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
+| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
+| params.request.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -511,7 +530,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -530,7 +551,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -562,7 +584,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -876,7 +900,7 @@ Triggered when the device has stopped streaming audio
 | params.params | StreamEndEvent |  |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
-| params.params.reason | integer | The reason code for why the device stopped streaming audio (0-6) e.g. 0 |
+| params.params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released |
 
 ### Examples
 

@@ -82,7 +82,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -114,7 +115,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -129,13 +132,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ClearIRCodesRequest | The clear IR codes request parameters @retval ErrorCode::NONE: IR codes cleared successfully. @retval ErrorCode::GENERAL: Failed to clear IR codes. |
+| params.request | ClearIRCodesRequest | The clear IR codes request parameters |
 | params.request.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
 | params.request.netType | integer | The type of network e.g. 1 |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -168,7 +172,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -183,13 +189,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters @retval ErrorCode::NONE: Wakeup keys configured successfully. @retval ErrorCode::GENERAL: Failed to configure wakeup keys. |
-| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote , "none", "custom" |
-| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep (mandatory if wakeupConfig is custom)  |
+| params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters |
+| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in customKeys will wake target) |
+| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is "custom", otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -202,7 +209,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "all",
+        "wakeupConfig": "",
         "customKeys": "195,199"
     }
 }
@@ -212,7 +219,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "all", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -222,7 +229,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -238,7 +247,8 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -267,7 +277,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -286,7 +298,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -318,7 +331,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -335,7 +350,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.version | integer | The API version number e.g. 1 |
+| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.response.version | integer | The API version number e.g. 1 |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -365,7 +382,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "version": 0
+        "version": 0,
+        "success": true
     }
 }
 ```
@@ -631,6 +649,7 @@ This method takes no parameters.
 | result.response.sourceKeyCode | integer | The source key code e.g. 195 |
 | result.response.isScreenBindMode | bool | true if in screen bind mode, otherwise false |
 | result.response.remoteKeypadConfig | integer | The configuration of the remote keypad e.g. 0 |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -666,7 +685,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
         "sourceType": "REMOTE",
         "sourceKeyCode": 0,
         "isScreenBindMode": true,
-        "remoteKeypadConfig": 0
+        "remoteKeypadConfig": 0,
+        "success": true
     }
 }
 ```
@@ -705,12 +725,12 @@ Event details will be updated soon.
 | result.remoteData[#].btlVersion | string | The remote bootloader revision |
 | result.remoteData[#].serialNumber | string | The remote serial number |
 | result.remoteData[#].batteryPercent | integer | The current remote battery level as a percentage (0 to 100) |
-| result.remoteData[#].tvIRCode | string | The current TV IR code that the remote is programmed with |
+| result.remoteData[#].tvIRCode | string | The current TV IR code that the remote is programmed with. If the remote is not presently programmed with an IR code or if the TV IR code is not known, then this field may be empty |
 | result.remoteData[#].ampIRCode | string | The current AVR |
 | result.remoteData[#].wakeupKeyCode | integer | The Linux key code of the last button to be pressed on the remote before wakeup from deepsleep |
-| result.remoteData[#].wakeupConfig | string | The current deepsleep wakeup key configuration of the remote , "none", "custom" |
-| result.remoteData[#].wakeupCustomList | string | List of linux keycodes that can wake the target from deepsleep (only present if wakeupConfig is custom) |
-| result.remoteData[#].upgradeSessionId | string | The unique identifier for the firmware update session |
+| result.remoteData[#].wakeupConfig | string | The current deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in wakeupCustomList will wake target) |
+| result.remoteData[#].wakeupCustomList | string | List of linux keycodes that can wake the target from deepsleep. Only present if wakeupConfig is "custom" |
+| result.remoteData[#].upgradeSessionId | string | The unique identifier for the firmware update session, generated by the underlying RDK stack |
 
 ### Examples
 
@@ -766,7 +786,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
                 "tvIRCode": "",
                 "ampIRCode": "",
                 "wakeupKeyCode": 0,
-                "wakeupConfig": "all",
+                "wakeupConfig": "",
                 "wakeupCustomList": "",
                 "upgradeSessionId": ""
             }
@@ -790,7 +810,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -822,7 +843,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -837,7 +860,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | SetIRCodeRequest | The set IR code request parameters @retval ErrorCode::NONE: IR code set successfully. @retval ErrorCode::GENERAL: Failed to set IR code. |
+| params.request | SetIRCodeRequest | The set IR code request parameters |
 | params.request.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
 | params.request.netType | integer | The type of network e.g. 1 |
 | params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
@@ -845,7 +868,8 @@ Event details will be updated soon.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -880,7 +904,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -896,15 +922,17 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | StartFirmwareUpdateRequest | The start firmware update request parameters |
-| params.request.macAddress | string | The MAC address of the target remote  |
+| params.request.macAddress | string | The MAC address of the target remote in hex-colon format  |
 | params.request.fileName | string | The full path and filename for the firmware image e.g. " |
 | params.request.fileType | string | The type of firmware image file  |
-| params.request.percentIncrement | integer | The increment change of a firmware update to notify (1-100 percent) e.g. 10 |
+| params.request.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.sessionId | integer | The session identifier for the firmware update e.g. 12345 |
+| result.response | StartFirmwareUpdateResponse | The start firmware update response @retval ErrorCode::NONE: Firmware update started successfully. @retval ErrorCode::GENERAL: Failed to start firmware update. |
+| result.response.sessionId | integer | The session identifier for the firmware update e.g. 12345 |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -940,7 +968,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "jsonrpc": 2.0,
     "id": 14,
     "result": {
-        "sessionId": 0
+        "sessionId": 0,
+        "success": true
     }
 }
 ```
@@ -956,13 +985,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | StartPairingRequest | The pairing request parameters @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params.request | StartPairingRequest | The pairing request parameters |
 | params.request.netType | integer | The type of network e.g. 1 |
 | params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) e.g. 30 |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -995,7 +1025,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1015,9 +1047,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | FirmwareUpdateStatus | The firmware update status |
-| result.result.state | string | The firmware update state , "COMPLETE", "FAILED" |
-| result.result.percentComplete | integer | The percentage complete (0-100) e.g. 50 |
+| result.response | StatusFirmwareUpdateResponse | The status firmware update response @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
+| result.response.result | FirmwareUpdateStatus | The firmware update status |
+| result.response.result.state | string | The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED"  |
+| result.response.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1053,7 +1087,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
         "result": {
             "state": "DOWNLOADING",
             "percentComplete": 0
-        }
+        },
+        "success": true
     }
 }
 ```
@@ -1069,13 +1104,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | StopPairingRequest | The stop pairing request parameters @retval ErrorCode::NONE: Pairing stopped successfully. @retval ErrorCode::GENERAL: Failed to stop pairing. |
+| params.request | StopPairingRequest | The stop pairing request parameters |
 | params.request.screenBindDisable | bool | Whether to disable screen bind mode (default: true) |
 | params.request.scanDisable | bool | Whether to disable scanning for remotes (default: true) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1108,7 +1144,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1124,7 +1162,8 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1153,7 +1192,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "result": null
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1186,8 +1227,8 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | params.progress | FirmwareUpdateProgressEvent |  |
 | params.progress.sessionId | integer | The session identifier e.g. 12345 |
 | params.progress.status | FirmwareUpdateStatus | The firmware update status |
-| params.progress.status.state | string | The firmware update state , "COMPLETE", "FAILED" |
-| params.progress.status.percentComplete | integer | The percentage complete (0-100) e.g. 50 |
+| params.progress.status.state | string | The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED"  |
+| params.progress.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
 
 ### Examples
 

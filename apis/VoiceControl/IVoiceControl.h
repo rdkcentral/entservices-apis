@@ -50,8 +50,13 @@ namespace WPEFramework {
             double connectTime /* @brief The connection time of the voice server in milliseconds e.g. 10.2 */;
         };
 
+        struct EXTERNAL SuccessResponse {
+            bool success /* @brief Whether the request succeeded */;
+        };
+
         struct EXTERNAL GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number e.g. 1 */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL ConfigureVoiceRequest {
@@ -85,6 +90,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceSessionTypesResponse {
             // types array would go here, but for POD struct we return success/failure only
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL VoiceSessionRequestParams {
@@ -110,6 +116,7 @@ namespace WPEFramework {
             DeviceStatus ptt /* @brief The status information for the PTT device type */;
             DeviceStatus ff  /* @brief The status information for the FF device type */;
             DeviceStatus mic /* @brief The status information for the MIC device type */;
+            bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL SessionBeginEvent {
@@ -189,31 +196,35 @@ namespace WPEFramework {
             // @brief Configures the RDK's voice stack
             // @text configureVoice
             // @param request: The configure voice request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const ConfigureVoiceRequest& request) = 0;
+            virtual Core::hresult ConfigureVoice(const ConfigureVoiceRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
             // @param language: Preferred user interface language
             // @param capabilities: A list of capabilities
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& language, IStringIterator* const capabilities) = 0;
+            virtual Core::hresult SetVoiceInit(const string& language, IStringIterator* const capabilities, SuccessResponse& response /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
             // @param request: The voice message request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const SendVoiceMessageRequest& request) = 0;
+            virtual Core::hresult SendVoiceMessage(const SendVoiceMessageRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
             // @param request: The voice session by text request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const VoiceSessionByTextRequest& request) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const VoiceSessionByTextRequest& request, SuccessResponse& response /* @out */) = 0; // DEPRECATED
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
@@ -225,23 +236,26 @@ namespace WPEFramework {
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
             // @param request: The voice session request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestParams& request) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestParams& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
             // @param request: The voice session terminate request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const VoiceSessionTerminateRequest& request) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const VoiceSessionTerminateRequest& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
             // @param request: The voice session audio stream start request parameters
+            // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionAudioStreamStartRequest& request) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionAudioStreamStartRequest& request, SuccessResponse& response /* @out */) = 0;
             // End methods
 
             // @event
