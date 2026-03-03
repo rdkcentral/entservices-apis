@@ -55,7 +55,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL ConfigureVoiceRequest {
-            string urlAll    /* @brief Specifies the URL for all devices instead of individually specifying the URL for each device e.g. "ws://voice.example.com" */;
+            string urlAll    /* @brief Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com" */;
             string urlPtt    /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
             string urlHf     /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
             string urlMicTap /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
@@ -80,7 +80,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
-            string type          /* @brief The device type to simulate the voice session from e.g. "PTT", "FF", "MIC" */;
+            string type          /* @brief The device type to simulate the voice session from. Possible values: "PTT", "FF", "MIC" e.g. "PTT" */;
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
@@ -88,9 +88,9 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceSessionRequestParams {
-            string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription types) e.g. "what's the weather" */;
-            string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file types) e.g. "/tmp/audio.wav" */;
-            string type          /* @brief The request type to initiate the voice session e.g. "ptt_transcription" */;
+            string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
+            string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
+            string type          /* @brief The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test) e.g. "ptt_transcription" */;
         };
 
         struct EXTERNAL VoiceSessionTerminateRequest {
@@ -140,7 +140,7 @@ namespace WPEFramework {
         struct EXTERNAL StreamEndEvent {
             uint32_t remoteId /* @brief The voice device identifier e.g. 1 */;
             string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            uint8_t reason    /* @brief The reason code for why the device stopped streaming audio (0-6) e.g. 0 */;
+            uint8_t reason    /* @brief The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown e.g. 0 */;
         };
 
         struct EXTERNAL SessionEndEvent {
