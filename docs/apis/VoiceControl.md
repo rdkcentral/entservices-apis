@@ -70,12 +70,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | ConfigureVoiceRequest | The configure voice request parameters @retval ErrorCode::NONE: Voice settings configured successfully. @retval ErrorCode::GENERAL: Failed to configure voice settings. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -88,7 +87,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.VoiceControl.configureVoice",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -97,7 +96,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -107,9 +106,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -121,15 +118,12 @@ Get the API version number
 ### Events
 Event details will be updated soon.
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.parameters | string | Input parameters (unused) |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -140,10 +134,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.VoiceControl.getApiVersionNumber",
-    "params": {
-        "parameters": ""
-    }
+    "method": "org.rdk.VoiceControl.getApiVersionNumber"
 }
 ```
 
@@ -151,7 +142,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.VoiceControl.getApiVersionNumber", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.VoiceControl.getApiVersionNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -183,7 +174,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.parameters | string | Input parameters (unused) |
+| result.parameters | string | JSON parameters for the event @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
@@ -232,12 +223,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | SendVoiceMessageRequest | The voice message request parameters @retval ErrorCode::NONE: Voice message sent successfully. @retval ErrorCode::GENERAL: Failed to send voice message. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -250,7 +240,7 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.VoiceControl.sendVoiceMessage",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -259,7 +249,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -269,9 +259,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -286,12 +274,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | SetVoiceInitRequest | The voice init request parameters @retval ErrorCode::NONE: Voice initialization set successfully. @retval ErrorCode::GENERAL: Failed to set voice initialization. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -304,7 +291,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -313,7 +300,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -323,9 +310,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -340,12 +325,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | VoiceSessionAudioStreamStartRequest | The voice session audio stream start request parameters @retval ErrorCode::NONE: Voice session audio stream started successfully. @retval ErrorCode::GENERAL: Failed to start voice session audio stream. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -358,7 +342,7 @@ Event details will be updated soon.
     "id": 5,
     "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -367,7 +351,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -377,9 +361,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -394,12 +376,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | VoiceSessionByTextRequest | The voice session by text request parameters @retval ErrorCode::NONE: Voice session by text executed successfully. @retval ErrorCode::GENERAL: Failed to execute voice session by text. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -412,7 +393,7 @@ Event details will be updated soon.
     "id": 6,
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -421,7 +402,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -431,9 +412,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -448,12 +427,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | VoiceSessionRequestParams | The voice session request parameters @retval ErrorCode::NONE: Voice session requested successfully. @retval ErrorCode::GENERAL: Failed to request voice session. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -466,7 +444,7 @@ Event details will be updated soon.
     "id": 7,
     "method": "org.rdk.VoiceControl.voiceSessionRequest",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -475,7 +453,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -485,9 +463,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -502,12 +478,11 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.parameters | string | Input parameters (unused) |
+| params.request | VoiceSessionTerminateRequest | The voice session terminate request parameters @retval ErrorCode::NONE: Voice session terminated successfully. @retval ErrorCode::GENERAL: Failed to terminate voice session. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -520,7 +495,7 @@ Event details will be updated soon.
     "id": 8,
     "method": "org.rdk.VoiceControl.voiceSessionTerminate",
     "params": {
-        "parameters": ""
+        "request": ""
     }
 }
 ```
@@ -529,7 +504,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -539,9 +514,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "response": ""
-    }
+    "result": null
 }
 ```
 
@@ -553,15 +526,12 @@ Retrieves the types of voice sessions which are supported by the platform
 ### Events
 Event details will be updated soon.
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.parameters | string | Input parameters (unused) |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.response | VoiceSessionTypesResponse | The voice session types response @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
 
 ### Examples
 
@@ -572,10 +542,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "method": "org.rdk.VoiceControl.voiceSessionTypes",
-    "params": {
-        "parameters": ""
-    }
+    "method": "org.rdk.VoiceControl.voiceSessionTypes"
 }
 ```
 
@@ -583,7 +550,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.VoiceControl.voiceSessionTypes", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.VoiceControl.voiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -607,15 +574,12 @@ Returns the current status of the RDK voice stack
 ### Events
 Event details will be updated soon.
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.parameters | string | Input parameters (unused) |
+This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response object @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.response | VoiceStatusResponse | The voice status response @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
 
 ### Examples
 
@@ -626,10 +590,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "method": "org.rdk.VoiceControl.voiceStatus",
-    "params": {
-        "parameters": ""
-    }
+    "method": "org.rdk.VoiceControl.voiceStatus"
 }
 ```
 
@@ -637,7 +598,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.VoiceControl.voiceStatus", "params": {"parameters": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.VoiceControl.voiceStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
