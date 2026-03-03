@@ -65,7 +65,7 @@ RemoteControl interface methods:
 | [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network. |
 | [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
 | [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network. |
-| [unpair @retval ErrorCode::NONE: Remote unpaired successfully. @retval ErrorCode::GENERAL: Failed to unpair remote.](#unpair @retval ErrorCode::NONE: Remote unpaired successfully. @retval ErrorCode::GENERAL: Failed to unpair remote.) | Unpairs all remotes from the STB |
+| [unpair](#unpair) | Unpairs all remotes from the STB |
 
 <a id="cancelFirmwareUpdate"></a>
 ## *cancelFirmwareUpdate*
