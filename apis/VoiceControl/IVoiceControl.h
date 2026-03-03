@@ -251,32 +251,26 @@ namespace WPEFramework {
 
                 // @brief Triggered when a voice session begins
                 // @text onSessionBegin
-                // @param params: Event data containing session begin information.
                 virtual void OnSessionBegin(const SessionBeginEvent& params) {}
 
                 // @brief Triggered when a device starts streaming voice data to the RDK
                 // @text onStreamBegin
-                // @param params: Event data containing stream begin information.
                 virtual void OnStreamBegin(const StreamBeginEvent& params) {}
 
                 // @brief Triggered when a keyword verification result is received
                 // @text onKeywordVerification
-                // @param params: Event data containing keyword verification information.
                 virtual void OnKeywordVerification(const KeywordVerificationEvent& params) {}
 
                 // @brief Triggered when a message is received from the Voice Server
                 // @text onServerMessage
-                // @param params: Event data containing server message information.
                 virtual void OnServerMessage(const ServerMessageEvent& params) {}
 
                 // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
-                // @param params: Event data containing stream end information.
                 virtual void OnStreamEnd(const StreamEndEvent& params) {}
 
                 // @brief Triggered when the interaction with the server has concluded
                 // @text onSessionEnd
-                // @param params: Event data containing session end information.
                 virtual void OnSessionEnd(const SessionEndEvent& params) {}
             };
         };

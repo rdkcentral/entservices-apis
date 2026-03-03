@@ -73,8 +73,8 @@ namespace WPEFramework {
             string upgradeSessionId /* @brief The unique identifier for the firmware update session */;
         };
 
-        using IRemoteDataIterator = RPC::IIteratorType<RemoteData, RPC::ID_STRINGITERATOR>;
-        using IUint32Iterator = RPC::IIteratorType<uint32_t, RPC::ID_STRINGITERATOR>;
+        using IRemoteDataIterator = RPC::IIteratorType<RemoteData, ID_REMOTECONTROL_REMOTE_DATA_ITERATOR>;
+        using IUint32Iterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetApiVersionNumberResponse {
@@ -398,17 +398,14 @@ namespace WPEFramework {
 
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
-                // @param status: Event data containing remote control status information.
                 virtual void OnStatus(const StatusEventData& status) {}
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
-                // @param status: Event data containing remote control validation information.
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
                 // @text onFirmwareUpdateProgress
-                // @param progress: Event data containing firmware update progress information.
                 virtual void OnFirmwareUpdateProgress(const FirmwareUpdateProgressEvent& progress) {}
             };
         };
