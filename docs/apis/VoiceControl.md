@@ -71,6 +71,19 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | ConfigureVoiceRequest | The configure voice request parameters @retval ErrorCode::NONE: Voice settings configured successfully. @retval ErrorCode::GENERAL: Failed to configure voice settings. |
+| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device e.g. "ws: |
+| params.request.urlPtt | string | The PTT URL e.g. "ws: |
+| params.request.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| params.request.urlMicTap | string | The microphone tap URL e.g. "ws: |
+| params.request.enable | bool | Enables or disables all of the voice devices instead of individually enabling or disabling each device |
+| params.request.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| params.request.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
+| params.request.ptt | DeviceSettings | The settings for PTT devices |
+| params.request.ptt.enable | bool | Enable (true) or disable (false) the device |
+| params.request.ff | DeviceSettings | The settings for FF devices |
+| params.request.ff.enable | bool | Enable (true) or disable (false) the device |
+| params.request.mic | DeviceSettings | The settings for MIC devices |
+| params.request.mic.enable | bool | Enable (true) or disable (false) the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -87,7 +100,22 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.VoiceControl.configureVoice",
     "params": {
-        "request": ""
+        "urlAll": "ws:",
+        "urlPtt": "ws:",
+        "urlHf": "ws:",
+        "urlMicTap": "ws:",
+        "enable": true,
+        "prv": true,
+        "wwFeedback": true,
+        "ptt": {
+            "enable": true
+        },
+        "ff": {
+            "enable": true
+        },
+        "mic": {
+            "enable": true
+        }
     }
 }
 ```
@@ -96,7 +124,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws:", "urlPtt": "ws:", "urlHf": "ws:", "urlMicTap": "ws:", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -123,7 +151,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.version | integer | The API version number e.g. 1 |
 
 ### Examples
 
@@ -153,7 +181,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "response": ""
+        "version": 0
     }
 }
 ```
@@ -224,6 +252,10 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | SendVoiceMessageRequest | The voice message request parameters @retval ErrorCode::NONE: Voice message sent successfully. @retval ErrorCode::GENERAL: Failed to send voice message. |
+| params.request.msgType | string | Message type expected from server  |
+| params.request.trx | string | The unique id of the voice session  |
+| params.request.created | integer | The timestamp for server information in milliseconds since epoch |
+| params.request.msgPayload | string | Message payload (opaque object) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -240,7 +272,10 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.VoiceControl.sendVoiceMessage",
     "params": {
-        "request": ""
+        "msgType": "query",
+        "trx": "12345-abc",
+        "created": 0,
+        "msgPayload": ""
     }
 }
 ```
@@ -249,7 +284,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "query", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -274,7 +309,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | SetVoiceInitRequest | The voice init request parameters @retval ErrorCode::NONE: Voice initialization set successfully. @retval ErrorCode::GENERAL: Failed to set voice initialization. |
+| params.language | string | Preferred user interface language  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -291,7 +326,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
-        "request": ""
+        "language": "en-US"
     }
 }
 ```
@@ -300,7 +335,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -325,7 +360,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionAudioStreamStartRequest | The voice session audio stream start request parameters @retval ErrorCode::NONE: Voice session audio stream started successfully. @retval ErrorCode::GENERAL: Failed to start voice session audio stream. |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -342,7 +377,7 @@ Event details will be updated soon.
     "id": 5,
     "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
     "params": {
-        "request": ""
+        "sessionId": "session-12345"
     }
 }
 ```
@@ -351,7 +386,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -377,6 +412,8 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | VoiceSessionByTextRequest | The voice session by text request parameters @retval ErrorCode::NONE: Voice session by text executed successfully. @retval ErrorCode::GENERAL: Failed to execute voice session by text. |
+| params.request.transcription | string | The transcription text to be sent to the voice server  |
+| params.request.type | string | The device type to simulate the voice session from , "FF", "MIC" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -393,7 +430,8 @@ Event details will be updated soon.
     "id": 6,
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
-        "request": ""
+        "transcription": "turn on the lights",
+        "type": "PTT"
     }
 }
 ```
@@ -402,7 +440,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -428,6 +466,9 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | VoiceSessionRequestParams | The voice session request parameters @retval ErrorCode::NONE: Voice session requested successfully. @retval ErrorCode::GENERAL: Failed to request voice session. |
+| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription types)  |
+| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file types) e.g. " |
+| params.request.type | string | The request type to initiate the voice session  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -444,7 +485,9 @@ Event details will be updated soon.
     "id": 7,
     "method": "org.rdk.VoiceControl.voiceSessionRequest",
     "params": {
-        "request": ""
+        "transcription": "what's the weather",
+        "audioFile": "",
+        "type": "ptt_transcription"
     }
 }
 ```
@@ -453,7 +496,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "", "type": "ptt_transcription"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -478,7 +521,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionTerminateRequest | The voice session terminate request parameters @retval ErrorCode::NONE: Voice session terminated successfully. @retval ErrorCode::GENERAL: Failed to terminate voice session. |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -495,7 +538,7 @@ Event details will be updated soon.
     "id": 8,
     "method": "org.rdk.VoiceControl.voiceSessionTerminate",
     "params": {
-        "request": ""
+        "sessionId": "session-12345"
     }
 }
 ```
@@ -504,7 +547,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -560,9 +603,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "response": ""
-    }
+    "result": {}
 }
 ```
 
@@ -580,6 +621,17 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | VoiceStatusResponse | The voice status response @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
+| result.response.urlPtt | string | The PTT URL e.g. "ws: |
+| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
+| result.response.ptt | DeviceStatus | The status information for the PTT device type |
+| result.response.ptt.status | string | The status of the device  |
+| result.response.ff | DeviceStatus | The status information for the FF device type |
+| result.response.ff.status | string | The status of the device  |
+| result.response.mic | DeviceStatus | The status information for the MIC device type |
+| result.response.mic.status | string | The status of the device  |
 
 ### Examples
 
@@ -609,7 +661,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "response": ""
+        "maskPii": true,
+        "urlPtt": "ws:",
+        "urlHf": "ws:",
+        "prv": true,
+        "wwFeedback": true,
+        "ptt": {
+            "status": "ready"
+        },
+        "ff": {
+            "status": "ready"
+        },
+        "mic": {
+            "status": "ready"
+        }
     }
 }
 ```
@@ -643,7 +708,10 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | KeywordVerificationEvent | Event data containing keyword verification information. |
+| params.params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.params.sessionId | string | The unique identifier for the voice session  |
+| params.params.verified | bool | True if the keyword was verified, otherwise false |
 
 ### Examples
 
@@ -653,7 +721,9 @@ Triggered when a keyword verification result is received
     "id": 11,
     "method": "org.rdk.VoiceControl.onKeywordVerification",
     "params": {
-        "params": ""
+        "remoteId": 0,
+        "sessionId": "session-12345",
+        "verified": true
     }
 }
 ```
@@ -667,7 +737,11 @@ Triggered when a message is received from the Voice Server
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | ServerMessageEvent | Event data containing server message information. |
+| params.params.msgType | string | Message type from the server  |
+| params.params.trx | string | The unique id of the voice session  |
+| params.params.created | integer | The timestamp for server information in milliseconds since epoch |
+| params.params.msgPayload | string | Vrex server information |
 
 ### Examples
 
@@ -677,7 +751,10 @@ Triggered when a message is received from the Voice Server
     "id": 12,
     "method": "org.rdk.VoiceControl.onServerMessage",
     "params": {
-        "params": ""
+        "msgType": "asr",
+        "trx": "12345-abc",
+        "created": 0,
+        "msgPayload": ""
     }
 }
 ```
@@ -691,7 +768,11 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | SessionBeginEvent | Event data containing session begin information. |
+| params.params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.params.sessionId | string | The unique identifier for the voice session  |
+| params.params.deviceType | string | The type of voice device starting the session , "ff", "mic" |
+| params.params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
 ### Examples
 
@@ -701,7 +782,10 @@ Triggered when a voice session begins
     "id": 13,
     "method": "org.rdk.VoiceControl.onSessionBegin",
     "params": {
-        "params": ""
+        "remoteId": 0,
+        "sessionId": "session-12345",
+        "deviceType": "ptt",
+        "keywordVerification": true
     }
 }
 ```
@@ -715,7 +799,14 @@ Triggered when the interaction with the server has concluded
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | SessionEndEvent | Event data containing session end information. |
+| params.params.serverStats | ServerStats | Returns the voice server stats |
+| params.params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds e.g. 0.5 |
+| params.params.serverStats.serverIp | string | The IP of the voice server  |
+| params.params.serverStats.connectTime | double | The connection time of the voice server in milliseconds e.g. 10.2 |
+| params.params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.params.sessionId | string | The unique identifier for the voice session  |
+| params.params.result | string | The result of the voice session , "error", "abort", "shortUtterance" |
 
 ### Examples
 
@@ -725,7 +816,14 @@ Triggered when the interaction with the server has concluded
     "id": 14,
     "method": "org.rdk.VoiceControl.onSessionEnd",
     "params": {
-        "params": ""
+        "serverStats": {
+            "dnsTime": 0.0,
+            "serverIp": "192.168.1.100",
+            "connectTime": 0.0
+        },
+        "remoteId": 0,
+        "sessionId": "session-12345",
+        "result": "success"
     }
 }
 ```
@@ -739,7 +837,9 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | StreamBeginEvent | Event data containing stream begin information. |
+| params.params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.params.sessionId | string | The unique identifier for the voice session  |
 
 ### Examples
 
@@ -749,7 +849,8 @@ Triggered when a device starts streaming voice data to the RDK
     "id": 15,
     "method": "org.rdk.VoiceControl.onStreamBegin",
     "params": {
-        "params": ""
+        "remoteId": 0,
+        "sessionId": "session-12345"
     }
 }
 ```
@@ -763,7 +864,10 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | string | Event data containing session begin information. |
+| params.params | StreamEndEvent | Event data containing stream end information. |
+| params.params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.params.sessionId | string | The unique identifier for the voice session  |
+| params.params.reason | integer | The reason code for why the device stopped streaming audio (0-6) e.g. 0 |
 
 ### Examples
 
@@ -773,7 +877,9 @@ Triggered when the device has stopped streaming audio
     "id": 16,
     "method": "org.rdk.VoiceControl.onStreamEnd",
     "params": {
-        "params": ""
+        "remoteId": 0,
+        "sessionId": "session-12345",
+        "reason": 0
     }
 }
 ```
