@@ -74,6 +74,8 @@ namespace WPEFramework {
         };
 
         using IRemoteDataIterator = RPC::IIteratorType<RemoteData, RPC::ID_STRINGITERATOR>;
+        using IUint32Iterator = RPC::IIteratorType<uint32_t, RPC::ID_STRINGITERATOR>;
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number e.g. 1 */;
@@ -130,6 +132,12 @@ namespace WPEFramework {
             string avrModel        /* @brief The AVR model for which codes are provided e.g. "AVR-S750H" */;
         };
 
+        struct EXTERNAL IRCodeList {
+            string code /* @brief IR code e.g. "PANASONIC_3DTV" */;
+        };
+
+        using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
         struct EXTERNAL GetIRCodesByNamesRequest {
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
@@ -141,6 +149,9 @@ namespace WPEFramework {
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
         };
+
+        using IManufacturerIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+        using IModelIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRDBManufacturersRequest {
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
@@ -269,42 +280,47 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param request: The network status request parameters
-            // @param response: The network status response
+            // @param netType: The type of network
+            // @param netTypeSupported: A list of the network types that the STB supports
+            // @param pairingState: The current overall pairing state of the specified network
+            // @param irProgState: The current state of the IR code programming request to the remote
+            // @param remoteData: Remote information for each paired remote control
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const GetNetStatusRequest& request, GetNetStatusResponse& response /* @out */) = 0;
+            virtual Core::hresult GetNetStatus(const GetNetStatusRequest& request, uint32_t& netType /* @out */, IUint32Iterator*& netTypeSupported /* @out */, PairingState& pairingState /* @out */, IRProgState& irProgState /* @out */, IRemoteDataIterator*& remoteData /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
             // @param request: The get IRDB manufacturers request parameters
-            // @param response: The get IRDB manufacturers response
+            // @param manufacturers: A list of manufacturer names
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, GetIRDBManufacturersResponse& response /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
             // @param request: The get IRDB models request parameters
-            // @param response: The get IRDB models response
+            // @param models: A list of model names
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, GetIRDBModelsResponse& response /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
             // @param request: The get IR codes by auto lookup request parameters
-            // @param response: The IR codes by auto lookup response
+            // @param tvCodes: A list of TV IR codes
+            // @param avrCodes: A list of AVR IR codes
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
             // @param request: The get IR codes by names request parameters
-            // @param response: The get IR codes by names response
+            // @param codes: A list of IR codes for the specified device
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -350,8 +366,6 @@ namespace WPEFramework {
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
-            // @retval ErrorCode::NONE: Factory reset executed successfully.
-            // @retval ErrorCode::GENERAL: Failed to execute factory reset.
             virtual Core::hresult FactoryReset() = 0;
 
             // @brief Unpairs a given or all remote(s) from the STB

@@ -34,6 +34,8 @@ namespace WPEFramework {
 
         // Data structures for Voice Control
 
+        using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
         struct EXTERNAL DeviceSettings {
             bool enable /* @brief Enable (true) or disable (false) the device */;
         };
@@ -171,10 +173,18 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param response: The voice status response
+            // @param maskPii: Indicates if PII should be masked
+            // @param capabilities: A list of capabilities
+            // @param urlPtt: The PTT URL
+            // @param urlHf: The HF (ff and mic) URL
+            // @param prv: The Press & Release Voice feature
+            // @param wwFeedback: The Wake Word Feedback feature
+            // @param pttStatus: The status information for the PTT device type
+            // @param ffStatus: The status information for the FF device type
+            // @param micStatus: The status information for the MIC device type
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult VoiceStatus(VoiceStatusResponse& response /* @out */) = 0;
+            virtual Core::hresult VoiceStatus(bool& maskPii /* @out */, IStringIterator*& capabilities /* @out */, string& urlPtt /* @out */, string& urlHf /* @out */, bool& prv /* @out */, bool& wwFeedback /* @out */, DeviceStatus& pttStatus /* @out */, DeviceStatus& ffStatus /* @out */, DeviceStatus& micStatus /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
@@ -185,10 +195,11 @@ namespace WPEFramework {
 
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
-            // @param request: The voice init request parameters
+            // @param language: Preferred user interface language
+            // @param capabilities: A list of capabilities
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const SetVoiceInitRequest& request) = 0;
+            virtual Core::hresult SetVoiceInit(const string& language, IStringIterator* const capabilities) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
@@ -206,10 +217,10 @@ namespace WPEFramework {
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
-            // @param response: The voice session types response
+            // @param types: Array of strings indicating the voice session request types which are valid
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult VoiceSessionTypes(VoiceSessionTypesResponse& response /* @out */) = 0;
+            virtual Core::hresult VoiceSessionTypes(IStringIterator*& types /* @out */) = 0;
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest

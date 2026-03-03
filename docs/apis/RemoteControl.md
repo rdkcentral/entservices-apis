@@ -50,7 +50,7 @@ RemoteControl interface methods:
 | [cancelFirmwareUpdate](#cancelFirmwareUpdate) | Cancels an active firmware image update session |
 | [clearIRCodes](#clearIRCodes) | Clears the IR codes from the specified remote |
 | [configureWakeupKeys](#configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
-| [factoryReset @retval ErrorCode::NONE: Factory reset executed successfully. @retval ErrorCode::GENERAL: Failed to execute factory reset.](#factoryReset @retval ErrorCode::NONE: Factory reset executed successfully. @retval ErrorCode::GENERAL: Failed to execute factory reset.) | Tells all paired and connected remotes to factory reset |
+| [factoryReset](#factoryReset) | Tells all paired and connected remotes to factory reset |
 | [findMyRemote](#findMyRemote) | Tells the most recently used remote to beep |
 | [getApiVersionNumber](#getApiVersionNumber) | Gets the current API version number. |
 | [getIRCodesByAutoLookup](#getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
@@ -386,11 +386,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRCodesByAutoLookupResponse | The IR codes by auto lookup response @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup. |
-| result.response.tvManufacturer | string | The TV manufacturer for which codes are provided  |
-| result.response.tvModel | string | The TV model for which codes are provided  |
-| result.response.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
-| result.response.avrModel | string | The AVR model for which codes are provided  |
+| result.tvCodes | IStringIterator | A list of TV IR codes |
+| result.tvCodes[#] | string |  |
+| result.avrCodes | IStringIterator | A list of AVR IR codes @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup. |
+| result.avrCodes[#] | string |  |
 
 ### Examples
 
@@ -423,10 +422,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": {
-        "tvManufacturer": "Samsung",
-        "tvModel": "UN65JU750",
-        "avrManufacturer": "Denon",
-        "avrModel": "AVR-S750H"
+        "tvCodes": [
+            ""
+        ],
+        "avrCodes": [
+            ""
+        ]
     }
 }
 ```
@@ -450,10 +451,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRCodesByNamesResponse | The get IR codes by names response @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
-| result.response.manufacturer | string | The manufacturer name of the AV device  |
-| result.response.model | string | The model name of the AV device  |
+| result.codes | IStringIterator | A list of IR codes for the specified device @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
+| result.codes[#] | string |  |
 
 ### Examples
 
@@ -487,11 +486,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": {
-        "avDevType": "TV",
-        "manufacturer": "Samsung",
-        "model": "UN65JU750"
-    }
+    "result": [
+        ""
+    ]
 }
 ```
 
@@ -513,7 +510,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| result.manufacturers | IStringIterator | A list of manufacturer names @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers. |
+| result.manufacturers[#] | string |  |
 
 ### Examples
 
@@ -546,9 +544,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "avDevType": "TV"
-    }
+    "result": [
+        ""
+    ]
 }
 ```
 
@@ -571,9 +569,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRDBModelsResponse | The get IRDB models response @retval ErrorCode::NONE: IRDB models retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB models. |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
-| result.response.manufacturer | string | The manufacturer name of the AV device  |
+| result.models | IStringIterator | A list of model names @retval ErrorCode::NONE: IRDB models retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB models. |
+| result.models[#] | string |  |
 
 ### Examples
 
@@ -607,10 +604,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "avDevType": "TV",
-        "manufacturer": "Samsung"
-    }
+    "result": [
+        ""
+    ]
 }
 ```
 
@@ -691,10 +687,30 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.status | NetworkStatus | The network status information |
-| result.status.netType | integer | The type of network e.g. 1 |
-| result.status.pairingState | string | The current overall pairing state of the specified network |
-| result.status.irProgState | string | The current state of the IR code programming request to the remote |
+| result.netType | integer | The type of network e.g. 1 |
+| result.netTypeSupported | IUint32Iterator | A list of the network types that the STB supports |
+| result.netTypeSupported[#] | uint32_t |  |
+| result.pairingState | string | The current overall pairing state of the specified network |
+| result.irProgState | string | The current state of the IR code programming request to the remote |
+| result.remoteData | IRemoteDataIterator | Remote information for each paired remote control @retval ErrorCode::NONE: Network status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve network status. |
+| result.remoteData[#].macAddress | string | The MAC address of the remote in hex-colon format  |
+| result.remoteData[#].connected | bool | True if the remote is connected, otherwise false |
+| result.remoteData[#].name | string | The remote name  |
+| result.remoteData[#].remoteId | integer | This integer is the remote ID number, assigned by the network |
+| result.remoteData[#].deviceId | integer | The device ID number that is assigned by the network |
+| result.remoteData[#].make | string | The manufacturer name of the remote  |
+| result.remoteData[#].model | string | The remote model name  |
+| result.remoteData[#].hwVersion | string | The remote hardware revision |
+| result.remoteData[#].swVersion | string | The remote software revision |
+| result.remoteData[#].btlVersion | string | The remote bootloader revision |
+| result.remoteData[#].serialNumber | string | The remote serial number |
+| result.remoteData[#].batteryPercent | integer | The current remote battery level as a percentage (0 to 100) |
+| result.remoteData[#].tvIRCode | string | The current TV IR code that the remote is programmed with |
+| result.remoteData[#].ampIRCode | string | The current AVR |
+| result.remoteData[#].wakeupKeyCode | integer | The Linux key code of the last button to be pressed on the remote before wakeup from deepsleep |
+| result.remoteData[#].wakeupConfig | string | The current deepsleep wakeup key configuration of the remote , "none", "custom" |
+| result.remoteData[#].wakeupCustomList | string | List of linux keycodes that can wake the target from deepsleep (only present if wakeupConfig is custom) |
+| result.remoteData[#].upgradeSessionId | string | The unique identifier for the firmware update session |
 
 ### Examples
 
@@ -727,11 +743,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": {
-        "status": {
-            "netType": 0,
-            "pairingState": "INITIALISING",
-            "irProgState": "IDLE"
-        }
+        "netType": 0,
+        "netTypeSupported": [
+            0
+        ],
+        "pairingState": "INITIALISING",
+        "irProgState": "IDLE",
+        "remoteData": [
+            {
+                "macAddress": "AA:BB:CC:DD:EE:FF",
+                "connected": true,
+                "name": "XR15-700",
+                "remoteId": 0,
+                "deviceId": 0,
+                "make": "Technicolor",
+                "model": "XR15",
+                "hwVersion": "",
+                "swVersion": "",
+                "btlVersion": "",
+                "serialNumber": "",
+                "batteryPercent": 0,
+                "tvIRCode": "",
+                "ampIRCode": "",
+                "wakeupKeyCode": 0,
+                "wakeupConfig": "all",
+                "wakeupCustomList": "",
+                "upgradeSessionId": ""
+            }
+        ]
     }
 }
 ```

@@ -310,6 +310,8 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language  |
+| params.capabilities | IStringIterator | A list of capabilities |
+| params.capabilities[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -326,7 +328,10 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
-        "language": "en-US"
+        "language": "en-US",
+        "capabilities": [
+            ""
+        ]
     }
 }
 ```
@@ -335,7 +340,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -574,7 +579,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceSessionTypesResponse | The voice session types response @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types[#] | string |  |
 
 ### Examples
 
@@ -603,7 +609,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {}
+    "result": [
+        ""
+    ]
 }
 ```
 
@@ -620,18 +628,16 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The voice status response @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
-| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL e.g. "ws: |
-| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
-| result.response.ptt | DeviceStatus | The status information for the PTT device type |
-| result.response.ptt.status | string | The status of the device  |
-| result.response.ff | DeviceStatus | The status information for the FF device type |
-| result.response.ff.status | string | The status of the device  |
-| result.response.mic | DeviceStatus | The status information for the MIC device type |
-| result.response.mic.status | string | The status of the device  |
+| result.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
+| result.capabilities | IStringIterator | A list of capabilities |
+| result.capabilities[#] | string |  |
+| result.urlPtt | string | The PTT URL e.g. "ws: |
+| result.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| result.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| result.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
+| result.status | string | The status of the device  |
+| result.status | string | The status of the device  |
+| result.status | string | The status of the device  |
 
 ### Examples
 
@@ -662,17 +668,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "id": 10,
     "result": {
         "maskPii": true,
+        "capabilities": [
+            ""
+        ],
         "urlPtt": "ws:",
         "urlHf": "ws:",
         "prv": true,
         "wwFeedback": true,
-        "ptt": {
+        "pttStatus": {
             "status": "ready"
         },
-        "ff": {
+        "ffStatus": {
             "status": "ready"
         },
-        "mic": {
+        "micStatus": {
             "status": "ready"
         }
     }
