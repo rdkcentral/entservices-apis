@@ -102,6 +102,15 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
+            struct EXTERNAL PreviousRebootInfo {
+                string timestamp /* @brief The reboot timestamp */;
+                string reason /* @brief The reboot reason */;
+                string source /* @brief The reboot source */;
+                string customReason /* @brief The custom reboot reason */;
+                string otherReason /* @brief Other reboot reason details */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
             struct EXTERNAL ModeInfo {
                 string mode /* @brief The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) */;
                 int duration /* @brief The duration */;
@@ -361,6 +370,13 @@ namespace WPEFramework
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetPowerStateBeforeReboot(string& state /* @out */, bool& success /* @out */) = 0;
+
+            // @text getPreviousRebootInfo
+            // @brief Returns details about the previous reboot.
+            // @param PreviousRebootInfo: Previous reboot information
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetPreviousRebootInfo(PreviousRebootInfo& previousRebootInfo /* @out */) = 0;
 
             // @text getRFCConfig
             // @brief Returns information that is related to RDK Feature Control (RFC) configurations.
