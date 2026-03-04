@@ -319,7 +319,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language  |
-| params.capabilities | IStringIterator | A list of capabilities |
+| params.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
 | params.capabilities[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -603,9 +603,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceSessionTypesResponse | The voice session types response @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
-| result.response.types | IStringIterator* | Array of strings indicating the voice session request types which are valid |
-| result.response.success | bool | Whether the request succeeded |
+| result.success | bool | Whether the request succeeded |
+| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types[#] | string |  |
 
 ### Examples
 
@@ -635,8 +635,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "jsonrpc": 2.0,
     "id": 9,
     "result": {
-        "types": "",
-        "success": true
+        "response": {
+            "success": true
+        },
+        "types": [
+            ""
+        ]
     }
 }
 ```
@@ -654,9 +658,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The voice status response @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.response | VoiceStatusResponse | The voice status response |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.capabilities | IStringIterator* | A list of capabilities |
 | result.response.urlPtt | string | The PTT URL e.g. "ws: |
 | result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
 | result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
@@ -668,6 +671,8 @@ This method takes no parameters.
 | result.response.mic | DeviceStatus | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
 | result.response.success | bool | Whether the request succeeded |
+| result.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.capabilities[#] | string |  |
 
 ### Examples
 
@@ -697,22 +702,26 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "maskPii": true,
-        "capabilities": "",
-        "urlPtt": "ws:",
-        "urlHf": "ws:",
-        "prv": true,
-        "wwFeedback": true,
-        "ptt": {
-            "status": "ready"
+        "response": {
+            "maskPii": true,
+            "urlPtt": "ws:",
+            "urlHf": "ws:",
+            "prv": true,
+            "wwFeedback": true,
+            "ptt": {
+                "status": "ready"
+            },
+            "ff": {
+                "status": "ready"
+            },
+            "mic": {
+                "status": "ready"
+            },
+            "success": true
         },
-        "ff": {
-            "status": "ready"
-        },
-        "mic": {
-            "status": "ready"
-        },
-        "success": true
+        "capabilities": [
+            ""
+        ]
     }
 }
 ```
