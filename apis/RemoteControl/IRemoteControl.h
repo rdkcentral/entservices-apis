@@ -34,7 +34,7 @@ namespace WPEFramework {
 
         // Enums for Remote Control
 
-        enum class PairingState : uint8_t {
+        enum class PAIRING_STATE : uint8_t {
             INITIALISING  /* @text INITIALISING */,
             IDLE          /* @text IDLE */,
             SEARCHING     /* @text SEARCHING */,
@@ -43,31 +43,31 @@ namespace WPEFramework {
             FAILED        /* @text FAILED */
         };
 
-        enum class IRProgState : uint8_t {
+        enum class IR_PROG_STATE : uint8_t {
             IDLE      /* @text IDLE */,
             WAITING   /* @text WAITING */,
             COMPLETE  /* @text COMPLETE */,
             FAILED    /* @text FAILED */
         };
 
-        enum class AVDevType : uint8_t {
+        enum class AV_DEV_TYPE : uint8_t {
             TV   /* @text TV */,
             AMP  /* @text AMP */
         };
 
-        enum class WakeupConfig : uint8_t {
+        enum class WAKEUP_CONFIG : uint8_t {
             ALL    /* @text all */,
             NONE   /* @text none */,
             CUSTOM /* @text custom */
         };
 
-        enum class FindMyRemoteLevel : uint8_t {
+        enum class FIND_MY_REMOTE_LEVEL : uint8_t {
             OFF  /* @text off */,
             MID  /* @text mid */,
             HIGH /* @text high */
         };
 
-        enum class FirmwareUpdateState : uint8_t {
+        enum class FIRMWARE_UPDATE_STATE : uint8_t {
             DOWNLOADING /* @text DOWNLOADING */,
             COMPLETE    /* @text COMPLETE */,
             FAILED      /* @text FAILED */
@@ -121,8 +121,8 @@ namespace WPEFramework {
 
         struct EXTERNAL NetworkStatus {
             uint32_t netType       /* @brief The type of network e.g. 1 */;
-            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
-            IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
+            PAIRING_STATE pairingState /* @brief The current overall pairing state of the specified network */;
+            IR_PROG_STATE irProgState   /* @brief The current state of the IR code programming request to the remote */;
         };
 
         struct EXTERNAL GetNetStatusRequest {
@@ -131,8 +131,8 @@ namespace WPEFramework {
 
         struct EXTERNAL GetNetStatusResponse {
             uint32_t netType /* @brief The type of network e.g. 1 */;
-            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
-            IRProgState irProgState /* @brief The current state of the IR code programming request to the remote */;
+            PAIRING_STATE pairingState /* @brief The current overall pairing state of the specified network */;
+            IR_PROG_STATE irProgState /* @brief The current state of the IR code programming request to the remote */;
             bool success /* @brief Whether the request succeeded */;
         };
 
@@ -148,7 +148,7 @@ namespace WPEFramework {
         struct EXTERNAL SetIRCodeRequest {
             uint32_t remoteId /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
             uint32_t netType  /* @brief The type of network e.g. 1 */;
-            AVDevType avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string code       /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
         };
 
@@ -171,13 +171,13 @@ namespace WPEFramework {
         using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRCodesByNamesRequest {
-            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
         };
 
         struct EXTERNAL GetIRCodesByNamesResponse {
-            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
             bool success /* @brief Whether the request succeeded */;
@@ -187,23 +187,23 @@ namespace WPEFramework {
         using IModelIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRDBManufacturersRequest {
-            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief A part of the name of the manufacturer of the AV device e.g. "Sam" */;
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {
-            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" */;
         };
 
         struct EXTERNAL GetIRDBModelsResponse {
-            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             bool success /* @brief Whether the request succeeded */;
         };
@@ -220,12 +220,12 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL ConfigureWakeupKeysRequest {
-            WakeupConfig wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) */;
+            WAKEUP_CONFIG wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) */;
             string customKeys    /* @brief List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199" */;
         };
 
         struct EXTERNAL FindMyRemoteRequest {
-            FindMyRemoteLevel level /* @brief The level at which the remote will beep */;
+            FIND_MY_REMOTE_LEVEL level /* @brief The level at which the remote will beep */;
         };
 
         struct EXTERNAL StartFirmwareUpdateRequest {
@@ -249,7 +249,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateStatus {
-            FirmwareUpdateState state           /* @brief The firmware update state */;
+            FIRMWARE_UPDATE_STATE state           /* @brief The firmware update state */;
             uint32_t percentComplete /* @brief The estimated percentage of the firmware update that has completed (0-100) e.g. 50 */;
         };
 
@@ -261,8 +261,8 @@ namespace WPEFramework {
         struct EXTERNAL StatusEventData {
             uint32_t netType        /* @brief The type of remote control network e.g. 1 */;
             bool netTypeSupported   /* @brief Whether the network type is supported */;
-            PairingState pairingState  /* @brief The pairing state */;
-            IRProgState irProgState    /* @brief The IR programming state */;
+            PAIRING_STATE pairingState  /* @brief The pairing state */;
+            IR_PROG_STATE irProgState    /* @brief The IR programming state */;
         };
 
         struct EXTERNAL ValidationStatusObject {

@@ -34,13 +34,13 @@ namespace WPEFramework {
 
         // Enums for Voice Control
 
-        enum class DeviceType : uint8_t {
+        enum class DEVICE_TYPE : uint8_t {
             PTT /* @text PTT */,
             FF  /* @text FF */,
             MIC /* @text MIC */
         };
 
-        enum class SessionResult : uint8_t {
+        enum class SESSION_RESULT : uint8_t {
             SUCCESS         /* @text success */,
             ERROR           /* @text error */,
             ABORT           /* @text abort */,
@@ -100,7 +100,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
-            DeviceType type      /* @brief The device type to simulate the voice session from */;
+            DEVICE_TYPE type      /* @brief The device type to simulate the voice session from */;
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
@@ -136,7 +136,7 @@ namespace WPEFramework {
         struct EXTERNAL SessionBeginEvent {
             uint32_t remoteId        /* @brief The voice device identifier e.g. 1 */;
             string sessionId         /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            DeviceType deviceType    /* @brief The type of voice device starting the session */;
+            DEVICE_TYPE deviceType    /* @brief The type of voice device starting the session */;
             bool keywordVerification /* @brief True if the session uses keyword verification, otherwise false */;
         };
 
@@ -168,7 +168,7 @@ namespace WPEFramework {
             ServerStats serverStats /* @brief Returns the voice server stats */;
             uint32_t remoteId       /* @brief The voice device identifier e.g. 1 */;
             string sessionId        /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            SessionResult result    /* @brief The result of the voice session */;
+            SESSION_RESULT result    /* @brief The result of the voice session */;
         };
 
         /* @json 1.0.0 @text:keep */
