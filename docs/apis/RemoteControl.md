@@ -78,7 +78,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | The session identifier for the firmware update e.g. 12345 |
+| params.sessionId | string | The session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -96,7 +96,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.RemoteControl.cancelFirmwareUpdate",
     "params": {
-        "sessionId": 0
+        "sessionId": "12345-abc-def"
     }
 }
 ```
@@ -105,7 +105,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"sessionId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -981,9 +981,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | StartFirmwareUpdateResponse | The start firmware update response @retval ErrorCode::NONE: Firmware update started successfully. @retval ErrorCode::GENERAL: Failed to start firmware update. |
-| result.response.sessionId | integer | The session identifier for the firmware update e.g. 12345 |
-| result.response.success | bool | Whether the request succeeded |
+| result.success | bool | Whether the request succeeded |
+| result.sessionIdList | IStringIterator | List of session IDs created for the firmware update(s) @retval ErrorCode::NONE: Firmware update started successfully. @retval ErrorCode::GENERAL: Failed to start firmware update. |
+| result.sessionIdList[#] | string |  |
 
 ### Examples
 
@@ -1019,8 +1019,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "jsonrpc": 2.0,
     "id": 14,
     "result": {
-        "sessionId": 0,
-        "success": true
+        "response": {
+            "success": true
+        },
+        "sessionIdList": [
+            ""
+        ]
     }
 }
 ```
@@ -1039,6 +1043,10 @@ Event details will be updated soon.
 | params.request | StartPairingRequest | The pairing request parameters |
 | params.request.netType | integer | The type of network e.g. 1 |
 | params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) e.g. 30 |
+| params.request.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
+| params.request.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
+| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1056,8 +1064,15 @@ Event details will be updated soon.
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
-        "netType": 0,
-        "timeout": 0
+        "request": {
+            "netType": 0,
+            "timeout": 0,
+            "screenBindEnable": true,
+            "scanEnable": true
+        },
+        "macAddressList": [
+            ""
+        ]
     }
 }
 ```
@@ -1066,7 +1081,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 0, "timeout": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"request": {"netType": 0, "timeout": 0, "screenBindEnable": true, "scanEnable": true}, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1093,7 +1108,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | The session identifier for the firmware update e.g. 12345 |
+| params.sessionId | string | The session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1115,7 +1130,7 @@ Event details will be updated soon.
     "id": 16,
     "method": "org.rdk.RemoteControl.statusFirmwareUpdate",
     "params": {
-        "sessionId": 0
+        "sessionId": "12345-abc-def"
     }
 }
 ```
@@ -1124,7 +1139,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1209,7 +1224,11 @@ Unpairs all remotes from the STB
 ### Events
 Event details will be updated soon.
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1225,7 +1244,10 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "method": "org.rdk.RemoteControl.unpair"
+    "method": "org.rdk.RemoteControl.unpair",
+    "params": [
+        ""
+    ]
 }
 ```
 
@@ -1233,7 +1255,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
