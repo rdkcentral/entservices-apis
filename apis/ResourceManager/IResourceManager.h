@@ -27,55 +27,44 @@ namespace WPEFramework
     namespace Exchange
     {
         /* @json 1.0.0 @text:keep */
-        struct EXTERNAL IResourceManager : virtual public Core::IUnknown 
+        struct EXTERNAL IResourceManager : virtual public Core::IUnknown
         {
             enum { ID = ID_RESOURCEMANAGER };
 
-            // Define string iterator for ResourceManager
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-            // Result struct for SetAVBlocked operation
-            struct EXTERNAL SetAVBlockedResult {
+            struct EXTERNAL Success {
                 bool success;
             };
 
-            // Result struct for TTS operations
-            struct EXTERNAL TTSResult {
-                bool success;
-            };
-
-            /**********************setAVBlocked() - start****************************/
+            /** Sets AV blocking status for an application */
             // @text setAVBlocked
-            // @brief Sets AV blocking status for an application
-            // @param appId - in - string
-            // @param blocked - in - bool
-            // @param result - out - SetAVBlockedResult
-            virtual Core::hresult SetAVBlocked(const string& appId, const bool blocked, SetAVBlockedResult& result /* @out */) = 0;
-            /**********************setAVBlocked() - end******************************/
+            // @brief Adds/removes the application with the given callsign to/from the AV blacklist
+            // @param appId The application identifier (callsign)
+            // @param blocked Whether to block (true) or unblock (false) AV access for the application
+            // @param result The result of the operation
+            virtual Core::hresult SetAVBlocked(const string& appId, const bool blocked, Success& result /* @out */) = 0;
 
-            /**********************getBlockedAVApplications() - start***************/
-            // @text getBlockedAVApplications  
-            // @brief Gets list of applications with blocked AV access
-            // @param clients: list of blocked applications
-            // @param success: success status
+            /** Gets a list of blacklisted clients */
+            // @text getBlockedAVApplications
+            // @brief Gets a list of blacklisted clients
+            // @param clients Iterator containing the list of blocked applications
+            // @param success Indicates whether the operation succeeded
             virtual Core::hresult GetBlockedAVApplications(IStringIterator*& clients /* @out */, bool& success /* @out */) const = 0;
-            /**********************getBlockedAVApplications() - end*****************/
 
-            /**********************reserveTTSResource() - start*********************/
+            /** Reserves the Text To Speech resource for a specified client */
             // @text reserveTTSResource
-            // @brief Reserves TTS resource for a single application
-            // @param appId - in - string
-            // @param ttsResult - out - TTSResult
-            virtual Core::hresult ReserveTTSResource(const string& appId, TTSResult& ttsResult /* @out */) = 0;
-            /**********************reserveTTSResource() - end***********************/
+            // @brief Reserves the Text To Speech resource for a specified client
+            // @param appId The application identifier (callsign)
+            // @param result The result of the reservation operation
+            virtual Core::hresult ReserveTTSResource(const string& appId, Success& result /* @out */) = 0;
 
-            /**********************reserveTTSResourceForApps() - start***************/
+            /** Reserves the Text To Speech resource for specified clients */
             // @text reserveTTSResourceForApps
-            // @brief Reserves TTS resource for multiple applications
-            // @param appids: list of application IDs
-            // @param ttsResult: result of the TTS reservation
-            virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, TTSResult& ttsResult /* @out */) = 0;
-            /**********************reserveTTSResourceForApps() - end*****************/
+            // @brief Reserves the Text To Speech resource for specified clients
+            // @param appids Iterator containing the list of application identifiers (callsigns)
+            // @param result The result of the reservation operation
+            virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, Success& result /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
