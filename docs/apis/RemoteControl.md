@@ -190,8 +190,8 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters |
-| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in customKeys will wake target) |
-| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is "custom", otherwise should be omitted  |
+| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
+| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -209,7 +209,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "",
+        "wakeupConfig": "ALL",
         "customKeys": "195,199"
     }
 }
@@ -219,7 +219,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "ALL", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -294,7 +294,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.level | string | The level at which the remote will beep , "mid", "high" |
+| params.level | string | The level at which the remote will beep |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -312,7 +312,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "level": "off"
+        "level": "OFF"
     }
 }
 ```
@@ -321,7 +321,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "off"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "OFF"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -475,7 +475,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | GetIRCodesByNamesRequest | The get IR codes by names request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.request.manufacturer | string | The manufacturer name of the AV device  |
 | params.request.model | string | The model name of the AV device  |
 ### Results
@@ -483,7 +483,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetIRCodesByNamesResponse | The get IR codes by names response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.model | string | The model name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
@@ -548,14 +548,14 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | GetIRDBManufacturersRequest | The get IRDB manufacturers request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.request.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetIRDBManufacturersResponse | The get IRDB manufacturers response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.success | bool | Whether the request succeeded |
 | result.manufacturers | IStringIterator | A list of manufacturer names @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers. |
 | result.manufacturers[#] | string |  |
@@ -615,7 +615,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | GetIRDBModelsRequest | The get IRDB models request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.request.manufacturer | string | The manufacturer name of the AV device  |
 | params.request.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
@@ -623,7 +623,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetIRDBModelsResponse | The get IRDB models response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
 | result.models | IStringIterator | A list of model names @retval ErrorCode::NONE: IRDB models retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB models. |
@@ -914,7 +914,7 @@ Event details will be updated soon.
 | params.request | SetIRCodeRequest | The set IR code request parameters |
 | params.request.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
 | params.request.netType | integer | The type of network e.g. 1 |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device  |
+| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.request.code | string | The IR code being programmed into the remote  |
 ### Results
 | Name | Type | Description |
@@ -1100,7 +1100,7 @@ Event details will be updated soon.
 | result | object |  |
 | result.response | StatusFirmwareUpdateResponse | The status firmware update response @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
 | result.response.result | FirmwareUpdateStatus | The firmware update status |
-| result.response.result.state | string | The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED"  |
+| result.response.result.state | string | The firmware update state |
 | result.response.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
 | result.response.success | bool | Whether the request succeeded |
 
@@ -1278,7 +1278,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | params.progress | FirmwareUpdateProgressEvent |  |
 | params.progress.sessionId | integer | The session identifier e.g. 12345 |
 | params.progress.status | FirmwareUpdateStatus | The firmware update status |
-| params.progress.status.state | string | The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED"  |
+| params.progress.status.state | string | The firmware update state |
 | params.progress.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
 
 ### Examples
