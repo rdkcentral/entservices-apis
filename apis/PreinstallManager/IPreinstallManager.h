@@ -31,6 +31,11 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   enum { ID = ID_PREINSTALL_MANAGER };
 
 
+  enum PreinstallState : uint8_t {
+          NOT_STARTED             = 0     /* @text NOT_STARTED */,
+          IN_PROGRESS             = 1     /* @text IN_PROGRESS */,
+          COMPLETED               = 2     /* @text COMPLETED   */
+      };
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -41,6 +46,10 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
     // @brief Emitted when the installation of a preinstalled app succeeds or fails.
     // @param jsonresponse: Output installation status details as string object
     virtual void OnAppInstallationStatus(const string& jsonresponse /* @opaque */) {};
+
+    // @text onComplete
+    // @brief Emitted when the preinstallation process completes
+    virtual void OnComplete() {};
   };
 
   /** Register notification interface */
@@ -53,6 +62,12 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   // @param[in] forceInstall: If true always install the app; if false then install only if not installed or existing is older version
   // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
+
+  // @text preinstallState
+  // @brief Provides the state of preinstallation process
+  // @param[out] state: - Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
+  // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
+  virtual Core::hresult PreinstallState(PreinstallState& state) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
