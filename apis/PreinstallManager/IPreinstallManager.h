@@ -41,12 +41,6 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_PREINSTALL_MANAGER_NOTIFICATION };
 
-
-    // @text onAppInstallationStatus
-    // @brief Emitted when the installation of a preinstalled app succeeds or fails.
-    // @param jsonresponse: Output installation status details as string object
-    virtual void OnAppInstallationStatus(const string& jsonresponse /* @opaque */) {};
-
     // @text onComplete
     // @brief Emitted when the preinstallation process completes
     virtual void OnComplete() {};
