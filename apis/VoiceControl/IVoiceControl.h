@@ -107,7 +107,7 @@ namespace WPEFramework {
             bool success /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL VoiceSessionRequestParams {
+        struct EXTERNAL VoiceSessionRequestData {
             string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
             string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
             string type          /* @brief The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test) e.g. "ptt_transcription" */;
@@ -247,7 +247,7 @@ namespace WPEFramework {
             // @param response: The response containing success status
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestParams& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestData& request, SuccessResponse& response /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
