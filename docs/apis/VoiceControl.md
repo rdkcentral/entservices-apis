@@ -433,7 +433,7 @@ Event details will be updated soon.
 | params | object |  |
 | params.request | VoiceSessionByTextRequest | The voice session by text request parameters |
 | params.request.transcription | string | The transcription text to be sent to the voice server  |
-| params.request.type | string | The device type to simulate the voice session from. Possible values: "PTT", "FF", "MIC"  |
+| params.request.type | string | The device type to simulate the voice session from |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -755,7 +755,7 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | KeywordVerificationEvent |  |
+| params.params | KeywordVerificationEvent | Keyword verification event data including remote ID, session ID, and verification result |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 | params.params.verified | bool | True if the keyword was verified, otherwise false |
@@ -784,7 +784,7 @@ Triggered when a message is received from the Voice Server
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | ServerMessageEvent |  |
+| params.params | ServerMessageEvent | Server message event data including message type, transaction ID, timestamp, and message payload |
 | params.params.msgType | string | Message type from the server  |
 | params.params.trx | string | The unique id of the voice session  |
 | params.params.created | integer | The timestamp for server information in milliseconds since epoch |
@@ -815,10 +815,10 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | SessionBeginEvent |  |
+| params.params | SessionBeginEvent | Session begin event data including remote ID, session ID, device type, and keyword verification status |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
-| params.params.deviceType | string | The type of voice device starting the session , "ff", "mic" |
+| params.params.deviceType | string | The type of voice device starting the session |
 | params.params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
 ### Examples
@@ -831,7 +831,7 @@ Triggered when a voice session begins
     "params": {
         "remoteId": 0,
         "sessionId": "session-12345",
-        "deviceType": "ptt",
+        "deviceType": "PTT",
         "keywordVerification": true
     }
 }
@@ -846,14 +846,14 @@ Triggered when the interaction with the server has concluded
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | SessionEndEvent |  |
+| params.params | SessionEndEvent | Session end event data including server stats, remote ID, session ID, and session result |
 | params.params.serverStats | ServerStats | Returns the voice server stats |
 | params.params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds e.g. 0.5 |
 | params.params.serverStats.serverIp | string | The IP of the voice server  |
 | params.params.serverStats.connectTime | double | The connection time of the voice server in milliseconds e.g. 10.2 |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
-| params.params.result | string | The result of the voice session , "error", "abort", "shortUtterance" |
+| params.params.result | string | The result of the voice session |
 
 ### Examples
 
@@ -870,7 +870,7 @@ Triggered when the interaction with the server has concluded
         },
         "remoteId": 0,
         "sessionId": "session-12345",
-        "result": "success"
+        "result": "SUCCESS"
     }
 }
 ```
@@ -884,7 +884,7 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | StreamBeginEvent |  |
+| params.params | StreamBeginEvent | Stream begin event data including remote ID and session ID |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 
@@ -911,7 +911,7 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | StreamEndEvent |  |
+| params.params | StreamEndEvent | Stream end event data including remote ID, session ID, and reason code for stopping |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
 | params.params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released |

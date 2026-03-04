@@ -1275,7 +1275,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.progress | FirmwareUpdateProgressEvent |  |
+| params.progress | FirmwareUpdateProgressEvent | Firmware update progress information including session ID and current status |
 | params.progress.sessionId | integer | The session identifier e.g. 12345 |
 | params.progress.status | FirmwareUpdateStatus | The firmware update status |
 | params.progress.status.state | string | The firmware update state |
@@ -1307,7 +1307,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | StatusEventData |  |
+| params.status | StatusEventData | Network status information including network type, pairing state, and IR programming state |
 | params.status.netType | integer | The type of remote control network e.g. 1 |
 | params.status.netTypeSupported | bool | Whether the network type is supported |
 | params.status.pairingState | string | The pairing state |
@@ -1338,7 +1338,7 @@ Generated for manual pairing validation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | ValidationStatusObject |  |
+| params.status | ValidationStatusObject | Validation information including network type and validation digits for manual pairing |
 | params.status.netType | integer | The type of remote control network e.g. 1 |
 | params.status.validationDigit1 | integer | The first validation digit e.g. 1 |
 | params.status.validationDigit2 | integer | The second validation digit e.g. 2 |
