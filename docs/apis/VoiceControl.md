@@ -488,7 +488,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionRequestParams | The voice session request parameters |
+| params.request | VoiceSessionRequestData | The voice session request parameters |
 | params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
 | params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
 | params.request.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
