@@ -89,7 +89,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
-            IStringIterator* types /* @brief Array of strings indicating the voice session request types which are valid */;
+            IStringIterator* types /* @opaque @brief Array of strings indicating the voice session request types which are valid */;
             bool success /* @brief Whether the request succeeded */;
         };
 
@@ -109,7 +109,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceStatusResponse {
             bool maskPii   /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
-            IStringIterator* capabilities /* @brief A list of capabilities */;
+            IStringIterator* capabilities /* @opaque @brief A list of capabilities */;
             string urlPtt  /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
             string urlHf   /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
             bool prv       /* @brief The Press & Release Voice feature (true for enable, false for disable) */;

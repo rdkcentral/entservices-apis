@@ -108,10 +108,10 @@ namespace WPEFramework {
 
         struct EXTERNAL GetNetStatusResponse {
             uint32_t netType /* @brief The type of network e.g. 1 */;
-            IUint32Iterator* netTypeSupported /* @brief A list of the network types that the STB supports */;
+            IUint32Iterator* netTypeSupported /* @opaque @brief A list of the network types that the STB supports */;
             PairingState pairingState /* @brief The current overall pairing state of the specified network */;
             IRProgState irProgState /* @brief The current state of the IR code programming request to the remote */;
-            IRemoteDataIterator* remoteData /* @brief Remote information for each paired remote control */;
+            IRemoteDataIterator* remoteData /* @opaque @brief Remote information for each paired remote control */;
             bool success /* @brief Whether the request succeeded */;
         };
 
@@ -136,8 +136,8 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRCodesByAutoLookupResponse {
-            IStringIterator* tvCodes   /* @brief A list of TV IR codes */;
-            IStringIterator* avrCodes  /* @brief A list of AVR IR codes */;
+            IStringIterator* tvCodes   /* @opaque @brief A list of TV IR codes */;
+            IStringIterator* avrCodes  /* @opaque @brief A list of AVR IR codes */;
             string tvManufacturer  /* @brief The TV manufacturer for which codes are provided e.g. "Samsung" */;
             string tvModel         /* @brief The TV model for which codes are provided e.g. "UN65JU750" */;
             string avrManufacturer /* @brief The AVR manufacturer for which codes are provided e.g. "Denon" */;
@@ -158,7 +158,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRCodesByNamesResponse {
-            IStringIterator* codes /* @brief A list of IR codes for the specified device */;
+            IStringIterator* codes /* @opaque @brief A list of IR codes for the specified device */;
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
@@ -174,7 +174,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            IStringIterator* manufacturers /* @brief A list of manufacturer names */;
+            IStringIterator* manufacturers /* @opaque @brief A list of manufacturer names */;
             string avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             bool success /* @brief Whether the request succeeded */;
         };
@@ -186,7 +186,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRDBModelsResponse {
-            IStringIterator* models /* @brief A list of model names */;
+            IStringIterator* models /* @opaque @brief A list of model names */;
             string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             bool success /* @brief Whether the request succeeded */;
@@ -198,7 +198,7 @@ namespace WPEFramework {
             string sourceName        /* @brief The source of the last key press e.g. "IR" */;
             string sourceType        /* @brief The source type of the last key press e.g. "REMOTE" */;
             uint32_t sourceKeyCode   /* @brief The source key code e.g. 195 */;
-            bool isScreenBindMode    /* @brief true if in screen bind mode, otherwise false */;
+            bool isScreenBindMode    /* @brief True if in screen bind mode, otherwise false */;
             uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad e.g. 0 */;
             bool success /* @brief Whether the request succeeded */;
         };
