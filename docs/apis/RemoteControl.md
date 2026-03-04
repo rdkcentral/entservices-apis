@@ -670,7 +670,7 @@ This method takes no parameters.
 | result.response.sourceName | string | The source of the last key press  |
 | result.response.sourceType | string | The source type of the last key press  |
 | result.response.sourceKeyCode | integer | The source key code e.g. 195 |
-| result.response.isScreenBindMode | bool | true if in screen bind mode, otherwise false |
+| result.response.isScreenBindMode | bool | True if in screen bind mode, otherwise false |
 | result.response.remoteKeypadConfig | integer | The configuration of the remote keypad e.g. 0 |
 | result.response.success | bool | Whether the request succeeded |
 
