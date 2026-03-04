@@ -268,7 +268,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
 
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
-  // @brief Captures the entire screen buffer as RGBA data. The screenshot is returned asynchronously via the onScreenshotComplete event.
+  // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
   // @retval Core::ERROR_NONE on success
   // @retval Core::ERROR_GENERAL on failure
   virtual Core::hresult GetScreenshot() = 0;
