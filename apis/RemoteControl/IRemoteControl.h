@@ -112,6 +112,8 @@ namespace WPEFramework {
         struct EXTERNAL StartPairingRequest {
             uint32_t netType        /* @brief The type of network e.g. 1 */;
             uint32_t timeout        /* @brief The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) e.g. 30 */;
+            bool screenBindEnable   /* @brief Whether to enable screen bind mode (default: true) */;
+            bool scanEnable         /* @brief Whether to enable scanning for remotes (default: true) */;
         };
 
         struct EXTERNAL StopPairingRequest {
@@ -236,16 +238,15 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL StartFirmwareUpdateResponse {
-            uint32_t sessionId /* @brief The session identifier for the firmware update e.g. 12345 */;
             bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL CancelFirmwareUpdateRequest {
-            uint32_t sessionId /* @brief The session identifier e.g. 12345 */;
+            string sessionId /* @brief The session identifier e.g. "12345-abc-def" */;
         };
 
         struct EXTERNAL StatusFirmwareUpdateRequest {
-            uint32_t sessionId /* @brief The session identifier e.g. 12345 */;
+            string sessionId /* @brief The session identifier e.g. "12345-abc-def" */;
         };
 
         struct EXTERNAL FirmwareUpdateStatus {
@@ -301,9 +302,10 @@ namespace WPEFramework {
             // @text startPairing
             // @param request: The pairing request parameters
             // @param response: The response containing success status
+            // @param macAddressList: Optional list of MAC addresses to pair with (only used if scanEnable is true)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const StartPairingRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult StartPairing(const StartPairingRequest& request, SuccessResponse& response /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
@@ -417,17 +419,19 @@ namespace WPEFramework {
             // @brief Unpairs all remotes from the STB
             // @text unpair
             // @param response: The response containing success status
+            // @param macAddressList: Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(SuccessResponse& response /* @out */   ) = 0;
+            virtual Core::hresult Unpair(SuccessResponse& response /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
             // @param request: The start firmware update request parameters
             // @param response: The start firmware update response
+            // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, StartFirmwareUpdateResponse& response /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, StartFirmwareUpdateResponse& response /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
