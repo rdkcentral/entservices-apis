@@ -50,6 +50,29 @@ namespace WPEFramework {
             FAILED    /* @text FAILED */
         };
 
+        enum class AVDevType : uint8_t {
+            TV   /* @text TV */,
+            AMP  /* @text AMP */
+        };
+
+        enum class WakeupConfig : uint8_t {
+            ALL    /* @text all */,
+            NONE   /* @text none */,
+            CUSTOM /* @text custom */
+        };
+
+        enum class FindMyRemoteLevel : uint8_t {
+            OFF  /* @text off */,
+            MID  /* @text mid */,
+            HIGH /* @text high */
+        };
+
+        enum class FirmwareUpdateState : uint8_t {
+            DOWNLOADING /* @text DOWNLOADING */,
+            COMPLETE    /* @text COMPLETE */,
+            FAILED      /* @text FAILED */
+        };
+
         // Data structures for Remote Control
 
         struct EXTERNAL RemoteData {
@@ -125,7 +148,7 @@ namespace WPEFramework {
         struct EXTERNAL SetIRCodeRequest {
             uint32_t remoteId /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
             uint32_t netType  /* @brief The type of network e.g. 1 */;
-            string avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string code       /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
         };
 
@@ -148,13 +171,13 @@ namespace WPEFramework {
         using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRCodesByNamesRequest {
-            string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
         };
 
         struct EXTERNAL GetIRCodesByNamesResponse {
-            string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
             bool success /* @brief Whether the request succeeded */;
@@ -164,23 +187,23 @@ namespace WPEFramework {
         using IModelIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRDBManufacturersRequest {
-            string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief A part of the name of the manufacturer of the AV device e.g. "Sam" */;
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            string avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             bool success /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {
-            string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" */;
         };
 
         struct EXTERNAL GetIRDBModelsResponse {
-            string avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device e.g. "TV" */;
+            AVDevType avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             bool success /* @brief Whether the request succeeded */;
         };
@@ -197,12 +220,12 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL ConfigureWakeupKeysRequest {
-            string wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in customKeys will wake target) */;
-            string customKeys    /* @brief List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is "custom", otherwise should be omitted e.g. "195,199" */;
+            WakeupConfig wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) */;
+            string customKeys    /* @brief List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199" */;
         };
 
         struct EXTERNAL FindMyRemoteRequest {
-            string level /* @brief The level at which the remote will beep e.g. "off", "mid", "high" */;
+            FindMyRemoteLevel level /* @brief The level at which the remote will beep */;
         };
 
         struct EXTERNAL StartFirmwareUpdateRequest {
@@ -226,7 +249,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateStatus {
-            string state           /* @brief The firmware update state. Possible values: "DOWNLOADING", "COMPLETE", "FAILED" e.g. "DOWNLOADING" */;
+            FirmwareUpdateState state           /* @brief The firmware update state */;
             uint32_t percentComplete /* @brief The estimated percentage of the firmware update that has completed (0-100) e.g. 50 */;
         };
 
