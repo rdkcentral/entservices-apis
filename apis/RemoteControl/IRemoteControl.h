@@ -452,14 +452,17 @@ namespace WPEFramework {
 
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
+                // @param status: Network status information including network type, pairing state, and IR programming state
                 virtual void OnStatus(const StatusEventData& status) {}
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
+                // @param status: Validation information including network type and validation digits for manual pairing
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
                 // @text onFirmwareUpdateProgress
+                // @param progress: Firmware update progress information including session ID and current status
                 virtual void OnFirmwareUpdateProgress(const FirmwareUpdateProgressEvent& progress) {}
             };
         };

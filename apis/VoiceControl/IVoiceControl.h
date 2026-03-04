@@ -32,6 +32,21 @@ namespace WPEFramework {
 
     namespace Exchange {
 
+        // Enums for Voice Control
+
+        enum class DeviceType : uint8_t {
+            PTT /* @text PTT */,
+            FF  /* @text FF */,
+            MIC /* @text MIC */
+        };
+
+        enum class SessionResult : uint8_t {
+            SUCCESS         /* @text success */,
+            ERROR           /* @text error */,
+            ABORT           /* @text abort */,
+            SHORT_UTTERANCE /* @text shortUtterance */
+        };
+
         // Data structures for Voice Control
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
@@ -85,7 +100,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
-            string type          /* @brief The device type to simulate the voice session from. Possible values: "PTT", "FF", "MIC" e.g. "PTT" */;
+            DeviceType type      /* @brief The device type to simulate the voice session from */;
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
@@ -121,7 +136,7 @@ namespace WPEFramework {
         struct EXTERNAL SessionBeginEvent {
             uint32_t remoteId        /* @brief The voice device identifier e.g. 1 */;
             string sessionId         /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            string deviceType        /* @brief The type of voice device starting the session e.g. "ptt", "ff", "mic" */;
+            DeviceType deviceType    /* @brief The type of voice device starting the session */;
             bool keywordVerification /* @brief True if the session uses keyword verification, otherwise false */;
         };
 
@@ -153,7 +168,7 @@ namespace WPEFramework {
             ServerStats serverStats /* @brief Returns the voice server stats */;
             uint32_t remoteId       /* @brief The voice device identifier e.g. 1 */;
             string sessionId        /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            string result           /* @brief The result of the voice session e.g. "success", "error", "abort", "shortUtterance" */;
+            SessionResult result    /* @brief The result of the voice session */;
         };
 
         /* @json 1.0.0 @text:keep */
@@ -258,26 +273,32 @@ namespace WPEFramework {
 
                 // @brief Triggered when a voice session begins
                 // @text onSessionBegin
+                // @param params: Session begin event data including remote ID, session ID, device type, and keyword verification status
                 virtual void OnSessionBegin(const SessionBeginEvent& params) {}
 
                 // @brief Triggered when a device starts streaming voice data to the RDK
                 // @text onStreamBegin
+                // @param params: Stream begin event data including remote ID and session ID
                 virtual void OnStreamBegin(const StreamBeginEvent& params) {}
 
                 // @brief Triggered when a keyword verification result is received
                 // @text onKeywordVerification
+                // @param params: Keyword verification event data including remote ID, session ID, and verification result
                 virtual void OnKeywordVerification(const KeywordVerificationEvent& params) {}
 
                 // @brief Triggered when a message is received from the Voice Server
                 // @text onServerMessage
+                // @param params: Server message event data including message type, transaction ID, timestamp, and message payload
                 virtual void OnServerMessage(const ServerMessageEvent& params) {}
 
                 // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
+                // @param params: Stream end event data including remote ID, session ID, and reason code for stopping
                 virtual void OnStreamEnd(const StreamEndEvent& params) {}
 
                 // @brief Triggered when the interaction with the server has concluded
                 // @text onSessionEnd
+                // @param params: Session end event data including server stats, remote ID, session ID, and session result
                 virtual void OnSessionEnd(const SessionEndEvent& params) {}
             };
         };
