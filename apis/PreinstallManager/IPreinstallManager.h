@@ -67,7 +67,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   // @brief Provides the state of preinstallation process
   // @param[out] state: - Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
   // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
-  virtual Core::hresult PreinstallState(State& state) = 0;
+  virtual Core::hresult PreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
