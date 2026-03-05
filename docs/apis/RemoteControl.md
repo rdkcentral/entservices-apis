@@ -769,7 +769,7 @@ Event details will be updated soon.
 | result.remoteData[#].serialNumber | string | The remote serial number |
 | result.remoteData[#].batteryPercent | integer | The current remote battery level as a percentage (0 to 100) |
 | result.remoteData[#].tvIRCode | string | The current TV IR code that the remote is programmed with. If the remote is not presently programmed with an IR code or if the TV IR code is not known, then this field may be empty |
-| result.remoteData[#].ampIRCode | string | The current AVR |
+| result.remoteData[#].ampIRCode | string | The current AVR/AMP IR code that the remote is programmed with. If the remote is not presently programmed with an IR code or if the AVR/AMP IR code is unknown, then this field may be empty |
 | result.remoteData[#].wakeupKeyCode | integer | The Linux key code of the last button to be pressed on the remote before wakeup from deepsleep |
 | result.remoteData[#].wakeupConfig | string | The current deepsleep wakeup key configuration of the remote. Possible values: "all" (all keys on the remote will wake target from deepsleep), "none" (no keys will wake target), "custom" (the custom list of Linux key codes in wakeupCustomList will wake target) |
 | result.remoteData[#].wakeupCustomList | string | List of linux keycodes that can wake the target from deepsleep. Only present if wakeupConfig is "custom" |
@@ -967,7 +967,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.macAddress | string | The MAC address of the target remote in hex-colon format  |
-| params.fileName | string | The full path and filename for the firmware image e.g. " |
+| params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
 | params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 |
 ### Results
@@ -990,7 +990,7 @@ Event details will be updated soon.
     "method": "org.rdk.RemoteControl.startFirmwareUpdate",
     "params": {
         "macAddress": "AA:BB:CC:DD:EE:FF",
-        "fileName": "",
+        "fileName": "/tmp/remote_firmware.bin",
         "fileType": "mfg",
         "percentIncrement": 0
     }
@@ -1001,7 +1001,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "", "fileType": "mfg", "percentIncrement": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

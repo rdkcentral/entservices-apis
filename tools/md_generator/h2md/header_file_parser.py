@@ -404,7 +404,7 @@ class HeaderFileParser:
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
                     # Extract @text annotation for JSON mapping
-                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
                     custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)
@@ -435,10 +435,10 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
-                    custom_name = text_tag_match.group(1) if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+(.*?)(?:\s*\*/|$)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
                     description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {

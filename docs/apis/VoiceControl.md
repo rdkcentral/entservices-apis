@@ -69,10 +69,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
-| params.urlPtt | string | The PTT URL e.g. "ws: |
-| params.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| params.urlMicTap | string | The microphone tap URL e.g. "ws: |
+| params.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer)  |
+| params.urlPtt | string | The PTT URL  |
+| params.urlHf | string | The HF (ff and mic) URL  |
+| params.urlMicTap | string | The microphone tap URL  |
 | params.enable | bool | Enables or disables all of the voice devices instead of individually enabling or disabling each device |
 | params.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
 | params.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
@@ -99,10 +99,10 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.VoiceControl.configureVoice",
     "params": {
-        "urlAll": "",
-        "urlPtt": "ws:",
-        "urlHf": "ws:",
-        "urlMicTap": "ws:",
+        "urlAll": "ws://voice.example.com",
+        "urlPtt": "ws://voice.example.com/ptt",
+        "urlHf": "ws://voice.example.com/hf",
+        "urlMicTap": "ws://voice.example.com/mictap",
         "enable": true,
         "prv": true,
         "wwFeedback": true,
@@ -123,7 +123,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "", "urlPtt": "ws:", "urlHf": "ws:", "urlMicTap": "ws:", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -257,8 +257,8 @@ This method takes no parameters.
 | result | object |  |
 | result.response | VoiceStatusResponse | The voice status response |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL e.g. "ws: |
-| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| result.response.urlPtt | string | The PTT URL  |
+| result.response.urlHf | string | The HF (ff and mic) URL  |
 | result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
 | result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
 | result.response.ptt | DeviceStatus | The status information for the PTT device type |
@@ -301,8 +301,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
     "result": {
         "response": {
             "maskPii": true,
-            "urlPtt": "ws:",
-            "urlHf": "ws:",
+            "urlPtt": "ws://voice.example.com/ptt",
+            "urlHf": "ws://voice.example.com/hf",
             "prv": true,
             "wwFeedback": true,
             "ptt": {
@@ -564,7 +564,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
-| params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
+| params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
 | params.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
 ### Results
 | Name | Type | Description |
@@ -584,7 +584,7 @@ Event details will be updated soon.
     "method": "org.rdk.VoiceControl.voiceSessionRequest",
     "params": {
         "transcription": "what's the weather",
-        "audioFile": "",
+        "audioFile": "/tmp/audio.wav",
         "type": "ptt_transcription"
     }
 }
@@ -594,7 +594,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "", "type": "ptt_transcription"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "/tmp/audio.wav", "type": "ptt_transcription"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -846,7 +846,7 @@ Triggered when the device has stopped streaming audio
 | params | object |  |
 | params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.sessionId | string | The unique identifier for the voice session  |
-| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released |
+| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown e.g. 0 |
 
 ### Examples
 
