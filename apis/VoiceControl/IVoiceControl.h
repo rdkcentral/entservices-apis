@@ -26,21 +26,19 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-struct ctrlm_voice_iarm_event_json_t;
-
 namespace WPEFramework {
 
     namespace Exchange {
 
         // Enums for Voice Control
 
-        enum class DEVICE_TYPE : uint8_t {
+        enum class DeviceType : uint8_t {
             PTT /* @text PTT */,
             FF  /* @text FF */,
             MIC /* @text MIC */
         };
 
-        enum class SESSION_RESULT : uint8_t {
+        enum class SessionResult : uint8_t {
             SUCCESS         /* @text success */,
             ERROR           /* @text error */,
             ABORT           /* @text abort */,
@@ -75,13 +73,13 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL ConfigureVoiceRequest {
-            string urlAll    /* @brief Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com" */;
-            string urlPtt    /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
-            string urlHf     /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
-            string urlMicTap /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
-            bool enable      /* @brief Enables or disables all of the voice devices instead of individually enabling or disabling each device */;
-            bool prv         /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
-            bool wwFeedback  /* @brief The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) */;
+            string urlAll      /* @brief Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com" */;
+            string urlPtt      /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
+            string urlHf       /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
+            string urlMicTap   /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
+            bool enable        /* @brief Enables or disables all of the voice devices instead of individually enabling or disabling each device */;
+            bool prv           /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
+            bool wwFeedback    /* @brief The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) */;
             DeviceSettings ptt /* @brief The settings for PTT devices */;
             DeviceSettings ff  /* @brief The settings for FF devices */;
             DeviceSettings mic /* @brief The settings for MIC devices */;
@@ -100,7 +98,7 @@ namespace WPEFramework {
 
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
-            DEVICE_TYPE type      /* @brief The device type to simulate the voice session from */;
+            DeviceType type      /* @brief The device type to simulate the voice session from. Possible values: PTT, FF, MIC */;
         };
 
         struct EXTERNAL VoiceSessionTypesResponse {
@@ -122,21 +120,21 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceStatusResponse {
-            bool maskPii   /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
-            string urlPtt  /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
-            string urlHf   /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
-            bool prv       /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
-            bool wwFeedback /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
+            bool maskPii     /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
+            string urlPtt    /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
+            string urlHf     /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
+            bool prv         /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
+            bool wwFeedback  /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
             DeviceStatus ptt /* @brief The status information for the PTT device type */;
             DeviceStatus ff  /* @brief The status information for the FF device type */;
             DeviceStatus mic /* @brief The status information for the MIC device type */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success     /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL SessionBeginEvent {
             uint32_t remoteId        /* @brief The voice device identifier e.g. 1 */;
             string sessionId         /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            DEVICE_TYPE deviceType    /* @brief The type of voice device starting the session */;
+            DeviceType deviceType    /* @brief The type of voice device starting the session. Possible values: PTT, FF, MIC */;
             bool keywordVerification /* @brief True if the session uses keyword verification, otherwise false */;
         };
 
@@ -168,7 +166,7 @@ namespace WPEFramework {
             ServerStats serverStats /* @brief Returns the voice server stats */;
             uint32_t remoteId       /* @brief The voice device identifier e.g. 1 */;
             string sessionId        /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            SESSION_RESULT result    /* @brief The result of the voice session */;
+            SessionResult result    /* @brief The result of the voice session. Possible values: success, error, abort, shortUtterance */;
         };
 
         /* @json 1.0.0 @text:keep */

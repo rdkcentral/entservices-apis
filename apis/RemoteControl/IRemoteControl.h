@@ -26,15 +26,13 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-struct ctrlm_main_iarm_event_json_t;
-
 namespace WPEFramework {
 
     namespace Exchange {
 
         // Enums for Remote Control
 
-        enum class PAIRING_STATE : uint8_t {
+        enum class PairingState : uint8_t {
             INITIALISING  /* @text INITIALISING */,
             IDLE          /* @text IDLE */,
             SEARCHING     /* @text SEARCHING */,
@@ -43,31 +41,31 @@ namespace WPEFramework {
             FAILED        /* @text FAILED */
         };
 
-        enum class IR_PROG_STATE : uint8_t {
+        enum class IRProgState : uint8_t {
             IDLE      /* @text IDLE */,
             WAITING   /* @text WAITING */,
             COMPLETE  /* @text COMPLETE */,
             FAILED    /* @text FAILED */
         };
 
-        enum class AV_DEV_TYPE : uint8_t {
+        enum class AVDevType : uint8_t {
             TV   /* @text TV */,
             AMP  /* @text AMP */
         };
 
-        enum class WAKEUP_CONFIG : uint8_t {
+        enum class WakeupConfig : uint8_t {
             ALL    /* @text all */,
             NONE   /* @text none */,
             CUSTOM /* @text custom */
         };
 
-        enum class FIND_MY_REMOTE_LEVEL : uint8_t {
+        enum class FindMyRemoteLevel : uint8_t {
             OFF  /* @text off */,
             MID  /* @text mid */,
             HIGH /* @text high */
         };
 
-        enum class FIRMWARE_UPDATE_STATE : uint8_t {
+        enum class FirmwareUpdateState : uint8_t {
             DOWNLOADING /* @text DOWNLOADING */,
             COMPLETE    /* @text COMPLETE */,
             FAILED      /* @text FAILED */
@@ -106,7 +104,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number e.g. 1 */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success     /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL StartPairingRequest {
@@ -122,9 +120,9 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL NetworkStatus {
-            uint32_t netType       /* @brief The type of network e.g. 1 */;
-            PAIRING_STATE pairingState /* @brief The current overall pairing state of the specified network */;
-            IR_PROG_STATE irProgState   /* @brief The current state of the IR code programming request to the remote */;
+            uint32_t netType          /* @brief The type of network e.g. 1 */;
+            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
+            IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
         };
 
         struct EXTERNAL GetNetStatusRequest {
@@ -132,10 +130,10 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetNetStatusResponse {
-            uint32_t netType /* @brief The type of network e.g. 1 */;
-            PAIRING_STATE pairingState /* @brief The current overall pairing state of the specified network */;
-            IR_PROG_STATE irProgState /* @brief The current state of the IR code programming request to the remote */;
-            bool success /* @brief Whether the request succeeded */;
+            uint32_t netType          /* @brief The type of network e.g. 1 */;
+            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
+            IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
+            bool success              /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL InitializeIRDBRequest {
@@ -148,10 +146,10 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL SetIRCodeRequest {
-            uint32_t remoteId /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
-            uint32_t netType  /* @brief The type of network e.g. 1 */;
-            AV_DEV_TYPE avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            string code       /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
+            uint32_t remoteId   /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
+            uint32_t netType    /* @brief The type of network e.g. 1 */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            string code         /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
         };
 
         struct EXTERNAL GetIRCodesByAutoLookupRequest {
@@ -163,7 +161,7 @@ namespace WPEFramework {
             string tvModel         /* @brief The TV model for which codes are provided e.g. "UN65JU750" */;
             string avrManufacturer /* @brief The AVR manufacturer for which codes are provided e.g. "Denon" */;
             string avrModel        /* @brief The AVR model for which codes are provided e.g. "AVR-S750H" */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success           /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL IRCodeList {
@@ -173,67 +171,67 @@ namespace WPEFramework {
         using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRCodesByNamesRequest {
-            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
         };
 
         struct EXTERNAL GetIRCodesByNamesResponse {
-            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success        /* @brief Whether the request succeeded */;
         };
 
         using IManufacturerIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         using IModelIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRDBManufacturersRequest {
-            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief A part of the name of the manufacturer of the AV device e.g. "Sam" */;
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            AV_DEV_TYPE avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            bool success /* @brief Whether the request succeeded */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            bool success        /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {
-            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" */;
         };
 
         struct EXTERNAL GetIRDBModelsResponse {
-            AV_DEV_TYPE avDevType    /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success        /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetLastKeypressSourceResponse {
-            uint32_t controllerId    /* @brief The controller ID of the target remote on the specified network e.g. 1 */;
-            uint64_t timestamp       /* @brief The time of the last key press in milliseconds since epoch */;
-            string sourceName        /* @brief The source of the last key press e.g. "IR" */;
-            string sourceType        /* @brief The source type of the last key press e.g. "REMOTE" */;
-            uint32_t sourceKeyCode   /* @brief The source key code e.g. 195 */;
-            bool isScreenBindMode    /* @brief True if in screen bind mode, otherwise false */;
+            uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network e.g. 1 */;
+            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
+            string sourceName           /* @brief The source of the last key press e.g. "IR" */;
+            string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
+            uint32_t sourceKeyCode      /* @brief The source key code e.g. 195 */;
+            bool isScreenBindMode       /* @brief True if in screen bind mode, otherwise false */;
             uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad e.g. 0 */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success                /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL ConfigureWakeupKeysRequest {
-            WAKEUP_CONFIG wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) */;
-            string customKeys    /* @brief List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199" */;
+            WakeupConfig wakeupConfig  /* @brief The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) */;
+            string customKeys          /* @brief List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199" */;
         };
 
         struct EXTERNAL FindMyRemoteRequest {
-            FIND_MY_REMOTE_LEVEL level /* @brief The level at which the remote will beep */;
+            FindMyRemoteLevel level /* @brief The level at which the remote will beep */;
         };
 
         struct EXTERNAL StartFirmwareUpdateRequest {
-            string macAddress       /* @brief The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
-            string fileName         /* @brief The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin" */;
-            string fileType         /* @brief The type of firmware image file e.g. "mfg" */;
+            string macAddress         /* @brief The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
+            string fileName           /* @brief The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin" */;
+            string fileType           /* @brief The type of firmware image file e.g. "mfg" */;
             uint32_t percentIncrement /* @brief The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 */;
         };
 
@@ -250,20 +248,20 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateStatus {
-            FIRMWARE_UPDATE_STATE state           /* @brief The firmware update state */;
-            uint32_t percentComplete /* @brief The estimated percentage of the firmware update that has completed (0-100) e.g. 50 */;
+            FirmwareUpdateState state /* @brief The firmware update state */;
+            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) e.g. 50 */;
         };
 
         struct EXTERNAL StatusFirmwareUpdateResponse {
             FirmwareUpdateStatus result /* @brief The firmware update status */;
-            bool success /* @brief Whether the request succeeded */;
+            bool success                /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL StatusEventData {
-            uint32_t netType        /* @brief The type of remote control network e.g. 1 */;
-            bool netTypeSupported   /* @brief Whether the network type is supported */;
-            PAIRING_STATE pairingState  /* @brief The pairing state */;
-            IR_PROG_STATE irProgState    /* @brief The IR programming state */;
+            uint32_t netType          /* @brief The type of remote control network e.g. 1 */;
+            bool netTypeSupported     /* @brief Whether the network type is supported */;
+            PairingState pairingState /* @brief The pairing state */;
+            IRProgState irProgState   /* @brief The IR programming state */;
         };
 
         struct EXTERNAL ValidationStatusObject {
@@ -274,7 +272,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateProgressEvent {
-            uint32_t sessionId         /* @brief The session identifier e.g. 12345 */;
+            uint32_t sessionId          /* @brief The session identifier e.g. 12345 */;
             FirmwareUpdateStatus status /* @brief The firmware update status */;
         };
 
