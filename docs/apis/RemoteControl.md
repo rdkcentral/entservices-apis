@@ -1309,7 +1309,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 {
     "jsonrpc": 2.0,
     "id": 19,
-    "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
+    "method": "client.events.RemoteControl",
     "params": {
         "sessionId": 0,
         "status": {
@@ -1341,7 +1341,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 {
     "jsonrpc": 2.0,
     "id": 20,
-    "method": "org.rdk.RemoteControl.onStatus",
+    "method": "client.events.RemoteControl",
     "params": {
         "netType": 0,
         "netTypeSupported": true,
@@ -1372,7 +1372,7 @@ Generated for manual pairing validation
 {
     "jsonrpc": 2.0,
     "id": 21,
-    "method": "org.rdk.RemoteControl.onValidation",
+    "method": "client.events.RemoteControl",
     "params": {
         "netType": 0,
         "validationDigit1": 0,
