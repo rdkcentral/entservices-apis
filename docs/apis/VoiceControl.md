@@ -48,7 +48,7 @@ VoiceControl interface methods:
 | Method | Description |
 | :-------- | :-------- |
 | [configureVoice](#configureVoice) | Configures the RDK's voice stack |
-| [getApiVersionNumber @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure.](#getApiVersionNumber @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure.) | Get the API version number |
+| [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 | [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
@@ -152,7 +152,7 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | GetApiVersionNumberResponse |  |
+| result | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
 
 ### Examples
 
