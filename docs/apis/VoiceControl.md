@@ -214,7 +214,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.VoiceControl.getVoiceSessionTypes"
+    "method": "org.rdk.VoiceControl.voiceSessionTypes"
 }
 ```
 
@@ -222,7 +222,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.getVoiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.voiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -281,7 +281,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.VoiceControl.getVoiceStatus"
+    "method": "org.rdk.VoiceControl.voiceStatus"
 }
 ```
 
@@ -289,7 +289,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.getVoiceStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.voiceStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -708,7 +708,7 @@ Triggered when a keyword verification result is received
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onKeywordVerification",
     "params": {
         "remoteId": 0,
         "sessionId": "session-12345",
@@ -738,7 +738,7 @@ Triggered when a message is received from the Voice Server
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onServerMessage",
     "params": {
         "msgType": "asr",
         "trx": "12345-abc",
@@ -769,7 +769,7 @@ Triggered when a voice session begins
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onSessionBegin",
     "params": {
         "remoteId": 0,
         "sessionId": "session-12345",
@@ -803,7 +803,7 @@ Triggered when the interaction with the server has concluded
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onSessionEnd",
     "params": {
         "serverStats": {
             "dnsTime": 0.0,
@@ -836,7 +836,7 @@ Triggered when a device starts streaming voice data to the RDK
 {
     "jsonrpc": 2.0,
     "id": 14,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onStreamBegin",
     "params": {
         "remoteId": 0,
         "sessionId": "session-12345"
@@ -864,7 +864,7 @@ Triggered when the device has stopped streaming audio
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "method": "client.events.VoiceControl",
+    "method": "client.events.onStreamEnd",
     "params": {
         "remoteId": 0,
         "sessionId": "session-12345",

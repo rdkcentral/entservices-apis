@@ -696,7 +696,13 @@ class HeaderFileParser:
         For events/notifications, uses the Thunder convention: client.events.<eventName>
         For methods, uses: org.rdk.{classname}.{methodName}
         """
-        camel_method_name = self.to_camel_case(method_name)
+        # Use @text tag if available, otherwise fall back to method name
+        text_name = method_info.get('text', '')
+        if text_name:
+            camel_method_name = text_name
+        else:
+            camel_method_name = self.to_camel_case(method_name)
+        
         if is_event:
             method_path = f"client.events.{camel_method_name}"
         else:

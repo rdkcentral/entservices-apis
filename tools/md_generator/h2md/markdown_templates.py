@@ -231,7 +231,8 @@ def generate_request_section(request, method_type, classname=None):
     """
     if classname and isinstance(request, dict) and 'method' in request:
         parts = request['method'].split('.')
-        if len(parts) > 2:
+        # Only replace classname for methods, not for events (client.events.*)
+        if len(parts) > 2 and not (parts[0] == 'client' and parts[1] == 'events'):
             parts[2] = classname
             request['method'] = '.'.join(parts)
     # Set the id
@@ -247,7 +248,8 @@ def generate_curl_request_section(request, method_type, classname=None):
     """
     if classname and isinstance(request, dict) and 'method' in request:
         parts = request['method'].split('.')
-        if len(parts) > 2:
+        # Only replace classname for methods, not for events (client.events.*)
+        if len(parts) > 2 and not (parts[0] == 'client' and parts[1] == 'events'):
             parts[2] = classname
             request['method'] = '.'.join(parts)
     # Set the id
@@ -431,11 +433,12 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     request = event_info['request']
-    if classname and isinstance(request, dict) and 'method' in request:
-        parts = request['method'].split('.')
-        if len(parts) > 2:
-            parts[2] = classname
-            request['method'] = '.'.join(parts)
+    # Don't replace the event name with classname - events should use their @text tag value
+    # if classname and isinstance(request, dict) and 'method' in request:
+    #     parts = request['method'].split('.')
+    #     if len(parts) > 2:
+    #         parts[2] = classname
+    #         request['method'] = '.'.join(parts)
     if isinstance(request, dict):
         request = dict(request)
     request_json = json.dumps(_convert_json_types(request), indent=4)
