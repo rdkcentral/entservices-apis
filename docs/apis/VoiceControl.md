@@ -433,7 +433,7 @@ Event details will be updated soon.
 | params | object |  |
 | params.request | VoiceSessionByTextRequest | The voice session by text request parameters |
 | params.request.transcription | string | The transcription text to be sent to the voice server  |
-| params.request.type | string | The device type to simulate the voice session from |
+| params.request.type | string | The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -818,7 +818,7 @@ Triggered when a voice session begins
 | params.params | SessionBeginEvent | Session begin event data including remote ID, session ID, device type, and keyword verification status |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
-| params.params.deviceType | string | The type of voice device starting the session |
+| params.params.deviceType | string | The type of voice device starting the session. Possible values: PTT, FF, MIC |
 | params.params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
 ### Examples
@@ -853,7 +853,7 @@ Triggered when the interaction with the server has concluded
 | params.params.serverStats.connectTime | double | The connection time of the voice server in milliseconds e.g. 10.2 |
 | params.params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.params.sessionId | string | The unique identifier for the voice session  |
-| params.params.result | string | The result of the voice session |
+| params.params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
 
 ### Examples
 
