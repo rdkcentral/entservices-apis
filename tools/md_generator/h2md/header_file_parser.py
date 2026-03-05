@@ -668,7 +668,7 @@ class HeaderFileParser:
             method_info['response'] = self.generate_response_object(method_info, id_num)
             id_num += 1
         for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info, id_num)
+            event_info['request'] = self.generate_request_object(event_name, event_info, id_num, is_event=True)
             id_num += 1
         for prop_name, prop_info in self.properties.items():
             # properties can have both get and set requests and responses
@@ -690,15 +690,21 @@ class HeaderFileParser:
         """Convert UpperCamelCase to lowerCamelCase."""
         return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-    def generate_request_object(self, method_name, method_info, id_num):
+    def generate_request_object(self, method_name, method_info, id_num, is_event=False):
         """
         Makes a request JSON. Creates an example dynamically.
+        For events/notifications, uses the Thunder convention: client.events.<eventName>
+        For methods, uses: org.rdk.{classname}.{methodName}
         """
         camel_method_name = self.to_camel_case(method_name)
+        if is_event:
+            method_path = f"client.events.{camel_method_name}"
+        else:
+            method_path = f"org.rdk.{self.classname}.{camel_method_name}"
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": method_path,
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
