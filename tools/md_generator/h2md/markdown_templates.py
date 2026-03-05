@@ -448,9 +448,10 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
 def _convert_json_types(obj):
     """
     Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
+    Keep 'jsonrpc' field as string (JSON-RPC 2.0 spec requires it to be "2.0").
     """
     if isinstance(obj, dict):
-        return {k: _convert_json_types(v) for k, v in obj.items()}
+        return {k: _convert_json_types(v) if k != 'jsonrpc' else v for k, v in obj.items()}
     elif isinstance(obj, list):
         return [_convert_json_types(i) for i in obj]
     elif isinstance(obj, str):
