@@ -272,33 +272,33 @@ namespace WPEFramework {
 
                 // @brief Triggered when a voice session begins
                 // @text onSessionBegin
-                // @param params: Session begin event data including remote ID, session ID, device type, and keyword verification status
-                virtual void OnSessionBegin(const SessionBeginEvent& params) {}
+                // @param event: Session begin event data including remote ID, session ID, device type, and keyword verification status
+                virtual void OnSessionBegin(const SessionBeginEvent& event) {}
 
                 // @brief Triggered when a device starts streaming voice data to the RDK
                 // @text onStreamBegin
-                // @param params: Stream begin event data including remote ID and session ID
-                virtual void OnStreamBegin(const StreamBeginEvent& params) {}
+                // @param event: Stream begin event data including remote ID and session ID
+                virtual void OnStreamBegin(const StreamBeginEvent& event) {}
 
                 // @brief Triggered when a keyword verification result is received
                 // @text onKeywordVerification
-                // @param params: Keyword verification event data including remote ID, session ID, and verification result
-                virtual void OnKeywordVerification(const KeywordVerificationEvent& params) {}
+                // @param event: Keyword verification event data including remote ID, session ID, and verification result
+                virtual void OnKeywordVerification(const KeywordVerificationEvent& event) {}
 
                 // @brief Triggered when a message is received from the Voice Server
                 // @text onServerMessage
-                // @param params: Server message event data including message type, transaction ID, timestamp, and message payload
-                virtual void OnServerMessage(const ServerMessageEvent& params) {}
+                // @param event: Server message event data including message type, transaction ID, timestamp, and message payload
+                virtual void OnServerMessage(const ServerMessageEvent& event) {}
 
                 // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
-                // @param params: Stream end event data including remote ID, session ID, and reason code for stopping
-                virtual void OnStreamEnd(const StreamEndEvent& params) {}
+                // @param event: Stream end event data including remote ID, session ID, and reason code for stopping
+                virtual void OnStreamEnd(const StreamEndEvent& event) {}
 
                 // @brief Triggered when the interaction with the server has concluded
                 // @text onSessionEnd
-                // @param params: Session end event data including server stats, remote ID, session ID, and session result
-                virtual void OnSessionEnd(const SessionEndEvent& params) {}
+                // @param event: Session end event data including server stats, remote ID, session ID, and session result
+                virtual void OnSessionEnd(const SessionEndEvent& event) {}
             };
         };
     } // namespace Exchange
