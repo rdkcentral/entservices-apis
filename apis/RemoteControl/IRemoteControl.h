@@ -290,10 +290,10 @@ namespace WPEFramework {
 
             // Begin methods
             // @brief Gets the current API version number.
-            // @text getApiVersionNumber
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
+            // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.

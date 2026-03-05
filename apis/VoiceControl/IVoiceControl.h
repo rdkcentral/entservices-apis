@@ -176,9 +176,10 @@ namespace WPEFramework {
             
             // Begin methods
             // @brief Get the API version number
-            // @text getApiVersionNumber
+            // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @retval ErrorCode::GENERAL: General failure.
+            // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out @unwrapped */) = 0;
 
             // @json:omit
