@@ -276,6 +276,41 @@ def generate_parameters_section(params, symbol_registry):
     markdown = "### Parameters\n"
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        # Check if params should be unwrapped (single param that's unwrapped or auto-unwrapped as a struct without keep_key)
+        if len(params) == 1:
+            param = params[0]
+            param_key = f"{param['name']}-{param['type']}"
+            param_info = symbol_registry[param_key]
+            flattened_params = param_info['flattened_description']
+            
+            # Check if this should be shown as unwrapped
+            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped (single struct param without @keep_key)
+            # We can detect auto-unwrap by checking if flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
+            has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
+            should_unwrap = param_info.get('unwrapped') or (has_wrapper_level and not param.get('keep_key'))
+            
+            if should_unwrap and has_wrapper_level:
+                # For unwrapped params, show fields directly under params without the wrapper
+                # e.g., ".request.remoteId" becomes ".remoteId"
+                # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
+                markdown += f"| params | object |  |\n"
+                for param_name, param_data in flattened_params.items():
+                    # Skip the wrapper level itself - only show nested fields
+                    # e.g., skip ".request", but show ".request.remoteId"
+                    if param_name.startswith('.') and param_name.count('.') < 2:
+                        continue  # Skip wrapper object itself
+                    
+                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                    # Remove the struct wrapper level: ".request.remoteId" -> ".remoteId"
+                    if param_name.startswith('.'):
+                        parts = param_name[1:].split('.', 1)  # Remove leading dot, split once
+                        if len(parts) > 1:
+                            param_name = '.' + parts[1]  # Get everything after first component
+                    optionality = f"<sup>({param['optionality']})</sup>" if param.get('optionality') == 'optional' else ''
+                    markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                return markdown
+        
+        # Normal case: show params with their struct wrappers
         markdown += f"| params | object |  |\n"
         for param in params:
             param_key = f"{param['name']}-{param['type']}"

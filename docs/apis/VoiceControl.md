@@ -69,20 +69,19 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureVoiceRequest | The configure voice request parameters |
-| params.request.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
-| params.request.urlPtt | string | The PTT URL e.g. "ws: |
-| params.request.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| params.request.urlMicTap | string | The microphone tap URL e.g. "ws: |
-| params.request.enable | bool | Enables or disables all of the voice devices instead of individually enabling or disabling each device |
-| params.request.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| params.request.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
-| params.request.ptt | DeviceSettings | The settings for PTT devices |
-| params.request.ptt.enable | bool | Enable (true) or disable (false) the device |
-| params.request.ff | DeviceSettings | The settings for FF devices |
-| params.request.ff.enable | bool | Enable (true) or disable (false) the device |
-| params.request.mic | DeviceSettings | The settings for MIC devices |
-| params.request.mic.enable | bool | Enable (true) or disable (false) the device |
+| params.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
+| params.urlPtt | string | The PTT URL e.g. "ws: |
+| params.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| params.urlMicTap | string | The microphone tap URL e.g. "ws: |
+| params.enable | bool | Enables or disables all of the voice devices instead of individually enabling or disabling each device |
+| params.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| params.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
+| params.ptt | DeviceSettings | The settings for PTT devices |
+| params.ptt.enable | bool | Enable (true) or disable (false) the device |
+| params.ff | DeviceSettings | The settings for FF devices |
+| params.ff.enable | bool | Enable (true) or disable (false) the device |
+| params.mic | DeviceSettings | The settings for MIC devices |
+| params.mic.enable | bool | Enable (true) or disable (false) the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -335,11 +334,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | SendVoiceMessageRequest | The voice message request parameters |
-| params.request.msgType | string | Message type expected from server  |
-| params.request.trx | string | The unique id of the voice session  |
-| params.request.created | integer | The timestamp for server information in milliseconds since epoch |
-| params.request.msgPayload | string | Message payload (opaque object) |
+| params.msgType | string | Message type expected from server  |
+| params.trx | string | The unique id of the voice session  |
+| params.created | integer | The timestamp for server information in milliseconds since epoch |
+| params.msgPayload | string | Message payload (opaque object) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -509,9 +507,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionByTextRequest | The voice session by text request parameters |
-| params.request.transcription | string | The transcription text to be sent to the voice server  |
-| params.request.type | string | The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
+| params.transcription | string | The transcription text to be sent to the voice server  |
+| params.type | string | The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -566,10 +563,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | VoiceSessionRequestData | The voice session request parameters |
-| params.request.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
-| params.request.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
-| params.request.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
+| params.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
+| params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
+| params.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -697,7 +693,6 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | KeywordVerificationEvent | Keyword verification event data including remote ID, session ID, and verification result |
 | params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.verified | bool | True if the keyword was verified, otherwise false |
@@ -726,7 +721,6 @@ Triggered when a message is received from the Voice Server
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | ServerMessageEvent | Server message event data including message type, transaction ID, timestamp, and message payload |
 | params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
 | params.created | integer | The timestamp for server information in milliseconds since epoch |
@@ -757,7 +751,6 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | SessionBeginEvent | Session begin event data including remote ID, session ID, device type, and keyword verification status |
 | params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.deviceType | string | The type of voice device starting the session. Possible values: PTT, FF, MIC |
@@ -788,7 +781,6 @@ Triggered when the interaction with the server has concluded
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | SessionEndEvent | Session end event data including server stats, remote ID, session ID, and session result |
 | params.serverStats | ServerStats | Returns the voice server stats |
 | params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds e.g. 0.5 |
 | params.serverStats.serverIp | string | The IP of the voice server  |
@@ -826,7 +818,6 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | StreamBeginEvent | Stream begin event data including remote ID and session ID |
 | params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.sessionId | string | The unique identifier for the voice session  |
 
@@ -853,7 +844,6 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | StreamEndEvent | Stream end event data including remote ID, session ID, and reason code for stopping |
 | params.remoteId | integer | The voice device identifier e.g. 1 |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released |

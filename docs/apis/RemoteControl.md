@@ -132,9 +132,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ClearIRCodesRequest | The clear IR codes request parameters |
-| params.request.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
-| params.request.netType | integer | The type of network e.g. 1 |
+| params.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
+| params.netType | integer | The type of network e.g. 1 |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -189,9 +188,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | ConfigureWakeupKeysRequest | The configure wakeup keys request parameters |
-| params.request.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
-| params.request.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
+| params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
+| params.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -474,10 +472,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | GetIRCodesByNamesRequest | The get IR codes by names request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.request.manufacturer | string | The manufacturer name of the AV device  |
-| params.request.model | string | The model name of the AV device  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.manufacturer | string | The manufacturer name of the AV device  |
+| params.model | string | The model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -547,9 +544,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | GetIRDBManufacturersRequest | The get IRDB manufacturers request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.request.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -614,10 +610,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | GetIRDBModelsRequest | The get IRDB models request parameters |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.request.manufacturer | string | The manufacturer name of the AV device  |
-| params.request.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.manufacturer | string | The manufacturer name of the AV device  |
+| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -911,11 +906,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | SetIRCodeRequest | The set IR code request parameters |
-| params.request.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
-| params.request.netType | integer | The type of network e.g. 1 |
-| params.request.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.request.code | string | The IR code being programmed into the remote  |
+| params.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
+| params.netType | integer | The type of network e.g. 1 |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.code | string | The IR code being programmed into the remote  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -972,11 +966,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | StartFirmwareUpdateRequest | The start firmware update request parameters |
-| params.request.macAddress | string | The MAC address of the target remote in hex-colon format  |
-| params.request.fileName | string | The full path and filename for the firmware image e.g. " |
-| params.request.fileType | string | The type of firmware image file  |
-| params.request.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 |
+| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
+| params.fileName | string | The full path and filename for the firmware image e.g. " |
+| params.fileType | string | The type of firmware image file  |
+| params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1170,9 +1163,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | StopPairingRequest | The stop pairing request parameters |
-| params.request.screenBindDisable | bool | Whether to disable screen bind mode (default: true) |
-| params.request.scanDisable | bool | Whether to disable scanning for remotes (default: true) |
+| params.screenBindDisable | bool | Whether to disable screen bind mode (default: true) |
+| params.scanDisable | bool | Whether to disable scanning for remotes (default: true) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1297,11 +1289,10 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.progress | FirmwareUpdateProgressEvent | Firmware update progress information including session ID and current status |
-| params.progress.sessionId | integer | The session identifier e.g. 12345 |
-| params.progress.status | FirmwareUpdateStatus | The firmware update status |
-| params.progress.status.state | string | The firmware update state |
-| params.progress.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
+| params.sessionId | integer | The session identifier e.g. 12345 |
+| params.status | FirmwareUpdateStatus | The firmware update status |
+| params.status.state | string | The firmware update state |
+| params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
 
 ### Examples
 
@@ -1329,11 +1320,10 @@ Triggered at any time when the status of any one of the supported STB remote net
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | StatusEventData | Network status information including network type, pairing state, and IR programming state |
-| params.status.netType | integer | The type of remote control network e.g. 1 |
-| params.status.netTypeSupported | bool | Whether the network type is supported |
-| params.status.pairingState | string | The pairing state |
-| params.status.irProgState | string | The IR programming state |
+| params.netType | integer | The type of remote control network e.g. 1 |
+| params.netTypeSupported | bool | Whether the network type is supported |
+| params.pairingState | string | The pairing state |
+| params.irProgState | string | The IR programming state |
 
 ### Examples
 
@@ -1360,11 +1350,10 @@ Generated for manual pairing validation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | ValidationStatusObject | Validation information including network type and validation digits for manual pairing |
-| params.status.netType | integer | The type of remote control network e.g. 1 |
-| params.status.validationDigit1 | integer | The first validation digit e.g. 1 |
-| params.status.validationDigit2 | integer | The second validation digit e.g. 2 |
-| params.status.validationDigit3 | integer | The third validation digit e.g. 3 |
+| params.netType | integer | The type of remote control network e.g. 1 |
+| params.validationDigit1 | integer | The first validation digit e.g. 1 |
+| params.validationDigit2 | integer | The second validation digit e.g. 2 |
+| params.validationDigit3 | integer | The third validation digit e.g. 3 |
 
 ### Examples
 
