@@ -209,7 +209,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "ALL",
+        "wakeupConfig": "all",
         "customKeys": "195,199"
     }
 }
@@ -219,7 +219,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "ALL", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "all", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -312,7 +312,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "level": "OFF"
+        "level": "off"
     }
 }
 ```
@@ -321,7 +321,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "OFF"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "off"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

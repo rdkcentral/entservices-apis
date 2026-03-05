@@ -870,7 +870,7 @@ Triggered when the interaction with the server has concluded
         },
         "remoteId": 0,
         "sessionId": "session-12345",
-        "result": "SUCCESS"
+        "result": "success"
     }
 }
 ```
