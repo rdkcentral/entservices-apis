@@ -196,7 +196,7 @@ namespace WPEFramework {
             // @param capabilities: A list of capabilities
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult VoiceStatus(VoiceStatusResponse& response /* @out */, IStringIterator*& capabilities /* @out */) = 0;
+            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */, IStringIterator*& capabilities /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
@@ -237,7 +237,7 @@ namespace WPEFramework {
             // @param types: Array of strings indicating the voice session request types which are valid
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult VoiceSessionTypes(VoiceSessionTypesResponse& response /* @out */, IStringIterator*& types /* @out */) = 0;
+            virtual Core::hresult GetVoiceSessionTypes(VoiceSessionTypesResponse& response /* @out */, IStringIterator*& types /* @out */) = 0;
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
