@@ -389,7 +389,7 @@ namespace WPEFramework {
             // @param response: The response containing success status
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request /* @unwrapped */, SuccessResponse& response /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
