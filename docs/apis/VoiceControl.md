@@ -49,6 +49,8 @@ VoiceControl interface methods:
 | :-------- | :-------- |
 | [configureVoice](#configureVoice) | Configures the RDK's voice stack |
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
+| [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
+| [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 | [sendNotify_](#sendNotify_) | Send a notification event |
 | [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
 | [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server |
@@ -56,8 +58,6 @@ VoiceControl interface methods:
 | [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
 | [voiceSessionRequest](#voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
 | [voiceSessionTerminate](#voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
-| [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
-| [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 
 <a id="configureVoice"></a>
 ## *configureVoice*
@@ -192,6 +192,142 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+<a id="getVoiceSessionTypes"></a>
+## *getVoiceSessionTypes*
+
+Retrieves the types of voice sessions which are supported by the platform
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types[#] | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.VoiceControl.getVoiceSessionTypes"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.getVoiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "response": {
+            "success": true
+        },
+        "types": [
+            ""
+        ]
+    }
+}
+```
+
+<a id="getVoiceStatus"></a>
+## *getVoiceStatus*
+
+Returns the current status of the RDK voice stack
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.response | VoiceStatusResponse | The voice status response |
+| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
+| result.response.urlPtt | string | The PTT URL e.g. "ws: |
+| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
+| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
+| result.response.ptt | DeviceStatus | The status information for the PTT device type |
+| result.response.ptt.status | string | The status of the device  |
+| result.response.ff | DeviceStatus | The status information for the FF device type |
+| result.response.ff.status | string | The status of the device  |
+| result.response.mic | DeviceStatus | The status information for the MIC device type |
+| result.response.mic.status | string | The status of the device  |
+| result.response.success | bool | Whether the request succeeded |
+| result.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.capabilities[#] | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.VoiceControl.getVoiceStatus"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.getVoiceStatus"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "response": {
+            "maskPii": true,
+            "urlPtt": "ws:",
+            "urlHf": "ws:",
+            "prv": true,
+            "wwFeedback": true,
+            "ptt": {
+                "status": "ready"
+            },
+            "ff": {
+                "status": "ready"
+            },
+            "mic": {
+                "status": "ready"
+            },
+            "success": true
+        },
+        "capabilities": [
+            ""
+        ]
+    }
+}
+```
+
 <a id="sendNotify_"></a>
 ## *sendNotify_*
 
@@ -218,7 +354,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "method": "org.rdk.VoiceControl.sendNotify_",
     "params": {
         "eventName": ""
@@ -230,7 +366,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.sendNotify_", "params": {"eventName": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -239,7 +375,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "result": {
         "parameters": ""
     }
@@ -276,7 +412,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "method": "org.rdk.VoiceControl.sendVoiceMessage",
     "params": {
         "msgType": "query",
@@ -291,7 +427,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "query", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "query", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -300,7 +436,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "result": {
         "success": true
     }
@@ -335,7 +471,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
         "language": "en-US",
@@ -350,7 +486,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -359,7 +495,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "result": {
         "success": true
     }
@@ -392,7 +528,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
     "params": {
         "sessionId": "session-12345"
@@ -404,7 +540,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -413,7 +549,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 7,
     "result": {
         "success": true
     }
@@ -448,7 +584,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 8,
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
         "transcription": "turn on the lights",
@@ -461,7 +597,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -470,7 +606,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 8,
     "result": {
         "success": true
     }
@@ -506,7 +642,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 9,
     "method": "org.rdk.VoiceControl.voiceSessionRequest",
     "params": {
         "transcription": "what's the weather",
@@ -520,7 +656,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "", "type": "ptt_transcription"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "", "type": "ptt_transcription"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -529,7 +665,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 9,
     "result": {
         "success": true
     }
@@ -562,7 +698,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 10,
     "method": "org.rdk.VoiceControl.voiceSessionTerminate",
     "params": {
         "sessionId": "session-12345"
@@ -574,7 +710,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -583,145 +719,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 10,
     "result": {
         "success": true
-    }
-}
-```
-
-<a id="voiceSessionTypes"></a>
-## *voiceSessionTypes*
-
-Retrieves the types of voice sessions which are supported by the platform
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
-| result.types[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.VoiceControl.voiceSessionTypes"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.VoiceControl.voiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "response": {
-            "success": true
-        },
-        "types": [
-            ""
-        ]
-    }
-}
-```
-
-<a id="voiceStatus"></a>
-## *voiceStatus*
-
-Returns the current status of the RDK voice stack
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | VoiceStatusResponse | The voice status response |
-| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL e.g. "ws: |
-| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
-| result.response.ptt | DeviceStatus | The status information for the PTT device type |
-| result.response.ptt.status | string | The status of the device  |
-| result.response.ff | DeviceStatus | The status information for the FF device type |
-| result.response.ff.status | string | The status of the device  |
-| result.response.mic | DeviceStatus | The status information for the MIC device type |
-| result.response.mic.status | string | The status of the device  |
-| result.response.success | bool | Whether the request succeeded |
-| result.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
-| result.capabilities[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.VoiceControl.voiceStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.VoiceControl.voiceStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "response": {
-            "maskPii": true,
-            "urlPtt": "ws:",
-            "urlHf": "ws:",
-            "prv": true,
-            "wwFeedback": true,
-            "ptt": {
-                "status": "ready"
-            },
-            "ff": {
-                "status": "ready"
-            },
-            "mic": {
-                "status": "ready"
-            },
-            "success": true
-        },
-        "capabilities": [
-            ""
-        ]
     }
 }
 ```
