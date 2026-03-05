@@ -420,7 +420,7 @@ namespace WPEFramework {
             // @param macAddressList: Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(SuccessResponse& response /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult Unpair(SuccessResponse& response /* @out */, IStringIterator* const macAddressList /* @unwrapped */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
