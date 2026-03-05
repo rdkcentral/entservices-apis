@@ -403,11 +403,16 @@ class HeaderFileParser:
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
+                    # Extract @text annotation for JSON mapping
+                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
                         'value': enumerator_value,
-                        'description': description.strip() if description else ''
+                        'description': description.strip() if description else '',
+                        'custom_name': custom_name
                     }
         else:
             if self.logger:
@@ -824,7 +829,9 @@ class HeaderFileParser:
 
             return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
-            return list(self.enums_registry[symbol_type])[0]
+            # Use the custom_name (from @text annotation) instead of the enum constant name
+            first_enum_member = list(self.enums_registry[symbol_type])[0]
+            return self.enums_registry[symbol_type][first_enum_member].get('custom_name', first_enum_member)
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
             return self.BASIC_TYPE_EXAMPLES[symbol_type]
         if symbol_type in self.iterators_registry:
