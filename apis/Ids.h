@@ -351,6 +351,13 @@ namespace Exchange {
 
         ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
         ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
+      
+        ID_REMOTECONTROL                             = ID_ENTOS_OFFSET + 0x500,
+        ID_REMOTECONTROL_NOTIFICATION                = ID_REMOTECONTROL + 1,
+        ID_REMOTECONTROL_REMOTE_DATA_ITERATOR        = ID_REMOTECONTROL + 2,
+
+        ID_VOICECONTROL                              = ID_ENTOS_OFFSET + 0x5A0,
+        ID_VOICECONTROL_NOTIFICATION                 = ID_VOICECONTROL + 1,
 
     }; // enum IDS
 

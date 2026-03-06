@@ -321,6 +321,11 @@ class HeaderFileParser:
                 return
             if groups[0] == '/':
                 return
+            # Stop accumulating if this line starts with a doxygen tag (e.g., @retval, @brief, etc.)
+            # This prevents @retval and other tags from being appended to previous @param descriptions
+            if groups[0].strip().startswith('@'):
+                self.latest_tag = ''
+                return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
@@ -403,11 +408,16 @@ class HeaderFileParser:
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
+                    # Extract @text annotation for JSON mapping (only capture valid identifier token)
+                    text_tag_pattern = r'@text\s+([\w\-]+)'
+                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
                         'value': enumerator_value,
-                        'description': description.strip() if description else ''
+                        'description': description.strip() if description else '',
+                        'custom_name': custom_name
                     }
         else:
             if self.logger:
@@ -430,10 +440,10 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
-                    custom_name = text_tag_match.group(1) if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+(.*?)(?:\s*\*/|$)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
                     description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
@@ -663,7 +673,7 @@ class HeaderFileParser:
             method_info['response'] = self.generate_response_object(method_info, id_num)
             id_num += 1
         for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info, id_num)
+            event_info['request'] = self.generate_request_object(event_name, event_info, id_num, is_event=True)
             id_num += 1
         for prop_name, prop_info in self.properties.items():
             # properties can have both get and set requests and responses
@@ -685,15 +695,27 @@ class HeaderFileParser:
         """Convert UpperCamelCase to lowerCamelCase."""
         return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-    def generate_request_object(self, method_name, method_info, id_num):
+    def generate_request_object(self, method_name, method_info, id_num, is_event=False):
         """
         Makes a request JSON. Creates an example dynamically.
+        For events/notifications, uses the Thunder convention: client.events.<eventName>
+        For methods, uses: org.rdk.{classname}.{methodName}
         """
-        camel_method_name = self.to_camel_case(method_name)
+        # Use @text tag if available, otherwise fall back to method name
+        text_name = method_info.get('text', '')
+        if text_name:
+            camel_method_name = text_name
+        else:
+            camel_method_name = self.to_camel_case(method_name)
+        
+        if is_event:
+            method_path = f"client.events.{camel_method_name}"
+        else:
+            method_path = f"org.rdk.{self.classname}.{camel_method_name}"
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": method_path,
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -824,7 +846,9 @@ class HeaderFileParser:
 
             return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
-            return list(self.enums_registry[symbol_type])[0]
+            # Use the custom_name (from @text annotation) instead of the enum constant name
+            first_enum_member = list(self.enums_registry[symbol_type])[0]
+            return self.enums_registry[symbol_type][first_enum_member].get('custom_name', first_enum_member)
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
             return self.BASIC_TYPE_EXAMPLES[symbol_type]
         if symbol_type in self.iterators_registry:
