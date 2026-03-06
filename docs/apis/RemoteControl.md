@@ -132,8 +132,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
-| params.netType | integer | The type of network e.g. 1 |
+| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -151,8 +151,8 @@ No Events
     "id": 1,
     "method": "org.rdk.RemoteControl.clearIRCodes",
     "params": {
-        "remoteId": 0,
-        "netType": 0
+        "remoteId": 1,
+        "netType": 1
     }
 }
 ```
@@ -161,7 +161,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 0, "netType": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1, "netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -348,8 +348,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
-| result.version | integer | The API version number e.g. 1 |
+| result.version | integer | The API version number  |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -380,7 +379,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
     "jsonrpc": "2.0",
     "id": 5,
     "result": {
-        "version": 0,
+        "version": 1,
         "success": true
     }
 }
@@ -397,7 +396,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network e.g. 1 |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -424,7 +423,7 @@ No Events
     "id": 6,
     "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
     "params": {
-        "netType": 0
+        "netType": 1
     }
 }
 ```
@@ -433,7 +432,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -682,14 +681,13 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetLastKeypressSourceResponse | The last keypress source response @retval ErrorCode::NONE: Last keypress source retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve last keypress source. |
-| result.controllerId | integer | The controller ID of the target remote on the specified network e.g. 1 |
+| result.controllerId | integer | The controller ID of the target remote on the specified network  |
 | result.timestamp | integer | The time of the last key press in milliseconds since epoch |
 | result.sourceName | string | The source of the last key press  |
 | result.sourceType | string | The source type of the last key press  |
-| result.sourceKeyCode | integer | The source key code e.g. 195 |
+| result.sourceKeyCode | integer | The source key code  |
 | result.isScreenBindMode | bool | True if in screen bind mode, otherwise false |
-| result.remoteKeypadConfig | integer | The configuration of the remote keypad e.g. 0 |
+| result.remoteKeypadConfig | integer | The configuration of the remote keypad  |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -720,11 +718,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "jsonrpc": "2.0",
     "id": 10,
     "result": {
-        "controllerId": 0,
+        "controllerId": 1,
         "timestamp": 0,
         "sourceName": "IR",
         "sourceType": "REMOTE",
-        "sourceKeyCode": 0,
+        "sourceKeyCode": 195,
         "isScreenBindMode": true,
         "remoteKeypadConfig": 0,
         "success": true
@@ -743,13 +741,13 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network e.g. 1 |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetNetStatusResponse | The network status response |
-| result.response.netType | integer | The type of network e.g. 1 |
+| result.response.netType | integer | The type of network  |
 | result.response.pairingState | string | The current overall pairing state of the specified network |
 | result.response.irProgState | string | The current state of the IR code programming request to the remote |
 | result.response.success | bool | Whether the request succeeded |
@@ -786,7 +784,7 @@ No Events
     "id": 11,
     "method": "org.rdk.RemoteControl.getNetStatus",
     "params": {
-        "netType": 0
+        "netType": 1
     }
 }
 ```
@@ -795,7 +793,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -807,7 +805,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "id": 11,
     "result": {
         "response": {
-            "netType": 0,
+            "netType": 1,
             "pairingState": "INITIALISING",
             "irProgState": "IDLE",
             "success": true
@@ -852,7 +850,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network e.g. 1 |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -870,7 +868,7 @@ No Events
     "id": 12,
     "method": "org.rdk.RemoteControl.initializeIRDB",
     "params": {
-        "netType": 0
+        "netType": 1
     }
 }
 ```
@@ -879,7 +877,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -906,8 +904,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network e.g. 1 |
-| params.netType | integer | The type of network e.g. 1 |
+| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.netType | integer | The type of network  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
@@ -927,8 +925,8 @@ No Events
     "id": 13,
     "method": "org.rdk.RemoteControl.setIRCode",
     "params": {
-        "remoteId": 0,
-        "netType": 0,
+        "remoteId": 1,
+        "netType": 1,
         "avDevType": "TV",
         "code": "PANASONIC_3DTV"
     }
@@ -939,7 +937,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 0, "netType": 0, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -969,7 +967,7 @@ No Events
 | params.macAddress | string | The MAC address of the target remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
-| params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 |
+| params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -992,7 +990,7 @@ No Events
         "macAddress": "AA:BB:CC:DD:EE:FF",
         "fileName": "/tmp/remote_firmware.bin",
         "fileType": "mfg",
-        "percentIncrement": 0
+        "percentIncrement": 10
     }
 }
 ```
@@ -1001,7 +999,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 10}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1034,8 +1032,8 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.request | StartPairingRequest | The pairing request parameters |
-| params.request.netType | integer | The type of network e.g. 1 |
-| params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) e.g. 30 |
+| params.request.netType | integer | The type of network  |
+| params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
 | params.request.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
 | params.request.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
 | params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
@@ -1058,8 +1056,8 @@ No Events
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
         "request": {
-            "netType": 0,
-            "timeout": 0,
+            "netType": 1,
+            "timeout": 30,
             "screenBindEnable": true,
             "scanEnable": true
         },
@@ -1074,7 +1072,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"request": {"netType": 0, "timeout": 0, "screenBindEnable": true, "scanEnable": true}, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"request": {"netType": 1, "timeout": 30, "screenBindEnable": true, "scanEnable": true}, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1106,10 +1104,9 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | StatusFirmwareUpdateResponse | The status firmware update response @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
 | result.result | FirmwareUpdateStatus | The firmware update status |
 | result.result.state | string | The firmware update state |
-| result.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
+| result.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1145,7 +1142,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
     "result": {
         "result": {
             "state": "DOWNLOADING",
-            "percentComplete": 0
+            "percentComplete": 50
         },
         "success": true
     }
@@ -1288,10 +1285,10 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | The session identifier e.g. 12345 |
+| params.sessionId | string | The session identifier  |
 | params.status | FirmwareUpdateStatus | The firmware update status |
 | params.status.state | string | The firmware update state |
-| params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
+| params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
 
 ### Examples
 
@@ -1300,10 +1297,10 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "jsonrpc": "2.0",
     "method": "client.events.onFirmwareUpdateProgress",
     "params": {
-        "sessionId": 0,
+        "sessionId": "\"12345-abc-def\"",
         "status": {
             "state": "DOWNLOADING",
-            "percentComplete": 0
+            "percentComplete": 50
         }
     }
 }
@@ -1318,7 +1315,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network e.g. 1 |
+| params.netType | integer | The type of remote control network  |
 | params.netTypeSupported | bool | Whether the network type is supported |
 | params.pairingState | string | The pairing state |
 | params.irProgState | string | The IR programming state |
@@ -1330,7 +1327,7 @@ Triggered at any time when the status of any one of the supported STB remote net
     "jsonrpc": "2.0",
     "method": "client.events.onStatus",
     "params": {
-        "netType": 0,
+        "netType": 1,
         "netTypeSupported": true,
         "pairingState": "INITIALISING",
         "irProgState": "IDLE"
@@ -1347,10 +1344,10 @@ Generated for manual pairing validation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network e.g. 1 |
-| params.validationDigit1 | integer | The first validation digit e.g. 1 |
-| params.validationDigit2 | integer | The second validation digit e.g. 2 |
-| params.validationDigit3 | integer | The third validation digit e.g. 3 |
+| params.netType | integer | The type of remote control network  |
+| params.validationDigit1 | integer | The first validation digit  |
+| params.validationDigit2 | integer | The second validation digit  |
+| params.validationDigit3 | integer | The third validation digit  |
 
 ### Examples
 
@@ -1359,10 +1356,10 @@ Generated for manual pairing validation
     "jsonrpc": "2.0",
     "method": "client.events.onValidation",
     "params": {
-        "netType": 0,
-        "validationDigit1": 0,
-        "validationDigit2": 0,
-        "validationDigit3": 0
+        "netType": 1,
+        "validationDigit1": 1,
+        "validationDigit2": 2,
+        "validationDigit3": 3
     }
 }
 ```

@@ -152,8 +152,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
-| result.version | integer | The API version number e.g. 1 |
+| result.version | integer | The API version number  |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -184,7 +183,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "version": 0,
+        "version": 1,
         "success": true
     }
 }
@@ -696,7 +695,7 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.verified | bool | True if the keyword was verified, otherwise false |
 
@@ -707,7 +706,7 @@ Triggered when a keyword verification result is received
     "jsonrpc": "2.0",
     "method": "client.events.onKeywordVerification",
     "params": {
-        "remoteId": 0,
+        "remoteId": 1,
         "sessionId": "session-12345",
         "verified": true
     }
@@ -752,7 +751,7 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.deviceType | string | The type of voice device starting the session. Possible values: PTT, FF, MIC |
 | params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
@@ -764,7 +763,7 @@ Triggered when a voice session begins
     "jsonrpc": "2.0",
     "method": "client.events.onSessionBegin",
     "params": {
-        "remoteId": 0,
+        "remoteId": 1,
         "sessionId": "session-12345",
         "deviceType": "PTT",
         "keywordVerification": true
@@ -782,10 +781,10 @@ Triggered when the interaction with the server has concluded
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.serverStats | ServerStats | Returns the voice server stats |
-| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds e.g. 0.5 |
+| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
 | params.serverStats.serverIp | string | The IP of the voice server  |
-| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds e.g. 10.2 |
-| params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
+| params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
 
@@ -797,11 +796,11 @@ Triggered when the interaction with the server has concluded
     "method": "client.events.onSessionEnd",
     "params": {
         "serverStats": {
-            "dnsTime": 0.0,
+            "dnsTime": 0.5,
             "serverIp": "192.168.1.100",
-            "connectTime": 0.0
+            "connectTime": 10.2
         },
-        "remoteId": 0,
+        "remoteId": 1,
         "sessionId": "session-12345",
         "result": "success"
     }
@@ -817,7 +816,7 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
 
 ### Examples
@@ -827,7 +826,7 @@ Triggered when a device starts streaming voice data to the RDK
     "jsonrpc": "2.0",
     "method": "client.events.onStreamBegin",
     "params": {
-        "remoteId": 0,
+        "remoteId": 1,
         "sessionId": "session-12345"
     }
 }
@@ -842,9 +841,9 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The voice device identifier e.g. 1 |
+| params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
-| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown e.g. 0 |
+| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown  |
 
 ### Examples
 
@@ -853,7 +852,7 @@ Triggered when the device has stopped streaming audio
     "jsonrpc": "2.0",
     "method": "client.events.onStreamEnd",
     "params": {
-        "remoteId": 0,
+        "remoteId": 1,
         "sessionId": "session-12345",
         "reason": 0
     }
