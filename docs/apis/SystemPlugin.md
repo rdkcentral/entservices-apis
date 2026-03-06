@@ -2131,14 +2131,16 @@ No Events
 
 ### Parameters
 
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.fsrFlag | boolean | FSR flag |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.fsrFlag | boolean | FSR flag |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -2149,7 +2151,10 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.System.setFSRFlag"
+    "method": "org.rdk.System.setFSRFlag",
+    "params": {
+        "fsrFlag": true
+    }
 }
 ```
 
@@ -2160,7 +2165,6 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "fsrFlag": true,
         "success": true
     }
 }
@@ -2418,7 +2422,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.blocklist | string | block list string |
+| result.blocklist | boolean | block list string |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -2440,7 +2444,7 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "blocklist": "...",
+        "blocklist": true,
         "success": true
     }
 }
