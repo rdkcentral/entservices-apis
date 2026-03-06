@@ -332,7 +332,7 @@ def generate_parameters_section(params, symbol_registry):
                     else:
                         field_description = param_data.get('description', '')
                     
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', field_description)
+                    cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', field_description)
                     
                     # Remove the wrapper name while preserving [#] and nested fields
                     if param_name.startswith('.'):
@@ -357,7 +357,7 @@ def generate_parameters_section(params, symbol_registry):
             param_key = f"{param['name']}-{param['type']}"
             flattened_params = symbol_registry[param_key]['flattened_description']
             for param_name, param_data in flattened_params.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
                 # Use per-field optionality if available, not the wrapper's optionality
@@ -429,7 +429,7 @@ def generate_results_section(results, symbol_registry):
                     else:
                         field_description = result_data.get('description', '')
                     
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', field_description)
+                    cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', field_description)
                     
                     # Remove the wrapper name while preserving [#] and nested fields
                     if result_name.startswith('.'):
@@ -447,7 +447,7 @@ def generate_results_section(results, symbol_registry):
         for result in results:
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
             for result_name, result_data in flattened_results.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
                 # Use per-field optionality if available, not the wrapper's optionality
@@ -550,7 +550,7 @@ def generate_values_section(values, symbol_registry):
         for value in values:
             flattened_values = symbol_registry[f"{value['name']}-{value['type']}"]['flattened_description']
             for value_name, value_data in flattened_values.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This property has no values.\n"

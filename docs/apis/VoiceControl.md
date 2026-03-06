@@ -781,9 +781,9 @@ Triggered when the interaction with the server has concluded
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.serverStats | ServerStats | Returns the voice server stats |
-| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
+| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds  |
 | params.serverStats.serverIp | string | The IP of the voice server  |
-| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
+| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds  |
 | params.remoteId | integer | The voice device identifier  |
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
