@@ -31,6 +31,18 @@ namespace Exchange {
 struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
     enum { ID = ID_BARTONMATTER };
 
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum { ID = ID_BARTONMATTER_NOTIFICATION };
+        ~INotification() override = default;
+        // @brief Fired when a new device completes commissioning
+        virtual void OnDeviceCommissioned(const string& nodeId /* @in */,
+                                          const string& deviceClass /* @in */) = 0;
+
+        // @brief Fired when a device resource value changes
+        virtual void OnDeviceStateChanged(const string& nodeId /* @in */,
+                                          const string& resourceType /* @in */,
+                                          const string& value /* @in */) = 0;
+    };
     /* Allow client/UI to read the current status of the device*/
     //@text ReadResource
     //@brief read the current state of the matter device
@@ -98,7 +110,11 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
      //@param: payload holds the json formatter data of voice command
      virtual Core::hresult OnVoiceCommandReceived(const std::string& payload /* @in */) =0;
 
+     // @brief Register a sink to receive device events
+     virtual Core::hresult Register(INotification* sink /* @in */) = 0;
 
+     // @brief Unregister a previously registered event sink
+     virtual Core::hresult Unregister(INotification* sink /* @in */) = 0;
 };
 
 } // Exchange
