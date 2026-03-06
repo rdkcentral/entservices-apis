@@ -84,6 +84,14 @@ org.rdk.System interface methods:
 | [updateFirmware](#updateFirmware) | Initiates a firmware update |
 | [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs |
 | [abortLogUpload](#abortLogUpload) | Stops background process to upload logs |
+| [setFSRFlag](#setFSRFlag) | Set the FSR flag into the emmc raw area |
+| [getFSRFlag](#getFSRFlag) | Get the FSR flag from the emmc raw area |
+| [getBootTypeInfo](#getBootTypeInfo) | Getting Boot Type |
+| [setMigrationStatus](#setMigrationStatus) | sets the tr181 MigrationStatus parameter |
+| [getMigrationStatus](#getMigrationStatus) | get the Migration Status of the device |
+| [setBlocklistFlag](#setBlocklistFlag) | To update Blocklist flag |
+| [getBlocklistFlag](#getBlocklistFlag) | Get the FSR flag from the emmc raw area |
+| [getTimeStatus](#getTimeStatus) | Get the time status on the device |
 
 
 <a name="getDeviceInfo"></a>
@@ -2107,6 +2115,386 @@ This method takes no parameters.
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
+        "success": true
+    }
+}
+```
+
+<a name="setFSRFlag"></a>
+## *setFSRFlag*
+
+Set the FSR flag into the emmc raw area. This API will fail if you attempt to set the same value.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.fsrFlag | boolean | FSR flag |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.setFSRFlag",
+    "params": {
+        "fsrFlag": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="getFSRFlag"></a>
+## *getFSRFlag*
+
+Get the FSR flag from the emmc raw area.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.fsrFlag | boolean | FSR flag |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getFSRFlag"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "fsrFlag": true,
+        "success": true
+    }
+}
+```
+
+<a name="getBootTypeInfo"></a>
+## *getBootTypeInfo*
+
+Getting Boot Type.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.bootType | string | BOOT Type Info |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getBootTypeInfo"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "bootType": "BOOT_NORMAL"
+    }
+}
+```
+
+<a name="setMigrationStatus"></a>
+## *setMigrationStatus*
+
+sets the tr181 MigrationStatus parameter.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.status | string | Migration status |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.setMigrationStatus",
+    "params": {
+        "status": "NOT_STARTED"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="getMigrationStatus"></a>
+## *getMigrationStatus*
+
+get the Migration Status of the device.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.migrationStatus | string | Migration status |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getMigrationStatus"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "migrationStatus": "NOT_STARTED"
+    }
+}
+```
+
+<a name="setBlocklistFlag"></a>
+## *setBlocklistFlag*
+
+To update Blocklist flag.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.blocklist | boolean | Blocklist flag |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.setBlocklistFlag",
+    "params": {
+        "blocklist": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="getBlocklistFlag"></a>
+## *getBlocklistFlag*
+
+Get the FSR flag from the emmc raw area.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.blocklist | boolean | block list string |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getBlocklistFlag"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "blocklist": true,
+        "success": true
+    }
+}
+```
+
+<a name="getTimeStatus"></a>
+## *getTimeStatus*
+
+Get the time status on the device.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.TimeQuality | string | Time Quality |
+| result.TimeSrc | string | Time Source |
+| result.Time | string | Current Time |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.System.getTimeStatus"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "TimeQuality": "...",
+        "TimeSrc": "...",
+        "Time": "...",
         "success": true
     }
 }
