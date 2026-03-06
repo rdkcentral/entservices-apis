@@ -90,15 +90,15 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Create the display window
   // @param clientId: Client identifier
   // @param displayName: name of wayland display
-  // @param displayWidth: width of client window
-  // @param displayHeight: height of client window
-  // @param virtualDisplay: Tells whether virtual display enabled or not (optional)
-  // @param virtualWidth: width of display in framebuffer mode (optional)
-  // @param virtualHeight: height of display in framebuffer mode (optional)
-  // @param ownerId: uid of owner of wayland socket (optional)
-  // @param groupId: group identifier of wayland socket (optional)
-  // @param topmost: Tells whether client window need to be topmost or not (optional)
-  // @param focus: Tells whether the client needs focus or not (optional)
+  // @param displayWidth(optional): width of client window
+  // @param displayHeight(optional): height of client window
+  // @param virtualDisplay(optional): Tells whether virtual display enabled or not
+  // @param virtualWidth(optional): width of display in framebuffer mode
+  // @param virtualHeight(optional): height of display in framebuffer mode
+  // @param ownerId(optional): uid of owner of wayland socket
+  // @param groupId(optional): group identifier of wayland socket
+  // @param topmost(optional): Tells whether client window need to be topmost or not
+  // @param focus(optional): Tells whether the client needs focus or not
   virtual Core::hresult CreateDisplay(const std::string &clientId, const std::string &displayName, const uint32_t displayWidth /* @default:1920 */, const uint32_t displayHeight /* @default:1080 */, bool virtualDisplay /* @default:false */, const uint32_t virtualWidth /* @default:1920 */, const uint32_t virtualHeight /* @default:1080 */, const uint32_t ownerId /* @default:0 */, const uint32_t groupId /* @default:0 */, bool topmost /* @default:true */, bool focus /* @default:true */) = 0;
 
   /** Get the list of active Apps */
