@@ -1298,7 +1298,6 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 19,
     "method": "client.events.onFirmwareUpdateProgress",
     "params": {
         "sessionId": 0,
@@ -1329,7 +1328,6 @@ Triggered at any time when the status of any one of the supported STB remote net
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 20,
     "method": "client.events.onStatus",
     "params": {
         "netType": 0,
@@ -1359,7 +1357,6 @@ Generated for manual pairing validation
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 21,
     "method": "client.events.onValidation",
     "params": {
         "netType": 0,

@@ -568,6 +568,8 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     #         request['method'] = '.'.join(parts)
     if isinstance(request, dict):
         request = dict(request)
+        # JSON-RPC notifications should not include an "id" field
+        request.pop('id', None)
     request_json = json.dumps(_convert_json_types(request), indent=4)
     markdown += EXAMPLE_NOTIFICATION_TEMPLATE.format(request_json=request_json)
     return markdown

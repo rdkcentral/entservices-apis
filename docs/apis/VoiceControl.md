@@ -705,7 +705,6 @@ Triggered when a keyword verification result is received
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 10,
     "method": "client.events.onKeywordVerification",
     "params": {
         "remoteId": 0,
@@ -734,7 +733,6 @@ Triggered when a message is received from the Voice Server
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 11,
     "method": "client.events.onServerMessage",
     "params": {
         "msgType": "asr",
@@ -764,7 +762,6 @@ Triggered when a voice session begins
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 12,
     "method": "client.events.onSessionBegin",
     "params": {
         "remoteId": 0,
@@ -797,7 +794,6 @@ Triggered when the interaction with the server has concluded
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 13,
     "method": "client.events.onSessionEnd",
     "params": {
         "serverStats": {
@@ -829,7 +825,6 @@ Triggered when a device starts streaming voice data to the RDK
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 14,
     "method": "client.events.onStreamBegin",
     "params": {
         "remoteId": 0,
@@ -856,7 +851,6 @@ Triggered when the device has stopped streaming audio
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 15,
     "method": "client.events.onStreamEnd",
     "params": {
         "remoteId": 0,
