@@ -417,6 +417,12 @@ def generate_results_section(results, symbol_registry):
                 result_description = result.get('description', '') if is_iterator else None
                 
                 for result_name, result_data in flattened_results.items():
+                    # Skip the wrapper level itself - only show nested fields or array elements
+                    # For iterators: skip ".macAddressList" but show ".macAddressList[#]"
+                    # For structs: skip ".response" but show ".response.field"
+                    if result_name.startswith('.') and '[#]' not in result_name and result_name.count('.') < 2:
+                        continue  # Skip wrapper object itself
+                    
                     # Use result-specific description for unwrapped iterators, otherwise use flattened description
                     if is_iterator and result_description:
                         field_description = result_description

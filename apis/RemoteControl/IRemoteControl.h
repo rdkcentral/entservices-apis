@@ -103,13 +103,13 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetApiVersionNumberResponse {
-            uint32_t version /* @brief The API version number e.g. 1 */;
+            uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL StartPairingRequest {
-            uint32_t netType        /* @brief The type of network e.g. 1 */;
-            uint32_t timeout        /* @brief The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) e.g. 30 */;
+            uint32_t netType        /* @brief The type of network ex: 1 */;
+            uint32_t timeout        /* @brief The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) ex: 30 */;
             bool screenBindEnable   /* @brief Whether to enable screen bind mode (default: true) */;
             bool scanEnable         /* @brief Whether to enable scanning for remotes (default: true) */;
         };
@@ -120,40 +120,40 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL NetworkStatus {
-            uint32_t netType          /* @brief The type of network e.g. 1 */;
+            uint32_t netType          /* @brief The type of network ex: 1 */;
             PairingState pairingState /* @brief The current overall pairing state of the specified network */;
             IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
         };
 
         struct EXTERNAL GetNetStatusRequest {
-            uint32_t netType /* @brief The type of network e.g. 1 */;
+            uint32_t netType /* @brief The type of network ex: 1 */;
         };
 
         struct EXTERNAL GetNetStatusResponse {
-            uint32_t netType          /* @brief The type of network e.g. 1 */;
+            uint32_t netType          /* @brief The type of network ex: 1 */;
             PairingState pairingState /* @brief The current overall pairing state of the specified network */;
             IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
             bool success              /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL InitializeIRDBRequest {
-            uint32_t netType /* @brief The type of network e.g. 1 */;
+            uint32_t netType /* @brief The type of network ex: 1 */;
         };
 
         struct EXTERNAL ClearIRCodesRequest {
-            uint32_t remoteId /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
-            uint32_t netType  /* @brief The type of network e.g. 1 */;
+            uint32_t remoteId /* @brief The remote ID of the target remote on the specified network ex: 1 */;
+            uint32_t netType  /* @brief The type of network ex: 1 */;
         };
 
         struct EXTERNAL SetIRCodeRequest {
-            uint32_t remoteId   /* @brief The remote ID of the target remote on the specified network e.g. 1 */;
-            uint32_t netType    /* @brief The type of network e.g. 1 */;
+            uint32_t remoteId   /* @brief The remote ID of the target remote on the specified network ex: 1 */;
+            uint32_t netType    /* @brief The type of network ex: 1 */;
             AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string code         /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
         };
 
         struct EXTERNAL GetIRCodesByAutoLookupRequest {
-            uint32_t netType /* @brief The type of network e.g. 1 */;
+            uint32_t netType /* @brief The type of network ex: 1 */;
         };
 
         struct EXTERNAL GetIRCodesByAutoLookupResponse {
@@ -209,13 +209,13 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetLastKeypressSourceResponse {
-            uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network e.g. 1 */;
+            uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
             uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
             string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
-            uint32_t sourceKeyCode      /* @brief The source key code e.g. 195 */;
+            uint32_t sourceKeyCode      /* @brief The source key code ex: 195 */;
             bool isScreenBindMode       /* @brief True if in screen bind mode, otherwise false */;
-            uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad e.g. 0 */;
+            uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad ex: 0 */;
             bool success                /* @brief Whether the request succeeded */;
         };
 
@@ -232,7 +232,7 @@ namespace WPEFramework {
             string macAddress         /* @brief The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
             string fileName           /* @brief The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin" */;
             string fileType           /* @brief The type of firmware image file e.g. "mfg" */;
-            uint32_t percentIncrement /* @brief The increment change of a firmware update to notify. Valid range 1-100 percent e.g. 10 */;
+            uint32_t percentIncrement /* @brief The increment change of a firmware update to notify. Valid range 1-100 percent ex: 10 */;
         };
 
         struct EXTERNAL StartFirmwareUpdateResponse {
@@ -249,7 +249,7 @@ namespace WPEFramework {
 
         struct EXTERNAL FirmwareUpdateStatus {
             FirmwareUpdateState state /* @brief The firmware update state */;
-            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) e.g. 50 */;
+            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
         };
 
         struct EXTERNAL StatusFirmwareUpdateResponse {
@@ -258,21 +258,21 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL StatusEventData {
-            uint32_t netType          /* @brief The type of remote control network e.g. 1 */;
+            uint32_t netType          /* @brief The type of remote control network ex: 1 */;
             bool netTypeSupported     /* @brief Whether the network type is supported */;
             PairingState pairingState /* @brief The pairing state */;
             IRProgState irProgState   /* @brief The IR programming state */;
         };
 
         struct EXTERNAL ValidationStatusObject {
-            uint32_t netType           /* @brief The type of remote control network e.g. 1 */;
-            uint32_t validationDigit1  /* @brief The first validation digit e.g. 1 */;
-            uint32_t validationDigit2  /* @brief The second validation digit e.g. 2 */;
-            uint32_t validationDigit3  /* @brief The third validation digit e.g. 3 */;
+            uint32_t netType           /* @brief The type of remote control network ex: 1 */;
+            uint32_t validationDigit1  /* @brief The first validation digit ex: 1 */;
+            uint32_t validationDigit2  /* @brief The second validation digit ex: 2 */;
+            uint32_t validationDigit3  /* @brief The third validation digit ex: 3 */;
         };
 
         struct EXTERNAL FirmwareUpdateProgressEvent {
-            uint32_t sessionId          /* @brief The session identifier e.g. 12345 */;
+            string sessionId            /* @brief The session identifier ex: "12345-abc-def" */;
             FirmwareUpdateStatus status /* @brief The firmware update status */;
         };
 

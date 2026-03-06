@@ -58,9 +58,9 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL ServerStats {
-            double dnsTime     /* @brief The DNS time of the voice server in milliseconds e.g. 0.5 */;
+            double dnsTime     /* @brief The DNS time of the voice server in milliseconds ex: 0.5 */;
             string serverIp    /* @brief The IP of the voice server e.g. "192.168.1.100" */;
-            double connectTime /* @brief The connection time of the voice server in milliseconds e.g. 10.2 */;
+            double connectTime /* @brief The connection time of the voice server in milliseconds ex: 10.2 */;
         };
 
         struct EXTERNAL SuccessResponse {
@@ -68,7 +68,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetApiVersionNumberResponse {
-            uint32_t version /* @brief The API version number e.g. 1 */;
+            uint32_t version /* @brief The API version number ex: 1 */;
             bool success /* @brief Whether the request succeeded */;
         };
 
@@ -132,19 +132,19 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL SessionBeginEvent {
-            uint32_t remoteId        /* @brief The voice device identifier e.g. 1 */;
+            uint32_t remoteId        /* @brief The voice device identifier ex: 1 */;
             string sessionId         /* @brief The unique identifier for the voice session e.g. "session-12345" */;
             DeviceType deviceType    /* @brief The type of voice device starting the session. Possible values: PTT, FF, MIC */;
             bool keywordVerification /* @brief True if the session uses keyword verification, otherwise false */;
         };
 
         struct EXTERNAL StreamBeginEvent {
-            uint32_t remoteId /* @brief The voice device identifier e.g. 1 */;
+            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
             string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
         };
 
         struct EXTERNAL KeywordVerificationEvent {
-            uint32_t remoteId /* @brief The voice device identifier e.g. 1 */;
+            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
             string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
             bool verified     /* @brief True if the keyword was verified, otherwise false */;
         };
@@ -157,14 +157,14 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL StreamEndEvent {
-            uint32_t remoteId /* @brief The voice device identifier e.g. 1 */;
+            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
             string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            uint8_t reason    /* @brief The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown e.g. 0 */;
+            uint8_t reason    /* @brief The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown ex: 0 */;
         };
 
         struct EXTERNAL SessionEndEvent {
             ServerStats serverStats /* @brief Returns the voice server stats */;
-            uint32_t remoteId       /* @brief The voice device identifier e.g. 1 */;
+            uint32_t remoteId       /* @brief The voice device identifier ex: 1 */;
             string sessionId        /* @brief The unique identifier for the voice session e.g. "session-12345" */;
             SessionResult result    /* @brief The result of the voice session. Possible values: success, error, abort, shortUtterance */;
         };
