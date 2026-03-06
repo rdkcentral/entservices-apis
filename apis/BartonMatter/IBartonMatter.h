@@ -111,10 +111,10 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
      virtual Core::hresult OnVoiceCommandReceived(const std::string& payload /* @in */) =0;
 
      // @brief Register a sink to receive device events
-     virtual Core::hresult Register(INotification* sink /* @in */) = 0;
+     virtual Core::hresult Register(INotification* sink /* @in */) = 0; /* @json:omit */
 
      // @brief Unregister a previously registered event sink
-     virtual Core::hresult Unregister(INotification* sink /* @in */) = 0;
+     virtual Core::hresult Unregister(INotification* sink /* @in */) = 0; /* @json:omit */
 };
 
 } // Exchange
