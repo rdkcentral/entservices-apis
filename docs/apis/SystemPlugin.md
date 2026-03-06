@@ -66,7 +66,6 @@ org.rdk.System interface methods:
 | [getTimeZones](#getTimeZones) | (Version2) Gets the available timezones from the system's time zone database |
 | [getTimeZoneDST](#getTimeZoneDST) | Get the configured time zone from the file referenced by `TZ_FILE` |
 | [getWakeupReason](#getWakeupReason) | Returns the reason for the device coming out of deep sleep |
-| [getPreviousRebootInfo](#getPreviousRebootInfo) | Returns basic information about a reboot |
 | [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status |
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
 | [requestSystemUptime](#requestSystemUptime) | Returns the device uptime |
@@ -1197,60 +1196,6 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "wakeupReason": "WAKEUP_REASON_VOICE",
-        "success": true
-    }
-}
-```
-
-<a name="getPreviousRebootInfo"></a>
-## *getPreviousRebootInfo*
-
-Returns basic information about a reboot.
-
-### Events
-
-No Events
-
-### Parameters
-
-This method takes no parameters.
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.timestamp | string | The last reboot time |
-| result.reason | string | The reboot reason |
-| result.source | string | Source that trigerred reboot |
-| result.customReason | string | A custom reason |
-| result.otherReason | string | Other reasons for reboot |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.System.getPreviousRebootInfo"
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "timestamp": "20200128083540",
-        "reason": "FIRMWARE_FAILURE",
-        "source": "-sh",
-        "customReason": "API Validation",
-        "otherReason": "API Validation",
         "success": true
     }
 }

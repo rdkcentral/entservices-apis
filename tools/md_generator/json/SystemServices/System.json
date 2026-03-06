@@ -938,48 +938,6 @@
                 ]
             }
         },
-        "getPreviousRebootInfo":{
-            "summary": "Returns basic information about a reboot.",
-            "result": {
-                "type": "object",
-                "properties": {
-                    "timestamp": {
-                        "summary": "The last reboot time",
-                        "type": "string",
-                        "example": "20200128083540"
-                    },
-                    "reason": {
-                        "$ref": "#/definitions/reason"
-                    },
-                    "source": {
-                        "summary": "Source that trigerred reboot",
-                        "type": "string",
-                        "example": "-sh"
-                    },
-                    "customReason": {
-                        "summary": "A custom reason",
-                                "type": "string",
-                                "example": "API Validation"
-                    },
-                    "otherReason": {
-                        "summary": "Other reasons for reboot",
-                        "type": "string",
-                        "example": "API Validation"
-                    },
-                    "success":{
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "timestamp",
-                    "reason",
-                    "source",
-                    "customReason",
-                    "otherReason",
-                    "success"
-                ]
-            }
-        },
         "isOptOutTelemetry": {
             "summary": "Checks the telemetry opt-out status.",
             "result": {
