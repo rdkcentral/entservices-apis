@@ -321,6 +321,11 @@ class HeaderFileParser:
                 return
             if groups[0] == '/':
                 return
+            # Stop accumulating if this line starts with a doxygen tag (e.g., @retval, @brief, etc.)
+            # This prevents @retval and other tags from being appended to previous @param descriptions
+            if groups[0].strip().startswith('@'):
+                self.latest_tag = ''
+                return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])

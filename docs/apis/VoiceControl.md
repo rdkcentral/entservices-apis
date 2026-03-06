@@ -203,7 +203,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid |
 | result.types[#] | string |  |
 
 ### Examples
@@ -270,7 +270,7 @@ This method takes no parameters.
 | result.response.mic | DeviceStatus | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.capabilities | IStringIterator | A list of capabilities |
 | result.capabilities[#] | string |  |
 
 ### Examples
@@ -397,7 +397,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language  |
-| params.capabilities | IStringIterator | A list of capabilities @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| params.capabilities | IStringIterator | A list of capabilities |
 | params.capabilities[#] | string |  |
 ### Results
 | Name | Type | Description |

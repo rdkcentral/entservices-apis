@@ -409,7 +409,7 @@ No Events
 | result.response.success | bool | Whether the request succeeded |
 | result.tvCodes | IStringIterator | A list of TV IR codes |
 | result.tvCodes[#] | string |  |
-| result.avrCodes | IStringIterator | A list of AVR IR codes @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup. |
+| result.avrCodes | IStringIterator | A list of AVR IR codes |
 | result.avrCodes[#] | string |  |
 
 ### Examples
@@ -483,7 +483,7 @@ No Events
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.model | string | The model name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.codes | IStringIterator | A list of IR codes for the specified device @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
+| result.codes | IStringIterator | A list of IR codes for the specified device |
 | result.codes[#] | string |  |
 
 ### Examples
@@ -552,7 +552,7 @@ No Events
 | result.response | GetIRDBManufacturersResponse | The get IRDB manufacturers response |
 | result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.success | bool | Whether the request succeeded |
-| result.manufacturers | IStringIterator | A list of manufacturer names @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers. |
+| result.manufacturers | IStringIterator | A list of manufacturer names |
 | result.manufacturers[#] | string |  |
 
 ### Examples
@@ -620,7 +620,7 @@ No Events
 | result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.models | IStringIterator | A list of model names @retval ErrorCode::NONE: IRDB models retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve IRDB models. |
+| result.models | IStringIterator | A list of model names |
 | result.models[#] | string |  |
 
 ### Examples
@@ -753,7 +753,7 @@ No Events
 | result.response.success | bool | Whether the request succeeded |
 | result.netTypeSupported | IUint32Iterator | A list of the network types that the STB supports |
 | result.netTypeSupported[#] | uint32_t |  |
-| result.remoteData | IRemoteDataIterator | Remote information for each paired remote control @retval ErrorCode::NONE: Network status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve network status. |
+| result.remoteData | IRemoteDataIterator | Remote information for each paired remote control |
 | result.remoteData[#].macAddress | string | The MAC address of the remote in hex-colon format  |
 | result.remoteData[#].connected | bool | True if the remote is connected, otherwise false |
 | result.remoteData[#].name | string | The remote name  |
@@ -973,7 +973,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | IStringIterator | List of session IDs created for the firmware update(s) @retval ErrorCode::NONE: Firmware update started successfully. @retval ErrorCode::GENERAL: Failed to start firmware update. |
+| result.sessionIdList | IStringIterator | List of session IDs created for the firmware update(s) |
 | result.sessionIdList[#] | string |  |
 
 ### Examples
@@ -1036,7 +1036,7 @@ No Events
 | params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
 | params.request.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
 | params.request.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
-| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) |
 | params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -1216,7 +1216,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | array |  |
-| params[#] | string | Optional list of MAC addresses to unpair (if empty, unpairs all remotes) @retval ErrorCode::NONE: Unpair executed successfully. @retval ErrorCode::GENERAL: Failed to execute unpair. |
+| params[#] | string | Optional list of MAC addresses to unpair (if empty, unpairs all remotes) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
