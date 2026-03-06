@@ -64,7 +64,7 @@ VoiceControl interface methods:
 Configures the RDK's voice stack
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -145,7 +145,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
 Get the API version number
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -196,7 +196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 Retrieves the types of voice sessions which are supported by the platform
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -251,7 +251,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 Returns the current status of the RDK voice stack
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -332,7 +332,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
 Sends a message to the Voice Server
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -392,7 +392,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "m
 Sets the application metadata in the INIT message that gets sent to the Voice Server
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -451,7 +451,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
 Starts a subsequent audio stream for the voice session indicated by the session identifier
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -505,7 +505,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
 Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -561,7 +561,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
 Requests a voice session using the specified request type and optional parameters
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -619,7 +619,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
 Terminates a voice session using the specified session identifier
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

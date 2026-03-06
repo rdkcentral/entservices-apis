@@ -297,8 +297,18 @@ def generate_parameters_section(params, symbol_registry):
                 # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
                 
                 # Determine if params should be shown as array or object
-                # It's an array if there's a key with [#] (indicates iterator)
-                is_iterator = any('[#]' in key for key in flattened_params.keys())
+                # It's an array if the top-level param is an iterator
+                # Check if the wrapper field itself has [#] (e.g., ".macAddressList[#]" vs ".request.items[#]")
+                is_iterator = False
+                for key in flattened_params.keys():
+                    if key.startswith('.'):
+                        # Split: ".macAddressList[#]" -> ["", "macAddressList[#]"]
+                        # Split: ".request.items[#]" -> ["", "request", "items[#]"]
+                        parts = key[1:].split('.')
+                        if len(parts) > 0 and '[#]' in parts[0]:
+                            # Top-level wrapper has [#], so this is an iterator
+                            is_iterator = True
+                            break
                 params_type = "array" if is_iterator else "object"
                 markdown += f"| params | {params_type} |  |\n"
                 
@@ -378,7 +388,18 @@ def generate_results_section(results, symbol_registry):
             # If unwrapped and has flattened fields, unwrap them
             if is_explicitly_unwrapped and flattened_results:
                 # Determine if result should be shown as array or object
-                is_iterator = all('[#]' in key for key in flattened_results.keys())
+                # It's an array if the top-level result is an iterator
+                # Check if the wrapper field itself has [#] (e.g., ".macAddressList[#]" vs ".response.items[#]")
+                is_iterator = False
+                for key in flattened_results.keys():
+                    if key.startswith('.'):
+                        # Split: ".macAddressList[#]" -> ["macAddressList[#]"]
+                        # Split: ".response.items[#]" -> ["response", "items[#]"]
+                        parts = key[1:].split('.')
+                        if len(parts) > 0 and '[#]' in parts[0]:
+                            # Top-level wrapper has [#], so this is an iterator
+                            is_iterator = True
+                            break
                 result_type = "array" if is_iterator else "object"
                 markdown += f"| result | {result_type} |  |\n"
                 
@@ -461,7 +482,7 @@ def generate_events_section(events, all_events=None):
             camel_event = to_camel_case(event)
             markdown += f"- [{camel_event}](#{camel_event})\n"
     else:
-        markdown += "Event details will be updated soon.\n"
+        markdown += "No Events\n"
     return markdown
 
 def generate_properties_toc(properties, classname):

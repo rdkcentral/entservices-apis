@@ -73,7 +73,7 @@ RemoteControl interface methods:
 Cancels an active firmware image update session
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -127,7 +127,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "m
 Clears the IR codes from the specified remote
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -183,7 +183,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 Configures which keys on the remote will wake the target from deepsleep
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -239,7 +239,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 Tells all paired and connected remotes to factory reset
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -287,7 +287,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
 Tells the most recently used remote to beep
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -341,7 +341,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "m
 Gets the current API version number.
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -392,7 +392,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "m
 Returns a list of available IR codes for the TV and AVRs specified by the input parameters
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -467,7 +467,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
 Returns a list of IR codes for the AV device specified by the input parameters
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -539,7 +539,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
 Returns a list of manufacturer names based on the specified input parameters
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -605,7 +605,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
 Returns a list of model names based on the specified input parameters
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -675,7 +675,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
 Returns last key press source data
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -738,7 +738,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
 Returns the status information provided by the last `onStatus` event for the specified network.
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -847,7 +847,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
 Initializes the IR database
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -901,7 +901,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "
 Programs an IR code into the specified remote control
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -961,7 +961,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "
 Starts a firmware image update session for the specified remote(s)
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1028,7 +1028,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
 Initiates pairing a remote with the STB on the specified network.
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1096,7 +1096,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "
 Returns the status of an active firmware image update session
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1158,7 +1158,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
 Cancels pairing a remote with the STB on the specified network.
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1214,7 +1214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "
 Unpairs all remotes from the STB
 
 ### Events
-Event details will be updated soon.
+No Events
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
