@@ -1218,9 +1218,8 @@ Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
-| params[#] | string |  |
+| params | array |  |
+| params[#] | string | Optional list of MAC addresses to unpair (if empty, unpairs all remotes) @retval ErrorCode::NONE: Unpair executed successfully. @retval ErrorCode::GENERAL: Failed to execute unpair. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

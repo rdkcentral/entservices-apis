@@ -287,7 +287,8 @@ def generate_parameters_section(params, symbol_registry):
             # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped (single struct param without @keep_key)
             # We can detect auto-unwrap by checking if flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
             has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
-            is_explicitly_unwrapped = param_info.get('unwrapped', False)
+            # Check unwrapped from the method-specific param, not the global symbol_registry
+            is_explicitly_unwrapped = param.get('unwrapped', False)
             should_unwrap = is_explicitly_unwrapped or (has_wrapper_level and not param.get('keep_key'))
             
             if should_unwrap:
@@ -296,8 +297,8 @@ def generate_parameters_section(params, symbol_registry):
                 # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
                 
                 # Determine if params should be shown as array or object
-                # It's an array if all keys are just the wrapper with [#] (e.g., ".items[#]")
-                is_iterator = all('[#]' in key for key in flattened_params.keys())
+                # It's an array if there's a key with [#] (indicates iterator)
+                is_iterator = any('[#]' in key for key in flattened_params.keys())
                 params_type = "array" if is_iterator else "object"
                 markdown += f"| params | {params_type} |  |\n"
                 
@@ -306,9 +307,10 @@ def generate_parameters_section(params, symbol_registry):
                 param_description = param.get('description', '') if is_iterator else None
                 
                 for param_name, param_data in flattened_params.items():
-                    # Skip the wrapper level itself - only show nested fields (only when has_wrapper_level)
-                    # e.g., skip ".request", but show ".request.remoteId"
-                    if has_wrapper_level and param_name.startswith('.') and param_name.count('.') < 2 and '[#]' not in param_name:
+                    # Skip the wrapper level itself - only show nested fields or array elements
+                    # For iterators: skip ".macAddressList" but show ".macAddressList[#]"
+                    # For structs: skip ".request" but show ".request.field"
+                    if param_name.startswith('.') and '[#]' not in param_name and param_name.count('.') < 2:
                         continue  # Skip wrapper object itself
                     
                     # Use param-specific description for unwrapped iterators, otherwise use flattened description
@@ -365,8 +367,8 @@ def generate_results_section(results, symbol_registry):
             result_info = symbol_registry[result_key]
             flattened_results = result_info.get('flattened_description', {})
             
-            # Check if this result should be unwrapped
-            is_explicitly_unwrapped = result_info.get('unwrapped', False)
+            # Check if this result should be unwrapped (from method-specific result, not global symbol_registry)
+            is_explicitly_unwrapped = result.get('unwrapped', False)
             
             # If unwrapped and has no flattened fields, show as simple type
             if is_explicitly_unwrapped and not flattened_results:
