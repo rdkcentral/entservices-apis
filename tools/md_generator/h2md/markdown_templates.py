@@ -289,24 +289,25 @@ def generate_parameters_section(params, symbol_registry):
             has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
             should_unwrap = param_info.get('unwrapped') or (has_wrapper_level and not param.get('keep_key'))
             
-            if should_unwrap and has_wrapper_level:
+            if should_unwrap:
                 # For unwrapped params, show fields directly under params without the wrapper
                 # e.g., ".request.remoteId" becomes ".remoteId"
                 # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
                 markdown += f"| params | object |  |\n"
                 for param_name, param_data in flattened_params.items():
-                    # Skip the wrapper level itself - only show nested fields
+                    # Skip the wrapper level itself - only show nested fields (only when wrapper level exists)
                     # e.g., skip ".request", but show ".request.remoteId"
-                    if param_name.startswith('.') and param_name.count('.') < 2:
+                    if has_wrapper_level and param_name.startswith('.') and param_name.count('.') < 2:
                         continue  # Skip wrapper object itself
                     
                     cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                    # Remove the struct wrapper level: ".request.remoteId" -> ".remoteId"
-                    if param_name.startswith('.'):
+                    # Remove the struct wrapper level: ".request.remoteId" -> ".remoteId" (only when wrapper level exists)
+                    if has_wrapper_level and param_name.startswith('.'):
                         parts = param_name[1:].split('.', 1)  # Remove leading dot, split once
                         if len(parts) > 1:
                             param_name = '.' + parts[1]  # Get everything after first component
-                    optionality = f"<sup>({param['optionality']})</sup>" if param.get('optionality') == 'optional' else ''
+                    # Use per-field optionality if available, not the wrapper's optionality
+                    optionality = f"<sup>({param_data['optionality']})</sup>" if param_data.get('optionality') == 'optional' else ''
                     markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
                 return markdown
         
@@ -319,7 +320,8 @@ def generate_parameters_section(params, symbol_registry):
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
-                optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
+                # Use per-field optionality if available, not the wrapper's optionality
+                optionality = f"<sup>({param_data['optionality']})</sup>" if param_data.get('optionality') == 'optional' else ''
                 markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
@@ -344,7 +346,8 @@ def generate_results_section(results, symbol_registry):
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
-                optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
+                # Use per-field optionality if available, not the wrapper's optionality
+                optionality = f"<sup>({result_data['optionality']})</sup>" if result_data.get('optionality') == 'optional' else ''
                 markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
