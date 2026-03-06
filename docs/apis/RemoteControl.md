@@ -1220,7 +1220,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::GENERAL: Failed to start pairing. |
-| params.macAddressList[#] | string |  |
+| params[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

@@ -151,7 +151,10 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result | object |  |
+| result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
+| result.version | integer | The API version number e.g. 1 |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -187,8 +190,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "m
 }
 ```
 
-<a id="getVoiceSessionTypes"></a>
-## *getVoiceSessionTypes*
+<a id="voiceSessionTypes"></a>
+## *voiceSessionTypes*
 
 Retrieves the types of voice sessions which are supported by the platform
 
@@ -242,8 +245,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
 }
 ```
 
-<a id="getVoiceStatus"></a>
-## *getVoiceStatus*
+<a id="voiceStatus"></a>
+## *voiceStatus*
 
 Returns the current status of the RDK voice stack
 
