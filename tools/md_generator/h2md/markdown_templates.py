@@ -284,12 +284,15 @@ def generate_parameters_section(params, symbol_registry):
             flattened_params = param_info['flattened_description']
             
             # Check if this should be shown as unwrapped
-            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped (single struct param without @keep_key)
-            # We can detect auto-unwrap by checking if flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
+            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped
+            # Auto-unwrap happens when: single param, keep_key is false, and type is struct or iterator
+            # - Struct: flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
+            # - Iterator: flattened keys have top-level [#] (e.g., ".items[#]")
             has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
+            is_top_level_iterator = any(key.startswith('.') and '[#]' in key[1:].split('.')[0] for key in flattened_params.keys())
             # Check unwrapped from the method-specific param, not the global symbol_registry
             is_explicitly_unwrapped = param.get('unwrapped', False)
-            should_unwrap = is_explicitly_unwrapped or (has_wrapper_level and not param.get('keep_key'))
+            should_unwrap = is_explicitly_unwrapped or (not param.get('keep_key') and (has_wrapper_level or is_top_level_iterator))
             
             if should_unwrap:
                 # For unwrapped params, show fields directly under params without the wrapper
@@ -377,16 +380,23 @@ def generate_results_section(results, symbol_registry):
             result_info = symbol_registry[result_key]
             flattened_results = result_info.get('flattened_description', {})
             
-            # Check if this result should be unwrapped (from method-specific result, not global symbol_registry)
+            # Check if this result should be unwrapped
+            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped
+            # Auto-unwrap happens when: single result, keep_key is false, and type is struct or iterator
+            # - Struct: flattened keys have the wrapper level (e.g., ".response.field")
+            # - Iterator: flattened keys have top-level [#] (e.g., ".items[#]")
+            has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_results.keys())
+            is_top_level_iterator = any(key.startswith('.') and '[#]' in key[1:].split('.')[0] for key in flattened_results.keys())
             is_explicitly_unwrapped = result.get('unwrapped', False)
+            should_unwrap = is_explicitly_unwrapped or (not result.get('keep_key') and (has_wrapper_level or is_top_level_iterator))
             
             # If unwrapped and has no flattened fields, show as simple type
-            if is_explicitly_unwrapped and not flattened_results:
+            if should_unwrap and not flattened_results:
                 markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
                 return markdown
             
             # If unwrapped and has flattened fields, unwrap them
-            if is_explicitly_unwrapped and flattened_results:
+            if should_unwrap and flattened_results:
                 # Determine if result should be shown as array or object
                 # It's an array if the top-level result is an iterator
                 # Check if the wrapper field itself has [#] (e.g., ".macAddressList[#]" vs ".response.items[#]")

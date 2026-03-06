@@ -349,8 +349,8 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. @retval ErrorCode::GENERAL: General failure. |
-| result.response.version | integer | The API version number e.g. 1 |
-| result.response.success | bool | Whether the request succeeded |
+| result.version | integer | The API version number e.g. 1 |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -683,14 +683,14 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | GetLastKeypressSourceResponse | The last keypress source response @retval ErrorCode::NONE: Last keypress source retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve last keypress source. |
-| result.response.controllerId | integer | The controller ID of the target remote on the specified network e.g. 1 |
-| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch |
-| result.response.sourceName | string | The source of the last key press  |
-| result.response.sourceType | string | The source type of the last key press  |
-| result.response.sourceKeyCode | integer | The source key code e.g. 195 |
-| result.response.isScreenBindMode | bool | True if in screen bind mode, otherwise false |
-| result.response.remoteKeypadConfig | integer | The configuration of the remote keypad e.g. 0 |
-| result.response.success | bool | Whether the request succeeded |
+| result.controllerId | integer | The controller ID of the target remote on the specified network e.g. 1 |
+| result.timestamp | integer | The time of the last key press in milliseconds since epoch |
+| result.sourceName | string | The source of the last key press  |
+| result.sourceType | string | The source type of the last key press  |
+| result.sourceKeyCode | integer | The source key code e.g. 195 |
+| result.isScreenBindMode | bool | True if in screen bind mode, otherwise false |
+| result.remoteKeypadConfig | integer | The configuration of the remote keypad e.g. 0 |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1107,10 +1107,10 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.response | StatusFirmwareUpdateResponse | The status firmware update response @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
-| result.response.result | FirmwareUpdateStatus | The firmware update status |
-| result.response.result.state | string | The firmware update state |
-| result.response.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
-| result.response.success | bool | Whether the request succeeded |
+| result.result | FirmwareUpdateStatus | The firmware update status |
+| result.result.state | string | The firmware update state |
+| result.result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100) e.g. 50 |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
