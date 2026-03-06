@@ -403,8 +403,8 @@ class HeaderFileParser:
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
-                    # Extract @text annotation for JSON mapping
-                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
+                    # Extract @text annotation for JSON mapping (only capture valid identifier token)
+                    text_tag_pattern = r'@text\s+([\w\-]+)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
                     custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)

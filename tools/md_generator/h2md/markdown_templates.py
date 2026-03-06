@@ -287,25 +287,40 @@ def generate_parameters_section(params, symbol_registry):
             # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped (single struct param without @keep_key)
             # We can detect auto-unwrap by checking if flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
             has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
-            should_unwrap = param_info.get('unwrapped') or (has_wrapper_level and not param.get('keep_key'))
+            is_explicitly_unwrapped = param_info.get('unwrapped', False)
+            should_unwrap = is_explicitly_unwrapped or (has_wrapper_level and not param.get('keep_key'))
             
             if should_unwrap:
                 # For unwrapped params, show fields directly under params without the wrapper
                 # e.g., ".request.remoteId" becomes ".remoteId"
                 # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
-                markdown += f"| params | object |  |\n"
+                
+                # Determine if params should be shown as array or object
+                # It's an array if all keys are just the wrapper with [#] (e.g., ".items[#]")
+                is_iterator = all('[#]' in key for key in flattened_params.keys())
+                params_type = "array" if is_iterator else "object"
+                markdown += f"| params | {params_type} |  |\n"
+                
                 for param_name, param_data in flattened_params.items():
-                    # Skip the wrapper level itself - only show nested fields (only when wrapper level exists)
+                    # Skip the wrapper level itself - only show nested fields (only when has_wrapper_level)
                     # e.g., skip ".request", but show ".request.remoteId"
-                    if has_wrapper_level and param_name.startswith('.') and param_name.count('.') < 2:
+                    if has_wrapper_level and param_name.startswith('.') and param_name.count('.') < 2 and '[#]' not in param_name:
                         continue  # Skip wrapper object itself
                     
                     cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
-                    # Remove the struct wrapper level: ".request.remoteId" -> ".remoteId" (only when wrapper level exists)
-                    if has_wrapper_level and param_name.startswith('.'):
-                        parts = param_name[1:].split('.', 1)  # Remove leading dot, split once
-                        if len(parts) > 1:
-                            param_name = '.' + parts[1]  # Get everything after first component
+                    
+                    # Remove the wrapper name while preserving [#] and nested fields
+                    if param_name.startswith('.'):
+                        # Split at first '[#]' or '.' to identify the wrapper name
+                        name_without_dot = param_name[1:]  # Remove leading dot
+                        
+                        # Find the end of the wrapper name (first '[' or '.')
+                        match = re.match(r'^([^\.\[]+)(.*)', name_without_dot)
+                        if match:
+                            wrapper_name, remainder = match.groups()
+                            # For unwrapped params, strip the wrapper name and keep the rest
+                            param_name = remainder if remainder else param_name
+                    
                     # Use per-field optionality if available, not the wrapper's optionality
                     optionality = f"<sup>({param_data['optionality']})</sup>" if param_data.get('optionality') == 'optional' else ''
                     markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
@@ -335,10 +350,41 @@ def generate_results_section(results, symbol_registry):
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         if len(results) == 1:
-            result_info = symbol_registry[f"{results[0]['name']}-{results[0]['type']}"]
-            if 'unwrapped' in result_info and result_info['unwrapped']:
+            result = results[0]
+            result_key = f"{result['name']}-{result['type']}"
+            result_info = symbol_registry[result_key]
+            flattened_results = result_info.get('flattened_description', {})
+            
+            # Check if this result should be unwrapped
+            is_explicitly_unwrapped = result_info.get('unwrapped', False)
+            
+            # If unwrapped and has no flattened fields, show as simple type
+            if is_explicitly_unwrapped and not flattened_results:
                 markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
                 return markdown
+            
+            # If unwrapped and has flattened fields, unwrap them
+            if is_explicitly_unwrapped and flattened_results:
+                # Determine if result should be shown as array or object
+                is_iterator = all('[#]' in key for key in flattened_results.keys())
+                result_type = "array" if is_iterator else "object"
+                markdown += f"| result | {result_type} |  |\n"
+                
+                for result_name, result_data in flattened_results.items():
+                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                    
+                    # Remove the wrapper name while preserving [#] and nested fields
+                    if result_name.startswith('.'):
+                        name_without_dot = result_name[1:]
+                        match = re.match(r'^([^\.\[]+)(.*)', name_without_dot)
+                        if match:
+                            wrapper_name, remainder = match.groups()
+                            result_name = remainder if remainder else result_name
+                    
+                    optionality = f"<sup>({result_data['optionality']})</sup>" if result_data.get('optionality') == 'optional' else ''
+                    markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                return markdown
+        
         markdown += f"| result | object |  |\n"
         for result in results:
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
@@ -370,7 +416,7 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     """
     Generate the markdown for a specific method.
     """
-    method_name = to_camel_case(method_name)
+    method_name = method_info.get('text') or to_camel_case(method_name)
     markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
     markdown += generate_events_section(method_info['events'], all_events)
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
@@ -417,6 +463,7 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     """
     Generate the markdown for a specific property.
     """
+    property_name = property_info.get('text') or to_camel_case(property_name)
     markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['details'] or property_info['brief'])
     if property_info['property'] == 'read':
         markdown += "> This property is read-only.\n"
@@ -466,7 +513,7 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     """
     Generate the markdown for a specific event.
     """
-    camel_event = to_camel_case(event_name)
+    camel_event = event_info.get('text') or to_camel_case(event_name)
     markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['details'] or event_info['brief'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
