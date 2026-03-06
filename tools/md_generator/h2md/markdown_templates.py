@@ -301,13 +301,23 @@ def generate_parameters_section(params, symbol_registry):
                 params_type = "array" if is_iterator else "object"
                 markdown += f"| params | {params_type} |  |\n"
                 
+                # For unwrapped iterators, use the parameter's own description, not the flattened one
+                # The flattened description would be from the shared symbols_registry which may have stale data
+                param_description = param.get('description', '') if is_iterator else None
+                
                 for param_name, param_data in flattened_params.items():
                     # Skip the wrapper level itself - only show nested fields (only when has_wrapper_level)
                     # e.g., skip ".request", but show ".request.remoteId"
                     if has_wrapper_level and param_name.startswith('.') and param_name.count('.') < 2 and '[#]' not in param_name:
                         continue  # Skip wrapper object itself
                     
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                    # Use param-specific description for unwrapped iterators, otherwise use flattened description
+                    if is_iterator and param_description:
+                        field_description = param_description
+                    else:
+                        field_description = param_data.get('description', '')
+                    
+                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', field_description)
                     
                     # Remove the wrapper name while preserving [#] and nested fields
                     if param_name.startswith('.'):
@@ -370,8 +380,17 @@ def generate_results_section(results, symbol_registry):
                 result_type = "array" if is_iterator else "object"
                 markdown += f"| result | {result_type} |  |\n"
                 
+                # For unwrapped iterators, use the result's own description, not the flattened one
+                result_description = result.get('description', '') if is_iterator else None
+                
                 for result_name, result_data in flattened_results.items():
-                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                    # Use result-specific description for unwrapped iterators, otherwise use flattened description
+                    if is_iterator and result_description:
+                        field_description = result_description
+                    else:
+                        field_description = result_data.get('description', '')
+                    
+                    cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', field_description)
                     
                     # Remove the wrapper name while preserving [#] and nested fields
                     if result_name.startswith('.'):
