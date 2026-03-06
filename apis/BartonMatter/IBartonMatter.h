@@ -110,11 +110,11 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
      //@param: payload holds the json formatter data of voice command
      virtual Core::hresult OnVoiceCommandReceived(const std::string& payload /* @in */) =0;
 
-     // @brief Register a sink to receive device events
-     virtual Core::hresult Register(INotification* sink /* @in */) = 0; /* @json:omit */
+     // @json:omit
+     virtual Core::hresult Register(INotification* sink /* @in */) = 0;
 
-     // @brief Unregister a previously registered event sink
-     virtual Core::hresult Unregister(INotification* sink /* @in */) = 0; /* @json:omit */
+     // @json:omit
+     virtual Core::hresult Unregister(INotification* sink /* @in */) = 0;
 };
 
 } // Exchange
