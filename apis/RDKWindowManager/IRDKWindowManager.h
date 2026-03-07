@@ -99,7 +99,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param groupId(optional): group identifier of wayland socket
   // @param topmost(optional): Tells whether client window need to be topmost or not
   // @param focus(optional): Tells whether the client needs focus or not
-  virtual Core::hresult CreateDisplay(const std::string &clientId, const std::string &displayName, const uint32_t displayWidth /* @default:1920 */, const uint32_t displayHeight /* @default:1080 */, bool virtualDisplay /* @default:false */, const uint32_t virtualWidth /* @default:1920 */, const uint32_t virtualHeight /* @default:1080 */, const uint32_t ownerId /* @default:0 */, const uint32_t groupId /* @default:0 */, bool topmost /* @default:true */, bool focus /* @default:true */) = 0;
+  virtual Core::hresult CreateDisplay(const std::string &clientId, const std::string &displayName, const uint32_t displayWidth /* @default:1920 */, const uint32_t displayHeight /* @default:1080 */, const bool virtualDisplay /* @default:false */, const uint32_t virtualWidth /* @default:1920 */, const uint32_t virtualHeight /* @default:1080 */, const uint32_t ownerId /* @default:0 */, const uint32_t groupId /* @default:0 */, const bool topmost /* @default:true */, const bool focus /* @default:true */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
