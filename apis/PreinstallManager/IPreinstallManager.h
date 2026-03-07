@@ -54,14 +54,16 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   // @text startPreinstall
   // @brief Checks the preinstall directory for packages to be preinstalled and installs them as needed.
   // @param[in] forceInstall: If true always install the app; if false then install only if not installed or existing is older version
-  // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
+  // @retval Core::ERROR_NONE: Preinstallation completed or started successfully.
+  // @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
 
   // @text preinstallState
   // @brief Provides the state of preinstallation process
   // @param[out] state: - Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
-  // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
-  virtual Core::hresult PreinstallState(State& state) = 0;
+  // @retval Core::ERROR_NONE: State retrieved successfully.
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
+  virtual Core::hresult PreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
