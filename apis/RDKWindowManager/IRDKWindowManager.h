@@ -88,8 +88,21 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Create the display window */
   // @text createDisplay
   // @brief Create the display window
-  // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
-  virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
+  // @param clientId: Client identifier
+  // @param displayName: name of wayland display
+  // @param displayWidth(optional): width of client window
+  // @param displayHeight(optional): height of client window
+  // @param virtualDisplay(optional): Tells whether virtual display enabled or not
+  // @param virtualWidth(optional): width of display in framebuffer mode
+  // @param virtualHeight(optional): height of display in framebuffer mode
+  // @param ownerId(optional): uid of owner of wayland socket
+  // @param groupId(optional): group identifier of wayland socket
+  // @param topmost(optional): Tells whether client window need to be topmost or not
+  // @param focus(optional): Tells whether the client needs focus or not
+  // @retval Core::ERROR_NONE: Display window created successfully
+  // @retval Core::ERROR_GENERAL: Failed to create the display window
+  // @retval Core::ERROR_UNAVAILABLE: Display service is not available
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @default:1920 */, const uint32_t displayHeight /* @default:1080 */, const bool virtualDisplay /* @default:false */, const uint32_t virtualWidth /* @default:1920 */, const uint32_t virtualHeight /* @default:1080 */, const uint32_t ownerId /* @default:0 */, const uint32_t groupId /* @default:0 */, const bool topmost /* @default:false */, const bool focus /* @default:false */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
