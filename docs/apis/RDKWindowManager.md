@@ -650,7 +650,7 @@ This method takes no parameters.
 | result | object |  |
 | result.keyCode | integer | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
 | result.modifiers | integer | Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press. |
-| result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. @retval Core::ERROR_NONE: Successfully retrieved the last key press information. @retval Core::ERROR_UNAVAILABLE: No key press information is available. |
+| result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. |
 
 ### Examples
 
