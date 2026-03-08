@@ -1,10 +1,10 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="StorageManager_Plugin"></a>
-# StorageManager Plugin
+<a id="AppStorageManager_Plugin"></a>
+# AppStorageManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/StorageManager/IStorageManager.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppStorageManager/IAppStorageManager.h)**
 
-A StorageManager plugin for Thunder framework.
+A AppStorageManager plugin for Thunder framework.
 
 ### Table of Contents
 
@@ -21,7 +21,7 @@ A StorageManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `StorageManager` plugin provides an interface for StorageManager.
+The `AppStorageManager` plugin provides an interface for AppStorageManager.
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -32,17 +32,17 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.StorageManager) |
-| classname | string | Class name: *StorageManager* |
-| locator | string | Library name: *libWPEFrameworkStorageManager.so* |
+| callsign | string | Plugin instance name (default: org.rdk.AppStorageManager) |
+| classname | string | Class name: *AppStorageManager* |
+| locator | string | Library name: *libWPEFrameworkAppStorageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a id="Methods"></a>
 # Methods
 
-The following methods are provided by the StorageManager plugin:
+The following methods are provided by the AppStorageManager plugin:
 
-StorageManager interface methods:
+AppStorageManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -76,7 +76,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.StorageManager.clear",
+    "method": "org.rdk.AppStorageManager.clear",
     "params": {
         "appId": ""
     }
@@ -87,7 +87,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.StorageManager.clear", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -130,7 +130,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.StorageManager.clearAll",
+    "method": "org.rdk.AppStorageManager.clearAll",
     "params": {
         "exemptionAppIds": ""
     }
@@ -141,7 +141,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.StorageManager.clearAll", "params": {"exemptionAppIds": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
