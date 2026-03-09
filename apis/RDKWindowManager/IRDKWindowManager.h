@@ -94,8 +94,21 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Create the display window */
   // @text createDisplay
   // @brief Create the display window
-  // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
-  virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
+  // @param clientId: Client identifier
+  // @param displayName: name of wayland display
+  // @param displayWidth(optional): width of client window
+  // @param displayHeight(optional): height of client window
+  // @param virtualDisplay(optional): Tells whether virtual display enabled or not
+  // @param virtualWidth(optional): width of display in framebuffer mode
+  // @param virtualHeight(optional): height of display in framebuffer mode
+  // @param ownerId(optional): uid of owner of wayland socket
+  // @param groupId(optional): group identifier of wayland socket
+  // @param topmost(optional): Tells whether client window needs to be topmost or not
+  // @param focus(optional): Tells whether the client needs focus or not
+  // @retval Core::ERROR_NONE: Display window created successfully
+  // @retval Core::ERROR_GENERAL: Failed to create the display window
+  // @retval Core::ERROR_UNAVAILABLE: Display service is not available
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
@@ -114,6 +127,9 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers multiple key intercepts in a single operation for a specific client.
   // @param clientId: The client identifier
   // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: Key intercepts registered successfully
+  // @retval Core::ERROR_GENERAL: Failed to register the key intercepts
+  // @retval Core::ERROR_UNAVAILABLE: Window manager service is not available
   virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
@@ -122,6 +138,9 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param clientId: The client identifier
   // @param keyCode: The key code to remove
   // @param modifiers: JSON String format with one or more modifiers
+  // @retval Core::ERROR_NONE: Key intercept removed successfully
+  // @retval Core::ERROR_GENERAL: Failed to remove the key intercept
+  // @retval Core::ERROR_UNAVAILABLE: Display service is not available
   virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */
@@ -215,7 +234,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the visibility of the given client or appInstanceId
   // @param client: client name or application instance ID
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
 
   /** Get the first-frame rendered status of the application */
@@ -246,7 +265,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
@@ -254,26 +273,26 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
 
   /** Starts the VNC server */
   // @text startVncServer
   // @brief Starts the VNC server
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult StartVncServer() = 0;
 
   /** Stops the VNC server */
   // @text stopVncServer
   // @brief Stops the VNC server
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult StopVncServer() = 0;
 
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
   // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
-  // @retval Core::ERROR_NONE on success
-  // @retval Core::ERROR_GENERAL on failure
+  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_GENERAL: Failure
   virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange

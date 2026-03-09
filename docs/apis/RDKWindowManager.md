@@ -138,7 +138,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercepts | string | JSON String format containing the array of key intercept(client/callSign, keyCode, modifiers) configuration |
+| params.clientId | string | The client identifier |
+| params.intercepts | string | JSON string containing an array of key intercept objects. Each object should have: keyCode (integer), modifiers (array of modifier strings), focusOnly (boolean), propagate (boolean) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -155,7 +156,8 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.RDKWindowManager.addKeyIntercepts",
     "params": {
-        "intercepts": ""
+        "clientId": "org.rdk.Netflix",
+        "intercepts": "[{\"keyCode\": 13, \"modifiers\": [], \"focusOnly\": true, \"propagate\": false}]"
     }
 }
 ```
@@ -164,7 +166,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"intercepts": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"clientId": "org.rdk.Netflix", "intercepts": "[{\"keyCode\": 13, \"modifiers\": [], \"focusOnly\": true, \"propagate\": false}]"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -240,7 +242,17 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayParams | string | JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus |
+| params.clientId | string | Client identifier |
+| params.displayName | string | Name of wayland display |
+| params.displayWidth | integer | <sup>*(optional)*</sup> Width of client window |
+| params.displayHeight | integer | <sup>*(optional)*</sup> Height of client window |
+| params.virtualDisplay | boolean | <sup>*(optional)*</sup> Tells whether virtual display is enabled or not |
+| params.virtualWidth | integer | <sup>*(optional)*</sup> Width of display in framebuffer mode |
+| params.virtualHeight | integer | <sup>*(optional)*</sup> Height of display in framebuffer mode |
+| params.ownerId | integer | <sup>*(optional)*</sup> UID of owner of wayland socket |
+| params.groupId | integer | <sup>*(optional)*</sup> Group identifier of wayland socket |
+| params.topmost | boolean | <sup>*(optional)*</sup> Tells whether client window needs to be topmost or not |
+| params.focus | boolean | <sup>*(optional)*</sup> Tells whether the client needs focus or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -257,7 +269,17 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.RDKWindowManager.createDisplay",
     "params": {
-        "displayParams": ""
+        "clientId": "org.rdk.Netflix",
+        "displayName": "Netflix",
+        "displayWidth": 1920,
+        "displayHeight": 1080,
+        "virtualDisplay": false,
+        "virtualWidth": 0,
+        "virtualHeight": 0,
+        "ownerId": 0,
+        "groupId": 0,
+        "topmost": false,
+        "focus": false
     }
 }
 ```
@@ -266,7 +288,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"displayParams": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "org.rdk.Netflix", "displayName": "Netflix", "displayWidth": 1920, "displayHeight": 1080, "virtualDisplay": false, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": false, "focus": false}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -745,7 +767,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1010,7 +1032,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercept | string | JSON String format with the client/callSign, keyCode, modifiers |
+| params.clientId | string | The client identifier |
+| params.keyCode | integer | The key code to remove |
+| params.modifiers | string | JSON string containing an array of modifier strings (e.g., `"[]"` for no modifiers, or `["shift"]`, `["ctrl"]`, `["alt"]`) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1027,7 +1051,9 @@ Event details will be updated soon.
     "id": 18,
     "method": "org.rdk.RDKWindowManager.removeKeyIntercept",
     "params": {
-        "intercept": ""
+        "clientId": "org.rdk.Netflix",
+        "keyCode": 13,
+        "modifiers": "[]"
     }
 }
 ```
@@ -1036,7 +1062,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"intercept": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"clientId": "org.rdk.Netflix", "keyCode": 13, "modifiers": "[]"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
