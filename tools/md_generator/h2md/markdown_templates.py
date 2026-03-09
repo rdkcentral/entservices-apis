@@ -360,9 +360,12 @@ def generate_parameters_section(params, symbol_registry):
                 cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
-                # Use per-field optionality if available, not the wrapper's optionality
-                optionality = f"<sup>({param_data['optionality']})</sup>" if param_data.get('optionality') == 'optional' else ''
-                markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                # Prefer per-field optionality; fall back to wrapper-level optionality when not present
+                effective_optionality = param_data.get('optionality')
+                if effective_optionality is None:
+                    effective_optionality = param.get('optionality')
+                optionality_marker = f"<sup>({effective_optionality})</sup>" if effective_optionality == 'optional' else ''
+                markdown += f"| params{'?' if effective_optionality == 'optional' else ''}{param_name} | {param_data['type']} | {optionality_marker}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
     return markdown
