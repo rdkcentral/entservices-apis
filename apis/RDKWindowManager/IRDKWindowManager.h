@@ -219,14 +219,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
 
   /** Get the first-frame rendered status of the application */
-  // @text renderReady
+  // @json:omit
   // @brief To get the status of first frame is rendered or not
   // @param client: client name or application instance ID
   // @param status: Returns true if the application has rendered first frame, false if it has not yet.
   virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
 
   /** To enable/disable the rendering of a Wayland display in the window manager */
-  // @text enableDisplayRender
+  // @json:omit
   // @brief Enable or disable the rendering of a Wayland display
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render
