@@ -1297,7 +1297,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "jsonrpc": "2.0",
     "method": "client.events.onFirmwareUpdateProgress",
     "params": {
-        "sessionId": "\"12345-abc-def\"",
+        "sessionId": "12345-abc-def",
         "status": {
             "state": "DOWNLOADING",
             "percentComplete": 50

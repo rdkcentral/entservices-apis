@@ -272,7 +272,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateProgressEvent {
-            string sessionId            /* @brief The session identifier ex: "12345-abc-def" */;
+            string sessionId            /* @brief The session identifier ex: 12345-abc-def */;
             FirmwareUpdateStatus status /* @brief The firmware update status */;
         };
 
