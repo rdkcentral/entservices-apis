@@ -108,7 +108,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
   // @retval Core::ERROR_UNAVAILABLE: Display service is not available
-  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @default:1920 */, const uint32_t displayHeight /* @default:1080 */, const bool virtualDisplay /* @default:false */, const uint32_t virtualWidth /* @default:1920 */, const uint32_t virtualHeight /* @default:1080 */, const uint32_t ownerId /* @default:0 */, const uint32_t groupId /* @default:0 */, const bool topmost /* @default:false */, const bool focus /* @default:false */) = 0;
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
