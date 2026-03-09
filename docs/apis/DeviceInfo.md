@@ -186,7 +186,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.MS12Capabilities | IMS12CapabilityIterator | MS12 audio capability @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
-| result.MS12Capabilities[#] | string |  |
+| result.MS12Capabilities[#] | string |  |    
 | result.success | bool |  |
 
 ### Examples
@@ -588,7 +588,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```
 
 <a id="Brand"></a>
-## *Brand*
+## *BrandName*
 
 Provides access to device brand name
 
@@ -1057,7 +1057,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```
 
 <a id="Model"></a>
-## *Model*
+## *ModelName*
 
 Provides access to the friendly device model name.
 
@@ -1195,7 +1195,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```
 
 <a id="Sku"></a>
-## *Sku*
+## *ModelId*
 
 Provides access to the device model number
 
