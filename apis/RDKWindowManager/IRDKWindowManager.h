@@ -127,6 +127,9 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers multiple key intercepts in a single operation for a specific client.
   // @param clientId: The client identifier
   // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: Key intercepts registered successfully
+  // @retval Core::ERROR_GENERAL: Failed to register the key intercepts
+  // @retval Core::ERROR_UNAVAILABLE: Window manager service is not available
   virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
