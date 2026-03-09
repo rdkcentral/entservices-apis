@@ -228,7 +228,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the visibility of the given client or appInstanceId
   // @param client: client name or application instance ID
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
 
   /** Get the first-frame rendered status of the application */
@@ -259,7 +259,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
@@ -267,26 +267,26 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
 
   /** Starts the VNC server */
   // @text startVncServer
   // @brief Starts the VNC server
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult StartVncServer() = 0;
 
   /** Stops the VNC server */
   // @text stopVncServer
   // @brief Stops the VNC server
-  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_NONE: Success
   virtual Core::hresult StopVncServer() = 0;
 
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
   // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
-  // @retval Core::ERROR_NONE on success
-  // @retval Core::ERROR_GENERAL on failure
+  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_GENERAL: Failure
   virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange
