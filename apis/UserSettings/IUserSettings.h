@@ -401,7 +401,8 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
         VOICE_GUIDANCE = 15,
         VOICE_GUIDANCE_RATE = 16,
         VOICE_GUIDANCE_HINTS = 17,
-        CONTENT_PIN = 18
+        CONTENT_PIN = 18,
+        PRIVACY_MODE = 19
     };
 
     struct SettingsMigrationState
