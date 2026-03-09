@@ -745,7 +745,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
