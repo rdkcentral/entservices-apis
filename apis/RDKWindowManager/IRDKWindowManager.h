@@ -103,7 +103,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param virtualHeight(optional): height of display in framebuffer mode
   // @param ownerId(optional): uid of owner of wayland socket
   // @param groupId(optional): group identifier of wayland socket
-  // @param topmost(optional): Tells whether client window need to be topmost or not
+  // @param topmost(optional): Tells whether client window needs to be topmost or not
   // @param focus(optional): Tells whether the client needs focus or not
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
