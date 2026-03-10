@@ -64,7 +64,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
 
   // @text getPreinstallState
-  // @brief Provides the state of preinstallation process
+  // @brief Provides the state of the preinstallation process.
   // @param[out] state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
   // @retval Core::ERROR_NONE: State retrieved successfully.
   // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
