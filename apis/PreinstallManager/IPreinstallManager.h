@@ -68,7 +68,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   // @param[out] state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
   // @retval Core::ERROR_NONE: State retrieved successfully.
   // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
-  virtual Core::hresult getPreinstallState(State& state /* @out */) = 0;
+  virtual Core::hresult GetPreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
