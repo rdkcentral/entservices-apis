@@ -41,9 +41,13 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_PREINSTALL_MANAGER_NOTIFICATION };
 
-    // @text onComplete
+    // @text onAppInstallationStatus
+    // @brief Triggered when a per-application installation status update is available
+    // @param jsonResponse: JSON string containing per-application installation status and failure details
+    virtual void OnAppInstallationStatus(const string& jsonResponse) {};
+    // @text OnPreInstallationComplete
     // @brief Emitted when the preinstallation process completes
-    virtual void OnComplete() {};
+    virtual void OnPreInstallationComplete() {};
   };
 
   /** Register notification interface */
@@ -58,12 +62,12 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
 
-  // @text preinstallState
+  // @text getPreinstallState
   // @brief Provides the state of preinstallation process
-  // @param[out] state: - Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
+  // @param[out] state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
   // @retval Core::ERROR_NONE: State retrieved successfully.
   // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
-  virtual Core::hresult PreinstallState(State& state /* @out */) = 0;
+  virtual Core::hresult getPreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
