@@ -32,10 +32,10 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
 
   enum State : uint8_t {
-          NOT_STARTED             = 0     /* @text NOT_STARTED */,
-          IN_PROGRESS             = 1     /* @text IN_PROGRESS */,
-          COMPLETED               = 2     /* @text COMPLETED   */
-      };
+    NOT_STARTED   = 0 /* @text NOT_STARTED */,
+    IN_PROGRESS   = 1 /* @text IN_PROGRESS */,
+    COMPLETED     = 2 /* @text COMPLETED   */
+  };
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
