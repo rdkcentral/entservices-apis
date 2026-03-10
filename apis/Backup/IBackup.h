@@ -52,19 +52,19 @@ namespace WPEFramework
 
             // @text backupSettings
             // @brief Backup settings across the system
-            // @param BackupContext: Context for which the backup to happen
+            // @param context: Context for which the backup to happen
             // @retval Core::ERROR_NONE Successfully backed up the settings
             virtual Core::hresult BackupSettings(const BackupContext& context) = 0;
 
             // @text restoreSettings
             // @brief Restore settings across the system
-            // @param BackupContext: Context for which the restore to happen
+            // @param context: Context for which the restore to happen
             // @retval Core::ERROR_NONE Successfully restored the settings
             virtual Core::hresult RestoreSettings(const BackupContext& context) = 0;
 
             // @text deleteBackup
             // @brief Deletes the previously backed up settings across the system
-            // @param BackupContext: Context for which the backup to be deleted
+            // @param context: Context for which the backup to be deleted
             // @retval Core::ERROR_NONE Successfully deleted the backup
             virtual Core::hresult DeleteBackup(const BackupContext& context) = 0;
         };
@@ -84,20 +84,19 @@ namespace WPEFramework
 
             // @text backup
             // @brief Backup settings that belong to this component.
-            // @param BackupContext: Context for which the backup to happen
-            // @param persistentPath: The location where the backup should be stored.
+            // @param context: Context for which the backup to happen
             // @retval Core::ERROR_NONE Successfully backed up
             virtual Core::hresult Backup(const BackupContext& context) = 0;
 
             // @text restore
             // @brief Restore settings that belong to this component.
-            // @param BackupContext: Context for which the restore to happen
+            // @param context: Context for which the restore to happen
             // @retval Core::ERROR_NONE Successfully restored
             virtual Core::hresult Restore(const BackupContext& context) = 0;
 
             // @text delete
             // @brief Deletes the previously backed up settings that belong to this component.
-            // @param BackupContext: Context for which the backup to be deleted
+            // @param context: Context for which the backup to be deleted
             // @retval Core::ERROR_NONE Successfully deleted the backup
             virtual Core::hresult Delete(const BackupContext& context) = 0;
         };
