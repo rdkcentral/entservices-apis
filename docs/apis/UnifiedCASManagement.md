@@ -67,11 +67,11 @@ Event details will be updated soon.
 | params.managementType | string | Type of CAS management |
 | params.casinitdata | string | CAS specific initdata for the selected media |
 | params.casocdmid | string | The well-known OCDM ID of the CAS to use |
+| params.success | bool | @out Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -88,7 +88,8 @@ Event details will be updated soon.
         "mode": "MODE_NONE",
         "managementType": "MANAGE_FULL",
         "casinitdata": "",
-        "casocdmid": ""
+        "casocdmid": "",
+        "success": true
     }
 }
 ```
@@ -97,7 +98,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.UnifiedCASManagement.manage", "params": {"mediaurl": "", "mode": "MODE_NONE", "managementType": "MANAGE_FULL", "casinitdata": "", "casocdmid": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.UnifiedCASManagement.manage", "params": {"mediaurl": "", "mode": "MODE_NONE", "managementType": "MANAGE_FULL", "casinitdata": "", "casocdmid": "", "success": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -107,9 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "success": true
-    }
+    "result": null
 }
 ```
 
@@ -126,11 +125,11 @@ Event details will be updated soon.
 | params | object |  |
 | params.payload | string | Data to transfer. Can be base64 coded if required |
 | params.source | string | Origin of the data |
+| params.success | bool | @out Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -144,7 +143,8 @@ Event details will be updated soon.
     "method": "org.rdk.UnifiedCASManagement.send",
     "params": {
         "payload": "",
-        "source": "PUBLIC"
+        "source": "PUBLIC",
+        "success": true
     }
 }
 ```
@@ -153,7 +153,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.UnifiedCASManagement.send", "params": {"payload": "", "source": "PUBLIC"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.UnifiedCASManagement.send", "params": {"payload": "", "source": "PUBLIC", "success": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -163,9 +163,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "success": true
-    }
+    "result": null
 }
 ```
 
@@ -177,12 +175,14 @@ Destroy a management session
 ### Events
 Event details will be updated soon.
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.success | bool | @out Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result | null | On success null will be returned. |
 
 ### Examples
 
@@ -193,7 +193,10 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.UnifiedCASManagement.unmanage"
+    "method": "org.rdk.UnifiedCASManagement.unmanage",
+    "params": {
+        "success": true
+    }
 }
 ```
 
@@ -201,7 +204,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.UnifiedCASManagement.unmanage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.UnifiedCASManagement.unmanage", "params": {"success": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -211,9 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "success": true
-    }
+    "result": null
 }
 ```
 
