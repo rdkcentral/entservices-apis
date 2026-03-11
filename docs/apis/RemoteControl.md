@@ -407,9 +407,9 @@ No Events
 | result.response.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
 | result.response.avrModel | string | The AVR model for which codes are provided  |
 | result.response.success | bool | Whether the request succeeded |
-| result.tvCodes | IStringIterator | A list of TV IR codes |
+| result.tvCodes | IStringIterator | A list of TV IR codes  |
 | result.tvCodes[#] | string |  |
-| result.avrCodes | IStringIterator | A list of AVR IR codes |
+| result.avrCodes | IStringIterator | A list of AVR IR codes  |
 | result.avrCodes[#] | string |  |
 
 ### Examples
@@ -451,10 +451,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
             "success": true
         },
         "tvCodes": [
-            ""
+            1156
         ],
         "avrCodes": [
-            ""
+            "R2467"
         ]
     }
 }
@@ -483,7 +483,7 @@ No Events
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.model | string | The model name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.codes | IStringIterator | A list of IR codes for the specified device |
+| result.codes | IStringIterator | A list of IR codes for the specified device  |
 | result.codes[#] | string |  |
 
 ### Examples
@@ -526,7 +526,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
             "success": true
         },
         "codes": [
-            ""
+            "R2467"
         ]
     }
 }
@@ -552,7 +552,7 @@ No Events
 | result.response | GetIRDBManufacturersResponse | The get IRDB manufacturers response |
 | result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.success | bool | Whether the request succeeded |
-| result.manufacturers | IStringIterator | A list of manufacturer names |
+| result.manufacturers | IStringIterator | A list of manufacturer names  |
 | result.manufacturers[#] | string |  |
 
 ### Examples
@@ -592,7 +592,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
             "success": true
         },
         "manufacturers": [
-            ""
+            "Samsung"
         ]
     }
 }
@@ -620,7 +620,7 @@ No Events
 | result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | result.response.manufacturer | string | The manufacturer name of the AV device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.models | IStringIterator | A list of model names |
+| result.models | IStringIterator | A list of model names  |
 | result.models[#] | string |  |
 
 ### Examples
@@ -662,7 +662,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
             "success": true
         },
         "models": [
-            ""
+            "AH5901068L"
         ]
     }
 }

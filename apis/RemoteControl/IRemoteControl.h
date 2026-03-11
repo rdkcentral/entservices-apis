@@ -319,7 +319,7 @@ namespace WPEFramework {
             // @text getIRDBManufacturers
             // @param request: The get IRDB manufacturers request parameters
             // @param response: The get IRDB manufacturers response
-            // @param manufacturers: A list of manufacturer names
+            // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
             virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
@@ -328,7 +328,7 @@ namespace WPEFramework {
             // @text getIRDBModels
             // @param request: The get IRDB models request parameters
             // @param response: The get IRDB models response
-            // @param models: A list of model names
+            // @param models: A list of model names e.g. "AH5901068L"
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
             virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
@@ -337,8 +337,8 @@ namespace WPEFramework {
             // @text getIRCodesByAutoLookup
             // @param request: The get IR codes by auto lookup request parameters
             // @param response: The get IR codes by auto lookup response
-            // @param tvCodes: A list of TV IR codes
-            // @param avrCodes: A list of AVR IR codes
+            // @param tvCodes: A list of TV IR codes e.g. "1156"
+            // @param avrCodes: A list of AVR IR codes e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
             virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
@@ -347,7 +347,7 @@ namespace WPEFramework {
             // @text getIRCodesByNames
             // @param request: The get IR codes by names request parameters
             // @param response: The get IR codes by names response
-            // @param codes: A list of IR codes for the specified device
+            // @param codes: A list of IR codes for the specified device e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
             virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
