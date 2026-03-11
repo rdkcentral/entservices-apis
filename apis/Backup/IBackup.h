@@ -24,13 +24,13 @@ namespace WPEFramework
 {
     namespace Exchange
     {
+        enum Scenario : uint8_t
+        {
+            HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
+        };
+
         struct EXTERNAL BackupContext
         {
-            enum Scenario : uint8_t
-            {
-                HOSPITALITY_RESET /* @text HOSPITALITY_RESET */
-            };
-
             Scenario scenario;
             string variant /* @default:"generic" */;
             string persistentPath; /* @default:"/opt/secure/persistent/settings_backup/" */
