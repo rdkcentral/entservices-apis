@@ -171,7 +171,7 @@ namespace WPEFramework {
         using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         struct EXTERNAL GetIRCodesByNamesRequest {
-            AVDevType avDevType  /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
         };
