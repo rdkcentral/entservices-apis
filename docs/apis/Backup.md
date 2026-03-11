@@ -61,7 +61,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Scenario | enum |  |
+| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
+| params.context.scenario | string |  |
+| params.context.variant | string |  |
+| params.context.persistentPath | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -78,7 +81,9 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.Backup.backupSettings",
     "params": {
-        "Scenario": ""
+        "scenario": "HOSPITALITY_RESET",
+        "variant": "",
+        "persistentPath": ""
     }
 }
 ```
@@ -87,7 +92,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"Scenario": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -112,7 +117,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Scenario | enum |  |
+| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
+| params.context.scenario | string |  |
+| params.context.variant | string |  |
+| params.context.persistentPath | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -129,7 +137,9 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.Backup.deleteBackup",
     "params": {
-        "Scenario": ""
+        "scenario": "HOSPITALITY_RESET",
+        "variant": "",
+        "persistentPath": ""
     }
 }
 ```
@@ -138,7 +148,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"Scenario": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -163,7 +173,10 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Scenario | enum |  |
+| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
+| params.context.scenario | string |  |
+| params.context.variant | string |  |
+| params.context.persistentPath | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -180,7 +193,9 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.Backup.restoreSettings",
     "params": {
-        "Scenario": ""
+        "scenario": "HOSPITALITY_RESET",
+        "variant": "",
+        "persistentPath": ""
     }
 }
 ```
@@ -189,7 +204,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"Scenario": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
