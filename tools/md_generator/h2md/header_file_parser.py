@@ -54,20 +54,24 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-        'integer':  '0',
-        'int16_t':  '0',
-        'uint16_t': '0',
-        'int32_t':  '0',
-        'uint32_t': '0',
-        'int64_t':  '0',
-        'uint64_t': '0',
-        'int':      '0',
-        'float':    '0.0',
-        'double':   '0.0',
+        'integer':  0,
+        'int8_t':   0,
+        'uint8_t':  0,
+        'int16_t':  0,
+        'uint16_t': 0,
+        'int32_t':  0,
+        'uint32_t': 0,
+        'int64_t':  0,
+        'uint64_t': 0,
+        'int':      0,
+        'float':    0.0,
+        'double':   0.0,
         'bool':     True,
         'char':     'a',
         'string':   ''
     }
+    INT_TYPES = {'integer', 'int', 'int8_t', 'uint8_t', 'int16_t', 'uint16_t', 'int32_t', 'uint32_t', 'int64_t', 'uint64_t'}
+    FLOAT_TYPES = {'float', 'double'}
     # List of regexes to match different cpp components of the header file
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
@@ -629,7 +633,7 @@ class HeaderFileParser:
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
-            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
+            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description, symbol_type)
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
@@ -790,7 +794,8 @@ class HeaderFileParser:
         Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
-        example_from_param_description = self.generate_example_from_description(description)
+        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
+        example_from_param_description = self.generate_example_from_description(description, symbol_type)
         if example_from_param_description:
             return self.wrap_example_if_iterator(unique_id, example_from_param_description)
         # if no example in the param description, pull from the symbols registry
@@ -815,7 +820,8 @@ class HeaderFileParser:
         Generate an example for an individual symbol based on its description or type. Used as a
         helper to populate the symbols registry.
         """
-        example = self.generate_example_from_description(description)
+        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
+        example = self.generate_example_from_description(description, symbol_type)
         if example:
             return self.wrap_example_if_iterator(unique_id, example)
         if unique_id in self.symbols_registry:
@@ -823,14 +829,36 @@ class HeaderFileParser:
             return self.generate_example_from_symbol_type(symbol_type)
         return None
 
-    def generate_example_from_description(self, param_description):
+    def generate_example_from_description(self, param_description, symbol_type=None):
         """
-        Extracts an example from a parameter description.
+        Extracts an example from a parameter description and converts it to the
+        appropriate Python type based on the C++ symbol type.
         """
         if param_description is None:
             return None
         match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
-        return match.group(1) if match else None
+        if not match:
+            return None
+        value = match.group(1)
+        if symbol_type:
+            return self._convert_to_type(value, symbol_type)
+        return value
+
+    def _convert_to_type(self, value, symbol_type):
+        """Convert a string example value to the correct Python type based on C++ type."""
+        if symbol_type in self.INT_TYPES:
+            try:
+                return int(value)
+            except (ValueError, TypeError):
+                return value
+        if symbol_type in self.FLOAT_TYPES:
+            try:
+                return float(value)
+            except (ValueError, TypeError):
+                return value
+        if symbol_type == 'bool':
+            return value.lower() in ('true', '1', 'yes') if isinstance(value, str) else bool(value)
+        return value
 
     def generate_example_from_symbol_type(self, symbol_type):
         """

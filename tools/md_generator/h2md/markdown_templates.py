@@ -238,7 +238,7 @@ def generate_request_section(request, method_type, classname=None):
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
-    request_json = json.dumps(_convert_json_types(request), indent=4)
+    request_json = json.dumps(request, indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
     return markdown
 
@@ -255,7 +255,7 @@ def generate_curl_request_section(request, method_type, classname=None):
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
-    request_json = json.dumps(_convert_json_types(request))
+    request_json = json.dumps(request)
     markdown = EXAMPLE_CURL_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)  
     return markdown
 
@@ -265,7 +265,7 @@ def generate_response_section(response, method_type, classname=None):
     """
     if isinstance(response, dict):
         response = dict(response)
-    response_json = json.dumps(_convert_json_types(response), indent=4)
+    response_json = json.dumps(response, indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
     return markdown
 
@@ -589,29 +589,6 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
         request = dict(request)
         # JSON-RPC notifications should not include an "id" field
         request.pop('id', None)
-    request_json = json.dumps(_convert_json_types(request), indent=4)
+    request_json = json.dumps(request, indent=4)
     markdown += EXAMPLE_NOTIFICATION_TEMPLATE.format(request_json=request_json)
     return markdown
-
-def _convert_json_types(obj):
-    """
-    Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
-    Keep 'jsonrpc' field as string (JSON-RPC 2.0 spec requires it to be "2.0").
-    """
-    if isinstance(obj, dict):
-        return {k: _convert_json_types(v) if k != 'jsonrpc' else v for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [_convert_json_types(i) for i in obj]
-    elif isinstance(obj, str):
-        if obj.lower() == 'true':
-            return True
-        if obj.lower() == 'false':
-            return False
-        try:
-            if '.' in obj:
-                return float(obj)
-            return int(obj)
-        except ValueError:
-            return obj
-    else:
-        return obj

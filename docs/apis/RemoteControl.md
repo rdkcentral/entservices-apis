@@ -451,7 +451,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
             "success": true
         },
         "tvCodes": [
-            1156
+            "1156"
         ],
         "avrCodes": [
             "R2467"
@@ -824,11 +824,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
                 "model": "XR15",
                 "hwVersion": "201.2.0.0",
                 "swVersion": "1.0.0",
-                "btlVersion": 2.0,
+                "btlVersion": "2.0",
                 "serialNumber": "18464408B544",
                 "batteryPercent": 0,
-                "tvIRCode": 1,
-                "ampIRCode": 1,
+                "tvIRCode": "1",
+                "ampIRCode": "1",
                 "wakeupKeyCode": 0,
                 "wakeupConfig": "all",
                 "wakeupCustomList": "[3,1]",
