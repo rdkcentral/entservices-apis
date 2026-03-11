@@ -227,7 +227,7 @@ namespace WPEFramework {
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
             // @param success: Whether the request succeeded
-            // @param types: Array of strings indicating the voice session request types which are valid
+            // @param types: Array of strings indicating the voice session request types which are valid e.g. "ptt_transcription"
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
             virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;

@@ -203,7 +203,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid |
+| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid  |
 | result.types[#] | string |  |
 
 ### Examples
@@ -236,7 +236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
     "result": {
         "success": true,
         "types": [
-            ""
+            "ptt_transcription"
         ]
     }
 }
