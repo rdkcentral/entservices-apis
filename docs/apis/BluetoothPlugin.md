@@ -360,7 +360,7 @@ This method takes no parameters.
 | result.connectedDevices[#].activeState | string | for devices that support low power mode this parameter indicates if the device is in `STANDBY` mode (`0`), `LOW_POWER` mode (`1`), or `ACTIVE` mode (`2`) |
 | result.connectedDevices[#].rawDeviceType | string | Bluetooth device class |
 | result.connectedDevices[#].rawBleDeviceType | string | Bluetooth device appearance |
-| result.connectedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC (if connected via the [connect](#connect) API) |
+| result.connectedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC in RFC3339/ISO-8601 format (for example, `2024-01-30T14:23:05Z`) if connected via the [connect](#connect) API |
 | result.connectedDevices[#].autoconnect | boolean | <sup>*(optional)*</sup> Whether or not autoconnect is enabled for this device (if [setAutoConnect](#setAutoConnect) was previously called) |
 | result.success | boolean | Whether the request succeeded |
 
@@ -1332,7 +1332,7 @@ This method takes no parameters.
 <a name="getAutoConnect"></a>
 ## *getAutoConnect*
 
-Gets the autoconnect value for the given Bluetooth device
+Gets the autoconnect value for the given Bluetooth device.
 
 ### Events
 
@@ -1384,7 +1384,7 @@ No Events
 <a name="setAutoConnect"></a>
 ## *setAutoConnect*
 
-Sets the autoconnect value for the given Bluetooth device
+Sets the autoconnect value for the given Bluetooth device.
 
 ### Events
 
@@ -1396,7 +1396,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.deviceID | string | ID that is derived from the Bluetooth MAC address. 6 byte MAC value is packed into 8 byte with leading zeros for first 2 bytes |
-| params.enable | boolean | Whether or not to enable autoconnect |
+| params.enable | boolean | Sets the device's `autoconnect` state (`true` to enable, `false` to disable) |
 
 ### Result
 
