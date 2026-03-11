@@ -836,7 +836,7 @@ class HeaderFileParser:
         """
         if param_description is None:
             return None
-        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
+        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'e\.g\.\s+(\S+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
         if not match:
             return None
         value = match.group(1)
