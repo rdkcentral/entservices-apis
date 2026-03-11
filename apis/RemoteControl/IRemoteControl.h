@@ -98,10 +98,6 @@ namespace WPEFramework {
         using IUint32Iterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-        struct EXTERNAL SuccessResponse {
-            bool success /* @brief Whether the request succeeded */;
-        };
-
         struct EXTERNAL GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
@@ -235,10 +231,6 @@ namespace WPEFramework {
             uint32_t percentIncrement /* @brief The increment change of a firmware update to notify. Valid range 1-100 percent ex: 10 */;
         };
 
-        struct EXTERNAL StartFirmwareUpdateResponse {
-            bool success /* @brief Whether the request succeeded */;
-        };
-
         struct EXTERNAL CancelFirmwareUpdateRequest {
             string sessionId /* @brief The session identifier e.g. "12345-abc-def" */;
         };
@@ -299,19 +291,19 @@ namespace WPEFramework {
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
             // @param request: The pairing request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @param macAddressList: Optional list of MAC addresses to pair with (only used if scanEnable is true)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const StartPairingRequest& request, SuccessResponse& response /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const StartPairingRequest& request, bool& success /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
             // @param request: The stop pairing request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const StopPairingRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult StopPairing(const StopPairingRequest& request, bool& success /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -363,18 +355,18 @@ namespace WPEFramework {
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
             // @param request: The set IR code request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const SetIRCodeRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult SetIRCode(const SetIRCodeRequest& request, bool& success /* @out */) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
             // @param request: The clear IR codes request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request, bool& success /* @out */) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -386,58 +378,58 @@ namespace WPEFramework {
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
             // @param request: The configure wakeup keys request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request /* @unwrapped */, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request /* @unwrapped */, bool& success /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
             // @param request: The initialize IRDB request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, bool& success /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
             // @param request: The find my remote request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request, bool& success /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
-            virtual Core::hresult FactoryReset(SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult FactoryReset(bool& success /* @out */) = 0;
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @param macAddressList: Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(SuccessResponse& response /* @out */, IStringIterator* const macAddressList /* @unwrapped */) = 0;
+            virtual Core::hresult Unpair(bool& success /* @out */, IStringIterator* const macAddressList /* @unwrapped */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
             // @param request: The start firmware update request parameters
-            // @param response: The start firmware update response
+            // @param success: Whether the request succeeded
             // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, StartFirmwareUpdateResponse& response /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
             // @param request: The cancel firmware update request parameters
-            // @param response: The response containing success status
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request, SuccessResponse& response /* @out */) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request, bool& success /* @out */) = 0;
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate

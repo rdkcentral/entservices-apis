@@ -1010,9 +1010,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
     "jsonrpc": "2.0",
     "id": 14,
     "result": {
-        "response": {
-            "success": true
-        },
+        "success": true,
         "sessionIdList": [
             ""
         ]

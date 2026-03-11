@@ -234,9 +234,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
     "jsonrpc": "2.0",
     "id": 2,
     "result": {
-        "response": {
-            "success": true
-        },
+        "success": true,
         "types": [
             ""
         ]
