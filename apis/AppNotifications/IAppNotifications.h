@@ -42,7 +42,7 @@ namespace WPEFramework
             // @json:omit
             // @text subscribe
             // @brief Thunder register/unregister for Firebolt subscription requests
-            // @param context: Execution context containing requestId, connectionId, appId
+            // @param context: Execution context containing requestId, connectionId, appId and version
             // @param listen: boolean
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
