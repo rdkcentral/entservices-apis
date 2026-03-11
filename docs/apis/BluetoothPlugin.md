@@ -68,8 +68,8 @@ Bluetooth interface methods:
 | [getDeviceVolumeMuteInfo](#getDeviceVolumeMuteInfo) | Gets the volume information of the given Bluetooth device ID |
 | [setDeviceVolumeMuteInfo](#setDeviceVolumeMuteInfo) | Sets the volume of the connected Bluetooth device ID |
 | [getApiVersionNumber](#getApiVersionNumber) | Provides the current API version number |
-| [setAutoConnect](#setAutoConnect) | Sets the autoconnect value for the given Bluetooth device ID  |
-| [getAutoConnect](#getAutoConnect) | Gets the autoconnect value for the given Bluetooth device ID  |
+| [setAutoConnect](#setAutoConnect) | Sets the autoconnect value for the given Bluetooth device ID |
+| [getAutoConnect](#getAutoConnect) | Gets the autoconnect value for the given Bluetooth device ID |
 
 <a name="connect"></a>
 ## *connect*
@@ -1351,6 +1351,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.autoconnect | boolean | Whether or not autoconnect is enabled |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -1402,7 +1403,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.autoconnect | boolean | Whether or not autoconnect is enabled |
+| result.success | boolean | Whether the request succeeded |
 
 ### Example
 
@@ -1412,9 +1413,10 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "org.rdk.Bluetooth.getAutoConnect",
+    "method": "org.rdk.Bluetooth.setAutoConnect",
     "params": {
-        "deviceID": "61579454946360"
+        "deviceID": "61579454946360",
+        "enable": true
     }
 }
 ```
