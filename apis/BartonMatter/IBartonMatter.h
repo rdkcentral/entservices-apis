@@ -42,6 +42,8 @@ struct EXTERNAL IBartonMatter : virtual public Core::IUnknown {
         virtual void OnDeviceStateChanged(const string& nodeId /* @in */,
                                           const string& resourceType /* @in */,
                                           const string& value /* @in */) = 0;
+
+        virtual void OnCommissioningStarted(const string& passcode /* @in */) = 0;
     };
     /* Allow client/UI to read the current status of the device*/
     //@text ReadResource
