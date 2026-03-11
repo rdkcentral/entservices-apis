@@ -56,8 +56,8 @@ DeviceInfo interface methods:
 | [supportedresolutions](#supportedresolutions) | Supported resolutions on the selected video display port. |
 | [supportedvideodisplays](#supportedvideodisplays) | Provides access to the video ports supported on the device. |
 
-<a id="audioCapabilities"></a>
-## *audioCapabilities*
+<a id="audiocapabilities"></a>
+## *audiocapabilities*
 
 Audio capabilities for the specified audio port.
 
@@ -115,8 +115,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="defaultResolution"></a>
-## *defaultResolution*
+<a id="defaultresolution"></a>
+## *defaultresolution*
 
 Default resolution on the selected video display port.
 
@@ -169,8 +169,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="mS12Capabilities"></a>
-## *mS12Capabilities*
+<a id="ms12capabilities"></a>
+## *ms12capabilities*
 
 MS12 audio capabilities for the specified audio port.
 
@@ -228,8 +228,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="supportedAudioPorts"></a>
-## *supportedAudioPorts*
+<a id="supportedaudioports"></a>
+## *supportedaudioports*
 
 Provides access to the audio ports supported on the device.
 
@@ -281,8 +281,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="supportedHdcp"></a>
-## *supportedHdcp*
+<a id="supportedhdcp"></a>
+## *supportedhdcp*
 
 Supported hdcp version on the selected video display port.
 
@@ -335,8 +335,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="supportedMS12AudioProfiles"></a>
-## *supportedMS12AudioProfiles*
+<a id="supportedms12audioprofiles"></a>
+## *supportedms12audioprofiles*
 
 Supported MS12 audio profiles for the specified audio port.
 
@@ -394,8 +394,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="supportedResolutions"></a>
-## *supportedResolutions*
+<a id="supportedresolutions"></a>
+## *supportedresolutions*
 
 Supported resolutions on the selected video display port.
 
@@ -453,8 +453,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="supportedVideoDisplays"></a>
-## *supportedVideoDisplays*
+<a id="supportedvideodisplays"></a>
+## *supportedvideodisplays*
 
 Provides access to the video ports supported on the device.
 
@@ -534,8 +534,8 @@ DeviceInfo interface properties:
 | [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
 | [wifimac](#wifimac)<sup>RO</sup> | Provides access to the WIFI MAC addresses. |
 
-<a id="Addresses"></a>
-## *Addresses*
+<a id="addresses"></a>
+## *addresses*
 
 Provides access to the network interface addresses.
 
@@ -587,8 +587,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="Brand"></a>
-## *BrandName*
+<a id="brandname"></a>
+## *brandname*
 
 Provides access to device brand name
 
@@ -633,8 +633,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="ChipSet"></a>
-## *ChipSet*
+<a id="chipset"></a>
+## *chipset*
 
 Provides access to the chipset of the device
 
@@ -679,8 +679,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="DeviceType"></a>
-## *DeviceType*
+<a id="devicetype"></a>
+## *devicetype*
 
 Provides access to the device type.
 
@@ -725,8 +725,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="DistributorId"></a>
-## *DistributorId*
+<a id="distributorid"></a>
+## *distributorid*
 
 Provides access to the partner ID or distributor ID for device.
 
@@ -771,8 +771,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="EstbIp"></a>
-## *EstbIp*
+<a id="estbip"></a>
+## *estbip*
 
 Provides access to the STB IP addresses.
 
@@ -817,8 +817,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="EstbMac"></a>
-## *EstbMac*
+<a id="estbmac"></a>
+## *estbmac*
 
 Provides access to the STB MAC addresses.
 
@@ -863,8 +863,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="EthMac"></a>
-## *EthMac*
+<a id="ethmac"></a>
+## *ethmac*
 
 Provides access to the Ethernet MAC addresses.
 
@@ -909,8 +909,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="FirmwareVersion"></a>
-## *FirmwareVersion*
+<a id="firmwareversion"></a>
+## *firmwareversion*
 
 Provides access to the versions maintained in version.txt.
 
@@ -964,8 +964,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="HostEDID"></a>
-## *HostEDID*
+<a id="hostedid"></a>
+## *hostedid*
 
 Provides access to the EDID of the host.
 
@@ -1010,8 +1010,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="Make"></a>
-## *Make*
+<a id="make"></a>
+## *make*
 
 Provides access to the device manufacturer.
 
@@ -1056,8 +1056,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="Model"></a>
-## *ModelName*
+<a id="modelname"></a>
+## *modelname*
 
 Provides access to the friendly device model name.
 
@@ -1102,8 +1102,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="ReleaseVersion"></a>
-## *ReleaseVersion*
+<a id="releaseversion"></a>
+## *releaseversion*
 
 Provides access to the ReleaseVersion of the Image
 
@@ -1148,8 +1148,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="SerialNumber"></a>
-## *SerialNumber*
+<a id="serialnumber"></a>
+## *serialnumber*
 
 Provides access to the serial number set by manufacture
 
@@ -1194,8 +1194,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="Sku"></a>
-## *ModelId*
+<a id="modelid"></a>
+## *modelid*
 
 Provides access to the device model number
 
@@ -1240,8 +1240,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="SocName"></a>
-## *SocName*
+<a id="socname"></a>
+## *socname*
 
 Provides access to the SOC Name.
 
@@ -1286,8 +1286,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="SystemInfo"></a>
-## *SystemInfo*
+<a id="systeminfo"></a>
+## *systeminfo*
 
 Provides access to the system general information
 
@@ -1360,8 +1360,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="WifiMac"></a>
-## *WifiMac*
+<a id="wifimac"></a>
+## *wifimac*
 
 Provides access to the WIFI MAC addresses.
 

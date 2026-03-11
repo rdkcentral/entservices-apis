@@ -1493,6 +1493,8 @@ HdmiCecSink interface events:
 | [onDeviceRemoved](#onDeviceRemoved) | Triggered when a device is removed from the CEC network. |
 | [onImageViewOnMsg](#onImageViewOnMsg) | Triggered when an <Image View ON> CEC message is received from the source device. |
 | [onInActiveSource](#onInActiveSource) | Triggered when the source is no longer active. |
+| [onKeyPressEvent](#onKeyPressEvent) | Notifies when a key press CEC message is received from other CEC device |
+| [onKeyReleaseEvent](#onKeyReleaseEvent) | Notifies when a key release CEC message is received from other CEC device |
 | [onTextViewOnMsg](#onTextViewOnMsg) | Triggered when a <Text View ON> CEC message is received from the source device. |
 | [onWakeupFromStandby](#onWakeupFromStandby) | Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device. |
 | [reportAudioDeviceConnectedStatus](#reportAudioDeviceConnectedStatus) | Triggered when an audio device is added or removed. |
@@ -1700,6 +1702,56 @@ Triggered when the source is no longer active.
 }
 ```
 
+<a id="onKeyPressEvent"></a>
+## *onKeyPressEvent*
+
+Notifies when a key press CEC message is received from other CEC device
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.logicalAddress | int | Logical address of the active source |
+| params.keyCode | int | Key code of the key press event |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 34,
+    "method": "org.rdk.HdmiCecSink.onKeyPressEvent",
+    "params": {
+        "logicalAddress": 0,
+        "keyCode": 0
+    }
+}
+```
+
+<a id="onKeyReleaseEvent"></a>
+## *onKeyReleaseEvent*
+
+Notifies when a key release CEC message is received from other CEC device
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.logicalAddress | int | Logical address of the active source |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 35,
+    "method": "org.rdk.HdmiCecSink.onKeyReleaseEvent",
+    "params": {
+        "logicalAddress": 0
+    }
+}
+```
+
 <a id="onTextViewOnMsg"></a>
 ## *onTextViewOnMsg*
 
@@ -1716,7 +1768,7 @@ Triggered when a <Text View ON> CEC message is received from the source device.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 34,
+    "id": 36,
     "method": "org.rdk.HdmiCecSink.onTextViewOnMsg",
     "params": {
         "logicalAddress": 0
@@ -1740,7 +1792,7 @@ Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 37,
     "method": "org.rdk.HdmiCecSink.onWakeupFromStandby",
     "params": {
         "logicalAddress": 0
@@ -1765,7 +1817,7 @@ Triggered when an audio device is added or removed.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 38,
     "method": "org.rdk.HdmiCecSink.reportAudioDeviceConnectedStatus",
     "params": {
         "status": "",
@@ -1790,7 +1842,7 @@ Triggered when the source device changes.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 37,
+    "id": 39,
     "method": "org.rdk.HdmiCecSink.reportAudioDevicePowerStatus",
     "params": {
         "powerStatus": 0
@@ -1815,7 +1867,7 @@ Triggered when CEC <Report Audio Status> message of device is received.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 38,
+    "id": 40,
     "method": "org.rdk.HdmiCecSink.reportAudioStatusEvent",
     "params": {
         "muteStatus": 0,
@@ -1840,7 +1892,7 @@ Triggered when the HDMI-CEC is enabled.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 41,
     "method": "org.rdk.HdmiCecSink.reportCecEnabledEvent",
     "params": {
         "cecEnable": ""
@@ -1866,7 +1918,7 @@ Triggered when CEC <Feature Abort> message of device is received.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 40,
+    "id": 42,
     "method": "org.rdk.HdmiCecSink.reportFeatureAbortEvent",
     "params": {
         "logicalAddress": 0,
@@ -1892,7 +1944,7 @@ Triggered when CEC <Set System Audio Mode> message of device is received.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 41,
+    "id": 43,
     "method": "org.rdk.HdmiCecSink.setSystemAudioModeEvent",
     "params": {
         "audioMode": ""
@@ -1916,7 +1968,7 @@ Triggered when SAD is received from the connected audio device. See requestShort
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 42,
+    "id": 44,
     "method": "org.rdk.HdmiCecSink.shortAudiodescriptorEvent",
     "params": {
         "shortAudioDescriptor": ""
@@ -1940,7 +1992,7 @@ Triggered when the source device changes status to STANDBY.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 45,
     "method": "org.rdk.HdmiCecSink.standbyMessageReceived",
     "params": {
         "logicalAddress": 0
