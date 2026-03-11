@@ -186,7 +186,7 @@ namespace WPEFramework {
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
             // @param response: The voice status response
-            // @param capabilities: A list of capabilities
+            // @param capabilities: A list of capabilities e.g. "PRV"
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */, IStringIterator*& capabilities /* @out */) = 0;

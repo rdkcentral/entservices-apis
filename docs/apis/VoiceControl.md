@@ -268,7 +268,7 @@ This method takes no parameters.
 | result.response.mic | DeviceStatus | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
 | result.response.success | bool | Whether the request succeeded |
-| result.capabilities | IStringIterator | A list of capabilities |
+| result.capabilities | IStringIterator | A list of capabilities  |
 | result.capabilities[#] | string |  |
 
 ### Examples
@@ -317,7 +317,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
             "success": true
         },
         "capabilities": [
-            ""
+            "PRV"
         ]
     }
 }
@@ -395,7 +395,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language  |
-| params.capabilities | IStringIterator | A list of capabilities |
+| params.capabilities | IStringIterator | A list of capabilities  |
 | params.capabilities[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -416,7 +416,7 @@ No Events
     "params": {
         "language": "en-US",
         "capabilities": [
-            ""
+            "PRV"
         ]
     }
 }
@@ -426,7 +426,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": ["PRV"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
