@@ -498,8 +498,14 @@ def generate_events_section(events, all_events=None):
     if events:
         # Only show a list of links to events, not a table
         for event in events:
-            camel_event = to_camel_case(event)
-            markdown += f"- [{camel_event}](#{camel_event})\n"
+            # Resolve the event name/anchor using the event's @text, if available,
+            # otherwise fall back to the camel-cased C++ name.
+            event_name = to_camel_case(event)
+            if all_events and event in all_events:
+                event_text = all_events[event].get('text')
+                if event_text:
+                    event_name = event_text
+            markdown += f"- [{event_name}](#{event_name})\n"
     else:
         markdown += "No Events\n"
     return markdown
