@@ -115,7 +115,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | The application identifier (callsign) |
+| params.appid | string | The application identifier (callsign) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -133,7 +133,7 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.ResourceManager.reserveTTSResource",
     "params": {
-        "appId": ""
+        "appid": ""
     }
 }
 ```
@@ -142,7 +142,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appid": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -224,7 +224,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | The application identifier (callsign) |
+| params.appid | string | The application identifier (callsign) |
 | params.blocked | bool | Whether to block (true) or unblock (false) AV access for the application |
 ### Results
 | Name | Type | Description |
@@ -243,7 +243,7 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.ResourceManager.setAVBlocked",
     "params": {
-        "appId": "",
+        "appid": "",
         "blocked": true
     }
 }
@@ -253,7 +253,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appId": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appid": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
