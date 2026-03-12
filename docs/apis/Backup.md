@@ -62,9 +62,9 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string |  |
-| params.context.variant | string |  |
-| params.context.persistentPath | string |  |
+| params.context.scenario | string | scenario |
+| params.context.variant | string | variant |
+| params.context.persistentPath | string | persistentPath |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -118,9 +118,9 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string |  |
-| params.context.variant | string |  |
-| params.context.persistentPath | string |  |
+| params.context.scenario | string | scenario |
+| params.context.variant | string | variant |
+| params.context.persistentPath | string | persistentPath |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -174,9 +174,9 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string |  |
-| params.context.variant | string |  |
-| params.context.persistentPath | string |  |
+| params.context.scenario | string | scenario |
+| params.context.variant | string | variant |
+| params.context.persistentPath | string | persistentPath |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
