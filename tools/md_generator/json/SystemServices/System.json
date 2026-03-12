@@ -1270,6 +1270,191 @@
             "result": {
                 "$ref": "#/common/result"
             }
+        },
+        "setFSRFlag":{
+            "summary": "Set the FSR flag into the emmc raw area. This API will fail if you attempt to set the same value.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "fsrFlag": {
+                        "summary": "FSR flag",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "fsrFlag"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "success"
+                ]
+            }
+        },
+        "getFSRFlag":{
+            "summary": "Get the FSR flag from the emmc raw area.",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "fsrFlag": {
+                        "summary": "FSR flag.",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "fsrFlag",
+                    "success"
+                ]
+            }
+        },
+        "getBootTypeInfo":{
+            "summary": "Getting Boot Type",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "bootType": {
+                        "summary": "BOOT Type Info",
+                        "type": "string",
+                        "example": "BOOT_NORMAL"
+                    }
+                },
+                "required": [
+                    "bootType"
+                ]
+            }
+	},
+	"setMigrationStatus":{
+            "summary": "sets the tr181 MigrationStatus parameter",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "summary": "Migration status",
+                        "type": "string",
+                        "example": "NOT_STARTED"
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "success"
+                ]
+            }
+        },
+        "getMigrationStatus":{
+            "summary": "get the Migration Status of the device",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "migrationStatus": {
+                        "summary": "Migration status",
+                        "type": "string",
+                        "example": "NOT_STARTED"
+                    }
+                },
+                "required": [
+                    "migrationStatus"
+                ]
+            }
+        },
+        "setBlocklistFlag":{
+            "summary": "To update Blocklist flag.",
+            "params": {
+                "type": "object",
+                "properties": {
+                    "blocklist": {
+                        "summary": "Blocklist flag",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "required": [
+                    "blocklist"
+                ]
+            },
+            "result": {
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "success"
+                ]
+            }
+        },
+        "getBlocklistFlag":{
+            "summary": "Get the FSR flag from the emmc raw area.",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "blocklist": {
+                        "summary": "block list string",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "blocklist",
+                    "success"
+                ]
+            }
+        },
+        "getTimeStatus":{
+            "summary": "Get the time status on the device.",
+            "result": {
+                "type": "object",
+                "properties": {
+                    "TimeQuality": {
+                        "summary": "Time Quality",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "TimeSrc": {
+                        "summary": "Time Source",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "Time": {
+                        "summary": "Current Time",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "success":{
+                        "$ref": "#/common/success"
+                    }
+                },
+                "required": [
+                    "TimeQuality",
+                    "TimeSrc",
+                    "Time",
+                    "success"
+                ]
+            }
         }
     },
     "events": {
