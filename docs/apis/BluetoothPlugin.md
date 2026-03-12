@@ -609,7 +609,7 @@ This method takes no parameters.
 | result.pairedDevices[#].connected | boolean | Whether the device is connected |
 | result.pairedDevices[#].rawDeviceType | string | Bluetooth device class |
 | result.pairedDevices[#].rawBleDeviceType | string | Bluetooth device appearance |
-| result.pairedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC (if connected via the [connect](#connect) API) |
+| result.pairedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC in RFC3339/ISO-8601 format (for example: `2023-03-15T13:45:30Z`) (if connected via the [connect](#connect) API) |
 | result.pairedDevices[#].autoconnect | boolean | <sup>*(optional)*</sup> Whether or not autoconnect is enabled for this device (if [setAutoConnect](#setAutoConnect) was previously called) |
 | result.success | boolean | Whether the request succeeded |
 
