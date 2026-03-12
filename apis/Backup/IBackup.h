@@ -31,9 +31,14 @@ namespace WPEFramework
 
         struct EXTERNAL BackupContext
         {
-            Scenario scenario;
-            string variant /* @default:"generic" */;
-            string persistentPath; /* @default:"/opt/secure/persistent/settings_backup/" */
+            Scenario scenario /* @text scenario */ 
+                             /* @brief The scenario for which the backup operations are done */;
+            string variant /* @text variant */ 
+                           /* @brief Variant label for the backup context (for example, user profile for which the backup operations are done) */ 
+                           /* @default:"generic" */;
+            string persistentPath /* @text persistentPath */ 
+                                  /* @brief Filesystem path where backup data is stored persistently */ 
+                                  /* @default:"/opt/secure/persistent/settings_backup/" */;
         };
 
         /*
