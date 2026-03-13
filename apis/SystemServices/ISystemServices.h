@@ -35,10 +35,10 @@ namespace WPEFramework
 
             struct EXTERNAL DeviceInfo {
                 string make /* @brief Device manufacturer */;
-                string bluetoothMac /* @text bluetooth_mac */ /* @brief Bluetooth MAC Address */;
+                string bluetoothMac /* @text bluetooth_mac */ /* @brief Bluetooth MAC Address */ /* @deprecated */;
                 string boxIP /* @brief STB IP Address */;
                 string buildType /* @text build_type */ /* @brief Image build type */;
-                string deviceType /* @text device_type */ /* @brief Device type */;
+                string deviceType /* @text device_type */ /* @brief Device type */ /* @deprecated */;
                 string estbMac /* @text estb_mac */ /* @brief STB MAC Address */;
                 string ethMac /* @text eth_mac */ /* @brief Ethernet MAC Address */;
                 string friendlyId /* @text friendly_id */ /* @brief friendly device model name */;
@@ -47,6 +47,8 @@ namespace WPEFramework
                 string softwareVersion /* @text software_version */ /* @brief Software version */;
                 string modelNumber /* @text model_number */ /* @brief Device model number */;
                 string wifiMac /* @text wifi_mac */ /* @brief WIFI Mac Address */;
+                string modelName /* @brief Device model name */;
+                string hardwareID /* @brief Hardware ID */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -56,6 +58,8 @@ namespace WPEFramework
                 string downloadedFWLocation /* @brief The location of the downloaded firmware */;
                 bool isRebootDeferred /* @brief Whether the device should be rebooted */;
                 bool success /* @brief Whether the request succeeded */;
+                uint32_t SysSrv_Status /* @brief System service status error code if failure occurs */;
+                string errorMessage /* @brief Error message if failure occurs */;
             };
 
             struct EXTERNAL SystemError {
@@ -68,30 +72,17 @@ namespace WPEFramework
             };
 
             struct EXTERNAL BlocklistResult {
+                bool blocklist /* @brief Whether the device is blocklisted */;
                 ErrorInfo error /* @brief Error Information */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL SystemServicesSuccess {
+            struct EXTERNAL SetBlocklistResult {
+                ErrorInfo error /* @brief Error Information */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL AmericaInfo {
-                string newYork /* @text New_York */ /* @brief Error Information */;
-                string losAngeles /* @text Los_Angeles */ /* @brief Error Information */;
-            };
-
-            struct EXTERNAL EuropeInfo {
-                string london /* @text London */ /* @brief Error Information */;
-            };
-
-            struct EXTERNAL Zoneinfo {
-                AmericaInfo america /* @text America */ /* @brief Error Information */;
-                EuropeInfo europe /* @text Europe */ /* @brief Error Information */;
-            };
-
-            struct EXTERNAL TimeZoneInfo {
-                Zoneinfo zoneinfo /* @brief Error Information */;
+            struct EXTERNAL SystemResult {
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -99,6 +90,15 @@ namespace WPEFramework
                 string stbVersion /* @brief The STB version */;
                 string receiverVersion /* @brief The receiver version */;
                 string stbTimestamp /* @brief The STB timestamp */;
+                bool success /* @brief Whether the request succeeded */;
+            };
+
+            struct EXTERNAL PreviousRebootInfo {
+                string timestamp /* @brief The reboot timestamp */;
+                string reason /* @brief The reboot reason */;
+                string source /* @brief The reboot source */;
+                string customReason /* @brief The custom reboot reason */;
+                string otherReason /* @brief Other reboot reason details */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -210,14 +210,14 @@ namespace WPEFramework
 
              struct EXTERNAL WakeupSources {
                 bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
-                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presense detection wake up */;
+                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
                 bool bluetooth /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */;
                 bool wifi /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/;
                 bool ir /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */;
                 bool powerKey /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */;
                 bool cec /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */;
                 bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
-                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief TImer Wake up */;
+                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
             };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
@@ -254,7 +254,7 @@ namespace WPEFramework
                 // @param TimeZoneDSTChangedInfo: The TimeZoneDST changed information
                 virtual void OnTimeZoneDSTChanged(const TimeZoneDSTChangedInfo& timeZoneDSTChangedInfo) {};
 
-                // @text OnMacAddressesRetreived
+                // @text onMacAddressesRetreived
                 // @brief Triggered when the getMacAddresses asynchronous method is invoked.
                 // @param MacAddressesInfo: The Mac Addresses details 
                 virtual void OnMacAddressesRetreived(const MacAddressesInfo& macAddressesInfo) {};
@@ -269,6 +269,56 @@ namespace WPEFramework
                 // @param logUploadStatus: Upload status (must be one of the following: UPLOAD_SUCCESS, UPLOAD_FAILURE, UPLOAD_ABORTED)
                 virtual void OnLogUpload(const string& logUploadStatus) {};
 
+                // @text onNetworkStandbyModeChanged
+                // @brief Triggered when the network standby mode is changed.
+                // @param nwStandby: The network standby mode
+                virtual void OnNetworkStandbyModeChanged(const bool nwStandby) {};
+
+                // @text onFirmwareUpdateStateChange
+                // @brief Triggered when the firmware update state is changed.
+                // @param firmwareUpdateStateChange: The firmware update state change
+                virtual void OnFirmwareUpdateStateChanged(const int firmwareUpdateStateChange) {};
+
+                // @text onTemperatureThresholdChanged
+                // @brief Triggered when the temperature threshold is changed.
+                // @param thresholdType: The type of temperature threshold
+                // @param exceeded: Whether the threshold is exceeded
+                // @param temperature: The current temperature
+                virtual void OnTemperatureThresholdChanged(const string& thresholdType, const bool exceeded, const float temperature) {};
+
+                // @text onSystemClockSet
+                // @brief Triggered when time source state has changed.
+                virtual void OnSystemClockSet() {};
+
+                // @text onFirmwarePendingReboot
+                // @brief Triggered when system is in maintenance window
+                // @param fireFirmwarePendingReboot: time in seconds for pending reboot
+                virtual void OnFirmwarePendingReboot(const int fireFirmwarePendingReboot) {};
+
+                // @text onFriendlyNameChanged
+                // @brief Triggered when the friendly name is changed.
+                // @param friendlyName: The new friendly name
+                virtual void OnFriendlyNameChanged(const string& friendlyName) {};
+
+                // @text onDeviceMgtUpdateReceived
+                // @brief Triggered when Device Mgt settings update is received
+                // @param source: The source of the update
+                // @param type: The type of update
+                // @param success: Whether the update was successful
+                virtual void OnDeviceMgtUpdateReceived(const string& source, const string& type, const bool success) {};
+
+                // @text onBlocklistChanged
+                // @brief Triggered when blocklist flag has changed.
+                // @param oldBlocklistFlag: The previous blocklist flag
+                // @param newBlocklistFlag: The new blocklist flag
+                virtual void OnBlocklistChanged(const string& oldBlocklistFlag, const string& newBlocklistFlag) {};
+
+                // @text onTimeStatusChanged
+                // @brief Triggered when time status has changed.
+                // @param TimeQuality: The quality of the time
+                // @param TimeSrc: The source of the time
+                // @param Time: The current time
+                virtual void OnTimeStatusChanged(const string& TimeQuality, const string& TimeSrc, const string& Time){};
             };
 
             virtual Core::hresult Register(ISystemServices::INotification* notification) = 0;
@@ -328,7 +378,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetLastWakeupKeyCode(string& wakeupKeyCode /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetLastWakeupKeyCode(uint32_t& wakeupKeyCode /* @out */, bool& success /* @out */) = 0;
 
             // @text getMfgSerialNumber
             // @brief Gets the Manufacturing Serial Number.
@@ -366,10 +416,12 @@ namespace WPEFramework
             // @brief Returns information that is related to RDK Feature Control (RFC) configurations.
             // @param rfcList: A list of RFC properties to query
             // @param RFCConfig: A list of specified RFC properties
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, IStringIterator*& RFCConfig /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, IStringIterator*& RFCConfig /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text getSerialNumber
             // @brief Returns the device serial number.
@@ -398,10 +450,11 @@ namespace WPEFramework
 
             // @text getTimeZones
             // @brief Returns the friendly name set by setFriendlyName API or default value.
-            // @param TimeZoneInfo: A timezone area
+            // @param timeZones: A list of available timezones from the system
+            // @param zoneinfo: A timezone area
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetTimeZones(TimeZoneInfo& timeZoneInfo /* @out */) = 0;
+            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, string& zoneinfo /* @out */) = 0;
 
             // @text getTimeZoneDST
             // @brief Gets the available timezones from the system’s time zone database.
@@ -418,7 +471,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetWakeupReason(string& WakeupReason /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetWakeupReason(string& wakeupReason /* @out */, bool& success /* @out */) = 0;
 
             // @text isOptOutTelemetry
             // @brief Checks the telemetry opt-out status.
@@ -440,56 +493,60 @@ namespace WPEFramework
             // @text setDeepSleepTimer
             // @brief Sets the deep sleep timeout period.
             // @param seconds: The deep sleep timeout in seconds
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetDeepSleepTimer(const int seconds, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetDeepSleepTimer(const int seconds, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */  ,SystemResult& success /* @out */) = 0;
 
             // @text setFirmwareAutoReboot
             // @brief Enables or disables the AutoReboot Feature.
             // @param enable: true to enable Autoreboot or false to disable
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetFirmwareAutoReboot(const bool enable, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetFirmwareAutoReboot(const bool enable, SystemResult& success /* @out */) = 0;
 
             // @text setNetworkStandbyMode
             // @brief Enables or disables the AutoReboot Feature.
             // @param nwStandby: Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetNetworkStandbyMode(const bool nwStandby, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetNetworkStandbyMode(const bool nwStandby, SystemResult& success /* @out */) = 0;
 
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
             // @param OptOut: true for opt-out, otherwise false
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemResult& success /* @out */) = 0;
 
             // @text setPowerState
             // @brief Sets the power state of the device.
             // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
             // @param standbyReason: The reason for a standby state
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetPowerState(const string &powerState, const string &standbyReason, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetPowerState(const string &powerState, const string &standbyReason, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
 
             // @text setFriendlyName
             // @brief Sets the friendly name of device.
             // @param friendlyName: The friendly name of the device which used to display on the client device list
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetFriendlyName(const string& friendlyName, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetFriendlyName(const string& friendlyName, SystemResult& success /* @out */) = 0;
 
             // @text setBootLoaderSplashScreen
             // @brief Install or update the BootLoader Splash Screens.
             // @param path: Path to the pre-downloaded splash screen file location. Full path with file name
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetBootLoaderSplashScreen(const string& path, ErrorInfo& error /* @out */, bool& success /* @out */) = 0;
@@ -498,7 +555,7 @@ namespace WPEFramework
             // @brief Sets the system territory and region.
             // @param territory: territory name
             // @param region: region name
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetTerritory(const string& territory, const string& region, SystemError& error /* @out */, bool& success /* @out */) = 0;
@@ -507,17 +564,19 @@ namespace WPEFramework
             // @brief Sets the system time zone.
             // @param timeZone: The timezone
             // @param accuracy: The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL)
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetTimeZoneDST(const string& timeZone, const string& accuracy, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetTimeZoneDST(const string& timeZone, const string& accuracy, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
 
             // @text updateFirmware
             // @brief Initiates a firmware update.
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult UpdateFirmware(SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult UpdateFirmware(SystemResult& success /* @out */) = 0;
 
             // @text getBootTypeInfo
             // @brief Get the FSR flag from the emmc raw area.
@@ -534,7 +593,7 @@ namespace WPEFramework
             virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
 
             // @text getMigrationStatus
-            // @brief set the Migration Status of the device
+            // @brief get the Migration Status of the device
             // @param MigrationStatus: Migration Status
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
@@ -545,10 +604,12 @@ namespace WPEFramework
             // @brief Gets the MAC address of the device.
             // @param GUID: A unique identifier
             // @param asyncResponse: Whether the event notification succeeded
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetMacAddresses(const string& GUID, bool &asyncResponse /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetMacAddresses(const string& GUID, bool &asyncResponse /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text getPlatformConfiguration
             // @brief Returns the Supported features and device/account info
@@ -561,10 +622,10 @@ namespace WPEFramework
             // @brief Sets the wakeup source configuration for the input powerState.
             // @param powerState: The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON)
             // @param wakeupSources: Array of Key value pair with wake up sources and its configurations
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemResult& success /* @out */) = 0;
 
             // @text getSystemVersions
             // @brief Returns system version details.
@@ -584,24 +645,26 @@ namespace WPEFramework
             // @text setMode
             // @brief Sets the mode of the set-top box for a specific duration before returning to normal mode.
             // @param ModeInfo: The mode information
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SysSrv_Status: System service status error code if failure occurs
+            // @param errorMessage: Error message if failure occurs
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetMode(const ModeInfo& modeinfo, SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult SetMode(const ModeInfo& modeinfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
 
             // @text uploadLogsAsync
             // @brief Starts background process to upload logs.
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult UploadLogsAsync(SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult UploadLogsAsync(SystemResult& success /* @out */) = 0;
 
             // @text abortLogUpload
             // @brief Stops background process to upload logs.
-            // @param SystemServicesSuccess: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult AbortLogUpload(SystemServicesSuccess& success /* @out */) = 0;
+            virtual Core::hresult AbortLogUpload(SystemResult& success /* @out */) = 0;
 
             // @text setFSRFlag
             // @brief Set the FSR flag into the emmc raw area.
@@ -625,10 +688,10 @@ namespace WPEFramework
             // @param BlocklistResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetBlocklistFlag(const bool blocklist, BlocklistResult& result /* @out */) = 0;
+            virtual Core::hresult SetBlocklistFlag(const bool blocklist, SetBlocklistResult& result /* @out */) = 0;
 
             // @text getBlocklistFlag
-            // @brief Get block list falg.
+            // @brief Get block list flag.
             // @param BlocklistResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
@@ -642,6 +705,15 @@ namespace WPEFramework
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetBuildType(string& buildType /* @out @text build_type */, bool& success /* @out */) = 0;
 
+            // @text getTimeStatus
+            // @brief Get the time status on the device.
+            // @param TimeQuality: Time Quality
+            // @param TimeSrc: Time Source
+            // @param Time: Current Time
+            // @param success: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult GetTimeStatus(string& TimeQuality /* @out */, string& TimeSrc /* @out */, string& Time /* @out */, bool& success /* @out */) = 0;
         };
     }
 }
