@@ -2014,9 +2014,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
     "result": {
         "SysSrv_Status": 0,
         "errorMessage": "",
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -2293,9 +2291,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
     "result": {
         "SysSrv_Status": 0,
         "errorMessage": "",
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -2463,9 +2459,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
     "result": {
         "SysSrv_Status": 0,
         "errorMessage": "",
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -2585,9 +2579,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
     "result": {
         "SysSrv_Status": 0,
         "errorMessage": "",
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
