@@ -351,15 +351,15 @@ namespace Exchange {
 
         ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
         ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
-      
-        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x4A0,
-        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
-        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2
 
         ID_ACCOUNT                                  = ID_ENTOS_OFFSET + 0x500,
 
         ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
+
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x520,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2
 
     }; // enum IDS
 
