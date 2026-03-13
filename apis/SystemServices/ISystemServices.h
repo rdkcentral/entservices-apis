@@ -58,7 +58,7 @@ namespace WPEFramework
                 string downloadedFWLocation /* @brief The location of the downloaded firmware */;
                 bool isRebootDeferred /* @brief Whether the device should be rebooted */;
                 bool success /* @brief Whether the request succeeded */;
-                uint32_t SysSrv_Status /* @brief System service status error code if failure occurs */;
+                uint32_t sysSrvStatus /* @text SysSrv_Status */ /* @brief System service status error code if failure occurs */;
                 string errorMessage /* @brief Error message if failure occurs */;
             };
 
