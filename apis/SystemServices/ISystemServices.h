@@ -495,10 +495,10 @@ namespace WPEFramework
             // @param seconds: The deep sleep timeout in seconds
             // @param SysSrv_Status: System service status error code if failure occurs
             // @param errorMessage: Error message if failure occurs
-            // @param SystemResult: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetDeepSleepTimer(const int seconds, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */  ,SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetDeepSleepTimer(const int seconds, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text setFirmwareAutoReboot
             // @brief Enables or disables the AutoReboot Feature.
@@ -506,7 +506,7 @@ namespace WPEFramework
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetFirmwareAutoReboot(const bool enable, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetFirmwareAutoReboot(const bool enable, SystemResult& result /* @out */) = 0;
 
             // @text setNetworkStandbyMode
             // @brief Enables or disables the AutoReboot Feature.
@@ -514,7 +514,7 @@ namespace WPEFramework
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetNetworkStandbyMode(const bool nwStandby, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetNetworkStandbyMode(const bool nwStandby, SystemResult& result /* @out */) = 0;
 
             // @text setOptOutTelemetry
             // @brief Sets the telemetry opt-out status.
@@ -522,7 +522,7 @@ namespace WPEFramework
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetOptOutTelemetry(const bool OptOut /* @text Opt-Out */, SystemResult& result /* @out */) = 0;
 
             // @text setPowerState
             // @brief Sets the power state of the device.
@@ -530,10 +530,10 @@ namespace WPEFramework
             // @param standbyReason: The reason for a standby state
             // @param SysSrv_Status: System service status error code if failure occurs
             // @param errorMessage: Error message if failure occurs
-            // @param SystemResult: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetPowerState(const string &powerState, const string &standbyReason, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetPowerState(const string &powerState, const string &standbyReason, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text setFriendlyName
             // @brief Sets the friendly name of device.
@@ -541,7 +541,7 @@ namespace WPEFramework
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetFriendlyName(const string& friendlyName, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetFriendlyName(const string& friendlyName, SystemResult& result /* @out */) = 0;
 
             // @text setBootLoaderSplashScreen
             // @brief Install or update the BootLoader Splash Screens.
@@ -566,17 +566,17 @@ namespace WPEFramework
             // @param accuracy: The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL)
             // @param SysSrv_Status: System service status error code if failure occurs
             // @param errorMessage: Error message if failure occurs
-            // @param SystemResult: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetTimeZoneDST(const string& timeZone, const string& accuracy, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetTimeZoneDST(const string& timeZone, const string& accuracy, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text updateFirmware
             // @brief Initiates a firmware update.
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult UpdateFirmware(SystemResult& success /* @out */) = 0;
+            virtual Core::hresult UpdateFirmware(SystemResult& result /* @out */) = 0;
 
             // @text getBootTypeInfo
             // @brief Get the FSR flag from the emmc raw area.
@@ -625,7 +625,7 @@ namespace WPEFramework
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetWakeupSrcConfiguration(const string& powerState, ISystemServicesWakeupSourcesIterator* const& wakeupSources, SystemResult& result /* @out */) = 0;
 
             // @text getSystemVersions
             // @brief Returns system version details.
@@ -647,24 +647,24 @@ namespace WPEFramework
             // @param ModeInfo: The mode information
             // @param SysSrv_Status: System service status error code if failure occurs
             // @param errorMessage: Error message if failure occurs
-            // @param SystemResult: Whether the request succeeded
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetMode(const ModeInfo& modeinfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, SystemResult& success /* @out */) = 0;
+            virtual Core::hresult SetMode(const ModeInfo& modeinfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text uploadLogsAsync
             // @brief Starts background process to upload logs.
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult UploadLogsAsync(SystemResult& success /* @out */) = 0;
+            virtual Core::hresult UploadLogsAsync(SystemResult& result /* @out */) = 0;
 
             // @text abortLogUpload
             // @brief Stops background process to upload logs.
             // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult AbortLogUpload(SystemResult& success /* @out */) = 0;
+            virtual Core::hresult AbortLogUpload(SystemResult& result /* @out */) = 0;
 
             // @text setFSRFlag
             // @brief Set the FSR flag into the emmc raw area.
