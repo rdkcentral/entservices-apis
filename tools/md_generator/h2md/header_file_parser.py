@@ -54,20 +54,24 @@ class HeaderFileParser:
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-        'integer':  '0',
-        'int16_t':  '0',
-        'uint16_t': '0',
-        'int32_t':  '0',
-        'uint32_t': '0',
-        'int64_t':  '0',
-        'uint64_t': '0',
-        'int':      '0',
-        'float':    '0.0',
-        'double':   '0.0',
+        'integer':  0,
+        'int8_t':   0,
+        'uint8_t':  0,
+        'int16_t':  0,
+        'uint16_t': 0,
+        'int32_t':  0,
+        'uint32_t': 0,
+        'int64_t':  0,
+        'uint64_t': 0,
+        'int':      0,
+        'float':    0.0,
+        'double':   0.0,
         'bool':     True,
         'char':     'a',
         'string':   ''
     }
+    INT_TYPES = {'integer', 'int', 'int8_t', 'uint8_t', 'int16_t', 'uint16_t', 'int32_t', 'uint32_t', 'int64_t', 'uint64_t'}
+    FLOAT_TYPES = {'float', 'double'}
     # List of regexes to match different cpp components of the header file
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
@@ -321,6 +325,11 @@ class HeaderFileParser:
                 return
             if groups[0] == '/':
                 return
+            # Stop accumulating if this line starts with a doxygen tag (e.g., @retval, @brief, etc.)
+            # This prevents @retval and other tags from being appended to previous @param descriptions
+            if groups[0].strip().startswith('@'):
+                self.latest_tag = ''
+                return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
@@ -403,11 +412,16 @@ class HeaderFileParser:
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
+                    # Extract @text annotation for JSON mapping (only capture valid identifier token)
+                    text_tag_pattern = r'@text\s+([\w\-]+)'
+                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
                         'value': enumerator_value,
-                        'description': description.strip() if description else ''
+                        'description': description.strip() if description else '',
+                        'custom_name': custom_name
                     }
         else:
             if self.logger:
@@ -430,10 +444,10 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
-                    custom_name = text_tag_match.group(1) if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    custom_name = text_tag_match.group(1).strip() if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+(.*?)(?:\s*\*/|$)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
                     description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
@@ -619,7 +633,7 @@ class HeaderFileParser:
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
-            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
+            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description, symbol_type)
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
@@ -663,7 +677,7 @@ class HeaderFileParser:
             method_info['response'] = self.generate_response_object(method_info, id_num)
             id_num += 1
         for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info, id_num)
+            event_info['request'] = self.generate_request_object(event_name, event_info, id_num, is_event=True)
             id_num += 1
         for prop_name, prop_info in self.properties.items():
             # properties can have both get and set requests and responses
@@ -685,15 +699,27 @@ class HeaderFileParser:
         """Convert UpperCamelCase to lowerCamelCase."""
         return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-    def generate_request_object(self, method_name, method_info, id_num):
+    def generate_request_object(self, method_name, method_info, id_num, is_event=False):
         """
         Makes a request JSON. Creates an example dynamically.
+        For events/notifications, uses the Thunder convention: client.events.<eventName>
+        For methods, uses: org.rdk.{classname}.{methodName}
         """
-        camel_method_name = self.to_camel_case(method_name)
+        # Use @text tag if available, otherwise fall back to method name
+        text_name = method_info.get('text', '')
+        if text_name:
+            camel_method_name = text_name
+        else:
+            camel_method_name = self.to_camel_case(method_name)
+        
+        if is_event:
+            method_path = f"client.events.{camel_method_name}"
+        else:
+            method_path = f"org.rdk.{self.classname}.{camel_method_name}"
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": method_path,
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -768,7 +794,8 @@ class HeaderFileParser:
         Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
-        example_from_param_description = self.generate_example_from_description(description)
+        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
+        example_from_param_description = self.generate_example_from_description(description, symbol_type)
         if example_from_param_description:
             return self.wrap_example_if_iterator(unique_id, example_from_param_description)
         # if no example in the param description, pull from the symbols registry
@@ -793,7 +820,8 @@ class HeaderFileParser:
         Generate an example for an individual symbol based on its description or type. Used as a
         helper to populate the symbols registry.
         """
-        example = self.generate_example_from_description(description)
+        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
+        example = self.generate_example_from_description(description, symbol_type)
         if example:
             return self.wrap_example_if_iterator(unique_id, example)
         if unique_id in self.symbols_registry:
@@ -801,14 +829,36 @@ class HeaderFileParser:
             return self.generate_example_from_symbol_type(symbol_type)
         return None
 
-    def generate_example_from_description(self, param_description):
+    def generate_example_from_description(self, param_description, symbol_type=None):
         """
-        Extracts an example from a parameter description.
+        Extracts an example from a parameter description and converts it to the
+        appropriate Python type based on the C++ symbol type.
         """
         if param_description is None:
             return None
-        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
-        return match.group(1) if match else None
+        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'e\.g\.\s+(\S+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
+        if not match:
+            return None
+        value = match.group(1)
+        if symbol_type:
+            return self._convert_to_type(value, symbol_type)
+        return value
+
+    def _convert_to_type(self, value, symbol_type):
+        """Convert a string example value to the correct Python type based on C++ type."""
+        if symbol_type in self.INT_TYPES:
+            try:
+                return int(value)
+            except (ValueError, TypeError):
+                return value
+        if symbol_type in self.FLOAT_TYPES:
+            try:
+                return float(value)
+            except (ValueError, TypeError):
+                return value
+        if symbol_type == 'bool':
+            return value.lower() in ('true', '1', 'yes') if isinstance(value, str) else bool(value)
+        return value
 
     def generate_example_from_symbol_type(self, symbol_type):
         """
@@ -824,7 +874,9 @@ class HeaderFileParser:
 
             return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
-            return list(self.enums_registry[symbol_type])[0]
+            # Use the custom_name (from @text annotation) instead of the enum constant name
+            first_enum_member = list(self.enums_registry[symbol_type])[0]
+            return self.enums_registry[symbol_type][first_enum_member].get('custom_name', first_enum_member)
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
             return self.BASIC_TYPE_EXAMPLES[symbol_type]
         if symbol_type in self.iterators_registry:
