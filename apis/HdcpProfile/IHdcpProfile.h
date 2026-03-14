@@ -24,7 +24,7 @@
  {
      namespace Exchange
      {
-         /* @json 1.0.0 @text:keep */
+         /* @json 1.0.0*/
          struct EXTERNAL IHdcpProfile : virtual public Core::IUnknown 
          {
             enum { ID = ID_HDCPPROFILE };
@@ -45,27 +45,25 @@
             {
                 enum { ID = ID_HDCPPROFILE_NOTIFICATION };
                  
-                // @text onDisplayConnectionChanged
+                // @text onChanged
                 // @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
                 // @param HDCPStatus: Contains HDCP-related data as separate properties
-                virtual void OnDisplayConnectionChanged(const HDCPStatus hdcpStatus/* @text HDCPStatus*/) {};
+                virtual void ONDisplayConnectionChanged(const HDCPStatus hdcpStatus/* @text HDCPStatus*/) {};
             };
             virtual Core::hresult Register(IHdcpProfile::INotification* notification) = 0;
             virtual Core::hresult Unregister(IHdcpProfile::INotification* notification ) = 0;
              
             /**********************getHDCPStatus() - start****************************/
-            // @text getHDCPStatus
             // @brief Returns HDCP-related data.
             // @param HDCPStatus: Contains HDCP-related data as separate properties
             // @param success: Indicates whether the operation was successful
-            virtual Core::hresult GetHDCPStatus(HDCPStatus& hdcpStatus /* @out @text HDCPStatus*/,bool& success  /* @out */) = 0;
+            virtual uint32_t GetHDCPStatus(HDCPStatus& hdcpStatus /* @out @text HDCPStatus*/,bool& success  /* @out */) = 0;
             /**********************getHDCPStatus() - end******************************/
              
             /**********************getSettopHDCPSupport() - start*********************************/
-            // @text getSettopHDCPSupport
+            // @text GetSettopHDCPSupport
             // @brief Returns which version of HDCP is supported by the STB.
             // @param supportedHDCPVersion: Supported HDCP protocol version by the host device
-            // @param isHDCPSupported: Indicates whether HDCP is supported by the STB
             // @param success: Indicates whether the operation was successful
             virtual Core::hresult GetSettopHDCPSupport(string& supportedHDCPVersion/* @out */,bool& isHDCPSupported/* @out */,bool& success /* @out */) = 0;
             /**********************getSettopHDCPSupport() - end***********************************/ 
