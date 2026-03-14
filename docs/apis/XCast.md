@@ -55,7 +55,7 @@ XCast interface methods:
 | [getStandbyBehavior](#getStandbyBehavior) | Return current standby behavior option string set uisng setStandbyBehavior or default value |
 | [registerApplications](#registerApplications) | Registers an application |
 | [setApplicationState](#setApplicationState) | Triggered when the cast service receives an application state change notification from a client |
-| [setEnabled](#setEnabled) | Enable or disable XCAST service @parm enabled: true for enabled or false for disabled |
+| [setEnabled](#setEnabled) | Enable or disable XCAST service |
 | [setFriendlyName](#setFriendlyName) | Sets the friendly name of the device |
 | [setManufacturerName](#setManufacturerName) | Sets the manufacturer name of the device |
 | [setModelName](#setModelName) | Sets the model name of the device |
@@ -492,7 +492,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="setEnabled"></a>
 ## *setEnabled*
 
-Enable or disable XCAST service @parm enabled: true for enabled or false for disabled
+Enable or disable XCAST service
 
 ### Events
 Event details will be updated soon.
