@@ -300,6 +300,9 @@ namespace WPEFramework {
                 // @param event: Session end event data including server stats, remote ID, session ID, and session result
                 virtual void OnSessionEnd(const SessionEndEvent& event) {}
             };
+
+            virtual Core::hresult Register(IVoiceControl::INotification* notification) = 0;
+            virtual Core::hresult Unregister(const IVoiceControl::INotification* notification) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework

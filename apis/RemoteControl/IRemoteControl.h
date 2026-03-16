@@ -482,6 +482,9 @@ namespace WPEFramework {
                 // @param progress: Firmware update progress information including session ID and current status
                 virtual void OnFirmwareUpdateProgress(const FirmwareUpdateProgressEvent& progress) {}
             };
+
+            virtual Core::hresult Register(IRemoteControl::INotification* notification) = 0;
+            virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
