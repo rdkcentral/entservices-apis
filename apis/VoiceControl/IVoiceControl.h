@@ -170,7 +170,6 @@ namespace WPEFramework {
             // @brief Get the API version number
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
-            // @retval ErrorCode::GENERAL: General failure.
             // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out @unwrapped */) = 0;
 
@@ -188,6 +187,7 @@ namespace WPEFramework {
             // @param response: The voice status response
             // @param capabilities: A list of capabilities e.g. "PRV"
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */, IStringIterator*& capabilities /* @out */) = 0;
 
@@ -196,6 +196,7 @@ namespace WPEFramework {
             // @param request: The configure voice request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
             virtual Core::hresult ConfigureVoice(const ConfigureVoiceRequest& request, bool& success /* @out */) = 0;
 
@@ -205,6 +206,7 @@ namespace WPEFramework {
             // @param capabilities: A list of capabilities
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
             virtual Core::hresult SetVoiceInit(const string& language, IStringIterator* const capabilities, bool& success /* @out */) = 0;
 
@@ -213,6 +215,7 @@ namespace WPEFramework {
             // @param request: The voice message request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice message sent successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
             virtual Core::hresult SendVoiceMessage(const SendVoiceMessageRequest& request, bool& success /* @out */) = 0;
 
@@ -221,6 +224,7 @@ namespace WPEFramework {
             // @param request: The voice session by text request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
             virtual Core::hresult VoiceSessionByText(const VoiceSessionByTextRequest& request, bool& success /* @out */) = 0; // DEPRECATED
 
@@ -229,6 +233,7 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @param types: Array of strings indicating the voice session request types which are valid e.g. "ptt_transcription"
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
             virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;
 
@@ -237,6 +242,7 @@ namespace WPEFramework {
             // @param request: The voice session request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session requested successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
             virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestData& request, bool& success /* @out */) = 0;
 
@@ -245,6 +251,7 @@ namespace WPEFramework {
             // @param request: The voice session terminate request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session terminated successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
             virtual Core::hresult VoiceSessionTerminate(const VoiceSessionTerminateRequest& request, bool& success /* @out */) = 0;
 
@@ -253,6 +260,7 @@ namespace WPEFramework {
             // @param request: The voice session audio stream start request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
             virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionAudioStreamStartRequest& request, bool& success /* @out */) = 0;
             // End methods

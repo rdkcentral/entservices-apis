@@ -284,7 +284,6 @@ namespace WPEFramework {
             // @brief Gets the current API version number.
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
-            // @retval ErrorCode::GENERAL: General failure.
             // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out */) = 0;
 
@@ -294,6 +293,7 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @param macAddressList: Optional list of MAC addresses to pair with (only used if scanEnable is true)
             // @retval ErrorCode::NONE: Pairing started successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
             virtual Core::hresult StartPairing(const StartPairingRequest& request, bool& success /* @out */, IStringIterator* const macAddressList) = 0;
 
@@ -302,6 +302,7 @@ namespace WPEFramework {
             // @param request: The stop pairing request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
             virtual Core::hresult StopPairing(const StopPairingRequest& request, bool& success /* @out */) = 0;
 
@@ -312,6 +313,7 @@ namespace WPEFramework {
             // @param netTypeSupported: A list of the network types that the STB supports
             // @param remoteData: Remote information for each paired remote control
             // @retval ErrorCode::NONE: Network status retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
             virtual Core::hresult GetNetStatus(const GetNetStatusRequest& request, GetNetStatusResponse& response /* @out */, IUint32Iterator*& netTypeSupported /* @out */, IRemoteDataIterator*& remoteData /* @out */) = 0;
 
@@ -321,6 +323,8 @@ namespace WPEFramework {
             // @param response: The get IRDB manufacturers response
             // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
             virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
@@ -330,6 +334,8 @@ namespace WPEFramework {
             // @param response: The get IRDB models response
             // @param models: A list of model names e.g. "AH5901068L"
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
             virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
 
@@ -340,6 +346,8 @@ namespace WPEFramework {
             // @param tvCodes: A list of TV IR codes e.g. "1156"
             // @param avrCodes: A list of AVR IR codes e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
             virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
@@ -349,6 +357,8 @@ namespace WPEFramework {
             // @param response: The get IR codes by names response
             // @param codes: A list of IR codes for the specified device e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
             virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
 
@@ -357,6 +367,7 @@ namespace WPEFramework {
             // @param request: The set IR code request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR code set successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
             virtual Core::hresult SetIRCode(const SetIRCodeRequest& request, bool& success /* @out */) = 0;
 
@@ -365,6 +376,7 @@ namespace WPEFramework {
             // @param request: The clear IR codes request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR codes cleared successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
             virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request, bool& success /* @out */) = 0;
 
@@ -372,6 +384,7 @@ namespace WPEFramework {
             // @text getLastKeypressSource
             // @param response: The last keypress source response
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
             virtual Core::hresult GetLastKeypressSource(GetLastKeypressSourceResponse& response /* @out */) = 0;
 
@@ -380,6 +393,7 @@ namespace WPEFramework {
             // @param request: The configure wakeup keys request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
             virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request /* @unwrapped */, bool& success /* @out */) = 0;
 
@@ -388,6 +402,8 @@ namespace WPEFramework {
             // @param request: The initialize IRDB request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
             virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, bool& success /* @out */) = 0;
 
@@ -396,6 +412,7 @@ namespace WPEFramework {
             // @param request: The find my remote request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
             virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request, bool& success /* @out */) = 0;
 
@@ -403,6 +420,8 @@ namespace WPEFramework {
             // @text factoryReset
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Factory reset executed successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
+            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
             virtual Core::hresult FactoryReset(bool& success /* @out */) = 0;
 
@@ -411,6 +430,7 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @param macAddressList: Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
             virtual Core::hresult Unpair(bool& success /* @out */, IStringIterator* const macAddressList /* @unwrapped */) = 0;
 
@@ -420,6 +440,7 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
             virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
@@ -428,6 +449,7 @@ namespace WPEFramework {
             // @param request: The cancel firmware update request parameters
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
             virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request, bool& success /* @out */) = 0;
 
@@ -436,6 +458,7 @@ namespace WPEFramework {
             // @param request: The status firmware update request parameters
             // @param response: The status firmware update response
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
+            // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
             virtual Core::hresult StatusFirmwareUpdate(const StatusFirmwareUpdateRequest& request, StatusFirmwareUpdateResponse& response /* @out */) = 0;
             // End methods
