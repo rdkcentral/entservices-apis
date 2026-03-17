@@ -473,7 +473,7 @@ No Events
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | The model name of the AV device  |
+| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -499,7 +499,7 @@ No Events
     "params": {
         "avDevType": "TV",
         "manufacturer": "Samsung",
-        "model": "UN65JU750"
+        "model": "UN6"
     }
 }
 ```
@@ -508,7 +508,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN65JU750"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
