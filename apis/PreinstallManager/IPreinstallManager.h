@@ -58,7 +58,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
   // @text startPreinstall
   // @brief Checks the preinstall directory for packages to be preinstalled and installs them as needed.
-  // @param[in] forceInstall: If true always install the app; if false then install only if not installed or existing is older version
+  // @param forceInstall: If true always install the app; if false then install only if not installed or existing is older version
   // @retval Core::ERROR_NONE: Preinstallation completed or started successfully.
   // @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
