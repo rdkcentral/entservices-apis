@@ -334,10 +334,10 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.msgType | string | Message type expected from server  |
+| params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
 | params.created | integer | The timestamp for server information in milliseconds since epoch |
-| params.msgPayload | string | Message payload (opaque object) |
+| params.msgPayload | string | Vrex server information |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -355,7 +355,7 @@ No Events
     "id": 4,
     "method": "org.rdk.VoiceControl.sendVoiceMessage",
     "params": {
-        "msgType": "query",
+        "msgType": "asr",
         "trx": "12345-abc",
         "created": 0,
         "msgPayload": ""
@@ -367,7 +367,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "query", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
