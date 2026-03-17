@@ -85,13 +85,6 @@ namespace WPEFramework {
             string language /* @brief Preferred user interface language e.g. "en-US" */;
         };
 
-        struct EXTERNAL SendVoiceMessageRequest {
-            string msgType    /* @brief Message type expected from server e.g. "query" */;
-            string trx        /* @brief The unique id of the voice session e.g. "12345-abc" */;
-            uint64_t created  /* @brief The timestamp for server information in milliseconds since epoch */;
-            string msgPayload /* @brief Message payload (opaque object) */;
-        };
-
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
             DeviceType type      /* @brief The device type to simulate the voice session from. Possible values: PTT, FF, MIC */;
@@ -104,10 +97,6 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceSessionTerminateRequest {
-            string sessionId /* @brief The session identifier of the session from the onSessionBegin event e.g. "session-12345" */;
-        };
-
-        struct EXTERNAL VoiceSessionAudioStreamStartRequest {
             string sessionId /* @brief The session identifier of the session from the onSessionBegin event e.g. "session-12345" */;
         };
 
@@ -217,7 +206,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const SendVoiceMessageRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult SendVoiceMessage(const ServerMessageEvent& request, bool& success /* @out */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
@@ -262,7 +251,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionAudioStreamStartRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionTerminateRequest& request, bool& success /* @out */) = 0;
             // End methods
 
             // @event
