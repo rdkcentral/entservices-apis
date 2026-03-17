@@ -114,6 +114,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers multiple key intercepts in a single operation for a specific client.
   // @param clientId: The client identifier
   // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: All provided key intercepts were registered successfully
+  // @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts
   virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
@@ -122,6 +124,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param clientId: The client identifier
   // @param keyCode: The key code to remove
   // @param modifiers: JSON String format with one or more modifiers
+  // @retval Core::ERROR_NONE: The key intercept was removed successfully.
+  // @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error.
   virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */

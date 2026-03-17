@@ -48,7 +48,7 @@ RDKWindowManager interface methods:
 | Method | Description |
 | :-------- | :-------- |
 | [addKeyIntercept](#addKeyIntercept) | Registers a key intercept for a specific key code and client |
-| [addKeyIntercepts](#addKeyIntercepts) | Registers multiple key intercepts in a single operation. |
+| [addKeyIntercepts](#addKeyIntercepts) | Registers multiple key intercepts in a single operation for a specific client. |
 | [addKeyListener](#addKeyListener) | Registers listeners for specific keys. |
 | [createDisplay](#createDisplay) | Create the display window |
 | [enableDisplayRender](#enableDisplayRender) | Enable or disable the rendering of a Wayland display |
@@ -130,7 +130,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="addKeyIntercepts"></a>
 ## *addKeyIntercepts*
 
-Registers multiple key intercepts in a single operation.
+Registers multiple key intercepts in a single operation for a specific client.
 
 ### Events
 Event details will be updated soon.
@@ -138,7 +138,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercepts | string | JSON String format containing the array of key intercept(client/callSign, keyCode, modifiers) configuration |
+| params.clientId | string | The client identifier |
+| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -155,6 +156,7 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.RDKWindowManager.addKeyIntercepts",
     "params": {
+        "clientId": "",
         "intercepts": ""
     }
 }
@@ -164,7 +166,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"intercepts": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"clientId": "", "intercepts": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -650,7 +652,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.keyCode | integer | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
+| result.keyCode | integer | The key code to remove |
 | result.modifiers | integer | Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press. |
 | result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. @retval Core::ERROR_NONE: Successfully retrieved the last key press information. @retval Core::ERROR_UNAVAILABLE: No key press information is available. |
 
@@ -904,8 +906,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyCode | integer | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
-| params.modifiers | string |  |
+| params.keyCode | integer | The key code to remove |
+| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1010,7 +1012,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.intercept | string | JSON String format with the client/callSign, keyCode, modifiers |
+| params.clientId | string | The client identifier |
+| params.keyCode | integer | The key code to remove |
+| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1027,7 +1031,9 @@ Event details will be updated soon.
     "id": 18,
     "method": "org.rdk.RDKWindowManager.removeKeyIntercept",
     "params": {
-        "intercept": ""
+        "clientId": "",
+        "keyCode": 0,
+        "modifiers": ""
     }
 }
 ```
@@ -1036,7 +1042,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"intercept": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"clientId": "", "keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
