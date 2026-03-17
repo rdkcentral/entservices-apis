@@ -40,10 +40,10 @@ namespace WPEFramework
             /** Sets AV blocking status for an application */
             // @text setAVBlocked
             // @brief Adds/removes the application with the given callsign to/from the AV blacklist
-            // @param appId The application identifier (callsign)
+            // @param appid The application identifier (callsign)
             // @param blocked Whether to block (true) or unblock (false) AV access for the application
             // @param result The result of the operation
-            virtual Core::hresult SetAVBlocked(const string& appId, const bool blocked, Success& result /* @out */) = 0;
+            virtual Core::hresult SetAVBlocked(const string& appid, const bool blocked, Success& result /* @out */) = 0;
 
             /** Gets a list of blacklisted clients */
             // @text getBlockedAVApplications
@@ -55,9 +55,9 @@ namespace WPEFramework
             /** Reserves the Text To Speech resource for a specified client */
             // @text reserveTTSResource
             // @brief Reserves the Text To Speech resource for a specified client
-            // @param appId The application identifier (callsign)
+            // @param appid The application identifier (callsign)
             // @param result The result of the reservation operation
-            virtual Core::hresult ReserveTTSResource(const string& appId, Success& result /* @out */) = 0;
+            virtual Core::hresult ReserveTTSResource(const string& appid, Success& result /* @out */) = 0;
 
             /** Reserves the Text To Speech resource for specified clients */
             // @text reserveTTSResourceForApps

@@ -70,6 +70,12 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     // @text onBlur
     // @param appInstanceId: the identifier of the blurred application
     virtual void OnBlur(const std::string& appInstanceId){};
+
+    // @brief Notifies when a screenshot capture is complete
+    // @text onScreenshotComplete
+    // @param success: Indicates whether the screenshot was captured successfully
+    // @param imageData: Base64 encoded image data (PNG format)
+    virtual void OnScreenshotComplete(const bool success, const std::string& imageData){};
   };
 
   /** Register notification interface */
@@ -105,15 +111,22 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   
   /** Registers multiple key intercepts */
   // @text addKeyIntercepts
-  // @brief Registers multiple key intercepts in a single operation.
-  // @param intercepts: JSON String format containing the array of key intercept(client/callSign, keyCode, modifiers) configuration 
-  virtual Core::hresult AddKeyIntercepts(const string &intercepts) = 0;
+  // @brief Registers multiple key intercepts in a single operation for a specific client.
+  // @param clientId: The client identifier
+  // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: All provided key intercepts were registered successfully
+  // @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts
+  virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
   // @text removeKeyIntercept
   // @brief Removes a key intercept for a specific key code and client.
-  // @param intercept: JSON String format with the client/callSign, keyCode, modifiers
-  virtual Core::hresult RemoveKeyIntercept(const string &intercept) = 0;
+  // @param clientId: The client identifier
+  // @param keyCode: The key code to remove
+  // @param modifiers: JSON String format with one or more modifiers
+  // @retval Core::ERROR_NONE: The key intercept was removed successfully.
+  // @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error.
+  virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */
   // @text addKeyListener
@@ -201,6 +214,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
   virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
 
+  /** Gets the visibility of the given client or appInstanceId */
+  // @text getVisibility
+  // @brief Gets the visibility of the given client or appInstanceId
+  // @param client: client name or application instance ID
+  // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
+
   /** Get the first-frame rendered status of the application */
   // @json:omit
   // @brief To get the status of first frame is rendered or not
@@ -251,6 +272,13 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Stops the VNC server
   // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
+
+  /** Captures a screenshot of the current compositor output */
+  // @text getScreenshot
+  // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
+  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_GENERAL on failure
+  virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

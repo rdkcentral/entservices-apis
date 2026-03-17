@@ -254,7 +254,7 @@ namespace Exchange {
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
         ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
 
-	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
+	ID_APPSTORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
         ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
@@ -351,6 +351,11 @@ namespace Exchange {
 
         ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
         ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
+
+        ID_ACCOUNT                                  = ID_ENTOS_OFFSET + 0x500,
+
+        ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
+        ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
 
     }; // enum IDS
 

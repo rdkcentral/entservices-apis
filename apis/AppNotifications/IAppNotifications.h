@@ -36,12 +36,13 @@ namespace WPEFramework
                 uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
                 string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
                 string origin;           /* @text origin */ /* @brief Origin of the request (e.g., org.rdk.AppGateway). */
+                string version;           /* @text version */ /* @brief Version of the notification context can be semantic version */
             };
 
             // @json:omit
             // @text subscribe
             // @brief Thunder register/unregister for Firebolt subscription requests
-            // @param context: Execution context containing requestId, connectionId, appId
+            // @param context: Execution context containing requestId, connectionId, appId and version
             // @param listen: boolean
             // @param module: the thunder plugin to subscribe
             // @param event: the event to subscribe
