@@ -132,10 +132,6 @@ namespace WPEFramework {
             bool success              /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL InitializeIRDBRequest {
-            uint32_t netType /* @brief The type of network ex: 1 */;
-        };
-
         struct EXTERNAL ClearIRCodesRequest {
             uint32_t remoteId /* @brief The remote ID of the target remote on the specified network ex: 1 */;
             uint32_t netType  /* @brief The type of network ex: 1 */;
@@ -146,10 +142,6 @@ namespace WPEFramework {
             uint32_t netType    /* @brief The type of network ex: 1 */;
             AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string code         /* @brief The IR code being programmed into the remote e.g. "PANASONIC_3DTV" */;
-        };
-
-        struct EXTERNAL GetIRCodesByAutoLookupRequest {
-            uint32_t netType /* @brief The type of network ex: 1 */;
         };
 
         struct EXTERNAL GetIRCodesByAutoLookupResponse {
@@ -165,12 +157,6 @@ namespace WPEFramework {
         };
 
         using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-
-        struct EXTERNAL GetIRCodesByNamesRequest {
-            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
-            string model        /* @brief The model name of the AV device e.g. "UN65JU750" */;
-        };
 
         struct EXTERNAL GetIRCodesByNamesResponse {
             AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
@@ -349,7 +335,7 @@ namespace WPEFramework {
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const GetNetStatusRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
@@ -360,7 +346,7 @@ namespace WPEFramework {
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const GetIRDBModelsRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -405,7 +391,7 @@ namespace WPEFramework {
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult InitializeIRDB(const GetNetStatusRequest& request, bool& success /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
