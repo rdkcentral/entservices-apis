@@ -95,16 +95,16 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @text createDisplay
   // @brief Create the display window
   // @param clientId: Client identifier
-  // @param displayName: name of wayland display
-  // @param displayWidth(optional): width of client window
-  // @param displayHeight(optional): height of client window
-  // @param virtualDisplay(optional): Tells whether virtual display enabled or not
-  // @param virtualWidth(optional): width of display in framebuffer mode
-  // @param virtualHeight(optional): height of display in framebuffer mode
-  // @param ownerId(optional): uid of owner of wayland socket
-  // @param groupId(optional): group identifier of wayland socket
-  // @param topmost(optional): Tells whether client window needs to be topmost or not
-  // @param focus(optional): Tells whether the client needs focus or not
+  // @param displayName: Name of Wayland display
+  // @param displayWidth: Optional width of client window
+  // @param displayHeight: Optional height of client window
+  // @param virtualDisplay: Optional flag indicating whether virtual display is enabled
+  // @param virtualWidth: Optional width of display in framebuffer mode
+  // @param virtualHeight: Optional height of display in framebuffer mode
+  // @param ownerId: Optional UID of owner of Wayland socket
+  // @param groupId: Optional group identifier of Wayland socket
+  // @param topmost: Optional flag indicating whether client window needs to be topmost
+  // @param focus: Optional flag indicating whether the client needs focus
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
   // @retval Core::ERROR_UNAVAILABLE: Display service is not available
