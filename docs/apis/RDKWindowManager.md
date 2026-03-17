@@ -236,7 +236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Create the display window
 
-> **Note:** Earlier legacy documentation for this method described a single `params.displayParams` JSON-string parameter. That legacy form is deprecated and no longer supported. Use the structured parameters documented below instead.
+> **Note:** Earlier legacy documentation for this method described a single `params.displayParams` JSON-string parameter. That legacy form is no longer supported and has been removed. Use the structured parameters documented below instead.
 
 ### Events
 Event details will be updated soon.
