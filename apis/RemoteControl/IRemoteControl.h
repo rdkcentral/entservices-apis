@@ -221,10 +221,6 @@ namespace WPEFramework {
             string sessionId /* @brief The session identifier e.g. "12345-abc-def" */;
         };
 
-        struct EXTERNAL StatusFirmwareUpdateRequest {
-            string sessionId /* @brief The session identifier e.g. "12345-abc-def" */;
-        };
-
         struct EXTERNAL FirmwareUpdateStatus {
             FirmwareUpdateState state /* @brief The firmware update state */;
             uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
@@ -446,7 +442,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const StatusFirmwareUpdateRequest& request, StatusFirmwareUpdateResponse& response /* @out */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const CancelFirmwareUpdateRequest& request, StatusFirmwareUpdateResponse& response /* @out */) = 0;
             // End methods
 
             // @event
