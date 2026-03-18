@@ -265,7 +265,7 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.RDKWindowManager.createDisplay",
     "params": {
@@ -288,7 +288,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "org.rdk.Netflix", "displayName": "Netflix", "displayWidth": 1920, "displayHeight": 1080, "virtualDisplay": false, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": false, "focus": false}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "org.rdk.Netflix", "displayName": "Netflix", "displayWidth": 1920, "displayHeight": 1080, "virtualDisplay": false, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": false, "focus": false}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -296,7 +296,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
