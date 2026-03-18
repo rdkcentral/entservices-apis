@@ -31,16 +31,24 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   enum { ID = ID_PREINSTALL_MANAGER };
 
 
+  enum State : uint8_t {
+    NOT_STARTED   = 0 /* @text NOT_STARTED */,
+    IN_PROGRESS   = 1 /* @text IN_PROGRESS */,
+    COMPLETED     = 2 /* @text COMPLETED   */
+  };
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_PREINSTALL_MANAGER_NOTIFICATION };
 
-
     // @text onAppInstallationStatus
     // @brief Emitted when the installation of a preinstalled app succeeds or fails.
     // @param jsonresponse: Output installation status details as string object
+    // @deprecated
     virtual void OnAppInstallationStatus(const string& jsonresponse /* @opaque */) {};
+    // @text OnPreinstallationComplete
+    // @brief Emitted when the preinstallation process completes
+    virtual void OnPreinstallationComplete() {};
   };
 
   /** Register notification interface */
@@ -50,9 +58,17 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
   // @text startPreinstall
   // @brief Checks the preinstall directory for packages to be preinstalled and installs them as needed.
-  // @param[in] forceInstall: If true always install the app; if false then install only if not installed or existing is older version
-  // @return Core::ERROR_NONE on success, Core::ERROR_GENERAL on error.
+  // @param forceInstall: If true always install the app; if false then install only if not installed or existing is older version
+  // @retval Core::ERROR_NONE: Preinstallation completed or started successfully.
+  // @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation.
   virtual Core::hresult StartPreinstall(bool forceInstall) = 0;
+
+  // @text getPreinstallState
+  // @brief Provides the state of the preinstallation process.
+  // @param[out] state: Value can be NOT_STARTED/IN_PROGRESS/COMPLETED
+  // @retval Core::ERROR_NONE: State retrieved successfully.
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state.
+  virtual Core::hresult GetPreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
