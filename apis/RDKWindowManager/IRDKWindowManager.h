@@ -94,8 +94,20 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Create the display window */
   // @text createDisplay
   // @brief Create the display window
-  // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
-  virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
+  // @param clientId: Client identifier
+  // @param displayName: Name of Wayland display
+  // @param displayWidth: Optional width of client window
+  // @param displayHeight: Optional height of client window
+  // @param virtualDisplay: Optional flag indicating whether virtual display is enabled
+  // @param virtualWidth: Optional width of display in framebuffer mode
+  // @param virtualHeight: Optional height of display in framebuffer mode
+  // @param ownerId: Optional UID of owner of Wayland socket
+  // @param groupId: Optional group identifier of Wayland socket
+  // @param topmost: Optional flag indicating whether client window needs to be topmost
+  // @param focus: Optional flag indicating whether the client needs focus
+  // @retval Core::ERROR_NONE: Display window created successfully
+  // @retval Core::ERROR_GENERAL: Failed to create the display window
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
