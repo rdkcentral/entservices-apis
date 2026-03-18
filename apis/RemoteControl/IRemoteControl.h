@@ -306,7 +306,6 @@ namespace WPEFramework {
             // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
             virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
@@ -317,7 +316,6 @@ namespace WPEFramework {
             // @param models: A list of model names e.g. "AH5901068L"
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
             virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
 
@@ -329,7 +327,6 @@ namespace WPEFramework {
             // @param avrCodes: A list of AVR IR codes e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
             virtual Core::hresult GetIRCodesByAutoLookup(const GetNetStatusRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
@@ -340,7 +337,6 @@ namespace WPEFramework {
             // @param codes: A list of IR codes for the specified device e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
             virtual Core::hresult GetIRCodesByNames(const GetIRDBModelsRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
 
@@ -385,7 +381,6 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
             virtual Core::hresult InitializeIRDB(const GetNetStatusRequest& request, bool& success /* @out */) = 0;
 
@@ -403,7 +398,6 @@ namespace WPEFramework {
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
-            // @retval ErrorCode::TIMEDOUT: IARM bus call timed out.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
             virtual Core::hresult FactoryReset(bool& success /* @out */) = 0;
 
