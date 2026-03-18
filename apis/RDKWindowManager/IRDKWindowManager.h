@@ -107,7 +107,6 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param focus: Optional flag indicating whether the client needs focus
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
-  // @retval Core::ERROR_UNAVAILABLE: Display service is not available
   virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
 
   /** Get the list of active Apps */
@@ -232,18 +231,18 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the visibility of the given client or appInstanceId
   // @param client: client name or application instance ID
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
-  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_NONE on success
   virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
 
   /** Get the first-frame rendered status of the application */
-  // @text renderReady
+  // @json:omit
   // @brief To get the status of first frame is rendered or not
   // @param client: client name or application instance ID
   // @param status: Returns true if the application has rendered first frame, false if it has not yet.
   virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
 
   /** To enable/disable the rendering of a Wayland display in the window manager */
-  // @text enableDisplayRender
+  // @json:omit
   // @brief Enable or disable the rendering of a Wayland display
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render
@@ -263,7 +262,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
-  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_NONE on success
   virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
@@ -271,26 +270,26 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Gets the zOrder of the given client or appInstanceId
   // @param appInstanceId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
-  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_NONE on success
   virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
 
   /** Starts the VNC server */
   // @text startVncServer
   // @brief Starts the VNC server
-  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_NONE on success
   virtual Core::hresult StartVncServer() = 0;
 
   /** Stops the VNC server */
   // @text stopVncServer
   // @brief Stops the VNC server
-  // @retval Core::ERROR_NONE: Success
+  // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
 
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
   // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
-  // @retval Core::ERROR_NONE: Success
-  // @retval Core::ERROR_GENERAL: Failure
+  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_GENERAL on failure
   virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange
