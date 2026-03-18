@@ -63,7 +63,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED @retval Core::ERROR_NONE: State retrieved successfully. @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state. |
+| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED |
 
 ### Examples
 
@@ -109,7 +109,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.forceInstall | bool | If true always install the app; if false then install only if not installed or existing is older version @retval Core::ERROR_NONE: Preinstallation completed or started successfully. @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation. |
+| params.forceInstall | bool | If true always install the app; if false then install only if not installed or existing is older version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -163,7 +163,7 @@ PreinstallManager interface events:
 | Event | Description |
 | :-------- | :-------- |
 | [onAppInstallationStatus](#onAppInstallationStatus) | Emitted when the installation of a preinstalled app succeeds or fails. |
-| [OnPreinstallationComplete](#OnPreinstallationComplete) | Emitted when the preinstallation process completes |
+| [onPreinstallationComplete](#onPreinstallationComplete) | Emitted when the preinstallation process completes |
 
 <a id="onAppInstallationStatus"></a>
 ## *onAppInstallationStatus*
@@ -174,7 +174,7 @@ Emitted when the installation of a preinstalled app succeeds or fails.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.jsonresponse | string | Output installation status details as string object @deprecated |
+| params.jsonresponse | string | Output installation status details as string object |
 
 ### Examples
 
