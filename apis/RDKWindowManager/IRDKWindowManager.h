@@ -114,6 +114,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Registers multiple key intercepts in a single operation for a specific client.
   // @param clientId: The client identifier
   // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: All provided key intercepts were registered successfully
+  // @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts
   virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
@@ -122,6 +124,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param clientId: The client identifier
   // @param keyCode: The key code to remove
   // @param modifiers: JSON String format with one or more modifiers
+  // @retval Core::ERROR_NONE: The key intercept was removed successfully.
+  // @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error.
   virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */
@@ -219,14 +223,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
 
   /** Get the first-frame rendered status of the application */
-  // @text renderReady
+  // @json:omit
   // @brief To get the status of first frame is rendered or not
   // @param client: client name or application instance ID
   // @param status: Returns true if the application has rendered first frame, false if it has not yet.
   virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
 
   /** To enable/disable the rendering of a Wayland display in the window manager */
-  // @text enableDisplayRender
+  // @json:omit
   // @brief Enable or disable the rendering of a Wayland display
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render

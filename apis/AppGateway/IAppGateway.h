@@ -28,6 +28,7 @@ namespace WPEFramework
                 uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */ 
                 uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
                 string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
+                string version;           /* @text version */ /* @brief Version of the gateway request can be semantic version */
         };
         
         // @json 1.0.0 @text:keep
@@ -140,12 +141,23 @@ namespace WPEFramework
             // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
             // @param connectionId: Connection Id
-            // @param contextKey: Connection Id
+            // @param contextKey: Context key
             // @param contextValue: response value
             // @returns Core::hresult
             virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
                 const string& contextKey ,
                 string& contextValue /* @out */) = 0;
+
+            // @json:omit
+            // @text recordGatewayConnectionContext
+            // @brief Allows other Firebolt based plugins to update connection context back to Gateway Socket Connection
+            // @param connectionId: Connection Id
+            // @param contextKey: Context Key
+            // @param contextValue: Context Value
+            // @returns Core::hresult
+            virtual Core::hresult RecordGatewayConnectionContext(const uint32_t connectionId ,
+                const string& contextKey ,
+                const string& contextValue) = 0;
 
 
             struct EXTERNAL INotification : virtual public Core::IUnknown

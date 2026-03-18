@@ -139,7 +139,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.clientId | string | The client identifier |
-| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
+| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -907,7 +907,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keyCode | integer | The key code to remove |
-| params.modifiers | string | JSON String format with one or more modifiers |
+| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1014,7 +1014,7 @@ Event details will be updated soon.
 | params | object |  |
 | params.clientId | string | The client identifier |
 | params.keyCode | integer | The key code to remove |
-| params.modifiers | string | JSON String format with one or more modifiers |
+| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
