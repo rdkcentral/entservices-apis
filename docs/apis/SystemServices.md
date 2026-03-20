@@ -1022,7 +1022,10 @@ Returns the Supported features and device/account info
 ### Events
 Event details will be updated soon.
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.query | string | Query for support of a particular feature, e.g. AccountInfo.accountId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1080,7 +1083,10 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "method": "org.rdk.SystemServices.getPlatformConfiguration"
+    "method": "org.rdk.SystemServices.getPlatformConfiguration",
+    "params": {
+        "query": ""
+    }
 }
 ```
 
@@ -1088,7 +1094,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration", "params": {"query": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2823,7 +2829,7 @@ Triggered when Device Mgt settings update is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.source | string | The reboot source |
+| params.source | string | The source of the update |
 | params.type | string | The type of update |
 | params.success | bool | Whether the request succeeded |
 
@@ -3145,7 +3151,7 @@ Triggered when the temperature threshold is changed.
 | params | object |  |
 | params.thresholdType | string | The type of temperature threshold |
 | params.exceeded | bool | Whether the threshold is exceeded |
-| params.temperature | float | The current temperature |
+| params.temperature | string | The current temperature |
 
 ### Examples
 
@@ -3157,7 +3163,7 @@ Triggered when the temperature threshold is changed.
     "params": {
         "thresholdType": "",
         "exceeded": true,
-        "temperature": 0.0
+        "temperature": ""
     }
 }
 ```
