@@ -30,11 +30,15 @@ namespace Exchange {
 
         virtual ~IAccount() = default;
 
+        struct GetLastCheckoutResetTimeResult {
+            uint64_t resetTime; // @text resetTime
+        };
+
         // @text getLastCheckoutResetTime
         // @brief Gets the last reset time for Hotel Checkout.
         // @param resetTime: Time in UTC. Returns 0, if time is not available.
         // @retval Core::ERROR_NONE Last Checkout reset time is successfully retrieved
-        virtual Core::hresult GetLastCheckoutResetTime(uint64_t& resetTime /* @out */) const = 0;
+        virtual Core::hresult GetLastCheckoutResetTime(GetLastCheckoutResetTimeResult& resetTime /* @out */) const = 0;
 
         // @text setLastCheckoutResetTime
         // @brief Sets the last reset time for Hotel Checkout.
