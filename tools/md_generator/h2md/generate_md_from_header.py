@@ -54,7 +54,7 @@ def combine_header_structures(main_structure, additional_structure):
 
 def get_header_files(folder_path):
     """Get all .h files from the specified folder."""
-    return [f for f in os.listdir(folder_path) if f.endswith('.h')]
+    return sorted([f for f in os.listdir(folder_path) if f.endswith('.h')])
 
 
 def create_logger(classname, logfile_path=None):
