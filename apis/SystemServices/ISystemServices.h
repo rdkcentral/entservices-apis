@@ -93,15 +93,6 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL PreviousRebootInfo {
-                string timestamp /* @brief The reboot timestamp */;
-                string reason /* @brief The reboot reason */;
-                string source /* @brief The reboot source */;
-                string customReason /* @brief The custom reboot reason */;
-                string otherReason /* @brief Other reboot reason details */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
             struct EXTERNAL ModeInfo {
                 string mode /* @brief The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) */;
                 int duration /* @brief The duration */;
@@ -284,7 +275,7 @@ namespace WPEFramework
                 // @param thresholdType: The type of temperature threshold
                 // @param exceeded: Whether the threshold is exceeded
                 // @param temperature: The current temperature
-                virtual void OnTemperatureThresholdChanged(const string& thresholdType, const bool exceeded, const float temperature) {};
+                virtual void OnTemperatureThresholdChanged(const string& thresholdType, const bool exceeded, const string& temperature) {};
 
                 // @text onSystemClockSet
                 // @brief Triggered when time source state has changed.
@@ -613,10 +604,11 @@ namespace WPEFramework
 
             // @text getPlatformConfiguration
             // @brief Returns the Supported features and device/account info
+            // @param query: Query for support of a particular feature, e.g. AccountInfo.accountId
             // @param platformConfig: Platform Configuration Details
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetPlatformConfiguration (PlatformConfig& platformConfig /* @out */) = 0;
+            virtual Core::hresult GetPlatformConfiguration (const string &query, PlatformConfig& platformConfig /* @out */) = 0;
 
             // @text setWakeupSrcConfiguration
             // @brief Sets the wakeup source configuration for the input powerState.
