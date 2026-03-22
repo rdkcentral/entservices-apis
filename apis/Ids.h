@@ -360,6 +360,9 @@ namespace Exchange {
         ID_HELLO_PLUGIN                             = ID_ENTOS_OFFSET + 0x520,
         ID_HELLO_PLUGIN_NOTIFICATION                = ID_HELLO_PLUGIN + 1,
 
+        ID_GSTREAMER_PLAYER                         = ID_ENTOS_OFFSET + 0x530,
+        ID_GSTREAMER_PLAYER_NOTIFICATION            = ID_GSTREAMER_PLAYER + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
