@@ -215,7 +215,6 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.bootType | string | BOOT Type Info |
-| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -245,8 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "bootType": "",
-        "success": true
+        "bootType": ""
     }
 }
 ```
@@ -929,8 +927,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.MigrationStatus | string | Migration Status |
-| result.success | bool | Whether the request succeeded |
+| result.migrationStatus | string | Migration Status |
 
 ### Examples
 
@@ -960,8 +957,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "jsonrpc": 2.0,
     "id": 15,
     "result": {
-        "MigrationStatus": "",
-        "success": true
+        "migrationStatus": ""
     }
 }
 ```
@@ -2200,7 +2196,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | Migration Status |
+| params.status | string | Migration Status |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2218,7 +2214,7 @@ Event details will be updated soon.
     "id": 37,
     "method": "org.rdk.SystemServices.setMigrationStatus",
     "params": {
-        "status": true
+        "status": ""
     }
 }
 ```
@@ -2227,7 +2223,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
