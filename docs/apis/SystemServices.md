@@ -334,6 +334,7 @@ Event details will be updated soon.
 | result.deviceInfo.wifi_mac | string | WIFI Mac Address |
 | result.deviceInfo.modelName | string | Device model name |
 | result.deviceInfo.hardwareID | string | Hardware ID |
+| result.deviceInfo.message | string | Error message if input failure |
 | result.deviceInfo.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -382,6 +383,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
         "wifi_mac": "",
         "modelName": "",
         "hardwareID": "",
+        "message": "",
         "success": true
     }
 }
@@ -2487,7 +2489,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.message | string | Error Message |
+| result.message | string | Error message if input failure |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
