@@ -242,7 +242,17 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayParams | string | JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus |
+| params.clientId | string | Client identifier |
+| params.displayName | string | Name of wayland display |
+| params.displayWidth | integer | <sup>*(optional)*</sup> Width of client window |
+| params.displayHeight | integer | <sup>*(optional)*</sup> Height of client window |
+| params.virtualDisplay | boolean | <sup>*(optional)*</sup> Tells whether virtual display is enabled or not |
+| params.virtualWidth | integer | <sup>*(optional)*</sup> Width of display in framebuffer mode |
+| params.virtualHeight | integer | <sup>*(optional)*</sup> Height of display in framebuffer mode |
+| params.ownerId | integer | <sup>*(optional)*</sup> UID of owner of wayland socket |
+| params.groupId | integer | <sup>*(optional)*</sup> Group identifier of wayland socket |
+| params.topmost | boolean | <sup>*(optional)*</sup> Tells whether client window needs to be topmost or not |
+| params.focus | boolean | <sup>*(optional)*</sup> Tells whether the client needs focus or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -255,11 +265,21 @@ Event details will be updated soon.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.RDKWindowManager.createDisplay",
     "params": {
-        "displayParams": ""
+        "clientId": "org.rdk.Netflix",
+        "displayName": "Netflix",
+        "displayWidth": 1920,
+        "displayHeight": 1080,
+        "virtualDisplay": false,
+        "virtualWidth": 0,
+        "virtualHeight": 0,
+        "ownerId": 0,
+        "groupId": 0,
+        "topmost": false,
+        "focus": false
     }
 }
 ```
@@ -268,7 +288,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"displayParams": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "org.rdk.Netflix", "displayName": "Netflix", "displayWidth": 1920, "displayHeight": 1080, "virtualDisplay": false, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": false, "focus": false}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -276,7 +296,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": null
 }
