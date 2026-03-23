@@ -49,6 +49,7 @@ namespace WPEFramework
                 string wifiMac /* @text wifi_mac */ /* @brief WIFI Mac Address */;
                 string modelName /* @brief Device model name */;
                 string hardwareID /* @brief Hardware ID */;
+                string message /* @brief Error message if input failure */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
