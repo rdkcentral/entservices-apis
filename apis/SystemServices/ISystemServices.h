@@ -67,6 +67,14 @@ namespace WPEFramework
                 string message /* @brief Error Message */;
             };
 
+            struct EXTERNAL BootType {
+                string bootType /* @brief BOOT Type Info */;
+            };
+
+            struct EXTERNAL MigrationStatus {
+                string migrationStatus /* @brief Migration Status */;
+            };
+
             struct EXTERNAL ErrorInfo {
                 string message /* @brief Error Message */;
                 string code /* @brief Error Code */;
@@ -572,25 +580,23 @@ namespace WPEFramework
 
             // @text getBootTypeInfo
             // @brief Get the FSR flag from the emmc raw area.
-            // @param bootType: BOOT Type Info
-            // @param success: Whether the request succeeded
+            // @param BootType: BOOT Type Info
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetBootTypeInfo(string &bootType /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetBootTypeInfo(BootType &bootType /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief set the Migration Status of the device.
             // @param status: Migration Status
             // @param success: Whether the request succeeded
-            virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
+            virtual Core::hresult SetMigrationStatus(const string& status, bool& success /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the Migration Status of the device
             // @param MigrationStatus: Migration Status
-            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetMigrationStatus(string &MigrationStatus /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetMigrationStatus(MigrationStatus &migrationStatus /* @out */) = 0;
 
             // @text getMacAddresses
             // @brief Gets the MAC address of the device.
