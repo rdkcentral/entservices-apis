@@ -225,18 +225,18 @@ namespace WPEFramework {
             // @param vrrSupport - out - The VRR support bit value
             virtual Core::hresult GetVRRSupport(const string& portId, bool& vrrSupport /* @out */, bool& success /* @out */) = 0;
 
+	    // @text getArcPortId
+            // @brief Returns the Arc portID of the panel
+            // @param portId - out - The arc port Id
+            // @param success - out - Whether the request succeeded
+           // virtual Core::hresult GetARCPortId(string& portId /* @out */, bool& success /* @out */) = 0;
+
             // @text getHdmiVersion
             // @brief Gets the maximum hdmi compatibility version supported for the given port.
             // @param portId - in - An ID of an HDMI/Composite Input port as returned by the getInputDevices method
             // @param HdmiCapabilityVersion - out - The Maximum Hdmi compatibility version supported by the given port
             // @param success - out - Whether the request succeeded
             virtual Core::hresult GetHdmiVersion(const string& portId, string& HdmiCapabilityVersion /* @out */, bool& success /* @out */) = 0;
-
-            // @text getArcPortId
-            // @brief Returns the Arc portID of the panel
-            // @param portId - out - The arc port Id
-            // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetARCPortId(string& portId /* @out */, bool& success /* @out */) = 0;
 
             // @text setMixerLevels
             // @brief Sets the audio mixer level for given audio input.
