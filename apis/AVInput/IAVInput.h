@@ -232,6 +232,12 @@ namespace WPEFramework {
             // @param success - out - Whether the request succeeded
             virtual Core::hresult GetHdmiVersion(const string& portId, string& HdmiCapabilityVersion /* @out */, bool& success /* @out */) = 0;
 
+            // @text getArcPortId
+            // @brief Returns the Arc portID of the panel
+            // @param portId - out - The arc port Id
+            // @param success - out - Whether the request succeeded
+            virtual Core::hresult GetARCPortId(string& portId /* @out */, bool& success /* @out */) = 0;
+
             // @text setMixerLevels
             // @brief Sets the audio mixer level for given audio input.
             // @param primaryVolume - in - Primary audio input volume
