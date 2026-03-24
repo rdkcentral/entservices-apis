@@ -107,11 +107,6 @@ namespace WPEFramework
                 int duration /* @brief The duration */;
             };
 
-            struct EXTERNAL SystemModeInfo {
-                ModeInfo modeinfo /* @brief The mode information */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
             struct EXTERNAL AccountInfoDetails {
                 string accountId /* @brief Account Id */;
                 string x1DeviceId /* @brief X1 Device Id */;
@@ -167,7 +162,7 @@ namespace WPEFramework
             };
 
             struct EXTERNAL PlatformConfig {
-                AccountInfoDetails acountInfo /* @text AccountInfo @brief AccountInfo Details */;
+                AccountInfoDetails accountInfo /* @text AccountInfo @brief AccountInfo Details */;
                 DeviceInfoDetails deviceInfo /* @text DeviceInfo @brief DeviceInfo Details */;
                 bool success /* @brief Whether the request succeeded */;
             };
