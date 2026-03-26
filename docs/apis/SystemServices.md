@@ -2250,9 +2250,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.modeinfo | ModeInfo |  |
-| params.modeinfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
-| params.modeinfo.duration | int | The duration |
+| params.modeInfo | ModeInfo |  |
+| params.modeInfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
+| params.modeInfo.duration | int | The duration |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
