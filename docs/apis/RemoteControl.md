@@ -1034,8 +1034,8 @@ No Events
 | params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
 | params.request.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
 | params.request.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
-| params.macAddressList | IStringIterator | Optional list of MAC addresses to pair with (only used if scanEnable is true) |
-| params.macAddressList[#] | string |  |
+| params?.macAddressList | IStringIterator | <sup>(optional)</sup>Optional list of MAC addresses to pair with (only used if scanEnable is true) |
+| params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

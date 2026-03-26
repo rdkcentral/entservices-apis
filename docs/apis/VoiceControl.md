@@ -395,8 +395,8 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language  |
-| params.capabilities | IStringIterator | A list of capabilities  |
-| params.capabilities[#] | string |  |
+| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities  |
+| params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
