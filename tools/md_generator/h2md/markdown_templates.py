@@ -442,7 +442,8 @@ def generate_results_section(results, symbol_registry):
                             wrapper_name, remainder = match.groups()
                             result_name = remainder if remainder else result_name
                     
-                    optionality = f"<sup>({result_data['optionality']})</sup>" if result_data.get('optionality') == 'optional' else ''
+                    field_optionality = result_data.get('optionality') or result.get('optionality')
+                    optionality = f"<sup>({field_optionality})</sup>" if field_optionality == 'optional' else ''
                     markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
                 return markdown
         
