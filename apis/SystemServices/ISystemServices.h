@@ -340,7 +340,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetFirmwareDownloadPercent(uint32_t & downloadPercent /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetFirmwareDownloadPercent(int32_t & downloadPercent /* @out */, bool& success /* @out */) = 0;
 
             // @text getFirmwareUpdateInfo
             // @brief Checks the firmware update information.
@@ -644,7 +644,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetMode(const ModeInfo& modeinfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetMode(const ModeInfo& modeInfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text uploadLogsAsync
             // @brief Starts background process to upload logs.
