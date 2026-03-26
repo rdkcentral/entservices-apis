@@ -396,7 +396,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.request | GetIRCodesByAutoLookupRequest | The get IR codes by auto lookup request parameters |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -423,7 +423,7 @@ No Events
     "id": 6,
     "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
     "params": {
-        "netType": 1
+        "request": ""
     }
 }
 ```
@@ -432,7 +432,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -471,9 +471,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| params.request | GetIRCodesByNamesRequest | The get IR codes by names request parameters |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -497,9 +495,7 @@ No Events
     "id": 7,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "avDevType": "TV",
-        "manufacturer": "Samsung",
-        "model": "UN6"
+        "request": ""
     }
 }
 ```
@@ -508,7 +504,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -850,7 +846,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.request | InitializeIRDBRequest | The initialize IRDB request parameters |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -868,7 +864,7 @@ No Events
     "id": 12,
     "method": "org.rdk.RemoteControl.initializeIRDB",
     "params": {
-        "netType": 1
+        "request": ""
     }
 }
 ```
@@ -877,7 +873,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"request": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

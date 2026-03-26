@@ -394,7 +394,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.language | string | Preferred user interface language  |
+| params.language | string | Preferred user interface language |
 | params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities  |
 | params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
@@ -414,7 +414,7 @@ No Events
     "id": 5,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
-        "language": "en-US",
+        "language": "",
         "capabilities": [
             "PRV"
         ]
@@ -426,7 +426,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "en-US", "capabilities": ["PRV"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "", "capabilities": ["PRV"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -565,7 +565,7 @@ No Events
 | params | object |  |
 | params.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
 | params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
-| params.type | string | The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test)  |
+| params.type | string | The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
