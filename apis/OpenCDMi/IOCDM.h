@@ -393,6 +393,18 @@ private:
     ISession::KeyStatus _status;
 };
 
+struct EXTERNAL IGoogleCastAuthExtension : virtual public Core::IUnknown {
+    enum { ID = ID_GOOGLE_CAST_AUTH_EXTENSION };
+
+    // Sign a hash using given device key
+    virtual OCDM_RESULT SignHash(const string& wrapped_device_key, const string& hash, string& signature/* @out */) = 0;
+
+    // Generates a new RSA device key and corresponding X.509 device certificate.
+    virtual OCDM_RESULT GenDeviceKeyAndCert(string& wrapped_device_key /* @out */, string& device_certificate/* @out */) = 0;
+
+    // @Get the cert_chain.
+    virtual OCDM_RESULT GetModelCertChain(string& cert_chain /* @out */) const = 0;
+};
 
 } //namespace Exchange
 } //namespace WPEFramework

@@ -513,6 +513,13 @@ struct IMediaSessionMetrics {
     virtual CDMi_RESULT Metrics (uint32_t& bufferLength, uint8_t buffer[]) const = 0;
 };
 
+struct IGoogleCastAuthExtension {
+    virtual ~IGoogleCastAuthExtension() = default;
+    virtual CDMi_RESULT SignHash(const std::string& wrapped_device_key, const std::string& hash, std::string& signature/* @out */) = 0;
+    virtual CDMi_RESULT GenDeviceKeyAndCert(std::string& wrapped_device_key /* @out */, std::string& device_certificate/* @out */) = 0;
+    virtual CDMi_RESULT GetModelCertChain(std::string& cert_chain /* @out */) const = 0;
+};
+
 struct ISystemFactory {
     virtual ~ISystemFactory() = default;
     virtual IMediaKeys* Instance() = 0;
