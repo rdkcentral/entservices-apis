@@ -273,7 +273,7 @@ namespace WPEFramework {
             // @text startPairing
             // @param request: The pairing request parameters
             // @param success: Whether the request succeeded
-            // @param macAddressList: Optional list of MAC addresses to pair with (only used if scanEnable is true)
+            // @param macAddressList(optional): Optional list of MAC addresses to pair with (only used if scanEnable is true)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
@@ -404,7 +404,7 @@ namespace WPEFramework {
             // @brief Unpairs all remotes from the STB
             // @text unpair
             // @param success: Whether the request succeeded
-            // @param macAddressList: Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
+            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
@@ -459,7 +459,18 @@ namespace WPEFramework {
                 virtual void OnFirmwareUpdateProgress(const FirmwareUpdateProgressEvent& progress) {}
             };
 
+            // @json:omit
+            // @text register
+            // @brief Register notification interface
+            // @param notification: Notification interface pointer
+            // @retval Core::NONE: Indicates successful registration of notification interface
             virtual Core::hresult Register(IRemoteControl::INotification* notification) = 0;
+
+            // @json:omit
+            // @text unregister
+            // @brief Unregister notification interface
+            // @param notification: Notification interface pointer
+            // @retval Core::NONE: Indicates successful unregistration of notification interface
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange

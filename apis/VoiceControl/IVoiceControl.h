@@ -192,7 +192,7 @@ namespace WPEFramework {
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
             // @param language: Preferred user interface language
-            // @param capabilities: A list of capabilities
+            // @param capabilities(optional): A list of capabilities
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -290,7 +290,18 @@ namespace WPEFramework {
                 virtual void OnSessionEnd(const SessionEndEvent& event) {}
             };
 
+            // @json:omit
+            // @text register
+            // @brief Register notification interface
+            // @param notification: Notification interface pointer
+            // @retval Core::NONE: Indicates successful registration of notification interface
             virtual Core::hresult Register(IVoiceControl::INotification* notification) = 0;
+
+            // @json:omit
+            // @text unregister
+            // @brief Unregister notification interface
+            // @param notification: Notification interface pointer
+            // @retval Core::NONE: Indicates successful unregistration of notification interface
             virtual Core::hresult Unregister(const IVoiceControl::INotification* notification) = 0;
         };
     } // namespace Exchange
