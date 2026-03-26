@@ -115,15 +115,12 @@ namespace WPEFramework {
             bool scanDisable       /* @brief Whether to disable scanning for remotes (default: true) */;
         };
 
-        struct EXTERNAL NetworkStatus {
-            uint32_t netType          /* @brief The type of network ex: 1 */;
-            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
-            IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
-        };
-
         struct EXTERNAL GetNetStatusRequest {
             uint32_t netType /* @brief The type of network ex: 1 */;
         };
+
+        using GetIRCodesByAutoLookupRequest = GetNetStatusRequest;
+        using InitializeIRDBRequest = GetNetStatusRequest;
 
         struct EXTERNAL GetNetStatusResponse {
             uint32_t netType          /* @brief The type of network ex: 1 */;
@@ -152,12 +149,6 @@ namespace WPEFramework {
             bool success           /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL IRCodeList {
-            string code /* @brief IR code e.g. "PANASONIC_3DTV" */;
-        };
-
-        using IIRCodeIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-
         struct EXTERNAL GetIRCodesByNamesResponse {
             AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
@@ -183,6 +174,8 @@ namespace WPEFramework {
             string manufacturer /* @brief The manufacturer name of the AV device e.g. "Samsung" */;
             string model        /* @brief A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" */;
         };
+
+        using GetIRCodesByNamesRequest = GetIRDBModelsRequest;
 
         struct EXTERNAL GetIRDBModelsResponse {
             AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
@@ -328,7 +321,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const GetNetStatusRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
@@ -338,7 +331,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const GetIRDBModelsRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -382,7 +375,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const GetNetStatusRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, bool& success /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote

@@ -45,6 +45,20 @@ namespace WPEFramework {
             SHORT_UTTERANCE /* @text shortUtterance */
         };
 
+        enum class VoiceSessionRequestType : uint8_t {
+            PTT_TRANSCRIPTION     /* @text ptt_transcription */,
+            PTT_AUDIO_FILE        /* @text ptt_audio_file */,
+            FF_TRANSCRIPTION      /* @text ff_transcription */,
+            MIC_TRANSCRIPTION     /* @text mic_transcription */,
+            MIC_AUDIO_FILE        /* @text mic_audio_file */,
+            MIC_STREAM_DEFAULT    /* @text mic_stream_default */,
+            MIC_STREAM_SINGLE     /* @text mic_stream_single */,
+            MIC_STREAM_MULTI      /* @text mic_stream_multi */,
+            MIC_TAP_STREAM_SINGLE /* @text mic_tap_stream_single */,
+            MIC_TAP_STREAM_MULTI  /* @text mic_tap_stream_multi */,
+            MIC_FACTORY_TEST      /* @text mic_factory_test */
+        };
+
         // Data structures for Voice Control
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
@@ -81,10 +95,6 @@ namespace WPEFramework {
             DeviceSettings mic /* @brief The settings for MIC devices */;
         };
 
-        struct EXTERNAL SetVoiceInitRequest {
-            string language /* @brief Preferred user interface language e.g. "en-US" */;
-        };
-
         struct EXTERNAL VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
             DeviceType type      /* @brief The device type to simulate the voice session from. Possible values: PTT, FF, MIC */;
@@ -93,7 +103,7 @@ namespace WPEFramework {
         struct EXTERNAL VoiceSessionRequestData {
             string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
             string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
-            string type          /* @brief The request type to initiate the voice session. Use voiceSessionTypes method to get supported types (e.g. ptt_transcription, ptt_audio_file, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test) e.g. "ptt_transcription" */;
+            VoiceSessionRequestType type /* @brief The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test */;
         };
 
         struct EXTERNAL VoiceSessionTerminateRequest {
