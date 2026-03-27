@@ -455,7 +455,8 @@ class HeaderFileParser:
                     self.enums_registry[enum_name][enumerator_name] = {
                         'value': enumerator_value,
                         'description': description.strip() if description else '',
-                        'custom_name': custom_name
+                        'custom_name': custom_name,
+                        'is_invalid': enumerator_name == 'INVALID'
                     }
         else:
             if self.logger:
@@ -913,6 +914,8 @@ class HeaderFileParser:
         if symbol_type in self.enums_registry:
             # Use the first non-empty custom_name (from @text annotation) instead of exposing invalid sentinels.
             for enum_name, enum_info in self.enums_registry[symbol_type].items():
+                if enum_info.get('is_invalid'):
+                    continue
                 custom_name = enum_info.get('custom_name', enum_name)
                 if custom_name:
                     return custom_name

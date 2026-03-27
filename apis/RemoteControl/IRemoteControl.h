@@ -49,20 +49,20 @@ namespace WPEFramework {
         };
 
         enum class AVDevType : uint8_t {
-            INVALID = 0 /* @text  */,
+            INVALID = 0 /* @text INVALID */,
             TV      /* @text TV */,
             AMP     /* @text AMP */
         };
 
         enum class WakeupConfig : uint8_t {
-            INVALID = 0 /* @text  */,
+            INVALID = 0 /* @text INVALID */,
             ALL     /* @text all */,
             NONE    /* @text none */,
             CUSTOM  /* @text custom */
         };
 
         enum class FindMyRemoteLevel : uint8_t {
-            INVALID = 0 /* @text  */,
+            INVALID = 0 /* @text INVALID */,
             OFF     /* @text off */,
             MID     /* @text mid */,
             HIGH    /* @text high */
