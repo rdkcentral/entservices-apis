@@ -46,7 +46,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
     // @param jsonresponse: Output installation status details as string object
     // @deprecated
     virtual void OnAppInstallationStatus(const string& jsonresponse /* @opaque */) {};
-    // @text OnPreinstallationComplete
+    // @text onPreinstallationComplete
     // @brief Emitted when the preinstallation process completes
     virtual void OnPreinstallationComplete() {};
   };
