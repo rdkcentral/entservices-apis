@@ -297,13 +297,14 @@ namespace WPEFramework {
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
-            // @param request: The get IRDB manufacturers request parameters
+            // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
             // @param response: The get IRDB manufacturers response
             // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const GetIRDBManufacturersRequest& request, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels

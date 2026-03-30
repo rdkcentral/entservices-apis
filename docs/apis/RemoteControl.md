@@ -544,7 +544,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.manufacturer | string | The manufacturer name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
