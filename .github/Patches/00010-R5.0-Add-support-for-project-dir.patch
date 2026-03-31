@@ -1,8 +1,8 @@
 diff --git a/JsonGenerator/source/class_emitter.py b/JsonGenerator/source/class_emitter.py
-index 187a0a3..d933b2f 100644
+index ec3198e..ea5f18f 100644
 --- a/JsonGenerator/source/class_emitter.py
 +++ b/JsonGenerator/source/class_emitter.py
-@@ -251,7 +251,6 @@ def EmitEnumRegs(log, root, emit, header_file, if_file):
+@@ -164,7 +164,6 @@ def EmitEnumRegs(log, root, emit, header_file, if_file):
      emit.Line("#include <core/Enumerate.h>")
      emit.Line()
  
@@ -11,10 +11,10 @@ index 187a0a3..d933b2f 100644
      if not config.NO_INCLUDES:
          if if_file.endswith(".h"):
 diff --git a/ProxyStubGenerator/StubGenerator.py b/ProxyStubGenerator/StubGenerator.py
-index fdbe530..8311f8f 100755
+index ea217eb..4e32ac0 100755
 --- a/ProxyStubGenerator/StubGenerator.py
 +++ b/ProxyStubGenerator/StubGenerator.py
-@@ -205,7 +205,7 @@ def Flatten(identifier, scope):
+@@ -195,7 +195,7 @@ def Flatten(identifier, scope):
  
  
  # Generate interface information in lua
@@ -22,8 +22,8 @@ index fdbe530..8311f8f 100755
 +def GenerateLuaData(emit, interfaces_list, enums_list, project_dir, source_file=None, tree=None, ns=None):
  
      if not source_file:
-         assert tree==None
-@@ -676,7 +676,7 @@ def Parse(source_file, framework_namespace, includePaths = [], defaults = "", ex
+         assert(tree==None)
+@@ -537,7 +537,7 @@ def Parse(source_file, framework_namespace, includePaths = [], defaults = "", ex
  
      return tree
  
@@ -32,8 +32,8 @@ index fdbe530..8311f8f 100755
      log.Info("Scanning '%s' (in %s)..." % (source_file, ns))
  
      if not FORCE and (os.path.exists(output_file) and (os.path.getmtime(source_file) < os.path.getmtime(output_file))):
-@@ -2691,7 +2691,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
- 
+@@ -581,7 +581,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
+         emit.Line
          emit.Line()
  
 -        if os.path.isfile(os.path.join(os.path.dirname(source_file), "Module.h")):
@@ -41,8 +41,8 @@ index fdbe530..8311f8f 100755
              emit.Line('#include "Module.h"')
  
          if os.path.isfile(os.path.join(os.path.dirname(source_file), interface_header_name)):
-@@ -2837,6 +2837,8 @@ if __name__ == "__main__":
-                            help="include an additional C++ header file, can be used multiple times (default: include 'Module.h')")
+@@ -2203,6 +2203,8 @@ if __name__ == "__main__":
+                            help="include an additional C++ header file, may be used multiple times (default: include 'Ids.h')")
      argparser.add_argument('-I', dest="includePaths", metavar="INCLUDE_DIR", action='append', default=[], type=str,
                             help='add an include search path, can be used multiple times')
 +    argparser.add_argument("--projectdir",dest="project_dir",metavar="DIR",type=str,default="",
@@ -50,19 +50,19 @@ index fdbe530..8311f8f 100755
  
      args = argparser.parse_args(sys.argv[1:])
      SHOW_WARNINGS = not args.no_warnings
-@@ -2981,7 +2983,10 @@ if __name__ == "__main__":
+@@ -2345,7 +2347,10 @@ if __name__ == "__main__":
  
              for source_file in interface_files:
                  try:
--                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
+-                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
 +                    if args.project_dir is not None:
-+                        _extra_includes = [ os.path.join("@" + args.project_dir, MODULE_FILE) ]
++                        _extra_includes = [ os.path.join("@" + args.project_dir, IDS_DEFINITIONS_FILE) ]
 +                    else:
-+                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
++                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
                      _extra_includes.extend(args.extra_includes)
  
                      tree = Parse(source_file, FRAMEWORK_NAMESPACE, args.includePaths,
-@@ -3002,7 +3007,7 @@ if __name__ == "__main__":
+@@ -2366,7 +2371,7 @@ if __name__ == "__main__":
                          some_omitted = False
  
                          for ns in INTERFACE_NAMESPACES:
@@ -71,7 +71,7 @@ index fdbe530..8311f8f 100755
  
                              new_faces += output
  
-@@ -3025,7 +3030,7 @@ if __name__ == "__main__":
+@@ -2389,7 +2394,7 @@ if __name__ == "__main__":
                          log.Info("(lua generator) Scanning %s..." % os.path.basename(source_file))
  
                          for ns in INTERFACE_NAMESPACES:
@@ -80,29 +80,29 @@ index fdbe530..8311f8f 100755
  
                  except NotModifiedException as err:
                      log.Info("skipped file %s, up-to-date" % os.path.basename(output_file))
-@@ -3076,7 +3081,7 @@ if __name__ == "__main__":
+@@ -2440,7 +2445,7 @@ if __name__ == "__main__":
              if args.lua_code:
                  # Epilogue
                  for ns in INTERFACE_NAMESPACES:
 -                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums)
-+                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums,args.project_dir)
++                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums, args.project_dir)
                      log.Info("Created %s (%s interfaces, %s enums)" % (lua_file.name, len(lua_interfaces), len(lua_enums)))
  
          else:
 diff --git a/cmake/FindProxyStubGenerator.cmake.in b/cmake/FindProxyStubGenerator.cmake.in
-index 1615b79..89d5bc6 100644
+index ac35eed..94676c0 100644
 --- a/cmake/FindProxyStubGenerator.cmake.in
 +++ b/cmake/FindProxyStubGenerator.cmake.in
 @@ -31,7 +31,7 @@ function(ProxyStubGenerator)
      endif()
  
-     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE COLLATED_ITERATORS)
+     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE)
 -    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE)
 +    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE PROJECT_DIR)
      set(multiValueArgs INPUT INCLUDE INCLUDE_PATH NAMESPACE)
  
      cmake_parse_arguments(Argument "${optionsArgs}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
-@@ -85,6 +85,10 @@ function(ProxyStubGenerator)
+@@ -81,6 +81,10 @@ function(ProxyStubGenerator)
          list(APPEND _execute_command  "--outdir" "${Argument_OUTDIR}")
      endif()
  
