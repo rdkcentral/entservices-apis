@@ -45,7 +45,9 @@ jobs:
 
       - name: Build ThunderTools
         run: |
-          cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
+          cmake -G Ninja -S ThunderTools -B ThunderTools/build \
+            -DCMAKE_INSTALL_PREFIX="install" \
+            -DGENERATOR_INSTALL_PATH="include/WPEFramework"
           cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
@@ -55,7 +57,7 @@ jobs:
             -DCMAKE_BUILD_TYPE="Debug" \
             -DCMAKE_INSTALL_PREFIX="install" \
             -DPORT="55555" \
-            -DTOOLS_SYSROOT="${PWD}" \
+            -DTOOLS_SYSROOT="${PWD}/" \
             -DINITV_SCRIPT=OFF
           cmake --build Thunder/build --target install
 
@@ -63,5 +65,5 @@ jobs:
         run: |
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="install" \
-            -DTOOLS_SYSROOT="${PWD}"
+            -DTOOLS_SYSROOT="${PWD}/"
           cmake --build build --target install
