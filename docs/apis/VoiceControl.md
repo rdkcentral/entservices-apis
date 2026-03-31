@@ -73,15 +73,12 @@ No Events
 | params.urlPtt | string | The PTT URL  |
 | params.urlHf | string | The HF (ff and mic) URL  |
 | params.urlMicTap | string | The microphone tap URL  |
-| params.enable | bool | Enables or disables all of the voice devices instead of individually enabling or disabling each device |
+| params.enable | bool | Enable (true) or disable (false) the device |
 | params.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
 | params.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
-| params.ptt | DeviceSettings | The settings for PTT devices |
-| params.ptt.enable | bool | Enable (true) or disable (false) the device |
-| params.ff | DeviceSettings | The settings for FF devices |
-| params.ff.enable | bool | Enable (true) or disable (false) the device |
-| params.mic | DeviceSettings | The settings for MIC devices |
-| params.mic.enable | bool | Enable (true) or disable (false) the device |
+| params.enable | bool | Enable (true) or disable (false) the device |
+| params.enable | bool | Enable (true) or disable (false) the device |
+| params.enable | bool | Enable (true) or disable (false) the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -563,7 +560,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.transcription | string | The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types)  |
+| params.transcription | string | The transcription text to be sent to the voice server  |
 | params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
 | params.type | string | The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test |
 ### Results

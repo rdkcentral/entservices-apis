@@ -132,7 +132,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.remoteId | integer | This integer is the remote ID number, assigned by the network e.g. 1 |
 | params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
@@ -188,7 +188,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
+| params.wakeupConfig | string | The current deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in wakeupCustomList will wake target) |
 | params.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
@@ -473,7 +473,7 @@ No Events
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| params.model | string | The remote model name  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -611,7 +611,7 @@ No Events
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| params.model | string | The remote model name  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -904,7 +904,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.remoteId | integer | This integer is the remote ID number, assigned by the network e.g. 1 |
 | params.netType | integer | The type of network  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.code | string | The IR code being programmed into the remote  |
@@ -964,7 +964,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
+| params.macAddress | string | The MAC address of the remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
 | params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
@@ -1029,11 +1029,10 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.request | StartPairingRequest | The pairing request parameters |
-| params.request.netType | integer | The type of network  |
-| params.request.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
-| params.request.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
-| params.request.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
+| params.netType | integer | The type of network  |
+| params.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
+| params.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
+| params.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
 | params?.macAddressList | IStringIterator | <sup>(optional)</sup>Optional list of MAC addresses to pair with (only used if scanEnable is true) |
 | params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
@@ -1053,12 +1052,10 @@ No Events
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
-        "request": {
-            "netType": 1,
-            "timeout": 30,
-            "screenBindEnable": true,
-            "scanEnable": true
-        },
+        "netType": 1,
+        "timeout": 30,
+        "screenBindEnable": true,
+        "scanEnable": true,
         "macAddressList": [
             ""
         ]
@@ -1070,7 +1067,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"request": {"netType": 1, "timeout": 30, "screenBindEnable": true, "scanEnable": true}, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 30, "screenBindEnable": true, "scanEnable": true, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

@@ -267,33 +267,37 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param request: The pairing request parameters
+            // @param netType: The type of network ex: 1
+            // @param timeout: The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) ex: 30
+            // @param screenBindEnable: Whether to enable screen bind mode (default: true)
+            // @param scanEnable: Whether to enable scanning for remotes (default: true)
             // @param success: Whether the request succeeded
             // @param macAddressList(optional): Optional list of MAC addresses to pair with (only used if scanEnable is true)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const StartPairingRequest& request, bool& success /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const uint32_t netType, const uint32_t timeout, const bool screenBindEnable, const bool scanEnable, bool& success /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
-            // @param request: The stop pairing request parameters
+            // @param screenBindDisable: Whether to disable screen bind mode (default: true)
+            // @param scanDisable: Whether to disable scanning for remotes (default: true)
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const StopPairingRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult StopPairing(const bool screenBindDisable, const bool scanDisable, bool& success /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
-            // @param request: The network status request parameters
+            // @param netType: The type of network ex: 1
             // @param response: The network status response
             // @param netTypeSupported: A list of the network types that the STB supports
             // @param remoteData: Remote information for each paired remote control
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const GetNetStatusRequest& request, GetNetStatusResponse& response /* @out */, IUint32Iterator*& netTypeSupported /* @out */, IRemoteDataIterator*& remoteData /* @out */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResponse& response /* @out */, IUint32Iterator*& netTypeSupported /* @out */, IRemoteDataIterator*& remoteData /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -308,52 +312,60 @@ namespace WPEFramework {
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
-            // @param request: The get IRDB models request parameters
+            // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
+            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
             // @param response: The get IRDB models response
             // @param models: A list of model names e.g. "AH5901068L"
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const GetIRDBModelsRequest& request, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
-            // @param request: The get IR codes by auto lookup request parameters
+            // @param netType: The type of network ex: 1
             // @param response: The get IR codes by auto lookup response
             // @param tvCodes: A list of TV IR codes e.g. "1156"
             // @param avrCodes: A list of AVR IR codes e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const GetIRCodesByAutoLookupRequest& request, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const uint32_t netType, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
-            // @param request: The get IR codes by names request parameters
+            // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
+            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
             // @param response: The get IR codes by names response
             // @param codes: A list of IR codes for the specified device e.g. "R2467"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const GetIRCodesByNamesRequest& request, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
-            // @param request: The set IR code request parameters
+            // @param remoteId: The remote ID of the target remote on the specified network ex: 1
+            // @param netType: The type of network ex: 1
+            // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
+            // @param code: The IR code being programmed into the remote e.g. "PANASONIC_3DTV"
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const SetIRCodeRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult SetIRCode(const uint32_t remoteId, const uint32_t netType, const AVDevType avDevType, const string& code, bool& success /* @out */) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
-            // @param request: The clear IR codes request parameters
+            // @param remoteId: The remote ID of the target remote on the specified network ex: 1
+            // @param netType: The type of network ex: 1
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const ClearIRCodesRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult ClearIRCodes(const uint32_t remoteId, const uint32_t netType, bool& success /* @out */) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -365,30 +377,31 @@ namespace WPEFramework {
 
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
-            // @param request: The configure wakeup keys request parameters
+            // @param wakeupConfig: The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target)
+            // @param customKeys: List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199"
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const ConfigureWakeupKeysRequest& request /* @unwrapped */, bool& success /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys, bool& success /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
-            // @param request: The initialize IRDB request parameters
+            // @param netType: The type of network ex: 1
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const InitializeIRDBRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult InitializeIRDB(const uint32_t netType, bool& success /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
-            // @param request: The find my remote request parameters
+            // @param level: The level at which the remote will beep
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult FindMyRemote(const FindMyRemoteLevel level, bool& success /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
@@ -409,31 +422,34 @@ namespace WPEFramework {
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
-            // @param request: The start firmware update request parameters
+            // @param macAddress: The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
+            // @param fileName: The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin"
+            // @param fileType: The type of firmware image file e.g. "mfg"
+            // @param percentIncrement: The increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
             // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const StartFirmwareUpdateRequest& request, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const string& macAddress, const string& fileName, const string& fileType, const uint32_t percentIncrement, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
-            // @param request: The cancel firmware update request parameters
+            // @param sessionId: The session identifier e.g. "12345-abc-def"
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const CancelFirmwareUpdateRequest& request, bool& success /* @out */) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const string& sessionId, bool& success /* @out */) = 0;
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
-            // @param request: The status firmware update request parameters
+            // @param sessionId: The session identifier e.g. "12345-abc-def"
             // @param response: The status firmware update response
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const CancelFirmwareUpdateRequest& request, StatusFirmwareUpdateResponse& response /* @out */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, StatusFirmwareUpdateResponse& response /* @out */) = 0;
             // End methods
 
             // @event
