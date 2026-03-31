@@ -34,7 +34,7 @@ jobs:
       - name: Apply ThunderTools Patch
         run: |
           cd ThunderTools
-          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
+          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R5.0-Add-support-for-project-dir.patch
           cd ..
 
       - name: Apply Thunder Patch
