@@ -231,13 +231,14 @@ def generate_request_section(request, method_type, classname=None):
     """
     if classname and isinstance(request, dict) and 'method' in request:
         parts = request['method'].split('.')
-        if len(parts) > 2:
+        # Only replace classname for methods, not for events (client.events.*)
+        if len(parts) > 2 and not (parts[0] == 'client' and parts[1] == 'events'):
             parts[2] = classname
             request['method'] = '.'.join(parts)
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
-    request_json = json.dumps(_convert_json_types(request), indent=4)
+    request_json = json.dumps(request, indent=4)
     markdown = EXAMPLE_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)
     return markdown
 
@@ -247,13 +248,14 @@ def generate_curl_request_section(request, method_type, classname=None):
     """
     if classname and isinstance(request, dict) and 'method' in request:
         parts = request['method'].split('.')
-        if len(parts) > 2:
+        # Only replace classname for methods, not for events (client.events.*)
+        if len(parts) > 2 and not (parts[0] == 'client' and parts[1] == 'events'):
             parts[2] = classname
             request['method'] = '.'.join(parts)
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
-    request_json = json.dumps(_convert_json_types(request))
+    request_json = json.dumps(request)
     markdown = EXAMPLE_CURL_REQUEST_TEMPLATE.format(request_json=request_json, method_type=method_type)  
     return markdown
 
@@ -263,7 +265,7 @@ def generate_response_section(response, method_type, classname=None):
     """
     if isinstance(response, dict):
         response = dict(response)
-    response_json = json.dumps(_convert_json_types(response), indent=4)
+    response_json = json.dumps(response, indent=4)
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
     return markdown
 
@@ -274,16 +276,96 @@ def generate_parameters_section(params, symbol_registry):
     markdown = "### Parameters\n"
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
+        # Check if params should be unwrapped (single param that's unwrapped or auto-unwrapped as a struct without keep_key)
+        if len(params) == 1:
+            param = params[0]
+            param_key = f"{param['name']}-{param['type']}"
+            param_info = symbol_registry[param_key]
+            flattened_params = param_info['flattened_description']
+            
+            # Check if this should be shown as unwrapped
+            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped
+            # Auto-unwrap happens when: single param, keep_key is false, and type is struct or iterator
+            # - Struct: flattened keys have the wrapper level (e.g., ".request.field" vs just "field")
+            # - Iterator: flattened keys have top-level [#] (e.g., ".items[#]")
+            has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_params.keys())
+            is_top_level_iterator = any(key.startswith('.') and '[#]' in key[1:].split('.')[0] for key in flattened_params.keys())
+            # Check unwrapped from the method-specific param, not the global symbol_registry
+            is_explicitly_unwrapped = param.get('unwrapped', False)
+            should_unwrap = is_explicitly_unwrapped or (not param.get('keep_key') and (has_wrapper_level or is_top_level_iterator))
+            
+            if should_unwrap:
+                # For unwrapped params, show fields directly under params without the wrapper
+                # e.g., ".request.remoteId" becomes ".remoteId"
+                # Skip the wrapper object itself (e.g., ".request") since it doesn't appear in JSON
+                
+                # Determine if params should be shown as array or object
+                # It's an array if the top-level param is an iterator
+                # Check if the wrapper field itself has [#] (e.g., ".macAddressList[#]" vs ".request.items[#]")
+                is_iterator = False
+                for key in flattened_params.keys():
+                    if key.startswith('.'):
+                        # Split: ".macAddressList[#]" -> ["", "macAddressList[#]"]
+                        # Split: ".request.items[#]" -> ["", "request", "items[#]"]
+                        parts = key[1:].split('.')
+                        if len(parts) > 0 and '[#]' in parts[0]:
+                            # Top-level wrapper has [#], so this is an iterator
+                            is_iterator = True
+                            break
+                params_type = "array" if is_iterator else "object"
+                markdown += f"| params | {params_type} |  |\n"
+                
+                # For unwrapped iterators, use the parameter's own description, not the flattened one
+                # The flattened description would be from the shared symbols_registry which may have stale data
+                param_description = param.get('description', '') if is_iterator else None
+                
+                for param_name, param_data in flattened_params.items():
+                    # Skip the wrapper level itself - only show nested fields or array elements
+                    # For iterators: skip ".macAddressList" but show ".macAddressList[#]"
+                    # For structs: skip ".request" but show ".request.field"
+                    if param_name.startswith('.') and '[#]' not in param_name and param_name.count('.') < 2:
+                        continue  # Skip wrapper object itself
+                    
+                    # Use param-specific description for unwrapped iterators, otherwise use flattened description
+                    if is_iterator and param_description:
+                        field_description = param_description
+                    else:
+                        field_description = param_data.get('description', '')
+                    
+                    cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', field_description)
+                    
+                    # Remove the wrapper name while preserving [#] and nested fields
+                    if param_name.startswith('.'):
+                        # Split at first '[#]' or '.' to identify the wrapper name
+                        name_without_dot = param_name[1:]  # Remove leading dot
+                        
+                        # Find the end of the wrapper name (first '[' or '.')
+                        match = re.match(r'^([^\.\[]+)(.*)', name_without_dot)
+                        if match:
+                            wrapper_name, remainder = match.groups()
+                            # For unwrapped params, strip the wrapper name and keep the rest
+                            param_name = remainder if remainder else param_name
+                    
+                    # Use per-field optionality if available, not the wrapper's optionality
+                    optionality = f"<sup>({param_data['optionality']})</sup>" if param_data.get('optionality') == 'optional' else ''
+                    markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                return markdown
+        
+        # Normal case: show params with their struct wrappers
         markdown += f"| params | object |  |\n"
         for param in params:
             param_key = f"{param['name']}-{param['type']}"
             flattened_params = symbol_registry[param_key]['flattened_description']
             for param_name, param_data in flattened_params.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
-                optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
-                markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                # Prefer per-field optionality; fall back to wrapper-level optionality when not present
+                effective_optionality = param_data.get('optionality')
+                if effective_optionality is None:
+                    effective_optionality = param.get('optionality')
+                optionality_marker = f"<sup>({effective_optionality})</sup>" if effective_optionality == 'optional' else ''
+                markdown += f"| params{'?' if effective_optionality == 'optional' else ''}{param_name} | {param_data['type']} | {optionality_marker}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
     return markdown
@@ -296,18 +378,84 @@ def generate_results_section(results, symbol_registry):
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         if len(results) == 1:
-            result_info = symbol_registry[f"{results[0]['name']}-{results[0]['type']}"]
-            if 'unwrapped' in result_info and result_info['unwrapped']:
+            result = results[0]
+            result_key = f"{result['name']}-{result['type']}"
+            result_info = symbol_registry[result_key]
+            flattened_results = result_info.get('flattened_description', {})
+            
+            # Check if this result should be unwrapped
+            # It's unwrapped if: explicitly marked with @unwrapped, OR if it's auto-unwrapped
+            # Auto-unwrap happens when: single result, keep_key is false, and type is struct or iterator
+            # - Struct: flattened keys have the wrapper level (e.g., ".response.field")
+            # - Iterator: flattened keys have top-level [#] (e.g., ".items[#]")
+            has_wrapper_level = any('.' in key and key.count('.') > 1 for key in flattened_results.keys())
+            is_top_level_iterator = any(key.startswith('.') and '[#]' in key[1:].split('.')[0] for key in flattened_results.keys())
+            is_explicitly_unwrapped = result.get('unwrapped', False)
+            should_unwrap = is_explicitly_unwrapped or (not result.get('keep_key') and (has_wrapper_level or is_top_level_iterator))
+            
+            # If unwrapped and has no flattened fields, show as simple type
+            if should_unwrap and not flattened_results:
                 markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
                 return markdown
+            
+            # If unwrapped and has flattened fields, unwrap them
+            if should_unwrap and flattened_results:
+                # Determine if result should be shown as array or object
+                # It's an array if the top-level result is an iterator
+                # Check if the wrapper field itself has [#] (e.g., ".macAddressList[#]" vs ".response.items[#]")
+                is_iterator = False
+                for key in flattened_results.keys():
+                    if key.startswith('.'):
+                        # Split: ".macAddressList[#]" -> ["macAddressList[#]"]
+                        # Split: ".response.items[#]" -> ["response", "items[#]"]
+                        parts = key[1:].split('.')
+                        if len(parts) > 0 and '[#]' in parts[0]:
+                            # Top-level wrapper has [#], so this is an iterator
+                            is_iterator = True
+                            break
+                result_type = "array" if is_iterator else "object"
+                markdown += f"| result | {result_type} |  |\n"
+                
+                # For unwrapped iterators, use the result's own description, not the flattened one
+                result_description = result.get('description', '') if is_iterator else None
+                
+                for result_name, result_data in flattened_results.items():
+                    # Skip the wrapper level itself - only show nested fields or array elements
+                    # For iterators: skip ".macAddressList" but show ".macAddressList[#]"
+                    # For structs: skip ".response" but show ".response.field"
+                    if result_name.startswith('.') and '[#]' not in result_name and result_name.count('.') < 2:
+                        continue  # Skip wrapper object itself
+                    
+                    # Use result-specific description for unwrapped iterators, otherwise use flattened description
+                    if is_iterator and result_description:
+                        field_description = result_description
+                    else:
+                        field_description = result_data.get('description', '')
+                    
+                    cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', field_description)
+                    
+                    # Remove the wrapper name while preserving [#] and nested fields
+                    if result_name.startswith('.'):
+                        name_without_dot = result_name[1:]
+                        match = re.match(r'^([^\.\[]+)(.*)', name_without_dot)
+                        if match:
+                            wrapper_name, remainder = match.groups()
+                            result_name = remainder if remainder else result_name
+                    
+                    field_optionality = result_data.get('optionality') or result.get('optionality')
+                    optionality = f"<sup>({field_optionality})</sup>" if field_optionality == 'optional' else ''
+                    markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
+                return markdown
+        
         markdown += f"| result | object |  |\n"
         for result in results:
             flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
             for result_name, result_data in flattened_results.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
-                optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
+                # Use per-field optionality if available, not the wrapper's optionality
+                optionality = f"<sup>({result_data['optionality']})</sup>" if result_data.get('optionality') == 'optional' else ''
                 markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
@@ -330,7 +478,7 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     """
     Generate the markdown for a specific method.
     """
-    method_name = to_camel_case(method_name)
+    method_name = method_info.get('text') or to_camel_case(method_name)
     markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
     markdown += generate_events_section(method_info['events'], all_events)
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
@@ -351,10 +499,16 @@ def generate_events_section(events, all_events=None):
     if events:
         # Only show a list of links to events, not a table
         for event in events:
-            camel_event = to_camel_case(event)
-            markdown += f"- [{camel_event}](#{camel_event})\n"
+            # Resolve the event name/anchor using the event's @text, if available,
+            # otherwise fall back to the camel-cased C++ name.
+            event_name = to_camel_case(event)
+            if all_events and event in all_events:
+                event_text = all_events[event].get('text')
+                if event_text:
+                    event_name = event_text
+            markdown += f"- [{event_name}](#{event_name})\n"
     else:
-        markdown += "Event details will be updated soon.\n"
+        markdown += "No Events\n"
     return markdown
 
 def generate_properties_toc(properties, classname):
@@ -377,6 +531,7 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     """
     Generate the markdown for a specific property.
     """
+    property_name = property_info.get('text') or to_camel_case(property_name)
     markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['details'] or property_info['brief'])
     if property_info['property'] == 'read':
         markdown += "> This property is read-only.\n"
@@ -405,7 +560,7 @@ def generate_values_section(values, symbol_registry):
         for value in values:
             flattened_values = symbol_registry[f"{value['name']}-{value['type']}"]['flattened_description']
             for value_name, value_data in flattened_values.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
+                cleaned_description = re.sub(r'e\.g\.\s*".*?(?<!\\)"|ex\:\s*.*?(?=\.\s|$)', '', value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This property has no values.\n"
@@ -426,40 +581,21 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     """
     Generate the markdown for a specific event.
     """
-    camel_event = to_camel_case(event_name)
+    camel_event = event_info.get('text') or to_camel_case(event_name)
     markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['details'] or event_info['brief'])
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     request = event_info['request']
-    if classname and isinstance(request, dict) and 'method' in request:
-        parts = request['method'].split('.')
-        if len(parts) > 2:
-            parts[2] = classname
-            request['method'] = '.'.join(parts)
+    # Don't replace the event name with classname - events should use their @text tag value
+    # if classname and isinstance(request, dict) and 'method' in request:
+    #     parts = request['method'].split('.')
+    #     if len(parts) > 2:
+    #         parts[2] = classname
+    #         request['method'] = '.'.join(parts)
     if isinstance(request, dict):
         request = dict(request)
-    request_json = json.dumps(_convert_json_types(request), indent=4)
+        # JSON-RPC notifications should not include an "id" field
+        request.pop('id', None)
+    request_json = json.dumps(request, indent=4)
     markdown += EXAMPLE_NOTIFICATION_TEMPLATE.format(request_json=request_json)
     return markdown
-
-def _convert_json_types(obj):
-    """
-    Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
-    """
-    if isinstance(obj, dict):
-        return {k: _convert_json_types(v) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [_convert_json_types(i) for i in obj]
-    elif isinstance(obj, str):
-        if obj.lower() == 'true':
-            return True
-        if obj.lower() == 'false':
-            return False
-        try:
-            if '.' in obj:
-                return float(obj)
-            return int(obj)
-        except ValueError:
-            return obj
-    else:
-        return obj
