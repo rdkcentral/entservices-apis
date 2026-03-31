@@ -50,22 +50,22 @@ namespace WPEFramework {
 
         enum class AVDevType : uint8_t {
             INVALID = 0 /* @text INVALID */,
-            TV      /* @text TV */,
-            AMP     /* @text AMP */
+            TV          /* @text TV */,
+            AMP         /* @text AMP */
         };
 
         enum class WakeupConfig : uint8_t {
             INVALID = 0 /* @text INVALID */,
-            ALL     /* @text all */,
-            NONE    /* @text none */,
-            CUSTOM  /* @text custom */
+            ALL         /* @text all */,
+            NONE        /* @text none */,
+            CUSTOM      /* @text custom */
         };
 
         enum class FindMyRemoteLevel : uint8_t {
             INVALID = 0 /* @text INVALID */,
-            OFF     /* @text off */,
-            MID     /* @text mid */,
-            HIGH    /* @text high */
+            OFF         /* @text off */,
+            MID         /* @text mid */,
+            HIGH        /* @text high */
         };
 
         enum class FirmwareUpdateState : uint8_t {
@@ -168,8 +168,8 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            bool success        /* @brief Whether the request succeeded */;
+            Core::OptionalType<AVDevType> avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            bool success                            /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {
@@ -308,7 +308,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResponse& response /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResponse& response /* @out @extract */, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
