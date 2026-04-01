@@ -168,8 +168,8 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL GetIRDBManufacturersResponse {
-            Core::OptionalType<AVDevType> avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            bool success                            /* @brief Whether the request succeeded */;
+            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
+            bool success        /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL GetIRDBModelsRequest {

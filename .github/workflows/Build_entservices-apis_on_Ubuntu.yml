@@ -20,8 +20,7 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run: git clone -b R5_0 https://github.com/rdkcentral/ThunderTools.git
-        #run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
 
       - name: Clone Thunder
         run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
@@ -34,7 +33,7 @@ jobs:
       - name: Apply ThunderTools Patch
         run: |
           cd ThunderTools
-          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R5.0-Add-support-for-project-dir.patch
+          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
           cd ..
 
       - name: Apply Thunder Patch
@@ -46,8 +45,7 @@ jobs:
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build \
-            -DCMAKE_INSTALL_PREFIX="install" \
-            -DGENERATOR_INSTALL_PATH="include/WPEFramework"
+            -DCMAKE_INSTALL_PREFIX="install"
           cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
@@ -57,7 +55,7 @@ jobs:
             -DCMAKE_BUILD_TYPE="Debug" \
             -DCMAKE_INSTALL_PREFIX="install" \
             -DPORT="55555" \
-            -DTOOLS_SYSROOT="${PWD}/" \
+            -DTOOLS_SYSROOT="${PWD}" \
             -DINITV_SCRIPT=OFF
           cmake --build Thunder/build --target install
 
@@ -65,5 +63,5 @@ jobs:
         run: |
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="install" \
-            -DTOOLS_SYSROOT="${PWD}/"
+            -DTOOLS_SYSROOT="${PWD}"
           cmake --build build --target install
