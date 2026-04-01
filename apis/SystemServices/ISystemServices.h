@@ -215,6 +215,10 @@ namespace WPEFramework
                 bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
             };
 
+            struct EXTERNAL TimeZonesInfo {
+                string zoneinfo /* @brief A timezone area */;
+            };
+
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
             // @event
@@ -446,10 +450,10 @@ namespace WPEFramework
             // @text getTimeZones
             // @brief Returns the friendly name set by setFriendlyName API or default value.
             // @param timeZones: A list of available timezones from the system
-            // @param zoneinfo: A timezone area
+            // @param timeZonesInfo: A timezone area
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, string& zoneinfo /* @out */) = 0;
+            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, TimeZonesInfo& timeZonesInfo /* @out */) = 0;
 
             // @text getTimeZoneDST
             // @brief Gets the available timezones from the system’s time zone database.
