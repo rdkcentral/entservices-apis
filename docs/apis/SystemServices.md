@@ -1598,7 +1598,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.zoneinfo | string | A timezone area @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.zoneinfo | string | A timezone area |
 
 ### Examples
 
