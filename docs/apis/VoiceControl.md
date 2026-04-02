@@ -69,16 +69,16 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.urlAll | string | Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer)  |
-| params.urlPtt | string | The PTT URL  |
-| params.urlHf | string | The HF (ff and mic) URL  |
-| params.urlMicTap | string | The microphone tap URL  |
-| params.enable | bool | Enable (true) or disable (false) the device |
-| params.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| params.wwFeedback | bool | The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
-| params.enable | bool | Enable (true) or disable (false) the device |
-| params.enable | bool | Enable (true) or disable (false) the device |
-| params.enable | bool | Enable (true) or disable (false) the device |
+| params?.urlAll | string | <sup>(optional)</sup>Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer)  |
+| params?.urlPtt | string | <sup>(optional)</sup>The PTT URL  |
+| params?.urlHf | string | <sup>(optional)</sup>The HF (ff and mic) URL  |
+| params?.urlMicTap | string | <sup>(optional)</sup>The microphone tap URL  |
+| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
+| params?.prv | bool | <sup>(optional)</sup>The Press & Release Voice feature (true for enable, false for disable) |
+| params?.wwFeedback | bool | <sup>(optional)</sup>The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
+| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
+| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
+| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -299,9 +299,9 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.msgType | string | Message type from the server  |
-| params.trx | string | The unique id of the voice session  |
-| params.created | integer | The timestamp for server information in milliseconds since epoch |
-| params.msgPayload | string | Vrex server information |
+| params?.trx | string | <sup>(optional)</sup>The unique id of the voice session  |
+| params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch |
+| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -358,7 +358,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.language | string | Preferred user interface language |
+| params?.language | string | <sup>(optional)</sup>Preferred user interface language |
 | params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities |
 | params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
@@ -472,7 +472,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.transcription | string | The transcription text to be sent to the voice server  |
-| params.type | string | The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
+| params?.type | string | <sup>(optional)</sup>The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -527,8 +527,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.transcription | string | The transcription text to be sent to the voice server  |
-| params.audioFile | string | The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
+| params?.transcription | string | <sup>(optional)</sup>The transcription text to be sent to the voice server  |
+| params?.audioFile | string | <sup>(optional)</sup>The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types)  |
 | params.type | string | The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test |
 ### Results
 | Name | Type | Description |
