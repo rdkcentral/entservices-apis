@@ -252,21 +252,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The voice status response |
-| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL  |
-| result.response.urlHf | string | The HF (ff and mic) URL  |
-| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
-| result.response.ptt | DeviceStatus | The status information for the PTT device type |
-| result.response.ptt.status | string | The status of the device  |
-| result.response.ff | DeviceStatus | The status information for the FF device type |
-| result.response.ff.status | string | The status of the device  |
-| result.response.mic | DeviceStatus | The status information for the MIC device type |
-| result.response.mic.status | string | The status of the device  |
-| result.response.success | bool | Whether the request succeeded |
-| result.capabilities | IStringIterator | A list of capabilities  |
-| result.capabilities[#] | string |  |
+| result.response | string | JSON response containing success and on success voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, capabilities, ptt, ff, mic, mic_tap |
 
 ### Examples
 
@@ -296,26 +282,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
     "jsonrpc": "2.0",
     "id": 3,
     "result": {
-        "response": {
-            "maskPii": true,
-            "urlPtt": "ws://voice.example.com/ptt",
-            "urlHf": "ws://voice.example.com/hf",
-            "prv": true,
-            "wwFeedback": true,
-            "ptt": {
-                "status": "ready"
-            },
-            "ff": {
-                "status": "ready"
-            },
-            "mic": {
-                "status": "ready"
-            },
-            "success": true
-        },
-        "capabilities": [
-            "PRV"
-        ]
+        "response": ""
     }
 }
 ```
@@ -392,7 +359,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.language | string | Preferred user interface language |
-| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities  |
+| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities |
 | params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
@@ -413,7 +380,7 @@ No Events
     "params": {
         "language": "",
         "capabilities": [
-            "PRV"
+            ""
         ]
     }
 }
@@ -423,7 +390,7 @@ No Events
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "", "capabilities": ["PRV"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
