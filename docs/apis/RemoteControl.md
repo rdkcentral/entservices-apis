@@ -549,7 +549,11 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response containing success and on success a status object with netType, pairingState, irProgState, netTypesSupported and remoteData |
+| result.response | GetIRDBManufacturersResponse | The get IRDB manufacturers response |
+| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| result.response.success | bool | Whether the request succeeded |
+| result.manufacturers | IStringIterator | A list of manufacturer names  |
+| result.manufacturers[#] | string |  |
 
 ### Examples
 
@@ -583,7 +587,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
     "jsonrpc": "2.0",
     "id": 8,
     "result": {
-        "response": ""
+        "response": {
+            "avDevType": "TV",
+            "success": true
+        },
+        "manufacturers": [
+            "Samsung"
+        ]
     }
 }
 ```
