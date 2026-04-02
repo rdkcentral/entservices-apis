@@ -191,53 +191,53 @@ namespace WPEFramework {
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
-            // @param urlAll: Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com"
-            // @param urlPtt: The PTT URL e.g. "ws://voice.example.com/ptt"
-            // @param urlHf: The HF (ff and mic) URL e.g. "ws://voice.example.com/hf"
-            // @param urlMicTap: The microphone tap URL e.g. "ws://voice.example.com/mictap"
-            // @param enable: Enables or disables all of the voice devices instead of individually enabling or disabling each device
-            // @param prv: The Press & Release Voice feature (true for enable, false for disable)
-            // @param wwFeedback: The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable)
-            // @param ptt: The settings for PTT devices
-            // @param ff: The settings for FF devices
-            // @param mic: The settings for MIC devices
+            // @param urlAll(optional): Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com"
+            // @param urlPtt(optional): The PTT URL e.g. "ws://voice.example.com/ptt"
+            // @param urlHf(optional): The HF (ff and mic) URL e.g. "ws://voice.example.com/hf"
+            // @param urlMicTap(optional): The microphone tap URL e.g. "ws://voice.example.com/mictap"
+            // @param enable(optional): Enables or disables all of the voice devices instead of individually enabling or disabling each device
+            // @param prv(optional): The Press & Release Voice feature (true for enable, false for disable)
+            // @param wwFeedback(optional): The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable)
+            // @param ptt(optional): The settings for PTT devices
+            // @param ff(optional): The settings for FF devices
+            // @param mic(optional): The settings for MIC devices
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const string& urlAll, const string& urlPtt, const string& urlHf, const string& urlMicTap, const bool enable, const bool prv, const bool wwFeedback, const DeviceSettings& ptt, const DeviceSettings& ff, const DeviceSettings& mic, bool& success /* @out */) = 0;
+            virtual Core::hresult ConfigureVoice(const string& urlAll /* @optional */, const string& urlPtt /* @optional */, const string& urlHf /* @optional */, const string& urlMicTap /* @optional */, const bool enable /* @optional */, const bool prv /* @optional */, const bool wwFeedback /* @optional */, const DeviceSettings& ptt /* @optional */, const DeviceSettings& ff /* @optional */, const DeviceSettings& mic /* @optional */, bool& success /* @out */) = 0;
 
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
-            // @param language: Preferred user interface language
+            // @param language(optional): Preferred user interface language
             // @param capabilities(optional): A list of capabilities
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& language, IStringIterator* const capabilities, bool& success /* @out */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& language /* @optional */, IStringIterator* const capabilities, bool& success /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
             // @param msgType: Message type from the server e.g. "asr"
-            // @param trx: The unique id of the voice session e.g. "12345-abc"
-            // @param created: The timestamp for server information in milliseconds since epoch
-            // @param msgPayload: Vrex server information
+            // @param trx(optional): The unique id of the voice session e.g. "12345-abc"
+            // @param created(optional): The timestamp for server information in milliseconds since epoch
+            // @param msgPayload(optional): Vrex server information
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload, bool& success /* @out */) = 0;
+            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional */, bool& success /* @out */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
             // @param transcription: The transcription text to be sent to the voice server e.g. "turn on the lights"
-            // @param type: The device type to simulate the voice session from. Possible values: PTT, FF, MIC
+            // @param type(optional): The device type to simulate the voice session from. Possible values: PTT, FF, MIC
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const string& transcription, const DeviceType type, bool& success /* @out */) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const string& transcription, const DeviceType type /* @optional */, bool& success /* @out */) = 0; // DEPRECATED
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
@@ -250,14 +250,14 @@ namespace WPEFramework {
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
-            // @param transcription: The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather"
-            // @param audioFile: The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav"
+            // @param transcription(optional): The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather"
+            // @param audioFile(optional): The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav"
             // @param type: The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const string& transcription, const string& audioFile, const VoiceSessionRequestType type, bool& success /* @out */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const string& transcription /* @optional */, const string& audioFile /* @optional */, const VoiceSessionRequestType type, bool& success /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
