@@ -175,11 +175,6 @@ namespace WPEFramework {
             bool success        /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL GetIRDBManufacturersResponse {
-            AVDevType avDevType /* @brief Whether the device is a video (TV) or audio (AMP) device */;
-            bool success        /* @brief Whether the request succeeded */;
-        };
-
         struct EXTERNAL GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
             uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
@@ -292,12 +287,13 @@ namespace WPEFramework {
             // @text getIRDBManufacturers
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
-            // @param response: The get IRDB manufacturers response
+            // @param avDevTypeOut: Whether the device is a video (TV) or audio (AMP) device
+            // @param success: Whether the request succeeded
             // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResponse& response /* @out @extract */, IStringIterator*& manufacturers /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, AVDevType& avDevTypeOut /* @out @text avDevType */, bool& success /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
