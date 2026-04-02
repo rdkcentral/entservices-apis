@@ -549,9 +549,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRDBManufacturersResponse | The get IRDB manufacturers response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| result.response.success | bool | Whether the request succeeded |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| result.success | bool | Whether the request succeeded |
 | result.manufacturers | IStringIterator | A list of manufacturer names  |
 | result.manufacturers[#] | string |  |
 
@@ -587,10 +586,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
     "jsonrpc": "2.0",
     "id": 8,
     "result": {
-        "response": {
-            "avDevType": "TV",
-            "success": true
-        },
+        "avDevType": "TV",
+        "success": true,
         "manufacturers": [
             "Samsung"
         ]
