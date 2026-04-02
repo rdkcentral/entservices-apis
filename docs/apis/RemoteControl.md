@@ -132,8 +132,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | This integer is the remote ID number, assigned by the network e.g. 1 |
-| params.netType | integer | The type of network  |
+| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.netType | integer | The type of remote control network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -188,7 +188,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.wakeupConfig | string | The current deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in wakeupCustomList will wake target) |
+| params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
 | params.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
@@ -396,17 +396,16 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.netType | integer | The type of remote control network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRCodesByAutoLookupResponse | The get IR codes by auto lookup response |
-| result.response.tvManufacturer | string | The TV manufacturer for which codes are provided  |
-| result.response.tvModel | string | The TV model for which codes are provided  |
-| result.response.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
-| result.response.avrModel | string | The AVR model for which codes are provided  |
-| result.response.success | bool | Whether the request succeeded |
+| result.tvManufacturer | string | The TV manufacturer for which codes are provided  |
+| result.tvModel | string | The TV model for which codes are provided  |
+| result.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
+| result.avrModel | string | The AVR model for which codes are provided  |
+| result.success | bool | Whether the request succeeded |
 | result.tvCodes | IStringIterator | A list of TV IR codes  |
 | result.tvCodes[#] | string |  |
 | result.avrCodes | IStringIterator | A list of AVR IR codes  |
@@ -443,13 +442,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
     "jsonrpc": "2.0",
     "id": 6,
     "result": {
-        "response": {
-            "tvManufacturer": "Samsung",
-            "tvModel": "UN65JU750",
-            "avrManufacturer": "Denon",
-            "avrModel": "AVR-S750H",
-            "success": true
-        },
+        "tvManufacturer": "Samsung",
+        "tvModel": "UN65JU750",
+        "avrManufacturer": "Denon",
+        "avrModel": "AVR-S750H",
+        "success": true,
         "tvCodes": [
             "1156"
         ],
@@ -472,17 +469,16 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | The remote model name  |
+| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRCodesByNamesResponse | The get IR codes by names response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| result.response.manufacturer | string | The manufacturer name of the AV device  |
-| result.response.model | string | The model name of the AV device  |
-| result.response.success | bool | Whether the request succeeded |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| result.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| result.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| result.success | bool | Whether the request succeeded |
 | result.codes | IStringIterator | A list of IR codes for the specified device  |
 | result.codes[#] | string |  |
 
@@ -519,12 +515,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
     "jsonrpc": "2.0",
     "id": 7,
     "result": {
-        "response": {
-            "avDevType": "TV",
-            "manufacturer": "Samsung",
-            "model": "UN65JU750",
-            "success": true
-        },
+        "avDevType": "TV",
+        "manufacturer": "Samsung",
+        "model": "UN6",
+        "success": true,
         "codes": [
             "R2467"
         ]
@@ -544,7 +538,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | The manufacturer name of the AV device  |
+| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -607,16 +601,15 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | The remote model name  |
+| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetIRDBModelsResponse | The get IRDB models response |
-| result.response.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| result.response.manufacturer | string | The manufacturer name of the AV device  |
-| result.response.success | bool | Whether the request succeeded |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| result.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| result.success | bool | Whether the request succeeded |
 | result.models | IStringIterator | A list of model names  |
 | result.models[#] | string |  |
 
@@ -653,11 +646,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
     "jsonrpc": "2.0",
     "id": 9,
     "result": {
-        "response": {
-            "avDevType": "TV",
-            "manufacturer": "Samsung",
-            "success": true
-        },
+        "avDevType": "TV",
+        "manufacturer": "Samsung",
+        "success": true,
         "models": [
             "AH5901068L"
         ]
@@ -738,7 +729,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.netType | integer | The type of remote control network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -792,7 +783,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.netType | integer | The type of remote control network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -846,8 +837,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.remoteId | integer | This integer is the remote ID number, assigned by the network e.g. 1 |
-| params.netType | integer | The type of network  |
+| params.remoteId | integer | The remote ID of the target remote on the specified network  |
+| params.netType | integer | The type of remote control network  |
 | params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
@@ -906,7 +897,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the remote in hex-colon format  |
+| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
 | params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
@@ -971,7 +962,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of network  |
+| params.netType | integer | The type of remote control network  |
 | params.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
 | params.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
 | params.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
