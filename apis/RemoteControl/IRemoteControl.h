@@ -125,12 +125,7 @@ namespace WPEFramework {
         using GetIRCodesByAutoLookupRequest = GetNetStatusRequest;
         using InitializeIRDBRequest = GetNetStatusRequest;
 
-        struct EXTERNAL GetNetStatusResponse {
-            uint32_t netType          /* @brief The type of network ex: 1 */;
-            PairingState pairingState /* @brief The current overall pairing state of the specified network */;
-            IRProgState irProgState   /* @brief The current state of the IR code programming request to the remote */;
-            bool success              /* @brief Whether the request succeeded */;
-        };
+
 
         struct EXTERNAL ClearIRCodesRequest {
             uint32_t remoteId /* @brief The remote ID of the target remote on the specified network ex: 1 */;
@@ -216,10 +211,7 @@ namespace WPEFramework {
             uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
         };
 
-        struct EXTERNAL StatusFirmwareUpdateResponse {
-            FirmwareUpdateStatus result /* @brief The firmware update status */;
-            bool success                /* @brief Whether the request succeeded */;
-        };
+
 
         struct EXTERNAL StatusEventData {
             uint32_t netType          /* @brief The type of remote control network ex: 1 */;
@@ -257,7 +249,7 @@ namespace WPEFramework {
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @text getApiVersionNumber
-            virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out */) = 0;
+            virtual Core::hresult GetApiVersionNumber(GetApiVersionNumberResponse& response /* @out @extract */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
@@ -285,13 +277,11 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
-            // @param response: The network status response
-            // @param netTypeSupported: A list of the network types that the STB supports
-            // @param remoteData: Remote information for each paired remote control
+            // @param response: JSON response containing success and on success a status object with netType, pairingState, irProgState, netTypesSupported and remoteData
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResponse& response /* @out */, IUint32Iterator*& netTypeSupported /* @out */, IRemoteDataIterator*& remoteData /* @out */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, string& response /* @out @opaque */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -313,7 +303,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRDBModelsResponse& response /* @out */, IStringIterator*& models /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRDBModelsResponse& response /* @out @extract */, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -324,7 +314,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
-            virtual Core::hresult GetIRCodesByAutoLookup(const uint32_t netType, GetIRCodesByAutoLookupResponse& response /* @out */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByAutoLookup(const uint32_t netType, GetIRCodesByAutoLookupResponse& response /* @out @extract */, IStringIterator*& tvCodes /* @out */, IStringIterator*& avrCodes /* @out */) = 0;
 
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
@@ -336,7 +326,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRCodesByNamesResponse& response /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRCodesByNamesResponse& response /* @out @extract */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -366,7 +356,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
-            virtual Core::hresult GetLastKeypressSource(GetLastKeypressSourceResponse& response /* @out */) = 0;
+            virtual Core::hresult GetLastKeypressSource(GetLastKeypressSourceResponse& response /* @out @extract */) = 0;
 
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
@@ -438,11 +428,11 @@ namespace WPEFramework {
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
             // @param sessionId: The session identifier e.g. "12345-abc-def"
-            // @param response: The status firmware update response
+            // @param response: JSON response containing success and on success a status object with upgradeSessionId, macAddress, percentComplete and upgradeState
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, StatusFirmwareUpdateResponse& response /* @out */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, string& response /* @out @opaque */) = 0;
             // End methods
 
             // @event

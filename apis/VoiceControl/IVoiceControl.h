@@ -183,12 +183,11 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param response: The voice status response
-            // @param capabilities: A list of capabilities e.g. "PRV"
+            // @param response: JSON response containing success and on success voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, capabilities, ptt, ff, mic, mic_tap
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */, IStringIterator*& capabilities /* @out */) = 0;
+            virtual Core::hresult GetVoiceStatus(string& response /* @out @opaque */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice
