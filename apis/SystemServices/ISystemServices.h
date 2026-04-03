@@ -417,7 +417,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, string& RFCConfig /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, string& RFCConfig /* @out @opaque */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text getSerialNumber
             // @brief Returns the device serial number.
