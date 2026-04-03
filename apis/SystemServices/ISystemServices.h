@@ -49,6 +49,7 @@ namespace WPEFramework
                 string wifiMac /* @text wifi_mac */ /* @brief WIFI Mac Address */;
                 string modelName /* @brief Device model name */;
                 string hardwareID /* @brief Hardware ID */;
+                string message /* @brief Error message if input failure */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -64,6 +65,14 @@ namespace WPEFramework
 
             struct EXTERNAL SystemError {
                 string message /* @brief Error Message */;
+            };
+
+            struct EXTERNAL BootType {
+                string bootType /* @brief BOOT Type Info */;
+            };
+
+            struct EXTERNAL MigrationStatus {
+                string migrationStatus /* @brief Migration Status */;
             };
 
             struct EXTERNAL ErrorInfo {
@@ -93,23 +102,9 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL PreviousRebootInfo {
-                string timestamp /* @brief The reboot timestamp */;
-                string reason /* @brief The reboot reason */;
-                string source /* @brief The reboot source */;
-                string customReason /* @brief The custom reboot reason */;
-                string otherReason /* @brief Other reboot reason details */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
             struct EXTERNAL ModeInfo {
                 string mode /* @brief The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) */;
                 int duration /* @brief The duration */;
-            };
-
-            struct EXTERNAL SystemModeInfo {
-                ModeInfo modeinfo /* @brief The mode information */;
-                bool success /* @brief Whether the request succeeded */;
             };
 
             struct EXTERNAL AccountInfoDetails {
@@ -167,7 +162,7 @@ namespace WPEFramework
             };
 
             struct EXTERNAL PlatformConfig {
-                AccountInfoDetails acountInfo /* @text AccountInfo @brief AccountInfo Details */;
+                AccountInfoDetails accountInfo /* @text AccountInfo @brief AccountInfo Details */;
                 DeviceInfoDetails deviceInfo /* @text DeviceInfo @brief DeviceInfo Details */;
                 bool success /* @brief Whether the request succeeded */;
             };
@@ -219,6 +214,7 @@ namespace WPEFramework
                 bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
                 bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
             };
+
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
@@ -284,7 +280,7 @@ namespace WPEFramework
                 // @param thresholdType: The type of temperature threshold
                 // @param exceeded: Whether the threshold is exceeded
                 // @param temperature: The current temperature
-                virtual void OnTemperatureThresholdChanged(const string& thresholdType, const bool exceeded, const float temperature) {};
+                virtual void OnTemperatureThresholdChanged(const string& thresholdType, const bool exceeded, const string& temperature) {};
 
                 // @text onSystemClockSet
                 // @brief Triggered when time source state has changed.
@@ -345,7 +341,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetFirmwareDownloadPercent(uint32_t & downloadPercent /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetFirmwareDownloadPercent(int32_t & downloadPercent /* @out */, bool& success /* @out */) = 0;
 
             // @text getFirmwareUpdateInfo
             // @brief Checks the firmware update information.
@@ -378,7 +374,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetLastWakeupKeyCode(uint32_t& wakeupKeyCode /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetLastWakeupKeyCode(int& wakeupKeyCode /* @out */, bool& success /* @out */) = 0;
 
             // @text getMfgSerialNumber
             // @brief Gets the Manufacturing Serial Number.
@@ -421,7 +417,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, IStringIterator*& RFCConfig /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, string& RFCConfig /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text getSerialNumber
             // @brief Returns the device serial number.
@@ -452,9 +448,10 @@ namespace WPEFramework
             // @brief Returns the friendly name set by setFriendlyName API or default value.
             // @param timeZones: A list of available timezones from the system
             // @param zoneinfo: A timezone area
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, string& zoneinfo /* @out */) = 0;
+            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, string& zoneinfo /* @out @opaque */, bool& success /* @out */) = 0;
 
             // @text getTimeZoneDST
             // @brief Gets the available timezones from the system’s time zone database.
@@ -580,25 +577,23 @@ namespace WPEFramework
 
             // @text getBootTypeInfo
             // @brief Get the FSR flag from the emmc raw area.
-            // @param bootType: BOOT Type Info
-            // @param success: Whether the request succeeded
+            // @param BootType: BOOT Type Info
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetBootTypeInfo(string &bootType /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetBootTypeInfo(BootType &bootType /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief set the Migration Status of the device.
             // @param status: Migration Status
             // @param success: Whether the request succeeded
-            virtual Core::hresult SetMigrationStatus(const bool status, bool& success /* @out */) = 0;
+            virtual Core::hresult SetMigrationStatus(const string& status, bool& success /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the Migration Status of the device
             // @param MigrationStatus: Migration Status
-            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetMigrationStatus(string &MigrationStatus /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetMigrationStatus(MigrationStatus &migrationStatus /* @out */) = 0;
 
             // @text getMacAddresses
             // @brief Gets the MAC address of the device.
@@ -613,10 +608,11 @@ namespace WPEFramework
 
             // @text getPlatformConfiguration
             // @brief Returns the Supported features and device/account info
+            // @param query: Query for support of a particular feature, e.g. AccountInfo.accountId
             // @param platformConfig: Platform Configuration Details
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetPlatformConfiguration (PlatformConfig& platformConfig /* @out */) = 0;
+            virtual Core::hresult GetPlatformConfiguration (const string &query, PlatformConfig& platformConfig /* @out */) = 0;
 
             // @text setWakeupSrcConfiguration
             // @brief Sets the wakeup source configuration for the input powerState.
@@ -650,7 +646,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetMode(const ModeInfo& modeinfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult SetMode(const ModeInfo& modeInfo, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text uploadLogsAsync
             // @brief Starts background process to upload logs.
@@ -669,10 +665,10 @@ namespace WPEFramework
             // @text setFSRFlag
             // @brief Set the FSR flag into the emmc raw area.
             // @param fsrFlag: FSR flag
-            // @param success: Whether the request succeeded
+            // @param SystemResult: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult SetFSRFlag(const bool fsrFlag, bool& success /* @out */) = 0;
+            virtual Core::hresult SetFSRFlag(const bool fsrFlag, SystemResult& result /* @out */) = 0;
 
             // @text getFSRFlag
             // @brief Get the FSR flag from the emmc raw area.
