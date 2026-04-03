@@ -215,7 +215,6 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.bootType | string | BOOT Type Info |
-| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -245,8 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "bootType": "",
-        "success": true
+        "bootType": ""
     }
 }
 ```
@@ -334,6 +332,7 @@ Event details will be updated soon.
 | result.deviceInfo.wifi_mac | string | WIFI Mac Address |
 | result.deviceInfo.modelName | string | Device model name |
 | result.deviceInfo.hardwareID | string | Hardware ID |
+| result.deviceInfo.message | string | Error message if input failure |
 | result.deviceInfo.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -382,6 +381,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
         "wifi_mac": "",
         "modelName": "",
         "hardwareID": "",
+        "message": "",
         "success": true
     }
 }
@@ -767,7 +767,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.wakeupKeyCode | integer | The last wakeup keycode |
+| result.wakeupKeyCode | int | The last wakeup keycode |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -927,8 +927,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.MigrationStatus | string | Migration Status |
-| result.success | bool | Whether the request succeeded |
+| result.migrationStatus | string | Migration Status |
 
 ### Examples
 
@@ -958,8 +957,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "jsonrpc": 2.0,
     "id": 15,
     "result": {
-        "MigrationStatus": "",
-        "success": true
+        "migrationStatus": ""
     }
 }
 ```
@@ -1022,7 +1020,10 @@ Returns the Supported features and device/account info
 ### Events
 Event details will be updated soon.
 ### Parameters
-This method takes no parameters.
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.query | string | Query for support of a particular feature, e.g. AccountInfo.accountId |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1080,7 +1081,10 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "method": "org.rdk.SystemServices.getPlatformConfiguration"
+    "method": "org.rdk.SystemServices.getPlatformConfiguration",
+    "params": {
+        "query": ""
+    }
 }
 ```
 
@@ -1088,7 +1092,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration", "params": {"query": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1267,8 +1271,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.RFCConfig | IStringIterator | A list of specified RFC properties |
-| result.RFCConfig[#] | string |  |
+| result.RFCConfig | string | A list of specified RFC properties |
 | result.SysSrv_Status | integer | System service status error code if failure occurs |
 | result.errorMessage | string | Error message if failure occurs |
 | result.success | bool | Whether the request succeeded |
@@ -1304,9 +1307,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
     "jsonrpc": 2.0,
     "id": 20,
     "result": {
-        "RFCConfig": [
-            ""
-        ],
+        "RFCConfig": "",
         "SysSrv_Status": 0,
         "errorMessage": "",
         "success": true
@@ -1594,7 +1595,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.zoneinfo | string | A timezone area @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.zoneinfo | string | A timezone area |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1627,7 +1629,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
     "jsonrpc": 2.0,
     "id": 26,
     "result": {
-        "zoneinfo": ""
+        "zoneinfo": "",
+        "success": true
     }
 }
 ```
@@ -2192,7 +2195,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | Migration Status |
+| params.status | string | Migration Status |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2210,7 +2213,7 @@ Event details will be updated soon.
     "id": 37,
     "method": "org.rdk.SystemServices.setMigrationStatus",
     "params": {
-        "status": true
+        "status": ""
     }
 }
 ```
@@ -2219,7 +2222,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2246,9 +2249,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.modeinfo | ModeInfo | The mode information |
-| params.modeinfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
-| params.modeinfo.duration | int | The duration |
+| params.modeInfo | ModeInfo |  |
+| params.modeInfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
+| params.modeInfo.duration | int | The duration |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2481,7 +2484,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.message | string | Error Message |
+| result.message | string | Error message if input failure |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -2823,7 +2826,7 @@ Triggered when Device Mgt settings update is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.source | string | The reboot source |
+| params.source | string | The source of the update |
 | params.type | string | The type of update |
 | params.success | bool | Whether the request succeeded |
 
@@ -3145,7 +3148,7 @@ Triggered when the temperature threshold is changed.
 | params | object |  |
 | params.thresholdType | string | The type of temperature threshold |
 | params.exceeded | bool | Whether the threshold is exceeded |
-| params.temperature | float | The current temperature |
+| params.temperature | string | The current temperature |
 
 ### Examples
 
@@ -3157,7 +3160,7 @@ Triggered when the temperature threshold is changed.
     "params": {
         "thresholdType": "",
         "exceeded": true,
-        "temperature": 0.0
+        "temperature": ""
     }
 }
 ```
