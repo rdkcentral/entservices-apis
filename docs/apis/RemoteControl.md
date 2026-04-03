@@ -78,7 +78,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The session identifier  |
+| params.sessionId | string | The firmware update session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -734,7 +734,13 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response containing success and on success a status object with netType, pairingState, irProgState, netTypesSupported and remoteData |
+| result.response | GetNetStatusResponse | The typed network status fields including netType, pairingState, irProgState, and success |
+| result.response.netType | integer | The type of remote control network  |
+| result.response.pairingState | string | The pairing state |
+| result.response.irProgState | string | The IR programming state |
+| result.response.success | bool | Whether the request succeeded |
+| result.netTypesSupported | string | JSON array blob of supported network types e.g. [1] |
+| result.remoteData | string | JSON array blob of paired remote information |
 
 ### Examples
 
@@ -767,7 +773,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "jsonrpc": "2.0",
     "id": 11,
     "result": {
-        "response": ""
+        "response": {
+            "netType": 1,
+            "pairingState": "INITIALISING",
+            "irProgState": "IDLE",
+            "success": true
+        },
+        "netTypesSupported": "[1]",
+        "remoteData": ""
     }
 }
 ```
@@ -897,7 +910,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
+| params.macAddress | string | The MAC address of the remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
 | params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
@@ -1027,12 +1040,17 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The session identifier  |
+| params.sessionId | string | The firmware update session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response containing success and on success a status object with netType, pairingState, irProgState, netTypesSupported and remoteData |
+| result.sessionId | string | The firmware update session identifier  |
+| result.macAddress | string | The MAC address of the remote in hex-colon format  |
+| result.state | string | The firmware update state |
+| result.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
+| result.error | string | The firmware update error string, only present on failure |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1065,7 +1083,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "
     "jsonrpc": "2.0",
     "id": 16,
     "result": {
-        "response": ""
+        "sessionId": "12345-abc-def",
+        "macAddress": "AA:BB:CC:DD:EE:FF",
+        "state": "DOWNLOADING",
+        "percentComplete": 50,
+        "error": "",
+        "success": true
     }
 }
 ```

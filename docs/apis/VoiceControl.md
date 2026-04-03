@@ -252,7 +252,22 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | string | JSON response containing success and on success voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, capabilities, ptt, ff, mic, mic_tap |
+| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, and success |
+| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
+| result.response.urlPtt | string | The PTT URL  |
+| result.response.urlHf | string | The HF (ff and mic) URL  |
+| result.response.urlMicTap | string | The microphone tap URL  |
+| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
+| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
+| result.response.ptt | DeviceStatus | The status information for the PTT device type |
+| result.response.ptt.status | string | The status of the device  |
+| result.response.ff | DeviceStatus | The status information for the FF device type |
+| result.response.ff.status | string | The status of the device  |
+| result.response.mic | DeviceStatus | The status information for the MIC device type |
+| result.response.mic.status | string | The status of the device  |
+| result.response.success | bool | Whether the request succeeded |
+| result.capabilities | IStringIterator | The capability strings returned by the voice stack |
+| result.capabilities[#] | string |  |
 
 ### Examples
 
@@ -282,7 +297,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
     "jsonrpc": "2.0",
     "id": 3,
     "result": {
-        "response": ""
+        "response": {
+            "maskPii": true,
+            "urlPtt": "ws://voice.example.com/ptt",
+            "urlHf": "ws://voice.example.com/hf",
+            "urlMicTap": "ws://voice.example.com/mictap",
+            "prv": true,
+            "wwFeedback": true,
+            "ptt": {
+                "status": "ready"
+            },
+            "ff": {
+                "status": "ready"
+            },
+            "mic": {
+                "status": "ready"
+            },
+            "success": true
+        },
+        "capabilities": [
+            ""
+        ]
     }
 }
 ```
@@ -359,7 +394,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.language | string | <sup>(optional)</sup>Preferred user interface language |
-| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities |
+| params?.capabilities | IStringIterator | <sup>(optional)</sup>The capability strings returned by the voice stack |
 | params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
