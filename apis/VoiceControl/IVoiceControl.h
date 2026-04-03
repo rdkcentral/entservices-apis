@@ -119,6 +119,7 @@ namespace WPEFramework {
             bool maskPii     /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
             string urlPtt    /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
             string urlHf     /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
+            string urlMicTap /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
             bool prv         /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
             bool wwFeedback  /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
             DeviceStatus ptt /* @brief The status information for the PTT device type */;
@@ -188,11 +189,12 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param response: JSON response containing success and on success voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, capabilities, ptt, ff, mic, mic_tap
+            // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, and success
+            // @param capabilities: The capability strings returned by the voice stack
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult GetVoiceStatus(string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract */, IStringIterator*& capabilities /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice

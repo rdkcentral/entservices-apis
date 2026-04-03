@@ -104,6 +104,22 @@ namespace WPEFramework {
             uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
         };
 
+        struct EXTERNAL StatusFirmwareUpdateResponse {
+            string sessionId          /* @brief The firmware update session identifier ex: 12345-abc-def */;
+            string macAddress         /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
+            FirmwareUpdateState state /* @brief The firmware update state */;
+            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
+            string error              /* @optional @brief The firmware update error string, only present on failure */;
+            bool success              /* @brief Whether the request succeeded */;
+        };
+
+        struct EXTERNAL GetNetStatusResponse {
+            uint32_t netType          /* @brief The type of remote control network ex: 1 */;
+            PairingState pairingState /* @brief The pairing state */;
+            IRProgState irProgState   /* @brief The IR programming state */;
+            bool success              /* @brief Whether the request succeeded */;
+        };
+
         struct EXTERNAL StatusEventData {
             uint32_t netType          /* @brief The type of remote control network ex: 1 */;
             bool netTypeSupported     /* @brief Whether the network type is supported */;
@@ -168,11 +184,13 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
-            // @param response: JSON response containing success and on success a status object with netType, pairingState, irProgState, netTypesSupported and remoteData
+            // @param response: The typed network status fields including netType, pairingState, irProgState, and success
+            // @param netTypesSupported: JSON array blob of supported network types e.g. [1]
+            // @param remoteData: JSON array blob of paired remote information
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResponse& response /* @out @extract */, string& netTypesSupported /* @out @opaque */, string& remoteData /* @out @opaque */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -324,11 +342,11 @@ namespace WPEFramework {
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
             // @param sessionId: The session identifier e.g. "12345-abc-def"
-            // @param response: JSON response containing success and on success a status object with upgradeSessionId, macAddress, percentComplete and upgradeState
+            // @param response: The firmware update status fields including sessionId, macAddress, state, percentComplete, optional error, and success
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, string& response /* @out @opaque */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, StatusFirmwareUpdateResponse& response /* @out @extract */) = 0;
             // End methods
 
             // @event
