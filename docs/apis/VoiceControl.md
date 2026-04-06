@@ -252,7 +252,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, and success |
+| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, and success |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
 | result.response.urlPtt | string | The PTT URL  |
 | result.response.urlHf | string | The HF (ff and mic) URL  |
@@ -265,6 +265,8 @@ This method takes no parameters.
 | result.response.ff.status | string | The status of the device  |
 | result.response.mic | DeviceStatus | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
+| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | DeviceStatus | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
+| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
 | result.response.success | bool | Whether the request succeeded |
 | result.capabilities | IStringIterator | The capability strings returned by the voice stack |
 | result.capabilities[#] | string |  |
@@ -311,6 +313,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "m
                 "status": "ready"
             },
             "mic": {
+                "status": "ready"
+            },
+            "mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available": {
                 "status": "ready"
             },
             "success": true

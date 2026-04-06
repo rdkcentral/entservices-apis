@@ -734,13 +734,13 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetNetStatusResponse | The typed network status fields including netType, pairingState, irProgState, and success |
-| result.response.netType | integer | The type of remote control network  |
-| result.response.pairingState | string | The pairing state |
-| result.response.irProgState | string | The IR programming state |
-| result.response.success | bool | Whether the request succeeded |
-| result.netTypesSupported | string | JSON array blob of supported network types e.g. [1] |
-| result.remoteData | string | JSON array blob of paired remote information |
+| result.success | bool | Whether the request succeeded |
+| result.status | NetStatusData | The network status data |
+| result.status.netType | integer | The type of remote control network  |
+| result.status.pairingState | string | The pairing state |
+| result.status.irProgState | string | The IR programming state |
+| result.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
+| result.status.remoteData | string | JSON array of paired remote information |
 
 ### Examples
 
@@ -773,14 +773,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
     "jsonrpc": "2.0",
     "id": 11,
     "result": {
-        "response": {
+        "success": true,
+        "status": {
             "netType": 1,
             "pairingState": "INITIALISING",
             "irProgState": "IDLE",
-            "success": true
-        },
-        "netTypesSupported": "[1]",
-        "remoteData": ""
+            "netTypesSupported": "[1]",
+            "remoteData": ""
+        }
     }
 }
 ```
