@@ -674,7 +674,7 @@ This method takes no parameters.
 | result.sourceName | string | The source of the last key press  |
 | result.sourceType | string | The source type of the last key press  |
 | result.sourceKeyCode | integer | The source key code  |
-| result.isScreenBindMode | bool | True if in screen bind mode, otherwise false |
+| result.bIsScreenBindMode | bool | True if in screen bind mode, otherwise false |
 | result.remoteKeypadConfig | integer | The configuration of the remote keypad  |
 | result.success | bool | Whether the request succeeded |
 
@@ -711,7 +711,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
         "sourceName": "IR",
         "sourceType": "REMOTE",
         "sourceKeyCode": 195,
-        "isScreenBindMode": true,
+        "bIsScreenBindMode": true,
         "remoteKeypadConfig": 0,
         "success": true
     }
