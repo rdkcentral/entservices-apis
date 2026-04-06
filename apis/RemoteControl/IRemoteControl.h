@@ -217,7 +217,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out @optional */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
