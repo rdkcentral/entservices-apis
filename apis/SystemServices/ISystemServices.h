@@ -215,9 +215,6 @@ namespace WPEFramework
                 bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
             };
 
-            struct EXTERNAL TimeZonesInfo {
-                string zoneinfo /* @brief A timezone area */;
-            };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
@@ -420,7 +417,7 @@ namespace WPEFramework
             // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, IStringIterator*& RFCConfig /* @out */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetRFCConfig(IStringIterator* const& rfcList, string& RFCConfig /* @out @opaque */, uint32_t& SysSrv_Status /* @out */, string& errorMessage /* @out */, bool& success /* @out */) = 0;
 
             // @text getSerialNumber
             // @brief Returns the device serial number.
@@ -450,10 +447,11 @@ namespace WPEFramework
             // @text getTimeZones
             // @brief Returns the friendly name set by setFriendlyName API or default value.
             // @param timeZones: A list of available timezones from the system
-            // @param timeZonesInfo: A timezone area
+            // @param zoneinfo: A timezone area
+            // @param success: Whether the request succeeded
             // @retval ErrorCode::ERROR_NONE: Indicates success
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, TimeZonesInfo& timeZonesInfo /* @out */) = 0;
+            virtual Core::hresult GetTimeZones(IStringIterator* const& timeZones, string& zoneinfo /* @out @opaque */, bool& success /* @out */) = 0;
 
             // @text getTimeZoneDST
             // @brief Gets the available timezones from the system’s time zone database.
