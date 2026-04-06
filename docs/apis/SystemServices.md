@@ -1271,8 +1271,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.RFCConfig | IStringIterator | A list of specified RFC properties |
-| result.RFCConfig[#] | string |  |
+| result.RFCConfig | string | A list of specified RFC properties |
 | result.SysSrv_Status | integer | System service status error code if failure occurs |
 | result.errorMessage | string | Error message if failure occurs |
 | result.success | bool | Whether the request succeeded |
@@ -1308,9 +1307,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
     "jsonrpc": 2.0,
     "id": 20,
     "result": {
-        "RFCConfig": [
-            ""
-        ],
+        "RFCConfig": "",
         "SysSrv_Status": 0,
         "errorMessage": "",
         "success": true
@@ -1599,6 +1596,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.zoneinfo | string | A timezone area |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1631,7 +1629,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
     "jsonrpc": 2.0,
     "id": 26,
     "result": {
-        "zoneinfo": ""
+        "zoneinfo": "",
+        "success": true
     }
 }
 ```
