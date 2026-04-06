@@ -116,17 +116,17 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceStatusResponse {
-            bool maskPii     /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
-            string urlPtt    /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
-            string urlHf     /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
-            string urlMicTap /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
-            bool prv         /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
-            bool wwFeedback  /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
+            bool maskPii         /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
+            string urlPtt        /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
+            string urlHf         /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
+            string urlMicTap     /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
+            bool prv             /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
+            bool wwFeedback      /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
             DeviceStatus ptt     /* @brief The status information for the PTT device type */;
             DeviceStatus ff      /* @brief The status information for the FF device type */;
             DeviceStatus mic     /* @brief The status information for the MIC device type */;
-            DeviceStatus mic_tap /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
-            bool success     /* @brief Whether the request succeeded */;
+            DeviceStatus micTap  /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
+            bool success         /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL SessionBeginEvent {
