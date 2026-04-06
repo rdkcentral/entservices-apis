@@ -122,9 +122,10 @@ namespace WPEFramework {
             string urlMicTap /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
             bool prv         /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
             bool wwFeedback  /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
-            DeviceStatus ptt /* @brief The status information for the PTT device type */;
-            DeviceStatus ff  /* @brief The status information for the FF device type */;
-            DeviceStatus mic /* @brief The status information for the MIC device type */;
+            DeviceStatus ptt     /* @brief The status information for the PTT device type */;
+            DeviceStatus ff      /* @brief The status information for the FF device type */;
+            DeviceStatus mic     /* @brief The status information for the MIC device type */;
+            DeviceStatus mic_tap /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
             bool success     /* @brief Whether the request succeeded */;
         };
 
@@ -189,12 +190,12 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, and success
+            // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, and success
             // @param capabilities: The capability strings returned by the voice stack
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract */, IStringIterator*& capabilities /* @out */) = 0;
+            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract @unwrapped */, IStringIterator*& capabilities /* @out */) = 0;
 
             // @brief Configures the RDK's voice stack
             // @text configureVoice

@@ -113,11 +113,17 @@ namespace WPEFramework {
             bool success              /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL GetNetStatusResponse {
+        struct EXTERNAL NetStatusData {
             uint32_t netType          /* @brief The type of remote control network ex: 1 */;
             PairingState pairingState /* @brief The pairing state */;
             IRProgState irProgState   /* @brief The IR programming state */;
-            bool success              /* @brief Whether the request succeeded */;
+            string netTypesSupported  /* @opaque @brief JSON array of supported network types e.g. [1] */;
+            string remoteData         /* @opaque @brief JSON array of paired remote information */;
+        };
+
+        struct EXTERNAL GetNetStatusResult {
+            bool success         /* @brief Whether the request succeeded */;
+            NetStatusData status /* @brief The network status data */;
         };
 
         struct EXTERNAL StatusEventData {
@@ -184,13 +190,11 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
-            // @param response: The typed network status fields including netType, pairingState, irProgState, and success
-            // @param netTypesSupported: JSON array blob of supported network types e.g. [1]
-            // @param remoteData: JSON array blob of paired remote information
+            // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResponse& response /* @out @extract */, string& netTypesSupported /* @out @opaque */, string& remoteData /* @out @opaque */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResult& result /* @out @extract */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -240,7 +244,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out @optional */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
