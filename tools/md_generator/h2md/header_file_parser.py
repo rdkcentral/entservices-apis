@@ -49,30 +49,25 @@ class HeaderFileParser:
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
         ('struct',      'cpp_obj', re.compile(r'struct\s+(EXTERNAL\s+)?([\w\d]+)\s*(?:\{)?(?!.*:)')),
         ('method',      'cpp_obj', re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)')),
-        ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)')),
-        ('type_alias',  'cpp_obj', re.compile(r'using\s+([\w\d]+)\s*=\s*([\w\d\:]+)\s*;'))
+        ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
         
     ]
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-        'integer':  0,
-        'int8_t':   0,
-        'uint8_t':  0,
-        'int16_t':  0,
-        'uint16_t': 0,
-        'int32_t':  0,
-        'uint32_t': 0,
-        'int64_t':  0,
-        'uint64_t': 0,
-        'int':      0,
-        'float':    0.0,
-        'double':   0.0,
+        'integer':  '0',
+        'int16_t':  '0',
+        'uint16_t': '0',
+        'int32_t':  '0',
+        'uint32_t': '0',
+        'int64_t':  '0',
+        'uint64_t': '0',
+        'int':      '0',
+        'float':    '0.0',
+        'double':   '0.0',
         'bool':     True,
         'char':     'a',
         'string':   ''
     }
-    INT_TYPES = {'integer', 'int', 'int8_t', 'uint8_t', 'int16_t', 'uint16_t', 'int32_t', 'uint32_t', 'int64_t', 'uint64_t'}
-    FLOAT_TYPES = {'float', 'double'}
     # List of regexes to match different cpp components of the header file
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
@@ -82,8 +77,7 @@ class HeaderFileParser:
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
         'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
-        'method_param': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?'),
-        'type_alias':   re.compile(r'using\s+([\w\d]+)\s*=\s*([\w\d\:]+)\s*;')
+        'method_param': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
     }
 
     def __init__(self, header_file_path: str, plugin_name: str, logger: Logger):
@@ -106,7 +100,6 @@ class HeaderFileParser:
         self.structs_registry = {}
         self.iterators_registry = {}
         self.enums_registry = {}
-        self.aliases_registry = {}
         self.symbols_registry = {}
         self.configuration_options = {}
         self.logger = logger
@@ -193,8 +186,6 @@ class HeaderFileParser:
                         within_method_def = True
                     elif line_tag == 'iterator':
                         self.register_iterator(line)
-                    elif line_tag == 'type_alias':
-                        self.register_type_alias(line)
 
                 if within_enum_def:
                     enum_object, enum_braces_count, within_enum_def = self.process_enum(
@@ -330,11 +321,6 @@ class HeaderFileParser:
                 return
             if groups[0] == '/':
                 return
-            # Stop accumulating if this line starts with a doxygen tag (e.g., @retval, @brief, etc.)
-            # This prevents @retval and other tags from being appended to previous @param descriptions
-            if groups[0].strip().startswith('@'):
-                self.latest_tag = ''
-                return
             # Multiline support: append to last tag
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
@@ -403,35 +389,6 @@ class HeaderFileParser:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register iterator: {iterator_object}")
 
-    def register_type_alias(self, alias_object):
-        """
-        Registers a generic using alias so aliased structs/enums can be resolved during
-        example and description generation.
-        """
-        match = self.CPP_COMPONENT_REGEX['type_alias'].match(alias_object)
-        if match:
-            alias_name, aliased_type = match.groups()
-            self.aliases_registry[alias_name] = self.sanitize_resolution_operator_from_type(aliased_type)
-        else:
-            if self.logger:
-                self.logger.log("ERROR", f"Could not register type alias: {alias_object}")
-
-    def resolve_type_alias(self, symbol_type):
-        """
-        Resolves using aliases recursively until a concrete type is reached.
-        """
-        if not symbol_type:
-            return symbol_type
-
-        resolved_type = self.sanitize_resolution_operator_from_type(symbol_type) if '::' in symbol_type else symbol_type
-        visited = set()
-
-        while resolved_type in self.aliases_registry and resolved_type not in visited:
-            visited.add(resolved_type)
-            resolved_type = self.aliases_registry[resolved_type]
-
-        return resolved_type
-
     def register_enum(self, enum_object):
         """
         Registers an enum by processing the enum's enumerator definitions.
@@ -446,17 +403,11 @@ class HeaderFileParser:
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
-                    # Extract @text annotation for JSON mapping. Allow empty values for invalid sentinels.
-                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
-                    text_tag_match = re.search(text_tag_pattern, description) if description else None
-                    custom_name = text_tag_match.group(1).strip() if text_tag_match else enumerator_name
                     description = self.clean_description(description)
                     enumerator_value = enumerator_value or len(self.enums_registry[enum_name])
                     self.enums_registry[enum_name][enumerator_name] = {
                         'value': enumerator_value,
-                        'description': description.strip() if description else '',
-                        'custom_name': custom_name,
-                        'is_invalid': enumerator_name == 'INVALID'
+                        'description': description.strip() if description else ''
                     }
         else:
             if self.logger:
@@ -479,10 +430,10 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+(.*?)(?:\s*\*/|$)'
+                    text_tag_pattern = r'@text\s+([^\*/]+)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
-                    custom_name = text_tag_match.group(1).strip() if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+(.*?)(?:\s*\*/|$)'
+                    custom_name = text_tag_match.group(1) if text_tag_match else ''
+                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
                     description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
@@ -668,7 +619,7 @@ class HeaderFileParser:
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
-            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description, symbol_type)
+            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
@@ -712,7 +663,7 @@ class HeaderFileParser:
             method_info['response'] = self.generate_response_object(method_info, id_num)
             id_num += 1
         for event_name, event_info in self.events.items():
-            event_info['request'] = self.generate_request_object(event_name, event_info, id_num, is_event=True)
+            event_info['request'] = self.generate_request_object(event_name, event_info, id_num)
             id_num += 1
         for prop_name, prop_info in self.properties.items():
             # properties can have both get and set requests and responses
@@ -734,27 +685,15 @@ class HeaderFileParser:
         """Convert UpperCamelCase to lowerCamelCase."""
         return name[0].lower() + name[1:] if name and name[0].isupper() else name
 
-    def generate_request_object(self, method_name, method_info, id_num, is_event=False):
+    def generate_request_object(self, method_name, method_info, id_num):
         """
         Makes a request JSON. Creates an example dynamically.
-        For events/notifications, uses the Thunder convention: client.events.<eventName>
-        For methods, uses: org.rdk.{classname}.{methodName}
         """
-        # Use @text tag if available, otherwise fall back to method name
-        text_name = method_info.get('text', '')
-        if text_name:
-            camel_method_name = text_name
-        else:
-            camel_method_name = self.to_camel_case(method_name)
-        
-        if is_event:
-            method_path = f"client.events.{camel_method_name}"
-        else:
-            method_path = f"org.rdk.{self.classname}.{camel_method_name}"
+        camel_method_name = self.to_camel_case(method_name)
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": method_path,
+            "method": f"org.rdk.{self.classname}.{camel_method_name}",
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -774,9 +713,8 @@ class HeaderFileParser:
                 # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
                 overridden_name = param_custom_name if param_custom_name else param_name
                 param_type = param.get('type')
-                resolved_param_type = self.resolve_type_alias(param_type)
                 param_desc = param.get('description')
-                if not keep_key and len(method_info['params']) == 1 and (resolved_param_type in self.structs_registry or resolved_param_type in self.iterators_registry):
+                if not keep_key and len(method_info['params']) == 1 and (param_type in self.structs_registry or param_type in self.iterators_registry):
                     request["params"] = self.get_symbol_example(
                         f"{param_name}-{param_type}", param_desc)
                 else:
@@ -816,9 +754,8 @@ class HeaderFileParser:
                 # in case there is a custom name, use it as the key in the response JSON. But, we still use the original name to get the example.
                 overridden_name = result_custom_name if result_custom_name and result_custom_name != result_name else result_name
                 result_type = result.get('type')
-                resolved_result_type = self.resolve_type_alias(result_type)
                 result_desc = result.get('description')
-                if not keep_key and len(method_info['results']) == 1 and (resolved_result_type in self.structs_registry or resolved_result_type in self.iterators_registry):
+                if not keep_key and len(method_info['results']) == 1 and (result_type in self.structs_registry or result_type in self.iterators_registry):
                     response['result'] = self.get_symbol_example(
                         f"{result_name}-{result_type}", result_desc)
                 else:
@@ -831,8 +768,7 @@ class HeaderFileParser:
         Used in generating request/response JSONs. Pulls an example from either the @param tag
         description or the symbols registry.
         """
-        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
-        example_from_param_description = self.generate_example_from_description(description, symbol_type)
+        example_from_param_description = self.generate_example_from_description(description)
         if example_from_param_description:
             return self.wrap_example_if_iterator(unique_id, example_from_param_description)
         # if no example in the param description, pull from the symbols registry
@@ -857,8 +793,7 @@ class HeaderFileParser:
         Generate an example for an individual symbol based on its description or type. Used as a
         helper to populate the symbols registry.
         """
-        symbol_type = unique_id.rsplit('-', 1)[-1] if '-' in unique_id else None
-        example = self.generate_example_from_description(description, symbol_type)
+        example = self.generate_example_from_description(description)
         if example:
             return self.wrap_example_if_iterator(unique_id, example)
         if unique_id in self.symbols_registry:
@@ -866,43 +801,20 @@ class HeaderFileParser:
             return self.generate_example_from_symbol_type(symbol_type)
         return None
 
-    def generate_example_from_description(self, param_description, symbol_type=None):
+    def generate_example_from_description(self, param_description):
         """
-        Extracts an example from a parameter description and converts it to the
-        appropriate Python type based on the C++ symbol type.
+        Extracts an example from a parameter description.
         """
         if param_description is None:
             return None
-        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'e\.g\.\s+(\S+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
-        if not match:
-            return None
-        value = match.group(1)
-        if symbol_type:
-            return self._convert_to_type(value, symbol_type)
-        return value
-
-    def _convert_to_type(self, value, symbol_type):
-        """Convert a string example value to the correct Python type based on C++ type."""
-        if symbol_type in self.INT_TYPES:
-            try:
-                return int(value)
-            except (ValueError, TypeError):
-                return value
-        if symbol_type in self.FLOAT_TYPES:
-            try:
-                return float(value)
-            except (ValueError, TypeError):
-                return value
-        if symbol_type == 'bool':
-            return value.lower() in ('true', '1', 'yes') if isinstance(value, str) else bool(value)
-        return value
+        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
+        return match.group(1) if match else None
 
     def generate_example_from_symbol_type(self, symbol_type):
         """
         Creates an example parameter based on the symbol type. Used as a
         helper to populate the symbols registry.
         """
-        symbol_type = self.resolve_type_alias(symbol_type)
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
             # if len(struct) == 1:
@@ -912,16 +824,7 @@ class HeaderFileParser:
 
             return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
-            # Use the first non-empty custom_name (from @text annotation) instead of exposing invalid sentinels.
-            for enum_name, enum_info in self.enums_registry[symbol_type].items():
-                if enum_info.get('is_invalid'):
-                    continue
-                custom_name = enum_info.get('custom_name', enum_name)
-                if custom_name:
-                    return custom_name
-
-            first_enum_member = list(self.enums_registry[symbol_type])[0]
-            return self.enums_registry[symbol_type][first_enum_member].get('custom_name', first_enum_member)
+            return list(self.enums_registry[symbol_type])[0]
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
             return self.BASIC_TYPE_EXAMPLES[symbol_type]
         if symbol_type in self.iterators_registry:
@@ -934,7 +837,7 @@ class HeaderFileParser:
         Wrap the example in a list if the symbol is an iterator, otherwise simply return the
         example.
         """
-        if self.resolve_type_alias(self.symbols_registry[unique_id]['type']) in self.iterators_registry:
+        if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
             return [example]
         return example
 
@@ -1067,7 +970,6 @@ class HeaderFileParser:
         if unqiue_id in self.symbols_registry:
             symbol_name = unqiue_id.split('-')[0]
             symbol_type = self.symbols_registry[unqiue_id].get('type')
-            symbol_type = self.resolve_type_alias(symbol_type)
             symbol_desc = self.symbols_registry[unqiue_id].get('description')
             symbol_custom_name = self.symbols_registry[unqiue_id].get('custom_name', '')
             overridden_name = symbol_custom_name if symbol_custom_name else symbol_name
@@ -1092,7 +994,6 @@ class HeaderFileParser:
         Mirrors logic in generate_example_from_symbol_type.
         """
         flattened_descriptions = {}
-        symbol_type = self.resolve_type_alias(symbol_type)
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
             # if len(struct) == 1:
