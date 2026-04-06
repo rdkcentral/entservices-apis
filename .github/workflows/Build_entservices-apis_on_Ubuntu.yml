@@ -44,8 +44,7 @@ jobs:
 
       - name: Build ThunderTools
         run: |
-          cmake -G Ninja -S ThunderTools -B ThunderTools/build \
-            -DCMAKE_INSTALL_PREFIX="install"
+          cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
           cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
