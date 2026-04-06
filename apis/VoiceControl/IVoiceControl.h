@@ -223,7 +223,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& language /* @optional */, IStringIterator* const capabilities, SuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& language /* @optional */, IStringIterator* const capabilities /* @optional */, SuccessResult& result /* @out @extract */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage

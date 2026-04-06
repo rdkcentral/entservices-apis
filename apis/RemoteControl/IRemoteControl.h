@@ -284,7 +284,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys, SuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys /* @optional */, SuccessResult& result /* @out @extract */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
