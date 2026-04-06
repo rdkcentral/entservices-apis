@@ -94,7 +94,7 @@ namespace WPEFramework {
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
             string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
             uint32_t sourceKeyCode      /* @brief The source key code ex: 195 */;
-            bool isScreenBindMode       /* @brief True if in screen bind mode, otherwise false */;
+            bool bIsScreenBindMode      /* @brief True if in screen bind mode, otherwise false */;
             uint32_t remoteKeypadConfig /* @brief The configuration of the remote keypad ex: 0 */;
             bool success                /* @brief Whether the request succeeded */;
         };
