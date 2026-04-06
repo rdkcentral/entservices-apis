@@ -377,14 +377,16 @@ namespace WPEFramework {
             // @text register
             // @brief Register notification interface
             // @param notification: Notification interface pointer
-            // @retval Core::NONE: Indicates successful registration of notification interface
+            // @retval Core::ERROR_NONE: Indicates successful registration of notification interface
+            // @retval Core::ERROR_BAD_REQUEST: notification is null
             virtual Core::hresult Register(IRemoteControl::INotification* notification) = 0;
 
             // @json:omit
             // @text unregister
             // @brief Unregister notification interface
             // @param notification: Notification interface pointer
-            // @retval Core::NONE: Indicates successful unregistration of notification interface
+            // @retval Core::ERROR_NONE: Indicates successful unregistration of notification interface
+            // @retval Core::ERROR_BAD_REQUEST: notification is null
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange
