@@ -23,10 +23,10 @@
 #pragma once
 
 #include "Module.h"
-#include "IControlCommon.h"
+#include "../IControlCommon.h"
 
 // @stubgen:include <com/IIteratorType.h>
-// @stubgen:include "IControlCommon.h"
+// @stubgen:include "../IControlCommon.h"
 
 namespace WPEFramework {
 
