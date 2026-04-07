@@ -26,6 +26,7 @@
 #include "IControlCommon.h"
 
 // @stubgen:include <com/IIteratorType.h>
+// @stubgen:include "IControlCommon.h"
 
 namespace WPEFramework {
 
