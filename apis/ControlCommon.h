@@ -1,5 +1,5 @@
 /**
- * @file IControlCommon.h
+ * @file ControlCommon.h
  * @brief Shared data types used by RemoteControl and VoiceControl interfaces.
  *
  * If not stated otherwise in this file or this component's LICENSE
