@@ -44,6 +44,7 @@ class HeaderFileParser:
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
+        ('example',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@example\s+([^\s:(]+)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
@@ -315,6 +316,11 @@ class HeaderFileParser:
             self.doxy_tags.setdefault('errors', {})[groups[0]] = {'code': error_code,
                                                                   'description': description}
             self.latest_tag = 'errors'
+        elif line_tag == 'example':
+            param_name = groups[0]
+            example_value = self._parse_example_value(groups[1].strip()) if groups[1] else ''
+            self.doxy_tags.setdefault('examples', {})[param_name] = example_value
+            self.latest_tag = 'example'
         elif line_tag == 'comment':
             # if we encounter a comment that is not associated with a tag, skip it
             if self.latest_tag == '':
@@ -488,7 +494,8 @@ class HeaderFileParser:
         registry.
         """
         doxy_tag_param_info = doxy_tags.get('params', {})
-        params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info)
+        doxy_tag_examples = doxy_tags.get('examples', {})
+        params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info, doxy_tag_examples)
         method_info = {
             'text': doxy_tags.get('text', ''),
             'brief': doxy_tags.get('brief', ''),
@@ -509,7 +516,7 @@ class HeaderFileParser:
     def normalize_key(self, key):
             return key#.replace('_', '-').strip()
 
-    def process_and_register_params(self, method_parameters, doxy_tag_param_info):
+    def process_and_register_params(self, method_parameters, doxy_tag_param_info, doxy_tag_examples=None):
         """
         Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
@@ -539,7 +546,10 @@ class HeaderFileParser:
             symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
             symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
 
-            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped)
+            symbol_example = doxy_tag_examples.get(overridden_name) if doxy_tag_examples else None
+            if symbol_example is None and doxy_tag_examples:
+                symbol_example = doxy_tag_examples.get(symbol_name)
+            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped, symbol_example)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
@@ -604,7 +614,7 @@ class HeaderFileParser:
                     self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
 
-    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False):
+    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False, example=None):
         """
         Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
@@ -618,7 +628,9 @@ class HeaderFileParser:
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
-        if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
+        if example is not None:
+              self.symbols_registry[unique_id]['example'] = self.wrap_example_if_iterator(unique_id, example)
+        elif not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
             self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
     def external_struct_tracker(self, line, scope, brace_count):
@@ -801,6 +813,34 @@ class HeaderFileParser:
             return self.generate_example_from_symbol_type(symbol_type)
         return None
 
+    def _parse_example_value(self, value):
+        """
+        Converts a raw string from an @example tag into an appropriate Python type.
+        Strips surrounding quotes, then coerces to bool, int, or float where possible.
+        """
+        value = value.strip()
+        if not value:
+            return ''
+        if value[0] in '[{':
+            try:
+                return json.loads(value)
+            except json.JSONDecodeError:
+                pass
+        value = value.strip('"').strip("'")
+        if value.lower() == 'true':
+            return True
+        if value.lower() == 'false':
+            return False
+        try:
+            return int(value)
+        except ValueError:
+            pass
+        try:
+            return float(value)
+        except ValueError:
+            pass
+        return value
+
     def generate_example_from_description(self, param_description):
         """
         Extracts an example from a parameter description.
@@ -838,6 +878,8 @@ class HeaderFileParser:
         example.
         """
         if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
+            if isinstance(example, list):
+                return example
             return [example]
         return example
 
