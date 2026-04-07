@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IControlCommon.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -63,11 +64,6 @@ namespace WPEFramework {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-        // ThunderTools BuildResult() collapses a single out param into a single value ("result":true/false), so we wrap the boolean success in a struct and extract to main the response shape ("result":{"success":true/false})
-        struct EXTERNAL SuccessResult {
-            bool success /* @brief Whether the request succeeded */;
-        };
-
         struct EXTERNAL DeviceSettings {
             bool enable /* @brief Enable (true) or disable (false) the device */;
         };
@@ -80,11 +76,6 @@ namespace WPEFramework {
             double dnsTime     /* @brief The DNS time of the voice server in milliseconds ex: 0.5 */;
             string serverIp    /* @brief The IP of the voice server e.g. "192.168.1.100" */;
             double connectTime /* @brief The connection time of the voice server in milliseconds ex: 10.2 */;
-        };
-
-        struct EXTERNAL GetApiVersionNumberResponse {
-            uint32_t version /* @brief The API version number ex: 1 */;
-            bool success     /* @brief Whether the request succeeded */;
         };
 
         struct EXTERNAL ConfigureVoiceRequest {

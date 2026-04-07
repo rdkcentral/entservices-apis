@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IControlCommon.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -77,16 +78,6 @@ namespace WPEFramework {
         // Data structures for Remote Control
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-
-        // ThunderTools BuildResult() collapses a single out param into a single value ("result":true/false), so we wrap the boolean success in a struct and extract to main the response shape ("result":{"success":true/false})
-        struct EXTERNAL SuccessResult {
-            bool success /* @brief Whether the request succeeded */;
-        };
-
-        struct EXTERNAL GetApiVersionNumberResponse {
-            uint32_t version /* @brief The API version number ex: 1 */;
-            bool success     /* @brief Whether the request succeeded */;
-        };
 
         struct EXTERNAL GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
