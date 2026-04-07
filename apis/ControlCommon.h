@@ -30,9 +30,6 @@
 // EXTERNAL is already defined by the time these structs are compiled. Keeping
 // Module.h out of this file also prevents the ProxyStubGenerator from crashing
 // on the complex templates it contains when following @stubgen:include chains.
-#ifndef EXTERNAL
-#define EXTERNAL
-#endif
 
 namespace WPEFramework {
 
