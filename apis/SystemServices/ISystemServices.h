@@ -156,14 +156,14 @@ namespace WPEFramework
                 string deviceType /* @brief Device Type*/;
                 bool supportsTrueSD /* @brief SD Support */;
                 WebBrowserInfo webBrowser /* @brief  webBrowser Info */;
-                string hdrCapability /* @text HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime */;
+                string hdrCapability /* @text HdrCapability */ /* @brief e.g. HDR10,Dolby Vision,Technicolor Prime */;
                 bool canMixPCMWithSurround /* @brief PCM with Surround */;
                 string publicIP /* @brief Public IP */;
             };
 
             struct EXTERNAL PlatformConfig {
-                AccountInfoDetails accountInfo /* @text AccountInfo @brief AccountInfo Details */;
-                DeviceInfoDetails deviceInfo /* @text DeviceInfo @brief DeviceInfo Details */;
+                AccountInfoDetails accountInfo /* @text AccountInfo */ /* @brief AccountInfo Details */;
+                DeviceInfoDetails deviceInfo /* @text DeviceInfo */ /* @brief DeviceInfo Details */;
                 bool success /* @brief Whether the request succeeded */;
             };
 
@@ -585,8 +585,8 @@ namespace WPEFramework
             // @text setMigrationStatus
             // @brief set the Migration Status of the device.
             // @param status: Migration Status
-            // @param success: Whether the request succeeded
-            virtual Core::hresult SetMigrationStatus(const string& status, bool& success /* @out */) = 0;
+            // @param SystemResult: Whether the request succeeded
+            virtual Core::hresult SetMigrationStatus(const string& status, SystemResult& result /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the Migration Status of the device
