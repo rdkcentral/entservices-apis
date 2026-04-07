@@ -24,8 +24,15 @@
 
 // Shared data types for RemoteControl and VoiceControl. Add here anything that
 // would otherwise be duplicated across IRemoteControl.h and IVoiceControl.h.
-
-#include "Module.h"
+//
+// Note: Module.h is intentionally NOT included here. Interface headers that use
+// this file (IRemoteControl.h, IVoiceControl.h) include Module.h first, so
+// EXTERNAL is already defined by the time these structs are compiled. Keeping
+// Module.h out of this file also prevents the ProxyStubGenerator from crashing
+// on the complex templates it contains when following @stubgen:include chains.
+#ifndef EXTERNAL
+#define EXTERNAL
+#endif
 
 namespace WPEFramework {
 
