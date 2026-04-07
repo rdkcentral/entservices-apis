@@ -22,27 +22,17 @@
 
 #pragma once
 
-// Shared data types for RemoteControl and VoiceControl. Add here anything that
-// would otherwise be duplicated across IRemoteControl.h and IVoiceControl.h.
-//
-// Note: Module.h is intentionally NOT included here. Interface headers that use
-// this file (IRemoteControl.h, IVoiceControl.h) include Module.h first, so
-// EXTERNAL is already defined by the time these structs are compiled. Keeping
-// Module.h out of this file also prevents the ProxyStubGenerator from crashing
-// on the complex templates it contains when following @stubgen:include chains.
+// Shared data types for RemoteControl and VoiceControl.
 
 namespace WPEFramework {
 
     namespace Exchange {
 
-        // ThunderTools BuildResult() collapses a single out param into a single value ("result":true/false),
-        // so we wrap the boolean success in a struct to maintain the response shape ("result":{"success":true/false}).
-        // Shared by RemoteControl and VoiceControl.
-        struct EXTERNAL SuccessResult {
+        struct SuccessResult {
             bool success /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL GetApiVersionNumberResponse {
+        struct GetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
         };
