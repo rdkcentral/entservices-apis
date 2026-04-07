@@ -83,7 +83,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -131,7 +131,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -148,7 +148,7 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | GetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
+| result | VoiceControlGetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
 
 ### Examples
 
@@ -177,7 +177,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": ""
+    "result": {
+        "version": 1,
+        "success": true
+    }
 }
 ```
 
@@ -341,7 +344,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -377,7 +380,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -400,7 +403,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -436,7 +439,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -457,7 +460,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -490,7 +493,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -512,7 +515,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -546,7 +549,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "jsonrpc": 2.0,
     "id": 7,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -569,7 +572,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -604,7 +607,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
@@ -625,7 +628,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SuccessResult |  |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -658,7 +661,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "jsonrpc": 2.0,
     "id": 9,
     "result": {
-        "result": ""
+        "success": true
     }
 }
 ```
