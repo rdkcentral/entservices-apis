@@ -1029,47 +1029,47 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.platformConfig | PlatformConfig | Platform Configuration Details @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
-| result.platformConfig.AccountInfo @brief AccountInfo Details | AccountInfoDetails | AccountInfo Details |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.accountId | string | Account Id |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.x1DeviceId | string | X1 Device Id |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.experience | string | Experience |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.deviceMACAddress | string | Device MAC Address |
-| result.platformConfig.AccountInfo @brief AccountInfo Details.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details | DeviceInfoDetails | DeviceInfo Details |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.quirks | string | The list of installed “quirks” |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.CDVR | string | CDVR |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.DVR | string | DVR |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.EAS | string | EAS |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.IPDVR | string | IPDVR |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.IVOD | string | IVOD |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.LINEAR_TV | string | LINEAR_TV |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypeExclusions.VOD | string | VOD |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features | Features | features |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.allowSelfSignedWithIPAddress | integer |  |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.connection.supportsSecure | integer | connection.supportsSecure |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.callJavaScriptWithResult | integer | htmlview.callJavaScriptWithResult |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.cookies | integer | htmlview.cookies |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.disableCSSAnimations | integer | htmlview.disableCSSAnimations |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.evaluateJavaScript | integer | htmlview.evaluateJavaScript |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.headers | integer | htmlview.headers |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.httpCookies | integer | htmlview.httpCookies |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.postMessage | integer | htmlview.postMessage |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.htmlview.urlpatterns | integer | htmlview.urlpatterns |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.keySource | integer |  |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.features.uhd_4k_decode | integer | uhd_4k_decode |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.mimeTypes | string | mime Types |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.model | string | model |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.deviceType | string | Device Type |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.supportsTrueSD | bool | SD Support |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser | WebBrowserInfo | webBrowser Info |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.browserType | string | Browser Type |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.version | string | Version |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.webBrowser.userAgent | string | User Agent |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.canMixPCMWithSurround | bool | PCM with Surround |
-| result.platformConfig.DeviceInfo @brief DeviceInfo Details.publicIP | string | Public IP |
+| result.platformConfig.AccountInfo | AccountInfoDetails | AccountInfo Details |
+| result.platformConfig.AccountInfo.accountId | string | Account Id |
+| result.platformConfig.AccountInfo.x1DeviceId | string | X1 Device Id |
+| result.platformConfig.AccountInfo.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
+| result.platformConfig.AccountInfo.experience | string | Experience |
+| result.platformConfig.AccountInfo.deviceMACAddress | string | Device MAC Address |
+| result.platformConfig.AccountInfo.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
+| result.platformConfig.DeviceInfo | DeviceInfoDetails | DeviceInfo Details |
+| result.platformConfig.DeviceInfo.quirks | string | The list of installed “quirks” |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.CDVR | string | CDVR |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.DVR | string | DVR |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.EAS | string | EAS |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.IPDVR | string | IPDVR |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.IVOD | string | IVOD |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.LINEAR_TV | string | LINEAR_TV |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions.VOD | string | VOD |
+| result.platformConfig.DeviceInfo.features | Features | features |
+| result.platformConfig.DeviceInfo.features.allowSelfSignedWithIPAddress | integer |  |
+| result.platformConfig.DeviceInfo.features.connection.supportsSecure | integer | connection.supportsSecure |
+| result.platformConfig.DeviceInfo.features.htmlview.callJavaScriptWithResult | integer | htmlview.callJavaScriptWithResult |
+| result.platformConfig.DeviceInfo.features.htmlview.cookies | integer | htmlview.cookies |
+| result.platformConfig.DeviceInfo.features.htmlview.disableCSSAnimations | integer | htmlview.disableCSSAnimations |
+| result.platformConfig.DeviceInfo.features.htmlview.evaluateJavaScript | integer | htmlview.evaluateJavaScript |
+| result.platformConfig.DeviceInfo.features.htmlview.headers | integer | htmlview.headers |
+| result.platformConfig.DeviceInfo.features.htmlview.httpCookies | integer | htmlview.httpCookies |
+| result.platformConfig.DeviceInfo.features.htmlview.postMessage | integer | htmlview.postMessage |
+| result.platformConfig.DeviceInfo.features.htmlview.urlpatterns | integer | htmlview.urlpatterns |
+| result.platformConfig.DeviceInfo.features.keySource | integer |  |
+| result.platformConfig.DeviceInfo.features.uhd_4k_decode | integer | uhd_4k_decode |
+| result.platformConfig.DeviceInfo.mimeTypes | string | mime Types |
+| result.platformConfig.DeviceInfo.model | string | model |
+| result.platformConfig.DeviceInfo.deviceType | string | Device Type |
+| result.platformConfig.DeviceInfo.supportsTrueSD | bool | SD Support |
+| result.platformConfig.DeviceInfo.webBrowser | WebBrowserInfo | webBrowser Info |
+| result.platformConfig.DeviceInfo.webBrowser.browserType | string | Browser Type |
+| result.platformConfig.DeviceInfo.webBrowser.version | string | Version |
+| result.platformConfig.DeviceInfo.webBrowser.userAgent | string | User Agent |
+| result.platformConfig.DeviceInfo.HdrCapability | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
+| result.platformConfig.DeviceInfo.canMixPCMWithSurround | bool | PCM with Surround |
+| result.platformConfig.DeviceInfo.publicIP | string | Public IP |
 | result.platformConfig.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1103,7 +1103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "jsonrpc": 2.0,
     "id": 17,
     "result": {
-        "AccountInfo @brief AccountInfo Details": {
+        "AccountInfo": {
             "accountId": "",
             "x1DeviceId": "",
             "XCALSessionTokenAvailable": true,
@@ -1111,7 +1111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
             "deviceMACAddress": "",
             "firmwareUpdateDisabled": true
         },
-        "DeviceInfo @brief DeviceInfo Details": {
+        "DeviceInfo": {
             "quirks": "",
             "mimeTypeExclusions": {
                 "CDVR": "",
@@ -1145,7 +1145,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
                 "version": "",
                 "userAgent": ""
             },
-            "HdrCapability @brief e.g. HDR10,Dolby Vision,Technicolor Prime": "",
+            "HdrCapability": "",
             "canMixPCMWithSurround": true,
             "publicIP": ""
         },
