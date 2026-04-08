@@ -736,14 +736,14 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | GetNetStatusResult | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData @retval ErrorCode::NONE: Network status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve network status. |
+| result.result | GetNetStatusResult | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC @retval ErrorCode::NONE: Network status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve network status. |
 | result.result.success | bool | Whether the request succeeded |
 | result.result.status | NetStatusData | The network status data |
 | result.result.status.netType | integer | The type of remote control network  |
 | result.result.status.pairingState | string | The pairing state |
 | result.result.status.irProgState | string | The IR programming state |
 | result.result.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
-| result.result.status.remoteData | string | JSON array of paired remote information |
+| result.result.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
 
 ### Examples
 
