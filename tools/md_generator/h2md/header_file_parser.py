@@ -1018,6 +1018,10 @@ class HeaderFileParser:
             symbol_type_override = symbol_type
             if symbol_type in self.enums_registry:
                 symbol_type_override = 'string'
+            elif symbol_type in self.iterators_registry:
+                symbol_type_override = 'array'
+            elif symbol_type not in self.structs_registry and symbol_type not in self.BASIC_TYPE_EXAMPLES:
+                symbol_type_override = 'string'
             curr_key = f"{parent_key}.{overridden_name}"
             if symbol_type in self.structs_registry:
                 struct = self.structs_registry[symbol_type]
@@ -1052,6 +1056,10 @@ class HeaderFileParser:
                 curr_key = f"{parent_key}.{overridden_name}"
                 member_type_override = member_type
                 if member_type in self.enums_registry:
+                    member_type_override = 'string'
+                elif member_type in self.iterators_registry:
+                    member_type_override = 'array'
+                elif member_type not in self.structs_registry and member_type not in self.BASIC_TYPE_EXAMPLES:
                     member_type_override = 'string'
                 flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
                 flattened_descriptions.update(
