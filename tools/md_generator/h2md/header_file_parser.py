@@ -997,6 +997,17 @@ class HeaderFileParser:
         """
         return dict(sorted(dictionary.items()))
 
+    def _enum_possible_values(self, enum_type):
+        """
+        Returns a 'Possible values: ...' string listing all JSON RPC names
+        for the given enum type, using @text descriptions where available.
+        """
+        values = [
+            info['description'] if info['description'] else name
+            for name, info in self.enums_registry[enum_type].items()
+        ]
+        return f"Possible values: {', '.join(values)}"
+
     def generate_flattened_descriptions_for_symbol_registry(self):
         """
         Builds flattened descriptions for all symbols in the symbols registry.
@@ -1033,7 +1044,11 @@ class HeaderFileParser:
                         flattened_descriptions.update(
                             self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
                         return flattened_descriptions
-            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': symbol_desc}}
+            enhanced_desc = symbol_desc or ''
+            if symbol_type in self.enums_registry:
+                pv = self._enum_possible_values(symbol_type)
+                enhanced_desc = f"{enhanced_desc}. {pv}" if enhanced_desc else pv
+            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': enhanced_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
         return flattened_descriptions
 
@@ -1065,14 +1080,19 @@ class HeaderFileParser:
                     member_type_override = 'object'
                 elif member_type not in self.BASIC_TYPE_EXAMPLES:
                     member_type_override = 'string'
-                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
+                member_desc_enhanced = member_desc or ''
+                if member_type in self.enums_registry:
+                    pv = self._enum_possible_values(member_type)
+                    member_desc_enhanced = f"{member_desc_enhanced}. {pv}" if member_desc_enhanced else pv
+                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc_enhanced}
                 flattened_descriptions.update(
                     self.flatten_description(curr_key, member_type))
             return flattened_descriptions
         elif symbol_type in self.enums_registry:
             if parent_key[-3:] == '[#]':
+                pv = self._enum_possible_values(symbol_type)
                 flattened_descriptions.update(
-                    {parent_key: {'type': 'string', 'description': ''}})
+                    {parent_key: {'type': 'string', 'description': pv}})
             return flattened_descriptions
         elif symbol_type in self.BASIC_TYPE_EXAMPLES:
             if parent_key[-3:] == '[#]':
