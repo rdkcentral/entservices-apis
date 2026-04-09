@@ -40,6 +40,7 @@ class HeaderFileParser:
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
+        ('deprecated',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@deprecated\s*(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
@@ -316,6 +317,9 @@ class HeaderFileParser:
             self.doxy_tags.setdefault('errors', {})[groups[0]] = {'code': error_code,
                                                                   'description': description}
             self.latest_tag = 'errors'
+        elif line_tag == 'deprecated':
+            self.doxy_tags['deprecated'] = groups[0].strip() if groups[0] else ''
+            self.latest_tag = 'deprecated'
         elif line_tag == 'example':
             param_name = groups[0]
             example_value = self._parse_example_value(groups[1].strip()) if groups[1] else ''
@@ -506,6 +510,8 @@ class HeaderFileParser:
             'errors': doxy_tags.get('errors', {}),
             'return_type': method_return_type
         }
+        if 'deprecated' in doxy_tags:
+            method_info['deprecated'] = doxy_tags.get('deprecated', '')
         if 'property' in doxy_tags:
             if 'const' in method_parameters or '@in' in method_parameters:
                 method_info['property'] = 'write'
