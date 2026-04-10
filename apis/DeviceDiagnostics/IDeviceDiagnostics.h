@@ -95,7 +95,7 @@ namespace WPEFramework
             // @brief Returns information about the previous reboot including timestamp, source, and reason
             // @param rebootInfo: Contains previous reboot information
             // @param success: Indicates whether the operation was successful
-            virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out @text rebootInfo */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
