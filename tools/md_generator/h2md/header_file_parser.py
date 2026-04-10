@@ -41,6 +41,7 @@ class HeaderFileParser:
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
+        ('asyncevents', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@asyncevents\s+(.*?)(?=\s*\*\/|$)')),
         ('deprecated',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@deprecated\s*(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
@@ -347,6 +348,11 @@ class HeaderFileParser:
         elif line_tag == 'see':
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
             self.latest_tag = 'see'
+        elif line_tag == 'asyncevents':
+            self.doxy_tags.setdefault('asyncevents', []).extend(
+                self._parse_async_event_names(groups[0])
+            )
+            self.latest_tag = 'asyncevents'
         elif line_tag == 'errors':
             error_code = groups[1]
             description = groups[2]
@@ -376,6 +382,10 @@ class HeaderFileParser:
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
                 self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
+            elif self.latest_tag == 'asyncevents':
+                self.doxy_tags.setdefault('asyncevents', []).extend(
+                    self._parse_async_event_names(groups[0])
+                )
             elif self.latest_tag == 'plugindesc':
                 self.plugindescription += (' ' + groups[0])
             elif self.latest_tag == 'config':
@@ -546,6 +556,7 @@ class HeaderFileParser:
             'brief': doxy_tags.get('brief', ''),
             'details': doxy_tags.get('details', ''),
             'events': doxy_tags.get('see', {}),
+            'async_events': doxy_tags.get('asyncevents', []),
             'params': params,
             'results': results,
             'errors': doxy_tags.get('errors', {}),
@@ -888,6 +899,16 @@ class HeaderFileParser:
         except ValueError:
             pass
         return value
+
+    def _parse_async_event_names(self, value):
+        """
+        Parse an @asyncevents payload into a list of notification names.
+        Accepts comma-separated and/or whitespace-separated names.
+        """
+        if not value:
+            return []
+        normalized_value = value.replace(',', ' ')
+        return [event_name.strip() for event_name in normalized_value.split() if event_name.strip()]
 
     def generate_example_from_description(self, param_description):
         """

@@ -368,7 +368,7 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
     if 'deprecated' in method_info:
         markdown += generate_deprecated_notice(method_info.get('deprecated', ''))
-    markdown += generate_events_section(method_info['events'], all_events)
+    markdown += generate_async_events_section(method_info.get('async_events', []), all_events)
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
     markdown += generate_errors_section(method_info['errors'])
@@ -395,6 +395,29 @@ def generate_events_section(events, all_events=None):
             markdown += f"- [{camel_event}](#{camel_event})\n"
     else:
         markdown += "Event details will be updated soon.\n"
+    return markdown
+
+def generate_async_events_section(async_events, all_events=None):
+    """
+    Generate the Events Triggered section for a method.
+    Links each @asyncevents entry to the matching notification anchor when available.
+    """
+    markdown = "### Events Triggered\n"
+    if not async_events:
+        markdown += "None\n"
+        return markdown
+
+    event_lookup = {}
+    if all_events:
+        for event_name, event_info in all_events.items():
+            display_name = event_info.get('text') or to_camel_case(event_name)
+            event_lookup[event_name] = display_name
+            event_lookup[to_camel_case(event_name)] = display_name
+            event_lookup[display_name] = display_name
+
+    for async_event in async_events:
+        display_name = event_lookup.get(async_event, async_event)
+        markdown += f"- [{display_name}](#{display_name})\n"
     return markdown
 
 def generate_properties_toc(properties, classname):
