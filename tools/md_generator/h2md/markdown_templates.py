@@ -172,6 +172,28 @@ def generate_deprecated_notice(deprecated_text):
         markdown += f" {deprecated_text.strip()}"
     return markdown + "\n\n"
 
+def generate_error_examples_section(retvals, request_id):
+    """
+    Generate JSON error response examples for each non-ERROR_NONE retval entry.
+    Appended to the Examples section after the success response.
+    """
+    if not retvals:
+        return ''
+    markdown = ''
+    for retval in retvals:
+        error_response = {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "error": {
+                "code": retval['code'],
+                "message": retval['message']
+            }
+        }
+        enum_name = retval['enum_name']
+        markdown += f"\n\n#### Error Response ({enum_name})\n"
+        markdown += f"\n```json\n{json.dumps(_convert_json_types(error_response), indent=4)}\n```\n"
+    return markdown
+
 def generate_header_toc(classname, document_object, version, foldername):
     """
     Generate the header table of contents for the markdown file.
@@ -354,6 +376,10 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     markdown += generate_request_section(method_info['request'], '', classname)
     markdown += generate_curl_request_section(method_info['request'],'',classname)
     markdown += generate_response_section(method_info['response'], '', classname)
+    retvals = method_info.get('retvals', [])
+    if retvals:
+        request_id = method_info.get('request', {}).get('id', 0)
+        markdown += generate_error_examples_section(retvals, request_id)
     return markdown
 
 def generate_events_section(events, all_events=None):
@@ -411,6 +437,13 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
         markdown += generate_request_section(property_info['set_request'], 'Set ', classname)
         markdown += generate_curl_request_section(property_info['set_request'], 'Set ',classname)
         markdown += generate_response_section(property_info['set_response'], 'Set ', classname)
+    retvals = property_info.get('retvals', [])
+    if retvals:
+        if 'read' in property_info['property']:
+            request_id = property_info.get('get_request', {}).get('id', 0)
+        else:
+            request_id = property_info.get('set_request', {}).get('id', 0)
+        markdown += generate_error_examples_section(retvals, request_id)
     return markdown
 
 def generate_values_section(values, symbol_registry):

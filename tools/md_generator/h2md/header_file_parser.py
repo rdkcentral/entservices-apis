@@ -21,6 +21,7 @@
 
 import re
 import json
+import os
 from logger import Logger
 
 class HeaderFileParser:
@@ -46,6 +47,7 @@ class HeaderFileParser:
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
         ('example',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@example\s+([^\s:(]+)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
+        ('retval',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@retval\s+([\w]+(?:::\w+)*)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
@@ -54,6 +56,39 @@ class HeaderFileParser:
         ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
         
     ]
+    # Thunder Core error code numeric values for @retval resolution
+    THUNDER_CORE_ERROR_CODES = {
+        'ERROR_NONE': 0,
+        'ERROR_GENERAL': 1,
+        'ERROR_UNAVAILABLE': 2,
+        'ERROR_ASYNC_FAILED': 3,
+        'ERROR_ASYNC_ABORTED': 4,
+        'ERROR_ILLEGAL_STATE': 5,
+        'ERROR_OPENING_FAILED': 6,
+        'ERROR_ACCEPTANCE': 7,
+        'ERROR_PENDING_CONDITIONS': 8,
+        'ERROR_TIMEDOUT': 9,
+        'ERROR_INPROGRESS': 10,
+        'ERROR_COULD_NOT_SET_ADDRESS': 11,
+        'ERROR_INCORRECT_HASH': 12,
+        'ERROR_INCORRECT_URL': 13,
+        'ERROR_INVALID_INPUT_LENGTH': 14,
+        'ERROR_DESTRUCTION_FAILED': 15,
+        'ERROR_CLOSING_FAILED': 16,
+        'ERROR_PROCESS_TERMINATED': 17,
+        'ERROR_HIBERNATED': 18,
+        'ERROR_NOT_SUPPORTED': 22,
+        'ERROR_UNKNOWN_KEY': 24,
+        'ERROR_DUPLICATE_KEY': 28,
+        'ERROR_BAD_REQUEST': 240,
+        'ERROR_PRIVILEGED_REQUEST': 241,
+        'ERROR_RPC_CALL_FAILED': 242,
+        'ERROR_UNREACHABLE_NETWORK': 243,
+        'ERROR_REQUEST_SUBMITTED': 244,
+        'ERROR_UNKNOWN_TABLE': 245,
+        'ERROR_NOT_EXIST': 248,
+    }
+
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
         'integer':  '0',
@@ -106,6 +141,7 @@ class HeaderFileParser:
         self.configuration_options = {}
         self.logger = logger
         self.notification_names = ['INotification']
+        self.entservices_error_codes = self._load_entservices_error_codes()
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -325,6 +361,11 @@ class HeaderFileParser:
             example_value = self._parse_example_value(groups[1].strip()) if groups[1] else ''
             self.doxy_tags.setdefault('examples', {})[param_name] = example_value
             self.latest_tag = 'example'
+        elif line_tag == 'retval':
+            error_full_name = groups[0]
+            error_message = groups[1].strip() if groups[1] else ''
+            self.doxy_tags.setdefault('retvals', {})[error_full_name] = error_message
+            self.latest_tag = 'retval'
         elif line_tag == 'comment':
             # if we encounter a comment that is not associated with a tag, skip it
             if self.latest_tag == '':
@@ -445,7 +486,7 @@ class HeaderFileParser:
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
                     brief_tag_pattern = r'@brief\s+([^\*/]+)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
-                    description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
+                    description = self.clean_description(brief_tag_match.group(1)) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
                         'description': description.strip() if description else '',
@@ -512,6 +553,7 @@ class HeaderFileParser:
         }
         if 'deprecated' in doxy_tags:
             method_info['deprecated'] = doxy_tags.get('deprecated', '')
+        method_info['retvals'] = self._process_retvals(doxy_tags.get('retvals', {}))
         if 'property' in doxy_tags:
             if 'const' in method_parameters or '@in' in method_parameters:
                 method_info['property'] = 'write'
@@ -1112,12 +1154,70 @@ class HeaderFileParser:
             return flattened_descriptions
         return {}
 
+    def _load_entservices_error_codes(self):
+        """
+        Parses apis/entservices_errorcodes.h to build a map of custom error name -> {code, message}.
+        Relies on the X-macro pattern: X(ERROR_NAME, "error message")
+        """
+        header_dir = os.path.dirname(os.path.abspath(self.header_file_path))
+        apis_dir = os.path.dirname(header_dir)
+        errorcodes_path = os.path.join(apis_dir, 'entservices_errorcodes.h')
+        error_codes = {}
+        if os.path.exists(errorcodes_path):
+            x_macro_pattern = re.compile(r'X\(\s*([\w]+)\s*,\s*"([^"]+)"\s*\)')
+            error_base = 1000
+            index = 1  # first entry is ERROR_BASE + 1
+            with open(errorcodes_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    match = x_macro_pattern.search(line)
+                    if match:
+                        name = match.group(1)
+                        message = match.group(2)
+                        error_codes[name] = {'code': error_base + index, 'message': message}
+                        index += 1
+        return error_codes
+
+    def _resolve_error_code(self, error_full_name):
+        """
+        Resolve an error enum name (e.g., 'Core::ERROR_GENERAL' or 'ERROR_FIRMWAREUPDATE_INPROGRESS')
+        to a (numeric_code, default_message) tuple. Returns (None, None) if unknown.
+        """
+        base_name = error_full_name.split('::')[-1]
+        if base_name in self.entservices_error_codes:
+            info = self.entservices_error_codes[base_name]
+            return info['code'], info['message']
+        if base_name in self.THUNDER_CORE_ERROR_CODES:
+            return self.THUNDER_CORE_ERROR_CODES[base_name], None
+        return None, None
+
+    def _process_retvals(self, raw_retvals):
+        """
+        Convert raw retvals dict (enum_name -> message) into a list of processed error objects
+        for non-ERROR_NONE entries. Each object has: enum_name, code, message.
+        """
+        result = []
+        for error_full_name, retval_message in raw_retvals.items():
+            base_name = error_full_name.split('::')[-1]
+            if base_name == 'ERROR_NONE':
+                continue  # skip success code
+            numeric_code, default_message = self._resolve_error_code(error_full_name)
+            message = retval_message or default_message or base_name.replace('_', ' ').lower()
+            code = numeric_code if numeric_code is not None else error_full_name
+            result.append({
+                'enum_name': error_full_name,
+                'code': code,
+                'message': message
+            })
+        return result
+
     def clean_description(self, description):
         """
         Cleans a description by removing doxygen tag and unnecessary characters.
         """
         if description:
             description = description.strip()
+            # Strip @retval entries (enum name + message) before general tag stripping
+            description = re.sub(r'@retval\s+[\w:]+[^@]*', '', description)
             description = re.sub(r'@\S+', '', description)
             description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', description)
             description = description[:-1] if description.endswith(';') else description
