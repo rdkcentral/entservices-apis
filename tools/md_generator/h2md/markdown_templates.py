@@ -311,7 +311,10 @@ def generate_parameters_section(params, symbol_registry):
         markdown += f"| params | object |  |\n"
         for param in params:
             param_key = f"{param['name']}-{param['type']}"
-            flattened_params = symbol_registry[param_key]['flattened_description']
+            flattened_params = dict(symbol_registry[param_key]['flattened_description'])
+            if param['description']:
+                first_key = next(iter(flattened_params))
+                flattened_params[first_key] = {**flattened_params[first_key], 'description': param['description']}
             for param_name, param_data in flattened_params.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
                 if param['custom_name']:
@@ -330,13 +333,19 @@ def generate_results_section(results, symbol_registry):
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         if len(results) == 1:
-            result_info = symbol_registry[f"{results[0]['name']}-{results[0]['type']}"]
-            if 'unwrapped' in result_info and result_info['unwrapped']:
-                markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
+            result_info = results[0]
+            if result_info.get('unwrapped'):
+                result_type = result_info.get('type', '')
+                result_description = result_info.get('description', '')
+                markdown += f"| result | {result_type} | {result_description} |\n"
                 return markdown
         markdown += f"| result | object |  |\n"
         for result in results:
-            flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
+            result_key = f"{result['name']}-{result['type']}"
+            flattened_results = dict(symbol_registry[result_key]['flattened_description'])
+            if result['description']:
+                first_key = next(iter(flattened_results))
+                flattened_results[first_key] = {**flattened_results[first_key], 'description': result['description']}
             for result_name, result_data in flattened_results.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
                 if result['custom_name']:
@@ -477,7 +486,11 @@ def generate_values_section(values, symbol_registry):
     if values:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         for value in values:
-            flattened_values = symbol_registry[f"{value['name']}-{value['type']}"]['flattened_description']
+            value_key = f"{value['name']}-{value['type']}"
+            flattened_values = dict(symbol_registry[value_key]['flattened_description'])
+            if value['description']:
+                first_key = next(iter(flattened_values))
+                flattened_values[first_key] = {**flattened_values[first_key], 'description': value['description']}
             for value_name, value_data in flattened_values.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
