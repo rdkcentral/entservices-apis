@@ -94,6 +94,35 @@ namespace Exchange {
             DS_DISPLAY_FRAMERATE_MAX       = 15
         };
 
+        enum DisplayPortType : uint8_t {
+            DS_DISPLAY_PORT_TYPE_RF         = 0,
+            DS_DISPLAY_PORT_TYPE_BB         = 1,
+            DS_DISPLAY_PORT_TYPE_SVIDEO     = 2,
+            DS_DISPLAY_PORT_TYPE_1394       = 3,
+            DS_DISPLAY_PORT_TYPE_DVI        = 4,
+            DS_DISPLAY_PORT_TYPE_COMPONENT  = 5,
+            DS_DISPLAY_PORT_TYPE_HDMI       = 6,
+            DS_DISPLAY_PORT_TYPE_HDMI_INPUT = 7,
+            DS_DISPLAY_PORT_TYPE_INTERNAL   = 8,
+            DS_DISPLAY_PORT_TYPE_MAX        = 9
+        };
+
+        enum DisplayAVIContentType : uint8_t {
+            DS_DISPLAY_AVI_CONTENT_GRAPHICS      = 0,
+            DS_DISPLAY_AVI_CONTENT_PHOTO         = 1,
+            DS_DISPLAY_AVI_CONTENT_CINEMA        = 2,
+            DS_DISPLAY_AVI_CONTENT_GAME          = 3,
+            DS_DISPLAY_AVI_CONTENT_NOT_SIGNALLED = 4,
+            DS_DISPLAY_AVI_CONTENT_MAX           = 5
+        };
+
+        enum DisplayAVIScanInformation : uint8_t {
+            DS_DISPLAY_AVI_SCAN_NO_DATA    = 0,
+            DS_DISPLAY_AVI_SCAN_OVERSCAN   = 1,
+            DS_DISPLAY_AVI_SCAN_UNDERSCAN  = 2,
+            DS_DISPLAY_AVI_SCAN_MAX        = 3
+        };
+
         struct DisplayVideoPortResolution {
             string name;
             DisplayTVResolution pixelResolution;
@@ -168,6 +197,42 @@ namespace Exchange {
         // @param edIdBytes: EDID Bytes
         // @param edidLength: length of EDID bytes
         virtual Core::hresult GetDisplayEdidBytes(const int32_t handle , uint8_t edIdBytes[] /* @out @length:edidLength @maxlength:edidLength */, const uint16_t edidLength ) = 0;
+
+        /** Get Display handle by port type and index. */
+        // @text getDisplay
+        // @brief Get Display handle by port type and index
+        // @param portType: Display port type
+        // @param index: Display index  
+        // @param handle: Display handle returned
+        virtual Core::hresult GetDisplay(const DisplayPortType portType, const int32_t index, int32_t &handle /* @out */) = 0;
+
+        /** Get Display Aspect Ratio. */
+        // @text getDisplayAspectRatio
+        // @brief Get Display Aspect Ratio
+        // @param handle: Display handle
+        // @param aspectRatio: Display aspect ratio returned
+        virtual Core::hresult GetDisplayAspectRatio(const int32_t handle, DisplayVideoAspectRatio &aspectRatio /* @out */) = 0;
+
+        /** Set ALLM (Auto Low Latency Mode) enabled/disabled. */
+        // @text setAllmEnabled 
+        // @brief Set ALLM (Auto Low Latency Mode) enabled/disabled
+        // @param handle: Display handle
+        // @param enabled: Enable/disable ALLM
+        virtual Core::hresult SetAllmEnabled(const int32_t handle, const bool enabled) = 0;
+
+        /** Set AVI Content Type. */
+        // @text setAVIContentType
+        // @brief Set AVI Content Type
+        // @param handle: Display handle  
+        // @param contentType: AVI content type to set
+        virtual Core::hresult SetAVIContentType(const int32_t handle, const DisplayAVIContentType contentType) = 0;
+
+        /** Set AVI Scan Information. */
+        // @text setAVIScanInformation
+        // @brief Set AVI Scan Information
+        // @param handle: Display handle
+        // @param scanInfo: AVI scan information to set
+        virtual Core::hresult SetAVIScanInformation(const int32_t handle, const DisplayAVIScanInformation scanInfo) = 0;
     };
 
 } // namespace Exchange
