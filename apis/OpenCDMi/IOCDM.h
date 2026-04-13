@@ -267,7 +267,7 @@ public:
     inline KeyId()
         : _status(ISession::StatusPending)
     {
-        ::memset(_kid, ~0, sizeof(_kid));
+        ::memset(_kid, ~0, 10*sizeof(_kid));
     }
     inline KeyId(const uint8_t kid[], const uint8_t length)
         : _status(ISession::StatusPending)
