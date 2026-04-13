@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Module.h"
+#include <string>
 
 namespace WPEFramework {
 namespace Exchange {
@@ -28,46 +29,34 @@ namespace Exchange {
     struct EXTERNAL IGStreamerPlayer : virtual public Core::IUnknown {
         enum { ID = ID_GSTREAMER_PLAYER };
 
-        
+        virtual ~IGStreamerPlayer() = default;
 
-        // @brief Start playback using URI
         // @text start
-        virtual Core::hresult Start(const string& uri) = 0;
+        virtual Core::hresult Start(const std::string& uri) = 0;
 
-        // @brief Stop playback
         // @text stop
         virtual Core::hresult Stop() = 0;
 
-        // @brief Toggle play/pause
         // @text playPause
         virtual Core::hresult PlayPause() = 0;
 
-        // @brief Seek forward/backward (seconds)
         // @text seek
         virtual Core::hresult Seek(const int32_t offset) = 0;
 
-        // @brief Set volume (0.0 - 1.0)
         // @text setVolume
         virtual Core::hresult SetVolume(const double volume) = 0;
 
-        // @brief Get current state
         // @text getState
-        virtual Core::hresult GetState(string& state /* @out */) const = 0;
+        virtual Core::hresult GetState(std::string& state /* @out */) const = 0;
 
-        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_GSTREAMER_PLAYER_NOTIFICATION };
 
             virtual ~INotification() = default;
 
-            // @text onStateChanged
-            virtual void OnStateChanged(const string& state) {}
-
-            // @text onError
-            virtual void OnError(const string& error) {}
+            virtual void OnStateChanged(const std::string& state) = 0;
+            virtual void OnError(const std::string& error) = 0;
         };
-         
-        virtual ~IGStreamerPlayer() = default;
 
         virtual Core::hresult Register(INotification* notification) = 0;
         virtual Core::hresult Unregister(INotification* notification) = 0;
