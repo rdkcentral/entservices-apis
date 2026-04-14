@@ -46,15 +46,15 @@ ResourceManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBlockedAVApplications](#getBlockedAVApplications) | Gets list of applications with blocked AV access |
-| [reserveTTSResource](#reserveTTSResource) | Reserves TTS resource for a single application |
-| [reserveTTSResourceForApps](#reserveTTSResourceForApps) | Reserves TTS resource for multiple applications |
-| [setAVBlocked](#setAVBlocked) | Sets AV blocking status for an application |
+| [getBlockedAVApplications](#getBlockedAVApplications) | Gets a list of blacklisted clients |
+| [reserveTTSResource](#reserveTTSResource) | Reserves the Text To Speech resource for a specified client |
+| [reserveTTSResourceForApps](#reserveTTSResourceForApps) | Reserves the Text To Speech resource for specified clients |
+| [setAVBlocked](#setAVBlocked) | Adds/removes the application with the given callsign to/from the AV blacklist |
 
 <a id="getBlockedAVApplications"></a>
 ## *getBlockedAVApplications*
 
-Gets list of applications with blocked AV access
+Gets a list of blacklisted clients
 
 ### Events
 Event details will be updated soon.
@@ -64,9 +64,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clients | IStringIterator | list of blocked applications |
+| result.clients | IStringIterator | Iterator containing the list of blocked applications |
 | result.clients[#] | string |  |
-| result.success | bool | success status |
+| result.success | bool | Indicates whether the operation succeeded |
 
 ### Examples
 
@@ -107,7 +107,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="reserveTTSResource"></a>
 ## *reserveTTSResource*
 
-Reserves TTS resource for a single application
+Reserves the Text To Speech resource for a specified client
 
 ### Events
 Event details will be updated soon.
@@ -115,12 +115,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | string |
+| params.appid | string | The application identifier (callsign) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success status |
+| result.success | bool | Indicates whether the operation succeeded |
 
 ### Examples
 
@@ -133,7 +133,7 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.ResourceManager.reserveTTSResource",
     "params": {
-        "appId": ""
+        "appid": ""
     }
 }
 ```
@@ -142,7 +142,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appid": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="reserveTTSResourceForApps"></a>
 ## *reserveTTSResourceForApps*
 
-Reserves TTS resource for multiple applications
+Reserves the Text To Speech resource for specified clients
 
 ### Events
 Event details will be updated soon.
@@ -169,13 +169,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appids | IStringIterator | list of application IDs |
+| params.appids | IStringIterator | Iterator containing the list of application identifiers (callsigns) |
 | params.appids[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success status |
+| result.success | bool | Indicates whether the operation succeeded |
 
 ### Examples
 
@@ -216,7 +216,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setAVBlocked"></a>
 ## *setAVBlocked*
 
-Sets AV blocking status for an application
+Adds/removes the application with the given callsign to/from the AV blacklist
 
 ### Events
 Event details will be updated soon.
@@ -224,13 +224,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | string |
-| params.blocked | bool | bool |
+| params.appid | string | The application identifier (callsign) |
+| params.blocked | bool | Whether to block (true) or unblock (false) AV access for the application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success status |
+| result.success | bool | Indicates whether the operation succeeded |
 
 ### Examples
 
@@ -243,7 +243,7 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.ResourceManager.setAVBlocked",
     "params": {
-        "appId": "",
+        "appid": "",
         "blocked": true
     }
 }
@@ -253,7 +253,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appId": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appid": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
