@@ -225,7 +225,7 @@ namespace WPEFramework {
             // @param vrrSupport - out - The VRR support bit value
             virtual Core::hresult GetVRRSupport(const string& portId, bool& vrrSupport /* @out */, bool& success /* @out */) = 0;
 
-            // @text getArcPortId
+            // @text getARCPortId
             // @brief Returns the Arc portID of the panel
             // @param portId - out - The arc port Id
             // @param success - out - Whether the request succeeded
