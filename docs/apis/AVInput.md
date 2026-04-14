@@ -49,7 +49,7 @@ AVInput interface methods:
 | :-------- | :-------- |
 | [contentProtected](#contentProtected) | Returns whether the content is protected for the specified input device |
 | [currentVideoMode](#currentVideoMode) | Returns the current video mode for the specified input device |
-| [getArcPortId](#getArcPortId) | Returns the Arc portID of the panel |
+| [getARCPortId](#getARCPortId) | Returns the Arc portID of the panel |
 | [getEdid2AllmSupport](#getEdid2AllmSupport) | Returns the ALLM bit in EDID |
 | [getEdidVersion](#getEdidVersion) | Returns the EDID version |
 | [getGameFeatureStatus](#getGameFeatureStatus) | Returns the Game Feature Status. For example: ALLM. |
