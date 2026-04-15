@@ -229,7 +229,7 @@ namespace WPEFramework {
             // @brief Returns the Arc portID of the panel
             // @param portId - out - The arc port Id
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetARCPortId(string& portId /* @out */, bool& success /* @out */) = 0;
+            //virtual Core::hresult GetARCPortId(string& portId /* @out */, bool& success /* @out */) = 0;
 
             // @text getHdmiVersion
             // @brief Gets the maximum hdmi compatibility version supported for the given port.
