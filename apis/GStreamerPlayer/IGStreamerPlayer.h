@@ -81,6 +81,20 @@ namespace WPEFramework {
             // @retval Core::ERROR_NONE:          Stopped successfully.
             // @retval Core::ERROR_ILLEGAL_STATE: No pipeline is running.
             virtual Core::hresult Stop() = 0;
+
+            // @text seekForward
+            // @brief Seek forward by 5 seconds in the current playback.
+            // @retval Core::ERROR_NONE:          Seek operation completed successfully.
+            // @retval Core::ERROR_ILLEGAL_STATE: No pipeline is running.
+            // @retval Core::ERROR_GENERAL:       Seek operation failed.
+            virtual Core::hresult SeekForward() = 0;
+
+            // @text seekBackward
+            // @brief Seek backward by 5 seconds in the current playback.
+            // @retval Core::ERROR_NONE:          Seek operation completed successfully.
+            // @retval Core::ERROR_ILLEGAL_STATE: No pipeline is running.
+            // @retval Core::ERROR_GENERAL:       Seek operation failed.
+            virtual Core::hresult SeekBackward() = 0;
         };
 
     } // namespace Exchange
