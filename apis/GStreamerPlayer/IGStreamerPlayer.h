@@ -48,7 +48,8 @@ namespace Exchange {
 
         // @text getState
         virtual Core::hresult GetState(std::string& state /* @out */) const = 0;
-
+        
+        /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_GSTREAMER_PLAYER_NOTIFICATION };
 

@@ -357,7 +357,7 @@ namespace Exchange {
         ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1, 
 
-        ID_GSTREAMER_PLAYER                        = ID_ENTOS_OFFSET + 0x520,
+        ID_GSTREAMER_PLAYER                          = ID_ENTOS_OFFSET + 0x520,
         ID_GSTREAMER_PLAYER_NOTIFICATION             = ID_GSTREAMER_PLAYER + 1,
     }; // enum IDS
 
