@@ -69,6 +69,7 @@ AVInput interface methods:
 | [startInput](#startInput) | Activates the specified HDMI/Composite Input port as the primary video source. |
 | [stopInput](#stopInput) | Deactivates the HDMI/Composite Input port currently selected as the primary video source. |
 | [writeEDID](#writeEDID) | Changes a current EDID value. |
+| [getArcPortId](#getArcPortId) | Returns the Arc portID of the panel |
 
 <a id="contentProtected"></a>
 ## *contentProtected*
@@ -1295,6 +1296,56 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
+<a id="getArcPortId"></a>
+## *getArcPortId*
+
+Returns the Arc portID of the panel
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "method": "org.rdk.AVInput.getArcPortId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.getArcPortId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "result": {
+        "portId": "",
+        "success": true
+    }
+}
+```
+
 
 
 <a id="Notifications"></a>
@@ -1331,7 +1382,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 23,
     "method": "org.rdk.AVInput.aviContentTypeUpdate",
     "params": {
         "id": 0,
@@ -1358,7 +1409,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 24,
     "method": "org.rdk.AVInput.gameFeatureStatusUpdate",
     "params": {
         "id": 0,
@@ -1387,7 +1438,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 25,
     "method": "org.rdk.AVInput.onInputStatusChanged",
     "params": {
         "id": 0,
@@ -1416,7 +1467,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 26,
     "method": "org.rdk.AVInput.onSignalChanged",
     "params": {
         "id": 0,
@@ -1448,7 +1499,7 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 27,
     "method": "org.rdk.AVInput.videoStreamInfoUpdate",
     "params": {
         "id": 0,
