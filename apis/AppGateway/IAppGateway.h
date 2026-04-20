@@ -28,6 +28,7 @@ namespace WPEFramework
                 uint32_t requestId;       /* @text requestId */ /* @brief Unique identifier for the request. */ 
                 uint32_t connectionId;    /* @text connectionId */ /* @brief Unique identifier for the execution/session context. */
                 string appId;             /* @text appId */ /* @brief Application identifier (Firebolt appId). */
+                string version;           /* @text version */ /* @brief Version of the gateway request can be semantic version */
         };
         
         // @json 1.0.0 @text:keep
@@ -140,12 +141,23 @@ namespace WPEFramework
             // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
             // @param connectionId: Connection Id
-            // @param contextKey: Connection Id
+            // @param contextKey: Context key
             // @param contextValue: response value
             // @returns Core::hresult
             virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
                 const string& contextKey ,
                 string& contextValue /* @out */) = 0;
+
+            // @json:omit
+            // @text recordGatewayConnectionContext
+            // @brief Allows other Firebolt based plugins to update connection context back to Gateway Socket Connection
+            // @param connectionId: Connection Id
+            // @param contextKey: Context Key
+            // @param contextValue: Context Value
+            // @returns Core::hresult
+            virtual Core::hresult RecordGatewayConnectionContext(const uint32_t connectionId ,
+                const string& contextKey ,
+                const string& contextValue) = 0;
 
 
             struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -188,6 +200,46 @@ namespace WPEFramework
                                           const string& method ,
                                           const string& payload /*@opaque */,
                                           string& result /*@out @opaque */) = 0;
+
+        };
+
+        // @text:keep
+        struct EXTERNAL IAppGatewayTelemetry : virtual public Core::IUnknown
+        {
+            enum
+            {
+                ID = ID_APP_GATEWAY_TELEMETRY
+            };
+
+            // @json:omit
+            // @text recordTelemetryEvent
+            // @brief Records a telemetry event with gateway context information
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param eventName: Name of the telemetry event to record
+            // @param eventData: JSON string containing telemetry event data
+            // @retval Core::ERROR_NONE: Event recorded successfully
+            // @retval Core::ERROR_GENERAL: Failed to record the event
+            // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
+            // @returns Core::hresult
+            virtual Core::hresult RecordTelemetryEvent(const GatewayContext& context /* @text context */,
+                                                       const string& eventName /* @text eventName */,
+                                                       const string& eventData /* @text eventData */ /*@opaque */) = 0;
+
+            // @json:omit
+            // @text recordTelemetryMetric
+            // @brief Records a telemetry metric with gateway context information
+            // @param context: Execution context containing requestId, connectionId, appId
+            // @param metricName: Name of the telemetry metric to record
+            // @param metricValue: Numeric value of the metric
+            // @param metricUnit: Unit of measurement for the metric
+            // @retval Core::ERROR_NONE: Metric recorded successfully
+            // @retval Core::ERROR_GENERAL: Failed to record the metric
+            // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
+            // @returns Core::hresult
+            virtual Core::hresult RecordTelemetryMetric(const GatewayContext& context /* @text context */,
+                                                        const string& metricName /* @text metricName */,
+                                                        const double metricValue /* @text metricValue */,
+                                                        const string& metricUnit /* @text metricUnit */) = 0;
 
         };
     } // namespace Exchange

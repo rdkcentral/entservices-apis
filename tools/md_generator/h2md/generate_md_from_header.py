@@ -111,7 +111,7 @@ def generate_md_from_individual_header_file(header_structure, output_doc_folder_
     # if no @json tag present in the header file
     # if plugin_version == '':
     #     return
-    output_file_path = os.path.join(output_doc_folder_path, f'{classname}Plugin.md')
+    output_file_path = os.path.join(output_doc_folder_path, f'{classname}.md')
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     if not header_structure.methods and not header_structure.properties and not header_structure.events:
         return

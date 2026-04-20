@@ -31,6 +31,7 @@ namespace Exchange {
         std::string logLevels;          //json array of strings
         bool mapi;
         std::string fkpsFiles;          //json array of strings
+        std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
 
         std::string fireboltVersion;
         bool enableDebugger;
@@ -42,7 +43,7 @@ namespace Exchange {
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
-        enum Reason : uint8_t {
+        enum class Reason : uint8_t {
             NONE,                    // XXX: Not in HLA
             DOWNLOAD_FAILURE,
             DISK_PERSISTENCE_FAILURE
@@ -135,11 +136,13 @@ namespace Exchange {
             const string &downloadId,
             ProgressInfo &progress /* @out */) = 0;
 
-        // @brief GetStorageDetails
-        // @text getStorageDetails
-        virtual Core::hresult GetStorageDetails(
-            string &quotaKb /* @out */,
-            string &usedKb  /* @out */) = 0;
+        // @brief GetStorageInformation
+        // @text getStorageInformation
+        // @param quotaKb: Storage quota in kilobytes
+        // @param usedKb: Used storage in kilobytes
+        virtual Core::hresult GetStorageInformation(
+            uint32_t &quotaKb /* @out */,
+            uint32_t &usedKb  /* @out */) = 0;
 
         // @brief RateLimit
         // @text rateLimit
@@ -153,18 +156,20 @@ namespace Exchange {
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
-        enum InstallState : uint8_t{
+        enum class InstallState : uint8_t{
             INSTALLING,                 // XXX: necessary ?!
             INSTALLATION_BLOCKED,
             INSTALL_FAILURE,
             INSTALLED,
             UNINSTALLING,               // XXX: necessary ?!
+            UNINSTALL_BLOCKED,
             UNINSTALL_FAILURE,
             UNINSTALLED
         };
 
-        enum FailReason : uint8_t {
+        enum class FailReason : uint8_t {
             NONE,                       // XXX: Not in HLA
+            GENERAL_FAILURE,
             SIGNATURE_VERIFICATION_FAILURE,
             PACKAGE_MISMATCH_FAILURE,
             INVALID_METADATA_FAILURE,
@@ -269,13 +274,12 @@ namespace Exchange {
    };
 
 
-    // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_HANDLER };
 
         ~IPackageHandler() override = default;
 
-        enum LockReason : uint8_t {
+        enum class LockReason : uint8_t {
             SYSTEM_APP,
             LAUNCH
         };

@@ -120,7 +120,7 @@ namespace Exchange {
         ID_DEVICE_CAPABILITIES_VIDEO                 = ID_DEVICE_INFO + 6,
         ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT          = ID_DEVICE_INFO + 7,
         ID_DEVICE_CAPABILITIES_RESOLUTION            = ID_DEVICE_INFO + 8,
-        ID_FIRMWARE_VERSION                          = ID_DEVICE_INFO + 9,
+        ID_DEVICE_INFO_ADDRESSES_ITERATOR            = ID_DEVICE_INFO + 9,
 
         ID_FOCUS                                     = ID_ENTOS_OFFSET + 0x0E0,
 
@@ -179,6 +179,7 @@ namespace Exchange {
 	ID_TEXT_TRACK_CLOSED_CAPTIONS_STYLE_NOTIFICATION = ID_TEXT_TRACK + 2,
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
+        ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
@@ -239,6 +240,9 @@ namespace Exchange {
         ID_TELEMETRY                                 = ID_ENTOS_OFFSET + 0x260,
         ID_TELEMETRY_NOTIFICATION                    = ID_TELEMETRY + 1,
 
+        //Reserved for L2 test plugin
+	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
+
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
         ID_PACKAGE_DOWNLOADER_NOTIFICATION           = ID_APP_PACKAGE_MANAGER + 2,
@@ -250,7 +254,7 @@ namespace Exchange {
         ID_PACKAGE_KEY_VALUE_ITERATOR                = ID_APP_PACKAGE_MANAGER + 9,
         ID_PACKAGE_LOCK_ITERATOR                     = ID_APP_PACKAGE_MANAGER + 10,
 
-	ID_STORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
+	ID_APPSTORAGEMANAGER                            = ID_ENTOS_OFFSET + 0x310,
 
         ID_AUTHSERVICE                               = ID_ENTOS_OFFSET + 0x320,
         ID_AUTHSERVICE_NOTIFICATION                  = ID_AUTHSERVICE + 1,
@@ -329,10 +333,29 @@ namespace Exchange {
         ID_APP_GATEWAY_AUTHENTICATOR                 = ID_APP_GATEWAY + 2,
         ID_APP_GATEWAY_CONNECTION_NOTIFICATION        = ID_APP_GATEWAY + 3,
         ID_APP_GATEWAY_REQUEST_HANDLER               = ID_APP_GATEWAY + 4,
+        ID_APP_GATEWAY_TELEMETRY                     = ID_APP_GATEWAY + 5,
 
         ID_APP_NOTIFICATIONS                         = ID_ENTOS_OFFSET + 0x450,
         ID_APP_NOTIFICATIONS_HANDLER_INTERNAL        = ID_APP_NOTIFICATIONS + 1,
-        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2
+        ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER = ID_APP_NOTIFICATIONS + 2,
+
+        ID_FIRMWARE_DOWNLOAD                         = ID_ENTOS_OFFSET + 0x460,
+        ID_FIRMWARE_DOWNLOAD_NOTIFICATION            = ID_FIRMWARE_DOWNLOAD + 1,
+
+        ID_GOOGLE_CAST                               = ID_ENTOS_OFFSET + 0x470,
+        ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
+        ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
+        ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+
+        ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
+
+        ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
+        ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
+
+        ID_ACCOUNT                                  = ID_ENTOS_OFFSET + 0x500,
+
+        ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
+        ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
 
     }; // enum IDS
 

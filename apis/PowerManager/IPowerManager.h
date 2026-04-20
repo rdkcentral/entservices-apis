@@ -94,6 +94,10 @@ namespace WPEFramework
             bool          enabled;
         };
 
+        struct EXTERNAL TimeSinceWakeup {
+            uint32_t secondsSinceWakeup /* @brief Wakeup time in seconds */;
+        };
+
         using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
@@ -322,6 +326,14 @@ namespace WPEFramework
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
+
+        /** Get the Wakeup Time in seconds */
+        // @text getTimeSinceWakeup
+        // @brief Get the Wakeup Time in seconds since the device transitioned to the ON state.
+        // @param timeSinceWakeup: Wakeup time in seconds
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
     };
 
 } // namespace Exchange

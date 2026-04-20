@@ -148,8 +148,8 @@
 
                 // @brief Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
                 // @text shortAudiodescriptorEvent
-                // @param jsonresponse: JSON response containing the Short Audio Descriptor (SAD) information
-                virtual void ShortAudiodescriptorEvent(const string& jsonresponse) {};
+                // @param shortAudioDescriptor: JSON response containing the Short Audio Descriptor (SAD) information
+                virtual void ShortAudiodescriptorEvent(const string& shortAudioDescriptor) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
                 // @text standbyMessageReceived
@@ -161,6 +161,16 @@
                 // @param powerStatus: Power status of the device
                 virtual void ReportAudioDevicePowerStatus(const int powerStatus) {};
 
+                // @brief Notifies when a key release CEC message is received from other CEC device
+                // @text onKeyReleaseEvent
+                // @param logicalAddress: Logical address of the device
+                virtual void OnKeyReleaseEvent(const int logicalAddress) {};
+
+                // @brief Notifies when a key press CEC message is received from other CEC device
+                // @text onKeyPressEvent
+                // @param logicalAddress: Logical address of the device
+                // @param keyCode: Key code of the key press event
+                virtual void OnKeyPressEvent(const int logicalAddress, const int keyCode) {};
 
             };
 

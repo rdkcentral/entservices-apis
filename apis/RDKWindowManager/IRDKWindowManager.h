@@ -57,19 +57,25 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
     virtual void OnVisible(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is hidden
-    // @text OnHidden
+    // @text onHidden
     // @param appInstanceId: the identifier of the hidden application
     virtual void OnHidden(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is in focus
-    // @text OnFocus
+    // @text onFocus
     // @param appInstanceId: the identifier of the focussed application
     virtual void OnFocus(const std::string& appInstanceId){};
 
     // @brief Notifies when an application is blurred
-    // @text OnBlur
+    // @text onBlur
     // @param appInstanceId: the identifier of the blurred application
     virtual void OnBlur(const std::string& appInstanceId){};
+
+    // @brief Notifies when a screenshot capture is complete
+    // @text onScreenshotComplete
+    // @param success: Indicates whether the screenshot was captured successfully
+    // @param imageData: Base64 encoded image data (PNG format)
+    virtual void OnScreenshotComplete(const bool success, const std::string& imageData){};
   };
 
   /** Register notification interface */
@@ -88,8 +94,20 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Create the display window */
   // @text createDisplay
   // @brief Create the display window
-  // @param displayParams: JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus
-  virtual Core::hresult CreateDisplay(const string& displayParams) = 0;
+  // @param clientId: Client identifier
+  // @param displayName: Name of Wayland display
+  // @param displayWidth: Optional width of client window
+  // @param displayHeight: Optional height of client window
+  // @param virtualDisplay: Optional flag indicating whether virtual display is enabled
+  // @param virtualWidth: Optional width of display in framebuffer mode
+  // @param virtualHeight: Optional height of display in framebuffer mode
+  // @param ownerId: Optional UID of owner of Wayland socket
+  // @param groupId: Optional group identifier of Wayland socket
+  // @param topmost: Optional flag indicating whether client window needs to be topmost
+  // @param focus: Optional flag indicating whether the client needs focus
+  // @retval Core::ERROR_NONE: Display window created successfully
+  // @retval Core::ERROR_GENERAL: Failed to create the display window
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
@@ -105,15 +123,22 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   
   /** Registers multiple key intercepts */
   // @text addKeyIntercepts
-  // @brief Registers multiple key intercepts in a single operation.
-  // @param intercepts: JSON String format containing the array of key intercept(client/callSign, keyCode, modifiers) configuration 
-  virtual Core::hresult AddKeyIntercepts(const string &intercepts) = 0;
+  // @brief Registers multiple key intercepts in a single operation for a specific client.
+  // @param clientId: The client identifier
+  // @param intercepts: JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration
+  // @retval Core::ERROR_NONE: All provided key intercepts were registered successfully
+  // @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts
+  virtual Core::hresult AddKeyIntercepts(const string &clientId, const string &intercepts) = 0;
 
   /** Removes a key intercept */
   // @text removeKeyIntercept
   // @brief Removes a key intercept for a specific key code and client.
-  // @param intercept: JSON String format with the client/callSign, keyCode, modifiers
-  virtual Core::hresult RemoveKeyIntercept(const string &intercept) = 0;
+  // @param clientId: The client identifier
+  // @param keyCode: The key code to remove
+  // @param modifiers: JSON String format with one or more modifiers
+  // @retval Core::ERROR_NONE: The key intercept was removed successfully.
+  // @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error.
+  virtual Core::hresult RemoveKeyIntercept(const string& clientId, const uint32_t keyCode, const string& modifiers) = 0;
   
   /** Registers listeners for specific keys. */
   // @text addKeyListener
@@ -201,19 +226,71 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
   virtual Core::hresult SetVisible(const std::string &client, bool visible) = 0;
 
+  /** Gets the visibility of the given client or appInstanceId */
+  // @text getVisibility
+  // @brief Gets the visibility of the given client or appInstanceId
+  // @param client: client name or application instance ID
+  // @param visible: boolean indicating the visibility status: `true` for visible, `false` for hide.
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult GetVisibility(const std::string &client, bool &visible /* @out */) = 0;
+
   /** Get the first-frame rendered status of the application */
-  // @text renderReady
+  // @json:omit
   // @brief To get the status of first frame is rendered or not
   // @param client: client name or application instance ID
   // @param status: Returns true if the application has rendered first frame, false if it has not yet.
   virtual Core::hresult RenderReady(const string& client, bool &status /* @out */) const = 0;
 
   /** To enable/disable the rendering of a Wayland display in the window manager */
-  // @text enableDisplayRender
+  // @json:omit
   // @brief Enable or disable the rendering of a Wayland display
   // @param client: client name or application instance ID
   // @param enable: flag to true/false for controlling the wayland render
   virtual Core::hresult EnableDisplayRender(const string& client, bool enable) = 0;
+
+  // @text getLastKeyInfo
+  // @brief Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed.
+  // @param keyCode: Output parameter. The key code of the last pressed key.
+  // @param modifiers: Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press.
+  // @param timestampInSeconds: Output parameter. The timestamp (in seconds) when the last key press occurred.
+  // @retval Core::ERROR_NONE: Successfully retrieved the last key press information.
+  // @retval Core::ERROR_UNAVAILABLE: No key press information is available.
+  virtual Core::hresult GetLastKeyInfo(uint32_t &keyCode /* @out */, uint32_t &modifiers /* @out */, uint64_t &timestampInSeconds /* @out */) const = 0;
+
+  /** Sets the zOrder of the given client or appInstanceId */
+  // @text setZOrder
+  // @brief Sets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
+
+  /** Gets the zOrder of the given client or appInstanceId */
+  // @text getZOrder
+  // @brief Gets the zOrder of the given client or appInstanceId
+  // @param appInstanceId: client name or application instance ID
+  // @param zOrder: integer value indicating the zOrder of the client
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+
+  /** Starts the VNC server */
+  // @text startVncServer
+  // @brief Starts the VNC server
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult StartVncServer() = 0;
+
+  /** Stops the VNC server */
+  // @text stopVncServer
+  // @brief Stops the VNC server
+  // @retval Core::ERROR_NONE on success
+  virtual Core::hresult StopVncServer() = 0;
+
+  /** Captures a screenshot of the current compositor output */
+  // @text getScreenshot
+  // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
+  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_GENERAL on failure
+  virtual Core::hresult GetScreenshot() = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework

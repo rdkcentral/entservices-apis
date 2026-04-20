@@ -49,6 +49,7 @@ struct RuntimeConfig
     std::string logLevels;          //json array of strings
     bool mapi {false};
     std::string fkpsFiles;          //json array of strings
+    std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
 
     std::string fireboltVersion;
     bool enableDebugger{false};
@@ -88,14 +89,25 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           APP_ERROR_PACKAGE_LOCK     = 8     /* @text APP_ERROR_PACKAGE_LOCK */
       };
 
-  struct LoadedAppInfo
-    {
-        string appId ;
-        string appInstanceId ;
-        string activeSessionId;
-        AppLifecycleState targetLifecycleState;
-        AppLifecycleState currentLifecycleState;
-    };
+  struct EXTERNAL LoadedAppInfo {
+          string appId /* @text appId */
+              /* @brief App identifier for the application */;
+
+          string appInstanceId /* @text appInstanceId */
+              /* @brief A numerical identifier for a specific instance of the application */;
+
+          string activeSessionId /* @text activeSessionId */
+              /* @brief Identifier for the active session associated with the application instance */;
+
+          string type /* @text type */
+              /* @brief The type or category of the application */;
+
+          AppLifecycleState targetLifecycleState /* @text targetLifecycleState */
+              /* @brief The desired lifecycle state that the application is transitioning to */;
+
+          AppLifecycleState lifecycleState /* @text lifecycleState */
+              /* @brief The current lifecycle state of the application instance */;
+      };
   using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
 
   // @event

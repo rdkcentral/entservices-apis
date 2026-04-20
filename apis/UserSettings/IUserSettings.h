@@ -229,12 +229,12 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details The setting should be honored by the Telemetry.
     // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
     // @param privacyMode: "SHARE", "DO_NOT_SHARE"
-    virtual uint32_t SetPrivacyMode(const string& privacyMode /* @text privacyMode*/) = 0;
+    virtual Core::hresult SetPrivacyMode(const string& privacyMode /* @text privacyMode*/) = 0;
 
     // @text getPrivacyMode
     // @brief Gets the current PrivacyMode setting.
     // @param privacyMode: "SHARE"
-    virtual uint32_t GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
+    virtual Core::hresult GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
 
     // @alt setPinControl
     // @brief Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
@@ -401,7 +401,8 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
         VOICE_GUIDANCE = 15,
         VOICE_GUIDANCE_RATE = 16,
         VOICE_GUIDANCE_HINTS = 17,
-        CONTENT_PIN = 18
+        CONTENT_PIN = 18,
+        PRIVACY_MODE = 19
     };
 
     struct SettingsMigrationState
