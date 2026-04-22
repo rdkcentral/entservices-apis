@@ -45,12 +45,6 @@ namespace WPEFramework {
             SHORT_UTTERANCE /* @text shortUtterance */
         };
 
-        enum class OptionalBool : uint8_t {
-            INVALID /* @text invalid */,
-            TRUE    /* @text true */,
-            FALSE   /* @text false */
-        };
-
         enum class VoiceSessionRequestType : uint8_t {
             PTT_TRANSCRIPTION     /* @text ptt_transcription */,
             PTT_AUDIO_FILE        /* @text ptt_audio_file */,
@@ -87,19 +81,6 @@ namespace WPEFramework {
         struct EXTERNAL VoiceControlGetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
-        };
-
-        struct EXTERNAL ConfigureVoiceRequest {
-            string urlAll          /* @brief Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com" */;
-            string urlPtt          /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
-            string urlHf           /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
-            string urlMicTap       /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
-            OptionalBool enable    /* @brief Enables or disables all of the voice devices instead of individually enabling or disabling each device */;
-            OptionalBool prv       /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
-            OptionalBool wwFeedback/* @brief The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) */;
-            string ptt             /* @opaque @brief The settings for PTT devices */;
-            string ff              /* @opaque @brief The settings for FF devices */;
-            string mic             /* @opaque @brief The settings for MIC devices */;
         };
 
         struct EXTERNAL VoiceSessionByTextRequest {
@@ -199,23 +180,14 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract @unwrapped */, IStringIterator*& capabilities /* @out */) = 0;
 
-            // @brief Configures the RDK's voice stack
+            // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
             // @text configureVoice
-            // @param urlAll(optional): Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http/https: VREX Legacy HTTP API, ws/wss: VREX XR18  WS API, vrng/vrngs: VREX NextGen WS API, aows/aowss: Audio only over websockets, sdt: Simple data transfer) e.g. "ws://voice.example.com"
-            // @param urlPtt(optional): The PTT URL e.g. "ws://voice.example.com/ptt"
-            // @param urlHf(optional): The HF (ff and mic) URL e.g. "ws://voice.example.com/hf"
-            // @param urlMicTap(optional): The microphone tap URL e.g. "ws://voice.example.com/mictap"
-            // @param enable(optional): Enables or disables all of the voice devices instead of individually enabling or disabling each device
-            // @param prv(optional): The Press & Release Voice feature (true for enable, false for disable)
-            // @param wwFeedback(optional): The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable)
-            // @param ptt(optional): The settings for PTT devices
-            // @param ff(optional): The settings for FF devices
-            // @param mic(optional): The settings for MIC devices
+            // @param payload: The configuration payload as a JSON object
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const string& urlAll /* @optional */, const string& urlPtt /* @optional */, const string& urlHf /* @optional */, const string& urlMicTap /* @optional */, const OptionalBool enable /* @optional */, const OptionalBool prv /* @optional */, const OptionalBool wwFeedback /* @optional */, const string& ptt /* @optional @opaque */, const string& ff /* @optional @opaque */, const string& mic /* @optional @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult ConfigureVoice(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
             // @text setVoiceInit
