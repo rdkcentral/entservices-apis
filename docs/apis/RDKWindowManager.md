@@ -51,7 +51,6 @@ RDKWindowManager interface methods:
 | [addKeyIntercepts](#addKeyIntercepts) | Registers multiple key intercepts in a single operation for a specific client. |
 | [addKeyListener](#addKeyListener) | Registers listeners for specific keys. |
 | [createDisplay](#createDisplay) | Create the display window |
-| [enableDisplayRender](#enableDisplayRender) | Enable or disable the rendering of a Wayland display |
 | [enableInactivityReporting](#enableInactivityReporting) | Enables the inactivity reporting |
 | [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
 | [enableKeyRepeats](#enableKeyRepeats) | Key repeats are enabled/disabled |
@@ -67,7 +66,6 @@ RDKWindowManager interface methods:
 | [keyRepeatConfig](#keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
 | [removeKeyIntercept](#removeKeyIntercept) | Removes a key intercept for a specific key code and client. |
 | [removeKeyListener](#removeKeyListener) | Removes listeners for specific keys. |
-| [renderReady](#renderReady) | To get the status of first frame is rendered or not |
 | [resetInactivityTime](#resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
 | [setFocus](#setFocus) | Sets the focus to the app with the app id |
 | [setInactivityInterval](#setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
@@ -138,7 +136,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | The client identifier |
+| params.clientId | string | Client identifier |
 | params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
 ### Results
 | Name | Type | Description |
@@ -242,7 +240,17 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayParams | string | JSON String format with client,displayName,displayWidth,displayHeight,virtualDisplay,virtualWidth,virtualHeight,topmost,focus |
+| params.clientId | string | Client identifier |
+| params.displayName | string | Name of Wayland display |
+| params.displayWidth | integer | Optional width of client window |
+| params.displayHeight | integer | Optional height of client window |
+| params.virtualDisplay | bool | Optional flag indicating whether virtual display is enabled |
+| params.virtualWidth | integer | Optional width of display in framebuffer mode |
+| params.virtualHeight | integer | Optional height of display in framebuffer mode |
+| params.ownerId | integer | Optional UID of owner of Wayland socket |
+| params.groupId | integer | Optional group identifier of Wayland socket |
+| params.topmost | bool | Optional flag indicating whether client window needs to be topmost |
+| params.focus | bool | Optional flag indicating whether the client needs focus @retval Core::ERROR_NONE: Display window created successfully @retval Core::ERROR_GENERAL: Failed to create the display window |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -259,7 +267,17 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.RDKWindowManager.createDisplay",
     "params": {
-        "displayParams": ""
+        "clientId": "",
+        "displayName": "",
+        "displayWidth": 0,
+        "displayHeight": 0,
+        "virtualDisplay": true,
+        "virtualWidth": 0,
+        "virtualHeight": 0,
+        "ownerId": 0,
+        "groupId": 0,
+        "topmost": true,
+        "focus": true
     }
 }
 ```
@@ -268,7 +286,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"displayParams": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "", "displayName": "", "displayWidth": 0, "displayHeight": 0, "virtualDisplay": true, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": true, "focus": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -278,59 +296,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": null
-}
-```
-
-<a id="enableDisplayRender"></a>
-## *enableDisplayRender*
-
-Enable or disable the rendering of a Wayland display
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.client | string | the identifier of the disconnected application |
-| params.enable | bool | flag to true/false the feature |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.RDKWindowManager.enableDisplayRender",
-    "params": {
-        "client": "",
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RDKWindowManager.enableDisplayRender", "params": {"client": "", "enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
     "result": null
 }
 ```
@@ -360,7 +325,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 4,
     "method": "org.rdk.RDKWindowManager.enableInactivityReporting",
     "params": {
         "enable": true
@@ -372,7 +337,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RDKWindowManager.enableInactivityReporting", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RDKWindowManager.enableInactivityReporting", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -381,7 +346,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 4,
     "result": null
 }
 ```
@@ -412,7 +377,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "method": "org.rdk.RDKWindowManager.enableInputEvents",
     "params": {
         "clients": "",
@@ -425,7 +390,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RDKWindowManager.enableInputEvents", "params": {"clients": "", "enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RDKWindowManager.enableInputEvents", "params": {"clients": "", "enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -434,7 +399,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "result": null
 }
 ```
@@ -464,7 +429,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 6,
     "method": "org.rdk.RDKWindowManager.enableKeyRepeats",
     "params": {
         "enable": true
@@ -476,7 +441,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RDKWindowManager.enableKeyRepeats", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RDKWindowManager.enableKeyRepeats", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -485,7 +450,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 6,
     "result": null
 }
 ```
@@ -516,7 +481,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 7,
     "method": "org.rdk.RDKWindowManager.generateKey",
     "params": {
         "keys": "",
@@ -529,7 +494,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RDKWindowManager.generateKey", "params": {"keys": "", "client": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RDKWindowManager.generateKey", "params": {"keys": "", "client": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -538,7 +503,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 7,
     "result": null
 }
 ```
@@ -566,7 +531,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 8,
     "method": "org.rdk.RDKWindowManager.getApps"
 }
 ```
@@ -575,7 +540,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RDKWindowManager.getApps"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RDKWindowManager.getApps"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -584,7 +549,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 8,
     "result": {
         "appsIds": ""
     }
@@ -614,7 +579,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 9,
     "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"
 }
 ```
@@ -623,7 +588,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -632,7 +597,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 9,
     "result": {
         "keyRepeat": true
     }
@@ -664,7 +629,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 10,
     "method": "org.rdk.RDKWindowManager.getLastKeyInfo"
 }
 ```
@@ -673,7 +638,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RDKWindowManager.getLastKeyInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RDKWindowManager.getLastKeyInfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -682,7 +647,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 10,
     "result": {
         "keyCode": 0,
         "modifiers": 0,
@@ -713,7 +678,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 11,
     "method": "org.rdk.RDKWindowManager.getScreenshot"
 }
 ```
@@ -722,7 +687,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RDKWindowManager.getScreenshot"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RDKWindowManager.getScreenshot"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -731,7 +696,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 11,
     "result": null
 }
 ```
@@ -762,7 +727,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "method": "org.rdk.RDKWindowManager.getVisibility",
     "params": {
         "client": ""
@@ -774,7 +739,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getVisibility", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RDKWindowManager.getVisibility", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -783,7 +748,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "result": {
         "visible": true
     }
@@ -816,7 +781,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "method": "org.rdk.RDKWindowManager.getZOrder",
     "params": {
         "appInstanceId": ""
@@ -828,7 +793,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"appInstanceId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"appInstanceId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -837,7 +802,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "result": {
         "zOrder": 0
     }
@@ -869,7 +834,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "method": "org.rdk.RDKWindowManager.ignoreKeyInputs",
     "params": {
         "ignore": true
@@ -881,7 +846,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RDKWindowManager.ignoreKeyInputs", "params": {"ignore": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RDKWindowManager.ignoreKeyInputs", "params": {"ignore": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -890,7 +855,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "result": null
 }
 ```
@@ -921,7 +886,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "method": "org.rdk.RDKWindowManager.injectKey",
     "params": {
         "keyCode": 0,
@@ -934,7 +899,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RDKWindowManager.injectKey", "params": {"keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RDKWindowManager.injectKey", "params": {"keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -943,7 +908,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "result": null
 }
 ```
@@ -974,7 +939,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "method": "org.rdk.RDKWindowManager.keyRepeatConfig",
     "params": {
         "input": "",
@@ -987,7 +952,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RDKWindowManager.keyRepeatConfig", "params": {"input": "", "keyConfig": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RDKWindowManager.keyRepeatConfig", "params": {"input": "", "keyConfig": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -996,7 +961,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "result": null
 }
 ```
@@ -1012,7 +977,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | The client identifier |
+| params.clientId | string | Client identifier |
 | params.keyCode | integer | The key code to remove |
 | params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
@@ -1028,7 +993,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 17,
     "method": "org.rdk.RDKWindowManager.removeKeyIntercept",
     "params": {
         "clientId": "",
@@ -1042,7 +1007,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"clientId": "", "keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"clientId": "", "keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1051,7 +1016,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 17,
     "result": null
 }
 ```
@@ -1081,7 +1046,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 18,
     "method": "org.rdk.RDKWindowManager.removeKeyListener",
     "params": {
         "keyListeners": ""
@@ -1093,7 +1058,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.RDKWindowManager.removeKeyListener", "params": {"keyListeners": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyListener", "params": {"keyListeners": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1102,62 +1067,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 18,
     "result": null
-}
-```
-
-<a id="renderReady"></a>
-## *renderReady*
-
-To get the status of first frame is rendered or not
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.client | string | the identifier of the disconnected application |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.status | bool | Returns true if the application has rendered first frame, false if it has not yet. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.RDKWindowManager.renderReady",
-    "params": {
-        "client": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.RDKWindowManager.renderReady", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "result": {
-        "status": true
-    }
 }
 ```
 
@@ -1183,7 +1094,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 19,
     "method": "org.rdk.RDKWindowManager.resetInactivityTime"
 }
 ```
@@ -1192,7 +1103,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.RDKWindowManager.resetInactivityTime"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.RDKWindowManager.resetInactivityTime"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1201,7 +1112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 19,
     "result": null
 }
 ```
@@ -1231,7 +1142,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 20,
     "method": "org.rdk.RDKWindowManager.setFocus",
     "params": {
         "client": ""
@@ -1243,7 +1154,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.RDKWindowManager.setFocus", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.RDKWindowManager.setFocus", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1252,7 +1163,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 20,
     "result": null
 }
 ```
@@ -1282,7 +1193,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 21,
     "method": "org.rdk.RDKWindowManager.setInactivityInterval",
     "params": {
         "interval": 0
@@ -1294,7 +1205,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setInactivityInterval", "params": {"interval": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.RDKWindowManager.setInactivityInterval", "params": {"interval": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1303,7 +1214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 21,
     "result": null
 }
 ```
@@ -1334,7 +1245,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 22,
     "method": "org.rdk.RDKWindowManager.setVisible",
     "params": {
         "client": "",
@@ -1347,7 +1258,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.RDKWindowManager.setVisible", "params": {"client": "", "visible": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.RDKWindowManager.setVisible", "params": {"client": "", "visible": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1356,7 +1267,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 22,
     "result": null
 }
 ```
@@ -1387,7 +1298,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 23,
     "method": "org.rdk.RDKWindowManager.setZOrder",
     "params": {
         "appInstanceId": "",
@@ -1400,7 +1311,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"appInstanceId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"appInstanceId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1409,7 +1320,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 23,
     "result": null
 }
 ```
@@ -1436,7 +1347,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 24,
     "method": "org.rdk.RDKWindowManager.startVncServer"
 }
 ```
@@ -1445,7 +1356,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.RDKWindowManager.startVncServer"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.RDKWindowManager.startVncServer"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1454,7 +1365,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 24,
     "result": null
 }
 ```
@@ -1481,7 +1392,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 25,
     "method": "org.rdk.RDKWindowManager.stopVncServer"
 }
 ```
@@ -1490,7 +1401,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.RDKWindowManager.stopVncServer"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.RDKWindowManager.stopVncServer"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1499,7 +1410,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 25,
     "result": null
 }
 ```
@@ -1543,7 +1454,7 @@ Notifies when an application is blurred
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 26,
     "method": "org.rdk.RDKWindowManager.onBlur",
     "params": {
         "appInstanceId": ""
@@ -1567,7 +1478,7 @@ Notifies when an application is connected
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
+    "id": 27,
     "method": "org.rdk.RDKWindowManager.onConnected",
     "params": {
         "appInstanceId": ""
@@ -1591,7 +1502,7 @@ Notifies when an application is disconnected
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 30,
+    "id": 28,
     "method": "org.rdk.RDKWindowManager.onDisconnected",
     "params": {
         "client": ""
@@ -1615,7 +1526,7 @@ Notifies when an application is in focus
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 31,
+    "id": 29,
     "method": "org.rdk.RDKWindowManager.onFocus",
     "params": {
         "appInstanceId": ""
@@ -1639,7 +1550,7 @@ Notifies when an application is hidden
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 32,
+    "id": 30,
     "method": "org.rdk.RDKWindowManager.onHidden",
     "params": {
         "appInstanceId": ""
@@ -1663,7 +1574,7 @@ Posting the client for first frame ready.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 33,
+    "id": 31,
     "method": "org.rdk.RDKWindowManager.onReady",
     "params": {
         "client": ""
@@ -1688,7 +1599,7 @@ Notifies when a screenshot capture is complete
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 34,
+    "id": 32,
     "method": "org.rdk.RDKWindowManager.onScreenshotComplete",
     "params": {
         "success": true,
@@ -1713,7 +1624,7 @@ Posting the client is inactive state
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 35,
+    "id": 33,
     "method": "org.rdk.RDKWindowManager.onUserInactivity",
     "params": {
         "minutes": 0.0
@@ -1737,7 +1648,7 @@ Notifies when an application is visible
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 34,
     "method": "org.rdk.RDKWindowManager.onVisible",
     "params": {
         "appInstanceId": ""
