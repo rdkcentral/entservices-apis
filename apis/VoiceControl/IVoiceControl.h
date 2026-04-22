@@ -98,6 +98,10 @@ namespace WPEFramework {
             string sessionId /* @brief The session identifier of the session from the onSessionBegin event e.g. "session-12345" */;
         };
 
+        struct EXTERNAL VoiceSessionAudioStreamStartRequest {
+            string sessionId /* @brief The session identifier of the session from the onSessionBegin event e.g. "session-12345" */;
+        };
+
         struct EXTERNAL VoiceStatusResponse {
             bool maskPii         /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
             string urlPtt        /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
@@ -150,7 +154,7 @@ namespace WPEFramework {
             SessionResult result    /* @brief The result of the voice session. Possible values: success, error, abort, shortUtterance */;
         };
 
-        /* @json 1.0.0 @text:keep */
+        /* @json 1.0.0 @text:keep @collapsed */
         struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
             
             enum { ID = ID_VOICECONTROL };
@@ -243,21 +247,21 @@ namespace WPEFramework {
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
-            // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
+            // @param request: The session terminate request containing the session identifier
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const VoiceSessionTerminateRequest& request, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
-            // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
+            // @param request: The audio stream start request containing the session identifier
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionAudioStreamStartRequest& request, VoiceControlSuccessResult& result /* @out @extract */) = 0;
             // End methods
 
             // @event
