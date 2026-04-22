@@ -73,12 +73,12 @@ Event details will be updated soon.
 | params?.urlPtt | string | <sup>(optional)</sup>The PTT URL e.g. "ws: |
 | params?.urlHf | string | <sup>(optional)</sup>The HF (ff and mic) URL e.g. "ws: |
 | params?.urlMicTap | string | <sup>(optional)</sup>The microphone tap URL e.g. "ws: |
-| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
-| params?.prv | bool | <sup>(optional)</sup>The Press & Release Voice feature (true for enable, false for disable) |
-| params?.wwFeedback | bool | <sup>(optional)</sup>The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
-| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
-| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
-| params?.enable | bool | <sup>(optional)</sup>Enable (true) or disable (false) the device |
+| params?.enable | string | <sup>(optional)</sup>Enables or disables all of the voice devices instead of individually enabling or disabling each device |
+| params?.prv | string | <sup>(optional)</sup>The Press & Release Voice feature (true for enable, false for disable) |
+| params?.wwFeedback | string | <sup>(optional)</sup>The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
+| params?.ptt | string | <sup>(optional)</sup>The settings for PTT devices |
+| params?.ff | string | <sup>(optional)</sup>The settings for FF devices |
+| params?.mic | string | <sup>(optional)</sup>The settings for MIC devices |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -100,18 +100,12 @@ Event details will be updated soon.
         "urlPtt": "ws://voice.example.com/ptt",
         "urlHf": "ws://voice.example.com/hf",
         "urlMicTap": "ws://voice.example.com/mictap",
-        "enable": true,
-        "prv": true,
-        "wwFeedback": true,
-        "ptt": {
-            "enable": true
-        },
-        "ff": {
-            "enable": true
-        },
-        "mic": {
-            "enable": true
-        }
+        "enable": "INVALID",
+        "prv": "INVALID",
+        "wwFeedback": "INVALID",
+        "ptt": "",
+        "ff": "",
+        "mic": ""
     }
 }
 ```
@@ -120,7 +114,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": "INVALID", "prv": "INVALID", "wwFeedback": "INVALID", "ptt": "", "ff": "", "mic": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
