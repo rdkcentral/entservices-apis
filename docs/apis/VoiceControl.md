@@ -47,7 +47,7 @@ VoiceControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [configureVoice](#configureVoice) | Configures the RDK's voice stack |
+| [configureVoice](#configureVoice) | Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged. |
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
@@ -61,7 +61,7 @@ VoiceControl interface methods:
 <a id="configureVoice"></a>
 ## *configureVoice*
 
-Configures the RDK's voice stack
+Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
 
 ### Events
 Event details will be updated soon.
@@ -69,16 +69,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.urlAll | string | <sup>(optional)</sup>Specifies the URL for all devices instead of individually specifying the URL for each device. URL Scheme determines which API protocol is used (http |
-| params?.urlPtt | string | <sup>(optional)</sup>The PTT URL e.g. "ws: |
-| params?.urlHf | string | <sup>(optional)</sup>The HF (ff and mic) URL e.g. "ws: |
-| params?.urlMicTap | string | <sup>(optional)</sup>The microphone tap URL e.g. "ws: |
-| params?.enable | string | <sup>(optional)</sup>Enables or disables all of the voice devices instead of individually enabling or disabling each device |
-| params?.prv | string | <sup>(optional)</sup>The Press & Release Voice feature (true for enable, false for disable) |
-| params?.wwFeedback | string | <sup>(optional)</sup>The Wake Word Feedback feature, typically an audible beep (true for enable, false for disable) |
-| params?.ptt | string | <sup>(optional)</sup>The settings for PTT devices |
-| params?.ff | string | <sup>(optional)</sup>The settings for FF devices |
-| params?.mic | string | <sup>(optional)</sup>The settings for MIC devices |
+| params.payload | string | The configuration payload as a JSON object |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -96,16 +87,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.VoiceControl.configureVoice",
     "params": {
-        "urlAll": "ws://voice.example.com",
-        "urlPtt": "ws://voice.example.com/ptt",
-        "urlHf": "ws://voice.example.com/hf",
-        "urlMicTap": "ws://voice.example.com/mictap",
-        "enable": "INVALID",
-        "prv": "INVALID",
-        "wwFeedback": "INVALID",
-        "ptt": "",
-        "ff": "",
-        "mic": ""
+        "payload": ""
     }
 }
 ```
@@ -114,7 +96,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": "INVALID", "prv": "INVALID", "wwFeedback": "INVALID", "ptt": "", "ff": "", "mic": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"payload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
