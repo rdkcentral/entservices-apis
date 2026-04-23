@@ -94,10 +94,6 @@ namespace WPEFramework {
             VoiceSessionRequestType type /* @brief The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test */;
         };
 
-        struct EXTERNAL VoiceSessionTerminateRequest {
-            string sessionId /* @brief The session identifier of the session from the onSessionBegin event e.g. "session-12345" */;
-        };
-
         struct EXTERNAL VoiceStatusResponse {
             bool maskPii         /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
             string urlPtt        /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
@@ -150,7 +146,7 @@ namespace WPEFramework {
             SessionResult result    /* @brief The result of the voice session. Possible values: success, error, abort, shortUtterance */;
         };
 
-        /* @json 1.0.0 @text:keep @collapsed */
+        /* @json 1.0.0 @text:keep */
         struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
             
             enum { ID = ID_VOICECONTROL };
@@ -180,6 +176,7 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract @unwrapped */, IStringIterator*& capabilities /* @out */) = 0;
 
+            // @json:omit
             // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
             // @text configureVoice
             // @param payload: The configuration payload as a JSON object
@@ -243,21 +240,21 @@ namespace WPEFramework {
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
-            // @param request: The session terminate request containing the session identifier
+            // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const VoiceSessionTerminateRequest& request, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
-            // @param request: The audio stream start request containing the session identifier
+            // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
             // @param success: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const VoiceSessionTerminateRequest& request, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
             // End methods
 
             // @event
