@@ -171,7 +171,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, and success |
+| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
 | result.response.urlPtt | string | The PTT URL e.g. "ws: |
 | result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
@@ -186,9 +186,8 @@ This method takes no parameters.
 | result.response.mic.status | string | The status of the device  |
 | result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | DeviceStatus | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
 | result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
+| result.response.capabilities | string | JSON array of capability strings returned by the voice stack |
 | result.response.success | bool | Whether the request succeeded |
-| result.capabilities | IStringIterator | The capability strings returned by the voice stack @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
-| result.capabilities[#] | string |  |
 
 ### Examples
 
@@ -218,30 +217,26 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "response": {
-            "maskPii": true,
-            "urlPtt": "ws:",
-            "urlHf": "ws:",
-            "urlMicTap": "ws:",
-            "prv": true,
-            "wwFeedback": true,
-            "ptt": {
-                "status": "ready"
-            },
-            "ff": {
-                "status": "ready"
-            },
-            "mic": {
-                "status": "ready"
-            },
-            "mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available": {
-                "status": "ready"
-            },
-            "success": true
+        "maskPii": true,
+        "urlPtt": "ws:",
+        "urlHf": "ws:",
+        "urlMicTap": "ws:",
+        "prv": true,
+        "wwFeedback": true,
+        "ptt": {
+            "status": "ready"
         },
-        "capabilities": [
-            ""
-        ]
+        "ff": {
+            "status": "ready"
+        },
+        "mic": {
+            "status": "ready"
+        },
+        "mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available": {
+            "status": "ready"
+        },
+        "capabilities": "",
+        "success": true
     }
 }
 ```
@@ -318,7 +313,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.language | string | <sup>(optional)</sup>Preferred user interface language |
-| params?.capabilities | IStringIterator | <sup>(optional)</sup>The capability strings returned by the voice stack @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities |
 | params?.capabilities[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
