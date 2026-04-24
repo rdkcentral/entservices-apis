@@ -105,6 +105,7 @@ namespace WPEFramework {
             DeviceStatus ff      /* @brief The status information for the FF device type */;
             DeviceStatus mic     /* @brief The status information for the MIC device type */;
             DeviceStatus micTap  /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
+            string capabilities  /* @opaque @brief JSON array of capability strings returned by the voice stack */;
             bool success         /* @brief Whether the request succeeded */;
         };
 
@@ -169,12 +170,11 @@ namespace WPEFramework {
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
-            // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, and success
-            // @param capabilities: The capability strings returned by the voice stack
+            // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract @unwrapped */, IStringIterator*& capabilities /* @out */) = 0;
+            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract */) = 0;
 
             // @json:omit
             // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
