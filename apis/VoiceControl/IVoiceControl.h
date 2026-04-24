@@ -186,15 +186,15 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
             virtual Core::hresult ConfigureVoice(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
-            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server
+            // @json:omit
+            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id).
             // @text setVoiceInit
-            // @param language(optional): Preferred user interface language
-            // @param capabilities(optional): A list of capabilities
-            // @param success: Whether the request succeeded
+            // @param payload: The voice init payload as a JSON object
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& language /* @optional */, IStringIterator* const capabilities /* @optional */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
@@ -227,16 +227,15 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
             virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;
 
-            // @brief Requests a voice session using the specified request type and optional parameters
+            // @json:omit
+            // @brief Requests a voice session using the specified request type and optional parameters. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. type, transcription, audio_file, audio_format, name). The result is the raw JSON returned by ctrlm (e.g. success, sessionId).
             // @text voiceSessionRequest
-            // @param transcription(optional): The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather"
-            // @param audioFile(optional): The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav"
-            // @param type: The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test
-            // @param success: Whether the request succeeded
+            // @param payload: The voice session request parameters as a JSON object
+            // @param result: The raw JSON result from ctrlm
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const string& transcription /* @optional */, const string& audioFile /* @optional */, const VoiceSessionRequestType type, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const string& payload /* @opaque */, string& result /* @out @opaque */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
