@@ -51,10 +51,8 @@ VoiceControl interface methods:
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 | [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
-| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server |
 | [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
 | [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
-| [voiceSessionRequest](#voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
 | [voiceSessionTerminate](#voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
 
 <a id="getApiVersionNumber"></a>
@@ -301,65 +299,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="setVoiceInit"></a>
-## *setVoiceInit*
-
-Sets the application metadata in the INIT message that gets sent to the Voice Server
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.language | string | <sup>(optional)</sup>Preferred user interface language |
-| params?.capabilities | IStringIterator | <sup>(optional)</sup>A list of capabilities |
-| params?.capabilities[#] | string | <sup>(optional)</sup> |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.VoiceControl.setVoiceInit",
-    "params": {
-        "language": "",
-        "capabilities": [
-            ""
-        ]
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"language": "", "capabilities": [""]}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true
-    }
-}
-```
-
 <a id="voiceSessionAudioStreamStart"></a>
 ## *voiceSessionAudioStreamStart*
 
@@ -386,7 +325,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 4,
     "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
     "params": {
         "sessionId": "session-12345"
@@ -398,7 +337,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -407,7 +346,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 4,
     "result": {
         "success": true
     }
@@ -441,7 +380,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 5,
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
         "transcription": "turn on the lights",
@@ -454,7 +393,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -463,65 +402,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="voiceSessionRequest"></a>
-## *voiceSessionRequest*
-
-Requests a voice session using the specified request type and optional parameters
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.transcription | string | <sup>(optional)</sup>The transcription text to be sent to the voice server  |
-| params?.audioFile | string | <sup>(optional)</sup>The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. " |
-| params.type | string | The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.VoiceControl.voiceSessionRequest",
-    "params": {
-        "transcription": "what's the weather",
-        "audioFile": "/tmp/audio.wav",
-        "type": "PTT_TRANSCRIPTION"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"transcription": "what's the weather", "audioFile": "/tmp/audio.wav", "type": "PTT_TRANSCRIPTION"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
+    "id": 5,
     "result": {
         "success": true
     }
@@ -554,7 +435,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 6,
     "method": "org.rdk.VoiceControl.voiceSessionTerminate",
     "params": {
         "sessionId": "session-12345"
@@ -566,7 +447,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -575,7 +456,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 6,
     "result": {
         "success": true
     }
@@ -621,7 +502,7 @@ Triggered when a keyword verification result is received
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 7,
     "method": "org.rdk.VoiceControl.onKeywordVerification",
     "params": {
         "remoteId": 1,
@@ -651,7 +532,7 @@ Triggered when a message is received from the Voice Server
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 8,
     "method": "org.rdk.VoiceControl.onServerMessage",
     "params": {
         "msgType": "asr",
@@ -682,7 +563,7 @@ Triggered when a voice session begins
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 9,
     "method": "org.rdk.VoiceControl.onSessionBegin",
     "params": {
         "remoteId": 1,
@@ -716,7 +597,7 @@ Triggered when the interaction with the server has concluded
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 10,
     "method": "org.rdk.VoiceControl.onSessionEnd",
     "params": {
         "serverStats": {
@@ -749,7 +630,7 @@ Triggered when a device starts streaming voice data to the RDK
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 11,
     "method": "org.rdk.VoiceControl.onStreamBegin",
     "params": {
         "remoteId": 1,
@@ -777,7 +658,7 @@ Triggered when the device has stopped streaming audio
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 12,
     "method": "org.rdk.VoiceControl.onStreamEnd",
     "params": {
         "remoteId": 1,
