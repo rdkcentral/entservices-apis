@@ -126,6 +126,7 @@ DisplaySettings interface methods:
 | [setScartParameter](#setScartParameter) | Sets SCART parameters |
 | [setSoundMode](#setSoundMode) | Sets the current sound mode for the corresponding video display |
 | [setSurroundVirtualizer](#setSurroundVirtualizer) | (Version 2) Sets the Surround Virtualizer boost |
+| [setVideoPortStatusInStandby](#setVideoPortStatusInStandby) | Sets the specified video port status to be used in standby mode (failure if the port name is missing) |
 | [setVolumeLevel](#setVolumeLevel) | Adjusts the Volume Level on a specific port |
 | [setVolumeLeveller](#setVolumeLeveller) | (Version 2) Sets the Volume Leveller level |
 | [setZoomSetting](#setZoomSetting) | Sets the current zoom value |
@@ -4351,6 +4352,60 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
+        "success": true
+    }
+}
+```
+
+<a name="setVideoPortStatusInStandby"></a>
+## *setVideoPortStatusInStandby*
+
+Sets the specified video port status to be used in standby mode (failure if the port name is missing).
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.portName | string | Video port name |
+| params.enabled | boolean | Enable video port status to be used in standby mode |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result?.error_message | string | <sup>*(optional)*</sup> Error message in case of failure |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.setVideoPortStatusInStandby",
+    "params": {
+        "portName": "HDMI0",
+        "enabled": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "error_message": "internal error",
         "success": true
     }
 }
