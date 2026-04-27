@@ -57,8 +57,8 @@ DisplayInfo interface methods:
 
 TV's Extended Display Identification Data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,8 +113,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Vertical size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -161,15 +161,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Horizontal size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.width | integer | width of TV in pixels |
+| result.width | integer | width in cm |
 
 ### Examples
 
@@ -289,8 +289,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).colorimetry | IColorimetryIterator | display colorimetry |
-| (property).colorimetry[#] | string |  |
+| (property).colorimetry | array | display colorimetry |
+| (property).colorimetry[#] | string | Possible values: COLORIMETRY_UNKNOWN, COLORIMETRY_OTHER, COLORIMETRY_SMPTE170M, COLORIMETRY_BT709, COLORIMETRY_XVYCC601, COLORIMETRY_XVYCC709, COLORIMETRY_SYCC601, COLORIMETRY_OPYCC601, COLORIMETRY_OPRGB, COLORIMETRY_BT2020YCCBCBRC, COLORIMETRY_BT2020RGB_YCBCR |
 
 ### Examples
 
@@ -873,8 +873,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
 
@@ -920,8 +920,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
 
@@ -1117,7 +1117,7 @@ DisplayInfo interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | string |  |
+| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE |
 
 ### Examples
 

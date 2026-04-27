@@ -61,13 +61,13 @@ DownloadManager interface methods:
 
 Cancel an ongoing download session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Output parameter that returns the assigned download ID |
+| params.downloadId | string | Unique identifier of the download to cancel |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -112,8 +112,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Delete a downloaded file from the system using its locator path
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -163,14 +163,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Download Start downloading a file from a specified URL with custom options
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.url | string | URL from which the file is to be downloaded |
-| params.options | Options | Options controlling download behavior |
+| params.options | object | Options controlling download behavior |
 | params.options.priority | bool |  |
 | params.options.retries | integer |  |
 | params.options.rateLimit | integer |  |
@@ -226,8 +226,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 GetStorageDetails Get information about storage space availability
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -276,13 +276,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Pause an active download session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Output parameter that returns the assigned download ID |
+| params.downloadId | string | Unique identifier of the download to pause |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -327,13 +327,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Progress Query current download progress
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Output parameter that returns the assigned download ID |
+| params.downloadId | string | Unique identifier of the download |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -381,13 +381,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 RateLimit Set rate limiting for a specific download session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Output parameter that returns the assigned download ID |
+| params.downloadId | string | Unique identifier of the download |
 | params.limit | integer | Maximum bandwidth in bytes per second (0 = unlimited) |
 ### Results
 | Name | Type | Description |
@@ -434,13 +434,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Resume a paused download session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.downloadId | string | Output parameter that returns the assigned download ID |
+| params.downloadId | string | Unique identifier of the download to resume |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

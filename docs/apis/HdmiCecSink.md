@@ -79,8 +79,8 @@ HdmiCecSink interface methods:
 
 Gets the Active Route(s) of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -89,7 +89,7 @@ This method takes no parameters.
 | result | object |  |
 | result.available | bool | Is the active route available or not |
 | result.length | integer | Length of the active route |
-| result.pathList | IHdmiCecSinkActivePathIterator | List of active path |
+| result.pathList | array | List of active path |
 | result.pathList[#].logicalAddress | integer |  |
 | result.pathList[#].physicalAddress | string |  |
 | result.pathList[#].deviceType | string |  |
@@ -148,15 +148,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the status of the current active source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.available | bool | Is the active route available or not |
+| result.available | bool | Is the active source available or not |
 | result.logicalAddress | integer | Logical address of the active source |
 | result.physicalAddress | string | Physical address of the active source |
 | result.deviceType | string | Device type of the active source |
@@ -214,8 +214,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Gets audio device connected status
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -264,8 +264,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Gets the list of devices connected to the HDMI CEC sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -273,7 +273,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.numberofdevices | integer | Number of devices connected to the HDMI CEC sink |
-| result.deviceList | IHdmiCecSinkDeviceListIterator | List of devices connected to the HDMI CEC sink |
+| result.deviceList | array | List of devices connected to the HDMI CEC sink |
 | result.deviceList[#].logicalAddress | integer |  |
 | result.deviceList[#].physicalAddress | string |  |
 | result.deviceList[#].deviceType | string |  |
@@ -335,8 +335,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Gets the status of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -385,8 +385,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Gets the OSD name of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -435,8 +435,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Gets the vendor ID of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -485,8 +485,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -535,8 +535,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Request the active source in the network
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -583,8 +583,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Requests the audio device power status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -631,8 +631,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Sends the CEC Request Short Audio Descriptor (SAD) message as an
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -679,8 +679,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -727,8 +727,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Sends the CEC <Give Audio Status> message to request the audio status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -775,13 +775,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the active source |
+| params.logicalAddress | integer | Logical address of the device |
 | params.keyCode | integer | Key code of the key press event |
 ### Results
 | Name | Type | Description |
@@ -831,8 +831,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Sends the CEC <Standby> message to another CEC device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -879,13 +879,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Sends the CEC <User Control Pressed> message when TV remote key is pressed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the active source |
+| params.logicalAddress | integer | Logical address of the device |
 | params.keyCode | integer | Key code of the key press event |
 ### Results
 | Name | Type | Description |
@@ -935,13 +935,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 Sends the CEC <User Control Released> message when TV remote key is released.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | integer | Logical address of the active source |
+| params.logicalAddress | integer | Logical address of the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -989,8 +989,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1043,8 +1043,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1091,8 +1091,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 Sets the status of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1145,8 +1145,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1205,8 +1205,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1259,8 +1259,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 Sets the OSD name of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1313,8 +1313,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 Changes routing while switching between HDMI inputs and TV.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1369,8 +1369,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 Sets the vendor ID of the HDMI CEC Sink
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1423,13 +1423,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Is the HDMI CEC Sink enabled or not |
+| params.enabled | bool | Is the HDMI-CEC ARC routing enabled or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1589,7 +1589,7 @@ Triggered when a new device is added to the CEC network.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the added device |
 
 ### Examples
 
@@ -1613,7 +1613,7 @@ Triggered when device information changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -1637,7 +1637,7 @@ Triggered when a device is removed from the CEC network.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the removed device |
 
 ### Examples
 
@@ -1661,7 +1661,7 @@ Triggered when an <Image View ON> CEC message is received from the source device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -1685,8 +1685,8 @@ Triggered when the source is no longer active.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
-| params.physicalAddress | string | Physical address of the active source |
+| params.logicalAddress | int | Logical address of the source |
+| params.physicalAddress | string | Physical address of the source |
 
 ### Examples
 
@@ -1711,7 +1711,7 @@ Notifies when a key press CEC message is received from other CEC device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 | params.keyCode | int | Key code of the key press event |
 
 ### Examples
@@ -1737,7 +1737,7 @@ Notifies when a key release CEC message is received from other CEC device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -1761,7 +1761,7 @@ Triggered when a <Text View ON> CEC message is received from the source device.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -1785,7 +1785,7 @@ Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -1809,7 +1809,7 @@ Triggered when an audio device is added or removed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | Is the operation successful or not |
+| params.status | string | Status of the audio device |
 | params.audioDeviceConnected | string | Audio device connected or not |
 
 ### Examples
@@ -1909,7 +1909,7 @@ Triggered when CEC <Feature Abort> message of device is received.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 | params.opcode | int | Opcode of the message |
 | params.FeatureAbortReason | int | Reason for the feature abort |
 
@@ -1985,7 +1985,7 @@ Triggered when the source device changes status to STANDBY.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the active source |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 

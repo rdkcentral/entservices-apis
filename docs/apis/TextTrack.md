@@ -95,13 +95,13 @@ TextTrack interface methods:
 
 Any created windows and surfaces is destroyed
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session to close |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -146,8 +146,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Getter for BackgroundColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -194,8 +194,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Getter for BackgroundOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -242,16 +242,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Retrieves an iterator over all supported TextTrack capabilities.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.capabilities | IIterator | Iterator providing the list of supported capabilities. @retval Core::ERROR_NONE The list of capabilities was retrieved successfully. @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported. |
-| result.capabilities[#] | string |  |
+| result.capabilities | array | Iterator providing the list of supported capabilities. |
+| result.capabilities[#] | string | Possible values: UNSET, FIREBOLT_MIGRATION |
 
 ### Examples
 
@@ -286,13 +286,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 22,
+        "message": "Retrieving capabilities is not supported."
+    }
+}
+```
+
 <a id="getCapability"></a>
 ## *getCapability*
 
 Queries whether a specific TextTrack capability is supported by the implementation.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -302,7 +316,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.hasCapability | bool | Indicates whether the queried capability is supported. @retval Core::ERROR_NONE The capability query completed successfully. @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported. |
+| result.hasCapability | bool | Indicates whether the queried capability is supported. |
 
 ### Examples
 
@@ -340,25 +354,39 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 22,
+        "message": "Capability querying is not supported."
+    }
+}
+```
+
 <a id="getClosedCaptionsStyle"></a>
 ## *getClosedCaptionsStyle*
 
 Gets the current ClosedCaptionsStyle settings.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.style | ClosedCaptionsStyle | Contains the chosen styles |
-| result.style.fontFamily | string |  |
-| result.style.fontSize | string |  |
+| result.style | object | Contains the chosen styles |
+| result.style.fontFamily | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| result.style.fontSize | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 | result.style.fontColor | string |  |
 | result.style.fontOpacity | integer |  |
-| result.style.fontEdge | string |  |
+| result.style.fontEdge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 | result.style.fontEdgeColor | string |  |
 | result.style.backgroundColor | string |  |
 | result.style.backgroundOpacity | integer |  |
@@ -412,8 +440,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Getter for FontColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -460,15 +488,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Getter for FontEdge
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.edge | string |  |
+| result.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 
 ### Examples
 
@@ -508,8 +536,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Getter for FontEdgeColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -556,15 +584,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Getter for FontFamily
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.font | string |  |
+| result.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 
 ### Examples
 
@@ -604,8 +632,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Getter for FontOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -652,15 +680,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Getter for FontSize
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.size | string |  |
+| result.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 
 ### Examples
 
@@ -700,15 +728,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Gets the global TTML style overrides
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.style | string | Contains the chosen override for styles |
+| result.style | string | will receive the style overrides |
 
 ### Examples
 
@@ -748,8 +776,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Getter for WindowColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -796,8 +824,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Getter for WindowOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -844,13 +872,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Mute will hide rendering of Captions
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -895,8 +923,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 If a session is already running on the supplied displayHandle, the sessionId for this session is returned. If the session is instead newly opened, the session type is not set and display is muted. Use one of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -949,13 +977,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 Any text rendered remains on screen and any text due to be rendered soon is held until the render session is resumed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1000,13 +1028,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 The state will be like after calling OpenSession()
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session to reset |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1051,13 +1079,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 Resumed a paused session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1102,13 +1130,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 Sends data of Closed Captions, Captions or Timed Text data to a render session.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.type | string | Is the type of data |
 | params.displayOffsetMs | integer | Is currently unused |
 | params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
@@ -1159,13 +1187,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.mediaTimestampMs | integer | Is a timestamp |
 ### Results
 | Name | Type | Description |
@@ -1212,8 +1240,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 Setter for BackgroundColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1263,8 +1291,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 Setter for BackgroundOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1314,18 +1342,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 For all values it is possible to keep or override the stream default. The style setting will take effect immediately in all running (Closed Captions) sessions, which has not applied a custom style.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.style | ClosedCaptionsStyle | Contains the chosen styles |
-| params.style.fontFamily | string |  |
-| params.style.fontSize | string |  |
+| params.style | object | Contains the chosen styles |
+| params.style.fontFamily | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| params.style.fontSize | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 | params.style.fontColor | string |  |
 | params.style.fontOpacity | integer |  |
-| params.style.fontEdge | string |  |
+| params.style.fontEdge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 | params.style.fontEdgeColor | string |  |
 | params.style.backgroundColor | string |  |
 | params.style.backgroundOpacity | integer |  |
@@ -1384,8 +1412,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 Setter for FontColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1435,13 +1463,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 Setter for FontEdge
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.edge | string |  |
+| params.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1486,8 +1514,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 Setter for FontEdgeColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1537,13 +1565,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 Setter for FontFamily
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.font | string |  |
+| params.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1588,8 +1616,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 Setter for FontOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1639,13 +1667,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 Setter for FontSize
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.size | string |  |
+| params.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1690,8 +1718,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1743,13 +1771,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 Selecting the specified CC service to decode and display in the specified render session. This should be done before starting the injection of data. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.service | string | Identifies the service to display  |
 ### Results
 | Name | Type | Description |
@@ -1796,13 +1824,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.compositionPageId | integer | Is the one Id |
 | params.ancillaryPageId | integer | Is the other Id |
 ### Results
@@ -1851,13 +1879,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 Set the render session into SCTE mode
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1902,13 +1930,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 Set the render session into TTML mode
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1953,13 +1981,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 Set the render session into Teletext mode, providing the teletext caption page for presentation
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.page | integer | The user selected teletext caption page 100-899 |
 ### Results
 | Name | Type | Description |
@@ -2006,13 +2034,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 Set the render session into WebVTT mode
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2057,8 +2085,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2108,8 +2136,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 Setter for WindowColor
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2159,8 +2187,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 
 Setter for WindowOpacity
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2210,13 +2238,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 
 A newly created session is muted and should be unmuted to me visible
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2339,12 +2367,12 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.style | ClosedCaptionsStyle | Contains the chosen styles |
-| params.style.fontFamily | string |  |
-| params.style.fontSize | string |  |
+| params.style | object | Contains the chosen styles |
+| params.style.fontFamily | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
+| params.style.fontSize | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 | params.style.fontColor | string |  |
 | params.style.fontOpacity | integer |  |
-| params.style.fontEdge | string |  |
+| params.style.fontEdge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 | params.style.fontEdgeColor | string |  |
 | params.style.backgroundColor | string |  |
 | params.style.backgroundOpacity | integer |  |
@@ -2406,7 +2434,7 @@ Notify fontEdge Changed
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.edge | string |  |
+| params.edge | string | Possible values: CONTENT_DEFAULT, NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW, RIGHT_DROP_SHADOW |
 
 ### Examples
 
@@ -2454,7 +2482,7 @@ Notify fontFamily Changed
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.font | string |  |
+| params.font | string | Possible values: CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE, SMALL_CAPITAL |
 
 ### Examples
 
@@ -2502,7 +2530,7 @@ Notify fontSize Changed
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.size | string |  |
+| params.size | string | Possible values: CONTENT_DEFAULT, SMALL, REGULAR, LARGE, EXTRA_LARGE |
 
 ### Examples
 

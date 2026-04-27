@@ -56,8 +56,8 @@ UnifiedCASManagement interface methods:
 
 Manage a well-known CAS (setup CAS management session)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -71,7 +71,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -113,13 +113,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="send"></a>
 ## *send*
 
 Sends data to the remote CAS
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -130,7 +144,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -169,20 +183,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="unmanage"></a>
 ## *unmanage*
 
 Destroy a management session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -213,6 +241,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
     }
 }
 ```

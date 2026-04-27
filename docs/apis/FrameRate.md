@@ -61,16 +61,16 @@ FrameRate interface methods:
 
 Gets the current display frame rate values.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.framerate | string | string |
-| result.success | bool | boolean |
+| result.framerate | string |  string |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -111,8 +111,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the current auto framerate mode.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -120,7 +120,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.auto-frm-mode | int |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -161,18 +161,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Sets the FPS data collection interval.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frequency | int | int |
+| params.frequency | int |   int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -215,18 +215,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Sets the display framerate values.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.framerate | string | string |
+| params.framerate | string |  string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -269,18 +269,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Set the Frm mode.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frmmode | int | int |
+| params.frmmode | int |  int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -323,15 +323,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Starts the FPS data collection. Starts the FPS data collection
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -371,15 +371,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Stops the FPS data collection
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -419,18 +419,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Update the FPS value
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.newFpsValue | int | int |
+| params.newFpsValue | int |  int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -494,7 +494,7 @@ Triggered when the framerate changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string | string |
+| params.displayFrameRate | string |  string |
 
 ### Examples
 
@@ -518,7 +518,7 @@ Triggered when the framerate changes started
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string | string |
+| params.displayFrameRate | string |  string |
 
 ### Examples
 
@@ -542,9 +542,9 @@ Triggered by callback from FrameRate after onFpsEvent
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.average | int | int |
-| params.min | int | int |
-| params.max | int | int |
+| params.average | int |  int |
+| params.min | int |  int |
+| params.max | int |  int |
 
 ### Examples
 

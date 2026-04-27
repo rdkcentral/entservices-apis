@@ -63,8 +63,8 @@ SharedStorage interface methods:
 
 Deletes a key from the specified namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -121,8 +121,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Deletes the specified namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -177,8 +177,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Flushes the device cache
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -222,8 +222,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Returns the keys that are stored in the specified namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -234,7 +234,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.keys | IStringIterator | keys list |
+| result.keys | array | keys list |
 | result.keys[#] | string |  |
 | result.success | bool | success |
 
@@ -283,8 +283,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Returns the storage limit for a given namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -295,7 +295,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.storageLimit | integer | size |
+| result.storageLimit | integer | Size in bytes |
 
 ### Examples
 
@@ -339,8 +339,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Returns the namespaces
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -350,7 +350,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.namespaces | IStringIterator | namespaces list |
+| result.namespaces | array | namespaces list |
 | result.namespaces[#] | string |  |
 | result.success | bool | success |
 
@@ -398,8 +398,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Returns the size occupied by each namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -409,7 +409,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.storageList | INamespaceSizeIterator | list of namespaces and their sizes |
+| result.storageList | array | list of namespaces and their sizes |
 | result.storageList[#].ns | string |  |
 | result.storageList[#].size | integer |  |
 | result.success | bool | success |
@@ -461,8 +461,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Returns the value of a key from the specified namespace.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -474,7 +474,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.value | string | value |
+| result.value | string | value out |
 | result.ttl | integer | time to live (optional) |
 | result.success | bool | success |
 
@@ -523,8 +523,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Sets the storage limit for a given namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -581,8 +581,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Sets the value of a key in the the specified namespace
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

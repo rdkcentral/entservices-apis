@@ -69,8 +69,8 @@ PowerManager interface methods:
 
 Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`. 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -123,14 +123,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`) |
-| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
+| params.clientId | integer | Unique identifier for the client, as received in AddPowerModePreChangeClient |
+| params.transactionId | int | transaction id as received in OnPowerModePreChange |
 | params.delayPeriod | int | delay in seconds |
 ### Results
 | Name | Type | Description |
@@ -178,8 +178,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Get the standby mode for Network
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -226,8 +226,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Get Power State
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -235,7 +235,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.currentState | string | Current Power State |
-| result.previousState | string |  |
+| result.previousState | string | Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 
 ### Examples
 
@@ -276,8 +276,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Get Power state before reboot
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -324,8 +324,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Get Temperature Thresholds
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -374,8 +374,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Get Current Thermal State (temperature)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -422,8 +422,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Get the Wakeup Time in seconds since the device transitioned to the ON state.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -465,21 +465,35 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getWakeupSourceConfig"></a>
 ## *getWakeupSourceConfig*
 
 Get the source configuration for device wakeup
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.wakeupSources | IWakeupSourceConfigIterator | Wake up sources array |
-| result.wakeupSources[#].wakeupSource | string |  |
+| result.wakeupSources | array | Wake up sources array |
+| result.wakeupSources[#].wakeupSource | string | Possible values: UNKNOWN, VOICE, PRESENCEDETECTED, BLUETOOTH, WIFI, IR, POWERKEY, TIMER, CEC, LAN, RF4CE (IMPORTANT: Add any new wakeupsrc before this) |
 | result.wakeupSources[#].enabled | bool |  |
 
 ### Examples
@@ -523,14 +537,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Pre power mode handling complete for given client and transation id
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`) |
-| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
+| params.clientId | integer | Unique identifier for the client, as received in AddPowerModePreChangeClient |
+| params.transactionId | int | transaction id as received in OnPowerModePreChange |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -576,8 +590,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Reboot device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -631,13 +645,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`) |
+| params.clientId | integer | Unique identifier for the client. See `AddPowerModePreChangeClient` |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -682,8 +696,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Set Power State
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -737,8 +751,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Set Temperature Thresholds
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -790,14 +804,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Set the source configuration for device wakeup
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.wakeupSources | IWakeupSourceConfigIterator | Wake up sources array |
-| params.wakeupSources[#].wakeupSource | string |  |
+| params.wakeupSources | array | Wake up sources array |
+| params.wakeupSources[#].wakeupSource | string | Possible values: UNKNOWN, VOICE, PRESENCEDETECTED, BLUETOOTH, WIFI, IR, POWERKEY, TIMER, CEC, LAN, RF4CE (IMPORTANT: Add any new wakeupsrc before this) |
 | params.wakeupSources[#].enabled | bool |  |
 ### Results
 | Name | Type | Description |
@@ -1213,7 +1227,7 @@ Power mode changed
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.currentState | string | Current Power State |
-| params.newState | string | Changing power state to this New Power State |
+| params.newState | string | New Power State |
 
 ### Examples
 

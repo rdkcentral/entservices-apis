@@ -59,8 +59,8 @@ MiracastService interface methods:
 
 To accept or reject new client connection requests for the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -70,7 +70,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -116,8 +116,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 To get the enable status of the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -166,8 +166,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 To enable or disable the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -177,7 +177,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -223,18 +223,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Sets the status of the MiracastService backend discovery
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Is the MiracastService discovery enabled or not |
+| params.enabled | bool | Is the MiracastService backend discovery enabled or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -280,8 +280,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 To abort the ongoing connection after accepted connection request
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -292,7 +292,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -339,8 +339,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Update the Miracast Player State to the Miracast Service Plugin
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -352,7 +352,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -477,7 +477,7 @@ Miracast Service Plugin raises this Event to request RA or MiracastWidget to lau
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device_parameters | DeviceParameters |  |
+| params.device_parameters | object |  |
 | params.device_parameters.source_dev_ip | string | IP Address of Source Device |
 | params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
 | params.device_parameters.source_dev_name | string | Name of Source Device |

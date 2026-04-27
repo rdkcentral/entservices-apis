@@ -57,13 +57,13 @@ PersistentStore interface methods:
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -112,13 +112,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 ### Results
 | Name | Type | Description |
@@ -165,13 +165,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -225,13 +225,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |
@@ -303,7 +303,7 @@ PersistentStore interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |

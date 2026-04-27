@@ -55,15 +55,15 @@ HdcpProfile interface methods:
 
 Returns HDCP-related data.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.HDCPStatus | HDCPStatus | Contains HDCP-related data as separate properties |
+| result.HDCPStatus | object | Contains HDCP-related data as separate properties |
 | result.HDCPStatus.isConnected | bool | Indicates whether a display is connected |
 | result.HDCPStatus.isHDCPCompliant | bool | Indicates whether the display is HDCP compliant |
 | result.HDCPStatus.isHDCPEnabled | bool | Indicates whether content is protected |
@@ -120,8 +120,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Returns which version of HDCP is supported by the STB.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -191,7 +191,7 @@ Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPl
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.HDCPStatus | HDCPStatus | Contains HDCP-related data as separate properties |
+| params.HDCPStatus | object | Contains HDCP-related data as separate properties |
 | params.HDCPStatus.isConnected | bool | Indicates whether a display is connected |
 | params.HDCPStatus.isHDCPCompliant | bool | Indicates whether the display is HDCP compliant |
 | params.HDCPStatus.isHDCPEnabled | bool | Indicates whether content is protected |

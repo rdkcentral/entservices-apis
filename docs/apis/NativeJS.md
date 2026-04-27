@@ -57,8 +57,8 @@ NativeJS interface methods:
 
 Create a NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -111,8 +111,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Get details of existing plugin.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -156,13 +156,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 run a NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID for the application to run. |
 | params.url | string | URL for the application to run. |
 ### Results
 | Name | Type | Description |
@@ -209,13 +209,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 run a NativeJS code.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID for the code to run. |
 | params.code | string |  |
 ### Results
 | Name | Type | Description |
@@ -262,13 +262,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Destroy a running NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID of the application to destroy. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

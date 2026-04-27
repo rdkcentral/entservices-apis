@@ -93,15 +93,15 @@ UserSettings interface methods:
 
 Gets the current AudioDescription setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -141,15 +141,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the BlockNotRatedContent setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
+| result.blockNotRatedContent | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -189,15 +189,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Gets the Captions setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Receives the state |
 
 ### Examples
 
@@ -237,15 +237,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Gets the ContentPin.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.contentPin | string | The changed contentPin. |
+| result.contentPin | string | A string of four decimal digits that represents the content PIN. |
 
 ### Examples
 
@@ -285,15 +285,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Gets the current highContrast setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -333,15 +333,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Gets the LiveWatershed setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.liveWatershed | bool | liveWatershed enabled or not. |
+| result.liveWatershed | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -381,8 +381,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Get the migration state of the respective key
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -435,16 +435,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Get the migration state of all the defined keys
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.states | IUserSettingsMigrationStateIterator | array of migration status. |
-| result.states[#].key | string |  |
+| result.states | array | array of migration status. |
+| result.states[#].key | string | Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
 | result.states[#].requiresMigration | bool |  |
 
 ### Examples
@@ -488,15 +488,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Gets the PinControl setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.pinControl | bool | pinControl enabled or not. |
+| result.pinControl | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -536,15 +536,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Gets the PinOnPurchase setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.pinOnPurchase | bool | pinOnPurchase enabled or not. |
+| result.pinOnPurchase | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -584,15 +584,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Gets the PlaybackWatershed setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.playbackWatershed | bool | playbackWatershed enabled or not. |
+| result.playbackWatershed | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -632,15 +632,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Gets the current PreferredAudioLanguages setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.preferredLanguages | string | the changed preferredLanguages. |
+| result.preferredLanguages | string | PreferredLanguages |
 
 ### Examples
 
@@ -680,15 +680,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Gets the current PreferredCaptionsLanguages setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.preferredLanguages | string | the changed preferredLanguages. |
+| result.preferredLanguages | string | "eng,fra" |
 
 ### Examples
 
@@ -728,15 +728,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Gets the current PreferredClosedCaptionService setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.service | string | the changed preferredClosedCaptionService. |
+| result.service | string | Identifies the service to display . |
 
 ### Examples
 
@@ -776,15 +776,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Gets the presentationLanguage
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.presentationLanguage | string | the changed presentationLanguage. |
+| result.presentationLanguage | string | "en-US", "es-US", "en-CA", "fr-CA" |
 
 ### Examples
 
@@ -824,15 +824,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Gets the current PrivacyMode setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.privacyMode | string | "SHARE", "DO_NOT_SHARE". |
+| result.privacyMode | string | "SHARE" |
 
 ### Examples
 
@@ -872,15 +872,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 Gets the current ViewingRestrictions.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictions | string | the changed viewingRestrictions. |
+| result.viewingRestrictions | string | A JSON document that escribes the rating scheme(s) and ratings that are blocked. |
 
 ### Examples
 
@@ -920,15 +920,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 Gets the current ViewingRestrictionsWindow.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| result.viewingRestrictionsWindow | string | A project-specific representation of the time interval.Eg: "ALWAYS" |
 
 ### Examples
 
@@ -968,15 +968,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 Gets the current voiceGuidance setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -1016,15 +1016,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 Gets the current voiceGuidanceHints setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.hints | bool | voice guidance hints enabled or not. |
+| result.hints | bool | true/false |
 
 ### Examples
 
@@ -1064,15 +1064,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 Gets the current voiceGuidanceRate setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.rate | double | the changed voice guidance rate. |
+| result.rate | double | Gets Voice Guidance rate |
 
 ### Examples
 
@@ -1112,13 +1112,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1163,13 +1163,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
+| params.blockNotRatedContent | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1214,13 +1214,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Sets the state |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1265,13 +1265,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 
 ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.contentPin | string | The changed contentPin. |
+| params.contentPin | string | A string of four decimal digits that represents the content PIN. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1316,13 +1316,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 
 Sets highContrast. Whether the app should display with high contrast or not.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1367,13 +1367,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 
 Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.liveWatershed | bool | liveWatershed enabled or not. |
+| params.liveWatershed | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1418,13 +1418,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 
 Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinControl | bool | pinControl enabled or not. |
+| params.pinControl | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1469,13 +1469,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 
 Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinOnPurchase | bool | pinOnPurchase enabled or not. |
+| params.pinOnPurchase | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1520,13 +1520,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 
 Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.playbackWatershed | bool | playbackWatershed enabled or not. |
+| params.playbackWatershed | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1571,13 +1571,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 
 A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.preferredLanguages | string | the changed preferredLanguages. |
+| params.preferredLanguages | string | PreferredLanguages |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1622,13 +1622,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 
 A prioritized list of ISO 639-2/B codes for the preferred Captions languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the subtitle track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred subtitle track.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.preferredLanguages | string | the changed preferredLanguages. |
+| params.preferredLanguages | string | Is the list to set () |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1673,13 +1673,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 
 The setting should be honored by the player. The behaviour of AUTO may be player specific. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.service | string | the changed preferredClosedCaptionService. |
+| params.service | string | Identifies the service to display . |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1724,13 +1724,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 
 Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.presentationLanguage | string | the changed presentationLanguage. |
+| params.presentationLanguage | string | "en-US", "es-US", "en-CA", "fr-CA" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1775,13 +1775,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 
 The setting should be honored by the Telemetry. If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.privacyMode | string | "SHARE", "DO_NOT_SHARE". |
+| params.privacyMode | string | "SHARE", "DO_NOT_SHARE" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1826,13 +1826,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 
 A JSON document that escribes the rating scheme(s) and ratings that are blocked.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictions | string | the changed viewingRestrictions. |
+| params.viewingRestrictions | string | A JSON document that describes the rating scheme(s) and ratings that are blocked. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1877,13 +1877,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 
 A project-specific representation of the time interval when viewing restrictions are to be applied, if applicable for the project
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| params.viewingRestrictionsWindow | string | A project-specific representation of the time interval.Eg: "ALWAYS" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1928,13 +1928,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 
 Sets voiceGuidance. Whether Voice Guidance is enabled or not.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1979,13 +1979,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hints | bool | voice guidance hints enabled or not. |
+| params.hints | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2030,13 +2030,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 
 Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rate | double | the changed voice guidance rate. |
+| params.rate | double | Sets Voice Guidance rate |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2166,7 +2166,7 @@ The Captions setting has changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Captions enabled or not. |
 
 ### Examples
 
@@ -2214,7 +2214,7 @@ Triggered after the high contrast settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | high contrast enabled or not. |
 
 ### Examples
 
@@ -2502,7 +2502,7 @@ Triggered after the voice guidance enabled settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | voice guidance enabled or not. |
 
 ### Examples
 

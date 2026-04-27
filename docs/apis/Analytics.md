@@ -53,8 +53,8 @@ Analytics interface methods:
 
 Send an event to the analytics server
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -63,7 +63,7 @@ Event details will be updated soon.
 | params.eventVersion | string | Version of the event |
 | params.eventSource | string | Source of the event |
 | params.eventSourceVersion | string | Version of the event source |
-| params.cetList | IStringIterator | List of CETs |
+| params.cetList | array | List of CETs |
 | params.cetList[#] | string |  |
 | params.epochTimestamp | integer | Epoch timestamp of the event |
 | params.uptimeTimestamp | integer | Uptime timestamp of the event |

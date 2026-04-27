@@ -60,18 +60,18 @@ MiracastPlayer interface methods:
 
 To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device_parameters | DeviceParameters | Contains Source and Sink Device related properties |
+| params.device_parameters | object | Contains Source and Sink Device related properties |
 | params.device_parameters.source_dev_ip | string | IP Address of Source Device |
 | params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
 | params.device_parameters.source_dev_name | string | Name of Source Device |
 | params.device_parameters.sink_dev_ip | string | IP Address of Sink Device |
-| params.video_rectangle | VideoRectangle | Video rectangle to be used for Miracast playback (x, y, width, height) |
+| params.video_rectangle | object | Video rectangle to be used for Miracast playback (x, y, width, height) |
 | params.video_rectangle.X | int | X coordinate of the rectangle |
 | params.video_rectangle.Y | int | Y coordinate of the rectangle |
 | params.video_rectangle.W | int | Width of the rectangle |
@@ -80,7 +80,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -137,20 +137,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 To configure the environment arguments for the Miracast Player
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.envArgs | IEnvArgumentsIterator | environment arguments to be set |
+| params.envArgs | array | environment arguments to be set |
 | params.envArgs[#].argName | string | environment argument name |
 | params.envArgs[#].argValue | string | environment argument value |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -199,8 +199,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Set the Video Rectangle.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -213,7 +213,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -262,20 +262,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.westerosArgs | IEnvArgumentsIterator | Westeros environment arguments to be set |
+| params.westerosArgs | array | Westeros environment arguments to be set |
 | params.westerosArgs[#].argName | string | environment argument name |
 | params.westerosArgs[#].argValue | string | environment argument value |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -324,8 +324,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -337,7 +337,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -385,15 +385,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 To reset the environment arguments for the Miracast Player
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -436,15 +436,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
