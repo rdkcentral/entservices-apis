@@ -310,7 +310,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The unique identifier for the voice session  |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -420,7 +420,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The unique identifier for the voice session  |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -492,9 +492,8 @@ Triggered when a keyword verification result is received
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | KeywordVerificationEvent | Keyword verification event data including remote ID, session ID, and verification result |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 | params.verified | bool | True if the keyword was verified, otherwise false |
 
 ### Examples
@@ -521,7 +520,6 @@ Triggered when a message is received from the Voice Server
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | ServerMessageEvent | Server message event data including message type, transaction ID, timestamp, and message payload |
 | params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
 | params.created | integer | The timestamp for server information in milliseconds since epoch |
@@ -552,10 +550,9 @@ Triggered when a voice session begins
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | SessionBeginEvent | Session begin event data including remote ID, session ID, device type, and keyword verification status |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.deviceType | string | The type of voice device starting the session. Possible values: PTT, FF, MIC |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.deviceType | string | The type of voice device starting the session. Possible values: ptt, ff, mic |
 | params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
 ### Examples
@@ -583,14 +580,18 @@ Triggered when the interaction with the server has concluded
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | SessionEndEvent | Session end event data including server stats, remote ID, session ID, and session result |
-| params.serverStats | ServerStats | Returns the voice server stats |
+| params.remoteId | integer | The voice device identifier  |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
+| params.serverStats | ServerStats | The voice server stats |
 | params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
 | params.serverStats.serverIp | string | The IP of the voice server  |
 | params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
+| params.success | string | Result data for a successful voice session containing transcription |
+| params.error | string | Result data for a failed voice session containing error codes |
+| params.abort | string | Result data for an aborted voice session containing reason |
+| params.shortUtterance | string | Result data for a short utterance voice session containing reason |
+| params.stbStats | string | STB statistics including device type, firmware, and controller info |
 
 ### Examples
 
@@ -600,14 +601,19 @@ Triggered when the interaction with the server has concluded
     "id": 10,
     "method": "org.rdk.VoiceControl.onSessionEnd",
     "params": {
+        "remoteId": 1,
+        "sessionId": "session-12345",
+        "result": "SUCCESS",
         "serverStats": {
             "dnsTime": 0.5,
             "serverIp": "192.168.1.100",
             "connectTime": 10.2
         },
-        "remoteId": 1,
-        "sessionId": "session-12345",
-        "result": "SUCCESS"
+        "success": "",
+        "error": "",
+        "abort": "",
+        "shortUtterance": "",
+        "stbStats": ""
     }
 }
 ```
@@ -621,9 +627,8 @@ Triggered when a device starts streaming voice data to the RDK
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | StreamBeginEvent | Stream begin event data including remote ID and session ID |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
 
 ### Examples
 
@@ -648,10 +653,9 @@ Triggered when the device has stopped streaming audio
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | StreamEndEvent | Stream end event data including remote ID, session ID, and reason code for stopping |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released |
+| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown  |
 
 ### Examples
 
