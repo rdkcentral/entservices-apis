@@ -69,9 +69,13 @@ namespace WPEFramework {
         };
 
         enum class FirmwareUpdateState : uint8_t {
-            DOWNLOADING /* @text DOWNLOADING */,
-            COMPLETE    /* @text COMPLETE */,
-            FAILED      /* @text FAILED */
+            SUCCESS  /* @text SUCCESS */,
+            IDLE     /* @text IDLE */,
+            PENDING  /* @text PENDING */,
+            CANCELED /* @text CANCELED */,
+            RETRYING /* @text RETRYING */,
+            ERROR    /* @text ERROR */,
+            INVALID  /* @text INVALID */
         };
 
         // Data structures for Remote Control
@@ -215,7 +219,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out @optional */) = 0;
+            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -242,7 +246,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out @optional */) = 0;
+            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
