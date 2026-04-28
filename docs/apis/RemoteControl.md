@@ -78,7 +78,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The firmware update session identifier  |
+| params.sessionId | string | The session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1043,18 +1043,19 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | string | The firmware update session identifier  |
+| params.sessionId | string | The session identifier  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | StatusFirmwareUpdateResponse | The firmware update status fields including sessionId, macAddress, state, percentComplete, optional error, and success @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
-| result.response.sessionId | string | The firmware update session identifier  |
-| result.response.macAddress | string | The MAC address of the remote in hex-colon format  |
-| result.response.state | string | The firmware update state |
-| result.response.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| result.response.error | string | The firmware update error string, only present on failure |
+| result.response | StatusFirmwareUpdateResponse | The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString) @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
 | result.response.success | bool | Whether the request succeeded |
+| result.response.status | FirmwareUpdateStatusData | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
+| result.response.status.upgradeSessionId | string | The firmware update session identifier  |
+| result.response.status.macAddress | string | The MAC address of the remote in hex-colon format  |
+| result.response.status.upgradeState | string | The firmware update state |
+| result.response.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
+| result.response.status.errorString | string | The firmware update error string, only present on failure |
 
 ### Examples
 
@@ -1087,12 +1088,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "jsonrpc": 2.0,
     "id": 16,
     "result": {
-        "sessionId": "12345-abc-def",
-        "macAddress": "AA:BB:CC:DD:EE:FF",
-        "state": "DOWNLOADING",
-        "percentComplete": 50,
-        "error": "",
-        "success": true
+        "success": true,
+        "status": {
+            "upgradeSessionId": "12345-abc-def",
+            "macAddress": "AA:BB:CC:DD:EE:FF",
+            "upgradeState": "DOWNLOADING",
+            "percentComplete": 50,
+            "errorString": ""
+        }
     }
 }
 ```
@@ -1234,11 +1237,12 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.progress | FirmwareUpdateProgressEvent | Firmware update progress information including session ID and current status |
-| params.progress.sessionId | string | The session identifier  |
-| params.progress.status | FirmwareUpdateStatus | The firmware update status |
-| params.progress.status.state | string | The firmware update state |
-| params.progress.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
+| params.status | FirmwareUpdateStatusData | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
+| params.status.upgradeSessionId | string | The firmware update session identifier  |
+| params.status.macAddress | string | The MAC address of the remote in hex-colon format  |
+| params.status.upgradeState | string | The firmware update state |
+| params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
+| params.status.errorString | string | The firmware update error string, only present on failure |
 
 ### Examples
 
@@ -1248,10 +1252,12 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "id": 19,
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
-        "sessionId": "12345-abc-def",
         "status": {
-            "state": "DOWNLOADING",
-            "percentComplete": 50
+            "upgradeSessionId": "12345-abc-def",
+            "macAddress": "AA:BB:CC:DD:EE:FF",
+            "upgradeState": "DOWNLOADING",
+            "percentComplete": 50,
+            "errorString": ""
         }
     }
 }
