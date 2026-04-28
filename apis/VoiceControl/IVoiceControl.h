@@ -33,9 +33,9 @@ namespace WPEFramework {
         // Enums for Voice Control
 
         enum class DeviceType : uint8_t {
-            PTT /* @text PTT */,
-            FF  /* @text FF */,
-            MIC /* @text MIC */
+            PTT /* @text ptt */,
+            FF  /* @text ff */,
+            MIC /* @text mic */
         };
 
         enum class SessionResult : uint8_t {
@@ -107,44 +107,6 @@ namespace WPEFramework {
             DeviceStatus micTap  /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
             string capabilities  /* @opaque @brief JSON array of capability strings returned by the voice stack */;
             bool success         /* @brief Whether the request succeeded */;
-        };
-
-        struct EXTERNAL SessionBeginEvent {
-            uint32_t remoteId        /* @brief The voice device identifier ex: 1 */;
-            string sessionId         /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            DeviceType deviceType    /* @brief The type of voice device starting the session. Possible values: PTT, FF, MIC */;
-            bool keywordVerification /* @brief True if the session uses keyword verification, otherwise false */;
-        };
-
-        struct EXTERNAL StreamBeginEvent {
-            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
-            string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-        };
-
-        struct EXTERNAL KeywordVerificationEvent {
-            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
-            string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            bool verified     /* @brief True if the keyword was verified, otherwise false */;
-        };
-
-        struct EXTERNAL ServerMessageEvent {
-            string msgType    /* @brief Message type from the server e.g. "asr" */;
-            string trx        /* @brief The unique id of the voice session e.g. "12345-abc" */;
-            uint64_t created  /* @brief The timestamp for server information in milliseconds since epoch */;
-            string msgPayload /* @brief Vrex server information */;
-        };
-
-        struct EXTERNAL StreamEndEvent {
-            uint32_t remoteId /* @brief The voice device identifier ex: 1 */;
-            string sessionId  /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            uint8_t reason    /* @brief The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown ex: 0 */;
-        };
-
-        struct EXTERNAL SessionEndEvent {
-            ServerStats serverStats /* @brief Returns the voice server stats */;
-            uint32_t remoteId       /* @brief The voice device identifier ex: 1 */;
-            string sessionId        /* @brief The unique identifier for the voice session e.g. "session-12345" */;
-            SessionResult result    /* @brief The result of the voice session. Possible values: success, error, abort, shortUtterance */;
         };
 
         /* @json 1.0.0 @text:keep */
@@ -263,33 +225,52 @@ namespace WPEFramework {
 
                 // @brief Triggered when a voice session begins
                 // @text onSessionBegin
-                // @param event: Session begin event data including remote ID, session ID, device type, and keyword verification status
-                virtual void OnSessionBegin(const SessionBeginEvent& event) {}
+                // @param remoteId: The voice device identifier ex: 1
+                // @param sessionId: The unique identifier for the voice session e.g. "session-12345"
+                // @param deviceType: The type of voice device starting the session. Possible values: ptt, ff, mic
+                // @param keywordVerification: True if the session uses keyword verification, otherwise false
+                virtual void OnSessionBegin(const uint32_t remoteId, const string& sessionId, const DeviceType deviceType, const bool keywordVerification) {}
 
                 // @brief Triggered when a device starts streaming voice data to the RDK
                 // @text onStreamBegin
-                // @param event: Stream begin event data including remote ID and session ID
-                virtual void OnStreamBegin(const StreamBeginEvent& event) {}
+                // @param remoteId: The voice device identifier ex: 1
+                // @param sessionId: The unique identifier for the voice session e.g. "session-12345"
+                virtual void OnStreamBegin(const uint32_t remoteId, const string& sessionId) {}
 
                 // @brief Triggered when a keyword verification result is received
                 // @text onKeywordVerification
-                // @param event: Keyword verification event data including remote ID, session ID, and verification result
-                virtual void OnKeywordVerification(const KeywordVerificationEvent& event) {}
+                // @param remoteId: The voice device identifier ex: 1
+                // @param sessionId: The unique identifier for the voice session e.g. "session-12345"
+                // @param verified: True if the keyword was verified, otherwise false
+                virtual void OnKeywordVerification(const uint32_t remoteId, const string& sessionId, const bool verified) {}
 
                 // @brief Triggered when a message is received from the Voice Server
                 // @text onServerMessage
-                // @param event: Server message event data including message type, transaction ID, timestamp, and message payload
-                virtual void OnServerMessage(const ServerMessageEvent& event) {}
+                // @param msgType: Message type from the server e.g. "asr"
+                // @param trx: The unique id of the voice session e.g. "12345-abc"
+                // @param created: The timestamp for server information in milliseconds since epoch
+                // @param msgPayload: Vrex server information
+                virtual void OnServerMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload /* @opaque */) {}
 
                 // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
-                // @param event: Stream end event data including remote ID, session ID, and reason code for stopping
-                virtual void OnStreamEnd(const StreamEndEvent& event) {}
+                // @param remoteId: The voice device identifier ex: 1
+                // @param sessionId: The unique identifier for the voice session e.g. "session-12345"
+                // @param reason: The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown ex: 0
+                virtual void OnStreamEnd(const uint32_t remoteId, const string& sessionId, const uint8_t reason) {}
 
                 // @brief Triggered when the interaction with the server has concluded
                 // @text onSessionEnd
-                // @param event: Session end event data including server stats, remote ID, session ID, and session result
-                virtual void OnSessionEnd(const SessionEndEvent& event) {}
+                // @param remoteId: The voice device identifier ex: 1
+                // @param sessionId: The unique identifier for the voice session e.g. "session-12345"
+                // @param result: The result of the voice session. Possible values: success, error, abort, shortUtterance
+                // @param serverStats: The voice server stats
+                // @param success: Result data for a successful voice session containing transcription
+                // @param error: Result data for a failed voice session containing error codes
+                // @param abort: Result data for an aborted voice session containing reason
+                // @param shortUtterance: Result data for a short utterance voice session containing reason
+                // @param stbStats: STB statistics including device type, firmware, and controller info
+                virtual void OnSessionEnd(const uint32_t remoteId, const string& sessionId, const SessionResult result, const ServerStats& serverStats, const string& success /* @optional @opaque */, const string& error /* @optional @opaque */, const string& abort /* @optional @opaque */, const string& shortUtterance /* @optional @opaque */, const string& stbStats /* @optional @opaque */) {}
             };
 
             // @json:omit
