@@ -99,18 +99,17 @@ namespace WPEFramework {
             bool success                /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL FirmwareUpdateStatus {
-            FirmwareUpdateState state /* @brief The firmware update state */;
-            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
+        struct EXTERNAL FirmwareUpdateStatusData {
+            string upgradeSessionId    /* @brief The firmware update session identifier ex: 12345-abc-def */;
+            string macAddress          /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
+            FirmwareUpdateState upgradeState /* @brief The firmware update state */;
+            uint32_t percentComplete   /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
+            string errorString         /* @optional @brief The firmware update error string, only present on failure */;
         };
 
         struct EXTERNAL StatusFirmwareUpdateResponse {
-            string sessionId          /* @brief The firmware update session identifier ex: 12345-abc-def */;
-            string macAddress         /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
-            FirmwareUpdateState state /* @brief The firmware update state */;
-            uint32_t percentComplete  /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
-            string error              /* @optional @brief The firmware update error string, only present on failure */;
-            bool success              /* @brief Whether the request succeeded */;
+            bool success                   /* @brief Whether the request succeeded */;
+            FirmwareUpdateStatusData status /* @brief The firmware update status details including session ID, MAC address, upgrade state, and percent complete */;
         };
 
         struct EXTERNAL NetStatusData {
@@ -141,8 +140,7 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateProgressEvent {
-            string sessionId            /* @brief The session identifier ex: 12345-abc-def */;
-            FirmwareUpdateStatus status /* @brief The firmware update status */;
+            FirmwareUpdateStatusData status /* @brief The firmware update status including session ID, MAC address, upgrade state, and percent complete */;
         };
 
         /**
@@ -346,7 +344,7 @@ namespace WPEFramework {
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
             // @param sessionId: The session identifier e.g. "12345-abc-def"
-            // @param response: The firmware update status fields including sessionId, macAddress, state, percentComplete, optional error, and success
+            // @param response: The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString)
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
