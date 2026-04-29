@@ -45,19 +45,38 @@ The following methods are provided by the DeviceInfo plugin:
 
 DeviceInfo interface methods:
 
+**IDeviceAudioCapabilities methods**
+
 | Method | Description |
 | :-------- | :-------- |
 | [audiocapabilities](#audiocapabilities)<sup>deprecated</sup> | Audio capabilities for the specified audio port. |
-| [defaultresolution](#defaultresolution)<sup>deprecated</sup> | Default resolution on the selected video display port. |
 | [ms12capabilities](#ms12capabilities)<sup>deprecated</sup> | MS12 audio capabilities for the specified audio port. |
-| [supportedaudioports](#supportedaudioports) | Provides access to the audio ports supported on the device. |
-| [supportedhdcp](#supportedhdcp)<sup>deprecated</sup> | Supported hdcp version on the selected video display port. |
 | [supportedms12audioprofiles](#supportedms12audioprofiles)<sup>deprecated</sup> | Supported MS12 audio profiles for the specified audio port. |
+
+---
+
+**IDeviceInfo methods**
+
+| Method | Description |
+| :-------- | :-------- |
+| [supportedaudioports](#supportedaudioports) | Provides access to the audio ports supported on the device. |
+
+---
+
+**IDeviceVideoCapabilities methods**
+
+| Method | Description |
+| :-------- | :-------- |
+| [defaultresolution](#defaultresolution)<sup>deprecated</sup> | Default resolution on the selected video display port. |
+| [supportedhdcp](#supportedhdcp)<sup>deprecated</sup> | Supported hdcp version on the selected video display port. |
 | [supportedresolutions](#supportedresolutions)<sup>deprecated</sup> | Supported resolutions on the selected video display port. |
 | [supportedvideodisplays](#supportedvideodisplays)<sup>deprecated</sup> | Provides access to the video ports supported on the device. |
 
-<a id="audioCapabilities"></a>
-## *audioCapabilities*
+<a id="IDeviceAudioCapabilities-methods"></a>
+### IDeviceAudioCapabilities Methods
+
+<a id="audiocapabilities"></a>
+## *audiocapabilities*
 
 Audio capabilities for the specified audio port.
 
@@ -87,7 +106,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.DeviceInfo.audioCapabilities",
+    "method": "org.rdk.DeviceInfo.audiocapabilities",
     "params": {
         "audioPort": "HDMI0"
     }
@@ -98,7 +117,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audioCapabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -131,78 +150,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="defaultResolution"></a>
-## *defaultResolution*
-
-Default resolution on the selected video display port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.videoDisplay | string | Video display port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.defaultResolution | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.DeviceInfo.defaultResolution",
-    "params": {
-        "videoDisplay": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.defaultResolution", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "defaultResolution": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="mS12Capabilities"></a>
-## *mS12Capabilities*
+<a id="ms12capabilities"></a>
+## *ms12capabilities*
 
 MS12 audio capabilities for the specified audio port.
 
@@ -231,8 +180,8 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.DeviceInfo.mS12Capabilities",
+    "id": 1,
+    "method": "org.rdk.DeviceInfo.ms12capabilities",
     "params": {
         "audioPort": "HDMI0"
     }
@@ -243,7 +192,83 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.mS12Capabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "MS12Capabilities": [
+            "Dialogue_Enhancer",
+            "Dolby_Volume"
+        ],
+        "success": true
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="supportedms12audioprofiles"></a>
+## *supportedms12audioprofiles*
+
+Supported MS12 audio profiles for the specified audio port.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.audioPort | string | Audio port name |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.supportedMS12AudioProfiles | array | MS12 audio profiles |
+| result.supportedMS12AudioProfiles[#] | string |  |
+| result.success | bool | Indicates whether the operation was successful |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.DeviceInfo.supportedms12audioprofiles",
+    "params": {
+        "audioPort": "HDMI0"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -254,9 +279,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "MS12Capabilities": [
-            "Dialogue_Enhancer",
-            "Dolby_Volume"
+        "supportedMS12AudioProfiles": [
+            ""
         ],
         "success": true
     }
@@ -277,8 +301,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="supportedAudioPorts"></a>
-## *supportedAudioPorts*
+---
+
+<a id="IDeviceInfo-methods"></a>
+### IDeviceInfo Methods
+
+<a id="supportedaudioports"></a>
+## *supportedaudioports*
 
 Provides access to the audio ports supported on the device.
 
@@ -303,7 +332,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.DeviceInfo.supportedAudioPorts"
+    "method": "org.rdk.DeviceInfo.supportedaudioports"
 }
 ```
 
@@ -311,7 +340,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceInfo.supportedAudioPorts"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceInfo.supportedaudioports"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -344,8 +373,83 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="supportedHdcp"></a>
-## *supportedHdcp*
+---
+
+<a id="IDeviceVideoCapabilities-methods"></a>
+### IDeviceVideoCapabilities Methods
+
+<a id="defaultresolution"></a>
+## *defaultresolution*
+
+Default resolution on the selected video display port.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.videoDisplay | string | Video display port name |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.defaultResolution | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.DeviceInfo.defaultresolution",
+    "params": {
+        "videoDisplay": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceInfo.defaultresolution", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "defaultResolution": ""
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="supportedhdcp"></a>
+## *supportedhdcp*
 
 Supported hdcp version on the selected video display port.
 
@@ -372,8 +476,8 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.DeviceInfo.supportedHdcp",
+    "id": 5,
+    "method": "org.rdk.DeviceInfo.supportedhdcp",
     "params": {
         "videoDisplay": ""
     }
@@ -384,7 +488,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceInfo.supportedHdcp", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DeviceInfo.supportedhdcp", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -393,7 +497,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "result": {
         "supportedHDCPVersion": "HDCP_UNAVAILABLE"
     }
@@ -406,81 +510,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="supportedMS12AudioProfiles"></a>
-## *supportedMS12AudioProfiles*
-
-Supported MS12 audio profiles for the specified audio port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.audioPort | string | Audio port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedMS12AudioProfiles | array | MS12 audio profiles |
-| result.supportedMS12AudioProfiles[#] | string |  |
-| result.success | bool | Indicates whether the operation was successful |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.DeviceInfo.supportedMS12AudioProfiles",
-    "params": {
-        "audioPort": "HDMI0"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DeviceInfo.supportedMS12AudioProfiles", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "supportedMS12AudioProfiles": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
     "id": 5,
     "error": {
         "code": 1,
@@ -489,8 +518,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="supportedResolutions"></a>
-## *supportedResolutions*
+<a id="supportedresolutions"></a>
+## *supportedresolutions*
 
 Supported resolutions on the selected video display port.
 
@@ -520,7 +549,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "method": "org.rdk.DeviceInfo.supportedResolutions",
+    "method": "org.rdk.DeviceInfo.supportedresolutions",
     "params": {
         "videoDisplay": ""
     }
@@ -531,7 +560,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DeviceInfo.supportedResolutions", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DeviceInfo.supportedresolutions", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -564,8 +593,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="supportedVideoDisplays"></a>
-## *supportedVideoDisplays*
+<a id="supportedvideodisplays"></a>
+## *supportedvideodisplays*
 
 Provides access to the video ports supported on the device.
 
@@ -592,7 +621,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "method": "org.rdk.DeviceInfo.supportedVideoDisplays"
+    "method": "org.rdk.DeviceInfo.supportedvideodisplays"
 }
 ```
 
@@ -600,7 +629,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.DeviceInfo.supportedVideoDisplays"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.DeviceInfo.supportedvideodisplays"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -750,7 +779,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "method": "org.rdk.DeviceInfo.brand"
+    "method": "org.rdk.DeviceInfo.brandname"
 }
 ```
 
@@ -758,7 +787,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DeviceInfo.brand"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DeviceInfo.brandname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -810,7 +839,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "method": "org.rdk.DeviceInfo.chipSet"
+    "method": "org.rdk.DeviceInfo.chipset"
 }
 ```
 
@@ -818,7 +847,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DeviceInfo.chipSet"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DeviceInfo.chipset"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -870,7 +899,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "method": "org.rdk.DeviceInfo.deviceType"
+    "method": "org.rdk.DeviceInfo.devicetype"
 }
 ```
 
@@ -878,7 +907,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DeviceInfo.deviceType"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DeviceInfo.devicetype"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -930,7 +959,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "method": "org.rdk.DeviceInfo.distributorId"
+    "method": "org.rdk.DeviceInfo.distributorid"
 }
 ```
 
@@ -938,7 +967,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DeviceInfo.distributorId"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DeviceInfo.distributorid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -990,7 +1019,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "method": "org.rdk.DeviceInfo.estbIp"
+    "method": "org.rdk.DeviceInfo.estbip"
 }
 ```
 
@@ -998,7 +1027,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DeviceInfo.estbIp"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DeviceInfo.estbip"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1050,7 +1079,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 14,
-    "method": "org.rdk.DeviceInfo.estbMac"
+    "method": "org.rdk.DeviceInfo.estbmac"
 }
 ```
 
@@ -1058,7 +1087,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.DeviceInfo.estbMac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.DeviceInfo.estbmac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1110,7 +1139,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "method": "org.rdk.DeviceInfo.ethMac"
+    "method": "org.rdk.DeviceInfo.ethmac"
 }
 ```
 
@@ -1118,7 +1147,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.DeviceInfo.ethMac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.DeviceInfo.ethmac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1175,7 +1204,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "method": "org.rdk.DeviceInfo.firmwareVersion"
+    "method": "org.rdk.DeviceInfo.firmwareversion"
 }
 ```
 
@@ -1183,7 +1212,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DeviceInfo.firmwareVersion"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DeviceInfo.firmwareversion"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1241,7 +1270,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "method": "org.rdk.DeviceInfo.hostEDID"
+    "method": "org.rdk.DeviceInfo.hostedid"
 }
 ```
 
@@ -1249,7 +1278,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DeviceInfo.hostEDID"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DeviceInfo.hostedid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1361,7 +1390,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 19,
-    "method": "org.rdk.DeviceInfo.model"
+    "method": "org.rdk.DeviceInfo.modelname"
 }
 ```
 
@@ -1369,7 +1398,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DeviceInfo.model"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DeviceInfo.modelname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1421,7 +1450,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 20,
-    "method": "org.rdk.DeviceInfo.releaseVersion"
+    "method": "org.rdk.DeviceInfo.releaseversion"
 }
 ```
 
@@ -1429,7 +1458,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.DeviceInfo.releaseVersion"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.DeviceInfo.releaseversion"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1481,7 +1510,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 21,
-    "method": "org.rdk.DeviceInfo.serialNumber"
+    "method": "org.rdk.DeviceInfo.serialnumber"
 }
 ```
 
@@ -1489,7 +1518,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.DeviceInfo.serialNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.DeviceInfo.serialnumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1541,7 +1570,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 22,
-    "method": "org.rdk.DeviceInfo.sku"
+    "method": "org.rdk.DeviceInfo.modelid"
 }
 ```
 
@@ -1549,7 +1578,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.sku"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.modelid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1601,7 +1630,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 23,
-    "method": "org.rdk.DeviceInfo.socName"
+    "method": "org.rdk.DeviceInfo.socname"
 }
 ```
 
@@ -1609,7 +1638,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.socName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1675,7 +1704,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 24,
-    "method": "org.rdk.DeviceInfo.systemInfo"
+    "method": "org.rdk.DeviceInfo.systeminfo"
 }
 ```
 
@@ -1683,7 +1712,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.DeviceInfo.systemInfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1749,7 +1778,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 25,
-    "method": "org.rdk.DeviceInfo.wifiMac"
+    "method": "org.rdk.DeviceInfo.wifimac"
 }
 ```
 
@@ -1757,7 +1786,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.DeviceInfo.wifiMac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

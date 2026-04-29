@@ -906,7 +906,7 @@ Triggered when the cast service receives a launch request from a client with lau
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "method": "org.rdk.XCast.onApplicationLaunchRequestWithParam",
+    "method": "org.rdk.XCast.onApplicationLaunchRequest",
     "params": {
         "applicationName": "",
         "strPayLoad": "",

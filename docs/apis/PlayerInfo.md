@@ -264,7 +264,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.PlayerInfo.atmosMetadata"
+    "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"
 }
 ```
 
@@ -272,7 +272,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.atmosMetadata"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -310,7 +310,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.PlayerInfo.enableAtmosOutput",
+    "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput",
     "params": {
         "enable": true
     }
@@ -321,7 +321,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.enableAtmosOutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -356,7 +356,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode"
+    "method": "org.rdk.PlayerInfo.dolby_mode"
 }
 ```
 
@@ -364,7 +364,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -387,7 +387,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode",
+    "method": "org.rdk.PlayerInfo.dolby_mode",
     "params": {
         "mode": "DIGITAL_PCM"
     }
@@ -398,7 +398,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -434,7 +434,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PlayerInfo.soundMode"
+    "method": "org.rdk.PlayerInfo.dolby_soundmode"
 }
 ```
 
@@ -442,7 +442,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.soundMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.dolby_soundmode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -490,7 +490,7 @@ PlayerInfo interface events:
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.PlayerInfo.audioModeChanged",
+    "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
     "params": {
         "mode": "UNKNOWN",
         "enabled": true

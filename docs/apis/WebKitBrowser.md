@@ -46,14 +46,40 @@ The following methods are provided by the WebKitBrowser plugin:
 
 WebKitBrowser interface methods:
 
+**IApplication methods**
+
 | Method | Description |
 | :-------- | :-------- |
 | [reset](#reset) | Resets application data |
-| [addUserScript](#addUserScript) | Add user script to be executed at document start. |
-| [collectGarbage](#collectGarbage) | Initiate garbage collection |
+
+---
+
+**IBrowserCookieJar methods**
+
+| Method | Description |
+| :-------- | :-------- |
 | [setcoookiejar](#setcoookiejar) |  |
+
+---
+
+**IBrowserScripting methods**
+
+| Method | Description |
+| :-------- | :-------- |
+| [addUserScript](#addUserScript) | Add user script to be executed at document start. |
 | [removeAllUserScripts](#removeAllUserScripts) | Remove all user scripts. |
 | [runJavaScript](#runJavaScript) | Run javascript in main frame. |
+
+---
+
+**IWebBrowser methods**
+
+| Method | Description |
+| :-------- | :-------- |
+| [collectGarbage](#collectGarbage) | Initiate garbage collection |
+
+<a id="IApplication-methods"></a>
+### IApplication Methods
 
 <a id="reset"></a>
 ## *reset*
@@ -106,6 +132,71 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+---
+
+<a id="IBrowserCookieJar-methods"></a>
+### IBrowserCookieJar Methods
+
+<a id="setcoookiejar"></a>
+## *setcoookiejar*
+
+
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.version | integer |  |
+| params.checksum | integer |  |
+| params.payload | string | base64 encoded JSON string response to be delivered to $badger.callback |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.WebKitBrowser.setcoookiejar",
+    "params": {
+        "version": 0,
+        "checksum": 0,
+        "payload": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.setcoookiejar", "params": {"version": 0, "checksum": 0, "payload": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
+}
+```
+
+---
+
+<a id="IBrowserScripting-methods"></a>
+### IBrowserScripting Methods
+
 <a id="addUserScript"></a>
 ## *addUserScript*
 
@@ -132,7 +223,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "method": "org.rdk.WebKitBrowser.addUserScript",
     "params": {
         "script": "",
@@ -145,52 +236,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.addUserScript", "params": {"script": "", "topFrameOnly": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
-<a id="collectGarbage"></a>
-## *collectGarbage*
-
-Initiate garbage collection
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.WebKitBrowser.collectGarbage"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.WebKitBrowser.collectGarbage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.WebKitBrowser.addUserScript", "params": {"script": "", "topFrameOnly": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -200,61 +246,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": null
-}
-```
-
-<a id="cookieJar"></a>
-## *cookieJar*
-
-
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.version | integer |  |
-| params.checksum | integer |  |
-| params.payload | string | base64 encoded JSON string response to be delivered to $badger.callback |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.WebKitBrowser.cookieJar",
-    "params": {
-        "version": 0,
-        "checksum": 0,
-        "payload": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.cookieJar", "params": {"version": 0, "checksum": 0, "payload": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
     "result": null
 }
 ```
@@ -281,7 +272,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 2,
     "method": "org.rdk.WebKitBrowser.removeAllUserScripts"
 }
 ```
@@ -290,7 +281,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.removeAllUserScripts"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.removeAllUserScripts"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -299,7 +290,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 2,
     "result": null
 }
 ```
@@ -329,7 +320,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 3,
     "method": "org.rdk.WebKitBrowser.runJavaScript",
     "params": {
         "script": ""
@@ -341,7 +332,57 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.runJavaScript", "params": {"script": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.runJavaScript", "params": {"script": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": null
+}
+```
+
+---
+
+<a id="IWebBrowser-methods"></a>
+### IWebBrowser Methods
+
+<a id="collectGarbage"></a>
+## *collectGarbage*
+
+Initiate garbage collection
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.WebKitBrowser.collectGarbage"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.collectGarbage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

@@ -519,8 +519,11 @@ class HeaderFileParser:
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
+            owner_interface = self._get_scope_interface_name(scope[-1])
 
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
+            method_info['cpp_name'] = method_name
+            method_info['owner_interface'] = owner_interface
             # ignore these methods
             if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
                 return
@@ -538,7 +541,8 @@ class HeaderFileParser:
             elif 'property' in doxy_tags:
                 self.properties[method_name] = method_info
             else:
-                self.methods[method_name] = method_info
+                qualified_method_name = f"{owner_interface}::{method_name}" if owner_interface else method_name
+                self.methods[qualified_method_name] = method_info
         else:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register method: {method_object}")
@@ -760,11 +764,11 @@ class HeaderFileParser:
         """
         Makes a request JSON. Creates an example dynamically.
         """
-        camel_method_name = self.to_camel_case(method_name)
+        rpc_method_name = method_info.get('text') or self.to_camel_case(method_info.get('cpp_name', method_name.split('::')[-1]))
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": f"org.rdk.{self.classname}.{rpc_method_name}",
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -1047,6 +1051,9 @@ class HeaderFileParser:
 
     def sanitize_resolution_operator_from_type(self, type):
         return type.split('::')[-1]
+
+    def _get_scope_interface_name(self, scope_name):
+        return scope_name.replace('_HasJsonTag', '').replace('_HasEventTag', '')
 
     def count_parentheses(self, line):
         """

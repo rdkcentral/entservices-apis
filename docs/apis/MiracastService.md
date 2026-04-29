@@ -111,8 +111,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="getEnabled"></a>
-## *getEnabled*
+<a id="getEnable"></a>
+## *getEnable*
 
 To get the enable status of the Miracast feature
 
@@ -136,7 +136,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.MiracastService.getEnabled"
+    "method": "org.rdk.MiracastService.getEnable"
 }
 ```
 
@@ -144,7 +144,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastService.getEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastService.getEnable"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,8 +161,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="setEnabled"></a>
-## *setEnabled*
+<a id="setEnable"></a>
+## *setEnable*
 
 To enable or disable the Miracast feature
 
@@ -190,7 +190,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.MiracastService.setEnabled",
+    "method": "org.rdk.MiracastService.setEnable",
     "params": {
         "enabled": true
     }
@@ -201,7 +201,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastService.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastService.setEnable", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

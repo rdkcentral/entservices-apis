@@ -292,7 +292,7 @@ Sent when the CAS needs to send data to the caller
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.UnifiedCASManagement.onDataReceived",
+    "method": "org.rdk.UnifiedCASManagement.data",
     "params": {
         "payload": "",
         "source": "PUBLIC"

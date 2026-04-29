@@ -21,6 +21,7 @@
 
 import os
 import argparse
+from collections import Counter
 from header_file_parser import HeaderFileParser
 from logger import Logger
 from markdown_templates import (
@@ -34,6 +35,29 @@ from markdown_templates import (
     generate_property_markdown, 
     generate_configuration_options_section
 )
+
+
+def _to_camel_case(name):
+    return name[0].lower() + name[1:] if name and name[0].isupper() else name
+
+
+def annotate_method_display_metadata(header_structure):
+    """Annotate methods with stable display and anchor names for combined docs."""
+    base_names = []
+    for method_key, method_info in header_structure.methods.items():
+        base_names.append(method_info.get('text') or _to_camel_case(method_info.get('cpp_name', method_key.split('::')[-1])))
+
+    duplicate_counts = Counter(base_names)
+
+    for method_key, method_info in header_structure.methods.items():
+        base_name = method_info.get('text') or _to_camel_case(method_info.get('cpp_name', method_key.split('::')[-1]))
+        owner_interface = method_info.get('owner_interface', '')
+        if duplicate_counts[base_name] > 1 and owner_interface:
+            method_info['display_name'] = f"{base_name} ({owner_interface})"
+            method_info['anchor_name'] = f"{owner_interface}::{base_name}"
+        else:
+            method_info['display_name'] = base_name
+            method_info['anchor_name'] = base_name
 
 
 def combine_header_structures(main_structure, additional_structure):
@@ -83,10 +107,33 @@ def write_markdown_sections(file, header_structure, classname):
     # Write methods section
     if header_structure.methods:
         file.write(generate_methods_toc(header_structure.methods, classname))
-        for method_name, method_info in header_structure.methods.items():
-            file.write(generate_method_markdown(
-                method_name, method_info, header_structure.symbols_registry, 
-                classname, header_structure.events))
+
+        # Collect ordered unique interfaces
+        interfaces = []
+        seen = set()
+        for m_info in header_structure.methods.values():
+            iface = m_info.get('owner_interface', '')
+            if iface and iface not in seen:
+                seen.add(iface)
+                interfaces.append(iface)
+
+        if len(interfaces) > 1:
+            first = True
+            for iface in interfaces:
+                if not first:
+                    file.write("\n---\n")
+                file.write(f"\n<a id=\"{iface}-methods\"></a>\n### {iface} Methods\n")
+                for method_name, method_info in header_structure.methods.items():
+                    if method_info.get('owner_interface', '') == iface:
+                        file.write(generate_method_markdown(
+                            method_name, method_info, header_structure.symbols_registry,
+                            classname, header_structure.events))
+                first = False
+        else:
+            for method_name, method_info in header_structure.methods.items():
+                file.write(generate_method_markdown(
+                    method_name, method_info, header_structure.symbols_registry,
+                    classname, header_structure.events))
     
     file.write("\n")
     
@@ -117,6 +164,8 @@ def generate_md_from_individual_header_file(header_structure, output_doc_folder_
     os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
     if not header_structure.methods and not header_structure.properties and not header_structure.events:
         return
+
+    annotate_method_display_metadata(header_structure)
     
     with open(output_file_path, 'w', encoding='utf-8') as file:
         # Write header sections

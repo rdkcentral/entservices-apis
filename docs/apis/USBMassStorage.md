@@ -318,7 +318,7 @@ Device Unmounted notification @@iterator
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.USBMassStorage.onDeviceUnmounted",
+    "method": "org.rdk.USBMassStorage.onDeviceUnMounted",
     "params": {
         "deviceInfo": {
             "devicePath": "",

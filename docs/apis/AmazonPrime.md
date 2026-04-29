@@ -276,7 +276,7 @@ Triggered whenever the App state changes
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.AmazonPrime.stateChange",
+    "method": "org.rdk.AmazonPrime.StateChange",
     "params": {
         "state": "PLAYING"
     }

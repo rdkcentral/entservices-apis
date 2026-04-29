@@ -75,6 +75,15 @@ The following methods are provided by the {classname} plugin:
 | :-------- | :-------- |
 """
 
+METHODS_INTRO_TEMPLATE = """
+<a id="Methods"></a>
+# Methods
+
+The following methods are provided by the {classname} plugin:
+
+{classname} interface methods:
+"""
+
 METHOD_MARKDOWN_TEMPLATE = """
 <a id="{method_name}"></a>
 ## *{method_name}*
@@ -236,16 +245,49 @@ def generate_configuration_options_section(configuration_options):
             markdown += f"| {option_name} | {option_type} | {option_desc} |\n"
     return markdown
 
+def _ordered_interfaces(methods):
+    """Return a list of unique owner_interface values in insertion order."""
+    seen = set()
+    result = []
+    for method_info in methods.values():
+        iface = method_info.get('owner_interface', '')
+        if iface and iface not in seen:
+            seen.add(iface)
+            result.append(iface)
+    return result
+
+
 def generate_methods_toc(methods, classname):
     """
     Generate the methods table of contents for the markdown file.
+    When methods span multiple interfaces, each interface gets its own
+    labelled sub-table separated by a horizontal rule.
     """
+    interfaces = _ordered_interfaces(methods)
+
+    if len(interfaces) > 1:
+        toc = METHODS_INTRO_TEMPLATE.format(classname=classname)
+        first = True
+        for iface in interfaces:
+            if not first:
+                toc += "\n---\n"
+            toc += f"\n**{iface} methods**\n\n"
+            toc += "| Method | Description |\n| :-------- | :-------- |\n"
+            for method, method_info in methods.items():
+                if method_info.get('owner_interface', '') == iface:
+                    method_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+                    method_anchor = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+                    deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in method_info else ""
+                    toc += f"| [{method_name}](#{method_anchor}){deprecated_sup} | {method_info['brief'] or method_info['details']} |\n"
+            first = False
+        return toc
+
     toc = METHODS_TOC_TEMPLATE.format(classname=classname)
-    for method in methods:
-        method_info = methods[method]
-        method_name = method_info.get('text') or to_camel_case(method)
+    for method, method_info in methods.items():
+        method_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+        method_anchor = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
         deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in method_info else ""
-        toc += f"| [{method_name}](#{method_name}){deprecated_sup} | {method_info['brief'] or method_info['details']} |\n"
+        toc += f"| [{method_name}](#{method_anchor}){deprecated_sup} | {method_info['brief'] or method_info['details']} |\n"
     return toc
 
 def flatten_canonical_dict(canonical_dict, parent_prefix):
@@ -373,8 +415,10 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     """
     Generate the markdown for a specific method.
     """
-    method_name = to_camel_case(method_name)
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
+    display_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method_name.split('::')[-1])
+    anchor_name = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method_name.split('::')[-1])
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=anchor_name, method_description=method_info['details'] or method_info['brief'])
+    markdown = markdown.replace(f"## *{anchor_name}*", f"## *{display_name}*")
     if 'deprecated' in method_info:
         markdown += generate_deprecated_notice(method_info.get('deprecated', ''))
     markdown += generate_async_events_section(method_info.get('async_events', []), all_events)

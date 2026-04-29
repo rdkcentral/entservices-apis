@@ -2,7 +2,7 @@
 <a id="PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore2.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
 
 A PersistentStore plugin for Thunder framework.
 
@@ -314,7 +314,7 @@ PersistentStore interface events:
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PersistentStore.valueChanged",
+    "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
         "scope": "DEVICE",
         "namespace": "",
