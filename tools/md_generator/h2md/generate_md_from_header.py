@@ -66,9 +66,11 @@ def create_logger(classname, logfile_path=None):
 
 
 def find_main_header_file(header_files, plugin_name):
-    """Find the main header file, preferring plugin_name.h if it exists."""
-    main_header = f'{plugin_name}.h'
-    return main_header if main_header in header_files else header_files[0]
+    """Find the main header file, preferring I{plugin_name}.h, then {plugin_name}.h, then the first file."""
+    for candidate in (f'I{plugin_name}.h', f'{plugin_name}.h'):
+        if candidate in header_files:
+            return candidate
+    return header_files[0]
 
 
 def parse_header_file(header_file_path, classname, logger):
