@@ -1211,22 +1211,27 @@ class HeaderFileParser:
             return self.THUNDER_CORE_ERROR_CODES[base_name], None
         return None, None
 
+    # Names (base, without namespace prefix) that represent a success / no-error state.
+    SUCCESS_CODE_NAMES = {'ERROR_NONE', 'NONE', 'ERROR_OK'}
+
     def _process_retvals(self, raw_retvals):
         """
         Convert raw retvals dict (enum_name -> message) into a list of processed error objects
-        for non-ERROR_NONE entries. Each object has: enum_name, code, message.
+        for non-success entries whose code resolves to a numeric JSON-RPC error code.
+        Each object has: enum_name, code, message.
         """
         result = []
         for error_full_name, retval_message in raw_retvals.items():
             base_name = error_full_name.split('::')[-1]
-            if base_name == 'ERROR_NONE':
-                continue  # skip success code
+            if base_name in self.SUCCESS_CODE_NAMES:
+                continue  # skip success codes
             numeric_code, default_message = self._resolve_error_code(error_full_name)
+            if numeric_code is None:
+                continue  # skip codes that can't be resolved to a numeric JSON-RPC error code
             message = retval_message or default_message or base_name.replace('_', ' ').lower()
-            code = numeric_code if numeric_code is not None else error_full_name
             result.append({
                 'enum_name': error_full_name,
-                'code': code,
+                'code': numeric_code,
                 'message': message
             })
         return result

@@ -123,20 +123,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="executeCommand"></a>
 ## *executeCommand*
 
@@ -193,20 +179,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": {
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -269,20 +241,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="getContainerState"></a>
 ## *getContainerState*
 
@@ -337,20 +295,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
         "state": "INVALID",
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -413,20 +357,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="listContainers"></a>
 ## *listContainers*
 
@@ -475,20 +405,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
         "containers": "",
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -557,20 +473,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="pauseContainer"></a>
 ## *pauseContainer*
 
@@ -623,20 +525,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "result": {
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -699,20 +587,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="resumeContainer"></a>
 ## *resumeContainer*
 
@@ -765,20 +639,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "result": {
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -847,20 +707,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="startContainerFromDobbySpec"></a>
 ## *startContainerFromDobbySpec*
 
@@ -925,20 +771,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="stopContainer"></a>
 ## *stopContainer*
 
@@ -993,20 +825,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "result": {
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
@@ -1069,20 +887,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
-    }
-}
-```
-
 <a id="wakeupContainer"></a>
 ## *wakeupContainer*
 
@@ -1135,20 +939,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "result": {
         "success": true,
         "errorReason": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::NONE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": "ErrorCode::NONE",
-        "message": "Indicates successful state change"
     }
 }
 ```
