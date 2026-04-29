@@ -56,8 +56,8 @@ PlayerInfo interface properties:
 | [dolby_mode](#dolby_mode) | Dolby Mode |
 | [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
-<a id="AudioCodecs"></a>
-## *AudioCodecs*
+<a id="audioCodecs"></a>
+## *audioCodecs*
 
 
 
@@ -103,8 +103,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled*
+<a id="isAudioEquivalenceEnabled"></a>
+## *isAudioEquivalenceEnabled*
 
 Checks Loudness Equivalence in platform
 
@@ -149,8 +149,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="Resolution"></a>
-## *Resolution*
+<a id="resolution"></a>
+## *resolution*
 
 Current Video playback resolution
 
@@ -195,8 +195,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="VideoCodecs"></a>
-## *VideoCodecs*
+<a id="videoCodecs"></a>
+## *videoCodecs*
 
 
 
@@ -242,8 +242,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="AtmosMetadata"></a>
-## *AtmosMetadata*
+<a id="dolby_atmosmetadata"></a>
+## *dolby_atmosmetadata*
 
 Atmos capabilities of Sink
 
@@ -288,8 +288,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="EnableAtmosOutput"></a>
-## *EnableAtmosOutput*
+<a id="dolby_enableatmosoutput"></a>
+## *dolby_enableatmosoutput*
 
 Enable Atmos Audio Output
 
@@ -335,8 +335,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="Mode"></a>
-## *Mode*
+<a id="dolby_mode"></a>
+## *dolby_mode*
 
 Dolby Mode
 
@@ -412,8 +412,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="SoundMode"></a>
-## *SoundMode*
+<a id="dolby_soundmode"></a>
+## *dolby_soundmode*
 
 Sound Mode - Mono/Stereo/Surround
 

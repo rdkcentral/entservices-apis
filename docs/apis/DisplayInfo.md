@@ -232,8 +232,8 @@ DisplayInfo interface properties:
 | [verticalFreq](#verticalFreq)<sup>RO</sup> | Vertical Frequency |
 | [width](#width)<sup>RO</sup> | Horizontal resolution of TV |
 
-<a id="ColorSpace"></a>
-## *ColorSpace*
+<a id="colorSpace"></a>
+## *colorSpace*
 
 Provides access to the display's Colour space (chroma subsampling format)
 
@@ -278,8 +278,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="Colorimetry"></a>
-## *Colorimetry*
+<a id="colorimetry"></a>
+## *colorimetry*
 
 Provides access to display's colorimetry
 
@@ -325,8 +325,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="ColourDepth"></a>
-## *ColourDepth*
+<a id="colourDepth"></a>
+## *colourDepth*
 
 Provides access to display's colour Depth
 
@@ -371,8 +371,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="Connected"></a>
-## *Connected*
+<a id="connected"></a>
+## *connected*
 
 Current HDMI connection status
 
@@ -417,8 +417,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="EOTF"></a>
-## *EOTF*
+<a id="eOTF"></a>
+## *eOTF*
 
 Provides access to display's Electro optical transfer function
 
@@ -463,8 +463,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="FrameRate"></a>
-## *FrameRate*
+<a id="frameRate"></a>
+## *frameRate*
 
 Provides access to Frame Rate
 
@@ -509,8 +509,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="FreeGpuRam"></a>
-## *FreeGpuRam*
+<a id="freeGpuRam"></a>
+## *freeGpuRam*
 
 Free GPU DRAM memory (in bytes)
 
@@ -555,8 +555,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="HDCPProtection"></a>
-## *HDCPProtection*
+<a id="hDCPProtection"></a>
+## *hDCPProtection*
 
 HDCP protocol used for transmission
 
@@ -632,8 +632,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="HDRSetting"></a>
-## *HDRSetting*
+<a id="hDRSetting"></a>
+## *hDRSetting*
 
 HDR format in use
 
@@ -678,8 +678,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="Height"></a>
-## *Height*
+<a id="height"></a>
+## *height*
 
 Vertical resolution of TV
 
@@ -724,8 +724,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="IsAudioPassthrough"></a>
-## *IsAudioPassthrough*
+<a id="isAudioPassthrough"></a>
+## *isAudioPassthrough*
 
 Current audio passthrough status on HDMI
 
@@ -770,8 +770,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="PortName"></a>
-## *PortName*
+<a id="portName"></a>
+## *portName*
 
 Video output port on the STB used for connection to TV
 
@@ -816,8 +816,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="QuantizationRange"></a>
-## *QuantizationRange*
+<a id="quantizationRange"></a>
+## *quantizationRange*
 
 Provides access to display's Qauntization Range
 
@@ -862,8 +862,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="STBCapabilities"></a>
-## *STBCapabilities*
+<a id="sTBCapabilities"></a>
+## *sTBCapabilities*
 
 HDR formats supported by STB
 
@@ -909,8 +909,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="TVCapabilities"></a>
-## *TVCapabilities*
+<a id="tVCapabilities"></a>
+## *tVCapabilities*
 
 HDR formats supported by TV
 
@@ -956,8 +956,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="TotalGpuRam"></a>
-## *TotalGpuRam*
+<a id="totalGpuRam"></a>
+## *totalGpuRam*
 
 Total GPU DRAM memory (in bytes)
 
@@ -1002,8 +1002,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="VerticalFreq"></a>
-## *VerticalFreq*
+<a id="verticalFreq"></a>
+## *verticalFreq*
 
 Vertical Frequency
 
@@ -1048,8 +1048,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="Width"></a>
-## *Width*
+<a id="width"></a>
+## *width*
 
 Horizontal resolution of TV
 

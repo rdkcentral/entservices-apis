@@ -871,8 +871,8 @@ PowerManager interface properties:
 | [setNetworkStandbyMode](#setNetworkStandbyMode)<sup>WO</sup> | Set the standby mode for Network |
 | [setOvertempGraceInterval](#setOvertempGraceInterval)<sup>WO</sup> | Set Temperature Thresholds |
 
-<a id="GetLastWakeupKeyCode"></a>
-## *GetLastWakeupKeyCode*
+<a id="getLastWakeupKeyCode"></a>
+## *getLastWakeupKeyCode*
 
 Get the key code that can be used for wakeup
 
@@ -917,8 +917,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="GetLastWakeupReason"></a>
-## *GetLastWakeupReason*
+<a id="getLastWakeupReason"></a>
+## *getLastWakeupReason*
 
 Get Last Wake up reason
 
@@ -963,8 +963,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="GetOvertempGraceInterval"></a>
-## *GetOvertempGraceInterval*
+<a id="getOvertempGraceInterval"></a>
+## *getOvertempGraceInterval*
 
 Get Temperature Grace interval
 
@@ -1009,8 +1009,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="SetDeepSleepTimer"></a>
-## *SetDeepSleepTimer*
+<a id="setDeepSleepTimer"></a>
+## *setDeepSleepTimer*
 
 Set Deep sleep timer for timeOut period
 
@@ -1056,8 +1056,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="SetNetworkStandbyMode"></a>
-## *SetNetworkStandbyMode*
+<a id="setNetworkStandbyMode"></a>
+## *setNetworkStandbyMode*
 
 Set the standby mode for Network
 
@@ -1103,8 +1103,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-<a id="SetOvertempGraceInterval"></a>
-## *SetOvertempGraceInterval*
+<a id="setOvertempGraceInterval"></a>
+## *setOvertempGraceInterval*
 
 Set Temperature Thresholds
 

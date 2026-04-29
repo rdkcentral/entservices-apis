@@ -924,8 +924,8 @@ AppManager interface properties:
 | [getMaxInactiveRamUsage](#getMaxInactiveRamUsage)<sup>RO</sup> | Gets the max amount of ram available for inactive apps (in mebibytes) |
 | [getMaxRunningApps](#getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state |
 
-<a id="GetMaxHibernatedApps"></a>
-## *GetMaxHibernatedApps*
+<a id="getMaxHibernatedApps"></a>
+## *getMaxHibernatedApps*
 
 Get the maximum number of apps to maintain in the hibernated state
 
@@ -970,8 +970,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="GetMaxHibernatedFlashUsage"></a>
-## *GetMaxHibernatedFlashUsage*
+<a id="getMaxHibernatedFlashUsage"></a>
+## *getMaxHibernatedFlashUsage*
 
 Gets the max size of flash to use for hibernated apps (in mebibytes)
 
@@ -1016,8 +1016,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="GetMaxInactiveRamUsage"></a>
-## *GetMaxInactiveRamUsage*
+<a id="getMaxInactiveRamUsage"></a>
+## *getMaxInactiveRamUsage*
 
 Gets the max amount of ram available for inactive apps (in mebibytes)
 
@@ -1062,8 +1062,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-<a id="GetMaxRunningApps"></a>
-## *GetMaxRunningApps*
+<a id="getMaxRunningApps"></a>
+## *getMaxRunningApps*
 
 Gets the maximum number of apps to maintain in the running or suspended state
 

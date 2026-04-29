@@ -117,8 +117,8 @@ MessageControl interface properties:
 | :-------- | :-------- |
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls |
 
-<a id="Controls"></a>
-## *Controls*
+<a id="controls"></a>
+## *controls*
 
 Retrieves a list of current message controls
 

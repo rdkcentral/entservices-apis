@@ -423,8 +423,8 @@ WebKitBrowser interface properties:
 | [userStyleSheets](#userStyleSheets) | User style sheets used by the browser |
 | [visibility](#visibility) | Browser window visibility state |
 
-<a id="ContentLink"></a>
-## *ContentLink*
+<a id="contentLink"></a>
+## *contentLink*
 
 URI of the associated application-specific content
 
@@ -470,8 +470,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="Identifier"></a>
-## *Identifier*
+<a id="identifier"></a>
+## *identifier*
 
 Application-specific identification string
 
@@ -516,8 +516,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="Language"></a>
-## *Language*
+<a id="language"></a>
+## *language*
 
 Current application user interface language
 
@@ -593,8 +593,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="LaunchPoint"></a>
-## *LaunchPoint*
+<a id="launchPoint"></a>
+## *launchPoint*
 
 Application launching point
 
@@ -670,8 +670,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="Visible"></a>
-## *Visible*
+<a id="visible"></a>
+## *visible*
 
 Current application visibility
 
@@ -747,8 +747,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="BridgeEvent"></a>
-## *BridgeEvent*
+<a id="bridgeEvent"></a>
+## *bridgeEvent*
 
 Send legacy $badger event.
 
@@ -794,8 +794,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="BridgeReply"></a>
-## *BridgeReply*
+<a id="bridgeReply"></a>
+## *bridgeReply*
 
 Response for legacy $badger.
 
@@ -841,8 +841,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="FPS"></a>
-## *FPS*
+<a id="fPS"></a>
+## *fPS*
 
 Current framerate the browser is rendering at
 
@@ -887,8 +887,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="HTTPCookieAcceptPolicy"></a>
-## *HTTPCookieAcceptPolicy*
+<a id="hTTPCookieAcceptPolicy"></a>
+## *hTTPCookieAcceptPolicy*
 
 HTTP cookies accept policy
 
@@ -964,8 +964,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="LocalStorageEnabled"></a>
-## *LocalStorageEnabled*
+<a id="localStorageEnabled"></a>
+## *localStorageEnabled*
 
 Controls the local storage availability
 
@@ -1041,8 +1041,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="MixedContentPolicy"></a>
-## *MixedContentPolicy*
+<a id="mixedContentPolicy"></a>
+## *mixedContentPolicy*
 
 Mixed content policy
 
@@ -1118,8 +1118,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="SecurityProfile"></a>
-## *SecurityProfile*
+<a id="securityProfile"></a>
+## *securityProfile*
 
 Security profile for secure connections
 
@@ -1195,8 +1195,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="URL"></a>
-## *URL*
+<a id="uRL"></a>
+## *uRL*
 
 Page loaded in the browser
 
@@ -1272,8 +1272,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="UserAgent"></a>
-## *UserAgent*
+<a id="userAgent"></a>
+## *userAgent*
 
 UserAgent string used by the browser
 
@@ -1349,8 +1349,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="UserScripts"></a>
-## *UserScripts*
+<a id="userScripts"></a>
+## *userScripts*
 
 User scripts used by the browser
 
@@ -1427,8 +1427,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="UserStyleSheets"></a>
-## *UserStyleSheets*
+<a id="userStyleSheets"></a>
+## *userStyleSheets*
 
 User style sheets used by the browser
 
@@ -1505,8 +1505,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="Visibility"></a>
-## *Visibility*
+<a id="visibility"></a>
+## *visibility*
 
 Browser window visibility state
 

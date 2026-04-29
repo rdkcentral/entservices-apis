@@ -495,7 +495,8 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     """
     Generate the markdown for a specific property.
     """
-    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['details'] or property_info['brief'])
+    display_name = property_info.get('text') or to_camel_case(property_name)
+    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=display_name, property_description=property_info['details'] or property_info['brief'])
     if 'deprecated' in property_info:
         markdown += generate_deprecated_notice(property_info.get('deprecated', ''))
     if property_info['property'] == 'read':
