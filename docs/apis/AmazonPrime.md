@@ -259,8 +259,8 @@ AmazonPrime interface events:
 | :-------- | :-------- |
 | [StateChange](#StateChange) | Triggered whenever the App state changes |
 
-<a id="stateChange"></a>
-## *stateChange*
+<a id="StateChange"></a>
+## *StateChange*
 
 Triggered whenever the App state changes
 

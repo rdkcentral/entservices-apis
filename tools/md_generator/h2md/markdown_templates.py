@@ -558,7 +558,7 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
     """
     Generate the markdown for a specific event.
     """
-    camel_event = to_camel_case(event_name)
+    camel_event = event_info.get('text') or to_camel_case(event_name)
     markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['details'] or event_info['brief'])
     if 'deprecated' in event_info:
         markdown += generate_deprecated_notice(event_info.get('deprecated', ''))

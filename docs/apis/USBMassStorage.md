@@ -294,8 +294,8 @@ Device Mounted notification @@iterator
 }
 ```
 
-<a id="onDeviceUnmounted"></a>
-## *onDeviceUnmounted*
+<a id="onDeviceUnMounted"></a>
+## *onDeviceUnMounted*
 
 Device Unmounted notification @@iterator
 

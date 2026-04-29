@@ -274,8 +274,8 @@ UnifiedCASManagement interface events:
 | :-------- | :-------- |
 | [data](#data) | Sent when the CAS needs to send data to the caller |
 
-<a id="onDataReceived"></a>
-## *onDataReceived*
+<a id="data"></a>
+## *data*
 
 Sent when the CAS needs to send data to the caller
 

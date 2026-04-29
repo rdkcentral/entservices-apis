@@ -410,7 +410,7 @@ WebKitBrowser interface properties:
 | [language](#language) | Current application user interface language |
 | [launchPoint](#launchPoint) | Application launching point |
 | [visible](#visible) | Current application visibility |
-| [bridgeEvent](#bridgeEvent)<sup>WO</sup> | Send legacy $badger  |
+| [bridgeEvent](#bridgeEvent)<sup>WO</sup> | Send legacy $badger event. |
 | [bridgeReply](#bridgeReply)<sup>WO</sup> | Response for legacy $badger. |
 | [fPS](#fPS)<sup>RO</sup> | Current framerate the browser is rendering at |
 | [hTTPCookieAcceptPolicy](#hTTPCookieAcceptPolicy) | HTTP cookies accept policy |
@@ -750,7 +750,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="BridgeEvent"></a>
 ## *BridgeEvent*
 
-Send legacy $badger 
+Send legacy $badger event.
 
 > This property is write-only.
 ### Events

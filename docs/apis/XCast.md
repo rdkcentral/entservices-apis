@@ -886,8 +886,8 @@ Triggered when the cast service receives a launch request from a client with lau
 }
 ```
 
-<a id="onApplicationLaunchRequestWithParam"></a>
-## *onApplicationLaunchRequestWithParam*
+<a id="onApplicationLaunchRequest"></a>
+## *onApplicationLaunchRequest*
 
 Triggered when the cast service receives a launch request from a client with launch params
 

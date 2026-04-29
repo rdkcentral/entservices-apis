@@ -472,8 +472,8 @@ PlayerInfo interface events:
 | :-------- | :-------- |
 | [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
 
-<a id="audioModeChanged"></a>
-## *audioModeChanged*
+<a id="dolby_audiomodechanged"></a>
+## *dolby_audiomodechanged*
 
 
 
