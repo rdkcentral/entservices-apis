@@ -688,7 +688,7 @@ class HeaderFileParser:
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
         if example is not None:
-              self.symbols_registry[unique_id]['example'] = self.wrap_example_if_iterator(unique_id, example)
+            self.symbols_registry[unique_id]['example'] = self.wrap_example_if_iterator(unique_id, example)
         elif not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
             self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
