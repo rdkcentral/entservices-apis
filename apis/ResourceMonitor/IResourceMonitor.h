@@ -26,6 +26,8 @@ namespace WPEFramework {
         struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
             enum { ID = ID_RESOURCEMONITOR };
 
+            typedef string EventData;
+
             enum class CaptureMode : uint8_t {
                 NONE = 0 /* @text: NONE */,
                 LIVE = 1 /* @text: LIVE */,
@@ -56,9 +58,9 @@ namespace WPEFramework {
 
                 // @brief Notification with resource monitor data
                 // @text onResourceMonitorData
-                // @param data string, which contains serialized JSON Lines with data
+                // @param data EventData, which contains serialized JSON Lines with data
                 // samples
-                virtual void OnResourceMonitorData(const string &events) = 0;
+                virtual void OnResourceMonitorData(const EventData &events) = 0;
             };
 
             ~IResourceMonitor() override = default;
@@ -77,7 +79,7 @@ namespace WPEFramework {
             // @param captureMode - in - CaptureMode
             // @returns uint32_t
             virtual uint32_t StartCapture(const uint32_t interval,
-                                        const CaptureMode captureMode)  = 0;
+                                        const CaptureMode captureMode) = 0;
 
             // @brief End capture session
             // @text stopCapture
