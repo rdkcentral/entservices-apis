@@ -26,8 +26,6 @@ namespace WPEFramework {
         struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
             enum { ID = ID_RESOURCEMONITOR };
 
-            typedef string EventData;
-
             enum class CaptureMode : uint8_t {
                 NONE = 0 /* @text: NONE */,
                 LIVE = 1 /* @text: LIVE */,
@@ -57,9 +55,10 @@ namespace WPEFramework {
                 ~INotification() override = default;
 
                 // @brief Notification with resource monitor data
-                // @param data EventData, which contains serialized JSON Lines with data
+                // @text onResourceMonitorData
+                // @param data string, which contains serialized JSON Lines with data
                 // samples
-                virtual void OnResourceMonitorData(const EventData &events) = 0;
+                virtual void OnResourceMonitorData(const string &events) = 0;
             };
 
             ~IResourceMonitor() override = default;
@@ -73,17 +72,30 @@ namespace WPEFramework {
             virtual uint32_t Configure(PluginHost::IShell *framework) = 0;
 
             // @brief Begin capture session
+            // @text startCapture
+            // @param interval - in - uint32_t
+            // @param captureMode - in - CaptureMode
+            // @returns uint32_t
             virtual uint32_t StartCapture(const uint32_t interval,
-                                        const CaptureMode captureMode) = 0;
+                                        const CaptureMode captureMode)  = 0;
 
             // @brief End capture session
+            // @text stopCapture
+            // @returns uint32_t
             virtual uint32_t StopCapture() = 0;
 
             // @brief Get current resource usage
+            // @text getCurrentUsage
+            // @param processPrefix - in - string
+            // @param measurementType - in - MeasurementType
+            // @returns uint32_t
             virtual uint32_t GetCurrentUsage(const string &processPrefix,
                                             const MeasurementType measurementType) = 0;
 
             // @brief Add custom label to dataset
+            // @text addLabel
+            // @param annotation - in - string
+            // @returns uint32_t
             virtual uint32_t AddLabel(const string &annotation) = 0;
         };
     } // namespace Exchange
