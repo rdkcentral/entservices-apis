@@ -54,18 +54,18 @@ AppStorageManager interface methods:
 
 Called by IUI.  This also clears device storage as well
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | string App identifier for the application. |
+| params.appId | string |  string App identifier for the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string | string error reason string |
+| result.errorReason | string |  string error reason string |
 
 ### Examples
 
@@ -108,18 +108,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Called by IUI.  This also clears device storage as well
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.exemptionAppIds | string | string Clears all app data except for the exempt app ids as a json format |
+| params.exemptionAppIds | string |  string Clears all app data except for the exempt app ids as a json format |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string | string error reason string |
+| result.errorReason | string |  string error reason string |
 
 ### Examples
 

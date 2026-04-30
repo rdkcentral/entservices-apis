@@ -59,8 +59,8 @@ FrontPanel interface methods:
 
 Gets the status of the Front Panel
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -115,15 +115,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the front panel lights
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedLights | IFrontPanelLightsListIterator | List of supported front panel lights |
+| result.supportedLights | array | List of supported front panel lights |
 | result.supportedLights[#] | string |  |
 | result.supportedLightsInfo | string | Information about the supported front panel lights |
 | result.success | bool | Is the operation successful or not |
@@ -170,13 +170,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Switches the specified LED off
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.index | string | Index of the brightness level |
+| params.index | string | Index of the LED to switch off |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -224,13 +224,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Switches the specified LED on
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.index | string | Index of the brightness level |
+| params.index | string | Index of the LED to switch on |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -278,8 +278,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -332,14 +332,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Sets the brightness of the specified LED
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.index | string | Index of the brightness level |
-| params.brightness | integer | Brightness level |
+| params.brightness | integer | Brightness level to set |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -388,14 +388,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Sets the LED with the specified color and brightness
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.ledIndicator | string | LED indicator to set |
-| params.brightness | integer | Brightness level |
+| params.brightness | integer | Brightness level of the LED |
 | params.color | string | Color of the LED |
 | params.red | integer | Red component of the LED color |
 | params.green | integer | Green component of the LED color |

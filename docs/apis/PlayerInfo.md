@@ -56,8 +56,8 @@ PlayerInfo interface properties:
 | [dolby_mode](#dolby_mode) | Dolby Mode |
 | [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
-<a id="AudioCodecs"></a>
-## *AudioCodecs*
+<a id="audioCodecs"></a>
+## *audioCodecs*
 
 
 
@@ -67,8 +67,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | IAudioCodecIterator |  |
-| (property).codec[#] | string |  |
+| (property).codec | array |  |
+| (property).codec[#] | string | Possible values: AUDIO_UNDEFINED, AUDIO_AAC, AUDIO_AC3, AUDIO_AC3_PLUS, AUDIO_DTS, AUDIO_MPEG1, AUDIO_MPEG2, AUDIO_MPEG3, AUDIO_MPEG4, AUDIO_OPUS, AUDIO_VORBIS_OGG, AUDIO_WAV |
 
 ### Examples
 
@@ -103,8 +103,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled*
+<a id="isAudioEquivalenceEnabled"></a>
+## *isAudioEquivalenceEnabled*
 
 Checks Loudness Equivalence in platform
 
@@ -149,8 +149,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="Resolution"></a>
-## *Resolution*
+<a id="resolution"></a>
+## *resolution*
 
 Current Video playback resolution
 
@@ -195,8 +195,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="VideoCodecs"></a>
-## *VideoCodecs*
+<a id="videoCodecs"></a>
+## *videoCodecs*
 
 
 
@@ -206,8 +206,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | IVideoCodecIterator |  |
-| (property).codec[#] | string |  |
+| (property).codec | array |  |
+| (property).codec[#] | string | Possible values: VIDEO_UNDEFINED, VIDEO_H263, VIDEO_H264, VIDEO_H265, VIDEO_H265_10, VIDEO_MPEG, VIDEO_MPEG2, VIDEO_MPEG4, VIDEO_VP8, VIDEO_VP9, VIDEO_VP10, VIDEO_AV1 |
 
 ### Examples
 
@@ -242,8 +242,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="AtmosMetadata"></a>
-## *AtmosMetadata*
+<a id="dolby_atmosmetadata"></a>
+## *dolby_atmosmetadata*
 
 Atmos capabilities of Sink
 
@@ -264,7 +264,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.PlayerInfo.atmosMetadata"
+    "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"
 }
 ```
 
@@ -272,7 +272,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.atmosMetadata"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -288,8 +288,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="EnableAtmosOutput"></a>
-## *EnableAtmosOutput*
+<a id="dolby_enableatmosoutput"></a>
+## *dolby_enableatmosoutput*
 
 Enable Atmos Audio Output
 
@@ -310,7 +310,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.PlayerInfo.enableAtmosOutput",
+    "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput",
     "params": {
         "enable": true
     }
@@ -321,7 +321,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.enableAtmosOutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -335,8 +335,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="Mode"></a>
-## *Mode*
+<a id="dolby_mode"></a>
+## *dolby_mode*
 
 Dolby Mode
 
@@ -356,7 +356,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode"
+    "method": "org.rdk.PlayerInfo.dolby_mode"
 }
 ```
 
@@ -364,7 +364,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -387,7 +387,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode",
+    "method": "org.rdk.PlayerInfo.dolby_mode",
     "params": {
         "mode": "DIGITAL_PCM"
     }
@@ -398,7 +398,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -412,8 +412,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="SoundMode"></a>
-## *SoundMode*
+<a id="dolby_soundmode"></a>
+## *dolby_soundmode*
 
 Sound Mode - Mono/Stereo/Surround
 
@@ -423,7 +423,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | string |  |
+| (property).mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
 
 ### Examples
 
@@ -434,7 +434,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PlayerInfo.soundMode"
+    "method": "org.rdk.PlayerInfo.dolby_soundmode"
 }
 ```
 
@@ -442,7 +442,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.soundMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.dolby_soundmode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -472,8 +472,8 @@ PlayerInfo interface events:
 | :-------- | :-------- |
 | [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
 
-<a id="audioModeChanged"></a>
-## *audioModeChanged*
+<a id="dolby_audiomodechanged"></a>
+## *dolby_audiomodechanged*
 
 
 
@@ -481,7 +481,7 @@ PlayerInfo interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mode | string |  |
+| params.mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
 | params.enabled | bool |  |
 
 ### Examples
@@ -490,7 +490,7 @@ PlayerInfo interface events:
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.PlayerInfo.audioModeChanged",
+    "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
     "params": {
         "mode": "UNKNOWN",
         "enabled": true

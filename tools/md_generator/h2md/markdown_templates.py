@@ -75,6 +75,15 @@ The following methods are provided by the {classname} plugin:
 | :-------- | :-------- |
 """
 
+METHODS_INTRO_TEMPLATE = """
+<a id="Methods"></a>
+# Methods
+
+The following methods are provided by the {classname} plugin:
+
+{classname} interface methods:
+"""
+
 METHOD_MARKDOWN_TEMPLATE = """
 <a id="{method_name}"></a>
 ## *{method_name}*
@@ -157,9 +166,42 @@ EXAMPLE_NOTIFICATION_TEMPLATE = """
 ```
 """
 
+DEPRECATED_NOTICE = "> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations."
+
 def to_camel_case(name):
     """Convert UpperCamelCase to lowerCamelCase."""
     return name[0].lower() + name[1:] if name and name[0].isupper() else name
+
+def generate_deprecated_notice(deprecated_text):
+    """
+    Generate a standard deprecated notice block, optionally followed by custom guidance.
+    """
+    markdown = f"{DEPRECATED_NOTICE}"
+    if deprecated_text:
+        markdown += f" {deprecated_text.strip()}"
+    return markdown + "\n\n"
+
+def generate_error_examples_section(retvals, request_id):
+    """
+    Generate JSON error response examples for each non-ERROR_NONE retval entry.
+    Appended to the Examples section after the success response.
+    """
+    if not retvals:
+        return ''
+    markdown = ''
+    for retval in retvals:
+        error_response = {
+            "jsonrpc": "2.0",
+            "id": request_id,
+            "error": {
+                "code": retval['code'],
+                "message": retval['message']
+            }
+        }
+        enum_name = retval['enum_name']
+        markdown += f"\n\n#### Error Response ({enum_name})\n"
+        markdown += f"\n```json\n{json.dumps(_convert_json_types(error_response), indent=4)}\n```\n"
+    return markdown
 
 def generate_header_toc(classname, document_object, version, foldername):
     """
@@ -203,15 +245,49 @@ def generate_configuration_options_section(configuration_options):
             markdown += f"| {option_name} | {option_type} | {option_desc} |\n"
     return markdown
 
+def _ordered_interfaces(methods):
+    """Return a list of unique owner_interface values in insertion order."""
+    seen = set()
+    result = []
+    for method_info in methods.values():
+        iface = method_info.get('owner_interface', '')
+        if iface and iface not in seen:
+            seen.add(iface)
+            result.append(iface)
+    return result
+
+
 def generate_methods_toc(methods, classname):
     """
     Generate the methods table of contents for the markdown file.
+    When methods span multiple interfaces, each interface gets its own
+    labelled sub-table separated by a horizontal rule.
     """
+    interfaces = _ordered_interfaces(methods)
+
+    if len(interfaces) > 1:
+        toc = METHODS_INTRO_TEMPLATE.format(classname=classname)
+        first = True
+        for iface in interfaces:
+            if not first:
+                toc += "\n---\n"
+            toc += f"\n**{iface} methods**\n\n"
+            toc += "| Method | Description |\n| :-------- | :-------- |\n"
+            for method, method_info in methods.items():
+                if method_info.get('owner_interface', '') == iface:
+                    method_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+                    method_anchor = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+                    deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in method_info else ""
+                    toc += f"| [{method_name}](#{method_anchor}){deprecated_sup} | {method_info['brief'] or method_info['details']} |\n"
+            first = False
+        return toc
+
     toc = METHODS_TOC_TEMPLATE.format(classname=classname)
-    for method in methods:
-        method_info = methods[method]
-        method_name = method_info.get('text') or to_camel_case(method)
-        toc += f"| [{method_name}](#{method_name}) | {method_info['brief'] or method_info['details']} |\n"
+    for method, method_info in methods.items():
+        method_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+        method_anchor = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method.split('::')[-1])
+        deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in method_info else ""
+        toc += f"| [{method_name}](#{method_anchor}){deprecated_sup} | {method_info['brief'] or method_info['details']} |\n"
     return toc
 
 def flatten_canonical_dict(canonical_dict, parent_prefix):
@@ -277,7 +353,10 @@ def generate_parameters_section(params, symbol_registry):
         markdown += f"| params | object |  |\n"
         for param in params:
             param_key = f"{param['name']}-{param['type']}"
-            flattened_params = symbol_registry[param_key]['flattened_description']
+            flattened_params = dict(symbol_registry[param_key]['flattened_description'])
+            if param['description']:
+                first_key = next(iter(flattened_params))
+                flattened_params[first_key] = {**flattened_params[first_key], 'description': param['description']}
             for param_name, param_data in flattened_params.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
                 if param['custom_name']:
@@ -296,13 +375,19 @@ def generate_results_section(results, symbol_registry):
     if results:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         if len(results) == 1:
-            result_info = symbol_registry[f"{results[0]['name']}-{results[0]['type']}"]
-            if 'unwrapped' in result_info and result_info['unwrapped']:
-                markdown += f"| result | {result_info['type']} | {result_info['description']} |\n"
+            result_info = results[0]
+            if result_info.get('unwrapped'):
+                result_type = result_info.get('type', '')
+                result_description = result_info.get('description', '')
+                markdown += f"| result | {result_type} | {result_description} |\n"
                 return markdown
         markdown += f"| result | object |  |\n"
         for result in results:
-            flattened_results = symbol_registry[f"{result['name']}-{result['type']}"]['flattened_description']
+            result_key = f"{result['name']}-{result['type']}"
+            flattened_results = dict(symbol_registry[result_key]['flattened_description'])
+            if result['description']:
+                first_key = next(iter(flattened_results))
+                flattened_results[first_key] = {**flattened_results[first_key], 'description': result['description']}
             for result_name, result_data in flattened_results.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
                 if result['custom_name']:
@@ -330,9 +415,13 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     """
     Generate the markdown for a specific method.
     """
-    method_name = to_camel_case(method_name)
-    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=method_name, method_description=method_info['details'] or method_info['brief'])
-    markdown += generate_events_section(method_info['events'], all_events)
+    display_name = method_info.get('display_name') or method_info.get('text') or to_camel_case(method_name.split('::')[-1])
+    anchor_name = method_info.get('anchor_name') or method_info.get('text') or to_camel_case(method_name.split('::')[-1])
+    markdown = METHOD_MARKDOWN_TEMPLATE.format(method_name=anchor_name, method_description=method_info['details'] or method_info['brief'])
+    markdown = markdown.replace(f"## *{anchor_name}*", f"## *{display_name}*")
+    if 'deprecated' in method_info:
+        markdown += generate_deprecated_notice(method_info.get('deprecated', ''))
+    markdown += generate_async_events_section(method_info.get('async_events', []), all_events)
     markdown += generate_parameters_section(method_info['params'], symbol_registry)
     markdown += generate_results_section(method_info['results'], symbol_registry)
     markdown += generate_errors_section(method_info['errors'])
@@ -340,6 +429,10 @@ def generate_method_markdown(method_name, method_info, symbol_registry, classnam
     markdown += generate_request_section(method_info['request'], '', classname)
     markdown += generate_curl_request_section(method_info['request'],'',classname)
     markdown += generate_response_section(method_info['response'], '', classname)
+    retvals = method_info.get('retvals', [])
+    if retvals:
+        request_id = method_info.get('request', {}).get('id', 0)
+        markdown += generate_error_examples_section(retvals, request_id)
     return markdown
 
 def generate_events_section(events, all_events=None):
@@ -357,6 +450,29 @@ def generate_events_section(events, all_events=None):
         markdown += "Event details will be updated soon.\n"
     return markdown
 
+def generate_async_events_section(async_events, all_events=None):
+    """
+    Generate the Events Triggered section for a method.
+    Links each @asyncevents entry to the matching notification anchor when available.
+    """
+    markdown = "### Events Triggered\n"
+    if not async_events:
+        markdown += "None\n"
+        return markdown
+
+    event_lookup = {}
+    if all_events:
+        for event_name, event_info in all_events.items():
+            display_name = event_info.get('text') or to_camel_case(event_name)
+            event_lookup[event_name] = display_name
+            event_lookup[to_camel_case(event_name)] = display_name
+            event_lookup[display_name] = display_name
+
+    for async_event in async_events:
+        display_name = event_lookup.get(async_event, async_event)
+        markdown += f"- [{display_name}](#{display_name})\n"
+    return markdown
+
 def generate_properties_toc(properties, classname):
     """
     Generate the properties table of contents for the markdown file.
@@ -370,6 +486,8 @@ def generate_properties_toc(properties, classname):
             super_script = "<sup>RO</sup>"
         elif property_info['property'] == 'write':
             super_script = "<sup>WO</sup>"
+        if 'deprecated' in property_info:
+            super_script += "<sup>deprecated</sup>"
         toc += f"| [{property_name}](#{property_name}){super_script} | {property_info['brief'] or property_info['details']} |\n"
     return toc
 
@@ -377,7 +495,10 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
     """
     Generate the markdown for a specific property.
     """
-    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=property_name, property_description=property_info['details'] or property_info['brief'])
+    display_name = property_info.get('text') or to_camel_case(property_name)
+    markdown = PROPERTY_MARKDOWN_TEMPLATE.format(property_name=display_name, property_description=property_info['details'] or property_info['brief'])
+    if 'deprecated' in property_info:
+        markdown += generate_deprecated_notice(property_info.get('deprecated', ''))
     if property_info['property'] == 'read':
         markdown += "> This property is read-only.\n"
     elif property_info['property'] == 'write':
@@ -393,6 +514,13 @@ def generate_property_markdown(property_name, property_info, symbol_registry, cl
         markdown += generate_request_section(property_info['set_request'], 'Set ', classname)
         markdown += generate_curl_request_section(property_info['set_request'], 'Set ',classname)
         markdown += generate_response_section(property_info['set_response'], 'Set ', classname)
+    retvals = property_info.get('retvals', [])
+    if retvals:
+        if 'read' in property_info['property']:
+            request_id = property_info.get('get_request', {}).get('id', 0)
+        else:
+            request_id = property_info.get('set_request', {}).get('id', 0)
+        markdown += generate_error_examples_section(retvals, request_id)
     return markdown
 
 def generate_values_section(values, symbol_registry):
@@ -403,7 +531,11 @@ def generate_values_section(values, symbol_registry):
     if values:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""
         for value in values:
-            flattened_values = symbol_registry[f"{value['name']}-{value['type']}"]['flattened_description']
+            value_key = f"{value['name']}-{value['type']}"
+            flattened_values = dict(symbol_registry[value_key]['flattened_description'])
+            if value['description']:
+                first_key = next(iter(flattened_values))
+                flattened_values[first_key] = {**flattened_values[first_key], 'description': value['description']}
             for value_name, value_data in flattened_values.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
@@ -419,15 +551,18 @@ def generate_notifications_toc(events, classname):
     for event in events:
         event_info = events[event]
         event_name = event_info.get('text') or to_camel_case(event)
-        toc += f"| [{event_name}](#{event_name}) | {event_info['brief'] or event_info['details']} |\n"
+        deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in event_info else ""
+        toc += f"| [{event_name}](#{event_name}){deprecated_sup} | {event_info['brief'] or event_info['details']} |\n"
     return toc
 
 def generate_notification_markdown(event_name, event_info, symbol_registry, classname):
     """
     Generate the markdown for a specific event.
     """
-    camel_event = to_camel_case(event_name)
+    camel_event = event_info.get('text') or to_camel_case(event_name)
     markdown = EVENT_MARKDOWN_TEMPLATE.format(event_name=camel_event, event_description=event_info['details'] or event_info['brief'])
+    if 'deprecated' in event_info:
+        markdown += generate_deprecated_notice(event_info.get('deprecated', ''))
     markdown += generate_parameters_section(event_info['params'], symbol_registry)
     markdown += "\n### Examples\n"
     request = event_info['request']

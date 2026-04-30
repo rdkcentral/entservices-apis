@@ -47,7 +47,7 @@ ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) |Takes screenshot and uploads it to a specified URL, where the URL value is retrieved from an RFC parameter named Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.URL and Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.Enable that check whether screencapture is enabled.@param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
 
 <a id="sendScreenshot"></a>
@@ -55,8 +55,8 @@ ScreenCapture interface methods:
 
 Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -109,14 +109,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Takes a screenshot and uploads it to the specified URL
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.url | string | string |
-| params.callGUID | string | string |
+| params.url | string |  string |
+| params.callGUID | string |  string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -184,9 +184,9 @@ Triggered after uploading a screen capture
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | boolean |
-| params.message | string | string |
-| params.call_guid | string | string |
+| params.status | bool |  boolean |
+| params.message | string |  string |
+| params.call_guid | string |  string |
 
 ### Examples
 

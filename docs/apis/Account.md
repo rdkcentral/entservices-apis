@@ -54,15 +54,15 @@ Account interface methods:
 
 Gets the last reset time for Hotel Checkout.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.resetTime | integer | resetTime |
+| result.resetTime | integer | Time in UTC. Returns 0, if time is not available. |
 
 ### Examples
 
@@ -102,13 +102,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Sets the last reset time for Hotel Checkout.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.resetTime | integer | resetTime |
+| params.resetTime | integer | Time in UTC. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

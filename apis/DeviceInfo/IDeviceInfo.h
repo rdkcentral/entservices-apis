@@ -324,7 +324,11 @@ namespace Exchange {
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
+        // @example audioPort: HDMI0
         // @param AudioCapabilities: Audio capability
+        // @example AudioCapabilities: ATMOS
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         // @deprecated
@@ -333,7 +337,11 @@ namespace Exchange {
         // @text ms12capabilities
         // @brief MS12 audio capabilities for the specified audio port.
         // @param audioPort: Audio port name
+        // @example audioPort: HDMI0
         // @param MS12Capabilities: MS12 audio capability
+        // @example MS12Capabilities: ["Dialogue_Enhancer", "Dolby_Volume"]
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         // @deprecated

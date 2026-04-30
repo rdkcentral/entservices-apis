@@ -54,16 +54,16 @@ MessageControl interface methods:
 
 Enables/disables a message control
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.type | string | Type of message |
+| params.type | string | Message type |
 | params.category | string | Name of the message category (e.g. Information) |
 | params.module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
-| params.enabled | bool | Denotes if the control is enabled (true) or disabled (false) |
+| params.enabled | bool | Denotes if control should be enabled (true) or disabled (false) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -117,8 +117,8 @@ MessageControl interface properties:
 | :-------- | :-------- |
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls |
 
-<a id="Controls"></a>
-## *Controls*
+<a id="controls"></a>
+## *controls*
 
 Retrieves a list of current message controls
 
@@ -128,8 +128,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).control | IControlIterator |  |
-| (property).control[#].type | string | Type of message |
+| (property).control | array |  |
+| (property).control[#].type | string | Type of message. Possible values: TRACING, LOGGING, REPORTING, STANDARD_OUT, STANDARD_ERROR |
 | (property).control[#].category | string | Name of the message category (e.g. Information) |
 | (property).control[#].module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
 | (property).control[#].enabled | bool | Denotes if the control is enabled (true) or disabled (false) |

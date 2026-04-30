@@ -53,13 +53,13 @@ AppGateway interface methods:
 
 Adds additional Resolution paths to the gateway
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.paths | IStringIterator | Adds set of paths in the order of override to be used by gateway to update the resolutions |
+| params.paths | array | Adds set of paths in the order of override to be used by gateway to update the resolutions |
 | params.paths[#] | string |  |
 ### Results
 | Name | Type | Description |

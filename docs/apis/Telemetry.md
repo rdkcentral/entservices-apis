@@ -59,8 +59,8 @@ Telemetry interface methods:
 
 Abort report upload
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -104,8 +104,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Checks the telemetry opt-out status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -113,7 +113,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.Opt-Out | bool |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -154,14 +154,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Logs an application
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventName | string | string |
-| params.eventValue | string | string |
+| params.eventName | string |  string |
+| params.eventValue | string |  string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -207,8 +207,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Sets the telemetry opt-out status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -261,13 +261,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Sets the status of telemetry reporting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | string |
+| params.status | string |  string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -312,8 +312,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Uploading of telemetry report
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -376,7 +376,7 @@ Triggered by callback from Telemetry after report uploading
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.telemetryUploadStatus | string | string |
+| params.telemetryUploadStatus | string |  string |
 
 ### Examples
 

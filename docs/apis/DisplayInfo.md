@@ -2,7 +2,7 @@
 <a id="DisplayInfo_Plugin"></a>
 # DisplayInfo Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IConfiguration.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IDisplayInfo.h)**
 
 A DisplayInfo plugin for Thunder framework.
 
@@ -57,8 +57,8 @@ DisplayInfo interface methods:
 
 TV's Extended Display Identification Data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,8 +113,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Vertical size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -161,15 +161,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Horizontal size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.width | integer | width of TV in pixels |
+| result.width | integer | width in cm |
 
 ### Examples
 
@@ -232,8 +232,8 @@ DisplayInfo interface properties:
 | [verticalFreq](#verticalFreq)<sup>RO</sup> | Vertical Frequency |
 | [width](#width)<sup>RO</sup> | Horizontal resolution of TV |
 
-<a id="ColorSpace"></a>
-## *ColorSpace*
+<a id="colorSpace"></a>
+## *colorSpace*
 
 Provides access to the display's Colour space (chroma subsampling format)
 
@@ -278,8 +278,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="Colorimetry"></a>
-## *Colorimetry*
+<a id="colorimetry"></a>
+## *colorimetry*
 
 Provides access to display's colorimetry
 
@@ -289,8 +289,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).colorimetry | IColorimetryIterator | display colorimetry |
-| (property).colorimetry[#] | string |  |
+| (property).colorimetry | array | display colorimetry |
+| (property).colorimetry[#] | string | Possible values: COLORIMETRY_UNKNOWN, COLORIMETRY_OTHER, COLORIMETRY_SMPTE170M, COLORIMETRY_BT709, COLORIMETRY_XVYCC601, COLORIMETRY_XVYCC709, COLORIMETRY_SYCC601, COLORIMETRY_OPYCC601, COLORIMETRY_OPRGB, COLORIMETRY_BT2020YCCBCBRC, COLORIMETRY_BT2020RGB_YCBCR |
 
 ### Examples
 
@@ -325,8 +325,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="ColourDepth"></a>
-## *ColourDepth*
+<a id="colourDepth"></a>
+## *colourDepth*
 
 Provides access to display's colour Depth
 
@@ -371,8 +371,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-<a id="Connected"></a>
-## *Connected*
+<a id="connected"></a>
+## *connected*
 
 Current HDMI connection status
 
@@ -417,8 +417,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="EOTF"></a>
-## *EOTF*
+<a id="eOTF"></a>
+## *eOTF*
 
 Provides access to display's Electro optical transfer function
 
@@ -463,8 +463,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-<a id="FrameRate"></a>
-## *FrameRate*
+<a id="frameRate"></a>
+## *frameRate*
 
 Provides access to Frame Rate
 
@@ -509,8 +509,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-<a id="FreeGpuRam"></a>
-## *FreeGpuRam*
+<a id="freeGpuRam"></a>
+## *freeGpuRam*
 
 Free GPU DRAM memory (in bytes)
 
@@ -555,8 +555,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="HDCPProtection"></a>
-## *HDCPProtection*
+<a id="hDCPProtection"></a>
+## *hDCPProtection*
 
 HDCP protocol used for transmission
 
@@ -632,8 +632,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="HDRSetting"></a>
-## *HDRSetting*
+<a id="hDRSetting"></a>
+## *hDRSetting*
 
 HDR format in use
 
@@ -678,8 +678,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="Height"></a>
-## *Height*
+<a id="height"></a>
+## *height*
 
 Vertical resolution of TV
 
@@ -724,8 +724,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="IsAudioPassthrough"></a>
-## *IsAudioPassthrough*
+<a id="isAudioPassthrough"></a>
+## *isAudioPassthrough*
 
 Current audio passthrough status on HDMI
 
@@ -770,8 +770,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="PortName"></a>
-## *PortName*
+<a id="portName"></a>
+## *portName*
 
 Video output port on the STB used for connection to TV
 
@@ -816,8 +816,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="QuantizationRange"></a>
-## *QuantizationRange*
+<a id="quantizationRange"></a>
+## *quantizationRange*
 
 Provides access to display's Qauntization Range
 
@@ -862,8 +862,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-<a id="STBCapabilities"></a>
-## *STBCapabilities*
+<a id="sTBCapabilities"></a>
+## *sTBCapabilities*
 
 HDR formats supported by STB
 
@@ -873,8 +873,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
 
@@ -909,8 +909,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-<a id="TVCapabilities"></a>
-## *TVCapabilities*
+<a id="tVCapabilities"></a>
+## *tVCapabilities*
 
 HDR formats supported by TV
 
@@ -920,8 +920,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
 
@@ -956,8 +956,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-<a id="TotalGpuRam"></a>
-## *TotalGpuRam*
+<a id="totalGpuRam"></a>
+## *totalGpuRam*
 
 Total GPU DRAM memory (in bytes)
 
@@ -1002,8 +1002,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-<a id="VerticalFreq"></a>
-## *VerticalFreq*
+<a id="verticalFreq"></a>
+## *verticalFreq*
 
 Vertical Frequency
 
@@ -1048,8 +1048,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="Width"></a>
-## *Width*
+<a id="width"></a>
+## *width*
 
 Horizontal resolution of TV
 
@@ -1117,7 +1117,7 @@ DisplayInfo interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | string |  |
+| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE |
 
 ### Examples
 

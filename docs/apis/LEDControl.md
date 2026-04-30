@@ -55,15 +55,15 @@ LEDControl interface methods:
 
 Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | LEDControlState.  |
+| result.state | string | LEDState |
 
 ### Examples
 
@@ -103,15 +103,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedLEDStates | IStringIterator | string [] of supported LED states.  |
+| result.supportedLEDStates | array | string [] of supported LED states.  |
 | result.supportedLEDStates[#] | string |  |
 | result.success | bool | boolean |
 
@@ -156,8 +156,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

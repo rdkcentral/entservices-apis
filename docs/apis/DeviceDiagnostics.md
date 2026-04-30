@@ -57,8 +57,8 @@ DeviceDiagnostics interface methods:
 
 Gets the most active status of audio/video decoder/pipeline
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -105,22 +105,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the values associated with the corresponding property names
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.names | IStringIterator | String array of property names |
+| params.names | array |  String array of property names |
 | params.names[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.paramList | IDeviceDiagnosticsParamListIterator | specified properties and their values |
+| result.paramList | array |  specified properties and their values |
 | result.paramList[#].name | string | name |
 | result.paramList[#].value | string | value |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -169,17 +169,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Returns the list of milestones
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.milestones | IStringIterator | A string [] of milestones |
+| result.milestones | array |  A string [] of milestones |
 | result.milestones[#] | string |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -222,18 +222,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Log marker string to rdk milestones log
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.marker | string | string |
+| params.marker | string |  string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool |  boolean |
 
 ### Examples
 
@@ -295,7 +295,7 @@ Triggered when the most active status of audio/video decoder/pipeline changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDecoderStatusChange | string | string |
+| params.avDecoderStatusChange | string |  string |
 
 ### Examples
 

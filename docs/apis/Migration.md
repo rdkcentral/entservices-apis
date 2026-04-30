@@ -55,15 +55,15 @@ Migration interface methods:
 
 query the BootType details
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string |  |
+| result.bootType | string | Possible values: BOOT_INIT, BOOT_NORMAL, BOOT_MIGRATION, BOOT_UPDATE |
 
 ### Examples
 
@@ -103,15 +103,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 get the MigrationStatus details
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.migrationStatus | string |  |
+| result.migrationStatus | string | Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 
 ### Examples
 
@@ -151,18 +151,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 sets the tr181 MigrationStatus parameter
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | enum |
+| params.status | string |  enum |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
+| result.success | bool |  struct |
 
 ### Examples
 

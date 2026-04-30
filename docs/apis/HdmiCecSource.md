@@ -66,8 +66,8 @@ HdmiCecSource interface methods:
 
 Gets the status if the device is the current active source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -116,8 +116,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the list of devices connected to the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -125,7 +125,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.numberofdevices | integer | Number of devices connected to the HDMI CEC source |
-| result.deviceList | IHdmiCecSourceDeviceListIterator | List of devices connected to the HDMI CEC source |
+| result.deviceList | array | List of devices connected to the HDMI CEC source |
 | result.deviceList[#].logicalAddress | integer |  |
 | result.deviceList[#].vendorID | string |  |
 | result.deviceList[#].osdName | string |  |
@@ -177,8 +177,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Gets the status of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -227,8 +227,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Gets the OSD name of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -277,8 +277,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Gets the OTP enabled status of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -327,8 +327,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Gets the vendor ID of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -377,8 +377,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Performs the OTP action
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -425,8 +425,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Sends a key press event to the HDMI CEC device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -481,8 +481,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Sends a standby message to another CEC device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -529,8 +529,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Sets the status of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -583,8 +583,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Sets the OSD name of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -637,13 +637,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Sets the OTP enabled status of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Is the HDMI CEC source enabled or not |
+| params.enabled | bool | Is the OTP enabled or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -691,8 +691,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Sets the vendor ID of the HDMI CEC source
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -842,7 +842,7 @@ Notifies when CEC device removed from CEC network
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the added device |
+| params.logicalAddress | int | Logical address of the removed device |
 
 ### Examples
 
@@ -866,7 +866,7 @@ Notifies when a key press CEC message is received from other CEC device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the added device |
+| params.logicalAddress | int | Logical address of the device |
 | params.keyCode | int | Key code of the key press event |
 
 ### Examples
@@ -892,7 +892,7 @@ Notifies when a key release CEC message is received from other CEC device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the added device |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 
@@ -916,7 +916,7 @@ Notifies when CEC standby message received from the other CEC device
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the added device |
+| params.logicalAddress | int | Logical address of the device |
 
 ### Examples
 

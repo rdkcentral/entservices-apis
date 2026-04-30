@@ -57,8 +57,8 @@ AmazonPrime interface methods:
 
 Factory reset amazon prime app data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -102,8 +102,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Request for personal access token to amazon prime app
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -147,8 +147,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Set the deeplink command for amazon prime
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -198,13 +198,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Set launch reason for amazon prime app
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.command | string | app Deeplink command |
+| params.command | string | app launch reason |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -259,8 +259,8 @@ AmazonPrime interface events:
 | :-------- | :-------- |
 | [StateChange](#StateChange) | Triggered whenever the App state changes |
 
-<a id="stateChange"></a>
-## *stateChange*
+<a id="StateChange"></a>
+## *StateChange*
 
 Triggered whenever the App state changes
 
@@ -276,7 +276,7 @@ Triggered whenever the App state changes
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.AmazonPrime.stateChange",
+    "method": "org.rdk.AmazonPrime.StateChange",
     "params": {
         "state": "PLAYING"
     }

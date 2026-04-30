@@ -55,15 +55,15 @@ PreinstallManager interface methods:
 
 Provides the state of the preinstallation process.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED @retval Core::ERROR_NONE: State retrieved successfully. @retval Core::ERROR_GENERAL: Failed to retrieve the preinstallation state. |
+| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED |
 
 ### Examples
 
@@ -98,18 +98,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Failed to retrieve the preinstallation state."
+    }
+}
+```
+
 <a id="startPreinstall"></a>
 ## *startPreinstall*
 
 Checks the preinstall directory for packages to be preinstalled and installs them as needed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.forceInstall | bool | If true always install the app; if false then install only if not installed or existing is older version @retval Core::ERROR_NONE: Preinstallation completed or started successfully. @retval Core::ERROR_GENERAL: An error occurred while starting or running preinstallation. |
+| params.forceInstall | bool | If true always install the app; if false then install only if not installed or existing is older version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -150,6 +164,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "An error occurred while starting or running preinstallation."
+    }
+}
+```
+
+
 
 <a id="Notifications"></a>
 # Notifications
@@ -162,7 +190,7 @@ PreinstallManager interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onAppInstallationStatus](#onAppInstallationStatus) | Emitted when the installation of a preinstalled app succeeds or fails. |
+| [onAppInstallationStatus](#onAppInstallationStatus)<sup>deprecated</sup> | Emitted when the installation of a preinstalled app succeeds or fails. |
 | [onPreinstallationComplete](#onPreinstallationComplete) | Emitted when the preinstallation process completes |
 
 <a id="onAppInstallationStatus"></a>
@@ -170,11 +198,13 @@ PreinstallManager interface events:
 
 Emitted when the installation of a preinstalled app succeeds or fails.
 
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.jsonresponse | string | Output installation status details as string object @deprecated |
+| params.jsonresponse | string | Output installation status details as string object |
 
 ### Examples
 

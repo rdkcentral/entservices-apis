@@ -56,15 +56,15 @@ ResourceManager interface methods:
 
 Gets a list of blacklisted clients
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clients | IStringIterator | Iterator containing the list of blocked applications |
+| result.clients | array | Iterator containing the list of blocked applications |
 | result.clients[#] | string |  |
 | result.success | bool | Indicates whether the operation succeeded |
 
@@ -109,8 +109,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Reserves the Text To Speech resource for a specified client
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -120,7 +120,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the reservation operation |
 
 ### Examples
 
@@ -163,19 +163,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Reserves the Text To Speech resource for specified clients
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appids | IStringIterator | Iterator containing the list of application identifiers (callsigns) |
+| params.appids | array | Iterator containing the list of application identifiers (callsigns) |
 | params.appids[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the reservation operation |
 
 ### Examples
 
@@ -218,8 +218,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Adds/removes the application with the given callsign to/from the AV blacklist
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -230,7 +230,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the operation |
 
 ### Examples
 

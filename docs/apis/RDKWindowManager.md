@@ -58,7 +58,7 @@ RDKWindowManager interface methods:
 | [getApps](#getApps) | Get the list of Apps which are currently active and available |
 | [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
 | [getLastKeyInfo](#getLastKeyInfo) | Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed. |
-| [getScreenshot](#getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete  @retval Core::ERROR_NONE on success @retval Core::ERROR_GENERAL on failure |
+| [getScreenshot](#getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete  |
 | [getVisibility](#getVisibility) | Gets the visibility of the given client or appInstanceId |
 | [getZOrder](#getZOrder) | Gets the zOrder of the given client or appInstanceId |
 | [ignoreKeyInputs](#ignoreKeyInputs) | Ignore key inputs |
@@ -71,16 +71,16 @@ RDKWindowManager interface methods:
 | [setInactivityInterval](#setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
 | [setVisible](#setVisible) | Sets the visibility of the given client or appInstanceId |
 | [setZOrder](#setZOrder) | Sets the zOrder of the given client or appInstanceId |
-| [startVncServer](#startVncServer) | Starts the VNC server @retval Core::ERROR_NONE on success |
-| [stopVncServer](#stopVncServer) | Stops the VNC server @retval Core::ERROR_NONE on success |
+| [startVncServer](#startVncServer) | Starts the VNC server |
+| [stopVncServer](#stopVncServer) | Stops the VNC server |
 
 <a id="addKeyIntercept"></a>
 ## *addKeyIntercept*
 
 Registers a key intercept for a specific key code and client
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -130,14 +130,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Registers multiple key intercepts in a single operation for a specific client.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
-| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
+| params.clientId | string | The client identifier |
+| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -178,13 +178,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "A general error occurred while registering one or more key intercepts"
+    }
+}
+```
+
 <a id="addKeyListener"></a>
 ## *addKeyListener*
 
 Registers listeners for specific keys.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -234,8 +248,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Create the display window
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -250,7 +264,7 @@ Event details will be updated soon.
 | params.ownerId | integer | Optional UID of owner of Wayland socket |
 | params.groupId | integer | Optional group identifier of Wayland socket |
 | params.topmost | bool | Optional flag indicating whether client window needs to be topmost |
-| params.focus | bool | Optional flag indicating whether the client needs focus @retval Core::ERROR_NONE: Display window created successfully @retval Core::ERROR_GENERAL: Failed to create the display window |
+| params.focus | bool | Optional flag indicating whether the client needs focus |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -300,13 +314,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Failed to create the display window"
+    }
+}
+```
+
 <a id="enableInactivityReporting"></a>
 ## *enableInactivityReporting*
 
 Enables the inactivity reporting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -356,8 +384,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Enables KeyInputEvents for list of clients specified
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -409,13 +437,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Key repeats are enabled/disabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enable | bool | flag to true/false the feature |
+| params.enable | bool | flag to true/false the key repeats |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -460,14 +488,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Generates a key event for the specified keys and client.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -513,8 +541,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Get the list of Apps which are currently active and available
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -561,8 +589,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Retrieves the flag determining whether keyRepeat true/false
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -609,17 +637,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.keyCode | integer | The key code to remove |
+| result.keyCode | integer | Output parameter. The key code of the last pressed key. |
 | result.modifiers | integer | Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press. |
-| result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. @retval Core::ERROR_NONE: Successfully retrieved the last key press information. @retval Core::ERROR_UNAVAILABLE: No key press information is available. |
+| result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. |
 
 ### Examples
 
@@ -656,13 +684,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 2,
+        "message": "No key press information is available."
+    }
+}
+```
+
 <a id="getScreenshot"></a>
 ## *getScreenshot*
 
-Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete  @retval Core::ERROR_NONE on success @retval Core::ERROR_GENERAL on failure
+Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -701,18 +743,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "on failure"
+    }
+}
+```
+
 <a id="getVisibility"></a>
 ## *getVisibility*
 
 Gets the visibility of the given client or appInstanceId
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -760,18 +816,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Gets the zOrder of the given client or appInstanceId
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.appInstanceId | string | client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
+| result.zOrder | integer | integer value indicating the zOrder of the client |
 
 ### Examples
 
@@ -814,8 +870,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Ignore key inputs
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -865,14 +921,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Simulates a key press event with optional modifiers.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.keyCode | integer | The key code to remove |
-| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
+| params.keyCode | integer | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
+| params.modifiers | string | JSON String format with one or more modifiers |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -918,8 +974,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 Enables KeyInputEvents for list of clients specified
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -971,15 +1027,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 Removes a key intercept for a specific key code and client.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
+| params.clientId | string | The client identifier |
 | params.keyCode | integer | The key code to remove |
-| params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
+| params.modifiers | string | JSON String format with one or more modifiers |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1021,13 +1077,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "error": {
+        "code": 1,
+        "message": "The intercept could not be removed due to an internal error."
+    }
+}
+```
+
 <a id="removeKeyListener"></a>
 ## *removeKeyListener*
 
 Removes listeners for specific keys.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1077,8 +1147,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 Resets inactivity interval if EnableUserInactivity feature is enabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1122,8 +1192,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 Sets the focus to the app with the app id
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1173,8 +1243,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 Sets inactivity interval if EnableUserInactivity feature is enabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1224,13 +1294,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 
 Sets the visibility of the given client or appInstanceId
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | client name or application instance ID |
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1277,14 +1347,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 
 Sets the zOrder of the given client or appInstanceId
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
-| params.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
+| params.appInstanceId | string | client name or application instance ID |
+| params.zOrder | integer | integer value indicating the zOrder |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1328,10 +1398,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 <a id="startVncServer"></a>
 ## *startVncServer*
 
-Starts the VNC server @retval Core::ERROR_NONE on success
+Starts the VNC server
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1373,10 +1443,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 <a id="stopVncServer"></a>
 ## *stopVncServer*
 
-Stops the VNC server @retval Core::ERROR_NONE on success
+Stops the VNC server
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1447,7 +1517,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the blurred application |
 
 ### Examples
 
@@ -1519,7 +1589,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the focussed application |
 
 ### Examples
 
@@ -1543,7 +1613,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the hidden application |
 
 ### Examples
 
@@ -1567,7 +1637,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | notify first frame event received for client or application instance ID |
 
 ### Examples
 
@@ -1641,7 +1711,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.appInstanceId | string | the identifier of the visible application |
 
 ### Examples
 

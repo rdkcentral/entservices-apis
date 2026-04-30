@@ -2,7 +2,7 @@
 <a id="PersistentStore_Plugin"></a>
 # PersistentStore Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore2.h)**
 
 A PersistentStore plugin for Thunder framework.
 
@@ -57,13 +57,13 @@ PersistentStore interface methods:
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -112,13 +112,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 ### Results
 | Name | Type | Description |
@@ -165,13 +165,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -225,13 +225,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |
@@ -294,8 +294,8 @@ PersistentStore interface events:
 | :-------- | :-------- |
 | [onValueChanged](#onValueChanged) |  |
 
-<a id="valueChanged"></a>
-## *valueChanged*
+<a id="onValueChanged"></a>
+## *onValueChanged*
 
 
 
@@ -303,7 +303,7 @@ PersistentStore interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |
@@ -314,7 +314,7 @@ PersistentStore interface events:
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PersistentStore.valueChanged",
+    "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
         "scope": "DEVICE",
         "namespace": "",

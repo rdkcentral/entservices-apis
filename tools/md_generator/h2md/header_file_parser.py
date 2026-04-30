@@ -21,6 +21,7 @@
 
 import re
 import json
+import os
 from logger import Logger
 
 class HeaderFileParser:
@@ -40,10 +41,14 @@ class HeaderFileParser:
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
         ('return',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@return(?:s)?\s+(.*?)(?=\s+\*\/|$)')),
         ('see',         'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@see\s+(.*?)(?=\s*\*\/|$)')),
+        ('asyncevents', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@asyncevents\s+(.*?)(?=\s*\*\/|$)')),
+        ('deprecated',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@deprecated\s*(.*?)(?=\s*\*\/|$)')),
         ('omit',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json:omit|@omit|@docs:omit)')),
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
+        ('example',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@example\s+([^\s:(]+)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
+        ('retval',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@retval\s+([\w]+(?:::\w+)*)\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
@@ -52,6 +57,39 @@ class HeaderFileParser:
         ('iterator',    'cpp_obj', re.compile(r'(.*)\s+RPC::IIteratorType\s*(.*)'))
         
     ]
+    # Thunder Core error code numeric values for @retval resolution
+    THUNDER_CORE_ERROR_CODES = {
+        'ERROR_NONE': 0,
+        'ERROR_GENERAL': 1,
+        'ERROR_UNAVAILABLE': 2,
+        'ERROR_ASYNC_FAILED': 3,
+        'ERROR_ASYNC_ABORTED': 4,
+        'ERROR_ILLEGAL_STATE': 5,
+        'ERROR_OPENING_FAILED': 6,
+        'ERROR_ACCEPTANCE': 7,
+        'ERROR_PENDING_CONDITIONS': 8,
+        'ERROR_TIMEDOUT': 9,
+        'ERROR_INPROGRESS': 10,
+        'ERROR_COULD_NOT_SET_ADDRESS': 11,
+        'ERROR_INCORRECT_HASH': 12,
+        'ERROR_INCORRECT_URL': 13,
+        'ERROR_INVALID_INPUT_LENGTH': 14,
+        'ERROR_DESTRUCTION_FAILED': 15,
+        'ERROR_CLOSING_FAILED': 16,
+        'ERROR_PROCESS_TERMINATED': 17,
+        'ERROR_HIBERNATED': 18,
+        'ERROR_NOT_SUPPORTED': 22,
+        'ERROR_UNKNOWN_KEY': 24,
+        'ERROR_DUPLICATE_KEY': 28,
+        'ERROR_BAD_REQUEST': 240,
+        'ERROR_PRIVILEGED_REQUEST': 241,
+        'ERROR_RPC_CALL_FAILED': 242,
+        'ERROR_UNREACHABLE_NETWORK': 243,
+        'ERROR_REQUEST_SUBMITTED': 244,
+        'ERROR_UNKNOWN_TABLE': 245,
+        'ERROR_NOT_EXIST': 248,
+    }
+
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
         'integer':  '0',
@@ -104,6 +142,7 @@ class HeaderFileParser:
         self.configuration_options = {}
         self.logger = logger
         self.notification_names = ['INotification']
+        self.entservices_error_codes = self._load_entservices_error_codes()
 
         # helper objects for holding doxygen tag information while parsing
         self.doxy_tags = {}
@@ -309,12 +348,30 @@ class HeaderFileParser:
         elif line_tag == 'see':
             self.doxy_tags.setdefault('see', {})[groups[0]] = ''
             self.latest_tag = 'see'
+        elif line_tag == 'asyncevents':
+            self.doxy_tags.setdefault('asyncevents', []).extend(
+                self._parse_async_event_names(groups[0])
+            )
+            self.latest_tag = 'asyncevents'
         elif line_tag == 'errors':
             error_code = groups[1]
             description = groups[2]
             self.doxy_tags.setdefault('errors', {})[groups[0]] = {'code': error_code,
                                                                   'description': description}
             self.latest_tag = 'errors'
+        elif line_tag == 'deprecated':
+            self.doxy_tags['deprecated'] = groups[0].strip() if groups[0] else ''
+            self.latest_tag = 'deprecated'
+        elif line_tag == 'example':
+            param_name = groups[0]
+            example_value = self._parse_example_value(groups[1].strip()) if groups[1] else ''
+            self.doxy_tags.setdefault('examples', {})[param_name] = example_value
+            self.latest_tag = 'example'
+        elif line_tag == 'retval':
+            error_full_name = groups[0]
+            error_message = groups[1].strip() if groups[1] else ''
+            self.doxy_tags.setdefault('retvals', {})[error_full_name] = error_message
+            self.latest_tag = 'retval'
         elif line_tag == 'comment':
             # if we encounter a comment that is not associated with a tag, skip it
             if self.latest_tag == '':
@@ -325,6 +382,10 @@ class HeaderFileParser:
             if self.latest_tag == 'params':
                 description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', groups[0])
                 self.doxy_tags['params'][self.latest_param]['description'] += (' ' + description)
+            elif self.latest_tag == 'asyncevents':
+                self.doxy_tags.setdefault('asyncevents', []).extend(
+                    self._parse_async_event_names(groups[0])
+                )
             elif self.latest_tag == 'plugindesc':
                 self.plugindescription += (' ' + groups[0])
             elif self.latest_tag == 'config':
@@ -435,7 +496,7 @@ class HeaderFileParser:
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
                     brief_tag_pattern = r'@brief\s+([^\*/]+)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
-                    description = brief_tag_match.group(1) if brief_tag_match else self.clean_description(description)
+                    description = self.clean_description(brief_tag_match.group(1)) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
                         'description': description.strip() if description else '',
@@ -458,8 +519,11 @@ class HeaderFileParser:
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
+            owner_interface = self._get_scope_interface_name(scope[-1])
 
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
+            method_info['cpp_name'] = method_name
+            method_info['owner_interface'] = owner_interface
             # ignore these methods
             if method_name in ['Register', 'Unregister'] or 'omit' in doxy_tags:
                 return
@@ -477,7 +541,8 @@ class HeaderFileParser:
             elif 'property' in doxy_tags:
                 self.properties[method_name] = method_info
             else:
-                self.methods[method_name] = method_info
+                qualified_method_name = f"{owner_interface}::{method_name}" if owner_interface else method_name
+                self.methods[qualified_method_name] = method_info
         else:
             if self.logger:
                 self.logger.log("ERROR", f"Could not register method: {method_object}")
@@ -488,17 +553,22 @@ class HeaderFileParser:
         registry.
         """
         doxy_tag_param_info = doxy_tags.get('params', {})
-        params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info)
+        doxy_tag_examples = doxy_tags.get('examples', {})
+        params, results = self.process_and_register_params(method_parameters, doxy_tag_param_info, doxy_tag_examples)
         method_info = {
             'text': doxy_tags.get('text', ''),
             'brief': doxy_tags.get('brief', ''),
             'details': doxy_tags.get('details', ''),
             'events': doxy_tags.get('see', {}),
+            'async_events': doxy_tags.get('asyncevents', []),
             'params': params,
             'results': results,
             'errors': doxy_tags.get('errors', {}),
             'return_type': method_return_type
         }
+        if 'deprecated' in doxy_tags:
+            method_info['deprecated'] = doxy_tags.get('deprecated', '')
+        method_info['retvals'] = self._process_retvals(doxy_tags.get('retvals', {}))
         if 'property' in doxy_tags:
             if 'const' in method_parameters or '@in' in method_parameters:
                 method_info['property'] = 'write'
@@ -509,7 +579,7 @@ class HeaderFileParser:
     def normalize_key(self, key):
             return key#.replace('_', '-').strip()
 
-    def process_and_register_params(self, method_parameters, doxy_tag_param_info):
+    def process_and_register_params(self, method_parameters, doxy_tag_param_info, doxy_tag_examples=None):
         """
         Helper to build params and results data structures, using the parameter declaration list
         and doxygen tags.
@@ -539,7 +609,10 @@ class HeaderFileParser:
             symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
             symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
 
-            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped)
+            symbol_example = doxy_tag_examples.get(overridden_name) if doxy_tag_examples else None
+            if symbol_example is None and doxy_tag_examples:
+                symbol_example = doxy_tag_examples.get(symbol_name)
+            self.register_symbol(symbol_name, custom_name, symbol_type, symbol_description, unwrapped, symbol_example)
             symbol_info = {
                 'name': symbol_name,
                 'type': symbol_type,
@@ -604,7 +677,7 @@ class HeaderFileParser:
                     self.logger.log("ERROR", f"Could not extract parameter information from: {param}")
         return param_info
 
-    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False):
+    def register_symbol(self, symbol_name, symbol_custom_name, symbol_type, description, unwrapped=False, example=None):
         """
         Registers a symbol by incrementally adding information to the symbols registry, as
         information is discovered while parsing.
@@ -618,7 +691,9 @@ class HeaderFileParser:
             self.symbols_registry[unique_id]['description'] = description.strip() if description else ''
         if not self.symbols_registry[unique_id].get('unwrapped'):
             self.symbols_registry[unique_id]['unwrapped'] = unwrapped
-        if not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
+        if example is not None:
+            self.symbols_registry[unique_id]['example'] = self.wrap_example_if_iterator(unique_id, example)
+        elif not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
             self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
 
     def external_struct_tracker(self, line, scope, brace_count):
@@ -689,11 +764,11 @@ class HeaderFileParser:
         """
         Makes a request JSON. Creates an example dynamically.
         """
-        camel_method_name = self.to_camel_case(method_name)
+        rpc_method_name = method_info.get('text') or self.to_camel_case(method_info.get('cpp_name', method_name.split('::')[-1]))
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": f"org.rdk.{self.classname}.{rpc_method_name}",
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -801,6 +876,44 @@ class HeaderFileParser:
             return self.generate_example_from_symbol_type(symbol_type)
         return None
 
+    def _parse_example_value(self, value):
+        """
+        Converts a raw string from an @example tag into an appropriate Python type.
+        Strips surrounding quotes, then coerces to bool, int, or float where possible.
+        """
+        value = value.strip()
+        if not value:
+            return ''
+        if value[0] in '[{':
+            try:
+                return json.loads(value)
+            except json.JSONDecodeError:
+                pass
+        value = value.strip('"').strip("'")
+        if value.lower() == 'true':
+            return True
+        if value.lower() == 'false':
+            return False
+        try:
+            return int(value)
+        except ValueError:
+            pass
+        try:
+            return float(value)
+        except ValueError:
+            pass
+        return value
+
+    def _parse_async_event_names(self, value):
+        """
+        Parse an @asyncevents payload into a list of notification names.
+        Accepts comma-separated and/or whitespace-separated names.
+        """
+        if not value:
+            return []
+        normalized_value = value.replace(',', ' ')
+        return [event_name.strip() for event_name in normalized_value.split() if event_name.strip()]
+
     def generate_example_from_description(self, param_description):
         """
         Extracts an example from a parameter description.
@@ -838,6 +951,8 @@ class HeaderFileParser:
         example.
         """
         if self.symbols_registry[unique_id]['type'] in self.iterators_registry:
+            if isinstance(example, list):
+                return example
             return [example]
         return example
 
@@ -937,6 +1052,9 @@ class HeaderFileParser:
     def sanitize_resolution_operator_from_type(self, type):
         return type.split('::')[-1]
 
+    def _get_scope_interface_name(self, scope_name):
+        return scope_name.replace('_HasJsonTag', '').replace('_HasEventTag', '')
+
     def count_parentheses(self, line):
         """
         Counts the number of opening and closing parentheses in a line.
@@ -954,6 +1072,17 @@ class HeaderFileParser:
         Sorts a dictionary by its keys and returns a new dictionary.
         """
         return dict(sorted(dictionary.items()))
+
+    def _enum_possible_values(self, enum_type):
+        """
+        Returns a 'Possible values: ...' string listing all JSON RPC names
+        for the given enum type, using @text descriptions where available.
+        """
+        values = [
+            info['description'] if info['description'] else name
+            for name, info in self.enums_registry[enum_type].items()
+        ]
+        return f"Possible values: {', '.join(values)}"
 
     def generate_flattened_descriptions_for_symbol_registry(self):
         """
@@ -976,6 +1105,12 @@ class HeaderFileParser:
             symbol_type_override = symbol_type
             if symbol_type in self.enums_registry:
                 symbol_type_override = 'string'
+            elif symbol_type in self.iterators_registry:
+                symbol_type_override = 'array'
+            elif symbol_type in self.structs_registry:
+                symbol_type_override = 'object'
+            elif symbol_type not in self.BASIC_TYPE_EXAMPLES:
+                symbol_type_override = 'string'
             curr_key = f"{parent_key}.{overridden_name}"
             if symbol_type in self.structs_registry:
                 struct = self.structs_registry[symbol_type]
@@ -985,7 +1120,11 @@ class HeaderFileParser:
                         flattened_descriptions.update(
                             self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
                         return flattened_descriptions
-            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': symbol_desc}}
+            enhanced_desc = symbol_desc or ''
+            if symbol_type in self.enums_registry:
+                pv = self._enum_possible_values(symbol_type)
+                enhanced_desc = f"{enhanced_desc}. {pv}" if enhanced_desc else pv
+            flattened_descriptions = {curr_key: {'type': symbol_type_override, 'description': enhanced_desc}}
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
         return flattened_descriptions
 
@@ -1011,14 +1150,25 @@ class HeaderFileParser:
                 member_type_override = member_type
                 if member_type in self.enums_registry:
                     member_type_override = 'string'
-                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc}
+                elif member_type in self.iterators_registry:
+                    member_type_override = 'array'
+                elif member_type in self.structs_registry:
+                    member_type_override = 'object'
+                elif member_type not in self.BASIC_TYPE_EXAMPLES:
+                    member_type_override = 'string'
+                member_desc_enhanced = member_desc or ''
+                if member_type in self.enums_registry:
+                    pv = self._enum_possible_values(member_type)
+                    member_desc_enhanced = f"{member_desc_enhanced}. {pv}" if member_desc_enhanced else pv
+                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc_enhanced}
                 flattened_descriptions.update(
                     self.flatten_description(curr_key, member_type))
             return flattened_descriptions
         elif symbol_type in self.enums_registry:
             if parent_key[-3:] == '[#]':
+                pv = self._enum_possible_values(symbol_type)
                 flattened_descriptions.update(
-                    {parent_key: {'type': 'string', 'description': ''}})
+                    {parent_key: {'type': 'string', 'description': pv}})
             return flattened_descriptions
         elif symbol_type in self.BASIC_TYPE_EXAMPLES:
             if parent_key[-3:] == '[#]':
@@ -1032,12 +1182,75 @@ class HeaderFileParser:
             return flattened_descriptions
         return {}
 
+    def _load_entservices_error_codes(self):
+        """
+        Parses apis/entservices_errorcodes.h to build a map of custom error name -> {code, message}.
+        Relies on the X-macro pattern: X(ERROR_NAME, "error message")
+        """
+        header_dir = os.path.dirname(os.path.abspath(self.header_file_path))
+        apis_dir = os.path.dirname(header_dir)
+        errorcodes_path = os.path.join(apis_dir, 'entservices_errorcodes.h')
+        error_codes = {}
+        if os.path.exists(errorcodes_path):
+            x_macro_pattern = re.compile(r'X\(\s*([\w]+)\s*,\s*"([^"]+)"\s*\)')
+            error_base = 1000
+            index = 1  # first entry is ERROR_BASE + 1
+            with open(errorcodes_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    match = x_macro_pattern.search(line)
+                    if match:
+                        name = match.group(1)
+                        message = match.group(2)
+                        error_codes[name] = {'code': error_base + index, 'message': message}
+                        index += 1
+        return error_codes
+
+    def _resolve_error_code(self, error_full_name):
+        """
+        Resolve an error enum name (e.g., 'Core::ERROR_GENERAL' or 'ERROR_FIRMWAREUPDATE_INPROGRESS')
+        to a (numeric_code, default_message) tuple. Returns (None, None) if unknown.
+        """
+        base_name = error_full_name.split('::')[-1]
+        if base_name in self.entservices_error_codes:
+            info = self.entservices_error_codes[base_name]
+            return info['code'], info['message']
+        if base_name in self.THUNDER_CORE_ERROR_CODES:
+            return self.THUNDER_CORE_ERROR_CODES[base_name], None
+        return None, None
+
+    # Names (base, without namespace prefix) that represent a success / no-error state.
+    SUCCESS_CODE_NAMES = {'ERROR_NONE', 'NONE', 'ERROR_OK'}
+
+    def _process_retvals(self, raw_retvals):
+        """
+        Convert raw retvals dict (enum_name -> message) into a list of processed error objects
+        for non-success entries whose code resolves to a numeric JSON-RPC error code.
+        Each object has: enum_name, code, message.
+        """
+        result = []
+        for error_full_name, retval_message in raw_retvals.items():
+            base_name = error_full_name.split('::')[-1]
+            if base_name in self.SUCCESS_CODE_NAMES:
+                continue  # skip success codes
+            numeric_code, default_message = self._resolve_error_code(error_full_name)
+            if numeric_code is None:
+                continue  # skip codes that can't be resolved to a numeric JSON-RPC error code
+            message = retval_message or default_message or base_name.replace('_', ' ').lower()
+            result.append({
+                'enum_name': error_full_name,
+                'code': numeric_code,
+                'message': message
+            })
+        return result
+
     def clean_description(self, description):
         """
         Cleans a description by removing doxygen tag and unnecessary characters.
         """
         if description:
             description = description.strip()
+            # Strip @retval entries (enum name + message) before general tag stripping
+            description = re.sub(r'@retval\s+[\w:]+[^@]*', '', description)
             description = re.sub(r'@\S+', '', description)
             description = re.sub(r'\- in \-|\- out \-|\- in|\- out', '', description)
             description = description[:-1] if description.endswith(';') else description

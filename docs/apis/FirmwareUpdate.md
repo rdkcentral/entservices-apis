@@ -56,17 +56,17 @@ FirmwareUpdate interface methods:
 
 Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.getUpdateStateResult | GetUpdateStateResult |  |
-| result.getUpdateStateResult.state | string | state |
-| result.getUpdateStateResult.substate | string | substate |
+| result.getUpdateStateResult | object |  |
+| result.getUpdateStateResult.state | string | state. Possible values: VALIDATION_FAILED, FLASHING_STARTED, FLASHING_FAILED, FLASHING_SUCCEEDED, WAITING_FOR_REBOOT |
+| result.getUpdateStateResult.substate | string | substate. Possible values: NOT_APPLICABLE, FIRMWARE_NOT_FOUND, FIRMWARE_INVALID, FIRMWARE_OUTDATED, FIRMWARE_UPTODATE, FIRMWARE_INCOMPATIBLE, PREWRITE_SIGNATURE_CHECK_FAILED, FLASH_WRITE_FAILED, POSTWRITE_FIRMWARE_CHECK_FAILED, POSTWRITE_SIGNATURE_CHECK_FAILED |
 
 ### Examples
 
@@ -107,8 +107,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Enable or disable the AutoReboot feature.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -161,8 +161,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Initiates a firmware update.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

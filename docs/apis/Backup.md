@@ -55,14 +55,14 @@ Backup interface methods:
 
 Backup settings across the system
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the backup to happen |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
@@ -111,14 +111,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Deletes the previously backed up settings across the system
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the backup to be deleted |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
@@ -167,14 +167,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Restore settings across the system
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the restore to happen |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
