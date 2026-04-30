@@ -69,13 +69,13 @@ namespace WPEFramework {
         };
 
         enum class FirmwareUpdateState : uint8_t {
-            SUCCESS  /* @text SUCCESS */,
-            IDLE     /* @text IDLE */,
-            PENDING  /* @text PENDING */,
-            CANCELED /* @text CANCELED */,
-            RETRYING /* @text RETRYING */,
-            ERROR    /* @text ERROR */,
-            INVALID  /* @text INVALID */
+            SUCCESS  /* @text success */,
+            IDLE     /* @text idle */,
+            PENDING  /* @text pending */,
+            CANCELED /* @text canceled */,
+            RETRYING /* @text retrying */,
+            ERROR    /* @text error */,
+            INVALID  /* @text invalid */
         };
 
         // Data structures for Remote Control
@@ -141,10 +141,6 @@ namespace WPEFramework {
             uint32_t validationDigit1  /* @brief The first validation digit ex: 1 */;
             uint32_t validationDigit2  /* @brief The second validation digit ex: 2 */;
             uint32_t validationDigit3  /* @brief The third validation digit ex: 3 */;
-        };
-
-        struct EXTERNAL FirmwareUpdateProgressEvent {
-            FirmwareUpdateStatusData status /* @brief The firmware update status including session ID, MAC address, upgrade state, and percent complete */;
         };
 
         /**
@@ -371,8 +367,8 @@ namespace WPEFramework {
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
                 // @text onFirmwareUpdateProgress
-                // @param progress: Firmware update progress information including session ID and current status
-                virtual void OnFirmwareUpdateProgress(const FirmwareUpdateProgressEvent& progress) {}
+                // @param status: Firmware update status including session ID, MAC address, upgrade state, and percent complete
+                virtual void OnFirmwareUpdateProgress(const FirmwareUpdateStatusData& status) {}
             };
 
             // @json:omit
