@@ -58,7 +58,7 @@ RDKWindowManager interface methods:
 | [getApps](#getApps) | Get the list of Apps which are currently active and available |
 | [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
 | [getLastKeyInfo](#getLastKeyInfo) | Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed. |
-| [getScreenshot](#getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event. |
+| [getScreenshot](#getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete  |
 | [getVisibility](#getVisibility) | Gets the visibility of the given client or appInstanceId |
 | [getZOrder](#getZOrder) | Gets the zOrder of the given client or appInstanceId |
 | [ignoreKeyInputs](#ignoreKeyInputs) | Ignore key inputs |
@@ -701,7 +701,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="getScreenshot"></a>
 ## *getScreenshot*
 
-Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
+Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete 
 
 ### Events Triggered
 None
