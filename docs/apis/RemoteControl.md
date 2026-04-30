@@ -1252,13 +1252,11 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "id": 19,
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
-        "status": {
-            "upgradeSessionId": "12345-abc-def",
-            "macAddress": "AA:BB:CC:DD:EE:FF",
-            "upgradeState": "SUCCESS",
-            "percentComplete": 50,
-            "errorString": ""
-        }
+        "upgradeSessionId": "12345-abc-def",
+        "macAddress": "AA:BB:CC:DD:EE:FF",
+        "upgradeState": "SUCCESS",
+        "percentComplete": 50,
+        "errorString": ""
     }
 }
 ```
