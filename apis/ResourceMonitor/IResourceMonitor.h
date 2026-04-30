@@ -22,7 +22,7 @@
 
 namespace WPEFramework {
     namespace Exchange {
-        // @json 1.0.0 @text:keep
+        // @json 1.0.0
         struct EXTERNAL IResourceMonitor : virtual public Core::IUnknown {
             enum { ID = ID_RESOURCEMONITOR };
 
