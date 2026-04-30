@@ -346,6 +346,7 @@ namespace Exchange {
         ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+        ID_GOOGLE_CAST_AUTH_EXTENSION                = ID_GOOGLE_CAST + 4,
 
         ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
 
