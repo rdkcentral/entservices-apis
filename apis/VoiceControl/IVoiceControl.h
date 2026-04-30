@@ -168,7 +168,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
