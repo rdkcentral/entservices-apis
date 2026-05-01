@@ -125,12 +125,8 @@ namespace WPEFramework
 
             // @brief To abort the ongoing connection after accepted connection request
             // @text stopClientConnection
-            // @param clientMac: MacAddress of the client device
-            // @param clientName: Name of the client device
-            // @param success: Is the operation successful or not
             virtual Core::hresult StopClientConnection(const string &clientMac /* @text mac */, const string &clientName /* @text name */, Result &result /* @out */) = 0;
 
-            // @brief Update the Miracast Player State to the Miracast Service Plugin
             // @text updatePlayerState
             // @param clientMac: MacAddress of the client device
             // @param playerState: Player state to be updated
