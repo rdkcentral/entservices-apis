@@ -131,9 +131,10 @@ namespace WPEFramework {
 
         struct EXTERNAL StatusEventData {
             uint32_t netType          /* @brief The type of remote control network ex: 1 */;
-            bool netTypeSupported     /* @brief Whether the network type is supported */;
             PairingState pairingState /* @brief The pairing state */;
             IRProgState irProgState   /* @brief The IR programming state */;
+            string netTypesSupported  /* @opaque @brief JSON array of supported network types e.g. [1] */;
+            string remoteData         /* @opaque @brief JSON array of paired remote information */;
         };
 
         struct EXTERNAL ValidationStatusObject {
