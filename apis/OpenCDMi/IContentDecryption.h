@@ -22,6 +22,10 @@
 #include "Module.h"
 #include "IDRM.h"
 
+#if THUNDER_VERSION >= 5
+// @insert <com/ICOM.h>
+#endif
+
 namespace WPEFramework {
 
 namespace Exchange {
