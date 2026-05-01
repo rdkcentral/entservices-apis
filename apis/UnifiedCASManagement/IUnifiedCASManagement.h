@@ -84,7 +84,7 @@ namespace WPEFramework
             // @param managementType Type of CAS management
             // @param casinitdata CAS specific initdata for the selected media
             // @param casocdmid The well-known OCDM ID of the CAS to use
-            // @param success Returns true if the operation succeeded, false otherwise
+            // @param success: @out Returns true if the operation succeeded, false otherwise
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
             virtual Core::hresult Manage(const string& mediaurl, 
@@ -92,23 +92,23 @@ namespace WPEFramework
                                        const ManagementType& managementType, 
                                        const string& casinitdata, 
                                        const string& casocdmid,
-                                       bool& success /* @out */) = 0;
+                                       bool& success) = 0;
 
             // @text unmanage
             // @brief Destroy a management session
-            // @param success Returns true if the operation succeeded, false otherwise
+            // @param success: @out Returns true if the operation succeeded, false otherwise
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
-            virtual Core::hresult Unmanage(bool& success /* @out */) = 0;
+            virtual Core::hresult Unmanage(bool& success) = 0;
 
             // @text send 
             // @brief Sends data to the remote CAS
             // @param payload Data to transfer. Can be base64 coded if required
             // @param source Origin of the data
-            // @param success Returns true if the operation succeeded, false otherwise
+            // @param success: @out Returns true if the operation succeeded, false otherwise
             // @retval Core::ERROR_NONE: Operation successful
             // @retval Core::ERROR_GENERAL: Operation failed
-            virtual Core::hresult Send(const string& payload, const DataSource& source, bool& success /* @out */) = 0;
+            virtual Core::hresult Send(const string& payload, const DataSource& source, bool& success) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
