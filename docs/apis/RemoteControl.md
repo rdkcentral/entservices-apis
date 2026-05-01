@@ -1272,9 +1272,10 @@ Triggered at any time when the status of any one of the supported STB remote net
 | params | object |  |
 | params.status | StatusEventData | Network status information including network type, pairing state, and IR programming state |
 | params.status.netType | integer | The type of remote control network  |
-| params.status.netTypeSupported | bool | Whether the network type is supported |
 | params.status.pairingState | string | The pairing state |
 | params.status.irProgState | string | The IR programming state |
+| params.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
+| params.status.remoteData | string | JSON array of paired remote information |
 
 ### Examples
 
@@ -1285,9 +1286,10 @@ Triggered at any time when the status of any one of the supported STB remote net
     "method": "org.rdk.RemoteControl.onStatus",
     "params": {
         "netType": 1,
-        "netTypeSupported": true,
         "pairingState": "INITIALISING",
-        "irProgState": "IDLE"
+        "irProgState": "IDLE",
+        "netTypesSupported": "",
+        "remoteData": ""
     }
 }
 ```
