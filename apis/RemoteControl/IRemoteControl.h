@@ -129,13 +129,7 @@ namespace WPEFramework {
             NetStatusData status /* @brief The network status data */;
         };
 
-        struct EXTERNAL StatusEventData {
-            uint32_t netType          /* @brief The type of remote control network ex: 1 */;
-            PairingState pairingState /* @brief The pairing state */;
-            IRProgState irProgState   /* @brief The IR programming state */;
-            string netTypesSupported  /* @opaque @brief JSON array of supported network types e.g. [1] */;
-            string remoteData         /* @opaque @brief JSON array of paired remote information */;
-        };
+
 
         struct EXTERNAL ValidationStatusObject {
             uint32_t netType           /* @brief The type of remote control network ex: 1 */;
@@ -359,7 +353,7 @@ namespace WPEFramework {
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
                 // @param status: Network status information including network type, pairing state, and IR programming state
-                virtual void OnStatus(const StatusEventData& status) {}
+                virtual void OnStatus(const NetStatusData& status) {}
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
