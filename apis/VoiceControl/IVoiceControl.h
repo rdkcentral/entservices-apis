@@ -250,7 +250,7 @@ namespace WPEFramework {
                 // @param trx: The unique id of the voice session e.g. "12345-abc"
                 // @param created: The timestamp for server information in milliseconds since epoch
                 // @param msgPayload: Vrex server information
-                virtual void OnServerMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload /* @opaque */) {}
+                virtual void OnServerMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload /* @opaque @restrict:256K */) {}
 
                 // @brief Triggered when the device has stopped streaming audio
                 // @text onStreamEnd
