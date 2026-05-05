@@ -121,15 +121,6 @@ namespace WPEFramework {
             // @text getApiVersionNumber
             virtual Core::hresult GetApiVersionNumber(VoiceControlGetApiVersionNumberResponse& response /* @out @unwrapped */) = 0;
 
-            // @json:omit
-            // @brief Send a notification event  
-            // @text sendNotify_
-            // @param eventName: Name of the event
-            // @param parameters: JSON parameters for the event
-            // @retval ErrorCode::NONE: Operation completed successfully.
-            // @retval ErrorCode::GENERAL: General failure.
-            virtual Core::hresult SendNotify_(const string& eventName, string& parameters /* @out @opaque */) = 0;
-
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
             // @param response: The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success
