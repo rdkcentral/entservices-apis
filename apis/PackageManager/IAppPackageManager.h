@@ -31,8 +31,8 @@ namespace Exchange {
         std::string logLevels;          //json array of strings
         bool mapi;
         std::string fkpsFiles;          //json array of strings
-        std::string capabilities;       //comma-separated lowercase runtime capability tokens
-        std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
+        std::string capabilities /* @text capabilities */ /* @brief Comma-separated lowercase runtime capability tokens supported by the application runtime */;
+        std::string ralfPkgPath /* @text ralfPkgPath */ /* @brief Filesystem path containing metadata information for RALF packages */;
 
         std::string fireboltVersion;
         bool enableDebugger;
