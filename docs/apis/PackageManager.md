@@ -963,8 +963,8 @@ Event details will be updated soon.
 | result.configMetadata.logLevels | std::string | json array of strings |
 | result.configMetadata.mapi | bool |  |
 | result.configMetadata.fkpsFiles | std::string | json array of strings |
-| result.configMetadata.capabilities | std::string | comma-separated lowercase runtime capability tokens |
-| result.configMetadata.ralfPkgPath | std::string | Filesystem path holding metadata info of ralf packages |
+| result.configMetadata.capabilities | std::string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
+| result.configMetadata.ralfPkgPath | std::string | Filesystem path containing metadata information for RALF packages |
 | result.configMetadata.fireboltVersion | std::string |  |
 | result.configMetadata.enableDebugger | bool |  |
 
@@ -1118,8 +1118,8 @@ Event details will be updated soon.
 | result.config.logLevels | std::string | json array of strings |
 | result.config.mapi | bool |  |
 | result.config.fkpsFiles | std::string | json array of strings |
-| result.config.capabilities | std::string | comma-separated lowercase runtime capability tokens |
-| result.config.ralfPkgPath | std::string | Filesystem path holding metadata info of ralf packages |
+| result.config.capabilities | std::string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
+| result.config.ralfPkgPath | std::string | Filesystem path containing metadata information for RALF packages |
 | result.config.fireboltVersion | std::string |  |
 | result.config.enableDebugger | bool |  |
 
