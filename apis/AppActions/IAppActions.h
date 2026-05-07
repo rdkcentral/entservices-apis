@@ -65,5 +65,3 @@ namespace Exchange {
     };
 } // namespace Exchange
 } // namespace WPEFramework
-
-#endif // __IAPPACTIONS_H__
