@@ -32,6 +32,7 @@ class HeaderFileParser:
     # List of regexes to match different components of the header file
     REGEX_LINE_LIST = [
         ('plugindesc', 'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:plugindesc\s+(.*?)(?=\s*\*\/|$)')),
+        ('callsign',   'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:callsign\s+([\w\.\-]+)(?=\s*\*\/|$)')),
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
@@ -112,6 +113,7 @@ class HeaderFileParser:
         self.in_event = False
         self.plugindescription = ''
         self.plugin_version = ''
+        self.plugin_callsign = f"org.rdk.{self.classname}"
         self.in_json_tag = False
         self.in_omit_tag = False
 
@@ -275,6 +277,9 @@ class HeaderFileParser:
         if line_tag == 'plugindesc':
             self.plugindescription = groups[0]
             self.latest_tag = 'plugindesc'
+        elif line_tag == 'callsign':
+            self.plugin_callsign = groups[0]
+            self.latest_tag = ''
         elif line_tag == 'version':
             self.plugin_version = groups[0]
             self.latest_tag = ''
@@ -693,7 +698,7 @@ class HeaderFileParser:
         request = {
             "jsonrpc": "2.0",
             "id": id_num,
-            "method": f"org.rdk.{self.classname}.{camel_method_name}",
+            "method": f"{self.plugin_callsign}.{camel_method_name}",
         }
         if method_info['params'] != []:
             if len(method_info['params']) == 1:
@@ -1045,3 +1050,4 @@ class HeaderFileParser:
             description = re.sub(r'\*/', ' ', description)
             description = re.sub(r'/\*', ' ', description)
         return description
+

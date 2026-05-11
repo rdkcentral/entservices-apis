@@ -178,17 +178,18 @@ def generate_header_toc(classname, document_object, version, foldername):
         toc += "- [Notifications](#Notifications)\n"
     return toc
 
-def generate_header_description_markdown(classname, plugindescription=None):
+def generate_header_description_markdown(classname, plugindescription=None, plugin_callsign=None):
     """
     Generate the header description markdown for the file.
     """
     description_line = (
         plugindescription.strip() if plugindescription else f'The `{classname}` plugin provides an interface for {classname}.'
     )
+    plugin_callsign = plugin_callsign or f"org.rdk.{classname}"
     return HEADER_DESCRIPTION_TEMPLATE.replace(
         'The `{classname}` plugin provides an interface for {classname}.',
         description_line
-    ).format(classname=classname)
+    ).format(classname=classname).replace(f"org.rdk.{classname}", plugin_callsign)
 
 def generate_configuration_options_section(configuration_options):
     """
@@ -229,11 +230,6 @@ def generate_request_section(request, method_type, classname=None):
     """
     Generate the request section for a method.
     """
-    if classname and isinstance(request, dict) and 'method' in request:
-        parts = request['method'].split('.')
-        if len(parts) > 2:
-            parts[2] = classname
-            request['method'] = '.'.join(parts)
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
@@ -245,11 +241,6 @@ def generate_curl_request_section(request, method_type, classname=None):
     """
     Generate the curl request section for a method.
     """
-    if classname and isinstance(request, dict) and 'method' in request:
-        parts = request['method'].split('.')
-        if len(parts) > 2:
-            parts[2] = classname
-            request['method'] = '.'.join(parts)
     # Set the id
     if isinstance(request, dict):
         request = dict(request)  # shallow copy
@@ -463,3 +454,4 @@ def _convert_json_types(obj):
             return obj
     else:
         return obj
+

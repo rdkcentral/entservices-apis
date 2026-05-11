@@ -1,338 +1,198 @@
-#pragma once
-#include "Module.h"
-#include <utility>
+#!/usr/bin/env python3
 
-// @stubgen:include <com/IIteratorType.h>
+# If not stated otherwise in this file or this component's LICENSE file the
+# following copyright and licenses apply:
 
-namespace WPEFramework {
-namespace Exchange {
+# Copyright 2024 RDK Management
 
-#ifndef RUNTIME_CONFIG
-    struct RuntimeConfig {
-        bool dial;
-        bool wanLanAccess;
-        bool thunder;
-        int32_t systemMemoryLimit;
-        int32_t gpuMemoryLimit;
-        std::string envVariables;
-        uint32_t userId;
-        uint32_t groupId;
-        uint32_t dataImageSize;
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 
-        bool resourceManagerClientEnabled;
-        std::string dialId;
-        std::string command;
-        std::string appType;
-        std::string appPath;
-        std::string runtimePath;
+# http://www.apache.org/licenses/LICENSE-2.0
 
-        std::string logFilePath;
-        uint32_t logFileMaxSize;
-        std::string logLevels;          //json array of strings
-        bool mapi;
-        std::string fkpsFiles;          //json array of strings
-        std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-        std::string fireboltVersion;
-        bool enableDebugger;
-    };
-    #define RUNTIME_CONFIG
-#endif
+# Generates the .md files from the .h files, and logs any warnings or errors.
 
-    // @json 1.0.0 @text:keep
-    struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_DOWNLOADER };
-
-        enum class Reason : uint8_t {
-            NONE,                    // XXX: Not in HLA
-            DOWNLOAD_FAILURE,
-            DISK_PERSISTENCE_FAILURE
-        };
-
-        struct PackageInfo {
-           string downloadId;   /*@brief Download ID*/
-           string fileLocator;  /*@brief File Locator*/
-           Reason reason;       /*@brief Reason for the download status*/
-        };
-
-        //typedef std::vector<PackageInfo> PackageInfoList;
-        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
-
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
-            ~INotification() override = default;
-
-            // @brief Signal changes on the status
-            // @text onAppDownloadStatus
-            virtual void OnAppDownloadStatus(IPackageInfoIterator* const packageInfo) {
-            }
-        };
-
-        ~IPackageDownloader() override = default;
-
-        // Register for any changes
-        // @json:omit
-        virtual Core::hresult Register(IPackageDownloader::INotification *sink) = 0;
-        // @json:omit
-        virtual Core::hresult Unregister(IPackageDownloader::INotification *sink) = 0;
-
-        // @json:omit
-        virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
-
-        // @json:omit
-        virtual Core::hresult  Deinitialize(PluginHost::IShell* service) = 0;
+import os
+import argparse
+from header_file_parser import HeaderFileParser
+from logger import Logger
+from markdown_templates import (
+    generate_header_description_markdown, 
+    generate_header_toc, 
+    generate_methods_toc, 
+    generate_method_markdown, 
+    generate_notifications_toc, 
+    generate_notification_markdown, 
+    generate_properties_toc, 
+    generate_property_markdown, 
+    generate_configuration_options_section
+)
 
 
-        struct Options {
-            // @brief Priority
-            bool priority;
-            // @brief Retries
-            uint32_t retries;
-            // @brief RateLimit
-            uint64_t rateLimit;
-        };
-
-        struct DownloadId {
-            string downloadId;
-        };
-
-	    // @brief Download
-        // @text download
-        // @param url: Download url
-        // @param options: Download options
-        virtual Core::hresult Download(
-            const string &url,
-            const Options &options,
-            DownloadId &downloadId /* @out */) = 0;
-
-        // @brief Pause
-        // @text pause
-        // @param downloadId: Download id
-        virtual Core::hresult Pause(const string &downloadId) = 0;
-
-        // @brief Resume
-        // @text resume
-        // @param downloadId: Download id
-        virtual Core::hresult Resume(const string &downloadId) = 0;
-
-        // @brief Cancel
-        // @text cancel
-        // @param downloadId: Download id
-        virtual Core::hresult Cancel(const string &downloadId) = 0;
-
-        // @brief Delete
-        // @text delete
-        // @param fileLocator: FileLocator
-        virtual Core::hresult Delete(const string &fileLocator) = 0;
-
-        struct ProgressInfo {
-            uint8_t progress;
-        };
-
-        // @brief Progress
-        // @text progress
-        // @param downloadId: Download id
-        virtual Core::hresult Progress(
-            const string &downloadId,
-            ProgressInfo &progress /* @out */) = 0;
-
-        // @brief GetStorageInformation
-        // @text getStorageInformation
-        // @param quotaKb: Storage quota in kilobytes
-        // @param usedKb: Used storage in kilobytes
-        virtual Core::hresult GetStorageInformation(
-            uint32_t &quotaKb /* @out */,
-            uint32_t &usedKb  /* @out */) = 0;
-
-        // @brief RateLimit
-        // @text rateLimit
-        // @param downloadId: Download id
-        // @param limit: Limit
-        virtual Core::hresult RateLimit(const string &downloadId, const uint64_t &limit) = 0;
-    };
+def combine_header_structures(main_structure, additional_structure):
+    """Combine additional header structure into main structure."""
+    main_structure.methods.update(additional_structure.methods)
+    main_structure.properties.update(additional_structure.properties)
+    main_structure.events.update(additional_structure.events)
+    main_structure.symbols_registry.update(additional_structure.symbols_registry)
+    # Concerned about the below registries having collisions ... rename the keys to
+    # reference the HF struct it belongs to?
+    main_structure.iterators_registry.update(additional_structure.iterators_registry)
+    main_structure.enums_registry.update(additional_structure.enums_registry)
+    main_structure.structs_registry.update(additional_structure.structs_registry)
+    main_structure.configuration_options.update(additional_structure.configuration_options)
+    if main_structure.plugindescription == '':
+        main_structure.plugindescription = additional_structure.plugindescription
 
 
-    // @json 1.0.0 @text:keep
-    struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_INSTALLER };
-
-        enum class InstallState : uint8_t{
-            INSTALLING,                 // XXX: necessary ?!
-            INSTALLATION_BLOCKED,
-            INSTALL_FAILURE,
-            INSTALLED,
-            UNINSTALLING,               // XXX: necessary ?!
-            UNINSTALL_BLOCKED,
-            UNINSTALL_FAILURE,
-            UNINSTALLED
-        };
-
-        enum class FailReason : uint8_t {
-            NONE,                       // XXX: Not in HLA
-            GENERAL_FAILURE,
-            SIGNATURE_VERIFICATION_FAILURE,
-            PACKAGE_MISMATCH_FAILURE,
-            INVALID_METADATA_FAILURE,
-            PERSISTENCE_FAILURE
-        };
-        struct Package {
-            // @brief PackageId
-            string packageId;
-            // @brief Version
-            string version;
-            // @brief state
-            InstallState state;
-            // @brief Digest
-            string digest;
-            // @brief SizeKb
-            uint64_t sizeKb;
-        };
-        using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
-
-        /* @event */
-        struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_PACKAGE_INSTALLER_NOTIFICATION  };
-            ~INotification() override = default;
-
-            // @brief Signal changes on the status
-            // @text onAppInstallationStatus
-            virtual void OnAppInstallationStatus(const string& jsonresponse) {
-            }
-        };
-
-        ~IPackageInstaller() override = default;
-
-        // Register for any changes
-        virtual Core::hresult Register(IPackageInstaller::INotification *sink) = 0;
-        virtual Core::hresult Unregister(IPackageInstaller::INotification *sink) = 0;
-
-        struct EXTERNAL KeyValue  {
-            // @brief Name
-            string name;
-            // @brief Value
-            string value;
-        };
-        using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGE_KEY_VALUE_ITERATOR>;
-
-        // @brief Install
-        // @text install
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param additionalMetadata: Additional Metadata
-        // @param fileLocator: File Locator
-        virtual Core::hresult Install(
-            const string &packageId,
-            const string &version,
-            IPackageInstaller::IKeyValueIterator* const& additionalMetadata,
-            const string &fileLocator,
-            FailReason &failReason /* @out */) = 0;
-
-        // @brief Uninstall
-        // @text uninstall
-        // @param packageId: Package Id
-        virtual Core::hresult Uninstall(
-            const string &packageId,
-            string &errorReason /* @out */
-            ) = 0;
-
-        // @brief ListPackages
-        // @text listPackages
-        virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
-
-        // @brief Config
-        // @text config
-        // @param packageId: Package Id
-        // @param version: Version
-        virtual Core::hresult Config(
-            const string &packageId,
-            const string &version,
-            RuntimeConfig &configMetadata /* @out */
-            ) = 0;
-
-        struct PackageStateResponse {
-            InstallState state;
-        };
-        // XXX: update vvv
-
-        // @brief PackageState
-        // @text packageState
-        // @param packageId: Package Id
-        // @param version: Version
-        virtual Core::hresult PackageState(
-            const string &packageId,
-            const string &version,
-            InstallState &state /* @out */
-            ) = 0;
-
-        // @brief getConfigForPackage
-        // @text getConfigForPackage
-        // @param fileLocator: locator of package
-        // @param id: package id
-        // @param version: version of package
-        // @param config: metadata of package
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
-   };
+def get_header_files(folder_path):
+    """Get all .h files from the specified folder."""
+    return [f for f in os.listdir(folder_path) if f.endswith('.h')]
 
 
-    struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_HANDLER };
+def create_logger(classname, logfile_path=None):
+    """Create and return a logger instance, or None if logfile_path is not provided."""
+    if logfile_path is None:
+        return None
+    log_file_path = os.path.join(logfile_path, f'{classname}.txt')
+    return Logger(log_file_path)
 
-        ~IPackageHandler() override = default;
 
-        enum class LockReason : uint8_t {
-            SYSTEM_APP,
-            LAUNCH
-        };
+def find_main_header_file(header_files, plugin_name):
+    """Find the main header file, preferring plugin_name.h if it exists."""
+    main_header = f'{plugin_name}.h'
+    return main_header if main_header in header_files else header_files[0]
 
-        struct EXTERNAL AdditionalLock  {
-            // @brief PackageId
-            string packageId;
-            // @brief Version
-            string version;
-        };
-        using ILockIterator = RPC::IIteratorType<AdditionalLock, ID_PACKAGE_LOCK_ITERATOR>;
 
-        // @brief Lock
-        // @text lock
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param lockReason: LockReason
-        // @param lockId: Lock Id
-        // @param unpackedPath: Unpacked Path
-        // @param configMetadata: Config Metadata
-        // @param appMetadata: App Metadata
-        virtual Core::hresult Lock(
-            const string &packageId,
-            const string &version,
-            const LockReason &lockReason,
-            uint32_t &lockId /* @out */,
-            string &unpackedPath /* @out */,
-            RuntimeConfig &configMetadata /* @out */,
-            IPackageHandler::ILockIterator*& appMetadata /* @out */
-            // XXX: appContextPath ?!
-            ) = 0;
+def parse_header_file(header_file_path, classname, logger):
+    """Parse a header file and return the structure."""
+    return HeaderFileParser(header_file_path, classname, logger)
 
-        // @brief Unlock
-        // @text unlock
-        // @param packageId: Package Id
-        // @param version: Version
-        virtual Core::hresult Unlock(
-            const string &packageId,
-            const string &version) = 0;
 
-        // @brief GetLockedInfo
-        // @text getLockedInfo
-        // @param packageId: Package Id
-        // @param version: Version
-        virtual Core::hresult GetLockedInfo(
-            const string &packageId,
-            const string &version,
-            string &unpackedPath /* @out */,
-            RuntimeConfig &configMetadata /* @out */,
-            string &gatewayMetadataPath /* @out */,
-            bool &locked /* @out */
-            ) = 0;
-    };
+def write_markdown_sections(file, header_structure, classname):
+    """Write all markdown sections to the file."""
+    # Write methods section
+    if header_structure.methods:
+        file.write(generate_methods_toc(header_structure.methods, classname))
+        for method_name, method_info in header_structure.methods.items():
+            file.write(generate_method_markdown(
+                method_name, method_info, header_structure.symbols_registry, 
+                classname, header_structure.events))
+    
+    file.write("\n")
+    
+    # Write properties section
+    if header_structure.properties:
+        file.write(generate_properties_toc(header_structure.properties, classname))
+        for prop_name, prop_info in header_structure.properties.items():
+            file.write(generate_property_markdown(
+                prop_name, prop_info, header_structure.symbols_registry, classname))
+    
+    file.write("\n")
+    
+    # Write events section
+    if header_structure.events:
+        file.write(generate_notifications_toc(header_structure.events, classname))
+        for event_name, event_info in header_structure.events.items():
+            file.write(generate_notification_markdown(
+                event_name, event_info, header_structure.symbols_registry, classname))
 
-} // Exchange
-} // WPEFramework
+
+def generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, header_file_path):
+    """Generate markdown file from a single header structure."""
+    plugin_version = getattr(header_structure, 'plugin_version', '')
+    # if no @json tag present in the header file
+    # if plugin_version == '':
+    #     return
+    output_file_path = os.path.join(output_doc_folder_path, f'{classname}.md')
+    os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+    if not header_structure.methods and not header_structure.properties and not header_structure.events:
+        return
+    
+    with open(output_file_path, 'w', encoding='utf-8') as file:
+        # Write header sections
+        file.write(generate_header_toc(
+            classname, header_structure, plugin_version, header_file_path))
+        file.write(generate_header_description_markdown(
+            classname, getattr(header_structure, 'plugindescription', '')))
+        file.write(generate_configuration_options_section(header_structure.configuration_options))
+
+        # Write main content sections
+        write_markdown_sections(file, header_structure, classname)
+
+    if logger is not None:
+        logger.write_log()
+        logger.close()
+
+
+def process_individual_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path=None):
+    """Process each header file individually."""
+    header_files = get_header_files(input_plugin_folder_path)
+
+    for header_file in header_files:
+        header_file_path = os.path.join(input_plugin_folder_path, header_file)
+        classname = os.path.splitext(header_file)[0][1:]  # Remove leading 'I'
+        logger = create_logger(classname, logfile_path)
+        header_structure = parse_header_file(header_file_path, classname, logger)
+        generate_md_from_individual_header_file(header_structure, output_doc_folder_path, classname, logger, header_file_path)
+
+
+def process_combined_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path=None):
+    """Process all header files combined into one output."""
+    header_files = get_header_files(input_plugin_folder_path)
+    plugin_name = os.path.basename(os.path.normpath(input_plugin_folder_path))
+    classname = plugin_name
+    logger = create_logger(classname, logfile_path)
+
+    # Find and parse main header file
+    main_header_file = find_main_header_file(header_files, plugin_name)
+    main_header_file_path = os.path.join(input_plugin_folder_path, main_header_file)
+    main_structure = parse_header_file(main_header_file_path, classname, logger)
+
+    # Process additional header files
+    remaining_files = [f for f in header_files if f != main_header_file]
+    for header_file in remaining_files:
+        header_file_path = os.path.join(input_plugin_folder_path, header_file)
+        additional_structure = parse_header_file(header_file_path, classname, logger)
+        combine_header_structures(main_structure, additional_structure)
+
+    generate_md_from_individual_header_file(main_structure, output_doc_folder_path, classname, logger, main_header_file_path)
+
+
+def generate_md_from_header(input_plugin_folder_path, output_doc_folder_path, individual=False, logfile_path=None):
+    """
+    Writes the markdown documentation from the header file.
+
+    Args:
+        input_plugin_folder_path (str): Path to the plugin folder containing header files.
+        output_doc_folder_path (str): Path to the output documentation folder.
+        individual (bool): Whether to generate separate files for each header.
+        logfile_path (str): Optional path to the log file directory.
+    """
+    if individual:
+        process_individual_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path)
+    else:
+        process_combined_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Process header file.')
+    parser.add_argument('-o', '--output_doc_folder', type=str, required=True, 
+                       help='Path to desired output folder')
+    parser.add_argument('-i', '--input_plugin_folder', type=str, required=True, 
+                       help='Path to plugin folder')
+    parser.add_argument('-l', '--logfile', type=str, required=False, default=None,
+                       help='Path to log file directory')
+    parser.add_argument('--individual', action='store_true', 
+                       help='Generate individual docs for each header file')
+    args = parser.parse_args()
+    
+    generate_md_from_header(args.input_plugin_folder, args.output_doc_folder, args.individual, args.logfile)
+
