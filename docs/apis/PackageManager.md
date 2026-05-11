@@ -2,7 +2,7 @@
 <a id="PackageManager_Plugin"></a>
 # PackageManager Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PackageManager/IPackageManager.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PackageManager/IAppPackageManager.h)**
 
 A PackageManager plugin for Thunder framework.
 
@@ -12,7 +12,6 @@ A PackageManager plugin for Thunder framework.
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Methods](#Methods)
-- [Notifications](#Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -48,29 +47,19 @@ PackageManager interface methods:
 | Method | Description |
 | :-------- | :-------- |
 | [cancel](#cancel) | Cancel |
-| [clearAuxMetadata](#clearAuxMetadata) | Clears the specified metadata key. |
-| [download](#download) | Download |
-| [getList](#getList) | Retrieves list of installed apps matching given filters. |
-| [getLockInfo](#getLockInfo) | Provides lock reason and owner for an app. |
-| [getMetadata](#getMetadata) | Retrieves metadata and auxiliary resource list for an application. |
-| [getProgress](#getProgress) | Provides the current progress of an ongoing operation. |
-| [getStorageDetails](#getStorageDetails) | Retrieves details about app and persistent storage usage. |
-| [install](#install) | Install |
-| [lock](#lock) | Locks an application to prevent uninstallation. |
-| [reset](#reset) | Deletes all persistent local data of the application. |
-| [setAuxMetadata](#setAuxMetadata) | Sets a key-value pair of metadata for the application. |
-| [uninstall](#uninstall) | Uninstall |
-| [unlock](#unlock) | Unlocks a previously locked application. |
 | [config](#config) | Config |
 | [delete](#delete) | Delete |
+| [download](#download) | Download |
 | [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
 | [getStorageInformation](#getStorageInformation) | GetStorageInformation |
+| [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
 | [pause](#pause) | Pause |
 | [progress](#progress) | Progress |
 | [rateLimit](#rateLimit) | RateLimit |
 | [resume](#resume) | Resume |
+| [uninstall](#uninstall) | Uninstall |
 
 <a id="cancel"></a>
 ## *cancel*
@@ -119,808 +108,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": null
-}
-```
-
-<a id="clearAuxMetadata"></a>
-## *clearAuxMetadata*
-
-Clears the specified metadata key.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.key | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.PackageManager.clearAuxMetadata",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "key": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PackageManager.clearAuxMetadata", "params": {"type": "", "id": "", "version": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
-}
-```
-
-<a id="download"></a>
-## *download*
-
-Download
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.url | string | Download url |
-| params.options | Options | Download options |
-| params.options.priority | bool |  |
-| params.options.retries | integer |  |
-| params.options.rateLimit | integer |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.downloadId | string | Download ID |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PackageManager.download",
-    "params": {
-        "url": "",
-        "options": {
-            "priority": true,
-            "retries": 0,
-            "rateLimit": 0
-        }
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PackageManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "downloadId": ""
-    }
-}
-```
-
-<a id="getList"></a>
-## *getList*
-
-Retrieves list of installed apps matching given filters.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.appName | string |  |
-| params.category | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.installedIds | IPackageKeyIterator |  |
-| result.installedIds[#].id | string |  |
-| result.installedIds[#].version | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PackageManager.getList",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "appName": "",
-        "category": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PackageManager.getList", "params": {"type": "", "id": "", "version": "", "appName": "", "category": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": [
-        {
-            "id": "",
-            "version": ""
-        }
-    ]
-}
-```
-
-<a id="getLockInfo"></a>
-## *getLockInfo*
-
-Provides lock reason and owner for an app.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | LockInfo |  |
-| result.result.reason | string |  |
-| result.result.owner | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.PackageManager.getLockInfo",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PackageManager.getLockInfo", "params": {"type": "", "id": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "reason": "",
-        "owner": ""
-    }
-}
-```
-
-<a id="getMetadata"></a>
-## *getMetadata*
-
-Retrieves metadata and auxiliary resource list for an application.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.metadata | MetadataPayload |  |
-| result.metadata.appName | string |  |
-| result.metadata.type | string |  |
-| result.metadata.category | string |  |
-| result.metadata.url | string |  |
-| result.resources | IKeyValueIterator |  |
-| result.resources[#].key | string |  |
-| result.resources[#].value | string |  |
-| result.auxMetadata | IKeyValueIterator |  |
-| result.auxMetadata[#].key | string |  |
-| result.auxMetadata[#].value | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.PackageManager.getMetadata",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getMetadata", "params": {"type": "", "id": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "metadata": {
-            "appName": "",
-            "type": "",
-            "category": "",
-            "url": ""
-        },
-        "resources": [
-            {
-                "key": "",
-                "value": ""
-            }
-        ],
-        "auxMetadata": [
-            {
-                "key": "",
-                "value": ""
-            }
-        ]
-    }
-}
-```
-
-<a id="getProgress"></a>
-## *getProgress*
-
-Provides the current progress of an ongoing operation.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.handle | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.progress | integer |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.PackageManager.getProgress",
-    "params": {
-        "handle": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.getProgress", "params": {"handle": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "progress": 0
-    }
-}
-```
-
-<a id="getStorageDetails"></a>
-## *getStorageDetails*
-
-Retrieves details about app and persistent storage usage.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.storageinfo | StorageInfo |  |
-| result.storageinfo.EXTERNAL | struct |  |
-| result.storageinfo.path | string |  |
-| result.storageinfo.quotaKB | string |  |
-| result.storageinfo.usedKB | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.PackageManager.getStorageDetails",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.getStorageDetails", "params": {"type": "", "id": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "EXTERNAL": "",
-        "path": "",
-        "quotaKB": "",
-        "usedKB": ""
-    }
-}
-```
-
-<a id="install"></a>
-## *install*
-
-Install
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.packageId | string | Package Id |
-| params.version | string | Version |
-| params.additionalMetadata | IKeyValueIterator | Additional Metadata |
-| params.additionalMetadata[#].name | string |  |
-| params.additionalMetadata[#].value | string |  |
-| params.fileLocator | string | File Locator |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.failReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.PackageManager.install",
-    "params": {
-        "packageId": "",
-        "version": "",
-        "additionalMetadata": [
-            {
-                "name": "",
-                "value": ""
-            }
-        ],
-        "fileLocator": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "failReason": "NONE"
-    }
-}
-```
-
-<a id="lock"></a>
-## *lock*
-
-Locks an application to prevent uninstallation.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.reason | string |  |
-| params.owner | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.handle | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.PackageManager.lock",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "reason": "",
-        "owner": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.lock", "params": {"type": "", "id": "", "version": "", "reason": "", "owner": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "handle": ""
-    }
-}
-```
-
-<a id="reset"></a>
-## *reset*
-
-Deletes all persistent local data of the application.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.resetType | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.PackageManager.reset",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "resetType": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.reset", "params": {"type": "", "id": "", "version": "", "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": null
-}
-```
-
-<a id="setAuxMetadata"></a>
-## *setAuxMetadata*
-
-Sets a key-value pair of metadata for the application.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.key | string |  |
-| params.value | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.PackageManager.setAuxMetadata",
-    "params": {
-        "type": "",
-        "id": "",
-        "version": "",
-        "key": "",
-        "value": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.setAuxMetadata", "params": {"type": "", "id": "", "version": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": null
-}
-```
-
-<a id="uninstall"></a>
-## *uninstall*
-
-Uninstall
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.packageId | string | Package Id |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.PackageManager.uninstall",
-    "params": {
-        "packageId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "errorReason": ""
-    }
-}
-```
-
-<a id="unlock"></a>
-## *unlock*
-
-Unlocks a previously locked application.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.handle | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.PackageManager.unlock",
-    "params": {
-        "handle": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.unlock", "params": {"handle": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
     "result": null
 }
 ```
@@ -1077,6 +264,69 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+<a id="download"></a>
+## *download*
+
+Download
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.url | string | Download url |
+| params.options | Options | Download options |
+| params.options.priority | bool |  |
+| params.options.retries | integer |  |
+| params.options.rateLimit | integer |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.downloadId | string | Download ID |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.PackageManager.download",
+    "params": {
+        "url": "",
+        "options": {
+            "priority": true,
+            "retries": 0,
+            "rateLimit": 0
+        }
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PackageManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "downloadId": ""
+    }
+}
+```
+
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
@@ -1228,6 +478,73 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "result": {
         "quotaKb": 0,
         "usedKb": 0
+    }
+}
+```
+
+<a id="install"></a>
+## *install*
+
+Install
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageId | string | Package Id |
+| params.version | string | Version |
+| params.additionalMetadata | IKeyValueIterator | Additional Metadata |
+| params.additionalMetadata[#].name | string |  |
+| params.additionalMetadata[#].value | string |  |
+| params.fileLocator | string | File Locator |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.failReason | string |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.PackageManager.install",
+    "params": {
+        "packageId": "",
+        "version": "",
+        "additionalMetadata": [
+            {
+                "name": "",
+                "value": ""
+            }
+        ],
+        "fileLocator": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": {
+        "failReason": "NONE"
     }
 }
 ```
@@ -1556,53 +873,58 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
+<a id="uninstall"></a>
+## *uninstall*
 
+Uninstall
 
-<a id="Notifications"></a>
-# Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the PackageManager plugin:
-
-PackageManager interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [operationStatus](#operationStatus) | Notifies completion of an asynchronous operation. |
-
-<a id="operationStatus"></a>
-## *operationStatus*
-
-Notifies completion of an asynchronous operation.
-
+### Events
+Event details will be updated soon.
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.handle | string |  |
-| params.operation | string |  |
-| params.type | string |  |
-| params.id | string | package id |
-| params.version | string | Version |
-| params.status | string |  |
-| params.details | string |  |
+| params.packageId | string | Package Id |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.errorReason | string |  |
 
 ### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.PackageManager.operationStatus",
+    "id": 13,
+    "method": "org.rdk.PackageManager.uninstall",
     "params": {
-        "handle": "",
-        "operation": "",
-        "type": "",
-        "id": "",
-        "version": "",
-        "status": "",
-        "details": ""
+        "packageId": ""
     }
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "result": {
+        "errorReason": ""
+    }
+}
+```
+
+
