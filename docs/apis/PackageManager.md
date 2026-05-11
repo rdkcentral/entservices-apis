@@ -32,7 +32,7 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.PackageManager) |
+| callsign | string | Plugin instance name (default: org.rdk.PackageManagerRDKEMS) |
 | classname | string | Class name: *PackageManager* |
 | locator | string | Library name: *libWPEFrameworkPackageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
@@ -87,7 +87,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.PackageManager.cancel",
+    "method": "org.rdk.PackageManagerRDKEMS.cancel",
     "params": {
         "downloadId": ""
     }
@@ -98,7 +98,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PackageManager.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PackageManagerRDKEMS.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -163,7 +163,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.PackageManager.config",
+    "method": "org.rdk.PackageManagerRDKEMS.config",
     "params": {
         "packageId": "",
         "version": ""
@@ -175,7 +175,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PackageManager.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PackageManagerRDKEMS.config", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -239,7 +239,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.PackageManager.delete",
+    "method": "org.rdk.PackageManagerRDKEMS.delete",
     "params": {
         "fileLocator": ""
     }
@@ -250,7 +250,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PackageManager.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PackageManagerRDKEMS.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -295,7 +295,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PackageManager.download",
+    "method": "org.rdk.PackageManagerRDKEMS.download",
     "params": {
         "url": "",
         "options": {
@@ -311,7 +311,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PackageManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PackageManagerRDKEMS.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -379,7 +379,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PackageManager.getConfigForPackage",
+    "method": "org.rdk.PackageManagerRDKEMS.getConfigForPackage",
     "params": {
         "fileLocator": ""
     }
@@ -390,7 +390,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PackageManager.getConfigForPackage", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PackageManagerRDKEMS.getConfigForPackage", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -457,7 +457,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "method": "org.rdk.PackageManager.getStorageInformation"
+    "method": "org.rdk.PackageManagerRDKEMS.getStorageInformation"
 }
 ```
 
@@ -465,7 +465,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManager.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PackageManagerRDKEMS.getStorageInformation"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -514,7 +514,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "method": "org.rdk.PackageManager.install",
+    "method": "org.rdk.PackageManagerRDKEMS.install",
     "params": {
         "packageId": "",
         "version": "",
@@ -533,7 +533,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManager.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PackageManagerRDKEMS.install", "params": {"packageId": "", "version": "", "additionalMetadata": [{"name": "", "value": ""}], "fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -578,7 +578,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "method": "org.rdk.PackageManager.listPackages"
+    "method": "org.rdk.PackageManagerRDKEMS.listPackages"
 }
 ```
 
@@ -586,7 +586,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManager.listPackages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PackageManagerRDKEMS.listPackages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -636,7 +636,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "method": "org.rdk.PackageManager.packageState",
+    "method": "org.rdk.PackageManagerRDKEMS.packageState",
     "params": {
         "packageId": "",
         "version": ""
@@ -648,7 +648,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManager.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PackageManagerRDKEMS.packageState", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -690,7 +690,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "method": "org.rdk.PackageManager.pause",
+    "method": "org.rdk.PackageManagerRDKEMS.pause",
     "params": {
         "downloadId": ""
     }
@@ -701,7 +701,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PackageManagerRDKEMS.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -742,7 +742,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "method": "org.rdk.PackageManager.progress",
+    "method": "org.rdk.PackageManagerRDKEMS.progress",
     "params": {
         "downloadId": ""
     }
@@ -753,7 +753,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PackageManagerRDKEMS.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -796,7 +796,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "method": "org.rdk.PackageManager.rateLimit",
+    "method": "org.rdk.PackageManagerRDKEMS.rateLimit",
     "params": {
         "downloadId": "",
         "limit": 0
@@ -808,7 +808,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PackageManagerRDKEMS.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -848,7 +848,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "method": "org.rdk.PackageManager.resume",
+    "method": "org.rdk.PackageManagerRDKEMS.resume",
     "params": {
         "downloadId": ""
     }
@@ -859,7 +859,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PackageManagerRDKEMS.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -900,7 +900,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "method": "org.rdk.PackageManager.uninstall",
+    "method": "org.rdk.PackageManagerRDKEMS.uninstall",
     "params": {
         "packageId": ""
     }
@@ -911,7 +911,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManager.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PackageManagerRDKEMS.uninstall", "params": {"packageId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
