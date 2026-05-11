@@ -260,18 +260,18 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Sets the zOrder of the given client or appInstanceId */
   // @text setZOrder
   // @brief Sets the zOrder of the given client or appInstanceId
-  // @param appInstanceId: client name or application instance ID
+  // @param clientId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
   // @retval Core::ERROR_NONE on success
-  virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
+  virtual Core::hresult SetZOrder(const string& clientId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
   // @text getZOrder
   // @brief Gets the zOrder of the given client or appInstanceId
-  // @param appInstanceId: client name or application instance ID
+  // @param clientId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
   // @retval Core::ERROR_NONE on success
-  virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+  virtual Core::hresult GetZOrder(const string& clientId, int32_t &zOrder /* @out */) = 0;
 
   /** Starts the VNC server */
   // @text startVncServer
