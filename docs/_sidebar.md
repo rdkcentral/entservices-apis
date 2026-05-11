@@ -39,6 +39,7 @@
   - [OCIContainer](apis/OCIContainer.md)
   - [OpenCDMi<sup>@</sup>](apis/OpenCDMiPlugin.md)
   - [PackageManager](apis/PackageManager.md)
+  - [PackageManagerRDKEMS](apis/PackageManagerRDKEMS.md)
   - [Packager<sup>@</sup>](apis/PackagerPlugin.md)
   - [PerformanceMetrics<sup>@</sup>](apis/PerformanceMetricsPlugin.md)
   - [PersistentStore](apis/PersistentStore.md)
