@@ -605,6 +605,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | appId |
+| params?.intent | string | <sup>(optional)</sup>A reference to the intent string that specifies the action or request to be processed. |
 | params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
 ### Results
 | Name | Type | Description |
@@ -624,6 +625,7 @@ Event details will be updated soon.
     "method": "org.rdk.AppManager.preloadApp",
     "params": {
         "appId": "",
+        "intent": "",
         "launchArgs": ""
     }
 }
@@ -633,7 +635,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
