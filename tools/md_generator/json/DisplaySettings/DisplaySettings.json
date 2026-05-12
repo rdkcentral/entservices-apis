@@ -2663,11 +2663,10 @@
             "result": {
                 "type": "object",
                 "properties": {
-                "videoDisplay": { "$ref": "#/definitions/videoDisplay" },
-                "enabled": { "type": "boolean", "example": true },
+                "enable": { "type": "boolean", "example": true },
                 "success": { "$ref": "#/common/success" }
                 },
-                "required": ["videoDisplay", "enabled", "success"]
+                "required": ["enable", "success"]
             }
         },
         "getSupportedVideoCodingFormats": {
@@ -2700,7 +2699,6 @@
             "result": {
                 "type": "object",
                 "properties": {
-                "codec": { "type": "string", "example": "MPEGH-Part2" },
                 "numberOfEntries": { "type": "integer", "example": 3 },
                 "entries": {
                     "type": "array",
@@ -2716,7 +2714,7 @@
                 },
                 "success": { "$ref": "#/common/success" }
                 },
-                "required": ["codec", "numberOfEntries", "entries", "success"]
+                "required": ["numberOfEntries", "entries", "success"]
             }
         },
         "getAudioEncoding": {
