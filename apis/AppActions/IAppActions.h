@@ -39,7 +39,7 @@ namespace Exchange {
              * @brief Notifies when an action start event occurs.
              * @param initiator The ID of the app/ module initiating the action.
              * @param intent The intent string describing the action.
-             * @param handlerAppId The ID of the app handling the action.
+             * @param handlerAppId(optional) The ID of the app handling the action.
              */
             // @text onActionStartRequest
             virtual void OnActionStartRequest(const string& initiator, const string& intent, const string& handlerAppId) {}
@@ -49,7 +49,7 @@ namespace Exchange {
          * @brief Starts an action for the given intent and handler app.
          * @param initiator The ID of the app/ module initiating the action.
          * @param intent The intent string describing the action.
-         * @param handlerAppId The ID of the app handling the action.
+         * @param handlerAppId(optional) The ID of the app handling the action.
          * @retval Core::ERROR_NONE: Success
          * @retval Core::ERROR_GENERAL: Failure
          * @details Initiates an action from the initiator to the AppActions with the specified intent.
@@ -57,10 +57,20 @@ namespace Exchange {
         // @text actionStart
         virtual Core::hresult ActionStart(const string& initiator, const string& intent, const string& handlerAppId) = 0;
 
-        /** Register notification interface */
+        /**
+         * @brief Registers a notification interface to receive AppActions events.
+         * @param notification The notification interface implementation to register.
+         * @retval Core::ERROR_NONE: Notification interface registered successfully.
+         * @retval Core::ERROR_GENERAL: Notification interface registration failed.
+         */
         virtual Core::hresult Register(INotification *notification) = 0;
 
-        /** Unregister notification interface */
+        /**
+         * @brief Unregisters a previously registered notification interface.
+         * @param notification The notification interface implementation to unregister.
+         * @retval Core::ERROR_NONE: Notification interface unregistered successfully.
+         * @retval Core::ERROR_GENERAL: Notification interface unregistration failed.
+         */
         virtual Core::hresult Unregister(INotification *notification) = 0;
     };
 } // namespace Exchange
