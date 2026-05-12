@@ -62,7 +62,7 @@ Event details will be updated soon.
 | params | object |  |
 | params.initiator | string | The ID of the app/ module initiating the action. |
 | params.intent | string | The intent string describing the action. |
-| params.handlerAppId | string | The ID of the app handling the action. |
+| params?.handlerAppId | string | <sup>(optional)</sup>The ID of the app handling the action. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -130,7 +130,7 @@ Notifies when an action start event occurs.
 | params | object |  |
 | params.initiator | string | The ID of the app/ module initiating the action. |
 | params.intent | string | The intent string describing the action. |
-| params.handlerAppId | string | The ID of the app handling the action. |
+| params?.handlerAppId | string | <sup>(optional)</sup>The ID of the app handling the action. |
 
 ### Examples
 
