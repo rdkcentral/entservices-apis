@@ -50,6 +50,7 @@ DeviceDiagnostics interface methods:
 | [getAVDecoderStatus](#getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
 | [getConfiguration](#getConfiguration) | Gets the values associated with the corresponding property names |
 | [getMilestones](#getMilestones) | Returns the list of milestones |
+| [getPreviousRebootInfo](#getPreviousRebootInfo) | Returns information about the previous reboot including timestamp, source, and reason |
 | [logMilestone](#logMilestone) | Log marker string to rdk milestones log |
 
 <a id="getAVDecoderStatus"></a>
@@ -217,6 +218,69 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+<a id="getPreviousRebootInfo"></a>
+## *getPreviousRebootInfo*
+
+Returns information about the previous reboot including timestamp, source, and reason
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.rebootInfo | RebootInfo | Contains previous reboot information |
+| result.rebootInfo.timestamp | string | timestamp |
+| result.rebootInfo.source | string | source |
+| result.rebootInfo.reason | string | reason |
+| result.rebootInfo.customReason | string | customReason |
+| result.rebootInfo.otherReason | string | otherReason |
+| result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "rebootInfo": {
+            "timestamp": "",
+            "source": "",
+            "reason": "",
+            "customReason": "",
+            "otherReason": "",
+            "lastHardPowerReset": ""
+        },
+        "success": true
+    }
+}
+```
+
 <a id="logMilestone"></a>
 ## *logMilestone*
 
@@ -243,7 +307,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "method": "org.rdk.DeviceDiagnostics.logMilestone",
     "params": {
         "marker": ""
@@ -255,7 +319,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -264,7 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "result": {
         "success": true
     }
@@ -302,7 +366,7 @@ Triggered when the most active status of audio/video decoder/pipeline changes
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.DeviceDiagnostics.onAVDecoderStatusChanged",
     "params": {
         "avDecoderStatusChange": ""
