@@ -2453,42 +2453,6 @@
                 "$ref": "#/common/result"
             }
         },
-        "setVideoPortStatusInStandby":{
-            "summary": "Sets the specified video port status to be used in standby mode (failure if the port name is missing).",
-            "params": {
-                "type": "object",
-                "properties": {
-                    "portName": {
-                        "$ref": "#/definitions/portName"
-                    },
-                    "enabled": {
-                        "summary": "Enable video port status to be used in standby mode",
-                        "type": "boolean",
-                        "example": true
-                    }
-                },
-                "required": [
-                    "portName",
-                    "enabled"
-                ]
-            },
-            "result": {
-                "type":"object",
-                "properties": {
-                    "error_message": {
-                        "summary": "Error message in case of failure",
-                        "type":"string",
-                        "example":"internal error"
-                    },
-                    "success": {
-                        "$ref": "#/common/success"
-                    }
-                },
-                "required": [
-                    "success"
-                ]
-            }
-        },
         "setVolumeLevel":{
             "summary": "Adjusts the Volume Level on a specific port.",
             "events":{
