@@ -4756,8 +4756,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified |
-| result.enabled | boolean |  |
+| result.enable | boolean |  |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -4782,8 +4781,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "videoDisplay": "HDMI0",
-        "enabled": true,
+        "enable": true,
         "success": true
     }
 }
@@ -4859,7 +4857,6 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.codec | string |  |
 | result.numberOfEntries | integer |  |
 | result.entries | array |  |
 | result.entries[#] | object |  |
@@ -4890,7 +4887,6 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "codec": "MPEGH-Part2",
         "numberOfEntries": 3,
         "entries": [
             {
