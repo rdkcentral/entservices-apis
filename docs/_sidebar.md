@@ -42,6 +42,7 @@
   - [Packager<sup>@</sup>](apis/PackagerPlugin.md)
   - [PerformanceMetrics<sup>@</sup>](apis/PerformanceMetricsPlugin.md)
   - [PersistentStore](apis/PersistentStore.md)
+  - [PlaybackSync](apis/PlaybackSync.md)
   - [PlayerInfo](apis/PlayerInfo.md)
   - [PowerManager](apis/PowerManager.md)
   - [PreinstallManager](apis/PreinstallManager.md)
