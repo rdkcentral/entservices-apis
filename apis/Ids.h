@@ -342,6 +342,9 @@ namespace Exchange {
         ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
 
+        ID_APP_ACTIONS                               = ID_ENTOS_OFFSET + 0x520,
+        ID_APP_ACTIONS_NOTIFICATION                  = ID_APP_ACTIONS + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
