@@ -18,6 +18,7 @@
   - [DisplaySettings<sup>@</sup>](apis/DisplaySettingsPlugin.md)
   - [DownloadManager](apis/DownloadManager.md)
   - [DTV<sup>@</sup>](apis/DTVPlugin.md)
+  - [FirmwareDownload](apis/FirmwareDownload.md)
   - [FirmwareUpdate](apis/FirmwareUpdate.md)
   - [FrameRate](apis/FrameRate.md)
   - [FrontPanel](apis/FrontPanel.md)
