@@ -207,22 +207,6 @@ namespace Exchange {
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
 	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
-        ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
-        ID_LISA_NOTIFICATION                         = ID_LISA + 1,
-        ID_LISA_APP_VERSION                          = ID_LISA + 2,
-        ID_LISA_APP_VERSION_ITERATOR                 = ID_LISA + 3,
-        ID_LISA_APP                                  = ID_LISA + 4,
-        ID_LISA_APP_ITERATOR                         = ID_LISA + 5,
-        ID_LISA_APPS_PAYLOAD                         = ID_LISA + 6,
-        ID_LISA_STORAGE                              = ID_LISA + 7,
-        ID_LISA_STORAGE_PAYLOAD                      = ID_LISA + 8,
-        ID_LISA_PROGRESS                             = ID_LISA + 9,
-        ID_LISA_KEY_VALUE                            = ID_LISA + 10,
-        ID_LISA_KEY_VALUE_ITERATOR                   = ID_LISA + 11,
-        ID_LISA_METADATA_PAYLOAD                     = ID_LISA + 12,
-        ID_LISA_LOCK_INFO                            = ID_LISA + 13,
-        ID_LISA_HANDLE_RESULT                        = ID_LISA + 14,
-
         ID_SYSTEMAUDIOPLAYER                         = ID_ENTOS_OFFSET + 0x210,
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
 
@@ -346,54 +330,21 @@ namespace Exchange {
         ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+        ID_GOOGLE_CAST_AUTH_EXTENSION                = ID_GOOGLE_CAST + 4,
 
         ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
 
         ID_UNIFIEDCASMANAGEMENT                     = ID_ENTOS_OFFSET + 0x490,
         ID_UNIFIEDCASMANAGEMENT_NOTIFICATION        = ID_UNIFIEDCASMANAGEMENT + 1,
 
-        ID_ACCOUNT                                  = ID_ENTOS_OFFSET + 0x4A0,
+        ID_ACCOUNT                                  = ID_ENTOS_OFFSET + 0x500,
 
-        ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x4B0,
+        ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
 
-        ID_DEVICESETTINGS                               = ID_ENTOS_OFFSET + 0x4C0,
+        ID_APP_ACTIONS                               = ID_ENTOS_OFFSET + 0x520,
+        ID_APP_ACTIONS_NOTIFICATION                  = ID_APP_ACTIONS + 1,
 
-        ID_DEVICESETTINGS_AUDIO                             = ID_ENTOS_OFFSET + 0x4D0,
-        ID_DEVICESETTINGS_AUDIO_NOTIFICATION                = ID_DEVICESETTINGS_AUDIO + 1,
-        ID_DEVICESETTINGS_AUDIO_ENCODING_ITERATOR           = ID_DEVICESETTINGS_AUDIO + 2,
-        ID_DEVICESETTINGS_AUDIO_COMPRESSION_ITERATOR        = ID_DEVICESETTINGS_AUDIO + 3,
-        ID_DEVICESETTINGS_AUDIO_PROFILE_ITERATOR            = ID_DEVICESETTINGS_AUDIO + 4,
-        ID_DEVICESETTINGS_AUDIO_STEREOMODE_ITERATOR         = ID_DEVICESETTINGS_AUDIO + 5,
-
-        ID_DEVICESETTINGS_COMPOSITEIN                       = ID_ENTOS_OFFSET + 0x4E0,
-        ID_DEVICESETTINGS_COMPOSITEIN_NOTIFICATION          = ID_DEVICESETTINGS_COMPOSITEIN + 1,
-
-        ID_DEVICESETTINGS_DISPLAY                           = ID_ENTOS_OFFSET + 0x4F0,
-        ID_DEVICESETTINGS_DISPLAY_NOTIFICATION              = ID_DEVICESETTINGS_DISPLAY + 1,
-        ID_DEVICESETTINGS_DISPLAY_RESOLUTION_ITERATOR       = ID_DEVICESETTINGS_DISPLAY + 2,
-        ID_DEVICESETTINGS_DISPLAY_HOTPLUG_NOTIFICATION      = ID_DEVICESETTINGS_DISPLAY + 3,
-
-        ID_DEVICESETTINGS_FPD                               = ID_ENTOS_OFFSET + 0x500,
-        ID_DEVICESETTINGS_FPD_NOTIFICATION                  = ID_DEVICESETTINGS_FPD + 1,
- 
-        ID_DEVICESETTINGS_HDMIIN                            = ID_ENTOS_OFFSET + 0x510,
-        ID_DEVICESETTINGS_HDMIIN_NOTIFICATION               = ID_DEVICESETTINGS_HDMIIN + 1,
-        ID_DEVICESETTINGS_HDMIIN_PORTCONNECTION_ITERATOR    = ID_DEVICESETTINGS_HDMIIN + 2,
-        ID_DEVICESETTINGS_HDMIIN_GAMELIST_ITERATOR          = ID_DEVICESETTINGS_HDMIIN + 3,
-
-        ID_DEVICESETTINGS_HOST                              = ID_ENTOS_OFFSET + 0x520,
-        ID_DEVICESETTINGS_HOST_NOTIFICATION                 = ID_DEVICESETTINGS_HOST + 1,
-
-        ID_DEVICESETTINGS_VIDEODEVICE                       = ID_ENTOS_OFFSET + 0x530,
-        ID_DEVICESETTINGS_VIDEODEVICE_NOTIFICATION          = ID_DEVICESETTINGS_VIDEODEVICE + 1,
-        ID_DEVICESETTINGS_VIDEO_CODEC_PROFILE_ITERATOR      = ID_DEVICESETTINGS_VIDEODEVICE + 2,
-
-        ID_DEVICESETTINGS_VIDEOPORT                         = ID_ENTOS_OFFSET + 0x540,
-        ID_DEVICESETTINGS_VIDEOPORT_NOTIFICATION            = ID_DEVICESETTINGS_VIDEOPORT + 1,
-        
-        //Test plugin for Devicesettings plugin. TODO: will remove in final review PR
-        ID_USER_PLUGIN                               = ID_ENTOS_OFFSET + 0x550
     }; // enum IDS
 
 } // namespace Exchange
