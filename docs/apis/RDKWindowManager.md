@@ -766,7 +766,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1128,7 +1128,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | Name of the client/callSign requesting the key generation. |
+| params.client | string | Name of the client/callSign that should receive focus. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1230,7 +1230,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | Name of the client/callSign requesting the key generation. |
+| params.client | string | Name of the client/callSign or appInstanceId whose visibility is being changed. |
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1283,7 +1283,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the client name or application instance ID |
 | params.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
 ### Results
 | Name | Type | Description |
@@ -1447,7 +1447,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the blurred application |
 
 ### Examples
 
@@ -1471,7 +1471,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1519,7 +1519,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the application in focus |
 
 ### Examples
 
@@ -1543,7 +1543,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the application that has been hidden |
 
 ### Examples
 
@@ -1567,7 +1567,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the application that is ready |
 
 ### Examples
 
@@ -1586,7 +1586,7 @@ Posting the client for first frame ready.
 ## *onScreenshotComplete*
 
 Notifies when a screenshot capture is complete
-
+i
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1641,7 +1641,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the application that is visible |
 
 ### Examples
 
