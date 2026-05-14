@@ -121,7 +121,9 @@ def generate_md_from_individual_header_file(header_structure, output_doc_folder_
         file.write(generate_header_toc(
             classname, header_structure, plugin_version, header_file_path))
         file.write(generate_header_description_markdown(
-            classname, getattr(header_structure, 'plugindescription', '')))
+            classname,
+            getattr(header_structure, 'plugindescription', ''),
+            getattr(header_structure, 'plugin_callsign', None)))
         file.write(generate_configuration_options_section(header_structure.configuration_options))
 
         # Write main content sections
@@ -195,3 +197,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     generate_md_from_header(args.input_plugin_folder, args.output_doc_folder, args.individual, args.logfile)
+
