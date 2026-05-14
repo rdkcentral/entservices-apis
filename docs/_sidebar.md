@@ -5,6 +5,7 @@
   - [Account](apis/Account.md)
   - [AmazonPrime](apis/AmazonPrime.md)
   - [Analytics](apis/Analytics.md)
+  - [AppActions](apis/AppActions.md)
   - [AppGateway](apis/AppGateway.md)
   - [AppManager](apis/AppManager.md)
   - [AppStorageManager](apis/AppStorageManager.md)
