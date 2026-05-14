@@ -103,14 +103,6 @@ namespace Exchange {
             const string& downloadId,
             uint8_t& percent /* @out */) = 0;
 
-        // @brief GetStorageDetails Get information about storage space availability
-        // @text getStorageDetails
-        // @param quotaKb: Output parameter for total available quota in KB
-        // @param usedKb: Output parameter for currently used storage in KB
-        virtual Core::hresult GetStorageDetails(
-            uint32_t& quotaKb /* @out */,
-            uint32_t& usedKb /* @out */) = 0;
-
         // @brief RateLimit Set rate limiting for a specific download session
         // @text rateLimit
         // @param downloadId: Unique identifier of the download
