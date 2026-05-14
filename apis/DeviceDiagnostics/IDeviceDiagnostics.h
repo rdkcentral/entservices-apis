@@ -42,15 +42,6 @@ namespace WPEFramework
                 string avDecoderStatus;
             };
 
-            struct EXTERNAL RebootInfo {
-                string timestamp /* @text timestamp */; 
-                string source /* @text source */;
-                string reason /* @text reason */;
-                string customReason /* @text customReason */; 
-                string otherReason /* @text otherReason */;
-                string lastHardPowerReset /* @text lastHardPowerReset */;
-            };
-
             using IDeviceDiagnosticsParamListIterator = RPC::IIteratorType<ParamList, ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR>;
 
             // @event
@@ -90,12 +81,6 @@ namespace WPEFramework
             // @brief Gets the most active status of audio/video decoder/pipeline
             // @param AVDecoderStatus - out
             virtual Core::hresult GetAVDecoderStatus(AvDecoderStatusResult& AVDecoderStatus /* @out */) = 0;
-
-            // @text getPreviousRebootInfo
-            // @brief Returns information about the previous reboot including timestamp, source, and reason
-            // @param rebootInfo: Contains previous reboot information
-            // @param success: Indicates whether the operation was successful
-            virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
 } // namespace WPEFramework
