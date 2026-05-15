@@ -38,38 +38,38 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
 
     // @brief Notifies when an application is disconnected
     // @text onDisconnected
-    // @param client: the identifier of the disconnected application
-    virtual void OnDisconnected(const std::string& client){};
+    // @param clientId: the identifier of the disconnected application
+    virtual void OnDisconnected(const std::string& clientId){};
 
     // @brief Posting the client for first frame ready.
     // @text onReady
-    // @param client: notify first frame event received for client or application instance ID
-    virtual void OnReady(const string &client){};
+    // @param clientId: notify first frame event received for client or application instance ID
+    virtual void OnReady(const string &clientId){};
 
     // @brief Notifies when an application is connected
     // @text onConnected
-    // @param appInstanceId: the identifier of the connected application
-    virtual void OnConnected(const std::string& appInstanceId){};
+    // @param clientId: the identifier of the connected application
+    virtual void OnConnected(const std::string& clientId){};
 
     // @brief Notifies when an application is visible
     // @text onVisible
-    // @param appInstanceId: the identifier of the visible application
-    virtual void OnVisible(const std::string& appInstanceId){};
+    // @param clientId: the identifier of the visible application
+    virtual void OnVisible(const std::string& clientId){};
 
     // @brief Notifies when an application is hidden
     // @text onHidden
-    // @param appInstanceId: the identifier of the hidden application
-    virtual void OnHidden(const std::string& appInstanceId){};
+    // @param clientId: the identifier of the hidden application
+    virtual void OnHidden(const std::string& clientId){};
 
     // @brief Notifies when an application is in focus
     // @text onFocus
-    // @param appInstanceId: the identifier of the focussed application
-    virtual void OnFocus(const std::string& appInstanceId){};
+    // @param clientId: the identifier of the focussed application
+    virtual void OnFocus(const std::string& clientId){};
 
     // @brief Notifies when an application is blurred
     // @text onBlur
-    // @param appInstanceId: the identifier of the blurred application
-    virtual void OnBlur(const std::string& appInstanceId){};
+    // @param clientId: the identifier of the blurred application
+    virtual void OnBlur(const std::string& clientId){};
 
     // @brief Notifies when a screenshot capture is complete
     // @text onScreenshotComplete
@@ -260,18 +260,18 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Sets the zOrder of the given client or appInstanceId */
   // @text setZOrder
   // @brief Sets the zOrder of the given client or appInstanceId
-  // @param appInstanceId: client name or application instance ID
+  // @param clientId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder
   // @retval Core::ERROR_NONE on success
-  virtual Core::hresult SetZOrder(const string& appInstanceId, const int32_t zOrder) = 0;
+  virtual Core::hresult SetZOrder(const string& clientId, const int32_t zOrder) = 0;
 
   /** Gets the zOrder of the given client or appInstanceId */
   // @text getZOrder
   // @brief Gets the zOrder of the given client or appInstanceId
-  // @param appInstanceId: client name or application instance ID
+  // @param clientId: client name or application instance ID
   // @param zOrder: integer value indicating the zOrder of the client
   // @retval Core::ERROR_NONE on success
-  virtual Core::hresult GetZOrder(const string& appInstanceId, int32_t &zOrder /* @out */) = 0;
+  virtual Core::hresult GetZOrder(const string& clientId, int32_t &zOrder /* @out */) = 0;
 
   /** Starts the VNC server */
   // @text startVncServer
