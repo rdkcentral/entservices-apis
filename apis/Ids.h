@@ -345,6 +345,12 @@ namespace Exchange {
         ID_APP_ACTIONS                               = ID_ENTOS_OFFSET + 0x520,
         ID_APP_ACTIONS_NOTIFICATION                  = ID_APP_ACTIONS + 1,
 
+        ID_REMOTECONTROL                            = ID_ENTOS_OFFSET + 0x530,
+        ID_REMOTECONTROL_NOTIFICATION               = ID_REMOTECONTROL + 1,
+
+        ID_VOICECONTROL                             = ID_ENTOS_OFFSET + 0x540,
+        ID_VOICECONTROL_NOTIFICATION                = ID_VOICECONTROL + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
