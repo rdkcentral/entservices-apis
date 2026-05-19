@@ -185,7 +185,9 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @param appId App identifier for the application.
   // @param intent(optional) Specifies the intent or message to be available during preload.
   // @param launchArgs(optional) Additional parameters passed to the application.
-  // @param error if success = false it holds the appropriate error reason.
+  // @param error: Output parameter populated with the error reason when the method returns a failure through Core::hresult
+  // @retval Core::ERROR_NONE: Application was preloaded successfully.
+  // @retval Core::ERROR_GENERAL: Preload failed.
   virtual Core::hresult PreloadApp(const string& appId, const string& intent, const string& launchArgs, string& error /* @out */) = 0;
 
   /** CloseApp moves the application from Active to Running state **/
