@@ -611,7 +611,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.error | string | if success = false it holds the appropriate error reason. |
+| result.error | string | Output parameter populated with the error reason when the method returns a failure through Core::hresult @retval Core::ERROR_NONE: Application was preloaded successfully. @retval Core::ERROR_GENERAL: Preload failed. |
 
 ### Examples
 
