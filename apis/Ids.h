@@ -150,6 +150,7 @@ namespace Exchange {
 
         ID_TEXT_TO_SPEECH                            = ID_ENTOS_OFFSET + 0x130,
         ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1,
+        ID_VOICE_INFO_ITERATOR                       = ID_TEXT_TO_SPEECH + 2,
 
         ID_HOMEKITTV                                 = ID_ENTOS_OFFSET + 0x140,
         ID_HOMEKITTV_NOTIFICATION                    = ID_HOMEKITTV + 1,
