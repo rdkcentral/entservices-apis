@@ -131,6 +131,14 @@ DisplaySettings interface methods:
 | [setZoomSetting](#setZoomSetting) | Sets the current zoom value |
 | [getColorDepthCapabilities](#getColorDepthCapabilities) | Returns supported color depth capabilities |
 | [getSupportedMS12Config](#getSupportedMS12Config) | Returns supported ms12 config by the platform, possible values couldbe CONFG_Z, CONFIG_X, CONFIG_Y, CONFIG_NONE |
+| [setAudioDucking](#setAudioDucking) | Sets audio ducking on the selected audio port |
+| [setEnableVideoPort](#setEnableVideoPort) | Enables or disables the specified video display output port |
+| [getEnableVideoPort](#getEnableVideoPort) | Returns whether the specified video display output port is enabled |
+| [getSupportedVideoCodingFormats](#getSupportedVideoCodingFormats) | Returns supported video coding formats of the decoder |
+| [getVideoCodecInfo](#getVideoCodecInfo) | Returns codec profile and level entries for the requested codec |
+| [getAudioEncoding](#getAudioEncoding) | Returns audio encoding configured for the selected audio port |
+| [setAudioEncoding](#setAudioEncoding) | Sets audio encoding for the selected audio port |
+| [getDisplayAspectRatio](#getDisplayAspectRatio) | Returns display aspect ratio information for the selected video display |
 
 
 <a name="enableSurroundDecoder"></a>
@@ -4604,6 +4612,461 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "ms12config": "CONFIG_X",
+        "success": true
+    }
+}
+```
+
+<a name="setAudioDucking"></a>
+## *setAudioDucking*
+
+Sets audio ducking on the selected audio port.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
+| params.mode | string |  (must be one of the following: *mute*, *attenuate*, *raw*) |
+| params?.mute | boolean | <sup>*(optional)*</sup>  |
+| params?.enable | boolean | <sup>*(optional)*</sup>  |
+| params?.relative | boolean | <sup>*(optional)*</sup>  |
+| params?.volume | number | <sup>*(optional)*</sup>  |
+| params?.action | string | <sup>*(optional)*</sup>  (must be one of the following: *start*, *stop*) |
+| params?.duckingType | string | <sup>*(optional)*</sup>  (must be one of the following: *absolute*, *relative*) |
+| params?.level | integer | <sup>*(optional)*</sup>  |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.setAudioDucking",
+    "params": {
+        "audioPort": "SPEAKER0",
+        "mode": "mute",
+        "mute": true,
+        "enable": true,
+        "relative": false,
+        "volume": 0.5,
+        "action": "start",
+        "duckingType": "absolute",
+        "level": 25
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="setEnableVideoPort"></a>
+## *setEnableVideoPort*
+
+Enables or disables the specified video display output port.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified |
+| params.enable | boolean |  |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.setEnableVideoPort",
+    "params": {
+        "videoDisplay": "HDMI0",
+        "enable": true
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="getEnableVideoPort"></a>
+## *getEnableVideoPort*
+
+Returns whether the specified video display output port is enabled.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified |
+| result.enabled | boolean |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.getEnableVideoPort",
+    "params": {
+        "videoDisplay": "HDMI0"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "videoDisplay": "HDMI0",
+        "enabled": true,
+        "success": true
+    }
+}
+```
+
+<a name="getSupportedVideoCodingFormats"></a>
+## *getSupportedVideoCodingFormats*
+
+Returns supported video coding formats of the decoder.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.supportedFormats | array |  |
+| result.supportedFormats[#] | string |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.getSupportedVideoCodingFormats"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "supportedFormats": [
+            "HEVC"
+        ],
+        "success": true
+    }
+}
+```
+
+<a name="getVideoCodecInfo"></a>
+## *getVideoCodecInfo*
+
+Returns codec profile and level entries for the requested codec.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.codec | string | <sup>*(optional)*</sup>  (must be one of the following: *MPEGH-Part2*, *MPEG4-Part10*, *MPEG2*) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.codec | string |  |
+| result.numberOfEntries | integer |  |
+| result.entries | array |  |
+| result.entries[#] | object |  |
+| result.entries[#].index | integer |  |
+| result.entries[#].profile | string |  |
+| result.entries[#].level | integer |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.getVideoCodecInfo",
+    "params": {
+        "codec": "MPEGH-Part2"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "codec": "MPEGH-Part2",
+        "numberOfEntries": 3,
+        "entries": [
+            {
+                "index": 1,
+                "profile": "MAIN",
+                "level": 120
+            }
+        ],
+        "success": true
+    }
+}
+```
+
+<a name="getAudioEncoding"></a>
+## *getAudioEncoding*
+
+Returns audio encoding configured for the selected audio port.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
+| result.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+| result.encodingId | integer |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.getAudioEncoding",
+    "params": {
+        "audioPort": "SPEAKER0"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "audioPort": "SPEAKER0",
+        "encoding": "AC3",
+        "encodingId": 3,
+        "success": true
+    }
+}
+```
+
+<a name="setAudioEncoding"></a>
+## *setAudioEncoding*
+
+Sets audio encoding for the selected audio port.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
+| params.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
+| result.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+| result.encodingId | integer |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.setAudioEncoding",
+    "params": {
+        "audioPort": "SPEAKER0",
+        "encoding": "AC3"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "audioPort": "SPEAKER0",
+        "encoding": "AC3",
+        "encodingId": 3,
+        "success": true
+    }
+}
+```
+
+<a name="getDisplayAspectRatio"></a>
+## *getDisplayAspectRatio*
+
+Returns display aspect ratio information for the selected video display.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.videoDisplay | string | <sup>*(optional)*</sup> Video display port name. The default port is `HDMI0` if no port is specified |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.aspectRatio | string |  |
+| result.aspectRatioValue | integer |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.DisplaySettings.getDisplayAspectRatio",
+    "params": {
+        "videoDisplay": "HDMI0"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "aspectRatio": "16x9",
+        "aspectRatioValue": 1,
         "success": true
     }
 }
