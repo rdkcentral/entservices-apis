@@ -2585,170 +2585,286 @@
             "params": {
                 "type": "object",
                 "properties": {
-                "audioPort": { "$ref": "#/definitions/audioPort1" },
-                "mode": {
-                    "type": "string",
-                    "enum": ["mute", "attenuate", "raw"],
-                    "example": "mute"
-                },
-                "mute": { "type": "boolean", "example": true },
-                "enable": { "type": "boolean", "example": true },
-                "relative": { "type": "boolean", "example": false },
-                "volume": { "type": "number", "minimum": 0.0, "maximum": 1.0, "example": 0.5 },
-                "action": { "type": "string", "enum": ["start", "stop"], "example": "start" },
-                "duckingType": { "type": "string", "enum": ["absolute", "relative"], "example": "absolute" },
-                "level": { "type": "integer", "minimum": 0, "maximum": 100, "example": 25 }
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    },
+                    "mode": {
+                        "summary": "Ducking operation mode.",
+                        "type": "string",
+                        "enum": ["mute", "attenuate", "raw"],
+                        "example": "mute"
+                    },
+                    "mute": {
+                        "summary": "Used with mode=mute. true starts mute ducking, false stops it.",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "enable": {
+                        "summary": "Used with mode=attenuate. true starts ducking, false stops ducking.",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "relative": {
+                        "summary": "Used with mode=attenuate. true applies relative ducking, false applies absolute ducking.",
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "volume": {
+                        "summary": "Used with mode=attenuate. Ducking level ratio from 0.0 to 1.0.",
+                        "type": "number",
+                        "minimum": 0.0,
+                        "maximum": 1.0,
+                        "example": 0.5
+                    },
+                    "action": {
+                        "summary": "Used with mode=raw. start begins ducking and stop ends ducking.",
+                        "type": "string",
+                        "enum": ["start", "stop"],
+                        "example": "start"
+                    },
+                    "duckingType": {
+                        "summary": "Used with mode=raw. Ducking type.",
+                        "type": "string",
+                        "enum": ["absolute", "relative"],
+                        "example": "absolute"
+                    },
+                    "level": {
+                        "summary": "Used with mode=raw. Ducking level percentage from 0 to 100.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 100,
+                        "example": 25
+                    }
                 },
                 "required": ["mode"]
             },
-            "result": { "$ref": "#/common/result" }
+            "result": {
+                "$ref": "#/common/result"
+            }
         },
-        "setEnableVideoPort": {
+	"setEnableVideoPort": {
             "summary": "Enables or disables the specified video display output port.",
             "params": {
                 "type": "object",
                 "properties": {
-                "videoDisplay": { "$ref": "#/definitions/videoDisplay" },
-                "enable": { "type": "boolean", "example": true }
+                    "videoDisplay": {
+                        "$ref": "#/definitions/videoDisplay"
+                    },
+                    "enable": {
+                        "summary": "true enables the video output port; false disables it.",
+                        "type": "boolean",
+                        "example": true
+                    }
                 },
                 "required": ["videoDisplay", "enable"]
             },
-            "result": { "$ref": "#/common/result" }
+            "result": {
+                "$ref": "#/common/result"
+            }
         },
-        "getEnableVideoPort": {
+	"getEnableVideoPort": {
             "summary": "Returns whether the specified video display output port is enabled.",
             "params": {
                 "type": "object",
                 "properties": {
-                "videoDisplay": { "$ref": "#/definitions/videoDisplay" }
+                    "videoDisplay": {
+                        "$ref": "#/definitions/videoDisplay"
+                    }
                 },
                 "required": ["videoDisplay"]
             },
             "result": {
                 "type": "object",
                 "properties": {
-                "enable": { "type": "boolean", "example": true },
-                "success": { "$ref": "#/common/success" }
+                    "enable": {
+                        "summary": "true if the video output port is enabled, otherwise false.",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
                 },
                 "required": ["enable", "success"]
             }
         },
-        "getSupportedVideoCodingFormats": {
+	"getSupportedVideoCodingFormats": {
             "summary": "Returns supported video coding formats of the decoder.",
             "result": {
                 "type": "object",
                 "properties": {
-                "supportedFormats": {
-                    "type": "array",
-                    "items": { "type": "string", "example": "HEVC" }
-                },
-                "success": { "$ref": "#/common/success" }
+                    "supportedFormats": {
+                        "summary": "List of supported decoder video coding formats.",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "HEVC"
+                        }
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
                 },
                 "required": ["supportedFormats", "success"]
             }
         },
-        "getVideoCodecInfo": {
+	"getVideoCodecInfo": {
             "summary": "Returns codec profile and level entries for the requested codec.",
             "params": {
                 "type": "object",
                 "properties": {
-                "codec": {
-                    "type": "string",
-                    "enum": ["MPEGH-Part2", "MPEG4-Part10", "MPEG2"],
-                    "example": "MPEGH-Part2"
-                }
+                    "codec": {
+                        "summary": "Codec to query. Optional; defaults to MPEGH-Part2 when omitted.",
+                        "type": "string",
+                        "enum": ["MPEGH-Part2", "MPEG4-Part10", "MPEG2"],
+                        "example": "MPEGH-Part2"
+                    }
                 },
                 "required": []
             },
             "result": {
                 "type": "object",
                 "properties": {
-                "numberOfEntries": { "type": "integer", "example": 3 },
-                "entries": {
-                    "type": "array",
-                    "items": {
-                    "type": "object",
-                    "properties": {
-                        "index": { "type": "integer", "example": 1 },
-                        "profile": { "type": "string", "example": "MAIN" },
-                        "level": { "type": "integer", "example": 120 }
+                    "numberOfEntries": {
+                        "summary": "Number of codec profile/level entries returned.",
+                        "type": "integer",
+                        "example": 3
                     },
-                    "required": ["index", "profile", "level"]
+                    "entries": {
+                        "summary": "Codec capability entries for the requested codec.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "index": {
+                                    "summary": "1-based entry index.",
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "profile": {
+                                    "summary": "Codec profile name or profile value string.",
+                                    "type": "string",
+                                    "example": "MAIN"
+                                },
+                                "level": {
+                                    "summary": "Codec level value.",
+                                    "type": "integer",
+                                    "example": 120
+                                }
+                            },
+                            "required": ["index", "profile", "level"]
+                        }
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
                     }
-                },
-                "success": { "$ref": "#/common/success" }
                 },
                 "required": ["numberOfEntries", "entries", "success"]
             }
         },
-        "getAudioEncoding": {
+	"getAudioEncoding": {
             "summary": "Returns audio encoding configured for the selected audio port.",
             "params": {
                 "type": "object",
                 "properties": {
-                "audioPort": { "$ref": "#/definitions/audioPort1" }
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    }
                 },
                 "required": []
             },
             "result": {
                 "type": "object",
                 "properties": {
-                "audioPort": { "$ref": "#/definitions/audioPort1" },
-                "encoding": {
-                    "type": "string",
-                    "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
-                    "example": "AC3"
-                },
-                "encodingId": { "type": "integer", "example": 3 },
-                "success": { "$ref": "#/common/success" }
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    },
+                    "encoding": {
+                        "summary": "Current encoding configured on the selected audio port.",
+                        "type": "string",
+                        "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
+                        "example": "AC3"
+                    },
+                    "encodingId": {
+                        "summary": "Numeric ID of the current encoding.",
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
                 },
                 "required": ["audioPort", "encoding", "encodingId", "success"]
             }
         },
-        "setAudioEncoding": {
+	"setAudioEncoding": {
             "summary": "Sets audio encoding for the selected audio port.",
             "params": {
                 "type": "object",
                 "properties": {
-                "audioPort": { "$ref": "#/definitions/audioPort1" },
-                "encoding": {
-                    "type": "string",
-                    "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
-                    "example": "AC3"
-                }
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    },
+                    "encoding": {
+                        "summary": "Requested audio encoding to apply on the selected audio port.",
+                        "type": "string",
+                        "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
+                        "example": "AC3"
+                    }
                 },
                 "required": ["encoding"]
             },
             "result": {
                 "type": "object",
                 "properties": {
-                "audioPort": { "$ref": "#/definitions/audioPort1" },
-                "encoding": {
-                    "type": "string",
-                    "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
-                    "example": "AC3"
-                },
-                "encodingId": { "type": "integer", "example": 3 },
-                "success": { "$ref": "#/common/success" }
+                    "audioPort": {
+                        "$ref": "#/definitions/audioPort1"
+                    },
+                    "encoding": {
+                        "summary": "Effective audio encoding after applying the request.",
+                        "type": "string",
+                        "enum": ["NONE", "DISPLAY", "PCM", "AC3"],
+                        "example": "AC3"
+                    },
+                    "encodingId": {
+                        "summary": "Numeric ID of the effective encoding after apply.",
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
                 },
                 "required": ["audioPort", "encoding", "encodingId", "success"]
             }
         },
-        "getDisplayAspectRatio": {
+	"getDisplayAspectRatio": {
             "summary": "Returns display aspect ratio information for the selected video display.",
             "params": {
                 "type": "object",
                 "properties": {
-                "videoDisplay": { "$ref": "#/definitions/videoDisplay" }
+                    "videoDisplay": {
+                        "$ref": "#/definitions/videoDisplay"
+                    }
                 },
                 "required": []
             },
             "result": {
                 "type": "object",
                 "properties": {
-                "aspectRatio": { "type": "string", "example": "16x9" },
-                "aspectRatioValue": { "type": "integer", "example": 1 },
-                "success": { "$ref": "#/common/success" }
+                    "aspectRatio": {
+                        "summary": "Display aspect ratio string (for example, 16x9 or 4x3).",
+                        "type": "string",
+                        "example": "16x9"
+                    },
+                    "aspectRatioValue": {
+                        "summary": "Numeric enum value representing the display aspect ratio.",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "success": {
+                        "$ref": "#/common/success"
+                    }
                 },
                 "required": ["aspectRatio", "aspectRatioValue", "success"]
             }
