@@ -4632,14 +4632,14 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
-| params.mode | string |  (must be one of the following: *mute*, *attenuate*, *raw*) |
-| params?.mute | boolean | <sup>*(optional)*</sup>  |
-| params?.enable | boolean | <sup>*(optional)*</sup>  |
-| params?.relative | boolean | <sup>*(optional)*</sup>  |
-| params?.volume | number | <sup>*(optional)*</sup>  |
-| params?.action | string | <sup>*(optional)*</sup>  (must be one of the following: *start*, *stop*) |
-| params?.duckingType | string | <sup>*(optional)*</sup>  (must be one of the following: *absolute*, *relative*) |
-| params?.level | integer | <sup>*(optional)*</sup>  |
+| params.mode | string | Ducking operation mode. (must be one of the following: *mute*, *attenuate*, *raw*) |
+| params?.mute | boolean | <sup>*(optional)*</sup> Used with mode=mute. true starts mute ducking, false stops it |
+| params?.enable | boolean | <sup>*(optional)*</sup> Used with mode=attenuate. true starts ducking, false stops ducking |
+| params?.relative | boolean | <sup>*(optional)*</sup> Used with mode=attenuate. true applies relative ducking, false applies absolute ducking |
+| params?.volume | number | <sup>*(optional)*</sup> Used with mode=attenuate. Ducking level ratio from 0.0 to 1.0 |
+| params?.action | string | <sup>*(optional)*</sup> Used with mode=raw. start begins ducking and stop ends ducking. (must be one of the following: *start*, *stop*) |
+| params?.duckingType | string | <sup>*(optional)*</sup> Used with mode=raw. Ducking type. (must be one of the following: *absolute*, *relative*) |
+| params?.level | integer | <sup>*(optional)*</sup> Used with mode=raw. Ducking level percentage from 0 to 100 |
 
 ### Result
 
@@ -4698,7 +4698,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.videoDisplay | string | Video display port name. The default port is `HDMI0` if no port is specified |
-| params.enable | boolean |  |
+| params.enable | boolean | true enables the video output port; false disables it |
 
 ### Result
 
@@ -4756,7 +4756,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enable | boolean |  |
+| result.enable | boolean | true if the video output port is enabled, otherwise false |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -4805,7 +4805,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedFormats | array |  |
+| result.supportedFormats | array | List of supported decoder video coding formats |
 | result.supportedFormats[#] | string |  |
 | result.success | boolean | Whether the request succeeded |
 
@@ -4850,19 +4850,19 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.codec | string | <sup>*(optional)*</sup>  (must be one of the following: *MPEGH-Part2*, *MPEG4-Part10*, *MPEG2*) |
+| params?.codec | string | <sup>*(optional)*</sup> Codec to query. Optional; defaults to MPEGH-Part2 when omitted. (must be one of the following: *MPEGH-Part2*, *MPEG4-Part10*, *MPEG2*) |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.numberOfEntries | integer |  |
-| result.entries | array |  |
+| result.numberOfEntries | integer | Number of codec profile/level entries returned |
+| result.entries | array | Codec capability entries for the requested codec |
 | result.entries[#] | object |  |
-| result.entries[#].index | integer |  |
-| result.entries[#].profile | string |  |
-| result.entries[#].level | integer |  |
+| result.entries[#].index | integer | 1-based entry index |
+| result.entries[#].profile | string | Codec profile name or profile value string |
+| result.entries[#].level | integer | Codec level value |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -4922,8 +4922,8 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
-| result.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
-| result.encodingId | integer |  |
+| result.encoding | string | Current encoding configured on the selected audio port. (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+| result.encodingId | integer | Numeric ID of the current encoding |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -4971,7 +4971,7 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.audioPort | string | <sup>*(optional)*</sup> Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
-| params.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+| params.encoding | string | Requested audio encoding to apply on the selected audio port. (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
 
 ### Result
 
@@ -4979,8 +4979,8 @@ No Events
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.audioPort | string | Audio port name (`HDMI0`, `SPEAKER0`, `SPDIF0`, and so on). The default port is `HDMI0` if no port is specified |
-| result.encoding | string |  (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
-| result.encodingId | integer |  |
+| result.encoding | string | Effective audio encoding after applying the request. (must be one of the following: *NONE*, *DISPLAY*, *PCM*, *AC3*) |
+| result.encodingId | integer | Numeric ID of the effective encoding after apply |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -5035,8 +5035,8 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.aspectRatio | string |  |
-| result.aspectRatioValue | integer |  |
+| result.aspectRatio | string | Display aspect ratio string (for example, 16x9 or 4x3) |
+| result.aspectRatioValue | integer | Numeric enum value representing the display aspect ratio |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
