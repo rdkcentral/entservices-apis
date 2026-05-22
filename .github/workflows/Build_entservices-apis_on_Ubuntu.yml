@@ -24,12 +24,12 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
-
-      - name: Clone Thunder
         run: |
           git clone -b $THUNDER_TOOLS_REF https://github.com/rdkcentral/ThunderTools.git
           git checkout $COMMIT_HASH
+
+      - name: Clone Thunder
+        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
 
       - name: Install jsonref
         run: |
