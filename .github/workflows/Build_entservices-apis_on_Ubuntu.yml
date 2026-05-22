@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: ["develop"]
 
-env:
-  THUNDER_TOOLS_REF: "R4_4"
-  COMMIT_HASH: "b6789ca88b1e6c56942d9858d6d4411eae389ddc"
-
 jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
@@ -24,9 +20,7 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run: |
-          git clone -b $THUNDER_TOOLS_REF https://github.com/rdkcentral/ThunderTools.git
-          git checkout $COMMIT_HASH
+        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
 
       - name: Clone Thunder
         run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
