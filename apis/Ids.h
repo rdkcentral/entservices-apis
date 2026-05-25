@@ -264,6 +264,9 @@ namespace Exchange {
 
         ID_RESOURCEMONITOR                          = ID_ENTOS_OFFSET + 0x370,
         ID_RESOURCEMONITOR_NOTIFICATION             = ID_RESOURCEMONITOR + 1,
+
+        ID_AVMONITOR                                = ID_ENTOS_OFFSET + 0x380,
+        ID_AVMONITOR_NOTIFICATION                   = ID_AVMONITOR + 1,
     };
 }
 }
