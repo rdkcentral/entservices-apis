@@ -46,10 +46,11 @@ struct RuntimeConfig
 
     std::string logFilePath;
     uint32_t logFileMaxSize{0};
-    std::string logLevels;          //json array of strings
+    std::string logLevels /* @text logLevels */ /* @brief JSON array of strings representing enabled log levels */;
     bool mapi {false};
-    std::string fkpsFiles;          //json array of strings
-    std::string ralfPkgPath;        //Filesystem path holding metadata info of ralf packages
+    std::string fkpsFiles /* @text fkpsFiles */ /* @brief JSON array of strings identifying FKPS files */;
+    std::string capabilities /* @text capabilities */ /* @brief Comma-separated lowercase runtime capability tokens */;
+    std::string ralfPkgPath /* @text ralfPkgPath */ /* @brief Filesystem path containing metadata information for RALF packages */;
 
     std::string fireboltVersion;
     bool enableDebugger{false};
