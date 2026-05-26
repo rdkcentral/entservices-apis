@@ -26,6 +26,7 @@ jobs:
       - name: Clone ThunderTools
         run: |
           git clone -b $THUNDER_TOOLS_REF https://github.com/rdkcentral/ThunderTools.git
+          cd ThunderTools
           git checkout $COMMIT_HASH
 
       - name: Clone Thunder
