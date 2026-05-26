@@ -605,12 +605,13 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | appId |
+| params?.intent | string | <sup>(optional)</sup>A reference to the intent string that specifies the action or request to be processed. |
 | params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.error | string | if success = false it holds the appropriate error reason. |
+| result.error | string | Output parameter populated with the error reason when the method returns a failure through Core::hresult @retval Core::ERROR_NONE: Application was preloaded successfully. @retval Core::ERROR_GENERAL: Preload failed. |
 
 ### Examples
 
@@ -624,6 +625,7 @@ Event details will be updated soon.
     "method": "org.rdk.AppManager.preloadApp",
     "params": {
         "appId": "",
+        "intent": "",
         "launchArgs": ""
     }
 }
@@ -633,7 +635,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
