@@ -1,8 +1,8 @@
 diff --git a/JsonGenerator/source/class_emitter.py b/JsonGenerator/source/class_emitter.py
-index 7f2fb01..67a6469 100644
+index 271b788..d653c6b 100644
 --- a/JsonGenerator/source/class_emitter.py
 +++ b/JsonGenerator/source/class_emitter.py
-@@ -113,7 +113,6 @@
+@@ -250,7 +250,6 @@ def EmitEnumRegs(log, root, emit, header_file, if_file):
      emit.Line("#include <core/Enumerate.h>")
      emit.Line()
  
@@ -11,10 +11,10 @@ index 7f2fb01..67a6469 100644
      if not config.NO_INCLUDES:
          if if_file.endswith(".h"):
 diff --git a/ProxyStubGenerator/StubGenerator.py b/ProxyStubGenerator/StubGenerator.py
-index 6e079b6..d2de681 100755
+index 3404995..d4899d5 100755
 --- a/ProxyStubGenerator/StubGenerator.py
 +++ b/ProxyStubGenerator/StubGenerator.py
-@@ -193,7 +193,7 @@
+@@ -201,7 +201,7 @@ def Flatten(identifier, scope):
  
  
  # Generate interface information in lua
@@ -22,8 +22,8 @@ index 6e079b6..d2de681 100755
 +def GenerateLuaData(emit, interfaces_list, enums_list, project_dir, source_file=None, tree=None, ns=None):
  
      if not source_file:
-         assert(tree==None)
-@@ -535,7 +535,7 @@
+         assert tree==None
+@@ -649,7 +649,7 @@ def Parse(source_file, framework_namespace, includePaths = [], defaults = "", ex
  
      return tree
  
@@ -32,8 +32,8 @@ index 6e079b6..d2de681 100755
      log.Info("Scanning '%s' (in %s)..." % (source_file, ns))
  
      if not FORCE and (os.path.exists(output_file) and (os.path.getmtime(source_file) < os.path.getmtime(output_file))):
-@@ -579,7 +579,7 @@
-         emit.Line
+@@ -2489,7 +2489,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
+ 
          emit.Line()
  
 -        if os.path.isfile(os.path.join(os.path.dirname(source_file), "Module.h")):
@@ -41,8 +41,8 @@ index 6e079b6..d2de681 100755
              emit.Line('#include "Module.h"')
  
          if os.path.isfile(os.path.join(os.path.dirname(source_file), interface_header_name)):
-@@ -2085,6 +2085,8 @@
-                            help="include an additional C++ header file, may be used multiple times (default: include 'Ids.h')")
+@@ -2631,6 +2631,8 @@ if __name__ == "__main__":
+                            help="include an additional C++ header file, can be used multiple times (default: include 'Module.h')")
      argparser.add_argument('-I', dest="includePaths", metavar="INCLUDE_DIR", action='append', default=[], type=str,
                             help='add an include search path, can be used multiple times')
 +    argparser.add_argument("--projectdir",dest="project_dir",metavar="DIR",type=str,default="",
@@ -50,19 +50,19 @@ index 6e079b6..d2de681 100755
  
      args = argparser.parse_args(sys.argv[1:])
      SHOW_WARNINGS = not args.no_warnings
-@@ -2221,7 +2223,10 @@
- 
+@@ -2773,7 +2775,10 @@ if __name__ == "__main__":
              for source_file in interface_files:
                  try:
--                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
+                     _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
+-                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), "Ids.h") ]
 +                    if args.project_dir is not None:
-+                        _extra_includes = [ os.path.join("@" + args.project_dir, IDS_DEFINITIONS_FILE) ]
++                        _extra_includes = [ os.path.join("@" + args.project_dir, "Ids.h") ]
 +                    else:
-+                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
++                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), "Ids.h") ]
+ 
                      _extra_includes.extend(args.extra_includes)
  
-                     tree = Parse(source_file, args.includePaths,
-@@ -2242,7 +2247,7 @@
+@@ -2795,7 +2800,7 @@ if __name__ == "__main__":
                          some_omitted = False
  
                          for ns in INTERFACE_NAMESPACES:
@@ -71,42 +71,41 @@ index 6e079b6..d2de681 100755
  
                              new_faces += output
  
-@@ -2265,7 +2270,7 @@
-                         log.Print("(lua generator) Scanning %s..." % os.path.basename(source_file))
+@@ -2818,7 +2823,7 @@ if __name__ == "__main__":
+                         log.Info("(lua generator) Scanning %s..." % os.path.basename(source_file))
  
                          for ns in INTERFACE_NAMESPACES:
 -                            GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums, source_file, tree, ns)
 +                            GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums, args.project_dir, source_file, tree, ns)
  
                  except NotModifiedException as err:
-                     log.Print("skipped file %s, up-to-date" % os.path.basename(output_file))
-@@ -2316,7 +2321,7 @@
+                     log.Info("skipped file %s, up-to-date" % os.path.basename(output_file))
+@@ -2869,7 +2874,7 @@ if __name__ == "__main__":
              if args.lua_code:
                  # Epilogue
                  for ns in INTERFACE_NAMESPACES:
 -                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums)
-+                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums,args.project_dir)
-                     log.Print("Created %s (%s interfaces, %s enums)" % (lua_file.name, len(lua_interfaces), len(lua_enums)))
++                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums, args.project_dir)
+                     log.Info("Created %s (%s interfaces, %s enums)" % (lua_file.name, len(lua_interfaces), len(lua_enums)))
  
          else:
-
 diff --git a/cmake/FindProxyStubGenerator.cmake.in b/cmake/FindProxyStubGenerator.cmake.in
-index 1344452..a8dbcea 100644
+index e6e2709..355ae4d 100644
 --- a/cmake/FindProxyStubGenerator.cmake.in
 +++ b/cmake/FindProxyStubGenerator.cmake.in
 @@ -31,7 +31,7 @@ function(ProxyStubGenerator)
      endif()
-
+ 
      set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE)
 -    set(oneValueArgs OUTDIR)
 +    set(oneValueArgs OUTDIR PROJECT_DIR)
      set(multiValueArgs INPUT INCLUDE INCLUDE_PATH NAMESPACE)
-
+ 
      cmake_parse_arguments(Argument "${optionsArgs}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
 @@ -81,6 +81,10 @@ function(ProxyStubGenerator)
          list(APPEND _execute_command  "--outdir" "${Argument_OUTDIR}")
      endif()
-
+ 
 +    if(Argument_PROJECT_DIR)
 +       list(APPEND _execute_command  "--projectdir" "${Argument_PROJECT_DIR}")
 +    endif()
