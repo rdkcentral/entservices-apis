@@ -11,7 +11,7 @@ index 271b788..d653c6b 100644
      if not config.NO_INCLUDES:
          if if_file.endswith(".h"):
 diff --git a/ProxyStubGenerator/StubGenerator.py b/ProxyStubGenerator/StubGenerator.py
-index 3404995..d4899d5 100755
+index 3404995..60d7efe 100755
 --- a/ProxyStubGenerator/StubGenerator.py
 +++ b/ProxyStubGenerator/StubGenerator.py
 @@ -201,7 +201,7 @@ def Flatten(identifier, scope):
@@ -32,6 +32,15 @@ index 3404995..d4899d5 100755
      log.Info("Scanning '%s' (in %s)..." % (source_file, ns))
  
      if not FORCE and (os.path.exists(output_file) and (os.path.getmtime(source_file) < os.path.getmtime(output_file))):
+@@ -1019,7 +1019,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
+                         raise TypenameError(identifier, "'%s': output parameter must not be const" % self.trace_proto)
+ 
+                 if (not self.is_buffer and not self.is_array) and isinstance(self.kind, (CppParser.Integer, CppParser.BuiltinInteger)):
+-                    if not self.kind.fixed and not self.kind.char:
++                    if not self.kind.fixed and not (isinstance(self.kind, CppParser.Integer) and self.kind.size == "char"):
+                         log.WarnLine(self.identifier, "'%s': integer is not fixed-width, use a stdint type" % self.trace_proto)
+ 
+                 if isinstance(self.kind, CppParser.Enum):
 @@ -2489,7 +2489,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
  
          emit.Line()
