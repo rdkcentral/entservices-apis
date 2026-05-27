@@ -226,6 +226,10 @@ namespace Exchange {
 
         //Reserved for L2 test plugin
 	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
+      
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x280,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2,
 
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
