@@ -159,26 +159,22 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param netType: The type of network ex: 1
-            // @param timeout: The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout) ex: 30
-            // @param screenBindEnable: Whether to enable screen bind mode (default: true)
-            // @param scanEnable: Whether to enable scanning for remotes (default: true)
-            // @param success: Whether the request succeeded
-            // @param macAddressList(optional): Optional list of MAC addresses to pair with (only used if scanEnable is true)
+            // @param payload: Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged.
+            // @param result: Whether the request succeeded
+            // @param macAddressList (optional): Optional list of MAC addresses to pair with (if supported by backend)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const uint32_t netType, const uint32_t timeout, const bool screenBindEnable, const bool scanEnable, RemoteControlSuccessResult& result /* @out @extract */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out @extract */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
-            // @param screenBindDisable: Whether to disable screen bind mode (default: true)
-            // @param scanDisable: Whether to disable scanning for remotes (default: true)
-            // @param success: Whether the request succeeded
+            // @param payload: Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged.
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const bool screenBindDisable, const bool scanDisable, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out @extract */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
