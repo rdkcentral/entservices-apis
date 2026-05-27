@@ -978,12 +978,9 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network  |
-| params.timeout | integer | The amount of time, in seconds, to attempt pairing before timing out (0 indicates no timeout)  |
-| params.screenBindEnable | bool | Whether to enable screen bind mode (default: true) |
-| params.scanEnable | bool | Whether to enable scanning for remotes (default: true) |
-| params?.macAddressList | IStringIterator | <sup>(optional)</sup>Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start pairing. |
-| params?.macAddressList[#] | string | <sup>(optional)</sup> |
+| params.payload | string | Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged. |
+| params.macAddressList | IStringIterator | (optional): Optional list of MAC addresses to pair with (if supported by backend) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1001,10 +998,7 @@ Event details will be updated soon.
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
-        "netType": 1,
-        "timeout": 30,
-        "screenBindEnable": true,
-        "scanEnable": true,
+        "payload": "",
         "macAddressList": [
             ""
         ]
@@ -1016,7 +1010,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 30, "screenBindEnable": true, "scanEnable": true, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"payload": "", "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1111,8 +1105,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.screenBindDisable | bool | Whether to disable screen bind mode (default: true) |
-| params.scanDisable | bool | Whether to disable scanning for remotes (default: true) |
+| params.payload | string | Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1130,8 +1123,7 @@ Event details will be updated soon.
     "id": 17,
     "method": "org.rdk.RemoteControl.stopPairing",
     "params": {
-        "screenBindDisable": true,
-        "scanDisable": true
+        "payload": ""
     }
 }
 ```
@@ -1140,7 +1132,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"screenBindDisable": true, "scanDisable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"payload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1167,7 +1159,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | IStringIterator | <sup>(optional)</sup>Optional list of MAC addresses to pair with (only used if scanEnable is true) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params?.macAddressList | IStringIterator | <sup>(optional)</sup>(optional): Optional list of MAC addresses to pair with (if supported by backend) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start pairing. |
 | params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
