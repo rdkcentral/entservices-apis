@@ -229,11 +229,11 @@ namespace WPEFramework {
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
             // @param success: Whether the request succeeded
-            // @param codes: A list of IR codes for the specified device e.g. "R2467"
+            // @param codes: A list of IR codes as a string
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, string& codes /* @out @opaque */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
