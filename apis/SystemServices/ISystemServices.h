@@ -166,43 +166,7 @@ namespace WPEFramework
                 DeviceInfoDetails deviceInfo /* @text DeviceInfo */ /* @brief DeviceInfo Details */;
                 bool success /* @brief Whether the request succeeded */;
             };
-
-            struct EXTERNAL MacAddressesInfo {
-                string ecmMac /* @text ecm_mac */ /* @brief The embedded cable modem MAC address */;
-                string estbMac /* @text estb_mac */ /* @brief The embedded set-top box MAC address */;
-                string mocaMac /* @text moca_mac */ /* @brief The MOCA MAC address */;
-                string ethMac /* @text eth_mac */ /* @brief The Ethernet MAC address */;
-                string wifiMac /* @text wifi_mac */ /* @brief The Wifi MAC address */;
-                string bluetoothMac /* @text bluetoothMac */ /* @brief The Bluetooth MAC address */;
-                string rf4ceMac /* @text rf4ce_mac */ /* @brief The Rf4ce MAC address */;
-                string info /* @brief Additional information (only if any of the above data is missing) */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
-            struct EXTERNAL FirmwareUpdateInfo {
-                int status /* @brief The firmware update status */;
-                string responseString /* @brief A custom response */;
-                string firmwareUpdateVersion /* @brief The next firmware update version */;
-                bool rebootImmediately /* @brief The value true indicates that the device has to be rebooted immediately or false otherwise */;
-                bool updateAvailable /* @brief The value false indicates that there is no update available */;
-                int updateAvailableEnum /* @brief The update available details (must be one of the following: 0, 1, 2, 3) */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
-            struct EXTERNAL TerritoryChangedInfo {
-                string oldTerritory /* @brief old territory */;
-                string newTerritory /* @brief new territory */;
-                string oldRegion /* @brief old region */;
-                string newRegion /* @brief new region */;
-            };
-
-            struct EXTERNAL TimeZoneDSTChangedInfo {
-                string oldTimeZone /* @brief old time zone */;
-                string newTimeZone /* @brief new time zone */;
-                string oldAccuracy /* @brief old time zone accuracy */;
-                string newAccuracy /* @brief new time zone accuracy */;
-            };
-
+                      
              struct EXTERNAL WakeupSources {
                 bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
                 bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
