@@ -480,8 +480,7 @@ Event details will be updated soon.
 | result.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 | result.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 | result.success | bool | Whether the request succeeded |
-| result.codes | IStringIterator | A list of IR codes for the specified device  @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
-| result.codes[#] | string |  |
+| result.codes | string | A list of IR codes as a string @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
 
 ### Examples
 
@@ -520,9 +519,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
         "manufacturer": "Samsung",
         "model": "UN6",
         "success": true,
-        "codes": [
-            "R2467"
-        ]
+        "codes": ""
     }
 }
 ```
