@@ -226,7 +226,7 @@ namespace WPEFramework
                 // @text onFirmwareUpdateInfoReceived
                 // @brief Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
                 // @param FirmwareUpdateInfo: The firmware update information
-                virtual void OnFirmwareUpdateInfoReceived(const FirmwareUpdateInfo &firmwareUpdateInfo) {};
+                virtual void OnFirmwareUpdateInfoReceived(const int status, const string& responseString, const string& firmwareUpdateVersion, const bool rebootImmediately, const bool updateAvailable, const int updateAvailableEnum, const bool success){};
 
                 // @text onRebootRequest
                 // @brief Triggers when a device reboot request is made
@@ -243,17 +243,17 @@ namespace WPEFramework
                 // @text onTerritoryChanged
                 // @brief Triggered when the device territory changed.
                 // @param TerritoryChangedInfo: The Territory changed information
-                virtual void OnTerritoryChanged(const TerritoryChangedInfo &territoryChangedInfo) {};
+                virtual void OnTerritoryChanged(const string& oldTerritory, const string& newTerritory, const string& oldRegion, const string& newRegion) {};
 
                 // @text onTimeZoneDSTChanged
                 // @brief Triggered when device time zone changed.
                 // @param TimeZoneDSTChangedInfo: The TimeZoneDST changed information
-                virtual void OnTimeZoneDSTChanged(const TimeZoneDSTChangedInfo& timeZoneDSTChangedInfo) {};
+                virtual void OnTimeZoneDSTChanged(const string& oldTimeZone, const string& newTimeZone, const string& oldAccuracy, const string& newAccuracy){};
 
                 // @text onMacAddressesRetreived
                 // @brief Triggered when the getMacAddresses asynchronous method is invoked.
                 // @param MacAddressesInfo: The Mac Addresses details 
-                virtual void OnMacAddressesRetreived(const MacAddressesInfo& macAddressesInfo) {};
+                virtual  void OnMacAddressesRetreived(const string& ecmMac, const string& estbMac, const string& mocaMac, const string& ethMac, const string& wifiMac, const string& bluetoothMac, const string& rf4ceMac, const string& info, const bool success) {};
 
                 // @text onSystemModeChanged
                 // @brief Triggers when the system mode is changed successfully.
