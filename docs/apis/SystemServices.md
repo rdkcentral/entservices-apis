@@ -2878,14 +2878,13 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.firmwareUpdateInfo | FirmwareUpdateInfo |  |
-| params.firmwareUpdateInfo.status | int | The firmware update status |
-| params.firmwareUpdateInfo.responseString | string | A custom response |
-| params.firmwareUpdateInfo.firmwareUpdateVersion | string | The next firmware update version |
-| params.firmwareUpdateInfo.rebootImmediately | bool | The value true indicates that the device has to be rebooted immediately or false otherwise |
-| params.firmwareUpdateInfo.updateAvailable | bool | The value false indicates that there is no update available |
-| params.firmwareUpdateInfo.updateAvailableEnum | int | The update available details (must be one of the following: 0, 1, 2, 3) |
-| params.firmwareUpdateInfo.success | bool | Whether the request succeeded |
+| params.status | int | The firmware update status |
+| params.responseString | string | A custom response |
+| params.firmwareUpdateVersion | string | The next firmware update version |
+| params.rebootImmediately | bool | The value true indicates that the device has to be rebooted immediately or false otherwise |
+| params.updateAvailable | bool | The value false indicates that there is no update available |
+| params.updateAvailableEnum | int | The update available details (must be one of the following: 0, 1, 2, 3) |
+| params.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -2987,16 +2986,15 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddressesInfo | MacAddressesInfo |  |
-| params.macAddressesInfo.ecm_mac | string | The embedded cable modem MAC address |
-| params.macAddressesInfo.estb_mac | string | The embedded set-top box MAC address |
-| params.macAddressesInfo.moca_mac | string | The MOCA MAC address |
-| params.macAddressesInfo.eth_mac | string | The Ethernet MAC address |
-| params.macAddressesInfo.wifi_mac | string | The Wifi MAC address |
-| params.macAddressesInfo.bluetoothMac | string | The Bluetooth MAC address |
-| params.macAddressesInfo.rf4ce_mac | string | The Rf4ce MAC address |
-| params.macAddressesInfo.info | string | Additional information (only if any of the above data is missing) |
-| params.macAddressesInfo.success | bool | Whether the request succeeded |
+| params.ecm_mac | string | The embedded cable modem MAC address |
+| params.estb_mac | string | STB MAC Address |
+| params.moca_mac | string | The MOCA MAC address |
+| params.eth_mac | string | Ethernet MAC Address |
+| params.wifi_mac | string | WIFI Mac Address |
+| params.bluetooth_mac | string | Bluetooth MAC Address |
+| params.rf4ce_mac | string | The Rf4ce MAC address |
+| params.info | string | Additional information (only if any of the above data is missing) |
+| params.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -3006,13 +3004,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
     "id": 54,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
-        "ecm_mac": "",
-        "estb_mac": "",
-        "moca_mac": "",
-        "eth_mac": "",
-        "wifi_mac": "",
+        "ecmMac": "",
+        "estbMac": "",
+        "mocaMac": "",
+        "ethMac": "",
+        "wifiMac": "",
         "bluetoothMac": "",
-        "rf4ce_mac": "",
+        "rf4ceMac": "",
         "info": "",
         "success": true
     }
@@ -3174,11 +3172,10 @@ Triggered when the device territory changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.territoryChangedInfo | TerritoryChangedInfo |  |
-| params.territoryChangedInfo.oldTerritory | string | old territory |
-| params.territoryChangedInfo.newTerritory | string | new territory |
-| params.territoryChangedInfo.oldRegion | string | old region |
-| params.territoryChangedInfo.newRegion | string | new region |
+| params.oldTerritory | string | old territory |
+| params.newTerritory | string | new territory |
+| params.oldRegion | string | old region |
+| params.newRegion | string | new region |
 
 ### Examples
 
@@ -3233,11 +3230,10 @@ Triggered when device time zone changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.timeZoneDSTChangedInfo | TimeZoneDSTChangedInfo |  |
-| params.timeZoneDSTChangedInfo.oldTimeZone | string | old time zone |
-| params.timeZoneDSTChangedInfo.newTimeZone | string | new time zone |
-| params.timeZoneDSTChangedInfo.oldAccuracy | string | old time zone accuracy |
-| params.timeZoneDSTChangedInfo.newAccuracy | string | new time zone accuracy |
+| params.oldTimeZone | string | old time zone |
+| params.newTimeZone | string | new time zone |
+| params.oldAccuracy | string | old time zone accuracy |
+| params.newAccuracy | string | new time zone accuracy |
 
 ### Examples
 
