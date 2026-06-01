@@ -127,3 +127,12 @@ index 3404995..23741b4 100755
                          log.WarnLine(self.identifier, "'%s': integer is not fixed-width, use a stdint type" % self.trace_proto)
  
                  if isinstance(self.kind, CppParser.Enum):
+@@ -2507,7 +2508,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
+         emit.IndentInc()
+
+         if (interface_namespace != STUB_NAMESPACE.split("::")[-2]):
+-            emit.Line("using namespace %s;" % interface_namespace)
++            emit.Line("using namespace %s;" % ns)
+             emit.Line()
+
+         emit.Line("PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)")
