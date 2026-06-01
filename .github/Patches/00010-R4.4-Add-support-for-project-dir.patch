@@ -54,11 +54,11 @@ index 6e079b6..d2de681 100755
  
              for source_file in interface_files:
                  try:
--                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
+-                    _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
 +                    if args.project_dir is not None:
-+                        _extra_includes = [ os.path.join("@" + args.project_dir, IDS_DEFINITIONS_FILE) ]
++                        _extra_includes = [ os.path.join("@" + args.project_dir, MODULE_FILE) ]
 +                    else:
-+                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), IDS_DEFINITIONS_FILE) ]
++                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
                      _extra_includes.extend(args.extra_includes)
  
                      tree = Parse(source_file, args.includePaths,
@@ -86,7 +86,7 @@ index 6e079b6..d2de681 100755
                  for ns in INTERFACE_NAMESPACES:
 -                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums)
 +                    GenerateLuaData(Emitter(lua_file, INDENT_SIZE), lua_interfaces, lua_enums,args.project_dir)
-                     log.Print("Created %s (%s interfaces, %s enums)" % (lua_file.name, len(lua_interfaces), len(lua_enums)))
+                     log.Info("Created %s (%s interfaces, %s enums)" % (lua_file.name, len(lua_interfaces), len(lua_enums)))
  
          else:
 
@@ -97,9 +97,9 @@ index 1344452..a8dbcea 100644
 @@ -31,7 +31,7 @@ function(ProxyStubGenerator)
      endif()
 
-     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE)
--    set(oneValueArgs OUTDIR)
-+    set(oneValueArgs OUTDIR PROJECT_DIR)
+     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE COLLATED_ITERATORS)
+-    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE)
++    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE PROJECT_DIR)
      set(multiValueArgs INPUT INCLUDE INCLUDE_PATH NAMESPACE)
 
      cmake_parse_arguments(Argument "${optionsArgs}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
