@@ -194,6 +194,24 @@ namespace Exchange {
            // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
+        struct dsAudioTypeConfigInfo_t {
+            int32_t typeId;
+            string name;
+            uint32_t supportedCompressionMask;
+            uint32_t supportedEncodingMask;
+            uint32_t supportedStereoModeMask;
+        };
+
+        struct dsAudioPortConfigInfo_t {
+            AudioPortType audioPortType;
+            int32_t audioPortIndex;
+            int32_t connectedVideoPortType;
+            int32_t connectedVideoPortIndex;
+        };
+
+        using IAudioTypeConfigIterator = RPC::IIteratorType<dsAudioTypeConfigInfo_t, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
+        using IAudioPortConfigIterator = RPC::IIteratorType<dsAudioPortConfigInfo_t, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
+
         struct AudioARCStatus { 
             AudioARCType  arcType    /* @brief ARC Type */ ;
             bool          status     /* @brief ARC status */;
@@ -269,6 +287,14 @@ namespace Exchange {
         // @param index: index of the audio port within the list of audio port types
         // @param handle: handle to the port
         virtual Core::hresult GetAudioPort(const AudioPortType type , const int32_t index , int32_t &handle /* @out */) = 0;
+
+        /** Get Audio static configuration. */
+        // @text getAudioConfig
+        // @brief Get Audio static configuration loaded by DeviceSettings plugin.
+        // @param audioTypes: iterator of audio output type configuration
+        // @param audioPorts: iterator of audio port configuration
+        virtual Core::hresult GetAudioConfig(IAudioTypeConfigIterator*& audioTypes /* @out */,
+                             IAudioPortConfigIterator*& audioPorts /* @out */) = 0;
 
         /** Audio Port status. */
         // @text isAudioPortEnabled

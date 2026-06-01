@@ -220,6 +220,27 @@ namespace Exchange {
             uint32_t height;
         };
 
+        struct dsVideoPortTypeConfig_t {
+            VideoPort typeId;
+            string name;
+            bool dtcpSupported;
+            bool hdcpSupported;
+            int32_t restrictedResollution;
+            string supportedResolutionNames;
+        };
+
+        struct dsVideoPortPortConfig_t {
+            VideoPort videoPortType;
+            int32_t videoPortIndex;
+            int32_t connectedAudioPortType;
+            int32_t connectedAudioPortIndex;
+            string defaultResolution;
+        };
+
+        using IVideoPortTypeConfigIterator = RPC::IIteratorType<dsVideoPortTypeConfig_t, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
+        using IVideoPortPortConfigIterator = RPC::IIteratorType<dsVideoPortPortConfig_t, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
+        using IVideoPortResolutionIterator = RPC::IIteratorType<VideoPortResolution, ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR>;
+
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
         {
@@ -256,6 +277,16 @@ namespace Exchange {
         // @param index: index of the port (there can be multiple number of ports)
         // @param handle: handle to the port
         virtual Core::hresult GetVideoPort(const VideoPort videoPort , const int32_t index , int32_t &handle /* @out */) = 0;
+
+        /** Get Video Port static configuration. */
+        // @text getVideoPortConfig
+        // @brief Get VideoPort static configuration loaded by DeviceSettings plugin.
+        // @param videoPortTypes: iterator of video port type configuration
+        // @param videoPorts: iterator of video port configuration
+        // @param resolutions: iterator of supported resolution settings
+        virtual Core::hresult GetVideoPortConfig(IVideoPortTypeConfigIterator*& videoPortTypes /* @out */,
+                             IVideoPortPortConfigIterator*& videoPorts /* @out */,
+                             IVideoPortResolutionIterator*& resolutions /* @out */) = 0;
 
         /** Video Port Enabled or not. */
         // @text isVideoPortEnabled
