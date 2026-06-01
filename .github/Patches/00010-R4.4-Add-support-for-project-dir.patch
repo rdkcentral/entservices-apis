@@ -50,7 +50,7 @@ index 6e079b6..d2de681 100755
  
      args = argparser.parse_args(sys.argv[1:])
      SHOW_WARNINGS = not args.no_warnings
-@@ -2221,7 +2223,10 @@
+@@ -2221,9 +2223,12 @@
  
              for source_file in interface_files:
                  try:
@@ -59,9 +59,11 @@ index 6e079b6..d2de681 100755
 +                        _extra_includes = [ os.path.join("@" + args.project_dir, MODULE_FILE) ]
 +                    else:
 +                        _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), MODULE_FILE) ]
+                     _extra_includes = [ os.path.join("@" + os.path.dirname(source_file), "Ids.h") ]
+ 
                      _extra_includes.extend(args.extra_includes)
  
-                     tree = Parse(source_file, args.includePaths,
+                     tree = Parse(source_file, FRAMEWORK_NAMESPACE, args.includePaths,
 @@ -2242,7 +2247,7 @@
                          some_omitted = False
  
@@ -97,9 +99,9 @@ index 1344452..a8dbcea 100644
 @@ -31,7 +31,7 @@ function(ProxyStubGenerator)
      endif()
 
-     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE COLLATED_ITERATORS)
--    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE)
-+    set(oneValueArgs OUTDIR FRAMEWORK_NAMESPACE PROJECT_DIR)
+     set(optionsArgs SECURE COHERENT TRACES VERBOSE NO_WARNINGS KEEP FORCE_GENERATE)
+-    set(oneValueArgs OUTDIR)
++    set(oneValueArgs OUTDIR PROJECT_DIR)
      set(multiValueArgs INPUT INCLUDE INCLUDE_PATH NAMESPACE)
 
      cmake_parse_arguments(Argument "${optionsArgs}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
