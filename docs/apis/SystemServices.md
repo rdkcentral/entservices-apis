@@ -2878,12 +2878,12 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | int |  |
-| params.responseString | string |  |
-| params.firmwareUpdateVersion | string |  |
-| params.rebootImmediately | bool |  |
-| params.updateAvailable | bool |  |
-| params.updateAvailableEnum | int |  |
+| params.status | int | The firmware update status |
+| params.responseString | string | A custom response |
+| params.firmwareUpdateVersion | string | The next firmware update version |
+| params.rebootImmediately | bool | The value true indicates that the device has to be rebooted immediately or false otherwise |
+| params.updateAvailable | bool | The value false indicates that there is no update available |
+| params.updateAvailableEnum | int | The update available details (must be one of the following: 0, 1, 2, 3) |
 | params.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -2986,14 +2986,14 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.ecmMac | string |  |
+| params.ecm_mac | string | The embedded cable modem MAC address |
 | params.estb_mac | string | STB MAC Address |
-| params.mocaMac | string |  |
+| params.moca_mac | string | The MOCA MAC address |
 | params.eth_mac | string | Ethernet MAC Address |
 | params.wifi_mac | string | WIFI Mac Address |
 | params.bluetooth_mac | string | Bluetooth MAC Address |
-| params.rf4ceMac | string |  |
-| params.info | string |  |
+| params.rf4ce_mac | string | The Rf4ce MAC address |
+| params.info | string | Additional information (only if any of the above data is missing) |
 | params.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -3004,13 +3004,13 @@ Triggered when the getMacAddresses asynchronous method is invoked.
     "id": 54,
     "method": "org.rdk.SystemServices.onMacAddressesRetreived",
     "params": {
-        "ecmMac": "",
-        "estbMac": "",
-        "mocaMac": "",
-        "ethMac": "",
-        "wifiMac": "",
-        "bluetoothMac": "",
-        "rf4ceMac": "",
+        "ecm_mac": "",
+        "estb_mac": "",
+        "moca_mac": "",
+        "eth_mac": "",
+        "wifi_mac": "",
+        "bluetooth_mac": "",
+        "rf4ce_mac": "",
         "info": "",
         "success": true
     }
@@ -3172,10 +3172,10 @@ Triggered when the device territory changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.oldTerritory | string |  |
-| params.newTerritory | string |  |
-| params.oldRegion | string |  |
-| params.newRegion | string |  |
+| params.oldTerritory | string | old territory |
+| params.newTerritory | string | new territory |
+| params.oldRegion | string | old region |
+| params.newRegion | string | new region |
 
 ### Examples
 
@@ -3230,10 +3230,10 @@ Triggered when device time zone changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.oldTimeZone | string |  |
-| params.newTimeZone | string |  |
-| params.oldAccuracy | string |  |
-| params.newAccuracy | string |  |
+| params.oldTimeZone | string | old time zone |
+| params.newTimeZone | string | new time zone |
+| params.oldAccuracy | string | old time zone accuracy |
+| params.newAccuracy | string | new time zone accuracy |
 
 ### Examples
 
