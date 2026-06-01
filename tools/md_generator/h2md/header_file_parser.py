@@ -72,7 +72,7 @@ class HeaderFileParser:
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
         'iter_typedef': re.compile(r'typedef\s+RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*([\w\d]+)\s*;'),
-        'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{(.*)\}\;?'),
+        'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{(.*)\}\;?', re.DOTALL),
         'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
         'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
@@ -238,7 +238,7 @@ class HeaderFileParser:
         # accumulate the enum's data members until the closing brace is reached
         if enum_braces_count > 0:
             line = self.clean_and_validate_cpp_obj_line(line, ',', curr_line_num, 'Enumerator')
-            enum_object += line
+            enum_object += line + '\n'
         elif enum_braces_count <= 0:
             enum_object += line
             self.register_enum(enum_object)
@@ -400,6 +400,8 @@ class HeaderFileParser:
             # process each enumerator definition
             for enumerator_def in enum_body.split(','):
                 enumerator_def = enumerator_def.strip()
+                # Remove leading standalone comment lines (e.g. // @text annotations)
+                enumerator_def = re.sub(r'^(//[^\n]*\n\s*)+', '', enumerator_def).strip()
                 enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
