@@ -69,7 +69,7 @@ namespace WPEFramework {
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
 				enum { ID = ID_XCAST_NOTIFICATION };
 
-				// @text onApplicationLaunchRequest
+				// @text onApplicationLaunchRequestWithParam
 				// @brief Triggered when the cast service receives a launch request from a client with launch params
 				// @param applicationName: Registered application name
 				// @param strPayLoad: Payload string to be passed to the application

@@ -113,7 +113,6 @@ namespace Exchange {
             READY_TO_CAST  // Ready to cast. Cast is functional.
         };
 
-        // @json
         // @brief Status of Cast shell.
         struct EXTERNAL CastStatus {
             // @brief Build number of the currently running Cast shell.
