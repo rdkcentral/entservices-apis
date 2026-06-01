@@ -51,6 +51,7 @@ AVInput interface methods:
 | :-------- | :-------- |
 | [contentProtected](#contentProtected) | Returns whether the content is protected for the specified input device |
 | [currentVideoMode](#currentVideoMode) | Returns the current video mode for the specified input device |
+| [getARCPortId](#getARCPortId) | Returns the Arc portID of the panel |
 | [getEdid2AllmSupport](#getEdid2AllmSupport) | Returns the ALLM bit in EDID |
 | [getEdidVersion](#getEdidVersion) | Returns the EDID version |
 | [getGameFeatureStatus](#getGameFeatureStatus) | Returns the Game Feature Status. For example: ALLM. |
@@ -182,6 +183,56 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+<a id="getARCPortId"></a>
+## *getARCPortId*
+
+Returns the Arc portID of the panel
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.AVInput.getARCPortId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AVInput.getARCPortId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "portId": "",
+        "success": true
+    }
+}
+```
+
 <a id="getEdid2AllmSupport"></a>
 ## *getEdid2AllmSupport*
 
@@ -209,7 +260,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "method": "org.rdk.AVInput.getEdid2AllmSupport",
     "params": {
         "portId": ""
@@ -221,7 +272,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AVInput.getEdid2AllmSupport", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AVInput.getEdid2AllmSupport", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -230,7 +281,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "result": {
         "allmSupport": true,
         "success": true
@@ -265,7 +316,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "method": "org.rdk.AVInput.getEdidVersion",
     "params": {
         "portId": ""
@@ -277,7 +328,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AVInput.getEdidVersion", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AVInput.getEdidVersion", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -286,7 +337,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "result": {
         "edidVersion": "",
         "success": true
@@ -322,7 +373,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.AVInput.getGameFeatureStatus",
     "params": {
         "portId": "",
@@ -335,7 +386,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AVInput.getGameFeatureStatus", "params": {"portId": "", "gameFeature": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.AVInput.getGameFeatureStatus", "params": {"portId": "", "gameFeature": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -344,7 +395,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "result": {
         "mode": true,
         "success": true
@@ -379,7 +430,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "method": "org.rdk.AVInput.getHdmiVersion",
     "params": {
         "portId": ""
@@ -391,7 +442,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.AVInput.getHdmiVersion", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.AVInput.getHdmiVersion", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -400,7 +451,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "result": {
         "HdmiCapabilityVersion": "",
         "success": true
@@ -435,7 +486,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "method": "org.rdk.AVInput.getRawSPD",
     "params": {
         "portId": ""
@@ -447,7 +498,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.AVInput.getRawSPD", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AVInput.getRawSPD", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -456,7 +507,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "result": {
         "HDMISPD": "",
         "success": true
@@ -491,7 +542,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "method": "org.rdk.AVInput.getSPD",
     "params": {
         "portId": ""
@@ -503,7 +554,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AVInput.getSPD", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AVInput.getSPD", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -512,7 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "result": {
         "HDMISPD": "",
         "success": true
@@ -545,7 +596,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "method": "org.rdk.AVInput.getSupportedGameFeatures"
 }
 ```
@@ -554,7 +605,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AVInput.getSupportedGameFeatures"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AVInput.getSupportedGameFeatures"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -563,7 +614,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "result": {
         "supportedGameFeatures": [
             ""
@@ -600,7 +651,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "method": "org.rdk.AVInput.getVRRFrameRate",
     "params": {
         "portId": ""
@@ -612,7 +663,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AVInput.getVRRFrameRate", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AVInput.getVRRFrameRate", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -621,7 +672,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "result": {
         "currentVRRVideoFrameRate": 0.0,
         "success": true
@@ -656,7 +707,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "method": "org.rdk.AVInput.getVRRSupport",
     "params": {
         "portId": ""
@@ -668,7 +719,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AVInput.getVRRSupport", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AVInput.getVRRSupport", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -677,7 +728,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "result": {
         "vrrSupport": true,
         "success": true
@@ -709,7 +760,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "method": "org.rdk.AVInput.numberOfInputs"
 }
 ```
@@ -718,7 +769,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AVInput.numberOfInputs"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AVInput.numberOfInputs"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -727,11 +778,69 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "result": {
         "numberOfInputs": 0,
         "success": true
     }
+}
+```
+
+<a id="onDevicesChanged"></a>
+## *onDevicesChanged*
+
+Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.devices | IInputDeviceIterator |  |
+| params.devices[#].id | int | id |
+| params.devices[#].locator | string | locator |
+| params.devices[#].connected | bool | connected |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.AVInput.onDevicesChanged",
+    "params": [
+        {
+            "id": 0,
+            "locator": "",
+            "connected": true
+        }
+    ]
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AVInput.onDevicesChanged", "params": [{"id": 0, "locator": "", "connected": true}]}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "result": null
 }
 ```
 
@@ -762,7 +871,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 14,
     "method": "org.rdk.AVInput.readEDID",
     "params": {
         "portId": ""
@@ -774,7 +883,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AVInput.readEDID", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.readEDID", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -783,7 +892,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 14,
     "result": {
         "EDID": "",
         "success": true
@@ -818,7 +927,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 15,
     "method": "org.rdk.AVInput.setEdid2AllmSupport",
     "params": {
         "portId": "",
@@ -831,7 +940,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -840,7 +949,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 15,
     "result": {
         "success": true
     }
@@ -874,7 +983,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 16,
     "method": "org.rdk.AVInput.setEdidVersion",
     "params": {
         "portId": "",
@@ -887,7 +996,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -896,7 +1005,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 16,
     "result": {
         "success": true
     }
@@ -930,7 +1039,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 17,
     "method": "org.rdk.AVInput.setMixerLevels",
     "params": {
         "primaryVolume": 0,
@@ -943,7 +1052,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -952,7 +1061,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 17,
     "result": {
         "success": true
     }
@@ -986,7 +1095,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 18,
     "method": "org.rdk.AVInput.setVRRSupport",
     "params": {
         "portId": "",
@@ -999,7 +1108,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1008,7 +1117,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 18,
     "result": {
         "success": true
     }
@@ -1045,7 +1154,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 19,
     "method": "org.rdk.AVInput.setVideoRectangle",
     "params": {
         "x": 0,
@@ -1061,7 +1170,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1070,7 +1179,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 19,
     "result": {
         "success": true
     }
@@ -1107,7 +1216,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 20,
     "method": "org.rdk.AVInput.startInput",
     "params": {
         "portId": "",
@@ -1123,7 +1232,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1132,7 +1241,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 20,
     "result": {
         "success": true
     }
@@ -1165,7 +1274,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 21,
     "method": "org.rdk.AVInput.stopInput",
     "params": {
         "typeOfInput": ""
@@ -1177,7 +1286,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1186,7 +1295,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 21,
     "result": {
         "success": true
     }
@@ -1220,7 +1329,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 22,
     "method": "org.rdk.AVInput.writeEDID",
     "params": {
         "portId": "",
@@ -1233,7 +1342,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1242,7 +1351,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 22,
     "result": {
         "success": true
     }
@@ -1348,7 +1457,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 23,
     "method": "org.rdk.AVInput.aviContentTypeUpdate",
     "params": {
         "id": 0,
@@ -1375,7 +1484,7 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 24,
     "method": "org.rdk.AVInput.gameFeatureStatusUpdate",
     "params": {
         "id": 0,
@@ -1404,7 +1513,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 25,
     "method": "org.rdk.AVInput.onInputStatusChanged",
     "params": {
         "id": 0,
@@ -1433,7 +1542,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 26,
     "method": "org.rdk.AVInput.onSignalChanged",
     "params": {
         "id": 0,
@@ -1465,7 +1574,7 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 27,
     "method": "org.rdk.AVInput.videoStreamInfoUpdate",
     "params": {
         "id": 0,

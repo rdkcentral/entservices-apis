@@ -207,22 +207,6 @@ namespace Exchange {
         ID_APPMANAGER_NOTIFICATION                   = ID_APPMANAGER + 1,
 	ID_LOADED_APP_INFO_ITERATOR                  = ID_APPMANAGER + 2,
 
-        ID_LISA                                      = ID_ENTOS_OFFSET + 0x200,
-        ID_LISA_NOTIFICATION                         = ID_LISA + 1,
-        ID_LISA_APP_VERSION                          = ID_LISA + 2,
-        ID_LISA_APP_VERSION_ITERATOR                 = ID_LISA + 3,
-        ID_LISA_APP                                  = ID_LISA + 4,
-        ID_LISA_APP_ITERATOR                         = ID_LISA + 5,
-        ID_LISA_APPS_PAYLOAD                         = ID_LISA + 6,
-        ID_LISA_STORAGE                              = ID_LISA + 7,
-        ID_LISA_STORAGE_PAYLOAD                      = ID_LISA + 8,
-        ID_LISA_PROGRESS                             = ID_LISA + 9,
-        ID_LISA_KEY_VALUE                            = ID_LISA + 10,
-        ID_LISA_KEY_VALUE_ITERATOR                   = ID_LISA + 11,
-        ID_LISA_METADATA_PAYLOAD                     = ID_LISA + 12,
-        ID_LISA_LOCK_INFO                            = ID_LISA + 13,
-        ID_LISA_HANDLE_RESULT                        = ID_LISA + 14,
-
         ID_SYSTEMAUDIOPLAYER                         = ID_ENTOS_OFFSET + 0x210,
         ID_SYSTEMAUDIOPLAYER_NOTIFICATION            = ID_SYSTEMAUDIOPLAYER + 1,
 
@@ -242,6 +226,10 @@ namespace Exchange {
 
         //Reserved for L2 test plugin
 	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
+      
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x280,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2,
 
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
@@ -346,6 +334,7 @@ namespace Exchange {
         ID_GOOGLE_CAST_NOTIFICATION                  = ID_GOOGLE_CAST + 1,
         ID_GOOGLE_CAST_RM_DELEGATE                   = ID_GOOGLE_CAST + 2,
         ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION      = ID_GOOGLE_CAST + 3,
+        ID_GOOGLE_CAST_AUTH_EXTENSION                = ID_GOOGLE_CAST + 4,
 
         ID_RESOURCEMANAGER                           = ID_ENTOS_OFFSET + 0x480,
 
@@ -356,6 +345,9 @@ namespace Exchange {
 
         ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
+
+        ID_APP_ACTIONS                               = ID_ENTOS_OFFSET + 0x520,
+        ID_APP_ACTIONS_NOTIFICATION                  = ID_APP_ACTIONS + 1,
 
     }; // enum IDS
 
