@@ -261,8 +261,8 @@ Notifies firmware update state changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | Firmware update state. |
-| params.substate | string | Firmware update substate. |
+| params.state | string | Firmware update state. Possible values: VALIDATION_FAILED, FLASHING_STARTED, FLASHING_FAILED, FLASHING_SUCCEEDED, WAITING_FOR_REBOOT |
+| params.substate | string | Firmware update substate. Possible values: NOT_APPLICABLE, FIRMWARE_NOT_FOUND, FIRMWARE_INVALID, FIRMWARE_OUTDATED, FIRMWARE_UPTODATE, FIRMWARE_INCOMPATIBLE, PREWRITE_SIGNATURE_CHECK_FAILED, FLASH_WRITE_FAILED, POSTWRITE_FIRMWARE_CHECK_FAILED, POSTWRITE_SIGNATURE_CHECK_FAILED |
 
 ### Examples
 

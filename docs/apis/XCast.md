@@ -325,7 +325,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
+| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -441,9 +441,9 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.applicationName | string | Registered application name |
-| params.state | string | Application state |
+| params.state | string | Application state. Possible values: running, stopped, suspended |
 | params.applicationId | string | Application instance ID |
-| params.error | string | Error string, if any |
+| params.error | string | Error string, if any. Possible values: none, forbidden, unavailable, invalid, internal |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -716,7 +716,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
+| params.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
