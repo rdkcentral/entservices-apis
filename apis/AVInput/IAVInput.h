@@ -41,7 +41,7 @@ namespace WPEFramework {
             };
 
             using IStringIterator       = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-            using IInputDeviceIterator  = RPC::IIteratorType<InputDevice, WPEFramework::Exchange::ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
+            using IInputDeviceIterator  = RPC::IIteratorType<InputDevice, ID_AV_INPUT_DEVICE_LIST_ITERATOR>;
 
             // @json:omit
             virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
