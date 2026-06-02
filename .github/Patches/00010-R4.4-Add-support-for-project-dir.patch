@@ -35,7 +35,7 @@ index 3404995..e8191e9 100755
      interface_header_name = os.path.basename(source_file)
  
 -    interface_namespace = ns.split("::")[-1]
-+    interface_namespace = "::".join(interfaces[0].obj.full_name.split("::")[:-1])
++    interface_namespace = ns if ns.replace(" ", "") != ("::" + FRAMEWORK_NAMESPACE) else "::".join(interfaces[0].obj.full_name.split("::")[:3])
  
      with open(output_file, "w") as file:
          emit = Emitter(file, INDENT_SIZE)
