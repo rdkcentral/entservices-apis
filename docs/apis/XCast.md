@@ -829,7 +829,7 @@ XCast interface events:
 | :-------- | :-------- |
 | [onApplicationHideRequest](#onApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
 | [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
-| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
+| [onApplicationLaunchRequestWithParam](#onApplicationLaunchRequestWithParam) | Triggered when the cast service receives a launch request from a client with launch params |
 | [onApplicationResumeRequest](#onApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
 | [onApplicationStateRequest](#onApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
 | [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
@@ -886,8 +886,8 @@ Triggered when the cast service receives a launch request from a client with lau
 }
 ```
 
-<a id="onApplicationLaunchRequest"></a>
-## *onApplicationLaunchRequest*
+<a id="onApplicationLaunchRequestWithParam"></a>
+## *onApplicationLaunchRequestWithParam*
 
 Triggered when the cast service receives a launch request from a client with launch params
 
@@ -906,7 +906,7 @@ Triggered when the cast service receives a launch request from a client with lau
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "method": "org.rdk.XCast.onApplicationLaunchRequest",
+    "method": "org.rdk.XCast.onApplicationLaunchRequestWithParam",
     "params": {
         "applicationName": "",
         "strPayLoad": "",

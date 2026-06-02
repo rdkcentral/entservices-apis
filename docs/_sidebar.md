@@ -22,6 +22,7 @@
   - [FirmwareUpdate](apis/FirmwareUpdate.md)
   - [FrameRate](apis/FrameRate.md)
   - [FrontPanel](apis/FrontPanel.md)
+  - [GoogleCast](apis/GoogleCast.md)
   - [HdcpProfile](apis/HdcpProfile.md)
   - [HdmiCecSink](apis/HdmiCecSink.md)
   - [HdmiCecSource](apis/HdmiCecSource.md)

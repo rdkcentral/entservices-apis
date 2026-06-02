@@ -226,7 +226,7 @@ FirmwareUpdate interface events:
 | Event | Description |
 | :-------- | :-------- |
 | [onFlashingStateChange](#onFlashingStateChange) | This notification is raised between flashing started state and flashing succeeded/failed. |
-| [onUpdateStateChange](#onUpdateStateChange) | notify Firmware update state change. |
+| [onUpdateStateChange](#onUpdateStateChange) | Notifies firmware update state changes. |
 
 <a id="onFlashingStateChange"></a>
 ## *onFlashingStateChange*
@@ -255,14 +255,14 @@ This notification is raised between flashing started state and flashing succeede
 <a id="onUpdateStateChange"></a>
 ## *onUpdateStateChange*
 
-notify Firmware update state change.
+Notifies firmware update state changes.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | state |
-| params.substate | string | substate |
+| params.state | string | Firmware update state. |
+| params.substate | string | Firmware update substate. |
 
 ### Examples
 
