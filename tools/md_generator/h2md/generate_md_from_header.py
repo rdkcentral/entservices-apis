@@ -198,6 +198,9 @@ def process_individual_headers(input_plugin_folder_path, output_doc_folder_path,
 def process_combined_headers(input_plugin_folder_path, output_doc_folder_path, logfile_path=None):
     """Process all header files combined into one output."""
     header_files = get_header_files(input_plugin_folder_path)
+    if not header_files:
+        return
+
     plugin_name = os.path.basename(os.path.normpath(input_plugin_folder_path))
     classname = plugin_name
     logger = create_logger(classname, logfile_path)

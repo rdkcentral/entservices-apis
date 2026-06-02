@@ -937,7 +937,15 @@ class HeaderFileParser:
 
             return {struct[member_name]['custom_name']: self.generate_example_for_individual_symbol(f"{member_name}-{struct[member_name]['type']}", struct[member_name]['description']) for member_name in struct}
         if symbol_type in self.enums_registry:
-            return list(self.enums_registry[symbol_type])[0]
+            enum_values = self.enums_registry[symbol_type]
+            if enum_values:
+                return next(iter(enum_values))
+            if self.logger:
+                self.logger.log(
+                    "WARNING",
+                    f"Enum {symbol_type} has no values; using empty example fallback."
+                )
+            return ''
         if symbol_type in self.BASIC_TYPE_EXAMPLES:
             return self.BASIC_TYPE_EXAMPLES[symbol_type]
         if symbol_type in self.iterators_registry:
