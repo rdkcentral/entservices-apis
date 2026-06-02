@@ -343,6 +343,28 @@ def generate_response_section(response, method_type, classname=None):
     markdown = EXAMPLE_RESPONSE_TEMPLATE.format(response_json=response_json, method_type=method_type)
     return markdown
 
+def _merge_description_with_generated(custom_description, generated_description):
+    """
+    Merge custom doxygen description with generated description while preserving
+    enum hints such as "Possible values: ...".
+    """
+    custom_description = (custom_description or '').strip()
+    generated_description = (generated_description or '').strip()
+
+    if not custom_description:
+        return generated_description
+    if not generated_description:
+        return custom_description
+
+    possible_values_marker = "Possible values:"
+    if possible_values_marker in generated_description and possible_values_marker not in custom_description:
+        possible_values = generated_description[generated_description.find(possible_values_marker):].strip()
+        if possible_values:
+            separator = '' if custom_description.endswith('.') else '.'
+            return f"{custom_description}{separator} {possible_values}".strip()
+
+    return custom_description
+
 def generate_parameters_section(params, symbol_registry):
     """
     Generate the parameters section for a method, showing the parent object and all fields for all params, using override names and descriptions if present.
@@ -356,7 +378,11 @@ def generate_parameters_section(params, symbol_registry):
             flattened_params = dict(symbol_registry[param_key]['flattened_description'])
             if param['description']:
                 first_key = next(iter(flattened_params))
-                flattened_params[first_key] = {**flattened_params[first_key], 'description': param['description']}
+                merged_description = _merge_description_with_generated(
+                    param['description'],
+                    flattened_params[first_key].get('description', '')
+                )
+                flattened_params[first_key] = {**flattened_params[first_key], 'description': merged_description}
             for param_name, param_data in flattened_params.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
                 if param['custom_name']:
@@ -387,7 +413,11 @@ def generate_results_section(results, symbol_registry):
             flattened_results = dict(symbol_registry[result_key]['flattened_description'])
             if result['description']:
                 first_key = next(iter(flattened_results))
-                flattened_results[first_key] = {**flattened_results[first_key], 'description': result['description']}
+                merged_description = _merge_description_with_generated(
+                    result['description'],
+                    flattened_results[first_key].get('description', '')
+                )
+                flattened_results[first_key] = {**flattened_results[first_key], 'description': merged_description}
             for result_name, result_data in flattened_results.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
                 if result['custom_name']:
@@ -535,7 +565,11 @@ def generate_values_section(values, symbol_registry):
             flattened_values = dict(symbol_registry[value_key]['flattened_description'])
             if value['description']:
                 first_key = next(iter(flattened_values))
-                flattened_values[first_key] = {**flattened_values[first_key], 'description': value['description']}
+                merged_description = _merge_description_with_generated(
+                    value['description'],
+                    flattened_values[first_key].get('description', '')
+                )
+                flattened_values[first_key] = {**flattened_values[first_key], 'description': merged_description}
             for value_name, value_data in flattened_values.items():
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
