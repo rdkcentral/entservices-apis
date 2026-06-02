@@ -11,10 +11,10 @@ index 271b788..d653c6b 100644
      if not config.NO_INCLUDES:
          if if_file.endswith(".h"):
 diff --git a/ProxyStubGenerator/StubGenerator.py b/ProxyStubGenerator/StubGenerator.py
-index 3404995..e8191e9 100755
+index 3404995..d3562fb 100755
 --- a/ProxyStubGenerator/StubGenerator.py
 +++ b/ProxyStubGenerator/StubGenerator.py
-@@ -649,22 +649,22 @@ def Parse(source_file, framework_namespace, includePaths = [], defaults = "", ex
+@@ -649,7 +649,7 @@ def Parse(source_file, framework_namespace, includePaths = [], defaults = "", ex
  
      return tree
  
@@ -23,19 +23,12 @@ index 3404995..e8191e9 100755
      log.Info("Scanning '%s' (in %s)..." % (source_file, ns))
  
      if not FORCE and (os.path.exists(output_file) and (os.path.getmtime(source_file) < os.path.getmtime(output_file))):
-         raise NotModifiedException(output_file)
- 
-     interfaces, omit_interface_used = FindInterfaceClasses(tree, ns)
-     if not interfaces:
-         return [], omit_interface_used
- 
-     if scan_only:
-         return interfaces, omit_interface_used
+@@ -664,7 +664,7 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
  
      interface_header_name = os.path.basename(source_file)
  
 -    interface_namespace = ns.split("::")[-1]
-+    interface_namespace = ns if ns.replace(" ", "") != ("::" + FRAMEWORK_NAMESPACE) else "::".join(interfaces[0].obj.full_name.split("::")[:3])
++    interface_namespaces = [ns] if ns.replace(" ", "") != ("::" + FRAMEWORK_NAMESPACE) else list(dict.fromkeys("::".join(i.obj.full_name.split("::")[:3]) for i in interfaces))
  
      with open(output_file, "w") as file:
          emit = Emitter(file, INDENT_SIZE)
@@ -58,7 +51,22 @@ index 3404995..e8191e9 100755
              emit.Line('#include "Module.h"')
  
          if os.path.isfile(os.path.join(os.path.dirname(source_file), interface_header_name)):
-@@ -2631,6 +2632,8 @@ if __name__ == "__main__":
+@@ -2506,8 +2507,12 @@ def GenerateStubs2(output_file, source_file, tree, ns, scan_only=False):
+         emit.Line()
+         emit.IndentInc()
+ 
+-        if (interface_namespace != STUB_NAMESPACE.split("::")[-2]):
+-            emit.Line("using namespace %s;" % interface_namespace)
++        _emitted = False
++        for _ns_item in interface_namespaces:
++            if _ns_item != STUB_NAMESPACE.split("::")[-2]:
++                emit.Line("using namespace %s;" % _ns_item)
++                _emitted = True
++        if _emitted:
+             emit.Line()
+ 
+         emit.Line("PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)")
+@@ -2631,6 +2636,8 @@ if __name__ == "__main__":
                             help="include an additional C++ header file, can be used multiple times (default: include 'Module.h')")
      argparser.add_argument('-I', dest="includePaths", metavar="INCLUDE_DIR", action='append', default=[], type=str,
                             help='add an include search path, can be used multiple times')
@@ -67,7 +75,7 @@ index 3404995..e8191e9 100755
  
      args = argparser.parse_args(sys.argv[1:])
      SHOW_WARNINGS = not args.no_warnings
-@@ -2795,7 +2798,7 @@ if __name__ == "__main__":
+@@ -2795,7 +2802,7 @@ if __name__ == "__main__":
                          some_omitted = False
  
                          for ns in INTERFACE_NAMESPACES:
