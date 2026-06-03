@@ -43,7 +43,13 @@ jobs:
           cd ThunderTools
           git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
           cd ..
-
+          
+      - name: Apply Thunder Patch
+        run: |
+          cd Thunder
+          git apply $GITHUB_WORKSPACE/.github/Patches/1004-Add-support-for-project-dir.patch
+          cd ..
+          
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
