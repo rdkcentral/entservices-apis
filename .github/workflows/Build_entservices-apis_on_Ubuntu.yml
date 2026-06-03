@@ -20,7 +20,8 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+        run: |
+             git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git 
              cd ThunderTools
              git checkout b6789ca88b1e6c56942d9858d6d4411eae389ddc
 
