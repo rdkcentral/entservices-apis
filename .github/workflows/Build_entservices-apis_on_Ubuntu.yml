@@ -68,5 +68,6 @@ jobs:
         run: |
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="install" \
-            -DTOOLS_SYSROOT="${PWD}"
+            -DTOOLS_SYSROOT="${PWD}" \
+            -DCMAKE_PREFIX_PATH="${PWD}/install"
           cmake --build build --target install
