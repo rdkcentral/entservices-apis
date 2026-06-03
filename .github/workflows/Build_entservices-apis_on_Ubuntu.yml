@@ -31,8 +31,8 @@ jobs:
           cd ..
           
       - name: Clone Thunder
-        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
-                    
+        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git     
+     
       - name: Install jsonref
         run: |
           python3 -m pip install --upgrade pip
