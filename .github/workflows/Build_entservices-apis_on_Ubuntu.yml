@@ -21,9 +21,7 @@ jobs:
 
       - name: Clone ThunderTools
         run: |
-             git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git 
-             cd ThunderTools
-             git checkout b6789ca88b1e6c56942d9858d6d4411eae389ddc
+             git clone --branch  R4.4.3 https://github.com/rdkcentral/ThunderTools.git
 
       - name: Clone Thunder
         run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
