@@ -24,15 +24,15 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run:  git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
-          
-      - name: Clone Thunder
         run: |
-          git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
-          cd Thunder
-          git checkout ${{ env.THUNDER_COMMIT_SHA }}
+          git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+          cd ThunderTools
+          git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
           cd ..
           
+      - name: Clone Thunder
+        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
+                    
       - name: Install jsonref
         run: |
           python3 -m pip install --upgrade pip
