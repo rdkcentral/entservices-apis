@@ -829,7 +829,7 @@ XCast interface events:
 | :-------- | :-------- |
 | [onApplicationHideRequest](#onApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
 | [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
-| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
+| [onApplicationLaunchRequestWithParam](#onApplicationLaunchRequestWithParam) | Triggered when the cast service receives a launch request from a client with launch params |
 | [onApplicationResumeRequest](#onApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
 | [onApplicationStateRequest](#onApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
 | [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
