@@ -31,7 +31,10 @@ jobs:
           cd ..
           
       - name: Clone Thunder
-        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git     
+        run: |
+          git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
+          cd Thunder
+          git checkout ${{ env.THUNDER_COMMIT_SHA}} 
      
       - name: Install jsonref
         run: |
@@ -42,12 +45,6 @@ jobs:
         run: |
           cd ThunderTools
           git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
-          cd ..
-          
-      - name: Apply Thunder Patch
-        run: |
-          cd Thunder
-          git apply $GITHUB_WORKSPACE/.github/Patches/1004-Add-support-for-project-dir.patch
           cd ..
           
       - name: Build ThunderTools
