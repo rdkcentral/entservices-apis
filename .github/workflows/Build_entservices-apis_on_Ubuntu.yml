@@ -24,7 +24,7 @@ jobs:
              git clone --branch  R4.4.3 https://github.com/rdkcentral/ThunderTools.git
 
       - name: Clone Thunder
-        run: git clone --branch  R4.4.5 https://github.com/rdkcentral/ThunderTools.git
+        run: git clone --branch  R4.4.5 https://github.com/rdkcentral/Thunder.git
                  
       - name: Install jsonref
         run: |
