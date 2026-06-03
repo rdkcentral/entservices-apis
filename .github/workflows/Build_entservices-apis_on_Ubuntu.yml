@@ -19,11 +19,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cmake ninja-build build-essential git
 
-      - name: Clone ThunderTools
-        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+      - name: Checkout Thunder
+        uses: actions/checkout@v3
+        with:
+          repository: rdkcentral/Thunder
+          path: Thunder
+          ref: R4.4.1
 
-      - name: Clone Thunder
-        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
+      - name: Checkout ThunderTools
+        uses: actions/checkout@v3
+        with:
+          repository: rdkcentral/ThunderTools
+          path: ThunderTools
+          ref: R4.4.3
 
       - name: Install jsonref
         run: |
