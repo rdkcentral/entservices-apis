@@ -167,42 +167,6 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
-            struct EXTERNAL MacAddressesInfo {
-                string ecmMac /* @text ecm_mac */ /* @brief The embedded cable modem MAC address */;
-                string estbMac /* @text estb_mac */ /* @brief The embedded set-top box MAC address */;
-                string mocaMac /* @text moca_mac */ /* @brief The MOCA MAC address */;
-                string ethMac /* @text eth_mac */ /* @brief The Ethernet MAC address */;
-                string wifiMac /* @text wifi_mac */ /* @brief The Wifi MAC address */;
-                string bluetoothMac /* @text bluetoothMac */ /* @brief The Bluetooth MAC address */;
-                string rf4ceMac /* @text rf4ce_mac */ /* @brief The Rf4ce MAC address */;
-                string info /* @brief Additional information (only if any of the above data is missing) */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
-            struct EXTERNAL FirmwareUpdateInfo {
-                int status /* @brief The firmware update status */;
-                string responseString /* @brief A custom response */;
-                string firmwareUpdateVersion /* @brief The next firmware update version */;
-                bool rebootImmediately /* @brief The value true indicates that the device has to be rebooted immediately or false otherwise */;
-                bool updateAvailable /* @brief The value false indicates that there is no update available */;
-                int updateAvailableEnum /* @brief The update available details (must be one of the following: 0, 1, 2, 3) */;
-                bool success /* @brief Whether the request succeeded */;
-            };
-
-            struct EXTERNAL TerritoryChangedInfo {
-                string oldTerritory /* @brief old territory */;
-                string newTerritory /* @brief new territory */;
-                string oldRegion /* @brief old region */;
-                string newRegion /* @brief new region */;
-            };
-
-            struct EXTERNAL TimeZoneDSTChangedInfo {
-                string oldTimeZone /* @brief old time zone */;
-                string newTimeZone /* @brief new time zone */;
-                string oldAccuracy /* @brief old time zone accuracy */;
-                string newAccuracy /* @brief new time zone accuracy */;
-            };
-
              struct EXTERNAL WakeupSources {
                 bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
                 bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
@@ -225,8 +189,14 @@ namespace WPEFramework
 
                 // @text onFirmwareUpdateInfoReceived
                 // @brief Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
-                // @param FirmwareUpdateInfo: The firmware update information
-                virtual void OnFirmwareUpdateInfoReceived(const FirmwareUpdateInfo &firmwareUpdateInfo) {};
+                // @param status: The firmware update status
+                // @param responseString: A custom response
+                // @param firmwareUpdateVersion: The next firmware update version
+                // @param rebootImmediately: The value true indicates that the device has to be rebooted immediately or false otherwise
+                // @param updateAvailable: The value false indicates that there is no update available
+                // @param updateAvailableEnum: The update available details (must be one of the following: 0, 1, 2, 3)
+                // @param success: Whether the request succeeded
+                virtual void OnFirmwareUpdateInfoReceived(const int status, const string& responseString, const string& firmwareUpdateVersion, const bool rebootImmediately, const bool updateAvailable, const int updateAvailableEnum, const bool success){};
 
                 // @text onRebootRequest
                 // @brief Triggers when a device reboot request is made
@@ -242,18 +212,32 @@ namespace WPEFramework
 
                 // @text onTerritoryChanged
                 // @brief Triggered when the device territory changed.
-                // @param TerritoryChangedInfo: The Territory changed information
-                virtual void OnTerritoryChanged(const TerritoryChangedInfo &territoryChangedInfo) {};
+                // @param oldTerritory: old territory
+                // @param newTerritory: new territory
+                // @param oldRegion: old region
+                // @param newRegion: new region
+                virtual void OnTerritoryChanged(const string& oldTerritory, const string& newTerritory, const string& oldRegion, const string& newRegion) {};
 
                 // @text onTimeZoneDSTChanged
                 // @brief Triggered when device time zone changed.
-                // @param TimeZoneDSTChangedInfo: The TimeZoneDST changed information
-                virtual void OnTimeZoneDSTChanged(const TimeZoneDSTChangedInfo& timeZoneDSTChangedInfo) {};
+                // @param oldTimeZone: old time zone
+                // @param newTimeZone: new time zone
+                // @param oldAccuracy: old time zone accuracy
+                // @param newAccuracy: new time zone accuracy
+                virtual void OnTimeZoneDSTChanged(const string& oldTimeZone, const string& newTimeZone, const string& oldAccuracy, const string& newAccuracy){};
 
                 // @text onMacAddressesRetreived
                 // @brief Triggered when the getMacAddresses asynchronous method is invoked.
-                // @param MacAddressesInfo: The Mac Addresses details 
-                virtual void OnMacAddressesRetreived(const MacAddressesInfo& macAddressesInfo) {};
+                // @param ecmMac: The embedded cable modem MAC address
+                // @param estbMac: The embedded set-top box MAC address
+                // @param mocaMac: The MOCA MAC address
+                // @param ethMac: The Ethernet MAC address
+                // @param wifiMac: The Wifi MAC address
+                // @param bluetoothMac: The Bluetooth MAC address
+                // @param rf4ceMac: The Rf4ce MAC address
+                // @param info: Additional information (only if any of the above data is missing)
+                // @param success: Whether the request succeeded
+                virtual void OnMacAddressesRetreived(const string& ecmMac /* @text ecm_mac */, const string& estbMac /* @text estb_mac */, const string& mocaMac /* @text moca_mac */, const string& ethMac /* @text eth_mac */, const string& wifiMac /* @text wifi_mac */, const string& bluetoothMac /* @text bluetooth_mac */, const string& rf4ceMac /* @text rf4ce_mac */, const string& info, const bool success) {};
 
                 // @text onSystemModeChanged
                 // @brief Triggers when the system mode is changed successfully.
