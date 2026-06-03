@@ -13,16 +13,38 @@ env:
 
 jobs:
   ThunderComponents:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install jsonref
+
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v1.13
+        with:
+          cmake-version: '3.16.x'
+
       - name: Install Dependencies
-        run: |
+        run: >
           sudo apt-get update
-          sudo apt-get install -y cmake ninja-build build-essential git
+          &&
+          sudo apt install -y libsqlite3-dev libcurl4-openssl-dev valgrind lcov clang libsystemd-dev libboost-all-dev libwebsocketpp-dev meson libcunit1 libcunit1-dev curl protobuf-compiler-grpc libgrpc-dev libgrpc++-dev
+
+      - name: Build trevor-base64
+        run: |
+            if [ ! -d "trower-base64" ]; then
+            git clone https://github.com/xmidt-org/trower-base64.git
+            fi
+            cd trower-base64
+            meson setup --warnlevel 3 --werror build
+            ninja -C build
+            sudo ninja -C build install
 
       - name: Checkout Thunder
         uses: actions/checkout@v3
@@ -37,11 +59,6 @@ jobs:
           repository: rdkcentral/ThunderTools
           path: ThunderTools
           ref: R4.4.3
-
-      - name: Install jsonref
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install jsonref
 
       - name: Apply ThunderTools Patch
         run: |
