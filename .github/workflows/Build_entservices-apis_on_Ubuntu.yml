@@ -9,6 +9,10 @@ on:
 jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
+    env: 
+       THUNDER_TOOLS_COMMIT_SHA: b6789ca88b1e6c56942d9858d6d4411eae389ddc
+       THUNDER_COMMIT_SHA: 1bfb85b75cb20409dbd69d34ea056171c9cdf565
+       
 
     steps:
       - name: Checkout Repository
@@ -21,10 +25,16 @@ jobs:
 
       - name: Clone ThunderTools
         run: |
-          git clone --branch R4.4.3 https://github.com/rdkcentral/ThunderTools.git
+          git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+          cd ThunderTools
+          git checkout {{ env.THUNDER_TOOLS_COMMIT_SHA}}
 
       - name: Clone Thunder
-        run: git clone --branch R4.4.5 https://github.com/rdkcentral/Thunder.git
+        run: |
+          git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
+          cd Thunder
+          git checkout {{ env.THUNDER_COMMIT_SHA}}
+          
       - name: Install jsonref
         run: |
           python3 -m pip install --upgrade pip
