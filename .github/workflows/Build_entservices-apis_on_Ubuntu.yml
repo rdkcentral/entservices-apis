@@ -28,12 +28,14 @@ jobs:
           git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
           cd ThunderTools
           git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
+          cd ..
 
       - name: Clone Thunder
         run: |
           git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
           cd Thunder
           git checkout ${{ env.THUNDER_COMMIT_SHA }}
+          cd ..
           
       - name: Install jsonref
         run: |
