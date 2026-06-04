@@ -67,6 +67,7 @@ jobs:
       - name: Build entservices-apis
         run: |
           cmake -G Ninja -S . -B build \
-            -DCMAKE_INSTALL_PREFIX="install" \
-            -DTOOLS_SYSROOT="${PWD}"
+            -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/install/usr" \
+            -DTOOLS_SYSROOT="${PWD}"\
+            -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/install/usr"
           cmake --build build --target install
