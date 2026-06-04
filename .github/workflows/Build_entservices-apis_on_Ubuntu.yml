@@ -69,6 +69,6 @@ jobs:
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="${PWD}install" \
             -DCMAKE_PREFIX_PATH="${PWD}/install" \
-            -DCMAKE_MODULE_PATH="${PWD}/install/lib/cmake/WPEFramework" \
+            -DCMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules" \
             -DTOOLS_SYSROOT="${PWD}"
            cmake --build build --target install
