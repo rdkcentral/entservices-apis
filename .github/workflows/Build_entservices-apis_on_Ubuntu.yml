@@ -72,4 +72,4 @@ jobs:
             -DCMAKE_CXX_FLAGS="-I${PWD}/install/include/WPEFramework" \
             -DCMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules" \
             -DTOOLS_SYSROOT="${PWD}"
-           cmake --build build --target install
+          cmake --build build --target install
