@@ -34,7 +34,8 @@ jobs:
         run: |
           git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
           cd Thunder
-          git checkout ${{ env.THUNDER_COMMIT_SHA}} 
+          git checkout ${{ env.THUNDER_COMMIT_SHA}}
+          cd ..
      
       - name: Install jsonref
         run: |
