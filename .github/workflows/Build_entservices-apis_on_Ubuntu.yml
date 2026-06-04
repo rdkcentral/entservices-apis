@@ -67,7 +67,7 @@ jobs:
       - name: Build entservices-apis
         run: |
           cmake -G Ninja -S . -B build \
-            -DCMAKE_INSTALL_PREFIX="install" \
+            -DCMAKE_INSTALL_PREFIX="${PWD}install" \
             -DCMAKE_PREFIX_PATH="${PWD}/install" \
             -DCMAKE_MODULE_PATH="${PWD}/install/lib/cmake/WPEFramework" \
             -DTOOLS_SYSROOT="${PWD}"
