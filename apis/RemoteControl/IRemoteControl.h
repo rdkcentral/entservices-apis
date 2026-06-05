@@ -241,7 +241,7 @@ namespace WPEFramework {
             // @param netType: The type of network ex: 1
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param code: The IR code being programmed into the remote e.g. "PANASONIC_3DTV"
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
@@ -251,7 +251,7 @@ namespace WPEFramework {
             // @text clearIRCodes
             // @param remoteId: The remote ID of the target remote on the specified network ex: 1
             // @param netType: The type of network ex: 1
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
@@ -269,7 +269,7 @@ namespace WPEFramework {
             // @text configureWakeupKeys
             // @param wakeupConfig: The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target)
             // @param customKeys: List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199"
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
@@ -278,7 +278,7 @@ namespace WPEFramework {
             // @brief Initializes the IR database
             // @text initializeIRDB
             // @param netType: The type of network ex: 1
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
@@ -287,7 +287,7 @@ namespace WPEFramework {
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
             // @param level: The level at which the remote will beep
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
@@ -295,7 +295,7 @@ namespace WPEFramework {
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
@@ -303,7 +303,7 @@ namespace WPEFramework {
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
