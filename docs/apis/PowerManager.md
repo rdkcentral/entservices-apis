@@ -234,7 +234,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.currentState | string | Current Power State |
+| result.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 | result.previousState | string | Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 
 ### Examples
@@ -284,7 +284,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.powerStateBeforeReboot | string | power state |
+| result.powerStateBeforeReboot | string | power state. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 
 ### Examples
 
@@ -703,7 +703,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keyCode | int |  |
-| params.powerState | string | Set power to this state |
+| params.powerState | string | Set power to this state. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 | params.reason | string | Reason for moving to the power state |
 ### Results
 | Name | Type | Description |
@@ -928,7 +928,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).wakeupReason | string | wake up reason |
+| (property).wakeupReason | string | wake up reason. Possible values: UNKNOWN, IR, BLUETOOTH, RF4CE, GPIO, LAN, WIFI, TIMER, FRONTPANEL, WATCHDOG, SOFTWARERESET, THERMALRESET, WARMRESET, COLDBOOT, STR_AUTH_FAIL, CEC, PRESENCE, VOICE |
 
 ### Examples
 
@@ -1226,8 +1226,8 @@ Power mode changed
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.currentState | string | Current Power State |
-| params.newState | string | New Power State |
+| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 
 ### Examples
 
@@ -1252,8 +1252,8 @@ Power mode Pre-change event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.currentState | string | Current Power State |
-| params.newState | string | Changing power state to this New Power State |
+| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | Changing power state to this New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 | params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
 | params.stateChangeAfter | int | seconds after which the actual power mode will be applied. |
 
@@ -1310,8 +1310,8 @@ Thermal Mode changed event
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.currentThermalLevel | string | current thermal level |
-| params.newThermalLevel | string | new thermal level |
+| params.currentThermalLevel | string | current thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
+| params.newThermalLevel | string | new thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
 | params.currentTemperature | float | current temperature |
 
 ### Examples

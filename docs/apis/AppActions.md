@@ -54,8 +54,8 @@ AppActions interface methods:
 
 Initiates an action from the initiator to the AppActions with the specified intent.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -101,6 +101,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Failure"
+    }
 }
 ```
 

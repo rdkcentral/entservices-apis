@@ -63,8 +63,8 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.mediaurl | string | The URL to tune to (tune://, ocap://, http://, https://) |
-| params.mode | string | The use of the tune request |
-| params.managementType | string | Type of CAS management |
+| params.mode | string | The use of the tune request. Possible values: MODE_NONE, MODE_LIVE, MODE_RECORD, MODE_PLAYBACK |
+| params.managementType | string | Type of CAS management. Possible values: MANAGE_FULL, MANAGE_NO_PSI, MANAGE_NO_TUNER |
 | params.casinitdata | string | CAS specific initdata for the selected media |
 | params.casocdmid | string | The well-known OCDM ID of the CAS to use |
 ### Results
@@ -139,7 +139,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data |
+| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -284,7 +284,7 @@ Sent when the CAS needs to send data to the caller
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data |
+| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
 
 ### Examples
 

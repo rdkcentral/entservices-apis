@@ -69,8 +69,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.framerate | string |  string |
-| result.success | bool |  boolean |
+| result.framerate | string | string |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -120,7 +120,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.auto-frm-mode | int |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -167,12 +167,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frequency | int |   int |
+| params.frequency | int | int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -221,12 +221,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.framerate | string |  string |
+| params.framerate | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -275,12 +275,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frmmode | int |  int |
+| params.frmmode | int | int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -331,7 +331,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -379,7 +379,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -425,12 +425,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.newFpsValue | int |  int |
+| params.newFpsValue | int | int |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -494,7 +494,7 @@ Triggered when the framerate changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string |  string |
+| params.displayFrameRate | string | string |
 
 ### Examples
 
@@ -518,7 +518,7 @@ Triggered when the framerate changes started
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string |  string |
+| params.displayFrameRate | string | string |
 
 ### Examples
 
@@ -542,9 +542,9 @@ Triggered by callback from FrameRate after onFpsEvent
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.average | int |  int |
-| params.min | int |  int |
-| params.max | int |  int |
+| params.average | int | int |
+| params.min | int | int |
+| params.max | int | int |
 
 ### Examples
 

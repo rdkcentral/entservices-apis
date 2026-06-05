@@ -60,12 +60,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  string App identifier for the application. |
+| params.appId | string | string App identifier for the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string |  string error reason string |
+| result.errorReason | string | string error reason string |
 
 ### Examples
 
@@ -114,12 +114,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.exemptionAppIds | string |  string Clears all app data except for the exempt app ids as a json format |
+| params.exemptionAppIds | string | string Clears all app data except for the exempt app ids as a json format |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string |  string error reason string |
+| result.errorReason | string | string error reason string |
 
 ### Examples
 

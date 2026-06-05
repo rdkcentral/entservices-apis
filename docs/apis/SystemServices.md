@@ -100,8 +100,8 @@ SystemServices interface methods:
 
 Stops background process to upload logs.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -143,22 +143,36 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getBlocklistFlag"></a>
 ## *getBlocklistFlag*
 
 Get block list flag.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | BlocklistResult |  |
+| result.result | object |  |
 | result.result.blocklist | bool | Whether the device is blocklisted |
-| result.result.error | ErrorInfo | Error Information |
+| result.result.error | object | Error Information |
 | result.result.error.message | string | Error Message |
 | result.result.error.code | string | Error Code |
 | result.result.success | bool | Whether the request succeeded |
@@ -201,13 +215,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getBootTypeInfo"></a>
 ## *getBootTypeInfo*
 
 Get the FSR flag from the emmc raw area.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -249,13 +277,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getBuildType"></a>
 ## *getBuildType*
 
 Returns build type of the image flashed on the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -299,24 +341,38 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getDeviceInfo"></a>
 ## *getDeviceInfo*
 
 Collects device details
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.params | IStringIterator | A list of Supported device keys |
+| params.params | array | A list of Supported device keys |
 | params.params[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.deviceInfo | DeviceInfo | Device Information @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.deviceInfo | object | Device Information |
 | result.deviceInfo.make | string | Device manufacturer |
 | result.deviceInfo.bluetooth_mac | string | Bluetooth MAC Address |
 | result.deviceInfo.boxIP | string | STB IP Address |
@@ -387,20 +443,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getDownloadedFirmwareInfo"></a>
 ## *getDownloadedFirmwareInfo*
 
 Returns information about firmware downloads.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.downloadedFirmwareInfo | DownloadedFirmwareInfo |  |
+| result.downloadedFirmwareInfo | object |  |
 | result.downloadedFirmwareInfo.currentFWVersion | string | The current firmware version |
 | result.downloadedFirmwareInfo.downloadedFWVersion | string | The downloaded firmware version |
 | result.downloadedFirmwareInfo.downloadedFWLocation | string | The location of the downloaded firmware |
@@ -448,13 +518,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getFSRFlag"></a>
 ## *getFSRFlag*
 
 Get the FSR flag from the emmc raw area.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -498,13 +582,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getFirmwareDownloadPercent"></a>
 ## *getFirmwareDownloadPercent*
 
 Gets the current download percentage.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -548,13 +646,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getFirmwareUpdateInfo"></a>
 ## *getFirmwareUpdateInfo*
 
 Checks the firmware update information.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -604,13 +716,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getFirmwareUpdateState"></a>
 ## *getFirmwareUpdateState*
 
 Checks the state of the firmware update.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -654,20 +780,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getFriendlyName"></a>
 ## *getFriendlyName*
 
 Returns the friendly name set by setFriendlyName API or default value.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.friendlyName | string | The new friendly name |
+| result.friendlyName | string | The friendly name of the device which used to display on the client device list |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -704,13 +844,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getLastFirmwareFailureReason"></a>
 ## *getLastFirmwareFailureReason*
 
 Retrieves the last firmware failure reason.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -754,13 +908,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getLastWakeupKeyCode"></a>
 ## *getLastWakeupKeyCode*
 
 Returns the last wakeup keycode.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -804,13 +972,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getMacAddresses"></a>
 ## *getMacAddresses*
 
 Gets the MAC address of the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -864,13 +1046,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getMfgSerialNumber"></a>
 ## *getMfgSerialNumber*
 
 Gets the Manufacturing Serial Number.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -914,13 +1110,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getMigrationStatus"></a>
 ## *getMigrationStatus*
 
 get the Migration Status of the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -962,20 +1172,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getNetworkStandbyMode"></a>
 ## *getNetworkStandbyMode*
 
 Returns the network standby mode of the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.nwStandby | bool | The network standby mode |
+| result.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1012,13 +1236,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPlatformConfiguration"></a>
 ## *getPlatformConfiguration*
 
 Returns the Supported features and device/account info
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1028,17 +1266,17 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.platformConfig | PlatformConfig | Platform Configuration Details @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
-| result.platformConfig.AccountInfo | AccountInfoDetails | AccountInfo Details |
+| result.platformConfig | object | Platform Configuration Details |
+| result.platformConfig.AccountInfo | object | AccountInfo Details |
 | result.platformConfig.AccountInfo.accountId | string | Account Id |
 | result.platformConfig.AccountInfo.x1DeviceId | string | X1 Device Id |
 | result.platformConfig.AccountInfo.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
 | result.platformConfig.AccountInfo.experience | string | Experience |
 | result.platformConfig.AccountInfo.deviceMACAddress | string | Device MAC Address |
 | result.platformConfig.AccountInfo.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
-| result.platformConfig.DeviceInfo | DeviceInfoDetails | DeviceInfo Details |
+| result.platformConfig.DeviceInfo | object | DeviceInfo Details |
 | result.platformConfig.DeviceInfo.quirks | string | The list of installed “quirks” |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions | MIMETypeExclusions | mime Type Exclusions |
+| result.platformConfig.DeviceInfo.mimeTypeExclusions | object | mime Type Exclusions |
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.CDVR | string | CDVR |
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.DVR | string | DVR |
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.EAS | string | EAS |
@@ -1046,7 +1284,7 @@ Event details will be updated soon.
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.IVOD | string | IVOD |
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.LINEAR_TV | string | LINEAR_TV |
 | result.platformConfig.DeviceInfo.mimeTypeExclusions.VOD | string | VOD |
-| result.platformConfig.DeviceInfo.features | Features | features |
+| result.platformConfig.DeviceInfo.features | object | features |
 | result.platformConfig.DeviceInfo.features.allowSelfSignedWithIPAddress | integer |  |
 | result.platformConfig.DeviceInfo.features.connection.supportsSecure | integer | connection.supportsSecure |
 | result.platformConfig.DeviceInfo.features.htmlview.callJavaScriptWithResult | integer | htmlview.callJavaScriptWithResult |
@@ -1063,7 +1301,7 @@ Event details will be updated soon.
 | result.platformConfig.DeviceInfo.model | string | model |
 | result.platformConfig.DeviceInfo.deviceType | string | Device Type |
 | result.platformConfig.DeviceInfo.supportsTrueSD | bool | SD Support |
-| result.platformConfig.DeviceInfo.webBrowser | WebBrowserInfo | webBrowser Info |
+| result.platformConfig.DeviceInfo.webBrowser | object | webBrowser Info |
 | result.platformConfig.DeviceInfo.webBrowser.browserType | string | Browser Type |
 | result.platformConfig.DeviceInfo.webBrowser.version | string | Version |
 | result.platformConfig.DeviceInfo.webBrowser.userAgent | string | User Agent |
@@ -1154,13 +1392,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPowerState"></a>
 ## *getPowerState*
 
 Returns the power state of the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1204,13 +1456,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPowerStateBeforeReboot"></a>
 ## *getPowerStateBeforeReboot*
 
 Returns the power state before reboot.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1254,18 +1520,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getRFCConfig"></a>
 ## *getRFCConfig*
 
 Returns information that is related to RDK Feature Control (RFC) configurations.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rfcList | IStringIterator | A list of RFC properties to query |
+| params.rfcList | array | A list of RFC properties to query |
 | params.rfcList[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -1315,13 +1595,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getSerialNumber"></a>
 ## *getSerialNumber*
 
 Returns the device serial number.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1365,20 +1659,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getSystemVersions"></a>
 ## *getSystemVersions*
 
 Returns system version details.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.systemVersionsInfo | SystemVersionsInfo |  |
+| result.systemVersionsInfo | object |  |
 | result.systemVersionsInfo.stbVersion | string | The STB version |
 | result.systemVersionsInfo.receiverVersion | string | The receiver version |
 | result.systemVersionsInfo.stbTimestamp | string | The STB timestamp |
@@ -1420,13 +1728,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getTerritory"></a>
 ## *getTerritory*
 
 Gets the configured system territory and region.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1472,22 +1794,36 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getTimeStatus"></a>
 ## *getTimeStatus*
 
 Get the time status on the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.TimeQuality | string | The quality of the time |
-| result.TimeSrc | string | The source of the time |
-| result.Time | string | The current time |
+| result.TimeQuality | string | Time Quality |
+| result.TimeSrc | string | Time Source |
+| result.Time | string | Current Time |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -1526,13 +1862,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getTimeZoneDST"></a>
 ## *getTimeZoneDST*
 
 Gets the available timezones from the system’s time zone database.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1578,18 +1928,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 25,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getTimeZones"></a>
 ## *getTimeZones*
 
 Returns the friendly name set by setFriendlyName API or default value.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.timeZones | IStringIterator | A list of available timezones from the system |
+| params.timeZones | array | A list of available timezones from the system |
 | params.timeZones[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -1635,13 +1999,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getWakeupReason"></a>
 ## *getWakeupReason*
 
 Returns the reason for the device coming out of deep sleep.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1685,13 +2063,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="isOptOutTelemetry"></a>
 ## *isOptOutTelemetry*
 
 Checks the telemetry opt-out status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1735,13 +2127,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="reboot"></a>
 ## *reboot*
 
 Requests that the system performs a reboot of the set-top box.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1791,13 +2197,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="requestSystemUptime"></a>
 ## *requestSystemUptime*
 
 Returns the device uptime.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -1841,24 +2261,38 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setBlocklistFlag"></a>
 ## *setBlocklistFlag*
 
 To update Blocklist flag.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blocklist | bool | Whether the device is blocklisted |
+| params.blocklist | bool | Blocklist flag |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | SetBlocklistResult |  |
-| result.result.error | ErrorInfo | Error Information |
+| result.result | object |  |
+| result.result.error | object | Error Information |
 | result.result.error.message | string | Error Message |
 | result.result.error.code | string | Error Code |
 | result.result.success | bool | Whether the request succeeded |
@@ -1903,13 +2337,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setBootLoaderSplashScreen"></a>
 ## *setBootLoaderSplashScreen*
 
 Install or update the BootLoader Splash Screens.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1919,7 +2367,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.error | ErrorInfo | Error Information |
+| result.error | object | Error Information |
 | result.error.message | string | Error Message |
 | result.error.code | string | Error Code |
 | result.success | bool | Whether the request succeeded |
@@ -1964,13 +2412,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 32,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setDeepSleepTimer"></a>
 ## *setDeepSleepTimer*
 
 Sets the deep sleep timeout period.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2022,13 +2484,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 33,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setFSRFlag"></a>
 ## *setFSRFlag*
 
 Set the FSR flag into the emmc raw area.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2076,13 +2552,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 34,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setFirmwareAutoReboot"></a>
 ## *setFirmwareAutoReboot*
 
 Enables or disables the AutoReboot Feature.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2130,18 +2620,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 35,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setFriendlyName"></a>
 ## *setFriendlyName*
 
 Sets the friendly name of device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.friendlyName | string | The new friendly name |
+| params.friendlyName | string | The friendly name of the device which used to display on the client device list |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2184,13 +2688,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 36,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setMigrationStatus"></a>
 ## *setMigrationStatus*
 
 set the Migration Status of the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2243,13 +2761,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 
 Sets the mode of the set-top box for a specific duration before returning to normal mode.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.modeInfo | ModeInfo |  |
+| params.modeInfo | object |  |
 | params.modeInfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
 | params.modeInfo.duration | int | The duration |
 ### Results
@@ -2299,18 +2817,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setNetworkStandbyMode"></a>
 ## *setNetworkStandbyMode*
 
 Enables or disables the AutoReboot Feature.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.nwStandby | bool | The network standby mode |
+| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2353,13 +2885,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
 Sets the telemetry opt-out status.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2407,13 +2953,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 40,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPowerState"></a>
 ## *setPowerState*
 
 Sets the power state of the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2467,13 +3027,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 41,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setTerritory"></a>
 ## *setTerritory*
 
 Sets the system territory and region.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2527,13 +3101,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 42,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setTimeZoneDST"></a>
 ## *setTimeZoneDST*
 
 Sets the system time zone.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2587,19 +3175,33 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 43,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setWakeupSrcConfiguration"></a>
 ## *setWakeupSrcConfiguration*
 
 Sets the wakeup source configuration for the input powerState.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.wakeupSources | ISystemServicesWakeupSourcesIterator | Array of Key value pair with wake up sources and its configurations |
+| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
 | params.wakeupSources[#].WAKEUPSRC_VOICE | bool | Voice Wake up |
 | params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presence detection wake up |
 | params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool | Bluetooth Wakeup |
@@ -2664,13 +3266,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 44,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="updateFirmware"></a>
 ## *updateFirmware*
 
 Initiates a firmware update.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -2712,13 +3328,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "me
 }
 ```
 
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 45,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="uploadLogsAsync"></a>
 ## *uploadLogsAsync*
 
 Starts background process to upload logs.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -2756,6 +3386,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "me
     "id": 46,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 46,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -2828,7 +3472,7 @@ Triggered when Device Mgt settings update is received
 | params | object |  |
 | params.source | string | The source of the update |
 | params.type | string | The type of update |
-| params.success | bool | Whether the request succeeded |
+| params.success | bool | Whether the update was successful |
 
 ### Examples
 
@@ -2905,8 +3549,8 @@ Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 }
 ```
 
-<a id="onFirmwareUpdateStateChanged"></a>
-## *onFirmwareUpdateStateChanged*
+<a id="onFirmwareUpdateStateChange"></a>
+## *onFirmwareUpdateStateChange*
 
 Triggered when the firmware update state is changed.
 
@@ -2922,7 +3566,7 @@ Triggered when the firmware update state is changed.
 {
     "jsonrpc": 2.0,
     "id": 51,
-    "method": "org.rdk.SystemServices.onFirmwareUpdateStateChanged",
+    "method": "org.rdk.SystemServices.onFirmwareUpdateStateChange",
     "params": {
         "firmwareUpdateStateChange": 0
     }
@@ -2987,11 +3631,11 @@ Triggered when the getMacAddresses asynchronous method is invoked.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.ecm_mac | string | The embedded cable modem MAC address |
-| params.estb_mac | string | STB MAC Address |
+| params.estb_mac | string | The embedded set-top box MAC address |
 | params.moca_mac | string | The MOCA MAC address |
-| params.eth_mac | string | Ethernet MAC Address |
-| params.wifi_mac | string | WIFI Mac Address |
-| params.bluetooth_mac | string | Bluetooth MAC Address |
+| params.eth_mac | string | The Ethernet MAC address |
+| params.wifi_mac | string | The Wifi MAC address |
+| params.bluetooth_mac | string | The Bluetooth MAC address |
 | params.rf4ce_mac | string | The Rf4ce MAC address |
 | params.info | string | Additional information (only if any of the above data is missing) |
 | params.success | bool | Whether the request succeeded |

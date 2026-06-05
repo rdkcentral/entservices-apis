@@ -63,7 +63,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED |
+| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED. Possible values: NOT_STARTED, IN_PROGRESS, COMPLETED |
 
 ### Examples
 

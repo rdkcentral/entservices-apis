@@ -157,12 +157,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string |  enum |
+| params.status | string | enum. Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  struct |
+| result.success | bool | struct |
 
 ### Examples
 

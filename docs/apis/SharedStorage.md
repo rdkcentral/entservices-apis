@@ -95,7 +95,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 | params.key | string | key |
 ### Results
@@ -153,7 +153,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 ### Results
 | Name | Type | Description |
@@ -209,7 +209,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 | params.key | string | key |
 ### Results
@@ -271,7 +271,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 | params.key | string | key |
 | params.value | string | value |
@@ -388,7 +388,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 ### Results
 | Name | Type | Description |
@@ -449,7 +449,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -508,7 +508,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -576,7 +576,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 ### Results
 | Name | Type | Description |
@@ -632,7 +632,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 | params.storageLimit | integer | size |
 ### Results
@@ -703,7 +703,7 @@ Values stored are changed using setValue
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | must be device or account |
+| params.scope | string | must be device or account. Possible values: device, account |
 | params.namespace | string | name space |
 | params.key | string | key |
 | params.value | string | value |

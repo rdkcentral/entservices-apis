@@ -115,8 +115,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
-| result.testResults | string |  string |
+| result.success | bool | boolean |
+| result.testResults | string | string |
 
 ### Examples
 
@@ -163,7 +163,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.passPhrase | string |  string |
+| params.passPhrase | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -220,15 +220,15 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.age | int |  integer |
+| params.age | int | integer |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clean | bool |  boolean |
-| result.files | array |  string [] of file locations for each file |
+| result.clean | bool | boolean |
+| result.files | array | string [] of file locations for each file |
 | result.files[#] | string |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 | result.error | string | -out - string |
 
 ### Examples
@@ -334,8 +334,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.suppressReboot | bool |  bool |
-| params.resetType | string |  string |
+| params.suppressReboot | bool | bool |
+| params.resetType | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -406,8 +406,8 @@ Notifies subscribers about the status of the warehouse reset operation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.success | bool |  boolean |
-| params.error | string |  string |
+| params.success | bool | boolean |
+| params.error | string | string |
 
 ### Examples
 

@@ -508,9 +508,9 @@ Notifies when a Miracast source device wants to connect
 | params | object |  |
 | params.name | string | Name of the client device |
 | params.mac | string | MacAddress of the client device |
-| params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).) |
+| params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).). Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED, PAUSED |
 | params.reason_code | string | Reason code for the player state update |
-| params.reason | string | reason code Decription |
+| params.reason | string | reason code Decription. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
 
 ### Examples
 

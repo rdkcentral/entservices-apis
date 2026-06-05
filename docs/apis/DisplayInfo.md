@@ -243,7 +243,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).cs | string | colour space |
+| (property).cs | string | colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
 
 ### Examples
 
@@ -336,7 +336,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).colour | string | colour depth |
+| (property).colour | string | colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
 
 ### Examples
 
@@ -428,7 +428,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).eotf | string | display's EOTF |
+| (property).eotf | string | display's EOTF. Possible values: EOTF_UNKNOWN, EOTF_OTHER, EOTF_BT1886, EOTF_BT2100, EOTF_SMPTE_ST_2084 |
 
 ### Examples
 
@@ -474,7 +474,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).rate | string | frame rate |
+| (property).rate | string | frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
 
 ### Examples
 
@@ -565,7 +565,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).value | string | protocol |
+| (property).value | string | protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
 
 ### Examples
 
@@ -643,7 +643,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | string | HDR format |
+| (property).type | string | HDR format. Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
 
@@ -827,7 +827,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).qr | string | quantization range |
+| (property).qr | string | quantization range. Possible values: QUANTIZATIONRANGE_UNKNOWN, QUANTIZATIONRANGE_LIMITED, QUANTIZATIONRANGE_FULL |
 
 ### Examples
 

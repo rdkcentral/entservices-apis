@@ -112,16 +112,16 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.names | array |  String array of property names |
+| params.names | array | String array of property names |
 | params.names[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.paramList | array |  specified properties and their values |
+| result.paramList | array | specified properties and their values |
 | result.paramList[#].name | string | name |
 | result.paramList[#].value | string | value |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -178,9 +178,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.milestones | array |  A string [] of milestones |
+| result.milestones | array | A string [] of milestones |
 | result.milestones[#] | string |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -223,22 +223,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Returns information about the previous reboot including timestamp, source, and reason
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.rebootInfo | RebootInfo | Contains previous reboot information |
+| result.rebootInfo | object | Contains previous reboot information |
 | result.rebootInfo.timestamp | string | timestamp |
 | result.rebootInfo.source | string | source |
 | result.rebootInfo.reason | string | reason |
 | result.rebootInfo.customReason | string | customReason |
 | result.rebootInfo.otherReason | string | otherReason |
 | result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -292,12 +292,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.marker | string |  string |
+| params.marker | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -359,7 +359,7 @@ Triggered when the most active status of audio/video decoder/pipeline changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDecoderStatusChange | string |  string |
+| params.avDecoderStatusChange | string | string |
 
 ### Examples
 

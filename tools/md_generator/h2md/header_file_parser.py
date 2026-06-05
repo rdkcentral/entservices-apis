@@ -881,28 +881,37 @@ class HeaderFileParser:
         Converts a raw string from an @example tag into an appropriate Python type.
         Strips surrounding quotes, then coerces to bool, int, or float where possible.
         """
-        value = value.strip()
-        if not value:
+        text = (value or '').strip()
+        if not text:
             return ''
-        if value[0] in '[{':
+
+        looks_like_json = text.startswith('{') or text.startswith('[')
+        if looks_like_json:
             try:
-                return json.loads(value)
-            except json.JSONDecodeError:
+                return json.loads(text)
+            except (json.JSONDecodeError, TypeError, ValueError):
+                # Not valid JSON content; continue with scalar coercion.
                 pass
-        value = value.strip('"').strip("'")
-        if value.lower() == 'true':
+
+        scalar = text.strip('"\'')
+        lowered = scalar.lower()
+
+        if lowered == 'true':
             return True
-        if value.lower() == 'false':
+        if lowered == 'false':
             return False
+
         try:
-            return int(value)
+            return int(scalar)
         except ValueError:
             pass
+
         try:
-            return float(value)
+            return float(scalar)
         except ValueError:
             pass
-        return value
+
+        return scalar
 
     def _parse_async_event_names(self, value):
         """

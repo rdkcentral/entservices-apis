@@ -1191,9 +1191,9 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 | params | object |  |
 | params.appId | string | App identifier for the application. |
 | params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
-| params.newState | string | The new state to transition the application. |
-| params.oldState | string | The previous state of the application instance before the update. |
-| params.errorReason | string | The reason for any error encountered during the state transition |
+| params.newState | string | The new state to transition the application. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
+| params.oldState | string | The previous state of the application instance before the update. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
+| params.errorReason | string | The reason for any error encountered during the state transition. Possible values: APP_ERROR_NONE, APP_ERROR_UNKNOWN, APP_ERROR_STATE_TIMEOUT, APP_ERROR_ABORT, APP_ERROR_INVALID_PARAM, APP_ERROR_CREATE_DISPLAY, APP_ERROR_DOBBY_SPEC, APP_ERROR_NOT_INSTALLED, APP_ERROR_PACKAGE_LOCK |
 
 ### Examples
 

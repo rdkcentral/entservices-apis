@@ -63,7 +63,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | LEDState |
+| result.state | string | LEDState. Possible values: NONE, ACTIVE, STANDBY, WPS_CONNECTING, WPS_CONNECTED, WPS_ERROR, FACTORY_RESET, USB_UPGRADE, DOWNLOAD_ERROR, MAX |
 
 ### Examples
 
@@ -162,7 +162,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | LEDControlState.  |
+| params.state | string | LEDControlState. . Possible values: NONE, ACTIVE, STANDBY, WPS_CONNECTING, WPS_CONNECTED, WPS_ERROR, FACTORY_RESET, USB_UPGRADE, DOWNLOAD_ERROR, MAX |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

@@ -1997,7 +1997,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.key | string | one of UserSettingsKey |
+| params.key | string | one of UserSettingsKey. Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

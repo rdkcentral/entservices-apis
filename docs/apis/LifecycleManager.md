@@ -114,7 +114,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | App identifier for the application. |
-| params.closeReason | string | closed reason for application |
+| params.closeReason | string | closed reason for application. Possible values: USER_EXIT, ERROR, KILL_AND_RUN, KILL_AND_ACTIVATE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

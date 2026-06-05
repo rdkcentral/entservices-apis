@@ -268,7 +268,7 @@ Triggered whenever the App state changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | current state of amazon prime |
+| params.state | string | current state of amazon prime. Possible values: PLAYING, STOPPED, SUSPENDING |
 
 ### Examples
 

@@ -168,7 +168,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode to get the state of. |
+| params.systemMode | string | The system mode to get the state of. Possible values: device_optimize |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -222,8 +222,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode. |
-| params.state | string | The requested state. |
+| params.systemMode | string | The system mode. Possible values: device_optimize |
+| params.state | string | The requested state. Possible values: GAME |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

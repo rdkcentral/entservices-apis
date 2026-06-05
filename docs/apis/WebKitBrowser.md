@@ -92,7 +92,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.type | string | Type of reset to perform |
+| params.type | string | Type of reset to perform. Possible values: FACTORY, CACHE, CREDENTIALS, RECORDINGS |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -897,7 +897,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).policy | string | HTTP Cookie Accept Policy Type (e.g. always) |
+| (property).policy | string | HTTP Cookie Accept Policy Type (e.g. always). Possible values: ALWAYS, NEVER, ONLY_FROM_MAIN_DOCUMENT_DOMAIN, EXCLUSIVELY_FROM_MAIN_DOCUMENT_DOMAIN |
 
 ### Examples
 
@@ -1051,7 +1051,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).policy | string | Mixed content policy type |
+| (property).policy | string | Mixed content policy type. Possible values: ALLOWED, BLOCKED |
 
 ### Examples
 
@@ -1515,7 +1515,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).visible | string | Visiblity state (e.g. ) |
+| (property).visible | string | Visiblity state (e.g. ). Possible values: HIDDEN, VISIBLE |
 
 ### Examples
 

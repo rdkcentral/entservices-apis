@@ -60,7 +60,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.type | string | Message type |
+| params.type | string | Message type. Possible values: TRACING, LOGGING, REPORTING, STANDARD_OUT, STANDARD_ERROR |
 | params.category | string | Name of the message category (e.g. Information) |
 | params.module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
 | params.enabled | bool | Denotes if control should be enabled (true) or disabled (false) |

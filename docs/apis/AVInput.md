@@ -96,8 +96,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.isContentProtected | bool |  Whether the HDMI input is protected |
-| result.success | bool |  Whether the request succeeded |
+| result.isContentProtected | bool | Whether the HDMI input is protected |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -146,8 +146,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.currentVideoMode | string |  The current video mode |
-| result.success | bool |  Whether the request succeeded |
+| result.currentVideoMode | string | The current video mode |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -188,16 +188,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Returns the Arc portID of the panel
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| result.success | bool | success |
+| result.portId | string | The arc port Id |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -244,13 +244,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  The ID of the input device to get the ALLM |
+| params.portId | string | The ID of the input device to get the ALLM |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.allmSupport | bool |  The ALLM bit value in edid |
-| result.success | bool |  Whether the request succeeded |
+| result.allmSupport | bool | The ALLM bit value in edid |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -300,13 +300,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.edidVersion | string |  The EDID version |
-| result.success | bool |  Whether the request succeeded |
+| result.edidVersion | string | The EDID version |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -356,14 +356,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI Input port as returned by the getInputDevices method |
-| params.gameFeature | string |  Game Feature to which current status requested |
+| params.portId | string | An ID of an HDMI Input port as returned by the getInputDevices method |
+| params.gameFeature | string | Game Feature to which current status requested |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.mode | bool |  The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
-| result.success | bool |  Whether the request succeeded |
+| result.mode | bool | The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -414,13 +414,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.HdmiCapabilityVersion | string |  The Maximum Hdmi compatibility version supported by the given port |
-| result.success | bool |  Whether the request succeeded |
+| result.HdmiCapabilityVersion | string | The Maximum Hdmi compatibility version supported by the given port |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -470,13 +470,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.HDMISPD | string |  The SPD information as raw bits |
-| result.success | bool |  Whether the request succeeded |
+| result.HDMISPD | string | The SPD information as raw bits |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -526,13 +526,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.HDMISPD | string |  The SPD information |
-| result.success | bool |  Whether the request succeeded |
+| result.HDMISPD | string | The SPD information |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -584,9 +584,9 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedGameFeatures | array |  The supported game Features |
+| result.supportedGameFeatures | array | The supported game Features |
 | result.supportedGameFeatures[#] | string |  |
-| result.success | bool |  Whether the request succeeded |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -635,13 +635,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.currentVRRVideoFrameRate | double |  The current VRR frame rate |
-| result.success | bool |  Whether the request succeeded |
+| result.currentVRRVideoFrameRate | double | The current VRR frame rate |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -696,7 +696,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.vrrSupport | bool |  The VRR support bit value |
+| result.vrrSupport | bool | The VRR support bit value |
 | result.success | bool | success |
 
 ### Examples
@@ -749,8 +749,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.numberOfInputs | integer |  The number of inputs that are available for selection |
-| result.success | bool |  Whether the request succeeded |
+| result.numberOfInputs | integer | The number of inputs that are available for selection |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -786,64 +786,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-<a id="onDevicesChanged"></a>
-## *onDevicesChanged*
-
-Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.devices | IInputDeviceIterator |  |
-| params.devices[#].id | int | id |
-| params.devices[#].locator | string | locator |
-| params.devices[#].connected | bool | connected |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.AVInput.onDevicesChanged",
-    "params": [
-        {
-            "id": 0,
-            "locator": "",
-            "connected": true
-        }
-    ]
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AVInput.onDevicesChanged", "params": [{"id": 0, "locator": "", "connected": true}]}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": null
-}
-```
-
 <a id="readEDID"></a>
 ## *readEDID*
 
@@ -855,13 +797,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.EDID | string |  The EDID Value |
-| result.success | bool |  Whether the request succeeded |
+| result.EDID | string | The EDID Value |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -871,7 +813,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "method": "org.rdk.AVInput.readEDID",
     "params": {
         "portId": ""
@@ -883,7 +825,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.readEDID", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AVInput.readEDID", "params": {"portId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -892,7 +834,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "result": {
         "EDID": "",
         "success": true
@@ -911,8 +853,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| params.allmSupport | bool |  The ALLM support in EDID |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.allmSupport | bool | The ALLM support in EDID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -927,7 +869,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "method": "org.rdk.AVInput.setEdid2AllmSupport",
     "params": {
         "portId": "",
@@ -940,7 +882,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AVInput.setEdid2AllmSupport", "params": {"portId": "", "allmSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -949,7 +891,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "result": {
         "success": true
     }
@@ -967,8 +909,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| params.edidVersion | string |  The EDID version |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.edidVersion | string | The EDID version |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -983,7 +925,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "method": "org.rdk.AVInput.setEdidVersion",
     "params": {
         "portId": "",
@@ -996,7 +938,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AVInput.setEdidVersion", "params": {"portId": "", "edidVersion": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1005,7 +947,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "result": {
         "success": true
     }
@@ -1023,8 +965,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.primaryVolume | int |  Primary audio input volume |
-| params.inputVolume | int |  System audio input volume |
+| params.primaryVolume | int | Primary audio input volume |
+| params.inputVolume | int | System audio input volume |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1039,7 +981,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "method": "org.rdk.AVInput.setMixerLevels",
     "params": {
         "primaryVolume": 0,
@@ -1052,7 +994,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.AVInput.setMixerLevels", "params": {"primaryVolume": 0, "inputVolume": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1061,7 +1003,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "result": {
         "success": true
     }
@@ -1080,7 +1022,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| params.vrrSupport | bool |  The VRR support bit value to set |
+| params.vrrSupport | bool | The VRR support bit value to set |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1095,7 +1037,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 17,
     "method": "org.rdk.AVInput.setVRRSupport",
     "params": {
         "portId": "",
@@ -1108,7 +1050,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.AVInput.setVRRSupport", "params": {"portId": "", "vrrSupport": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1117,7 +1059,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 17,
     "result": {
         "success": true
     }
@@ -1135,11 +1077,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.x | integer |  The x-coordinate of the video rectangle |
-| params.y | integer |  The y-coordinate of the video rectangle |
-| params.w | integer |  The width of the video rectangle |
-| params.h | integer |  The height of the video rectangle |
-| params.typeOfInput | string |  The type of Input - HDMI/COMPOSITE |
+| params.x | integer | The x-coordinate of the video rectangle |
+| params.y | integer | The y-coordinate of the video rectangle |
+| params.w | integer | The width of the video rectangle |
+| params.h | integer | The height of the video rectangle |
+| params.typeOfInput | string | The type of Input - HDMI/COMPOSITE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1154,7 +1096,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 18,
     "method": "org.rdk.AVInput.setVideoRectangle",
     "params": {
         "x": 0,
@@ -1170,7 +1112,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.AVInput.setVideoRectangle", "params": {"x": 0, "y": 0, "w": 0, "h": 0, "typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1179,7 +1121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 18,
     "result": {
         "success": true
     }
@@ -1197,11 +1139,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| params.typeOfInput | string |  The type of Input - HDMI/COMPOSITE |
-| params.requestAudioMix | bool |  Defines whether the Audio mixing is true or false, This is an optional argument |
-| params.plane | int |  Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument |
-| params.topMost | bool |  Defines whether the Hdmi Input should be over or under the other video plane |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.typeOfInput | string | The type of Input - HDMI/COMPOSITE |
+| params.requestAudioMix | bool | Defines whether the Audio mixing is true or false, This is an optional argument |
+| params.plane | int | Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid - This is an optional argument |
+| params.topMost | bool | Defines whether the Hdmi Input should be over or under the other video plane |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1216,7 +1158,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 19,
     "method": "org.rdk.AVInput.startInput",
     "params": {
         "portId": "",
@@ -1232,7 +1174,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.AVInput.startInput", "params": {"portId": "", "typeOfInput": "", "requestAudioMix": true, "plane": 0, "topMost": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1241,7 +1183,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 19,
     "result": {
         "success": true
     }
@@ -1259,7 +1201,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.typeOfInput | string |  The type of Input - HDMI/COMPOSITE |
+| params.typeOfInput | string | The type of Input - HDMI/COMPOSITE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1274,7 +1216,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 20,
     "method": "org.rdk.AVInput.stopInput",
     "params": {
         "typeOfInput": ""
@@ -1286,7 +1228,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.AVInput.stopInput", "params": {"typeOfInput": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1295,7 +1237,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 20,
     "result": {
         "success": true
     }
@@ -1313,8 +1255,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string |  An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
-| params.message | string |  A new EDID value |
+| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.message | string | A new EDID value |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1329,7 +1271,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 21,
     "method": "org.rdk.AVInput.writeEDID",
     "params": {
         "portId": "",
@@ -1342,7 +1284,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.writeEDID", "params": {"portId": "", "message": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1351,7 +1293,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 21,
     "result": {
         "success": true
     }
@@ -1391,7 +1333,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 22,
     "method": "org.rdk.AVInput.onDevicesChanged",
     "params": [
         {
@@ -1407,7 +1349,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AVInput.onDevicesChanged", "params": [{"id": 0, "locator": "", "connected": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.onDevicesChanged", "params": [{"id": 0, "locator": "", "connected": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1416,7 +1358,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 22,
     "result": null
 }
 ```
@@ -1449,8 +1391,8 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | int |  Hdmi Input port ID for which content type change event received and possible values are port id 0, 1 and 2 for three Hdmi Input ports |
-| params.aviContentType | int |  new Content type received for the active hdmi input port and the possible integer values indicates following accordingly 0 - Graphics, 1 - Photo, 2 - Cinema, 3 - Game, 4 - Invalid data |
+| params.id | int | Hdmi Input port ID for which content type change event received and possible values are port id 0, 1 and 2 for three Hdmi Input ports |
+| params.aviContentType | int | new Content type received for the active hdmi input port and the possible integer values indicates following accordingly 0 - Graphics, 1 - Photo, 2 - Cinema, 3 - Game, 4 - Invalid data |
 
 ### Examples
 
@@ -1475,9 +1417,9 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | int |  The port identifier for the HDMI Input |
-| params.gameFeature | string |  Game Feature to which current status requested |
-| params.mode | bool |  The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
+| params.id | int | The port identifier for the HDMI Input |
+| params.gameFeature | string | Game Feature to which current status requested |
+| params.mode | bool | The current game feature status. Mode is required only for ALLM. Need to add support for future game features |
 
 ### Examples
 
@@ -1503,10 +1445,10 @@ Triggered whenever the status changes for an HDMI/Composite Input
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | int |  The port identifier for the HDMI/Composite Input |
-| params.locator | string |  A URL corresponding to the HDMI/Composite Input port |
-| params.status | string |  Status of the HDMI/Composite Input. Valid values are started or stopped |
-| params.plane | int |  Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid |
+| params.id | int | The port identifier for the HDMI/Composite Input |
+| params.locator | string | A URL corresponding to the HDMI/Composite Input port |
+| params.status | string | Status of the HDMI/Composite Input. Valid values are started or stopped |
+| params.plane | int | Defines whether the video plane type, 0 - Primary video plane, 1 - Secondary Video Plane, Other values - Invalid |
 
 ### Examples
 
@@ -1533,9 +1475,9 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | int |  The port identifier for the HDMI/Composite Input |
-| params.locator | string |  A URL corresponding to the HDMI/Composite Input port |
-| params.signalStatus | string |  Signal Status of the HDMI/Composite Input. Valid values are noSignal, unstableSignal, notSupportedSignal, stableSignal |
+| params.id | int | The port identifier for the HDMI/Composite Input |
+| params.locator | string | A URL corresponding to the HDMI/Composite Input port |
+| params.signalStatus | string | Signal Status of the HDMI/Composite Input. Valid values are noSignal, unstableSignal, notSupportedSignal, stableSignal |
 
 ### Examples
 
@@ -1561,13 +1503,13 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | int |  The port identifier for the HDMI/Composite Input |
-| params.locator | string |  A URL corresponding to the HDMI/Composite Input port |
-| params.width | int |  Width of the Video Stream |
-| params.height | int |  Height of the Video Stream |
-| params.progressive | bool |  Whether the Video Stream is progressive or not |
-| params.frameRateN | int |  FrameRate Numerator |
-| params.frameRateD | int |  FrameRate Denominator |
+| params.id | int | The port identifier for the HDMI/Composite Input |
+| params.locator | string | A URL corresponding to the HDMI/Composite Input port |
+| params.width | int | Width of the Video Stream |
+| params.height | int | Height of the Video Stream |
+| params.progressive | bool | Whether the Video Stream is progressive or not |
+| params.frameRateN | int | FrameRate Numerator |
+| params.frameRateD | int | FrameRate Denominator |
 
 ### Examples
 

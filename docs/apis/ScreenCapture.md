@@ -115,8 +115,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.url | string |  string |
-| params.callGUID | string |  string |
+| params.url | string | string |
+| params.callGUID | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -184,9 +184,9 @@ Triggered after uploading a screen capture
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool |  boolean |
-| params.message | string |  string |
-| params.call_guid | string |  string |
+| params.status | bool | boolean |
+| params.message | string | string |
+| params.call_guid | string | string |
 
 ### Examples
 

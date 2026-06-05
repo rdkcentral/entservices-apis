@@ -437,7 +437,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.sessionId | integer | Is the session |
-| params.type | string | Is the type of data |
+| params.type | string | Is the type of data. Possible values: PES, TTML, CC, WEBVTT |
 | params.displayOffsetMs | integer | Is currently unused |
 | params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
 ### Results
@@ -1032,7 +1032,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.capability | string | The capability to query  |
+| params.capability | string | The capability to query . Possible values: UNSET, FIREBOLT_MIGRATION |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

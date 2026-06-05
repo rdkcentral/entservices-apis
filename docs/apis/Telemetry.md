@@ -113,7 +113,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.Opt-Out | bool |  |
-| result.success | bool |  boolean |
+| result.success | bool | boolean |
 
 ### Examples
 
@@ -160,8 +160,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventName | string |  string |
-| params.eventValue | string |  string |
+| params.eventName | string | string |
+| params.eventValue | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -267,7 +267,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string |  string |
+| params.status | string | string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -376,7 +376,7 @@ Triggered by callback from Telemetry after report uploading
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.telemetryUploadStatus | string |  string |
+| params.telemetryUploadStatus | string | string |
 
 ### Examples
 

@@ -346,7 +346,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.mac | string | MacAddress of the client device |
-| params.state | string | Player state to be updated |
+| params.state | string | Player state to be updated. Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED |
 | params.reason_code | int | Reason code for the player state update |
 ### Results
 | Name | Type | Description |
@@ -424,7 +424,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
 | params.mac | string | MacAddress of the client device |
 | params.name | string | Name of the client device |
 | params.error_code | string |  |
-| params.reason | string | Reason for the connection failure |
+| params.reason | string | Reason for the connection failure. Possible values: SUCCESS, P2P_CONNECT_FAILURE, P2P_GROUP_NEGOTIATION_FAILURE, P2P_GROUP_FORMATION_FAILURE, GENERIC_FAILURE |
 
 ### Examples
 
