@@ -326,7 +326,7 @@ namespace WPEFramework {
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
             // @param sessionId: The session identifier e.g. "12345-abc-def"
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.

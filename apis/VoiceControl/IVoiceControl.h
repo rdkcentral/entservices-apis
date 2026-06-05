@@ -133,7 +133,7 @@ namespace WPEFramework {
             // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
             // @text configureVoice
             // @param payload: The configuration payload as a JSON object
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
@@ -155,7 +155,7 @@ namespace WPEFramework {
             // @param trx(optional): The unique id of the voice session e.g. "12345-abc"
             // @param created(optional): The timestamp for server information in milliseconds since epoch
             // @param msgPayload(optional): Vrex server information
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
@@ -165,7 +165,7 @@ namespace WPEFramework {
             // @text voiceSessionByText
             // @param transcription: The transcription text to be sent to the voice server e.g. "turn on the lights"
             // @param type(optional): The device type to simulate the voice session from. Possible values: PTT, FF, MIC
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
@@ -193,7 +193,7 @@ namespace WPEFramework {
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
             // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
@@ -202,7 +202,7 @@ namespace WPEFramework {
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
             // @param sessionId: The session identifier of the session from the onSessionBegin event e.g. "session-12345"
-            // @param success: Whether the request succeeded
+            // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
