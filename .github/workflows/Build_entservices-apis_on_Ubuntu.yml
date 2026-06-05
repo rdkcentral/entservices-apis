@@ -9,6 +9,10 @@ on:
 jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
+    env: 
+       THUNDER_TOOLS_COMMIT_SHA: b6789ca88b1e6c56942d9858d6d4411eae389ddc
+       THUNDER_COMMIT_SHA: 1bfb85b75cb20409dbd69d34ea056171c9cdf565
+       
 
     steps:
       - name: Checkout Repository
@@ -20,11 +24,19 @@ jobs:
           sudo apt-get install -y cmake ninja-build build-essential git
 
       - name: Clone ThunderTools
-        run: git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
-
+        run: |
+          git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+          cd ThunderTools
+          git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
+          cd ..
+          
       - name: Clone Thunder
-        run: git clone -b R4_4 https://github.com/rdkcentral/Thunder.git
-
+        run: |
+          git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
+          cd Thunder
+          git checkout ${{ env.THUNDER_COMMIT_SHA}}
+          cd ..
+     
       - name: Install jsonref
         run: |
           python3 -m pip install --upgrade pip
@@ -35,13 +47,7 @@ jobs:
           cd ThunderTools
           git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
           cd ..
-
-      - name: Apply Thunder Patch
-        run: |
-          cd Thunder
-          git apply $GITHUB_WORKSPACE/.github/Patches/1004-Add-support-for-project-dir.patch
-          cd ..
-
+          
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
@@ -61,6 +67,9 @@ jobs:
       - name: Build entservices-apis
         run: |
           cmake -G Ninja -S . -B build \
-            -DCMAKE_INSTALL_PREFIX="install" \
+            -DCMAKE_INSTALL_PREFIX="${PWD}/install" \
+            -DCMAKE_PREFIX_PATH="${PWD}/install" \
+            -DCMAKE_CXX_FLAGS="-I${PWD}/install/include/WPEFramework" \
+            -DCMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules" \
             -DTOOLS_SYSROOT="${PWD}"
           cmake --build build --target install
