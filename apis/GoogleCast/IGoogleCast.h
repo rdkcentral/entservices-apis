@@ -112,8 +112,6 @@ namespace Exchange {
             SUSPENDED,     // Started and setup. But suspended by caller.  Cast is NOT functional.
             READY_TO_CAST  // Ready to cast. Cast is functional.
         };
-
-        // @json:omit
         // @brief Status of Cast shell.
         struct EXTERNAL CastStatus {
             // @brief Build number of the currently running Cast shell.

@@ -107,7 +107,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param focus: Optional flag indicating whether the client needs focus
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
-  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const Core::OptionalType<bool> virtualDisplay, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const Core::OptionalType<bool> topmost, const Core::OptionalType<bool> focus) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
