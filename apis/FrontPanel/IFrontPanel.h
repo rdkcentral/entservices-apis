@@ -28,7 +28,7 @@ namespace WPEFramework
 {
     namespace Exchange
     {
-        // @json 1.0.0 @text:keep
+        // @json @text:keep
         struct EXTERNAL IFrontPanel : virtual public Core::IUnknown {
             enum { ID = ID_FRONT_PANEL };
 
