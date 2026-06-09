@@ -321,6 +321,30 @@ virtual uint32_t PortName (string& name /* @out */) const = 0;
 
 ---
 
+### 11.1 `@docs:callsign`
+- **Purpose**: Overrides the default plugin callsign used in generated markdown.
+- **Required**: No
+- **Usage**:
+  - Add this tag near the top-level interface declaration (the same area as `@json` / `@docs:plugindesc`).
+  - If omitted, the generator defaults to `org.rdk.<Classname>`.
+  - The value is used for both:
+  - Configuration table `callsign` default
+  - JSON-RPC method examples (`"method": "<callsign>.<method>"`)
+
+### Example:
+
+***Header File Example:***
+```cpp
+  namespace Exchange
+  {
+    // @json 1.0.0
+    // @docs:callsign org.rdk.SomeOtherPackageManager
+    struct EXTERNAL IClassName : virtual public Core::IUnknown
+  }
+```
+
+---
+
 ### 12. `@unwrapped`
 - **Purpose**: Provides option to unwrap the results or params object such that it directly returns a single member. 
 - **Required**: No
@@ -559,3 +583,4 @@ struct USBDeviceInfo {
 5. All tags appearing above a method (between two methods) will be associated with that method
 
 ---
+

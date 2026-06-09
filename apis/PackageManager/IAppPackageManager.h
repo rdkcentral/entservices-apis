@@ -40,6 +40,7 @@ namespace Exchange {
 #endif
 
     // @json 1.0.0 @text:keep
+    // @docs:callsign org.rdk.PackageManagerRDKEMS
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
@@ -153,6 +154,7 @@ namespace Exchange {
 
 
     // @json 1.0.0 @text:keep
+    // @docs:callsign org.rdk.PackageManagerRDKEMS
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
@@ -336,3 +338,4 @@ namespace Exchange {
 
 } // Exchange
 } // WPEFramework
+
