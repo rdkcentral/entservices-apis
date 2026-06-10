@@ -8,6 +8,7 @@
   - [AppActions](apis/AppActions.md)
   - [AppGateway](apis/AppGateway.md)
   - [AppManager](apis/AppManager.md)
+  - [AppPackageManager](apis/AppPackageManager.md)
   - [AppStorageManager](apis/AppStorageManager.md)
   - [AVInput](apis/AVInput.md)
   - [Backup](apis/Backup.md)
