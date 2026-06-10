@@ -95,7 +95,7 @@ None
 | result | object |  |
 | result.AudioCapabilities | array | Audio capability |
 | result.AudioCapabilities[#] | string | Possible values: none, ATMOS, DOLBY_DIGITAL, DOLBY_DIGITAL_PLUS, Dual_Audio_Decode, DAPv2, MS12 |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
@@ -108,7 +108,7 @@ None
     "id": 0,
     "method": "org.rdk.DeviceInfo.audiocapabilities",
     "params": {
-        "audioPort": "HDMI0"
+        "audioPort": ""
     }
 }
 ```
@@ -117,7 +117,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -129,7 +129,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "AudioCapabilities": [
-            "ATMOS"
+            "AUDIOCAPABILITY_NONE"
         ],
         "success": true
     }
@@ -170,7 +170,7 @@ None
 | result | object |  |
 | result.MS12Capabilities | array | MS12 audio capability |
 | result.MS12Capabilities[#] | string | Possible values: none, Dolby_Volume, Inteligent_Equalizer, Dialogue_Enhancer |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
@@ -183,7 +183,7 @@ None
     "id": 1,
     "method": "org.rdk.DeviceInfo.ms12capabilities",
     "params": {
-        "audioPort": "HDMI0"
+        "audioPort": ""
     }
 }
 ```
@@ -192,7 +192,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -204,8 +204,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": {
         "MS12Capabilities": [
-            "Dialogue_Enhancer",
-            "Dolby_Volume"
+            "MS12CAPABILITY_NONE"
         ],
         "success": true
     }
@@ -246,7 +245,7 @@ None
 | result | object |  |
 | result.supportedMS12AudioProfiles | array | MS12 audio profiles |
 | result.supportedMS12AudioProfiles[#] | string |  |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
@@ -259,7 +258,7 @@ None
     "id": 2,
     "method": "org.rdk.DeviceInfo.supportedms12audioprofiles",
     "params": {
-        "audioPort": "HDMI0"
+        "audioPort": ""
     }
 }
 ```
@@ -268,7 +267,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -321,7 +320,7 @@ This method takes no parameters.
 | result | object |  |
 | result.supportedAudioPorts | array | Audio ports supported on the device. |
 | result.supportedAudioPorts[#] | string |  |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
@@ -538,7 +537,7 @@ None
 | result | object |  |
 | result.supportedResolutions | array | Supported Resolutions |
 | result.supportedResolutions[#] | string |  |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
@@ -610,7 +609,7 @@ This method takes no parameters.
 | result | object |  |
 | result.supportedVideoDisplays | array | Video ports supported on the device |
 | result.supportedVideoDisplays[#] | string |  |
-| result.success | bool | Indicates whether the operation was successful |
+| result.success | bool |  |
 
 ### Examples
 
