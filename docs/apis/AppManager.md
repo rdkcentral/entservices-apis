@@ -605,13 +605,13 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.appId | string | App identifier for the application. |
-| params?.intent | string | <sup>(optional)</sup>A reference to the intent string that specifies the action or request to be processed. |
+| params?.intent | string | <sup>(optional)</sup>Specifies the intent or message to be available during preload. |
 | params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.error | string | Output parameter populated with the error reason when the method returns a failure through Core::hresult @retval Core::ERROR_NONE: Application was preloaded successfully. @retval Core::ERROR_GENERAL: Preload failed. |
+| result.error | string | Output parameter populated with the error reason when the method returns a failure through Core::hresult |
 
 ### Examples
 
@@ -647,6 +647,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "id": 10,
     "result": {
         "error": ""
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "Preload failed."
     }
 }
 ```

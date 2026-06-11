@@ -136,13 +136,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
 | params.clientId | string | The client identifier |
 | params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
-=======
-| params.clientId | string | the identifier of the disconnected application |
-| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
->>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -259,7 +254,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | Client identifier |
 | params.displayName | string | Name of Wayland display |
 | params.displayWidth | integer | Optional width of client window |
 | params.displayHeight | integer | Optional height of client window |
@@ -773,11 +768,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
 | params.client | string | client name or application instance ID |
-=======
-| params.client | string | Name of the client/callSign requesting the key generation. |
->>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -831,11 +822,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | client name or application instance ID |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | client name or application instance ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1046,11 +1033,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
 | params.clientId | string | The client identifier |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
 | params.keyCode | integer | The key code to remove |
 | params.modifiers | string | JSON String format with one or more modifiers |
 ### Results
@@ -1317,11 +1300,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
 | params.client | string | client name or application instance ID |
-=======
-| params.client | string | Name of the client/callSign requesting the key generation. |
->>>>>>> develop
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1374,13 +1353,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | client name or application instance ID |
+| params.clientId | string | client name or application instance ID |
 | params.zOrder | integer | integer value indicating the zOrder |
-=======
-| params.clientId | string | the identifier of the disconnected application |
-| params.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
->>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1543,11 +1517,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | the identifier of the blurred application |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | the identifier of the blurred application |
 
 ### Examples
 
@@ -1571,7 +1541,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the connected application |
 
 ### Examples
 
@@ -1619,11 +1589,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | the identifier of the focussed application |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | the identifier of the focussed application |
 
 ### Examples
 
@@ -1647,11 +1613,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | the identifier of the hidden application |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | the identifier of the hidden application |
 
 ### Examples
 
@@ -1675,11 +1637,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.client | string | notify first frame event received for client or application instance ID |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | notify first frame event received for client or application instance ID |
 
 ### Examples
 
@@ -1753,11 +1711,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-<<<<<<< CPESP-8423
-| params.appInstanceId | string | the identifier of the visible application |
-=======
-| params.clientId | string | the identifier of the disconnected application |
->>>>>>> develop
+| params.clientId | string | the identifier of the visible application |
 
 ### Examples
 
