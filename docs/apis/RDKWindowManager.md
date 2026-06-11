@@ -136,8 +136,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.clientId | string | The client identifier |
 | params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
+>>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -254,7 +259,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
+| params.clientId | string | the identifier of the disconnected application |
 | params.displayName | string | Name of Wayland display |
 | params.displayWidth | integer | Optional width of client window |
 | params.displayHeight | integer | Optional height of client window |
@@ -768,7 +773,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.client | string | client name or application instance ID |
+=======
+| params.client | string | Name of the client/callSign requesting the key generation. |
+>>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -822,7 +831,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | client name or application instance ID |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -840,7 +853,7 @@ None
     "id": 13,
     "method": "org.rdk.RDKWindowManager.getZOrder",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -849,7 +862,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"appInstanceId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"clientId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1033,7 +1046,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.clientId | string | The client identifier |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 | params.keyCode | integer | The key code to remove |
 | params.modifiers | string | JSON String format with one or more modifiers |
 ### Results
@@ -1198,7 +1215,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1300,7 +1317,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.client | string | client name or application instance ID |
+=======
+| params.client | string | Name of the client/callSign requesting the key generation. |
+>>>>>>> develop
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1353,8 +1374,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | client name or application instance ID |
 | params.zOrder | integer | integer value indicating the zOrder |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+| params.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
+>>>>>>> develop
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1371,7 +1397,7 @@ None
     "id": 23,
     "method": "org.rdk.RDKWindowManager.setZOrder",
     "params": {
-        "appInstanceId": "",
+        "clientId": "",
         "zOrder": 0
     }
 }
@@ -1381,7 +1407,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"appInstanceId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"clientId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1517,7 +1543,11 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | the identifier of the blurred application |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 
 ### Examples
 
@@ -1527,7 +1557,7 @@ Notifies when an application is blurred
     "id": 26,
     "method": "org.rdk.RDKWindowManager.onBlur",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1541,7 +1571,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1551,7 +1581,7 @@ Notifies when an application is connected
     "id": 27,
     "method": "org.rdk.RDKWindowManager.onConnected",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1565,7 +1595,7 @@ Notifies when an application is disconnected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1575,7 +1605,7 @@ Notifies when an application is disconnected
     "id": 28,
     "method": "org.rdk.RDKWindowManager.onDisconnected",
     "params": {
-        "client": ""
+        "clientId": ""
     }
 }
 ```
@@ -1589,7 +1619,11 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | the identifier of the focussed application |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 
 ### Examples
 
@@ -1599,7 +1633,7 @@ Notifies when an application is in focus
     "id": 29,
     "method": "org.rdk.RDKWindowManager.onFocus",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1613,7 +1647,11 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | the identifier of the hidden application |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 
 ### Examples
 
@@ -1623,7 +1661,7 @@ Notifies when an application is hidden
     "id": 30,
     "method": "org.rdk.RDKWindowManager.onHidden",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1637,7 +1675,11 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.client | string | notify first frame event received for client or application instance ID |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 
 ### Examples
 
@@ -1647,7 +1689,7 @@ Posting the client for first frame ready.
     "id": 31,
     "method": "org.rdk.RDKWindowManager.onReady",
     "params": {
-        "client": ""
+        "clientId": ""
     }
 }
 ```
@@ -1711,7 +1753,11 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+<<<<<<< CPESP-8423
 | params.appInstanceId | string | the identifier of the visible application |
+=======
+| params.clientId | string | the identifier of the disconnected application |
+>>>>>>> develop
 
 ### Examples
 
@@ -1721,7 +1767,7 @@ Notifies when an application is visible
     "id": 34,
     "method": "org.rdk.RDKWindowManager.onVisible",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
