@@ -221,7 +221,7 @@ namespace Exchange {
             virtual void OnHDMIInEventHotPlug(const HDMIInPort port, const bool isConnected) {};
 
             // @brief HDMI Event Signal status
-            // @text OnHDMIInEventSignalStatus
+            // @text onHDMIInEventSignalStatus
             // @param port: port 0 or 1 et al
             // @param signalStatus: Signal Status
             virtual void OnHDMIInEventSignalStatus(const HDMIInPort port, const HDMIInSignalStatus signalStatus) {};

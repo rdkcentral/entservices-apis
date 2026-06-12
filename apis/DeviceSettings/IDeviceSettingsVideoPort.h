@@ -257,12 +257,12 @@ namespace Exchange {
             virtual void OnResolutionPreChange(const ResolutionChange resolution) {};
 
             // @brief On HDCP Status change 
-            // @text OnHDCPStatusChange
+            // @text onHDCPStatusChange
             // @param hdcpStatus: HDCP Status
             virtual void OnHDCPStatusChange(const HDCPStatus hdcpStatus) {};
 
             // @brief On Video Format update 
-            // @text OnVideoFormatUpdate
+            // @text onVideoFormatUpdate
             // @param videoFormatHDR: Video format HDR standard
             virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
         };

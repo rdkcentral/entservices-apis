@@ -270,10 +270,9 @@ namespace Exchange {
             // @param audioMode: audio mode - see StereoMode
             virtual void OnAudioModeEvent(AudioPortType audioPortType, StereoMode audioMode) { };
 
-            // @brief Audio mode for the respective audio port - raised for every type of port
-            // @text onAudioModeEvent
-            // @param audioPortType: audio port type see AudioPortType
-            // @param audioMode: audio mode - see StereoMode
+            // @brief Audio level changed
+            // @text onAudioLevelChanged
+            // @param audioLevel: Current audio level
             virtual void OnAudioLevelChangedEvent(int32_t audioLevel) { };
         };
 
@@ -393,7 +392,7 @@ namespace Exchange {
         virtual Core::hresult SetAudioLevel(const int32_t handle , const float audioLevel ) = 0;
 
         /** Get Audio Level */
-        // @text GetAudioDucking
+        // @text getAudioLevel
         // @brief Get Audio Level
         // @param handle: handle returned in GetAudioPort()
         // @param audioLevel: Audio level
@@ -436,7 +435,7 @@ namespace Exchange {
         virtual Core::hresult GetAudioEnablePersist(const int32_t handle , bool &enabled /* @out */, string &portName /* @out */) = 0;
 
         /** Set Audio Persistence status . */
-        // @text SetAudioEnablePersist
+        // @text setAudioEnablePersist
         // @brief Set Persistence status
         // @param handle: handle returned in GetAudioPort()
         // @param enable :  persistence enable (true) or disable (false)

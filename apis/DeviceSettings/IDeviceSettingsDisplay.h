@@ -160,7 +160,7 @@ namespace Exchange {
             virtual void OnDisplayRxSense(const DisplayEvent displayEvent) {};
 
             // @brief Display HDCP Status
-            // @text OnDisplayHDCPStatus
+            // @text onDisplayHDCPStatus
             virtual void OnDisplayHDCPStatus() {};
             
         };

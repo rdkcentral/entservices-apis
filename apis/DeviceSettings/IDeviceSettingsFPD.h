@@ -127,7 +127,7 @@ namespace Exchange {
             enum { ID = ID_DEVICESETTINGS_FPD_NOTIFICATION };
 
             // @brief On Front Panel display time format changed
-            // @text OnFPDTimeFormatChanged
+            // @text onFPDTimeFormatChanged
             // @param timeFormat: current time format 12 or 24 hour
             virtual void OnFPDTimeFormatChanged(const FPDTimeFormat timeFormat) {};
             
@@ -160,16 +160,16 @@ namespace Exchange {
         // @param blinkIterations: number of times the blink has to be done for the blink duration
         virtual Core::hresult SetFPDBlink(const FPDIndicator indicator , const uint32_t blinkDuration , const uint32_t blinkIterations ) = 0;
 
-        /** Set Front Panel Display Blink. */
+        /** Set Front Panel Display Brightness. */
         // @text setFPDBrightness
-        // @brief Set Front Panel Display Blink.
+        // @brief Set Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 
         // @param persist: persist( true ) the brightness or not (false)
         virtual Core::hresult SetFPDBrightness(const FPDIndicator indicator , const uint32_t brightNess , const bool persist )  = 0;
 
         /** Get Front Panel Display Brightness. */
-        // @text GetFPDBrightness
+        // @text getFPDBrightness
         // @brief Get Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 

@@ -81,7 +81,7 @@ namespace Exchange {
             enum { ID = ID_DEVICESETTINGS_VIDEODEVICE_NOTIFICATION };
 
             // @brief Zoom settings changed
-            // @text OnZoomSettingsChanged
+            // @text onZoomSettingsChanged
             // @param zoomSetting: Currently applied zoom setting
             virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) {};
 
