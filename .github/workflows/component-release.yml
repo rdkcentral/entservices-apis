@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.RDKCM_DEPLOY_KEY }}
 
       - name: Set up Git
         run: |
@@ -31,11 +34,9 @@ jobs:
           sudo apt-get install -y git-flow
           npm install -g auto-changelog
 
-      - name: Clone the project and start release
+      - name: Configure and start release
         run: |
           set -e
-          git clone https://x-access-token:${{ secrets.RDKCM_RDKE }}@github.com/${{ github.repository }} project
-          cd project
           git fetch --all
           git checkout main || git checkout -b main origin/main
           git checkout develop || git checkout -b develop origin/develop
@@ -67,7 +68,6 @@ jobs:
       - name: Finish release and push (default git-flow messages)
         run: |
           set -e
-          cd project
           git flow release finish -m "$RELEASE_VERSION release" $RELEASE_VERSION
           git push origin main
           git push origin --tags
@@ -76,6 +76,5 @@ jobs:
       - name: Cleanup tag if workflow fails
         if: failure()
         run: |
-          cd project
           git tag -d $RELEASE_VERSION || true
           git push origin :refs/tags/$RELEASE_VERSION || true
