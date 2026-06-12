@@ -27,10 +27,11 @@ namespace Exchange {
     struct EXTERNAL IDeviceSettings : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS };
 
-        /** Get Preferred Sleep mode. */
-        // @text getPreferredSleepMode
-        // @brief Get Preferred Sleep mode.
-        // @param mode: Sleep mode
+        // @json:omit
+        // @text configure
+        // @brief Configure DeviceSettings plugin
+        // @param service: Framework service interface instance
+        // @retval Core::NONE: Indicates successful configuration
         virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
 
     };

@@ -186,6 +186,12 @@ namespace Exchange {
             AUDIO_MS12_FEATURE_MAX             = 2
         };
 
+        enum MS12ProfileState : uint8_t {
+            AUDIO_MS12_PROFILE_STATE_ADD       = 0, /* @text ADD */
+            AUDIO_MS12_PROFILE_STATE_REMOVE    = 1, /* @text REMOVE */
+            AUDIO_MS12_PROFILE_STATE_MAX       = 2
+        };
+
         struct AudioConfig {
            int32_t typeId;
            string  name;
@@ -194,7 +200,7 @@ namespace Exchange {
            // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
-        struct dsAudioTypeConfigInfo_t {
+        struct AudioTypeConfigInfo {
             int32_t typeId;
             string name;
             uint32_t supportedCompressionMask;
@@ -202,15 +208,15 @@ namespace Exchange {
             uint32_t supportedStereoModeMask;
         };
 
-        struct dsAudioPortConfigInfo_t {
+        struct AudioPortConfigInfo {
             AudioPortType audioPortType;
             int32_t audioPortIndex;
             int32_t connectedVideoPortType;
             int32_t connectedVideoPortIndex;
         };
 
-        using IAudioTypeConfigIterator = RPC::IIteratorType<dsAudioTypeConfigInfo_t, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
-        using IAudioPortConfigIterator = RPC::IIteratorType<dsAudioPortConfigInfo_t, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
+        using IAudioTypeConfigIterator = RPC::IIteratorType<AudioTypeConfigInfo, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
+        using IAudioPortConfigIterator = RPC::IIteratorType<AudioPortConfigInfo, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
 
         struct AudioARCStatus { 
             AudioARCType  arcType    /* @brief ARC Type */ ;
@@ -270,10 +276,9 @@ namespace Exchange {
             // @param audioMode: audio mode - see StereoMode
             virtual void OnAudioModeEvent(AudioPortType audioPortType, StereoMode audioMode) { };
 
-            // @brief Audio mode for the respective audio port - raised for every type of port
-            // @text onAudioModeEvent
-            // @param audioPortType: audio port type see AudioPortType
-            // @param audioMode: audio mode - see StereoMode
+            // @brief Audio level changed
+            // @text onAudioLevelChanged
+            // @param audioLevel: Current audio level
             virtual void OnAudioLevelChangedEvent(int32_t audioLevel) { };
         };
 
@@ -393,7 +398,7 @@ namespace Exchange {
         virtual Core::hresult SetAudioLevel(const int32_t handle , const float audioLevel ) = 0;
 
         /** Get Audio Level */
-        // @text GetAudioDucking
+        // @text getAudioLevel
         // @brief Get Audio Level
         // @param handle: handle returned in GetAudioPort()
         // @param audioLevel: Audio level
@@ -436,12 +441,12 @@ namespace Exchange {
         virtual Core::hresult GetAudioEnablePersist(const int32_t handle , bool &enabled /* @out */, string &portName /* @out */) = 0;
 
         /** Set Audio Persistence status . */
-        // @text SetAudioEnablePersist
+        // @text setAudioEnablePersist
         // @brief Set Persistence status
         // @param handle: handle returned in GetAudioPort()
         // @param enable :  persistence enable (true) or disable (false)
         // @param portName: portName for which persistence is enabled
-        virtual Core::hresult SetAudioEnablePersist(const int32_t handle , const bool enable , const string portName ) = 0;
+        virtual Core::hresult SetAudioEnablePersist(const int32_t handle , const bool enable , const string& portName ) = 0;
 
         /** Audio MS decode Status. */
         // @text isAudioMSDecoded
@@ -597,19 +602,19 @@ namespace Exchange {
         // @param boost: boost for bass
         virtual Core::hresult GetAudioBassEnhancer(const int32_t handle , int32_t &boost /* @out */) = 0;
 
-        /** Enable Audio Surroud Decoder  */
-        // @text enableAudioSurroudDecoder
-        // @brief Enable Audio Surroud Decoder
+        /** Enable Audio Surround Decoder  */
+        // @text enableAudioSurroundDecoder
+        // @brief Enable Audio Surround Decoder
         // @param handle: handle returned in GetAudioPort()
          // @param enable: true (surround decoder enabled) or false (surround decoder disabled)
-        virtual Core::hresult EnableAudioSurroudDecoder(const int32_t handle , const bool enable ) = 0;
+        virtual Core::hresult EnableAudioSurroundDecoder(const int32_t handle , const bool enable ) = 0;
 
-        /** Is Audio Surroud Decoder enabled? */
-        // @text isAudioSurroudDecoderEnabled
-        // @brief Audio Surroud Decoder enabled or not
+        /** Is Audio Surround Decoder enabled? */
+        // @text isAudioSurroundDecoderEnabled
+        // @brief Audio Surround Decoder enabled or not
         // @param handle: handle returned in GetAudioPort()
         // @param enabled: true (surround decoder enabled) or false (surround decoder disabled)
-        virtual Core::hresult IsAudioSurroudDecoderEnabled(const int32_t handle , bool &enabled /* @out */) = 0;
+        virtual Core::hresult IsAudioSurroundDecoderEnabled(const int32_t handle , bool &enabled /* @out */) = 0;
 
         /** Set Audio DRC mode  */
         // @text setAudioDRCMode
@@ -625,19 +630,19 @@ namespace Exchange {
         // @param drcMode: mode
         virtual Core::hresult GetAudioDRCMode(const int32_t handle , int32_t &drcMode /* @out */) = 0;
 
-        /** Set Audio Surroud Virtualizer  */
-        // @text setAudioSurroudVirtualizer
-        // @brief Set Audio Surroud Virtualizer
+        /** Set Audio Surround Virtualizer  */
+        // @text setAudioSurroundVirtualizer
+        // @brief Set Audio Surround Virtualizer
         // @param handle: handle returned in GetAudioPort()
         // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult SetAudioSurroudVirtualizer(const int32_t handle , const SurroundVirtualizer surroundVirtualizer ) = 0;
+        virtual Core::hresult SetAudioSurroundVirtualizer(const int32_t handle , const SurroundVirtualizer surroundVirtualizer ) = 0;
 
-        /** Get Audio Surroud Virtualizer  */
-        // @text getAudioSurroudVirtualizer
-        // @brief Get Audio Surroud Virtualizer
+        /** Get Audio Surround Virtualizer  */
+        // @text getAudioSurroundVirtualizer
+        // @brief Get Audio Surround Virtualizer
         // @param handle: handle returned in GetAudioPort()
         // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult GetAudioSurroudVirtualizer(const int32_t handle , SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
+        virtual Core::hresult GetAudioSurroundVirtualizer(const int32_t handle , SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
 
         /** Set Audio MI Steering   */
         // @text setAudioMISteering
@@ -774,8 +779,8 @@ namespace Exchange {
         // @param profileName: Name of the profile
         // @param profileSettingsName: Name of the profile setting 
         // @param profileSettingValue : value of the profile setting 
-        // @param profileState: ADD or REMOVE
-        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle , const string profileName , const string profileSettingsName , const string profileSettingValue , const string profileState  ) = 0;
+        // @param profileState: state of the profile operation (ADD or REMOVE)
+        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle , const string& profileName , const string& profileSettingsName , const string& profileSettingValue , const MS12ProfileState profileState ) = 0;
 
         /** Is Audio output connected?    */
         // @text isAudioOutputConnected

@@ -54,7 +54,7 @@ namespace Exchange {
         // @param mode: Sleep mode
         virtual Core::hresult GetPreferredSleepMode(SleepMode &mode /* @out */) = 0;
 
-        /** Get Preferred Sleep mode. */
+        /** Set Preferred Sleep mode. */
         // @text setPreferredSleepMode
         // @brief Set Preferred Sleep mode.
         // @param mode: Sleep mode
@@ -73,10 +73,10 @@ namespace Exchange {
         virtual Core::hresult GetHALVersion(uint32_t &versionNo /* @out */) = 0;
 
         /** Get SOCID. */
-        // @text getSoCID
+        // @text getSOCID
         // @brief Get SOCID.
         // @param socID: SOCID in string format
-        virtual Core::hresult GetSoCID(string &socID /* @out */) = 0;
+        virtual Core::hresult GetSOCID(string &socID /* @out */) = 0;
 
         /** Get EDID Bytes. */
         // @text getEDID

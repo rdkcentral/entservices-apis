@@ -91,7 +91,7 @@ namespace Exchange {
             DS_HDMIIN_VIDEOPLANE_MAX       = 2
         };
 
-        enum HDMIInCapabilityVersion {
+        enum HDMIInCapabilityVersion : uint8_t {
             HDMI_COMPATIBILITY_VERSION_14  = 0,
             HDMI_COMPATIBILITY_VERSION_20  = 1,
             HDMI_COMPATIBILITY_VERSION_21  = 2,
@@ -221,7 +221,7 @@ namespace Exchange {
             virtual void OnHDMIInEventHotPlug(const HDMIInPort port, const bool isConnected) {};
 
             // @brief HDMI Event Signal status
-            // @text OnHDMIInEventSignalStatus
+            // @text onHDMIInEventSignalStatus
             // @param port: port 0 or 1 et al
             // @param signalStatus: Signal Status
             virtual void OnHDMIInEventSignalStatus(const HDMIInPort port, const HDMIInSignalStatus signalStatus) {};
@@ -236,7 +236,7 @@ namespace Exchange {
             // @text onHDMIInVideoModeUpdate
             // @param port: port 0 or 1 et al
             // @param videoPortResolution: Video port resolution
-            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
+            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution& videoPortResolution) {};
             
             // @brief HDMI ALLM status
             // @text onHDMIInAllmStatus
@@ -268,10 +268,10 @@ namespace Exchange {
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
-        // @text getHDMIInNumbefOfInputs
+        // @text getHDMIInNumberOfInputs
         // @brief Get Number of HDMI Inputs in the platform
         // @param count: number of inputs
-        virtual Core::hresult GetHDMIInNumbefOfInputs(int32_t &count /* @out */) = 0;
+        virtual Core::hresult GetHDMIInNumberOfInputs(int32_t &count /* @out */) = 0;
 
         /** Get HDMIIn Status. */
         // @text getHDMIInStatus

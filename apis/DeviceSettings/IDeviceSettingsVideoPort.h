@@ -220,16 +220,16 @@ namespace Exchange {
             uint32_t height;
         };
 
-        struct dsVideoPortTypeConfig_t {
+        struct VideoPortTypeConfig {
             VideoPort typeId;
             string name;
             bool dtcpSupported;
             bool hdcpSupported;
-            int32_t restrictedResollution;
+            int32_t restrictedResolution;
             string supportedResolutionNames;
         };
 
-        struct dsVideoPortPortConfig_t {
+        struct VideoPortPortConfig {
             VideoPort videoPortType;
             int32_t videoPortIndex;
             int32_t connectedAudioPortType;
@@ -237,8 +237,8 @@ namespace Exchange {
             string defaultResolution;
         };
 
-        using IVideoPortTypeConfigIterator = RPC::IIteratorType<dsVideoPortTypeConfig_t, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
-        using IVideoPortPortConfigIterator = RPC::IIteratorType<dsVideoPortPortConfig_t, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
+        using IVideoPortTypeConfigIterator = RPC::IIteratorType<VideoPortTypeConfig, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
+        using IVideoPortPortConfigIterator = RPC::IIteratorType<VideoPortPortConfig, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
         using IVideoPortResolutionIterator = RPC::IIteratorType<VideoPortResolution, ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR>;
 
         // @event
@@ -249,20 +249,20 @@ namespace Exchange {
             // @brief On Resolution Post change
             // @text onResolutionPostChange
             // @param resolution: resolution
-            virtual void OnResolutionPostChange(const ResolutionChange resolution) {};
+            virtual void OnResolutionPostChange(const ResolutionChange& resolution) {};
 
-            // @brief On Resolution Pre changed
-            // @text OnResolutionPreChange
+            // @brief On Resolution Pre change
+            // @text onResolutionPreChange
             // @param resolution: resolution
-            virtual void OnResolutionPreChange(const ResolutionChange resolution) {};
+            virtual void OnResolutionPreChange(const ResolutionChange& resolution) {};
 
             // @brief On HDCP Status change 
-            // @text OnHDCPStatusChange
+            // @text onHDCPStatusChange
             // @param hdcpStatus: HDCP Status
             virtual void OnHDCPStatusChange(const HDCPStatus hdcpStatus) {};
 
             // @brief On Video Format update 
-            // @text OnVideoFormatUpdate
+            // @text onVideoFormatUpdate
             // @param videoFormatHDR: Video format HDR standard
             virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
         };
@@ -336,8 +336,8 @@ namespace Exchange {
         // @param handle: handle to the port
         // @param videoPortResolution: video port resolution 
         // @param persist: persist this setting
-        // @param forceCompatibilty: force compatibility
-        virtual Core::hresult SetVideoPortResolution(const int32_t handle , const VideoPortResolution videoPortResolution , const bool persist , const bool forceCompatibility ) = 0;
+        // @param forceCompatibility: force compatibility
+        virtual Core::hresult SetVideoPortResolution(const int32_t handle , const VideoPortResolution& videoPortResolution , const bool persist , const bool forceCompatibility ) = 0;
 
         /** Enable HDCP Video port. */
         // @text enableHDCPOnVideoPort

@@ -143,11 +143,11 @@ namespace Exchange {
             // @param isPresented: is it presented to user
             virtual void OnCompositeInStatus(const CompositeInPort activePort, const bool isPresented) {};
 
-            // @brief Composite In status
-            // @text onCompositeInStatus
+            // @brief Composite In video mode update
+            // @text onCompositeInVideoModeUpdate
             // @param activePort: Active port
             // @param videoResolution: See DisplayVideoPortResolution
-            virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution videoResolution) {};
+            virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution& videoResolution) {};
 
         };
 
@@ -156,7 +156,7 @@ namespace Exchange {
 
         /** Get number of composite inputs. */
         // @text getNrOfCompositeInputs
-        // @brief Get Preferred Sleep mode.
+        // @brief Get Number of Composite Inputs in the platform
         // @param nrCompositeInputs: number of composite inputs
         virtual Core::hresult GetNrOfCompositeInputs(int32_t &nrCompositeInputs /* @out */) = 0;
 

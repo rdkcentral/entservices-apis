@@ -68,7 +68,7 @@ namespace Exchange {
             DS_FPD_MODE_MAX        = 3,
         };
 
-        enum FDPLEDState: uint8_t {
+        enum FPDLEDState: uint8_t {
             DS_FPD_LED_DEVICE_NONE              = 0,
             DS_FPD_LED_DEVICE_ACTIVE            = 1,
             DS_FPD_LED_DEVICE_STANDBY           = 2,
@@ -81,12 +81,12 @@ namespace Exchange {
             DS_FPD_LED_DEVICE_MAX               = 9
         };
 
-        struct dsFPDColorConfig_t {
+        struct FPDColorConfig {
             int32_t id;
             uint32_t color;
         };
 
-        struct dsFPDIndicatorConfig_t {
+        struct FPDIndicatorConfig {
             int32_t id;
             int32_t maxBrightness;
             int32_t maxCycleRate;
@@ -95,13 +95,13 @@ namespace Exchange {
             int32_t colorMode;
         };
 
-        struct dsFPDColorBinding_t {
+        struct FPDColorBinding {
             int32_t targetType;
             int32_t targetId;
             int32_t colorId;
         };
 
-        struct dsFPDTextDisplayConfig_t {
+        struct FPDTextDisplayConfig {
             int32_t id;
             string name;
             int32_t maxBrightness;
@@ -115,10 +115,10 @@ namespace Exchange {
             int32_t colorMode;
         };
 
-        using IFPDColorConfigIterator = RPC::IIteratorType<dsFPDColorConfig_t, ID_DEVICESETTINGS_FPD_COLORCONFIG_ITERATOR>;
-        using IFPDIndicatorConfigIterator = RPC::IIteratorType<dsFPDIndicatorConfig_t, ID_DEVICESETTINGS_FPD_INDICATORCONFIG_ITERATOR>;
-        using IFPDTextDisplayConfigIterator = RPC::IIteratorType<dsFPDTextDisplayConfig_t, ID_DEVICESETTINGS_FPD_TEXTDISPLAYCONFIG_ITERATOR>;
-        using IFPDColorBindingIterator = RPC::IIteratorType<dsFPDColorBinding_t, ID_DEVICESETTINGS_FPD_COLORBINDING_ITERATOR>;
+        using IFPDColorConfigIterator = RPC::IIteratorType<FPDColorConfig, ID_DEVICESETTINGS_FPD_COLORCONFIG_ITERATOR>;
+        using IFPDIndicatorConfigIterator = RPC::IIteratorType<FPDIndicatorConfig, ID_DEVICESETTINGS_FPD_INDICATORCONFIG_ITERATOR>;
+        using IFPDTextDisplayConfigIterator = RPC::IIteratorType<FPDTextDisplayConfig, ID_DEVICESETTINGS_FPD_TEXTDISPLAYCONFIG_ITERATOR>;
+        using IFPDColorBindingIterator = RPC::IIteratorType<FPDColorBinding, ID_DEVICESETTINGS_FPD_COLORBINDING_ITERATOR>;
         
 
         // @event
@@ -127,7 +127,7 @@ namespace Exchange {
             enum { ID = ID_DEVICESETTINGS_FPD_NOTIFICATION };
 
             // @brief On Front Panel display time format changed
-            // @text OnFPDTimeFormatChanged
+            // @text onFPDTimeFormatChanged
             // @param timeFormat: current time format 12 or 24 hour
             virtual void OnFPDTimeFormatChanged(const FPDTimeFormat timeFormat) {};
             
@@ -160,16 +160,16 @@ namespace Exchange {
         // @param blinkIterations: number of times the blink has to be done for the blink duration
         virtual Core::hresult SetFPDBlink(const FPDIndicator indicator , const uint32_t blinkDuration , const uint32_t blinkIterations ) = 0;
 
-        /** Set Front Panel Display Blink. */
+        /** Set Front Panel Display Brightness. */
         // @text setFPDBrightness
-        // @brief Set Front Panel Display Blink.
+        // @brief Set Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 
         // @param persist: persist( true ) the brightness or not (false)
         virtual Core::hresult SetFPDBrightness(const FPDIndicator indicator , const uint32_t brightNess , const bool persist )  = 0;
 
         /** Get Front Panel Display Brightness. */
-        // @text GetFPDBrightness
+        // @text getFPDBrightness
         // @brief Get Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 
@@ -198,7 +198,7 @@ namespace Exchange {
 
         /** Set Front Panel Display Color. */
         // @text setFPDColor
-        // @brief Set Front Panel Display State.
+        // @brief Set Front Panel Display Color.
         // @param indicator: Type of indicator
         // @param color: color
         virtual Core::hresult SetFPDColor(const FPDIndicator indicator , const uint32_t color )  = 0;
