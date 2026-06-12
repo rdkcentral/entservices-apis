@@ -45,6 +45,7 @@
 #include <string>
 #include <type_traits>
 #include <typeinfo>
+#include <list>
 #include <vector>
 
 #include <interfaces/Portability.h>
@@ -519,6 +520,11 @@ struct IGoogleCastAuthExtension {
     virtual CDMi_RESULT GenDeviceKeyAndCert(std::string& wrappedDeviceKey /* @out */, std::string& deviceCertificate /* @out */) = 0;
     virtual CDMi_RESULT GetModelCertChain(std::string& certChain /* @out */) const = 0;
     virtual CDMi_RESULT GetSystemId(uint32_t& id /* @out */) const = 0;
+};
+
+struct IRobustnessExtension {
+    virtual ~IRobustnessExtension() = default;
+    virtual CDMi_RESULT GetSupportedRobustness(std::list<std::string>& levels) const = 0;
 };
 
 struct ISystemFactory {
