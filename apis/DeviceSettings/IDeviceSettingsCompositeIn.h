@@ -143,11 +143,11 @@ namespace Exchange {
             // @param isPresented: is it presented to user
             virtual void OnCompositeInStatus(const CompositeInPort activePort, const bool isPresented) {};
 
-            // @brief Composite In status
-            // @text onCompositeInStatus
+            // @brief Composite In video mode update
+            // @text onCompositeInVideoModeUpdate
             // @param activePort: Active port
             // @param videoResolution: See DisplayVideoPortResolution
-            virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution videoResolution) {};
+            virtual void OnCompositeInVideoModeUpdate(const CompositeInPort activePort, const DisplayVideoPortResolution& videoResolution) {};
 
         };
 

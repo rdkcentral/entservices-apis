@@ -85,15 +85,15 @@ namespace Exchange {
             // @param zoomSetting: Currently applied zoom setting
             virtual void OnZoomSettingsChanged(const VideoZoom zoomSetting) {};
 
-            // @brief Display Framerate Pre-change
-            // @text OnDisplayFrameratePreChange
-            // @param frameRate: PreChange framerate
-            virtual void OnDisplayFrameratePreChange(const string frameRate) {};
+            // @brief Display framerate pre-change
+            // @text onDisplayFrameratePreChange
+            // @param frameRate: Pre-change framerate
+            virtual void OnDisplayFrameratePreChange(const string& frameRate) {};
 
-            // @brief Display Framerate Post-change
-            // @text OnDisplayFrameratePostChange
-            // @param frameRate:  framerate post change
-            virtual void OnDisplayFrameratePostChange(const string frameRate) {};
+            // @brief Display framerate post-change
+            // @text onDisplayFrameratePostChange
+            // @param frameRate: Post-change framerate
+            virtual void OnDisplayFrameratePostChange(const string& frameRate) {};
 
         };
 
@@ -176,7 +176,7 @@ namespace Exchange {
         // @brief Set current display frame rate
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param framerate: frame rate
-        virtual Core::hresult SetDisplayFrameRate(const int32_t handle , const string framerate ) = 0;
+        virtual Core::hresult SetDisplayFrameRate(const int32_t handle , const string& framerate ) = 0;
 
         /** Get Video Device static configuration. */
         // @text getVideoDeviceConfig

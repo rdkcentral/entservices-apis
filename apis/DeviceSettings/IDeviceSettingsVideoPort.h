@@ -249,12 +249,12 @@ namespace Exchange {
             // @brief On Resolution Post change
             // @text onResolutionPostChange
             // @param resolution: resolution
-            virtual void OnResolutionPostChange(const ResolutionChange resolution) {};
+            virtual void OnResolutionPostChange(const ResolutionChange& resolution) {};
 
-            // @brief On Resolution Pre changed
-            // @text OnResolutionPreChange
+            // @brief On Resolution Pre change
+            // @text onResolutionPreChange
             // @param resolution: resolution
-            virtual void OnResolutionPreChange(const ResolutionChange resolution) {};
+            virtual void OnResolutionPreChange(const ResolutionChange& resolution) {};
 
             // @brief On HDCP Status change 
             // @text onHDCPStatusChange
@@ -337,7 +337,7 @@ namespace Exchange {
         // @param videoPortResolution: video port resolution 
         // @param persist: persist this setting
         // @param forceCompatibilty: force compatibility
-        virtual Core::hresult SetVideoPortResolution(const int32_t handle , const VideoPortResolution videoPortResolution , const bool persist , const bool forceCompatibility ) = 0;
+        virtual Core::hresult SetVideoPortResolution(const int32_t handle , const VideoPortResolution& videoPortResolution , const bool persist , const bool forceCompatibility ) = 0;
 
         /** Enable HDCP Video port. */
         // @text enableHDCPOnVideoPort

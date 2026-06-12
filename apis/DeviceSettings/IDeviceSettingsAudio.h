@@ -440,7 +440,7 @@ namespace Exchange {
         // @param handle: handle returned in GetAudioPort()
         // @param enable :  persistence enable (true) or disable (false)
         // @param portName: portName for which persistence is enabled
-        virtual Core::hresult SetAudioEnablePersist(const int32_t handle , const bool enable , const string portName ) = 0;
+        virtual Core::hresult SetAudioEnablePersist(const int32_t handle , const bool enable , const string& portName ) = 0;
 
         /** Audio MS decode Status. */
         // @text isAudioMSDecoded

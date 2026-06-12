@@ -68,7 +68,7 @@ namespace Exchange {
             DS_FPD_MODE_MAX        = 3,
         };
 
-        enum FDPLEDState: uint8_t {
+        enum FPDLEDState: uint8_t {
             DS_FPD_LED_DEVICE_NONE              = 0,
             DS_FPD_LED_DEVICE_ACTIVE            = 1,
             DS_FPD_LED_DEVICE_STANDBY           = 2,

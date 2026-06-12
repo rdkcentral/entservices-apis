@@ -91,7 +91,7 @@ namespace Exchange {
             DS_HDMIIN_VIDEOPLANE_MAX       = 2
         };
 
-        enum HDMIInCapabilityVersion {
+        enum HDMIInCapabilityVersion : uint8_t {
             HDMI_COMPATIBILITY_VERSION_14  = 0,
             HDMI_COMPATIBILITY_VERSION_20  = 1,
             HDMI_COMPATIBILITY_VERSION_21  = 2,
@@ -236,7 +236,7 @@ namespace Exchange {
             // @text onHDMIInVideoModeUpdate
             // @param port: port 0 or 1 et al
             // @param videoPortResolution: Video port resolution
-            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution videoPortResolution) {};
+            virtual void OnHDMIInVideoModeUpdate(const HDMIInPort port, const HDMIVideoPortResolution& videoPortResolution) {};
             
             // @brief HDMI ALLM status
             // @text onHDMIInAllmStatus
