@@ -225,7 +225,7 @@ namespace Exchange {
             string name;
             bool dtcpSupported;
             bool hdcpSupported;
-            int32_t restrictedResollution;
+            int32_t restrictedResolution;
             string supportedResolutionNames;
         };
 

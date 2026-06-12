@@ -268,10 +268,10 @@ namespace Exchange {
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
-        // @text getHDMIInNumbefOfInputs
+        // @text getHDMIInNumberOfInputs
         // @brief Get Number of HDMI Inputs in the platform
         // @param count: number of inputs
-        virtual Core::hresult GetHDMIInNumbefOfInputs(int32_t &count /* @out */) = 0;
+        virtual Core::hresult GetHDMIInNumberOfInputs(int32_t &count /* @out */) = 0;
 
         /** Get HDMIIn Status. */
         // @text getHDMIInStatus

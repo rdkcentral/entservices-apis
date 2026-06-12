@@ -186,6 +186,12 @@ namespace Exchange {
             AUDIO_MS12_FEATURE_MAX             = 2
         };
 
+        enum MS12ProfileState : uint8_t {
+            AUDIO_MS12_PROFILE_STATE_ADD       = 0, /* @text ADD */
+            AUDIO_MS12_PROFILE_STATE_REMOVE    = 1, /* @text REMOVE */
+            AUDIO_MS12_PROFILE_STATE_MAX       = 2
+        };
+
         struct AudioConfig {
            int32_t typeId;
            string  name;
@@ -773,8 +779,8 @@ namespace Exchange {
         // @param profileName: Name of the profile
         // @param profileSettingsName: Name of the profile setting 
         // @param profileSettingValue : value of the profile setting 
-        // @param profileState: ADD or REMOVE
-        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle , const string profileName , const string profileSettingsName , const string profileSettingValue , const string profileState  ) = 0;
+        // @param profileState: state of the profile operation (ADD or REMOVE)
+        virtual Core::hresult SetAudioMS12SettingsOverride(const int32_t handle , const string& profileName , const string& profileSettingsName , const string& profileSettingValue , const MS12ProfileState profileState ) = 0;
 
         /** Is Audio output connected?    */
         // @text isAudioOutputConnected
