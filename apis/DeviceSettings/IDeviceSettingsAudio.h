@@ -630,19 +630,19 @@ namespace Exchange {
         // @param drcMode: mode
         virtual Core::hresult GetAudioDRCMode(const int32_t handle , int32_t &drcMode /* @out */) = 0;
 
-        /** Set Audio Surroud Virtualizer  */
-        // @text setAudioSurroudVirtualizer
-        // @brief Set Audio Surroud Virtualizer
+        /** Set Audio Surround Virtualizer  */
+        // @text setAudioSurroundVirtualizer
+        // @brief Set Audio Surround Virtualizer
         // @param handle: handle returned in GetAudioPort()
         // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult SetAudioSurroudVirtualizer(const int32_t handle , const SurroundVirtualizer surroundVirtualizer ) = 0;
+        virtual Core::hresult SetAudioSurroundVirtualizer(const int32_t handle , const SurroundVirtualizer surroundVirtualizer ) = 0;
 
-        /** Get Audio Surroud Virtualizer  */
-        // @text getAudioSurroudVirtualizer
-        // @brief Get Audio Surroud Virtualizer
+        /** Get Audio Surround Virtualizer  */
+        // @text getAudioSurroundVirtualizer
+        // @brief Get Audio Surround Virtualizer
         // @param handle: handle returned in GetAudioPort()
         // @param surroundVirtualizer: virtualizer
-        virtual Core::hresult GetAudioSurroudVirtualizer(const int32_t handle , SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
+        virtual Core::hresult GetAudioSurroundVirtualizer(const int32_t handle , SurroundVirtualizer &surroundVirtualizer /* @out */) = 0;
 
         /** Set Audio MI Steering   */
         // @text setAudioMISteering
