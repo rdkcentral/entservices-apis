@@ -115,10 +115,10 @@ namespace Exchange {
             int32_t colorMode;
         };
 
-        using IFPDColorConfigIterator = RPC::IIteratorType<dsFPDColorConfig_t, ID_DEVICESETTINGS_FPD_COLORCONFIG_ITERATOR>;
-        using IFPDIndicatorConfigIterator = RPC::IIteratorType<dsFPDIndicatorConfig_t, ID_DEVICESETTINGS_FPD_INDICATORCONFIG_ITERATOR>;
-        using IFPDTextDisplayConfigIterator = RPC::IIteratorType<dsFPDTextDisplayConfig_t, ID_DEVICESETTINGS_FPD_TEXTDISPLAYCONFIG_ITERATOR>;
-        using IFPDColorBindingIterator = RPC::IIteratorType<dsFPDColorBinding_t, ID_DEVICESETTINGS_FPD_COLORBINDING_ITERATOR>;
+        using IFPDColorConfigIterator = RPC::IIteratorType<FPDColorConfig, ID_DEVICESETTINGS_FPD_COLORCONFIG_ITERATOR>;
+        using IFPDIndicatorConfigIterator = RPC::IIteratorType<FPDIndicatorConfig, ID_DEVICESETTINGS_FPD_INDICATORCONFIG_ITERATOR>;
+        using IFPDTextDisplayConfigIterator = RPC::IIteratorType<FPDTextDisplayConfig, ID_DEVICESETTINGS_FPD_TEXTDISPLAYCONFIG_ITERATOR>;
+        using IFPDColorBindingIterator = RPC::IIteratorType<FPDColorBinding, ID_DEVICESETTINGS_FPD_COLORBINDING_ITERATOR>;
         
 
         // @event
