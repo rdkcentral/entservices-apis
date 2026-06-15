@@ -156,7 +156,7 @@ namespace Exchange {
 
         /** Get number of composite inputs. */
         // @text getNrOfCompositeInputs
-        // @brief Get Preferred Sleep mode.
+        // @brief Get Number of Composite Inputs in the platform
         // @param nrCompositeInputs: number of composite inputs
         virtual Core::hresult GetNrOfCompositeInputs(int32_t &nrCompositeInputs /* @out */) = 0;
 

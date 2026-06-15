@@ -54,7 +54,7 @@ namespace Exchange {
         // @param mode: Sleep mode
         virtual Core::hresult GetPreferredSleepMode(SleepMode &mode /* @out */) = 0;
 
-        /** Get Preferred Sleep mode. */
+        /** Set Preferred Sleep mode. */
         // @text setPreferredSleepMode
         // @brief Set Preferred Sleep mode.
         // @param mode: Sleep mode

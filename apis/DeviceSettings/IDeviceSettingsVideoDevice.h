@@ -67,13 +67,13 @@ namespace Exchange {
 
         using IDeviceSettingsVideoCodecProfileSupportIterator = RPC::IIteratorType<VideoCodecProfileSupport, ID_DEVICESETTINGS_VIDEO_CODEC_PROFILE_ITERATOR>;
 
-        struct dsVideoDeviceConfigInfo_t {
+        struct VideoDeviceConfigInfo {
             uint32_t numSupportedDFCs;
             uint32_t supportedDFCsMask;
             VideoZoom defaultDFC;
         };
 
-        using IVideoDeviceConfigIterator = RPC::IIteratorType<dsVideoDeviceConfigInfo_t, ID_DEVICESETTINGS_VIDEODEVICE_CONFIG_ITERATOR>;
+        using IVideoDeviceConfigIterator = RPC::IIteratorType<VideoDeviceConfigInfo, ID_DEVICESETTINGS_VIDEODEVICE_CONFIG_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -128,9 +128,9 @@ namespace Exchange {
         // @param capabilities: Capabilities
         virtual Core::hresult GetHDRCapabilities(const int32_t handle , int32_t &capabilities /* @out */) = 0;
 
-        /** Get Video Device Supported . */
+        /** Get supported video coding formats. */
         // @text getSupportedVideoCodingFormats
-        // @brief Get Video Zoom setting
+        // @brief Get supported video coding formats
         // @param handle: video device handle (returned in GetVideoDeviceHandle)
         // @param supportedFormats: Supported Formats
         virtual Core::hresult GetSupportedVideoCodingFormats(const int32_t handle , int32_t &supportedFormats /* @out */) = 0;

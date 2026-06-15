@@ -220,7 +220,7 @@ namespace Exchange {
             uint32_t height;
         };
 
-        struct dsVideoPortTypeConfig_t {
+        struct VideoPortTypeConfig {
             VideoPort typeId;
             string name;
             bool dtcpSupported;
@@ -229,7 +229,7 @@ namespace Exchange {
             string supportedResolutionNames;
         };
 
-        struct dsVideoPortPortConfig_t {
+        struct VideoPortPortConfig {
             VideoPort videoPortType;
             int32_t videoPortIndex;
             int32_t connectedAudioPortType;
@@ -237,8 +237,8 @@ namespace Exchange {
             string defaultResolution;
         };
 
-        using IVideoPortTypeConfigIterator = RPC::IIteratorType<dsVideoPortTypeConfig_t, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
-        using IVideoPortPortConfigIterator = RPC::IIteratorType<dsVideoPortPortConfig_t, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
+        using IVideoPortTypeConfigIterator = RPC::IIteratorType<VideoPortTypeConfig, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
+        using IVideoPortPortConfigIterator = RPC::IIteratorType<VideoPortPortConfig, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
         using IVideoPortResolutionIterator = RPC::IIteratorType<VideoPortResolution, ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR>;
 
         // @event
@@ -336,7 +336,7 @@ namespace Exchange {
         // @param handle: handle to the port
         // @param videoPortResolution: video port resolution 
         // @param persist: persist this setting
-        // @param forceCompatibilty: force compatibility
+        // @param forceCompatibility: force compatibility
         virtual Core::hresult SetVideoPortResolution(const int32_t handle , const VideoPortResolution& videoPortResolution , const bool persist , const bool forceCompatibility ) = 0;
 
         /** Enable HDCP Video port. */

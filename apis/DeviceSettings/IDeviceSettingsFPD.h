@@ -81,12 +81,12 @@ namespace Exchange {
             DS_FPD_LED_DEVICE_MAX               = 9
         };
 
-        struct dsFPDColorConfig_t {
+        struct FPDColorConfig {
             int32_t id;
             uint32_t color;
         };
 
-        struct dsFPDIndicatorConfig_t {
+        struct FPDIndicatorConfig {
             int32_t id;
             int32_t maxBrightness;
             int32_t maxCycleRate;
@@ -95,13 +95,13 @@ namespace Exchange {
             int32_t colorMode;
         };
 
-        struct dsFPDColorBinding_t {
+        struct FPDColorBinding {
             int32_t targetType;
             int32_t targetId;
             int32_t colorId;
         };
 
-        struct dsFPDTextDisplayConfig_t {
+        struct FPDTextDisplayConfig {
             int32_t id;
             string name;
             int32_t maxBrightness;
@@ -198,7 +198,7 @@ namespace Exchange {
 
         /** Set Front Panel Display Color. */
         // @text setFPDColor
-        // @brief Set Front Panel Display State.
+        // @brief Set Front Panel Display Color.
         // @param indicator: Type of indicator
         // @param color: color
         virtual Core::hresult SetFPDColor(const FPDIndicator indicator , const uint32_t color )  = 0;

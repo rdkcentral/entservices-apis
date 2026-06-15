@@ -200,7 +200,7 @@ namespace Exchange {
            // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
-        struct dsAudioTypeConfigInfo_t {
+        struct AudioTypeConfigInfo {
             int32_t typeId;
             string name;
             uint32_t supportedCompressionMask;
@@ -208,15 +208,15 @@ namespace Exchange {
             uint32_t supportedStereoModeMask;
         };
 
-        struct dsAudioPortConfigInfo_t {
+        struct AudioPortConfigInfo {
             AudioPortType audioPortType;
             int32_t audioPortIndex;
             int32_t connectedVideoPortType;
             int32_t connectedVideoPortIndex;
         };
 
-        using IAudioTypeConfigIterator = RPC::IIteratorType<dsAudioTypeConfigInfo_t, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
-        using IAudioPortConfigIterator = RPC::IIteratorType<dsAudioPortConfigInfo_t, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
+        using IAudioTypeConfigIterator = RPC::IIteratorType<AudioTypeConfigInfo, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
+        using IAudioPortConfigIterator = RPC::IIteratorType<AudioPortConfigInfo, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
 
         struct AudioARCStatus { 
             AudioARCType  arcType    /* @brief ARC Type */ ;
@@ -602,19 +602,19 @@ namespace Exchange {
         // @param boost: boost for bass
         virtual Core::hresult GetAudioBassEnhancer(const int32_t handle , int32_t &boost /* @out */) = 0;
 
-        /** Enable Audio Surroud Decoder  */
-        // @text enableAudioSurroudDecoder
-        // @brief Enable Audio Surroud Decoder
+        /** Enable Audio Surround Decoder  */
+        // @text enableAudioSurroundDecoder
+        // @brief Enable Audio Surround Decoder
         // @param handle: handle returned in GetAudioPort()
          // @param enable: true (surround decoder enabled) or false (surround decoder disabled)
-        virtual Core::hresult EnableAudioSurroudDecoder(const int32_t handle , const bool enable ) = 0;
+        virtual Core::hresult EnableAudioSurroundDecoder(const int32_t handle , const bool enable ) = 0;
 
-        /** Is Audio Surroud Decoder enabled? */
-        // @text isAudioSurroudDecoderEnabled
-        // @brief Audio Surroud Decoder enabled or not
+        /** Is Audio Surround Decoder enabled? */
+        // @text isAudioSurroundDecoderEnabled
+        // @brief Audio Surround Decoder enabled or not
         // @param handle: handle returned in GetAudioPort()
         // @param enabled: true (surround decoder enabled) or false (surround decoder disabled)
-        virtual Core::hresult IsAudioSurroudDecoderEnabled(const int32_t handle , bool &enabled /* @out */) = 0;
+        virtual Core::hresult IsAudioSurroundDecoderEnabled(const int32_t handle , bool &enabled /* @out */) = 0;
 
         /** Set Audio DRC mode  */
         // @text setAudioDRCMode
