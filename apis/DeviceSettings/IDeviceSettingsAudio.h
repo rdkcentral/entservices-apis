@@ -279,7 +279,7 @@ namespace Exchange {
             // @brief Audio level changed
             // @text onAudioLevelChanged
             // @param audioLevel: Current audio level
-            virtual void OnAudioLevelChangedEvent(int32_t audioLevel) { };
+            virtual void OnAudioLevelChanged(int32_t audioLevel) { };
         };
 
         virtual Core::hresult Register(Exchange::IDeviceSettingsAudio::INotification* notification )   = 0;
@@ -691,7 +691,7 @@ namespace Exchange {
         // @brief Set Audio MS12 profile
         // @param handle: handle returned in GetAudioPort()
         // @param profile: Name of the profile
-        virtual Core::hresult SetAudioMS12Profile(const int32_t handle , const string profile ) = 0;
+        virtual Core::hresult SetAudioMS12Profile(const int32_t handle , const string& profile ) = 0;
 
         /** Set Audio Mixer Levels     */
         // @text setAudioMixerLevels
@@ -735,7 +735,7 @@ namespace Exchange {
         // @brief Set Primary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param primaryAudioLanguage: Primary audio language
-        virtual Core::hresult SetAudioPrimaryLanguage(const int32_t handle , const string primaryAudioLanguage ) = 0;
+        virtual Core::hresult SetAudioPrimaryLanguage(const int32_t handle , const string& primaryAudioLanguage ) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioPrimaryLanguage
@@ -749,7 +749,7 @@ namespace Exchange {
         // @brief Set Secondary Audio language
         // @param handle: handle returned in GetAudioPort()
         // @param secondaryAudioLanguage: Secondary audio language
-        virtual Core::hresult SetAudioSecondaryLanguage(const int32_t handle , const string secondaryAudioLanguage ) = 0;
+        virtual Core::hresult SetAudioSecondaryLanguage(const int32_t handle , const string& secondaryAudioLanguage ) = 0;
 
         /** Get Primary Audio language     */
         // @text getAudioSecondaryLanguage
