@@ -226,6 +226,10 @@ namespace Exchange {
 
         //Reserved for L2 test plugin
 	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
+      
+        ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x280,
+        ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
+        ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2,
 
         ID_APP_PACKAGE_MANAGER                       = ID_ENTOS_OFFSET + 0x300,
         ID_PACKAGE_DOWNLOADER                        = ID_APP_PACKAGE_MANAGER + 1,
@@ -345,6 +349,12 @@ namespace Exchange {
 
         ID_APP_ACTIONS                               = ID_ENTOS_OFFSET + 0x520,
         ID_APP_ACTIONS_NOTIFICATION                  = ID_APP_ACTIONS + 1,
+
+        ID_REMOTECONTROL                            = ID_ENTOS_OFFSET + 0x530,
+        ID_REMOTECONTROL_NOTIFICATION               = ID_REMOTECONTROL + 1,
+
+        ID_VOICECONTROL                             = ID_ENTOS_OFFSET + 0x540,
+        ID_VOICECONTROL_NOTIFICATION                = ID_VOICECONTROL + 1,
 
     }; // enum IDS
 

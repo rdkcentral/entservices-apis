@@ -136,7 +136,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
+| params.clientId | string | the identifier of the disconnected application |
 | params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration @retval Core::ERROR_NONE: All provided key intercepts were registered successfully @retval Core::ERROR_GENERAL: A general error occurred while registering one or more key intercepts |
 ### Results
 | Name | Type | Description |
@@ -240,7 +240,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
+| params.clientId | string | the identifier of the disconnected application |
 | params.displayName | string | Name of Wayland display |
 | params.displayWidth | integer | Optional width of client window |
 | params.displayHeight | integer | Optional height of client window |
@@ -467,7 +467,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -712,7 +712,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -766,7 +766,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -784,7 +784,7 @@ Event details will be updated soon.
     "id": 13,
     "method": "org.rdk.RDKWindowManager.getZOrder",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -793,7 +793,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"appInstanceId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"clientId": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -977,7 +977,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.clientId | string | Client identifier |
+| params.clientId | string | the identifier of the disconnected application |
 | params.keyCode | integer | The key code to remove |
 | params.modifiers | string | JSON String format with one or more modifiers @retval Core::ERROR_NONE: The key intercept was removed successfully. @retval Core::ERROR_GENERAL: The intercept could not be removed due to an internal error. |
 ### Results
@@ -1128,7 +1128,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1230,7 +1230,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.client | string | Name of the client/callSign requesting the key generation. |
 | params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
 ### Results
 | Name | Type | Description |
@@ -1283,7 +1283,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 | params.zOrder | integer | integer value indicating the zOrder @retval Core::ERROR_NONE on success |
 ### Results
 | Name | Type | Description |
@@ -1301,7 +1301,7 @@ Event details will be updated soon.
     "id": 23,
     "method": "org.rdk.RDKWindowManager.setZOrder",
     "params": {
-        "appInstanceId": "",
+        "clientId": "",
         "zOrder": 0
     }
 }
@@ -1311,7 +1311,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"appInstanceId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"clientId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1447,7 +1447,7 @@ Notifies when an application is blurred
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1457,7 +1457,7 @@ Notifies when an application is blurred
     "id": 26,
     "method": "org.rdk.RDKWindowManager.onBlur",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1471,7 +1471,7 @@ Notifies when an application is connected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1481,7 +1481,7 @@ Notifies when an application is connected
     "id": 27,
     "method": "org.rdk.RDKWindowManager.onConnected",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1495,7 +1495,7 @@ Notifies when an application is disconnected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1505,7 +1505,7 @@ Notifies when an application is disconnected
     "id": 28,
     "method": "org.rdk.RDKWindowManager.onDisconnected",
     "params": {
-        "client": ""
+        "clientId": ""
     }
 }
 ```
@@ -1519,7 +1519,7 @@ Notifies when an application is in focus
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1529,7 +1529,7 @@ Notifies when an application is in focus
     "id": 29,
     "method": "org.rdk.RDKWindowManager.onFocus",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1543,7 +1543,7 @@ Notifies when an application is hidden
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1553,7 +1553,7 @@ Notifies when an application is hidden
     "id": 30,
     "method": "org.rdk.RDKWindowManager.onHidden",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
@@ -1567,7 +1567,7 @@ Posting the client for first frame ready.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.client | string | the identifier of the disconnected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1577,7 +1577,7 @@ Posting the client for first frame ready.
     "id": 31,
     "method": "org.rdk.RDKWindowManager.onReady",
     "params": {
-        "client": ""
+        "clientId": ""
     }
 }
 ```
@@ -1641,7 +1641,7 @@ Notifies when an application is visible
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appInstanceId | string | the identifier of the connected application |
+| params.clientId | string | the identifier of the disconnected application |
 
 ### Examples
 
@@ -1651,7 +1651,7 @@ Notifies when an application is visible
     "id": 34,
     "method": "org.rdk.RDKWindowManager.onVisible",
     "params": {
-        "appInstanceId": ""
+        "clientId": ""
     }
 }
 ```
