@@ -292,9 +292,9 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_GENERAL on failure
   virtual Core::hresult GetScreenshot() = 0;
 
-  /** set alias name for given client identifier */
+  /** Sets alias name for given client identifier */
   // @text setAlias
-  // @brief set the alias name for the given client identifier
+  // @brief Sets the alias name for the given client identifier
   // @param clientId: client identifier
   // @param alias: alias name for the given client identifier
   // @retval Core::ERROR_NONE on success
