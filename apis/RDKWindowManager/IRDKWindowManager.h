@@ -297,8 +297,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Sets the alias name for the given client identifier
   // @param clientId: client identifier
   // @param alias: alias name for the given client identifier
-  // @retval Core::ERROR_NONE on success
-  // @retval Core::ERROR_GENERAL on failure
+  // @retval Core::ERROR_NONE: Operation completed successfully
+  // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
 };
 } // namespace Exchange
