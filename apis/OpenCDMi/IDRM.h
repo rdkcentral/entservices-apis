@@ -524,7 +524,7 @@ struct IGoogleCastAuthExtension {
 
 struct IRobustnessExtension {
     virtual ~IRobustnessExtension() = default;
-    virtual CDMi_RESULT GetSupportedRobustness(std::list<std::string>& levels) const = 0;
+    virtual CDMi_RESULT GetSupportedRobustness(std::list<std::string>& levels /* @out */) const = 0;
 };
 
 struct ISystemFactory {
