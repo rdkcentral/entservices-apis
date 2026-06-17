@@ -291,6 +291,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE on success
   // @retval Core::ERROR_GENERAL on failure
   virtual Core::hresult GetScreenshot() = 0;
+
+  /** set alias name for given client identifier */
+  // @brief set the alias name for the given client identifier
+  // @param clientId: client identifier
+  // @param alias: alias name for the given client identifier
+  // @retval Core::ERROR_NONE on success
+  // @retval Core::ERROR_GENERAL on failure
+  virtual Core::hresult SetAlias(const string& clientId, const string &alias) = 0;
 };
 } // namespace Exchange
 } // namespace WPEFramework
