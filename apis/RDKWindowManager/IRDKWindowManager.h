@@ -105,9 +105,10 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @param groupId: Optional group identifier of Wayland socket
   // @param topmost: Optional flag indicating whether client window needs to be topmost
   // @param focus: Optional flag indicating whether the client needs focus
+  // @param capabilities: Optional JSON string containing the runtime capability tokens for the client
   // @retval Core::ERROR_NONE: Display window created successfully
   // @retval Core::ERROR_GENERAL: Failed to create the display window
-  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */) = 0;
+  virtual Core::hresult CreateDisplay(const string &clientId, const string &displayName, const uint32_t displayWidth /* @optional */, const uint32_t displayHeight /* @optional */, const bool virtualDisplay /* @optional */, const uint32_t virtualWidth /* @optional */, const uint32_t virtualHeight /* @optional */, const uint32_t ownerId /* @optional */, const uint32_t groupId /* @optional */, const bool topmost /* @optional */, const bool focus /* @optional */, const string &capabilities /* @optional */) = 0;
 
   /** Get the list of active Apps */
   // @text getApps
@@ -300,6 +301,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE: Operation completed successfully
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework
