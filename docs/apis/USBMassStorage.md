@@ -161,7 +161,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "partitionName": "",
             "mountFlags": "READ_ONLY",
             "mountPath": "",
-            "fileSystem": "UNKNOWN"
+            "fileSystem": "UNKNOWN file system"
         }
     ]
 }
@@ -224,7 +224,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "fileSystem": "UNKNOWN",
+        "fileSystem": "UNKNOWN file system",
         "size": 0,
         "startSector": 0,
         "numSectors": 0,
@@ -287,7 +287,7 @@ Device Mounted notification @@iterator
                 "partitionName": "",
                 "mountFlags": "READ_ONLY",
                 "mountPath": "",
-                "fileSystem": "UNKNOWN"
+                "fileSystem": "UNKNOWN file system"
             }
         ]
     }
@@ -329,7 +329,7 @@ Device Unmounted notification @@iterator
                 "partitionName": "",
                 "mountFlags": "READ_ONLY",
                 "mountPath": "",
-                "fileSystem": "UNKNOWN"
+                "fileSystem": "UNKNOWN file system"
             }
         ]
     }

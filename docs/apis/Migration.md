@@ -93,7 +93,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "bootType": "BOOT_TYPE_INIT"
+        "bootType": "BOOT_INIT"
     }
 }
 ```
@@ -141,7 +141,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "migrationStatus": "MIGRATION_STATUS_NOT_STARTED"
+        "migrationStatus": "NOT_STARTED"
     }
 }
 ```
@@ -175,7 +175,7 @@ None
     "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
-        "status": "MIGRATION_STATUS_NOT_STARTED"
+        "status": "NOT_STARTED"
     }
 }
 ```
@@ -184,7 +184,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "MIGRATION_STATUS_NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

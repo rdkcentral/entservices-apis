@@ -522,9 +522,9 @@ Notifies when a Miracast source device wants to connect
     "params": {
         "name": "",
         "mac": "",
-        "state": "STATE_IDLE",
+        "state": "IDLE",
         "reason_code": "",
-        "reason": "REASON_CODE_SUCCESS"
+        "reason": "SUCCESS"
     }
 }
 ```

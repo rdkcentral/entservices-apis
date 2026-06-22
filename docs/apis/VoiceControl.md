@@ -384,7 +384,7 @@ None
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
         "transcription": "turn on the lights",
-        "type": "PTT"
+        "type": "ptt"
     }
 }
 ```
@@ -393,7 +393,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "ptt"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -565,7 +565,7 @@ Triggered when a voice session begins
     "params": {
         "remoteId": 1,
         "sessionId": "session-12345",
-        "deviceType": "PTT",
+        "deviceType": "ptt",
         "keywordVerification": true
     }
 }
@@ -603,7 +603,7 @@ Triggered when the interaction with the server has concluded
     "params": {
         "remoteId": 1,
         "sessionId": "session-12345",
-        "result": "SUCCESS",
+        "result": "success",
         "serverStats": {
             "dnsTime": 0.5,
             "serverIp": "192.168.1.100",

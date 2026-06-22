@@ -173,7 +173,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | state. Possible values: GAME |
+| result.state | string | state. Possible values: video, game |
 
 ### Examples
 
@@ -186,7 +186,7 @@ None
     "id": 2,
     "method": "org.rdk.SystemMode.getState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE"
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -195,7 +195,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -206,7 +206,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "state": "GAME"
+        "state": "video"
     }
 }
 ```
@@ -223,7 +223,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.systemMode | string | The system mode. Possible values: device_optimize |
-| params.state | string | The requested state. Possible values: GAME |
+| params.state | string | The requested state. Possible values: video, game |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -240,8 +240,8 @@ None
     "id": 3,
     "method": "org.rdk.SystemMode.requestState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE",
-        "state": "GAME"
+        "systemMode": "device_optimize",
+        "state": "video"
     }
 }
 ```
@@ -250,7 +250,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "DEVICE_OPTIMIZE", "state": "GAME"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "device_optimize", "state": "video"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

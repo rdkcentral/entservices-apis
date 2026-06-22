@@ -129,7 +129,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "AudioCapabilities": [
-            "AUDIOCAPABILITY_NONE"
+            "none"
         ],
         "success": true
     }
@@ -204,7 +204,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": {
         "MS12Capabilities": [
-            "MS12CAPABILITY_NONE"
+            "none"
         ],
         "success": true
     }
@@ -498,7 +498,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "supportedHDCPVersion": "HDCP_UNAVAILABLE"
+        "supportedHDCPVersion": "unavailable"
     }
 }
 ```
@@ -917,7 +917,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": {
-        "devicetype": "DEVICE_TYPE_IPTV"
+        "devicetype": "IpTv"
     }
 }
 ```

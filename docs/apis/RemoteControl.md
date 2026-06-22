@@ -1083,7 +1083,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
         "status": {
             "upgradeSessionId": "12345-abc-def",
             "macAddress": "AA:BB:CC:DD:EE:FF",
-            "upgradeState": "SUCCESS",
+            "upgradeState": "success",
             "percentComplete": 50,
             "errorString": ""
         }
@@ -1243,7 +1243,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "params": {
         "upgradeSessionId": "12345-abc-def",
         "macAddress": "AA:BB:CC:DD:EE:FF",
-        "upgradeState": "SUCCESS",
+        "upgradeState": "success",
         "percentComplete": 50,
         "errorString": ""
     }

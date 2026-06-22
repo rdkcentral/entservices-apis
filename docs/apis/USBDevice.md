@@ -203,9 +203,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "deviceName": "",
             "devicePath": ""
         },
-        "flags": "DEVICE_FLAGS_DRIVER_AVAILABLE",
+        "flags": "AVAILABLE",
         "features": 0,
-        "busSpeed": "DEVICE_SPEED_LOW",
+        "busSpeed": "Low",
         "numLanguageIds": 0,
         "productInfo1": {
             "languageId": 0,

@@ -265,8 +265,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "currentState": "POWER_STATE_UNKNOWN",
-        "previousState": "POWER_STATE_UNKNOWN"
+        "currentState": "UNKNOWN",
+        "previousState": "UNKNOWN"
     }
 }
 ```
@@ -314,7 +314,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "powerStateBeforeReboot": "POWER_STATE_UNKNOWN"
+        "powerStateBeforeReboot": "UNKNOWN"
     }
 }
 ```
@@ -525,7 +525,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "id": 8,
     "result": [
         {
-            "wakeupSource": "WAKEUP_SRC_UNKNOWN",
+            "wakeupSource": "UNKNOWN",
             "enabled": true
         }
     ]
@@ -722,7 +722,7 @@ None
     "method": "org.rdk.PowerManager.setPowerState",
     "params": {
         "keyCode": 0,
-        "powerState": "POWER_STATE_UNKNOWN",
+        "powerState": "UNKNOWN",
         "reason": ""
     }
 }
@@ -732,7 +732,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.setPowerState", "params": {"keyCode": 0, "powerState": "POWER_STATE_UNKNOWN", "reason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.setPowerState", "params": {"keyCode": 0, "powerState": "UNKNOWN", "reason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -830,7 +830,7 @@ None
     "method": "org.rdk.PowerManager.setWakeupSourceConfig",
     "params": [
         {
-            "wakeupSource": "WAKEUP_SRC_UNKNOWN",
+            "wakeupSource": "UNKNOWN",
             "enabled": true
         }
     ]
@@ -841,7 +841,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "WAKEUP_SRC_UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -958,7 +958,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "result": {
-        "wakeupReason": "WAKEUP_REASON_UNKNOWN"
+        "wakeupReason": "UNKNOWN"
     }
 }
 ```
@@ -1237,8 +1237,8 @@ Power mode changed
     "id": 17,
     "method": "org.rdk.PowerManager.onPowerModeChanged",
     "params": {
-        "currentState": "POWER_STATE_UNKNOWN",
-        "newState": "POWER_STATE_UNKNOWN"
+        "currentState": "UNKNOWN",
+        "newState": "UNKNOWN"
     }
 }
 ```
@@ -1265,8 +1265,8 @@ Power mode Pre-change event
     "id": 18,
     "method": "org.rdk.PowerManager.onPowerModePreChange",
     "params": {
-        "currentState": "POWER_STATE_UNKNOWN",
-        "newState": "POWER_STATE_UNKNOWN",
+        "currentState": "UNKNOWN",
+        "newState": "UNKNOWN",
         "transactionId": 0,
         "stateChangeAfter": 0
     }
@@ -1322,8 +1322,8 @@ Thermal Mode changed event
     "id": 20,
     "method": "org.rdk.PowerManager.onThermalModeChanged",
     "params": {
-        "currentThermalLevel": "THERMAL_TEMPERATURE_UNKNOWN",
-        "newThermalLevel": "THERMAL_TEMPERATURE_UNKNOWN",
+        "currentThermalLevel": "UNKNOWN Thermal Temperature",
+        "newThermalLevel": "UNKNOWN Thermal Temperature",
         "currentTemperature": 0.0
     }
 }

@@ -110,8 +110,9 @@ class HeaderFileParser:
     CPP_COMPONENT_REGEX = {
         'iter_using':   re.compile(r'using\s+([\w\d]+)\s*=\s*RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*;'),
         'iter_typedef': re.compile(r'typedef\s+RPC::IIteratorType\s*\<\s*([\w\d\:]+)\s*\,\s*(?:[\w\d\:]+)\s*\>\s*([\w\d]+)\s*;'),
-        'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{(.*)\}\;?'),
+        'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{([\s\S]*?)\}\;?'),
         'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
+        'enum_mem_expr': re.compile(r'^\s*([\w\d\[\]]+)\s*(?:=\s*([^\/\n]+?))?\s*(?:(?:\/\*|\/\/)(.*))?$'),
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
         'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
@@ -277,9 +278,9 @@ class HeaderFileParser:
         # accumulate the enum's data members until the closing brace is reached
         if enum_braces_count > 0:
             line = self.clean_and_validate_cpp_obj_line(line, ',', curr_line_num, 'Enumerator')
-            enum_object += line
+            enum_object += (line + '\n')
         elif enum_braces_count <= 0:
-            enum_object += line
+            enum_object += (line + '\n')
             self.register_enum(enum_object)
             # reset the enum helper object once the enum is registered
             within_enum_def = False
@@ -461,7 +462,21 @@ class HeaderFileParser:
             # process each enumerator definition
             for enumerator_def in enum_body.split(','):
                 enumerator_def = enumerator_def.strip()
-                enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
+                # Remove leading standalone comment lines so enum members that follow
+                # comments remain parseable in split fragments.
+                enumerator_def = re.sub(r'^(?:\s*//[^\n]*\n)+', '', enumerator_def).strip()
+                if not enumerator_def:
+                    continue
+                # Ignore comment-only fragments, which can appear when enum members are
+                # preceded by standalone comment lines.
+                if enumerator_def.startswith('//') or enumerator_def.startswith('/*'):
+                    continue
+
+                # First, try a regex that supports expression-valued enums.
+                enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem_expr'].match(enumerator_def)
+                if not enumerator_match:
+                    # Fall back to legacy/simple parser.
+                    enumerator_match = self.CPP_COMPONENT_REGEX['enum_mem'].match(enumerator_def)
                 if enumerator_match:
                     enumerator_name, enumerator_value, description = enumerator_match.groups()
                     description = self.clean_description(description)
@@ -948,7 +963,9 @@ class HeaderFileParser:
         if symbol_type in self.enums_registry:
             enum_values = self.enums_registry[symbol_type]
             if enum_values:
-                return next(iter(enum_values))
+                first_key = next(iter(enum_values))
+                first_value = enum_values[first_key]
+                return first_value.get('description') or first_key
             if self.logger:
                 self.logger.log(
                     "WARNING",

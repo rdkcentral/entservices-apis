@@ -356,7 +356,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "standbybehavior": "ACTIVE",
+        "standbybehavior": "active",
         "success": true
     }
 }
@@ -462,9 +462,9 @@ None
     "method": "org.rdk.XCast.setApplicationState",
     "params": {
         "applicationName": "",
-        "state": "RUNNING",
+        "state": "running",
         "applicationId": "",
-        "error": "NONE"
+        "error": "none"
     }
 }
 ```
@@ -473,7 +473,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "", "state": "RUNNING", "applicationId": "", "error": "NONE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "", "state": "running", "applicationId": "", "error": "none"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -734,7 +734,7 @@ None
     "id": 12,
     "method": "org.rdk.XCast.setStandbyBehavior",
     "params": {
-        "standbybehavior": "ACTIVE"
+        "standbybehavior": "active"
     }
 }
 ```
@@ -743,7 +743,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "ACTIVE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "active"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

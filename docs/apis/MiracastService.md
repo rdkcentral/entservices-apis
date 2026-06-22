@@ -368,7 +368,7 @@ None
     "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
         "mac": "",
-        "state": "PLAYER_STATE_IDLE",
+        "state": "IDLE",
         "reason_code": 0
     }
 }
@@ -378,7 +378,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "", "state": "PLAYER_STATE_IDLE", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "", "state": "IDLE", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -437,7 +437,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
         "mac": "",
         "name": "",
         "error_code": "",
-        "reason": "REASON_CODE_SUCCESS"
+        "reason": "SUCCESS"
     }
 }
 ```
