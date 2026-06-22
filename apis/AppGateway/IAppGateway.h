@@ -259,6 +259,9 @@ namespace WPEFramework
             //        dropped and outgoing messages destined for the application are discarded
             //        without transmitting. No errors are surfaced to the application.
             // @param appId: Application identifier whose traffic should be suspended
+            // @retval Core::ERROR_NONE: Traffic suspended successfully
+            // @retval Core::ERROR_GENERAL: Failed to suspend traffic
+            // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
             // @returns Core::hresult
             virtual Core::hresult SuspendTraffic(const string& appId) = 0;
 
@@ -268,6 +271,9 @@ namespace WPEFramework
             //        After calling this method the gateway will once again process and
             //        forward messages for the application normally.
             // @param appId: Application identifier whose traffic should be resumed
+            // @retval Core::ERROR_NONE: Traffic resumed successfully
+            // @retval Core::ERROR_GENERAL: Failed to resume traffic
+            // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
             // @returns Core::hresult
             virtual Core::hresult ResumeTraffic(const string& appId) = 0;
         };
