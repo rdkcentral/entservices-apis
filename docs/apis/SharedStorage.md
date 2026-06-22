@@ -1,18 +1,26 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="SharedStorage_Plugin"></a>
-# SharedStorage Plugin
+<a id="SharedStorage_Module"></a>
+# SharedStorage Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SharedStorage/ISharedStorage.h)**
 
-A SharedStorage plugin for Thunder framework.
+A SharedStorage module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [ISharedStorage](#ISharedStorage)
+    - [Methods](#ISharedStorage-Methods)
+    - [Notifications](#ISharedStorage-Notifications)
+  - [ISharedStorageInspector](#ISharedStorageInspector)
+    - [Methods](#ISharedStorageInspector-Methods)
+  - [ISharedStorageLimit](#ISharedStorageLimit)
+    - [Methods](#ISharedStorageLimit-Methods)
+  - [ISharedStorageCache](#ISharedStorageCache)
+    - [Methods](#ISharedStorageCache-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +30,14 @@ A SharedStorage plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `SharedStorage` plugin provides an interface for SharedStorage.
+The `SharedStorage` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- ISharedStorage
+- ISharedStorageInspector
+- ISharedStorageLimit
+- ISharedStorageCache
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,14 +51,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSharedStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the SharedStorage plugin:
+<a id="ISharedStorage"></a>
+## ISharedStorage Interface
 
-SharedStorage interface methods:
+<a id="ISharedStorage-Methods"></a>
+### Methods
 
-**ISharedStorage methods**
+The following methods are provided by the ISharedStorage Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -53,36 +68,6 @@ SharedStorage interface methods:
 | [deleteNamespace](#deleteNamespace) | Deletes the specified namespace |
 | [getValue](#getValue) | Returns the value of a key from the specified namespace. |
 | [setValue](#setValue) | Sets the value of a key in the the specified namespace |
-
----
-
-**ISharedStorageCache methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [flushCache](#flushCache) | Flushes the device cache |
-
----
-
-**ISharedStorageInspector methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
-| [getNamespaces](#getNamespaces) | Returns the namespaces |
-| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
-
----
-
-**ISharedStorageLimit methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
-| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
-
-<a id="ISharedStorage-methods"></a>
-### ISharedStorage Methods
 
 <a id="deleteKey"></a>
 ## *deleteKey*
@@ -322,60 +307,62 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
----
+<a id="ISharedStorage-Notifications"></a>
+### Notifications
 
-<a id="ISharedStorageCache-methods"></a>
-### ISharedStorageCache Methods
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-<a id="flushCache"></a>
-## *flushCache*
+The following events are provided by the ISharedStorage Interface:
 
-Flushes the device cache
+| Event | Description |
+| :-------- | :-------- |
+| [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
 
-### Events Triggered
-None
+<a id="onValueChanged"></a>
+## *onValueChanged*
+
+Values stored are changed using setValue
+
 ### Parameters
-This method takes no parameters.
-### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| params | object |  |
+| params.scope | string | must be device or account. Possible values: device, account |
+| params.namespace | string | name space |
+| params.key | string | key |
+| params.value | string | value |
 
 ### Examples
 
-
-#### Request
-
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.SharedStorage.flushCache"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
+    "id": 10,
+    "method": "org.rdk.SharedStorage.onValueChanged",
+    "params": {
+        "scope": "device",
+        "namespace": "",
+        "key": "",
+        "value": ""
+    }
 }
 ```
 
 ---
 
-<a id="ISharedStorageInspector-methods"></a>
-### ISharedStorageInspector Methods
+<a id="ISharedStorageInspector"></a>
+## ISharedStorageInspector Interface
+
+<a id="ISharedStorageInspector-Methods"></a>
+### Methods
+
+The following methods are provided by the ISharedStorageInspector Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
+| [getNamespaces](#getNamespaces) | Returns the namespaces |
+| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
 
 <a id="getKeys"></a>
 ## *getKeys*
@@ -562,8 +549,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ---
 
-<a id="ISharedStorageLimit-methods"></a>
-### ISharedStorageLimit Methods
+<a id="ISharedStorageLimit"></a>
+## ISharedStorageLimit Interface
+
+<a id="ISharedStorageLimit-Methods"></a>
+### Methods
+
+The following methods are provided by the ISharedStorageLimit Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
+| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
 
 <a id="getNamespaceStorageLimit"></a>
 ## *getNamespaceStorageLimit*
@@ -679,47 +676,62 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
+---
 
+<a id="ISharedStorageCache"></a>
+## ISharedStorageCache Interface
 
-<a id="Notifications"></a>
-# Notifications
+<a id="ISharedStorageCache-Methods"></a>
+### Methods
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+The following methods are provided by the ISharedStorageCache Interface:
 
-The following events are provided by the SharedStorage plugin:
-
-SharedStorage interface events:
-
-| Event | Description |
+| Method | Description |
 | :-------- | :-------- |
-| [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
+| [flushCache](#flushCache) | Flushes the device cache |
 
-<a id="onValueChanged"></a>
-## *onValueChanged*
+<a id="flushCache"></a>
+## *flushCache*
 
-Values stored are changed using setValue
+Flushes the device cache
 
+### Events Triggered
+None
 ### Parameters
+This method takes no parameters.
+### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.key | string | key |
-| params.value | string | value |
+| result | null | On success null will be returned. |
 
 ### Examples
+
+
+#### Request
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.SharedStorage.onValueChanged",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": "",
-        "value": ""
-    }
+    "id": 4,
+    "method": "org.rdk.SharedStorage.flushCache"
 }
 ```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+

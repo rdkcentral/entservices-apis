@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="USBDevice_Plugin"></a>
-# USBDevice Plugin
+<a id="USBDevice_Module"></a>
+# USBDevice Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice/IUSBDevice.h)**
 
-A USBDevice plugin for Thunder framework.
+A USBDevice module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUSBDevice](#IUSBDevice)
+    - [Methods](#IUSBDevice-Methods)
+    - [Notifications](#IUSBDevice-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A USBDevice plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `USBDevice` plugin provides an interface for USBDevice.
+The `USBDevice` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUSBDevice
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBDevice.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the USBDevice plugin:
+<a id="IUSBDevice"></a>
+## IUSBDevice Interface
 
-USBDevice interface methods:
+<a id="IUSBDevice-Methods"></a>
+### Methods
+
+The following methods are provided by the IUSBDevice Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -343,16 +351,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUSBDevice-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the USBDevice plugin:
-
-USBDevice interface events:
+The following events are provided by the IUSBDevice Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -420,3 +424,4 @@ Device Plugged out notification
     }
 }
 ```
+

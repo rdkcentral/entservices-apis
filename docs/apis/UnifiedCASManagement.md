@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="UnifiedCASManagement_Plugin"></a>
-# UnifiedCASManagement Plugin
+<a id="UnifiedCASManagement_Module"></a>
+# UnifiedCASManagement Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UnifiedCASManagement/IUnifiedCASManagement.h)**
 
-A UnifiedCASManagement plugin for Thunder framework.
+A UnifiedCASManagement module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUnifiedCASManagement](#IUnifiedCASManagement)
+    - [Methods](#IUnifiedCASManagement-Methods)
+    - [Notifications](#IUnifiedCASManagement-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A UnifiedCASManagement plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `UnifiedCASManagement` plugin provides an interface for UnifiedCASManagement.
+The `UnifiedCASManagement` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUnifiedCASManagement
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUnifiedCASManagement.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the UnifiedCASManagement plugin:
+<a id="IUnifiedCASManagement"></a>
+## IUnifiedCASManagement Interface
 
-UnifiedCASManagement interface methods:
+<a id="IUnifiedCASManagement-Methods"></a>
+### Methods
+
+The following methods are provided by the IUnifiedCASManagement Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -259,16 +267,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUnifiedCASManagement-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the UnifiedCASManagement plugin:
-
-UnifiedCASManagement interface events:
+The following events are provided by the IUnifiedCASManagement Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -299,3 +303,4 @@ Sent when the CAS needs to send data to the caller
     }
 }
 ```
+

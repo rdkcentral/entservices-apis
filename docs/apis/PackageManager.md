@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PackageManager_Plugin"></a>
-# PackageManager Plugin
+<a id="PackageManager_Module"></a>
+# PackageManager Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PackageManager/IPackageManager.h)**
 
-A PackageManager plugin for Thunder framework.
+A PackageManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IPackageManager](#IPackageManager)
+    - [Methods](#IPackageManager-Methods)
+    - [Notifications](#IPackageManager-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A PackageManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PackageManager` plugin provides an interface for PackageManager.
+The `PackageManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IPackageManager
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPackageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the PackageManager plugin:
+<a id="IPackageManager"></a>
+## IPackageManager Interface
 
-PackageManager interface methods:
+<a id="IPackageManager-Methods"></a>
+### Methods
+
+The following methods are provided by the IPackageManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -917,16 +925,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IPackageManager-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the PackageManager plugin:
-
-PackageManager interface events:
+The following events are provided by the IPackageManager Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -967,3 +971,4 @@ Notifies completion of an asynchronous operation.
     }
 }
 ```
+

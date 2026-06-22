@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="ScreenCapture_Plugin"></a>
-# ScreenCapture Plugin
+<a id="ScreenCapture_Module"></a>
+# ScreenCapture Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ScreenCapture/IScreenCapture.h)**
 
-A ScreenCapture plugin for Thunder framework.
+A ScreenCapture module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IScreenCapture](#IScreenCapture)
+    - [Methods](#IScreenCapture-Methods)
+    - [Notifications](#IScreenCapture-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A ScreenCapture plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `ScreenCapture` plugin provides an interface for ScreenCapture.
+The `ScreenCapture` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IScreenCapture
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkScreenCapture.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the ScreenCapture plugin:
+<a id="IScreenCapture"></a>
+## IScreenCapture Interface
 
-ScreenCapture interface methods:
+<a id="IScreenCapture-Methods"></a>
+### Methods
+
+The following methods are provided by the IScreenCapture Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -160,16 +168,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IScreenCapture-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the ScreenCapture plugin:
-
-ScreenCapture interface events:
+The following events are provided by the IScreenCapture Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -202,3 +206,4 @@ Triggered after uploading a screen capture
     }
 }
 ```
+

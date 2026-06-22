@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="GoogleCast_Plugin"></a>
-# GoogleCast Plugin
+<a id="GoogleCast_Module"></a>
+# GoogleCast Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/GoogleCast/IGoogleCast.h)**
 
-A GoogleCast plugin for Thunder framework.
+A GoogleCast module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Properties](#Properties)
+- [Interfaces](#Interfaces)
+  - [IGoogleCast](#IGoogleCast)
+    - [Properties](#IGoogleCast-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,12 @@ A GoogleCast plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `GoogleCast` plugin provides an interface for GoogleCast.
+The `GoogleCast` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IGoogleCast
+- IRuntimeManagerDelegate
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkGoogleCast.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
+<a id="Interfaces"></a>
+# Interfaces
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the GoogleCast plugin:
+<a id="IGoogleCast"></a>
+## IGoogleCast Interface
 
-GoogleCast interface properties:
+<a id="IGoogleCast-Properties"></a>
+### Properties
+
+The following properties are provided by the IGoogleCast Interface:
 
 | Property | Description |
 | :-------- | :-------- |

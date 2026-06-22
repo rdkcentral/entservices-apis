@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="SystemMode_Plugin"></a>
-# SystemMode Plugin
+<a id="SystemMode_Module"></a>
+# SystemMode Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/ISystemMode.h)**
 
-A SystemMode plugin for Thunder framework.
+A SystemMode module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [ISystemMode](#ISystemMode)
+    - [Methods](#ISystemMode-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A SystemMode plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `SystemMode` plugin provides an interface for SystemMode.
+The `SystemMode` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- ISystemMode
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSystemMode.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the SystemMode plugin:
+<a id="ISystemMode"></a>
+## ISystemMode Interface
 
-SystemMode interface methods:
+<a id="ISystemMode-Methods"></a>
+### Methods
+
+The following methods are provided by the ISystemMode Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -263,5 +271,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "result": null
 }
 ```
-
 

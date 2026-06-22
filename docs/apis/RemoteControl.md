@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="RemoteControl_Plugin"></a>
-# RemoteControl Plugin
+<a id="RemoteControl_Module"></a>
+# RemoteControl Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RemoteControl/IRemoteControl.h)**
 
-A RemoteControl plugin for Thunder framework.
+A RemoteControl module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IRemoteControl](#IRemoteControl)
+    - [Methods](#IRemoteControl-Methods)
+    - [Notifications](#IRemoteControl-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A RemoteControl plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `RemoteControl` plugin provides an interface for RemoteControl.
+The `RemoteControl` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IRemoteControl
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,20 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRemoteControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the RemoteControl plugin:
+<a id="IRemoteControl"></a>
+## IRemoteControl Interface
 
-RemoteControl interface methods:
+### Description
+
+Interface for the Remote Control JSONRPC API in WPEFramework.  This interface defines the JSONRPC methods and events for remote control management, including pairing, IRDB operations, firmware updates, and related notifications. Implementations of this interface are expected to be registered with the Thunder framework.
+
+<a id="IRemoteControl-Methods"></a>
+### Methods
+
+The following methods are provided by the IRemoteControl Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -1200,16 +1212,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IRemoteControl-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the RemoteControl plugin:
-
-RemoteControl interface events:
+The following events are provided by the IRemoteControl Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -1313,3 +1321,4 @@ Generated for manual pairing validation
     }
 }
 ```
+

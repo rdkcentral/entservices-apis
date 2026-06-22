@@ -1,18 +1,22 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PlayerInfo_Plugin"></a>
-# PlayerInfo Plugin
+<a id="PlayerInfo_Module"></a>
+# PlayerInfo Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo/IPlayerInfo.h)**
 
-A PlayerInfo plugin for Thunder framework.
+A PlayerInfo module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IPlayerProperties](#IPlayerProperties)
+    - [Properties](#IPlayerProperties-Properties)
+  - [IOutput](#IOutput)
+    - [Notifications](#IOutput-Notifications)
+    - [Properties](#IOutput-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +26,12 @@ A PlayerInfo plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PlayerInfo` plugin provides an interface for PlayerInfo.
+The `PlayerInfo` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IPlayerProperties
+- IOutput
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +45,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPlayerInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
+<a id="Interfaces"></a>
+# Interfaces
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the PlayerInfo plugin:
+<a id="IPlayerProperties"></a>
+## IPlayerProperties Interface
 
-PlayerInfo interface properties:
+<a id="IPlayerProperties-Properties"></a>
+### Properties
+
+The following properties are provided by the IPlayerProperties Interface:
 
 | Property | Description |
 | :-------- | :-------- |
@@ -51,10 +62,6 @@ PlayerInfo interface properties:
 | [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
 | [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
 | [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
-| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
-| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
-| [dolby_mode](#dolby_mode) | Dolby Mode |
-| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
 <a id="audioCodecs"></a>
 ## *audioCodecs*
@@ -241,6 +248,60 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     ]
 }
 ```
+
+---
+
+<a id="IOutput"></a>
+## IOutput Interface
+
+<a id="IOutput-Notifications"></a>
+### Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the IOutput Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
+
+<a id="dolby_audiomodechanged"></a>
+## *dolby_audiomodechanged*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
+| params.enabled | bool |  |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
+    "params": {
+        "mode": "UNKNOWN",
+        "enabled": true
+    }
+}
+```
+
+<a id="IOutput-Properties"></a>
+### Properties
+
+The following properties are provided by the IOutput Interface:
+
+| Property | Description |
+| :-------- | :-------- |
+| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
+| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
+| [dolby_mode](#dolby_mode) | Dolby Mode |
+| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
 <a id="dolby_atmosmetadata"></a>
 ## *dolby_atmosmetadata*
@@ -458,42 +519,3 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-<a id="Notifications"></a>
-# Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the PlayerInfo plugin:
-
-PlayerInfo interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
-
-<a id="dolby_audiomodechanged"></a>
-## *dolby_audiomodechanged*
-
-
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
-| params.enabled | bool |  |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
-    "params": {
-        "mode": "UNKNOWN",
-        "enabled": true
-    }
-}
-```

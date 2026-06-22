@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="VoiceControl_Plugin"></a>
-# VoiceControl Plugin
+<a id="VoiceControl_Module"></a>
+# VoiceControl Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/VoiceControl/IVoiceControl.h)**
 
-A VoiceControl plugin for Thunder framework.
+A VoiceControl module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IVoiceControl](#IVoiceControl)
+    - [Methods](#IVoiceControl-Methods)
+    - [Notifications](#IVoiceControl-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A VoiceControl plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `VoiceControl` plugin provides an interface for VoiceControl.
+The `VoiceControl` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IVoiceControl
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,20 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkVoiceControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the VoiceControl plugin:
+<a id="IVoiceControl"></a>
+## IVoiceControl Interface
 
-VoiceControl interface methods:
+### Description
+
+Voice Control JSONRPC interface definition for WPEFramework.  If not stated otherwise in this file or this component's LICENSE file the following copyright and licenses apply:  Copyright 2024 RDK Management  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+<a id="IVoiceControl-Methods"></a>
+### Methods
+
+The following methods are provided by the IVoiceControl Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -463,16 +475,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IVoiceControl-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the VoiceControl plugin:
-
-VoiceControl interface events:
+The following events are provided by the IVoiceControl Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -671,3 +679,4 @@ Triggered when the device has stopped streaming audio
     }
 }
 ```
+

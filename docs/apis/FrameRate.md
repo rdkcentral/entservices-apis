@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="FrameRate_Plugin"></a>
-# FrameRate Plugin
+<a id="FrameRate_Module"></a>
+# FrameRate Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FrameRate/IFrameRate.h)**
 
-A FrameRate plugin for Thunder framework.
+A FrameRate module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IFrameRate](#IFrameRate)
+    - [Methods](#IFrameRate-Methods)
+    - [Notifications](#IFrameRate-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A FrameRate plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `FrameRate` plugin provides an interface for FrameRate.
+The `FrameRate` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IFrameRate
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkFrameRate.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the FrameRate plugin:
+<a id="IFrameRate"></a>
+## IFrameRate Interface
 
-FrameRate interface methods:
+<a id="IFrameRate-Methods"></a>
+### Methods
+
+The following methods are provided by the IFrameRate Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -468,16 +476,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IFrameRate-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the FrameRate plugin:
-
-FrameRate interface events:
+The following events are provided by the IFrameRate Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -560,3 +564,4 @@ Triggered by callback from FrameRate after onFpsEvent
     }
 }
 ```
+

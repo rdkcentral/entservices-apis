@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AVInput_Plugin"></a>
-# AVInput Plugin
+<a id="AVInput_Module"></a>
+# AVInput Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AVInput/IAVInput.h)**
 
-A AVInput plugin for Thunder framework.
+A AVInput module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IAVInput](#IAVInput)
+    - [Methods](#IAVInput-Methods)
+    - [Notifications](#IAVInput-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A AVInput plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `AVInput` plugin provides an interface for AVInput.
+The `AVInput` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAVInput
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,14 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAVInput.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the AVInput plugin:
+<a id="IAVInput"></a>
+## IAVInput Interface
 
-AVInput interface methods:
+<a id="IAVInput-Methods"></a>
+### Methods
 
-**IAVInput methods**
+The following methods are provided by the IAVInput Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -71,17 +77,6 @@ AVInput interface methods:
 | [startInput](#startInput) | Activates the specified HDMI/Composite Input port as the primary video source. |
 | [stopInput](#stopInput) | Deactivates the HDMI/Composite Input port currently selected as the primary video source. |
 | [writeEDID](#writeEDID) | Changes a current EDID value. |
-
----
-
-**IDevicesChangedNotification methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [onDevicesChanged](#onDevicesChanged) | Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input |
-
-<a id="IAVInput-methods"></a>
-### IAVInput Methods
 
 <a id="contentProtected"></a>
 ## *contentProtected*
@@ -1300,84 +1295,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
----
-
-<a id="IDevicesChangedNotification-methods"></a>
-### IDevicesChangedNotification Methods
-
-<a id="onDevicesChanged"></a>
-## *onDevicesChanged*
-
-Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.devices | array |  |
-| params.devices[#].id | int | id |
-| params.devices[#].locator | string | locator |
-| params.devices[#].connected | bool | connected |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.AVInput.onDevicesChanged",
-    "params": [
-        {
-            "id": 0,
-            "locator": "",
-            "connected": true
-        }
-    ]
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AVInput.onDevicesChanged", "params": [{"id": 0, "locator": "", "connected": true}]}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": null
-}
-```
-
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IAVInput-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the AVInput plugin:
-
-AVInput interface events:
+The following events are provided by the IAVInput Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [aviContentTypeUpdate](#aviContentTypeUpdate) | Triggered whenever AV Infoframe content type changes for an HDMI Input |
 | [gameFeatureStatusUpdate](#gameFeatureStatusUpdate) | Triggered whenever game feature(ALLM) status changes for an HDMI Input |
+| [onDevicesChanged](#onDevicesChanged) | Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input |
 | [onInputStatusChanged](#onInputStatusChanged) | Triggered whenever the status changes for an HDMI/Composite Input |
 | [onSignalChanged](#onSignalChanged) | Triggered whenever the signal status changes for an HDMI/Composite Input |
 | [videoStreamInfoUpdate](#videoStreamInfoUpdate) | Triggered whenever there is an update in HDMI/Composite Input video stream info |
@@ -1399,7 +1328,7 @@ Triggered whenever AV Infoframe content type changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 22,
     "method": "org.rdk.AVInput.aviContentTypeUpdate",
     "params": {
         "id": 0,
@@ -1426,13 +1355,44 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 23,
     "method": "org.rdk.AVInput.gameFeatureStatusUpdate",
     "params": {
         "id": 0,
         "gameFeature": "",
         "mode": true
     }
+}
+```
+
+<a id="onDevicesChanged"></a>
+## *onDevicesChanged*
+
+Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.devices | array |  |
+| params.devices[#].id | int | id |
+| params.devices[#].locator | string | locator |
+| params.devices[#].connected | bool | connected |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "method": "org.rdk.AVInput.onDevicesChanged",
+    "params": [
+        {
+            "id": 0,
+            "locator": "",
+            "connected": true
+        }
+    ]
 }
 ```
 
@@ -1529,3 +1489,4 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
     }
 }
 ```
+

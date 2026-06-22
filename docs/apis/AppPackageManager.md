@@ -1,17 +1,21 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AppPackageManager_Plugin"></a>
-# AppPackageManager Plugin
+<a id="AppPackageManager_Module"></a>
+# AppPackageManager Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
 
-A AppPackageManager plugin for Thunder framework.
+A AppPackageManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IPackageDownloader](#IPackageDownloader)
+    - [Methods](#IPackageDownloader-Methods)
+  - [IPackageInstaller](#IPackageInstaller)
+    - [Methods](#IPackageInstaller-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +25,12 @@ A AppPackageManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `AppPackageManager` plugin provides an interface for AppPackageManager.
+The `AppPackageManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IPackageDownloader
+- IPackageInstaller
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,14 +44,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAppPackageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the AppPackageManager plugin:
+<a id="IPackageDownloader"></a>
+## IPackageDownloader Interface
 
-AppPackageManager interface methods:
+<a id="IPackageDownloader-Methods"></a>
+### Methods
 
-**IPackageDownloader methods**
+The following methods are provided by the IPackageDownloader Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,22 +65,6 @@ AppPackageManager interface methods:
 | [progress](#progress) | Progress |
 | [rateLimit](#rateLimit) | RateLimit |
 | [resume](#resume) | Resume |
-
----
-
-**IPackageInstaller methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [config](#config) | Config |
-| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
-| [install](#install) | Install |
-| [listPackages](#listPackages) | ListPackages |
-| [packageState](#packageState) | PackageState |
-| [uninstall](#uninstall) | Uninstall |
-
-<a id="IPackageDownloader-methods"></a>
-### IPackageDownloader Methods
 
 <a id="cancel"></a>
 ## *cancel*
@@ -499,8 +492,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ---
 
-<a id="IPackageInstaller-methods"></a>
-### IPackageInstaller Methods
+<a id="IPackageInstaller"></a>
+## IPackageInstaller Interface
+
+<a id="IPackageInstaller-Methods"></a>
+### Methods
+
+The following methods are provided by the IPackageInstaller Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [config](#config) | Config |
+| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
+| [install](#install) | Install |
+| [listPackages](#listPackages) | ListPackages |
+| [packageState](#packageState) | PackageState |
+| [uninstall](#uninstall) | Uninstall |
 
 <a id="config"></a>
 ## *config*
@@ -947,5 +954,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     }
 }
 ```
-
 

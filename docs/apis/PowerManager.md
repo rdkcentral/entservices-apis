@@ -1,19 +1,21 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PowerManager_Plugin"></a>
-# PowerManager Plugin
+<a id="PowerManager_Module"></a>
+# PowerManager Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PowerManager/IPowerManager.h)**
 
-A PowerManager plugin for Thunder framework.
+A PowerManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IPowerManager](#IPowerManager)
+    - [Methods](#IPowerManager-Methods)
+    - [Notifications](#IPowerManager-Notifications)
+    - [Properties](#IPowerManager-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -23,9 +25,11 @@ A PowerManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PowerManager` plugin provides an interface for PowerManager.
+The `PowerManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IPowerManager
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -39,12 +43,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPowerManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the PowerManager plugin:
+<a id="IPowerManager"></a>
+## IPowerManager Interface
 
-PowerManager interface methods:
+<a id="IPowerManager-Methods"></a>
+### Methods
+
+The following methods are provided by the IPowerManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -855,12 +863,186 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
+<a id="IPowerManager-Notifications"></a>
+### Notifications
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the PowerManager plugin:
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-PowerManager interface properties:
+The following events are provided by the IPowerManager Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onDeepSleepTimeout](#onDeepSleepTimeout) | Deep sleep timeout event |
+| [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Network Standby Mode changed event - only on XIone |
+| [onPowerModeChanged](#onPowerModeChanged) | Power mode changed |
+| [onPowerModePreChange](#onPowerModePreChange) | Power mode Pre-change event |
+| [onRebootBegin](#onRebootBegin) | Reboot begin event |
+| [onThermalModeChanged](#onThermalModeChanged) | Thermal Mode changed event |
+
+<a id="onDeepSleepTimeout"></a>
+## *onDeepSleepTimeout*
+
+Deep sleep timeout event
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.wakeupTimeout | int | Deep sleep wakeup timeout in seconds |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.PowerManager.onDeepSleepTimeout",
+    "params": {
+        "wakeupTimeout": 0
+    }
+}
+```
+
+<a id="onNetworkStandbyModeChanged"></a>
+## *onNetworkStandbyModeChanged*
+
+Network Standby Mode changed event - only on XIone
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enabled | bool | network standby enabled or disabled |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.PowerManager.onNetworkStandbyModeChanged",
+    "params": {
+        "enabled": true
+    }
+}
+```
+
+<a id="onPowerModeChanged"></a>
+## *onPowerModeChanged*
+
+Power mode changed
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.PowerManager.onPowerModeChanged",
+    "params": {
+        "currentState": "UNKNOWN",
+        "newState": "UNKNOWN"
+    }
+}
+```
+
+<a id="onPowerModePreChange"></a>
+## *onPowerModePreChange*
+
+Power mode Pre-change event
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | Changing power state to this New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
+| params.stateChangeAfter | int | seconds after which the actual power mode will be applied. |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.PowerManager.onPowerModePreChange",
+    "params": {
+        "currentState": "UNKNOWN",
+        "newState": "UNKNOWN",
+        "transactionId": 0,
+        "stateChangeAfter": 0
+    }
+}
+```
+
+<a id="onRebootBegin"></a>
+## *onRebootBegin*
+
+Reboot begin event
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.rebootReasonCustom | string | Reboot reason custom |
+| params.rebootReasonOther | string | Reboot reason other |
+| params.rebootRequestor | string | Reboot requested by |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.PowerManager.onRebootBegin",
+    "params": {
+        "rebootReasonCustom": "",
+        "rebootReasonOther": "",
+        "rebootRequestor": ""
+    }
+}
+```
+
+<a id="onThermalModeChanged"></a>
+## *onThermalModeChanged*
+
+Thermal Mode changed event
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentThermalLevel | string | current thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
+| params.newThermalLevel | string | new thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
+| params.currentTemperature | float | current temperature |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.PowerManager.onThermalModeChanged",
+    "params": {
+        "currentThermalLevel": "UNKNOWN Thermal Temperature",
+        "newThermalLevel": "UNKNOWN Thermal Temperature",
+        "currentTemperature": 0.0
+    }
+}
+```
+
+<a id="IPowerManager-Properties"></a>
+### Properties
+
+The following properties are provided by the IPowerManager Interface:
 
 | Property | Description |
 | :-------- | :-------- |
@@ -1150,181 +1332,3 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
-
-<a id="Notifications"></a>
-# Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the PowerManager plugin:
-
-PowerManager interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [onDeepSleepTimeout](#onDeepSleepTimeout) | Deep sleep timeout event |
-| [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Network Standby Mode changed event - only on XIone |
-| [onPowerModeChanged](#onPowerModeChanged) | Power mode changed |
-| [onPowerModePreChange](#onPowerModePreChange) | Power mode Pre-change event |
-| [onRebootBegin](#onRebootBegin) | Reboot begin event |
-| [onThermalModeChanged](#onThermalModeChanged) | Thermal Mode changed event |
-
-<a id="onDeepSleepTimeout"></a>
-## *onDeepSleepTimeout*
-
-Deep sleep timeout event
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.wakeupTimeout | int | Deep sleep wakeup timeout in seconds |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.PowerManager.onDeepSleepTimeout",
-    "params": {
-        "wakeupTimeout": 0
-    }
-}
-```
-
-<a id="onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged*
-
-Network Standby Mode changed event - only on XIone
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | bool | network standby enabled or disabled |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.PowerManager.onNetworkStandbyModeChanged",
-    "params": {
-        "enabled": true
-    }
-}
-```
-
-<a id="onPowerModeChanged"></a>
-## *onPowerModeChanged*
-
-Power mode changed
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
-| params.newState | string | New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.PowerManager.onPowerModeChanged",
-    "params": {
-        "currentState": "UNKNOWN",
-        "newState": "UNKNOWN"
-    }
-}
-```
-
-<a id="onPowerModePreChange"></a>
-## *onPowerModePreChange*
-
-Power mode Pre-change event
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
-| params.newState | string | Changing power state to this New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
-| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
-| params.stateChangeAfter | int | seconds after which the actual power mode will be applied. |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.PowerManager.onPowerModePreChange",
-    "params": {
-        "currentState": "UNKNOWN",
-        "newState": "UNKNOWN",
-        "transactionId": 0,
-        "stateChangeAfter": 0
-    }
-}
-```
-
-<a id="onRebootBegin"></a>
-## *onRebootBegin*
-
-Reboot begin event
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.rebootReasonCustom | string | Reboot reason custom |
-| params.rebootReasonOther | string | Reboot reason other |
-| params.rebootRequestor | string | Reboot requested by |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.PowerManager.onRebootBegin",
-    "params": {
-        "rebootReasonCustom": "",
-        "rebootReasonOther": "",
-        "rebootRequestor": ""
-    }
-}
-```
-
-<a id="onThermalModeChanged"></a>
-## *onThermalModeChanged*
-
-Thermal Mode changed event
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.currentThermalLevel | string | current thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
-| params.newThermalLevel | string | new thermal level. Possible values: UNKNOWN Thermal Temperature, Normal Thermal Temperature, High Thermal Temperature, Critial Thermal Temperature |
-| params.currentTemperature | float | current temperature |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.PowerManager.onThermalModeChanged",
-    "params": {
-        "currentThermalLevel": "UNKNOWN Thermal Temperature",
-        "newThermalLevel": "UNKNOWN Thermal Temperature",
-        "currentTemperature": 0.0
-    }
-}
-```

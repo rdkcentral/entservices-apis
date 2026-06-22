@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="USBMassStorage_Plugin"></a>
-# USBMassStorage Plugin
+<a id="USBMassStorage_Module"></a>
+# USBMassStorage Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBMassStorage/IUSBMassStorage.h)**
 
-A USBMassStorage plugin for Thunder framework.
+A USBMassStorage module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUSBMassStorage](#IUSBMassStorage)
+    - [Methods](#IUSBMassStorage-Methods)
+    - [Notifications](#IUSBMassStorage-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A USBMassStorage plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `USBMassStorage` plugin provides an interface for USBMassStorage.
+The `USBMassStorage` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUSBMassStorage
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBMassStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the USBMassStorage plugin:
+<a id="IUSBMassStorage"></a>
+## IUSBMassStorage Interface
 
-USBMassStorage interface methods:
+<a id="IUSBMassStorage-Methods"></a>
+### Methods
+
+The following methods are provided by the IUSBMassStorage Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -236,16 +244,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUSBMassStorage-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the USBMassStorage plugin:
-
-USBMassStorage interface events:
+The following events are provided by the IUSBMassStorage Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -335,3 +339,4 @@ Device Unmounted notification @@iterator
     }
 }
 ```
+

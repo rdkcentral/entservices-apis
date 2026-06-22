@@ -36,6 +36,7 @@ class HeaderFileParser:
         ('config',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@docs:config\s*\|?\s*([\w\.\?]+)\s*\|\s*(\w+)\s*\|\s*(.*?)\|?(?=\s*\*\/|$)')),
         ('text',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(?:@text|@alt)\s+(.*?)(?=\s*\*\/|$)')),
         ('brief',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@brief\s+(.*?)(?=\s*\*\/|$)')),
+        ('desc',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@desc\s*(.*?)(?=\s*\*\/|$)')),
         ('details',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@details\s+(.*?)(?=\s*\*\/|$)')),
         ('params',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@param(\[\w+\])?\s+([^\s:(]+)(?:\(([^)]*)\))?\s*:?\s*(.*?)(?=\s*\*\/|$)')),
         ('errors',      'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@errors\s+(\w+)\s*\[(\d+?)\]\s+(.*?)?(?=\s*\*\/|$)')),
@@ -136,6 +137,7 @@ class HeaderFileParser:
         self.methods = {}
         self.properties = {}
         self.events = {}
+        self.interfaces = {}
         self.structs_registry = {}
         self.iterators_registry = {}
         self.enums_registry = {}
@@ -337,6 +339,9 @@ class HeaderFileParser:
         elif line_tag == 'text':
             self.doxy_tags['text'] = groups[0]
             self.latest_tag = ''
+        elif line_tag == 'desc':
+            self.doxy_tags['desc'] = groups[0]
+            self.latest_tag = 'desc'
         elif line_tag == 'params':
             self.latest_param = groups[1]
             self.latest_tag = 'params'
@@ -534,7 +539,15 @@ class HeaderFileParser:
         match = self.CPP_COMPONENT_REGEX['method'].match(method_object)
         if match:
             method_return_type, method_name, method_parameters = match.groups()
-            owner_interface = self._get_scope_interface_name(scope[-1])
+            current_scope_interface = self._get_scope_interface_name(scope[-1])
+            parent_scope_interface = self._get_scope_interface_name(scope[-2]) if len(scope) > 1 else ''
+            is_notification_scope = self._is_notification_interface_name(current_scope_interface)
+            is_event_scope = (
+                '_HasEventTag' in scope[-1] or
+                'INotification' in scope[-1] or
+                is_notification_scope
+            )
+            owner_interface = parent_scope_interface if is_notification_scope and parent_scope_interface else current_scope_interface
 
             method_info = self.build_method_info(method_return_type, method_parameters, doxy_tags)
             method_info['cpp_name'] = method_name
@@ -545,7 +558,7 @@ class HeaderFileParser:
             # if the interface struct does not have a @json tag, skip registering the methods
             if '_HasJsonTag' not in scope[-1]:
                 return
-            if '_HasEventTag' in scope[-1] or 'INotification' in scope[-1]:
+            if is_event_scope:
                 self.events[method_name] = method_info
             # if we are parsing a method that has the same name as a property we have already
             # encountered/parsed, that means we are encountering the getter/setter version definition
@@ -721,6 +734,19 @@ class HeaderFileParser:
         # if this line contains the declaration of an external structure, update it as the scope
         if external_struct_tracker_match:
             scope_name = external_struct_tracker_match.group(1)
+            interface_description = self._extract_interface_description()
+            interface_has_json = self.in_json_tag or '_HasJsonTag' in scope[-1]
+            if not self._is_notification_interface_name(scope_name):
+                if scope_name not in self.interfaces:
+                    self.interfaces[scope_name] = {
+                        'description': interface_description,
+                        'has_json': interface_has_json
+                    }
+                elif interface_description and not self.interfaces[scope_name].get('description'):
+                    self.interfaces[scope_name]['description'] = interface_description
+                elif interface_has_json and not self.interfaces[scope_name].get('has_json'):
+                    self.interfaces[scope_name]['has_json'] = True
+
             if self.in_event:
                 if scope_name not in self.notification_names:
                     self.notification_names.append(scope_name)
@@ -741,6 +767,18 @@ class HeaderFileParser:
                 scope.pop()
                 brace_count.pop()
         return scope, brace_count
+
+    def _extract_interface_description(self):
+        """Build interface description text from nearby doxygen tags."""
+        description = self.doxy_tags.get('desc', '') or self.doxy_tags.get('details', '') or self.doxy_tags.get('brief', '')
+        return self.clean_description(description).strip() if description else ''
+
+    def _is_notification_interface_name(self, interface_name):
+        """Return True for callback/event interface names that should not become top-level API interfaces."""
+        return bool(interface_name) and (
+            interface_name == 'INotification' or
+            interface_name.endswith('Notification')
+        )
 
     def generate_request_response_objects(self):
         """

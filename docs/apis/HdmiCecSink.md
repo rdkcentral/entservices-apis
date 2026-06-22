@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="HdmiCecSink_Plugin"></a>
-# HdmiCecSink Plugin
+<a id="HdmiCecSink_Module"></a>
+# HdmiCecSink Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/HdmiCecSink/IHdmiCecSink.h)**
 
-A HdmiCecSink plugin for Thunder framework.
+A HdmiCecSink module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IHdmiCecSink](#IHdmiCecSink)
+    - [Methods](#IHdmiCecSink-Methods)
+    - [Notifications](#IHdmiCecSink-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A HdmiCecSink plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `HdmiCecSink` plugin provides an interface for HdmiCecSink.
+The `HdmiCecSink` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IHdmiCecSink
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkHdmiCecSink.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the HdmiCecSink plugin:
+<a id="IHdmiCecSink"></a>
+## IHdmiCecSink Interface
 
-HdmiCecSink interface methods:
+<a id="IHdmiCecSink-Methods"></a>
+### Methods
+
+The following methods are provided by the IHdmiCecSink Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -1472,16 +1480,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IHdmiCecSink-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the HdmiCecSink plugin:
-
-HdmiCecSink interface events:
+The following events are provided by the IHdmiCecSink Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -1999,3 +2003,4 @@ Triggered when the source device changes status to STANDBY.
     }
 }
 ```
+

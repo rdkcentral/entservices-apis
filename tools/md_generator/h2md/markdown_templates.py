@@ -23,12 +23,12 @@ import os
 
 # Templates
 HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
-<a id="{classname}_Plugin"></a>
-# {classname} Plugin
+<a id="{classname}_Module"></a>
+# {classname} Module
 
 **Version: [{version}](https://github.com/rdkcentral/entservices-apis/tree/main/apis/{foldername})**
 
-A {classname} plugin for Thunder framework.
+A {classname} module for Thunder framework.
 
 ### Table of Contents
 
@@ -46,9 +46,11 @@ HEADER_DESCRIPTION_TEMPLATE = """
 <a id="Description"></a>
 # Description
 
-The `{classname}` plugin provides an interface for {classname}.
+{description_line}
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+{interfaces_list}
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -67,9 +69,9 @@ METHODS_TOC_TEMPLATE = """
 <a id="Methods"></a>
 # Methods
 
-The following methods are provided by the {classname} plugin:
+The following methods are provided by the I{classname} Interface:
 
-{classname} interface methods:
+
 
 | Method | Description |
 | :-------- | :-------- |
@@ -78,10 +80,6 @@ The following methods are provided by the {classname} plugin:
 METHODS_INTRO_TEMPLATE = """
 <a id="Methods"></a>
 # Methods
-
-The following methods are provided by the {classname} plugin:
-
-{classname} interface methods:
 """
 
 METHOD_MARKDOWN_TEMPLATE = """
@@ -95,9 +93,9 @@ METHOD_MARKDOWN_TEMPLATE = """
 PROPERTIES_TOC_TEMPLATE = """
 <a id="Properties"></a>
 # Properties
-The following properties are provided by the {classname} plugin:
+The following properties are provided by the {classname} module:
 
-{classname} interface properties:
+
 
 | Property | Description |
 | :-------- | :-------- |
@@ -117,9 +115,9 @@ EVENTS_TOC_TEMPLATE = """
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the {classname} plugin:
+The following events are provided by the I{classname} Interface:
 
-{classname} interface events:
+
 
 | Event | Description |
 | :-------- | :-------- |
@@ -203,7 +201,7 @@ def generate_error_examples_section(retvals, request_id):
         markdown += f"\n```json\n{json.dumps(_convert_json_types(error_response), indent=4)}\n```\n"
     return markdown
 
-def generate_header_toc(classname, document_object, version, foldername):
+def generate_header_toc(classname, document_object, version, foldername, interface_sections=None):
     """
     Generate the header table of contents for the markdown file.
     """
@@ -212,25 +210,36 @@ def generate_header_toc(classname, document_object, version, foldername):
     directory_name = os.path.dirname(foldername)
     parent_name = os.path.basename(directory_name)
     toc = HEADER_TOC_TEMPLATE.format(classname=classname, version=version, foldername=os.path.join(parent_name,interface_name))
-    if len(document_object.methods.values()) > 0:
-        toc += "- [Methods](#Methods)\n"
-    if len(document_object.properties.values()) > 0:
-        toc += "- [Properties](#Properties)\n"
-    if len(document_object.events.values()) > 0:
-        toc += "- [Notifications](#Notifications)\n"
+    if len(document_object.methods.values()) > 0 or len(document_object.events.values()) > 0 or len(document_object.properties.values()) > 0:
+        toc += "- [Interfaces](#Interfaces)\n"
+        for section in (interface_sections or []):
+            interface_name = section['name']
+            toc += f"  - [{interface_name}](#{interface_name})\n"
+            if section.get('has_methods'):
+                toc += f"    - [Methods](#{interface_name}-Methods)\n"
+            if section.get('has_notifications'):
+                toc += f"    - [Notifications](#{interface_name}-Notifications)\n"
+            if section.get('has_properties'):
+                toc += f"    - [Properties](#{interface_name}-Properties)\n"
     return toc
 
-def generate_header_description_markdown(classname, plugindescription=None):
+def generate_header_description_markdown(classname, plugindescription=None, interfaces=None):
     """
     Generate the header description markdown for the file.
     """
-    description_line = (
-        plugindescription.strip() if plugindescription else f'The `{classname}` plugin provides an interface for {classname}.'
+    if plugindescription and plugindescription.strip():
+        description_line = plugindescription.strip()
+    else:
+        description_line = f'The `{classname}` module provides the following interface(s):'
+
+    interfaces = interfaces or []
+    interfaces_list = "\n".join([f"- {interface_name}" for interface_name in interfaces])
+
+    return HEADER_DESCRIPTION_TEMPLATE.format(
+        classname=classname,
+        description_line=description_line,
+        interfaces_list=interfaces_list
     )
-    return HEADER_DESCRIPTION_TEMPLATE.replace(
-        'The `{classname}` plugin provides an interface for {classname}.',
-        description_line
-    ).format(classname=classname)
 
 def generate_configuration_options_section(configuration_options):
     """
@@ -271,7 +280,7 @@ def generate_methods_toc(methods, classname):
         for iface in interfaces:
             if not first:
                 toc += "\n---\n"
-            toc += f"\n**{iface} methods**\n\n"
+            toc += f"\nThe following methods are provided by the {iface} Interface:\n\n"
             toc += "| Method | Description |\n| :-------- | :-------- |\n"
             for method, method_info in methods.items():
                 if method_info.get('owner_interface', '') == iface:
@@ -581,6 +590,29 @@ def generate_notifications_toc(events, classname):
     """
     Generate the notifications table of contents for the markdown file.
     """
+    interfaces = _ordered_interfaces(events)
+
+    if len(interfaces) > 1:
+        toc = """
+<a id="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+"""
+        first = True
+        for iface in interfaces:
+            if not first:
+                toc += "\n---\n"
+            toc += f"\nThe following events are provided by the {iface} Interface:\n\n"
+            toc += "| Event | Description |\n| :-------- | :-------- |\n"
+            for event, event_info in events.items():
+                if event_info.get('owner_interface', '') == iface:
+                    event_name = event_info.get('text') or to_camel_case(event)
+                    deprecated_sup = "<sup>deprecated</sup>" if 'deprecated' in event_info else ""
+                    toc += f"| [{event_name}](#{event_name}){deprecated_sup} | {event_info['brief'] or event_info['details']} |\n"
+            first = False
+        return toc
+
     toc = EVENTS_TOC_TEMPLATE.replace('| Method |', '| Event |').format(classname=classname)
     for event in events:
         event_info = events[event]

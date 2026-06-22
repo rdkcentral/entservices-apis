@@ -1,18 +1,22 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="UserSettings_Plugin"></a>
-# UserSettings Plugin
+<a id="UserSettings_Module"></a>
+# UserSettings Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UserSettings/IUserSettings.h)**
 
-A UserSettings plugin for Thunder framework.
+A UserSettings module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUserSettings](#IUserSettings)
+    - [Methods](#IUserSettings-Methods)
+    - [Notifications](#IUserSettings-Notifications)
+  - [IUserSettingsInspector](#IUserSettingsInspector)
+    - [Methods](#IUserSettingsInspector-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +26,12 @@ A UserSettings plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `UserSettings` plugin provides an interface for UserSettings.
+The `UserSettings` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUserSettings
+- IUserSettingsInspector
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,14 +45,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUserSettings.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the UserSettings plugin:
+<a id="IUserSettings"></a>
+## IUserSettings Interface
 
-UserSettings interface methods:
+<a id="IUserSettings-Methods"></a>
+### Methods
 
-**IUserSettings methods**
+The following methods are provided by the IUserSettings Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -87,18 +96,6 @@ UserSettings interface methods:
 | [setVoiceGuidance](#setVoiceGuidance) | Sets voiceGuidance. Whether Voice Guidance is enabled or not. |
 | [setVoiceGuidanceHints](#setVoiceGuidanceHints) | Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not. |
 | [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive. |
-
----
-
-**IUserSettingsInspector methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [getMigrationState](#getMigrationState) | Get the migration state of the respective key |
-| [getMigrationStates](#getMigrationStates) | Get the migration state of all the defined keys |
-
-<a id="IUserSettings-methods"></a>
-### IUserSettings Methods
 
 <a id="getAudioDescription"></a>
 ## *getAudioDescription*
@@ -1981,128 +1978,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
 }
 ```
 
----
-
-<a id="IUserSettingsInspector-methods"></a>
-### IUserSettingsInspector Methods
-
-<a id="getMigrationState"></a>
-## *getMigrationState*
-
-Get the migration state of the respective key
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.key | string | one of UserSettingsKey. Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.requiresMigration | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "method": "org.rdk.UserSettings.getMigrationState",
-    "params": {
-        "key": "PREFERRED_AUDIO_LANGUAGES"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "result": {
-        "requiresMigration": true
-    }
-}
-```
-
-<a id="getMigrationStates"></a>
-## *getMigrationStates*
-
-Get the migration state of all the defined keys
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.states | array | array of migration status. |
-| result.states[#].key | string | Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
-| result.states[#].requiresMigration | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 39,
-    "method": "org.rdk.UserSettings.getMigrationStates"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 39,
-    "result": [
-        {
-            "key": "PREFERRED_AUDIO_LANGUAGES",
-            "requiresMigration": true
-        }
-    ]
-}
-```
-
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUserSettings-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the UserSettings plugin:
-
-UserSettings interface events:
+The following events are provided by the IUserSettings Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -2581,3 +2462,126 @@ Triggered after the voice guidance rate changed.
     }
 }
 ```
+
+---
+
+<a id="IUserSettingsInspector"></a>
+## IUserSettingsInspector Interface
+
+<a id="IUserSettingsInspector-Methods"></a>
+### Methods
+
+The following methods are provided by the IUserSettingsInspector Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getMigrationState](#getMigrationState) | Get the migration state of the respective key |
+| [getMigrationStates](#getMigrationStates) | Get the migration state of all the defined keys |
+
+<a id="getMigrationState"></a>
+## *getMigrationState*
+
+Get the migration state of the respective key
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.key | string | one of UserSettingsKey. Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.requiresMigration | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "method": "org.rdk.UserSettings.getMigrationState",
+    "params": {
+        "key": "PREFERRED_AUDIO_LANGUAGES"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "result": {
+        "requiresMigration": true
+    }
+}
+```
+
+<a id="getMigrationStates"></a>
+## *getMigrationStates*
+
+Get the migration state of all the defined keys
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.states | array | array of migration status. |
+| result.states[#].key | string | Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
+| result.states[#].requiresMigration | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "method": "org.rdk.UserSettings.getMigrationStates"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "result": [
+        {
+            "key": "PREFERRED_AUDIO_LANGUAGES",
+            "requiresMigration": true
+        }
+    ]
+}
+```
+

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="FirmwareDownload_Plugin"></a>
-# FirmwareDownload Plugin
+<a id="FirmwareDownload_Module"></a>
+# FirmwareDownload Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FirmwareDownload/IFirmwareDownload.h)**
 
-A FirmwareDownload plugin for Thunder framework.
+A FirmwareDownload module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IFirmwareDownload](#IFirmwareDownload)
+    - [Methods](#IFirmwareDownload-Methods)
+    - [Notifications](#IFirmwareDownload-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A FirmwareDownload plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `FirmwareDownload` plugin provides an interface for FirmwareDownload.
+The `FirmwareDownload` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IFirmwareDownload
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkFirmwareDownload.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the FirmwareDownload plugin:
+<a id="IFirmwareDownload"></a>
+## IFirmwareDownload Interface
 
-FirmwareDownload interface methods:
+<a id="IFirmwareDownload-Methods"></a>
+### Methods
+
+The following methods are provided by the IFirmwareDownload Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -296,16 +304,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IFirmwareDownload-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the FirmwareDownload plugin:
-
-FirmwareDownload interface events:
+The following events are provided by the IFirmwareDownload Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -342,3 +346,4 @@ Triggered when the SearchFirmware asynchronous method is invoked
     }
 }
 ```
+

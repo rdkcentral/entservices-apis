@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AppStorageManager_Plugin"></a>
-# AppStorageManager Plugin
+<a id="AppStorageManager_Module"></a>
+# AppStorageManager Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppStorageManager/IAppStorageManager.h)**
 
-A AppStorageManager plugin for Thunder framework.
+A AppStorageManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IAppStorageManager](#IAppStorageManager)
+    - [Methods](#IAppStorageManager-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A AppStorageManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `AppStorageManager` plugin provides an interface for AppStorageManager.
+The `AppStorageManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAppStorageManager
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAppStorageManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the AppStorageManager plugin:
+<a id="IAppStorageManager"></a>
+## IAppStorageManager Interface
 
-AppStorageManager interface methods:
+<a id="IAppStorageManager-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppStorageManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -156,5 +164,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     }
 }
 ```
-
 

@@ -1,18 +1,27 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="TextTrack_Plugin"></a>
-# TextTrack Plugin
+<a id="TextTrack_Module"></a>
+# TextTrack Module
 
 **Version: [1.4.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
 
-A TextTrack plugin for Thunder framework.
+A TextTrack module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [ITextTrackClosedCaptionsStyle](#ITextTrackClosedCaptionsStyle)
+    - [Methods](#ITextTrackClosedCaptionsStyle-Methods)
+    - [Notifications](#ITextTrackClosedCaptionsStyle-Notifications)
+  - [ITextTrackTtmlStyle](#ITextTrackTtmlStyle)
+    - [Methods](#ITextTrackTtmlStyle-Methods)
+    - [Notifications](#ITextTrackTtmlStyle-Notifications)
+  - [ITextTrackCapabilities](#ITextTrackCapabilities)
+    - [Methods](#ITextTrackCapabilities-Methods)
+  - [ITextTrack](#ITextTrack)
+    - [Methods](#ITextTrack-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +31,14 @@ A TextTrack plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `TextTrack` plugin provides an interface for TextTrack.
+The `TextTrack` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- ITextTrackClosedCaptionsStyle
+- ITextTrackTtmlStyle
+- ITextTrackCapabilities
+- ITextTrack
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,46 +52,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkTextTrack.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the TextTrack plugin:
+<a id="ITextTrackClosedCaptionsStyle"></a>
+## ITextTrackClosedCaptionsStyle Interface
 
-TextTrack interface methods:
+<a id="ITextTrackClosedCaptionsStyle-Methods"></a>
+### Methods
 
-**ITextTrack methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [closeSession](#closeSession) | Closes a previously opened render session. |
-| [muteSession](#muteSession) | Mute will hide rendering of Captions |
-| [openSession](#openSession) | Opens a new renderSession. |
-| [pauseSession](#pauseSession) | Pauses a render session. |
-| [resetSession](#resetSession) | Resets a previously opened render session back to its opened state. |
-| [resumeSession](#resumeSession) | Resumed a paused session |
-| [sendSessionData](#sendSessionData) | Sends data of Closed Captions, Captions or Timed Text data to a render session. |
-| [sendSessionTimestamp](#sendSessionTimestamp) | Sends the current timestamp from a media player to a render session. |
-| [setPreviewText](#setPreviewText) | Sets a static text in the display for preview purposes. |
-| [setSessionClosedCaptionsService](#setSessionClosedCaptionsService) | Sets the render session into CC mode. |
-| [setSessionDvbSubtitleSelection](#setSessionDvbSubtitleSelection) | Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743) |
-| [setSessionSCTESelection](#setSessionSCTESelection) | Set the render session into SCTE mode |
-| [setSessionTTMLSelection](#setSessionTTMLSelection) | Set the render session into TTML mode |
-| [setSessionTeletextSelection](#setSessionTeletextSelection) | Set the render session into Teletext mode, providing the teletext caption page for presentation |
-| [setSessionWebVTTSelection](#setSessionWebVTTSelection) | Set the render session into WebVTT mode |
-| [unMuteSession](#unMuteSession) | UnMute will unhide the rendering of Captions. |
-
----
-
-**ITextTrackCapabilities methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [getCapabilities](#getCapabilities) | Retrieves an iterator over all supported TextTrack capabilities. |
-| [getCapability](#getCapability) | Queries whether a specific TextTrack capability is supported by the implementation. |
-
----
-
-**ITextTrackClosedCaptionsStyle methods**
+The following methods are provided by the ITextTrackClosedCaptionsStyle Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -103,996 +87,6 @@ TextTrack interface methods:
 | [setFontSize](#setFontSize) | Setter for FontSize |
 | [setWindowColor](#setWindowColor) | Setter for WindowColor |
 | [setWindowOpacity](#setWindowOpacity) | Setter for WindowOpacity |
-
----
-
-**ITextTrackTtmlStyle methods**
-
-| Method | Description |
-| :-------- | :-------- |
-| [getTtmlStyleOverrides](#getTtmlStyleOverrides) | Gets the global TTML style overrides |
-| [setTtmlStyleOverrides](#setTtmlStyleOverrides) | Sets global TTML override style. |
-
-<a id="ITextTrack-methods"></a>
-### ITextTrack Methods
-
-<a id="closeSession"></a>
-## *closeSession*
-
-Any created windows and surfaces is destroyed
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session to close |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.TextTrack.closeSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
-<a id="muteSession"></a>
-## *muteSession*
-
-Mute will hide rendering of Captions
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.TextTrack.muteSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
-}
-```
-
-<a id="openSession"></a>
-## *openSession*
-
-If a session is already running on the supplied displayHandle, the sessionId for this session is returned. If the session is instead newly opened, the session type is not set and display is muted. Use one of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.displayHandle | string | is an encoding of the wayland display name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.sessionId | integer | On success the returned session id  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.TextTrack.openSession",
-    "params": {
-        "displayHandle": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "sessionId": 1
-    }
-}
-```
-
-<a id="pauseSession"></a>
-## *pauseSession*
-
-Any text rendered remains on screen and any text due to be rendered soon is held until the render session is resumed.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.TextTrack.pauseSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
-}
-```
-
-<a id="resetSession"></a>
-## *resetSession*
-
-The state will be like after calling OpenSession()
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session to reset |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.TextTrack.resetSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
-}
-```
-
-<a id="resumeSession"></a>
-## *resumeSession*
-
-Resumed a paused session
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.TextTrack.resumeSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
-}
-```
-
-<a id="sendSessionData"></a>
-## *sendSessionData*
-
-Sends data of Closed Captions, Captions or Timed Text data to a render session.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-| params.type | string | Is the type of data. Possible values: PES, TTML, CC, WEBVTT |
-| params.displayOffsetMs | integer | Is currently unused |
-| params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.TextTrack.sendSessionData",
-    "params": {
-        "sessionId": 1,
-        "type": "PES",
-        "displayOffsetMs": 0,
-        "data": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "PES", "displayOffsetMs": 0, "data": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": null
-}
-```
-
-<a id="sendSessionTimestamp"></a>
-## *sendSessionTimestamp*
-
-The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-| params.mediaTimestampMs | integer | Is a timestamp |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.TextTrack.sendSessionTimestamp",
-    "params": {
-        "sessionId": 1,
-        "mediaTimestampMs": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": null
-}
-```
-
-<a id="setPreviewText"></a>
-## *setPreviewText*
-
-The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | On success the returned session id  |
-| params.text | string | Is the text to display |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.TextTrack.setPreviewText",
-    "params": {
-        "sessionId": 1,
-        "text": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": null
-}
-```
-
-<a id="setSessionClosedCaptionsService"></a>
-## *setSessionClosedCaptionsService*
-
-Selecting the specified CC service to decode and display in the specified render session. This should be done before starting the injection of data. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-| params.service | string | Identifies the service to display  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.TextTrack.setSessionClosedCaptionsService",
-    "params": {
-        "sessionId": 1,
-        "service": "CC3"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": null
-}
-```
-
-<a id="setSessionDvbSubtitleSelection"></a>
-## *setSessionDvbSubtitleSelection*
-
-Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-| params.compositionPageId | integer | Is the one Id |
-| params.ancillaryPageId | integer | Is the other Id |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection",
-    "params": {
-        "sessionId": 1,
-        "compositionPageId": 0,
-        "ancillaryPageId": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 0, "ancillaryPageId": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": null
-}
-```
-
-<a id="setSessionSCTESelection"></a>
-## *setSessionSCTESelection*
-
-Set the render session into SCTE mode
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.TextTrack.setSessionSCTESelection",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": null
-}
-```
-
-<a id="setSessionTTMLSelection"></a>
-## *setSessionTTMLSelection*
-
-Set the render session into TTML mode
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.TextTrack.setSessionTTMLSelection",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": null
-}
-```
-
-<a id="setSessionTeletextSelection"></a>
-## *setSessionTeletextSelection*
-
-Set the render session into Teletext mode, providing the teletext caption page for presentation
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-| params.page | integer | The user selected teletext caption page 100-899 |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.TextTrack.setSessionTeletextSelection",
-    "params": {
-        "sessionId": 1,
-        "page": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": null
-}
-```
-
-<a id="setSessionWebVTTSelection"></a>
-## *setSessionWebVTTSelection*
-
-Set the render session into WebVTT mode
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.TextTrack.setSessionWebVTTSelection",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": null
-}
-```
-
-<a id="unMuteSession"></a>
-## *unMuteSession*
-
-A newly created session is muted and should be unmuted to me visible
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | integer | Is the session |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.TextTrack.unMuteSession",
-    "params": {
-        "sessionId": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": null
-}
-```
-
----
-
-<a id="ITextTrackCapabilities-methods"></a>
-### ITextTrackCapabilities Methods
-
-<a id="getCapabilities"></a>
-## *getCapabilities*
-
-Retrieves an iterator over all supported TextTrack capabilities.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.capabilities | array | Iterator providing the list of supported capabilities. |
-| result.capabilities[#] | string | Possible values: UNSET, FIREBOLT_MIGRATION |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.TextTrack.getCapabilities"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": [
-        "UNSET"
-    ]
-}
-```
-
-
-#### Error Response (Core::ERROR_NOT_SUPPORTED)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 22,
-        "message": "Retrieving capabilities is not supported."
-    }
-}
-```
-
-<a id="getCapability"></a>
-## *getCapability*
-
-Queries whether a specific TextTrack capability is supported by the implementation.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.capability | string | The capability to query . Possible values: UNSET, FIREBOLT_MIGRATION |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.hasCapability | bool | Indicates whether the queried capability is supported. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.TextTrack.getCapability",
-    "params": {
-        "capability": "FIREBOLT_MIGRATION"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": {
-        "hasCapability": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_NOT_SUPPORTED)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 22,
-        "message": "Capability querying is not supported."
-    }
-}
-```
-
----
-
-<a id="ITextTrackClosedCaptionsStyle-methods"></a>
-### ITextTrackClosedCaptionsStyle Methods
 
 <a id="getBackgroundColor"></a>
 ## *getBackgroundColor*
@@ -2221,120 +1215,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 }
 ```
 
----
-
-<a id="ITextTrackTtmlStyle-methods"></a>
-### ITextTrackTtmlStyle Methods
-
-<a id="getTtmlStyleOverrides"></a>
-## *getTtmlStyleOverrides*
-
-Gets the global TTML style overrides
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.style | string | will receive the style overrides |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 40,
-    "method": "org.rdk.TextTrack.getTtmlStyleOverrides"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 40,
-    "result": {
-        "style": ""
-    }
-}
-```
-
-<a id="setTtmlStyleOverrides"></a>
-## *setTtmlStyleOverrides*
-
-The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.style | string | Contains the chosen override for styles |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 41,
-    "method": "org.rdk.TextTrack.setTtmlStyleOverrides",
-    "params": {
-        "style": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 41,
-    "result": null
-}
-```
-
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="ITextTrackClosedCaptionsStyle-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the TextTrack plugin:
-
-TextTrack interface events:
+The following events are provided by the ITextTrackClosedCaptionsStyle Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -2347,7 +1233,6 @@ TextTrack interface events:
 | [onFontFamilyChanged](#onFontFamilyChanged) | Notify fontFamily Changed |
 | [onFontOpacityChanged](#onFontOpacityChanged) | Notify fontOpacity Changed |
 | [onFontSizeChanged](#onFontSizeChanged) | Notify fontSize Changed |
-| [onTtmlStyleOverridesChanged](#onTtmlStyleOverridesChanged) | The TTML Style override settings has changed. |
 | [onWindowColorChanged](#onWindowColorChanged) | Notify windowColor Changed |
 | [onWindowOpacityChanged](#onWindowOpacityChanged) | Notify windowOpacity Changed |
 
@@ -2586,30 +1471,6 @@ Notify fontSize Changed
 }
 ```
 
-<a id="onTtmlStyleOverridesChanged"></a>
-## *onTtmlStyleOverridesChanged*
-
-The TTML Style override settings has changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.style | string | Contains the chosen override for styles |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 51,
-    "method": "org.rdk.TextTrack.onTtmlStyleOverridesChanged",
-    "params": {
-        "style": ""
-    }
-}
-```
-
 <a id="onWindowColorChanged"></a>
 ## *onWindowColorChanged*
 
@@ -2657,3 +1518,1165 @@ Notify windowOpacity Changed
     }
 }
 ```
+
+---
+
+<a id="ITextTrackTtmlStyle"></a>
+## ITextTrackTtmlStyle Interface
+
+<a id="ITextTrackTtmlStyle-Methods"></a>
+### Methods
+
+The following methods are provided by the ITextTrackTtmlStyle Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getTtmlStyleOverrides](#getTtmlStyleOverrides) | Gets the global TTML style overrides |
+| [setTtmlStyleOverrides](#setTtmlStyleOverrides) | Sets global TTML override style. |
+
+<a id="getTtmlStyleOverrides"></a>
+## *getTtmlStyleOverrides*
+
+Gets the global TTML style overrides
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.style | string | will receive the style overrides |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 40,
+    "method": "org.rdk.TextTrack.getTtmlStyleOverrides"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.TextTrack.getTtmlStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 40,
+    "result": {
+        "style": ""
+    }
+}
+```
+
+<a id="setTtmlStyleOverrides"></a>
+## *setTtmlStyleOverrides*
+
+The styles given here (as "attr:value;attr:value") will be applied last to TTML sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (TTML) sessions, which has not applied a custom style.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.style | string | Contains the chosen override for styles |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 41,
+    "method": "org.rdk.TextTrack.setTtmlStyleOverrides",
+    "params": {
+        "style": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.TextTrack.setTtmlStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 41,
+    "result": null
+}
+```
+
+<a id="ITextTrackTtmlStyle-Notifications"></a>
+### Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the ITextTrackTtmlStyle Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onTtmlStyleOverridesChanged](#onTtmlStyleOverridesChanged) | The TTML Style override settings has changed. |
+
+<a id="onTtmlStyleOverridesChanged"></a>
+## *onTtmlStyleOverridesChanged*
+
+The TTML Style override settings has changed.
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.style | string | Contains the chosen override for styles |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 51,
+    "method": "org.rdk.TextTrack.onTtmlStyleOverridesChanged",
+    "params": {
+        "style": ""
+    }
+}
+```
+
+---
+
+<a id="ITextTrackCapabilities"></a>
+## ITextTrackCapabilities Interface
+
+<a id="ITextTrackCapabilities-Methods"></a>
+### Methods
+
+The following methods are provided by the ITextTrackCapabilities Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getCapabilities](#getCapabilities) | Retrieves an iterator over all supported TextTrack capabilities. |
+| [getCapability](#getCapability) | Queries whether a specific TextTrack capability is supported by the implementation. |
+
+<a id="getCapabilities"></a>
+## *getCapabilities*
+
+Retrieves an iterator over all supported TextTrack capabilities.
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.capabilities | array | Iterator providing the list of supported capabilities. |
+| result.capabilities[#] | string | Possible values: UNSET, FIREBOLT_MIGRATION |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.TextTrack.getCapabilities"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.getCapabilities"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "result": [
+        "UNSET"
+    ]
+}
+```
+
+
+#### Error Response (Core::ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "error": {
+        "code": 22,
+        "message": "Retrieving capabilities is not supported."
+    }
+}
+```
+
+<a id="getCapability"></a>
+## *getCapability*
+
+Queries whether a specific TextTrack capability is supported by the implementation.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.capability | string | The capability to query . Possible values: UNSET, FIREBOLT_MIGRATION |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.hasCapability | bool | Indicates whether the queried capability is supported. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.TextTrack.getCapability",
+    "params": {
+        "capability": "FIREBOLT_MIGRATION"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.TextTrack.getCapability", "params": {"capability": "FIREBOLT_MIGRATION"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "result": {
+        "hasCapability": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "error": {
+        "code": 22,
+        "message": "Capability querying is not supported."
+    }
+}
+```
+
+---
+
+<a id="ITextTrack"></a>
+## ITextTrack Interface
+
+<a id="ITextTrack-Methods"></a>
+### Methods
+
+The following methods are provided by the ITextTrack Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [closeSession](#closeSession) | Closes a previously opened render session. |
+| [muteSession](#muteSession) | Mute will hide rendering of Captions |
+| [openSession](#openSession) | Opens a new renderSession. |
+| [pauseSession](#pauseSession) | Pauses a render session. |
+| [resetSession](#resetSession) | Resets a previously opened render session back to its opened state. |
+| [resumeSession](#resumeSession) | Resumed a paused session |
+| [sendSessionData](#sendSessionData) | Sends data of Closed Captions, Captions or Timed Text data to a render session. |
+| [sendSessionTimestamp](#sendSessionTimestamp) | Sends the current timestamp from a media player to a render session. |
+| [setPreviewText](#setPreviewText) | Sets a static text in the display for preview purposes. |
+| [setSessionClosedCaptionsService](#setSessionClosedCaptionsService) | Sets the render session into CC mode. |
+| [setSessionDvbSubtitleSelection](#setSessionDvbSubtitleSelection) | Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743) |
+| [setSessionSCTESelection](#setSessionSCTESelection) | Set the render session into SCTE mode |
+| [setSessionTTMLSelection](#setSessionTTMLSelection) | Set the render session into TTML mode |
+| [setSessionTeletextSelection](#setSessionTeletextSelection) | Set the render session into Teletext mode, providing the teletext caption page for presentation |
+| [setSessionWebVTTSelection](#setSessionWebVTTSelection) | Set the render session into WebVTT mode |
+| [unMuteSession](#unMuteSession) | UnMute will unhide the rendering of Captions. |
+
+<a id="closeSession"></a>
+## *closeSession*
+
+Any created windows and surfaces is destroyed
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session to close |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.TextTrack.closeSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.TextTrack.closeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
+}
+```
+
+<a id="muteSession"></a>
+## *muteSession*
+
+Mute will hide rendering of Captions
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.TextTrack.muteSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.TextTrack.muteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": null
+}
+```
+
+<a id="openSession"></a>
+## *openSession*
+
+If a session is already running on the supplied displayHandle, the sessionId for this session is returned. If the session is instead newly opened, the session type is not set and display is muted. Use one of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.displayHandle | string | is an encoding of the wayland display name |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.sessionId | integer | On success the returned session id  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.TextTrack.openSession",
+    "params": {
+        "displayHandle": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "sessionId": 1
+    }
+}
+```
+
+<a id="pauseSession"></a>
+## *pauseSession*
+
+Any text rendered remains on screen and any text due to be rendered soon is held until the render session is resumed.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.TextTrack.pauseSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.TextTrack.pauseSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": null
+}
+```
+
+<a id="resetSession"></a>
+## *resetSession*
+
+The state will be like after calling OpenSession()
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session to reset |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.TextTrack.resetSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.TextTrack.resetSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+
+<a id="resumeSession"></a>
+## *resumeSession*
+
+Resumed a paused session
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.TextTrack.resumeSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.TextTrack.resumeSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": null
+}
+```
+
+<a id="sendSessionData"></a>
+## *sendSessionData*
+
+Sends data of Closed Captions, Captions or Timed Text data to a render session.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+| params.type | string | Is the type of data. Possible values: PES, TTML, CC, WEBVTT |
+| params.displayOffsetMs | integer | Is currently unused |
+| params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.TextTrack.sendSessionData",
+    "params": {
+        "sessionId": 1,
+        "type": "PES",
+        "displayOffsetMs": 0,
+        "data": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.TextTrack.sendSessionData", "params": {"sessionId": 1, "type": "PES", "displayOffsetMs": 0, "data": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": null
+}
+```
+
+<a id="sendSessionTimestamp"></a>
+## *sendSessionTimestamp*
+
+The STC is used in some forms of text rendering to compare against the text data PTS to determine its presentation time.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+| params.mediaTimestampMs | integer | Is a timestamp |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.TextTrack.sendSessionTimestamp",
+    "params": {
+        "sessionId": 1,
+        "mediaTimestampMs": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.TextTrack.sendSessionTimestamp", "params": {"sessionId": 1, "mediaTimestampMs": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": null
+}
+```
+
+<a id="setPreviewText"></a>
+## *setPreviewText*
+
+The session must be opened as usual and a type chosen. The text will only be shown if the type of session supports preview.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | On success the returned session id  |
+| params.text | string | Is the text to display |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.TextTrack.setPreviewText",
+    "params": {
+        "sessionId": 1,
+        "text": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.TextTrack.setPreviewText", "params": {"sessionId": 1, "text": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "result": null
+}
+```
+
+<a id="setSessionClosedCaptionsService"></a>
+## *setSessionClosedCaptionsService*
+
+Selecting the specified CC service to decode and display in the specified render session. This should be done before starting the injection of data. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+| params.service | string | Identifies the service to display  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.TextTrack.setSessionClosedCaptionsService",
+    "params": {
+        "sessionId": 1,
+        "service": "CC3"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.TextTrack.setSessionClosedCaptionsService", "params": {"sessionId": 1, "service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": null
+}
+```
+
+<a id="setSessionDvbSubtitleSelection"></a>
+## *setSessionDvbSubtitleSelection*
+
+Set the render session into Dvb Subtitle mode, specifying the the page for presentation. (See ETSI EN 300 743)
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+| params.compositionPageId | integer | Is the one Id |
+| params.ancillaryPageId | integer | Is the other Id |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection",
+    "params": {
+        "sessionId": 1,
+        "compositionPageId": 0,
+        "ancillaryPageId": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.TextTrack.setSessionDvbSubtitleSelection", "params": {"sessionId": 1, "compositionPageId": 0, "ancillaryPageId": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": null
+}
+```
+
+<a id="setSessionSCTESelection"></a>
+## *setSessionSCTESelection*
+
+Set the render session into SCTE mode
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "method": "org.rdk.TextTrack.setSessionSCTESelection",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.TextTrack.setSessionSCTESelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "result": null
+}
+```
+
+<a id="setSessionTTMLSelection"></a>
+## *setSessionTTMLSelection*
+
+Set the render session into TTML mode
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "method": "org.rdk.TextTrack.setSessionTTMLSelection",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.TextTrack.setSessionTTMLSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "result": null
+}
+```
+
+<a id="setSessionTeletextSelection"></a>
+## *setSessionTeletextSelection*
+
+Set the render session into Teletext mode, providing the teletext caption page for presentation
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+| params.page | integer | The user selected teletext caption page 100-899 |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.TextTrack.setSessionTeletextSelection",
+    "params": {
+        "sessionId": 1,
+        "page": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.TextTrack.setSessionTeletextSelection", "params": {"sessionId": 1, "page": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "result": null
+}
+```
+
+<a id="setSessionWebVTTSelection"></a>
+## *setSessionWebVTTSelection*
+
+Set the render session into WebVTT mode
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.TextTrack.setSessionWebVTTSelection",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.TextTrack.setSessionWebVTTSelection", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "result": null
+}
+```
+
+<a id="unMuteSession"></a>
+## *unMuteSession*
+
+A newly created session is muted and should be unmuted to me visible
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sessionId | integer | Is the session |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.TextTrack.unMuteSession",
+    "params": {
+        "sessionId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.TextTrack.unMuteSession", "params": {"sessionId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "result": null
+}
+```
+
