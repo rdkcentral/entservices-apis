@@ -119,7 +119,7 @@ namespace WPEFramework {
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @text getApiVersionNumber
-            virtual Core::hresult GetApiVersionNumber(VoiceControlGetApiVersionNumberResponse& response /* @out @unwrapped */) = 0;
+            virtual Core::hresult GetApiVersionNumber(VoiceControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Returns the current status of the RDK voice stack
             // @text voiceStatus
@@ -127,7 +127,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
-            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out @extract */) = 0;
+            virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */) = 0;
 
             // @json:omit
             // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
@@ -137,7 +137,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult ConfigureVoice(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @json:omit
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id).
@@ -147,7 +147,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
@@ -159,7 +159,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional @opaque */, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
@@ -169,7 +169,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const string& transcription, const DeviceType type /* @optional */, VoiceControlSuccessResult& result /* @out @extract */) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const string& transcription, const DeviceType type /* @optional */, VoiceControlSuccessResult& result /* @out */) = 0; // DEPRECATED
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
@@ -197,7 +197,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session terminated successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to terminate voice session.
-            virtual Core::hresult VoiceSessionTerminate(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionTerminate(const string& sessionId, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Starts a subsequent audio stream for the voice session indicated by the session identifier
             // @text voiceSessionAudioStreamStart
@@ -206,7 +206,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session audio stream started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start voice session audio stream.
-            virtual Core::hresult VoiceSessionAudioStreamStart(const string& sessionId, VoiceControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult VoiceSessionAudioStreamStart(const string& sessionId, VoiceControlSuccessResult& result /* @out */) = 0;
             // End methods
 
             // @event

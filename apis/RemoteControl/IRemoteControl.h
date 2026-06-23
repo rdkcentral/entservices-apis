@@ -155,7 +155,7 @@ namespace WPEFramework {
             // @param response: The API version response
             // @retval ErrorCode::NONE: Operation completed successfully.
             // @text getApiVersionNumber
-            virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out @extract */) = 0;
+            virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
@@ -165,7 +165,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out @extract */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
@@ -174,7 +174,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -183,7 +183,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
-            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResult& result /* @out @extract */) = 0;
+            virtual Core::hresult GetNetStatus(const uint32_t netType, GetNetStatusResult& result /* @out */) = 0;
 
             // @brief Returns a list of manufacturer names based on the specified input parameters
             // @text getIRDBManufacturers
@@ -245,7 +245,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR code set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set IR code.
-            virtual Core::hresult SetIRCode(const uint32_t remoteId, const uint32_t netType, const AVDevType avDevType, const string& code, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult SetIRCode(const uint32_t remoteId, const uint32_t netType, const AVDevType avDevType, const string& code, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Clears the IR codes from the specified remote
             // @text clearIRCodes
@@ -255,7 +255,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IR codes cleared successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to clear IR codes.
-            virtual Core::hresult ClearIRCodes(const uint32_t remoteId, const uint32_t netType, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult ClearIRCodes(const uint32_t remoteId, const uint32_t netType, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns last key press source data
             // @text getLastKeypressSource
@@ -263,7 +263,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Last keypress source retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve last keypress source.
-            virtual Core::hresult GetLastKeypressSource(GetLastKeypressSourceResponse& response /* @out @extract */) = 0;
+            virtual Core::hresult GetLastKeypressSource(GetLastKeypressSourceResponse& response /* @out */) = 0;
 
             // @brief Configures which keys on the remote will wake the target from deepsleep
             // @text configureWakeupKeys
@@ -273,7 +273,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
@@ -282,7 +282,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB initialized successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to initialize IRDB.
-            virtual Core::hresult InitializeIRDB(const uint32_t netType, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult InitializeIRDB(const uint32_t netType, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
@@ -291,7 +291,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteLevel level, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult FindMyRemote(const FindMyRemoteLevel level, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
@@ -299,7 +299,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Factory reset executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute factory reset.
-            virtual Core::hresult FactoryReset(RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult FactoryReset(RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Unpairs all remotes from the STB
             // @text unpair
@@ -308,7 +308,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out @extract */, IStringIterator* const macAddressList /* @unwrapped */) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
@@ -330,7 +330,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Firmware update cancelled successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to cancel firmware update.
-            virtual Core::hresult CancelFirmwareUpdate(const string& sessionId, RemoteControlSuccessResult& result /* @out @extract */) = 0;
+            virtual Core::hresult CancelFirmwareUpdate(const string& sessionId, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status of an active firmware image update session
             // @text statusFirmwareUpdate
@@ -339,7 +339,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Firmware update status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve firmware update status.
-            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, StatusFirmwareUpdateResponse& response /* @out @extract */) = 0;
+            virtual Core::hresult StatusFirmwareUpdate(const string& sessionId, StatusFirmwareUpdateResponse& response /* @out */) = 0;
             // End methods
 
             // @event
