@@ -67,7 +67,10 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | VoiceControlGetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
+| result | object |  |
+| result.response | VoiceControlGetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
+| result.response.version | integer | The API version number  |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
