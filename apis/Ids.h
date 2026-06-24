@@ -180,6 +180,7 @@ namespace Exchange {
         ID_TEXT_TRACK_TTML_STYLE                     = ID_TEXT_TRACK + 3,
         ID_TEXT_TRACK_TTML_STYLE_NOTIFICATION        = ID_TEXT_TRACK + 4,
         ID_TEXT_TRACK_CAPABILITIES                   = ID_TEXT_TRACK + 5,
+        ID_TEXT_TRACK_SESSION_INFO_ITERATOR          = ID_TEXT_TRACK + 6,
 
 	ID_USB_DEVICE                                = ID_ENTOS_OFFSET + 0x1A0,
 	ID_USB_PRODUCT_INFO_ITERATOR                 = ID_USB_DEVICE + 1,
@@ -226,7 +227,7 @@ namespace Exchange {
 
         //Reserved for L2 test plugin
 	ID_L2TEST_CONTROLLER                         = ID_ENTOS_OFFSET + 0x270,
-      
+
         ID_SYSTEMSERVICES                            = ID_ENTOS_OFFSET + 0x280,
         ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR     = ID_SYSTEMSERVICES + 1,
         ID_SYSTEMSERVICES_NOTIFICATION               = ID_SYSTEMSERVICES + 2,
