@@ -54,6 +54,8 @@ struct RuntimeConfig {
                              /* @brief Comma-separated lowercase runtime capability tokens supported by the runtime configuration */;
     std::string ralfPkgPath /* @text ralfPkgPath */
                             /* @brief Filesystem path holding metadata information for RALF packages */;
+    std::string md5hash /* @text md5hash */
+                        /* @brief MD5 hash propagated from package metadata when available */;
 
     std::string fireboltVersion;
     bool enableDebugger;
