@@ -33,6 +33,7 @@ namespace Exchange {
         std::string fkpsFiles;          //json array of strings
         std::string capabilities /* @text capabilities */ /* @brief Comma-separated lowercase runtime capability tokens supported by the application runtime */;
         std::string ralfPkgPath /* @text ralfPkgPath */ /* @brief Filesystem path containing metadata information for RALF packages */;
+        std::string md5hash /* @text md5hash */ /* @brief MD5 hash propagated from package metadata when available */;
 
         std::string fireboltVersion;
         bool enableDebugger;
