@@ -34,7 +34,7 @@ namespace Exchange {
 
             enum { ID = ID_AUDIO_OUTPUT_NOTIFICATION };
 
-	        // @text OnDolbyAtmosExperienceChanged
+            // @text onDolbyAtmosExperienceChanged
             // @brief Notifies subscribers when the Dolby Atmos Experience state changes
             // @param dolbyAtmosExperience: true if Dolby Atmos Experience is now enabled
             virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {};
