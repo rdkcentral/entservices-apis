@@ -47,8 +47,60 @@ HdcpProfile interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getHDCPStatus](#getHDCPStatus) | Returns HDCP-related data. |
 | [getSettopHDCPSupport](#getSettopHDCPSupport) | Returns which version of HDCP is supported by the STB. |
+| [getHDCPStatus](#getHDCPStatus) | Returns HDCP-related data. |
+
+<a id="getSettopHDCPSupport"></a>
+## *getSettopHDCPSupport*
+
+Returns which version of HDCP is supported by the STB.
+
+### Events
+Event details will be updated soon.
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.SupportedHDCPVersion | string |  |
+| result.isHDCPSupported | bool | Indicates whether HDCP is supported by the STB |
+| result.success | bool | Indicates whether the operation was successful |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "SupportedHDCPVersion": "",
+        "isHDCPSupported": true,
+        "success": true
+    }
+}
+```
 
 <a id="getHDCPStatus"></a>
 ## *getHDCPStatus*
@@ -81,7 +133,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "method": "org.rdk.HdcpProfile.getHDCPStatus"
 }
 ```
@@ -90,7 +142,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.HdcpProfile.getHDCPStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.HdcpProfile.getHDCPStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -99,7 +151,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "result": {
         "HDCPStatus": {
             "isConnected": true,
@@ -110,58 +162,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
             "receiverHDCPVersion": "",
             "currentHDCPVersion": ""
         },
-        "success": true
-    }
-}
-```
-
-<a id="getSettopHDCPSupport"></a>
-## *getSettopHDCPSupport*
-
-Returns which version of HDCP is supported by the STB.
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedHDCPVersion | string | Supported HDCP protocol version by the host device |
-| result.isHDCPSupported | bool | Indicates whether HDCP is supported by the STB |
-| result.success | bool | Indicates whether the operation was successful |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.HdcpProfile.getSettopHDCPSupport"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "supportedHDCPVersion": "",
-        "isHDCPSupported": true,
         "success": true
     }
 }
@@ -182,8 +182,8 @@ HdcpProfile interface events:
 | :-------- | :-------- |
 | [onDisplayConnectionChanged](#onDisplayConnectionChanged) | Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug |
 
-<a id="onDisplayConnectionChanged"></a>
-## *onDisplayConnectionChanged*
+<a id="oNDisplayConnectionChanged"></a>
+## *oNDisplayConnectionChanged*
 
 Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
 
@@ -206,7 +206,7 @@ Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPl
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
+    "method": "org.rdk.HdcpProfile.oNDisplayConnectionChanged",
     "params": {
         "isConnected": true,
         "isHDCPCompliant": true,
