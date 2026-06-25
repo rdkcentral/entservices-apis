@@ -35,7 +35,7 @@ namespace Exchange {
 
             enum { ID = ID_AUDIO_OUTPUT_NOTIFICATION };
 
-	    // @text OnDolbyAtmosExperienceChanged
+	        // @text OnDolbyAtmosExperienceChanged
             // @brief Notifies subscribers when the Dolby Atmos Experience state changes
             // @param dolbyAtmosExperience: true if Dolby Atmos Experience is now enabled
             virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {};
@@ -44,7 +44,7 @@ namespace Exchange {
         virtual void Register(IAudioOutput::INotification* notification) = 0;
         virtual void Unregister(const IAudioOutput::INotification* notification) = 0;
 
-	// @text DolbyAtmosExperience
+	    // @text DolbyAtmosExperience
         // @brief Returns whether Dolby Atmos Experience is currently enabled
         // @details Combines AtmosMetadata capability (must be ATMOS_METADATA) and
         //          current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO)
