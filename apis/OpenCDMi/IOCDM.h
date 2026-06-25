@@ -198,6 +198,11 @@ struct IAccessorOCDM : virtual public Core::IUnknown {
         uint8_t buffer[] /* @out @length:bufferSize */) const
         = 0;
 
+    // Get the Robustness levels from DRM
+    virtual OCDM_RESULT GetSupportedRobustness(
+        const std::string& keySystem,
+        RPC::IStringIterator*& robustness /* @out */) const = 0;
+
     // Create a MediaKeySession using the supplied init data and CDM data.
     virtual OCDM_RESULT
     CreateSession(const string& keySystem, const int32_t licenseType,

@@ -79,7 +79,10 @@ This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | VoiceControlGetApiVersionNumberResponse | The API version response |
+| result | object |  |
+| result.response | object | The API version response |
+| result.response.version | integer | The API version number  |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
