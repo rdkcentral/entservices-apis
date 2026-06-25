@@ -2,7 +2,7 @@
 <a id="TextTrack_Plugin"></a>
 # TextTrack Plugin
 
-**Version: [1.4.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
+**Version: [1.5.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
 
 A TextTrack plugin for Thunder framework.
 
@@ -101,7 +101,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -850,7 +850,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -901,12 +901,13 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayHandle | string | is an encoding of the wayland display name |
+| params.displayHandle | string | The display handle of the session |
+| params.whoAmI | string | An identifier for the caller that created the session |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.sessionId | integer | On success the returned session id  |
+| result.sessionId | integer | The session ID |
 
 ### Examples
 
@@ -919,7 +920,8 @@ Event details will be updated soon.
     "id": 16,
     "method": "org.rdk.TextTrack.openSession",
     "params": {
-        "displayHandle": ""
+        "displayHandle": "",
+        "whoAmI": ""
     }
 }
 ```
@@ -928,7 +930,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.TextTrack.openSession", "params": {"displayHandle": "", "whoAmI": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -955,7 +957,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1006,7 +1008,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1057,7 +1059,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1108,7 +1110,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 | params.type | string | Is the type of data |
 | params.displayOffsetMs | integer | Is currently unused |
 | params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
@@ -1165,7 +1167,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 | params.mediaTimestampMs | integer | Is a timestamp |
 ### Results
 | Name | Type | Description |
@@ -1696,8 +1698,8 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
-| params.text | string | Is the text to display |
+| params.sessionId | integer | The session ID |
+| params.text | string | Is the text to display @retval Core::ERROR_NONE if preview is shown @retval Core::ERROR_NOT_SUPPORTED if preview is not supported |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1749,7 +1751,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 | params.service | string | Identifies the service to display  |
 ### Results
 | Name | Type | Description |
@@ -1802,7 +1804,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 | params.compositionPageId | integer | Is the one Id |
 | params.ancillaryPageId | integer | Is the other Id |
 ### Results
@@ -1857,7 +1859,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1908,7 +1910,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1959,7 +1961,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 | params.page | integer | The user selected teletext caption page 100-899 |
 ### Results
 | Name | Type | Description |
@@ -2012,7 +2014,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2216,7 +2218,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | The session ID |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
