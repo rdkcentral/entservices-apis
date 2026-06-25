@@ -283,10 +283,18 @@ namespace Exchange {
         // @brief Get VideoPort static configuration loaded by DeviceSettings plugin.
         // @param videoPortTypes: iterator of video port type configuration
         // @param videoPorts: iterator of video port configuration
-        // @param resolutions: iterator of supported resolution settings
         virtual Core::hresult GetVideoPortConfig(IVideoPortTypeConfigIterator*& videoPortTypes /* @out */,
-                             IVideoPortPortConfigIterator*& videoPorts /* @out */,
-                             IVideoPortResolutionIterator*& resolutions /* @out */) = 0;
+                             IVideoPortPortConfigIterator*& videoPorts /* @out */) = 0;
+
+        /** Get Video Port Resolution static configuration. */
+        // @text getVideoPortResolutionConfig
+        // @brief Get VideoPort resolution static configuration loaded by DeviceSettings plugin.
+        // @param videoPortTypes: video port type resolution configuration
+        // @param resolutions: iterator of supported resolution settings for a videoporttype
+        virtual Core::hresult GetVideoPortResolutionConfig(VideoPort videoPortType /* @in */,
+                             IVideoPortResolutionIterator*& videoPortResolutions /* @out */) const = 0;
+
+
 
         /** Video Port Enabled or not. */
         // @text isVideoPortEnabled
