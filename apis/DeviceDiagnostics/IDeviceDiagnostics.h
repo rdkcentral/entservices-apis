@@ -48,7 +48,7 @@ namespace WPEFramework
                 string reason /* @text reason */;
                 string customReason /* @text customReason */; 
                 string otherReason /* @text otherReason */;
-                string lastHardPowerReset /* @text lastHardPowerReset */;
+                string lastHardPowerReset /* @text lastHardPowerReset @default:"unknown" */;
             };
 
             using IDeviceDiagnosticsParamListIterator = RPC::IIteratorType<ParamList, ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR>;

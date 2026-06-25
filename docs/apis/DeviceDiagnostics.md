@@ -237,7 +237,7 @@ This method takes no parameters.
 | result.rebootInfo.reason | string | reason |
 | result.rebootInfo.customReason | string | customReason |
 | result.rebootInfo.otherReason | string | otherReason |
-| result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
+| result.rebootInfo.lastHardPowerReset @default:"unknown" | string | lastHardPowerReset |
 | result.success | bool | boolean |
 
 ### Examples
@@ -274,7 +274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
             "reason": "",
             "customReason": "",
             "otherReason": "",
-            "lastHardPowerReset": ""
+            "lastHardPowerReset @default:\"unknown\"": ""
         },
         "success": true
     }
