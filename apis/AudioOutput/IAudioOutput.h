@@ -24,7 +24,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-    // @json 1.0.0
+    /* @json 1.0.0 @text:keep */
     struct EXTERNAL IAudioOutput : virtual public Core::IUnknown {
 
         enum { ID = ID_AUDIO_OUTPUT };
