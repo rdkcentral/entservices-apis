@@ -128,10 +128,10 @@ The following events are provided by the IAudioOutput Interface:
 
 | Event | Description |
 | :-------- | :-------- |
-| [OnDolbyAtmosExperienceChanged](#OnDolbyAtmosExperienceChanged) | Notifies subscribers when the Dolby Atmos Experience state changes |
+| [onDolbyAtmosExperienceChanged](#onDolbyAtmosExperienceChanged) | Notifies subscribers when the Dolby Atmos Experience state changes |
 
-<a id="OnDolbyAtmosExperienceChanged"></a>
-## *OnDolbyAtmosExperienceChanged*
+<a id="onDolbyAtmosExperienceChanged"></a>
+## *onDolbyAtmosExperienceChanged*
 
 Notifies subscribers when the Dolby Atmos Experience state changes
 
@@ -147,7 +147,7 @@ Notifies subscribers when the Dolby Atmos Experience state changes
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.AudioOutput.OnDolbyAtmosExperienceChanged",
+    "method": "org.rdk.AudioOutput.onDolbyAtmosExperienceChanged",
     "params": {
         "dolbyAtmosExperience": true
     }
