@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="NativeJS_Plugin"></a>
-# NativeJS Plugin
+<a id="NativeJS_Module"></a>
+# NativeJS Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/NativeJS/INativeJS.h)**
 
-A NativeJS plugin for Thunder framework.
+A NativeJS module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [INativeJS](#INativeJS)
+    - [Methods](#INativeJS-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A NativeJS plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `NativeJS` plugin provides an interface for NativeJS.
+The `NativeJS` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- INativeJS
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkNativeJS.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the NativeJS plugin:
+<a id="INativeJS"></a>
+## INativeJS Interface
 
-NativeJS interface methods:
+<a id="INativeJS-Methods"></a>
+### Methods
+
+The following methods are provided by the INativeJS Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -57,8 +65,8 @@ NativeJS interface methods:
 
 Create a NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -111,8 +119,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Get details of existing plugin.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -156,13 +164,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 run a NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID for the application to run. |
 | params.url | string | URL for the application to run. |
 ### Results
 | Name | Type | Description |
@@ -209,13 +217,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 run a NativeJS code.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID for the code to run. |
 | params.code | string |  |
 ### Results
 | Name | Type | Description |
@@ -262,13 +270,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Destroy a running NativeJS application.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.id | integer | This should have the id of the created application |
+| params.id | integer | The ID of the application to destroy. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -307,5 +315,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "result": null
 }
 ```
-
 
