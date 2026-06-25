@@ -55,10 +55,10 @@ The following methods are provided by the IAudioOutput Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [DolbyAtmosExperience](#DolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
+| [dolbyAtmosExperience](#dolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
 
-<a id="DolbyAtmosExperience"></a>
-## *DolbyAtmosExperience*
+<a id="dolbyAtmosExperience"></a>
+## *dolbyAtmosExperience*
 
 Combines AtmosMetadata capability (must be ATMOS_METADATA) and current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO) to determine the Dolby Atmos Experience state.
 
@@ -81,7 +81,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.AudioOutput.DolbyAtmosExperience"
+    "method": "org.rdk.AudioOutput.dolbyAtmosExperience"
 }
 ```
 
@@ -89,7 +89,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AudioOutput.DolbyAtmosExperience"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AudioOutput.dolbyAtmosExperience"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
