@@ -52,7 +52,7 @@ namespace Exchange {
         // @retval Core::ERROR_GENERAL: Failed to unregister observer
         virtual Core::hresult Unregister(const IAudioOutput::INotification* notification) = 0;
 
-	    // @text DolbyAtmosExperience
+        // @text dolbyAtmosExperience
         // @brief Returns whether Dolby Atmos Experience is currently enabled
         // @details Combines AtmosMetadata capability (must be ATMOS_METADATA) and
         //          current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO)
