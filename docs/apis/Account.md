@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Account_Plugin"></a>
-# Account Plugin
+<a id="Account_Module"></a>
+# Account Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Account/IAccount.h)**
 
-A Account plugin for Thunder framework.
+A Account module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IAccount](#IAccount)
+    - [Methods](#IAccount-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A Account plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `Account` plugin provides an interface for Account.
+The `Account` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAccount
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAccount.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the Account plugin:
+<a id="IAccount"></a>
+## IAccount Interface
 
-Account interface methods:
+<a id="IAccount-Methods"></a>
+### Methods
+
+The following methods are provided by the IAccount Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -54,15 +62,15 @@ Account interface methods:
 
 Gets the last reset time for Hotel Checkout.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.resetTime | integer | resetTime |
+| result.resetTime | integer | Time in UTC. Returns 0, if time is not available. |
 
 ### Examples
 
@@ -102,13 +110,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Sets the last reset time for Hotel Checkout.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.resetTime | integer | resetTime |
+| params.resetTime | integer | Time in UTC. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -147,5 +155,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": null
 }
 ```
-
 
