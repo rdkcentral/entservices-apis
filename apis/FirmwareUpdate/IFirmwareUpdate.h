@@ -60,9 +60,9 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
    struct EXTERNAL INotification : virtual public Core::IUnknown {
           enum { ID = ID_FIRMWARE_UPDATE_NOTIFICATION };
 
-          // @brief notify Firmware update state change.
-          // @param State   : State
-          // @param SubState: SubState
+          // @brief Notifies firmware update state changes.
+          // @param state: Firmware update state.
+          // @param substate: Firmware update substate.
           // @text onUpdateStateChange
           virtual void OnUpdateStateChange (const State state  , const SubState substate ) {};
 
