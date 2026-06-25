@@ -177,7 +177,7 @@ namespace Exchange {
             AUDIO_SURROUND_MODE_NONE              = 0,
             AUDIO_SURROUND_MODE_DD                = 1,
             AUDIO_SURROUND_MODE_DDPLUS            = 2,
-            AUDIO_SURROUND_MODE_MAX               = 4
+            AUDIO_SURROUND_MODE_MAX               = 3
         };
 
         enum MS12Feature: uint8_t {
