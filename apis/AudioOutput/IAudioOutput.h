@@ -40,16 +40,8 @@ namespace Exchange {
             virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {};
         };
 
-        // @brief Registers a notification observer
-        // @param notification: Notification observer to be registered
-        // @retval Core::ERROR_NONE: Observer registered successfully
-        // @retval Core::ERROR_GENERAL: Failed to register observer
+        
         virtual Core::hresult Register(IAudioOutput::INotification* notification) = 0;
-
-        // @brief Unregisters a notification observer
-        // @param notification: Notification observer to be unregistered
-        // @retval Core::ERROR_NONE: Observer unregistered successfully
-        // @retval Core::ERROR_GENERAL: Failed to unregister observer
         virtual Core::hresult Unregister(const IAudioOutput::INotification* notification) = 0;
 
         // @text dolbyAtmosExperience
