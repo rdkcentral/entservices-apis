@@ -19,8 +19,7 @@
 
 #pragma once
 
-#include <com/com.h>
-#include "Ids.h"
+#include "Module.h"
 
 namespace WPEFramework {
 namespace Exchange {
