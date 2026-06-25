@@ -63,7 +63,7 @@ namespace Exchange {
         /** Get CPU temperature. */
         // @text getCPUTemperature
         // @brief Get CPU temperature.
-        // @param temperature: temperature in degree centigrade?
+        // @param temperature: temperature in degrees Celsius
         virtual Core::hresult GetCPUTemperature(float &temperature /* @out */) = 0;
 
         /** Get HAL Version . */
