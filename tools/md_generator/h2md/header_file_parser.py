@@ -44,6 +44,7 @@ class HeaderFileParser:
         ('json',        'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@json)(?:\s+|$)([\d\.]+)?(?:.*)')),
         ('property',    'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@property\s*(.*)')),
         ('event',       'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@event\s*(.*)')),
+        ('generictag',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*@\w+\s*(.*)')),
         ('comment',     'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(.*)')),
         ('stubgenomit',  'doxygen', re.compile(r'(?:\/\*+|\*|\/\/)\s*(@stubgen:omit)')),
         ('enum',        'cpp_obj', re.compile(r'enum\s+(?:class\s)?([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{?')),
@@ -76,7 +77,7 @@ class HeaderFileParser:
         'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
         'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
-        'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
+        'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:const\s*)?(?:(?:\=\s*0\s*\;?)|{.*}))'),
         'method_param': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
     }
 

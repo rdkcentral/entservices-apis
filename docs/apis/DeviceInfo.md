@@ -72,7 +72,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.AudioCapabilities | IAudioCapabilityIterator | Audio capability @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
+| result.AudioCapabilities | IAudioCapabilityIterator | Audio capability |
 | result.AudioCapabilities[#] | string |  |
 | result.success | bool |  |
 
@@ -185,7 +185,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.MS12Capabilities | IMS12CapabilityIterator | MS12 audio capability @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
+| result.MS12Capabilities | IMS12CapabilityIterator | MS12 audio capability |
 | result.MS12Capabilities[#] | string |  |
 | result.success | bool |  |
 
@@ -241,7 +241,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedAudioPorts | IStringIterator | Audio ports supported on the device. @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| result.supportedAudioPorts | IStringIterator | Audio ports supported on the device. |
 | result.supportedAudioPorts[#] | string |  |
 | result.success | bool |  |
 
@@ -351,7 +351,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedMS12AudioProfiles | IStringIterator | MS12 audio profiles @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
+| result.supportedMS12AudioProfiles | IStringIterator | MS12 audio profiles |
 | result.supportedMS12AudioProfiles[#] | string |  |
 | result.success | bool |  |
 
@@ -410,7 +410,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedResolutions | IStringIterator | Supported Resolutions @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
+| result.supportedResolutions | IStringIterator | Supported Resolutions |
 | result.supportedResolutions[#] | string |  |
 | result.success | bool |  |
 
@@ -466,7 +466,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedVideoDisplays | IStringIterator | Video ports supported on the device @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure @deprecated |
+| result.supportedVideoDisplays | IStringIterator | Video ports supported on the device |
 | result.supportedVideoDisplays[#] | string |  |
 | result.success | bool |  |
 
@@ -545,7 +545,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).addressesInfo | IAddressesInfoIterator | Network interface addresses @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| (property).addressesInfo | IAddressesInfoIterator | Network interface addresses |
 | (property).addressesInfo[#].name | string | Interface name |
 | (property).addressesInfo[#].mac | string | Interface MAC address |
 | (property).addressesInfo[#].ip | string | Interface IP address |
@@ -920,7 +920,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).firmwareVersionInfo | FirmwareversionInfo | Version information @retval ErrorCode::ERROR_NONE: Indicates success @retval ErrorCode::ERROR_GENERAL: Indicates failure |
+| (property).firmwareVersionInfo | FirmwareversionInfo | Version information |
 | (property).firmwareVersionInfo.imagename | string | Image name |
 | (property).firmwareVersionInfo.sdk | string | sdk version |
 | (property).firmwareVersionInfo.mediarite | string | mediarite |

@@ -2,7 +2,7 @@
 <a id="WebKitBrowser_Plugin"></a>
 # WebKitBrowser Plugin
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IBrowser.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/WebKitBrowser/IApplication.h)**
 
 A WebKitBrowser plugin for Thunder framework.
 
@@ -48,12 +48,63 @@ WebKitBrowser interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [reset](#reset) | Resets application data |
 | [addUserScript](#addUserScript) | Add user script to be executed at document start. |
 | [collectGarbage](#collectGarbage) | Initiate garbage collection |
 | [setcoookiejar](#setcoookiejar) |  |
 | [removeAllUserScripts](#removeAllUserScripts) | Remove all user scripts. |
 | [runJavaScript](#runJavaScript) | Run javascript in main frame. |
-| [reset](#reset) | Resets application data |
+
+<a id="reset"></a>
+## *reset*
+
+Resets application data
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.type | string | Type of reset to perform |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.WebKitBrowser.reset",
+    "params": {
+        "type": "FACTORY"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.reset", "params": {"type": "FACTORY"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": null
+}
+```
 
 <a id="addUserScript"></a>
 ## *addUserScript*
@@ -304,57 +355,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-<a id="reset"></a>
-## *reset*
-
-Resets application data
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.type | string | Type of reset to perform |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.WebKitBrowser.reset",
-    "params": {
-        "type": "FACTORY"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.WebKitBrowser.reset", "params": {"type": "FACTORY"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
 
 <a id="Properties"></a>
 # Properties
@@ -364,6 +364,11 @@ WebKitBrowser interface properties:
 
 | Property | Description |
 | :-------- | :-------- |
+| [contentLink](#contentLink)<sup>WO</sup> | URI of the associated application-specific content |
+| [identifier](#identifier)<sup>RO</sup> | Application-specific identification string |
+| [language](#language) | Current application user interface language |
+| [launchPoint](#launchPoint) | Application launching point |
+| [visible](#visible) | Current application visibility |
 | [bridgeEvent](#bridgeEvent)<sup>WO</sup> | Send legacy $badger  |
 | [bridgeReply](#bridgeReply)<sup>WO</sup> | Response for legacy $badger. |
 | [fPS](#fPS)<sup>RO</sup> | Current framerate the browser is rendering at |
@@ -376,11 +381,330 @@ WebKitBrowser interface properties:
 | [userScripts](#userScripts) | User scripts used by the browser |
 | [userStyleSheets](#userStyleSheets) | User style sheets used by the browser |
 | [visibility](#visibility) | Browser window visibility state |
-| [contentLink](#contentLink)<sup>WO</sup> | URI of the associated application-specific content |
-| [identifier](#identifier)<sup>RO</sup> | Application-specific identification string |
-| [language](#language) | Current application user interface language |
-| [launchPoint](#launchPoint) | Application launching point |
-| [visible](#visible) | Current application visibility |
+
+<a id="ContentLink"></a>
+## *ContentLink*
+
+URI of the associated application-specific content
+
+> This property is write-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).link | string | Content URI (e.g. https://youtube.com) |
+
+### Examples
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.WebKitBrowser.contentLink",
+    "params": {
+        "link": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.contentLink", "params": {"link": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": null
+}
+```
+
+<a id="Identifier"></a>
+## *Identifier*
+
+Application-specific identification string
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).id | string | Identifier string |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.WebKitBrowser.identifier"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.identifier"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "result": {
+        "id": ""
+    }
+}
+```
+
+<a id="Language"></a>
+## *Language*
+
+Current application user interface language
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).language | string | Language string as per RFC5646 (e.g. en) |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.WebKitBrowser.language"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "language": ""
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.WebKitBrowser.language",
+    "params": {
+        "language": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": null
+}
+```
+
+<a id="LaunchPoint"></a>
+## *LaunchPoint*
+
+Application launching point
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).point | string |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.WebKitBrowser.launchPoint"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": {
+        "point": "UNDEFINED"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.WebKitBrowser.launchPoint",
+    "params": {
+        "point": "UNDEFINED"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint", "params": {"point": "UNDEFINED"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": null
+}
+```
+
+<a id="Visible"></a>
+## *Visible*
+
+Current application visibility
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).visiblity | bool |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.WebKitBrowser.visible"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": {
+        "visiblity": true
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.WebKitBrowser.visible",
+    "params": {
+        "visiblity": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible", "params": {"visiblity": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": null
+}
+```
 
 <a id="BridgeEvent"></a>
 ## *BridgeEvent*
@@ -1217,330 +1541,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-<a id="ContentLink"></a>
-## *ContentLink*
-
-URI of the associated application-specific content
-
-> This property is write-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).link | string | Content URI (e.g. https://youtube.com) |
-
-### Examples
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.WebKitBrowser.contentLink",
-    "params": {
-        "link": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.WebKitBrowser.contentLink", "params": {"link": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": null
-}
-```
-
-<a id="Identifier"></a>
-## *Identifier*
-
-Application-specific identification string
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).id | string | Identifier string |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.WebKitBrowser.identifier"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.WebKitBrowser.identifier"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "id": ""
-    }
-}
-```
-
-<a id="Language"></a>
-## *Language*
-
-Current application user interface language
-
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).language | string | Language string as per RFC5646 (e.g. en) |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.WebKitBrowser.language"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "language": ""
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.WebKitBrowser.language",
-    "params": {
-        "language": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.WebKitBrowser.language", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
-}
-```
-
-<a id="LaunchPoint"></a>
-## *LaunchPoint*
-
-Application launching point
-
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).point | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.WebKitBrowser.launchPoint"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "point": "UNDEFINED"
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.WebKitBrowser.launchPoint",
-    "params": {
-        "point": "UNDEFINED"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.WebKitBrowser.launchPoint", "params": {"point": "UNDEFINED"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
-}
-```
-
-<a id="Visible"></a>
-## *Visible*
-
-Current application visibility
-
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).visiblity | bool |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.WebKitBrowser.visible"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "visiblity": true
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.WebKitBrowser.visible",
-    "params": {
-        "visiblity": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.WebKitBrowser.visible", "params": {"visiblity": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": null
-}
-```
-
 
 <a id="Notifications"></a>
 # Notifications
@@ -1553,12 +1553,36 @@ WebKitBrowser interface events:
 
 | Event | Description |
 | :-------- | :-------- |
+| [visibilityChange](#visibilityChange) | Signals a visibility change of the browser |
 | [cookieJarChanged](#cookieJarChanged) | Notifies that cookies were added, removed or modified. |
 | [loadFailed](#loadFailed) | Browser failed to load page |
 | [loadFinished](#loadFinished) | Initial HTML document has been completely loaded and parsed |
 | [pageClosure](#pageClosure) | Notifies that the web page requests to close its window |
 | [uRLChange](#uRLChange) | Signals a URL change in the browser |
-| [visibilityChange](#visibilityChange) | Application visibility changes |
+
+<a id="visibilityChange"></a>
+## *visibilityChange*
+
+Signals a visibility change of the browser
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.hidden | bool | hidden (true) or visible (false) |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.WebKitBrowser.visibilityChange",
+    "params": {
+        "hidden": true
+    }
+}
+```
 
 <a id="cookieJarChanged"></a>
 ## *cookieJarChanged*
@@ -1668,30 +1692,6 @@ Signals a URL change in the browser
     "params": {
         "URL": "",
         "loaded": true
-    }
-}
-```
-
-<a id="visibilityChange"></a>
-## *visibilityChange*
-
-Application visibility changes
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.hidden | bool | Denotes if application is currently hidden |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.WebKitBrowser.visibilityChange",
-    "params": {
-        "hidden": true
     }
 }
 ```
