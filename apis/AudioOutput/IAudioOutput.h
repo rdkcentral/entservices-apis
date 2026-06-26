@@ -37,7 +37,7 @@ namespace Exchange {
             // @text onDolbyAtmosExperienceChanged
             // @brief Notifies subscribers when the Dolby Atmos Experience state changes
             // @param dolbyAtmosExperience: true if Dolby Atmos Experience is now enabled
-            virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {};
+            virtual void OnDolbyAtmosExperienceChanged(const bool dolbyAtmosExperience) {}
         };
 
         
