@@ -1,6 +1,6 @@
 /*
  * If not stated otherwise in this file or this component's LICENSE file the
- * following copyright and licenses apply:
+ * following copyright and li censes apply:
  *
  * Copyright 2024 RDK Management
  *
