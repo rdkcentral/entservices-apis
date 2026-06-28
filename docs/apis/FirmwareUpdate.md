@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="FirmwareUpdate_Plugin"></a>
-# FirmwareUpdate Plugin
+<a id="FirmwareUpdate_Module"></a>
+# FirmwareUpdate Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/FirmwareUpdate/IFirmwareUpdate.h)**
 
-A FirmwareUpdate plugin for Thunder framework.
+A FirmwareUpdate module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IFirmwareUpdate](#IFirmwareUpdate)
+    - [Methods](#IFirmwareUpdate-Methods)
+    - [Notifications](#IFirmwareUpdate-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A FirmwareUpdate plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `FirmwareUpdate` plugin provides an interface for FirmwareUpdate.
+The `FirmwareUpdate` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IFirmwareUpdate
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkFirmwareUpdate.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the FirmwareUpdate plugin:
+<a id="IFirmwareUpdate"></a>
+## IFirmwareUpdate Interface
 
-FirmwareUpdate interface methods:
+<a id="IFirmwareUpdate-Methods"></a>
+### Methods
+
+The following methods are provided by the IFirmwareUpdate Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,17 +64,17 @@ FirmwareUpdate interface methods:
 
 Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.getUpdateStateResult | GetUpdateStateResult |  |
-| result.getUpdateStateResult.state | string | state |
-| result.getUpdateStateResult.substate | string | substate |
+| result.getUpdateStateResult | object |  |
+| result.getUpdateStateResult.state | string | state. Possible values: VALIDATION_FAILED, FLASHING_STARTED, FLASHING_FAILED, FLASHING_SUCCEEDED, WAITING_FOR_REBOOT |
+| result.getUpdateStateResult.substate | string | substate. Possible values: NOT_APPLICABLE, FIRMWARE_NOT_FOUND, FIRMWARE_INVALID, FIRMWARE_OUTDATED, FIRMWARE_UPTODATE, FIRMWARE_INCOMPATIBLE, PREWRITE_SIGNATURE_CHECK_FAILED, FLASH_WRITE_FAILED, POSTWRITE_FIRMWARE_CHECK_FAILED, POSTWRITE_SIGNATURE_CHECK_FAILED |
 
 ### Examples
 
@@ -107,8 +115,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Enable or disable the AutoReboot feature.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -161,8 +169,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Initiates a firmware update.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -212,21 +220,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IFirmwareUpdate-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the FirmwareUpdate plugin:
-
-FirmwareUpdate interface events:
+The following events are provided by the IFirmwareUpdate Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [onFlashingStateChange](#onFlashingStateChange) | This notification is raised between flashing started state and flashing succeeded/failed. |
-| [onUpdateStateChange](#onUpdateStateChange) | notify Firmware update state change. |
+| [onUpdateStateChange](#onUpdateStateChange) | Notifies firmware update state changes. |
 
 <a id="onFlashingStateChange"></a>
 ## *onFlashingStateChange*
@@ -255,14 +259,14 @@ This notification is raised between flashing started state and flashing succeede
 <a id="onUpdateStateChange"></a>
 ## *onUpdateStateChange*
 
-notify Firmware update state change.
+Notifies firmware update state changes.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | state |
-| params.substate | string | substate |
+| params.state | string | Firmware update state. Possible values: VALIDATION_FAILED, FLASHING_STARTED, FLASHING_FAILED, FLASHING_SUCCEEDED, WAITING_FOR_REBOOT |
+| params.substate | string | Firmware update substate. Possible values: NOT_APPLICABLE, FIRMWARE_NOT_FOUND, FIRMWARE_INVALID, FIRMWARE_OUTDATED, FIRMWARE_UPTODATE, FIRMWARE_INCOMPATIBLE, PREWRITE_SIGNATURE_CHECK_FAILED, FLASH_WRITE_FAILED, POSTWRITE_FIRMWARE_CHECK_FAILED, POSTWRITE_SIGNATURE_CHECK_FAILED |
 
 ### Examples
 
@@ -277,3 +281,4 @@ notify Firmware update state change.
     }
 }
 ```
+

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PersistentStore_Plugin"></a>
-# PersistentStore Plugin
+<a id="PersistentStore_Module"></a>
+# PersistentStore Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
 
-A PersistentStore plugin for Thunder framework.
+A PersistentStore module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IStore2](#IStore2)
+    - [Methods](#IStore2-Methods)
+    - [Notifications](#IStore2-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A PersistentStore plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PersistentStore` plugin provides an interface for PersistentStore.
+The `PersistentStore` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IStore2
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPersistentStore.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the PersistentStore plugin:
+<a id="IStore2"></a>
+## IStore2 Interface
 
-PersistentStore interface methods:
+<a id="IStore2-Methods"></a>
+### Methods
+
+The following methods are provided by the IStore2 Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -57,13 +65,13 @@ PersistentStore interface methods:
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -112,13 +120,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 ### Results
 | Name | Type | Description |
@@ -165,13 +173,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 ### Results
@@ -225,13 +233,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |
@@ -279,23 +287,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IStore2-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the PersistentStore plugin:
-
-PersistentStore interface events:
+The following events are provided by the IStore2 Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [onValueChanged](#onValueChanged) |  |
 
-<a id="valueChanged"></a>
-## *valueChanged*
+<a id="onValueChanged"></a>
+## *onValueChanged*
 
 
 
@@ -303,7 +307,7 @@ PersistentStore interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
+| params.scope | string | Possible values: DEVICE, ACCOUNT |
 | params.namespace | string |  |
 | params.key | string |  |
 | params.value | string |  |
@@ -314,7 +318,7 @@ PersistentStore interface events:
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PersistentStore.valueChanged",
+    "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
         "scope": "DEVICE",
         "namespace": "",
@@ -323,3 +327,4 @@ PersistentStore interface events:
     }
 }
 ```
+

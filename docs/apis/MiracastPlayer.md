@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="MiracastPlayer_Plugin"></a>
-# MiracastPlayer Plugin
+<a id="MiracastPlayer_Module"></a>
+# MiracastPlayer Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MiracastPlayer/IMiracastPlayer.h)**
 
-A MiracastPlayer plugin for Thunder framework.
+A MiracastPlayer module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IMiracastPlayer](#IMiracastPlayer)
+    - [Methods](#IMiracastPlayer-Methods)
+    - [Notifications](#IMiracastPlayer-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A MiracastPlayer plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `MiracastPlayer` plugin provides an interface for MiracastPlayer.
+The `MiracastPlayer` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IMiracastPlayer
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMiracastPlayer.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the MiracastPlayer plugin:
+<a id="IMiracastPlayer"></a>
+## IMiracastPlayer Interface
 
-MiracastPlayer interface methods:
+<a id="IMiracastPlayer-Methods"></a>
+### Methods
+
+The following methods are provided by the IMiracastPlayer Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -60,18 +68,18 @@ MiracastPlayer interface methods:
 
 To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device_parameters | DeviceParameters | Contains Source and Sink Device related properties |
+| params.device_parameters | object | Contains Source and Sink Device related properties |
 | params.device_parameters.source_dev_ip | string | IP Address of Source Device |
 | params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
 | params.device_parameters.source_dev_name | string | Name of Source Device |
 | params.device_parameters.sink_dev_ip | string | IP Address of Sink Device |
-| params.video_rectangle | VideoRectangle | Video rectangle to be used for Miracast playback (x, y, width, height) |
+| params.video_rectangle | object | Video rectangle to be used for Miracast playback (x, y, width, height) |
 | params.video_rectangle.X | int | X coordinate of the rectangle |
 | params.video_rectangle.Y | int | Y coordinate of the rectangle |
 | params.video_rectangle.W | int | Width of the rectangle |
@@ -80,7 +88,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -137,20 +145,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 To configure the environment arguments for the Miracast Player
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.envArgs | IEnvArgumentsIterator | environment arguments to be set |
+| params.envArgs | array | environment arguments to be set |
 | params.envArgs[#].argName | string | environment argument name |
 | params.envArgs[#].argValue | string | environment argument value |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -199,8 +207,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Set the Video Rectangle.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -213,7 +221,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -262,20 +270,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.westerosArgs | IEnvArgumentsIterator | Westeros environment arguments to be set |
+| params.westerosArgs | array | Westeros environment arguments to be set |
 | params.westerosArgs[#].argName | string | environment argument name |
 | params.westerosArgs[#].argValue | string | environment argument value |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -324,8 +332,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -337,7 +345,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -385,15 +393,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 To reset the environment arguments for the Miracast Player
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -436,15 +444,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -482,16 +490,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IMiracastPlayer-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the MiracastPlayer plugin:
-
-MiracastPlayer interface events:
+The following events are provided by the IMiracastPlayer Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -508,9 +512,9 @@ Notifies when a Miracast source device wants to connect
 | params | object |  |
 | params.name | string | Name of the client device |
 | params.mac | string | MacAddress of the client device |
-| params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).) |
+| params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).). Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED, PAUSED |
 | params.reason_code | string | Reason code for the player state update |
-| params.reason | string | reason code Decription |
+| params.reason | string | reason code Decription. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
 
 ### Examples
 
@@ -522,9 +526,10 @@ Notifies when a Miracast source device wants to connect
     "params": {
         "name": "",
         "mac": "",
-        "state": "STATE_IDLE",
+        "state": "IDLE",
         "reason_code": "",
-        "reason": "REASON_CODE_SUCCESS"
+        "reason": "SUCCESS"
     }
 }
 ```
+
