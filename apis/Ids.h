@@ -357,6 +357,12 @@ namespace Exchange {
         ID_BACKUP_MANAGER                           = ID_ENTOS_OFFSET + 0x510,
         ID_BACKUP_PROVIDER                          = ID_BACKUP_MANAGER + 1,
 
+        ID_RESOURCEMONITOR                          = ID_ENTOS_OFFSET + 0x520,
+        ID_RESOURCEMONITOR_NOTIFICATION             = ID_RESOURCEMONITOR + 1,
+
+        ID_AVMONITOR                                = ID_ENTOS_OFFSET + 0x530,
+        ID_AVMONITOR_NOTIFICATION                   = ID_AVMONITOR + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
