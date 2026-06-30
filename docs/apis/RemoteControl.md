@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="RemoteControl_Plugin"></a>
-# RemoteControl Plugin
+<a id="RemoteControl_Module"></a>
+# RemoteControl Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RemoteControl/IRemoteControl.h)**
 
-A RemoteControl plugin for Thunder framework.
+A RemoteControl module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IRemoteControl](#IRemoteControl)
+    - [Methods](#IRemoteControl-Methods)
+    - [Notifications](#IRemoteControl-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A RemoteControl plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `RemoteControl` plugin provides an interface for RemoteControl.
+The `RemoteControl` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IRemoteControl
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,20 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkRemoteControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the RemoteControl plugin:
+<a id="IRemoteControl"></a>
+## IRemoteControl Interface
 
-RemoteControl interface methods:
+### Description
+
+Interface for the Remote Control JSONRPC API in WPEFramework.  This interface defines the JSONRPC methods and events for remote control management, including pairing, IRDB operations, firmware updates, and related notifications. Implementations of this interface are expected to be registered with the Thunder framework.
+
+<a id="IRemoteControl-Methods"></a>
+### Methods
+
+The following methods are provided by the IRemoteControl Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -70,8 +82,8 @@ RemoteControl interface methods:
 
 Cancels an active firmware image update session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -124,14 +136,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Clears the IR codes from the specified remote
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of remote control network  |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -180,8 +192,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Configures which keys on the remote will wake the target from deepsleep
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -236,8 +248,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Tells all paired and connected remotes to factory reset
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -284,13 +296,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Tells the most recently used remote to beep
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.level | string | The level at which the remote will beep |
+| params.level | string | The level at which the remote will beep. Possible values: INVALID, off, mid, high |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -338,15 +350,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Gets the current API version number.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | RemoteControlGetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
+| result.response | object | The API version response |
 | result.response.version | integer | The API version number  |
 | result.response.success | bool | Whether the request succeeded |
 
@@ -389,13 +401,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Returns a list of available IR codes for the TV and AVRs specified by the input parameters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network  |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -405,9 +417,9 @@ Event details will be updated soon.
 | result.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
 | result.avrModel | string | The AVR model for which codes are provided  |
 | result.success | bool | Whether the request succeeded |
-| result.tvCodes | IStringIterator | A list of TV IR codes  |
+| result.tvCodes | array | A list of TV IR codes  |
 | result.tvCodes[#] | string |  |
-| result.avrCodes | IStringIterator | A list of AVR IR codes  @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup. |
+| result.avrCodes | array | A list of AVR IR codes  |
 | result.avrCodes[#] | string |  |
 
 ### Examples
@@ -461,24 +473,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Returns a list of IR codes for the AV device specified by the input parameters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params.manufacturer | string | The manufacturer name of the AV device  |
 | params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| result.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result.manufacturer | string | The manufacturer name of the AV device  |
 | result.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 | result.success | bool | Whether the request succeeded |
-| result.codes | string | A list of IR codes as a string @retval ErrorCode::NONE: IR codes retrieved successfully by names. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names. |
+| result.codes | string | A list of IR codes as a string |
 
 ### Examples
 
@@ -527,21 +539,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Returns a list of manufacturer names based on the specified input parameters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
 | params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
 | result.success | bool | Whether the request succeeded |
-| result.manufacturers | IStringIterator | A list of manufacturer names  @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers. |
+| result.manufacturers | array | A list of manufacturer names  |
 | result.manufacturers[#] | string |  |
 
 ### Examples
@@ -590,23 +602,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Returns a list of model names based on the specified input parameters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params.manufacturer | string | The manufacturer name of the AV device  |
 | params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
-| result.manufacturer | string | A part of the name of the manufacturer of the AV device  |
+| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result.manufacturer | string | The manufacturer name of the AV device  |
 | result.success | bool | Whether the request succeeded |
-| result.models | IStringIterator | A list of model names  @retval ErrorCode::NONE: IRDB models retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve IRDB models. |
+| result.models | array | A list of model names  |
 | result.models[#] | string |  |
 
 ### Examples
@@ -657,15 +669,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Returns last key press source data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | GetLastKeypressSourceResponse | The last keypress source response @retval ErrorCode::NONE: Last keypress source retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve last keypress source. |
+| result.response | object | The last keypress source response |
 | result.response.controllerId | integer | The controller ID of the target remote on the specified network  |
 | result.response.timestamp | integer | The time of the last key press in milliseconds since epoch |
 | result.response.sourceName | string | The source of the last key press  |
@@ -720,23 +732,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Returns the status information provided by the last `onStatus` event for the specified network.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network  |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | GetNetStatusResult | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC @retval ErrorCode::NONE: Network status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve network status. |
+| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC |
 | result.result.success | bool | Whether the request succeeded |
-| result.result.status | NetStatusData | The network status data |
+| result.result.status | object | The network status data |
 | result.result.status.netType | integer | The type of remote control network  |
-| result.result.status.pairingState | string | The pairing state |
-| result.result.status.irProgState | string | The IR programming state |
+| result.result.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
+| result.result.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
 | result.result.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
 | result.result.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
 
@@ -788,13 +800,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Initializes the IR database
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.netType | integer | The type of remote control network  |
+| params.netType | integer | The type of network  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -842,15 +854,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Programs an IR code into the specified remote control
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of remote control network  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device |
+| params.netType | integer | The type of network  |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
 | Name | Type | Description |
@@ -902,13 +914,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Starts a firmware image update session for the specified remote(s)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the remote in hex-colon format  |
+| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
 | params.fileType | string | The type of firmware image file  |
 | params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
@@ -917,7 +929,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | IStringIterator | List of session IDs created for the firmware update(s) @retval ErrorCode::NONE: Firmware update started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start firmware update. |
+| result.sessionIdList | array | List of session IDs created for the firmware update(s) |
 | result.sessionIdList[#] | string |  |
 
 ### Examples
@@ -967,8 +979,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Returns the status of an active firmware image update session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -978,12 +990,12 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | StatusFirmwareUpdateResponse | The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString) @retval ErrorCode::NONE: Firmware update status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve firmware update status. |
+| result.response | object | The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString) |
 | result.response.success | bool | Whether the request succeeded |
-| result.response.status | FirmwareUpdateStatusData | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
+| result.response.status | object | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
 | result.response.status.upgradeSessionId | string | The firmware update session identifier  |
 | result.response.status.macAddress | string | The MAC address of the remote in hex-colon format  |
-| result.response.status.upgradeState | string | The firmware update state |
+| result.response.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | result.response.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
 | result.response.status.errorString | string | The firmware update error string, only present on failure |
 
@@ -1022,7 +1034,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
         "status": {
             "upgradeSessionId": "12345-abc-def",
             "macAddress": "AA:BB:CC:DD:EE:FF",
-            "upgradeState": "SUCCESS",
+            "upgradeState": "success",
             "percentComplete": 50,
             "errorString": ""
         }
@@ -1035,13 +1047,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 Unpairs all remotes from the STB
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | IStringIterator | <sup>(optional)</sup>(optional): Optional list of MAC addresses to pair with (if supported by backend) @retval ErrorCode::NONE: Pairing started successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to start pairing. |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes) |
 | params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
@@ -1085,16 +1097,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IRemoteControl-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the RemoteControl plugin:
-
-RemoteControl interface events:
+The following events are provided by the IRemoteControl Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -1111,10 +1119,10 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | FirmwareUpdateStatusData | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
+| params.status | object | Firmware update status including session ID, MAC address, upgrade state, and percent complete |
 | params.status.upgradeSessionId | string | The firmware update session identifier  |
 | params.status.macAddress | string | The MAC address of the remote in hex-colon format  |
-| params.status.upgradeState | string | The firmware update state |
+| params.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
 | params.status.errorString | string | The firmware update error string, only present on failure |
 
@@ -1128,7 +1136,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
     "params": {
         "upgradeSessionId": "12345-abc-def",
         "macAddress": "AA:BB:CC:DD:EE:FF",
-        "upgradeState": "SUCCESS",
+        "upgradeState": "success",
         "percentComplete": 50,
         "errorString": ""
     }
@@ -1144,10 +1152,10 @@ Triggered at any time when the status of any one of the supported STB remote net
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | NetStatusData | The network status data |
+| params.status | object | Network status information including network type, pairing state, and IR programming state |
 | params.status.netType | integer | The type of remote control network  |
-| params.status.pairingState | string | The pairing state |
-| params.status.irProgState | string | The IR programming state |
+| params.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
+| params.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
 | params.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
 | params.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
 
@@ -1177,7 +1185,7 @@ Generated for manual pairing validation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | ValidationStatusObject | Validation information including network type and validation digits for manual pairing |
+| params.status | object | Validation information including network type and validation digits for manual pairing |
 | params.status.netType | integer | The type of remote control network  |
 | params.status.validationDigit1 | integer | The first validation digit  |
 | params.status.validationDigit2 | integer | The second validation digit  |
