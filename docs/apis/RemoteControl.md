@@ -920,10 +920,10 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
+| params?.macAddress | string | <sup>(optional)</sup>Optional MAC address of the target remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
-| params.fileType | string | The type of firmware image file  |
-| params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
+| params?.fileType | string | <sup>(optional)</sup>Optional type of firmware image file  |
+| params?.percentIncrement | integer | <sup>(optional)</sup>Optional increment change of a firmware update to notify. Valid range 1-100 percent  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
