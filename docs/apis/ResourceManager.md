@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="ResourceManager_Plugin"></a>
-# ResourceManager Plugin
+<a id="ResourceManager_Module"></a>
+# ResourceManager Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ResourceManager/IResourceManager.h)**
 
-A ResourceManager plugin for Thunder framework.
+A ResourceManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IResourceManager](#IResourceManager)
+    - [Methods](#IResourceManager-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A ResourceManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `ResourceManager` plugin provides an interface for ResourceManager.
+The `ResourceManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IResourceManager
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkResourceManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the ResourceManager plugin:
+<a id="IResourceManager"></a>
+## IResourceManager Interface
 
-ResourceManager interface methods:
+<a id="IResourceManager-Methods"></a>
+### Methods
+
+The following methods are provided by the IResourceManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,15 +64,15 @@ ResourceManager interface methods:
 
 Gets a list of blacklisted clients
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clients | IStringIterator | Iterator containing the list of blocked applications |
+| result.clients | array | Iterator containing the list of blocked applications |
 | result.clients[#] | string |  |
 | result.success | bool | Indicates whether the operation succeeded |
 
@@ -109,8 +117,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Reserves the Text To Speech resource for a specified client
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -120,7 +128,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the reservation operation |
 
 ### Examples
 
@@ -163,19 +171,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Reserves the Text To Speech resource for specified clients
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appids | IStringIterator | Iterator containing the list of application identifiers (callsigns) |
+| params.appids | array | Iterator containing the list of application identifiers (callsigns) |
 | params.appids[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the reservation operation |
 
 ### Examples
 
@@ -218,8 +226,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Adds/removes the application with the given callsign to/from the AV blacklist
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -230,7 +238,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Indicates whether the operation succeeded |
+| result.success | bool | The result of the operation |
 
 ### Examples
 
@@ -268,5 +276,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     }
 }
 ```
-
 

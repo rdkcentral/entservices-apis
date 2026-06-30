@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="SystemMode_Plugin"></a>
-# SystemMode Plugin
+<a id="SystemMode_Module"></a>
+# SystemMode Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/IDeviceOptimizeStateActivator.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemMode/ISystemMode.h)**
 
-A SystemMode plugin for Thunder framework.
+A SystemMode module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [ISystemMode](#ISystemMode)
+    - [Methods](#ISystemMode-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A SystemMode plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `SystemMode` plugin provides an interface for SystemMode.
+The `SystemMode` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- ISystemMode
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkSystemMode.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the SystemMode plugin:
+<a id="ISystemMode"></a>
+## ISystemMode Interface
 
-SystemMode interface methods:
+<a id="ISystemMode-Methods"></a>
+### Methods
+
+The following methods are provided by the ISystemMode Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,8 +64,8 @@ SystemMode interface methods:
 
 To put client plugin entry in map.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -109,8 +117,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 To put client plugin entry in map.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -162,18 +170,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Gets the current state for a given system property
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode. |
+| params.systemMode | string | The system mode to get the state of. Possible values: device_optimize |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | state |
+| result.state | string | state. Possible values: video, game |
 
 ### Examples
 
@@ -186,7 +194,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.SystemMode.getState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE"
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -195,7 +203,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -206,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "state": "GAME"
+        "state": "video"
     }
 }
 ```
@@ -216,14 +224,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode. |
-| params.state | string | state |
+| params.systemMode | string | The system mode. Possible values: device_optimize |
+| params.state | string | The requested state. Possible values: video, game |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -240,8 +248,8 @@ Event details will be updated soon.
     "id": 3,
     "method": "org.rdk.SystemMode.requestState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE",
-        "state": "GAME"
+        "systemMode": "device_optimize",
+        "state": "video"
     }
 }
 ```
@@ -250,7 +258,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "DEVICE_OPTIMIZE", "state": "GAME"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "device_optimize", "state": "video"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -263,5 +271,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "result": null
 }
 ```
-
 
