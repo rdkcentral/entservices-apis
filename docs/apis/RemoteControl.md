@@ -74,9 +74,7 @@ The following methods are provided by the IRemoteControl Interface:
 | [initializeIRDB](#initializeIRDB) | Initializes the IR database |
 | [setIRCode](#setIRCode) | Programs an IR code into the specified remote control |
 | [startFirmwareUpdate](#startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
-| [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network. |
 | [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
-| [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network. |
 | [unpair](#unpair) | Unpairs all remotes from the STB |
 
 <a id="cancelFirmwareUpdate"></a>
@@ -922,10 +920,10 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.macAddress | string | The MAC address of the target remote in hex-colon format  |
+| params?.macAddress | string | <sup>(optional)</sup>Optional MAC address of the target remote in hex-colon format  |
 | params.fileName | string | The full path and filename for the firmware image  |
-| params.fileType | string | The type of firmware image file  |
-| params.percentIncrement | integer | The increment change of a firmware update to notify. Valid range 1-100 percent  |
+| params?.fileType | string | <sup>(optional)</sup>Optional type of firmware image file  |
+| params?.percentIncrement | integer | <sup>(optional)</sup>Optional increment change of a firmware update to notify. Valid range 1-100 percent  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -976,65 +974,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="startPairing"></a>
-## *startPairing*
-
-Initiates pairing a remote with the STB on the specified network.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.payload | string | Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged. |
-| params.macAddressList | array | (optional): Optional list of MAC addresses to pair with (if supported by backend) |
-| params.macAddressList[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.RemoteControl.startPairing",
-    "params": {
-        "payload": "",
-        "macAddressList": [
-            ""
-        ]
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"payload": "", "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": {
-        "success": true
-    }
-}
-```
-
 <a id="statusFirmwareUpdate"></a>
 ## *statusFirmwareUpdate*
 
@@ -1068,7 +1007,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "method": "org.rdk.RemoteControl.statusFirmwareUpdate",
     "params": {
         "sessionId": "12345-abc-def"
@@ -1080,7 +1019,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1089,7 +1028,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "result": {
         "success": true,
         "status": {
@@ -1099,60 +1038,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
             "percentComplete": 50,
             "errorString": ""
         }
-    }
-}
-```
-
-<a id="stopPairing"></a>
-## *stopPairing*
-
-Cancels pairing a remote with the STB on the specified network.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.payload | string | Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.RemoteControl.stopPairing",
-    "params": {
-        "payload": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"payload": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": {
-        "success": true
     }
 }
 ```
@@ -1184,7 +1069,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 16,
     "method": "org.rdk.RemoteControl.unpair",
     "params": [
         ""
@@ -1196,7 +1081,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1205,7 +1090,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 16,
     "result": {
         "success": true
     }
@@ -1246,7 +1131,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 17,
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
         "upgradeSessionId": "12345-abc-def",
@@ -1279,7 +1164,7 @@ Triggered at any time when the status of any one of the supported STB remote net
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 18,
     "method": "org.rdk.RemoteControl.onStatus",
     "params": {
         "netType": 1,
@@ -1311,7 +1196,7 @@ Generated for manual pairing validation
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 19,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
         "netType": 1,
