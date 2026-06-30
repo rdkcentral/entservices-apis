@@ -158,6 +158,7 @@ namespace WPEFramework {
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text startPairing
             // @param payload: Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged.
             // @param result: Whether the request succeeded
@@ -168,6 +169,7 @@ namespace WPEFramework {
             virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text stopPairing
             // @param payload: Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged.
             // @param result: Whether the request succeeded
