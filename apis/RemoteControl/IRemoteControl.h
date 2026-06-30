@@ -166,7 +166,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @json:omit
@@ -176,7 +176,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StopPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
