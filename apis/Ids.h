@@ -356,6 +356,8 @@ namespace Exchange {
         ID_VOICECONTROL                             = ID_ENTOS_OFFSET + 0x540,
         ID_VOICECONTROL_NOTIFICATION                = ID_VOICECONTROL + 1,
 
+        ID_DEVICESETTINGS                               = ID_ENTOS_OFFSET + 0x550,
+
         ID_DEVICESETTINGS_AUDIO                             = ID_ENTOS_OFFSET + 0x560,
         ID_DEVICESETTINGS_AUDIO_NOTIFICATION                = ID_DEVICESETTINGS_AUDIO + 1,
         ID_DEVICESETTINGS_AUDIO_ENCODING_ITERATOR           = ID_DEVICESETTINGS_AUDIO + 2,
