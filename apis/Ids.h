@@ -356,10 +356,6 @@ namespace Exchange {
         ID_VOICECONTROL                             = ID_ENTOS_OFFSET + 0x540,
         ID_VOICECONTROL_NOTIFICATION                = ID_VOICECONTROL + 1,
 
-        ID_LINCHPIN_CLIENT_PROXY                           = ID_ENTOS_OFFSET + 0x550,
-        ID_LINCHPIN_CLIENT_PROXY_NOTIFICATION              = ID_LINCHPIN_CLIENT_PROXY + 1,
-        ID_LINCHPIN_CLIENT_PROXY_TOPIC_INFO_ITERATOR       = ID_LINCHPIN_CLIENT_PROXY + 2,
-
     }; // enum IDS
 
 } // namespace Exchange
