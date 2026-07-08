@@ -23,6 +23,7 @@
 #include "IDeviceSettingsVideoPort.h"
 
 // @stubgen:include <com/IIteratorType.h>
+// @stubgen:include "IDeviceSettingsVideoPort.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -170,8 +171,9 @@ namespace Exchange {
             DS_HDMIIN_AVICONTENT_TYPE_MAX           =5
         };
 
-        // VideoPortResolution reused from IDeviceSettingsVideoPort.
-        // dsVideoPortResolution_t (dsAVDTypes.h) is shared by both VideoPort and HdmiIn HAL APIs.
+        // VideoPortResolution reused from IDeviceSettingsVideoPort — same underlying HAL struct dsVideoPortResolution_t.
+        // @stubgen:include "IDeviceSettingsVideoPort.h" (quotes = relative path, same as ILifecycleManagerState pattern)
+        // enables the stub generator to resolve this cross-interface using alias.
         using HDMIVideoPortResolution = IDeviceSettingsVideoPort::VideoPortResolution;
         
         // @event
