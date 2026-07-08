@@ -23,7 +23,6 @@
 #include "IDeviceSettingsVideoPort.h"
 
 // @stubgen:include <com/IIteratorType.h>
-// @stubgen:include <interfaces/IDeviceSettingsVideoPort.h>
 
 namespace WPEFramework {
 namespace Exchange {
