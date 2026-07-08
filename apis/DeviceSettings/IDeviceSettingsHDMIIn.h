@@ -20,10 +20,8 @@
 #pragma once
 
 #include "Module.h"
-#include "IDeviceSettingsVideoPort.h"
 
 // @stubgen:include <com/IIteratorType.h>
-// @stubgen:include "IDeviceSettingsVideoPort.h"
 
 namespace WPEFramework {
 namespace Exchange {
@@ -171,10 +169,62 @@ namespace Exchange {
             DS_HDMIIN_AVICONTENT_TYPE_MAX           =5
         };
 
-        // VideoPortResolution reused from IDeviceSettingsVideoPort — same underlying HAL struct dsVideoPortResolution_t.
-        // @stubgen:include "IDeviceSettingsVideoPort.h" (quotes = relative path, same as ILifecycleManagerState pattern)
-        // enables the stub generator to resolve this cross-interface using alias.
-        using HDMIVideoPortResolution = IDeviceSettingsVideoPort::VideoPortResolution;
+        // Pixel-dimension resolution — matches dsVideoResolution_t / dsVideoPortResolution_t.pixelResolution.
+        // Same values as IDeviceSettingsVideoPort::VideoResolution; kept here for ProxyStubGenerator compatibility.
+        enum HDMIInVideoResolution : uint8_t {
+            DS_HDMIIN_PIXELRES_720X480    = 0,
+            DS_HDMIIN_PIXELRES_720X576    = 1,
+            DS_HDMIIN_PIXELRES_1280X720   = 2,
+            DS_HDMIIN_PIXELRES_1366X768   = 3,
+            DS_HDMIIN_PIXELRES_1920X1080  = 4,
+            DS_HDMIIN_PIXELRES_3840X2160  = 5,
+            DS_HDMIIN_PIXELRES_4096X2160  = 6,
+            DS_HDMIIN_PIXELRES_MAX        = 7
+        };
+
+        enum HDMIVideoAspectRatio : uint8_t {
+            DS_HDMIIN_ASPECT_RATIO_4X3         = 0  /* @text Video Aspect Ratio 4X3 */,
+            DS_HDMIIN_ASPECT_RATIO_16X9        = 1  /* @text Video Aspect Ratio 16x9 */,
+            DS_HDMIIN_ASPECT_RATIO_MAX         = 2  /* @text Video Aspect Ratio MAX */
+        };
+
+        enum HDMIInVideoStereoScopicMode : uint8_t {
+            DS_HDMIIN_SSMODE_UNKNOWN           = 0,
+            DS_HDMIIN_SSMODE_2D                = 1,
+            DS_HDMIIN_SSMODE_3D_SIDE_BY_SIDE   = 2,
+            DS_HDMIIN_SSMODE_3D_TOP_AND_BOTTOM = 3,
+            DS_HDMIIN_SSMODE_MAX               = 4
+        };
+
+        enum HDMIInVideoFrameRate: uint8_t {
+            DS_HDMIIN_FRAMERATE_UNKNOWN   = 0,
+            DS_HDMIIN_FRAMERATE_24        = 1,
+            DS_HDMIIN_FRAMERATE_25        = 2,
+            DS_HDMIIN_FRAMERATE_30        = 3,
+            DS_HDMIIN_FRAMERATE_60        = 4,
+            DS_HDMIIN_FRAMERATE_23_98     = 5,
+            DS_HDMIIN_FRAMERATE_29_97     = 6,
+            DS_HDMIIN_FRAMERATE_50        = 7,
+            DS_HDMIIN_FRAMERATE_59_94     = 8,
+            DS_HDMIIN_FRAMERATE_100       = 9,
+            DS_HDMIIN_FRAMERATE_119_88    = 10,
+            DS_HDMIIN_FRAMERATE_120       = 11,
+            DS_HDMIIN_FRAMERATE_200       = 12,
+            DS_HDMIIN_FRAMERATE_239_76    = 13,
+            DS_HDMIIN_FRAMERATE_240       = 14,
+            DS_HDMIIN_FRAMERATE_MAX       = 15
+        };
+
+        // Self-contained struct matching dsVideoPortResolution_t (shared by VideoPort and HdmiIn HAL).
+        // pixelResolution uses pixel-dimension enum (HDMIInVideoResolution) not TV-standard bitmask.
+        struct HDMIVideoPortResolution {
+            string name;
+            HDMIInVideoResolution pixelResolution;
+            HDMIVideoAspectRatio aspectRatio;
+            HDMIInVideoStereoScopicMode stereoScopicMode;
+            HDMIInVideoFrameRate frameRate;
+            bool interlaced;
+        };
         
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
