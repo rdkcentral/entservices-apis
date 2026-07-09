@@ -29,6 +29,17 @@ namespace Exchange {
 
         enum { ID = ID_AUDIO_OUTPUT };
 
+        enum SoundModes : uint8_t {
+                UNKNOWN,
+                MONO,
+                STEREO,
+                SURROUND,
+                PASSTHRU,
+                DOLBYDIGITAL,
+                DOLBYDIGITALPLUS,
+                SOUNDMODE_AUTO
+         };
+
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
 
