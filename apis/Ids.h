@@ -357,6 +357,8 @@ namespace Exchange {
         ID_VOICECONTROL                             = ID_ENTOS_OFFSET + 0x540,
         ID_VOICECONTROL_NOTIFICATION                = ID_VOICECONTROL + 1,
 
+        ID_TOOLS                           = ID_ENTOS_OFFSET + 0x550,
+
     }; // enum IDS
 
 } // namespace Exchange
