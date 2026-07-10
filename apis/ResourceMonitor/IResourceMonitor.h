@@ -77,11 +77,9 @@ namespace WPEFramework {
             // @param interval - in - uint32_t
             // @text startcapture
             // @param captureMode - in - CaptureMode
-            // @param processPrefix - in - string
             // @returns uint32_t
             virtual uint32_t StartCapture(const uint32_t interval,
-                                        const CaptureMode captureMode
-                                        const string &processPrefix) = 0;
+                                        const CaptureMode captureMode) = 0;
 
             // @brief End capture session
             // @text stopcapture
