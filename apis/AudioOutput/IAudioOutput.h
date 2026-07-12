@@ -29,7 +29,7 @@ namespace Exchange {
 
         enum { ID = ID_AUDIO_OUTPUT };
 
-        enum SoundModes : uint8_t {
+        enum AudioModes : uint8_t {
                 UNKNOWN,
                 MONO,
                 STEREO,
