@@ -287,10 +287,10 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
 
   /** Gets the currently focused application */
   // @text getFocused
-  // @brief Gets the name of the currently focused application
-  // @param client: the identifier of the currently focused application
-  // @retval Core::ERROR_NONE on success
-  // @retval Core::ERROR_GENERAL on failure
+  // @brief Gets the identifier of the currently focused application
+  // @param client: Output parameter. The identifier of the currently focused application
+  // @retval Core::ERROR_NONE: Successfully retrieved the focused application identifier
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the focused application identifier
   virtual Core::hresult GetFocused(string &client /* @out */) const = 0;
 
   /** Captures a screenshot of the current compositor output */
