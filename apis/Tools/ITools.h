@@ -30,7 +30,7 @@ namespace WPEFramework
     {
         // @json 1.0.0 @text:keep
         struct EXTERNAL ITools : virtual public Core::IUnknown {
-            enum { ID = ID_KEY_GENERATOR};
+            enum { ID = ID_TOOLS };
 
             // @json:omit
             virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
