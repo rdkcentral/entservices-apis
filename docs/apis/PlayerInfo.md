@@ -1,18 +1,22 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PlayerInfo_Plugin"></a>
-# PlayerInfo Plugin
+<a id="PlayerInfo_Module"></a>
+# PlayerInfo Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PlayerInfo/IPlayerInfo.h)**
 
-A PlayerInfo plugin for Thunder framework.
+A PlayerInfo module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IPlayerProperties](#IPlayerProperties)
+    - [Properties](#IPlayerProperties-Properties)
+  - [IOutput](#IOutput)
+    - [Notifications](#IOutput-Notifications)
+    - [Properties](#IOutput-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +26,12 @@ A PlayerInfo plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PlayerInfo` plugin provides an interface for PlayerInfo.
+The `PlayerInfo` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IPlayerProperties
+- IOutput
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +45,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPlayerInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
+<a id="Interfaces"></a>
+# Interfaces
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the PlayerInfo plugin:
+<a id="IPlayerProperties"></a>
+## IPlayerProperties Interface
 
-PlayerInfo interface properties:
+<a id="IPlayerProperties-Properties"></a>
+### Properties
+
+The following properties are provided by the IPlayerProperties Interface:
 
 | Property | Description |
 | :-------- | :-------- |
@@ -51,13 +62,9 @@ PlayerInfo interface properties:
 | [isAudioEquivalenceEnabled](#isAudioEquivalenceEnabled)<sup>RO</sup> | Checks Loudness Equivalence in platform |
 | [resolution](#resolution)<sup>RO</sup> | Current Video playback resolution |
 | [videoCodecs](#videoCodecs)<sup>RO</sup> |  |
-| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
-| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
-| [dolby_mode](#dolby_mode) | Dolby Mode |
-| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
 
-<a id="AudioCodecs"></a>
-## *AudioCodecs*
+<a id="audioCodecs"></a>
+## *audioCodecs*
 
 
 
@@ -67,8 +74,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | IAudioCodecIterator |  |
-| (property).codec[#] | string |  |
+| (property).codec | array |  |
+| (property).codec[#] | string | Possible values: AUDIO_UNDEFINED, AUDIO_AAC, AUDIO_AC3, AUDIO_AC3_PLUS, AUDIO_DTS, AUDIO_MPEG1, AUDIO_MPEG2, AUDIO_MPEG3, AUDIO_MPEG4, AUDIO_OPUS, AUDIO_VORBIS_OGG, AUDIO_WAV |
 
 ### Examples
 
@@ -103,8 +110,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="IsAudioEquivalenceEnabled"></a>
-## *IsAudioEquivalenceEnabled*
+<a id="isAudioEquivalenceEnabled"></a>
+## *isAudioEquivalenceEnabled*
 
 Checks Loudness Equivalence in platform
 
@@ -149,8 +156,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="Resolution"></a>
-## *Resolution*
+<a id="resolution"></a>
+## *resolution*
 
 Current Video playback resolution
 
@@ -160,7 +167,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).res | string | resolution |
+| (property).res | string | resolution. Possible values: RESOLUTION_UNKNOWN, RESOLUTION_480I24, RESOLUTION_480I25, RESOLUTION_480I30, RESOLUTION_480I50, RESOLUTION_480I, RESOLUTION_480P24, RESOLUTION_480P25, RESOLUTION_480P30, RESOLUTION_480P50, RESOLUTION_480P, RESOLUTION_576I24, RESOLUTION_576I25, RESOLUTION_576I30, RESOLUTION_576I50, RESOLUTION_576I, RESOLUTION_576P24, RESOLUTION_576P25, RESOLUTION_576P30, RESOLUTION_576P50, RESOLUTION_576P, RESOLUTION_720P24, RESOLUTION_720P25, RESOLUTION_720P30, RESOLUTION_720P50, RESOLUTION_720P, RESOLUTION_768P, RESOLUTION_1080I24, RESOLUTION_1080I25, RESOLUTION_1080I30, RESOLUTION_1080I50, RESOLUTION_1080I, RESOLUTION_1080P24, RESOLUTION_1080P25, RESOLUTION_1080P30, RESOLUTION_1080P50, RESOLUTION_1080P, RESOLUTION_2160P24, RESOLUTION_2160P25, RESOLUTION_2160P30, RESOLUTION_2160P50, RESOLUTION_2160P60, RESOLUTION_2160P |
 
 ### Examples
 
@@ -195,8 +202,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="VideoCodecs"></a>
-## *VideoCodecs*
+<a id="videoCodecs"></a>
+## *videoCodecs*
 
 
 
@@ -206,8 +213,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).codec | IVideoCodecIterator |  |
-| (property).codec[#] | string |  |
+| (property).codec | array |  |
+| (property).codec[#] | string | Possible values: VIDEO_UNDEFINED, VIDEO_H263, VIDEO_H264, VIDEO_H265, VIDEO_H265_10, VIDEO_MPEG, VIDEO_MPEG2, VIDEO_MPEG4, VIDEO_VP8, VIDEO_VP9, VIDEO_VP10, VIDEO_AV1 |
 
 ### Examples
 
@@ -242,8 +249,62 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="AtmosMetadata"></a>
-## *AtmosMetadata*
+---
+
+<a id="IOutput"></a>
+## IOutput Interface
+
+<a id="IOutput-Notifications"></a>
+### Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the IOutput Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
+
+<a id="dolby_audiomodechanged"></a>
+## *dolby_audiomodechanged*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
+| params.enabled | bool |  |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.PlayerInfo.dolby_audiomodechanged",
+    "params": {
+        "mode": "UNKNOWN",
+        "enabled": true
+    }
+}
+```
+
+<a id="IOutput-Properties"></a>
+### Properties
+
+The following properties are provided by the IOutput Interface:
+
+| Property | Description |
+| :-------- | :-------- |
+| [dolby_atmosmetadata](#dolby_atmosmetadata)<sup>RO</sup> | Atmos capabilities of Sink |
+| [dolby_enableatmosoutput](#dolby_enableatmosoutput)<sup>WO</sup> | Enable Atmos Audio Output |
+| [dolby_mode](#dolby_mode) | Dolby Mode |
+| [dolby_soundmode](#dolby_soundmode)<sup>RO</sup> | Sound Mode - Mono/Stereo/Surround |
+
+<a id="dolby_atmosmetadata"></a>
+## *dolby_atmosmetadata*
 
 Atmos capabilities of Sink
 
@@ -264,7 +325,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.PlayerInfo.atmosMetadata"
+    "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"
 }
 ```
 
@@ -272,7 +333,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.atmosMetadata"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PlayerInfo.dolby_atmosmetadata"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -288,8 +349,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="EnableAtmosOutput"></a>
-## *EnableAtmosOutput*
+<a id="dolby_enableatmosoutput"></a>
+## *dolby_enableatmosoutput*
 
 Enable Atmos Audio Output
 
@@ -310,7 +371,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.PlayerInfo.enableAtmosOutput",
+    "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput",
     "params": {
         "enable": true
     }
@@ -321,7 +382,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.enableAtmosOutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PlayerInfo.dolby_enableatmosoutput", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -335,8 +396,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-<a id="Mode"></a>
-## *Mode*
+<a id="dolby_mode"></a>
+## *dolby_mode*
 
 Dolby Mode
 
@@ -345,7 +406,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | string | dolby mode type |
+| (property).mode | string | dolby mode type. Possible values: DIGITAL_PCM, DIGITAL_PLUS, DIGITAL_AC3, AUTO, DIGITAL_PASSTHROUGH, MS12 |
 
 ### Examples
 
@@ -356,7 +417,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode"
+    "method": "org.rdk.PlayerInfo.dolby_mode"
 }
 ```
 
@@ -364,7 +425,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -387,7 +448,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.PlayerInfo.mode",
+    "method": "org.rdk.PlayerInfo.dolby_mode",
     "params": {
         "mode": "DIGITAL_PCM"
     }
@@ -398,7 +459,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PlayerInfo.dolby_mode", "params": {"mode": "DIGITAL_PCM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -412,8 +473,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-<a id="SoundMode"></a>
-## *SoundMode*
+<a id="dolby_soundmode"></a>
+## *dolby_soundmode*
 
 Sound Mode - Mono/Stereo/Surround
 
@@ -423,7 +484,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).mode | string |  |
+| (property).mode | string | Possible values: UNKNOWN, MONO, STEREO, SURROUND, PASSTHRU, DOLBYDIGITAL, DOLBYDIGITALPLUS, SOUNDMODE_AUTO |
 
 ### Examples
 
@@ -434,7 +495,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PlayerInfo.soundMode"
+    "method": "org.rdk.PlayerInfo.dolby_soundmode"
 }
 ```
 
@@ -442,7 +503,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.soundMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PlayerInfo.dolby_soundmode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -458,42 +519,3 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-<a id="Notifications"></a>
-# Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the PlayerInfo plugin:
-
-PlayerInfo interface events:
-
-| Event | Description |
-| :-------- | :-------- |
-| [dolby_audiomodechanged](#dolby_audiomodechanged) |  |
-
-<a id="audioModeChanged"></a>
-## *audioModeChanged*
-
-
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mode | string |  |
-| params.enabled | bool |  |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.PlayerInfo.audioModeChanged",
-    "params": {
-        "mode": "UNKNOWN",
-        "enabled": true
-    }
-}
-```

@@ -1,18 +1,22 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="UserSettings_Plugin"></a>
-# UserSettings Plugin
+<a id="UserSettings_Module"></a>
+# UserSettings Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UserSettings/IUserSettings.h)**
 
-A UserSettings plugin for Thunder framework.
+A UserSettings module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUserSettings](#IUserSettings)
+    - [Methods](#IUserSettings-Methods)
+    - [Notifications](#IUserSettings-Notifications)
+  - [IUserSettingsInspector](#IUserSettingsInspector)
+    - [Methods](#IUserSettingsInspector-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +26,12 @@ A UserSettings plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `UserSettings` plugin provides an interface for UserSettings.
+The `UserSettings` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUserSettings
+- IUserSettingsInspector
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +45,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUserSettings.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the UserSettings plugin:
+<a id="IUserSettings"></a>
+## IUserSettings Interface
 
-UserSettings interface methods:
+<a id="IUserSettings-Methods"></a>
+### Methods
+
+The following methods are provided by the IUserSettings Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -53,8 +64,6 @@ UserSettings interface methods:
 | [getContentPin](#getContentPin) | Gets the ContentPin. |
 | [getHighContrast](#getHighContrast) | Gets the current highContrast setting. |
 | [getLiveWatershed](#getLiveWatershed) | Gets the LiveWatershed setting |
-| [getMigrationState](#getMigrationState) | Get the migration state of the respective key |
-| [getMigrationStates](#getMigrationStates) | Get the migration state of all the defined keys |
 | [getPinControl](#getPinControl) | Gets the PinControl setting |
 | [getPinOnPurchase](#getPinOnPurchase) | Gets the PinOnPurchase setting |
 | [getPlaybackWatershed](#getPlaybackWatershed) | Gets the PlaybackWatershed setting |
@@ -93,15 +102,15 @@ UserSettings interface methods:
 
 Gets the current AudioDescription setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -141,15 +150,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the BlockNotRatedContent setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
+| result.blockNotRatedContent | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -189,15 +198,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Gets the Captions setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Receives the state |
 
 ### Examples
 
@@ -237,15 +246,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Gets the ContentPin.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.contentPin | string | The changed contentPin. |
+| result.contentPin | string | A string of four decimal digits that represents the content PIN. |
 
 ### Examples
 
@@ -285,15 +294,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Gets the current highContrast setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -333,15 +342,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Gets the LiveWatershed setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.liveWatershed | bool | liveWatershed enabled or not. |
+| result.liveWatershed | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -376,127 +385,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-<a id="getMigrationState"></a>
-## *getMigrationState*
-
-Get the migration state of the respective key
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.key | string | one of UserSettingsKey |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.requiresMigration | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.UserSettings.getMigrationState",
-    "params": {
-        "key": "PREFERRED_AUDIO_LANGUAGES"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "requiresMigration": true
-    }
-}
-```
-
-<a id="getMigrationStates"></a>
-## *getMigrationStates*
-
-Get the migration state of all the defined keys
-
-### Events
-Event details will be updated soon.
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.states | IUserSettingsMigrationStateIterator | array of migration status. |
-| result.states[#].key | string |  |
-| result.states[#].requiresMigration | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.UserSettings.getMigrationStates"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": [
-        {
-            "key": "PREFERRED_AUDIO_LANGUAGES",
-            "requiresMigration": true
-        }
-    ]
-}
-```
-
 <a id="getPinControl"></a>
 ## *getPinControl*
 
 Gets the PinControl setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.pinControl | bool | pinControl enabled or not. |
+| result.pinControl | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -506,7 +408,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 6,
     "method": "org.rdk.UserSettings.getPinControl"
 }
 ```
@@ -515,7 +417,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.UserSettings.getPinControl"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.UserSettings.getPinControl"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -524,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 6,
     "result": {
         "pinControl": true
     }
@@ -536,15 +438,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Gets the PinOnPurchase setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.pinOnPurchase | bool | pinOnPurchase enabled or not. |
+| result.pinOnPurchase | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -554,7 +456,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 7,
     "method": "org.rdk.UserSettings.getPinOnPurchase"
 }
 ```
@@ -563,7 +465,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.UserSettings.getPinOnPurchase"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.UserSettings.getPinOnPurchase"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -572,7 +474,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 7,
     "result": {
         "pinOnPurchase": true
     }
@@ -584,15 +486,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Gets the PlaybackWatershed setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.playbackWatershed | bool | playbackWatershed enabled or not. |
+| result.playbackWatershed | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -602,7 +504,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 8,
     "method": "org.rdk.UserSettings.getPlaybackWatershed"
 }
 ```
@@ -611,7 +513,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.UserSettings.getPlaybackWatershed"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.UserSettings.getPlaybackWatershed"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -620,7 +522,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 8,
     "result": {
         "playbackWatershed": true
     }
@@ -632,15 +534,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Gets the current PreferredAudioLanguages setting
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.preferredLanguages | string | the changed preferredLanguages. |
+| result.preferredLanguages | string | PreferredLanguages |
 
 ### Examples
 
@@ -650,7 +552,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 9,
     "method": "org.rdk.UserSettings.getPreferredAudioLanguages"
 }
 ```
@@ -659,7 +561,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.UserSettings.getPreferredAudioLanguages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.UserSettings.getPreferredAudioLanguages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -668,7 +570,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 9,
     "result": {
         "preferredLanguages": "eng,fra"
     }
@@ -680,15 +582,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Gets the current PreferredCaptionsLanguages setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.preferredLanguages | string | the changed preferredLanguages. |
+| result.preferredLanguages | string | "eng,fra" |
 
 ### Examples
 
@@ -698,7 +600,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 10,
     "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"
 }
 ```
@@ -707,7 +609,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.UserSettings.getPreferredCaptionsLanguages"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -716,7 +618,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 10,
     "result": {
         "preferredLanguages": "eng,fra"
     }
@@ -728,15 +630,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Gets the current PreferredClosedCaptionService setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.service | string | the changed preferredClosedCaptionService. |
+| result.service | string | Identifies the service to display . |
 
 ### Examples
 
@@ -746,7 +648,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 11,
     "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"
 }
 ```
@@ -755,7 +657,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.UserSettings.getPreferredClosedCaptionService"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -764,7 +666,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 11,
     "result": {
         "service": "CC3"
     }
@@ -776,15 +678,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 Gets the presentationLanguage
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.presentationLanguage | string | the changed presentationLanguage. |
+| result.presentationLanguage | string | "en-US", "es-US", "en-CA", "fr-CA" |
 
 ### Examples
 
@@ -794,7 +696,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 12,
     "method": "org.rdk.UserSettings.getPresentationLanguage"
 }
 ```
@@ -803,7 +705,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.UserSettings.getPresentationLanguage"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.UserSettings.getPresentationLanguage"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -812,7 +714,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 12,
     "result": {
         "presentationLanguage": ""
     }
@@ -824,15 +726,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 Gets the current PrivacyMode setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.privacyMode | string | "SHARE", "DO_NOT_SHARE". |
+| result.privacyMode | string | "SHARE" |
 
 ### Examples
 
@@ -842,7 +744,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 13,
     "method": "org.rdk.UserSettings.getPrivacyMode"
 }
 ```
@@ -851,7 +753,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.UserSettings.getPrivacyMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.UserSettings.getPrivacyMode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -860,7 +762,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 13,
     "result": {
         "privacyMode": ""
     }
@@ -872,15 +774,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 Gets the current ViewingRestrictions.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictions | string | the changed viewingRestrictions. |
+| result.viewingRestrictions | string | A JSON document that escribes the rating scheme(s) and ratings that are blocked. |
 
 ### Examples
 
@@ -890,7 +792,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 14,
     "method": "org.rdk.UserSettings.getViewingRestrictions"
 }
 ```
@@ -899,7 +801,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.UserSettings.getViewingRestrictions"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.UserSettings.getViewingRestrictions"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -908,7 +810,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 14,
     "result": {
         "viewingRestrictions": ""
     }
@@ -920,15 +822,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 Gets the current ViewingRestrictionsWindow.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| result.viewingRestrictionsWindow | string | A project-specific representation of the time interval.Eg: "ALWAYS" |
 
 ### Examples
 
@@ -938,7 +840,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 15,
     "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"
 }
 ```
@@ -947,7 +849,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.UserSettings.getViewingRestrictionsWindow"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -956,7 +858,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 15,
     "result": {
         "viewingRestrictionsWindow": ""
     }
@@ -968,15 +870,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 
 Gets the current voiceGuidance setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | audioDescription enabled or not |
+| result.enabled | bool | Enabled/Disabled |
 
 ### Examples
 
@@ -986,7 +888,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 16,
     "method": "org.rdk.UserSettings.getVoiceGuidance"
 }
 ```
@@ -995,7 +897,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.UserSettings.getVoiceGuidance"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.UserSettings.getVoiceGuidance"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1004,7 +906,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 16,
     "result": {
         "enabled": true
     }
@@ -1016,15 +918,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 
 Gets the current voiceGuidanceHints setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.hints | bool | voice guidance hints enabled or not. |
+| result.hints | bool | true/false |
 
 ### Examples
 
@@ -1034,7 +936,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 17,
     "method": "org.rdk.UserSettings.getVoiceGuidanceHints"
 }
 ```
@@ -1043,7 +945,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.UserSettings.getVoiceGuidanceHints"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.UserSettings.getVoiceGuidanceHints"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1052,7 +954,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 17,
     "result": {
         "hints": true
     }
@@ -1064,15 +966,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 
 Gets the current voiceGuidanceRate setting.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.rate | double | the changed voice guidance rate. |
+| result.rate | double | Gets Voice Guidance rate |
 
 ### Examples
 
@@ -1082,7 +984,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 18,
     "method": "org.rdk.UserSettings.getVoiceGuidanceRate"
 }
 ```
@@ -1091,7 +993,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.UserSettings.getVoiceGuidanceRate"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.UserSettings.getVoiceGuidanceRate"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1100,7 +1002,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 18,
     "result": {
         "rate": 0.0
     }
@@ -1112,13 +1014,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 
 Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1132,7 +1034,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 19,
     "method": "org.rdk.UserSettings.setAudioDescription",
     "params": {
         "enabled": true
@@ -1144,7 +1046,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.UserSettings.setAudioDescription", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.UserSettings.setAudioDescription", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "result": null
+}
+```
+
+<a id="setBlockNotRatedContent"></a>
+## *setBlockNotRatedContent*
+
+Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.blockNotRatedContent | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.UserSettings.setBlockNotRatedContent",
+    "params": {
+        "blockNotRatedContent": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.UserSettings.setBlockNotRatedContent", "params": {"blockNotRatedContent": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "result": null
+}
+```
+
+<a id="setCaptions"></a>
+## *setCaptions*
+
+A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enabled | bool | Sets the state |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "method": "org.rdk.UserSettings.setCaptions",
+    "params": {
+        "enabled": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.UserSettings.setCaptions", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1158,120 +1162,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-<a id="setBlockNotRatedContent"></a>
-## *setBlockNotRatedContent*
-
-Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.UserSettings.setBlockNotRatedContent",
-    "params": {
-        "blockNotRatedContent": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setBlockNotRatedContent", "params": {"blockNotRatedContent": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": null
-}
-```
-
-<a id="setCaptions"></a>
-## *setCaptions*
-
-A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.UserSettings.setCaptions",
-    "params": {
-        "enabled": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.UserSettings.setCaptions", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": null
-}
-```
-
 <a id="setContentPin"></a>
 ## *setContentPin*
 
 ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.contentPin | string | The changed contentPin. |
+| params.contentPin | string | A string of four decimal digits that represents the content PIN. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1285,7 +1187,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 22,
     "method": "org.rdk.UserSettings.setContentPin",
     "params": {
         "contentPin": ""
@@ -1297,7 +1199,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "result": null
+}
+```
+
+<a id="setHighContrast"></a>
+## *setHighContrast*
+
+Sets highContrast. Whether the app should display with high contrast or not.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enabled | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "org.rdk.UserSettings.setHighContrast",
+    "params": {
+        "enabled": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.UserSettings.setHighContrast", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "result": null
+}
+```
+
+<a id="setLiveWatershed"></a>
+## *setLiveWatershed*
+
+Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.liveWatershed | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "method": "org.rdk.UserSettings.setLiveWatershed",
+    "params": {
+        "liveWatershed": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.UserSettings.setLiveWatershed", "params": {"liveWatershed": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1311,120 +1315,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-<a id="setHighContrast"></a>
-## *setHighContrast*
-
-Sets highContrast. Whether the app should display with high contrast or not.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "method": "org.rdk.UserSettings.setHighContrast",
-    "params": {
-        "enabled": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.UserSettings.setHighContrast", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "result": null
-}
-```
-
-<a id="setLiveWatershed"></a>
-## *setLiveWatershed*
-
-Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.liveWatershed | bool | liveWatershed enabled or not. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.UserSettings.setLiveWatershed",
-    "params": {
-        "liveWatershed": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.UserSettings.setLiveWatershed", "params": {"liveWatershed": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "result": null
-}
-```
-
 <a id="setPinControl"></a>
 ## *setPinControl*
 
 Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinControl | bool | pinControl enabled or not. |
+| params.pinControl | bool | Enabled/Disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1438,7 +1340,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 25,
     "method": "org.rdk.UserSettings.setPinControl",
     "params": {
         "pinControl": true
@@ -1450,7 +1352,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.UserSettings.setPinControl", "params": {"pinControl": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.UserSettings.setPinControl", "params": {"pinControl": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 25,
+    "result": null
+}
+```
+
+<a id="setPinOnPurchase"></a>
+## *setPinOnPurchase*
+
+Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.pinOnPurchase | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "method": "org.rdk.UserSettings.setPinOnPurchase",
+    "params": {
+        "pinOnPurchase": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.UserSettings.setPinOnPurchase", "params": {"pinOnPurchase": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "result": null
+}
+```
+
+<a id="setPlaybackWatershed"></a>
+## *setPlaybackWatershed*
+
+Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.playbackWatershed | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "method": "org.rdk.UserSettings.setPlaybackWatershed",
+    "params": {
+        "playbackWatershed": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.UserSettings.setPlaybackWatershed", "params": {"playbackWatershed": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1464,120 +1468,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
-<a id="setPinOnPurchase"></a>
-## *setPinOnPurchase*
-
-Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.pinOnPurchase | bool | pinOnPurchase enabled or not. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "method": "org.rdk.UserSettings.setPinOnPurchase",
-    "params": {
-        "pinOnPurchase": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.UserSettings.setPinOnPurchase", "params": {"pinOnPurchase": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "result": null
-}
-```
-
-<a id="setPlaybackWatershed"></a>
-## *setPlaybackWatershed*
-
-Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.playbackWatershed | bool | playbackWatershed enabled or not. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.UserSettings.setPlaybackWatershed",
-    "params": {
-        "playbackWatershed": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.UserSettings.setPlaybackWatershed", "params": {"playbackWatershed": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "result": null
-}
-```
-
 <a id="setPreferredAudioLanguages"></a>
 ## *setPreferredAudioLanguages*
 
 A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.preferredLanguages | string | the changed preferredLanguages. |
+| params.preferredLanguages | string | PreferredLanguages |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1591,7 +1493,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 30,
+    "id": 28,
     "method": "org.rdk.UserSettings.setPreferredAudioLanguages",
     "params": {
         "preferredLanguages": "eng,fra"
@@ -1603,7 +1505,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.UserSettings.setPreferredAudioLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.UserSettings.setPreferredAudioLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "result": null
+}
+```
+
+<a id="setPreferredCaptionsLanguages"></a>
+## *setPreferredCaptionsLanguages*
+
+A prioritized list of ISO 639-2/B codes for the preferred Captions languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the subtitle track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred subtitle track.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.preferredLanguages | string | Is the list to set () |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages",
+    "params": {
+        "preferredLanguages": "eng,fra"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "result": null
+}
+```
+
+<a id="setPreferredClosedCaptionService"></a>
+## *setPreferredClosedCaptionService*
+
+The setting should be honored by the player. The behaviour of AUTO may be player specific. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.service | string | Identifies the service to display . |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "method": "org.rdk.UserSettings.setPreferredClosedCaptionService",
+    "params": {
+        "service": "CC3"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.UserSettings.setPreferredClosedCaptionService", "params": {"service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1617,120 +1621,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
-<a id="setPreferredCaptionsLanguages"></a>
-## *setPreferredCaptionsLanguages*
-
-A prioritized list of ISO 639-2/B codes for the preferred Captions languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the subtitle track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred subtitle track.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.preferredLanguages | string | the changed preferredLanguages. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages",
-    "params": {
-        "preferredLanguages": "eng,fra"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPreferredCaptionsLanguages", "params": {"preferredLanguages": "eng,fra"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "result": null
-}
-```
-
-<a id="setPreferredClosedCaptionService"></a>
-## *setPreferredClosedCaptionService*
-
-The setting should be honored by the player. The behaviour of AUTO may be player specific. Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.service | string | the changed preferredClosedCaptionService. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "method": "org.rdk.UserSettings.setPreferredClosedCaptionService",
-    "params": {
-        "service": "CC3"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPreferredClosedCaptionService", "params": {"service": "CC3"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "result": null
-}
-```
-
 <a id="setPresentationLanguage"></a>
 ## *setPresentationLanguage*
 
 Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.presentationLanguage | string | the changed presentationLanguage. |
+| params.presentationLanguage | string | "en-US", "es-US", "en-CA", "fr-CA" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1744,7 +1646,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 33,
+    "id": 31,
     "method": "org.rdk.UserSettings.setPresentationLanguage",
     "params": {
         "presentationLanguage": ""
@@ -1756,7 +1658,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
+    "result": null
+}
+```
+
+<a id="setPrivacyMode"></a>
+## *setPrivacyMode*
+
+The setting should be honored by the Telemetry. If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.privacyMode | string | "SHARE", "DO_NOT_SHARE" |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 32,
+    "method": "org.rdk.UserSettings.setPrivacyMode",
+    "params": {
+        "privacyMode": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 32,
+    "result": null
+}
+```
+
+<a id="setViewingRestrictions"></a>
+## *setViewingRestrictions*
+
+A JSON document that escribes the rating scheme(s) and ratings that are blocked.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.viewingRestrictions | string | A JSON document that describes the rating scheme(s) and ratings that are blocked. |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 33,
+    "method": "org.rdk.UserSettings.setViewingRestrictions",
+    "params": {
+        "viewingRestrictions": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1770,120 +1774,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
 }
 ```
 
-<a id="setPrivacyMode"></a>
-## *setPrivacyMode*
-
-The setting should be honored by the Telemetry. If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.privacyMode | string | "SHARE", "DO_NOT_SHARE". |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "method": "org.rdk.UserSettings.setPrivacyMode",
-    "params": {
-        "privacyMode": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "result": null
-}
-```
-
-<a id="setViewingRestrictions"></a>
-## *setViewingRestrictions*
-
-A JSON document that escribes the rating scheme(s) and ratings that are blocked.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.viewingRestrictions | string | the changed viewingRestrictions. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 35,
-    "method": "org.rdk.UserSettings.setViewingRestrictions",
-    "params": {
-        "viewingRestrictions": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 35,
-    "result": null
-}
-```
-
 <a id="setViewingRestrictionsWindow"></a>
 ## *setViewingRestrictionsWindow*
 
 A project-specific representation of the time interval when viewing restrictions are to be applied, if applicable for the project
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| params.viewingRestrictionsWindow | string | A project-specific representation of the time interval.Eg: "ALWAYS" |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1897,7 +1799,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 36,
+    "id": 34,
     "method": "org.rdk.UserSettings.setViewingRestrictionsWindow",
     "params": {
         "viewingRestrictionsWindow": ""
@@ -1909,7 +1811,109 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 34,
+    "result": null
+}
+```
+
+<a id="setVoiceGuidance"></a>
+## *setVoiceGuidance*
+
+Sets voiceGuidance. Whether Voice Guidance is enabled or not.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enabled | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 35,
+    "method": "org.rdk.UserSettings.setVoiceGuidance",
+    "params": {
+        "enabled": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.UserSettings.setVoiceGuidance", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 35,
+    "result": null
+}
+```
+
+<a id="setVoiceGuidanceHints"></a>
+## *setVoiceGuidanceHints*
+
+Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.hints | bool | Enabled/Disabled |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 36,
+    "method": "org.rdk.UserSettings.setVoiceGuidanceHints",
+    "params": {
+        "hints": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.UserSettings.setVoiceGuidanceHints", "params": {"hints": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1923,120 +1927,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 }
 ```
 
-<a id="setVoiceGuidance"></a>
-## *setVoiceGuidance*
-
-Sets voiceGuidance. Whether Voice Guidance is enabled or not.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "method": "org.rdk.UserSettings.setVoiceGuidance",
-    "params": {
-        "enabled": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidance", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "result": null
-}
-```
-
-<a id="setVoiceGuidanceHints"></a>
-## *setVoiceGuidanceHints*
-
-Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
-
-### Events
-Event details will be updated soon.
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.hints | bool | voice guidance hints enabled or not. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "method": "org.rdk.UserSettings.setVoiceGuidanceHints",
-    "params": {
-        "hints": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.setVoiceGuidanceHints", "params": {"hints": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "result": null
-}
-```
-
 <a id="setVoiceGuidanceRate"></a>
 ## *setVoiceGuidanceRate*
 
 Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rate | double | the changed voice guidance rate. |
+| params.rate | double | Sets Voice Guidance rate |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2050,7 +1952,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 37,
     "method": "org.rdk.UserSettings.setVoiceGuidanceRate",
     "params": {
         "rate": 0.0
@@ -2062,7 +1964,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 0.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 0.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2071,21 +1973,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 39,
+    "id": 37,
     "result": null
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUserSettings-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the UserSettings plugin:
-
-UserSettings interface events:
+The following events are provided by the IUserSettings Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -2166,7 +2064,7 @@ The Captions setting has changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | Captions enabled or not. |
 
 ### Examples
 
@@ -2214,7 +2112,7 @@ Triggered after the high contrast settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | high contrast enabled or not. |
 
 ### Examples
 
@@ -2502,7 +2400,7 @@ Triggered after the voice guidance enabled settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | audioDescription enabled or not |
+| params.enabled | bool | voice guidance enabled or not. |
 
 ### Examples
 
@@ -2564,3 +2462,126 @@ Triggered after the voice guidance rate changed.
     }
 }
 ```
+
+---
+
+<a id="IUserSettingsInspector"></a>
+## IUserSettingsInspector Interface
+
+<a id="IUserSettingsInspector-Methods"></a>
+### Methods
+
+The following methods are provided by the IUserSettingsInspector Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getMigrationState](#getMigrationState) | Get the migration state of the respective key |
+| [getMigrationStates](#getMigrationStates) | Get the migration state of all the defined keys |
+
+<a id="getMigrationState"></a>
+## *getMigrationState*
+
+Get the migration state of the respective key
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.key | string | one of UserSettingsKey. Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.requiresMigration | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "method": "org.rdk.UserSettings.getMigrationState",
+    "params": {
+        "key": "PREFERRED_AUDIO_LANGUAGES"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "result": {
+        "requiresMigration": true
+    }
+}
+```
+
+<a id="getMigrationStates"></a>
+## *getMigrationStates*
+
+Get the migration state of all the defined keys
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.states | array | array of migration status. |
+| result.states[#].key | string | Possible values: PREFERRED_AUDIO_LANGUAGES, AUDIO_DESCRIPTION, CAPTIONS, PREFERRED_CAPTIONS_LANGUAGES, PREFERRED_CLOSED_CAPTION_SERVICE, PRESENTATION_LANGUAGE, HIGH_CONTRAST, PIN_CONTROL, VIEWING_RESTRICTIONS, VIEWING_RESTRICTIONS_WINDOW, LIVE_WATERSHED, PLAYBACK_WATERSHED, BLOCK_NOT_RATED_CONTENT, PIN_ON_PURCHASE, VOICE_GUIDANCE, VOICE_GUIDANCE_RATE, VOICE_GUIDANCE_HINTS, CONTENT_PIN, PRIVACY_MODE |
+| result.states[#].requiresMigration | bool |  |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "method": "org.rdk.UserSettings.getMigrationStates"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.UserSettings.getMigrationStates"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "result": [
+        {
+            "key": "PREFERRED_AUDIO_LANGUAGES",
+            "requiresMigration": true
+        }
+    ]
+}
+```
+

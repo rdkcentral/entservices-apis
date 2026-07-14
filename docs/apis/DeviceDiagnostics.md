@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DeviceDiagnostics_Plugin"></a>
-# DeviceDiagnostics Plugin
+<a id="DeviceDiagnostics_Module"></a>
+# DeviceDiagnostics Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics/IDeviceDiagnostics.h)**
 
-A DeviceDiagnostics plugin for Thunder framework.
+A DeviceDiagnostics module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IDeviceDiagnostics](#IDeviceDiagnostics)
+    - [Methods](#IDeviceDiagnostics-Methods)
+    - [Notifications](#IDeviceDiagnostics-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A DeviceDiagnostics plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `DeviceDiagnostics` plugin provides an interface for DeviceDiagnostics.
+The `DeviceDiagnostics` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IDeviceDiagnostics
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDeviceDiagnostics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the DeviceDiagnostics plugin:
+<a id="IDeviceDiagnostics"></a>
+## IDeviceDiagnostics Interface
 
-DeviceDiagnostics interface methods:
+<a id="IDeviceDiagnostics-Methods"></a>
+### Methods
+
+The following methods are provided by the IDeviceDiagnostics Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -58,8 +66,8 @@ DeviceDiagnostics interface methods:
 
 Gets the most active status of audio/video decoder/pipeline
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -106,19 +114,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Gets the values associated with the corresponding property names
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.names | IStringIterator | String array of property names |
+| params.names | array | String array of property names |
 | params.names[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.paramList | IDeviceDiagnosticsParamListIterator | specified properties and their values |
+| result.paramList | array | specified properties and their values |
 | result.paramList[#].name | string | name |
 | result.paramList[#].value | string | value |
 | result.success | bool | boolean |
@@ -170,15 +178,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Returns the list of milestones
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.milestones | IStringIterator | A string [] of milestones |
+| result.milestones | array | A string [] of milestones |
 | result.milestones[#] | string |  |
 | result.success | bool | boolean |
 
@@ -223,22 +231,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Returns information about the previous reboot including timestamp, source, and reason
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.rebootInfo | RebootInfo | Contains previous reboot information |
+| result.rebootInfo | object | Contains previous reboot information |
 | result.rebootInfo.timestamp | string | timestamp |
 | result.rebootInfo.source | string | source |
 | result.rebootInfo.reason | string | reason |
 | result.rebootInfo.customReason | string | customReason |
 | result.rebootInfo.otherReason | string | otherReason |
 | result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -286,8 +294,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Log marker string to rdk milestones log
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -335,16 +343,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IDeviceDiagnostics-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the DeviceDiagnostics plugin:
-
-DeviceDiagnostics interface events:
+The following events are provided by the IDeviceDiagnostics Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -373,3 +377,4 @@ Triggered when the most active status of audio/video decoder/pipeline changes
     }
 }
 ```
+

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="VoiceControl_Plugin"></a>
-# VoiceControl Plugin
+<a id="VoiceControl_Module"></a>
+# VoiceControl Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/VoiceControl/IVoiceControl.h)**
 
-A VoiceControl plugin for Thunder framework.
+A VoiceControl module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IVoiceControl](#IVoiceControl)
+    - [Methods](#IVoiceControl-Methods)
+    - [Notifications](#IVoiceControl-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A VoiceControl plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `VoiceControl` plugin provides an interface for VoiceControl.
+The `VoiceControl` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IVoiceControl
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,20 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkVoiceControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the VoiceControl plugin:
+<a id="IVoiceControl"></a>
+## IVoiceControl Interface
 
-VoiceControl interface methods:
+### Description
+
+Voice Control JSONRPC interface definition for WPEFramework.  If not stated otherwise in this file or this component's LICENSE file the following copyright and licenses apply:  Copyright 2024 RDK Management  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+<a id="IVoiceControl-Methods"></a>
+### Methods
+
+The following methods are provided by the IVoiceControl Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -60,14 +72,17 @@ VoiceControl interface methods:
 
 Get the API version number
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | VoiceControlGetApiVersionNumberResponse | The API version response @retval ErrorCode::NONE: Operation completed successfully. |
+| result | object |  |
+| result.response | object | The API version response |
+| result.response.version | integer | The API version number  |
+| result.response.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -103,13 +118,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="getVoiceSessionTypes"></a>
-## *getVoiceSessionTypes*
+<a id="voiceSessionTypes"></a>
+## *voiceSessionTypes*
 
 Retrieves the types of voice sessions which are supported by the platform
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -117,7 +132,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.types | IStringIterator | Array of strings indicating the voice session request types which are valid  @retval ErrorCode::NONE: Voice session types retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve voice session types. |
+| result.types | array | Array of strings indicating the voice session request types which are valid  |
 | result.types[#] | string |  |
 
 ### Examples
@@ -129,7 +144,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.VoiceControl.getVoiceSessionTypes"
+    "method": "org.rdk.VoiceControl.voiceSessionTypes"
 }
 ```
 
@@ -137,7 +152,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.VoiceControl.getVoiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.VoiceControl.voiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -156,33 +171,33 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="getVoiceStatus"></a>
-## *getVoiceStatus*
+<a id="voiceStatus"></a>
+## *voiceStatus*
 
 Returns the current status of the RDK voice stack
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.response | VoiceStatusResponse | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success @retval ErrorCode::NONE: Voice status retrieved successfully. @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed. @retval ErrorCode::GENERAL: Failed to retrieve voice status. |
+| result.response | object | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
 | result.response.urlPtt | string | The PTT URL e.g. "ws: |
 | result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
 | result.response.urlMicTap | string | The microphone tap URL e.g. "ws: |
 | result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
 | result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
-| result.response.ptt | DeviceStatus | The status information for the PTT device type |
+| result.response.ptt | object | The status information for the PTT device type |
 | result.response.ptt.status | string | The status of the device  |
-| result.response.ff | DeviceStatus | The status information for the FF device type |
+| result.response.ff | object | The status information for the FF device type |
 | result.response.ff.status | string | The status of the device  |
-| result.response.mic | DeviceStatus | The status information for the MIC device type |
+| result.response.mic | object | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
-| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | DeviceStatus | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
+| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | object | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
 | result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
 | result.response.capabilities | string | JSON array of capability strings returned by the voice stack |
 | result.response.success | bool | Whether the request succeeded |
@@ -196,7 +211,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.VoiceControl.getVoiceStatus"
+    "method": "org.rdk.VoiceControl.voiceStatus"
 }
 ```
 
@@ -204,7 +219,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.getVoiceStatus"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.voiceStatus"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -244,8 +259,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Sends a message to the Voice Server
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -304,8 +319,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Starts a subsequent audio stream for the voice session indicated by the session identifier
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -358,8 +373,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -384,7 +399,7 @@ Event details will be updated soon.
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
         "transcription": "turn on the lights",
-        "type": "PTT"
+        "type": "ptt"
     }
 }
 ```
@@ -393,7 +408,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "PTT"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "ptt"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -414,8 +429,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Terminates a voice session using the specified session identifier
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -463,16 +478,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IVoiceControl-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the VoiceControl plugin:
-
-VoiceControl interface events:
+The following events are provided by the IVoiceControl Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -493,7 +504,7 @@ Triggered when a keyword verification result is received
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.sessionId | string | The unique identifier for the voice session  |
 | params.verified | bool | True if the keyword was verified, otherwise false |
 
 ### Examples
@@ -551,7 +562,7 @@ Triggered when a voice session begins
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.sessionId | string | The unique identifier for the voice session  |
 | params.deviceType | string | The type of voice device starting the session. Possible values: ptt, ff, mic |
 | params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
@@ -565,7 +576,7 @@ Triggered when a voice session begins
     "params": {
         "remoteId": 1,
         "sessionId": "session-12345",
-        "deviceType": "PTT",
+        "deviceType": "ptt",
         "keywordVerification": true
     }
 }
@@ -581,9 +592,9 @@ Triggered when the interaction with the server has concluded
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.sessionId | string | The unique identifier for the voice session  |
 | params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
-| params.serverStats | ServerStats | The voice server stats |
+| params.serverStats | object | The voice server stats |
 | params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
 | params.serverStats.serverIp | string | The IP of the voice server  |
 | params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
@@ -603,7 +614,7 @@ Triggered when the interaction with the server has concluded
     "params": {
         "remoteId": 1,
         "sessionId": "session-12345",
-        "result": "SUCCESS",
+        "result": "success",
         "serverStats": {
             "dnsTime": 0.5,
             "serverIp": "192.168.1.100",
@@ -628,7 +639,7 @@ Triggered when a device starts streaming voice data to the RDK
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.sessionId | string | The unique identifier for the voice session  |
 
 ### Examples
 
@@ -654,7 +665,7 @@ Triggered when the device has stopped streaming audio
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
+| params.sessionId | string | The unique identifier for the voice session  |
 | params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown  |
 
 ### Examples
@@ -671,3 +682,4 @@ Triggered when the device has stopped streaming audio
     }
 }
 ```
+

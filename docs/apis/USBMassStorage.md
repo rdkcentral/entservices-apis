@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="USBMassStorage_Plugin"></a>
-# USBMassStorage Plugin
+<a id="USBMassStorage_Module"></a>
+# USBMassStorage Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBMassStorage/IUSBMassStorage.h)**
 
-A USBMassStorage plugin for Thunder framework.
+A USBMassStorage module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUSBMassStorage](#IUSBMassStorage)
+    - [Methods](#IUSBMassStorage-Methods)
+    - [Notifications](#IUSBMassStorage-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A USBMassStorage plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `USBMassStorage` plugin provides an interface for USBMassStorage.
+The `USBMassStorage` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUSBMassStorage
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBMassStorage.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the USBMassStorage plugin:
+<a id="IUSBMassStorage"></a>
+## IUSBMassStorage Interface
 
-USBMassStorage interface methods:
+<a id="IUSBMassStorage-Methods"></a>
+### Methods
+
+The following methods are provided by the IUSBMassStorage Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,15 +64,15 @@ USBMassStorage interface methods:
 
 Get list of devices that are currently mounted in the system
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.deviceInfo | IUSBStorageDeviceInfoIterator | Device info for devices that are currently mounted. |
+| result.deviceInfo | array | Device info for devices that are currently mounted. |
 | result.deviceInfo[#].devicePath | string | Device path in the file system (sysfs) |
 | result.deviceInfo[#].deviceName | string | Device name identifying the device |
 
@@ -109,22 +117,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Get mount points information for a specified device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | Device name identifying the device |
+| params.deviceName | string | name of the device for which mount points are to be retrieved |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| result.mountPoints | array | List of mountpoints information for a given device. |
 | result.mountPoints[#].partitionName | string | name of the partition |
-| result.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| result.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
 | result.mountPoints[#].mountPath | string | path at which the partition is mounted on |
-| result.mountPoints[#].fileSystem | string | file system of the partition |
+| result.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
 ### Examples
 
@@ -161,7 +169,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "partitionName": "",
             "mountFlags": "READ_ONLY",
             "mountPath": "",
-            "fileSystem": "UNKNOWN"
+            "fileSystem": "UNKNOWN file system"
         }
     ]
 }
@@ -172,19 +180,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Get partition information for a given partition
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.mountPath | string | path at which the partition is mounted on |
+| params.mountPath | string | mount path of the partition for which more info is required |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.partitionInfo | USBStoragePartitionInfo | partition info details |
-| result.partitionInfo.fileSystem | string | file system of the partition |
+| result.partitionInfo | object | partition info details |
+| result.partitionInfo.fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 | result.partitionInfo.size | integer | total size of the partition in MB |
 | result.partitionInfo.startSector | integer | start sector of the partition |
 | result.partitionInfo.numSectors | integer | number of sectors in the partition |
@@ -224,7 +232,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "fileSystem": "UNKNOWN",
+        "fileSystem": "UNKNOWN file system",
         "size": 0,
         "startSector": 0,
         "numSectors": 0,
@@ -236,16 +244,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUSBMassStorage-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the USBMassStorage plugin:
-
-USBMassStorage interface events:
+The following events are provided by the IUSBMassStorage Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -261,14 +265,14 @@ Device Mounted notification @@iterator
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceInfo | USBStorageDeviceInfo | name and device path of the mounted device. |
+| params.deviceInfo | object | name and device path of the mounted device. |
 | params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
 | params.deviceInfo.deviceName | string | Device name identifying the device |
-| params.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| params.mountPoints | array | List of mountpoints information for the device mounted. |
 | params.mountPoints[#].partitionName | string | name of the partition |
-| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
 | params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
-| params.mountPoints[#].fileSystem | string | file system of the partition |
+| params.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
 ### Examples
 
@@ -287,15 +291,15 @@ Device Mounted notification @@iterator
                 "partitionName": "",
                 "mountFlags": "READ_ONLY",
                 "mountPath": "",
-                "fileSystem": "UNKNOWN"
+                "fileSystem": "UNKNOWN file system"
             }
         ]
     }
 }
 ```
 
-<a id="onDeviceUnmounted"></a>
-## *onDeviceUnmounted*
+<a id="onDeviceUnMounted"></a>
+## *onDeviceUnMounted*
 
 Device Unmounted notification @@iterator
 
@@ -303,14 +307,14 @@ Device Unmounted notification @@iterator
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceInfo | USBStorageDeviceInfo | name and device path of the mounted device. |
+| params.deviceInfo | object | name and device path of the mounted device. |
 | params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
 | params.deviceInfo.deviceName | string | Device name identifying the device |
-| params.mountPoints | IUSBStorageMountInfoIterator | List of mountpoints information for the device mounted. |
+| params.mountPoints | array | List of mountpoints information for the device unmounted. |
 | params.mountPoints[#].partitionName | string | name of the partition |
-| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device |
+| params.mountPoints[#].mountFlags | string | Mount flags used for mounting the device. Possible values: READ_ONLY, READ_WRITE |
 | params.mountPoints[#].mountPath | string | path at which the partition is mounted on |
-| params.mountPoints[#].fileSystem | string | file system of the partition |
+| params.mountPoints[#].fileSystem | string | file system of the partition. Possible values: UNKNOWN file system, MSDOS file system driver, VFAT file system driver, EXT4 file system, EXFAT file system |
 
 ### Examples
 
@@ -318,7 +322,7 @@ Device Unmounted notification @@iterator
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.USBMassStorage.onDeviceUnmounted",
+    "method": "org.rdk.USBMassStorage.onDeviceUnMounted",
     "params": {
         "deviceInfo": {
             "devicePath": "",
@@ -329,9 +333,10 @@ Device Unmounted notification @@iterator
                 "partitionName": "",
                 "mountFlags": "READ_ONLY",
                 "mountPath": "",
-                "fileSystem": "UNKNOWN"
+                "fileSystem": "UNKNOWN file system"
             }
         ]
     }
 }
 ```
+

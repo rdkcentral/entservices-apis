@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="XCast_Plugin"></a>
-# XCast Plugin
+<a id="XCast_Module"></a>
+# XCast Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/XCast/IXCast.h)**
 
-A XCast plugin for Thunder framework.
+A XCast module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IXCast](#IXCast)
+    - [Methods](#IXCast-Methods)
+    - [Notifications](#IXCast-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A XCast plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `XCast` plugin provides an interface for XCast.
+The `XCast` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IXCast
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkXCast.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the XCast plugin:
+<a id="IXCast"></a>
+## IXCast Interface
 
-XCast interface methods:
+<a id="IXCast-Methods"></a>
+### Methods
+
+The following methods are provided by the IXCast Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -67,8 +75,8 @@ XCast interface methods:
 
 Reports whether xcast plugin is enabled or disabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -76,7 +84,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.enabled | bool | true for enabled or false for disabled |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -117,8 +125,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Returns the friendly name set by setFriendlyName API
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -126,7 +134,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.friendlyname | string | The friendly name of the device which used to display on the client device list |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -167,8 +175,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Returns the manufacturer name set by setManufacturerName API
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -176,7 +184,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.manufacturer | string | The Manufacturer name of the device which used to update in dd.xml |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -217,8 +225,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Returns the model name set by setModelName API
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -226,7 +234,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.model | string | The Model name of the device which used to update in dd.xml |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -267,8 +275,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Returns the DIAL protocol version supported by the server
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -276,7 +284,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.version | string | DIAL protocol version |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -317,16 +325,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Return current standby behavior option string set uisng setStandbyBehavior or default value
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -356,7 +364,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "standbybehavior": "ACTIVE",
+        "standbybehavior": "active",
         "success": true
     }
 }
@@ -367,13 +375,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 Registers an application
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.applications | IApplicationInfoIterator | Json array with one or more application details to register |
+| params.applications | array | Json array with one or more application details to register |
 | params.applications[#].name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
 | params.applications[#].prefix | string | If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail |
 | params.applications[#].cors | string | origin allowed for the application. This must not be empty |
@@ -384,7 +392,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -434,21 +442,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 Triggered when the cast service receives an application state change notification from a client
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.applicationName | string | Registered application name |
-| params.state | string | Application state |
+| params.state | string | Application state. Possible values: running, stopped, suspended |
 | params.applicationId | string | Application instance ID |
-| params.error | string | Error string, if any |
+| params.error | string | Error string, if any. Possible values: none, forbidden, unavailable, invalid, internal |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -462,9 +470,9 @@ Event details will be updated soon.
     "method": "org.rdk.XCast.setApplicationState",
     "params": {
         "applicationName": "",
-        "state": "RUNNING",
+        "state": "running",
         "applicationId": "",
-        "error": "NONE"
+        "error": "none"
     }
 }
 ```
@@ -473,7 +481,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "", "state": "RUNNING", "applicationId": "", "error": "NONE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "", "state": "running", "applicationId": "", "error": "none"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -494,8 +502,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 Enable or disable XCAST service @parm enabled: true for enabled or false for disabled
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -505,7 +513,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -548,8 +556,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 Sets the friendly name of the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -559,7 +567,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -602,8 +610,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 Sets the manufacturer name of the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -613,7 +621,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -656,8 +664,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 Sets the model name of the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -667,7 +675,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -710,18 +718,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 Sets the expected xcast behavior in standby mode
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive) |
+| params.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -734,7 +742,7 @@ Event details will be updated soon.
     "id": 12,
     "method": "org.rdk.XCast.setStandbyBehavior",
     "params": {
-        "standbybehavior": "ACTIVE"
+        "standbybehavior": "active"
     }
 }
 ```
@@ -743,7 +751,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "ACTIVE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.XCast.setStandbyBehavior", "params": {"standbybehavior": "active"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -764,19 +772,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 Unregisters an application
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.applications | IStringIterator | One or more application name to unregister |
+| params.applications | array | One or more application name to unregister |
 | params.applications[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | true if the request was successful, false otherwise |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -814,22 +822,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IXCast-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the XCast plugin:
-
-XCast interface events:
+The following events are provided by the IXCast Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [onApplicationHideRequest](#onApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
 | [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
-| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
+| [onApplicationLaunchRequestWithParam](#onApplicationLaunchRequestWithParam) | Triggered when the cast service receives a launch request from a client with launch params |
 | [onApplicationResumeRequest](#onApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
 | [onApplicationStateRequest](#onApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
 | [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
@@ -843,7 +847,7 @@ Triggered when the cast service receives a hide request from a client
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.applicationId | string | Application instance ID |
 
 ### Examples
@@ -869,7 +873,7 @@ Triggered when the cast service receives a launch request from a client with lau
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.parameter | string | Application launch string |
 
 ### Examples
@@ -895,7 +899,7 @@ Triggered when the cast service receives a launch request from a client with lau
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.strPayLoad | string | Payload string to be passed to the application |
 | params.strQuery | string | Query string to be appended in launch request |
 | params.strAddDataUrl | string | Additional data URL to be passed to the application |
@@ -925,7 +929,7 @@ Triggered when the cast service receives a resume request from a client
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.applicationId | string | Application instance ID |
 
 ### Examples
@@ -951,7 +955,7 @@ Triggered when the cast service needs an update of the application state
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.applicationId | string | Application instance ID |
 
 ### Examples
@@ -977,7 +981,7 @@ Triggered when the cast service receives a stop request from a client
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.name | string | Registered application name |
 | params.applicationId | string | Application instance ID |
 
 ### Examples
@@ -993,3 +997,4 @@ Triggered when the cast service receives a stop request from a client
     }
 }
 ```
+

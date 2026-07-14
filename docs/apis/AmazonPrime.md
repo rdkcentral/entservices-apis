@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AmazonPrime_Plugin"></a>
-# AmazonPrime Plugin
+<a id="AmazonPrime_Module"></a>
+# AmazonPrime Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AmazonPrime/IAmazonPrime.h)**
 
-A AmazonPrime plugin for Thunder framework.
+A AmazonPrime module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IAmazon](#IAmazon)
+    - [Methods](#IAmazon-Methods)
+    - [Notifications](#IAmazon-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A AmazonPrime plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `AmazonPrime` plugin provides an interface for AmazonPrime.
+The `AmazonPrime` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAmazon
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAmazonPrime.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the AmazonPrime plugin:
+<a id="IAmazon"></a>
+## IAmazon Interface
 
-AmazonPrime interface methods:
+<a id="IAmazon-Methods"></a>
+### Methods
+
+The following methods are provided by the IAmazon Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -57,8 +65,8 @@ AmazonPrime interface methods:
 
 Factory reset amazon prime app data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -102,8 +110,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Request for personal access token to amazon prime app
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -147,8 +155,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Set the deeplink command for amazon prime
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -198,13 +206,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Set launch reason for amazon prime app
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.command | string | app Deeplink command |
+| params.command | string | app launch reason |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -244,23 +252,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IAmazon-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the AmazonPrime plugin:
-
-AmazonPrime interface events:
+The following events are provided by the IAmazon Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [StateChange](#StateChange) | Triggered whenever the App state changes |
 
-<a id="stateChange"></a>
-## *stateChange*
+<a id="StateChange"></a>
+## *StateChange*
 
 Triggered whenever the App state changes
 
@@ -268,7 +272,7 @@ Triggered whenever the App state changes
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.state | string | current state of amazon prime |
+| params.state | string | current state of amazon prime. Possible values: PLAYING, STOPPED, SUSPENDING |
 
 ### Examples
 
@@ -276,9 +280,10 @@ Triggered whenever the App state changes
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.AmazonPrime.stateChange",
+    "method": "org.rdk.AmazonPrime.StateChange",
     "params": {
         "state": "PLAYING"
     }
 }
 ```
+

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="USBDevice_Plugin"></a>
-# USBDevice Plugin
+<a id="USBDevice_Module"></a>
+# USBDevice Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice/IUSBDevice.h)**
 
-A USBDevice plugin for Thunder framework.
+A USBDevice module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUSBDevice](#IUSBDevice)
+    - [Methods](#IUSBDevice-Methods)
+    - [Notifications](#IUSBDevice-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A USBDevice plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `USBDevice` plugin provides an interface for USBDevice.
+The `USBDevice` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUSBDevice
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUSBDevice.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the USBDevice plugin:
+<a id="IUSBDevice"></a>
+## IUSBDevice Interface
 
-USBDevice interface methods:
+<a id="IUSBDevice-Methods"></a>
+### Methods
+
+The following methods are provided by the IUSBDevice Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -57,13 +65,13 @@ USBDevice interface methods:
 
 Bind the respective driver for the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | Name of the USB device |
+| params.deviceName | string | Name of the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -108,18 +116,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Get the extended USB device information for the provided device name
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | Name of the USB device |
+| params.deviceName | string | device name |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.deviceInfo | USBDeviceInfo | Detailed device information |
+| result.deviceInfo | object | Detailed device information |
 | result.deviceInfo.parentId | integer | Parent Node ID of the device |
 | result.deviceInfo.deviceStatus | integer | current device status |
 | result.deviceInfo.deviceLevel | integer | device level |
@@ -128,31 +136,31 @@ Event details will be updated soon.
 | result.deviceInfo.productId | integer | Product ID of the device |
 | result.deviceInfo.protocol | integer | Protocol supported by the device |
 | result.deviceInfo.serialNumber | string | Serial number of the device |
-| result.deviceInfo.device | USBDevice | Basic device information included |
+| result.deviceInfo.device | object | Basic device information included |
 | result.deviceInfo.device.deviceClass | integer | USB class of the device as per USB specificiation |
 | result.deviceInfo.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | result.deviceInfo.device.deviceName | string | Name of the USB device |
 | result.deviceInfo.device.devicePath | string | the path to be used for the USB device  |
-| result.deviceInfo.flags | string | Flags of the device |
+| result.deviceInfo.flags | string | Flags of the device. Possible values: AVAILABLE, SWITCHABLE |
 | result.deviceInfo.features | integer | Features supported by the device - reserved |
-| result.deviceInfo.busSpeed | string | Speed of the device |
+| result.deviceInfo.busSpeed | string | Speed of the device. Possible values: Low, Full, High, Super |
 | result.deviceInfo.numLanguageIds | integer | number of language ids present on the device |
-| result.deviceInfo.productInfo1 | USBProductInfo |  |
+| result.deviceInfo.productInfo1 | object |  |
 | result.deviceInfo.productInfo1.languageId | integer | language id present on the device |
 | result.deviceInfo.productInfo1.serialNumber | string | unicode string representing the serial number of the device |
 | result.deviceInfo.productInfo1.manufacturer | string | unicode string representing the manufacturer of the device |
 | result.deviceInfo.productInfo1.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo2 | USBProductInfo |  |
+| result.deviceInfo.productInfo2 | object |  |
 | result.deviceInfo.productInfo2.languageId | integer | language id present on the device |
 | result.deviceInfo.productInfo2.serialNumber | string | unicode string representing the serial number of the device |
 | result.deviceInfo.productInfo2.manufacturer | string | unicode string representing the manufacturer of the device |
 | result.deviceInfo.productInfo2.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo3 | USBProductInfo |  |
+| result.deviceInfo.productInfo3 | object |  |
 | result.deviceInfo.productInfo3.languageId | integer | language id present on the device |
 | result.deviceInfo.productInfo3.serialNumber | string | unicode string representing the serial number of the device |
 | result.deviceInfo.productInfo3.manufacturer | string | unicode string representing the manufacturer of the device |
 | result.deviceInfo.productInfo3.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo4 | USBProductInfo |  |
+| result.deviceInfo.productInfo4 | object |  |
 | result.deviceInfo.productInfo4.languageId | integer | language id present on the device |
 | result.deviceInfo.productInfo4.serialNumber | string | unicode string representing the serial number of the device |
 | result.deviceInfo.productInfo4.manufacturer | string | unicode string representing the manufacturer of the device |
@@ -203,9 +211,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "deviceName": "",
             "devicePath": ""
         },
-        "flags": "DEVICE_FLAGS_DRIVER_AVAILABLE",
+        "flags": "AVAILABLE",
         "features": 0,
-        "busSpeed": "DEVICE_SPEED_LOW",
+        "busSpeed": "Low",
         "numLanguageIds": 0,
         "productInfo1": {
             "languageId": 0,
@@ -240,15 +248,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Get the basic information about list of devices connected with the system.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.devices | IUSBDeviceIterator | List of USB devices along with basic info. |
+| result.devices | array | List of USB devices along with basic info. |
 | result.devices[#].deviceClass | integer | USB class of the device as per USB specificiation |
 | result.devices[#].deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | result.devices[#].deviceName | string | Name of the USB device |
@@ -297,13 +305,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Unbind the respective driver for the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | Name of the USB device |
+| params.deviceName | string | Name of the device |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -343,16 +351,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IUSBDevice-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the USBDevice plugin:
-
-USBDevice interface events:
+The following events are provided by the IUSBDevice Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -368,7 +372,7 @@ Device Plugged in notification
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device | USBDevice | Basic device information included |
+| params.device | object | Basic device information included |
 | params.device.deviceClass | integer | USB class of the device as per USB specificiation |
 | params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | params.device.deviceName | string | Name of the USB device |
@@ -399,7 +403,7 @@ Device Plugged out notification
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device | USBDevice | Basic device information included |
+| params.device | object | Basic device information included |
 | params.device.deviceClass | integer | USB class of the device as per USB specificiation |
 | params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | params.device.deviceName | string | Name of the USB device |
@@ -420,3 +424,4 @@ Device Plugged out notification
     }
 }
 ```
+

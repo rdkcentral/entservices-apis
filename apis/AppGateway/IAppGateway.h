@@ -242,5 +242,40 @@ namespace WPEFramework
                                                         const string& metricUnit /* @text metricUnit */) = 0;
 
         };
+
+        // @text:keep
+        struct EXTERNAL IAppGatewayAppSessionGuard : virtual public Core::IUnknown
+        {
+            enum
+            {
+                ID = ID_APP_GATEWAY_APP_SESSION_GUARD
+            };
+
+            // @json:omit
+            // @text suspendTraffic
+            // @brief Suspends all gateway traffic (incoming and outgoing) for a specific
+            //        application, regardless of the underlying transport protocol.
+            //        While suspended, incoming messages from the application are silently
+            //        dropped and outgoing messages destined for the application are discarded
+            //        without transmitting. No errors are surfaced to the application.
+            // @param appId: Application identifier whose traffic should be suspended
+            // @retval Core::ERROR_NONE: Traffic suspended successfully
+            // @retval Core::ERROR_GENERAL: Failed to suspend traffic
+            // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
+            // @returns Core::hresult
+            virtual Core::hresult SuspendTraffic(const string& appId) = 0;
+
+            // @json:omit
+            // @text resumeTraffic
+            // @brief Resumes gateway traffic for a specific application after a suspension.
+            //        After calling this method the gateway will once again process and
+            //        forward messages for the application normally.
+            // @param appId: Application identifier whose traffic should be resumed
+            // @retval Core::ERROR_NONE: Traffic resumed successfully
+            // @retval Core::ERROR_GENERAL: Failed to resume traffic
+            // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
+            // @returns Core::hresult
+            virtual Core::hresult ResumeTraffic(const string& appId) = 0;
+        };
     } // namespace Exchange
 } // namespace WPEFramework

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Warehouse_Plugin"></a>
-# Warehouse Plugin
+<a id="Warehouse_Module"></a>
+# Warehouse Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse/IWarehouse.h)**
 
-A Warehouse plugin for Thunder framework.
+A Warehouse module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IWarehouse](#IWarehouse)
+    - [Methods](#IWarehouse-Methods)
+    - [Notifications](#IWarehouse-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A Warehouse plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `Warehouse` plugin provides an interface for Warehouse.
+The `Warehouse` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IWarehouse
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkWarehouse.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the Warehouse plugin:
+<a id="IWarehouse"></a>
+## IWarehouse Interface
 
-Warehouse interface methods:
+<a id="IWarehouse-Methods"></a>
+### Methods
+
+The following methods are provided by the IWarehouse Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -59,8 +67,8 @@ Warehouse interface methods:
 
 Starts a hardware test on the device
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -107,8 +115,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Returns the results of the last hardware test.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -157,8 +165,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Invokes the internal reset script, which reboots the Warehouse service
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -168,7 +176,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | WarehouseSuccessErr |  |
+| result.successErr | object |  |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -214,8 +222,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Checks the locations on the device where customer data may be stored.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -226,10 +234,10 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.clean | bool | boolean |
-| result.files | IStringIterator | string [] of file locations for each file |
+| result.files | array | string [] of file locations for each file |
 | result.files[#] | string |  |
 | result.success | bool | boolean |
-| result.error | string | string |
+| result.error | string | -out - string |
 
 ### Examples
 
@@ -277,15 +285,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 Resets the application data.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | WarehouseSuccessErr |  |
+| result.successErr | object |  |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -328,8 +336,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Resets the STB to the warehouse state.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -340,7 +348,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | WarehouseSuccessErr |  |
+| result.successErr | object |  |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -382,16 +390,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IWarehouse-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the Warehouse plugin:
-
-Warehouse interface events:
+The following events are provided by the IWarehouse Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -422,3 +426,4 @@ Notifies subscribers about the status of the warehouse reset operation
     }
 }
 ```
+

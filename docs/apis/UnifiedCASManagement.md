@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="UnifiedCASManagement_Plugin"></a>
-# UnifiedCASManagement Plugin
+<a id="UnifiedCASManagement_Module"></a>
+# UnifiedCASManagement Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UnifiedCASManagement/IUnifiedCASManagement.h)**
 
-A UnifiedCASManagement plugin for Thunder framework.
+A UnifiedCASManagement module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IUnifiedCASManagement](#IUnifiedCASManagement)
+    - [Methods](#IUnifiedCASManagement-Methods)
+    - [Notifications](#IUnifiedCASManagement-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A UnifiedCASManagement plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `UnifiedCASManagement` plugin provides an interface for UnifiedCASManagement.
+The `UnifiedCASManagement` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IUnifiedCASManagement
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkUnifiedCASManagement.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the UnifiedCASManagement plugin:
+<a id="IUnifiedCASManagement"></a>
+## IUnifiedCASManagement Interface
 
-UnifiedCASManagement interface methods:
+<a id="IUnifiedCASManagement-Methods"></a>
+### Methods
+
+The following methods are provided by the IUnifiedCASManagement Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,22 +64,22 @@ UnifiedCASManagement interface methods:
 
 Manage a well-known CAS (setup CAS management session)
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.mediaurl | string | The URL to tune to (tune://, ocap://, http://, https://) |
-| params.mode | string | The use of the tune request |
-| params.managementType | string | Type of CAS management |
+| params.mode | string | The use of the tune request. Possible values: MODE_NONE, MODE_LIVE, MODE_RECORD, MODE_PLAYBACK |
+| params.managementType | string | Type of CAS management. Possible values: MANAGE_FULL, MANAGE_NO_PSI, MANAGE_NO_TUNER |
 | params.casinitdata | string | CAS specific initdata for the selected media |
 | params.casocdmid | string | The well-known OCDM ID of the CAS to use |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -113,24 +121,38 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="send"></a>
 ## *send*
 
 Sends data to the remote CAS
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data |
+| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -169,20 +191,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
 <a id="unmanage"></a>
 ## *unmanage*
 
 Destroy a management session
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise @retval Core::ERROR_NONE: Operation successful @retval Core::ERROR_GENERAL: Operation failed |
+| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
 ### Examples
 
@@ -218,22 +254,32 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```
 
 
+#### Error Response (Core::ERROR_GENERAL)
 
-<a id="Notifications"></a>
-# Notifications
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Operation failed"
+    }
+}
+```
+
+<a id="IUnifiedCASManagement-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the UnifiedCASManagement plugin:
-
-UnifiedCASManagement interface events:
+The following events are provided by the IUnifiedCASManagement Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [data](#data) | Sent when the CAS needs to send data to the caller |
 
-<a id="onDataReceived"></a>
-## *onDataReceived*
+<a id="data"></a>
+## *data*
 
 Sent when the CAS needs to send data to the caller
 
@@ -242,7 +288,7 @@ Sent when the CAS needs to send data to the caller
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data |
+| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
 
 ### Examples
 
@@ -250,10 +296,11 @@ Sent when the CAS needs to send data to the caller
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.UnifiedCASManagement.onDataReceived",
+    "method": "org.rdk.UnifiedCASManagement.data",
     "params": {
         "payload": "",
         "source": "PUBLIC"
     }
 }
 ```
+

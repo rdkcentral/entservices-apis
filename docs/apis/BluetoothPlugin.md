@@ -68,8 +68,7 @@ Bluetooth interface methods:
 | [getDeviceVolumeMuteInfo](#getDeviceVolumeMuteInfo) | Gets the volume information of the given Bluetooth device ID |
 | [setDeviceVolumeMuteInfo](#setDeviceVolumeMuteInfo) | Sets the volume of the connected Bluetooth device ID |
 | [getApiVersionNumber](#getApiVersionNumber) | Provides the current API version number |
-| [setAutoConnect](#setAutoConnect) | Sets the autoconnect value for the given Bluetooth device ID |
-| [getAutoConnect](#getAutoConnect) | Gets the autoconnect value for the given Bluetooth device ID |
+
 
 <a name="connect"></a>
 ## *connect*
@@ -360,8 +359,6 @@ This method takes no parameters.
 | result.connectedDevices[#].activeState | string | for devices that support low power mode this parameter indicates if the device is in `STANDBY` mode (`0`), `LOW_POWER` mode (`1`), or `ACTIVE` mode (`2`) |
 | result.connectedDevices[#].rawDeviceType | string | Bluetooth device class |
 | result.connectedDevices[#].rawBleDeviceType | string | Bluetooth device appearance |
-| result.connectedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC in RFC3339/ISO-8601 format (for example, `2024-01-30T14:23:05Z`) if connected via the [connect](#connect) API |
-| result.connectedDevices[#].autoconnect | boolean | <sup>*(optional)*</sup> Whether or not autoconnect is enabled for this device (if [setAutoConnect](#setAutoConnect) was previously called) |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -609,8 +606,6 @@ This method takes no parameters.
 | result.pairedDevices[#].connected | boolean | Whether the device is connected |
 | result.pairedDevices[#].rawDeviceType | string | Bluetooth device class |
 | result.pairedDevices[#].rawBleDeviceType | string | Bluetooth device appearance |
-| result.pairedDevices[#].lastConnectTimeUtc | string | <sup>*(optional)*</sup> Last connect time in UTC in RFC3339/ISO-8601 format (for example: `2023-03-15T13:45:30Z`) (if connected via the [connect](#connect) API) |
-| result.pairedDevices[#].autoconnect | boolean | <sup>*(optional)*</sup> Whether or not autoconnect is enabled for this device (if [setAutoConnect](#setAutoConnect) was previously called) |
 | result.success | boolean | Whether the request succeeded |
 
 ### Example
@@ -1329,110 +1324,6 @@ This method takes no parameters.
 }
 ```
 
-<a name="getAutoConnect"></a>
-## *getAutoConnect*
-
-Gets the autoconnect value for the given Bluetooth device.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceID | string | ID that is derived from the Bluetooth MAC address. 6 byte MAC value is packed into 8 byte with leading zeros for first 2 bytes |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.autoconnect | boolean | Whether or not autoconnect is enabled |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Bluetooth.getAutoConnect",
-    "params": {
-        "deviceID": "61579454946360"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true,
-        "autoconnect": true
-    }
-}
-```
-
-<a name="setAutoConnect"></a>
-## *setAutoConnect*
-
-Sets the autoconnect value for the given Bluetooth device.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceID | string | ID that is derived from the Bluetooth MAC address. 6 byte MAC value is packed into 8 byte with leading zeros for first 2 bytes |
-| params.enable | boolean | Sets the device's `autoconnect` state (`true` to enable, `false` to disable) |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | boolean | Whether the request succeeded |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "org.rdk.Bluetooth.setAutoConnect",
-    "params": {
-        "deviceID": "61579454946360",
-        "enable": true
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": {
-        "success": true
-    }
-}
-```
-
 <a name="Notifications"></a>
 # Notifications
 
@@ -1763,7 +1654,6 @@ Triggered when the Bluetooth functionality status changes. Supported statuses ar
 | params.lastConnectedState | boolean | Whether the device was last to connect. Only the last connected device has a value of `true` |
 | params.paired | boolean | Whether paired or not |
 | params.connected | boolean | Whether device connected or not |
-| params.autoconnect | boolean | <sup>*(optional)*</sup> Whether or not autoconnect is enabled for this device (if [setAutoConnect](#setAutoConnect) was previously called, and only for `CONNECTION_CHANGE` events) |
 
 ### Example
 

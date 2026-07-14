@@ -1,19 +1,27 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DisplayInfo_Plugin"></a>
-# DisplayInfo Plugin
+<a id="DisplayInfo_Module"></a>
+# DisplayInfo Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IConfiguration.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DisplayInfo/IDisplayInfo.h)**
 
-A DisplayInfo plugin for Thunder framework.
+A DisplayInfo module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Properties](#Properties)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IGraphicsProperties](#IGraphicsProperties)
+    - [Properties](#IGraphicsProperties-Properties)
+  - [IConnectionProperties](#IConnectionProperties)
+    - [Methods](#IConnectionProperties-Methods)
+    - [Notifications](#IConnectionProperties-Notifications)
+    - [Properties](#IConnectionProperties-Properties)
+  - [IHDRProperties](#IHDRProperties)
+    - [Properties](#IHDRProperties-Properties)
+  - [IDisplayProperties](#IDisplayProperties)
+    - [Properties](#IDisplayProperties-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -23,9 +31,14 @@ A DisplayInfo plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `DisplayInfo` plugin provides an interface for DisplayInfo.
+The `DisplayInfo` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IGraphicsProperties
+- IConnectionProperties
+- IHDRProperties
+- IDisplayProperties
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -39,12 +52,123 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDisplayInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the DisplayInfo plugin:
+<a id="IGraphicsProperties"></a>
+## IGraphicsProperties Interface
 
-DisplayInfo interface methods:
+<a id="IGraphicsProperties-Properties"></a>
+### Properties
+
+The following properties are provided by the IGraphicsProperties Interface:
+
+| Property | Description |
+| :-------- | :-------- |
+| [freeGpuRam](#freeGpuRam)<sup>RO</sup> | Free GPU DRAM memory (in bytes) |
+| [totalGpuRam](#totalGpuRam)<sup>RO</sup> | Total GPU DRAM memory (in bytes) |
+
+<a id="freeGpuRam"></a>
+## *freeGpuRam*
+
+Free GPU DRAM memory (in bytes)
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).free | integer |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.DisplayInfo.freeGpuRam"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DisplayInfo.freeGpuRam"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": {
+        "free": 0
+    }
+}
+```
+
+<a id="totalGpuRam"></a>
+## *totalGpuRam*
+
+Total GPU DRAM memory (in bytes)
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).total | integer |  |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "method": "org.rdk.DisplayInfo.totalGpuRam"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DisplayInfo.totalGpuRam"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "result": {
+        "total": 0
+    }
+}
+```
+
+---
+
+<a id="IConnectionProperties"></a>
+## IConnectionProperties Interface
+
+<a id="IConnectionProperties-Methods"></a>
+### Methods
+
+The following methods are provided by the IConnectionProperties Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -57,8 +181,8 @@ DisplayInfo interface methods:
 
 TV's Extended Display Identification Data
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -113,8 +237,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 Vertical size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -161,15 +285,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Horizontal size in centimeters
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.width | integer | width of TV in pixels |
+| result.width | integer | width in cm |
 
 ### Examples
 
@@ -204,175 +328,58 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+<a id="IConnectionProperties-Notifications"></a>
+### Notifications
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the DisplayInfo plugin:
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-DisplayInfo interface properties:
+The following events are provided by the IConnectionProperties Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [updated](#updated) |  |
+
+<a id="updated"></a>
+## *updated*
+
+
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "method": "org.rdk.DisplayInfo.updated",
+    "params": {
+        "event": "PRE_RESOLUTION_CHANGE"
+    }
+}
+```
+
+<a id="IConnectionProperties-Properties"></a>
+### Properties
+
+The following properties are provided by the IConnectionProperties Interface:
 
 | Property | Description |
 | :-------- | :-------- |
-| [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
-| [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
-| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
 | [connected](#connected)<sup>RO</sup> | Current HDMI connection status |
-| [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
-| [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
-| [freeGpuRam](#freeGpuRam)<sup>RO</sup> | Free GPU DRAM memory (in bytes) |
 | [hDCPProtection](#hDCPProtection) | HDCP protocol used for transmission |
-| [hDRSetting](#hDRSetting)<sup>RO</sup> | HDR format in use |
 | [height](#height)<sup>RO</sup> | Vertical resolution of TV |
 | [isAudioPassthrough](#isAudioPassthrough)<sup>RO</sup> | Current audio passthrough status on HDMI |
 | [portName](#portName)<sup>RO</sup> | Video output port on the STB used for connection to TV |
-| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
-| [sTBCapabilities](#sTBCapabilities)<sup>RO</sup> | HDR formats supported by STB |
-| [tVCapabilities](#tVCapabilities)<sup>RO</sup> | HDR formats supported by TV |
-| [totalGpuRam](#totalGpuRam)<sup>RO</sup> | Total GPU DRAM memory (in bytes) |
 | [verticalFreq](#verticalFreq)<sup>RO</sup> | Vertical Frequency |
 | [width](#width)<sup>RO</sup> | Horizontal resolution of TV |
 
-<a id="ColorSpace"></a>
-## *ColorSpace*
-
-Provides access to the display's Colour space (chroma subsampling format)
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).cs | string | colour space |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.DisplayInfo.colorSpace"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DisplayInfo.colorSpace"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "cs": "FORMAT_UNKNOWN"
-    }
-}
-```
-
-<a id="Colorimetry"></a>
-## *Colorimetry*
-
-Provides access to display's colorimetry
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).colorimetry | IColorimetryIterator | display colorimetry |
-| (property).colorimetry[#] | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.DisplayInfo.colorimetry"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DisplayInfo.colorimetry"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": [
-        "COLORIMETRY_UNKNOWN"
-    ]
-}
-```
-
-<a id="ColourDepth"></a>
-## *ColourDepth*
-
-Provides access to display's colour Depth
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).colour | string | colour depth |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.DisplayInfo.colourDepth"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DisplayInfo.colourDepth"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "colour": "COLORDEPTH_UNKNOWN"
-    }
-}
-```
-
-<a id="Connected"></a>
-## *Connected*
+<a id="connected"></a>
+## *connected*
 
 Current HDMI connection status
 
@@ -417,146 +424,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-<a id="EOTF"></a>
-## *EOTF*
-
-Provides access to display's Electro optical transfer function
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).eotf | string | display's EOTF |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.DisplayInfo.eOTF"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.DisplayInfo.eOTF"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "eotf": "EOTF_UNKNOWN"
-    }
-}
-```
-
-<a id="FrameRate"></a>
-## *FrameRate*
-
-Provides access to Frame Rate
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).rate | string | frame rate |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.DisplayInfo.frameRate"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DisplayInfo.frameRate"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "rate": "FRAMERATE_UNKNOWN"
-    }
-}
-```
-
-<a id="FreeGpuRam"></a>
-## *FreeGpuRam*
-
-Free GPU DRAM memory (in bytes)
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).free | integer |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.DisplayInfo.freeGpuRam"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DisplayInfo.freeGpuRam"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "free": 0
-    }
-}
-```
-
-<a id="HDCPProtection"></a>
-## *HDCPProtection*
+<a id="hDCPProtection"></a>
+## *hDCPProtection*
 
 HDCP protocol used for transmission
 
@@ -565,7 +434,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).value | string | protocol |
+| (property).value | string | protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
 
 ### Examples
 
@@ -632,54 +501,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-<a id="HDRSetting"></a>
-## *HDRSetting*
-
-HDR format in use
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).type | string | HDR format |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.DisplayInfo.hDRSetting"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDRSetting"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "type": "HDR_OFF"
-    }
-}
-```
-
-<a id="Height"></a>
-## *Height*
+<a id="height"></a>
+## *height*
 
 Vertical resolution of TV
 
@@ -724,8 +547,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-<a id="IsAudioPassthrough"></a>
-## *IsAudioPassthrough*
+<a id="isAudioPassthrough"></a>
+## *isAudioPassthrough*
 
 Current audio passthrough status on HDMI
 
@@ -770,8 +593,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-<a id="PortName"></a>
-## *PortName*
+<a id="portName"></a>
+## *portName*
 
 Video output port on the STB used for connection to TV
 
@@ -816,194 +639,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-<a id="QuantizationRange"></a>
-## *QuantizationRange*
-
-Provides access to display's Qauntization Range
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).qr | string | quantization range |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.DisplayInfo.quantizationRange"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DisplayInfo.quantizationRange"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": {
-        "qr": "QUANTIZATIONRANGE_UNKNOWN"
-    }
-}
-```
-
-<a id="STBCapabilities"></a>
-## *STBCapabilities*
-
-HDR formats supported by STB
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.DisplayInfo.sTBCapabilities"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DisplayInfo.sTBCapabilities"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": [
-        "HDR_OFF"
-    ]
-}
-```
-
-<a id="TVCapabilities"></a>
-## *TVCapabilities*
-
-HDR formats supported by TV
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).type | IHDRIterator |  |
-| (property).type[#] | string |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.DisplayInfo.tVCapabilities"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.DisplayInfo.tVCapabilities"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": [
-        "HDR_OFF"
-    ]
-}
-```
-
-<a id="TotalGpuRam"></a>
-## *TotalGpuRam*
-
-Total GPU DRAM memory (in bytes)
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).total | integer |  |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.DisplayInfo.totalGpuRam"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DisplayInfo.totalGpuRam"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "result": {
-        "total": 0
-    }
-}
-```
-
-<a id="VerticalFreq"></a>
-## *VerticalFreq*
+<a id="verticalFreq"></a>
+## *verticalFreq*
 
 Vertical Frequency
 
@@ -1048,8 +685,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-<a id="Width"></a>
-## *Width*
+<a id="width"></a>
+## *width*
 
 Horizontal resolution of TV
 
@@ -1094,40 +731,455 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
+---
 
-<a id="Notifications"></a>
-# Notifications
+<a id="IHDRProperties"></a>
+## IHDRProperties Interface
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+<a id="IHDRProperties-Properties"></a>
+### Properties
 
-The following events are provided by the DisplayInfo plugin:
+The following properties are provided by the IHDRProperties Interface:
 
-DisplayInfo interface events:
-
-| Event | Description |
+| Property | Description |
 | :-------- | :-------- |
-| [updated](#updated) |  |
+| [hDRSetting](#hDRSetting)<sup>RO</sup> | HDR format in use |
+| [sTBCapabilities](#sTBCapabilities)<sup>RO</sup> | HDR formats supported by STB |
+| [tVCapabilities](#tVCapabilities)<sup>RO</sup> | HDR formats supported by TV |
 
-<a id="updated"></a>
-## *updated*
+<a id="hDRSetting"></a>
+## *hDRSetting*
 
+HDR format in use
 
-
-### Parameters
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object |  |
-| params.event | string |  |
+| (property).type | string | HDR format. Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
+
+
+#### Get Request
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.DisplayInfo.updated",
-    "params": {
-        "event": "PRE_RESOLUTION_CHANGE"
+    "id": 12,
+    "method": "org.rdk.DisplayInfo.hDRSetting"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDRSetting"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "result": {
+        "type": "HDR_OFF"
     }
 }
 ```
+
+<a id="sTBCapabilities"></a>
+## *sTBCapabilities*
+
+HDR formats supported by STB
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "method": "org.rdk.DisplayInfo.sTBCapabilities"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DisplayInfo.sTBCapabilities"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "result": [
+        "HDR_OFF"
+    ]
+}
+```
+
+<a id="tVCapabilities"></a>
+## *tVCapabilities*
+
+HDR formats supported by TV
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).type | array |  |
+| (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "method": "org.rdk.DisplayInfo.tVCapabilities"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.DisplayInfo.tVCapabilities"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "result": [
+        "HDR_OFF"
+    ]
+}
+```
+
+---
+
+<a id="IDisplayProperties"></a>
+## IDisplayProperties Interface
+
+<a id="IDisplayProperties-Properties"></a>
+### Properties
+
+The following properties are provided by the IDisplayProperties Interface:
+
+| Property | Description |
+| :-------- | :-------- |
+| [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
+| [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
+| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
+| [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
+| [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
+| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
+
+<a id="colorSpace"></a>
+## *colorSpace*
+
+Provides access to the display's Colour space (chroma subsampling format)
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).cs | string | colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "method": "org.rdk.DisplayInfo.colorSpace"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DisplayInfo.colorSpace"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "result": {
+        "cs": "FORMAT_UNKNOWN"
+    }
+}
+```
+
+<a id="colorimetry"></a>
+## *colorimetry*
+
+Provides access to display's colorimetry
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).colorimetry | array | display colorimetry |
+| (property).colorimetry[#] | string | Possible values: COLORIMETRY_UNKNOWN, COLORIMETRY_OTHER, COLORIMETRY_SMPTE170M, COLORIMETRY_BT709, COLORIMETRY_XVYCC601, COLORIMETRY_XVYCC709, COLORIMETRY_SYCC601, COLORIMETRY_OPYCC601, COLORIMETRY_OPRGB, COLORIMETRY_BT2020YCCBCBRC, COLORIMETRY_BT2020RGB_YCBCR |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.DisplayInfo.colorimetry"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DisplayInfo.colorimetry"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": [
+        "COLORIMETRY_UNKNOWN"
+    ]
+}
+```
+
+<a id="colourDepth"></a>
+## *colourDepth*
+
+Provides access to display's colour Depth
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).colour | string | colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.DisplayInfo.colourDepth"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DisplayInfo.colourDepth"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": {
+        "colour": "COLORDEPTH_UNKNOWN"
+    }
+}
+```
+
+<a id="eOTF"></a>
+## *eOTF*
+
+Provides access to display's Electro optical transfer function
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).eotf | string | display's EOTF. Possible values: EOTF_UNKNOWN, EOTF_OTHER, EOTF_BT1886, EOTF_BT2100, EOTF_SMPTE_ST_2084 |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "method": "org.rdk.DisplayInfo.eOTF"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.DisplayInfo.eOTF"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "result": {
+        "eotf": "EOTF_UNKNOWN"
+    }
+}
+```
+
+<a id="frameRate"></a>
+## *frameRate*
+
+Provides access to Frame Rate
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).rate | string | frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "method": "org.rdk.DisplayInfo.frameRate"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DisplayInfo.frameRate"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "result": {
+        "rate": "FRAMERATE_UNKNOWN"
+    }
+}
+```
+
+<a id="quantizationRange"></a>
+## *quantizationRange*
+
+Provides access to display's Qauntization Range
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).qr | string | quantization range. Possible values: QUANTIZATIONRANGE_UNKNOWN, QUANTIZATIONRANGE_LIMITED, QUANTIZATIONRANGE_FULL |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "method": "org.rdk.DisplayInfo.quantizationRange"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DisplayInfo.quantizationRange"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "result": {
+        "qr": "QUANTIZATIONRANGE_UNKNOWN"
+    }
+}
+```
+

@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="MiracastService_Plugin"></a>
-# MiracastService Plugin
+<a id="MiracastService_Module"></a>
+# MiracastService Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MiracastService/IMiracastService.h)**
 
-A MiracastService plugin for Thunder framework.
+A MiracastService module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IMiracastService](#IMiracastService)
+    - [Methods](#IMiracastService-Methods)
+    - [Notifications](#IMiracastService-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A MiracastService plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `MiracastService` plugin provides an interface for MiracastService.
+The `MiracastService` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IMiracastService
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMiracastService.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the MiracastService plugin:
+<a id="IMiracastService"></a>
+## IMiracastService Interface
 
-MiracastService interface methods:
+<a id="IMiracastService-Methods"></a>
+### Methods
+
+The following methods are provided by the IMiracastService Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -59,8 +67,8 @@ MiracastService interface methods:
 
 To accept or reject new client connection requests for the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -70,7 +78,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -111,13 +119,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-<a id="getEnabled"></a>
-## *getEnabled*
+<a id="getEnable"></a>
+## *getEnable*
 
 To get the enable status of the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
@@ -136,7 +144,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.MiracastService.getEnabled"
+    "method": "org.rdk.MiracastService.getEnable"
 }
 ```
 
@@ -144,7 +152,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastService.getEnabled"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastService.getEnable"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,13 +169,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-<a id="setEnabled"></a>
-## *setEnabled*
+<a id="setEnable"></a>
+## *setEnable*
 
 To enable or disable the Miracast feature
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -177,7 +185,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -190,7 +198,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.MiracastService.setEnabled",
+    "method": "org.rdk.MiracastService.setEnable",
     "params": {
         "enabled": true
     }
@@ -201,7 +209,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastService.setEnabled", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastService.setEnable", "params": {"enabled": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -223,18 +231,18 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 Sets the status of the MiracastService backend discovery
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Is the MiracastService discovery enabled or not |
+| params.enabled | bool | Is the MiracastService backend discovery enabled or not |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -280,8 +288,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 To abort the ongoing connection after accepted connection request
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -292,7 +300,7 @@ Event details will be updated soon.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -339,20 +347,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 Update the Miracast Player State to the Miracast Service Plugin
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.mac | string | MacAddress of the client device |
-| params.state | string | Player state to be updated |
+| params.state | string | Player state to be updated. Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED |
 | params.reason_code | int | Reason code for the player state update |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | Result |  |
+| result.result | object |  |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -368,7 +376,7 @@ Event details will be updated soon.
     "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
         "mac": "",
-        "state": "PLAYER_STATE_IDLE",
+        "state": "IDLE",
         "reason_code": 0
     }
 }
@@ -378,7 +386,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "", "state": "PLAYER_STATE_IDLE", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "", "state": "IDLE", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -395,16 +403,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IMiracastService-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the MiracastService plugin:
-
-MiracastService interface events:
+The following events are provided by the IMiracastService Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -424,7 +428,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
 | params.mac | string | MacAddress of the client device |
 | params.name | string | Name of the client device |
 | params.error_code | string |  |
-| params.reason | string | Reason for the connection failure |
+| params.reason | string | Reason for the connection failure. Possible values: SUCCESS, P2P_CONNECT_FAILURE, P2P_GROUP_NEGOTIATION_FAILURE, P2P_GROUP_FORMATION_FAILURE, GENERIC_FAILURE |
 
 ### Examples
 
@@ -437,7 +441,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
         "mac": "",
         "name": "",
         "error_code": "",
-        "reason": "REASON_CODE_SUCCESS"
+        "reason": "SUCCESS"
     }
 }
 ```
@@ -477,7 +481,7 @@ Miracast Service Plugin raises this Event to request RA or MiracastWidget to lau
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device_parameters | DeviceParameters |  |
+| params.device_parameters | object |  |
 | params.device_parameters.source_dev_ip | string | IP Address of Source Device |
 | params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
 | params.device_parameters.source_dev_name | string | Name of Source Device |
@@ -498,3 +502,4 @@ Miracast Service Plugin raises this Event to request RA or MiracastWidget to lau
     }
 }
 ```
+
