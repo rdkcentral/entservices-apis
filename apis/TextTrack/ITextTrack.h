@@ -350,7 +350,7 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 
     /**
      * @brief Gets the global TTML style overrides
-     * @param style will receive the style overrides
+     * @param style Will receive the style overrides
      * @text getTtmlStyleOverrides
      */
     virtual Core::hresult GetTtmlStyleOverrides(string& style /* @out */) const = 0;
@@ -380,7 +380,7 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
     // @param hasCapability Indicates whether the queried capability is supported.
     // @retval Core::ERROR_NONE The capability query completed successfully.
     // @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
-    virtual Core::hresult GetCapability(Capability capability, bool &hasCapability /* @out */) const = 0;
+    virtual Core::hresult GetCapability(const Capability capability, bool &hasCapability /* @out */) const = 0;
 
     // @text getCapabilities
     // @brief Retrieves an iterator over all supported TextTrack capabilities.
@@ -418,15 +418,15 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
 
     // Structured information about a session, returned by GetSessions().
     struct EXTERNAL SessionInfo {
-        uint32_t sessionId; /* @brief The session ID */
-        string whoAmI; /* @brief An identifier for the caller that created the session */
-        string displayHandle; /* @brief The display handle of the session */
-        SubtitleFormat format; /* @brief The type of the session (CC, TTML, etc). Can be NONE if not yet set. */
-        bool isPreview; /* @brief Whether the session is a preview session or not */
-        bool isMuted; /* @brief Whether the session is currently muted or not */
-        bool isPaused; /* @brief Whether the session is currently paused or not */
-        uint64_t dataCount; /* @brief The number of data packets sent to this session, for debugging purposes. The count is the number of times SendSessionData() has been called. */
-        string info; /* @brief Opaque debug information about the session */
+        uint32_t sessionId /* @brief The session ID */;
+        string whoAmI /* @brief An identifier for the caller that created the session */;
+        string displayHandle /* @brief The display handle of the session */;
+        SubtitleFormat format /* @brief The type of the session (CC, TTML, etc). Can be NONE if not yet set. */;
+        bool isPreview /* @brief Whether the session is a preview session or not */;
+        bool isMuted /* @brief Whether the session is currently muted or not */;
+        bool isPaused /* @brief Whether the session is currently paused or not */;
+        uint64_t dataCount /* @brief The number of data packets sent to this session, for debugging purposes. The count is the number of times SendSessionData() has been called. */;
+        string info /* @brief Opaque debug information about the session */;
     };
     using ISessionInfoIterator = RPC::IIteratorType<SessionInfo, ID_TEXT_TRACK_SESSION_INFO_ITERATOR>;
 
@@ -436,12 +436,11 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @details If a session is already running on the supplied displayHandle, the sessionId for this session is
      * returned. If the session is instead newly opened, the session type is not set and display is muted. Use one
      * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
-     * @param displayHandle is an encoding of the wayland display name
+     * @param displayHandle Is an encoding of the wayland display name
      * @param sessionId On success the returned session id ex: 1
-     * @param whoAmI Optional identifier for the caller. If set it will be remembered and returned in GetSessions().
      * @text openSession
      */
-    virtual Core::hresult OpenSession(const string &displayHandle, uint32_t &sessionId /* @out */, const string &whoAmI /* @optional @default:"" */ = {}) = 0;
+    virtual Core::hresult OpenSession(const string &displayHandle, uint32_t &sessionId /* @out */) = 0;
     /**
      * @brief Closes a previously opened render session.
      * @details Any created windows and surfaces is destroyed
@@ -594,8 +593,8 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * cancelled by calling AssociateVideoDecoder() with an empty string for handle.
      * After associating the video decoder, further calls to SendSessionData will be ignored.
      * Added in version 3
-     * @param sessionId is the session
-     * @param handle is a textual representation of the video decoder handle
+     * @param sessionId Is the session
+     * @param handle Is a textual representation of the video decoder handle
      * @text associateVideoDecoder
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if the association failed (whether bad handle is used or lack of support on the platform).
@@ -609,7 +608,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     // a certain functionality can be expected to be present. There is no guarantee that the plugin has implemented
     // all functions of that version.
     // Added in version 4
-    // @param version will receive the version number ex: 4
+    // @param version Will receive the version number ex: 4
     // @text getInterfaceVersion
     // @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
     // @retval Core::ERROR_NONE on success
@@ -624,8 +623,8 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * the same displayHandle, which can be useful for example for preview purposes.
      * Added in version 5
      * @text createSession
-     * @param displayHandle is an encoding of the wayland display name
-     * @param whoAmI identifier for the caller; must not be empty.
+     * @param displayHandle Is an encoding of the wayland display name
+     * @param whoAmI Identifier for the caller; must not be empty.
      * @param sessionId On success the returned session id ex: 1
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if we were unable to create the session
@@ -654,8 +653,8 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * Use SetPreviewGeometry() to set the position of the preview session.
      * Added in version 5
      * @text createPreviewSession
-     * @param displayHandle is an encoding of the wayland display name
-     * @param whoAmI identifier for the caller; must not be empty.
+     * @param displayHandle Is an encoding of the wayland display name
+     * @param whoAmI Identifier for the caller; must not be empty.
      * @param sessionId On success the returned session id ex: 1
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if we were unable to create the session
@@ -684,17 +683,17 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * The default geometry is centred on the display/drawing area (0.5, 0.5, Anchor::CENTER).
      * Added in version 5
      * @text setPreviewGeometry
-     * @param sessionId is the session
-     * @param xPos is the horizontal position (0..1) for the preview text
-     * @param yPos is the vertical position (0..1) for the preview text
-     * @param anchor indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
+     * @param sessionId Is the session
+     * @param xPos Is the horizontal position (0..1) for the preview text
+     * @param yPos Is the vertical position (0..1) for the preview text
+     * @param anchor Indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_GENERAL if the geometry could not be set
      * @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult SetPreviewGeometry(const uint32_t sessionId, const float xPos /* @restrict:0.0..1.0 */, const float yPos /* @restrict:0.0..1.0 */, const Anchor anchor) { return Core::ERROR_NOT_SUPPORTED; }
 
-    using ISubtitleFormatIterator = RPC::IIteratorType<SubtitleFormat, RPC::ID_VALUEITERATOR>;
+    using ISubtitleFormatIterator = RPC::IIteratorType<SubtitleFormat, ID_TEXT_TRACK_SUBTITLE_FORMAT_ITERATOR>;
 
     /**
      * @brief Sets whether the global ClosedCaptionsStyle applies to a given session type.
@@ -708,7 +707,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @retval Core::ERROR_GENERAL if the session type is not supported
      * @retval Core::ERROR_NONE on success
      */
-    virtual Core::hresult SetClosedCaptionsStyleAppliesTo(SubtitleFormat format, const bool applies) { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult SetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, const bool applies) { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
      * @brief Gets whether the global ClosedCaptionsStyle applies to a given session type.
@@ -719,7 +718,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
      * @retval Core::ERROR_NONE on success
      */
-    virtual Core::hresult GetClosedCaptionsStyleAppliesTo(SubtitleFormat format, bool &applies /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult GetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, bool &applies /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
      * @brief Gets the list of session types for which the global ClosedCaptionsStyle applies.
