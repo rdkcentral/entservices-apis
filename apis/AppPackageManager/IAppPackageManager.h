@@ -187,6 +187,7 @@ namespace Exchange {
             string digest;
             // @brief SizeKb
             uint64_t sizeKb;
+            bool isRuntime /* @text isRuntime */ /* @brief Indicates whether this package is a runtime package */;
         };
         using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
 
