@@ -105,17 +105,39 @@ namespace Exchange {
             string  defaultResolution;
         };
 
-        // Consolidated config structure — all static configuration in one place
+        // Video port resolution config struct (populated from the 0th video port type;
+        // callers needing resolutions for other types must use GetVideoPortResolutionConfig).
+        // SoC configs define dsVideoPortRESOLUTION_NUMMAX = 32 as the absolute ceiling.
+        struct VideoPortResolutionConfig {
+            string  name;
+            int32_t pixelResolution;   /* @brief VideoResolution enum value */
+            int32_t aspectRatio;       /* @brief VideoAspectRatio enum value */
+            int32_t stereoScopicMode;  /* @brief VideoStereoScopicMode enum value */
+            int32_t frameRate;         /* @brief VideoFrameRate enum value */
+            bool    interlaced;
+        };
+
+        // Consolidated config structure — all static configuration in one place.
+        // @restrict values are derived from SoC HAL configs (SoC_A / SoC_B / SoC_R):
+        //   audioTypes/audioPorts : SoC_A up to 4 (SPEAKER+ARC+opt SPDIF+HEADPHONE), others 1 → 8
+        //   textDisplays          : all SoCs 0 (unused)                                        → 4
+        //   indicators            : all SoCs 1 (POWER indicator)                               → 8
+        //   colors                : SoC_A up to 6 (HAS_MULTICOLOR_SUPPORT), others 4           → 8
+        //   colorBindings         : derived from indicators × colors                           → 16
+        //   videoConfigs          : all SoCs 1 device                                          → 4
+        //   videoPortTypes/Ports  : all SoCs 1 (HDMI or INTERNAL)                             → 4
+        //   videoPortResolutions  : max 18 with 4K; SoC NUMMAX = 32                           → 32
         struct DeviceSettingConfigs {
-            std::vector<AudioTypeConfigInfo>   audioTypes;
-            std::vector<AudioPortConfigInfo>   audioPorts;
-            std::vector<FPDTextDisplayConfig>  textDisplays;
-            std::vector<FPDIndicatorConfig>    indicators;
-            std::vector<FPDColorConfig>        colors;
-            std::vector<FPDColorBinding>       colorBindings;
-            std::vector<VideoDeviceConfigInfo> videoConfigs;
-            std::vector<VideoPortTypeConfig>   videoPortTypes;
-            std::vector<VideoPortPortConfig>   videoPorts;
+            std::vector<AudioTypeConfigInfo>        audioTypes;            /* @restrict:8 */
+            std::vector<AudioPortConfigInfo>        audioPorts;            /* @restrict:8 */
+            std::vector<FPDTextDisplayConfig>       textDisplays;          /* @restrict:4 */
+            std::vector<FPDIndicatorConfig>         indicators;            /* @restrict:8 */
+            std::vector<FPDColorConfig>             colors;                /* @restrict:8 */
+            std::vector<FPDColorBinding>            colorBindings;         /* @restrict:16 */
+            std::vector<VideoDeviceConfigInfo>      videoConfigs;          /* @restrict:4 */
+            std::vector<VideoPortTypeConfig>        videoPortTypes;        /* @restrict:4 */
+            std::vector<VideoPortPortConfig>        videoPorts;            /* @restrict:4 */
+            std::vector<VideoPortResolutionConfig>  videoPortResolutions;  /* @restrict:32 */
         };
 
         // @json:omit
