@@ -21,11 +21,102 @@
 
 #include "Module.h"
 
+#include <vector>
+
 namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IDeviceSettings : virtual public Core::IUnknown {
         enum { ID = ID_DEVICESETTINGS };
+
+        // Audio config structs
+        struct AudioTypeConfigInfo {
+            int32_t  typeId;
+            string   name;
+            uint32_t supportedCompressionMask;
+            uint32_t supportedEncodingMask;
+            uint32_t supportedStereoModeMask;
+        };
+
+        struct AudioPortConfigInfo {
+            int32_t audioPortType;           /* @brief AudioPortType enum value */
+            int32_t audioPortIndex;
+            int32_t connectedVideoPortType;
+            int32_t connectedVideoPortIndex;
+        };
+
+        // Front Panel Display config structs
+        struct FPDColorConfig {
+            int32_t  id;
+            uint32_t color;
+        };
+
+        struct FPDIndicatorConfig {
+            int32_t id;
+            int32_t maxBrightness;
+            int32_t maxCycleRate;
+            int32_t minBrightness;
+            int32_t levels;
+            int32_t colorMode;
+        };
+
+        struct FPDColorBinding {
+            int32_t targetType;
+            int32_t targetId;
+            int32_t colorId;
+        };
+
+        struct FPDTextDisplayConfig {
+            int32_t id;
+            string  name;
+            int32_t maxBrightness;
+            int32_t maxCycleRate;
+            string  supportedCharacters;
+            int32_t columns;
+            int32_t rows;
+            int32_t maxHorizontalIterations;
+            int32_t maxVerticalIterations;
+            int32_t levels;
+            int32_t colorMode;
+        };
+
+        // Video device config struct
+        struct VideoDeviceConfigInfo {
+            uint32_t numSupportedDFCs;
+            uint32_t supportedDFCsMask;
+            int32_t  defaultDFC;             /* @brief VideoZoom enum value */
+        };
+
+        // Video port config structs
+        struct VideoPortTypeConfig {
+            int32_t typeId;                  /* @brief VideoPort enum value */
+            string  name;
+            bool    dtcpSupported;
+            bool    hdcpSupported;
+            int32_t restrictedResolution;
+            string  supportedResolutionNames;
+        };
+
+        struct VideoPortPortConfig {
+            int32_t videoPortType;           /* @brief VideoPort enum value */
+            int32_t videoPortIndex;
+            int32_t connectedAudioPortType;
+            int32_t connectedAudioPortIndex;
+            string  defaultResolution;
+        };
+
+        // Consolidated config structure — all static configuration in one place
+        struct DeviceSettingConfigs {
+            std::vector<AudioTypeConfigInfo>   audioTypes;
+            std::vector<AudioPortConfigInfo>   audioPorts;
+            std::vector<FPDTextDisplayConfig>  textDisplays;
+            std::vector<FPDIndicatorConfig>    indicators;
+            std::vector<FPDColorConfig>        colors;
+            std::vector<FPDColorBinding>       colorBindings;
+            std::vector<VideoDeviceConfigInfo> videoConfigs;
+            std::vector<VideoPortTypeConfig>   videoPortTypes;
+            std::vector<VideoPortPortConfig>   videoPorts;
+        };
 
         // @json:omit
         // @text configure
@@ -33,6 +124,12 @@ namespace Exchange {
         // @param service: Framework service interface instance
         // @retval Core::NONE: Indicates successful configuration
         virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
+
+        /** Get all DeviceSettings static configuration in a single call. */
+        // @text getDeviceSettingConfigs
+        // @brief Get all DeviceSettings static configuration loaded by DeviceSettings plugin.
+        // @param configs: structure holding audio, FPD, video device and video port config arrays
+        virtual Core::hresult GetDeviceSettingConfigs(DeviceSettingConfigs& configs /* @out */) = 0;
 
     };
 
