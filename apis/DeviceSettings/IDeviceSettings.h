@@ -128,16 +128,16 @@ namespace Exchange {
         //   videoPortTypes/Ports  : all SoCs 1 (HDMI or INTERNAL)                             → 4
         //   videoPortResolutions  : max 18 with 4K; SoC NUMMAX = 32                           → 32
         struct DeviceSettingConfigs {
-            std::vector<AudioTypeConfigInfo>        audioTypes;            /* @restrict:8 */
-            std::vector<AudioPortConfigInfo>        audioPorts;            /* @restrict:8 */
-            std::vector<FPDTextDisplayConfig>       textDisplays;          /* @restrict:4 */
-            std::vector<FPDIndicatorConfig>         indicators;            /* @restrict:8 */
-            std::vector<FPDColorConfig>             colors;                /* @restrict:8 */
-            std::vector<FPDColorBinding>            colorBindings;         /* @restrict:16 */
-            std::vector<VideoDeviceConfigInfo>      videoConfigs;          /* @restrict:4 */
-            std::vector<VideoPortTypeConfig>        videoPortTypes;        /* @restrict:4 */
-            std::vector<VideoPortPortConfig>        videoPorts;            /* @restrict:4 */
-            std::vector<VideoPortResolutionConfig>  videoPortResolutions;  /* @restrict:32 */
+            std::vector<AudioTypeConfigInfo>        audioTypes            /* @restrict:8 */ ;
+            std::vector<AudioPortConfigInfo>        audioPorts            /* @restrict:8 */ ;
+            std::vector<FPDTextDisplayConfig>       textDisplays          /* @restrict:4 */ ;
+            std::vector<FPDIndicatorConfig>         indicators            /* @restrict:8 */ ;
+            std::vector<FPDColorConfig>             colors                /* @restrict:8 */ ;
+            std::vector<FPDColorBinding>            colorBindings         /* @restrict:16 */ ;
+            std::vector<VideoDeviceConfigInfo>      videoConfigs          /* @restrict:4 */ ;
+            std::vector<VideoPortTypeConfig>        videoPortTypes        /* @restrict:4 */ ;
+            std::vector<VideoPortPortConfig>        videoPorts            /* @restrict:4 */ ;
+            std::vector<VideoPortResolutionConfig>  videoPortResolutions  /* @restrict:32 */ ;
         };
 
         // @json:omit
