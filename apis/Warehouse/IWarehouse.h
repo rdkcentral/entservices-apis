@@ -57,6 +57,17 @@ namespace WPEFramework
             virtual Core::hresult Register(IWarehouse::INotification* notification) = 0;
             virtual Core::hresult Unregister(IWarehouse::INotification* notification) = 0;
 
+            // @text executeHardwareTest
+            // @brief Starts a hardware test on the device
+            // @param WarehouseSuccess - out
+            virtual Core::hresult ExecuteHardwareTest(WarehouseSuccess& success /* @out */) = 0;
+
+            // @text getHardwareTestResults
+            // @brief Returns the results of the last hardware test.
+            // @param success - out - boolean
+            // @param testResults - out - string
+            virtual Core::hresult GetHardwareTestResults(bool& success /* @out */, string& testResults /* @out */) = 0;
+
             // @text internalReset
             // @brief Invokes the internal reset script, which reboots the Warehouse service
             // @param passPhrase - in - string

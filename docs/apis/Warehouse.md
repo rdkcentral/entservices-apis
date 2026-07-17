@@ -55,10 +55,110 @@ The following methods are provided by the IWarehouse Interface:
 
 | Method | Description |
 | :-------- | :-------- |
+| [executeHardwareTest](#executeHardwareTest) | Starts a hardware test on the device |
+| [getHardwareTestResults](#getHardwareTestResults) | Returns the results of the last hardware test. |
 | [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
 | [isClean](#isClean) | Checks the locations on the device where customer data may be stored. |
 | [lightReset](#lightReset) | Resets the application data. |
 | [resetDevice](#resetDevice) | Resets the STB to the warehouse state. |
+
+<a id="executeHardwareTest"></a>
+## *executeHardwareTest*
+
+Starts a hardware test on the device
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | boolean |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.Warehouse.executeHardwareTest"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.executeHardwareTest"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a id="getHardwareTestResults"></a>
+## *getHardwareTestResults*
+
+Returns the results of the last hardware test.
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | boolean |
+| result.testResults | string | string |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.Warehouse.getHardwareTestResults"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.getHardwareTestResults"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "success": true,
+        "testResults": ""
+    }
+}
+```
 
 <a id="internalReset"></a>
 ## *internalReset*
@@ -88,7 +188,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 2,
     "method": "org.rdk.Warehouse.internalReset",
     "params": {
         "passPhrase": ""
@@ -100,7 +200,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -109,7 +209,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 2,
     "result": {
         "success": true,
         "error": ""
@@ -147,7 +247,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 3,
     "method": "org.rdk.Warehouse.isClean",
     "params": {
         "age": 0
@@ -159,7 +259,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.isClean", "params": {"age": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -168,7 +268,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 3,
     "result": {
         "clean": true,
         "files": [
@@ -205,7 +305,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "method": "org.rdk.Warehouse.lightReset"
 }
 ```
@@ -214,7 +314,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Warehouse.lightReset"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Warehouse.lightReset"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -223,7 +323,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 4,
     "result": {
         "success": true,
         "error": ""
@@ -260,7 +360,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "method": "org.rdk.Warehouse.resetDevice",
     "params": {
         "suppressReboot": true,
@@ -273,7 +373,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -282,7 +382,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 5,
     "result": {
         "success": true,
         "error": ""
@@ -318,7 +418,7 @@ Notifies subscribers about the status of the warehouse reset operation
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 6,
     "method": "org.rdk.Warehouse.resetDone",
     "params": {
         "success": true,

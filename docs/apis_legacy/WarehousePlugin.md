@@ -45,11 +45,107 @@ Warehouse interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [executeHardwareTest](#executeHardwareTest) | Starts a hardware test on the device |
+| [getHardwareTestResults](#getHardwareTestResults) | Returns the results of the last hardware test |
 | [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service (`/rebootNow |
 | [isClean](#isClean) | Checks the locations on the device where customer data may be stored |
 | [lightReset](#lightReset) | Resets the application data |
 | [resetDevice](#resetDevice) | Resets the STB to the warehouse state |
 
+
+<a name="executeHardwareTest"></a>
+## *executeHardwareTest*
+
+Starts a hardware test on the device. See `getHardwareTestResults`.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.Warehouse.executeHardwareTest"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="getHardwareTestResults"></a>
+## *getHardwareTestResults*
+
+Returns the results of the last hardware test.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.testResults | string | The test results |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.Warehouse.getHardwareTestResults",
+    "params": {
+        "testResults": "Timezone: NA 2021-04-15 10:35:06 Test execution start, remote trigger ver. 0011 2021-04-15 10:35:10 Test result: Audio/Video Decoder:PASSED 2021-04-15 10:35:06 Test result: Dynamic RAM:PASSED 2021-04-15 10:35:06 Test result: Flash Memory:PASSED 2021-04-15 10:35:06 Test result: HDMI Output:PASSED 2021-04-15 10:35:38 Test result: IR Remote Interface:WARNING_IR_Not_Detected 2021-04-15 10:35:06 Test result: Bluetooth:PASSED 2021-04-15 10:35:06 Test result: SD Card:PASSED 2021-04-15 10:35:06 Test result: WAN:PASSED 2021-04-15 10:35:38 Test execution completed:PASSED"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
 
 <a name="internalReset"></a>
 ## *internalReset*
