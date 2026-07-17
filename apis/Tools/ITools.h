@@ -35,7 +35,7 @@ namespace WPEFramework
             // @json:omit
             virtual Core::hresult Configure(PluginHost::IShell* service) = 0;
 
-            // @text generateKeys
+            // @text generateKey
             // @brief Simulates key events for a list of key entries. Each entry contains parallel arrays of key codes and
             //        their corresponding modifier sets, along with timing controls.
             // @param keys: JSON array of key entry objects. Each object contains:
