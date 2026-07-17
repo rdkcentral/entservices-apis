@@ -19,47 +19,47 @@
 
 #pragma once
 
-#include "Module.h"
+  #include "Module.h"
 
-namespace WPEFramework {
-namespace Exchange {
-// @json 1.0.0 @text:keep
-struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
-  enum { ID = ID_RDK_WINDOW_MANAGER };
+  namespace WPEFramework {
+  namespace Exchange {
+  // @json 1.0.0 @text:keep
+  struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
+    enum { ID = ID_RDK_WINDOW_MANAGER };
 
-  // @event 
-  struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
- 
-    // @brief Posting the client is inactive state
-    // @text onUserInactivity
-    // @param minutes: notify how long user is inactive state
-    virtual void OnUserInactivity(const double minutes){};
+    // @event 
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+      enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
+  
+      // @brief Posting the client is inactive state
+      // @text onUserInactivity
+      // @param minutes: notify how long user is inactive state
+      virtual void OnUserInactivity(const double minutes){};
 
-    // @brief Notifies when an application is disconnected
-    // @text onDisconnected
-    // @param clientId: the identifier of the disconnected application
-    virtual void OnDisconnected(const std::string& clientId){};
+      // @brief Notifies when an application is disconnected
+      // @text onDisconnected
+      // @param clientId: the identifier of the disconnected application
+      virtual void OnDisconnected(const std::string& clientId){};
 
-    // @brief Posting the client for first frame ready.
-    // @text onReady
-    // @param clientId: notify first frame event received for client or application instance ID
-    virtual void OnReady(const string &clientId){};
+      // @brief Posting the client for first frame ready.
+      // @text onReady
+      // @param clientId: notify first frame event received for client or application instance ID
+      virtual void OnReady(const string &clientId){};
 
-    // @brief Notifies when an application is connected
-    // @text onConnected
-    // @param clientId: the identifier of the connected application
-    virtual void OnConnected(const std::string& clientId){};
+      // @brief Notifies when an application is connected
+      // @text onConnected
+      // @param clientId: the identifier of the connected application
+      virtual void OnConnected(const std::string& clientId){};
 
-    // @brief Notifies when an application is visible
-    // @text onVisible
-    // @param clientId: the identifier of the visible application
-    virtual void OnVisible(const std::string& clientId){};
+      // @brief Notifies when an application is visible
+      // @text onVisible
+      // @param clientId: the identifier of the visible application
+      virtual void OnVisible(const std::string& clientId){};
 
-    // @brief Notifies when an application is hidden
-    // @text onHidden
-    // @param clientId: the identifier of the hidden application
-    virtual void OnHidden(const std::string& clientId){};
+      // @brief Notifies when an application is hidden
+      // @text onHidden
+      // @param clientId: the identifier of the hidden application
+      virtual void OnHidden(const std::string& clientId){};
 
     // @brief Notifies when an application is in focus
     // @text onFocus
@@ -112,8 +112,8 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Get the list of active Apps */
   // @text getApps
   // @brief Get the list of Apps which are currently active and available
-  // @param appsIds: Returns the list of app IDs as a JSON string.
-  virtual Core::hresult GetApps(string &appsIds /* @out */) const = 0;
+  // @param appsIds: Returns the list of active app IDs as a JSON array.
+  virtual Core::hresult GetApps(RPC::IStringIterator*& appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept
