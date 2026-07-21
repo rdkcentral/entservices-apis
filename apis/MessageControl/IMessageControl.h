@@ -47,7 +47,7 @@ struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
         bool enabled /* @brief Denotes if the control is enabled (true) or disabled (false) */;
     };
 
-    using IControlIterator = RPC::IIteratorType<Control, ID_MESSAGE_CONTROL_ITERATOR>;
+    using IControlIterator = RPC::IIteratorType<Control, ::WPEFramework::Exchange::ID_MESSAGE_CONTROL_ITERATOR>;
 
     // @brief Enables/disables a message control
     // @param type Message type

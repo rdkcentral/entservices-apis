@@ -51,7 +51,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         string   deviceName     /* @brief Device name identifying the device */;
     };
 
-    using IUSBStorageDeviceInfoIterator = RPC::IIteratorType<USBStorageDeviceInfo, ID_USB_MASS_STORAGE_DEVICE_INFO_ITERATOR>;
+    using IUSBStorageDeviceInfoIterator = RPC::IIteratorType<USBStorageDeviceInfo, ::WPEFramework::Exchange::ID_USB_MASS_STORAGE_DEVICE_INFO_ITERATOR>;
 
     struct USBStorageMountInfo
     {
@@ -61,7 +61,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         USBStorageFileSystem    fileSystem     /* @brief file system of the partition */;
     };
 
-    using IUSBStorageMountInfoIterator = RPC::IIteratorType<USBStorageMountInfo, ID_USB_MASS_STORAGE_MOUNT_INFO_ITERATOR>;
+    using IUSBStorageMountInfoIterator = RPC::IIteratorType<USBStorageMountInfo, ::WPEFramework::Exchange::ID_USB_MASS_STORAGE_MOUNT_INFO_ITERATOR>;
 
     struct USBStoragePartitionInfo
     {

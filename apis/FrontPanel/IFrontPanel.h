@@ -37,7 +37,7 @@ namespace WPEFramework
                 bool success;
             };
 
-            using IFrontPanelLightsListIterator = RPC::IIteratorType<string, ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR>;
+            using IFrontPanelLightsListIterator = RPC::IIteratorType<string, ::WPEFramework::Exchange::ID_FRONT_PANEL_LIGHTS_LIST_ITERATOR>;
 
             // @json:omit
             virtual Core::hresult Configure(PluginHost::IShell* service) = 0;

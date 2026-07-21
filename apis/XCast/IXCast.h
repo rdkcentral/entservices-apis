@@ -62,7 +62,7 @@ namespace WPEFramework {
 				int  allowStop /* @text allowStop */ /* @brief 	is the application (matching name list or prefix list) allowed to stop (no PID presence) after launched */;
 			};
 
-			using IApplicationInfoIterator = RPC::IIteratorType<ApplicationInfo,ID_XCAST_APPLICATION_INFO_ITERATOR>;
+			using IApplicationInfoIterator = RPC::IIteratorType<ApplicationInfo,::WPEFramework::Exchange::ID_XCAST_APPLICATION_INFO_ITERATOR>;
 			using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
 			//@event

@@ -97,7 +97,7 @@ namespace Exchange {
             string key;
             string value;
         };
-        using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGEMANAGER_KEY_VALUE_ITERATOR>;
+        using IKeyValueIterator = RPC::IIteratorType<KeyValue, ::WPEFramework::Exchange::ID_PACKAGEMANAGER_KEY_VALUE_ITERATOR>;
 
         struct MetadataPayload {
             string appName;
@@ -164,7 +164,7 @@ namespace Exchange {
             string version;
         };
 
-        using IPackageKeyIterator = RPC::IIteratorType<PackageKey, ID_PACKAGEMANAGER_PACKAGE_KEY_ITERATOR>;
+        using IPackageKeyIterator = RPC::IIteratorType<PackageKey, ::WPEFramework::Exchange::ID_PACKAGEMANAGER_PACKAGE_KEY_ITERATOR>;
 
         /** List installed apps */
         // @text getList

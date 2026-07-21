@@ -132,7 +132,7 @@ namespace Exchange {
             HDR_SDR
         };
 
-        typedef RPC::IIteratorType<HDRType, ID_HDR_ITERATOR> IHDRIterator;
+        typedef RPC::IIteratorType<HDRType, ::WPEFramework::Exchange::ID_HDR_ITERATOR> IHDRIterator;
 
         // @property
         // @brief HDR formats supported by TV
@@ -214,7 +214,7 @@ namespace Exchange {
             EOTF_BT2100,
             EOTF_SMPTE_ST_2084
         };
-        typedef RPC::IIteratorType<ColorimetryType, ID_COLORIMETRY_ITERATOR> IColorimetryIterator;
+        typedef RPC::IIteratorType<ColorimetryType, ::WPEFramework::Exchange::ID_COLORIMETRY_ITERATOR> IColorimetryIterator;
 
         // @property
         // @brief Provides access to the display's Colour space (chroma subsampling format)

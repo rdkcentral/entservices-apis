@@ -180,7 +180,7 @@ namespace WPEFramework
             };
 
 
-            using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
+            using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ::WPEFramework::Exchange::ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 

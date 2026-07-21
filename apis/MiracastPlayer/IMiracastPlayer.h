@@ -82,7 +82,7 @@ namespace WPEFramework
                 string argName /* @text argName */ /* @brief environment argument name */;
                 string argValue /* @text argValue */ /* @brief environment argument value */;
             };
-            using IEnvArgumentsIterator = RPC::IIteratorType<EnvArguments, ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR>;
+            using IEnvArgumentsIterator = RPC::IIteratorType<EnvArguments, ::WPEFramework::Exchange::ID_MIRACAST_PLAYER_ENV_ARGUMENTS_ITERATOR>;
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown

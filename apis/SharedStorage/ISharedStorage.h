@@ -103,7 +103,7 @@ namespace Exchange {
 
         using ScopeType = ISharedStorage::ScopeType;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-        using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_SHARED_STORAGE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
+        using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ::WPEFramework::Exchange::ID_SHARED_STORAGE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
 
         // @brief Returns the keys that are stored in the specified namespace
         // @text getKeys

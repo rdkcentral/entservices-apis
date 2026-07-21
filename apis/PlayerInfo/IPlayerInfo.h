@@ -106,8 +106,8 @@ namespace Exchange {
             RESOLUTION_2160P
         };
 
-        typedef RPC::IIteratorType<AudioCodec, ID_PLAYER_PROPERTIES_AUDIO> IAudioCodecIterator;
-        typedef RPC::IIteratorType<VideoCodec, ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
+        typedef RPC::IIteratorType<AudioCodec, ::WPEFramework::Exchange::ID_PLAYER_PROPERTIES_AUDIO> IAudioCodecIterator;
+        typedef RPC::IIteratorType<VideoCodec, ::WPEFramework::Exchange::ID_PLAYER_PROPERTIES_VIDEO> IVideoCodecIterator;
 
         // @property
         virtual uint32_t AudioCodecs(IAudioCodecIterator*& codec /* @out */) const = 0;

@@ -35,7 +35,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
         string   deviceName     /* @brief Name of the USB device */;
         string   devicePath     /* @brief the path to be used for the USB device ex: /dev/sdX */;
     };
-    using IUSBDeviceIterator = RPC::IIteratorType<USBDevice, ID_USB_DEVICE_ITERATOR>;
+    using IUSBDeviceIterator = RPC::IIteratorType<USBDevice, ::WPEFramework::Exchange::ID_USB_DEVICE_ITERATOR>;
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_USB_DEVICE_NOTIFICATION };
@@ -63,7 +63,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
         string   manufacturer  /* @brief unicode string representing the manufacturer of the device */;
         string   product       /* @brief unicode string representing the product */;
     };
-    using IUSBProductInfoIterator = RPC::IIteratorType<USBProductInfo, ID_USB_PRODUCT_INFO_ITERATOR>;
+    using IUSBProductInfoIterator = RPC::IIteratorType<USBProductInfo, ::WPEFramework::Exchange::ID_USB_PRODUCT_INFO_ITERATOR>;
 
     enum USBDeviceSpeed : uint8_t {
         DEVICE_SPEED_LOW     = 1  /* @text Low */,
@@ -102,7 +102,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
         USBProductInfo productInfo3;
         USBProductInfo productInfo4;
     };
-    using IUSBDeviceInfoIterator = RPC::IIteratorType<USBDeviceInfo, ID_USB_DEVICE_INFO_ITERATOR>;
+    using IUSBDeviceInfoIterator = RPC::IIteratorType<USBDeviceInfo, ::WPEFramework::Exchange::ID_USB_DEVICE_INFO_ITERATOR>;
 
     /** Gets the device information of the connected USB Devices.*/
     // @text getDeviceList

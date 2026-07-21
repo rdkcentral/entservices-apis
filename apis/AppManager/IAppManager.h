@@ -109,7 +109,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           AppLifecycleState lifecycleState /* @text lifecycleState */
               /* @brief The current lifecycle state of the application instance */;
       };
-  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,ID_LOADED_APP_INFO_ITERATOR>;
+  using ILoadedAppInfoIterator = RPC::IIteratorType<LoadedAppInfo,::WPEFramework::Exchange::ID_LOADED_APP_INFO_ITERATOR>;
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {

@@ -51,7 +51,7 @@ namespace WPEFramework
                 string lastHardPowerReset /* @text lastHardPowerReset */;
             };
 
-            using IDeviceDiagnosticsParamListIterator = RPC::IIteratorType<ParamList, ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR>;
+            using IDeviceDiagnosticsParamListIterator = RPC::IIteratorType<ParamList, ::WPEFramework::Exchange::ID_DEVICE_DIAGNOSTICS_PARAM_LIST_ITERATOR>;
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 

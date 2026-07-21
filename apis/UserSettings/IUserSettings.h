@@ -411,7 +411,7 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
         bool requiresMigration;
     };
 
-    using IUserSettingsMigrationStateIterator = RPC::IIteratorType<SettingsMigrationState, ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR>;
+    using IUserSettingsMigrationStateIterator = RPC::IIteratorType<SettingsMigrationState, ::WPEFramework::Exchange::ID_USER_SETTINGS_MIGRATION_STATE_ITERATOR>;
 
     /** Get the migration state of the respective key */
     // @text getMigrationState

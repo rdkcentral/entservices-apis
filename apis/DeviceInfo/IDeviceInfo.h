@@ -128,7 +128,7 @@ namespace Exchange {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
-        using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
+        using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ::WPEFramework::Exchange::ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // @property
@@ -316,10 +316,10 @@ namespace Exchange {
         };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-        typedef RPC::IIteratorType<AudioOutput, ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT> IAudioOutputIterator;
-        typedef RPC::IIteratorType<AudioCapability, ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
-        typedef RPC::IIteratorType<MS12Capability, ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
-        typedef RPC::IIteratorType<MS12Profile, ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
+        typedef RPC::IIteratorType<AudioOutput, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_AUDIO_OUTPUT> IAudioOutputIterator;
+        typedef RPC::IIteratorType<AudioCapability, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_AUDIO_CAPABILITY> IAudioCapabilityIterator;
+        typedef RPC::IIteratorType<MS12Capability, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_AUDIO_MS12_CAPABILITY> IMS12CapabilityIterator;
+        typedef RPC::IIteratorType<MS12Profile, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_AUDIO_MS12_PROFILE> IMS12ProfileIterator;
 
         // @text audiocapabilities
         // @brief Audio capabilities for the specified audio port.
@@ -419,8 +419,8 @@ namespace Exchange {
         };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-        typedef RPC::IIteratorType<VideoOutput, ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
-        typedef RPC::IIteratorType<ScreenResolution, ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
+        typedef RPC::IIteratorType<VideoOutput, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_VIDEO_OUTPUT> IVideoOutputIterator;
+        typedef RPC::IIteratorType<ScreenResolution, ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_RESOLUTION> IScreenResolutionIterator;
 
         // @text supportedvideodisplays
         // @brief Provides access to the video ports supported on the device.

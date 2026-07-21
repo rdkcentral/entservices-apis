@@ -98,7 +98,7 @@ namespace WPEFramework
             uint32_t secondsSinceWakeup /* @brief Wakeup time in seconds */;
         };
 
-        using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
+        using IWakeupSourceConfigIterator = RPC::IIteratorType<WakeupSourceConfig, ::WPEFramework::Exchange::ID_POWER_MANAGER_WAKEUP_SRC_ITERATOR>;
 
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown

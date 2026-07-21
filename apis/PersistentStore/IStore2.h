@@ -72,7 +72,7 @@ namespace Exchange {
 
         using ScopeType = IStore2::ScopeType;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
-        using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
+        using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ::WPEFramework::Exchange::ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
 
         virtual Core::hresult GetKeys(const ScopeType scope, const string& ns, IStringIterator*& keys /* @out */) = 0;
         virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */) = 0;
