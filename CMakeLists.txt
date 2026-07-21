@@ -45,6 +45,9 @@ ProxyStubGenerator(INPUT "${INPUT_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_B
 file(GLOB_RECURSE INTERFACES_HEADERS ./apis/*/I*.h ./apis/*.h)
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
 file(MAKE_DIRECTORY ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces)
+# Copy headers at configure time so JsonGenerator (which runs at configure time via
+# execute_process in add_subdirectory(build)) can resolve <interfaces/...> includes.
+file(COPY ${INTERFACES_HEADERS} DESTINATION ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces)
 add_custom_target(install_headers ALL
         COMMAND ${CMAKE_COMMAND} -E copy ${INTERFACES_HEADERS} ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces
 )
