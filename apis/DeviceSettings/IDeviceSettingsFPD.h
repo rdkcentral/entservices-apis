@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IDeviceSettings.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -55,11 +56,6 @@ namespace Exchange {
             DS_FPD_TEXTDISPLAY_MAX         = 1
         };
 
-        enum FPDColorBindingTarget : uint8_t {
-            DS_FPD_COLOR_TARGET_INDICATOR   = 0,
-            DS_FPD_COLOR_TARGET_TEXTDISPLAY = 1,
-            DS_FPD_COLOR_TARGET_MAX         = 2
-        };
 
         enum FPDMode : uint8_t {
             DS_FPD_MODE_ANY        = 0,
@@ -80,46 +76,6 @@ namespace Exchange {
             DS_FPD_LED_DEVICE_SW_UPGRADE_ERROR  = 8,
             DS_FPD_LED_DEVICE_MAX               = 9
         };
-
-        struct FPDColorConfig {
-            int32_t id;
-            uint32_t color;
-        };
-
-        struct FPDIndicatorConfig {
-            int32_t id;
-            int32_t maxBrightness;
-            int32_t maxCycleRate;
-            int32_t minBrightness;
-            int32_t levels;
-            int32_t colorMode;
-        };
-
-        struct FPDColorBinding {
-            int32_t targetType;
-            int32_t targetId;
-            int32_t colorId;
-        };
-
-        struct FPDTextDisplayConfig {
-            int32_t id;
-            string name;
-            int32_t maxBrightness;
-            int32_t maxCycleRate;
-            string supportedCharacters;
-            int32_t columns;
-            int32_t rows;
-            int32_t maxHorizontalIterations;
-            int32_t maxVerticalIterations;
-            int32_t levels;
-            int32_t colorMode;
-        };
-
-        using IFPDColorConfigIterator = RPC::IIteratorType<FPDColorConfig, ID_DEVICESETTINGS_FPD_COLORCONFIG_ITERATOR>;
-        using IFPDIndicatorConfigIterator = RPC::IIteratorType<FPDIndicatorConfig, ID_DEVICESETTINGS_FPD_INDICATORCONFIG_ITERATOR>;
-        using IFPDTextDisplayConfigIterator = RPC::IIteratorType<FPDTextDisplayConfig, ID_DEVICESETTINGS_FPD_TEXTDISPLAYCONFIG_ITERATOR>;
-        using IFPDColorBindingIterator = RPC::IIteratorType<FPDColorBinding, ID_DEVICESETTINGS_FPD_COLORBINDING_ITERATOR>;
-        
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -248,7 +204,6 @@ namespace Exchange {
         // @param indicators: iterator of indicator configuration
         // @param colors: iterator of color configuration
         // @param colorBindings: iterator of target-to-supported-color mapping for indicators and text displays
-        virtual Core::hresult GetFrontPanelConfig(IFPDTextDisplayConfigIterator*& textDisplays /* @out */, IFPDIndicatorConfigIterator*& indicators /* @out */, IFPDColorConfigIterator*& colors /* @out */, IFPDColorBindingIterator*& colorBindings /* @out */) = 0;
     };
 
 } // namespace Exchange

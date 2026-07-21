@@ -73,7 +73,6 @@ namespace Exchange {
             VideoZoom defaultDFC;
         };
 
-        using IVideoDeviceConfigIterator = RPC::IIteratorType<VideoDeviceConfigInfo, ID_DEVICESETTINGS_VIDEODEVICE_CONFIG_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -178,11 +177,6 @@ namespace Exchange {
         // @param framerate: frame rate
         virtual Core::hresult SetDisplayFrameRate(const int32_t handle , const string& framerate ) = 0;
 
-        /** Get Video Device static configuration. */
-        // @text getVideoDeviceConfig
-        // @brief Get Video Device static configuration loaded by DeviceSettings plugin.
-        // @param videoConfigs: iterator of video device configuration
-        virtual Core::hresult GetVideoDeviceConfig(IVideoDeviceConfigIterator*& videoConfigs /* @out */) = 0;
     };
 
 } // namespace Exchange

@@ -20,6 +20,7 @@
 #pragma once
 
 #include "Module.h"
+#include "IDeviceSettings.h"
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -200,13 +201,6 @@ namespace Exchange {
            // IDeviceSettingsStereoModeIterator *stereoModes;
         };
 
-        struct AudioTypeConfigInfo {
-            int32_t typeId;
-            string name;
-            uint32_t supportedCompressionMask;
-            uint32_t supportedEncodingMask;
-            uint32_t supportedStereoModeMask;
-        };
 
         struct AudioPortConfigInfo {
             AudioPortType audioPortType;
@@ -215,8 +209,6 @@ namespace Exchange {
             int32_t connectedVideoPortIndex;
         };
 
-        using IAudioTypeConfigIterator = RPC::IIteratorType<AudioTypeConfigInfo, ID_DEVICESETTINGS_AUDIO_TYPECONFIG_ITERATOR>;
-        using IAudioPortConfigIterator = RPC::IIteratorType<AudioPortConfigInfo, ID_DEVICESETTINGS_AUDIO_PORTCONFIG_ITERATOR>;
 
         struct AudioARCStatus { 
             AudioARCType  arcType    /* @brief ARC Type */ ;
@@ -296,11 +288,6 @@ namespace Exchange {
         /** Get Audio static configuration. */
         // @text getAudioConfig
         // @brief Get Audio static configuration loaded by DeviceSettings plugin.
-        // @param audioTypes: iterator of audio output type configuration
-        // @param audioPorts: iterator of audio port configuration
-        virtual Core::hresult GetAudioConfig(IAudioTypeConfigIterator*& audioTypes /* @out */,
-                             IAudioPortConfigIterator*& audioPorts /* @out */) = 0;
-
         /** Audio Port status. */
         // @text isAudioPortEnabled
         // @brief Audio port enabled or not

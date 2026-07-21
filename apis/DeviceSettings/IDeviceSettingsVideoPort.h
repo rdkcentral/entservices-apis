@@ -237,9 +237,6 @@ namespace Exchange {
             string defaultResolution;
         };
 
-        using IVideoPortTypeConfigIterator = RPC::IIteratorType<VideoPortTypeConfig, ID_DEVICESETTINGS_VIDEOPORT_TYPECONFIG_ITERATOR>;
-        using IVideoPortPortConfigIterator = RPC::IIteratorType<VideoPortPortConfig, ID_DEVICESETTINGS_VIDEOPORT_PORTCONFIG_ITERATOR>;
-        using IVideoPortResolutionIterator = RPC::IIteratorType<VideoPortResolution, ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown
@@ -282,19 +279,16 @@ namespace Exchange {
         // @text getVideoPortConfig
         // @brief Get VideoPort static configuration loaded by DeviceSettings plugin.
         // @param videoPortTypes: iterator of video port type configuration
-        // @param videoPorts: iterator of video port configuration
-        virtual Core::hresult GetVideoPortConfig(IVideoPortTypeConfigIterator*& videoPortTypes /* @out */,
-                             IVideoPortPortConfigIterator*& videoPorts /* @out */) = 0;
-
-        /** Get Video Port Resolution static configuration. */
+        /** Get Video Port Resolution static configuration for a specific port type. */
         // @text getVideoPortResolutionConfig
-        // @brief Get VideoPort resolution static configuration loaded by DeviceSettings plugin.
-        // @param videoPortTypes: video port type resolution configuration
-        // @param resolutions: iterator of supported resolution settings for a videoporttype
+        // @brief Get VideoPort resolution static configuration for a given port type.
+        //        GetDeviceSettingConfigs() only returns resolutions for the 0th port type;
+        //        callers needing resolutions for other types must use this method.
+        // @param videoPortType: video port type to query
+        // @param videoPortResolutions: iterator of supported resolution settings
+        using IVideoPortResolutionIterator = RPC::IIteratorType<VideoPortResolution, ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR>;
         virtual Core::hresult GetVideoPortResolutionConfig(VideoPort videoPortType,
                              IVideoPortResolutionIterator*& videoPortResolutions /* @out */) const = 0;
-
-
 
         /** Video Port Enabled or not. */
         // @text isVideoPortEnabled
