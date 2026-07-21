@@ -90,6 +90,16 @@ install(
         DESTINATION include/${NAMESPACE}/interfaces/json
 )
 
+install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated/
+        DESTINATION include/${NAMESPACE}/interfaces/json
+        FILES_MATCHING
+            PATTERN "J*.h"
+            PATTERN "JsonData_*.h"
+            PATTERN "Module.h"
+            PATTERN "Ids*.h"
+)
+
 InstallPackageConfig(
         TARGETS ${Target}
         DESCRIPTION "Share lookup tables associated with interface enums."
