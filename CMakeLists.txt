@@ -23,7 +23,7 @@ if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})
 endif()
 
-find_package(WPEFramework NAMES WPEFramework Thunder)
+find_package(Thunder NAMES WPEFramework Thunder REQUIRED)
 
 project_version(4.4.1)
 
