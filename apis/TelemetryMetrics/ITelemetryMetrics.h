@@ -26,7 +26,7 @@ namespace Exchange {
 
 // @text:keep
 struct EXTERNAL ITelemetryMetrics : virtual public Core::IUnknown {
-    enum { ID = ID_TELEMETRYMETRICS };
+    enum { ID = ::WPEFramework::Exchange::ID_TELEMETRYMETRICS };
 
     /** @brief Record the telementryMetrics add new hash values to existing hash */
     // @text record

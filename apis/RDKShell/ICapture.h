@@ -27,7 +27,7 @@ namespace Exchange {
 
     // @stubgen:omit
     struct EXTERNAL ICapture : virtual public Core::IUnknown {
-        enum { ID = ID_CAPTURE };
+        enum { ID = ::WPEFramework::Exchange::ID_CAPTURE };
 
         struct EXTERNAL IStore {
             virtual ~IStore() = default;

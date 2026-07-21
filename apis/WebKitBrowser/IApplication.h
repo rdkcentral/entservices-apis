@@ -26,13 +26,13 @@ namespace Exchange {
     // @json @uncompliant:collapsed
     struct EXTERNAL IApplication : virtual public Core::IUnknown {
 
-        enum { ID = ID_APPLICATION };
+        enum { ID = ::WPEFramework::Exchange::ID_APPLICATION };
 
         ~IApplication() override = default;
 
         // @event @uncompliant:collapsed
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_APPLICATION_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_APPLICATION_NOTIFICATION };
 
             ~INotification() override = default;
 

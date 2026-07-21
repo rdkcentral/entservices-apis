@@ -28,7 +28,7 @@ namespace Exchange {
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 {
-    enum { ID = ID_USB_MASS_STORAGE };
+    enum { ID = ::WPEFramework::Exchange::ID_USB_MASS_STORAGE };
 
     enum USBStorageMountFlags : uint8_t
     {
@@ -78,7 +78,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
-        enum { ID = ID_USB_MASS_STORAGE_NOTIFICATION };
+        enum { ID = ::WPEFramework::Exchange::ID_USB_MASS_STORAGE_NOTIFICATION };
 
         // @brief Device Mounted notification
         // @@iterator

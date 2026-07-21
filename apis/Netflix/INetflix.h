@@ -25,7 +25,7 @@ namespace Exchange {
 
     // This interface gives direct access to a Netflix instance
     struct EXTERNAL INetflix : virtual public Core::IUnknown {
-        enum { ID = ID_NETFLIX };
+        enum { ID = ::WPEFramework::Exchange::ID_NETFLIX };
 
         enum state : uint16_t {
             PLAYING = 0x0001,
@@ -34,7 +34,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_NETFLIX_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_NETFLIX_NOTIFICATION };
 
             virtual void StateChange(const INetflix::state state) = 0;
             virtual void Exit(const uint32_t exitCode) = 0;

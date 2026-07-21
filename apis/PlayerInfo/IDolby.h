@@ -29,7 +29,7 @@ namespace Exchange {
         // @json @uncompliant:extended
         struct EXTERNAL IOutput : virtual public Core::IUnknown {
 
-            enum { ID = ID_DOLBY_OUTPUT };
+            enum { ID = ::WPEFramework::Exchange::ID_DOLBY_OUTPUT };
 
             ~IOutput() override = default;
 
@@ -55,7 +55,7 @@ namespace Exchange {
 
             // @event @uncompliant:extended
             struct EXTERNAL INotification : virtual public Core::IUnknown {
-                enum { ID = ID_DOLBY_OUTPUT_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_DOLBY_OUTPUT_NOTIFICATION };
 
                 ~INotification() override = default;
                 // @text dolby_audiomodechanged

@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
     // @json 1.0.0 @text:keep
     struct EXTERNAL IAnalytics : virtual public Core::IUnknown {
-        enum { ID = ID_ANALYTICS };
+        enum { ID = ::WPEFramework::Exchange::ID_ANALYTICS };
 
         virtual ~IAnalytics() = default;
 

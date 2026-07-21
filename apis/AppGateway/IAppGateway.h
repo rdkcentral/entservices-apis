@@ -162,7 +162,7 @@ namespace WPEFramework
 
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_APP_GATEWAY_CONNECTION_NOTIFICATION };
 
                 // @brief Notifies App has either started or stopped a connection. App can create multiple connections.
                 // @text onAppConnectionChanged

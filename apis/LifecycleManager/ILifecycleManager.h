@@ -74,12 +74,12 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
         TERMINATING
     };
 
-    enum { ID = ID_LIFECYCLE_MANAGER };
+    enum { ID = ::WPEFramework::Exchange::ID_LIFECYCLE_MANAGER };
 
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
-        enum { ID = ID_LIFECYCLE_MANAGER_NOTIFICATION };
+        enum { ID = ::WPEFramework::Exchange::ID_LIFECYCLE_MANAGER_NOTIFICATION };
 
         // @brief Notifies the change of state of application
         // @text onnAppStateChanged

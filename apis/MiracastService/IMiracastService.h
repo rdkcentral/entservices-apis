@@ -28,7 +28,7 @@ namespace WPEFramework
         // @json @text:keep
         struct EXTERNAL IMiracastService : virtual public Core::IUnknown
         {
-            enum { ID = ID_MIRACAST_SERVICE };
+            enum { ID = ::WPEFramework::Exchange::ID_MIRACAST_SERVICE };
 
             enum ReasonCode : uint8_t
             {
@@ -78,7 +78,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ID_MIRACAST_SERVICE_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_MIRACAST_SERVICE_NOTIFICATION };
 
                 // @brief Triggered when the Miracast Service plugin receives a new connection request from a client
                 // @text onClientConnectionRequest

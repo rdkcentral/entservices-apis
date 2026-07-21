@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL ILEDControl : virtual public Core::IUnknown
         {
-            enum { ID = ID_LEDCONTROL };
+            enum { ID = ::WPEFramework::Exchange::ID_LEDCONTROL };
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 

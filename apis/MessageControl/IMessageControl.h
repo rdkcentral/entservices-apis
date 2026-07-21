@@ -30,7 +30,7 @@ namespace Exchange {
 // @json
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
-    enum { ID = ID_MESSAGE_CONTROL };
+    enum { ID = ::WPEFramework::Exchange::ID_MESSAGE_CONTROL };
 
     enum MessageType : uint8_t {
         TRACING        = 1,

@@ -28,7 +28,7 @@ namespace Exchange {
 
     /* @json @text:keep */
     struct EXTERNAL ISharedStorage : virtual public Core::IUnknown {
-        enum { ID = ID_SHARED_STORAGE };
+        enum { ID = ::WPEFramework::Exchange::ID_SHARED_STORAGE };
 
         ~ISharedStorage() override = default;
 
@@ -42,7 +42,7 @@ namespace Exchange {
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_SHARED_STORAGE_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_SHARED_STORAGE_NOTIFICATION };
 
             ~INotification() override = default;
 
@@ -92,7 +92,7 @@ namespace Exchange {
 
     /* @json @text:keep */
     struct EXTERNAL ISharedStorageInspector : virtual public Core::IUnknown {
-        enum { ID = ID_SHARED_STORAGE_INSPECTOR };
+        enum { ID = ::WPEFramework::Exchange::ID_SHARED_STORAGE_INSPECTOR };
 
         ~ISharedStorageInspector() override = default;
 
@@ -128,7 +128,7 @@ namespace Exchange {
 
     /* @json @text:keep */
     struct EXTERNAL ISharedStorageLimit : virtual public Core::IUnknown {
-        enum { ID = ID_SHARED_STORAGE_LIMIT };
+        enum { ID = ::WPEFramework::Exchange::ID_SHARED_STORAGE_LIMIT };
 
         ~ISharedStorageLimit() override = default;
 
@@ -154,7 +154,7 @@ namespace Exchange {
 
     /* @json @text:keep */
     struct EXTERNAL ISharedStorageCache : virtual public Core::IUnknown {
-        enum { ID = ID_SHARED_STORAGE_CACHE };
+        enum { ID = ::WPEFramework::Exchange::ID_SHARED_STORAGE_CACHE };
 
         // @brief Flushes the device cache
         // @text flushCache

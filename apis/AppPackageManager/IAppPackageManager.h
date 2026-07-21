@@ -42,7 +42,7 @@ namespace Exchange {
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_DOWNLOADER };
+        enum { ID = ::WPEFramework::Exchange::ID_PACKAGE_DOWNLOADER };
 
         enum class Reason : uint8_t {
             NONE,                    // XXX: Not in HLA
@@ -155,7 +155,7 @@ namespace Exchange {
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_INSTALLER };
+        enum { ID = ::WPEFramework::Exchange::ID_PACKAGE_INSTALLER };
 
         enum class InstallState : uint8_t{
             INSTALLING,                 // XXX: necessary ?!
@@ -277,7 +277,7 @@ namespace Exchange {
 
 
     struct EXTERNAL IPackageHandler : virtual public Core::IUnknown {
-        enum { ID = ID_PACKAGE_HANDLER };
+        enum { ID = ::WPEFramework::Exchange::ID_PACKAGE_HANDLER };
 
         ~IPackageHandler() override = default;
 

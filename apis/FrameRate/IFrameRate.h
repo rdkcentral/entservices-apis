@@ -29,12 +29,12 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IFrameRate : virtual public Core::IUnknown
         {
-            enum { ID = ID_FRAMERATE };
+            enum { ID = ::WPEFramework::Exchange::ID_FRAMERATE };
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ID_FRAMERATE_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_FRAMERATE_NOTIFICATION };
 
                 // @text onFpsEvent
                 // @brief Triggered by callback from FrameRate after onFpsEvent

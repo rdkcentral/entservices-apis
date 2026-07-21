@@ -27,7 +27,7 @@
          /* @json 1.0.0 @text:keep */
          struct EXTERNAL IHdcpProfile : virtual public Core::IUnknown 
          {
-            enum { ID = ID_HDCPPROFILE };
+            enum { ID = ::WPEFramework::Exchange::ID_HDCPPROFILE };
 
             struct EXTERNAL HDCPStatus
             {
@@ -43,7 +43,7 @@
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ID_HDCPPROFILE_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_HDCPPROFILE_NOTIFICATION };
                  
                 // @text onDisplayConnectionChanged
                 // @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug

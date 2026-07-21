@@ -28,7 +28,7 @@ namespace WPEFramework {
 	namespace Exchange {
 		/* @json 1.0.0 @text:keep */
 		struct EXTERNAL IXCast : virtual public Core::IUnknown {
-			enum { ID = ID_XCAST };
+			enum { ID = ::WPEFramework::Exchange::ID_XCAST };
 
 			enum State : uint8_t {
 				RUNNING = 0 /* @text running */,
@@ -67,7 +67,7 @@ namespace WPEFramework {
 
 			//@event
 			struct EXTERNAL INotification : virtual public Core::IUnknown {
-				enum { ID = ID_XCAST_NOTIFICATION };
+				enum { ID = ::WPEFramework::Exchange::ID_XCAST_NOTIFICATION };
 
 				// @text onApplicationLaunchRequestWithParam
 				// @brief Triggered when the cast service receives a launch request from a client with launch params

@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
     // @json 1.0.0 @text:keep
     struct EXTERNAL IDownloadManager : virtual public Core::IUnknown {
-        enum { ID = ID_DOWNLOAD_MANAGER };
+        enum { ID = ::WPEFramework::Exchange::ID_DOWNLOAD_MANAGER };
 
         enum FailReason : uint8_t {
             DOWNLOAD_FAILURE,
@@ -44,7 +44,7 @@ namespace Exchange {
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_DOWNLOAD_MANAGER_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_DOWNLOAD_MANAGER_NOTIFICATION };
             ~INotification() override = default;
 
             // @brief OnAppDownloadStatus Callback for status changes of app downloads

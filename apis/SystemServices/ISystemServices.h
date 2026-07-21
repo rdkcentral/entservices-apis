@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL ISystemServices : virtual public Core::IUnknown
         {
-            enum { ID = ID_SYSTEMSERVICES };
+            enum { ID = ::WPEFramework::Exchange::ID_SYSTEMSERVICES };
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -185,7 +185,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ID_SYSTEMSERVICES_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_SYSTEMSERVICES_NOTIFICATION };
 
                 // @text onFirmwareUpdateInfoReceived
                 // @brief Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.

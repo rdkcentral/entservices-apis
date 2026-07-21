@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IFocus : virtual public Core::IUnknown {
-        enum { ID = ID_FOCUS };
+        enum { ID = ::WPEFramework::Exchange::ID_FOCUS };
 
         // @brief focused state
         virtual uint32_t Focused(const bool focused) = 0;

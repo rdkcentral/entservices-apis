@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
     /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceInfo : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_INFO };
+        enum { ID = ::WPEFramework::Exchange::ID_DEVICE_INFO };
 
         virtual ~IDeviceInfo() override = default;
 
@@ -277,7 +277,7 @@ namespace Exchange {
 
     /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceAudioCapabilities : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_CAPABILITIES_AUDIO };
+        enum { ID = ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_AUDIO };
 
         virtual ~IDeviceAudioCapabilities() override = default;
 
@@ -351,7 +351,7 @@ namespace Exchange {
 
     /* @json 1.0.0 @text:keep */
     struct EXTERNAL IDeviceVideoCapabilities : virtual public Core::IUnknown {
-        enum { ID = ID_DEVICE_CAPABILITIES_VIDEO };
+        enum { ID = ::WPEFramework::Exchange::ID_DEVICE_CAPABILITIES_VIDEO };
 
         virtual ~IDeviceVideoCapabilities() override = default;
 

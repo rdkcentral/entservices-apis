@@ -28,12 +28,12 @@ namespace Exchange {
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 {
-    enum { ID = ID_USER_SETTINGS };
+    enum { ID = ::WPEFramework::Exchange::ID_USER_SETTINGS };
 
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
-        enum { ID = ID_USER_SETTINGS_NOTIFICATION };
+        enum { ID = ::WPEFramework::Exchange::ID_USER_SETTINGS_NOTIFICATION };
 
         // Constructor
         INotification() {};
@@ -378,7 +378,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
 {
-    enum { ID = ID_USER_SETTINGS_INSPECTOR };
+    enum { ID = ::WPEFramework::Exchange::ID_USER_SETTINGS_INSPECTOR };
 
     ~IUserSettingsInspector() override = default;
 

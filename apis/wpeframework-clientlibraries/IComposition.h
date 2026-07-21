@@ -25,7 +25,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
-        enum { ID = ID_COMPOSITION };
+        enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION };
 
         ~IComposition() override = default;
 
@@ -89,12 +89,12 @@ namespace Exchange {
         };
 
         struct EXTERNAL IClient : virtual public Core::IUnknown {
-            enum { ID = ID_COMPOSITION_CLIENT };
+            enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION_CLIENT };
 
             ~IClient() override = default;
 
             struct EXTERNAL IProperties : virtual public Core::IUnknown {
-                enum { ID = ID_COMPOSITION_CLIENTPROPERTIES };
+                enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION_CLIENTPROPERTIES };
 
                 ~IProperties() override = default;
 
@@ -115,7 +115,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL IRender : virtual public Core::IUnknown {
-            enum { ID = ID_COMPOSITION_RENDER };
+            enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION_RENDER };
 
             ~IRender() override = default;
 
@@ -125,7 +125,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_COMPOSITION_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION_NOTIFICATION };
 
             ~INotification() override = default;
 
@@ -134,7 +134,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL IDisplay : virtual public Core::IUnknown {
-            enum { ID = ID_COMPOSITION_DISPLAY };
+            enum { ID = ::WPEFramework::Exchange::ID_COMPOSITION_DISPLAY };
 
             ~IDisplay() override = default;
 
@@ -159,7 +159,7 @@ namespace Exchange {
     };
 
     struct EXTERNAL IBrightness : virtual public Core::IUnknown {
-        enum { ID = ID_BRIGHTNESS };
+        enum { ID = ::WPEFramework::Exchange::ID_BRIGHTNESS };
 
         // Brightness of SDR graphics in HDR display
         enum Brightness : uint8_t {

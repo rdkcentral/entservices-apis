@@ -26,7 +26,7 @@ namespace Exchange {
     // Account Plugin provides various operations that can be made at account level
     // @json 1.0.0 @text:keep
     struct EXTERNAL IAccount : virtual public Core::IUnknown {
-        enum { ID = ID_ACCOUNT };
+        enum { ID = ::WPEFramework::Exchange::ID_ACCOUNT };
 
         virtual ~IAccount() = default;
 

@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IWarehouse : virtual public Core::IUnknown
         {
-            enum { ID = ID_WAREHOUSE };
+            enum { ID = ::WPEFramework::Exchange::ID_WAREHOUSE };
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
             
@@ -45,7 +45,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ID_WAREHOUSE_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_WAREHOUSE_NOTIFICATION };
 
                 // @text resetDone
                 // @brief Notifies subscribers about the status of the warehouse reset operation

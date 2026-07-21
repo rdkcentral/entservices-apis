@@ -29,11 +29,11 @@ namespace Exchange {
 
     /* @json 1.0.0 @text:keep */
     struct EXTERNAL IAppActions : virtual public Core::IUnknown {
-        enum { ID = ID_APP_ACTIONS };
+        enum { ID = ::WPEFramework::Exchange::ID_APP_ACTIONS };
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_APP_ACTIONS_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_APP_ACTIONS_NOTIFICATION };
 
             /**
              * @brief Notifies when an action start event occurs.

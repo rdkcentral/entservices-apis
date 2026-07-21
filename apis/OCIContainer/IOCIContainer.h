@@ -28,7 +28,7 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
-    enum { ID = ID_OCICONTAINER };
+    enum { ID = ::WPEFramework::Exchange::ID_OCICONTAINER };
 
     enum ContainerState : uint8_t {
         INVALID = 0,
@@ -45,7 +45,7 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
-        enum { ID = ID_OCICONTAINER_NOTIFICATION };
+        enum { ID = ::WPEFramework::Exchange::ID_OCICONTAINER_NOTIFICATION };
 
         // @brief Notifies container is started
         // @text onContainerStarted
