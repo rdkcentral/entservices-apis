@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(WPEFramework)
+find_package(Thunder NAMES WPEFramework Thunder REQUIRED)
 
 project_version(4.4.1)
 
