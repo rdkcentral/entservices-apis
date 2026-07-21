@@ -245,6 +245,11 @@ namespace Exchange {
         // @brief Provides access to display's Electro optical transfer function
         // @param eotf: display's EOTF
         virtual Core::hresult EOTF(EotfType& eotf /* @out */) const = 0;
+
+        // @property
+        // @brief Returns the active colorimetry standard of the current connected video port
+        // @param value: current colorimetry (COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped)
+        virtual Core::hresult CurrentColorimetry(ColorimetryType& value /* @out */) const = 0;
     };
 }
 }
