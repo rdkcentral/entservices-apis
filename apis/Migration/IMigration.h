@@ -27,7 +27,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IMigration : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_MIGRATION };
+            enum { ID = ID_MIGRATION };
 
             enum BootType : uint8_t {
                 BOOT_TYPE_INIT         = 0  /* @text BOOT_INIT */,

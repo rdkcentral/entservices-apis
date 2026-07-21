@@ -27,7 +27,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IScreenCapture : virtual public Core::IUnknown 
         {
-            enum { ID = ::WPEFramework::Exchange::ID_SCREEN_CAPTURE };
+            enum { ID = ID_SCREEN_CAPTURE };
 
             struct EXTERNAL Result {
                 bool success /* @text success */;
@@ -36,7 +36,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ::WPEFramework::Exchange::ID_SCREEN_CAPTURE_NOTIFICATION };
+                enum { ID = ID_SCREEN_CAPTURE_NOTIFICATION };
 
                 // @text uploadComplete
                 // @brief Triggered after uploading a screen capture

@@ -28,7 +28,7 @@ namespace Exchange {
     // @json 1.0.0 @text:keep
     struct IAmazon : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_AMAZONPRIME };
+        enum { ID = ID_AMAZONPRIME };
 
         enum State {
             PLAYING = 0x0001     /* @text PLAYING */,
@@ -38,7 +38,7 @@ namespace Exchange {
 
         // @event 
         struct INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_AMAZONPRIME_NOTIFICATION };
+            enum { ID = ID_AMAZONPRIME_NOTIFICATION };
 
             virtual ~INotification() {}
 

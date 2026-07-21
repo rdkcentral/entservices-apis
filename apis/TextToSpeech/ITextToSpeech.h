@@ -26,7 +26,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_TEXT_TO_SPEECH };
+        enum { ID = ID_TEXT_TO_SPEECH };
 
         struct Configuration {
             std::string ttsEndPoint;
@@ -55,7 +55,7 @@ namespace Exchange {
 
 
         struct INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_TEXT_TO_SPEECH_NOTIFICATION };
+            enum { ID = ID_TEXT_TO_SPEECH_NOTIFICATION };
 
             ~INotification() override = default;
 

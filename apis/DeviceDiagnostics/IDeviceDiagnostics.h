@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IDeviceDiagnostics : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_DEVICE_DIAGNOSTICS };
+            enum { ID = ID_DEVICE_DIAGNOSTICS };
 
             using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -56,7 +56,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ::WPEFramework::Exchange::ID_DEVICE_DIAGNOSTICS_NOTIFICATION };
+                enum { ID = ID_DEVICE_DIAGNOSTICS_NOTIFICATION };
 
                 // @text onAVDecoderStatusChanged
                 // @brief Triggered when the most active status of audio/video decoder/pipeline changes

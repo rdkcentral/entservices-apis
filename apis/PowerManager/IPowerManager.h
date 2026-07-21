@@ -29,7 +29,7 @@ namespace WPEFramework
     {
         // @json @text:keep
         struct EXTERNAL IPowerManager : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER };
+        enum { ID = ID_POWER_MANAGER };
 
         enum PowerState : uint8_t {
             POWER_STATE_UNKNOWN   = 0  /* @text UNKNOWN */,
@@ -103,7 +103,7 @@ namespace WPEFramework
         // @event
         struct EXTERNAL IRebootNotification : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_REBOOT };
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_REBOOT };
             // @brief Reboot begin event
             // @text onRebootBegin
             // @param rebootReasonCustom: Reboot reason custom
@@ -117,7 +117,7 @@ namespace WPEFramework
         // @event
         struct EXTERNAL IModePreChangeNotification : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_MODE_PRECHANGE };
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_PRECHANGE };
             // @brief Power mode Pre-change event
             // @text onPowerModePreChange
             // @param currentState: Current Power State
@@ -136,7 +136,7 @@ namespace WPEFramework
         // @event
         struct EXTERNAL IModeChangedNotification : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED };
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGED };
             // @brief Power mode changed
             // @text onPowerModeChanged
             // @param currentState: Current Power State
@@ -149,7 +149,7 @@ namespace WPEFramework
         // @event
         struct EXTERNAL IDeepSleepTimeoutNotification : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT };
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_DEEP_SLEEP_TIMEOUT };
             // @brief Deep sleep timeout event
             // @text onDeepSleepTimeout
             // @param wakeupTimeout: Deep sleep wakeup timeout in seconds
@@ -161,7 +161,7 @@ namespace WPEFramework
          // @event
          struct EXTERNAL INetworkStandbyModeChangedNotification : virtual public Core::IUnknown
          {
-             enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED };
+             enum { ID = ID_POWER_MANAGER_NOTIFICATION_NETWORK_STANDBY_MODE_CHANGED };
              // @brief Network Standby Mode changed event - only on XIone
              // @text onNetworkStandbyModeChanged
              // @param enabled: network standby enabled or disabled
@@ -173,7 +173,7 @@ namespace WPEFramework
          // @event
          struct EXTERNAL IThermalModeChangedNotification : virtual public Core::IUnknown
          {
-             enum { ID = ::WPEFramework::Exchange::ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED };
+             enum { ID = ID_POWER_MANAGER_NOTIFICATION_THERMAL_MODE_CHANGED };
              // @brief Thermal Mode changed event
              // @text onThermalModeChanged
              // @param currentThermalLevel: current thermal level

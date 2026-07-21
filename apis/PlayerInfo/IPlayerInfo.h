@@ -28,7 +28,7 @@ namespace Exchange {
 
     // @json
     struct EXTERNAL IPlayerProperties : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_PLAYER_PROPERTIES };
+        enum { ID = ID_PLAYER_PROPERTIES };
 
          enum AudioCodec : uint8_t {
             AUDIO_UNDEFINED,

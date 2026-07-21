@@ -84,7 +84,7 @@ namespace WPEFramework
 
             struct EXTERNAL IEmitter : virtual public Core::IUnknown
             {
-                enum { ID = ::WPEFramework::Exchange::ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER };
+                enum { ID = ID_APP_NOTIFICATIONS_HANDLER_INTERNAL_EMITTER };
                 virtual ~IEmitter() override = default;
 
                 // @json:omit

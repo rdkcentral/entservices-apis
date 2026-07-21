@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL ITelemetry : virtual public Core::IUnknown 
         {
-            enum { ID = ::WPEFramework::Exchange::ID_TELEMETRY };
+            enum { ID = ID_TELEMETRY };
 
             struct EXTERNAL TelemetrySuccess {
                 bool success;
@@ -38,7 +38,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ::WPEFramework::Exchange::ID_TELEMETRY_NOTIFICATION };
+                enum { ID = ID_TELEMETRY_NOTIFICATION };
 
                 // @text onReportUpload
                 // @brief Triggered by callback from Telemetry after report uploading

@@ -27,7 +27,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IFirmwareDownload : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_FIRMWARE_DOWNLOAD };
+            enum { ID = ID_FIRMWARE_DOWNLOAD };
 
             struct EXTERNAL FirmwareDownloadPercent {
                 /* @brief Current download percentage (0-100) */
@@ -46,7 +46,7 @@ namespace WPEFramework
             
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
-                enum { ID = ::WPEFramework::Exchange::ID_FIRMWARE_DOWNLOAD_NOTIFICATION };
+                enum { ID = ID_FIRMWARE_DOWNLOAD_NOTIFICATION };
 
                 // @brief Triggered when the SearchFirmware asynchronous method is invoked
                 // @param searchStatus: Status of the firmware search operation

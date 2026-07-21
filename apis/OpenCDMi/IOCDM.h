@@ -62,7 +62,7 @@ struct ISession : virtual public Core::IUnknown {
     // ICallback defines the callback interface to receive
     // events originated from the session.
     struct ICallback : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_SESSION_CALLBACK };
+        enum { ID = ID_SESSION_CALLBACK };
 
         ~ICallback() override = default;
 
@@ -82,7 +82,7 @@ struct ISession : virtual public Core::IUnknown {
         virtual void OnKeyStatusesUpdated() const = 0;
     };
 
-    enum { ID = ::WPEFramework::Exchange::ID_SESSION };
+    enum { ID = ID_SESSION };
 
     ~ISession(void) override = default;
 
@@ -136,7 +136,7 @@ struct ISession : virtual public Core::IUnknown {
 };
 
 struct ISessionExt : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_SESSION_EXTENSION };
+    enum { ID = ID_SESSION_EXTENSION };
 
     enum LicenseTypeExt { Invalid = 0,
         LimitedDuration,
@@ -181,7 +181,7 @@ struct ISessionExt : virtual public Core::IUnknown {
 
 struct IAccessorOCDM : virtual public Core::IUnknown {
 
-    enum { ID = ::WPEFramework::Exchange::ID_ACCESSOROCDM };
+    enum { ID = ID_ACCESSOROCDM };
 
     ~IAccessorOCDM() override = default;
 
@@ -399,7 +399,7 @@ private:
 };
 
 struct EXTERNAL IGoogleCastAuthExtension : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_GOOGLE_CAST_AUTH_EXTENSION };
+    enum { ID = ID_GOOGLE_CAST_AUTH_EXTENSION };
 
     virtual ~IGoogleCastAuthExtension() override = default;
 

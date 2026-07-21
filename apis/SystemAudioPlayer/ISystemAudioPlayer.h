@@ -25,10 +25,10 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL ISystemAudioPlayer : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_SYSTEMAUDIOPLAYER };
+        enum { ID = ID_SYSTEMAUDIOPLAYER };
 
         struct INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_SYSTEMAUDIOPLAYER_NOTIFICATION };
+            enum { ID = ID_SYSTEMAUDIOPLAYER_NOTIFICATION };
 
             virtual ~INotification() {}
 

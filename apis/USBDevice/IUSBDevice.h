@@ -27,7 +27,7 @@ namespace WPEFramework {
 namespace Exchange {
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_USB_DEVICE };
+    enum { ID = ID_USB_DEVICE };
 
     struct USBDevice {
         uint8_t  deviceClass    /* @brief USB class of the device as per USB specificiation */ ;
@@ -38,7 +38,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     using IUSBDeviceIterator = RPC::IIteratorType<USBDevice, ::WPEFramework::Exchange::ID_USB_DEVICE_ITERATOR>;
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_USB_DEVICE_NOTIFICATION };
+    enum { ID = ID_USB_DEVICE_NOTIFICATION };
 
     // @brief Device Plugged in notification
     // @text onDevicePluggedIn

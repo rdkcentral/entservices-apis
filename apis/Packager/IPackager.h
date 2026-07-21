@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IPackager : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_PACKAGER };
+        enum { ID = ID_PACKAGER };
 
         enum state : uint8_t {
             IDLE,
@@ -46,7 +46,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL IInstallationInfo : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_PACKAGER_INSTALLATIONINFO };
+            enum { ID = ID_PACKAGER_INSTALLATIONINFO };
             virtual state State() const = 0;
             virtual uint8_t Progress() const = 0;
 	    virtual string AppName() const = 0;
@@ -55,14 +55,14 @@ namespace Exchange {
         };
 
         struct EXTERNAL IPackageInfo : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_PACKAGER_PACKAGEINFO };
+            enum { ID = ID_PACKAGER_PACKAGEINFO };
             virtual string Name() const = 0;
             virtual string Version() const = 0;
             virtual string Architecture() const = 0;
         };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_PACKAGER_NOTIFICATION };
+            enum { ID = ID_PACKAGER_NOTIFICATION };
             virtual void StateChange(IPackageInfo* package, IInstallationInfo* install) = 0;
             virtual void RepositorySynchronize(uint32_t status) = 0;
         };

@@ -28,7 +28,7 @@ namespace Exchange {
 
 // @json 1.0.0 @text:keep
 struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
-  enum { ID = ::WPEFramework::Exchange::ID_PREINSTALL_MANAGER };
+  enum { ID = ID_PREINSTALL_MANAGER };
 
 
   enum State : uint8_t {
@@ -39,7 +39,7 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_PREINSTALL_MANAGER_NOTIFICATION };
+    enum { ID = ID_PREINSTALL_MANAGER_NOTIFICATION };
 
     // @text onAppInstallationStatus
     // @brief Emitted when the installation of a preinstalled app succeeds or fails.

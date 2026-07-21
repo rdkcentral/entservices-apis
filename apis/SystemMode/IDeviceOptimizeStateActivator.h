@@ -26,7 +26,7 @@ namespace Exchange {
 
     /// Interface implemented by each Thunder component that needs to react to DEVICE_OPTIMIZE system mode state activation requests.
     struct EXTERNAL IDeviceOptimizeStateActivator : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR };
+        enum { ID = ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR };
 
         /// Requests the component to asynchronously transition to the new state.
         /// @param[in] newState     The new target state to transition to.

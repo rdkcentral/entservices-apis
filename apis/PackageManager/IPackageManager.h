@@ -32,7 +32,7 @@ namespace Exchange {
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
-        enum { ID = ::WPEFramework::Exchange::ID_PACKAGEMANAGER };
+        enum { ID = ID_PACKAGEMANAGER };
 
         /** Install an application bundle */
         // @text install
@@ -210,7 +210,7 @@ namespace Exchange {
 
     struct EXTERNAL IPackageManagerBroker : virtual public Core::IUnknown {
 
-                enum { ID = ::WPEFramework::Exchange::ID_PACKAGEMANAGER_BROKER };
+                enum { ID = ID_PACKAGEMANAGER_BROKER };
 
                 virtual Core::hresult Offer(IPackageManager* packagemanager) = 0;
                 virtual Core::hresult Revoke(const IPackageManager* packagemanager) = 0;
@@ -219,7 +219,7 @@ namespace Exchange {
 
     struct EXTERNAL IPackageManagerCallback : virtual public Core::IUnknown {
 
-                enum { ID = ::WPEFramework::Exchange::ID_PACKAGEMANAGER_CALLBACK };
+                enum { ID = ID_PACKAGEMANAGER_CALLBACK };
 
                 virtual void OperationStatusUpdate(const string& handle, const string& operation, const string& type, const string& id,
                                          const string& version, const string& status, const string& details) = 0;

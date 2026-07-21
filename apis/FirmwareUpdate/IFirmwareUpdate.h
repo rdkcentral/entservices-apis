@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
 /* @json 1.0.0 @text:keep */    
 struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
-  enum { ID = ::WPEFramework::Exchange::ID_FIRMWARE_UPDATE };
+  enum { ID = ID_FIRMWARE_UPDATE };
 
   enum State : uint8_t {
       VALIDATION_FAILED  = 1 /* @text VALIDATION_FAILED */,
@@ -58,7 +58,7 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
 
    // @event
    struct EXTERNAL INotification : virtual public Core::IUnknown {
-          enum { ID = ::WPEFramework::Exchange::ID_FIRMWARE_UPDATE_NOTIFICATION };
+          enum { ID = ID_FIRMWARE_UPDATE_NOTIFICATION };
 
           // @brief Notifies firmware update state changes.
           // @param state: Firmware update state.

@@ -27,7 +27,7 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 
 struct EXTERNAL INativeJS : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_NATIVEJS };
+    enum { ID = ID_NATIVEJS };
 
     /** Allow the plugin to initialize to use service object */
     // @json:omit

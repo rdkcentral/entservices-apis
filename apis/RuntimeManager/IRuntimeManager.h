@@ -64,7 +64,7 @@ struct RuntimeConfig {
 
 // @text:keep
 struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_RUNTIME_MANAGER };
+    enum { ID = ID_RUNTIME_MANAGER };
 
     using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
     using IValueIterator = RPC::IIteratorType<uint32_t, RPC::ID_VALUEITERATOR>;
@@ -84,7 +84,7 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @event
     struct EXTERNAL INotification : virtual public Core::IUnknown
     {
-        enum { ID = ::WPEFramework::Exchange::ID_RUNTIME_MANAGER_NOTIFICATION };
+        enum { ID = ID_RUNTIME_MANAGER_NOTIFICATION };
 
         // @brief Notifies container is started
         // @text onStarted

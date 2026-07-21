@@ -63,7 +63,7 @@ struct RuntimeConfig
 
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppManager : virtual public Core::IUnknown {
-  enum { ID = ::WPEFramework::Exchange::ID_APPMANAGER };
+  enum { ID = ID_APPMANAGER };
 
   enum AppLifecycleState : uint8_t {
           APP_STATE_UNKNOWN       = 0   /* @text APP_STATE_UNKNOWN */,
@@ -113,7 +113,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
 
   // @event
   struct EXTERNAL INotification : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_APPMANAGER_NOTIFICATION };
+    enum { ID = ID_APPMANAGER_NOTIFICATION };
 
     // @text onAppInstalled
     // @brief Triggered whenever the App is installed.

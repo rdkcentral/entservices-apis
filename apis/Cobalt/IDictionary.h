@@ -26,10 +26,10 @@ namespace Exchange {
     // This interface gives direct access to a Browser to change
     // Browser specific properties like displayed URL.
     struct EXTERNAL IDictionary : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_DICTIONARY };
+        enum { ID = ID_DICTIONARY };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_DICTIONARY_NOTIFICATION };
+            enum { ID = ID_DICTIONARY_NOTIFICATION };
 
             ~INotification() override = default;
 
@@ -38,7 +38,7 @@ namespace Exchange {
         };
 
         struct EXTERNAL IIterator : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_DICTIONARY_ITERATOR };
+            enum { ID = ID_DICTIONARY_ITERATOR };
 
             ~IIterator() override = default;
 

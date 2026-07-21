@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
  // @json @text:keep
 struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
-  enum { ID = ::WPEFramework::Exchange::ID_SYSTEM_MODE };
+  enum { ID = ID_SYSTEM_MODE };
 
   /// Enumeration of system modes.
   enum SystemMode : uint8_t {

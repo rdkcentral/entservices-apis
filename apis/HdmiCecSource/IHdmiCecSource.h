@@ -29,7 +29,7 @@ namespace WPEFramework
     {
         // @json @text:keep
         struct EXTERNAL IHdmiCecSource : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_HDMI_CEC_SOURCE };
+            enum { ID = ID_HDMI_CEC_SOURCE };
 
             struct HdmiCecSourceDevices
             {
@@ -48,7 +48,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ::WPEFramework::Exchange::ID_HDMI_CEC_SOURCE_NOTIFICATION };
+                enum { ID = ID_HDMI_CEC_SOURCE_NOTIFICATION };
     
                 // @brief Notifies when CEC device added to CEC network
                 // @text onDeviceAdded

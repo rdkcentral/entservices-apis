@@ -60,7 +60,7 @@ namespace Exchange {
 
     struct EXTERNAL IHash : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_HASH };
+        enum { ID = ID_HASH };
 
         ~IHash() override = default;
 
@@ -73,7 +73,7 @@ namespace Exchange {
 
     struct EXTERNAL ICipher : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_CIPHER };
+        enum { ID = ID_CIPHER };
 
         ~ICipher()  override = default;
 
@@ -94,7 +94,7 @@ namespace Exchange {
 
     struct EXTERNAL IDiffieHellman : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_DIFFIE_HELLMAN };
+        enum { ID = ID_DIFFIE_HELLMAN };
 
         ~IDiffieHellman() override = default;
 
@@ -108,7 +108,7 @@ namespace Exchange {
 
     struct IPersistent : virtual public Core::IUnknown {
 
-    enum { ID = ::WPEFramework::Exchange::ID_PERSISTENT };
+    enum { ID = ID_PERSISTENT };
 
     enum keytype {
         AES128,
@@ -137,7 +137,7 @@ namespace Exchange {
 
     struct EXTERNAL IVault : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_VAULT };
+        enum { ID = ID_VAULT };
 
         ~IVault()  override = default;
 
@@ -179,7 +179,7 @@ namespace Exchange {
     };
 
     struct EXTERNAL ICryptography : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_CRYPTOGRAPHY };
+        enum { ID = ID_CRYPTOGRAPHY };
 
         ~ICryptography()  override = default;
 

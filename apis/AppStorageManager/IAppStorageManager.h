@@ -26,7 +26,7 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppStorageManager : virtual public Core::IUnknown {
 
-    enum { ID = ::WPEFramework::Exchange::ID_APPSTORAGEMANAGER };
+    enum { ID = ID_APPSTORAGEMANAGER };
 
     /** Create Storage for a given appId */
     // @json:omit

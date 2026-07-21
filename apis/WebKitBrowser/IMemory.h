@@ -30,7 +30,7 @@ namespace Exchange {
     // of the interface
     // @stubgen:omit
     struct EXTERNAL IMemory : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_MEMORY };
+        enum { ID = ID_MEMORY };
 
         virtual uint64_t Resident() const = 0;
         virtual uint64_t Allocated() const = 0;
@@ -41,7 +41,7 @@ namespace Exchange {
 
     // @stubgen:omit
     struct EXTERNAL IProcessMemory : public IMemory {
-        enum { ID = ::WPEFramework::Exchange::ID_PROCESSMEMORY };
+        enum { ID = ID_PROCESSMEMORY };
 
         virtual uint32_t Identifier() const = 0;
         virtual string Name() const = 0;
@@ -49,7 +49,7 @@ namespace Exchange {
 
     // @stubgen:omit
     struct EXTERNAL IMemoryExtended : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_MEMORYEXTENDED };
+        enum { ID = ID_MEMORYEXTENDED };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 

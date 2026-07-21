@@ -28,13 +28,13 @@ namespace Exchange {
 
     // @json 1.0.0 @text:keep
     struct EXTERNAL IGoogleCast : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_GOOGLE_CAST };
+        enum { ID = ID_GOOGLE_CAST };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // @json 1.0.0 @text:keep
         struct EXTERNAL IRuntimeManagerDelegate : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_GOOGLE_CAST_RM_DELEGATE };
+            enum { ID = ID_GOOGLE_CAST_RM_DELEGATE };
 
             enum IntentAction : uint8_t {
                 // @text launch
@@ -62,7 +62,7 @@ namespace Exchange {
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
-                enum { ID = ::WPEFramework::Exchange::ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION };
+                enum { ID = ID_GOOGLE_CAST_RM_DELEGATE_NOTIFICATION };
 
                 // @text onIntentChanged
                 // @brief Notifies about GoogleCast intent to launch/close/destroy cast application runtime.
@@ -127,7 +127,7 @@ namespace Exchange {
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_GOOGLE_CAST_NOTIFICATION };
+            enum { ID = ID_GOOGLE_CAST_NOTIFICATION };
 
             // @brief Notifies that the GoogleCast status changed.
             // @text onStatusChanged

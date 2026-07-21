@@ -30,7 +30,7 @@ namespace WPEFramework
         // @json @text:keep
         struct EXTERNAL IMiracastPlayer : virtual public Core::IUnknown
         {
-            enum { ID = ::WPEFramework::Exchange::ID_MIRACAST_PLAYER };
+            enum { ID = ID_MIRACAST_PLAYER };
 
             enum State : uint8_t
             {
@@ -87,7 +87,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ::WPEFramework::Exchange::ID_MIRACAST_PLAYER_NOTIFICATION };
+                enum { ID = ID_MIRACAST_PLAYER_NOTIFICATION };
 
                 // @brief Notifies when a Miracast source device wants to connect
                 // @text onStateChange

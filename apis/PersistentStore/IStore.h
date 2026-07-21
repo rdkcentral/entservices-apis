@@ -25,10 +25,10 @@ namespace WPEFramework {
 namespace Exchange {
 
 struct EXTERNAL IStore : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_STORE };
+    enum { ID = ID_STORE };
 
     struct EXTERNAL INotification : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_STORE_NOTIFICATION };
+        enum { ID = ID_STORE_NOTIFICATION };
 
         virtual void ValueChanged(const string &ns, const string &key, const string &value) {}
         virtual void StorageExceeded() {}

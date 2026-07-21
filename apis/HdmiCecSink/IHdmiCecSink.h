@@ -29,7 +29,7 @@
      {
          /* @json 1.0.0 @text:keep */
          struct EXTERNAL IHdmiCecSink : virtual public Core::IUnknown {
-             enum { ID = ::WPEFramework::Exchange::ID_HDMI_CEC_SINK };
+             enum { ID = ID_HDMI_CEC_SINK };
 
              struct EXTERNAL HdmiCecSinkActivePath
             {
@@ -62,7 +62,7 @@
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown
             {
-                enum { ID = ::WPEFramework::Exchange::ID_HDMI_CEC_SINK_NOTIFICATION };
+                enum { ID = ID_HDMI_CEC_SINK_NOTIFICATION };
 
 
                 // @brief Triggered when routing though the HDMI ARC port is successfully established.

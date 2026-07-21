@@ -25,7 +25,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
-    enum { ID = ::WPEFramework::Exchange::ID_STORE_CACHE };
+    enum { ID = ID_STORE_CACHE };
 
     virtual Core::hresult FlushCache() = 0;
 };

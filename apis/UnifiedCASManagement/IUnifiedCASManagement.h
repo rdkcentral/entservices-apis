@@ -29,7 +29,7 @@ namespace WPEFramework
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IUnifiedCASManagement : virtual public Core::IUnknown 
         {
-            enum { ID = ::WPEFramework::Exchange::ID_UNIFIEDCASMANAGEMENT };
+            enum { ID = ID_UNIFIEDCASMANAGEMENT };
 
             // @text tunemode
             enum TuneMode : uint8_t {
@@ -55,7 +55,7 @@ namespace WPEFramework
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown 
             {
-                enum { ID = ::WPEFramework::Exchange::ID_UNIFIEDCASMANAGEMENT_NOTIFICATION };
+                enum { ID = ID_UNIFIEDCASMANAGEMENT_NOTIFICATION };
 
                 // @text onDataReceived
                 // @alt data

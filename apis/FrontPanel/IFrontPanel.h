@@ -30,7 +30,7 @@ namespace WPEFramework
     {
         // @json @text:keep
         struct EXTERNAL IFrontPanel : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_FRONT_PANEL };
+            enum { ID = ID_FRONT_PANEL };
 
 
             struct EXTERNAL FrontPanelSuccess {

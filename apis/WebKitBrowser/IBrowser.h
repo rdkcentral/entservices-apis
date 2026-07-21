@@ -29,10 +29,10 @@ namespace Exchange {
     // Browser specific properties like displayed URL.
 
     struct EXTERNAL IBrowser : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_BROWSER };
+        enum { ID = ID_BROWSER };
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_BROWSER_NOTIFICATION };
+            enum { ID = ID_BROWSER_NOTIFICATION };
 
             // Signal changes on the subscribed namespace..
             virtual void LoadFinished(const string& URL) = 0;
@@ -55,7 +55,7 @@ namespace Exchange {
 
     // @json @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IWebBrowser : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_WEB_BROWSER };
+        enum { ID = ID_WEB_BROWSER };
 
         enum VisibilityType : uint8_t {
             HIDDEN = 0 /* @text:hidden */,
@@ -71,7 +71,7 @@ namespace Exchange {
         
         // @event @uncompliant:extended  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_WEBKITBROWSER_NOTIFICATION };
+            enum { ID = ID_WEBKITBROWSER_NOTIFICATION };
 
             // Signal changes on the subscribed namespace..
             // @brief Initial HTML document has been completely loaded and parsed
@@ -154,7 +154,7 @@ namespace Exchange {
     // @json @uncompliant:extended
     struct EXTERNAL IBrowserResources : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_BROWSER_RESOURCES };
+        enum { ID = ID_BROWSER_RESOURCES };
 
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -182,7 +182,7 @@ namespace Exchange {
     // @json @uncompliant:extended
     struct EXTERNAL IBrowserSecurity : virtual public Core::IUnknown {
 
-        enum { ID = ::WPEFramework::Exchange::ID_BROWSER_SECURITY };
+        enum { ID = ID_BROWSER_SECURITY };
 
         // @property
         // @brief Security profile for secure connections
@@ -204,7 +204,7 @@ namespace Exchange {
 
     /* @json */
     struct EXTERNAL IBrowserScripting : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_BROWSER_SCRIPTING };
+        enum { ID = ID_BROWSER_SCRIPTING };
 
         // @brief Run javascript in main frame.
         // @param script Utf8 encoded JS code string.
@@ -220,11 +220,11 @@ namespace Exchange {
 
     /* @json @uncompliant:extended */
     struct EXTERNAL IBrowserCookieJar : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_BROWSER_COOKIEJAR };
+        enum { ID = ID_BROWSER_COOKIEJAR };
 
         /* @event */
         struct INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_BROWSER_COOKIEJAR_NOTIFICATION };
+            enum { ID = ID_BROWSER_COOKIEJAR_NOTIFICATION };
 
             // @brief Notifies that cookies were added, removed or modified.
             virtual void CookieJarChanged() = 0;

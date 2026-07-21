@@ -28,7 +28,7 @@ namespace Exchange {
 
     // @json 1.0.0
     struct EXTERNAL IStore2 : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_STORE2 };
+        enum { ID = ID_STORE2 };
 
         ~IStore2() override = default;
 
@@ -39,7 +39,7 @@ namespace Exchange {
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ::WPEFramework::Exchange::ID_STORE2_NOTIFICATION };
+            enum { ID = ID_STORE2_NOTIFICATION };
 
             ~INotification() override = default;
 
@@ -61,7 +61,7 @@ namespace Exchange {
     };
 
     struct EXTERNAL IStoreInspector : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_STORE_INSPECTOR };
+        enum { ID = ID_STORE_INSPECTOR };
 
         ~IStoreInspector() override = default;
 
@@ -80,7 +80,7 @@ namespace Exchange {
     };
 
     struct EXTERNAL IStoreLimit : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_STORE_LIMIT };
+        enum { ID = ID_STORE_LIMIT };
 
         ~IStoreLimit() override = default;
 
