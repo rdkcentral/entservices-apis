@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(Thunder NAMES WPEFramework Thunder REQUIRED)
+find_package(WPEFramework)
 
 project_version(4.4.1)
 
@@ -88,16 +88,6 @@ install(
 install(
         FILES ${JSON_LINK_HEADERS}
         DESTINATION include/${NAMESPACE}/interfaces/json
-)
-
-install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated/
-        DESTINATION include/${NAMESPACE}/interfaces/json
-        FILES_MATCHING
-            PATTERN "J*.h"
-            PATTERN "JsonData_*.h"
-            PATTERN "Module.h"
-            PATTERN "Ids*.h"
 )
 
 InstallPackageConfig(
