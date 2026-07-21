@@ -75,6 +75,7 @@ set_target_properties(${Target} PROPERTIES
 target_include_directories(${Target} PRIVATE
                                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../apis>
                                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                                $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated>
                                 $<INSTALL_INTERFACE:include/${NAMESPACE}>)
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies

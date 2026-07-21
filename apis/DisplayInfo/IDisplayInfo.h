@@ -27,7 +27,7 @@ namespace Exchange {
 
     /* @json */
     struct EXTERNAL IGraphicsProperties : virtual public Core::IUnknown {
-        enum { ID = ID_GRAPHICS_PROPERTIES };
+        enum { ID = ::WPEFramework::Exchange::ID_GRAPHICS_PROPERTIES };
 
         // @property
         // @brief Total GPU DRAM memory (in bytes)
@@ -42,7 +42,7 @@ namespace Exchange {
 
     /* @json @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IConnectionProperties : virtual public Core::IUnknown {
-        enum { ID = ID_CONNECTION_PROPERTIES };
+        enum { ID = ::WPEFramework::Exchange::ID_CONNECTION_PROPERTIES };
 
         enum HDCPProtectionType : uint8_t {
             HDCP_UNENCRYPTED,
@@ -53,7 +53,7 @@ namespace Exchange {
 
         /* @event @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
         struct EXTERNAL INotification : virtual public Core::IUnknown {
-            enum { ID = ID_CONNECTION_PROPERTIES_NOTIFICATION };
+            enum { ID = ::WPEFramework::Exchange::ID_CONNECTION_PROPERTIES_NOTIFICATION };
 
             enum Source : uint8_t {
                 PRE_RESOLUTION_CHANGE,
@@ -120,7 +120,7 @@ namespace Exchange {
 
     /* @json */
     struct EXTERNAL IHDRProperties : virtual public Core::IUnknown {
-        enum { ID = ID_HDR_PROPERTIES };
+        enum { ID = ::WPEFramework::Exchange::ID_HDR_PROPERTIES };
 
         enum HDRType : uint8_t {
             HDR_OFF,
@@ -152,7 +152,7 @@ namespace Exchange {
 
     /* @json */
     struct EXTERNAL IDisplayProperties : virtual public Core::IUnknown {
-        enum { ID = ID_DISPLAY_PROPERTIES };
+        enum { ID = ::WPEFramework::Exchange::ID_DISPLAY_PROPERTIES };
 
         enum ColourSpaceType : uint8_t {
             FORMAT_UNKNOWN,
