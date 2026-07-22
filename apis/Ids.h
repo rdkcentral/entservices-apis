@@ -383,11 +383,10 @@ using namespace WPEFramework::Exchange;
 }
 
 // Compatibility aliases for tools/headers that resolve IDs via Thunder::Exchange.
+// Also makes all WPEFramework::Exchange types (enums, structs, interfaces)
+// accessible as Thunder::Exchange::* for generated code.
 namespace Thunder {
 namespace Exchange {
-        static constexpr auto ID_REMOTECONTROL = WPEFramework::Exchange::ID_REMOTECONTROL;
-        static constexpr auto ID_REMOTECONTROL_NOTIFICATION = WPEFramework::Exchange::ID_REMOTECONTROL_NOTIFICATION;
-        static constexpr auto ID_VOICECONTROL = WPEFramework::Exchange::ID_VOICECONTROL;
-        static constexpr auto ID_VOICECONTROL_NOTIFICATION = WPEFramework::Exchange::ID_VOICECONTROL_NOTIFICATION;
+        using namespace WPEFramework::Exchange;
 }
 }
