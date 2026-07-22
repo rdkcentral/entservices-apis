@@ -22,6 +22,8 @@
 #include "Module.h"
 #include "IDRM.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework {
 
 namespace Exchange {
