@@ -361,6 +361,12 @@ namespace Exchange {
 } // namespace Exchange
 } // namespace WPEFramework
 
+// Compatibility bridge for generated ProxyStubs code emitted in Thunder::ProxyStubs
+// that references ID_* symbols without namespace qualification.
+namespace Thunder {
+using namespace WPEFramework::Exchange;
+}
+
 // Compatibility aliases for tools/headers that resolve IDs via Thunder::Exchange.
 namespace Thunder {
 namespace Exchange {
