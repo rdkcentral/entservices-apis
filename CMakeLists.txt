@@ -59,9 +59,11 @@ target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_S
                                              $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
 
 foreach(dir ${INTERFACE_DIRS})
-    target_include_directories(${Target} PRIVATE 
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>
-)
+        if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${dir}")
+                target_include_directories(${Target} PRIVATE
+                        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>
+                )
+        endif()
 endforeach()
 
 target_link_libraries(${Target}

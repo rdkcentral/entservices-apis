@@ -361,10 +361,25 @@ namespace Exchange {
 } // namespace Exchange
 } // namespace WPEFramework
 
+// Legacy/generated compatibility: allow unqualified ID_* lookup.
+using namespace WPEFramework::Exchange;
+
 // Compatibility bridge for generated ProxyStubs code emitted in Thunder::ProxyStubs
 // that references ID_* symbols without namespace qualification.
 namespace Thunder {
 using namespace WPEFramework::Exchange;
+
+namespace ProxyStubs {
+using namespace WPEFramework::Exchange;
+}
+}
+
+// Some generated units may still use WPEFramework::ProxyStubs depending on namespace
+// compatibility mode during generation.
+namespace WPEFramework {
+namespace ProxyStubs {
+using namespace WPEFramework::Exchange;
+}
 }
 
 // Compatibility aliases for tools/headers that resolve IDs via Thunder::Exchange.
