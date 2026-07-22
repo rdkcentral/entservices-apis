@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(Thunder NAMES WPEFramework Thunder REQUIRED)
+find_package(WPEFramework)
 
 project_version(4.4.1)
 
@@ -36,39 +36,14 @@ file(GLOB INTERFACE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/../apis/*/I*.h")
 if(NOT GENERATOR_SEARCH_PATH)
     set(GENERATOR_SEARCH_PATH ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE})
 endif()
-set(INTERFACE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../apis")
-JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPPIFDIR "${INTERFACE_INCLUDE_DIR}" LEGACY_ALT)
-JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} "${INTERFACE_INCLUDE_DIR}" CPPIFDIR "${INTERFACE_INCLUDE_DIR}" LEGACY_ALT)
+file(GLOB_RECURSE INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}../apis")
+JsonGenerator(CODE INPUT ${JSON_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} CPPIFDIR "${INCLUDE_PATH}" LEGACY_ALT)
+JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated" INCLUDE_PATH ${GENERATOR_SEARCH_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../apis" LEGACY_ALT)
 
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
 
-# Some native CI pruning scenarios can omit JSON inputs that normally emit definitions.h.
-# Create a minimal fallback so generated headers that include it still compile.
-set(GENERATED_DEFINITIONS_HEADER "${CMAKE_CURRENT_BINARY_DIR}/generated/definitions.h")
-if(NOT EXISTS "${GENERATED_DEFINITIONS_HEADER}")
-        file(WRITE "${GENERATED_DEFINITIONS_HEADER}" "#pragma once\n")
-endif()
-
-# Avoid CMake configure failure when no JsonEnum*.cpp files are produced.
-if(NOT JSON_ENUM_SOURCES)
-        set(JSON_ENUM_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/EmptyDefinitions.cpp")
-endif()
-
 include(CreateLink)
-
-# Compatibility: ThunderTools 5.3 may emit JI*.h from I*.h interface inputs.
-# Provide non-I aliases expected by plugin includes.
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JIRemoteControl.h" AND NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h")
-        CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h" TARGET "JIRemoteControl.h")
-        list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h")
-endif()
-
-if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JIVoiceControl.h" AND NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h")
-        CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h" TARGET "JIVoiceControl.h")
-        list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h")
-endif()
-
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
 list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
@@ -100,7 +75,6 @@ set_target_properties(${Target} PROPERTIES
 target_include_directories(${Target} PRIVATE
                                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../apis>
                                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                                $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated>
                                 $<INSTALL_INTERFACE:include/${NAMESPACE}>)
 install(
         TARGETS ${Target} EXPORT ${Target}Targets  # for downstream dependencies

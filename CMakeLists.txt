@@ -45,9 +45,6 @@ ProxyStubGenerator(INPUT "${INPUT_INTERFACES_HEADERS}" OUTDIR "${CMAKE_CURRENT_B
 file(GLOB_RECURSE INTERFACES_HEADERS ./apis/*/I*.h ./apis/*.h)
 file(GLOB PROXY_STUB_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/ProxyStubs*.cpp")
 file(MAKE_DIRECTORY ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces)
-# Copy headers at configure time so JsonGenerator (which runs at configure time via
-# execute_process in add_subdirectory(build)) can resolve <interfaces/...> includes.
-file(COPY ${INTERFACES_HEADERS} DESTINATION ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces)
 add_custom_target(install_headers ALL
         COMMAND ${CMAKE_COMMAND} -E copy ${INTERFACES_HEADERS} ${CMAKE_SYSROOT}${CMAKE_INSTALL_PREFIX}/include/${NAMESPACE}/interfaces
 )
@@ -57,19 +54,13 @@ add_library(${Target} SHARED
         ${PROXY_STUB_SOURCES}
         )
 add_dependencies(${NAMESPACE}Marshalling install_headers)
-file(GLOB INTERFACE_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
-set(INTERFACE_DIRS)
-foreach(path ${INTERFACE_PATHS})
-        if(IS_DIRECTORY "${path}")
-                list(APPEND INTERFACE_DIRS "${path}")
-        endif()
-endforeach()
+file(GLOB INTERFACE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> 
                                              $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
 
 foreach(dir ${INTERFACE_DIRS})
     target_include_directories(${Target} PRIVATE 
-                $<BUILD_INTERFACE:${dir}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>
 )
 endforeach()
 
