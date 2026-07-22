@@ -56,6 +56,19 @@ if(NOT JSON_ENUM_SOURCES)
 endif()
 
 include(CreateLink)
+
+# Compatibility: ThunderTools 5.3 may emit JI*.h from I*.h interface inputs.
+# Provide non-I aliases expected by plugin includes.
+if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JIRemoteControl.h" AND NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h")
+        CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h" TARGET "JIRemoteControl.h")
+        list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/JRemoteControl.h")
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JIVoiceControl.h" AND NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h")
+        CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h" TARGET "JIVoiceControl.h")
+        list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/JVoiceControl.h")
+endif()
+
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
 list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Ids.h" TARGET "../Ids.h")
