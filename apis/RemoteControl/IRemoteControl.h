@@ -159,22 +159,25 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param payload: Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged.
+            // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
+            // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
+            // @param scanEnable(optional): Whether scan pairing is enabled. If omitted, backend default is used.
+            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend).
             // @param result: Whether the request succeeded
-            // @param macAddressList (optional): Optional list of MAC addresses to pair with (if supported by backend)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout /* @optional */, const Core::OptionalType<bool>& screenBindEnable /* @optional */, const Core::OptionalType<bool>& scanEnable /* @optional */, IStringIterator* const macAddressList /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
-            // @param payload: Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged.
+            // @param screenBindDisable(optional): Whether screen bind pairing should be disabled. If omitted, backend default is used.
+            // @param scanDisable(optional): Whether scan pairing should be disabled. If omitted, backend default is used.
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StopPairing(const Core::OptionalType<bool>& screenBindDisable /* @optional */, const Core::OptionalType<bool>& scanDisable /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -273,7 +276,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const Core::OptionalType<string>& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
