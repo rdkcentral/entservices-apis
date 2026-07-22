@@ -57,6 +57,12 @@ add_library(${Target} SHARED
         ${JSON_ENUM_SOURCES}
         )
 
+# Thunder 5.3 defines WPEFramework as a namespace alias for Thunder.
+# Generated ENUM_CONVERSION_HANDLER macros specialize Thunder::Core templates
+# from within the WPEFramework alias scope, which is semantically correct but
+# rejected by GCC without -fpermissive.
+target_compile_options(${Target} PRIVATE -fpermissive)
+
 target_link_libraries(${Target}
         PRIVATE
           ${NAMESPACE}Core::${NAMESPACE}Core

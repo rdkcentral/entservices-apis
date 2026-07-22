@@ -54,6 +54,10 @@ add_library(${Target} SHARED
         ${PROXY_STUB_SOURCES}
         )
 add_dependencies(${NAMESPACE}Marshalling install_headers)
+
+# Thunder 5.3 namespace alias compat (see build/CMakeLists.txt for explanation)
+target_compile_options(${Target} PRIVATE -fpermissive)
+
 file(GLOB INTERFACE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> 
                                              $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
