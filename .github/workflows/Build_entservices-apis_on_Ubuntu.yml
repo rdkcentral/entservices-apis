@@ -41,13 +41,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install jsonref
-
-      - name: Apply ThunderTools Patch
-        run: |
-          cd ThunderTools
-          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
-          cd ..
-          
+      
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
