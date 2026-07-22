@@ -64,37 +64,37 @@ namespace WPEFramework {
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // ThunderTools BuildResult() collapses a single out param into a single value ("result":true/false), so we wrap the boolean success in a struct and extract to main the response shape ("result":{"success":true/false})
-        struct EXTERNAL VoiceControlSuccessResult {
+        struct VoiceControlSuccessResult {
             bool success /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL DeviceStatus {
+        struct DeviceStatus {
             string status /* @brief The status of the device e.g. "ready" */;
         };
 
-        struct EXTERNAL ServerStats {
+        struct ServerStats {
             double dnsTime     /* @brief The DNS time of the voice server in milliseconds ex: 0.5 */;
             string serverIp    /* @brief The IP of the voice server e.g. "192.168.1.100" */;
             double connectTime /* @brief The connection time of the voice server in milliseconds ex: 10.2 */;
         };
 
-        struct EXTERNAL VoiceControlGetApiVersionNumberResponse {
+        struct VoiceControlGetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL VoiceSessionByTextRequest {
+        struct VoiceSessionByTextRequest {
             string transcription /* @brief The transcription text to be sent to the voice server e.g. "turn on the lights" */;
             DeviceType type      /* @brief The device type to simulate the voice session from. Possible values: PTT, FF, MIC */;
         };
 
-        struct EXTERNAL VoiceSessionRequestData {
+        struct VoiceSessionRequestData {
             string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
             string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
             VoiceSessionRequestType type /* @brief The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test */;
         };
 
-        struct EXTERNAL VoiceStatusResponse {
+        struct VoiceStatusResponse {
             bool maskPii         /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
             string urlPtt        /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
             string urlHf         /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;

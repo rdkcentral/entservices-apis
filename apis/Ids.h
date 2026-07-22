@@ -360,3 +360,13 @@ namespace Exchange {
 
 } // namespace Exchange
 } // namespace WPEFramework
+
+// Compatibility aliases for tools/headers that resolve IDs via Thunder::Exchange.
+namespace Thunder {
+namespace Exchange {
+        static constexpr auto ID_REMOTECONTROL = WPEFramework::Exchange::ID_REMOTECONTROL;
+        static constexpr auto ID_REMOTECONTROL_NOTIFICATION = WPEFramework::Exchange::ID_REMOTECONTROL_NOTIFICATION;
+        static constexpr auto ID_VOICECONTROL = WPEFramework::Exchange::ID_VOICECONTROL;
+        static constexpr auto ID_VOICECONTROL_NOTIFICATION = WPEFramework::Exchange::ID_VOICECONTROL_NOTIFICATION;
+}
+}

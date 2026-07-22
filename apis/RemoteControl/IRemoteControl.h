@@ -83,16 +83,16 @@ namespace WPEFramework {
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
         // ThunderTools BuildResult() collapses a single out param into a single value ("result":true/false), so we wrap the boolean success in a struct and extract to main the response shape ("result":{"success":true/false})
-        struct EXTERNAL RemoteControlSuccessResult {
+        struct RemoteControlSuccessResult {
             bool success /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL RemoteControlGetApiVersionNumberResponse {
+        struct RemoteControlGetApiVersionNumberResponse {
             uint32_t version /* @brief The API version number ex: 1 */;
             bool success     /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL GetLastKeypressSourceResponse {
+        struct GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
             uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
@@ -103,7 +103,7 @@ namespace WPEFramework {
             bool success                /* @brief Whether the request succeeded */;
         };
 
-        struct EXTERNAL FirmwareUpdateStatusData {
+        struct FirmwareUpdateStatusData {
             string upgradeSessionId    /* @brief The firmware update session identifier ex: 12345-abc-def */;
             string macAddress          /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
             FirmwareUpdateState upgradeState /* @brief The firmware update state */;
@@ -111,12 +111,12 @@ namespace WPEFramework {
             string errorString         /* @optional @brief The firmware update error string, only present on failure */;
         };
 
-        struct EXTERNAL StatusFirmwareUpdateResponse {
+        struct StatusFirmwareUpdateResponse {
             bool success                   /* @brief Whether the request succeeded */;
             FirmwareUpdateStatusData status /* @brief The firmware update status details including session ID, MAC address, upgrade state, and percent complete */;
         };
 
-        struct EXTERNAL NetStatusData {
+        struct NetStatusData {
             uint32_t netType          /* @brief The type of remote control network ex: 1 */;
             PairingState pairingState /* @brief The pairing state */;
             IRProgState irProgState   /* @brief The IR programming state */;
@@ -124,14 +124,14 @@ namespace WPEFramework {
             string remoteData         /* @opaque @brief JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape */;
         };
 
-        struct EXTERNAL GetNetStatusResult {
+        struct GetNetStatusResult {
             bool success         /* @brief Whether the request succeeded */;
             NetStatusData status /* @brief The network status data */;
         };
 
 
 
-        struct EXTERNAL ValidationStatusObject {
+        struct ValidationStatusObject {
             uint32_t netType           /* @brief The type of remote control network ex: 1 */;
             uint32_t validationDigit1  /* @brief The first validation digit ex: 1 */;
             uint32_t validationDigit2  /* @brief The second validation digit ex: 2 */;

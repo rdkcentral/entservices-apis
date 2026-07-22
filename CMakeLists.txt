@@ -57,13 +57,19 @@ add_library(${Target} SHARED
         ${PROXY_STUB_SOURCES}
         )
 add_dependencies(${NAMESPACE}Marshalling install_headers)
-file(GLOB INTERFACE_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
+file(GLOB INTERFACE_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/apis/*")
+set(INTERFACE_DIRS)
+foreach(path ${INTERFACE_PATHS})
+        if(IS_DIRECTORY "${path}")
+                list(APPEND INTERFACE_DIRS "${path}")
+        endif()
+endforeach()
 target_include_directories(${Target} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> 
                                              $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/apis>)
 
 foreach(dir ${INTERFACE_DIRS})
     target_include_directories(${Target} PRIVATE 
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>
+                $<BUILD_INTERFACE:${dir}>
 )
 endforeach()
 

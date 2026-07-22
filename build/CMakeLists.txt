@@ -43,6 +43,18 @@ JsonGenerator(CODE INPUT ${INTERFACE_FILE} OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/g
 file(GLOB JSON_ENUM_SOURCES "${CMAKE_CURRENT_BINARY_DIR}/generated/JsonEnum*.cpp")
 file(GLOB JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/J*.h")
 
+# Some native CI pruning scenarios can omit JSON inputs that normally emit definitions.h.
+# Create a minimal fallback so generated headers that include it still compile.
+set(GENERATED_DEFINITIONS_HEADER "${CMAKE_CURRENT_BINARY_DIR}/generated/definitions.h")
+if(NOT EXISTS "${GENERATED_DEFINITIONS_HEADER}")
+        file(WRITE "${GENERATED_DEFINITIONS_HEADER}" "#pragma once\n")
+endif()
+
+# Avoid CMake configure failure when no JsonEnum*.cpp files are produced.
+if(NOT JSON_ENUM_SOURCES)
+        set(JSON_ENUM_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/EmptyDefinitions.cpp")
+endif()
+
 include(CreateLink)
 CreateLink(LINK "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h" TARGET "../Module.h")
 list(APPEND JSON_LINK_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated/Module.h")
