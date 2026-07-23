@@ -26,7 +26,7 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   enum { ID = ID_RDK_WINDOW_MANAGER };
-
+  using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
   // @event 
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
@@ -114,7 +114,9 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @text getApps
   // @brief Get the list of Apps which are currently active and available
   // @param appsIds: Returns the list of active app IDs as a JSON array.
-  virtual Core::hresult GetApps(RPC::IStringIterator*& appsIds /* @out */) const = 0;
+  // @retval Core::ERROR_NONE: Active app IDs retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to retrieve active app IDs
+  virtual Core::hresult GetApps(IStringIterator*& appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept
