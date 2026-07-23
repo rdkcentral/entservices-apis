@@ -19,16 +19,16 @@
 
 #pragma once
 
-  #include "Module.h"
+#include "Module.h"
 
-  namespace WPEFramework {
-  namespace Exchange {
-  // @json 1.0.0 @text:keep
-  struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
-    enum { ID = ID_RDK_WINDOW_MANAGER };
+namespace WPEFramework {
+namespace Exchange {
+// @json 1.0.0 @text:keep
+struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
+  enum { ID = ID_RDK_WINDOW_MANAGER };
 
-    // @event 
-    struct EXTERNAL INotification : virtual public Core::IUnknown {
+  // @event 
+  struct EXTERNAL INotification : virtual public Core::IUnknown {
       enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
   
       // @brief Posting the client is inactive state
