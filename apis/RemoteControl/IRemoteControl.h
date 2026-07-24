@@ -108,7 +108,7 @@ namespace WPEFramework {
             string macAddress          /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
             FirmwareUpdateState upgradeState /* @brief The firmware update state */;
             uint32_t percentComplete   /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
-            string errorString         /* @optional @brief The firmware update error string, only present on failure */;
+            Core::OptionalType<string> errorString /* @brief The firmware update error string, only present on failure */;
         };
 
         struct StatusFirmwareUpdateResponse {
@@ -127,27 +127,6 @@ namespace WPEFramework {
         struct GetNetStatusResult {
             bool success         /* @brief Whether the request succeeded */;
             NetStatusData status /* @brief The network status data */;
-        };
-
-        struct GetIRDBManufacturersResult {
-            bool success                              /* @brief Whether the request succeeded */;
-            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
-            IStringIterator* manufacturers             /* @brief A list of manufacturer names e.g. "Samsung" */;
-        };
-
-        struct GetIRDBModelsResult {
-            bool success                              /* @brief Whether the request succeeded */;
-            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
-            Core::OptionalType<string> manufacturer    /* @optional @brief The manufacturer name echoed from the backend, omitted when not returned */;
-            IStringIterator* models                    /* @brief A list of model names e.g. "AH5901068L" */;
-        };
-
-        struct GetIRCodesByNamesResult {
-            bool success                              /* @brief Whether the request succeeded */;
-            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
-            Core::OptionalType<string> manufacturer    /* @optional @brief The manufacturer name echoed from the backend, omitted when not returned */;
-            Core::OptionalType<string> model            /* @optional @brief The model name echoed from the backend, omitted when not returned */;
-            IStringIterator* codes                     /* @brief A list of IR codes */;
         };
 
         struct ValidationStatusObject {
@@ -186,7 +165,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout /* @optional */, const Core::OptionalType<bool>& screenBindEnable /* @optional */, const Core::OptionalType<bool>& scanEnable /* @optional */, IStringIterator* const macAddressList /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
@@ -196,7 +175,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const Core::OptionalType<bool>& screenBindDisable /* @optional */, const Core::OptionalType<bool>& scanDisable /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StopPairing(const Core::OptionalType<bool>& screenBindDisable, const Core::OptionalType<bool>& scanDisable, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -211,22 +190,24 @@ namespace WPEFramework {
             // @text getIRDBManufacturers
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
-            // @param result: The result containing success, optional echoed avDevType, and list of manufacturers
+            // @param success: Whether the request succeeded
+            // @param manufacturers: A list of manufacturer names e.g. "Samsung"
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResult& result /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(Core::OptionalType<AVDevType>& avDevType /* @inout */, const string& manufacturer, bool& success /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
-            // @param result: The result containing success, optional echoed avDevType/manufacturer, and list of models
+            // @param success: Whether the request succeeded
+            // @param models: A list of model names e.g. "AH5901068L"
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRDBModelsResult& result /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(Core::OptionalType<AVDevType>& avDevType /* @inout */, Core::OptionalType<string>& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -248,11 +229,12 @@ namespace WPEFramework {
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
-            // @param result: The result containing success, optional echoed avDevType/manufacturer/model, and list of IR codes
+            // @param success: Whether the request succeeded
+            // @param codes: A list of IR codes
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRCodesByNamesResult& result /* @out */) = 0;
+            virtual Core::hresult GetIRCodesByNames(Core::OptionalType<AVDevType>& avDevType /* @inout */, Core::OptionalType<string>& manufacturer /* @inout */, Core::OptionalType<string>& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -292,7 +274,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const Core::OptionalType<string>& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const Core::OptionalType<string>& customKeys, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
