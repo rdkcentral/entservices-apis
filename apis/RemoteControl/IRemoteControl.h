@@ -26,7 +26,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace Thunder {
+namespace WPEFramework {
 
     namespace Exchange {
 
@@ -382,4 +382,4 @@ namespace Thunder {
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange
-} // namespace Thunder
+} // namespace WPEFramework
