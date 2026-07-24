@@ -156,6 +156,7 @@ namespace WPEFramework {
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text startPairing
             // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
@@ -168,6 +169,7 @@ namespace WPEFramework {
             virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text stopPairing
             // @param screenBindDisable(optional): Whether screen bind pairing should be disabled. If omitted, backend default is used.
             // @param scanDisable(optional): Whether scan pairing should be disabled. If omitted, backend default is used.
@@ -309,20 +311,20 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
-            // @param macAddress: The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
+            // @param macAddress(optional): Optional MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
             // @param fileName: The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin"
-            // @param fileType: The type of firmware image file e.g. "mfg"
-            // @param percentIncrement: The increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
+            // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
+            // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
             // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const string& macAddress, const string& fileName, const string& fileType, const uint32_t percentIncrement, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const string& macAddress /* @optional */, const string& fileName, const string& fileType /* @optional */, const uint32_t percentIncrement /* @optional */, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
