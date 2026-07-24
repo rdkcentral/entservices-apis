@@ -26,7 +26,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
     namespace Exchange {
 
@@ -382,17 +382,4 @@ namespace WPEFramework {
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
-
-namespace Thunder {
-    namespace Exchange {
-        using WPEFramework::Exchange::AVDevType;
-        using WPEFramework::Exchange::FindMyRemoteLevel;
-        using WPEFramework::Exchange::FirmwareUpdateState;
-        using WPEFramework::Exchange::IRProgState;
-        using WPEFramework::Exchange::IStringIterator;
-        using WPEFramework::Exchange::IRemoteControl;
-        using WPEFramework::Exchange::PairingState;
-        using WPEFramework::Exchange::WakeupConfig;
-    }
-}
+} // namespace Thunder

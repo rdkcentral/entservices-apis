@@ -26,7 +26,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
     namespace Exchange {
 
@@ -281,16 +281,4 @@ namespace WPEFramework {
             virtual Core::hresult Unregister(const IVoiceControl::INotification* notification) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
-
-namespace Thunder {
-    namespace Exchange {
-        using WPEFramework::Exchange::DeviceType;
-        using WPEFramework::Exchange::IStringIterator;
-        using WPEFramework::Exchange::IVoiceControl;
-        using WPEFramework::Exchange::IVoiceControl::INotification;
-        using WPEFramework::Exchange::ServerStats;
-        using WPEFramework::Exchange::SessionResult;
-        using WPEFramework::Exchange::VoiceSessionRequestType;
-    }
-}
+} // namespace Thunder
