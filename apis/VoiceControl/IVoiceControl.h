@@ -105,8 +105,13 @@ namespace WPEFramework {
             DeviceStatus ff      /* @brief The status information for the FF device type */;
             DeviceStatus mic     /* @brief The status information for the MIC device type */;
             DeviceStatus micTap  /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
-            string capabilities  /* @opaque @brief JSON array of capability strings returned by the voice stack */;
+            IStringIterator* capabilities /* @brief List of capability strings returned by the voice stack e.g. "PRV" */;
             bool success         /* @brief Whether the request succeeded */;
+        };
+
+        struct GetVoiceSessionTypesResult {
+            bool success         /* @brief Whether the request succeeded */;
+            IStringIterator* types /* @brief Array of strings indicating the voice session request types which are valid e.g. "ptt_transcription" */;
         };
 
         /* @json 1.0.0 @text:keep */
@@ -173,12 +178,11 @@ namespace WPEFramework {
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
-            // @param success: Whether the request succeeded
-            // @param types: Array of strings indicating the voice session request types which are valid e.g. "ptt_transcription"
+            // @param result: The result containing success and the list of supported session types
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;
+            virtual Core::hresult GetVoiceSessionTypes(GetVoiceSessionTypesResult& result /* @out */) = 0;
 
             // @json:omit
             // @brief Requests a voice session using the specified request type and optional parameters. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. type, transcription, audio_file, audio_format, name). The result is the raw JSON returned by ctrlm (e.g. success, sessionId).

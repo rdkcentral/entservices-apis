@@ -129,7 +129,26 @@ namespace WPEFramework {
             NetStatusData status /* @brief The network status data */;
         };
 
+        struct GetIRDBManufacturersResult {
+            bool success                              /* @brief Whether the request succeeded */;
+            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
+            IStringIterator* manufacturers             /* @brief A list of manufacturer names e.g. "Samsung" */;
+        };
 
+        struct GetIRDBModelsResult {
+            bool success                              /* @brief Whether the request succeeded */;
+            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
+            Core::OptionalType<string> manufacturer    /* @optional @brief The manufacturer name echoed from the backend, omitted when not returned */;
+            IStringIterator* models                    /* @brief A list of model names e.g. "AH5901068L" */;
+        };
+
+        struct GetIRCodesByNamesResult {
+            bool success                              /* @brief Whether the request succeeded */;
+            Core::OptionalType<AVDevType> avDevType    /* @optional @brief The AV device type echoed from the backend, omitted when not returned */;
+            Core::OptionalType<string> manufacturer    /* @optional @brief The manufacturer name echoed from the backend, omitted when not returned */;
+            Core::OptionalType<string> model            /* @optional @brief The model name echoed from the backend, omitted when not returned */;
+            IStringIterator* codes                     /* @brief A list of IR codes */;
+        };
 
         struct ValidationStatusObject {
             uint32_t netType           /* @brief The type of remote control network ex: 1 */;
@@ -192,24 +211,22 @@ namespace WPEFramework {
             // @text getIRDBManufacturers
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
-            // @param success: Whether the request succeeded
-            // @param manufacturers: A list of manufacturer names e.g. "Samsung"
+            // @param result: The result containing success, optional echoed avDevType, and list of manufacturers
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(AVDevType& avDevType /* @inout */, const string& manufacturer, bool& success /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(const AVDevType avDevType, const string& manufacturer, GetIRDBManufacturersResult& result /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
-            // @param success: Whether the request succeeded
-            // @param models: A list of model names e.g. "AH5901068L"
+            // @param result: The result containing success, optional echoed avDevType/manufacturer, and list of models
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRDBModelsResult& result /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -231,12 +248,11 @@ namespace WPEFramework {
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
-            // @param success: Whether the request succeeded
-            // @param codes: A list of IR codes as a string
+            // @param result: The result containing success, optional echoed avDevType/manufacturer/model, and list of IR codes
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, string& codes /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRCodesByNames(const AVDevType avDevType, const string& manufacturer, const string& model, GetIRCodesByNamesResult& result /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
