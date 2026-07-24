@@ -282,3 +282,15 @@ namespace WPEFramework {
         };
     } // namespace Exchange
 } // namespace WPEFramework
+
+namespace Thunder {
+    namespace Exchange {
+        using WPEFramework::Exchange::DeviceType;
+        using WPEFramework::Exchange::IStringIterator;
+        using WPEFramework::Exchange::IVoiceControl;
+        using WPEFramework::Exchange::IVoiceControl::INotification;
+        using WPEFramework::Exchange::ServerStats;
+        using WPEFramework::Exchange::SessionResult;
+        using WPEFramework::Exchange::VoiceSessionRequestType;
+    }
+}

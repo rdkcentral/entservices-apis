@@ -383,3 +383,16 @@ namespace WPEFramework {
         };
     } // namespace Exchange
 } // namespace WPEFramework
+
+namespace Thunder {
+    namespace Exchange {
+        using WPEFramework::Exchange::AVDevType;
+        using WPEFramework::Exchange::FindMyRemoteLevel;
+        using WPEFramework::Exchange::FirmwareUpdateState;
+        using WPEFramework::Exchange::IRProgState;
+        using WPEFramework::Exchange::IStringIterator;
+        using WPEFramework::Exchange::IRemoteControl;
+        using WPEFramework::Exchange::PairingState;
+        using WPEFramework::Exchange::WakeupConfig;
+    }
+}
