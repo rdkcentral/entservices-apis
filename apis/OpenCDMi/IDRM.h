@@ -63,7 +63,10 @@ private:
         if ((v != nullptr) && (HasBytes(sizeof(T)) == true)) {
             T tmp = 0;
             for (size_t i = 0; i < sizeof(T); i++) {
-                tmp <<= 8;
+                //coverity fix: PW.SHIFT_COUNT_TOO_LARGE - avoid shifting by full type width on first iteration
+                if (i > 0) {
+                    tmp <<= 8;
+                }
                 tmp += buf_[pos_++];
             }
             *v = tmp;
