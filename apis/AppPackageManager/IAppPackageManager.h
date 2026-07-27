@@ -57,7 +57,7 @@ namespace Exchange {
         };
 
         //typedef std::vector<PackageInfo> PackageInfoList;
-        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ::WPEFramework::Exchange::ID_PACKAGE_INFO_ITERATOR>;
+        using IPackageInfoIterator = RPC::IIteratorType<PackageInfo, ID_PACKAGE_INFO_ITERATOR>;
 
         struct EXTERNAL INotification : virtual public Core::IUnknown {
             enum { ID = ID_PACKAGE_DOWNLOADER_NOTIFICATION  };
