@@ -50,13 +50,8 @@ jobs:
           
       - name: Build ThunderTools
         run: |
-          cmake -G Ninja -S "ThunderTools" -B build/ThunderTools \
-            -DEXCEPTIONS_ENABLE=ON \
-            -DCMAKE_INSTALL_PREFIX="install/usr" \
-            -DCMAKE_MODULE_PATH="install/tools/cmake" \
-            -DGENERIC_CMAKE_MODULE_PATH="install/tools/cmake" \
-            && cmake --build build/ThunderTools -j8 \
-            && cmake --install build/ThunderTools
+          cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
+          cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
         run: |
