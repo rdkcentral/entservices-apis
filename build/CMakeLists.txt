@@ -90,6 +90,7 @@ install(
         RUNTIME DESTINATION bin COMPONENT libs      # binaries
         FRAMEWORK DESTINATION bin/ COMPONENT libs    # for mac
         INCLUDES DESTINATION include/${NAMESPACE}   # default include path
+        PUBLIC_HEADER DESTINATION include/${NAMESPACE}
 )
 
 install(
