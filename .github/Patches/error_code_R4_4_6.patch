@@ -1,0 +1,42 @@
+diff --git a/Source/core/JSONRPC.h b/Source/core/JSONRPC.h
+index 4b55ac6d..bf4bc8e1 100644
+--- a/Source/core/JSONRPC.h
++++ b/Source/core/JSONRPC.h
+@@ -109,6 +109,18 @@ namespace Core {
+                         Code = -32000; // Server defined, now mapped to Timed out
+                         Text = _T("Call timed out.");
+                         break;
++                    case Core::ERROR_ABORTED:
++                        Code = -32001; // Operation aborted
++                        break;
++                    case Core::ERROR_INVALID_DEVICENAME:
++                        Code = -32002; // Invalid device name
++                        break;
++                    case Core::ERROR_INVALID_MOUNTPOINT:
++                        Code = -32003; // Invalid mount path
++                        break;
++                    case Core::ERROR_FIRMWAREUPDATE_INPROGRESS:
++                        Code = -32004; // Firmware update inprogress
++                        break;
+                     case Core::ERROR_INVALID_RANGE:
+                         Code = Core::ERROR_INVALID_RANGE;
+                         Text = _T("Requested version is not supported.");
+diff --git a/Source/core/Portability.h b/Source/core/Portability.h
+index cf8e1d8b..1a497663 100644
+--- a/Source/core/Portability.h
++++ b/Source/core/Portability.h
+@@ -894,8 +894,12 @@ namespace Core {
+         ERROR_CODE(ERROR_FAILED_UNREGISTERED, 49) \
+         ERROR_CODE(ERROR_PRIVILIGED_DEFERRED, 51) \
+         ERROR_CODE(ERROR_UNKNOWN_METHOD, 53) \
+-        ERROR_CODE(ERROR_COMPOSIT_OBJECT, 57)\
+-        ERROR_CODE(ERROR_ABORTED, 58)
++        ERROR_CODE(ERROR_INVALID_PARAMETER, 54) \
++        ERROR_CODE(ERROR_COMPOSIT_OBJECT, 57) \
++        ERROR_CODE(ERROR_ABORTED, 58) \
++        ERROR_CODE(ERROR_INVALID_DEVICENAME, 59) \
++        ERROR_CODE(ERROR_INVALID_MOUNTPOINT, 60) \
++        ERROR_CODE(ERROR_FIRMWAREUPDATE_INPROGRESS, 61)
+ 
+     #define ERROR_CODE(CODE, VALUE) CODE = VALUE,
+ 
