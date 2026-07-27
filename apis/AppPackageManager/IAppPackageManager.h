@@ -189,7 +189,7 @@ namespace Exchange {
             uint64_t sizeKb;
             bool isRuntime /* @text isRuntime */ /* @brief Indicates whether this package is a runtime package */;
         };
-        using IPackageIterator = RPC::IIteratorType<Package, ::WPEFramework::Exchange::ID_PACKAGE_ITERATOR>;
+        using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
 
         /* @event */
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -214,7 +214,7 @@ namespace Exchange {
             // @brief Value
             string value;
         };
-        using IKeyValueIterator = RPC::IIteratorType<KeyValue, ::WPEFramework::Exchange::ID_PACKAGE_KEY_VALUE_ITERATOR>;
+        using IKeyValueIterator = RPC::IIteratorType<KeyValue, ID_PACKAGE_KEY_VALUE_ITERATOR>;
 
         // @brief Install
         // @text install
@@ -292,7 +292,7 @@ namespace Exchange {
             // @brief Version
             string version;
         };
-        using ILockIterator = RPC::IIteratorType<AdditionalLock, ::WPEFramework::Exchange::ID_PACKAGE_LOCK_ITERATOR>;
+        using ILockIterator = RPC::IIteratorType<AdditionalLock, ID_PACKAGE_LOCK_ITERATOR>;
 
         // @brief Lock
         // @text lock
