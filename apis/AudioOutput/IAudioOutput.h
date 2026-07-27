@@ -62,7 +62,6 @@ namespace Exchange {
         //          to determine the Dolby Atmos Experience state.
         // @param enabled: true if Dolby Atmos Experience is enabled, false otherwise
         // @retval Core::ERROR_NONE on success
-        // @retval Core::ERROR_GENERAL on failure
         virtual Core::hresult DolbyAtmosExperience(bool& enabled /* @out */) const = 0;
     };
 
