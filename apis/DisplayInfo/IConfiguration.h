@@ -24,7 +24,7 @@ namespace WPEFramework {
 namespace Exchange {
 
     struct EXTERNAL IConfiguration : virtual public Core::IUnknown {
-        enum { ID = ::WPEFramework::Exchange::ID_CONFIGURATION };
+        enum { ID = ID_CONFIGURATION };
 
         virtual Core::hresult Configure(PluginHost::IShell* framework) = 0;
     };

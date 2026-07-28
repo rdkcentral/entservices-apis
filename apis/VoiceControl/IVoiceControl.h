@@ -112,7 +112,7 @@ namespace WPEFramework {
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IVoiceControl : virtual public Core::IUnknown {
             
-            enum { ID = ::WPEFramework::Exchange::ID_VOICECONTROL };
+            enum { ID = ID_VOICECONTROL };
             
             // Begin methods
             // @brief Get the API version number
@@ -212,7 +212,7 @@ namespace WPEFramework {
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
 
-                enum { ID = ::WPEFramework::Exchange::ID_VOICECONTROL_NOTIFICATION };
+                enum { ID = ID_VOICECONTROL_NOTIFICATION };
 
                 // @brief Triggered when a voice session begins
                 // @text onSessionBegin

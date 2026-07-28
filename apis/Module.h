@@ -37,3 +37,10 @@
 // if you are creating a new interface.
 #include "Ids.h"
 #include <interfaces/entservices_errorcodes.h>
+
+// Thunder 5.3's JsonGenerator/ProxyStubGenerator rewrite WPEFramework -> Thunder in
+// interface headers that declare an interface class, but never touch Ids.h (it declares
+// no interface class), so ID_* constants stay under WPEFramework::Exchange regardless.
+// This bridges unqualified ID_* lookups from a mutated (Thunder::Exchange) interface back
+// to their real (WPEFramework::Exchange) declaration.
+#include "definitions.h"
