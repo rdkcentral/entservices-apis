@@ -225,7 +225,7 @@ namespace Exchange {
         // @param cs: colour space
         virtual Core::hresult ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
 
-	// @text getCurrentColorimetry
+	    // @text getCurrentColorimetry
         // @brief Returns the active colorimetry standard of the current connected video port
         // @param info: current colorimetry info (colorimetryType is COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped)
         virtual Core::hresult GetCurrentColorimetry(ColorimetryTypeInfo& info /* @out */) const = 0;
