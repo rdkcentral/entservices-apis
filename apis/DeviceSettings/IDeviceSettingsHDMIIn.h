@@ -157,8 +157,6 @@ namespace Exchange {
             DS_HDMIIN_RESOLUTION_2160P50  = 0x080000,
             DS_HDMIIN_RESOLUTION_2160P60  = 0x100000
         };
-        // HDMIInTVResolution kept for capability bitmask queries (getTVSupportedResolutions-style usage);
-        // not used in VideoPortResolution struct (which uses pixel-dimension VideoResolution).
 
         enum HDMIInAviContentType: uint8_t {
             DS_HDMIIN_AVICONTENT_TYPE_GRAPHICS      =0,
@@ -169,8 +167,6 @@ namespace Exchange {
             DS_HDMIIN_AVICONTENT_TYPE_MAX           =5
         };
 
-        // Pixel-dimension resolution — matches dsVideoResolution_t / dsVideoPortResolution_t.pixelResolution.
-        // Same values as IDeviceSettingsVideoPort::VideoResolution; kept here for ProxyStubGenerator compatibility.
         enum HDMIInVideoResolution : uint8_t {
             DS_HDMIIN_PIXELRES_720X480    = 0,
             DS_HDMIIN_PIXELRES_720X576    = 1,
