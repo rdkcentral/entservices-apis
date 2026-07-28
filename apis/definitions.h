@@ -1,6 +1,4 @@
-// Compatibility bridge for the Exchange namespace, mirroring Thunder's own
-// WPEFRAMEWORK_NESTEDNAMESPACE_COMPATIBILIY() pattern (see core/Portability.h,
-// used by Thunder itself for Core, Plugin, PluginHost, RPC, etc).
+// Compatibility bridge between WPEFramework::Exchange and Thunder::Exchange.
 //
 // ProxyStubGenerator/JsonGenerator (patched per wpeframework-tools_5.3.bb) rewrite
 // WPEFramework -> Thunder in any interface header that declares an interface class
@@ -8,13 +6,32 @@
 // declarations to Thunder::Exchange. Plugin implementation code is never processed
 // by those generators, so it still references things via WPEFramework::Exchange
 // (e.g. "class RemoteControlImplementation : public Exchange::IRemoteControl" inside
-// namespace WPEFramework::Plugin) and needs this bridge to keep resolving.
-WPEFRAMEWORK_NESTEDNAMESPACE_COMPATIBILIY(Exchange)
-
-// The reverse direction: generated JsonEnum translation units compile their
-// ENUM_CONVERSION_HANDLER specializations under Thunder::Core, but need visibility
-// into whichever names ended up under WPEFramework::Exchange too (e.g. constants in
+// namespace WPEFramework::Plugin) and needs a bridge to keep resolving.
+//
+// Generated JsonEnum translation units need the reverse: their
+// ENUM_CONVERSION_HANDLER specializations compile under Thunder::Core but need
+// visibility into names that stay under WPEFramework::Exchange (e.g. constants in
 // Ids.h, which the generators never rewrite since it declares no interface class).
+//
+// Both namespaces must be pre-declared (even empty) before either using-directive:
+// this header is pulled in very early via Thunder's own core/Module.h -> "Module.h"
+// chain, before any of our interface headers have opened Thunder::Exchange.
+namespace WPEFramework {
+	namespace Exchange {
+	}
+}
+
+namespace Thunder {
+	namespace Exchange {
+	}
+}
+
+namespace WPEFramework {
+	namespace Exchange {
+		using namespace ::Thunder::Exchange;
+	}
+}
+
 namespace Thunder {
 	namespace Exchange {
 		using namespace ::WPEFramework::Exchange;
