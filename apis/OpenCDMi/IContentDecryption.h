@@ -73,6 +73,14 @@ namespace Exchange {
             uint16_t StreamHeight;
             uint16_t StreamWidth;
             uint8_t  StreamType;
+	    uint32_t fps_version;
+	    uint64_t fps_movieID;
+	    uint64_t fps_cryptorID;
+	    uint32_t fps_contentType;
+	    CDMi::Cdmi_FPSSliceInfo fps_sliceInfo[4]; // Lets out an arbitary size for now.
+	    uint32_t fps_sliceInfoArrayCount;
+	    uint32_t fps_svpmemoryHandle;
+
         };
 
     public:
@@ -112,6 +120,24 @@ namespace Exchange {
             admin->StreamHeight = 0;
             admin->StreamWidth = 0;
             admin->StreamType = 0;
+	    admin->fps_version = 0;
+	    admin->fps_movieID = 0;
+	    admin->fps_cryptorID = 0;
+	    admin->fps_contentType = 0;
+	    admin->fps_sliceInfo[0].offset = 0;
+            admin->fps_sliceInfo[0].size   = 0;
+
+            admin->fps_sliceInfo[1].offset = 0;
+            admin->fps_sliceInfo[1].size   = 0;
+
+	    admin->fps_sliceInfo[2].offset = 0;
+            admin->fps_sliceInfo[2].size   = 0;
+
+	    admin->fps_sliceInfo[3].offset = 0;
+            admin->fps_sliceInfo[3].size   = 0;
+
+	    admin->fps_sliceInfoArrayCount = 0;
+	    admin->fps_svpmemoryHandle = 0;
         }
         void Status(uint32_t status)
         {
@@ -238,6 +264,97 @@ namespace Exchange {
             VERIFY(length <= 16);
             return (length > 0 ? &admin->KeyId[1] : nullptr);
         }
+
+        // FPS specific
+        void SetFPSVersion(const uint32_t version)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_version = version;
+        }
+
+        uint32_t FPSVersion() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_version);
+        }
+
+        void SetFPSMovieId(const uint64_t movieId)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_movieID = movieId;
+        }
+
+        uint64_t FPSMovieId() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_movieID);
+        }
+
+        void SetFPSCryptorId(const uint64_t cryptorId)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_cryptorID = cryptorId;
+        }
+
+        uint64_t FPSCryptorId() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_cryptorID);
+        }
+
+        void SetFPSContentType(const uint32_t contentType)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_contentType = contentType;
+        }
+
+        uint32_t FPSContentType() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_contentType);
+        }
+
+       void SetFPSSliceInfoArray(const uint32_t sliceinfocount, const CDMi::Cdmi_FPSSliceInfo sliceInfo[])
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_sliceInfoArrayCount = sliceinfocount;
+            for (uint8_t index = 0; index < sliceinfocount; index++)
+            {
+                admin->fps_sliceInfo[index].offset = sliceInfo[index].offset;
+                admin->fps_sliceInfo[index].size = sliceInfo[index].size;
+            }
+        }
+
+        const CDMi::Cdmi_FPSSliceInfo *FPSSliceInfoArray() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (&(admin->fps_sliceInfo[0]));
+        }
+
+        void SetFPSSliceInfoArrayCount(const uint32_t sliceInfoArrayCount)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_sliceInfoArrayCount = sliceInfoArrayCount;
+        }
+
+        uint32_t FPSSliceInfoArrayCoun() const
+        {
+            const Administration *admin = reinterpret_cast<const Administration *>(AdministrationBuffer());
+            return (admin->fps_sliceInfoArrayCount);
+        }
+
+        void SetFPSSvpOut(uint32_t svpmemoryhandle)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            admin->fps_svpmemoryHandle = svpmemoryhandle;
+        }
+
+	uint32_t FPSSvpOut(void)
+        {
+            Administration *admin = reinterpret_cast<Administration *>(AdministrationBuffer());
+            return (admin->fps_svpmemoryHandle);
+        }
+
     };
 }
 }
