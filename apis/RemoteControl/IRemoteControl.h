@@ -146,7 +146,7 @@ namespace WPEFramework {
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IRemoteControl : virtual public Core::IUnknown {
 
-            enum { ID = ID_REMOTECONTROL };
+            enum { ID = ::WPEFramework::Exchange::ID_REMOTECONTROL };
 
             // Begin methods
             // @brief Gets the current API version number.
@@ -347,7 +347,7 @@ namespace WPEFramework {
 
             // @event
             struct EXTERNAL INotification : virtual public Core::IUnknown {
-                enum { ID = ID_REMOTECONTROL_NOTIFICATION };
+                enum { ID = ::WPEFramework::Exchange::ID_REMOTECONTROL_NOTIFICATION };
 
                 // @brief Triggered at any time when the status of any one of the supported STB remote networks changes
                 // @text onStatus
