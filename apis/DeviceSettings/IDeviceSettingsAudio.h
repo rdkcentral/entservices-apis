@@ -193,15 +193,6 @@ namespace Exchange {
             AUDIO_MS12_PROFILE_STATE_MAX       = 2
         };
 
-        struct AudioConfig {
-           int32_t typeId;
-           string  name;
-           // IDeviceSettingsAudioCompressionIterator *audioCompressions;
-           // IDeviceSettingsAudioEncodingIterator *audioEncodings;
-           // IDeviceSettingsStereoModeIterator *stereoModes;
-        };
-
-
         struct AudioPortConfigInfo {
             AudioPortType audioPortType;
             int32_t audioPortIndex;
