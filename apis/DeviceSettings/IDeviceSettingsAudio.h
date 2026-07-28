@@ -285,9 +285,6 @@ namespace Exchange {
         // @param handle: handle to the port
         virtual Core::hresult GetAudioPort(const AudioPortType type , const int32_t index , int32_t &handle /* @out */) = 0;
 
-        /** Get Audio static configuration. */
-        // @text getAudioConfig
-        // @brief Get Audio static configuration loaded by DeviceSettings plugin.
         /** Audio Port status. */
         // @text isAudioPortEnabled
         // @brief Audio port enabled or not

@@ -196,14 +196,6 @@ namespace Exchange {
         // @brief Set Front Panel Display Mode.
         // @param fpdMode: FPD Mode
         virtual Core::hresult SetFPDMode(const FPDMode fpdMode )  = 0;
-
-        /** Get Front Panel static configuration. */
-        // @text getFrontPanelConfig
-        // @brief Get front panel color, indicator and text-display configuration loaded by DeviceSettings plugin.
-        // @param textDisplays: iterator of text-display configuration
-        // @param indicators: iterator of indicator configuration
-        // @param colors: iterator of color configuration
-        // @param colorBindings: iterator of target-to-supported-color mapping for indicators and text displays
     };
 
 } // namespace Exchange

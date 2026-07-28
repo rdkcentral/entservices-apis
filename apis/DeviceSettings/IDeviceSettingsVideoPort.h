@@ -275,10 +275,6 @@ namespace Exchange {
         // @param handle: handle to the port
         virtual Core::hresult GetVideoPort(const VideoPort videoPort , const int32_t index , int32_t &handle /* @out */) = 0;
 
-        /** Get Video Port static configuration. */
-        // @text getVideoPortConfig
-        // @brief Get VideoPort static configuration loaded by DeviceSettings plugin.
-        // @param videoPortTypes: iterator of video port type configuration
         /** Get Video Port Resolution static configuration for a specific port type. */
         // @text getVideoPortResolutionConfig
         // @brief Get VideoPort resolution static configuration for a given port type.
