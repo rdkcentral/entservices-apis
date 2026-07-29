@@ -93,16 +93,16 @@ class HeaderFileParser:
 
     # Basic type examples for generating missing symbol examples
     BASIC_TYPE_EXAMPLES = {
-        'integer':  '0',
-        'int16_t':  '0',
-        'uint16_t': '0',
-        'int32_t':  '0',
-        'uint32_t': '0',
-        'int64_t':  '0',
-        'uint64_t': '0',
-        'int':      '0',
-        'float':    '0.0',
-        'double':   '0.0',
+        'integer':  0,
+        'int16_t':  0,
+        'uint16_t': 0,
+        'int32_t':  0,
+        'uint32_t': 0,
+        'int64_t':  0,
+        'uint64_t': 0,
+        'int':      0,
+        'float':    0.0,
+        'double':   0.0,
         'bool':     True,
         'char':     'a',
         'string':   ''
@@ -736,7 +736,10 @@ class HeaderFileParser:
         if example is not None:
             self.symbols_registry[unique_id]['example'] = self.wrap_example_if_iterator(unique_id, example)
         elif not self.symbols_registry[unique_id].get('example') and symbol_type not in self.iterators_registry:
-            self.symbols_registry[unique_id]['example'] = self.generate_example_from_description(description)
+            description_example = self.generate_example_from_description(description)
+            if description_example is not None:
+                description_example = self.coerce_example_to_type(unique_id, description_example)
+            self.symbols_registry[unique_id]['example'] = description_example
 
     def external_struct_tracker(self, line, scope, brace_count):
         """
@@ -912,11 +915,42 @@ class HeaderFileParser:
         """
         example_from_param_description = self.generate_example_from_description(description)
         if example_from_param_description:
+            example_from_param_description = self.coerce_example_to_type(unique_id, example_from_param_description)
             return self.wrap_example_if_iterator(unique_id, example_from_param_description)
         # if no example in the param description, pull from the symbols registry
         if unique_id in self.symbols_registry:
             return self.symbols_registry[unique_id].get('example')
         return None
+
+    def coerce_example_to_type(self, unique_id, example):
+        """
+        The `e.g. "..."`/`ex: ...` doxygen extraction always yields a string. Coerce that string
+        to match the symbol's declared JSON type (e.g. 'integer' -> int, 'bool' -> bool) so that
+        numeric-looking text stays a JSON number only when the field actually is one. Without this,
+        a string field whose example happens to look numeric (e.g. an IR code "1156") would
+        otherwise be rendered as a bare JSON number instead of a quoted string.
+        """
+        if not isinstance(example, str):
+            return example
+        symbol_type = self.symbols_registry.get(unique_id, {}).get('type')
+        if symbol_type == 'bool':
+            lowered = example.lower()
+            if lowered == 'true':
+                return True
+            if lowered == 'false':
+                return False
+            return example
+        if symbol_type == 'integer':
+            try:
+                return int(example)
+            except ValueError:
+                return example
+        if symbol_type in ('float', 'double'):
+            try:
+                return float(example)
+            except ValueError:
+                return example
+        return example
 
     def generate_missing_examples_for_symbol_registry(self):
         """
@@ -937,6 +971,7 @@ class HeaderFileParser:
         """
         example = self.generate_example_from_description(description)
         if example:
+            example = self.coerce_example_to_type(unique_id, example)
             return self.wrap_example_if_iterator(unique_id, example)
         if unique_id in self.symbols_registry:
             symbol_type = self.symbols_registry[unique_id]['type']

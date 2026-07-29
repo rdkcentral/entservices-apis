@@ -49,13 +49,11 @@ namespace WPEFramework {
         };
 
         enum class AVDevType : uint8_t {
-            INVALID = 0 /* @text INVALID */,
             TV          /* @text TV */,
             AMP         /* @text AMP */
         };
 
         enum class WakeupConfig : uint8_t {
-            INVALID = 0 /* @text INVALID */,
             ALL         /* @text all */,
             NONE        /* @text none */,
             CUSTOM      /* @text custom */
@@ -232,7 +230,7 @@ namespace WPEFramework {
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
             // @param success: Whether the request succeeded
-            // @param codes: A list of IR codes
+            // @param codes: A list of IR codes e.g. "6712"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.

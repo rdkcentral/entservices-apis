@@ -645,22 +645,14 @@ def generate_notification_markdown(event_name, event_info, symbol_registry, clas
 
 def _convert_json_types(obj):
     """
-    Recursively convert string numbers and 'true'/'false' strings to int/float/bool in a dict or list.
+    Recursively walks a dict/list example tree. Type coercion (string -> int/float/bool) now
+    happens at the source in header_file_parser.py, where the symbol's declared JSON type is
+    known; this function no longer guesses from string content, since a string that merely looks
+    numeric (e.g. an IR code "1156") is not necessarily meant to become a JSON number.
     """
     if isinstance(obj, dict):
         return {k: _convert_json_types(v) for k, v in obj.items()}
     elif isinstance(obj, list):
         return [_convert_json_types(i) for i in obj]
-    elif isinstance(obj, str):
-        if obj.lower() == 'true':
-            return True
-        if obj.lower() == 'false':
-            return False
-        try:
-            if '.' in obj:
-                return float(obj)
-            return int(obj)
-        except ValueError:
-            return obj
     else:
         return obj
