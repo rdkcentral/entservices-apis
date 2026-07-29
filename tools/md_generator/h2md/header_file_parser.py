@@ -115,9 +115,9 @@ class HeaderFileParser:
         'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'enum_mem_expr': re.compile(r'^\s*([\w\d\[\]]+)\s*(?:=\s*([^\/\n]+?))?\s*(?:(?:\/\*|\/\/)(.*))?$'),
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
-        'struct_mem':   re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
+        'struct_mem':   re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
-        'method_param': re.compile(r'([\w\d\:\*]+)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
+        'method_param': re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
     }
 
     def __init__(self, header_file_path: str, plugin_name: str, logger: Logger):
@@ -508,6 +508,7 @@ class HeaderFileParser:
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
+                    member_type, _ = self.unwrap_optional_type(member_type)
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
@@ -619,7 +620,7 @@ class HeaderFileParser:
 
         params = []
         results = []
-        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction) in param_info_list.items():
+        for symbol_name, (symbol_type, symbol_inline_comment, custom_name, unwrapped, keep_key, direction, is_optional_type) in param_info_list.items():
             if self.logger:
                 self.logger.log("INFO", f"Processing param: symbol_name={symbol_name}, symbol_type={symbol_type}, custom_name={custom_name}, direction={direction}, symbol_inline_comment={symbol_inline_comment}")
             if '::' in symbol_type:
@@ -634,7 +635,7 @@ class HeaderFileParser:
                 if self.logger:
                     self.logger.log("INFO", f"Overridden name for param {symbol_name} found in doxy tags as {overridden_name}")
             symbol_description = doxy_tag_param_info.get(overridden_name, {}).get('description', '')
-            symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '')
+            symbol_optionality = doxy_tag_param_info.get(overridden_name, {}).get('optionality', '') or ('optional' if is_optional_type else '')
             symbol_direction = doxy_tag_param_info.get(overridden_name, {}).get('direction', '') or direction
 
             symbol_example = doxy_tag_examples.get(overridden_name) if doxy_tag_examples else None
@@ -661,6 +662,18 @@ class HeaderFileParser:
                 params.append(symbol_info)
         return params, results
 
+    OPTIONAL_TYPE_REGEX = re.compile(r'^(?:Core::)?OptionalType\s*<\s*([\w\d:]+)\s*>$')
+
+    def unwrap_optional_type(self, type_str):
+        """
+        If type_str is a Core::OptionalType<T> wrapper, returns (T, True). Otherwise returns
+        (type_str, False) unchanged.
+        """
+        match = self.OPTIONAL_TYPE_REGEX.match(type_str)
+        if match:
+            return match.group(1), True
+        return type_str, False
+
     def get_info_from_param_declaration(self, parameters):
         """
         Helper to extract parameter information from a parameter list string.
@@ -675,6 +688,7 @@ class HeaderFileParser:
             match = self.CPP_COMPONENT_REGEX['method_param'].match(param)
             if match:
                 param_type, param_name, param_inline_comment = match.groups()
+                param_type, is_optional_type = self.unwrap_optional_type(param_type)
                 interger_regex_pattern = r'u?int(8|16|32|64)_t'
                 if re.match(interger_regex_pattern, param_type):
                     param_type = 'integer'
@@ -699,7 +713,7 @@ class HeaderFileParser:
                         direction = 'inout'
                     else:
                         direction = 'in'
-                param_info[param_name] = (param_type, param_inline_comment, custom_name, unwrapped, keep_key, direction)
+                param_info[param_name] = (param_type, param_inline_comment, custom_name, unwrapped, keep_key, direction, is_optional_type)
             else:
                 if self.logger:
                     self.logger.log("ERROR", f"Could not extract parameter information from: {param}")

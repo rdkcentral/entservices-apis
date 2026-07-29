@@ -598,11 +598,11 @@ Triggered when the interaction with the server has concluded
 | params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
 | params.serverStats.serverIp | string | The IP of the voice server  |
 | params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
-| params.success | string | Result data for a successful voice session containing transcription |
-| params.error | string | Result data for a failed voice session containing error codes |
-| params.abort | string | Result data for an aborted voice session containing reason |
-| params.shortUtterance | string | Result data for a short utterance voice session containing reason |
-| params.stbStats | string | STB statistics including device type, firmware, and controller info |
+| params?.success | string | <sup>(optional)</sup>Result data for a successful voice session containing transcription |
+| params?.error | string | <sup>(optional)</sup>Result data for a failed voice session containing error codes |
+| params?.abort | string | <sup>(optional)</sup>Result data for an aborted voice session containing reason |
+| params?.shortUtterance | string | <sup>(optional)</sup>Result data for a short utterance voice session containing reason |
+| params?.stbStats | string | <sup>(optional)</sup>STB statistics including device type, firmware, and controller info |
 
 ### Examples
 
