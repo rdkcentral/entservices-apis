@@ -302,6 +302,50 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
 
+  /** Sets the bounds (position and size) of the given client */
+  // @json:omit
+  // @brief Sets the x, y position and width, height dimensions of the given client
+  // @param clientId: client name or application instance ID
+  // @param x: x coordinate of the client window
+  // @param y: y coordinate of the client window
+  // @param width: width of the client window in pixels
+  // @param height: height of the client window in pixels
+  // @retval Core::ERROR_NONE: Bounds set successfully
+  // @retval Core::ERROR_GENERAL: Failed to set bounds
+  virtual Core::hresult SetBounds(const string& clientId, const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height) = 0;
+
+  /** Gets the bounds (position and size) of the given client */
+  // @json:omit
+  // @brief Gets the x, y position and width, height dimensions of the given client
+  // @param clientId: client name or application instance ID
+  // @param x: x coordinate of the client window
+  // @param y: y coordinate of the client window
+  // @param width: width of the client window in pixels
+  // @param height: height of the client window in pixels
+  // @retval Core::ERROR_NONE: Bounds retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to get bounds
+  virtual Core::hresult GetBounds(const string& clientId, uint32_t& x /* @out */, uint32_t& y /* @out */, uint32_t& width /* @out */, uint32_t& height /* @out */) const = 0;
+
+  /** Sets the scale of the given client */
+  // @json:omit
+  // @brief Sets the horizontal and vertical scale factors of the given client
+  // @param clientId: client name or application instance ID
+  // @param scaleX: horizontal scale factor
+  // @param scaleY: vertical scale factor
+  // @retval Core::ERROR_NONE: Scale set successfully
+  // @retval Core::ERROR_GENERAL: Failed to set scale
+  virtual Core::hresult SetScale(const string& clientId, const double scaleX, const double scaleY) = 0;
+
+  /** Gets the scale of the given client */
+  // @json:omit
+  // @brief Gets the horizontal and vertical scale factors of the given client
+  // @param clientId: client name or application instance ID
+  // @param scaleX: horizontal scale factor
+  // @param scaleY: vertical scale factor
+  // @retval Core::ERROR_NONE: Scale retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to get scale
+  virtual Core::hresult GetScale(const string& clientId, double& scaleX /* @out */, double& scaleY /* @out */) const = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework
