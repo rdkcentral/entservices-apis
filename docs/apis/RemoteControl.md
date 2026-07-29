@@ -219,7 +219,7 @@ None
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "INVALID",
+        "wakeupConfig": "all",
         "customKeys": "195,199"
     }
 }
@@ -229,7 +229,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "INVALID", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "all", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -481,14 +481,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | params?.model | string | <sup>(optional)</sup>A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | result?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | result?.model | string | <sup>(optional)</sup>A part (minimum of 3 characters) of the model name of the AV device  |
 | result.success | bool | Whether the request succeeded |
@@ -506,7 +506,7 @@ None
     "id": 7,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6"
     }
@@ -517,7 +517,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -528,7 +528,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
     "jsonrpc": "2.0",
     "id": 7,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6",
         "success": true,
@@ -550,13 +550,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | result.success | bool | Whether the request succeeded |
 | result.manufacturers | array | A list of manufacturer names  |
 | result.manufacturers[#] | string |  |
@@ -572,7 +572,7 @@ None
     "id": 8,
     "method": "org.rdk.RemoteControl.getIRDBManufacturers",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Sam"
     }
 }
@@ -582,7 +582,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "INVALID", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "TV", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -593,7 +593,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
     "jsonrpc": "2.0",
     "id": 8,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "success": true,
         "manufacturers": [
             "Samsung"
@@ -613,14 +613,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | result?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | result.success | bool | Whether the request succeeded |
 | result.models | array | A list of model names  |
@@ -637,7 +637,7 @@ None
     "id": 9,
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6"
     }
@@ -648,7 +648,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -659,7 +659,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
     "jsonrpc": "2.0",
     "id": 9,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "success": true,
         "models": [
@@ -867,7 +867,7 @@ None
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
 | params.netType | integer | The type of network  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
 | Name | Type | Description |
@@ -888,7 +888,7 @@ None
     "params": {
         "remoteId": 1,
         "netType": 1,
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "code": "PANASONIC_3DTV"
     }
 }
@@ -898,7 +898,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "INVALID", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
