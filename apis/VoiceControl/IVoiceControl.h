@@ -104,7 +104,7 @@ namespace WPEFramework {
             DeviceStatus ptt     /* @brief The status information for the PTT device type */;
             DeviceStatus ff      /* @brief The status information for the FF device type */;
             DeviceStatus mic     /* @brief The status information for the MIC device type */;
-            DeviceStatus micTap  /* @optional @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
+            Core::OptionalType<DeviceStatus> micTap /* @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
             string capabilities  /* @opaque @brief JSON array of capability strings returned by the voice stack */;
             bool success         /* @brief Whether the request succeeded */;
         };
@@ -159,7 +159,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to send voice message.
-            virtual Core::hresult SendVoiceMessage(const string& msgType, const string& trx /* @optional */, const uint64_t created /* @optional */, const string& msgPayload /* @optional @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SendVoiceMessage(const string& msgType, const Core::OptionalType<string>& trx, const Core::OptionalType<uint64_t>& created, const Core::OptionalType<string>& msgPayload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
             // @text voiceSessionByText
@@ -169,7 +169,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session by text executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute voice session by text.
-            virtual Core::hresult VoiceSessionByText(const string& transcription, const DeviceType type /* @optional */, VoiceControlSuccessResult& result /* @out */) = 0; // DEPRECATED
+            virtual Core::hresult VoiceSessionByText(const string& transcription, const Core::OptionalType<DeviceType>& type, VoiceControlSuccessResult& result /* @out */) = 0; // DEPRECATED
 
             // @brief Retrieves the types of voice sessions which are supported by the platform
             // @text voiceSessionTypes
@@ -261,7 +261,7 @@ namespace WPEFramework {
                 // @param abort: Result data for an aborted voice session containing reason
                 // @param shortUtterance: Result data for a short utterance voice session containing reason
                 // @param stbStats: STB statistics including device type, firmware, and controller info
-                virtual void OnSessionEnd(const uint32_t remoteId, const string& sessionId, const SessionResult result, const ServerStats& serverStats, const string& success /* @optional @opaque */, const string& error /* @optional @opaque */, const string& abort /* @optional @opaque */, const string& shortUtterance /* @optional @opaque */, const string& stbStats /* @optional @opaque */) {}
+                virtual void OnSessionEnd(const uint32_t remoteId, const string& sessionId, const SessionResult result, const ServerStats& serverStats, const Core::OptionalType<string>& success /* @opaque */, const Core::OptionalType<string>& error /* @opaque */, const Core::OptionalType<string>& abort /* @opaque */, const Core::OptionalType<string>& shortUtterance /* @opaque */, const Core::OptionalType<string>& stbStats /* @opaque */) {}
             };
 
             // @json:omit
