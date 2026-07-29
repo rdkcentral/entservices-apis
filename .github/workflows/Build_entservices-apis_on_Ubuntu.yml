@@ -9,9 +9,8 @@ on:
 jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
-    env: 
-       THUNDER_TOOLS_COMMIT_SHA: b6789ca88b1e6c56942d9858d6d4411eae389ddc
-       THUNDER_COMMIT_SHA: 1bfb85b75cb20409dbd69d34ea056171c9cdf565
+    env:
+       THUNDER_REF: "R4.4.6"
        
 
     steps:
@@ -25,17 +24,11 @@ jobs:
 
       - name: Clone ThunderTools
         run: |
-          git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
-          cd ThunderTools
-          git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
-          cd ..
+          git clone -b ${{ env.THUNDER_REF }} https://github.com/rdkcentral/ThunderTools.git
           
       - name: Clone Thunder
         run: |
-          git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
-          cd Thunder
-          git checkout ${{ env.THUNDER_COMMIT_SHA}}
-          cd ..
+          git clone -b ${{ env.THUNDER_REF }} https://github.com/rdkcentral/Thunder.git
      
       - name: Install jsonref
         run: |
@@ -45,7 +38,14 @@ jobs:
       - name: Apply ThunderTools Patch
         run: |
           cd ThunderTools
-          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
+          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4.6-Add-support-for-project-dir.patch
+          cd ..
+
+      - name: Apply patches Thunder
+        run: |
+          cd Thunder
+          git apply $GITHUB_WORKSPACE/.github/Patches/error_code_R4_4_6.patch
+          git apply $GITHUB_WORKSPACE/.github/Patches/1004-R4.4.6-Add-support-for-project-dir.patch
           cd ..
           
       - name: Build ThunderTools
