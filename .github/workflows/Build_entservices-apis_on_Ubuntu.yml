@@ -9,10 +9,10 @@ on:
 jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
-    env: 
-       THUNDER_TOOLS_COMMIT_SHA: b6789ca88b1e6c56942d9858d6d4411eae389ddc
-       THUNDER_COMMIT_SHA: 1bfb85b75cb20409dbd69d34ea056171c9cdf565
-       
+    env:
+       THUNDER_TOOLS_COMMIT_SHA: d5dd83c7c19c49c7f25c558c126500bd2d64f7a4
+       THUNDER_COMMIT_SHA: 2c0fcc5529e7da734be558ca6efa05d934dcce31
+
 
     steps:
       - name: Checkout Repository
@@ -25,29 +25,23 @@ jobs:
 
       - name: Clone ThunderTools
         run: |
-          git clone -b R4_4 https://github.com/rdkcentral/ThunderTools.git
+          git clone -b R4_4-RDK https://github.com/rdkcentral/ThunderTools.git
           cd ThunderTools
           git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
           cd ..
-          
+
       - name: Clone Thunder
         run: |
           git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
           cd Thunder
           git checkout ${{ env.THUNDER_COMMIT_SHA}}
           cd ..
-     
+
       - name: Install jsonref
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install jsonref
 
-      - name: Apply ThunderTools Patch
-        run: |
-          cd ThunderTools
-          git apply $GITHUB_WORKSPACE/.github/Patches/00010-R4.4-Add-support-for-project-dir.patch
-          cd ..
-          
       - name: Build ThunderTools
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
