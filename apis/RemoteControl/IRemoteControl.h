@@ -158,7 +158,6 @@ namespace WPEFramework {
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
-            // @json:omit
             // @text startPairing
             // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
@@ -171,7 +170,6 @@ namespace WPEFramework {
             virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
-            // @json:omit
             // @text stopPairing
             // @param screenBindDisable(optional): Whether screen bind pairing should be disabled. If omitted, backend default is used.
             // @param scanDisable(optional): Whether scan pairing should be disabled. If omitted, backend default is used.
