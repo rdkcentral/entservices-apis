@@ -319,12 +319,18 @@ namespace WPEFramework
         // @param transactionId: transaction id as received in OnPowerModePreChange
         virtual Core::hresult PowerModePreChangeComplete(const uint32_t clientId , const int transactionId ) = 0;
 
-        /** Delay Powermode change by given time */
+        /** Delay Powermode change by given time (DEEP_SLEEP transitions only) */
         // @text delayPowerModeChangeBy
-        // @brief Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
+        // @brief Delay Powermode change by given time for DEEP_SLEEP transitions only.
+        //        This API is RESTRICTED to DEEP_SLEEP state transitions to ensure responsive user experience
+        //        during wakeup and normal operations. For ON, STANDBY, and LIGHT_SLEEP transitions,
+        //        this API will return ERROR_INVALID_PARAMETER and the transition will proceed immediately.
+        //        If different clients provide different values of delay for DEEP_SLEEP, the maximum value is used.
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
-        // @param delayPeriod: delay in seconds
+        // @param delayPeriod: delay in seconds (only honored for DEEP_SLEEP transitions)
+        // @retval ErrorCode::ERROR_NONE: Delay accepted (DEEP_SLEEP transition)
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Delay rejected (non-DEEP_SLEEP transition)
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
 
         /** Get the Wakeup Time in seconds */
