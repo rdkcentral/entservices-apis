@@ -92,7 +92,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
-            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch ex: 1700000000000 */;
+            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch ex: 1785344173000 */;
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
             string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
             uint32_t sourceKeyCode      /* @brief The source key code ex: 195 */;

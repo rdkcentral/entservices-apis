@@ -199,7 +199,7 @@ This method takes no parameters.
 | result.response.mic.status | string | The status of the device  |
 | result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | object | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
 | result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
-| result.response.capabilities | string | JSON array of capability strings returned by the voice stack |
+| result.response.capabilities | string | JSON array of capability strings returned by the voice stack e.g. ["PRV"] |
 | result.response.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -267,8 +267,8 @@ None
 | params | object |  |
 | params.msgType | string | Message type from the server  |
 | params?.trx | string | <sup>(optional)</sup>The unique id of the voice session  |
-| params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch |
-| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information |
+| params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch  |
+| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}} |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -288,7 +288,7 @@ None
     "params": {
         "msgType": "asr",
         "trx": "12345-abc",
-        "created": 0,
+        "created": 1700000000000,
         "msgPayload": ""
     }
 }
@@ -298,7 +298,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 1700000000000, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -533,8 +533,8 @@ Triggered when a message is received from the Voice Server
 | params | object |  |
 | params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
-| params.created | integer | The timestamp for server information in milliseconds since epoch |
-| params.msgPayload | string | Vrex server information |
+| params.created | integer | The timestamp for server information in milliseconds since epoch  |
+| params.msgPayload | string | Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}} |
 
 ### Examples
 
@@ -546,7 +546,7 @@ Triggered when a message is received from the Voice Server
     "params": {
         "msgType": "asr",
         "trx": "12345-abc",
-        "created": 0,
+        "created": 1700000000000,
         "msgPayload": ""
     }
 }

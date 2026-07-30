@@ -684,7 +684,7 @@ This method takes no parameters.
 | result | object |  |
 | result.response | object | The last keypress source response |
 | result.response.controllerId | integer | The controller ID of the target remote on the specified network  |
-| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch |
+| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch  |
 | result.response.sourceName | string | The source of the last key press  |
 | result.response.sourceType | string | The source type of the last key press  |
 | result.response.sourceKeyCode | integer | The source key code  |
@@ -721,7 +721,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "
     "id": 10,
     "result": {
         "controllerId": 1,
-        "timestamp": 0,
+        "timestamp": 1785344173000,
         "sourceName": "IR",
         "sourceType": "REMOTE",
         "sourceKeyCode": 195,
@@ -934,7 +934,7 @@ None
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | array | List of session IDs created for the firmware update(s) |
+| result.sessionIdList | array | List of session IDs created for the firmware update(s)  |
 | result.sessionIdList[#] | string |  |
 
 ### Examples
@@ -973,7 +973,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
     "result": {
         "success": true,
         "sessionIdList": [
-            ""
+            "12345-abc-def"
         ]
     }
 }
@@ -993,7 +993,7 @@ None
 | params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds. If omitted, backend default is used. |
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled. If omitted, backend default is used. |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled. If omitted, backend default is used. |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend). |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend)  |
 | params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
@@ -1016,7 +1016,7 @@ None
         "screenBindEnable": true,
         "scanEnable": true,
         "macAddressList": [
-            ""
+            "AA:BB:CC:DD:EE:FF"
         ]
     }
 }
@@ -1026,7 +1026,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": [""]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1177,7 +1177,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes) |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
 | params?.macAddressList[#] | string | <sup>(optional)</sup> |
 ### Results
 | Name | Type | Description |
@@ -1196,7 +1196,7 @@ None
     "id": 18,
     "method": "org.rdk.RemoteControl.unpair",
     "params": [
-        ""
+        "AA:BB:CC:DD:EE:FF"
     ]
 }
 ```
@@ -1205,7 +1205,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": ["AA:BB:CC:DD:EE:FF"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

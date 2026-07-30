@@ -105,7 +105,7 @@ namespace WPEFramework {
             DeviceStatus ff                         /* @brief The status information for the FF device type */;
             DeviceStatus mic                        /* @brief The status information for the MIC device type */;
             Core::OptionalType<DeviceStatus> micTap /* @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
-            string capabilities                     /* @opaque @brief JSON array of capability strings returned by the voice stack */;
+            string capabilities                     /* @opaque @brief JSON array of capability strings returned by the voice stack e.g. ["PRV"] */;
             bool success                            /* @brief Whether the request succeeded */;
         };
 
@@ -132,7 +132,7 @@ namespace WPEFramework {
             // @json:omit
             // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
             // @text configureVoice
-            // @param payload: The configuration payload as a JSON object
+            // @param payload: The configuration payload as a JSON object e.g. {"urlAll": "ws://voice.example.com/all", "prv": false, "wwFeedback": false, "ptt": {"enable": true}}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -142,7 +142,7 @@ namespace WPEFramework {
             // @json:omit
             // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id).
             // @text setVoiceInit
-            // @param payload: The voice init payload as a JSON object
+            // @param payload: The voice init payload as a JSON object e.g. {"roles": ["envoy", "input"], "transmissionProtocol": "webSocket", "downstreamProtocol": "webSocket", "capabilities": ["GUI", "WBW"], "clientProfile": "profileName", "language": "eng-USA", "vrexFields": ["executeResponse"], "id": {"type": "deviceType", "partner": "partnerName"}}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -154,7 +154,7 @@ namespace WPEFramework {
             // @param msgType: Message type from the server e.g. "asr"
             // @param trx(optional): The unique id of the voice session e.g. "12345-abc"
             // @param created(optional): The timestamp for server information in milliseconds since epoch ex: 1700000000000
-            // @param msgPayload(optional): Vrex server information
+            // @param msgPayload(optional): Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -183,8 +183,8 @@ namespace WPEFramework {
             // @json:omit
             // @brief Requests a voice session using the specified request type and optional parameters. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. type, transcription, audio_file, audio_format, name). The result is the raw JSON returned by ctrlm (e.g. success, sessionId).
             // @text voiceSessionRequest
-            // @param payload: The voice session request parameters as a JSON object
-            // @param result: The raw JSON result from ctrlm
+            // @param payload: The voice session request parameters as a JSON object e.g. {"transcription": "comedy movies", "type": "ptt_transcription"}
+            // @param result: The raw JSON result from ctrlm e.g. {"sessionId": "83d7747d-e02f-42f8-bdc3-bc8f510605c6", "success": true}
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
@@ -240,7 +240,7 @@ namespace WPEFramework {
                 // @param msgType: Message type from the server e.g. "asr"
                 // @param trx: The unique id of the voice session e.g. "12345-abc"
                 // @param created: The timestamp for server information in milliseconds since epoch ex: 1700000000000
-                // @param msgPayload: Vrex server information
+                // @param msgPayload: Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}
                 virtual void OnServerMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload /* @opaque @restrict:256K */) {}
 
                 // @brief Triggered when the device has stopped streaming audio
