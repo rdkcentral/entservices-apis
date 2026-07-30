@@ -51,8 +51,8 @@ namespace WPEFramework
             KED_PERIOD = 63 /* @text KED_PERIOD */,             /* KEY_F5 */
             KED_PUSH_TO_TALK = 66 /* @text KED_PUSH_TO_TALK */,       /* KEY_F8 */
             KED_POWER = 116 /* @text KED_POWER */,             /* KEY_POWER */
-            KED_CHANNELUP = 103 /* @text KED_CHANNELUP */,         /* KEY_UP, modifier KEY_LEFTCTRL = 29 */
-            KED_CHANNELDOWN = 108 /* @text KED_CHANNELDOWN */,       /* KEY_DOWN, modifier KEY_LEFTCTRL = 29 */
+            KED_CHANNELUP = 103 /* @text KED_CHANNELUP */,         /* KEY_UP */
+            KED_CHANNELDOWN = 108 /* @text KED_CHANNELDOWN */,       /* KEY_DOWN */
             KED_VOLUMEUP = 78 /* @text KED_VOLUMEUP */,           /* KEY_KPPLUS */
             KED_VOLUMEDOWN = 74 /* @text KED_VOLUMEDOWN */,         /* KEY_KPMINUS */
             KED_MUTE = 55 /* @text KED_MUTE */,               /* KEY_KPASTERISK */
@@ -70,7 +70,7 @@ namespace WPEFramework
             KED_REWIND = 68 /* @text KED_REWIND */,             /* KEY_F10 */
             KED_PAUSE = 87 /* @text KED_PAUSE */,              /* KEY_F11 */
             KED_PLAY = 87 /* @text KED_PLAY */,               /* KEY_F11 */
-            KED_STOP = 31 /* @text KED_STOP */,               /* KEY_S, modifier KEY_LEFTCTRL = 29 */
+            KED_STOP = 31 /* @text KED_STOP */,               /* KEY_S */
             KED_RECORD = 65 /* @text KED_RECORD */,             /* KEY_F7 */
             KED_ARROWUP = 103 /* @text KED_ARROWUP */,           /* KEY_UP */
             KED_ARROWDOWN = 108 /* @text KED_ARROWDOWN */,         /* KEY_DOWN */
@@ -78,8 +78,8 @@ namespace WPEFramework
             KED_ARROWRIGHT = 106 /* @text KED_ARROWRIGHT */,        /* KEY_RIGHT */
             KED_PAGEUP = 104 /* @text KED_PAGEUP */,            /* KEY_PAGEUP */
             KED_PAGEDOWN = 109 /* @text KED_PAGEDOWN */,          /* KEY_PAGEDOWN */
-            KED_LAST = 38 /* @text KED_LAST */,               /* KEY_L, modifier KEY_LEFTCTRL = 29 */
-            KED_FAVORITE = 49 /* @text KED_FAVORITE */,           /* KEY_N, modifier KEY_LEFTCTRL = 29 */
+            KED_LAST = 38 /* @text KED_LAST */,               /* KEY_L */
+            KED_FAVORITE = 49 /* @text KED_FAVORITE */,           /* KEY_N */
             KED_KEYA = 110 /* @text KED_KEYA */,              /* KEY_INSERT */
             KED_KEYB = 107 /* @text KED_KEYB */,              /* KEY_END */
             KED_KEYC = 62 /* @text KED_KEYC */,               /* KEY_F4 */
@@ -92,7 +92,7 @@ namespace WPEFramework
             KED_POUND = 236 /* @text KED_POUND */,             /* KEY_BATTERY */
             KED_AUDIO = 193 /* @text KED_AUDIO */,             /* KEY_F23 */
             KED_CLOSED_CAPTIONING = 194 /* @text KED_CLOSED_CAPTIONING */, /* KEY_F24 */
-            KED_REPLAY = 48 /* @text KED_REPLAY */,             /* KEY_B, modifier KEY_LEFTCTRL = 29 */
+            KED_REPLAY = 48 /* @text KED_REPLAY */,             /* KEY_B */
             KED_SEARCH = 61 /* @text KED_SEARCH */,             /* KEY_F3 */
             KED_RF_PAIR_GHOST = 237 /* @text KED_RF_PAIR_GHOST */,     /* KEY_BLUETOOTH */
             KED_UNDEFINEDKEY = 240 /* @text KED_UNDEFINEDKEY */       /* KEY_UNKNOWN */
