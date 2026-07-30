@@ -89,24 +89,24 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL VoiceSessionRequestData {
-            string transcription /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
-            string audioFile     /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
+            string transcription         /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
+            string audioFile             /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
             VoiceSessionRequestType type /* @brief The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test */;
         };
 
         struct EXTERNAL VoiceStatusResponse {
-            bool maskPii         /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
-            string urlPtt        /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
-            string urlHf         /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
-            string urlMicTap     /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
-            bool prv             /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
-            bool wwFeedback      /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
-            DeviceStatus ptt     /* @brief The status information for the PTT device type */;
-            DeviceStatus ff      /* @brief The status information for the FF device type */;
-            DeviceStatus mic     /* @brief The status information for the MIC device type */;
+            bool maskPii                            /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
+            string urlPtt                           /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
+            string urlHf                            /* @brief The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" */;
+            string urlMicTap                        /* @brief The microphone tap URL e.g. "ws://voice.example.com/mictap" */;
+            bool prv                                /* @brief The Press & Release Voice feature (true for enable, false for disable) */;
+            bool wwFeedback                         /* @brief The Wake Word Feedback feature (true for enable, false for disable) */;
+            DeviceStatus ptt                        /* @brief The status information for the PTT device type */;
+            DeviceStatus ff                         /* @brief The status information for the FF device type */;
+            DeviceStatus mic                        /* @brief The status information for the MIC device type */;
             Core::OptionalType<DeviceStatus> micTap /* @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
-            string capabilities  /* @opaque @brief JSON array of capability strings returned by the voice stack */;
-            bool success         /* @brief Whether the request succeeded */;
+            string capabilities                     /* @opaque @brief JSON array of capability strings returned by the voice stack */;
+            bool success                            /* @brief Whether the request succeeded */;
         };
 
         /* @json 1.0.0 @text:keep */

@@ -102,10 +102,10 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateStatusData {
-            string upgradeSessionId    /* @brief The firmware update session identifier ex: 12345-abc-def */;
-            string macAddress          /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
-            FirmwareUpdateState upgradeState /* @brief The firmware update state */;
-            uint32_t percentComplete   /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
+            string upgradeSessionId                /* @brief The firmware update session identifier ex: 12345-abc-def */;
+            string macAddress                      /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
+            FirmwareUpdateState upgradeState       /* @brief The firmware update state */;
+            uint32_t percentComplete               /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
             Core::OptionalType<string> errorString /* @brief The firmware update error string, only present on failure */;
         };
 
