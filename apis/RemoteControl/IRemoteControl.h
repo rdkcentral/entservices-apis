@@ -92,7 +92,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
-            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
+            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch ex: 1700000000000 */;
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
             string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
             uint32_t sourceKeyCode      /* @brief The source key code ex: 195 */;
@@ -160,7 +160,7 @@ namespace WPEFramework {
             // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
             // @param scanEnable(optional): Whether scan pairing is enabled. If omitted, backend default is used.
-            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend).
+            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend) e.g. "AA:BB:CC:DD:EE:FF"
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -305,7 +305,7 @@ namespace WPEFramework {
             // @brief Unpairs all remotes from the STB
             // @text unpair
             // @param result: Whether the request succeeded
-            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
+            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. "AA:BB:CC:DD:EE:FF"
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
@@ -318,7 +318,7 @@ namespace WPEFramework {
             // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
             // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
-            // @param sessionIdList: List of session IDs created for the firmware update(s)
+            // @param sessionIdList: List of session IDs created for the firmware update(s) e.g. "12345-abc-def"
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
