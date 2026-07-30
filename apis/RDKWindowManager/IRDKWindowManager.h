@@ -311,7 +311,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
 
   /** Sets the bounds (position and size) of the given client */
-  // @json:omit
+  // @text setBounds
   // @brief Sets the x, y position and width, height dimensions of the given client
   // @param clientId: client name or application instance ID
   // @param x: x coordinate of the client window
@@ -323,7 +323,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult SetBounds(const string& clientId, const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height) = 0;
 
   /** Gets the bounds (position and size) of the given client */
-  // @json:omit
+  // @text getBounds
   // @brief Gets the x, y position and width, height dimensions of the given client
   // @param clientId: client name or application instance ID
   // @param x: x coordinate of the client window
@@ -335,7 +335,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult GetBounds(const string& clientId, uint32_t& x /* @out */, uint32_t& y /* @out */, uint32_t& width /* @out */, uint32_t& height /* @out */) const = 0;
 
   /** Sets the scale of the given client */
-  // @json:omit
+  // @text setScale
   // @brief Sets the horizontal and vertical scale factors of the given client
   // @param clientId: client name or application instance ID
   // @param scaleX: horizontal scale factor
@@ -345,7 +345,7 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   virtual Core::hresult SetScale(const string& clientId, const double scaleX, const double scaleY) = 0;
 
   /** Gets the scale of the given client */
-  // @json:omit
+  // @text getScale
   // @brief Gets the horizontal and vertical scale factors of the given client
   // @param clientId: client name or application instance ID
   // @param scaleX: horizontal scale factor
