@@ -165,7 +165,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
