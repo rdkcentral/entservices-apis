@@ -53,6 +53,7 @@ jobs:
           cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
           cmake --build ThunderTools/build
           sudo cmake --install ThunderTools/build
+          sudo chown -R "$(id -u):$(id -g)" install
 
       - name: Build Thunder
         run: |
@@ -63,7 +64,9 @@ jobs:
             -DPORT="55555" \
             -DTOOLS_SYSROOT="${PWD}" \
             -DINITV_SCRIPT=OFF
-          cmake --build Thunder/build --target install
+          cmake --build Thunder/build
+          sudo cmake --install Thunder/build
+          sudo chown -R "$(id -u):$(id -g)" install
 
       - name: Build entservices-apis
         run: |
