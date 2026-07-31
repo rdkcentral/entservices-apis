@@ -286,6 +286,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
 
+  /** Gets the currently focused application */
+  // @text getFocused
+  // @brief Gets the identifier of the currently focused application
+  // @param client: Output parameter. The identifier of the currently focused application
+  // @retval Core::ERROR_NONE: Successfully retrieved the focused application identifier
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the focused application identifier
+  virtual Core::hresult GetFocused(string &client /* @out */) const = 0;
+
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
   // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
