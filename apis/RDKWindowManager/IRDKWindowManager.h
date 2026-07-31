@@ -21,6 +21,8 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework {
 namespace Exchange {
 // @json 1.0.0 @text:keep
