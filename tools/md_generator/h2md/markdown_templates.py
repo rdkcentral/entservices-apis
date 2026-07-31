@@ -392,11 +392,12 @@ def generate_parameters_section(params, symbol_registry):
                     flattened_params[first_key].get('description', '')
                 )
                 flattened_params[first_key] = {**flattened_params[first_key], 'description': merged_description}
-            for param_name, param_data in flattened_params.items():
+            for is_root, (param_name, param_data) in ((i == 0, item) for i, item in enumerate(flattened_params.items())):
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
-                optionality = f"<sup>({param['optionality']})</sup>" if param['optionality'] == 'optional' else ''
+                is_optional = (param['optionality'] == 'optional') if is_root else param_data.get('optional', False)
+                optionality = '<sup>(optional)</sup>' if is_optional else ''
                 markdown += f"| params{'?' if optionality else ''}{param_name} | {param_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += "This method takes no parameters.\n"
@@ -427,11 +428,12 @@ def generate_results_section(results, symbol_registry):
                     flattened_results[first_key].get('description', '')
                 )
                 flattened_results[first_key] = {**flattened_results[first_key], 'description': merged_description}
-            for result_name, result_data in flattened_results.items():
+            for is_root, (result_name, result_data) in ((i == 0, item) for i, item in enumerate(flattened_results.items())):
                 cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
-                optionality = f"<sup>({result['optionality']})</sup>" if result['optionality'] == 'optional' else ''
+                is_optional = (result['optionality'] == 'optional') if is_root else result_data.get('optional', False)
+                optionality = '<sup>(optional)</sup>' if is_optional else ''
                 markdown += f"| result{'?' if optionality else ''}{result_name} | {result_data['type']} | {optionality}{cleaned_description if cleaned_description else ''} |\n"
     else:
         markdown += """| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"""

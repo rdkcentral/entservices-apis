@@ -508,20 +508,21 @@ class HeaderFileParser:
                 member_match = self.CPP_COMPONENT_REGEX['struct_mem'].match(member_def)
                 if member_match:
                     member_type, member_name, description = member_match.groups()
-                    member_type, _ = self.unwrap_optional_type(member_type)
+                    member_type, member_is_optional = self.unwrap_optional_type(member_type)
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+([^\*/]+)'
+                    text_tag_pattern = r'@text\s+([^\*/@]+)'
                     text_tag_match = re.search(text_tag_pattern, description) if description else None
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+([^\*/]+)'
+                    brief_tag_pattern = r'@brief\s+([^\*/@]+)'
                     brief_tag_match = re.search(brief_tag_pattern, description) if description else None
                     description = self.clean_description(brief_tag_match.group(1)) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
                         'description': description.strip() if description else '',
-                        'custom_name': custom_name.strip() if custom_name else member_name
+                        'custom_name': custom_name.strip() if custom_name else member_name,
+                        'optional': member_is_optional
                     }
                     # register each data member in the global symbol registry
                     self.register_symbol(member_name, custom_name, member_type, description, False)
@@ -1266,6 +1267,7 @@ class HeaderFileParser:
                 member_type = struct[member_name]['type']
                 member_desc = struct[member_name]['description']
                 member_custom_name = struct[member_name].get('custom_name', '')
+                member_optional = struct[member_name].get('optional', False)
                 overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
                 curr_key = f"{parent_key}.{overridden_name}"
                 member_type_override = member_type
@@ -1281,7 +1283,7 @@ class HeaderFileParser:
                 if member_type in self.enums_registry:
                     pv = self._enum_possible_values(member_type)
                     member_desc_enhanced = f"{member_desc_enhanced}. {pv}" if member_desc_enhanced else pv
-                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc_enhanced}
+                flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc_enhanced, 'optional': member_optional}
                 flattened_descriptions.update(
                     self.flatten_description(curr_key, member_type))
             return flattened_descriptions

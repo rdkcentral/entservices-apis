@@ -197,8 +197,8 @@ This method takes no parameters.
 | result.response.ff.status | string | The status of the device  |
 | result.response.mic | object | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
-| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | object | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
-| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
+| result?.response.mic_tap | object | <sup>(optional)</sup>The status information for the MIC TAP device type, present only when MIC TAP capability is available |
+| result.response.mic_tap.status | string | The status of the device  |
 | result.response.capabilities | string | JSON array of capability strings returned by the voice stack e.g. ["PRV"] |
 | result.response.success | bool | Whether the request succeeded |
 
@@ -245,7 +245,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
         "mic": {
             "status": "ready"
         },
-        "mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available": {
+        "mic_tap": {
             "status": "ready"
         },
         "capabilities": "",

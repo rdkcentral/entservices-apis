@@ -994,7 +994,7 @@ None
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled. If omitted, backend default is used. |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled. If omitted, backend default is used. |
 | params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend)  |
-| params?.macAddressList[#] | string | <sup>(optional)</sup> |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1065,7 +1065,7 @@ None
 | result.response.status.macAddress | string | The MAC address of the remote in hex-colon format  |
 | result.response.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | result.response.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| result.response.status.errorString | string | The firmware update error string, only present on failure |
+| result?.response.status.errorString | string | <sup>(optional)</sup>The firmware update error string, only present on failure |
 
 ### Examples
 
@@ -1178,7 +1178,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
-| params?.macAddressList[#] | string | <sup>(optional)</sup> |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1248,7 +1248,7 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | params.status.macAddress | string | The MAC address of the remote in hex-colon format  |
 | params.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| params.status.errorString | string | The firmware update error string, only present on failure |
+| params?.status.errorString | string | <sup>(optional)</sup>The firmware update error string, only present on failure |
 
 ### Examples
 
