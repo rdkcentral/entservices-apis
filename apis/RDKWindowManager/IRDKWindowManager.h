@@ -26,7 +26,7 @@ namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   enum { ID = ID_RDK_WINDOW_MANAGER };
-
+  using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
   // @event 
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
@@ -113,8 +113,10 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Get the list of active Apps */
   // @text getApps
   // @brief Get the list of Apps which are currently active and available
-  // @param appsIds: Returns the list of app IDs as a JSON string.
-  virtual Core::hresult GetApps(string &appsIds /* @out */) const = 0;
+  // @param appsIds: Returns the list of active app IDs as a JSON array.
+  // @retval Core::ERROR_NONE: Active app IDs retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to retrieve active app IDs
+  virtual Core::hresult GetApps(IStringIterator*& appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept
@@ -285,6 +287,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @brief Stops the VNC server
   // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
+  
+  /** Gets the currently focused application */
+  // @text getFocused
+  // @brief Gets the identifier of the currently focused application
+  // @param client: Output parameter. The identifier of the currently focused application
+  // @retval Core::ERROR_NONE: Successfully retrieved the focused application identifier
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the focused application identifier
+  virtual Core::hresult GetFocused(string &client /* @out */) const = 0;
 
   /** Gets the currently focused application */
   // @text getFocused
@@ -309,7 +319,6 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE: Operation completed successfully
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
-
 };
 } // namespace Exchange
 } // namespace WPEFramework
