@@ -24,6 +24,71 @@ import json
 import os
 from logger import Logger
 
+def _find_balanced_json_end(text, open_index):
+    """
+    Given text[open_index] is '{' or '[', scans forward (respecting quoted strings)
+    to find the index just past the matching closing bracket. Returns None if unbalanced.
+    """
+    open_ch = text[open_index]
+    close_ch = '}' if open_ch == '{' else ']'
+    depth = 0
+    in_string = False
+    escape = False
+    for i in range(open_index, len(text)):
+        ch = text[i]
+        if in_string:
+            if escape:
+                escape = False
+            elif ch == '\\':
+                escape = True
+            elif ch == '"':
+                in_string = False
+        else:
+            if ch == '"':
+                in_string = True
+            elif ch == open_ch:
+                depth += 1
+            elif ch == close_ch:
+                depth -= 1
+                if depth == 0:
+                    return i + 1
+    return None
+
+def extract_inline_example_clause(description):
+    """
+    Finds an inline 'e.g. ...' or 'ex: ...' example clause within a doc comment description.
+    Supports a quoted string (e.g. "foo"), a balanced JSON object/array (e.g. {...} / e.g. [...]),
+    or a plain scalar (ex: 42). Returns (start, end, example_text) spanning the whole clause
+    (including the 'e.g./ex:' marker itself) so callers can both extract and strip it, or None
+    if no example clause is present.
+    """
+    if not description:
+        return None
+    eg_match = re.search(r'e\.g\.\s*', description)
+    if eg_match:
+        start = eg_match.start()
+        value_start = eg_match.end()
+        if value_start < len(description) and description[value_start] == '"':
+            quoted_match = re.match(r'"((?:[^"\\]|\\.)*)"', description[value_start:])
+            if quoted_match:
+                return start, value_start + quoted_match.end(), quoted_match.group(1)
+        elif value_start < len(description) and description[value_start] in '{[':
+            end = _find_balanced_json_end(description, value_start)
+            if end is not None:
+                return start, end, description[value_start:end]
+    ex_match = re.search(r'ex:\s*', description)
+    if ex_match:
+        start = ex_match.start()
+        value_start = ex_match.end()
+        rest = description[value_start:]
+        # Stop at the first sentence-ending period so trailing prose after the example
+        # is preserved, but don't mistake a decimal point (e.g. in "0.5") for one.
+        period_boundary = re.search(r'(?<!\d)\.(?!\d)', rest)
+        end_offset = period_boundary.start() if period_boundary else len(rest.rstrip())
+        value = rest[:end_offset]
+        return start, value_start + end_offset, value
+    return None
+
 class HeaderFileParser:
     """
     Parses a C++ header file to extract methods, properties, events, structs, enums, and iterators.
@@ -114,7 +179,11 @@ class HeaderFileParser:
         'enum':         re.compile(r'enum\s+(?:class\s)?\s*([\w\d]+)\s*(?:\:\s*([\w\d\:\*]*))?\s*\{([\s\S]*?)\}\;?'),
         'enum_mem':     re.compile(r'([\w\d\[\]]+)\s*(?:\=\s*([\w\d]+))?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'enum_mem_expr': re.compile(r'^\s*([\w\d\[\]]+)\s*(?:=\s*([^\/\n]+?))?\s*(?:(?:\/\*|\/\/)(.*))?$'),
-        'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*?)\}\;?'),
+        # Greedy body capture: struct_object is pre-trimmed to the struct's true closing
+        # brace by process_struct's own line-based brace counting, so matching to the
+        # LAST '}' (rather than the first) avoids stopping early on a '}' that appears
+        # inside a member's comment text (e.g. a JSON example).
+        'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*)\}\;?'),
         'struct_mem':   re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
         'method_param': re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
@@ -512,11 +581,17 @@ class HeaderFileParser:
                     interger_regex_pattern = r'u?int(8|16|32|64)_t'
                     if re.match(interger_regex_pattern, member_type):
                         member_type = 'integer'
-                    text_tag_pattern = r'@text\s+([^\*/@]+)'
-                    text_tag_match = re.search(text_tag_pattern, description) if description else None
+                    # Strip the trailing comment terminator before extracting @text/@brief so
+                    # legitimate '/' or '*' characters in the tag's own text (e.g. a URL) aren't
+                    # mistaken for the start of '*/' and truncated.
+                    description_for_tags = description.rstrip() if description else description
+                    if description_for_tags and description_for_tags.endswith('*/'):
+                        description_for_tags = description_for_tags[:-2].rstrip()
+                    text_tag_pattern = r'@text\s+([^@]+)'
+                    text_tag_match = re.search(text_tag_pattern, description_for_tags) if description_for_tags else None
                     custom_name = text_tag_match.group(1) if text_tag_match else ''
-                    brief_tag_pattern = r'@brief\s+([^\*/@]+)'
-                    brief_tag_match = re.search(brief_tag_pattern, description) if description else None
+                    brief_tag_pattern = r'@brief\s+([^@]+)'
+                    brief_tag_match = re.search(brief_tag_pattern, description_for_tags) if description_for_tags else None
                     description = self.clean_description(brief_tag_match.group(1)) if brief_tag_match else self.clean_description(description)
                     self.structs_registry[struct_name][member_name] = {
                         'type': member_type,
@@ -933,6 +1008,15 @@ class HeaderFileParser:
         """
         if not isinstance(example, str):
             return example
+        stripped_example = example.strip()
+        if stripped_example.startswith('{') or stripped_example.startswith('['):
+            # @opaque string fields carry raw JSON that is embedded unquoted on the wire
+            # (SetQuoted(false)), so a JSON-looking example should render as a literal
+            # object/array in generated examples, not as an escaped string.
+            try:
+                return json.loads(stripped_example)
+            except (json.JSONDecodeError, TypeError, ValueError):
+                pass
         symbol_type = self.symbols_registry.get(unique_id, {}).get('type')
         if symbol_type == 'bool':
             lowered = example.lower()
@@ -1028,12 +1112,14 @@ class HeaderFileParser:
 
     def generate_example_from_description(self, param_description):
         """
-        Extracts an example from a parameter description.
+        Extracts an example from a parameter description. Supports a quoted string
+        (e.g. "foo"), a balanced JSON object/array (e.g. {...} / e.g. [...]), or a
+        plain scalar (ex: 42).
         """
         if param_description is None:
             return None
-        match = re.search(r'e\.g\.\s*\"([^\"]+)', param_description) or re.search(r'ex:\s*(.*)', param_description)
-        return match.group(1) if match else None
+        clause = extract_inline_example_clause(param_description)
+        return clause[2] if clause else None
 
     def generate_example_from_symbol_type(self, symbol_type):
         """

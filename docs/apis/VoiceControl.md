@@ -186,9 +186,9 @@ This method takes no parameters.
 | result | object |  |
 | result.response | object | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success |
 | result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL e.g. "ws: |
-| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| result.response.urlMicTap | string | The microphone tap URL e.g. "ws: |
+| result.response.urlPtt | string | The PTT URL  |
+| result.response.urlHf | string | The HF (ff and mic) URL  |
+| result.response.urlMicTap | string | The microphone tap URL  |
 | result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
 | result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
 | result.response.ptt | object | The status information for the PTT device type |
@@ -199,7 +199,7 @@ This method takes no parameters.
 | result.response.mic.status | string | The status of the device  |
 | result?.response.mic_tap | object | <sup>(optional)</sup>The status information for the MIC TAP device type, present only when MIC TAP capability is available |
 | result.response.mic_tap.status | string | The status of the device  |
-| result.response.capabilities | string | JSON array of capability strings returned by the voice stack e.g. ["PRV"] |
+| result.response.capabilities | string | JSON array of capability strings returned by the voice stack. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data  |
 | result.response.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -231,9 +231,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
     "id": 2,
     "result": {
         "maskPii": true,
-        "urlPtt": "ws:",
-        "urlHf": "ws:",
-        "urlMicTap": "ws:",
+        "urlPtt": "ws://voice.example.com/ptt",
+        "urlHf": "ws://voice.example.com/hf",
+        "urlMicTap": "ws://voice.example.com/mictap",
         "prv": true,
         "wwFeedback": true,
         "ptt": {
@@ -248,7 +248,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "m
         "mic_tap": {
             "status": "ready"
         },
-        "capabilities": "",
+        "capabilities": [
+            "PRV"
+        ],
         "success": true
     }
 }
@@ -268,7 +270,7 @@ None
 | params.msgType | string | Message type from the server  |
 | params?.trx | string | <sup>(optional)</sup>The unique id of the voice session  |
 | params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch  |
-| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}} |
+| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -289,7 +291,20 @@ None
         "msgType": "asr",
         "trx": "12345-abc",
         "created": 1700000000000,
-        "msgPayload": ""
+        "msgPayload": {
+            "appFocuses": [],
+            "environmentalContext": {
+                "entities": []
+            },
+            "screenContext": {
+                "searchParams": {
+                    "catalog": [
+                        "Netflix",
+                        "DisneyPlus"
+                    ]
+                }
+            }
+        }
     }
 }
 ```
@@ -298,7 +313,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 1700000000000, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 1700000000000, "msgPayload": {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -534,7 +549,7 @@ Triggered when a message is received from the Voice Server
 | params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
 | params.created | integer | The timestamp for server information in milliseconds since epoch  |
-| params.msgPayload | string | Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}} |
+| params.msgPayload | string | Vrex server information  |
 
 ### Examples
 
@@ -547,7 +562,20 @@ Triggered when a message is received from the Voice Server
         "msgType": "asr",
         "trx": "12345-abc",
         "created": 1700000000000,
-        "msgPayload": ""
+        "msgPayload": {
+            "appFocuses": [],
+            "environmentalContext": {
+                "entities": []
+            },
+            "screenContext": {
+                "searchParams": {
+                    "catalog": [
+                        "Netflix",
+                        "DisneyPlus"
+                    ]
+                }
+            }
+        }
     }
 }
 ```
@@ -595,9 +623,9 @@ Triggered when the interaction with the server has concluded
 | params.sessionId | string | The unique identifier for the voice session  |
 | params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
 | params.serverStats | object | The voice server stats |
-| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
+| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds  |
 | params.serverStats.serverIp | string | The IP of the voice server  |
-| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
+| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds  |
 | params?.success | string | <sup>(optional)</sup>Result data for a successful voice session containing transcription |
 | params?.error | string | <sup>(optional)</sup>Result data for a failed voice session containing error codes |
 | params?.abort | string | <sup>(optional)</sup>Result data for an aborted voice session containing reason |

@@ -21,6 +21,22 @@ import json
 import re
 import os
 
+from header_file_parser import extract_inline_example_clause
+
+def strip_inline_example(description):
+    """
+    Removes an inline 'e.g. ...'/'ex: ...' example clause (quoted string, balanced
+    JSON object/array, or plain scalar) from a description, so it isn't duplicated
+    in the rendered table cell alongside the generated example JSON.
+    """
+    if not description:
+        return description
+    clause = extract_inline_example_clause(description)
+    if not clause:
+        return description
+    start, end, _ = clause
+    return description[:start] + description[end:]
+
 # Templates
 HEADER_TOC_TEMPLATE = """<!-- Generated automatically, DO NOT EDIT! -->
 <a id="{classname}_Module"></a>
@@ -393,7 +409,7 @@ def generate_parameters_section(params, symbol_registry):
                 )
                 flattened_params[first_key] = {**flattened_params[first_key], 'description': merged_description}
             for is_root, (param_name, param_data) in ((i == 0, item) for i, item in enumerate(flattened_params.items())):
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', param_data['description'])
+                cleaned_description = strip_inline_example(param_data['description'])
                 if param['custom_name']:
                     param_name = param_name.replace(param['name'], param['custom_name'])
                 is_optional = (param['optionality'] == 'optional') if is_root else param_data.get('optional', False)
@@ -429,7 +445,7 @@ def generate_results_section(results, symbol_registry):
                 )
                 flattened_results[first_key] = {**flattened_results[first_key], 'description': merged_description}
             for is_root, (result_name, result_data) in ((i == 0, item) for i, item in enumerate(flattened_results.items())):
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', result_data['description'])
+                cleaned_description = strip_inline_example(result_data['description'])
                 if result['custom_name']:
                     result_name = result_name.replace(result['name'], result['custom_name'])
                 is_optional = (result['optionality'] == 'optional') if is_root else result_data.get('optional', False)
@@ -582,7 +598,7 @@ def generate_values_section(values, symbol_registry):
                 )
                 flattened_values[first_key] = {**flattened_values[first_key], 'description': merged_description}
             for value_name, value_data in flattened_values.items():
-                cleaned_description = re.sub(r'e\.g\.\s*\".*?(?<!\\)\"|ex\:\s*.*?(?=\.|$)', '', value_data['description'])
+                cleaned_description = strip_inline_example(value_data['description'])
                 markdown += f"| (property){value_name} | {value_data['type']} | {cleaned_description} |\n"
     else:
         markdown += "This property has no values.\n"
