@@ -302,6 +302,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
 
+  /** Show or hide the splash screen */
+  // @text showSplashScreen
+  // @brief Shows or hides the splash screen in the window manager
+  // @param show: boolean indicating whether to show (true) or hide (false) the splash screen
+  // @retval Core::ERROR_NONE: Operation completed successfully
+  // @retval Core::ERROR_GENERAL: Operation failed
+  virtual Core::hresult ShowSplashScreen(const bool show) = 0;
+
 };
 } // namespace Exchange
 } // namespace WPEFramework
