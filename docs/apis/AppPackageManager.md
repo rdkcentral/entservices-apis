@@ -504,6 +504,7 @@ The following methods are provided by the IPackageInstaller Interface:
 | :-------- | :-------- |
 | [config](#config) | Config |
 | [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
+| [getConfigForInstalledPackage](#getConfigForInstalledPackage) | Returns the metadata of installed package in JSON string format |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -715,6 +716,62 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
             "fireboltVersion": "",
             "enableDebugger": true
         }
+    }
+}
+```
+
+<a id="getConfigForInstalledPackage"></a>
+## *getConfigForInstalledPackage*
+
+Returns the metadata of installed package in JSON string format
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageId | string | Package ID |
+| params.version | string | Version |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.config | string | Config of the installed package in JSON string format |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage",
+    "params": {
+        "packageId": "",
+        "version": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": {
+        "config": ""
     }
 }
 ```
