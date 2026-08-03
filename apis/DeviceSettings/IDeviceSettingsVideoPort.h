@@ -341,7 +341,7 @@ namespace Exchange {
         // @text enableHDCPOnVideoPort
         // @brief Enable HDCP on video port
         // @param handle: handle to the port
-        // @param enable: enable (true) or disable (false) 
+        // @param hdcpEnable: enable (true) or disable (false) 
         // @param hdcpKey: hdcp key 
         // @param hdcpKeySize: number of bytes in hdcpKey array
         virtual Core::hresult EnableHDCPOnVideoPort(const int32_t handle , const bool hdcpEnable , const uint8_t hdcpKey[] /* @length:hdcpKeySize */, const uint16_t hdcpKeySize ) = 0;
