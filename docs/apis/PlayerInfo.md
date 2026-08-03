@@ -17,6 +17,7 @@ A PlayerInfo module for Thunder framework.
   - [IOutput](#IOutput)
     - [Notifications](#IOutput-Notifications)
     - [Properties](#IOutput-Properties)
+    - [Methods](#IOutput-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -516,6 +517,167 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "result": {
         "mode": "UNKNOWN"
     }
+}
+```
+
+<a id="IOutput-Methods"></a>
+### Methods
+
+The following methods are provided by the IOutput Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [setApplicationAudioConfigState](#setApplicationAudioConfigState) | Set application-specific audio configuration |
+| [getApplicationAudioConfigState](#getApplicationAudioConfigState) | Get application-specific audio configuration state |
+| [getSupportedApplicationAudioConfigs](#getSupportedApplicationAudioConfigs) | Get list of supported application-specific audio configurations |
+
+<a id="setApplicationAudioConfigState"></a>
+## *setApplicationAudioConfigState*
+
+Set application-specific audio configuration
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.audioConfig | string | Application-specific audio configuration name |
+| params.enable | bool | Enable or disable the configuration |
+
+### Result
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (result) | null | null |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "method": "org.rdk.PlayerInfo.setApplicationAudioConfigState",
+    "params": {
+        "audioConfig": "example_config",
+        "enable": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PlayerInfo.setApplicationAudioConfigState", "params": {"audioConfig": "example_config", "enable": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "result": null
+}
+```
+
+<a id="getApplicationAudioConfigState"></a>
+## *getApplicationAudioConfigState*
+
+Get application-specific audio configuration state
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.audioConfig | string | Application-specific audio configuration name |
+
+### Result
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (result) | object |  |
+| (result).enable | bool | Whether the configuration is enabled |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "method": "org.rdk.PlayerInfo.getApplicationAudioConfigState",
+    "params": {
+        "audioConfig": "example_config"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PlayerInfo.getApplicationAudioConfigState", "params": {"audioConfig": "example_config"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "result": {
+        "enable": true
+    }
+}
+```
+
+<a id="getSupportedApplicationAudioConfigs"></a>
+## *getSupportedApplicationAudioConfigs*
+
+Get list of supported application-specific audio configurations
+
+### Result
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (result) | array |  |
+| (result)[#] | string | Audio configuration name |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "method": "org.rdk.PlayerInfo.getSupportedApplicationAudioConfigs"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PlayerInfo.getSupportedApplicationAudioConfigs"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "result": [
+        "config1",
+        "config2"
+    ]
 }
 ```
 
