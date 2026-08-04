@@ -63,6 +63,7 @@
   - [Telemetry](apis/Telemetry.md)
   - [TextToSpeech<sup>@</sup>](apis/TextToSpeechPlugin.md)
   - [TextTrack](apis/TextTrack.md)
+  - [Tools](apis/Tools.md)
   - [UnifiedCASManagement](apis/UnifiedCASManagement.md)
   - [USBDevice](apis/USBDevice.md)
   - [USBMassStorage](apis/USBMassStorage.md)
