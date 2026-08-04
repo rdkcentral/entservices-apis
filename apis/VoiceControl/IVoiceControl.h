@@ -89,10 +89,13 @@ namespace WPEFramework {
             DeviceType type      /* @brief The device type to simulate the voice session from. Possible values: PTT, FF, MIC */;
         };
 
-        struct EXTERNAL VoiceSessionRequestData {
-            string transcription         /* @brief The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "what's the weather" */;
-            string audioFile             /* @brief The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav" */;
-            VoiceSessionRequestType type /* @brief The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test */;
+        struct EXTERNAL DeviceEnableConfig {
+            Core::OptionalType<bool> enable /* @brief Whether the device type should be enabled */;
+        };
+
+        struct EXTERNAL VoiceInitIdentity {
+            Core::OptionalType<string> type    /* @brief The device type identifier e.g. "llama" */;
+            Core::OptionalType<string> partner /* @brief The partner identifier e.g. "sky-uk" */;
         };
 
         struct EXTERNAL VoiceStatusResponse {
@@ -130,25 +133,39 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */) = 0;
 
-            // @json:omit
-            // @brief Configures the RDK's voice stack. The caller provides a JSON object with any combination of: urlAll, urlPtt, urlHf, urlMicTap (string URLs), enable, prv, wwFeedback (booleans), and ptt, ff, mic (objects with an enable boolean). Only the fields present in the JSON are applied; omitted fields are left unchanged.
+            // @brief Configures the RDK's voice stack. Only the fields provided are applied; omitted fields are left unchanged.
             // @text configureVoice
-            // @param payload: The configuration payload as a JSON object e.g. {"urlAll": "ws://voice.example.com/all", "prv": false, "wwFeedback": false, "ptt": {"enable": true}}
+            // @param urlAll(optional): Convenience URL applied to urlPtt, urlHf, and urlMicTap at once e.g. "ws://voice.example.com/all"
+            // @param urlPtt(optional): The PTT URL e.g. "ws://voice.example.com/ptt"
+            // @param urlHf(optional): The HF (ff and mic) URL e.g. "ws://voice.example.com/hf"
+            // @param urlMicTap(optional): The microphone tap URL e.g. "ws://voice.example.com/mictap"
+            // @param enable(optional): Enables or disables voice globally
+            // @param prv(optional): The Press & Release Voice feature (true for enable, false for disable)
+            // @param wwFeedback(optional): The Wake Word Feedback feature (true for enable, false for disable)
+            // @param ptt(optional): Enable configuration for the PTT device type
+            // @param ff(optional): Enable configuration for the FF device type
+            // @param mic(optional): Enable configuration for the MIC device type
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice settings configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
-            virtual Core::hresult ConfigureVoice(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult ConfigureVoice(const Core::OptionalType<string>& urlAll, const Core::OptionalType<string>& urlPtt, const Core::OptionalType<string>& urlHf, const Core::OptionalType<string>& urlMicTap, const Core::OptionalType<bool>& enable, const Core::OptionalType<bool>& prv, const Core::OptionalType<bool>& wwFeedback, const Core::OptionalType<DeviceEnableConfig>& ptt, const Core::OptionalType<DeviceEnableConfig>& ff, const Core::OptionalType<DeviceEnableConfig>& mic, VoiceControlSuccessResult& result /* @out */) = 0;
 
-            // @json:omit
-            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id).
+            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. Only the fields provided are forwarded to ctrlm.
             // @text setVoiceInit
-            // @param payload: The voice init payload as a JSON object e.g. {"roles": ["envoy", "input"], "transmissionProtocol": "webSocket", "downstreamProtocol": "webSocket", "capabilities": ["GUI", "WBW"], "clientProfile": "profileName", "language": "eng-USA", "vrexFields": ["executeResponse"], "id": {"type": "deviceType", "partner": "partnerName"}}
+            // @param roles(optional): The client roles e.g. ["envoy", "input"]
+            // @param transmissionProtocol(optional): The transmission protocol e.g. "webSocket"
+            // @param downstreamProtocol(optional): The downstream protocol e.g. "webSocket"
+            // @param capabilities(optional): The client capabilities e.g. ["GUI", "WBW"]
+            // @param clientProfile(optional): The client profile identifier e.g. "profileName"
+            // @param language(optional): The client language e.g. "eng-USA"
+            // @param vrexFields(optional): The vrex fields to request e.g. ["executeResponse"]
+            // @param id(optional): The device/partner identity e.g. {"type": "deviceType", "partner": "partnerName"}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SetVoiceInit(const Core::OptionalType<std::vector<string>>& roles /* @restrict:8 */, const Core::OptionalType<string>& transmissionProtocol, const Core::OptionalType<string>& downstreamProtocol, const Core::OptionalType<std::vector<string>>& capabilities /* @restrict:16 */, const Core::OptionalType<string>& clientProfile, const Core::OptionalType<string>& language, const Core::OptionalType<std::vector<string>>& vrexFields /* @restrict:16 */, const Core::OptionalType<VoiceInitIdentity>& id, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
@@ -181,15 +198,19 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
             virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;
 
-            // @json:omit
-            // @brief Requests a voice session using the specified request type and optional parameters. The caller provides a JSON object whose fields are forwarded unchanged to ctrlm (e.g. type, transcription, audio_file, audio_format, name). The result is the raw JSON returned by ctrlm (e.g. success, sessionId).
+            // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
-            // @param payload: The voice session request parameters as a JSON object e.g. {"transcription": "comedy movies", "type": "ptt_transcription"}
-            // @param result: The raw JSON result from ctrlm e.g. {"sessionId": "83d7747d-e02f-42f8-bdc3-bc8f510605c6", "success": true}
+            // @param type: The request type to initiate the voice session. Possible values: ptt_transcription, ptt_audio_file, ff_transcription, mic_transcription, mic_audio_file, mic_stream_default, mic_stream_single, mic_stream_multi, mic_tap_stream_single, mic_tap_stream_multi, mic_factory_test
+            // @param transcription(optional): The transcription text to be sent to the voice server (for ptt_transcription and mic_transcription request types) e.g. "comedy movies"
+            // @param audioFile(optional): The full path to the audio file to be sent to the voice server (for ptt_audio_file and mic_audio_file request types) e.g. "/tmp/audio.wav"
+            // @param audioFormat(optional): The audio format of audioFile e.g. "pcm"
+            // @param name(optional): A friendly name for the simulated session e.g. "Test"
+            // @param success: Whether the request succeeded
+            // @param sessionId: The identifier of the created voice session, present only when success is true e.g. "83d7747d-e02f-42f8-bdc3-bc8f510605c6"
             // @retval ErrorCode::NONE: Voice session requested successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to request voice session.
-            virtual Core::hresult VoiceSessionRequest(const string& payload /* @opaque */, string& result /* @out @opaque */) = 0;
+            virtual Core::hresult VoiceSessionRequest(const VoiceSessionRequestType type, const Core::OptionalType<string>& transcription, const Core::OptionalType<string>& audioFile /* @text audio_file */, const Core::OptionalType<string>& audioFormat /* @text audio_format */, const Core::OptionalType<string>& name, bool& success /* @out */, Core::OptionalType<string>& sessionId /* @out */) = 0;
 
             // @brief Terminates a voice session using the specified session identifier
             // @text voiceSessionTerminate
