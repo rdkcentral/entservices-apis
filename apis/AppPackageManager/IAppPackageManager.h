@@ -273,16 +273,6 @@ namespace Exchange {
         // @param version: version of package
         // @param config: metadata of package
         virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
-
-        // @brief Returns the metadata of installed package in JSON string format
-        // @text getConfigForInstalledPackage
-        // @param packageId: Package Id
-        // @param version: Version
-        // @param config: Config of the installed package in JSON string format
-        // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string& config /* @out @opaque */) = 0;
-
    };
 
 
@@ -345,6 +335,16 @@ namespace Exchange {
             bool &locked /* @out */
             ) = 0;
     };
+    // @json 1.0.0 @text:keep
+    struct EXTERNAL IAppPackageManagerConfig : virtual public Core::IUnknown {
+        enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 
+        // @brief Returns the metadata of installed package in JSON string format
+        // @text getConfigForInstalledPackage
+        // @param packageId: Package Id
+        // @param version: Version
+        // @param config: Config of the installed package in JSON string format
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
+    };
 } // Exchange
 } // WPEFramework
