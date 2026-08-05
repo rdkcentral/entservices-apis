@@ -94,7 +94,8 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
         // @brief Notifies container is shutdown
         // @text onTerminated
         // @param appInstanceId App identifier for the application/container
-        virtual void OnTerminated(const string& appInstanceId) {};
+        // @param exitCode Exit code of the container process
+        virtual void OnTerminated(const string& appInstanceId, int32_t exitCode) {};
 
         // @brief Notifies failure in container execution
         // @text onFailure
