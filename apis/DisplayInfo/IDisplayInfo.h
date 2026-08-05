@@ -207,9 +207,6 @@ namespace Exchange {
             COLORIMETRY_BT2020RGB_YCBCR
         };
 
-	struct EXTERNAL ColorimetryTypeInfo {
-            ColorimetryType colorimetry;
-        };
 
         enum EotfType : uint8_t {
             EOTF_UNKNOWN,
@@ -228,7 +225,6 @@ namespace Exchange {
 	    // @text getCurrentColorimetry
         // @brief Returns the active colorimetry standard of the current connected video port
         // @param info: current colorimetry info (colorimetryType is COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped)
-        virtual Core::hresult GetCurrentColorimetry(ColorimetryTypeInfo& info /* @out */) const = 0;
 
         // @property
         // @brief Provides access to Frame Rate
