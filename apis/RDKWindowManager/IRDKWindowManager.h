@@ -314,6 +314,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
 
+  /** Show or hide the splash screen */
+  // @text showSplashScreen
+  // @brief Shows or hides the splash screen in the window manager
+  // @param show: boolean indicating whether to show (true) or hide (false) the splash screen
+  // @retval Core::ERROR_NONE: Operation completed successfully
+  // @retval Core::ERROR_GENERAL: Operation failed
+  virtual Core::hresult ShowSplashScreen(const bool show) = 0;
+
   /** Sets the bounds (position and size) of the given client */
   // @text setBounds
   // @brief Sets the x, y position and width, height dimensions of the given client
