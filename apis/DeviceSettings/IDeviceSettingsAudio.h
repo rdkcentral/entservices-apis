@@ -99,15 +99,15 @@ namespace Exchange {
         };
 
         enum AudioCapabilities : uint32_t {
-            AUDIO_CAPS_NONE                      = 0,
-            AUDIO_CAPS_ATMOS                     = 1,
-            AUDIO_CAPS_DOLBY_DIGITAL             = 2,
-            AUDIO_CAPS_DOLBY_DIGITAL_PLUS        = 4,
-            AUDIO_CAPS_DIGITAL_AUDIO_DELIVERY    = 8,
-            AUDIO_CAPS_DIGITAL_AUDIO_PROCESS_V2  = 16,
-            AUDIO_CAPS_MS12                      = 32,
-            AUDIO_CAPS_MS12_V2                   = 64,
-            AUDIO_CAPS_INVALID                   = 128,
+            AUDIO_CAPS_NONE                      = 0x00,
+            AUDIO_CAPS_ATMOS                     = 0x01,
+            AUDIO_CAPS_DOLBY_DIGITAL             = 0x02,
+            AUDIO_CAPS_DOLBY_DIGITAL_PLUS        = 0x04,
+            AUDIO_CAPS_DIGITAL_AUDIO_DELIVERY    = 0x08,
+            AUDIO_CAPS_DIGITAL_AUDIO_PROCESS_V2  = 0x10,
+            AUDIO_CAPS_MS12                      = 0x20,
+            AUDIO_CAPS_MS12_V2                   = 0x40,
+            AUDIO_CAPS_INVALID                   = 0x80,
         };
 
         enum AudioARCType : uint8_t {
@@ -123,19 +123,19 @@ namespace Exchange {
         };
 
         enum MS12Capabilities : uint32_t {
-            AUDIO_MS12_CAPABILITIES_NONE                    = 0,
-            AUDIO_MS12_CAPABILITIES_DOLBYVOLUME             = 1,
-            AUDIO_MS12_CAPABILITIES_INTELLIGENT_EQUALIZER   = 2,
-            AUDIO_MS12_CAPABILITIES_DIALOG_ENHANCER         = 4,
-            AUDIO_MS12_CAPABILITIES_VOLUME_LEVELLER         = 8,
-            AUDIO_MS12_CAPABILITIES_BASE_ENHANCER           = 16,
-            AUDIO_MS12_CAPABILITIES_SURROUND_DECODER        = 32,
-            AUDIO_MS12_CAPABILITIES_DRC_MODE                = 64,
-            AUDIO_MS12_CAPABILITIES_SURROUND_VIRTUALIZER    = 128,
-            AUDIO_MS12_CAPABILITIES_MI_STEERING             = 256,
-            AUDIO_MS12_CAPABILITIES_GRAPHIC_EQUALIZER       = 512,
-            AUDIO_MS12_CAPABILITIES_LE_CONFIG               = 1024,
-            AUDIO_MS12_CAPABILITIES_INVALID                 = (1 << 30)
+            AUDIO_MS12_CAPABILITIES_NONE                    = 0x000,
+            AUDIO_MS12_CAPABILITIES_DOLBYVOLUME             = 0x001,
+            AUDIO_MS12_CAPABILITIES_INTELLIGENT_EQUALIZER   = 0x002,
+            AUDIO_MS12_CAPABILITIES_DIALOG_ENHANCER         = 0x004,
+            AUDIO_MS12_CAPABILITIES_VOLUME_LEVELLER         = 0x008,
+            AUDIO_MS12_CAPABILITIES_BASE_ENHANCER           = 0x010,
+            AUDIO_MS12_CAPABILITIES_SURROUND_DECODER        = 0x020,
+            AUDIO_MS12_CAPABILITIES_DRC_MODE                = 0x040,
+            AUDIO_MS12_CAPABILITIES_SURROUND_VIRTUALIZER    = 0x080,
+            AUDIO_MS12_CAPABILITIES_MI_STEERING             = 0x100,
+            AUDIO_MS12_CAPABILITIES_GRAPHIC_EQUALIZER       = 0x200,
+            AUDIO_MS12_CAPABILITIES_LE_CONFIG               = 0x400,
+            AUDIO_MS12_CAPABILITIES_INVALID                 = 0x40000000
         };
 
         struct MS12AudioProfile {
