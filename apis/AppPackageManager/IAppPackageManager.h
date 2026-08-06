@@ -345,6 +345,12 @@ namespace Exchange {
         // @param version: Version
         // @param config: Config of the installed package in JSON string format
         virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
+
+        // @brief Returns the metadata of all installed packages in JSON string format.
+        // @text getConfigListForInstalledPackages
+        // @param config: Returns the metadata of all installed packages in JSON string format.
+        virtual Core::hresult GetConfigListForInstalledPackages(string &config /* @out @opaque */) = 0;
     };
+
 } // Exchange
 } // WPEFramework
