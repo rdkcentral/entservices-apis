@@ -57,9 +57,7 @@ jobs:
             -DPORT="55555" \
             -DTOOLS_SYSROOT="${PWD}" \
             -DINITV_SCRIPT=OFF
-          cmake --build Thunder/build
-          sudo cmake --install Thunder/build
-          sudo chown -R "$(id -u):$(id -g)" install
+          cmake --build Thunder/build --target install
 
       - name: Build entservices-apis
         run: |
