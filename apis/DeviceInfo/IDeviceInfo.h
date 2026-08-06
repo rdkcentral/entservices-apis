@@ -273,6 +273,24 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
+
+        // @property
+        // @text osname
+        // @brief Provides access to the operating system name.
+        // @param osName: Operating system name
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult OsName(string& osName /* @out */) const = 0;
+        virtual Core::hresult OsName(const string& osName) = 0;
+
+        // @property
+        // @text osversion
+        // @brief Provides access to the operating system version.
+        // @param osVersion: Operating system version
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult OsVersion(string& osVersion /* @out */) const = 0;
+        virtual Core::hresult OsVersion(const string& osVersion) = 0;
     };
 
     /* @json 1.0.0 @text:keep */
