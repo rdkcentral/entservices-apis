@@ -358,6 +358,7 @@ namespace Exchange {
 
         ID_AUDIO_OUTPUT                             = ID_ENTOS_OFFSET + 0x550,
         ID_AUDIO_OUTPUT_NOTIFICATION                = ID_AUDIO_OUTPUT + 1,
+        ID_TOOLS                           = ID_ENTOS_OFFSET + 0x550,
 
     }; // enum IDS
 
