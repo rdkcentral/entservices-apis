@@ -23,9 +23,9 @@ if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})
 endif()
 
-find_package(WPEFramework NAMES WPEFramework Thunder)
+find_package(Thunder REQUIRED)
 
-project_version(4.4.1)
+project_version(5.0.0)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(ProxyStubGenerator REQUIRED)
