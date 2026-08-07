@@ -1,6 +1,6 @@
 /**
  * @file IVoiceControl.h
- * @brief Voice Control JSONRPC interface definition for WPEFramework.
+ * @brief Voice Control JSONRPC interface definition for Thunder.
  *  
  * If not stated otherwise in this file or this component's LICENSE
  * file the following copyright and licenses apply:
@@ -26,7 +26,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
     namespace Exchange {
 
@@ -281,4 +281,4 @@ namespace WPEFramework {
             virtual Core::hresult Unregister(const IVoiceControl::INotification* notification) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

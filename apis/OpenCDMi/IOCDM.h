@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 enum OCDM_RESULT : uint32_t {
@@ -417,5 +417,5 @@ struct EXTERNAL IGoogleCastAuthExtension : virtual public Core::IUnknown {
 };
 
 } //namespace Exchange
-} //namespace WPEFramework
+} //namespace Thunder
 

@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -174,4 +174,4 @@ namespace WPEFramework
             virtual Core::hresult GetDeviceList(uint32_t &numberofdevices /* @out */, IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
         };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

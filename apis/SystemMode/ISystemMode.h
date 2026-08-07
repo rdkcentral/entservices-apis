@@ -20,7 +20,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
  // @json @text:keep
 struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
@@ -72,4 +72,4 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   virtual Core::hresult ClientDeactivated(const string& callsign /* @text callsign*/, const string& systemMode) = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

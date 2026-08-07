@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 #ifndef RUNTIME_CONFIG
@@ -292,4 +292,4 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   virtual Core::hresult GetMaxInactiveRamUsage(int32_t& maxInactiveRamUsage /* @out */) const = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -85,4 +85,4 @@ namespace WPEFramework
             virtual Core::hresult ResetDevice(const bool suppressReboot, const string& resetType, WarehouseSuccessErr& successErr /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

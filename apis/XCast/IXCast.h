@@ -24,7 +24,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 	namespace Exchange {
 		/* @json 1.0.0 @text:keep */
 		struct EXTERNAL IXCast : virtual public Core::IUnknown {
@@ -225,6 +225,6 @@ namespace WPEFramework {
 		};
 
 	} // Exchange
-} // WPEFramework
+} // Thunder
 
 #endif //__IXCast_H

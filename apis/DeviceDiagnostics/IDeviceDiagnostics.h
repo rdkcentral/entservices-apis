@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -98,4 +98,4 @@ namespace WPEFramework
             virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

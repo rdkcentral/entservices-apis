@@ -44,7 +44,7 @@
 //       than 16 interface in that group so that the next ID is indeed elevated (and rounded
 //       up to a multiple of 16) if the next entry is made in the future.
 
-namespace WPEFramework {
+namespace Thunder {
 
 namespace Exchange {
 
@@ -367,4 +367,4 @@ namespace Exchange {
     }; // enum IDS
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

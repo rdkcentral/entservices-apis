@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -146,4 +146,4 @@ namespace WPEFramework
             virtual Core::hresult SetP2PBackendDiscovery(const bool enabled /* @text enabled */, Result &result /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

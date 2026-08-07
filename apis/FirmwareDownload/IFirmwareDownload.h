@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -89,4 +89,4 @@ namespace WPEFramework
             virtual Core::hresult GetDownloadFailureReason( DownloadFailureReason& downloadFailureReason /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

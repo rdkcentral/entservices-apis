@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     /* @json @text:keep */
@@ -162,4 +162,4 @@ namespace Exchange {
     };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

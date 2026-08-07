@@ -19,7 +19,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     /*
@@ -74,4 +74,4 @@ namespace Exchange {
         virtual Core::hresult Unregister(INotification *notification) = 0;
     };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder
