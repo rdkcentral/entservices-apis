@@ -19,9 +19,9 @@ cmake_minimum_required(VERSION 3.3)
 
 project(Definitions)
 
-find_package(WPEFramework)
+find_package(Thunder REQUIRED)
 
-project_version(4.4.1)
+project_version(5.0.0)
 
 find_package(CompileSettingsDebug REQUIRED)
 find_package(JsonGenerator REQUIRED)
