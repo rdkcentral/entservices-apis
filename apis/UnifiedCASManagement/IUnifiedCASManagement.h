@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -111,4 +111,4 @@ namespace WPEFramework
             virtual Core::hresult Send(const string& payload, const DataSource& source, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

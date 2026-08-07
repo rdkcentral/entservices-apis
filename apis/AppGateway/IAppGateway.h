@@ -19,7 +19,7 @@
 #pragma once
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -278,4 +278,4 @@ namespace WPEFramework
             virtual Core::hresult ResumeTraffic(const string& appId) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

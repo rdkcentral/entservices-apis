@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
@@ -180,4 +180,4 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
     virtual Core::hresult Unmount(const string& containerId , const string& target , bool& success /* @out */, string& errorReason /* @out */) = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

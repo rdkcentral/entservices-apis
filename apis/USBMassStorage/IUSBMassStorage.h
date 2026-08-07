@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
@@ -122,4 +122,4 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

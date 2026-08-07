@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IAppStorageManager : virtual public Core::IUnknown {
@@ -75,5 +75,5 @@ struct EXTERNAL IAppStorageManager : virtual public Core::IUnknown {
     virtual Core::hresult ClearAll(const string& exemptionAppIds, string& errorReason /* @out */) = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder
 

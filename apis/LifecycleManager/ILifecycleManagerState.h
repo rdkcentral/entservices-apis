@@ -23,7 +23,7 @@
 #include "ILifecycleManager.h"
 // @stubgen:include "ILifecycleManager.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
@@ -84,4 +84,4 @@ struct EXTERNAL ILifecycleManagerState : virtual public Core::IUnknown {
 
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

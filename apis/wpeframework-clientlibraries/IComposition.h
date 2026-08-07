@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IComposition : virtual public Core::IUnknown {
@@ -104,7 +104,7 @@ namespace Exchange {
                 virtual uint64_t Modifier() = 0;
             };
 
-            virtual WPEFramework::Core::instance_id Native() const { return 0; };
+            virtual Thunder::Core::instance_id Native() const { return 0; };
             virtual string Name() const = 0;
             virtual void Opacity(const uint32_t value) = 0;
             virtual uint32_t Opacity() const { return 0; };
@@ -138,7 +138,7 @@ namespace Exchange {
 
             ~IDisplay() override = default;
 
-            virtual WPEFramework::Core::instance_id Native() const = 0;
+            virtual Thunder::Core::instance_id Native() const = 0;
             virtual string Port() const = 0;
 
             virtual IClient* CreateClient(const string& name, const uint32_t width, const uint32_t height) = 0;

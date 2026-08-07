@@ -21,7 +21,7 @@
 #include "Module.h"
 
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
     // Account Plugin provides various operations that can be made at account level
     // @json 1.0.0 @text:keep

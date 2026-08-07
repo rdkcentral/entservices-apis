@@ -20,7 +20,7 @@
 #pragma once
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
     // @json 1.0.0 @text:keep
     struct EXTERNAL IDownloadManager : virtual public Core::IUnknown {
@@ -110,4 +110,4 @@ namespace Exchange {
         virtual Core::hresult RateLimit(const string& downloadId, const uint32_t& limit) = 0;
     };
 } // Exchange
-} // WPEFramework
+} // Thunder

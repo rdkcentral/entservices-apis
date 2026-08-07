@@ -20,7 +20,7 @@
  #pragma once
  #include "Module.h"
  
- namespace WPEFramework
+ namespace Thunder
  {
      namespace Exchange
      {
@@ -71,4 +71,4 @@
             /**********************getSettopHDCPSupport() - end***********************************/ 
          };
      } // namespace Exchange
- } // namespace WPEFramework
+ } // namespace Thunder
