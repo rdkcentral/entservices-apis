@@ -13,7 +13,6 @@ jobs:
        THUNDER_TOOLS_COMMIT_SHA: d5dd83c7c19c49c7f25c558c126500bd2d64f7a4
        THUNDER_COMMIT_SHA: 2c0fcc5529e7da734be558ca6efa05d934dcce31
 
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,14 +26,14 @@ jobs:
         run: |
           git clone -b R4_4-RDK https://github.com/rdkcentral/ThunderTools.git
           cd ThunderTools
-          git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA}}
+          git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA }}
           cd ..
 
       - name: Clone Thunder
         run: |
           git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
           cd Thunder
-          git checkout ${{ env.THUNDER_COMMIT_SHA}}
+          git checkout ${{ env.THUNDER_COMMIT_SHA }}
           cd ..
 
       - name: Install jsonref
@@ -44,7 +43,9 @@ jobs:
 
       - name: Build ThunderTools
         run: |
-          cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="install"
+          cmake -G Ninja -S ThunderTools -B ThunderTools/build \
+            -DCMAKE_INSTALL_PREFIX="${PWD}/install" \
+            -DGENERIC_CMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules"
           cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
@@ -56,7 +57,9 @@ jobs:
             -DPORT="55555" \
             -DTOOLS_SYSROOT="${PWD}" \
             -DINITV_SCRIPT=OFF
-          cmake --build Thunder/build --target install
+          cmake --build Thunder/build
+          sudo cmake --install Thunder/build
+          sudo chown -R "$(id -u):$(id -g)" install
 
       - name: Build entservices-apis
         run: |
