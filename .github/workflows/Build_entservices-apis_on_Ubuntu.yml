@@ -10,8 +10,8 @@ jobs:
   ThunderComponents:
     runs-on: ubuntu-latest
     env:
-       THUNDER_TOOLS_COMMIT_SHA: d5dd83c7c19c49c7f25c558c126500bd2d64f7a4
-       THUNDER_COMMIT_SHA: 2c0fcc5529e7da734be558ca6efa05d934dcce31
+       THUNDER_TOOLS_COMMIT_SHA: 53bdc7e2bb12497a228ff5694190c51e5dd533af
+       THUNDER_COMMIT_SHA: ca7ad203398b3f065f9f494b89bc12038cd24f95
 
     steps:
       - name: Checkout Repository
@@ -24,14 +24,14 @@ jobs:
 
       - name: Clone ThunderTools
         run: |
-          git clone -b R4_4-RDK https://github.com/rdkcentral/ThunderTools.git
+          git clone -b R5_3 https://github.com/rdkcentral/ThunderTools.git
           cd ThunderTools
           git checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA }}
           cd ..
           
       - name: Clone Thunder
         run: |
-          git clone -b R4_4-RDK https://github.com/rdkcentral/Thunder.git
+          git clone -b R5_3 https://github.com/rdkcentral/Thunder.git
           cd Thunder
           git checkout ${{ env.THUNDER_COMMIT_SHA }}
           cd ..
@@ -45,7 +45,7 @@ jobs:
         run: |
           cmake -G Ninja -S ThunderTools -B ThunderTools/build \
             -DCMAKE_INSTALL_PREFIX="${PWD}/install" \
-            -DGENERIC_CMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules"
+            -DGENERIC_CMAKE_MODULE_PATH="${PWD}/install/include/Thunder/Modules"
           cmake --build ThunderTools/build --target install
 
       - name: Build Thunder
@@ -66,7 +66,7 @@ jobs:
           cmake -G Ninja -S . -B build \
             -DCMAKE_INSTALL_PREFIX="${PWD}/install" \
             -DCMAKE_PREFIX_PATH="${PWD}/install" \
-            -DCMAKE_CXX_FLAGS="-I${PWD}/install/include/WPEFramework" \
-            -DCMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules" \
+            -DCMAKE_CXX_FLAGS="-I${PWD}/install/include/Thunder" \
+            -DCMAKE_MODULE_PATH="${PWD}/install/include/Thunder/Modules" \
             -DTOOLS_SYSROOT="${PWD}"
           cmake --build build --target install
