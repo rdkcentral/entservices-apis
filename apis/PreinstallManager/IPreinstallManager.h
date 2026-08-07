@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 // @json 1.0.0 @text:keep
@@ -71,4 +71,4 @@ struct EXTERNAL IPreinstallManager : virtual public Core::IUnknown {
   virtual Core::hresult GetPreinstallState(State& state /* @out */) = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

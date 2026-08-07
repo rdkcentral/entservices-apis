@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 #ifndef RUNTIME_CONFIG
@@ -136,4 +136,4 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     virtual Core::hresult SendIntentToActiveApp(const string& appInstanceId , const string& intent , string& errorReason /* @out */, bool& success /* @out */) = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

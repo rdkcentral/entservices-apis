@@ -4,7 +4,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 #ifndef RUNTIME_CONFIG
@@ -337,4 +337,4 @@ namespace Exchange {
     };
 
 } // Exchange
-} // WPEFramework
+} // Thunder

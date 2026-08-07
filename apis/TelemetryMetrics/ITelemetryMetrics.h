@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 // @text:keep
@@ -44,5 +44,5 @@ struct EXTERNAL ITelemetryMetrics : virtual public Core::IUnknown {
     virtual Core::hresult Publish(const string& id, const string& markerName) = 0;
 };
 }// namespace Exchange
-}// namespace WPEFramework
+}// namespace Thunder
 

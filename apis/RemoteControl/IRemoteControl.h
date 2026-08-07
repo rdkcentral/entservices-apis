@@ -1,6 +1,6 @@
 /**
  * @file IRemoteControl.h
- * @brief Remote Control JSONRPC interface definition for WPEFramework.
+ * @brief Remote Control JSONRPC interface definition for Thunder.
  * 
  * If not stated otherwise in this file or this component's LICENSE
  * file the following copyright and licenses apply:
@@ -26,7 +26,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 
     namespace Exchange {
 
@@ -139,7 +139,7 @@ namespace WPEFramework {
         };
 
         /**
-         * @brief Interface for the Remote Control JSONRPC API in WPEFramework.
+         * @brief Interface for the Remote Control JSONRPC API in Thunder.
          *
          * This interface defines the JSONRPC methods and events for remote control management,
          * including pairing, IRDB operations, firmware updates, and related notifications.
@@ -381,4 +381,4 @@ namespace WPEFramework {
             virtual Core::hresult Unregister(const IRemoteControl::INotification* notification) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

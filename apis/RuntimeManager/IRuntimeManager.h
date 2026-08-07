@@ -23,7 +23,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 #ifndef RUNTIME_CONFIG
@@ -179,4 +179,4 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     virtual Core::hresult Unmount() = 0;
 };
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework {
+namespace Thunder {
     namespace Exchange {
         /* @json 1.0.0 @text:keep */
         struct EXTERNAL IAVInput : virtual public Core::IUnknown {
@@ -287,7 +287,7 @@ namespace WPEFramework {
             // @brief Returns the list of supported game features.
             // @param supportedGameFeatures - out - The supported game Features
             // @param success - out - Whether the request succeeded
-            virtual Core::hresult GetSupportedGameFeatures(WPEFramework::Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */, bool& success /* @out */) = 0;
+            virtual Core::hresult GetSupportedGameFeatures(Thunder::Exchange::IAVInput::IStringIterator*& supportedGameFeatures /* @out */, bool& success /* @out */) = 0;
 
             // @text getGameFeatureStatus
             // @brief Returns the Game Feature Status. For example: ALLM.
@@ -305,4 +305,4 @@ namespace WPEFramework {
             virtual Core::hresult GetVRRFrameRate(const string& portId, double& currentVRRVideoFrameRate /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

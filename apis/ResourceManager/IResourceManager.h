@@ -22,7 +22,7 @@
 
 // @stubgen:include <com/IIteratorType.h>
 
-namespace WPEFramework
+namespace Thunder
 {
     namespace Exchange
     {
@@ -67,4 +67,4 @@ namespace WPEFramework
             virtual Core::hresult ReserveTTSResourceForApps(IStringIterator* const appids, Success& result /* @out */) = 0;
         };
     } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

@@ -24,7 +24,7 @@
 
 #define ITEXTTRACK_VERSION 4
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 /*
@@ -591,4 +591,4 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
 };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

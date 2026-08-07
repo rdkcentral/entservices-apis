@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 // @json 1.0.0 @text:keep
@@ -71,4 +71,4 @@ struct EXTERNAL INativeJS : virtual public Core::IUnknown {
 };
 
 } // Exchange
-} // WPEFramework
+} // Thunder
