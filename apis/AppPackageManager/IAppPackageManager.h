@@ -348,9 +348,9 @@ namespace Exchange {
 
         // @brief Returns the metadata of all installed packages in JSON string format.
         // @text getConfigListForInstalledPackages
-        // @param config: Returns the metadata of all installed packages in JSON string format.
-        virtual Core::hresult GetConfigListForInstalledPackages(string &config /* @out @opaque */) = 0;
+        // @param filter: capability filter for installed packages
+        // @param config: Returns the metadata of all installed packages in JSON string format
+        virtual Core::hresult GetConfigListForInstalledPackages(const string &filter, string &config /* @out @opaque */) = 0;
     };
-
 } // Exchange
 } // WPEFramework
