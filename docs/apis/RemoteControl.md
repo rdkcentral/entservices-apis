@@ -748,14 +748,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC |
+| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData |
 | result.result.success | bool | Whether the request succeeded |
 | result.result.status | object | The network status data |
 | result.result.status.netType | integer | The type of remote control network  |
 | result.result.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | result.result.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| result.result.status.netTypesSupported | string | JSON array of supported network types. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data  |
-| result.result.status.remoteData | string | JSON array of paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape  |
+| result.result.status.netTypesSupported | string | The list of supported network types  |
+| result.result.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
 
 ### Examples
 
@@ -796,54 +796,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "
             "netTypesSupported": [
                 1
             ],
-            "remoteData": [
-                {
-                    "macAddress": "48:d0:cf:00:00:67:eb:df",
-                    "connected": true,
-                    "name": "XR15-20",
-                    "remoteId": 1,
-                    "deviceId": 0,
-                    "make": "UEI",
-                    "model": "XR15-20",
-                    "hwVersion": "2.3.2.0",
-                    "swVersion": "2.2.1.8",
-                    "btlVersion": "0.0.0.0",
-                    "serialNumber": "",
-                    "batteryPercent": 33,
-                    "tvIRCode": "0",
-                    "ampIRCode": "0",
-                    "wakeupKeyCode": 255,
-                    "upgradeSessionId": "",
-                    "wakeupConfig": "none"
-                },
-                {
-                    "macAddress": "1c:41:90:f2:60:20",
-                    "connected": true,
-                    "name": "P-PR3 EntOS RCU",
-                    "remoteId": 21,
-                    "deviceId": 66,
-                    "make": "Universal Electronics, Inc.",
-                    "model": "PR3",
-                    "hwVersion": "112.1.0.2",
-                    "swVersion": "6003.0.4",
-                    "btlVersion": "Rel-cc6d06e",
-                    "serialNumber": "2060f290411c",
-                    "batteryPercent": 90,
-                    "tvIRCode": "0",
-                    "ampIRCode": "0",
-                    "wakeupKeyCode": 108,
-                    "upgradeSessionId": "",
-                    "wakeupConfig": "custom",
-                    "wakeupCustomList": [
-                        59,
-                        102,
-                        62,
-                        111,
-                        110,
-                        107
-                    ]
-                }
-            ]
+            "remoteData": ""
         }
     }
 }
@@ -1329,8 +1282,8 @@ Triggered at any time when the status of any one of the supported STB remote net
 | params.status.netType | integer | The type of remote control network  |
 | params.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | params.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| params.status.netTypesSupported | string | JSON array of supported network types. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data  |
-| params.status.remoteData | string | JSON array of paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape  |
+| params.status.netTypesSupported | string | The list of supported network types  |
+| params.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
 
 ### Examples
 
@@ -1346,54 +1299,7 @@ Triggered at any time when the status of any one of the supported STB remote net
         "netTypesSupported": [
             1
         ],
-        "remoteData": [
-            {
-                "macAddress": "48:d0:cf:00:00:67:eb:df",
-                "connected": true,
-                "name": "XR15-20",
-                "remoteId": 1,
-                "deviceId": 0,
-                "make": "UEI",
-                "model": "XR15-20",
-                "hwVersion": "2.3.2.0",
-                "swVersion": "2.2.1.8",
-                "btlVersion": "0.0.0.0",
-                "serialNumber": "",
-                "batteryPercent": 33,
-                "tvIRCode": "0",
-                "ampIRCode": "0",
-                "wakeupKeyCode": 255,
-                "upgradeSessionId": "",
-                "wakeupConfig": "none"
-            },
-            {
-                "macAddress": "1c:41:90:f2:60:20",
-                "connected": true,
-                "name": "P-PR3 EntOS RCU",
-                "remoteId": 21,
-                "deviceId": 66,
-                "make": "Universal Electronics, Inc.",
-                "model": "PR3",
-                "hwVersion": "112.1.0.2",
-                "swVersion": "6003.0.4",
-                "btlVersion": "Rel-cc6d06e",
-                "serialNumber": "2060f290411c",
-                "batteryPercent": 90,
-                "tvIRCode": "0",
-                "ampIRCode": "0",
-                "wakeupKeyCode": 108,
-                "upgradeSessionId": "",
-                "wakeupConfig": "custom",
-                "wakeupCustomList": [
-                    59,
-                    102,
-                    62,
-                    111,
-                    110,
-                    107
-                ]
-            }
-        ]
+        "remoteData": ""
     }
 }
 ```
