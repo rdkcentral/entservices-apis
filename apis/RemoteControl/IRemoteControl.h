@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include <vector>
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -114,12 +115,33 @@ namespace WPEFramework {
             FirmwareUpdateStatusData status /* @brief The firmware update status details including session ID, MAC address, upgrade state, and percent complete */;
         };
 
+        struct EXTERNAL PairedRemoteInfo {
+            string macAddress                                          /* @brief The MAC address of the remote in hex-colon format e.g. "48:d0:cf:00:00:67:eb:df" */;
+            bool connected                                              /* @brief Whether the remote is currently connected */;
+            string name                                                /* @brief The friendly name of the remote e.g. "XR15-20" */;
+            uint32_t remoteId                                           /* @brief The remote ID of the remote on its network ex: 1 */;
+            uint32_t deviceId                                           /* @brief The device ID of the remote ex: 0 */;
+            string make                                                /* @brief The manufacturer of the remote e.g. "UEI" */;
+            string model                                               /* @brief The model of the remote e.g. "XR15-20" */;
+            string hwVersion                                           /* @brief The hardware version of the remote e.g. "2.3.2.0" */;
+            string swVersion                                           /* @brief The software version of the remote e.g. "2.2.1.8" */;
+            string btlVersion                                          /* @brief The bootloader version of the remote e.g. "0.0.0.0" */;
+            string serialNumber                                        /* @brief The serial number of the remote e.g. "2060f290411c" */;
+            uint32_t batteryPercent                                     /* @brief The battery level of the remote as a percentage (0-100) ex: 90 */;
+            string tvIRCode                                            /* @brief The programmed TV IR code, or "0" if none ex: "0" */;
+            string ampIRCode                                           /* @brief The programmed AMP IR code, or "0" if none ex: "0" */;
+            uint32_t wakeupKeyCode                                      /* @brief The Linux key code that wakes the target from deepsleep ex: 255 */;
+            string upgradeSessionId                                    /* @brief The active firmware update session identifier for this remote, if any e.g. "12345-abc-def" */;
+            WakeupConfig wakeupConfig                                  /* @brief The deepsleep wakeup key configuration of the remote */;
+            Core::OptionalType<std::vector<uint32_t>> wakeupCustomList /* @restrict:32 @brief The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom ex: [59, 102, 62, 111, 110, 107] */;
+        };
+
         struct EXTERNAL NetStatusData {
-            uint32_t netType          /* @brief The type of remote control network ex: 1 */;
-            PairingState pairingState /* @brief The pairing state */;
-            IRProgState irProgState   /* @brief The IR programming state */;
-            string netTypesSupported  /* @opaque @brief JSON array of supported network types. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data e.g. [1] */;
-            string remoteData         /* @opaque @brief JSON array of paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape e.g. [{"macAddress": "48:d0:cf:00:00:67:eb:df", "connected": true, "name": "XR15-20", "remoteId": 1, "deviceId": 0, "make": "UEI", "model": "XR15-20", "hwVersion": "2.3.2.0", "swVersion": "2.2.1.8", "btlVersion": "0.0.0.0", "serialNumber": "", "batteryPercent": 33, "tvIRCode": "0", "ampIRCode": "0", "wakeupKeyCode": 255, "upgradeSessionId": "", "wakeupConfig": "none"}, {"macAddress": "1c:41:90:f2:60:20", "connected": true, "name": "P-PR3 EntOS RCU", "remoteId": 21, "deviceId": 66, "make": "Universal Electronics, Inc.", "model": "PR3", "hwVersion": "112.1.0.2", "swVersion": "6003.0.4", "btlVersion": "Rel-cc6d06e", "serialNumber": "2060f290411c", "batteryPercent": 90, "tvIRCode": "0", "ampIRCode": "0", "wakeupKeyCode": 108, "upgradeSessionId": "", "wakeupConfig": "custom", "wakeupCustomList": [59, 102, 62, 111, 110, 107]}] */;
+            uint32_t netType                         /* @brief The type of remote control network ex: 1 */;
+            PairingState pairingState                /* @brief The pairing state */;
+            IRProgState irProgState                  /* @brief The IR programming state */;
+            std::vector<uint32_t> netTypesSupported  /* @restrict:8 @brief The list of supported network types ex: [1] */;
+            std::vector<PairedRemoteInfo> remoteData /* @restrict:32 @brief Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state */;
         };
 
         struct EXTERNAL GetNetStatusResult {
@@ -180,7 +202,7 @@ namespace WPEFramework {
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
-            // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC
+            // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.

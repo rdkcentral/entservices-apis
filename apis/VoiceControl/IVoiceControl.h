@@ -109,7 +109,7 @@ namespace WPEFramework {
             DeviceStatus ff                         /* @brief The status information for the FF device type */;
             DeviceStatus mic                        /* @brief The status information for the MIC device type */;
             Core::OptionalType<DeviceStatus> micTap /* @text mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available */;
-            string capabilities                     /* @opaque @brief JSON array of capability strings returned by the voice stack. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data e.g. ["PRV"] */;
+            std::vector<string> capabilities        /* @restrict:32 @brief The list of capability strings returned by the voice stack e.g. ["PRV"] */;
             bool success                            /* @brief Whether the request succeeded */;
         };
 
