@@ -10,6 +10,7 @@
   - [AppManager](apis/AppManager.md)
   - [AppPackageManager](apis/AppPackageManager.md)
   - [AppStorageManager](apis/AppStorageManager.md)
+  - [AudioOutput](apis/AudioOutput.md)
   - [AVInput](apis/AVInput.md)
   - [Backup](apis/Backup.md)
   - [Bluetooth<sup>@</sup>](apis/BluetoothPlugin.md)
