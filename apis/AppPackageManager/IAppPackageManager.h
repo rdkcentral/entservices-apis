@@ -345,7 +345,8 @@ namespace Exchange {
 
         // @brief Start cache initialization
         // @text startCacheInitialization
-        // @retval Core::hresult: Result of the cache initialization start operation
+        // @retval Core::ERROR_NONE: Cache initialization start requested successfully
+        // @retval Core::ERROR_GENERAL: Failed to start cache initialization
         virtual Core::hresult StartCacheInitialization() = 0;
     };
 
