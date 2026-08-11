@@ -337,5 +337,18 @@ namespace Exchange {
             ) = 0;
     };
 
+
+    struct EXTERNAL IPackageCacheInitializer : virtual public Core::IUnknown {
+        enum { ID = ID_PACKAGE_CACHE_INITIALIZER };
+
+        ~IPackageCacheInitializer() override = default;
+
+        // @brief Start cache initialization
+        // @text startCacheInitialization
+        // @retval Core::ERROR_NONE: Cache initialization start requested successfully
+        // @retval Core::ERROR_GENERAL: Failed to start cache initialization
+        virtual Core::hresult StartCacheInitialization() = 0;
+    };
+
 } // Exchange
 } // WPEFramework
