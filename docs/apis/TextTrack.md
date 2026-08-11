@@ -2,7 +2,7 @@
 <a id="TextTrack_Module"></a>
 # TextTrack Module
 
-**Version: [1.4.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
+**Version: [1.5.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/TextTrack/ITextTrack.h)**
 
 A TextTrack module for Thunder framework.
 
@@ -1547,7 +1547,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.style | string | will receive the style overrides |
+| result.style | string | Will receive the style overrides |
 
 ### Examples
 
@@ -1956,7 +1956,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayHandle | string | is an encoding of the wayland display name |
+| params.displayHandle | string | Is an encoding of the wayland display name |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2165,7 +2165,7 @@ None
 | params | object |  |
 | params.sessionId | integer | Is the session |
 | params.type | string | Is the type of data. Possible values: PES, TTML, CC, WEBVTT |
-| params.displayOffsetMs | integer | Is currently unused |
+| params.displayOffsetMs | integer | Is added to a timestamp in the data to determine when to display it. The offset is in milliseconds and can be negative. Not all types support this. |
 | params.data | string | Is the data to display, properly formatted as per the expectations of the type used |
 ### Results
 | Name | Type | Description |
@@ -2273,7 +2273,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.sessionId | integer | On success the returned session id  |
+| params.sessionId | integer | Is the session |
 | params.text | string | Is the text to display |
 ### Results
 | Name | Type | Description |
@@ -2312,6 +2312,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_NOT_SUPPORTED)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 22,
+        "message": "if preview is not supported"
+    }
 }
 ```
 
