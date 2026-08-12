@@ -61,10 +61,9 @@ namespace WPEFramework {
         };
 
         enum class FindMyRemoteLevel : uint8_t {
-            INVALID = 0 /* @text INVALID */,
-            OFF         /* @text off */,
-            MID         /* @text mid */,
-            HIGH        /* @text high */
+            OFF  /* @text off */,
+            MID  /* @text mid */,
+            HIGH /* @text high */
         };
 
         enum class FirmwareUpdateState : uint8_t {
@@ -309,12 +308,12 @@ namespace WPEFramework {
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
-            // @param level: The level at which the remote will beep
+            // @param level(optional): The level at which the remote will beep. Required for the call to succeed; the request fails if omitted.
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteLevel level, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult FindMyRemote(const Core::OptionalType<FindMyRemoteLevel>& level, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset

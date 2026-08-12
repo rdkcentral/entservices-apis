@@ -304,7 +304,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.level | string | The level at which the remote will beep. Possible values: INVALID, off, mid, high |
+| params?.level | string | <sup>(optional)</sup>The level at which the remote will beep. Required for the call to succeed; the request fails if omitted. Possible values: off, mid, high |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -322,7 +322,7 @@ None
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "level": "INVALID"
+        "level": "off"
     }
 }
 ```
@@ -331,7 +331,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "INVALID"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "off"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
