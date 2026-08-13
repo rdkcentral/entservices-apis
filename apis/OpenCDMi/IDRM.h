@@ -62,11 +62,11 @@ private:
     {
         if ((v != nullptr) && (HasBytes(sizeof(T)) == true)) {
             T tmp = 0;
-            for (size_t i = 0; i < sizeof(T); i++) {
-                //coverity fix: PW.SHIFT_COUNT_TOO_LARGE - avoid shifting by full type width on first iteration
-                if (i > 0 && sizeof(T) > 1) {
-                    tmp <<= 8;
-                }
+            tmp += buf_[pos_++];
+
+            for (size_t i = 1; i < sizeof(T); i++) 
+            {
+                tmp <<= 8;
                 tmp += buf_[pos_++];
             }
             *v = tmp;
