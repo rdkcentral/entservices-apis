@@ -31,16 +31,16 @@ struct EXTERNAL INetflixSecurity : public Core::IUnknown
     virtual ~INetflixSecurity() { }
 
     /* Retrieve the ESN */
-    virtual std::string ESN() const = 0;
+    virtual Core::hresult ESN(std::string& esn /* @out */) const = 0;
 
     /* Retrieve the pre-shared encryption key */
-    virtual uint32_t EncryptionKey() const = 0;
+    virtual Core::hresult EncryptionKey(uint32_t& encryptionKeyId /* @out */) const = 0;
 
     /* Retrieve the pre-shared HMAC key */
-    virtual uint32_t HMACKey() const = 0;
+    virtual Core::hresult HMACKey(uint32_t& hmacKeyId /* @out */) const = 0;
 
     /* Retrieve the pre-shared wrapping key */
-    virtual uint32_t WrappingKey() const = 0;
+    virtual Core::hresult WrappingKey(uint32_t& wrappingKeyId /* @out */) const = 0;
 
     /* Derive encryption keys based on an authenticated Diffie-Hellman procedure */
     virtual uint32_t DeriveKeys(const uint32_t privateDhKeyId, const uint32_t peerPublicDhKeyId, const uint32_t derivationKeyId,
