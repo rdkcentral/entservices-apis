@@ -161,7 +161,7 @@ namespace Exchange {
 
             // @brief Display HDCP Status
             // @text onDisplayHDCPStatus
-            virtual void OnDisplayHDCPStatus() {};
+            virtual void OnDisplayHDCPStatus(const int32_t hdcpStatus) {};
             
         };
 
