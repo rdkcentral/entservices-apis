@@ -61,7 +61,7 @@ private:
     bool Read(T* v)
     {
         if ((v != nullptr) && (HasBytes(sizeof(T)) == true)) {
-            std::uint64_t tmp = buf_[pos_++];
+            uint64_t tmp = buf_[pos_++];
 
             for (size_t i = 1; i < sizeof(T); ++i) {
                 tmp = (tmp << 8) | buf_[pos_++];
