@@ -336,7 +336,24 @@ namespace Exchange {
             bool &locked /* @out */
             ) = 0;
     };
+    // @json 1.0.0 @text:keep
+    struct EXTERNAL IAppPackageManagerConfig : virtual public Core::IUnknown {
+        enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 
+
+        // @brief Returns the metadata of installed package in JSON string format
+        // @text getConfigForInstalledPackage
+        // @param packageId: Package Id
+        // @param version: Version
+        // @param config: Config of the installed package in JSON string format
+        virtual Core::hresult GetConfigForInstalledPackage(const string &packageId, const string &version, string &config /* @out @opaque */) = 0;
+
+        // @brief Returns the metadata of all installed packages in JSON string format.
+        // @text getConfigListForInstalledPackages
+        // @param filter: capability filter for installed packages
+        // @param config: Returns the metadata of all installed packages in JSON string format
+        virtual Core::hresult GetConfigListForInstalledPackages(const string &filter, string &config /* @out @opaque */) = 0;
+    };
 
     struct EXTERNAL IPackageCacheInitializer : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_CACHE_INITIALIZER };
@@ -349,6 +366,5 @@ namespace Exchange {
         // @retval Core::ERROR_GENERAL: Failed to start cache initialization
         virtual Core::hresult StartCacheInitialization() = 0;
     };
-
 } // Exchange
 } // WPEFramework
