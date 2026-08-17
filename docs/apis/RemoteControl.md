@@ -1197,9 +1197,11 @@ None
     "jsonrpc": "2.0",
     "id": 18,
     "method": "org.rdk.RemoteControl.unpair",
-    "params": [
-        "AA:BB:CC:DD:EE:FF"
-    ]
+    "params": {
+        "macAddressList": [
+            "AA:BB:CC:DD:EE:FF"
+        ]
+    }
 }
 ```
 
@@ -1207,7 +1209,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": ["AA:BB:CC:DD:EE:FF"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
