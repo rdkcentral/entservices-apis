@@ -277,7 +277,9 @@ namespace Exchange {
         // @property
         // @text osname
         // @brief Provides access to the operating system name.
+		// @details Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
         // @param osName: Operating system name
+		// @example osName: RDK-E
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult OsName(string& osName /* @out */) const = 0;
@@ -286,7 +288,9 @@ namespace Exchange {
         // @property
         // @text osversion
         // @brief Provides access to the operating system version.
+		// @details Reads and writes OsVersion to /opt/persistent/osdetails.info and returns empty string if unset.
         // @param osVersion: Operating system version
+		// @example osVersion: 8.3
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult OsVersion(string& osVersion /* @out */) const = 0;
