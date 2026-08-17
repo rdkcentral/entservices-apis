@@ -88,9 +88,12 @@ None
 | params?.enable | bool | <sup>(optional)</sup>Enables or disables voice globally |
 | params?.prv | bool | <sup>(optional)</sup>The Press & Release Voice feature (true for enable, false for disable) |
 | params?.wwFeedback | bool | <sup>(optional)</sup>The Wake Word Feedback feature (true for enable, false for disable) |
-| params?.enable | bool | <sup>(optional)</sup>Enable configuration for the PTT device type |
-| params?.enable | bool | <sup>(optional)</sup>Enable configuration for the FF device type |
-| params?.enable | bool | <sup>(optional)</sup>Enable configuration for the MIC device type |
+| params?.ptt | object | <sup>(optional)</sup>Enable configuration for the PTT device type |
+| params?.ptt.enable | bool | <sup>(optional)</sup>Whether the device type should be enabled |
+| params?.ff | object | <sup>(optional)</sup>Enable configuration for the FF device type |
+| params?.ff.enable | bool | <sup>(optional)</sup>Whether the device type should be enabled |
+| params?.mic | object | <sup>(optional)</sup>Enable configuration for the MIC device type |
+| params?.mic.enable | bool | <sup>(optional)</sup>Whether the device type should be enabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

@@ -398,9 +398,25 @@ def generate_parameters_section(params, symbol_registry):
     if params:
         markdown += "| Name | Type | Description |\n| :-------- | :-------- | :-------- |\n"
         markdown += f"| params | object |  |\n"
-        for param in params:
+        # Single-member struct params (e.g. a struct wrapping just one "enable" field)
+        # are normally flattened straight to their member's name, dropping the param's
+        # own name. That's fine for a single occurrence, but when two or more sibling
+        # params in this method share that same struct shape, they'd otherwise collide
+        # into identical rows (e.g. "ptt" and "ff" both rendering as "params.enable").
+        # Detect that collision and restore each param's own name as a prefix.
+        first_keys = [next(iter(symbol_registry[f"{p['name']}-{p['type']}"]['flattened_description'])) for p in params]
+        first_key_counts = {}
+        for k in first_keys:
+            first_key_counts[k] = first_key_counts.get(k, 0) + 1
+        for param, first_key in zip(params, first_keys):
             param_key = f"{param['name']}-{param['type']}"
             flattened_params = dict(symbol_registry[param_key]['flattened_description'])
+            expected_root_key = f".{param['name']}"
+            if first_key_counts[first_key] > 1 and first_key != expected_root_key:
+                rekeyed = {expected_root_key: {'type': 'object', 'description': ''}}
+                for member_key, member_data in flattened_params.items():
+                    rekeyed[f"{expected_root_key}{member_key}"] = member_data
+                flattened_params = rekeyed
             if param['description']:
                 first_key = next(iter(flattened_params))
                 merged_description = _merge_description_with_generated(

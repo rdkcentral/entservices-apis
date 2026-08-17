@@ -1325,8 +1325,19 @@ class HeaderFileParser:
                 if len(struct) == 1:
                     first_member = next(iter(struct))
                     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
-                        flattened_descriptions.update(
-                            self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
+                        member_flattened = self.get_description_from_individual_symbol(
+                            '', f"{first_member}-{struct[first_member]['type']}")
+                        # The global symbol lookup above doesn't carry this struct's own
+                        # optionality for the member (e.g. Core::OptionalType<bool> enable);
+                        # only structs_registry has it. Fill it in so callers that render
+                        # this as a nested (non-root) row still know it's optional.
+                        member_optional = struct[first_member].get('optional', False)
+                        for member_key, member_data in member_flattened.items():
+                            member_flattened[member_key] = {
+                                **member_data,
+                                'optional': member_data.get('optional', member_optional)
+                            }
+                        flattened_descriptions.update(member_flattened)
                         return flattened_descriptions
             enhanced_desc = symbol_desc or ''
             if symbol_type in self.enums_registry:
