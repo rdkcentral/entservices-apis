@@ -2128,17 +2128,18 @@
             }
         },
         "setForceHDRMode": {
-            "summary": "Enables or disables the force HDR mode. If enabled, the HDR format that is currently configured on the device is used.",
+            "summary": "Sets the required HDR mode to force. Use `NONE` to reset the mode to the default.",
             "params": {
                 "type": "object",
                 "properties": {
                     "hdr_mode": {
-                        "summary": "`true` to force the HDR format or `false` to reset the mode to the default.",
-                        "type": "boolean",
-                        "example": true
+                        "summary": "Required HDR mode to force. Use `NONE` to reset the mode to the default.",
+                        "type": "string",
+                        "enum": ["NONE", "SDR", "HDR10", "HDR10PLUS", "DV", "HLG", "TechnicolorPrime"],
+                        "example": "HDR10"
                     }
                 },
-                "required": []
+                "required": ["hdr_mode"]
             },
             "result": {
                 "$ref": "#/common/result"

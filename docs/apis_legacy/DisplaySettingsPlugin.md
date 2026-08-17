@@ -113,7 +113,7 @@ DisplaySettings interface methods:
 | [setDolbyVolumeMode](#setDolbyVolumeMode) | Enables or disables Dolby Volume mode on audio track (audio output port HDMI0) |
 | [setDRCMode](#setDRCMode) | Sets the Dynamic Range Control (DRC) setting |
 | [setEnableAudioPort](#setEnableAudioPort) | Enable or disable the specified audio port based on the input audio port name |
-| [setForceHDRMode](#setForceHDRMode) | Enables or disables the force HDR mode |
+| [setForceHDRMode](#setForceHDRMode) | Sets the required HDR mode to force |
 | [setGain](#setGain) | Adjusts the gain on a specific port |
 | [setGraphicEqualizerMode](#setGraphicEqualizerMode) | Sets the Graphic Equalizer Mode |
 | [setIntelligentEqualizerMode](#setIntelligentEqualizerMode) | Sets the Intelligent Equalizer Mode (port HDMI0) |
@@ -3661,7 +3661,7 @@ No Events
 <a name="setForceHDRMode"></a>
 ## *setForceHDRMode*
 
-Enables or disables the force HDR mode. If enabled, the HDR format that is currently configured on the device is used.
+Sets the required HDR mode to force. Use `NONE` to reset the mode to the default.
 
 ### Events
 
@@ -3672,7 +3672,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.hdr_mode | boolean | <sup>*(optional)*</sup> `true` to force the HDR format or `false` to reset the mode to the default |
+| params.hdr_mode | string | Required HDR mode to force. Use `NONE` to reset the mode to the default. (must be one of the following: *NONE*, *SDR*, *HDR10*, *HDR10PLUS*, *DV*, *HLG*, *TechnicolorPrime*) |
 
 ### Result
 
@@ -3691,7 +3691,7 @@ No Events
     "id": 42,
     "method": "org.rdk.DisplaySettings.setForceHDRMode",
     "params": {
-        "hdr_mode": true
+        "hdr_mode": "HDR10"
     }
 }
 ```
@@ -4913,4 +4913,3 @@ Triggered when the volume level changed.
     }
 }
 ```
-
