@@ -20,7 +20,9 @@
 #pragma once
 
 #include "Module.h"
+#include <string>
 
+// @stubgen:include <com/IIteratorType.h>
 namespace WPEFramework {
 namespace Exchange {
 
@@ -39,6 +41,8 @@ namespace Exchange {
                 DOLBYDIGITALPLUS,
                 SOUNDMODE_AUTO
          };
+
+        using IAudioConfigListIterator = RPC::IIteratorType<string, ID_AUDIO_CONFIG_LIST_ITERATOR>;
 
         // @event
         struct EXTERNAL INotification : virtual public Core::IUnknown {
@@ -63,6 +67,36 @@ namespace Exchange {
         // @param enabled: true if Dolby Atmos Experience is enabled, false otherwise
         // @retval Core::ERROR_NONE on success
         virtual Core::hresult DolbyAtmosExperience(bool& enabled /* @out */) const = 0;
+
+        // @text setAudioConfig
+        // @brief Sets an audio configuration state.
+        // @details Enables or disables the specified audio configuration based on the `enabled` parameter.
+        // @param config: Audio configuration. e.g. `CONTINUOUS_AUDIO_OUTPUT`
+        // @example config: CONTINUOUS_AUDIO_OUTPUT
+        // @param enabled: true to enable the configuration, false to disable it
+        // @example enabled: true
+        // @retval Core::ERROR_NONE on success
+        // @retval Core::ERROR_BAD_REQUEST for unsupported configuration
+        virtual Core::hresult SetAudioConfig(const std::string& audioConfig /* @text audioConfig */, const bool enabled) = 0;
+
+        // @text getAudioConfig
+        // @brief Gets an audio configuration state.
+        // @details Returns whether the specified AudioConfig is currently enabled.
+        // @param config: Audio configuration. e.g. `CONTINUOUS_AUDIO_OUTPUT`
+        // @example config: CONTINUOUS_AUDIO_OUTPUT
+        // @param enabled: true if the configuration is currently enabled, false otherwise
+        // @example enabled: true
+        // @retval Core::ERROR_NONE on success
+        // @retval Core::ERROR_BAD_REQUEST for unsupported configuration
+        virtual Core::hresult GetAudioConfig(const std::string& audioConfig /* @text audioConfig */, bool& enabled /* @out */) const = 0;
+
+        // @text getSupportedAudioConfigs
+        // @brief Returns list of supported audio configurations.
+        // @details Returns the list of audio configuration available for this device that the clients can enable or disable.
+        // @param audioConfigs: List of supported audio configurations
+        // @example audioConfigs: ["CONTINUOUS_AUDIO_OUTPUT"]
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult GetSupportedAudioConfigs(IAudioConfigListIterator*& audioConfigs /* @out */) const = 0;
     };
 
 } // namespace Exchange
