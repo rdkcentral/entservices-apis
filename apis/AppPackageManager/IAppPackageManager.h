@@ -187,7 +187,8 @@ namespace Exchange {
             string digest;
             // @brief SizeKb
             uint64_t sizeKb;
-            bool isRuntime /* @text isRuntime */ /* @brief Indicates whether this package is a runtime package */;
+            // @brief PackageType
+            string packageType /* @brief Type of the package as defined by the OCI package spec (e.g. base, runtime, application, service, resource) */;
         };
         using IPackageIterator = RPC::IIteratorType<Package, ID_PACKAGE_ITERATOR>;
 
@@ -339,6 +340,7 @@ namespace Exchange {
     struct EXTERNAL IAppPackageManagerConfig : virtual public Core::IUnknown {
         enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 
+
         // @brief Returns the metadata of installed package in JSON string format
         // @text getConfigForInstalledPackage
         // @param packageId: Package Id
@@ -351,6 +353,18 @@ namespace Exchange {
         // @param filter: capability filter for installed packages
         // @param config: Returns the metadata of all installed packages in JSON string format
         virtual Core::hresult GetConfigListForInstalledPackages(const string &filter, string &config /* @out @opaque */) = 0;
+    };
+
+    struct EXTERNAL IPackageCacheInitializer : virtual public Core::IUnknown {
+        enum { ID = ID_PACKAGE_CACHE_INITIALIZER };
+
+        ~IPackageCacheInitializer() override = default;
+
+        // @brief Start cache initialization
+        // @text startCacheInitialization
+        // @retval Core::ERROR_NONE: Cache initialization start requested successfully
+        // @retval Core::ERROR_GENERAL: Failed to start cache initialization
+        virtual Core::hresult StartCacheInitialization() = 0;
     };
 } // Exchange
 } // WPEFramework
