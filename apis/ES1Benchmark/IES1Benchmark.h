@@ -63,83 +63,57 @@ namespace Exchange {
         };
 
         // @text echostring
-        // @brief Echo a string payload; returns server-side entry/exit timestamps for latency breakdown
+        // @brief Echo a string payload
         // @param value  - in  - string payload to echo
         // @param echo   - out - echoed string
-        // @param ts2    - out - Unix epoch microseconds at handler entry (after deserialization)
-        // @param ts3    - out - Unix epoch microseconds at handler exit  (before serialization)
         virtual Core::hresult EchoString(const string& value /* @in */,
-                                         string& echo /* @out */,
-                                         uint64_t& ts2 /* @out */,
-                                         uint64_t& ts3 /* @out */) = 0;
+                                         string& echo /* @out */) = 0;
 
         // @text echoarray
         // @brief Echo a uint8 array payload (max 256 KB)
         // @param values - in  - byte array to echo
         // @param echo   - out - echoed byte array
-        // @param ts2    - out - Unix epoch microseconds at handler entry
-        // @param ts3    - out - Unix epoch microseconds at handler exit
         virtual Core::hresult EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */,
-                                        std::vector<uint8_t>& echo /* @out @restrict:0..256K */,
-                                        uint64_t& ts2 /* @out */,
-                                        uint64_t& ts3 /* @out */) = 0;
+                                        std::vector<uint8_t>& echo /* @out @restrict:0..256K */) = 0;
 
         // @text echomixedarray
         // @brief Echo a heterogeneous-element array (max 4228 elements, ~256 KB)
         // @param elements - in  - array of mixed elements to echo
         // @param echo     - out - echoed element array
-        // @param ts2      - out - Unix epoch microseconds at handler entry
-        // @param ts3      - out - Unix epoch microseconds at handler exit
         virtual Core::hresult EchoMixedArray(const std::vector<MixedElement>& elements /* @in @restrict:0..4228 */,
-                                             std::vector<MixedElement>& echo /* @out @restrict:0..4228 */,
-                                             uint64_t& ts2 /* @out */,
-                                             uint64_t& ts3 /* @out */) = 0;
+                                             std::vector<MixedElement>& echo /* @out @restrict:0..4228 */) = 0;
 
         // @text echonestedobjects
         // @brief Echo 4-level nested objects (max 1736 elements, ~256 KB)
         // @param objects - in  - array of 4-level nested objects to echo
         // @param echo    - out - echoed nested object array
-        // @param ts2     - out - Unix epoch microseconds at handler entry
-        // @param ts3     - out - Unix epoch microseconds at handler exit
         virtual Core::hresult EchoNestedObjects(const std::vector<NestedObject>& objects /* @in @restrict:0..1736 */,
-                                                std::vector<NestedObject>& echo /* @out @restrict:0..1736 */,
-                                                uint64_t& ts2 /* @out */,
-                                                uint64_t& ts3 /* @out */) = 0;
+                                                std::vector<NestedObject>& echo /* @out @restrict:0..1736 */) = 0;
 
         // @text echoint32
         // @brief Echo a uint32 scalar value
         virtual Core::hresult EchoUint32(const uint32_t value /* @in */,
-                                         uint32_t& echo /* @out */,
-                                         uint64_t& ts2 /* @out */,
-                                         uint64_t& ts3 /* @out */) = 0;
+                                         uint32_t& echo /* @out */) = 0;
 
         // @text echoint64
         // @brief Echo a uint64 scalar value
         virtual Core::hresult EchoUint64(const uint64_t value /* @in */,
-                                         uint64_t& echo /* @out */,
-                                         uint64_t& ts2 /* @out */,
-                                         uint64_t& ts3 /* @out */) = 0;
+                                         uint64_t& echo /* @out */) = 0;
 
         // @text echobool
         // @brief Echo a boolean scalar value
         virtual Core::hresult EchoBool(const bool value /* @in */,
-                                       bool& echo /* @out */,
-                                       uint64_t& ts2 /* @out */,
-                                       uint64_t& ts3 /* @out */) = 0;
+                                       bool& echo /* @out */) = 0;
 
         // @text echofloat
         // @brief Echo a float scalar value
         virtual Core::hresult EchoFloat(const float value /* @in */,
-                                        float& echo /* @out */,
-                                        uint64_t& ts2 /* @out */,
-                                        uint64_t& ts3 /* @out */) = 0;
+                                        float& echo /* @out */) = 0;
 
         // @text echodouble
         // @brief Echo a double scalar value
         virtual Core::hresult EchoDouble(const double value /* @in */,
-                                         double& echo /* @out */,
-                                         uint64_t& ts2 /* @out */,
-                                         uint64_t& ts3 /* @out */) = 0;
+                                         double& echo /* @out */) = 0;
     };
 
 } // namespace Exchange
