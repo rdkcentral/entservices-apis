@@ -59,8 +59,7 @@ namespace Exchange {
 
     class DataExchange : public Core::SharedBuffer {
     private:
-        struct Administration {
-            uint32_t Status;
+        struct SampleInfo {
             uint8_t  EncScheme;
             uint8_t  IVLength;
             uint8_t  KeyIdLength;
@@ -69,11 +68,85 @@ namespace Exchange {
             uint32_t PatternClearBlocks;
             uint8_t  IV[24];
             uint8_t  KeyId[17];
+        };
+        struct Administration {
+            uint32_t Status;
+            uint16_t SampleLength;
+            SampleInfo Samples[32];
             CDMi::SubSampleInfo SubSamples[320];
             uint16_t StreamHeight;
             uint16_t StreamWidth;
             uint8_t  StreamType;
         };
+
+    private:
+        void SetIV(SampleInfo& sampleInfo, const uint8_t ivDataLength, const uint8_t ivData[])
+        {
+            VERIFY(ivDataLength <= sizeof(SampleInfo::IV));
+            sampleInfo.IVLength = (ivDataLength > sizeof(SampleInfo::IV) ? sizeof(SampleInfo::IV) : ivDataLength);
+            ::memcpy(sampleInfo.IV, ivData, sampleInfo.IVLength);
+            if (sampleInfo.IVLength < sizeof(SampleInfo::IV)) {
+                ::memset(&(sampleInfo.IV[sampleInfo.IVLength]), 0, (sizeof(SampleInfo::IV) - sampleInfo.IVLength));
+            }
+        }
+        const uint8_t* IVKey(const SampleInfo& sampleInfo) const
+        {
+            return (&sampleInfo.IV[0]);
+        }
+        uint8_t IVKeyLength(const SampleInfo& sampleInfo) const
+        {
+            return (sampleInfo.IVLength);
+        }
+        void SetKeyId(SampleInfo& sampleInfo, const uint8_t length, const uint8_t buffer[])
+        {
+            VERIFY(length <= sizeof(SampleInfo::KeyId));
+            sampleInfo.KeyId[0] = (length <= sizeof(SampleInfo::KeyId) ? length : sizeof(SampleInfo::KeyId));
+            if (length != 0) {
+                ::memcpy(&(sampleInfo.KeyId[1]), buffer, sampleInfo.KeyId[0]);
+            }
+        }
+        const uint8_t* KeyId(const SampleInfo& sampleInfo, uint8_t& length) const
+        {
+            length = sampleInfo.KeyId[0];
+            VERIFY(length <= 16);
+            return (length > 0 ? &sampleInfo.KeyId[1] : nullptr);
+        }
+        void SetEncScheme(SampleInfo& sampleInfo, const uint8_t encScheme)
+        {
+            sampleInfo.EncScheme = encScheme;
+        }
+        uint8_t EncScheme(const SampleInfo& sampleInfo) const
+        {
+            return sampleInfo.EncScheme;
+        }
+        void SetEncPattern(SampleInfo& sampleInfo, const uint32_t encBlocks, const uint32_t clearBlocks)
+        {
+            sampleInfo.PatternEncBlocks = encBlocks;
+            sampleInfo.PatternClearBlocks = clearBlocks;
+        }
+        void EncPattern(const SampleInfo& sampleInfo, uint32_t& encBlocks, uint32_t& clearBlocks) const
+        {
+            encBlocks = sampleInfo.PatternEncBlocks;
+            clearBlocks = sampleInfo.PatternClearBlocks;
+        }
+        uint16_t SubSampleLength(const SampleInfo& sampleInfo) const
+        {
+            return (sampleInfo.SubSampleLength);
+        }
+        void SetSubSampleLength(SampleInfo& sampleInfo, const uint16_t length)
+        {
+            sampleInfo.SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo)), length);
+        }
+
+        void SetSubSamples(const uint16_t startIdx, const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
+        {
+            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            VERIFY(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo) >= (startIdx + length));
+            for(uint16_t index = 0; index < length; index++) {
+                admin->SubSamples[index + startIdx].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
+                admin->SubSamples[index + startIdx].clear_bytes = subSampleInfo[index].clear_bytes;
+            }
+        }
 
     public:
         DataExchange() = delete;
@@ -106,9 +179,7 @@ namespace Exchange {
         void Clear() 
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            admin->SubSampleLength = 0;
-            admin->IVLength = 0;
-            admin->KeyIdLength = 0;
+            admin->SampleLength = 0;
             admin->StreamHeight = 0;
             admin->StreamWidth = 0;
             admin->StreamType = 0;
@@ -121,71 +192,39 @@ namespace Exchange {
         {
             return (reinterpret_cast<const Administration*>(AdministrationBuffer())->Status);
         }
-        void InitWithLast15(bool initWithLast15)
-        {
-            if (initWithLast15 == true) {
-                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength |= 0x80;
-            }
-            else {
-                reinterpret_cast<Administration*>(AdministrationBuffer())->IVLength &= (~0x80);
-            }
-        }
-        bool InitWithLast15() const
-        {
-            return ((reinterpret_cast<const Administration*>(AdministrationBuffer())->IVLength & 0x80) != 0);
-        }
-        void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            VERIFY(ivDataLength <= sizeof(Administration::IV));
-            admin->IVLength = (ivDataLength > sizeof(Administration::IV) ? sizeof(Administration::IV)
-                                                                        : ivDataLength);
-            ::memcpy(admin->IV, ivData, admin->IVLength);
-            if (admin->IVLength < sizeof(Administration::IV)) {
-                ::memset(&(admin->IV[admin->IVLength]), 0,
-                    (sizeof(Administration::IV) - admin->IVLength));
-            }
-        }
-        void SetEncScheme(const uint8_t encScheme)
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            admin->EncScheme = encScheme;
-        }
-        uint8_t EncScheme()
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            return admin->EncScheme;
-        }
-        void SetEncPattern(const uint32_t encBlocks, const uint32_t clearBlocks)
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            admin->PatternEncBlocks = encBlocks;
-            admin->PatternClearBlocks = clearBlocks;
-        }
-        void EncPattern(uint32_t& encBlocks, uint32_t& clearBlocks)
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            encBlocks = admin->PatternEncBlocks;
-            clearBlocks = admin->PatternClearBlocks;
-        }
-        uint16_t SubSampleLength() const 
+        uint16_t SampleLength() const
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
-            return (admin->SubSampleLength);
+            return (admin->SampleLength);
         }
-        const CDMi::SubSampleInfo* SubSamples() const
+        void Samples(CDMi::SampleInfo *samplesInfo, const uint16_t length) const
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
-            return (&(admin->SubSamples[0]));
+            VERIFY(admin->SampleLength >= length);
+            for(uint16_t index = 0, subSampleIdx = 0; index < length; index++) {
+                samplesInfo[index].ivLength = IVKeyLength(admin->Samples[index]);
+                samplesInfo[index].iv = const_cast<uint8_t *>(IVKey(admin->Samples[index]));
+                samplesInfo[index].keyId = const_cast<uint8_t *>(KeyId(admin->Samples[index], samplesInfo[index].keyIdLength));
+                samplesInfo[index].scheme = static_cast<CDMi::EncryptionScheme>(EncScheme(admin->Samples[index]));
+                EncPattern(admin->Samples[index], samplesInfo[index].pattern.encrypted_blocks, samplesInfo[index].pattern.clear_blocks);
+                samplesInfo[index].subSample = const_cast<CDMi::SubSampleInfo *>(&(admin->SubSamples[subSampleIdx]));
+                samplesInfo[index].subSampleCount = SubSampleLength(admin->Samples[index]);
+                subSampleIdx += samplesInfo[index].subSampleCount;
+            }
         }
-        void SubSample(const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
+        void SetSamples(const uint16_t length, const CDMi::SampleInfo samplesInfo[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            VERIFY(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo) >= length);
-            admin->SubSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo)), length);
-            for(uint8_t index = 0; index < admin->SubSampleLength; index++) {
-                admin->SubSamples[index].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
-                admin->SubSamples[index].clear_bytes = subSampleInfo[index].clear_bytes;
+            VERIFY(sizeof(Administration::Samples)/sizeof(SampleInfo) >= length);
+            admin->SampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::Samples)/sizeof(SampleInfo)), length);
+            for(uint16_t index = 0, subSampleIdx = 0; index < admin->SampleLength; index++) {
+                SetIV(admin->Samples[index], samplesInfo[index].ivLength, samplesInfo[index].iv);
+                SetKeyId(admin->Samples[index], samplesInfo[index].keyIdLength, samplesInfo[index].keyId);
+                SetEncScheme(admin->Samples[index], static_cast<uint8_t>(samplesInfo[index].scheme));
+                SetEncPattern(admin->Samples[index], samplesInfo[index].pattern.encrypted_blocks, samplesInfo[index].pattern.clear_blocks);
+                SetSubSampleLength(admin->Samples[index], samplesInfo[index].subSampleCount);
+                SetSubSamples(subSampleIdx, samplesInfo[index].subSampleCount, samplesInfo[index].subSample);
+                subSampleIdx += samplesInfo[index].subSampleCount;
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
@@ -211,32 +250,6 @@ namespace Exchange {
         void Read(const uint32_t length, uint8_t* data) const
         {
             GetBuffer(0, length, data);
-        }
-        const uint8_t* IVKey() const
-        {
-            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
-            return (admin->IV);
-        }
-        uint8_t IVKeyLength() const
-        {
-            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
-            return (admin->IVLength);
-        }
-        void KeyId(const uint8_t length, const uint8_t buffer[])
-        {
-            Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            VERIFY(length <= sizeof(Administration::KeyId));
-            admin->KeyId[0] = (length <= sizeof(Administration::KeyId) ? length : sizeof(Administration::KeyId));
-            if (length != 0) {
-                ::memcpy(&(admin->KeyId[1]), buffer, admin->KeyId[0]);
-            }
-        }
-        const uint8_t* KeyId(uint8_t& length) const
-        {
-            const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
-            length = admin->KeyId[0];
-            VERIFY(length <= 16);
-            return (length > 0 ? &admin->KeyId[1] : nullptr);
         }
     };
 }
