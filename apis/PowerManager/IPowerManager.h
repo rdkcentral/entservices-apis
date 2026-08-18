@@ -184,6 +184,28 @@ namespace WPEFramework
          virtual Core::hresult Register(IThermalModeChangedNotification* notification ) = 0;
          virtual Core::hresult Unregister(const IThermalModeChangedNotification* notification ) = 0;
 
+        // @event
+        struct EXTERNAL IPowerModeChangeAcknowledgementRequested : virtual public Core::IUnknown
+        {
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGE_ACK };
+            // @brief Power mode change acknowledgement requested event. Emitted once the power mode change
+            //        pre-change negotiation phase has finished, requesting all clients registered via
+            //        `AddPowerModeChangeAcknowledgementClient` to acknowledge (via `PowerModeChangeAcknowledgement`)
+            //        before the actual power mode change is applied.
+            // @text onPowerModeChangeAcknowledgementRequested
+            // @param currentState: Current Power State
+            // @param newState: Changing power state to this New Power State
+            // @param transactionId: transactionId to be used when invoking PowerModeChangeAcknowledgement API
+            // @param reason: Reason for the power state change, as provided in the triggering SetPowerState invocation
+            virtual void OnPowerModeChangeAcknowledgementRequested(const PowerState currentState, const PowerState newState, const int transactionId, const string &reason) {};
+        };
+        // @brief Register for Power Mode change acknowledgement requested event
+        virtual Core::hresult Register(IPowerModeChangeAcknowledgementRequested* notification ) = 0;
+        // @brief Unregister for Power Mode change acknowledgement requested event
+        //       IMPORTANT: If client is also engaged in power mode change acknowledgement operation (requested via AddPowerModeChangeAcknowledgementClient API),
+        //                  make sure to disengage (using RemovePowerModeChangeAcknowledgementClient API) before calling Unregister.
+        virtual Core::hresult Unregister(const IPowerModeChangeAcknowledgementRequested* notification ) = 0;
+
         /** Engage a client in power mode change operation. */
         // @text addPowerModePreChangeClient
         // @brief Register a client to engage in power mode state changes.
@@ -207,6 +229,28 @@ namespace WPEFramework
         //        NOTE client will still continue to receive pre-change notifications.
         // @param clientId: Unique identifier for the client. See `AddPowerModePreChangeClient`
         virtual Core::hresult RemovePowerModePreChangeClient(const uint32_t clientId ) = 0;
+
+        /** Register a client for the power mode change acknowledgement phase. */
+        // @text addPowerModeChangeAcknowledgementClient
+        // @brief Register a client to participate in the power mode change acknowledgement phase.
+        //        Once the (existing) power mode pre-change negotiation phase finishes, an `OnPowerModeChangeAcknowledgementRequested`
+        //        event is emitted. Registered clients must then call `PowerModeChangeAcknowledgement` as soon as they are
+        //        prepared for the power mode change. Only when all registered clients have acknowledged will the
+        //        actual power mode change proceed.
+        //
+        //        IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IPowerModeChangeAcknowledgementRequested` BEFORE DISENGAGING ITSELF **
+        //                   always make sure to call `RemovePowerModeChangeAcknowledgementClient` before calling `Unregister` from `IPowerModeChangeAcknowledgementRequested`.
+        //
+        // @param clientName: Name of the client
+        // @param acknowledgeClientId: Unique identifier for the client to be used while acknowledging the power mode change (`PowerModeChangeAcknowledgement`)
+        virtual Core::hresult AddPowerModeChangeAcknowledgementClient(const string& clientName , uint32_t& acknowledgeClientId /* @out */) = 0;
+
+        /** Disengage a client from the power mode change acknowledgement phase. */
+        // @text removePowerModeChangeAcknowledgementClient
+        // @brief Removes a registered client from participating in power mode change acknowledgements.
+        //        NOTE client will still continue to receive acknowledgement requested notifications.
+        // @param acknowledgeClientId: Unique identifier for the client. See `AddPowerModeChangeAcknowledgementClient`
+        virtual Core::hresult RemovePowerModeChangeAcknowledgementClient(const uint32_t acknowledgeClientId ) = 0;
 
         /** Sets Power State . */
         // @text setPowerState
@@ -318,6 +362,16 @@ namespace WPEFramework
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
         virtual Core::hresult PowerModePreChangeComplete(const uint32_t clientId , const int transactionId ) = 0;
+
+        /** Acknowledge readiness for a power mode change during the acknowledgement phase. */
+        // @text powerModeChangeAcknowledgement
+        // @brief Acknowledge readiness for the power mode change requested via `OnPowerModeChangeAcknowledgementRequested`.
+        //        Must be called by every client registered via `AddPowerModeChangeAcknowledgementClient`, as soon as
+        //        that client is prepared for the power mode change. Only when all registered clients have acknowledged
+        //        will the power mode change proceed.
+        // @param acknowledgeClientId: Unique identifier for the client, as received in AddPowerModeChangeAcknowledgementClient
+        // @param transactionId: transaction id as received in OnPowerModeChangeAcknowledgementRequested
+        virtual Core::hresult PowerModeChangeAcknowledgement(const uint32_t acknowledgeClientId , const int transactionId ) = 0;
 
         /** Delay Powermode change by given time */
         // @text delayPowerModeChangeBy
