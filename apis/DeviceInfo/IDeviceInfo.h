@@ -129,6 +129,10 @@ namespace Exchange {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
+        struct EXTERNAL DeviceIdInfo {
+            string deviceID /* @brief Device ID */;
+        };
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -274,6 +278,14 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
+
+        // @property
+        // @text deviceid
+        // @brief Provides the Device ID info.
+        // @param deviceID: Device ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult DeviceID(DeviceIdInfo& deviceIdInfo /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
