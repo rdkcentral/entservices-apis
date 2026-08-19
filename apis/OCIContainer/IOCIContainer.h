@@ -53,7 +53,8 @@ struct EXTERNAL IOCIContainer : virtual public Core::IUnknown {
 
         // @brief Notifies container is stopped
         // @text onContainerStopped
-        virtual void OnContainerStopped(const string& containerId, const string& name) {}
+        // @param exitCode Exit code of the container process
+        virtual void OnContainerStopped(const string& containerId, const string& name, int32_t exitCode) {}
 
         // @brief Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup.
         // @text onContainerFailed
