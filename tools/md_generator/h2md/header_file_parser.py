@@ -184,9 +184,12 @@ class HeaderFileParser:
         # LAST '}' (rather than the first) avoids stopping early on a '}' that appears
         # inside a member's comment text (e.g. a JSON example).
         'struct':       re.compile(r'struct\s+(?:EXTERNAL\s+)?([\w\d]+)\s*\{([\s\S]*)\}\;?'),
-        'struct_mem':   re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
+        # The optional trailing <...> allows one level of its own nested <...>
+        # (e.g. Core::OptionalType<std::vector<uint32_t>>), not just a single flat
+        # template argument list.
+        'struct_mem':   re.compile(r'([\w\d\:\*]+(?:\s*<(?:[^<>]|<[^<>]*>)*>)?)\s+([\w\d\[\]]+)\;?\s*(?:(?:(?:\/\*)|(?:\/\/))(.*)(?:\*\/)?)?'),
         'method':       re.compile(r'virtual\s+([\w\d\:]+)\s+([\w\d\:]+)\s*\((.*)\)\s*(?:(?:(?:const\s*)?\=\s*0)|(?:{\s*})\s*)\;?'),
-        'method_param': re.compile(r'([\w\d\:\*]+(?:\s*<[^<>]+>)?)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
+        'method_param': re.compile(r'([\w\d\:\*]+(?:\s*<(?:[^<>]|<[^<>]*>)*>)?)\s+([\w\d\[\]]+)\s*(?:\/\*(.*)\*\/)?')
     }
 
     def __init__(self, header_file_path: str, plugin_name: str, logger: Logger):
@@ -738,7 +741,9 @@ class HeaderFileParser:
                 params.append(symbol_info)
         return params, results
 
-    OPTIONAL_TYPE_REGEX = re.compile(r'^(?:Core::)?OptionalType\s*<\s*([\w\d:]+)\s*>$')
+    # Inner type allows one level of its own nested <...> (e.g. std::vector<uint32_t>
+    # inside Core::OptionalType<std::vector<uint32_t>>), not just plain [\w\d:] tokens.
+    OPTIONAL_TYPE_REGEX = re.compile(r'^(?:Core::)?OptionalType\s*<\s*((?:[^<>]|<[^<>]*>)+)\s*>$')
 
     def unwrap_optional_type(self, type_str):
         """
@@ -1329,13 +1334,14 @@ class HeaderFileParser:
                             '', f"{first_member}-{struct[first_member]['type']}")
                         # The global symbol lookup above doesn't carry this struct's own
                         # optionality for the member (e.g. Core::OptionalType<bool> enable);
-                        # only structs_registry has it. Fill it in so callers that render
-                        # this as a nested (non-root) row still know it's optional.
+                        # only structs_registry has it. OR it into every row (not just a
+                        # fallback default) so a row's own optionality — or that of any
+                        # ancestor already baked in by flatten_description — isn't lost.
                         member_optional = struct[first_member].get('optional', False)
                         for member_key, member_data in member_flattened.items():
                             member_flattened[member_key] = {
                                 **member_data,
-                                'optional': member_data.get('optional', member_optional)
+                                'optional': member_data.get('optional', False) or member_optional
                             }
                         flattened_descriptions.update(member_flattened)
                         return flattened_descriptions
@@ -1347,24 +1353,24 @@ class HeaderFileParser:
             flattened_descriptions.update(self.flatten_description(curr_key, symbol_type))
         return flattened_descriptions
 
-    def flatten_description(self, parent_key, symbol_type):
+    def flatten_description(self, parent_key, symbol_type, parent_optional=False):
         """
         Mirrors logic in generate_example_from_symbol_type.
+
+        parent_optional: whether an ancestor field is itself optional (e.g. an
+        Core::OptionalType<DeviceStatus> mic_tap field). A descendant row is only
+        ever present when its whole ancestor chain is present, so optionality
+        propagates downward: a member is effectively optional if it is marked
+        optional itself OR any ancestor is.
         """
         flattened_descriptions = {}
         if symbol_type in self.structs_registry:
             struct = self.structs_registry[symbol_type]
-            # if len(struct) == 1:
-            #     first_member = next(iter(struct))
-            #     if first_member not in self.structs_registry and first_member not in self.iterators_registry:
-            #         flattened_descriptions.update(
-            #             self.get_description_from_individual_symbol('', f"{first_member}-{struct[first_member]['type']}"))
-            # else:
             for member_name in struct:
                 member_type = struct[member_name]['type']
                 member_desc = struct[member_name]['description']
                 member_custom_name = struct[member_name].get('custom_name', '')
-                member_optional = struct[member_name].get('optional', False)
+                member_optional = struct[member_name].get('optional', False) or parent_optional
                 overridden_name = member_custom_name if member_custom_name and member_custom_name != member_name else member_name
                 curr_key = f"{parent_key}.{overridden_name}"
                 member_type_override = member_type
@@ -1382,7 +1388,7 @@ class HeaderFileParser:
                     member_desc_enhanced = f"{member_desc_enhanced}. {pv}" if member_desc_enhanced else pv
                 flattened_descriptions[curr_key] = {'type': member_type_override, 'description': member_desc_enhanced, 'optional': member_optional}
                 flattened_descriptions.update(
-                    self.flatten_description(curr_key, member_type))
+                    self.flatten_description(curr_key, member_type, parent_optional=member_optional))
             return flattened_descriptions
         elif symbol_type in self.enums_registry:
             if parent_key[-3:] == '[#]':
@@ -1398,7 +1404,7 @@ class HeaderFileParser:
         elif symbol_type in self.iterators_registry:
             underlying_type = self.iterators_registry[symbol_type]
             flattened_descriptions.update(
-                self.flatten_description(f"{parent_key}[#]", underlying_type))
+                self.flatten_description(f"{parent_key}[#]", underlying_type, parent_optional=parent_optional))
             return flattened_descriptions
         return {}
 

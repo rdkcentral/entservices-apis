@@ -282,7 +282,7 @@ This method takes no parameters.
 | result.response.mic | object | The status information for the MIC device type |
 | result.response.mic.status | string | The status of the device  |
 | result?.response.mic_tap | object | <sup>(optional)</sup>The status information for the MIC TAP device type, present only when MIC TAP capability is available |
-| result.response.mic_tap.status | string | The status of the device  |
+| result?.response.mic_tap.status | string | <sup>(optional)</sup>The status of the device  |
 | result.response.capabilities | string | The list of capability strings returned by the voice stack  |
 | result.response.success | bool | Whether the request succeeded |
 
@@ -424,10 +424,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+| params?.roles | string | <sup>(optional)</sup>The client roles  |
 | params?.transmissionProtocol | string | <sup>(optional)</sup>The transmission protocol  |
 | params?.downstreamProtocol | string | <sup>(optional)</sup>The downstream protocol  |
+| params?.capabilities | string | <sup>(optional)</sup>The client capabilities  |
 | params?.clientProfile | string | <sup>(optional)</sup>The client profile identifier  |
 | params?.language | string | <sup>(optional)</sup>The client language  |
+| params?.vrexFields | string | <sup>(optional)</sup>The vrex fields to request  |
 | params?.id | object | <sup>(optional)</sup>The device/partner identity  |
 | params?.id.type | string | <sup>(optional)</sup>The device type identifier  |
 | params?.id.partner | string | <sup>(optional)</sup>The partner identifier  |
@@ -448,10 +451,21 @@ None
     "id": 5,
     "method": "org.rdk.VoiceControl.setVoiceInit",
     "params": {
+        "roles": [
+            "envoy",
+            "input"
+        ],
         "transmissionProtocol": "webSocket",
         "downstreamProtocol": "webSocket",
+        "capabilities": [
+            "GUI",
+            "WBW"
+        ],
         "clientProfile": "profileName",
         "language": "eng-USA",
+        "vrexFields": [
+            "executeResponse"
+        ],
         "id": {
             "type": "deviceType",
             "partner": "partnerName"
@@ -464,7 +478,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"transmissionProtocol": "webSocket", "downstreamProtocol": "webSocket", "clientProfile": "profileName", "language": "eng-USA", "id": {"type": "deviceType", "partner": "partnerName"}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"roles": ["envoy", "input"], "transmissionProtocol": "webSocket", "downstreamProtocol": "webSocket", "capabilities": ["GUI", "WBW"], "clientProfile": "profileName", "language": "eng-USA", "vrexFields": ["executeResponse"], "id": {"type": "deviceType", "partner": "partnerName"}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
