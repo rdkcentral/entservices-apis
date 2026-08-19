@@ -63,57 +63,44 @@ namespace Exchange {
         };
 
         // @text echostring
-        // @brief Echo a string payload
-        // @param value  - in  - string payload to echo
-        // @param echo   - out - echoed string
-        virtual Core::hresult EchoString(const string& value /* @in */,
-                                         string& echo /* @out */) = 0;
+        // @brief Echo a string payload; the same field carries the request value and the echoed response
+        // @param value - inout - string payload; echoed back unchanged in the response
+        virtual Core::hresult EchoString(string& value /* @inout */) = 0;
 
         // @text echoarray
-        // @brief Echo a uint8 array payload (max 256 KB)
-        // @param values - in  - byte array to echo
-        // @param echo   - out - echoed byte array
-        virtual Core::hresult EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */,
-                                        std::vector<uint8_t>& echo /* @out @restrict:0..256K */) = 0;
+        // @brief Echo a uint8 array payload (max 256 KB); the same field carries the request value and the echoed response
+        // @param values - inout - byte array; echoed back unchanged in the response
+        virtual Core::hresult EchoArray(std::vector<uint8_t>& values /* @inout @restrict:0..256K */) = 0;
 
         // @text echomixedarray
-        // @brief Echo a heterogeneous-element array (max 4228 elements, ~256 KB)
-        // @param elements - in  - array of mixed elements to echo
-        // @param echo     - out - echoed element array
-        virtual Core::hresult EchoMixedArray(const std::vector<MixedElement>& elements /* @in @restrict:0..4228 */,
-                                             std::vector<MixedElement>& echo /* @out @restrict:0..4228 */) = 0;
+        // @brief Echo a heterogeneous-element array (max 4228 elements, ~256 KB); the same field carries the request value and the echoed response
+        // @param elements - inout - array of mixed elements; echoed back unchanged in the response
+        virtual Core::hresult EchoMixedArray(std::vector<MixedElement>& elements /* @inout @restrict:0..4228 */) = 0;
 
         // @text echonestedobjects
-        // @brief Echo 4-level nested objects (max 1736 elements, ~256 KB)
-        // @param objects - in  - array of 4-level nested objects to echo
-        // @param echo    - out - echoed nested object array
-        virtual Core::hresult EchoNestedObjects(const std::vector<NestedObject>& objects /* @in @restrict:0..1736 */,
-                                                std::vector<NestedObject>& echo /* @out @restrict:0..1736 */) = 0;
+        // @brief Echo 4-level nested objects (max 1736 elements, ~256 KB); the same field carries the request value and the echoed response
+        // @param objects - inout - array of 4-level nested objects; echoed back unchanged in the response
+        virtual Core::hresult EchoNestedObjects(std::vector<NestedObject>& objects /* @inout @restrict:0..1736 */) = 0;
 
         // @text echoint32
-        // @brief Echo a uint32 scalar value
-        virtual Core::hresult EchoUint32(const uint32_t value /* @in */,
-                                         uint32_t& echo /* @out */) = 0;
+        // @brief Echo a uint32 scalar value; the same field carries the request value and the echoed response
+        virtual Core::hresult EchoUint32(uint32_t& value /* @inout */) = 0;
 
         // @text echoint64
-        // @brief Echo a uint64 scalar value
-        virtual Core::hresult EchoUint64(const uint64_t value /* @in */,
-                                         uint64_t& echo /* @out */) = 0;
+        // @brief Echo a uint64 scalar value; the same field carries the request value and the echoed response
+        virtual Core::hresult EchoUint64(uint64_t& value /* @inout */) = 0;
 
         // @text echobool
-        // @brief Echo a boolean scalar value
-        virtual Core::hresult EchoBool(const bool value /* @in */,
-                                       bool& echo /* @out */) = 0;
+        // @brief Echo a boolean scalar value; the same field carries the request value and the echoed response
+        virtual Core::hresult EchoBool(bool& value /* @inout */) = 0;
 
         // @text echofloat
-        // @brief Echo a float scalar value
-        virtual Core::hresult EchoFloat(const float value /* @in */,
-                                        float& echo /* @out */) = 0;
+        // @brief Echo a float scalar value; the same field carries the request value and the echoed response
+        virtual Core::hresult EchoFloat(float& value /* @inout */) = 0;
 
         // @text echodouble
-        // @brief Echo a double scalar value
-        virtual Core::hresult EchoDouble(const double value /* @in */,
-                                         double& echo /* @out */) = 0;
+        // @brief Echo a double scalar value; the same field carries the request value and the echoed response
+        virtual Core::hresult EchoDouble(double& value /* @inout */) = 0;
     };
 
 } // namespace Exchange
