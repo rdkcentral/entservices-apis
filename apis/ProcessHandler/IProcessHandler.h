@@ -1,40 +1,26 @@
-/*
- * If not stated otherwise in this file or this component's LICENSE file the
- * following copyright and licenses apply:
- *
- * Copyright 2024 RDK Management
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 /**
- * @file IProcessHandler.h
- * @brief COM-RPC interface for ProcessHandler.
- *
- * Provides two operations:
- *   Kill  – sends SIGKILL to the given process ID.
- *   Top   – returns a snapshot of the `top -b -n1` output.
- *
- * There are no events; no INotification sub-interface is defined.
- * The J-stub (JProcessHandler.h) is auto-generated from this header by
- * Thunder's code-generation toolchain – do NOT create it manually.
- */
+* If not stated otherwise in this file or this component's LICENSE
+* file the following copyright and licenses apply:
+*
+* Copyright 2024 RDK Management
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 #pragma once
 
 #include <com/com.h>
 #include <core/core.h>
-
 #include "Ids.h"
 
 namespace WPEFramework {
@@ -47,32 +33,13 @@ namespace Exchange {
 
         ~IProcessHandler() override = default;
 
-        /**
-         * @brief Kill a process by its PID.
-         *
-         * Sends SIGKILL to the process identified by @a pid.
-         *
-         * @param pid  Process ID to kill (must be > 0).
-         * @retval ERROR_NONE            Process was signalled successfully.
-         * @retval ERROR_BAD_REQUEST     pid is 0.
-         * @retval ERROR_UNKNOWN_KEY     No such process (ESRCH).
-         * @retval ERROR_GENERAL         Any other OS error.
-         */
-        // @brief Kill a process by PID
+        //Kill a process by PID (sends SIGKILL)
         virtual Core::hresult Kill(const uint32_t pid /* @in */) = 0;
 
-        /**
-         * @brief Return a snapshot of the running process list.
-         *
-         * Executes `top -b -n1` and returns its stdout as a plain string.
-         *
-         * @param output  Full text output of `top -b -n1`. /* @out
-         * @retval ERROR_NONE     Output captured successfully.
-         * @retval ERROR_GENERAL  Failed to spawn the command.
-         */
-        // @brief Get top command output
+        //Return output of `top -b -n1`
         virtual Core::hresult Top(string& output /* @out */) = 0;
-    };
+
+    }; // struct IProcessHandler
 
 } // namespace Exchange
 } // namespace WPEFramework
