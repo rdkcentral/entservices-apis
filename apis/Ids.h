@@ -366,7 +366,11 @@ namespace Exchange {
 
         ID_RESOURCE_MONITOR                         = ID_ENTOS_OFFSET + 0x570,
         ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
-        ID_RESOURCE_MONITOR_NOTIFICATION_PROCESS_KILLED = ID_RESOURCE_MONITOR + 2
+        ID_RESOURCE_MONITOR_NOTIFICATION_PROCESS_KILLED = ID_RESOURCE_MONITOR + 2,
+
+        ID_PROCESS_WATCHER                          = ID_ENTOS_OFFSET + 0x580,
+
+        ID_PROCESS_HANDLER                          = ID_ENTOS_OFFSET + 0x590,
     }; // enum IDS
 
 } // namespace Exchange
