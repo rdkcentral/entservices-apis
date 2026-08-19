@@ -62,45 +62,135 @@ namespace Exchange {
             Level2Data data  /* @brief Level-2 nested object */;
         };
 
-        // @text echostring
-        // @brief Echo a string payload; the same field carries the request value and the echoed response
-        // @param value - inout - string payload; echoed back unchanged in the response
-        virtual Core::hresult EchoString(string& value /* @inout */) = 0;
+        // --- String ---
 
-        // @text echoarray
-        // @brief Echo a uint8 array payload (max 256 KB); the same field carries the request value and the echoed response
-        // @param values - inout - byte array; echoed back unchanged in the response
-        virtual Core::hresult EchoArray(std::vector<uint8_t>& values /* @inout @restrict:0..256K */) = 0;
+        // @text setstring
+        // @brief Accept a string payload; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetString(const string& value /* @in */) = 0;
 
-        // @text echomixedarray
-        // @brief Echo a heterogeneous-element array (max 4228 elements, ~256 KB); the same field carries the request value and the echoed response
-        // @param elements - inout - array of mixed elements; echoed back unchanged in the response
-        virtual Core::hresult EchoMixedArray(std::vector<MixedElement>& elements /* @inout @restrict:0..4228 */) = 0;
+        // @text getstring
+        // @brief Return a string payload of the requested size
+        // @param size  - in  - requested string length
+        // @param value - out - filled string, sized by 'size'
+        virtual Core::hresult GetString(const uint32_t size /* @in @restrict:0..4M */,
+                                        string& value /* @out */) = 0;
 
-        // @text echonestedobjects
-        // @brief Echo 4-level nested objects (max 1736 elements, ~256 KB); the same field carries the request value and the echoed response
-        // @param objects - inout - array of 4-level nested objects; echoed back unchanged in the response
-        virtual Core::hresult EchoNestedObjects(std::vector<NestedObject>& objects /* @inout @restrict:0..1736 */) = 0;
+        // --- Array ---
 
-        // @text echoint32
-        // @brief Echo a uint32 scalar value; the same field carries the request value and the echoed response
-        virtual Core::hresult EchoUint32(uint32_t& value /* @inout */) = 0;
+        // @text setarray
+        // @brief Accept a uint8 array payload (max 256 KB); measures pure deserialize/dispatch cost
+        virtual Core::hresult SetArray(const std::vector<uint8_t>& value /* @in @restrict:0..256K */) = 0;
 
-        // @text echoint64
-        // @brief Echo a uint64 scalar value; the same field carries the request value and the echoed response
-        virtual Core::hresult EchoUint64(uint64_t& value /* @inout */) = 0;
+        // @text getarray
+        // @brief Return a uint8 array of the requested size (max 256 KB)
+        // @param size   - in  - requested array length
+        // @param values - out - filled byte array, sized by 'size'
+        virtual Core::hresult GetArray(const uint32_t size /* @in @restrict:0..256K */,
+                                       uint8_t values[] /* @out @length:size */) = 0;
 
-        // @text echobool
-        // @brief Echo a boolean scalar value; the same field carries the request value and the echoed response
-        virtual Core::hresult EchoBool(bool& value /* @inout */) = 0;
+        // --- Mixed array ---
 
-        // @text echofloat
-        // @brief Echo a float scalar value; the same field carries the request value and the echoed response
-        virtual Core::hresult EchoFloat(float& value /* @inout */) = 0;
+        // @text setmixedarray
+        // @brief Accept a heterogeneous-element array (max 4228 elements, ~256 KB); measures pure deserialize/dispatch cost
+        virtual Core::hresult SetMixedArray(const std::vector<MixedElement>& value /* @in @restrict:0..4228 */) = 0;
 
-        // @text echodouble
-        // @brief Echo a double scalar value; the same field carries the request value and the echoed response
-        virtual Core::hresult EchoDouble(double& value /* @inout */) = 0;
+        // @text getmixedarray
+        // @brief Return a heterogeneous-element array of the requested count (max 4228 elements, ~256 KB)
+        // @param count - in  - requested element count
+        // @param value - out - filled element array, sized by 'count'
+        virtual Core::hresult GetMixedArray(const uint32_t count /* @in @restrict:0..4228 */,
+                                            std::vector<MixedElement>& value /* @out */) = 0;
+
+        // --- Nested objects ---
+
+        // @text setnestedobjects
+        // @brief Accept 4-level nested objects (max 1736 elements, ~256 KB); measures pure deserialize/dispatch cost
+        virtual Core::hresult SetNestedObjects(const std::vector<NestedObject>& value /* @in @restrict:0..1736 */) = 0;
+
+        // @text getnestedobjects
+        // @brief Return 4-level nested objects of the requested count (max 1736 elements, ~256 KB)
+        // @param count - in  - requested element count
+        // @param value - out - filled nested object array, sized by 'count'
+        virtual Core::hresult GetNestedObjects(const uint32_t count /* @in @restrict:0..1736 */,
+                                               std::vector<NestedObject>& value /* @out */) = 0;
+
+        // --- Scalars ---
+
+        // @text setint32
+        // @brief Accept a uint32 scalar value; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetUint32(const uint32_t value /* @in */) = 0;
+
+        // @text getint32
+        // @brief Return a uint32 scalar value
+        virtual Core::hresult GetUint32(uint32_t& value /* @out */) = 0;
+
+        // @text setint64
+        // @brief Accept a uint64 scalar value; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetUint64(const uint64_t value /* @in */) = 0;
+
+        // @text getint64
+        // @brief Return a uint64 scalar value
+        virtual Core::hresult GetUint64(uint64_t& value /* @out */) = 0;
+
+        // @text setbool
+        // @brief Accept a boolean scalar value; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetBool(const bool value /* @in */) = 0;
+
+        // @text getbool
+        // @brief Return a boolean scalar value
+        virtual Core::hresult GetBool(bool& value /* @out */) = 0;
+
+        // @text setfloat
+        // @brief Accept a float scalar value; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetFloat(const float value /* @in */) = 0;
+
+        // @text getfloat
+        // @brief Return a float scalar value
+        virtual Core::hresult GetFloat(float& value /* @out */) = 0;
+
+        // @text setdouble
+        // @brief Accept a double scalar value; measures pure deserialize/dispatch cost
+        virtual Core::hresult SetDouble(const double value /* @in */) = 0;
+
+        // @text getdouble
+        // @brief Return a double scalar value
+        virtual Core::hresult GetDouble(double& value /* @out */) = 0;
+
+        // --- Calibration (not part of the Get*/Set* benchmark path) ---
+
+        // @text measurecopycost
+        // @brief One-off calibration: times a memcpy of the given size, mirroring GetArray exactly (no resize).
+        //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
+        // @param size - in  - size in bytes to copy
+        // @param us   - out - measured copy duration in microseconds
+        virtual Core::hresult MeasureCopyCost(const uint32_t size /* @in @restrict:0..4M */,
+                                              uint64_t& us /* @out */) = 0;
+
+        // @text measurestringresizecost
+        // @brief One-off calibration: times a string resize+memcpy of the given size,
+        //        mirroring GetString exactly (resize is part of the timed cost there,
+        //        unlike GetArray - see MeasureCopyCost).
+        //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
+        // @param size - in  - size in bytes
+        // @param us   - out - measured resize+copy duration in microseconds
+        virtual Core::hresult MeasureStringResizeCost(const uint32_t size /* @in @restrict:0..4M */,
+                                                       uint64_t& us /* @out */) = 0;
+
+        // @text measuremixedassigncost
+        // @brief One-off calibration: times a vector assign of 'count' mixed elements in isolation.
+        //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
+        // @param count - in  - element count to assign
+        // @param us    - out - measured assign duration in microseconds
+        virtual Core::hresult MeasureMixedAssignCost(const uint32_t count /* @in @restrict:0..4228 */,
+                                                     uint64_t& us /* @out */) = 0;
+
+        // @text measurenestedassigncost
+        // @brief One-off calibration: times a vector assign of 'count' nested objects in isolation.
+        //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
+        // @param count - in  - element count to assign
+        // @param us    - out - measured assign duration in microseconds
+        virtual Core::hresult MeasureNestedAssignCost(const uint32_t count /* @in @restrict:0..1736 */,
+                                                      uint64_t& us /* @out */) = 0;
     };
 
 } // namespace Exchange
