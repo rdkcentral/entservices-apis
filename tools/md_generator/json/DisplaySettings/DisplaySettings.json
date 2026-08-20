@@ -2128,12 +2128,12 @@
             }
         },
         "setForceHDRMode": {
-            "summary": "Sets the required HDR mode to force. Use `NONE` to reset the mode to the default.",
+            "summary": "Sets the HDR mode. Use `NONE` to reset the mode to the default.",
             "params": {
                 "type": "object",
                 "properties": {
                     "hdr_mode": {
-                        "summary": "Required HDR mode to force. Use `NONE` to reset the mode to the default.",
+                        "summary": "Sets the HDR mode. Use `NONE` to reset the mode to the default.",
                         "type": "string",
                         "enum": ["NONE", "SDR", "HDR10", "HDR10PLUS", "DV", "HLG", "TechnicolorPrime"],
                         "example": "HDR10"

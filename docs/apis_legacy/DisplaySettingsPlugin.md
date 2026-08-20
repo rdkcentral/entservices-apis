@@ -113,7 +113,7 @@ DisplaySettings interface methods:
 | [setDolbyVolumeMode](#setDolbyVolumeMode) | Enables or disables Dolby Volume mode on audio track (audio output port HDMI0) |
 | [setDRCMode](#setDRCMode) | Sets the Dynamic Range Control (DRC) setting |
 | [setEnableAudioPort](#setEnableAudioPort) | Enable or disable the specified audio port based on the input audio port name |
-| [setForceHDRMode](#setForceHDRMode) | Sets the required HDR mode to force |
+| [setForceHDRMode](#setForceHDRMode) | Sets the HDR mode |
 | [setGain](#setGain) | Adjusts the gain on a specific port |
 | [setGraphicEqualizerMode](#setGraphicEqualizerMode) | Sets the Graphic Equalizer Mode |
 | [setIntelligentEqualizerMode](#setIntelligentEqualizerMode) | Sets the Intelligent Equalizer Mode (port HDMI0) |
@@ -3661,7 +3661,7 @@ No Events
 <a name="setForceHDRMode"></a>
 ## *setForceHDRMode*
 
-Sets the required HDR mode to force. Use `NONE` to reset the mode to the default.
+Sets the HDR mode. Use `NONE` to reset the mode to the default.
 
 ### Events
 
