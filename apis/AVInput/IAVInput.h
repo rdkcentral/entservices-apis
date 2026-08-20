@@ -20,6 +20,7 @@
 #pragma once
 #include "Module.h"
 
+
 // @stubgen:include <com/IIteratorType.h>
 
 namespace WPEFramework {
