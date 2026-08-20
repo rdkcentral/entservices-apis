@@ -99,7 +99,7 @@ namespace Exchange {
         // @param count - in  - requested element count
         // @param value - out - filled element array, sized by 'count'
         virtual Core::hresult GetMixedArray(const uint32_t count /* @in @restrict:0..4228 */,
-                                            std::vector<MixedElement>& value /* @out */) = 0;
+                                            std::vector<MixedElement>& value /* @out @restrict:0..4228 */) = 0;
 
         // --- Nested objects ---
 
@@ -112,7 +112,7 @@ namespace Exchange {
         // @param count - in  - requested element count
         // @param value - out - filled nested object array, sized by 'count'
         virtual Core::hresult GetNestedObjects(const uint32_t count /* @in @restrict:0..1736 */,
-                                               std::vector<NestedObject>& value /* @out */) = 0;
+                                               std::vector<NestedObject>& value /* @out @restrict:0..1736 */) = 0;
 
         // --- Scalars ---
 
