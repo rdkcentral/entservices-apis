@@ -83,10 +83,10 @@ namespace Exchange {
 
         // @text getarray
         // @brief Return a uint8 array of the requested size (max 256 KB)
-        // @param size   - in  - requested array length
-        // @param values - out - filled byte array, sized by 'size'
+        // @param size  - in  - requested array length
+        // @param value - out - filled byte array, sized by 'size'
         virtual Core::hresult GetArray(const uint32_t size /* @in @restrict:0..256K */,
-                                       uint8_t values[] /* @out @length:size */) = 0;
+                                       std::vector<uint8_t>& value /* @out @restrict:0..256K */) = 0;
 
         // --- Mixed array ---
 
@@ -159,7 +159,7 @@ namespace Exchange {
         // --- Calibration (not part of the Get*/Set* benchmark path) ---
 
         // @text measurecopycost
-        // @brief One-off calibration: times a memcpy of the given size, mirroring GetArray exactly (no resize).
+        // @brief One-off calibration: times a vector resize+memcpy of the given size, mirroring GetArray exactly.
         //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
         // @param size - in  - size in bytes to copy
         // @param us   - out - measured copy duration in microseconds
