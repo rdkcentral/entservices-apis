@@ -3672,7 +3672,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hdr_mode | string | Required HDR mode to force. Use `NONE` to reset the mode to the default. (must be one of the following: *NONE*, *SDR*, *HDR10*, *HDR10PLUS*, *DV*, *HLG*, *TechnicolorPrime*) |
+| params.hdr_mode | string | Sets the HDR mode. Use `NONE` to reset the mode to the default. (must be one of the following: *NONE*, *SDR*, *HDR10*, *HDR10PLUS*, *DV*, *HLG*, *TechnicolorPrime*) |
 
 ### Result
 
