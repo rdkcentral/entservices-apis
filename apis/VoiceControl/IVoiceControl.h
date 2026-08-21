@@ -165,7 +165,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const Core::OptionalType<std::vector<string>>& roles /* @restrict:8 */, const Core::OptionalType<string>& transmissionProtocol, const Core::OptionalType<string>& downstreamProtocol, const Core::OptionalType<std::vector<string>>& capabilities /* @restrict:16 */, const Core::OptionalType<string>& clientProfile, const Core::OptionalType<string>& language, const Core::OptionalType<std::vector<string>>& vrexFields /* @restrict:16 */, const Core::OptionalType<VoiceInitIdentity>& id, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SetVoiceInit(const std::vector<string>& roles /* @optional @restrict:8 */, const Core::OptionalType<string>& transmissionProtocol, const Core::OptionalType<string>& downstreamProtocol, const std::vector<string>& capabilities /* @optional @restrict:16 */, const Core::OptionalType<string>& clientProfile, const Core::OptionalType<string>& language, const std::vector<string>& vrexFields /* @optional @restrict:16 */, const Core::OptionalType<VoiceInitIdentity>& id, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage
