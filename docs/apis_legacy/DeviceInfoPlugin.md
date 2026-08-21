@@ -424,6 +424,8 @@ DeviceInfo interface properties:
 | [supportedaudioports](#supportedaudioports) <sup>RO</sup> | Audio ports supported on the device (all ports that are physically present) |
 | [supportedvideodisplays](#supportedvideodisplays) <sup>RO</sup> | Video ports supported on the device (all ports that are physically present) |
 | [hostedid](#hostedid) <sup>RO</sup> | EDID of the host |
+| [osname](#osname) <sup>RO</sup> | Operating system name |
+| [osversion](#osversion) <sup>RO</sup> | Operating system version |
 
 
 <a name="systeminfo"></a>
@@ -1139,6 +1141,102 @@ No Events
     "id": 42,
     "result": {
         "EDID": "AP///////wAQrMLQVEJTMQUdAQOANR546q11qVRNnSYPUFSlSwCBALMA0QBxT6lAgYDRwAEBVl4AoKCgKVAwIDUADighAAAaAAAA/wBNWTNORDkxVjFTQlQKAAAA/ABERUxMIFAyNDE4RAogAAAA/QAxVh1xHAAKICAgICAgARsCAxuxUJAFBAMCBxYBBhESFRMUHyBlAwwAEAACOoAYcTgtQFgsRQAOKCEAAB4BHYAYcRwWIFgsJQAOKCEAAJ6/FgCggDgTQDAgOgAOKCEAABp+OQCggDgfQDAgOgAOKCEAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A"
+    }
+}
+```
+
+<a name="osname"></a>
+## *osname*
+
+Provides access to the operating system name.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | object | Operating system name |
+| (property).osName | string | Operating system name |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.osname"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "osName": "alphanumerical string"
+    }
+}
+```
+
+<a name="osversion"></a>
+## *osversion*
+
+Provides access to the operating system version.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | object | Operating system version |
+| (property).osVersion | string | Operating system version |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.osversion"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "osVersion": "alphanumerical string"
     }
 }
 ```
