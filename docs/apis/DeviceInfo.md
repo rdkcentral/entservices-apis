@@ -152,6 +152,8 @@ The following properties are provided by the IDeviceInfo Interface:
 | [releaseversion](#releaseversion)<sup>RO</sup> | Provides access to the ReleaseVersion of the Image |
 | [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacture |
 | [modelid](#modelid)<sup>RO</sup> | Provides access to the device model number |
+| [osname](#osname) | Provides access to the operating system name |
+| [osversion](#osversion) | Provides access to the operating system version |
 | [socname](#socname)<sup>RO</sup> | Provides access to the SOC Name. |
 | [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
 | [wifimac](#wifimac)<sup>RO</sup> | Provides access to the WIFI MAC addresses. |
@@ -1014,6 +1016,174 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
+<a id="osname"></a>
+## *osname*
+
+Provides access to the operating system name
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).osname | string | Operating system name (e.g., "RDK", "Entertainment OS") |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "DeviceInfo.osname"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "DeviceInfo.osname"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "result": {
+        "osname": "RDK"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "method": "DeviceInfo.osname",
+    "params": {
+        "osname": "Entertainment OS"
+    }
+}
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "result": null
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="osversion"></a>
+## *osversion*
+
+Provides access to the operating system version
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).osversion | string | Operating system version (e.g., "8.1", "1.3") |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "method": "DeviceInfo.osversion"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "DeviceInfo.osversion"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "result": {
+        "osversion": "8.1"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "method": "DeviceInfo.osversion",
+    "params": {
+        "osversion": "1.3"
+    }
+}
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "result": null
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="socname"></a>
 ## *socname*
 
@@ -1035,7 +1205,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 25,
     "method": "DeviceInfo.socname"
 }
 ```
@@ -1044,7 +1214,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1053,7 +1223,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 25,
     "result": {
         "socname": ""
     }
@@ -1066,7 +1236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 25,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1109,7 +1279,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 26,
     "method": "DeviceInfo.systeminfo"
 }
 ```
@@ -1118,7 +1288,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1127,7 +1297,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 26,
     "result": {
         "version": "",
         "uptime": 0,
@@ -1154,7 +1324,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 26,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1183,7 +1353,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 27,
     "method": "DeviceInfo.wifimac"
 }
 ```
@@ -1192,7 +1362,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1201,7 +1371,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 27,
     "result": {
         "wifi_mac": ""
     }
@@ -1214,7 +1384,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 27,
     "error": {
         "code": 1,
         "message": "Indicates failure"
