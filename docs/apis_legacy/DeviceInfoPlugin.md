@@ -424,6 +424,8 @@ DeviceInfo interface properties:
 | [supportedaudioports](#supportedaudioports) <sup>RO</sup> | Audio ports supported on the device (all ports that are physically present) |
 | [supportedvideodisplays](#supportedvideodisplays) <sup>RO</sup> | Video ports supported on the device (all ports that are physically present) |
 | [hostedid](#hostedid) <sup>RO</sup> | EDID of the host |
+| [deviceid](#deviceid) <sup>RO</sup> | Stable alphanumeric device identifier |
+| [hardwareid](#hardwareid) <sup>RO</sup> | First 6 characters of the deviceId |
 
 
 <a name="systeminfo"></a>
@@ -1139,6 +1141,102 @@ No Events
     "id": 42,
     "result": {
         "EDID": "AP///////wAQrMLQVEJTMQUdAQOANR546q11qVRNnSYPUFSlSwCBALMA0QBxT6lAgYDRwAEBVl4AoKCgKVAwIDUADighAAAaAAAA/wBNWTNORDkxVjFTQlQKAAAA/ABERUxMIFAyNDE4RAogAAAA/QAxVh1xHAAKICAgICAgARsCAxuxUJAFBAMCBxYBBhESFRMUHyBlAwwAEAACOoAYcTgtQFgsRQAOKCEAAB4BHYAYcRwWIFgsJQAOKCEAAJ6/FgCggDgTQDAgOgAOKCEAABp+OQCggDgfQDAgOgAOKCEAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A"
+    }
+}
+```
+
+<a name="deviceid"></a>
+## *deviceid*
+
+Provides access to a stable alphanumeric device identifier.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | object | Stable alphanumeric device identifier |
+| (property).deviceId | string | Device identifier derived from serial number and hardware ID |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.deviceid"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "deviceId": "EB21163216C000024"
+    }
+}
+```
+
+<a name="hardwareid"></a>
+## *hardwareid*
+
+Provides access to the first 6 characters of the deviceId value.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | object | First 6 characters of the deviceId |
+| (property).hardwareId | string | Hardware identifier |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.hardwareid"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "hardwareId": "EB2116"
     }
 }
 ```
