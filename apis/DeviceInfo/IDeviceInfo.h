@@ -129,6 +129,14 @@ namespace Exchange {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
+        struct EXTERNAL DeviceOsName {
+            string osname /* @text osname */ /* @brief Operating system name */;
+        };
+
+        struct EXTERNAL DeviceOsVersion {
+            string osversion /* @text osversion */ /* @brief Operating system version */;
+        };
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -283,8 +291,8 @@ namespace Exchange {
 		// @example osName: RDK-E
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult OsName(string& osName /* @out */) const = 0;
-        virtual Core::hresult OsName(const string& osName) = 0;
+        virtual Core::hresult OsName(DeviceOsName& deviceOsName /* @out */) const = 0;
+        virtual Core::hresult OsName(const DeviceOsName &deviceOsName) = 0;
 
         // @property
         // @text osversion
@@ -294,8 +302,8 @@ namespace Exchange {
 		// @example osVersion: 8.3
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
-        virtual Core::hresult OsVersion(string& osVersion /* @out */) const = 0;
-        virtual Core::hresult OsVersion(const string& osVersion) = 0;
+        virtual Core::hresult OsVersion(DeviceOsVersion& deviceOsVersion /* @out */) const = 0;
+        virtual Core::hresult OsVersion(const DeviceOsVersion &deviceOsVersion) = 0;
     };
 
     /* @json 1.0.0 @text:keep */
