@@ -284,6 +284,22 @@ namespace Exchange {
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
 
         // @property
+        // @text deviceId
+        // @brief Provides the Device ID info.
+        // @param deviceId: Device ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult DeviceId(DeviceIdInfo& deviceIdInfo /* @out */) const = 0;
+
+        // @property
+        // @text hardwareId
+        // @brief Provides the Hardware ID (first 6 characters of Device ID).
+        // @param hardwareId: Hardware ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult HardwareId(HardwareIdInfo& hardwareIdInfo /* @out */) const = 0;
+
+        // @property
         // @text osname
         // @brief Provides access to the operating system name.
 		// @details Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
