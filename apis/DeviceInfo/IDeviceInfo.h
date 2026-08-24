@@ -129,6 +129,14 @@ namespace Exchange {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
+        struct EXTERNAL DeviceIdInfo {
+            string deviceId /* @brief Device ID */;
+        };
+
+        struct EXTERNAL HardwareIdInfo {
+            string hardwareId /* @brief Hardware ID (first 6 characters of Device ID) */;
+        };
+
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
 
@@ -274,6 +282,22 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
+
+        // @property
+        // @text deviceId
+        // @brief Provides the Device ID info.
+        // @param deviceId: Device ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult DeviceId(DeviceIdInfo& deviceIdInfo /* @out */) const = 0;
+
+        // @property
+        // @text hardwareId
+        // @brief Provides the Hardware ID (first 6 characters of Device ID).
+        // @param hardwareId: Hardware ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult HardwareId(HardwareIdInfo& hardwareIdInfo /* @out */) const = 0;
     };
 
     /* @json 1.0.0 @text:keep */
