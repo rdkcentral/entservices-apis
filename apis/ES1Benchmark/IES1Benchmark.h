@@ -168,8 +168,8 @@ namespace Exchange {
 
         // @text measurestringresizecost
         // @brief One-off calibration: times a string resize+memcpy of the given size,
-        //        mirroring GetString exactly (resize is part of the timed cost there,
-        //        unlike GetArray - see MeasureCopyCost).
+        //        mirroring GetString exactly (same reasoning as MeasureCopyCost/GetArray,
+        //        which resize() a std::vector before their memcpy too).
         //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
         // @param size - in  - size in bytes
         // @param us   - out - measured resize+copy duration in microseconds
