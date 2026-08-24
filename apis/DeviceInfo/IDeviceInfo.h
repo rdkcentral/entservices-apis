@@ -129,6 +129,14 @@ namespace Exchange {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
         };
 
+        struct EXTERNAL DeviceIdInfo {
+            string deviceId /* @brief Device ID */;
+        };
+
+        struct EXTERNAL HardwareIdInfo {
+            string hardwareId /* @brief Hardware ID (first 6 characters of Device ID) */;
+        };
+
         struct EXTERNAL DeviceOsName {
             string osname /* @text osname */ /* @brief Operating system name */;
         };
