@@ -163,7 +163,7 @@ namespace Exchange {
         //        Call this separately from the Get*/Set* benchmark run, never interleaved with it.
         // @param size - in  - size in bytes to copy
         // @param us   - out - measured copy duration in microseconds
-        virtual Core::hresult MeasureCopyCost(const uint32_t size /* @in @restrict:0..4M */,
+        virtual Core::hresult MeasureCopyCost(const uint32_t size /* @in @restrict:0..256K */,
                                               uint64_t& us /* @out */) = 0;
 
         // @text measurestringresizecost
