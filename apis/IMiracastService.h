@@ -148,7 +148,7 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @param result * out - Result of the operation.
             //*@example result.success - true
-            */ @retval Core::ERROR_NONE - Reque*t processed successfully.
+            // @retval Core::ERROR_NONE - Request processed successfully.
             // @retval Core::ERROR_GENERAL - Failed to process the request.
             virtual Core::hresult AcceptClientConnection(const string &requestStatus /* @text requestStatus */, Result &result /* @out */) = 0;
 
