@@ -253,7 +253,7 @@ namespace WPEFramework {
 			// @details Enables or disables the XCast/DIAL service on the device.
 			// When enabled, the device can be discovered by supported casting clients and can accept application
 			// @launch requests. When disabled, XCast discovery and casting functionality are unavailable.
-			// @parm enabled: true for enabled or false for disabled
+			// @param enabled: true for enabled or false for disabled
 			// @example enabled - true
 			// @param success: 	Whether the request succeeded
 			// @example success.success - true
