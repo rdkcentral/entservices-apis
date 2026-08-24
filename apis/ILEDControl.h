@@ -1,0 +1,87 @@
+/*
+ * If not stated otherwise in this file or this component's LICENSE file the
+ * following copyright and licenses apply:
+ *
+ * Copyright 2025 RDK Management
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#pragma once
+#include "Module.h"
+
+// @stubgen:include <com/IIteratorType.h>
+
+namespace WPEFramework
+{
+    namespace Exchange
+    {
+        /* @json 1.0.0 @text:keep */
+        struct EXTERNAL ILEDControl : virtual public Core::IUnknown
+        {
+            enum { ID = ID_LEDCONTROL };
+
+            using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
+
+            virtual ~ILEDControl() = default;
+
+            enum LEDControlState : uint8_t {
+                LEDSTATE_NONE = 0       /* @text NONE */,
+                LEDSTATE_ACTIVE         /* @text ACTIVE */,
+                LEDSTATE_STANDBY        /* @text STANDBY */,
+                LEDSTATE_WPS_CONNECTING /* @text WPS_CONNECTING */,
+                LEDSTATE_WPS_CONNECTED  /* @text WPS_CONNECTED */,
+                LEDSTATE_WPS_ERROR      /* @text WPS_ERROR */,
+                LEDSTATE_FACTORY_RESET  /* @text FACTORY_RESET */,
+                LEDSTATE_USB_UPGRADE    /* @text USB_UPGRADE */,
+                LEDSTATE_DOWNLOAD_ERROR /* @text DOWNLOAD_ERROR */,
+                LEDSTATE_MAX            /* @text MAX */
+            };
+
+            // Struct to wrap LEDControlState for API compatibility
+            struct EXTERNAL LEDState {
+                LEDControlState state;
+            };
+
+            // @text getSupportedLEDStates
+            // @brief Gets the list of LED states supported by the platform
+            // @details Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
+            // @param supportedLEDStates: string [] of supported LED states. e.g. "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
+            // @param success Boolean value indicating if the operation was successful
+            // @example supportedLEDStates: ["ACTIVE", "STANDBY", "WPS_CONNECTING", "WPS_CONNECTED", "WPS_ERROR", "FACTORY_RESET", "USB_UPGRADE", "DOWNLOAD_ERROR"]
+            // @example success: true
+            // @retval Core::hresult S_OK on success, error code otherwise
+            virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success /* @out */) = 0;
+
+            // @text getLEDState
+            // @brief Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
+            // @details Queries and returns the current operational state of the LED on the device. The returned state indicates the device's current operational mode
+            // @param ledState: LEDState structure containing the current LED state (e.g., ACTIVE, STANDBY, WPS_CONNECTING)
+            // @example ledState: {"state": "WPS_CONNECTING"}
+            // @param success: Indicates whether the operation was successful
+            // @example success: true
+            // @retval Core::hresult S_OK on success, error code otherwise
+            virtual Core::hresult GetLEDState(LEDState& ledState /* @out */) = 0;
+
+            // @text setLEDState
+            // @brief Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
+            // @details Sets the device LED to one of the states available from GetSupportedLEDStates. The state change is applied immediately on the device
+            // @param state: LEDControlState. e.g. "FACTORY_RESET"
+            // @param success: boolean
+            // @example state: "FACTORY_RESET"
+            // @example success: true
+            // @retval Core::hresult S_OK on success, error code otherwise
+            virtual Core::hresult SetLEDState(const LEDControlState& state, bool& success /* @out */) = 0;
+        };
+    } // namespace Exchange
+} // namespace WPEFramework
