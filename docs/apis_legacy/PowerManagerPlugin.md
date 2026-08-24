@@ -49,6 +49,9 @@ org.rdk.PowerManager interface methods:
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
+| [addPowerModeChangeAcknowledgementClient](#addPowerModeChangeAcknowledgementClient) | Register a client to receive power mode change acknowledgement requests |
+| [removePowerModeChangeAcknowledgementClient](#removePowerModeChangeAcknowledgementClient) | Removes a registered acknowledgement client |
+| [powerModeChangeAcknowledgement](#powerModeChangeAcknowledgement) | Acknowledge a power state change |
 | [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value |
 | [getPowerState](#getPowerState) | Returns the current power state of the device |
 | [getThermalState](#getThermalState) | Returns temperature threshold values |
@@ -260,6 +263,152 @@ No Events
         "clientId": 1,
         "transactionId": 3,
         "delayPeriod": 5
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="addPowerModeChangeAcknowledgementClient"></a>
+## *addPowerModeChangeAcknowledgementClient*
+
+Register a client to receive power mode change acknowledgement requests. Registered clients must call `powerModeChangeAcknowledgement` within the timeout period when they receive the `onPowerModeChangeAcknowledgementRequested` event.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientName | string | Name of the client |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.acknowledgeClientId | integer | Unique identifier for the acknowledgement client to be used when acknowledging power state changes |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.addPowerModeChangeAcknowledgementClient",
+    "params": {
+        "clientName": "exampleClient"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "acknowledgeClientId": 1
+    }
+}
+```
+
+<a name="removePowerModeChangeAcknowledgementClient"></a>
+## *removePowerModeChangeAcknowledgementClient*
+
+Removes a registered acknowledgement client.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the acknowledgement client. See `addPowerModeChangeAcknowledgementClient` |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.removePowerModeChangeAcknowledgementClient",
+    "params": {
+        "acknowledgeClientId": 1
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="powerModeChangeAcknowledgement"></a>
+## *powerModeChangeAcknowledgement*
+
+Acknowledge a power state change. Clients must call this method in response to the `onPowerModeChangeAcknowledgementRequested` event within the timeout period.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the acknowledgement client, as received in addPowerModeChangeAcknowledgementClient |
+| params.transactionId | integer | transaction id as received in onPowerModeChangeAcknowledgementRequested |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.powerModeChangeAcknowledgement",
+    "params": {
+        "acknowledgeClientId": 1,
+        "transactionId": 5
     }
 }
 ```
@@ -510,7 +659,7 @@ No Events
 <a name="setPowerState"></a>
 ## *setPowerState*
 
-Sets the power state of the device.
+Sets the power state of the device. When acknowledgement clients are registered, the power state change process includes an acknowledgement negotiation phase. After pre-change notifications complete, all registered acknowledgement clients receive the `onPowerModeChangeAcknowledgementRequested` event and must acknowledge within the timeout period. The power state change is applied once all clients acknowledge or the timeout expires. If no acknowledgement clients are registered, this phase is skipped. If an acknowledgement phase is already in progress, subsequent `setPowerState` requests are rejected with an error.
 
 ### Events
 
@@ -1133,6 +1282,7 @@ org.rdk.PowerManager interface events:
 | [onRebootBegin](#onRebootBegin) | Triggered when an application invokes the reboot method |
 | [onPowerModeChanged](#onPowerModeChanged) | Triggered when the power manager detects a device power state change |
 | [onPowerModePreChange](#onPowerModePreChange) | Triggered before change then device power state |
+| [onPowerModeChangeAcknowledgementRequested](#onPowerModeChangeAcknowledgementRequested) | Triggered when a power state change requires acknowledgement from registered clients |
 | [onDeepSleepTimeout](#onDeepSleepTimeout) | Triggered when the power manager detects a device power state change to light sleep from deep sleep |
 | [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
 | [onThermalModeChanged](#onThermalModeChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
@@ -1216,6 +1366,36 @@ Triggered before change then device power state. The power state (must be one of
         "newState": "ON",
         "transactionId": 3,
         "stateChangeAfter": 1
+    }
+}
+```
+
+<a name="onPowerModeChangeAcknowledgementRequested"></a>
+## *onPowerModeChangeAcknowledgementRequested*
+
+Triggered when a power state change requires acknowledgement from registered clients. This event occurs after the pre-change notification phase completes and before the actual power state change is applied. Clients must respond by calling `powerModeChangeAcknowledgement` with their `acknowledgeClientId` and the transaction ID within 10 seconds. The power state change proceeds once all registered acknowledgement clients respond or the timeout expires.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current power state |
+| params.newState | string | New power state |
+| params.transactionId | integer | transaction id to be used when invoking powerModeChangeAcknowledgement |
+| params.reason | string | Reason for the power state change |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onPowerModeChangeAcknowledgementRequested",
+    "params": {
+        "currentState": "STANDBY",
+        "newState": "ON",
+        "transactionId": 5,
+        "reason": "APIUnitTest"
     }
 }
 ```
