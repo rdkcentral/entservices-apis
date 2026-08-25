@@ -51,8 +51,6 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @param[in] state            The requested state.
   // @example state: VIDEO
   // @returns Core::hresult
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   virtual Core::hresult RequestState(const SystemMode systemMode /* @text systemMode */ , const State state /* @text state */ ) = 0;
 
   // @text getState
