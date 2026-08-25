@@ -29,7 +29,13 @@ namespace Exchange {
         enum { ID = ID_DEVICE_OPTIMIZE_STATE_ACTIVATOR };
 
         /// Requests the component to asynchronously transition to the new state.
-        /// @param[in] newState     The new target state to transition to.
+        // Requests the component to asynchronously transition to the new state.
+        // @brief Requests activation of a Device Optimize system mode state.
+        // @details Invoked by the SystemMode service when the device transitions into a DEVICE_OPTIMIZE operating mode. Components implementing this interface should asynchronously adjust their internal behavior, resource usage, or performance characteristics to match the requested optimization state.
+        // @param[in] newState     The new target state to transition to.
+        // @example newState: "DEVICE_OPTIMIZE"
+        // @retval Core::ERROR_NONE - The state transition request was accepted successfully.
+        // @retval Core::ERROR_GENERAL - Failed to process the state transition request.
         virtual Core::hresult Request(const string&  newState  /* @text newState*/) = 0;
     };
 }

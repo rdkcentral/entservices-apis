@@ -54,20 +54,36 @@ namespace WPEFramework
             };
 
             // @text getSupportedLEDStates
+            // @brief Returns the list of LED states that are actually supported by the platform at runtime.
             // @details Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
             // @param supportedLEDStates: string [] of supported LED states. e.g. "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
+            // @example supportedLEDStates: "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
             // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetSupportedLEDStates(IStringIterator*& supportedLEDStates /* @out */, bool& success /* @out */) = 0;
 
             // @text getLEDState
             // @brief Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
+            // @details Retrieves current state of the LED. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
             // @param ledState: LEDState
+            // @example ledState: {"state":"WPS_CONNECTING"}
+            // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetLEDState(LEDState& ledState /* @out */) = 0;
 
             // @text setLEDState
             // @brief Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
+            // @details Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. If the requested state is not supported, the operation will fail and return `Core::ERROR_GENERAL`.
             // @param state: LEDControlState. e.g. "FACTORY_RESET"
+            // @example state: "FACTORY_RESET"
             // @param success: boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetLEDState(const LEDControlState& state, bool& success /* @out */) = 0;
         };
     } // namespace Exchange

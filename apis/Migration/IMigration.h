@@ -61,18 +61,37 @@ namespace WPEFramework
 
             // @text getBootTypeInfo
             // @brief query the BootType details
+            // @details Retrieves the BootType details. Possible values include `BOOT_INIT`, `BOOT_NORMAL`, `BOOT_MIGRATION`, and `BOOT_UPDATE`.
             // @param bootType - out - struct
+            // @example bootType: { bootType: BOOT_TYPE_MIGRATION }
+            // @param success: Indicates whether the operation was successful
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetBootTypeInfo(BootTypeInfo& bootTypeInfo /* @out */) = 0;
 
             // @text setMigrationStatus
             // @brief sets the tr181 MigrationStatus parameter
+            // @details Sets the tr181 MigrationStatus parameter. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
             // @param status - in - enum
+            // @example status: MIGRATION_STATUS_STARTED
             // @param migrationResult - out - struct
+            // @example migrationResult: { success: true }
+            // @param success: Indicates whether the operation was successful
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetMigrationStatus(const MigrationStatus status, MigrationResult& migrationResult /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the MigrationStatus details
+            // @details Retrieves the MigrationStatus details. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
             // @param migrationStatus - out - struct
+            // @example migrationStatus: { migrationStatus: MIGRATION_STATUS_STARTED }
+            // @param success: Indicates whether the operation was successful
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetMigrationStatus(MigrationStatusInfo& migrationStatusInfo /* @out */) = 0;
         };
     } // namespace Exchange

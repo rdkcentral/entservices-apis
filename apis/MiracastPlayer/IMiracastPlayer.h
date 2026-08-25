@@ -91,11 +91,19 @@ namespace WPEFramework
 
                 // @brief Notifies when a Miracast source device wants to connect
                 // @text onStateChange
+                // @details Notifies when a Miracast source device wants to connect
                 // @param clientName: Name of the client device
+                // @example clientName: "Miracast Source Device"
                 // @param clientMac: MacAddress of the client device
+                // @example clientMac: "00:1A:2B:3C:4D:5E"
                 // @param playerState: Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).)
+                // @example playerState: STATE_PLAYING
+                // @param reasonDescription: Reason for the player state update
+                // @example reasonDescription: REASON_CODE_SUCCESS
                 // @param reasonCode: Reason code for the player state update
+                // @example reasonCode: 200
                 // @param reason: reason code Decription
+                // @example reason: "SUCCESS"
                 virtual void OnStateChange(const string &clientName /* @text name */, const string &clientMac /* @text mac */, const State playerState /* @text state */, const string &reasonCode /* @text reason_code */, const ReasonCode reasonDescription /* @text reason */) {};
             };
 
@@ -106,49 +114,88 @@ namespace WPEFramework
 
             // @brief To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
             // @text playRequest
+            // @details Sets the Miracast Player state to Play after the Miracast session like RTSP communication and GStreamer Playback
             // @param deviceParam: Contains Source and Sink Device related properties
+            // @example deviceParam: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult PlayRequest(const DeviceParameters &deviceParam /* @text device_parameters */, const VideoRectangle videoRect /* @text video_rectangle */, Result &result /* @out */) = 0;
 
             // @brief To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
             // @text stopRequest
+            // @details Stops the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
             // @param clientMac: MacAddress of the client device
+            // @example clientMac: "00:1A:2B:3C:4D:5E"
             // @param clientName: Name of the client device
+            // @example clientName: "Miracast Source Device"
             // @param reasonCode: Reason code for the player stop request
+            // @example reasonCode: 200
             // @param reason: Reason for the player stop request
+            // @example reason: "SUCCESS"
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult StopRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const int reasonCode /* @text reason_code */, Result &result /* @out */) = 0;
 
             // @brief Set the Video Rectangle.
             // @text setVideoRectangle
+            // @details Sets the Video Rectangle for the Miracast Player.
             // @param startX: X coordinate of the rectangle
+            // @example startX: 0
             // @param startY: Y coordinate of the rectangle
+            // @example startY: 0
             // @param width: Width of the rectangle
+            // @example width: 1920
             // @param height: Height of the rectangle
+            // @example height: 1080
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetVideoRectangle(const int startX /* @text X */, const int startY /* @text Y */, const int width /* @text W */, const int height /* @text H */, Result &result /* @out */) = 0;
 
             // @brief To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
             // @text setWesterosEnvironment
+            // @details Configures the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
             // @param westerosArgs: Westeros environment arguments to be set
+            // @example westerosArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetWesterosEnvironment( IEnvArgumentsIterator * const westerosArgs /* @text westerosArgs */, Result &result /* @out */) = 0;
 
             // @brief To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
             // @text unsetWesterosEnvironment
+            // @details Resets the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UnsetWesterosEnvironment(Result &result /* @out */) = 0;
 
             // @brief To configure the environment arguments for the Miracast Player
             // @text setEnvArguments
+            // @details Configures the environment arguments for the Miracast Player
             // @param envArgs: environment arguments to be set
+            // @example envArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetEnvArguments( IEnvArgumentsIterator * const envArgs /* @text envArgs */, Result &result /* @out */) = 0;
 
             // @brief To reset the environment arguments for the Miracast Player
             // @text unsetEnvArguments
+            // @details Resets the environment arguments for the Miracast Player
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UnsetEnvArguments(Result &result /* @out */) = 0;
         };
     } // namespace Exchange

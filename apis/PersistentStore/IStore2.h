@@ -51,12 +51,67 @@ namespace Exchange {
         virtual Core::hresult Unregister(Exchange::IStore2::INotification* notification) = 0;
 
         // @alt setValue
+        // @brief Stores a value in the persistent store.
+        // @details Creates or updates a key-value pair within the specified scope
+        // and namespace. A time-to-live (TTL) value may be supplied to control
+        // automatic expiration of the stored entry.
+        // @param scope - in - Storage scope (DEVICE or ACCOUNT).
+        // @example scope - DEVICE
+        // @param ns - in - Namespace used to group related entries.
+        // @example ns - "application"
+        // @param key - in - Key identifier.
+        // @example key - "language"
+        // @param value - in - Value associated with the key.
+        // @example value - "en-US"
+        // @param ttl - in - Time-to-live of the value in seconds.
+        // @example ttl - 3600
+        // @retval Core::ERROR_NONE - Value stored successfully.
+        // @retval Core::ERROR_GENERAL - Failed to store the value.
         virtual Core::hresult SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl) = 0;
+
         // @alt getValue
+        // @brief Retrieves a value from the persistent store.
+        // @details Returns the value associated with the specified key together
+        // with its remaining TTL information.
+        // @param scope - in - Storage scope (DEVICE or ACCOUNT).
+        // @example scope - DEVICE
+        // @param ns - in - Namespace containing the key.
+        // @example ns - "application"
+        // @param key - in - Key identifier.
+        // @example key - "language"
+        // @param value - out - Retrieved value.
+        // @example value - "en-US"
+        // @param ttl - out - Remaining TTL value in seconds.
+        // @example ttl - 3580
+        // @retval Core::ERROR_NONE - Value retrieved successfully.
+        // @retval Core::ERROR_GENERAL - Failed to retrieve the value.
+        // @example string value;uint32_t ttl;
         virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */) = 0;
+
         // @alt deleteKey
+        // @brief Deletes a key-value pair.
+        // @details Removes the specified key and its associated value from the
+        // given namespace and scope.
+        // @param scope - in - Storage scope.
+        // @example scope - DEVICE
+        // @param ns - in - Namespace containing the key.
+        // @example ns - "application"
+        // @param key - in - Key to be removed.
+        // @example key - "language"
+        // @retval Core::ERROR_NONE - Key deleted successfully.
+        // @retval Core::ERROR_GENERAL - Failed to delete the key.
         virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key) = 0;
+
         // @alt deleteNamespace
+        // @brief Deletes an entire namespace.
+        // @details Removes the specified namespace and all associated key-value
+        // pairs from the selected storage scope.
+        // @param scope - in - Storage scope.
+        // @example scope - DEVICE
+        // @param ns - in - Namespace to remove.
+        // @example ns - "application"
+        // @retval Core::ERROR_NONE - Namespace deleted successfully.
+        // @retval Core::ERROR_GENERAL - Failed to delete the namespace.
         virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */) = 0;
     };
 
@@ -74,8 +129,39 @@ namespace Exchange {
         using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
         using INamespaceSizeIterator = RPC::IIteratorType<NamespaceSize, ID_STORE_INSPECTOR_NAMESPACE_SIZE_ITERATOR>;
 
+        // @brief Retrieves all keys within a namespace.
+        // @details Returns an iterator containing all keys stored in the specified
+        // namespace and scope.
+        // @param scope - in - Storage scope.
+        // @example scope - DEVICE
+        // @param ns - in - Namespace whose keys are requested.
+        // @example ns - "application"
+        // @param keys - out - Iterator containing the retrieved keys.
+        // @example keys - ["language", "region"]
+        // @retval Core::ERROR_NONE - Keys retrieved successfully.
+        // @retval Core::ERROR_GENERAL - Failed to retrieve keys.
         virtual Core::hresult GetKeys(const ScopeType scope, const string& ns, IStringIterator*& keys /* @out */) = 0;
+
+         // @brief Retrieves all available namespaces.
+        // @details Returns an iterator containing the namespaces available within
+        // the specified storage scope.
+        // @param scope - in - Storage scope.
+        // @example scope - DEVICE
+        // @param namespaces - out - Iterator containing namespace names.
+        // @example namespaces - ["application", "network"]
+        // @retval Core::ERROR_NONE - Namespaces retrieved successfully.
+        // @retval Core::ERROR_GENERAL - Failed to retrieve namespaces.
         virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */) = 0;
+
+         // @brief Retrieves storage consumption information.
+        // @details Returns namespace storage usage information for the specified
+        // scope, including namespace name and storage size.
+        // @param scope - in - Storage scope.
+        // @example scope - DEVICE
+        // @param storageList - out - Iterator containing namespace storage sizes.
+        // @example storageList - [{ "ns":"application", "size":1024 }]
+        // @retval Core::ERROR_NONE - Storage information retrieved successfully.
+        // @retval Core::ERROR_GENERAL - Failed to retrieve storage information.
         virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */) = 0;
     };
 
@@ -86,7 +172,30 @@ namespace Exchange {
 
         using ScopeType = IStore2::ScopeType;
 
+        // @brief Sets storage limit for a namespace.
+        // @details Configures the maximum storage size allowed for the specified
+        // namespace within the selected storage scope.
+        // @param scope - in - Storage scope (DEVICE or ACCOUNT).
+        // @example scope - DEVICE
+        // @param ns - in - Namespace to configure storage limit for.
+        // @example ns - "application"
+        // @param size - in - Maximum storage size in bytes.
+        // @example size - 1048576
+        // @retval Core::ERROR_NONE - Storage limit set successfully.
+        // @retval Core::ERROR_GENERAL - Failed to set storage limit.
         virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns, const uint32_t size) = 0;
+
+        // @brief Retrieves storage limit for a namespace.
+        // @details Returns the maximum storage size configured for the specified
+        // namespace within the selected storage scope.
+        // @param scope - in - Storage scope (DEVICE or ACCOUNT).
+        // @example scope - DEVICE
+        // @param ns - in - Namespace whose storage limit is requested.
+        // @example ns - "application"
+        // @param size - out - Maximum storage size in bytes.
+        // @example size - 1048576
+        // @retval Core::ERROR_NONE - Storage limit retrieved successfully.
+        // @retval Core::ERROR_GENERAL - Failed to retrieve storage limit.
         virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns, uint32_t& size /* @out */) = 0;
     };
 

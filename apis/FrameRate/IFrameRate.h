@@ -38,19 +38,27 @@ namespace WPEFramework
 
                 // @text onFpsEvent
                 // @brief Triggered by callback from FrameRate after onFpsEvent
+                // @details Triggered by callback from FrameRate after onFpsEvent
                 // @param average - in - int
+                // @example average: 60
                 // @param min - in - int
+                // @example min: 30
                 // @param max - in - int
+                // @example max: 120
                 virtual void OnFpsEvent(const int average, const int min, const int max) {};
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
+                // @details Triggered when the framerate changes started
                 // @param displayFrameRate - in - string
+                // @example displayFrameRate: "60"
                 virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
 
                 // @text onDisplayFrameRateChanged
                 // @brief Triggered when the framerate changed.
+                // @details Triggered when the framerate changed.
                 // @param displayFrameRate - in - string
+                // @example displayFrameRate: "60"
                 virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
             };
 
@@ -60,55 +68,93 @@ namespace WPEFramework
             /** Gets the Display Frame Rate*/
             // @text getDisplayFrameRate
             // @brief Gets the current display frame rate values.
+            // @details Gets the current display frame rate values.
             // @param framerate - out - string
+            // @example framerate: "60"
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDisplayFrameRate(string& framerate /* @out */, bool& success /* @out */) = 0;
 
             /** Gets framerate mode */
             // @text getFrmMode
             // @brief Gets the current auto framerate mode.
+            // @details Gets the current auto framerate mode.
             // @param frmmode - out - int
+            // @example frmmode: 1
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFrmMode(int &framerateMode /* @out @text:auto-frm-mode */, bool& success /* @out */) = 0;
 
             /** Sets the FPS data collection interval */
             // @text setCollectionFrequency
             // @brief Sets the FPS data collection interval.
+            // @details Sets the FPS data collection interval.
             // @param frequency - in -  int
+            // @example frequency: 1000
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetCollectionFrequency(const int frequency, bool& success /* @out */) = 0;
 
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
             // @brief Sets the display framerate values.
+            // @details Sets the display framerate values.
             // @param framerate - in - string
+            // @example framerate: "60"
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetDisplayFrameRate(const string& framerate, bool& success /* @out */) = 0;
 
             /** Sets the auto framerate mode */
             // @text setFrmMode
             // @brief Set the Frm mode.
+            // @details Set the Frm mode.
             // @param frmmode - in - int
+            // @example frmmode: 1
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetFrmMode(const int frmmode, bool& success /* @out */) = 0;
 
             /** Starts the FPS data collection */
             // @text startFpsCollection
             // @brief Starts the FPS data collection. Starts the FPS data collection
+            // @details Starts the FPS data collection. Starts the FPS data collection
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult StartFpsCollection(bool& success /* @out */) = 0;
 
             /** Stops the FPS data collection */
             // @text stopFpsCollection
             // @brief Stops the FPS data collection
+            // @details Stops the FPS data collection
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult StopFpsCollection(bool& success /* @out */) = 0;
 
             /** Update the FPS value */
             // @text updateFps
             // @brief Update the FPS value
+            // @details Update the FPS value
             // @param newFpsValue - in - int
+            // @example newFpsValue: 60
             // @param success - out - boolean
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
+            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UpdateFps(const int newFpsValue, bool& success /* @out */) = 0;
         };
     } // namespace Exchange

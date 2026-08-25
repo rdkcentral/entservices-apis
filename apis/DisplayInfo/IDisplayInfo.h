@@ -70,50 +70,111 @@ namespace Exchange {
 
         // @property
         // @brief Current audio passthrough status on HDMI
+        // @details Retrieves the current audio passthrough status on HDMI.
         // @param passthru: enabled/disabled
+        // @example passthru: true
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult IsAudioPassthrough (bool& passthru /* @out */) const = 0;
 
         // @property
         // @brief Current HDMI connection status
+        // @details Retrieves the current HDMI connection status.
         // @param isconnected: connected/disconnected
+        // @example isconnected: true
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Connected(bool& isconnected /* @out */) const = 0;
 
         // @property
         // @brief Horizontal resolution of TV
+        // @details Retrieves the horizontal resolution of the TV.
         // @param width:  width of TV in pixels
+        // @example width: 1920
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Width(uint32_t& width /* @out */) const = 0;
 
         // @property
         // @brief Vertical resolution of TV
+        //@details Retrieves the vertical resolution of the TV.
         // @param height:  height of TV in pixels
+        // @example height: 1080
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Height(uint32_t& height /* @out */) const = 0;
 
         // @property
         // @brief Vertical Frequency
+        // @details Retrieves the vertical frequency of the TV.
         // @param vf: vertical freq
+        // @example vf: 60
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult VerticalFreq(uint32_t& vf /* @out */) const = 0;
 
         // @brief TV's Extended Display Identification Data
+        // @details Retrieves the TV's Extended Display Identification Data (EDID) as a byte string.
         // @param edid: edid byte string
+        // @example edid: [0x00, 0xFF]
+        // @param length: length of edid byte string
+        // @example length: 2
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
 
         // @brief Horizontal size in centimeters
+        // @details Retrieves the horizontal size of the TV in centimeters.
         // @param width: width in cm
+        // @example width: 100
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult WidthInCentimeters(uint8_t& width /* @out */) const = 0;
 
         // @brief Vertical size in centimeters
         // @param width: height in cm
+        // @example height: 50
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult HeightInCentimeters(uint8_t& height /* @out */) const = 0;
 
         // @property
         // @brief HDCP protocol used for transmission
+        // @details Retrieves the HDCP protocol used for transmission.
         // @param value: protocol
+        // @example value: HDCP_2X
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult HDCPProtection (HDCPProtectionType& value /* @out */) const = 0;
         virtual Core::hresult HDCPProtection (const HDCPProtectionType value) = 0;
 
         // @property
         // @brief Video output port on the STB used for connection to TV
+        // @details Retrieves the video output port on the STB used for connection to TV.
         // @param name: video output port name
+        // @example name: HDMI0
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult PortName (string& name /* @out */) const = 0;
 
     };
@@ -136,17 +197,37 @@ namespace Exchange {
 
         // @property
         // @brief HDR formats supported by TV
+        // @details Retrieves the HDR formats supported by TV.
+        // @param type: array of HDR formats
+        // @example type: [HDR_10, HDR_10PLUS]
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         // @return HDRType: array of HDR formats
         virtual Core::hresult TVCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
         // @brief HDR formats supported by STB
+        // @details Retrieves the HDR formats supported by STB.
+        // @param type: array of HDR formats
+        // @example type: [HDR_10, HDR_10PLUS]
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         // @return HDRType: array of HDR formats
         virtual Core::hresult STBCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
         // @property
         // @brief HDR format in use
+        // @details Retrieves the HDR format in use.
         // @param type: HDR format
+        // @example type: HDR_10
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult HDRSetting(HDRType& type /* @out */) const = 0;
     };
 
@@ -222,37 +303,79 @@ namespace Exchange {
 
         // @property
         // @brief Provides access to the display's Colour space (chroma subsampling format)
+        // @details Retrieves the display's Colour space (chroma subsampling format).
         // @param cs: colour space
+        // @example cs: FORMAT_YCBCR_422
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult ColorSpace(ColourSpaceType& cs /* @out */) const = 0;
 
 	    // @text getCurrentColorimetry
         // @brief Returns the active colorimetry standard of the current connected video port
+        // @details Retrieves the active colorimetry standard of the current connected video port. If no display is connected, COLORIMETRY_UNKNOWN is returned. If the colorimetry coefficient is not mapped to a known standard, COLORIMETRY_OTHER is returned.
         // @param info: current colorimetry info (colorimetryType is COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped)
+        // @example info: { colorimetry: COLORIMETRY_BT709 }
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetCurrentColorimetry(ColorimetryTypeInfo& info /* @out */) const = 0;
 
         // @property
         // @brief Provides access to Frame Rate
+        // @details Retrieves the display's frame rate.
         // @param rate: frame rate
+        // @example rate: FRAMERATE_60
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult FrameRate(FrameRateType& rate /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colour Depth
+        // @details Retrieves the display's colour depth.
         // @param colour: colour depth
+        // @example colour: COLORDEPTH_10_BIT
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult ColourDepth(ColourDepthType& colour /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's colorimetry
+        // @details Retrieves the display's colorimetry.
         // @param colorimetry: display colorimetry
+        // @example colorimetry: [COLORIMETRY_BT709, COLORIMETRY_BT2020YCCBCBRC]
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Qauntization Range
+        // @details Retrieves the display's quantization range.
         // @param qr: quantization range
+        // @example qr: QUANTIZATIONRANGE_LIMITED
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult QuantizationRange(QuantizationRangeType& qr /* @out */) const = 0;
 
         // @property
         // @brief Provides access to display's Electro optical transfer function
+        // @details Retrieves the display's Electro optical transfer function (EOTF).
         // @param eotf: display's EOTF
+        // @example eotf: EOTF_BT2100
+        // @param success: Indicates whether the operation was successful
+        // @example success: true
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EOTF(EotfType& eotf /* @out */) const = 0;
     };
 }

@@ -60,15 +60,20 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
    struct EXTERNAL INotification : virtual public Core::IUnknown {
           enum { ID = ID_FIRMWARE_UPDATE_NOTIFICATION };
 
-          // @brief Notifies firmware update state changes.
-          // @param state: Firmware update state.
-          // @param substate: Firmware update substate.
           // @text onUpdateStateChange
+          // @brief Notifies firmware update state changes.
+          // @details This notification is raised when the firmware update state changes. The state and substate are provided as parameters.
+          // @param state: Firmware update state.
+          // @example state: FLASHING_STARTED
+          // @param substate: Firmware update substate.
+          // @example substate: FIRMWARE_OUTDATED
           virtual void OnUpdateStateChange (const State state  , const SubState substate ) {};
 
-          // @brief This notification is raised between flashing started state and flashing succeeded/failed.
-          // @param percentageComplete   : Number between 0 and 100 indicating the "percentage complete" of the flashing process. 
           // @text onFlashingStateChange
+          // @brief This notification is raised between flashing started state and flashing succeeded/failed.
+          // @details This notification is raised between flashing started state and flashing succeeded/failed. The percentageComplete parameter indicates the "percentage complete" of the flashing process.
+          // @param percentageComplete   : Number between 0 and 100 indicating the "percentage complete" of the flashing process. 
+          // @example percentageComplete: 50
           virtual void OnFlashingStateChange (const uint32_t percentageComplete ) {};
   
    };
@@ -76,23 +81,36 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
    virtual Core::hresult Register(Exchange::IFirmwareUpdate::INotification* notification ) = 0;
    virtual Core::hresult Unregister(Exchange::IFirmwareUpdate::INotification* notification ) = 0;
 
-  // @brief Initiates a firmware update.
-  // @param[in] firmwareFilepath The complete path of the firmware file to which the device needs to be updated to.
-  // @param[in] firmwareType     Type of firmware. One of the following (PCI,DRI)
-  // @returns Core::hresult
   // @text updateFirmware
+  // @brief Initiates a firmware update.
+  // @details This method initiates a firmware update to the device. The firmware file path and type are provided as parameters. The result of the operation is returned in the result parameter.
+  // @param[in] firmwareFilepath The complete path of the firmware file to which the device needs to be updated to.
+  // @example firmwareFilepath: /tmp/firmware.bin
+  // @param[in] firmwareType     Type of firmware. One of the following (PCI,DRI)
+  // @example firmwareType: PCI
+  // @returns Core::hresult
+  // @param success: Indicates whether the operation was successful
+  // @example success: true
   virtual Core::hresult UpdateFirmware(const string& firmwareFilepath /* @text firmwareFilepath */ , const string& firmwareType /* @text firmwareType */, Result &result /* @out  */ ) = 0;
 
-  // @brief Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
-  // @param[out] GetUpdateStateResult  
-  // @returns Core::hresult
   // @text getUpdateState
+  // @brief Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
+  // @details Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method. The state and substate are provided as parameters.
+  // @param[out] GetUpdateStateResult  
+  // @example GetUpdateStateResult: { state: FLASHING_STARTED, substate: FIRMWARE_OUTDATED }
+  // @returns Core::hresult
+  // @param success: Indicates whether the operation was successful
+  // @example success: true
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
-  // @brief Enable or disable the AutoReboot feature.
-  // @param[in] enable Boolean to enable or disable AutoReboot
-  // @returns Core::hresult
   // @text setAutoReboot
+  // @brief Enable or disable the AutoReboot feature.
+  // @details This method enables or disables the AutoReboot feature. If enabled, the device will automatically reboot after a successful firmware update. If disabled, the device will not reboot automatically after a successful firmware update.
+  // @param[in] enable Boolean to enable or disable AutoReboot
+  // @example enable: true
+  // @returns Core::hresult
+  // @param success: Indicates whether the operation was successful
+  // @example success: true
   virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
 
 };

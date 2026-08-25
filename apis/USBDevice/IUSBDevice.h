@@ -42,12 +42,18 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
 
     // @brief Device Plugged in notification
     // @text onDevicePluggedIn
+    // @details Triggered when a USB device is connected to the system and successfully detected by the USB subsystem. The event provides basic information about the newly connected device.
     // @param USBDevice: USB information of the plugged in device
+    // @example device: "USB Flash Drive"
+    // @example device: {"deviceName": "USB Flash Drive"}
     virtual void OnDevicePluggedIn(const USBDevice &device) {};
 
     // @brief Device Plugged out notification
     // @text onDevicePluggedOut
+    // @details Triggered when a USB device is disconnected from the system. The event provides basic information about the disconnected device.
     // @param USBDevice: USB information of the plugged in device
+    // @example device: "USB Flash Drive"
+    // @example device: {"deviceName": "USB Flash Drive"}
     virtual void OnDevicePluggedOut(const USBDevice &device) {};
 
     };
@@ -107,26 +113,51 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     /** Gets the device information of the connected USB Devices.*/
     // @text getDeviceList
     // @brief Get the basic information about list of devices connected with the system.
+    // @details Retrieves a list of USB devices currently connected to the device. Each entry contains basic device information such as device name, class, subclass, and device path.
     // @param devices : List of USB devices along with basic info.
+    // @example devices : "USB Flash Drive"
+    // @param success: Indicates whether the operation was successful
+    // @example success: true    
+    // @retval Core::ERROR_NONE - Device list retrieved successfully.
+    // @retval Core::ERROR_GENERAL - Failed to retrieve the device list.
     virtual Core::hresult GetDeviceList(IUSBDeviceIterator*& devices /* @out */ ) const = 0;
 
     /** Gets detailed device information for the given device name */
     // @text getDeviceInfo
     // @brief Get the extended USB device information for the provided device name
+    // @details Retrieves detailed information about a USB device including vendor ID, product ID, device status, bus speed, serial number, supported features, and product information strings.
     // @param deviceName: device name
+    // @example deviceName : "USB Flash Drive"
     // @param deviceInfo: Detailed device information
+    // @example deviceInfo.vendorId - 1234
+    // @param success: Indicates whether the operation was successful
+    // @example success: true 
+    // @retval Core::ERROR_NONE - Device information retrieved successfully.
+    // @retval Core::ERROR_GENERAL - Failed to retrieve device information.
     virtual Core::hresult GetDeviceInfo(const string &deviceName /* @text deviceName */, USBDeviceInfo& deviceInfo /* @out */) const = 0;
 
     /** Binds the respective driver for the device */
     // @text bindDriver
     // @brief Bind the respective driver for the device
+    // @details Associates the appropriate driver with the specified USB device. This operation enables driver functionality for devices that support dynamic driver binding.
     // @param deviceName: Name of the device
+    // @example deviceName : "USB Serial Adapter"
+    // @param success: Indicates whether the operation was successful
+    // @example success: true 
+    // @retval Core::ERROR_NONE - Driver bound successfully.
+    // @retval Core::ERROR_GENERAL - Failed to bind the driver.
     virtual Core::hresult BindDriver(const string &deviceName /* @text deviceName */) const = 0;
 
     /** Unbinds the respective driver for the device */
     // @text unbindDriver
     // @brief Unbind the respective driver for the device
+    // @details Detaches the currently associated driver from the specified USB device. This operation is typically used before switching drivers or disabling device functionality.
     // @param deviceName: Name of the device
+    // @example deviceName : "USB Serial Adapter"
+    // @param success: Indicates whether the operation was successful
+    // @example success: true 
+    // @retval Core::ERROR_NONE - Driver unbound successfully.
+    // @retval Core::ERROR_GENERAL - Failed to unbind the driver.
     virtual Core::hresult UnbindDriver(const string &deviceName /* @text deviceName */) const = 0;
 };
 
