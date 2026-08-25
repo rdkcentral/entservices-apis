@@ -98,6 +98,7 @@ namespace Exchange {
         // @property
         // @brief Vertical resolution of TV
         // @details Retrieves the vertical resolution of the TV.
+        // @param height:  height of TV in pixels
         // @example height: 1080
         // @retval Core::ERROR_NONE: Indicates success
         // @retval Core::ERROR_GENERAL: Indicates failure
