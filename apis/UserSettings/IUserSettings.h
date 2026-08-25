@@ -452,7 +452,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text setPlaybackWatershed
     // @brief Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
-    // should be applied for non-live content, if applicable f  or the project.
+    // should be applied for non-live content, if applicable for the project.
     // @details Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
     // @param playbackWatershed: Enabled/Disabled
     // @example playbackWatershed: true
