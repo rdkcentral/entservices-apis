@@ -107,7 +107,7 @@ namespace WPEFramework
             // @details Invoked by the Telemetry service to set the opt-out status for telemetry reporting. Components implementing this interface should update their internal configuration to reflect the user's preference regarding telemetry data collection.
             // @param OptOut  - in - boolean
             // @example OptOut: true
-            // @param  - out - struct
+            // @param successResult - out - struct
             // @example success: true
             // @retval Core::ERROR_NONE - The opt-out status was set successfully.
             // @retval Core::ERROR_GENERAL - Failed to set the opt-out status.
