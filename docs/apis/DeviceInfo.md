@@ -658,7 +658,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | (property).firmwareVersionInfo | object | Version information |
 | (property).firmwareVersionInfo.imagename | string | Image name |
-| (property).firmwareVersionInfo.middleware | string | Middleware version |
+| (property).firmwareVersionInfo.rdk | string | rdk version |
 | (property).firmwareVersionInfo.sdk | string | sdk version |
 | (property).firmwareVersionInfo.mediarite | string | mediarite |
 | (property).firmwareVersionInfo.yocto | string | yocto version |
@@ -693,7 +693,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "id": 16,
     "result": {
         "imagename": "",
-        "middleware": "",
+        "rdk": "",
         "sdk": "",
         "mediarite": "",
         "yocto": "",
