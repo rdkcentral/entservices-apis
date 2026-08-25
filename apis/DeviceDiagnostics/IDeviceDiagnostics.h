@@ -60,8 +60,7 @@ namespace WPEFramework
 
                 // @text onAVDecoderStatusChanged
                 // @brief Triggered when the most active status of audio/video decoder/pipeline changes
-                // @details The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video d
-                // ecoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
+                // @details The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video decoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
                 // @param avDecoderStatusChange - in - string
                 virtual void OnAVDecoderStatusChanged(const string& avDecoderStatusChange) {};
             };
