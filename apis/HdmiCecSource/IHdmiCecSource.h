@@ -69,8 +69,6 @@ namespace WPEFramework
                 // @details Notifies when CEC device info updated
                 // @param logicalAddress: Logical address of the updated device
                 // @example logicalAddress: 1
-                // @param deviceInfo: Device info of the updated device
-                // @example deviceInfo: { logicalAddress: 1, vendorID: "123456", osdName: "Device1" }
                 virtual void OnDeviceInfoUpdated(const int logicalAddress) {};
     
                 // @brief Notifies when the active source status is updated
