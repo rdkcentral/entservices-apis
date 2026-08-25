@@ -62,8 +62,8 @@ namespace WPEFramework
             // @example url - "https://example.com/upload"
             // @param callGUID - in - string
             // @example callGUID - "123e4567-e89b-12d3-a456-426614174000"
-            // @param success - out - boolean
-            // @example success - true
+            // @param result - out - Result (contains success flag)
+            // @example result - { "success": true }
             // @returns Core::hresult
             virtual Core::hresult UploadScreenCapture(const string& url , const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************uploadScreenCapture() - end*********************************/
