@@ -57,8 +57,6 @@ namespace WPEFramework
             // @details Invoked by the Telemetry service to set the status of telemetry reporting. Components implementing this interface should update their internal state to reflect the new reporting status.
             // @param status - in - string
             // @example status: "enabled"
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE - The status was set successfully.
             // @retval Core::ERROR_GENERAL - Failed to set the status.
             virtual Core::hresult SetReportProfileStatus(const string& status) = 0;
@@ -72,8 +70,6 @@ namespace WPEFramework
             // @example eventName: "UserLogin"
             // @param eventValue - in - string
             // @example eventValue: "Success"
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE - The event was logged successfully.
             // @retval Core::ERROR_GENERAL - Failed to log the event.
             virtual Core::hresult LogApplicationEvent(const string& eventName , const string& eventValue) = 0;
@@ -83,8 +79,6 @@ namespace WPEFramework
             // @text uploadReport
             // @brief Uploading of telemetry report
             // @details Invoked by the Telemetry service to upload a telemetry report. Components implementing this interface should initiate the report upload process and handle the result accordingly.
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE - The report upload was initiated successfully.
             // @retval Core::ERROR_GENERAL - Failed to initiate the report upload.
             virtual Core::hresult UploadReport() = 0;
@@ -94,8 +88,6 @@ namespace WPEFramework
             // @text abortReport
             // @brief Abort report upload
             // @details Invoked by the Telemetry service to abort an ongoing telemetry report upload. Components implementing this interface should terminate the upload process and handle any necessary cleanup.
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE - The report upload was aborted successfully.
             // @retval Core::ERROR_GENERAL - Failed to abort the report upload.
             virtual Core::hresult AbortReport() = 0;
@@ -109,8 +101,8 @@ namespace WPEFramework
             // @example OptOut: true
             // @param successResult - out - struct
             // @example success: true
-            // @retval Core::ERROR_NONE - The opt-out status was set successfully.
-            // @retval Core::ERROR_GENERAL - Failed to set the opt-out status.
+            // @retval Core::ERROR_NONE - The OptOut status was set successfully.
+            // @retval Core::ERROR_GENERAL - Failed to set the OptOut status.
             virtual Core::hresult SetOptOutTelemetry(const bool optOut /* @text Opt-Out */, TelemetrySuccess& successResult /* @out */) = 0;
             /**********************setOptOutTelemetry() - end*****************************************/
 
