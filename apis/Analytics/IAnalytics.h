@@ -36,7 +36,7 @@ namespace Exchange {
 
         // @alt sendEvent
         // @brief Send an event to the analytics server
-        // @details Sends an analytics event along with its metadata, timestamps, application identifier, payload, CET information, and optional contextual data. The event is forwarded to the Analytics servicefor processing and delivery to the configured analytics backend.
+        // @details Sends an analytics event along with its metadata, timestamps, application identifier, payload, CET information, and optional contextual data. The event is forwarded to the Analytics service for processing and delivery to the configured analytics backend.
         // @param eventName: Name of the event
         // @param eventVersion: Version of the event
         // @param eventSource: Source of the event
