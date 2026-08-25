@@ -60,7 +60,7 @@ namespace Exchange {
 
         struct EXTERNAL FirmwareversionInfo {
             string imagename /* @brief Image name */;
-            string middleware /* @brief Middleware version */;
+            string rdk /* @brief rdk version */;
             string sdk /* @brief sdk version */;
             string mediarite /* @brief mediarite */;
             string yocto /* @brief yocto version */;
