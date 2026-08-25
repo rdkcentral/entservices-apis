@@ -129,7 +129,8 @@ namespace Exchange {
         // @brief Get Front Panel Display Brightness.
         // @param indicator: Type of indicator
         // @param brightNess: brightness between 1 and 100 
-        virtual Core::hresult GetFPDBrightness(const FPDIndicator indicator , uint32_t &brightNess /* @out */)  = 0;
+        // @param persist: get the persisted brightness (true) or current hardware brightness (false)
+        virtual Core::hresult GetFPDBrightness(const FPDIndicator indicator , uint32_t &brightNess /* @out */, const bool persist)  = 0;
 
         /** Set Front Panel Display State. */
         // @text setFPDState
