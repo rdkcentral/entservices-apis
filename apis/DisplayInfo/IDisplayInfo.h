@@ -103,8 +103,7 @@ namespace Exchange {
 
         // @property
         // @brief Vertical resolution of TV
-        //@details Retrieves the vertical resolution of the TV.
-        // @param height:  height of TV in pixels
+        // @details Retrieves the vertical resolution of the TV.
         // @example height: 1080
         // @param success: Indicates whether the operation was successful
         // @example success: true
