@@ -187,8 +187,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details A setting of ON indicates that Players should select an audio descriptive track for presentation
     // @param enabled: Enabled/Disabled
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetAudioDescription(const bool enabled ) = 0;
@@ -198,8 +196,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current AudioDescription setting
     // @param enabled: Enabled/Disabled
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetAudioDescription(bool &enabled /* @out */) const = 0;
@@ -211,11 +207,9 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // this list. In the absence of a matching track, the player should by best
     // effort select the preferred audio track.
     // @details The players will pick the audio track that has the best match compared with this list.
-    //  In the absence of a matching track, the player should by best effort select the preferred audio track.
+    // In the absence of a matching track, the player should by best effort select the preferred audio track.
     // @param preferredLanguages: PreferredLanguages
     // @example preferredLanguages: "eng,fra"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPreferredAudioLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
@@ -225,8 +219,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current PreferredAudioLanguages setting
     // @param preferredLanguages: PreferredLanguages
     // @example preferredLanguages: "eng,fra"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPreferredAudioLanguages(string &preferredLanguages /* @out @text preferredLanguages */) const = 0;
@@ -247,8 +239,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the presentationLanguage in a full BCP 47 value, including script, region, variant
     // @param presentationLanguage: "en-US", "es-US", "en-CA", "fr-CA"
     // @example presentationLanguage: "en-US"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPresentationLanguage(string &presentationLanguage /* @out @text presentationLanguage */) const = 0;
@@ -266,8 +256,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // players or apps that decode-display internally 
     // @param enabled: Sets the state
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetCaptions(const bool enabled  ) = 0;
@@ -280,8 +268,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally.
     // @param enabled: Receives the state
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetCaptions(bool &enabled /* @out */) const = 0;
@@ -295,8 +281,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // effort select the preferred subtitle track. 
     // @param preferredLanguages: Is the list to set (e.g. "eng,fra")
     // @example preferredLanguages: "eng,fra"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPreferredCaptionsLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
@@ -306,8 +290,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current PreferredCaptionsLanguages setting
     // @param preferredLanguages: "eng,fra"
     // @example preferredLanguages: "eng,fra"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPreferredCaptionsLanguages(string &preferredLanguages /* @out @text preferredLanguages */) const = 0;
@@ -318,8 +300,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
     // @param service: Identifies the service to display e.g. "CC3".
     // @example service: "CC3"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPreferredClosedCaptionService(const string& service  ) = 0;
@@ -330,8 +310,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // Valid output for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
     // @param service: Identifies the service to display e.g. "CC3".
     // @example service: "CC3"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPreferredClosedCaptionService(string &service /* @out */) const = 0;
@@ -342,8 +320,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
     // @param privacyMode: "SHARE", "DO_NOT_SHARE"
     // @example privacyMode: "DO_NOT_SHARE"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPrivacyMode(const string& privacyMode /* @text privacyMode*/) = 0;
@@ -354,8 +330,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
     // @param privacyMode: "SHARE"
     // @example privacyMode: "DO_NOT_SHARE"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
 
@@ -375,8 +349,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the PinControl setting
     // @param pinControl: Enabled/Disabled
     // @example pinControl: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true  
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPinControl(bool &pinControl /* @out */) const = 0;
@@ -386,8 +358,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details A JSON document that escribes the rating scheme(s) and ratings that are blocked.
     // @param viewingRestrictions: A JSON document that describes the rating scheme(s) and ratings that are blocked.
     // @example viewingRestrictions: {"ratingScheme":"MPAA","ratings":["PG-13","R"]}
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetViewingRestrictions(const string& viewingRestrictions /* @text viewingRestrictions */) = 0;
@@ -397,8 +367,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current ViewingRestrictions.
     // @param viewingRestrictions: A JSON document that escribes the rating scheme(s) and ratings that are blocked.
     // @example viewingRestrictions: {"ratingScheme":"MPAA","ratings":["PG-13","R"]}
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetViewingRestrictions(string &viewingRestrictions /* @out @text viewingRestrictions */) const = 0;
@@ -409,8 +377,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // restrictions are to be applied, if applicable for the project
     // @param viewingRestrictionsWindow: A project-specific representation of the time interval.Eg: "ALWAYS"
     // @example viewingRestrictionsWindow: "ALWAYS"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetViewingRestrictionsWindow(const string &viewingRestrictionsWindow /* @text viewingRestrictionsWindow */) = 0;
@@ -420,8 +386,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current ViewingRestrictionsWindow.
     // @param viewingRestrictionsWindow: A project-specific representation of the time interval.Eg: "ALWAYS"
     // @example viewingRestrictionsWindow: "ALWAYS"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetViewingRestrictionsWindow(string &viewingRestrictionsWindow /* @out @text viewingRestrictionsWindow */) const = 0;
@@ -433,8 +397,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // should be applied for live content, if applicable for the project.
     // @param liveWatershed: Enabled/Disabled
     // @example liveWatershed: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetLiveWatershed(const bool liveWatershed ) = 0;
@@ -444,8 +406,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the LiveWatershed setting
     // @param liveWatershed: Enabled/Disabled
     // @example liveWatershed: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetLiveWatershed(bool &liveWatershed /* @out */) const = 0;
@@ -456,8 +416,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
     // @param playbackWatershed: Enabled/Disabled
     // @example playbackWatershed: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPlaybackWatershed(const bool playbackWatershed ) = 0;
@@ -467,8 +425,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the PlaybackWatershed setting
     // @param playbackWatershed: Enabled/Disabled
     // @example playbackWatershed: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPlaybackWatershed(bool &playbackWatershed /* @out */) const = 0;
@@ -480,8 +436,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // blocked, if applicable for the project.
     // @param blockNotRatedContent: Enabled/Disabled
     // @example blockNotRatedContent: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetBlockNotRatedContent(const bool blockNotRatedContent ) = 0;
@@ -491,8 +445,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the BlockNotRatedContent setting
     // @param blockNotRatedContent: Enabled/Disabled
     // @example blockNotRatedContent: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetBlockNotRatedContent(bool &blockNotRatedContent /* @out */) const = 0;
@@ -503,8 +455,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made
     // @param pinOnPurchase: Enabled/Disabled
     // @example pinOnPurchase: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPinOnPurchase(const bool pinOnPurchase ) = 0;
@@ -513,8 +463,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Gets the PinOnPurchase setting
     // @details Gets the PinOnPurchase setting
     // @param pinOnPurchase: Enabled/Disabled
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetPinOnPurchase(bool &pinOnPurchase /* @out */) const = 0;
@@ -523,8 +471,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @brief Sets highContrast. Whether the app should display with high contrast or not.
     // @details Sets highContrast. Whether the app should display with high contrast or not.
     // @param enabled: Enabled/Disabled
-    // @example enabled: true
-    // @param success: Indicates whether the operation was successful
     // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
@@ -535,8 +481,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current highContrast setting.
     // @param enabled: Enabled/Disabled
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetHighContrast(bool &enabled /* @out */) const = 0;
@@ -546,8 +490,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Sets voiceGuidance. Whether Voice Guidance is enabled or not.
     // @param enabled: Enabled/Disabled
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetVoiceGuidance(const bool enabled ) = 0;
@@ -557,8 +499,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current voiceGuidance setting.
     // @param enabled: Enabled/Disabled
     // @example enabled: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure   
     virtual Core::hresult GetVoiceGuidance(bool &enabled /* @out */) const = 0;
@@ -568,8 +508,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
     // @param rate: Sets Voice Guidance rate
     // @example rate: 1.0
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetVoiceGuidanceRate(const double rate ) = 0;
@@ -579,8 +517,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current voiceGuidanceRate setting.
     // @param rate: Gets Voice Guidance rate
     // @example rate: 1.0
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetVoiceGuidanceRate(double &rate /* @out */) const = 0;
@@ -590,8 +526,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
     // @param hints: Enabled/Disabled
     // @example hints: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetVoiceGuidanceHints(const bool hints ) = 0;
@@ -601,8 +535,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details Gets the current voiceGuidanceHints setting.
     // @param hints: true/false
     // @example hints: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetVoiceGuidanceHints(bool &hints /* @out */) const = 0;
@@ -612,8 +544,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
     // @param contentPin: A string of four decimal digits that represents the content PIN.
     // @example contentPin: "1234"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetContentPin(const string& contentPin) = 0;
@@ -623,8 +553,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
     // @param contentPin: A string of four decimal digits that represents the content PIN.
     // @example contentPin: "1234"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult GetContentPin(string& contentPin /* @out */) const = 0;
