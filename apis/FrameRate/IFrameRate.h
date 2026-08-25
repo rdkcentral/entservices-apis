@@ -49,14 +49,16 @@ namespace WPEFramework
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
-                // @details Triggered when the framerate changes started
+                // @details This event is triggered when the system begins transitioning to a new display framerate.
+                // transition and before the new framerate is fully applied.
                 // @param displayFrameRate - in - string
                 // @example displayFrameRate: "60"
                 virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
 
                 // @text onDisplayFrameRateChanged
                 // @brief Triggered when the framerate changed.
-                // @details Triggered when the framerate changed.
+                // @details This event is triggered after a display framerate transition is completed
+                // and the new framerate value becomes active.
                 // @param displayFrameRate - in - string
                 // @example displayFrameRate: "60"
                 virtual void OnDisplayFrameRateChanged(const string& displayFrameRate) {};
@@ -68,7 +70,8 @@ namespace WPEFramework
             /** Gets the Display Frame Rate*/
             // @text getDisplayFrameRate
             // @brief Gets the current display frame rate values.
-            // @details Gets the current display frame rate values.
+            // @details Obtains the display framerate values currently configured for the system. 
+            // The returned information can be used to determine the active display framerate settings.
             // @param framerate - out - string
             // @example framerate: "60"
             // @param success - out - boolean
@@ -80,7 +83,8 @@ namespace WPEFramework
             /** Gets framerate mode */
             // @text getFrmMode
             // @brief Gets the current auto framerate mode.
-            // @details Gets the current auto framerate mode.
+            // @details Returns the auto framerate mode currently configured in the system. 
+            // The retrieved value indicates the active framerate management setting.
             // @param frmmode - out - int
             // @example frmmode: 1
             // @param success - out - boolean
@@ -92,7 +96,8 @@ namespace WPEFramework
             /** Sets the FPS data collection interval */
             // @text setCollectionFrequency
             // @brief Sets the FPS data collection interval.
-            // @details Sets the FPS data collection interval.
+            // @details Specifies how frequently FPS metrics are collected during an active monitoring session. 
+            // The configured interval determines the time gap between consecutive FPS measurements.
             // @param frequency - in -  int
             // @example frequency: 1000
             // @param success - out - boolean
@@ -104,7 +109,8 @@ namespace WPEFramework
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
             // @brief Sets the display framerate values.
-            // @details Sets the display framerate values.
+            // @details Updates the display framerate setting using the specified value. The new framerate is applied
+            // to subsequent display operations if the request is processed successfully.
             // @param framerate - in - string
             // @example framerate: "60"
             // @param success - out - boolean
@@ -116,7 +122,8 @@ namespace WPEFramework
             /** Sets the auto framerate mode */
             // @text setFrmMode
             // @brief Set the Frm mode.
-            // @details Set the Frm mode.
+            // @details Updates the auto framerate mode to the specified value. The operation applies the new mode 
+            // setting and indicates whether the update was completed successfully.
             // @param frmmode - in - int
             // @example frmmode: 1
             // @param success - out - boolean
@@ -128,7 +135,8 @@ namespace WPEFramework
             /** Starts the FPS data collection */
             // @text startFpsCollection
             // @brief Starts the FPS data collection. Starts the FPS data collection
-            // @details Starts the FPS data collection. Starts the FPS data collection
+            // @details Starts gathering FPS metrics for monitoring and analysis. 
+            // Once enabled, FPS samples are collected until the collection process is explicitly stopped.
             // @param success - out - boolean
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
@@ -138,7 +146,8 @@ namespace WPEFramework
             /** Stops the FPS data collection */
             // @text stopFpsCollection
             // @brief Stops the FPS data collection
-            // @details Stops the FPS data collection
+            // @details Terminates the ongoing FPS data collection process and prevents 
+            // any additional FPS metrics from being captured until data collection is started again.
             // @param success - out - boolean
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
@@ -148,7 +157,8 @@ namespace WPEFramework
             /** Update the FPS value */
             // @text updateFps
             // @brief Update the FPS value
-            // @details Update the FPS value
+            // @details Allows a client to specify a new FPS value to be used by the service.
+            // On successful completion, the updated setting becomes active and the success parameter is set accordingly.            
             // @param newFpsValue - in - int
             // @example newFpsValue: 60
             // @param success - out - boolean
