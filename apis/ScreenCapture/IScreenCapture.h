@@ -72,9 +72,9 @@ namespace WPEFramework
             // @text sendScreenshot
             // @brief Takes a screenshot and uploads it to the specified URL
             // @details Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
-            // @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
+            // @param callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
             // @example callGUID - "123e4567-e89b-12d3-a456-426614174000"
-            // @param: result - Whether the request succeeded
+            // @param result - Whether the request succeeded
             // @example result - { success: true }
             // @returns Core::hresult
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
