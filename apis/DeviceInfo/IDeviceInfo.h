@@ -138,11 +138,11 @@ namespace Exchange {
         };
 
         struct EXTERNAL DeviceOsName {
-            string osname /* @text osname */ /* @brief Operating system name */;
+            string osName /* @brief Operating system name */;
         };
 
         struct EXTERNAL DeviceOsVersion {
-            string osversion /* @text osversion */ /* @brief Operating system version */;
+            string osVersion /* @brief Operating system version */;
         };
 
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
@@ -316,7 +316,7 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult OsName(DeviceOsName& deviceOsName /* @out */) const = 0;
-        virtual Core::hresult OsName(const DeviceOsName &deviceOsName) = 0;
+        virtual Core::hresult OsName(const string &osName) = 0;
 
         // @property
         // @text osversion
@@ -327,7 +327,7 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult OsVersion(DeviceOsVersion& deviceOsVersion /* @out */) const = 0;
-        virtual Core::hresult OsVersion(const DeviceOsVersion &deviceOsVersion) = 0;
+        virtual Core::hresult OsVersion(const string &osVersion) = 0;
     };
 
     /* @json 1.0.0 @text:keep */
