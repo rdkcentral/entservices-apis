@@ -62,8 +62,6 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @example systemMode: DEVICE_OPTIMIZE
   // @param[out] state           Receives the state of the system mode.
   // @example state: VIDEO
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   // @returns Core::hresult
   virtual Core::hresult GetState(const SystemMode systemMode /* @text systemMode */ , GetStateResult& getStateResult /* @out */) const = 0;
 
@@ -74,8 +72,6 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @example callsign: "com.example.client"
   // @param[in] systemMode       The system mode.
   // @example systemMode: DEVICE_OPTIMIZE
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   // @returns Core::hresult
   virtual Core::hresult ClientActivated(const string& callsign /* @text callsign*/ ,const string& systemMode) = 0;
 
@@ -86,8 +82,6 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @example callsign: "com.example.client"
   // @param[in] systemMode       The system mode.
   // @example systemMode: DEVICE_OPTIMIZE
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   // @returns Core::hresult
   virtual Core::hresult ClientDeactivated(const string& callsign /* @text callsign*/, const string& systemMode) = 0;
 };
