@@ -92,7 +92,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
 
         // @brief Device Unmounted notification
         // @@iterator
-        // @text onDeviceUnMounted
+        // @text onDeviceUnmounted
         // @details Triggered when a USB mass storage device is successfully unmounted by the system. The event provides information about the device and its previously mounted partitions.
         // @param deviceInfo: name and device path of the mounted device.
         // @example deviceInfo: {"deviceName": "USB Flash Drive"}
