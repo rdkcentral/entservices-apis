@@ -265,7 +265,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media
     // players or apps that decode-display internally 
     // @param enabled: Sets the state
-    // example enabled: true
+    // @example enabled: true
     // @param success: Indicates whether the operation was successful
     // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
