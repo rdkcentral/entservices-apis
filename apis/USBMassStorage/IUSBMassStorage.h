@@ -112,10 +112,8 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @details Retrieves a list of USB mass storage devices currently mounted in the system. Each entry contains basic device information such as device name and device path.
     // @param deviceInfo: Device info for devices that are currently mounted.
     // @example deviceInfo: [{"deviceName": "USB Flash Drive"}]
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
-    // @retval Core::ERROR_NONE - Device list retrieved successfully.
-    // @retval Core::ERROR_GENERAL - Failed to retrieve the device list.
+    // @retval Core::ERROR_NONE: Device list retrieved successfully.
+    // @retval Core::ERROR_GENERAL: Failed to retrieve the device list.
     virtual Core::hresult GetDeviceList(IUSBStorageDeviceInfoIterator*& deviceInfo /* @out */ ) const = 0;
 
     /** Get mount points information for a specified device.*/
@@ -126,10 +124,8 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @example deviceName: "USB Flash Drive"
     // @param mountPoints: List of mountpoints information for a given device.
     // @example mountPoints: [{"mountPath": "/media/usb0"}]
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
-    // @retval Core::ERROR_NONE - Mount point information retrieved successfully.
-    // @retval Core::ERROR_GENERAL - Failed to retrieve mount point information.
+    // @retval Core::ERROR_NONE: Mount point information retrieved successfully.
+    // @retval Core::ERROR_GENERAL: Failed to retrieve mount point information.
     virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
     /** Get partition information for a given partition.*/
@@ -140,10 +136,8 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @example mountPath: "/media/usb0"
     // @param partitionInfo: partition info details
     // @example partitionInfo: {"size": 1024}  
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
-    // @retval Core::ERROR_NONE - Partition information retrieved successfully.
-    // @retval Core::ERROR_GENERAL - Failed to retrieve partition information.
+    // @retval Core::ERROR_NONE: Partition information retrieved successfully.
+    // @retval Core::ERROR_GENERAL: Failed to retrieve partition information.
     virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
 };
