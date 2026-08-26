@@ -89,7 +89,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,  "method": "org.rdk.Tools.generateKeys",  "params": {"keys" : [{"code": 1,"modifier": "CTRL","delay": 0,"duration": 0}] } }' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Tools.generateKeys"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -132,6 +132,7 @@ curl  -v -H "Content-Type: application/json" -d '{  "jsonrpc": "2.0",  "id": 42,
     }
 }
 ```
+
 <a id="generateRemoteKeys"></a>
 ## *generateRemoteKeys*
 

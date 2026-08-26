@@ -2,7 +2,7 @@
 <a id="PersistentStore_Module"></a>
 # PersistentStore Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStoreCache.h)**
 
 A PersistentStore module for Thunder framework.
 
