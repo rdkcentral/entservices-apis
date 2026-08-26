@@ -61,10 +61,6 @@ namespace WPEFramework
                 // @example firmwareVersion: "1.0.0"
                 // @param rebootImmediately: Indicates whether immediate reboot is required
                 // @example rebootImmediately: false
-                // @param success: Indicates whether the operation was successful
-                // @example success: true
-                // @retval Core::ERROR_NONE: Indicates success
-                // @retval Core::ERROR_GENERAL: Indicates failure
                 virtual void OnFirmwareAvailable (const int searchStatus, const string& serverResponse, const bool firmwareAvailable, const string& firmwareVersion, const bool rebootImmediately) {};  
             };
 
