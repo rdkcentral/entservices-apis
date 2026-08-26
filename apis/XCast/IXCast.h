@@ -74,7 +74,7 @@ namespace WPEFramework {
 				// @details Signals an incoming launch directive from a casting client containing comprehensive launch data including payload, query parameters, and additional data URL. The receiver must parse and route this request to the appropriate application instance.
 				// @param applicationName: Registered application name
 				// @example applicationName: "YouTube"
-				// @param strPayLoad: Payload string to be passed to the 
+				// @param strPayLoad: Payload string to be passed to the application
 				// @example strPayLoad: "videoId=abcd1234"
 				// @param strQuery: Query string to be appended in launch request
 				// @example strQuery: "autoplay=true"
@@ -96,7 +96,7 @@ namespace WPEFramework {
 				// @details Indicates that a casting client has issued a request to stop a running application instance. The notification includes the application name and instance ID to identify which running application should be terminated.
 				// @param applicationName: 	Registered application name
 				// @example applicationName: "YouTube"
-				// @param applicationId: 	Application instance ID
+				// @param applicationId: Application instance ID
 				// @example applicationId: "abcd1234"
 				virtual void OnApplicationStopRequest(const string& appName /* @text applicationName */, const string& appID /* @text applicationId */)  {};
 
