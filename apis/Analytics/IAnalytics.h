@@ -55,10 +55,8 @@ namespace Exchange {
         // @example epochTimestamp: 1719824400
         // @example uptimeTimestamp: 3600
         // @example appId: "com.comcast.xr11"
-        // @example eventPayload: "{"bitrate":5000,"codec":"h264"}"
-        // @example additionalContext: "{"networkType":"ethernet"}"
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
+        // @example eventPayload: "{\"bitrate\":5000,\"codec\":\"h264\"}"
+        // @example additionalContext: "{\"networkType\":\"ethernet\"}"
         // @retval Core::ERROR_NONE: Event was accepted and successfully queued for processing by the Analytics service.
         // @retval Core::ERROR_GENERAL: Event submission failed due to an internal service error.
         virtual Core::hresult SendEvent(const string& eventName,
