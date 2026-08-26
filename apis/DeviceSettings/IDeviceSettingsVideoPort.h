@@ -264,7 +264,7 @@ namespace Exchange {
             virtual void OnVideoFormatUpdate(const HDRStandard videoFormatHDR) {};
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsVideoPort::INotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsVideoPort::INotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsVideoPort::INotification* notification ) = 0;
 
         /** Get Video Port handle. */

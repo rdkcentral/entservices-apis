@@ -277,7 +277,7 @@ namespace Exchange {
             virtual void OnHDMIInVRRStatus(const HDMIInPort port, const HDMIInVRRType vrrType) {};
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsHDMIIn::INotification* notification ) = 0;
 
         /** Get Number of HDMI Inputs in the platform. */
