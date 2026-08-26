@@ -55,13 +55,14 @@ The following methods are provided by the IScreenCapture Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
-| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
+| [putScreenshot](#putScreenshot) | Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
+| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it by HTTP POST request to the specified URL |
 
 <a id="sendScreenshot"></a>
 ## *sendScreenshot*
 
-Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
 
 ### Events Triggered
 None
@@ -112,10 +113,64 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+<a id="putScreenshot"></a>
+## *putScreenshot*
+
+Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callGUID | string | string |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.ScreenCapture.putScreenshot",
+    "params": {
+        "callGUID": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.putScreenshot", "params": {"callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a id="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
 
-Takes a screenshot and uploads it to the specified URL
+Takes a screenshot and uploads it by HTTP POST request to the specified URL
 
 ### Events Triggered
 None
@@ -139,7 +194,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
         "url": "",
@@ -152,7 +207,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -161,7 +216,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "result": {
         "success": true
     }
@@ -197,7 +252,7 @@ Triggered after uploading a screen capture
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {
         "status": true,

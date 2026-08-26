@@ -45,13 +45,14 @@ ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it by HTTP POST request to the specified URL |
+| [putScreenshot](#putScreenshot) | Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter |
 
 
 <a name="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
 
-Takes a screenshot and uploads it to the specified URL. A screenshot is uploaded using raw HTTP POST request as binary image/png data. It's the same as running the following command:  
+Takes a screenshot and uploads it by HTTP POST request to the specified URL. A screenshot is uploaded using raw HTTP POST request as binary image/png data. It's the same as running the following command:  
 `wget -d -q -O - --header='Content-Type: application/octet-stream' --post-file=/path/to/screenshot.png http://server/cgi-bin/upload.cgi`  
 or,  
 `curl -F image=@/path/to/screenshot.png http://server/cgi-bin/upload.cgi`  
@@ -88,6 +89,57 @@ For implementation details, see `bool ScreenCapture::uploadDataToUrl(std::vector
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
         "url": "http://server/cgi-bin/upload.cgi",
+        "callGUID": "12345"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a name="putScreenshot"></a>
+## *putScreenshot*
+
+Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter.
+
+### Events
+
+| Event | Description |
+| :-------- | :-------- |
+| [uploadComplete](#uploadComplete) | Triggered after uploading a screen capture with status and message |
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callGUID | string | A unique identifier of a call. The identifier is used to find a corresponding `uploadComplete` event |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.ScreenCapture.putScreenshot",
+    "params": {
         "callGUID": "12345"
     }
 }
