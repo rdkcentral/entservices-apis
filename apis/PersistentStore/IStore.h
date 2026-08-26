@@ -57,8 +57,6 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
     // @example key - "language"
     // @param value - out - Value associated with the specified key.
     // @example value - "en-US"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE - Value retrieved successfully.
     // @retval Core::ERROR_GENERAL - Failed to retrieve the value.
     virtual Core::hresult GetValue(const string &ns, const string &key, string &value /* @out */) = 0;
@@ -70,8 +68,6 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
     // @example ns - "application"
     // @param key - in - Key identifier to delete.
     // @example key - "language"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE - Key deleted successfully.
     // @retval Core::ERROR_GENERAL - Failed to delete the key.
     virtual Core::hresult DeleteKey(const string &ns, const string &key) = 0;
@@ -80,8 +76,6 @@ struct EXTERNAL IStore : virtual public Core::IUnknown {
     // @details Removes the specified namespace and all associated key/value pairs contained within it.
     // @param ns - in - Namespace to delete.
     // @example ns - "application"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE - Namespace deleted successfully.
     // @retval Core::ERROR_GENERAL - Failed to delete the namespace.
     virtual Core::hresult DeleteNamespace(const string &ns) = 0;
