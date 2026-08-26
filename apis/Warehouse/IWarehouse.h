@@ -62,8 +62,8 @@ namespace WPEFramework
             // @details Invokes the internal reset script, which reboots the Warehouse service. The internal reset script will check for a valid passphrase before proceeding with the reset operation.
             // @param passPhrase - in - string
             // @example passPhrase - "mySecretPassphrase"
-            // @param WarehouseSuccessErr - out
-            // @example WarehouseSuccessErr - {"success":true,"error":""}
+            // @param successErr - out - Result of the operation including success state
+            // @example successErr: {"success": true, "error": ""}
             // @example success: true
             // @retval Core::ERROR_NONE - Internal reset operation completed successfully.
             // @retval Core::ERROR_GENERAL - Internal reset operation failed.
