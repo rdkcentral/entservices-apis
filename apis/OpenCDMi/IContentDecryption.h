@@ -99,8 +99,8 @@ namespace Exchange {
         }
         void SetKeyId(SampleInfo& sampleInfo, const uint8_t length, const uint8_t buffer[])
         {
-            VERIFY(length <= sizeof(SampleInfo::keyId));
-            sampleInfo.keyId[0] = (length <= sizeof(SampleInfo::keyId) ? length : sizeof(SampleInfo::keyId));
+            VERIFY(length <= 16);
+            sampleInfo.keyId[0] = (length <= 16 ? length : 16);
             if (length != 0) {
                 ::memcpy(&(sampleInfo.keyId[1]), buffer, sampleInfo.keyId[0]);
             }
@@ -145,6 +145,15 @@ namespace Exchange {
             for(uint16_t index = 0; index < length; index++) {
                 admin->subSamples[index + startIdx].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
                 admin->subSamples[index + startIdx].clear_bytes = subSampleInfo[index].clear_bytes;
+            }
+        }
+
+        void InitWithLast15(SampleInfo& sampleInfo, bool initWithLast15)
+        {
+            if (initWithLast15 == true) {
+                sampleInfo.ivLength |= 0x80;
+            } else {
+                sampleInfo.ivLength &= (~0x80);
             }
         }
 
@@ -201,7 +210,8 @@ namespace Exchange {
         {
             const Administration* admin = reinterpret_cast<const Administration*>(AdministrationBuffer());
             VERIFY(admin->sampleLength >= length);
-            for(uint16_t index = 0, subSampleIdx = 0; index < length; index++) {
+            uint16_t retLength = (length > admin->sampleLength) ? admin->sampleLength : length;
+            for(uint16_t index = 0, subSampleIdx = 0; index < retLength; index++) {
                 samplesInfo[index].ivLength = IVKeyLength(admin->samples[index]);
                 samplesInfo[index].iv = const_cast<uint8_t *>(IVKey(admin->samples[index]));
                 samplesInfo[index].keyId = const_cast<uint8_t *>(KeyId(admin->samples[index], samplesInfo[index].keyIdLength));
@@ -212,7 +222,7 @@ namespace Exchange {
                 subSampleIdx += samplesInfo[index].subSampleCount;
             }
         }
-        void SetSamples(const uint16_t length, const CDMi::SampleInfo samplesInfo[])
+        void SetSamples(const uint16_t length, const CDMi::SampleInfo samplesInfo[], bool initWithLast15)
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             VERIFY(sizeof(Administration::samples)/sizeof(SampleInfo) >= length);
@@ -225,6 +235,8 @@ namespace Exchange {
                 SetSubSampleLength(admin->samples[index], samplesInfo[index].subSampleCount);
                 SetSubSamples(subSampleIdx, samplesInfo[index].subSampleCount, samplesInfo[index].subSample);
                 subSampleIdx += samplesInfo[index].subSampleCount;
+
+                InitWithLast15(admin->samples[index], initWithLast15);
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
