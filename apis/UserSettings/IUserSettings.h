@@ -151,21 +151,21 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
         // @text onVoiceGuidanceChanged
         // @brief Triggered after the voice guidance enabled settings changes.
-        // @details Triggered after the voice guidance enabled settings changes.
+        // @details This event is triggered when the voice guidance setting is updated.
         // @param enabled: voice guidance enabled or not.
         // @example enabled: true
         virtual void OnVoiceGuidanceChanged(const bool enabled) {};
 
         // @text onVoiceGuidanceRateChanged
         // @brief Triggered after the voice guidance rate changed.
-        // @details Triggered after the voice guidance rate changed.
+        // @details This event is triggered when the voice guidance rate setting is updated.
         // @param rate: the changed voice guidance rate.
         // @example rate: 1.0
         virtual void OnVoiceGuidanceRateChanged(const double rate) {};
 
         // @text onVoiceGuidanceHintsChanged
         // @brief Triggered after the voice guidance hints changes.
-        // @details Triggered after the voice guidance hints changes.
+        // @details This event is triggered when the voice guidance hints setting is updated.
         // @param hints: voice guidance hints enabled or not.
         // @example hints: true
         virtual void OnVoiceGuidanceHintsChanged(const bool hints) {};
@@ -184,7 +184,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text setAudioDescription
     // @brief Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
-    // @details A setting of ON indicates that Players should select an audio descriptive track for presentation
+    // @details Updates the persistent user preference for this setting. Changes are stored by the UserSettings service and may trigger the corresponding notification event so that applications can react to runtime configuration changes.
     // @param enabled: Enabled/Disabled
     // @example enabled: true
     // @retval Core::ERROR_NONE: Indicates success
@@ -193,7 +193,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text getAudioDescription
     // @brief Gets the current AudioDescription setting
-    // @details Gets the current AudioDescription setting
+    // @details Retrieves the persistent user preference for this setting.
     // @param enabled: Enabled/Disabled
     // @example enabled: true
     // @retval Core::ERROR_NONE: Indicates success
@@ -216,7 +216,7 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text getPreferredAudioLanguages
     // @brief Gets the current PreferredAudioLanguages setting
-    // @details Gets the current PreferredAudioLanguages setting
+    // @details Retrieves the persistent user preference for this setting.
     // @param preferredLanguages: PreferredLanguages
     // @example preferredLanguages: "eng,fra"
     // @retval Core::ERROR_NONE: Indicates success
@@ -225,11 +225,9 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text setPresentationLanguage
     // @brief Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
-    // @details Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
+    // @details Stores the user's preferred presentation language. Media players and applications can use this preference to automatically select the most appropriate language for presentation.    
     // @param presentationLanguage: "en-US", "es-US", "en-CA", "fr-CA"
     // @example presentationLanguage: "en-US"
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPresentationLanguage(const string& presentationLanguage /* @text presentationLanguage */) = 0;
