@@ -73,22 +73,21 @@ namespace WPEFramework
     
                 // @brief Notifies when the active source status is updated
                 // @text onActiveSourceStatusUpdated
-                // @details Notifies when the active source status is updated
-                // @param isActiveSource: Is the active source active or not
+                // @details This event is triggered when the active source status changes
                 // @param status Indicates whether the active source is active.
                 // @example status: true
                 virtual void OnActiveSourceStatusUpdated(const bool status ) {};
     
                 // @brief Notifies when CEC standby message received from the other CEC device
                 // @text standbyMessageReceived
-                // @details Notifies when CEC standby message received from the other CEC device
+                // @details This event is triggered when a standby message is received from another CEC device
                 // @param logicalAddress: Logical address of the device
                 // @example logicalAddress: 1
                 virtual void StandbyMessageReceived(const int logicalAddress ) {};
 
                 // @brief Notifies when a key release CEC message is received from other CEC device
                 // @text onKeyReleaseEvent
-                // @details Notifies when a key release CEC message is received from other CEC device
+                // @details This event is triggered when a key release event is detected from a remote CEC device
                 // @param logicalAddress: Logical address of the device
                 // @example logicalAddress: 1
                 virtual void OnKeyReleaseEvent(const int logicalAddress ) {};
@@ -96,7 +95,7 @@ namespace WPEFramework
 
                 // @brief Notifies when a key press CEC message is received from other CEC device
                 // @text onKeyPressEvent
-                // @details Notifies when a key press CEC message is received from other CEC device
+                // @details This event is triggered when a key press event is detected from a remote CEC device
                 // @param logicalAddress: Logical address of the device
                 // @example logicalAddress: 1
                 // @param keyCode: Key code of the key press event
@@ -113,7 +112,7 @@ namespace WPEFramework
 
             // @brief Gets the status if the device is the current active source
             // @text getActiveSourceStatus
-            // @details Gets the status if the device is the current active source
+            // @details Retrieves the current active source status of the HDMI CEC source device
             // @param status: Is the active source active or not
             // @example status: true
             // @param success: Is the operation successful or not
@@ -124,7 +123,7 @@ namespace WPEFramework
 
             // @brief Gets the status of the HDMI CEC source
             // @text getEnabled
-            // @details Gets the status of the HDMI CEC source
+            // @details Retrieves whether the HDMI CEC source is currently enabled or disabled
             // @param enabled: Is the HDMI CEC source enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
@@ -135,7 +134,7 @@ namespace WPEFramework
 
             // @brief Gets the OSD name of the HDMI CEC source
             // @text getOSDName
-            // @details Gets the OSD name of the HDMI CEC source
+            // @details Retrieves the On-Screen Display (OSD) name configured for the HDMI CEC source device
             // @param name: OSD name of the HDMI CEC source
             // @example name: "My CEC Source"
             // @param success: Is the operation successful or not
@@ -146,7 +145,7 @@ namespace WPEFramework
 
             // @brief Gets the OTP enabled status of the HDMI CEC source
             // @text getOTPEnabled
-            // @details Gets the OTP enabled status of the HDMI CEC source
+            // @details Retrieves whether One-Touch Play (OTP) is enabled for the HDMI CEC source
             // @param otpEnabled: Is the OTP enabled or not
             // @example otpEnabled: true
             // @param success: Is the operation successful or not
@@ -157,7 +156,7 @@ namespace WPEFramework
 
             // @brief Gets the vendor ID of the HDMI CEC source
             // @text getVendorId
-            // @details Gets the vendor ID of the HDMI CEC source
+            // @details Retrieves the vendor ID assigned to the HDMI CEC source device
             // @param vendorId: Vendor ID of the HDMI CEC source
             // @example vendorId: "123456"
             // @param success: Is the operation successful or not
@@ -168,7 +167,7 @@ namespace WPEFramework
 
             // @brief Performs the OTP action
             // @text performOTPAction
-            // @details Performs the OTP action
+            // @details Triggers the One-Touch Play (OTP) action on the HDMI CEC source device
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
@@ -177,7 +176,7 @@ namespace WPEFramework
 
             // @brief Sends a key press event to the HDMI CEC device.
             // @text sendKeyPressEvent
-            // @details Sends a key press event to the HDMI CEC device.
+            // @details Transmits a key press event to the specified HDMI CEC device with the given key code
             // @param logicalAddress: Logical address of the device
             // @example logicalAddress: 1
             // @param keyCode: Key code of the key press event
@@ -190,7 +189,7 @@ namespace WPEFramework
 
             // @brief Sends a standby message to another CEC device
             // @text sendStandbyMessage
-            // @details Sends a standby message to another CEC device
+            // @details Transmits a standby request to all devices on the CEC network
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
@@ -199,7 +198,7 @@ namespace WPEFramework
 
             // @brief Sets the status of the HDMI CEC source
             // @text setEnabled
-            // @details Sets the status of the HDMI CEC source
+            // @details Enables or disables the HDMI CEC source functionality
             // @param enabled: Is the HDMI CEC source enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
@@ -210,7 +209,7 @@ namespace WPEFramework
 
             // @brief Sets the OSD name of the HDMI CEC source
             // @text setOSDName
-            // @details Sets the OSD name of the HDMI CEC source
+            // @details Configures the On-Screen Display (OSD) name for the HDMI CEC source device
             // @param osdName: OSD name of the HDMI CEC source
             // @example osdName: "My CEC Source"
             // @param success: Is the operation successful or not
@@ -221,7 +220,7 @@ namespace WPEFramework
 
             // @brief Sets the OTP enabled status of the HDMI CEC source
             // @text setOTPEnabled
-            // @details Sets the OTP enabled status of the HDMI CEC source
+            // @details Enables or disables One-Touch Play (OTP) functionality for the HDMI CEC source
             // @param enabled: Is the OTP enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
@@ -232,7 +231,7 @@ namespace WPEFramework
 
             // @brief Sets the vendor ID of the HDMI CEC source
             // @text setVendorId
-            // @details Sets the vendor ID of the HDMI CEC source
+            // @details Configures the vendor ID for the HDMI CEC source device
             // @param vendorId: Vendor ID of the HDMI CEC source
             // @example vendorId: "123456"
             // @param success: Is the operation successful or not
@@ -243,7 +242,7 @@ namespace WPEFramework
 
             // @brief Gets the list of devices connected to the HDMI CEC source
             // @text getDeviceList
-            // @details Gets the list of devices connected to the HDMI CEC source
+            // @details Retrieves information about all devices currently connected to the HDMI CEC network
             // @param numberofdevices: Number of devices connected to the HDMI CEC source
             // @example numberofdevices: 2
             // @param deviceList: List of devices connected to the HDMI CEC source
