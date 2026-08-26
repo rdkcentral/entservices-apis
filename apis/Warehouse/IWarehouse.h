@@ -62,7 +62,7 @@ namespace WPEFramework
             // @details Invokes the internal reset script, which reboots the Warehouse service. The internal reset script will check for a valid passphrase before proceeding with the reset operation.
             // @param passPhrase - in - string
             // @example passPhrase - "mySecretPassphrase"
-            // @param successErr - out - Result of the operation including success state
+            // @param successErr - out - Result of the operation including success state and error details.
             // @example successErr: {"success": true, "error": ""}
             // @example success: true
             // @retval Core::ERROR_NONE - Internal reset operation completed successfully.
@@ -89,8 +89,8 @@ namespace WPEFramework
             // @text lightReset
             // @brief Resets the application data.
             // @details Resets the application data. This operation will delete all the application data and reset the application to its default state.
-            // @param WarehouseSuccessErr - out
-            // @example WarehouseSuccessErr - {"success":true,"error":""}
+            // @param successErr - out - Result of the operation including success state and error details.
+            // @example successErr: {"success": true, "error": ""}
             // @example success: true
             // @retval Core::ERROR_NONE - Light reset operation completed successfully.
             // @retval Core::ERROR_GENERAL - Light reset operation failed.
@@ -103,8 +103,8 @@ namespace WPEFramework
             // @example suppressReboot - true
             // @param resetType - in - string
             // @example resetType - "factory"
-            // @param WarehouseSuccessErr - out
-            // @example WarehouseSuccessErr - {"success":true,"error":""}
+            // @param successErr - out - Result of the operation including success state and error details.
+            // @example successErr: {"success": true, "error": ""}
             // @example success: true
             // @retval Core::ERROR_NONE - Reset device operation completed successfully.
             // @retval Core::ERROR_GENERAL - Reset device operation failed.
