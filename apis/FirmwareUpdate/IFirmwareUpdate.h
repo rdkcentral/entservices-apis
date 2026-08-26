@@ -89,8 +89,6 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @param[in] firmwareType     Type of firmware. One of the following (PCI,DRI)
   // @example firmwareType: PCI
   // @returns Core::hresult
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   virtual Core::hresult UpdateFirmware(const string& firmwareFilepath /* @text firmwareFilepath */ , const string& firmwareType /* @text firmwareType */, Result &result /* @out  */ ) = 0;
 
   // @text getUpdateState
@@ -99,8 +97,6 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @param[out] GetUpdateStateResult  
   // @example GetUpdateStateResult: { state: FLASHING_STARTED, substate: FIRMWARE_OUTDATED }
   // @returns Core::hresult
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
   // @text setAutoReboot
@@ -109,8 +105,6 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @param[in] enable Boolean to enable or disable AutoReboot
   // @example enable: true
   // @returns Core::hresult
-  // @param success: Indicates whether the operation was successful
-  // @example success: true
   virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
 
 };
