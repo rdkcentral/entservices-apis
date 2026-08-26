@@ -115,7 +115,8 @@ namespace WPEFramework
 
             // @brief To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
             // @text playRequest
-            // @details Initiates a Miracast session using the supplied source and sink device information, configures the display region, and starts media streaming.            // @param deviceParam: Contains Source and Sink Device related properties
+            // @details Initiates a Miracast session using the supplied source and sink device information, configures the display region, and starts media streaming.           
+            // @param deviceParam: Contains Source and Sink Device related properties
             // @example deviceParam: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
             // @param success: Is the operation successful or not
@@ -171,7 +172,8 @@ namespace WPEFramework
 
             // @brief To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
             // @text unsetWesterosEnvironment
-            // @details Removes all Westeros-specific environment settings and restores the default playback environment. This API is deprecated in favor of UnsetEnvArguments.            // @param success: Is the operation successful or not
+            // @details Removes all Westeros-specific environment settings and restores the default playback environment. This API is deprecated in favor of UnsetEnvArguments.           
+            // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
             // @retval Core::ERROR_GENERAL: Indicates failure
@@ -179,7 +181,8 @@ namespace WPEFramework
 
             // @brief To configure the environment arguments for the Miracast Player
             // @text setEnvArguments
-            // @details Applies the specified environment variables that influence the behavior and execution environment of the Miracast player.            // @param envArgs: environment arguments to be set
+            // @details Applies the specified environment variables that influence the behavior and execution environment of the Miracast player.            
+            // @param envArgs: environment arguments to be set
             // @example envArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
             // @param success: Is the operation successful or not
             // @example success: true
@@ -189,7 +192,8 @@ namespace WPEFramework
 
             // @brief To reset the environment arguments for the Miracast Player
             // @text unsetEnvArguments
-            // @details Clears all previously configured environment variables and restores the Miracast player to its default environment settings.            // @param success: Is the operation successful or not
+            // @details Clears all previously configured environment variables and restores the Miracast player to its default environment settings.          
+            // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
             // @retval Core::ERROR_GENERAL: Indicates failure
