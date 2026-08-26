@@ -338,8 +338,6 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details A setting of ON indicates that Parental Control is enabled. Players should enforce the parental control settings when enabled.
     // @param pinControl: Enabled/Disabled
     // @example pinControl: true
-    // @param success: Indicates whether the operation was successful
-    // @example success: true
     // @retval Core::ERROR_NONE: Indicates success
     // @retval Core::ERROR_GENERAL: Indicates failure
     virtual Core::hresult SetPinControl(const bool pinControl ) = 0;
