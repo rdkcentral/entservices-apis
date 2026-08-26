@@ -115,10 +115,10 @@ namespace Exchange {
 
         // @brief TV's Extended Display Identification Data
         // @details Retrieves the TV's Extended Display Identification Data (EDID) as a byte string.
-        // @param edid: edid byte string
-        // @example edid: [0x00, 0xFF]
         // @param length: length of edid byte string
         // @example length: 2
+		// @param data: EDID byte string
+        // @example data: [0x00,0xFF,0xFF,0xFF]
         // @retval Core::ERROR_NONE: Indicates success
         // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
