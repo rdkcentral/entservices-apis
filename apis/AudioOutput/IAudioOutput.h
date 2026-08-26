@@ -63,6 +63,15 @@ namespace Exchange {
         // @param enabled: true if Dolby Atmos Experience is enabled, false otherwise
         // @retval Core::ERROR_NONE on success
         virtual Core::hresult DolbyAtmosExperience(bool& enabled /* @out */) const = 0;
+
+        // @text dolbyAtmosExperience2
+        // @brief Returns whether Dolby Atmos Experience is currently enabled
+        // @details Combines AtmosMetadata capability (must be ATMOS_METADATA) and
+        //          current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO)
+        //          to determine the Dolby Atmos Experience state.
+        // @param enabled: true if Dolby Atmos Experience is enabled, false otherwise
+        // @retval Core::ERROR_NONE on success
+        virtual Core::hresult DolbyAtmosExperience2(bool& enabled /* @out */) const = 0;
     };
 
 } // namespace Exchange
