@@ -132,8 +132,7 @@ namespace Exchange {
         virtual Core::hresult WidthInCentimeters(uint8_t& width /* @out */) const = 0;
 
         // @brief Vertical size in centimeters
-		// @param height: Height of the display in pixels
-        // @param width: height in cm
+        // @param height: height in cm
         // @example height: 50
         // @retval Core::ERROR_NONE: Indicates success
         // @retval Core::ERROR_GENERAL: Indicates failure
