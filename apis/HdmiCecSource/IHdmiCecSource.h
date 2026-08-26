@@ -75,7 +75,8 @@ namespace WPEFramework
                 // @text onActiveSourceStatusUpdated
                 // @details Notifies when the active source status is updated
                 // @param isActiveSource: Is the active source active or not
-                // @example isActiveSource: true
+                // @param status Indicates whether the active source is active.
+                // @example status: true
                 virtual void OnActiveSourceStatusUpdated(const bool status ) {};
     
                 // @brief Notifies when CEC standby message received from the other CEC device
