@@ -61,8 +61,6 @@ namespace WPEFramework
             // specified by the supplied BackupContext. The backup operation is performed for the given scenario and variant.
             // @param context: Context for which the backup to happen
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully backed up the settings
             virtual Core::hresult BackupSettings(const BackupContext& context) = 0;
 
@@ -72,8 +70,6 @@ namespace WPEFramework
             //  The restore operation is performed for the given scenario and variant.
             // @param context: Context for which the restore to happen
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully restored the settings
             virtual Core::hresult RestoreSettings(const BackupContext& context) = 0;
 
@@ -83,8 +79,6 @@ namespace WPEFramework
             // data associated with the given scenario and variant.
             // @param context: Context for which the backup to be deleted
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully deleted the backup
             virtual Core::hresult DeleteBackup(const BackupContext& context) = 0;
         };
@@ -108,8 +102,6 @@ namespace WPEFramework
             // internal state and persist it into the provided BackupContext directory path.
             // @param context: Context for which the backup to happen
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully backed up
             virtual Core::hresult Backup(const BackupContext& context) = 0;
 
@@ -119,8 +111,6 @@ namespace WPEFramework
             // data from the BackupContext location and re-apply them to its runtime configuration.
             // @param context: Context for which the restore to happen
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully restored
             virtual Core::hresult Restore(const BackupContext& context) = 0;
 
@@ -130,8 +120,6 @@ namespace WPEFramework
             // created for this particular context scenario and variant.
             // @param context: Context for which the backup to be deleted
             // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE Successfully deleted the backup
             virtual Core::hresult Delete(const BackupContext& context) = 0;
         };
