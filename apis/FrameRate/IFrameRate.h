@@ -49,8 +49,7 @@ namespace WPEFramework
 
                 // @text onDisplayFrameRateChanging
                 // @brief Triggered when the framerate changes started
-                // @details This event is triggered when the system begins transitioning to a new display framerate.
-                // transition and before the new framerate is fully applied.
+                // @details This notification is raised when a display frame rate change has started and before the new frame rate is applied.
                 // @param displayFrameRate - in - string
                 // @example displayFrameRate: "60"
                 virtual void OnDisplayFrameRateChanging(const string& displayFrameRate) {};
@@ -109,8 +108,7 @@ namespace WPEFramework
             /** Sets the display framerate values */
             // @text setDisplayFrameRate
             // @brief Sets the display framerate values.
-            // @details Updates the display framerate setting using the specified value. The new framerate is applied
-            // to subsequent display operations if the request is processed successfully.
+            // @details Updates the display framerate setting using the specified value. The new framerate is applied to subsequent display operations if the request is processed successfully.
             // @param framerate - in - string
             // @example framerate: "60"
             // @param success - out - boolean
@@ -122,8 +120,7 @@ namespace WPEFramework
             /** Sets the auto framerate mode */
             // @text setFrmMode
             // @brief Set the Frm mode.
-            // @details Updates the auto framerate mode to the specified value. The operation applies the new mode 
-            // setting and indicates whether the update was completed successfully.
+            // @details Updates the auto framerate mode to the specified value. The operation applies the new mode setting and indicates whether the update was completed successfully.
             // @param frmmode - in - int
             // @example frmmode: 1
             // @param success - out - boolean
@@ -146,8 +143,7 @@ namespace WPEFramework
             /** Stops the FPS data collection */
             // @text stopFpsCollection
             // @brief Stops the FPS data collection
-            // @details Terminates the ongoing FPS data collection process and prevents 
-            // any additional FPS metrics from being captured until data collection is started again.
+            // @details Terminates the ongoing FPS data collection process and prevents any additional FPS metrics from being captured until data collection is started again.
             // @param success - out - boolean
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
