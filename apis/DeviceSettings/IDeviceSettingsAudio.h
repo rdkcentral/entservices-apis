@@ -265,7 +265,7 @@ namespace Exchange {
             virtual void OnAudioLevelChanged(int32_t audioLevel) { };
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsAudio::INotification* notification )   = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsAudio::INotification* notification )   = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsAudio::INotification* notification ) = 0;
 
         /** Get Audio Port . */

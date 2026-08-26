@@ -96,7 +96,7 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsVideoDevice::INotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsVideoDevice::INotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsVideoDevice::INotification* notification ) = 0;
 
         /** Get Video Device handle. */

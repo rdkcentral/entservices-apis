@@ -165,7 +165,7 @@ namespace Exchange {
             
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsDisplay::INotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsDisplay::INotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsDisplay::INotification* notification ) = 0;
 
         // @event
@@ -180,7 +180,7 @@ namespace Exchange {
 
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsDisplay::IDisplayHDMIHotPlugNotification* notification ) = 0;
 
         /** Get Display EDID. */

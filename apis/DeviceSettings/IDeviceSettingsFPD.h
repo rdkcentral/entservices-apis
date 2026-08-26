@@ -89,7 +89,7 @@ namespace Exchange {
             
         };
 
-        virtual Core::hresult Register(Exchange::IDeviceSettingsFPD::INotification* notification ) = 0;
+        virtual Core::hresult Register(const string clientName, Exchange::IDeviceSettingsFPD::INotification* notification ) = 0;
         virtual Core::hresult Unregister(Exchange::IDeviceSettingsFPD::INotification* notification ) = 0;
 
         /** Set Front Panel Display Time. */
