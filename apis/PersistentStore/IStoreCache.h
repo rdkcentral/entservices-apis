@@ -29,9 +29,6 @@ struct EXTERNAL IStoreCache : virtual public Core::IUnknown {
 
     // @brief Flushes all pending cached data to persistent storage.
     // @details Forces the Persistent Store cache to be synchronized with the underlying storage backend. This operation ensures that any pending changes held in memory are written to persistent storage and made durable across restarts or power cycles.
-    // @example storeCache->FlushCache();
-    // @param success: Indicates whether the operation was successful or not
-    // @example success: true
     // @retval Core::ERROR_NONE - Cache contents were flushed successfully.
     // @retval Core::ERROR_GENERAL - Failed to flush the cache to persistent storage.
     virtual Core::hresult FlushCache() = 0;
