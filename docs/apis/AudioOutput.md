@@ -56,6 +56,7 @@ The following methods are provided by the IAudioOutput Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [dolbyAtmosExperience](#dolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
+| [dolbyAtmosExperience2](#dolbyAtmosExperience2) | Returns whether Dolby Atmos Experience is currently enabled |
 
 <a id="dolbyAtmosExperience"></a>
 ## *dolbyAtmosExperience*
@@ -105,6 +106,54 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+<a id="dolbyAtmosExperience2"></a>
+## *dolbyAtmosExperience2*
+
+Combines AtmosMetadata capability (must be ATMOS_METADATA) and current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO) to determine the Dolby Atmos Experience state.
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.enabled | bool | true if Dolby Atmos Experience is enabled, false otherwise |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "method": "org.rdk.AudioOutput.dolbyAtmosExperience2"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AudioOutput.dolbyAtmosExperience2"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "result": {
+        "enabled": true
+    }
+}
+```
+
 <a id="IAudioOutput-Notifications"></a>
 ### Notifications
 
@@ -132,7 +181,7 @@ Notifies subscribers when the Dolby Atmos Experience state changes
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "method": "org.rdk.AudioOutput.onDolbyAtmosExperienceChanged",
     "params": {
         "dolbyAtmosExperience": true
