@@ -317,7 +317,8 @@ namespace Exchange {
         // @brief Get Stereo Mode
         // @param handle: handle returned in GetAudioPort()
         // @param mode: mode
-        virtual Core::hresult GetStereoMode(const int32_t handle , StereoMode &mode /* @out */) = 0;
+        // @param persist: get the persisted mode (true) or effective runtime mode (false)
+        virtual Core::hresult GetStereoMode(const int32_t handle , StereoMode &mode /* @out */, const bool persist) = 0;
 
         /** Set Stereo Mode  . */
         // @text setStereoMode
