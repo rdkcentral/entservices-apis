@@ -44,7 +44,7 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.DeviceInfo) |
+| callsign | string | Plugin instance name (default: DeviceInfo) |
 | classname | string | Class name: *DeviceInfo* |
 | locator | string | Library name: *libWPEFrameworkDeviceInfo.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
@@ -90,7 +90,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "method": "org.rdk.DeviceInfo.supportedaudioports"
+    "method": "DeviceInfo.supportedaudioports"
 }
 ```
 
@@ -98,7 +98,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceInfo.supportedaudioports"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "DeviceInfo.supportedaudioports"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -141,21 +141,19 @@ The following properties are provided by the IDeviceInfo Interface:
 | [addresses](#addresses)<sup>RO</sup> | Provides access to the network interface addresses. |
 | [brandname](#brandname)<sup>RO</sup> | Provides access to device brand name |
 | [chipset](#chipset)<sup>RO</sup> | Provides access to the chipset of the device |
-| [deviceId](#deviceId)<sup>RO</sup> | Provides the Device ID info. |
 | [devicetype](#devicetype)<sup>RO</sup> | Provides access to the device type. |
 | [distributorid](#distributorid)<sup>RO</sup> | Provides access to the partner ID or distributor ID for device. |
 | [estbip](#estbip)<sup>RO</sup> | Provides access to the STB IP addresses. |
 | [estbmac](#estbmac)<sup>RO</sup> | Provides access to the STB MAC addresses. |
 | [ethmac](#ethmac)<sup>RO</sup> | Provides access to the Ethernet MAC addresses. |
 | [firmwareversion](#firmwareversion)<sup>RO</sup> | Provides access to the versions maintained in version.txt. |
-| [hardwareId](#hardwareId)<sup>RO</sup> | Provides the Hardware ID (first 6 characters of Device ID). |
 | [make](#make)<sup>RO</sup> | Provides access to the device manufacturer. |
 | [modelname](#modelname)<sup>RO</sup> | Provides access to the friendly device model name. |
-| [osname](#osname) | Provides access to the operating system name. |
-| [osversion](#osversion) | Provides access to the operating system version. |
 | [releaseversion](#releaseversion)<sup>RO</sup> | Provides access to the ReleaseVersion of the Image |
 | [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacture |
 | [modelid](#modelid)<sup>RO</sup> | Provides access to the device model number |
+| [deviceId](#deviceId)<sup>RO</sup> | Provides access to the stable alphanumeric device identifier |
+| [hardwareId](#hardwareId)<sup>RO</sup> | Provides access to the hardware identifier |
 | [socname](#socname)<sup>RO</sup> | Provides access to the SOC Name. |
 | [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
 | [wifimac](#wifimac)<sup>RO</sup> | Provides access to the WIFI MAC addresses. |
@@ -185,7 +183,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "method": "org.rdk.DeviceInfo.addresses"
+    "method": "DeviceInfo.addresses"
 }
 ```
 
@@ -193,7 +191,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.DeviceInfo.addresses"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "DeviceInfo.addresses"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -249,7 +247,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "method": "org.rdk.DeviceInfo.brandname"
+    "method": "DeviceInfo.brandname"
 }
 ```
 
@@ -257,7 +255,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DeviceInfo.brandname"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "DeviceInfo.brandname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -309,7 +307,7 @@ Event details will be updated soon.
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "method": "org.rdk.DeviceInfo.chipset"
+    "method": "DeviceInfo.chipset"
 }
 ```
 
@@ -317,7 +315,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DeviceInfo.chipset"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "DeviceInfo.chipset"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -347,66 +345,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-<a id="deviceId"></a>
-## *deviceId*
-
-Provides the Device ID info.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).deviceId | string | Device ID |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.DeviceInfo.deviceId"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DeviceInfo.deviceId"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "deviceId": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="devicetype"></a>
 ## *devicetype*
 
@@ -428,8 +366,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.DeviceInfo.devicetype"
+    "id": 11,
+    "method": "DeviceInfo.devicetype"
 }
 ```
 
@@ -437,7 +375,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DeviceInfo.devicetype"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "DeviceInfo.devicetype"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -446,7 +384,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 11,
     "result": {
         "devicetype": "IpTv"
     }
@@ -459,7 +397,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 11,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -488,8 +426,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.DeviceInfo.distributorid"
+    "id": 12,
+    "method": "DeviceInfo.distributorid"
 }
 ```
 
@@ -497,7 +435,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DeviceInfo.distributorid"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "DeviceInfo.distributorid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -506,7 +444,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "result": {
         "distributorid": ""
     }
@@ -519,7 +457,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 12,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -548,8 +486,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.DeviceInfo.estbip"
+    "id": 13,
+    "method": "DeviceInfo.estbip"
 }
 ```
 
@@ -557,7 +495,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.DeviceInfo.estbip"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "DeviceInfo.estbip"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -566,7 +504,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "result": {
         "estb_ip": ""
     }
@@ -579,7 +517,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 13,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -608,8 +546,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.DeviceInfo.estbmac"
+    "id": 14,
+    "method": "DeviceInfo.estbmac"
 }
 ```
 
@@ -617,7 +555,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.DeviceInfo.estbmac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "DeviceInfo.estbmac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -626,7 +564,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "result": {
         "estb_mac": ""
     }
@@ -639,7 +577,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 14,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -668,8 +606,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.DeviceInfo.ethmac"
+    "id": 15,
+    "method": "DeviceInfo.ethmac"
 }
 ```
 
@@ -677,7 +615,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DeviceInfo.ethmac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "DeviceInfo.ethmac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -686,7 +624,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "result": {
         "eth_mac": ""
     }
@@ -699,7 +637,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 15,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -734,8 +672,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.DeviceInfo.firmwareversion"
+    "id": 16,
+    "method": "DeviceInfo.firmwareversion"
 }
 ```
 
@@ -743,7 +681,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DeviceInfo.firmwareversion"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "DeviceInfo.firmwareversion"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -752,7 +690,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 16,
     "result": {
         "imagename": "",
         "rdk": "",
@@ -770,67 +708,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="hardwareId"></a>
-## *hardwareId*
-
-Provides the Hardware ID (first 6 characters of Device ID).
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).hardwareId | string | Hardware ID (first 6 characters of Device ID) |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.DeviceInfo.hardwareId"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.DeviceInfo.hardwareId"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": {
-        "hardwareId": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
+    "id": 16,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -859,8 +737,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.DeviceInfo.make"
+    "id": 18,
+    "method": "DeviceInfo.make"
 }
 ```
 
@@ -868,7 +746,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.DeviceInfo.make"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "DeviceInfo.make"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -877,7 +755,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 18,
     "result": {
         "make": ""
     }
@@ -890,7 +768,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 18,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -919,8 +797,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
-    "method": "org.rdk.DeviceInfo.modelname"
+    "id": 19,
+    "method": "DeviceInfo.modelname"
 }
 ```
 
@@ -928,7 +806,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.DeviceInfo.modelname"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "DeviceInfo.modelname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -937,7 +815,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 19,
     "result": {
         "model": ""
     }
@@ -950,189 +828,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="osname"></a>
-## *osname*
-
-Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
-
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).osName | string | Operating system name |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.DeviceInfo.osname"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.osname"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": {
-        "osName": ""
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.DeviceInfo.osname",
-    "params": {
-        "osName": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.osname", "params": {"osName": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": null
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="osversion"></a>
-## *osversion*
-
-Reads and writes OsVersion to /opt/persistent/osdetails.info and returns empty string if unset.
-
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).osVersion | string | Operating system version |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.DeviceInfo.osversion"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.osversion"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": {
-        "osVersion": ""
-    }
-}
-```
-
-
-#### Set Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.DeviceInfo.osversion",
-    "params": {
-        "osVersion": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.osversion", "params": {"osVersion": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Set Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": null
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
+    "id": 19,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1161,8 +857,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
-    "method": "org.rdk.DeviceInfo.releaseversion"
+    "id": 20,
+    "method": "DeviceInfo.releaseversion"
 }
 ```
 
@@ -1170,7 +866,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.DeviceInfo.releaseversion"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "DeviceInfo.releaseversion"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1179,7 +875,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 20,
     "result": {
         "releaseversion": ""
     }
@@ -1192,7 +888,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 20,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1221,8 +917,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
-    "method": "org.rdk.DeviceInfo.serialnumber"
+    "id": 21,
+    "method": "DeviceInfo.serialnumber"
 }
 ```
 
@@ -1230,7 +926,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.DeviceInfo.serialnumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "DeviceInfo.serialnumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1239,7 +935,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 21,
     "result": {
         "serialnumber": ""
     }
@@ -1252,7 +948,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 21,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1281,8 +977,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.DeviceInfo.modelid"
+    "id": 22,
+    "method": "DeviceInfo.modelid"
 }
 ```
 
@@ -1290,7 +986,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.DeviceInfo.modelid"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "DeviceInfo.modelid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1299,7 +995,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 22,
     "result": {
         "sku": ""
     }
@@ -1312,7 +1008,127 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
+    "id": 22,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="deviceId"></a>
+## *deviceId*
+
+Provides access to the stable alphanumeric device identifier
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).deviceId | string | Stable alphanumeric device identifier. If the serial number contains at least one non-digit character (alphanumeric), returns that serial number directly. If the serial number is entirely numeric, composes the deviceId from the hardware ID (HWID) in the format `<HWID> + "000" + serialNumber.substr(5, 7)`. For example, serial `84725041828384` with HWID `32E304` yields deviceId `32E3040000418283`. If HWID is unavailable, falls back to manufacturing serial number. If both HWID and manufacturing serial number calls fail, uses the raw serial number as deviceId. The value is cached in memory for the lifetime of the plugin instance. |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
     "id": 26,
+    "method": "DeviceInfo.deviceId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "DeviceInfo.deviceId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "result": {
+        "deviceId": "EB21163216C000024"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="hardwareId"></a>
+## *hardwareId*
+
+Provides access to the hardware identifier
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).hardwareId | string | Hardware identifier (first 6 characters of the deviceId value). This property reuses the cached deviceId without invoking the MFR library independently. If deviceId is shorter than 6 characters, hardwareId equals the full deviceId value. |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "method": "DeviceInfo.hardwareId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "DeviceInfo.hardwareId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "result": {
+        "hardwareId": "EB2116"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1341,8 +1157,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
-    "method": "org.rdk.DeviceInfo.socname"
+    "id": 23,
+    "method": "DeviceInfo.socname"
 }
 ```
 
@@ -1350,7 +1166,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1359,7 +1175,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 23,
     "result": {
         "socname": ""
     }
@@ -1372,7 +1188,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 27,
+    "id": 23,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1415,8 +1231,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
-    "method": "org.rdk.DeviceInfo.systeminfo"
+    "id": 24,
+    "method": "DeviceInfo.systeminfo"
 }
 ```
 
@@ -1424,7 +1240,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1433,7 +1249,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 24,
     "result": {
         "version": "",
         "uptime": 0,
@@ -1460,7 +1276,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 28,
+    "id": 24,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1489,8 +1305,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.DeviceInfo.wifimac"
+    "id": 25,
+    "method": "DeviceInfo.wifimac"
 }
 ```
 
@@ -1498,7 +1314,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1507,7 +1323,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
+    "id": 25,
     "result": {
         "wifi_mac": ""
     }
@@ -1520,7 +1336,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 29,
+    "id": 25,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1575,7 +1391,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "method": "org.rdk.DeviceInfo.audiocapabilities",
+    "method": "DeviceInfo.audiocapabilities",
     "params": {
         "audioPort": ""
     }
@@ -1586,7 +1402,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "DeviceInfo.audiocapabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1650,7 +1466,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "method": "org.rdk.DeviceInfo.ms12capabilities",
+    "method": "DeviceInfo.ms12capabilities",
     "params": {
         "audioPort": ""
     }
@@ -1661,7 +1477,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "DeviceInfo.ms12capabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1725,7 +1541,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "method": "org.rdk.DeviceInfo.supportedms12audioprofiles",
+    "method": "DeviceInfo.supportedms12audioprofiles",
     "params": {
         "audioPort": ""
     }
@@ -1736,7 +1552,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1815,7 +1631,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.DeviceInfo.defaultresolution",
+    "method": "DeviceInfo.defaultresolution",
     "params": {
         "videoDisplay": ""
     }
@@ -1826,7 +1642,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceInfo.defaultresolution", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "DeviceInfo.defaultresolution", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1885,7 +1701,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "method": "org.rdk.DeviceInfo.supportedhdcp",
+    "method": "DeviceInfo.supportedhdcp",
     "params": {
         "videoDisplay": ""
     }
@@ -1896,7 +1712,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DeviceInfo.supportedhdcp", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "DeviceInfo.supportedhdcp", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1957,7 +1773,7 @@ None
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "method": "org.rdk.DeviceInfo.supportedresolutions",
+    "method": "DeviceInfo.supportedresolutions",
     "params": {
         "videoDisplay": ""
     }
@@ -1968,7 +1784,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DeviceInfo.supportedresolutions", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "DeviceInfo.supportedresolutions", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2029,7 +1845,7 @@ This method takes no parameters.
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "method": "org.rdk.DeviceInfo.supportedvideodisplays"
+    "method": "DeviceInfo.supportedvideodisplays"
 }
 ```
 
@@ -2037,7 +1853,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.DeviceInfo.supportedvideodisplays"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "DeviceInfo.supportedvideodisplays"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2102,8 +1918,8 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.DeviceInfo.hostedid"
+    "id": 17,
+    "method": "DeviceInfo.hostedid"
 }
 ```
 
@@ -2111,7 +1927,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DeviceInfo.hostedid"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "DeviceInfo.hostedid"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2120,7 +1936,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 17,
     "result": {
         "EDID": ""
     }
@@ -2133,11 +1949,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 17,
     "error": {
         "code": 1,
         "message": "Indicates failure"
     }
 }
 ```
-
