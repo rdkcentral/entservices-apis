@@ -72,7 +72,7 @@ The following methods are provided by the ISharedStorage Interface:
 <a id="deleteKey"></a>
 ## *deleteKey*
 
-Deletes a key from the specified namespace
+Removes the specified key and its associated value from the given namespace and scope.
 
 ### Events Triggered
 None
@@ -100,9 +100,9 @@ None
     "id": 0,
     "method": "org.rdk.SharedStorage.deleteKey",
     "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": ""
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -111,7 +111,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "device", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -121,8 +121,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -130,7 +142,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="deleteNamespace"></a>
 ## *deleteNamespace*
 
-Deletes the specified namespace
+Removes the specified namespace and all associated key-value pairs contained within it.
 
 ### Events Triggered
 None
@@ -157,8 +169,8 @@ None
     "id": 1,
     "method": "org.rdk.SharedStorage.deleteNamespace",
     "params": {
-        "scope": "device",
-        "namespace": ""
+        "scope": "DEVICE",
+        "namespace": "application"
     }
 }
 ```
@@ -167,7 +179,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "DEVICE", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -177,8 +189,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -186,7 +210,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getValue"></a>
 ## *getValue*
 
-Returns the value of a key from the specified namespace.
+Retrieves the value associated with the specified key together with its remaining TTL information.
 
 ### Events Triggered
 None
@@ -216,9 +240,9 @@ None
     "id": 2,
     "method": "org.rdk.SharedStorage.getValue",
     "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": ""
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -227,7 +251,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "device", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -238,9 +262,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "value": "",
-        "ttl": 0,
+        "value": "en-US",
+        "ttl": 3580,
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -248,7 +286,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setValue"></a>
 ## *setValue*
 
-Sets the value of a key in the the specified namespace
+Creates or updates a key-value pair within the specified scope and namespace. A time-to-live (TTL) value may be supplied to control automatic expiration of the stored entry.
 
 ### Events Triggered
 None
@@ -278,11 +316,11 @@ None
     "id": 3,
     "method": "org.rdk.SharedStorage.setValue",
     "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": "",
-        "value": "",
-        "ttl": 0
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US",
+        "ttl": 3580
     }
 }
 ```
@@ -291,7 +329,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "device", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language", "value": "en-US", "ttl": 3580}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -301,8 +339,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -321,7 +371,7 @@ The following events are provided by the ISharedStorage Interface:
 <a id="onValueChanged"></a>
 ## *onValueChanged*
 
-Values stored are changed using setValue
+Triggered when the value of a key in the specified namespace changes.
 
 ### Parameters
 | Name | Type | Description |
@@ -340,10 +390,10 @@ Values stored are changed using setValue
     "id": 10,
     "method": "org.rdk.SharedStorage.onValueChanged",
     "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": "",
-        "value": ""
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US"
     }
 }
 ```
@@ -367,7 +417,7 @@ The following methods are provided by the ISharedStorageInspector Interface:
 <a id="getKeys"></a>
 ## *getKeys*
 
-Returns the keys that are stored in the specified namespace
+Returns the keys that are stored in the specified namespace.
 
 ### Events Triggered
 None
@@ -396,8 +446,8 @@ None
     "id": 5,
     "method": "org.rdk.SharedStorage.getKeys",
     "params": {
-        "scope": "device",
-        "namespace": ""
+        "scope": "DEVICE",
+        "namespace": "application"
     }
 }
 ```
@@ -406,7 +456,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "DEVICE", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -418,9 +468,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "id": 5,
     "result": {
         "keys": [
-            ""
+            "language",
+            "region"
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -428,7 +493,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="getNamespaces"></a>
 ## *getNamespaces*
 
-Returns the namespaces
+Returns the namespaces that are stored in the specified scope.
 
 ### Events Triggered
 None
@@ -456,7 +521,7 @@ None
     "id": 6,
     "method": "org.rdk.SharedStorage.getNamespaces",
     "params": {
-        "scope": "device"
+        "scope": "DEVICE"
     }
 }
 ```
@@ -465,7 +530,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -477,9 +542,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "id": 6,
     "result": {
         "namespaces": [
-            ""
+            "application",
+            "settings"
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -487,7 +567,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="getStorageSizes"></a>
 ## *getStorageSizes*
 
-Returns the size occupied by each namespace
+Returns the size occupied by each namespace in the specified scope.
 
 ### Events Triggered
 None
@@ -516,7 +596,7 @@ None
     "id": 7,
     "method": "org.rdk.SharedStorage.getStorageSizes",
     "params": {
-        "scope": "device"
+        "scope": "DEVICE"
     }
 }
 ```
@@ -525,7 +605,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "DEVICE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -538,11 +618,25 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "result": {
         "storageList": [
             {
-                "ns": "",
-                "size": 0
+                "ns": "application",
+                "size": 1024
             }
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -565,7 +659,7 @@ The following methods are provided by the ISharedStorageLimit Interface:
 <a id="getNamespaceStorageLimit"></a>
 ## *getNamespaceStorageLimit*
 
-Returns the storage limit for a given namespace
+Returns the storage limit for the specified namespace in the given scope.
 
 ### Events Triggered
 None
@@ -592,8 +686,8 @@ None
     "id": 8,
     "method": "org.rdk.SharedStorage.getNamespaceStorageLimit",
     "params": {
-        "scope": "device",
-        "namespace": ""
+        "scope": "DEVICE",
+        "namespace": "application"
     }
 }
 ```
@@ -602,7 +696,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "DEVICE", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -612,8 +706,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "storageLimit": 0
+    "result": 1024
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -621,7 +727,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="setNamespaceStorageLimit"></a>
 ## *setNamespaceStorageLimit*
 
-Sets the storage limit for a given namespace
+Sets the storage limit for the specified namespace in the given scope.
 
 ### Events Triggered
 None
@@ -649,9 +755,9 @@ None
     "id": 9,
     "method": "org.rdk.SharedStorage.setNamespaceStorageLimit",
     "params": {
-        "scope": "device",
-        "namespace": "",
-        "storageLimit": 0
+        "scope": "DEVICE",
+        "namespace": "application",
+        "storageLimit": 1024
     }
 }
 ```
@@ -660,7 +766,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "device", "namespace": "", "storageLimit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "DEVICE", "namespace": "application", "storageLimit": 1024}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -672,6 +778,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "id": 9,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -693,7 +813,7 @@ The following methods are provided by the ISharedStorageCache Interface:
 <a id="flushCache"></a>
 ## *flushCache*
 
-Flushes the device cache
+Forces all pending shared-storage cache entries to be written to the underlying persistent storage backend.
 
 ### Events Triggered
 None
@@ -732,6 +852,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "- Failed to flush the cache."
+    }
 }
 ```
 

@@ -65,7 +65,7 @@ The following methods are provided by the IMiracastService Interface:
 <a id="acceptClientConnection"></a>
 ## *acceptClientConnection*
 
-To accept or reject new client connection requests for the Miracast feature
+Accepts or rejects new client connection requests for the Miracast feature. If accepted, the Miracast Service plugin will establish a connection with the client device and start streaming. If rejected, the Miracast Service plugin will send a rejection response to the client device.
 
 ### Events Triggered
 None
@@ -78,7 +78,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Contains the result of the operation, including a message and a success flag |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -93,7 +93,7 @@ None
     "id": 0,
     "method": "org.rdk.MiracastService.acceptClientConnection",
     "params": {
-        "requestStatus": ""
+        "requestStatus": "Accept"
     }
 }
 ```
@@ -102,7 +102,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastService.acceptClientConnection", "params": {"requestStatus": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastService.acceptClientConnection", "params": {"requestStatus": "Accept"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -112,9 +112,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "message": "",
-        "success": true
+    "result": "{ message: \"Connection stopped\", success: true }"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -122,7 +133,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getEnable"></a>
 ## *getEnable*
 
-To get the enable status of the Miracast feature
+Retrieves the enable status of the Miracast feature on the device. If enabled, the device is discoverable by other Miracast devices and can accept connection requests. If disabled, the device is not discoverable and will reject any incoming connection requests.
 
 ### Events Triggered
 None
@@ -169,10 +180,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setEnable"></a>
 ## *setEnable*
 
-To enable or disable the Miracast feature
+Enables or disables the Miracast feature on the device. When enabled, the device will be discoverable by other Miracast devices and can accept connection requests. When disabled, the device will not be discoverable and will reject any incoming connection requests.
 
 ### Events Triggered
 None
@@ -185,7 +210,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Contains the result of the operation, including a message and a success flag |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -219,9 +244,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "message": "",
-        "success": true
+    "result": "{ message: \"Connection stopped\", success: true }"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -229,7 +265,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setP2PBackendDiscovery"></a>
 ## *setP2PBackendDiscovery*
 
-Sets the status of the MiracastService backend discovery
+Sets the status of the MiracastService backend discovery. When enabled, the MiracastService will perform backend discovery to find available Miracast devices. When disabled, the backend discovery will be turned off.
 
 ### Events Triggered
 None
@@ -242,7 +278,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Contains the result of the operation, including a message and a success flag |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -276,9 +312,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "message": "",
-        "success": true
+    "result": "{ message: \"Connection stopped\", success: true }"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -286,7 +333,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="stopClientConnection"></a>
 ## *stopClientConnection*
 
-To abort the ongoing connection after accepted connection request
+Aborts the ongoing connection after accepted connection request. This can be used to stop the streaming from the source device to the sink device.
 
 ### Events Triggered
 None
@@ -300,7 +347,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Contains the result of the operation, including a message and a success flag |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -315,8 +362,8 @@ None
     "id": 4,
     "method": "org.rdk.MiracastService.stopClientConnection",
     "params": {
-        "mac": "",
-        "name": ""
+        "mac": "00:11:22:33:44:55",
+        "name": "John's iPhone"
     }
 }
 ```
@@ -325,7 +372,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastService.stopClientConnection", "params": {"mac": "", "name": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastService.stopClientConnection", "params": {"mac": "00:11:22:33:44:55", "name": "John's iPhone"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -335,9 +382,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": {
-        "message": "",
-        "success": true
+    "result": "{ message: \"Connection stopped\", success: true }"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -345,7 +403,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="updatePlayerState"></a>
 ## *updatePlayerState*
 
-Update the Miracast Player State to the Miracast Service Plugin
+Updates the Miracast Player State to the Miracast Service Plugin. This can be used to inform the plugin about the current state of the player, such as whether it is playing, paused, or stopped.
 
 ### Events Triggered
 None
@@ -360,7 +418,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Contains the result of the operation, including a message and a success flag |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -375,9 +433,9 @@ None
     "id": 5,
     "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
-        "mac": "",
-        "state": "IDLE",
-        "reason_code": 0
+        "mac": "00:11:22:33:44:55",
+        "state": "PLAYER_STATE_PLAYING",
+        "reason_code": 200
     }
 }
 ```
@@ -386,7 +444,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "", "state": "IDLE", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "00:11:22:33:44:55", "state": "PLAYER_STATE_PLAYING", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -396,9 +454,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": {
-        "message": "",
-        "success": true
+    "result": "{ message: \"Connection stopped\", success: true }"
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -438,10 +507,10 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
     "id": 6,
     "method": "org.rdk.MiracastService.onClientConnectionError",
     "params": {
-        "mac": "",
-        "name": "",
+        "mac": "00:11:22:33:44:55",
+        "name": "John's iPhone",
         "error_code": "",
-        "reason": "SUCCESS"
+        "reason": "Authentication failed"
     }
 }
 ```
@@ -466,8 +535,8 @@ Triggered when the Miracast Service plugin receives a new connection request fro
     "id": 7,
     "method": "org.rdk.MiracastService.onClientConnectionRequest",
     "params": {
-        "mac": "",
-        "name": ""
+        "mac": "00:11:22:33:44:55",
+        "name": "John's iPhone"
     }
 }
 ```

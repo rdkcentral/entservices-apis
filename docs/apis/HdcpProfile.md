@@ -61,7 +61,7 @@ The following methods are provided by the IHdcpProfile Interface:
 <a id="getHDCPStatus"></a>
 ## *getHDCPStatus*
 
-Returns HDCP-related data.
+Returns HDCP-related data as separate properties.
 
 ### Events Triggered
 None
@@ -109,16 +109,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "HDCPStatus": {
-            "isConnected": true,
-            "isHDCPCompliant": true,
-            "isHDCPEnabled": true,
-            "hdcpReason": 0,
-            "supportedHDCPVersion": "",
-            "receiverHDCPVersion": "",
-            "currentHDCPVersion": ""
-        },
+        "HDCPStatus": "{ isConnected: true, isHDCPCompliant: true, isHDCPEnabled: true, hdcpReason: 0, supportedHDCPVersion: \"2.2\", receiverHDCPVersion: \"2.2\", currentHDCPVersion: \"2.2\" }",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -168,9 +174,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "supportedHDCPVersion": "",
+        "supportedHDCPVersion": 2.2,
         "isHDCPSupported": true,
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -211,15 +231,7 @@ Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPl
     "jsonrpc": 2.0,
     "id": 2,
     "method": "org.rdk.HdcpProfile.onDisplayConnectionChanged",
-    "params": {
-        "isConnected": true,
-        "isHDCPCompliant": true,
-        "isHDCPEnabled": true,
-        "hdcpReason": 0,
-        "supportedHDCPVersion": "",
-        "receiverHDCPVersion": "",
-        "currentHDCPVersion": ""
-    }
+    "params": "{ isConnected: true, isHDCPCompliant: true, isHDCPEnabled: true, hdcpReason: 0, supportedHDCPVersion: \"2.2\", receiverHDCPVersion: \"2.2\", currentHDCPVersion: \"2.2\" }"
 }
 ```
 

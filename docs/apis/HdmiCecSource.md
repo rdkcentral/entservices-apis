@@ -72,7 +72,7 @@ The following methods are provided by the IHdmiCecSource Interface:
 <a id="getActiveSourceStatus"></a>
 ## *getActiveSourceStatus*
 
-Gets the status if the device is the current active source
+Retrieves the current active source status of the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -119,10 +119,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getDeviceList"></a>
 ## *getDeviceList*
 
-Gets the list of devices connected to the HDMI CEC source
+Retrieves information about all devices currently connected to the HDMI CEC network
 
 ### Events Triggered
 None
@@ -167,15 +181,25 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "numberofdevices": 0,
+        "numberofdevices": 2,
         "deviceList": [
-            {
-                "logicalAddress": 0,
-                "vendorID": "",
-                "osdName": ""
-            }
+            "[{ logicalAddress: 1, vendorID: \"123456\", osdName: \"Device1\" }, { logicalAddress: 2, vendorID: \"654321\", osdName: \"Device2\" }]"
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -183,7 +207,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getEnabled"></a>
 ## *getEnabled*
 
-Gets the status of the HDMI CEC source
+Retrieves whether the HDMI CEC source is currently enabled or disabled
 
 ### Events Triggered
 None
@@ -230,10 +254,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getOSDName"></a>
 ## *getOSDName*
 
-Gets the OSD name of the HDMI CEC source
+Retrieves the On-Screen Display (OSD) name configured for the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -274,8 +312,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "name": "",
+        "name": "My CEC Source",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -283,7 +335,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="getOTPEnabled"></a>
 ## *getOTPEnabled*
 
-Gets the OTP enabled status of the HDMI CEC source
+Retrieves whether One-Touch Play (OTP) is enabled for the HDMI CEC source
 
 ### Events Triggered
 None
@@ -293,7 +345,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | Is the HDMI CEC source enabled or not |
+| result.otpEnabled | bool | Is the OTP enabled or not |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -324,8 +376,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "enabled": true,
+        "otpEnabled": true,
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -333,7 +399,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="getVendorId"></a>
 ## *getVendorId*
 
-Gets the vendor ID of the HDMI CEC source
+Retrieves the vendor ID assigned to the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -380,10 +446,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="performOTPAction"></a>
 ## *performOTPAction*
 
-Performs the OTP action
+Triggers the One-Touch Play (OTP) action on the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -422,8 +502,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -431,7 +523,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="sendKeyPressEvent"></a>
 ## *sendKeyPressEvent*
 
-Sends a key press event to the HDMI CEC device.
+Transmits a key press event to the specified HDMI CEC device with the given key code
 
 ### Events Triggered
 None
@@ -458,8 +550,8 @@ None
     "id": 7,
     "method": "org.rdk.HdmiCecSource.sendKeyPressEvent",
     "params": {
-        "logicalAddress": 0,
-        "keyCode": 0
+        "logicalAddress": 1,
+        "keyCode": 123
     }
 }
 ```
@@ -468,7 +560,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.HdmiCecSource.sendKeyPressEvent", "params": {"logicalAddress": 0, "keyCode": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.HdmiCecSource.sendKeyPressEvent", "params": {"logicalAddress": 1, "keyCode": 123}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -478,8 +570,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -487,7 +591,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="sendStandbyMessage"></a>
 ## *sendStandbyMessage*
 
-Sends a standby message to another CEC device
+Transmits a standby request to all devices on the CEC network
 
 ### Events Triggered
 None
@@ -526,8 +630,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -535,7 +651,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="setEnabled"></a>
 ## *setEnabled*
 
-Sets the status of the HDMI CEC source
+Enables or disables the HDMI CEC source functionality
 
 ### Events Triggered
 None
@@ -580,8 +696,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -589,7 +717,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="setOSDName"></a>
 ## *setOSDName*
 
-Sets the OSD name of the HDMI CEC source
+Configures the On-Screen Display (OSD) name for the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -615,7 +743,7 @@ None
     "id": 10,
     "method": "org.rdk.HdmiCecSource.setOSDName",
     "params": {
-        "name": ""
+        "name": "My CEC Source"
     }
 }
 ```
@@ -624,7 +752,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.HdmiCecSource.setOSDName", "params": {"name": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.HdmiCecSource.setOSDName", "params": {"name": "My CEC Source"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -634,8 +762,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -643,7 +783,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="setOTPEnabled"></a>
 ## *setOTPEnabled*
 
-Sets the OTP enabled status of the HDMI CEC source
+Enables or disables One-Touch Play (OTP) functionality for the HDMI CEC source
 
 ### Events Triggered
 None
@@ -688,8 +828,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -697,7 +849,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="setVendorId"></a>
 ## *setVendorId*
 
-Sets the vendor ID of the HDMI CEC source
+Configures the vendor ID for the HDMI CEC source device
 
 ### Events Triggered
 None
@@ -742,8 +894,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -768,13 +932,13 @@ The following events are provided by the IHdmiCecSource Interface:
 <a id="onActiveSourceStatusUpdated"></a>
 ## *onActiveSourceStatusUpdated*
 
-Notifies when the active source status is updated
+This event is triggered when the active source status changes
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | Is the active source active or not |
+| params.status | bool | Indicates whether the active source is active. |
 
 ### Examples
 
@@ -808,7 +972,7 @@ Notifies when CEC device added to CEC network
     "id": 14,
     "method": "org.rdk.HdmiCecSource.onDeviceAdded",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 1
     }
 }
 ```
@@ -822,7 +986,7 @@ Notifies when CEC device info updated
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.logicalAddress | int | Logical address of the added device |
+| params.logicalAddress | int | Logical address of the updated device |
 
 ### Examples
 
@@ -832,7 +996,7 @@ Notifies when CEC device info updated
     "id": 15,
     "method": "org.rdk.HdmiCecSource.onDeviceInfoUpdated",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 1
     }
 }
 ```
@@ -856,7 +1020,7 @@ Notifies when CEC device removed from CEC network
     "id": 16,
     "method": "org.rdk.HdmiCecSource.onDeviceRemoved",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 1
     }
 }
 ```
@@ -864,7 +1028,7 @@ Notifies when CEC device removed from CEC network
 <a id="onKeyPressEvent"></a>
 ## *onKeyPressEvent*
 
-Notifies when a key press CEC message is received from other CEC device
+This event is triggered when a key press event is detected from a remote CEC device
 
 ### Parameters
 | Name | Type | Description |
@@ -881,8 +1045,8 @@ Notifies when a key press CEC message is received from other CEC device
     "id": 17,
     "method": "org.rdk.HdmiCecSource.onKeyPressEvent",
     "params": {
-        "logicalAddress": 0,
-        "keyCode": 0
+        "logicalAddress": 1,
+        "keyCode": 123
     }
 }
 ```
@@ -890,7 +1054,7 @@ Notifies when a key press CEC message is received from other CEC device
 <a id="onKeyReleaseEvent"></a>
 ## *onKeyReleaseEvent*
 
-Notifies when a key release CEC message is received from other CEC device
+This event is triggered when a key release event is detected from a remote CEC device
 
 ### Parameters
 | Name | Type | Description |
@@ -906,7 +1070,7 @@ Notifies when a key release CEC message is received from other CEC device
     "id": 18,
     "method": "org.rdk.HdmiCecSource.onKeyReleaseEvent",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 1
     }
 }
 ```
@@ -914,7 +1078,7 @@ Notifies when a key release CEC message is received from other CEC device
 <a id="standbyMessageReceived"></a>
 ## *standbyMessageReceived*
 
-Notifies when CEC standby message received from the other CEC device
+This event is triggered when a standby message is received from another CEC device
 
 ### Parameters
 | Name | Type | Description |
@@ -930,7 +1094,7 @@ Notifies when CEC standby message received from the other CEC device
     "id": 19,
     "method": "org.rdk.HdmiCecSource.standbyMessageReceived",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 1
     }
 }
 ```

@@ -63,7 +63,7 @@ The following methods are provided by the IWarehouse Interface:
 <a id="internalReset"></a>
 ## *internalReset*
 
-Invokes the internal reset script, which reboots the Warehouse service
+Invokes the internal reset script, which reboots the Warehouse service. The internal reset script will check for a valid passphrase before proceeding with the reset operation.
 
 ### Events Triggered
 None
@@ -76,7 +76,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | object |  |
+| result.successErr | object | Result of the operation, including success state and any error details. |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -91,7 +91,7 @@ None
     "id": 0,
     "method": "org.rdk.Warehouse.internalReset",
     "params": {
-        "passPhrase": ""
+        "passPhrase": "- \"mySecretPassphrase"
     }
 }
 ```
@@ -100,7 +100,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": "- \"mySecretPassphrase"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -111,8 +111,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "success": true,
-        "error": ""
+        "success": false,
+        "error": "Unsupported reset type"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "- Internal reset operation failed."
     }
 }
 ```
@@ -120,7 +134,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="isClean"></a>
 ## *isClean*
 
-Checks the locations on the device where customer data may be stored.
+Checks the locations on the device where customer data may be stored. If any of these locations contain files that are older than the specified age, the clean flag will be set to false and the file locations will be returned.
 
 ### Events Triggered
 None
@@ -150,7 +164,7 @@ None
     "id": 1,
     "method": "org.rdk.Warehouse.isClean",
     "params": {
-        "age": 0
+        "age": "- 30"
     }
 }
 ```
@@ -159,7 +173,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": "- 30"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -170,12 +184,26 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "clean": true,
+        "clean": "- true",
         "files": [
-            ""
+            "- [\"/opt/persistentStore/application/language\",\"/opt/persistentStore/network/region\"]"
         ],
-        "success": true,
-        "error": ""
+        "success": "- true",
+        "error": "- "
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "- Clean check operation failed."
     }
 }
 ```
@@ -183,7 +211,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="lightReset"></a>
 ## *lightReset*
 
-Resets the application data.
+Resets the application data. This operation will delete all the application data and reset the application to its default state.
 
 ### Events Triggered
 None
@@ -193,7 +221,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | object |  |
+| result.successErr | object | Result of the operation, including success state and any error details. |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -225,8 +253,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "success": true,
-        "error": ""
+        "success": false,
+        "error": "Unsupported reset type"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "- Light reset operation failed."
     }
 }
 ```
@@ -234,7 +276,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="resetDevice"></a>
 ## *resetDevice*
 
-Resets the STB to the warehouse state.
+Resets the STB to the warehouse state. This operation will delete all the data on the device and reset the device to its default state.
 
 ### Events Triggered
 None
@@ -248,7 +290,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.successErr | object |  |
+| result.successErr | object | Result of the operation, including success state and any error details. |
 | result.successErr.success | bool |  |
 | result.successErr.error | string |  |
 
@@ -263,8 +305,8 @@ None
     "id": 3,
     "method": "org.rdk.Warehouse.resetDevice",
     "params": {
-        "suppressReboot": true,
-        "resetType": ""
+        "suppressReboot": "- true",
+        "resetType": "- \"factory"
     }
 }
 ```
@@ -273,7 +315,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": "- true", "resetType": "- \"factory"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -284,8 +326,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "success": true,
-        "error": ""
+        "success": false,
+        "error": "Unsupported reset type"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "- Reset device operation failed."
     }
 }
 ```
@@ -321,8 +377,8 @@ Notifies subscribers about the status of the warehouse reset operation
     "id": 4,
     "method": "org.rdk.Warehouse.resetDone",
     "params": {
-        "success": true,
-        "error": ""
+        "success": "- true",
+        "error": "- "
     }
 }
 ```

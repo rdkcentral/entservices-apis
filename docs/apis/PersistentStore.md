@@ -2,7 +2,7 @@
 <a id="PersistentStore_Module"></a>
 # PersistentStore Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStoreCache.h)**
 
 A PersistentStore module for Thunder framework.
 
@@ -55,15 +55,15 @@ The following methods are provided by the IStore2 Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#deleteKey) |  |
-| [deleteNamespace](#deleteNamespace) |  |
-| [getValue](#getValue) |  |
-| [setValue](#setValue) |  |
+| [deleteKey](#deleteKey) | Deletes a key-value pair. |
+| [deleteNamespace](#deleteNamespace) | Deletes an entire namespace. |
+| [getValue](#getValue) | Retrieves a value from the persistent store. |
+| [setValue](#setValue) | Stores a value in the persistent store. |
 
 <a id="deleteKey"></a>
 ## *deleteKey*
 
-
+Removes the specified key and its associated value from the given namespace and scope.
 
 ### Events Triggered
 None
@@ -71,9 +71,9 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | Possible values: DEVICE, ACCOUNT |
-| params.namespace | string |  |
-| params.key | string |  |
+| params.scope | string | Storage scope. Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace containing the key. |
+| params.key | string | Key to be removed. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -90,9 +90,9 @@ None
     "id": 0,
     "method": "org.rdk.PersistentStore.deleteKey",
     "params": {
-        "scope": "DEVICE",
-        "namespace": "",
-        "key": ""
+        "scope": "- DEVICE",
+        "namespace": "- \"application",
+        "key": "- \"language"
     }
 }
 ```
@@ -101,7 +101,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -115,10 +115,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "- Failed to delete the key."
+    }
+}
+```
+
 <a id="deleteNamespace"></a>
 ## *deleteNamespace*
 
-
+Removes the specified namespace and all associated key-value pairs from the selected storage scope.
 
 ### Events Triggered
 None
@@ -126,8 +140,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | Possible values: DEVICE, ACCOUNT |
-| params.namespace | string |  |
+| params.scope | string | Storage scope. Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace to remove. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -144,8 +158,8 @@ None
     "id": 1,
     "method": "org.rdk.PersistentStore.deleteNamespace",
     "params": {
-        "scope": "DEVICE",
-        "namespace": ""
+        "scope": "- DEVICE",
+        "namespace": "- \"application"
     }
 }
 ```
@@ -154,7 +168,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "- DEVICE", "namespace": "- \"application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -168,10 +182,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "- Failed to delete the namespace."
+    }
+}
+```
+
 <a id="getValue"></a>
 ## *getValue*
 
-
+Returns the value associated with the specified key together with its remaining TTL information.
 
 ### Events Triggered
 None
@@ -179,15 +207,15 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | Possible values: DEVICE, ACCOUNT |
-| params.namespace | string |  |
-| params.key | string |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace containing the key. |
+| params.key | string | Key identifier. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.value | string |  |
-| result.ttl | integer |  |
+| result.value | string | Retrieved value. |
+| result.ttl | integer | Remaining TTL value in seconds. |
 
 ### Examples
 
@@ -200,9 +228,9 @@ None
     "id": 2,
     "method": "org.rdk.PersistentStore.getValue",
     "params": {
-        "scope": "DEVICE",
-        "namespace": "",
-        "key": ""
+        "scope": "- DEVICE",
+        "namespace": "- \"application",
+        "key": "- \"language"
     }
 }
 ```
@@ -211,7 +239,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -222,8 +250,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "value": "",
-        "ttl": 0
+        "value": "- \"en-US",
+        "ttl": "- 3580"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the value."
     }
 }
 ```
@@ -231,7 +273,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setValue"></a>
 ## *setValue*
 
-
+Creates or updates a key-value pair within the specified scope and namespace. A time-to-live (TTL) value may be supplied to control automatic expiration of the stored entry.
 
 ### Events Triggered
 None
@@ -239,11 +281,11 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | Possible values: DEVICE, ACCOUNT |
-| params.namespace | string |  |
-| params.key | string |  |
-| params.value | string |  |
-| params.ttl | integer |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace used to group related entries. |
+| params.key | string | Key identifier. |
+| params.value | string | Value associated with the key. |
+| params.ttl | integer | Time-to-live of the value in seconds. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -260,11 +302,11 @@ None
     "id": 3,
     "method": "org.rdk.PersistentStore.setValue",
     "params": {
-        "scope": "DEVICE",
-        "namespace": "",
-        "key": "",
-        "value": "",
-        "ttl": 0
+        "scope": "- DEVICE",
+        "namespace": "- \"application",
+        "key": "- \"language",
+        "value": "- \"en-US",
+        "ttl": "- 3580"
     }
 }
 ```
@@ -273,7 +315,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "DEVICE", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language", "value": "- \"en-US", "ttl": "- 3580"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -284,6 +326,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "- Failed to store the value."
+    }
 }
 ```
 
@@ -307,10 +363,10 @@ The following events are provided by the IStore2 Interface:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string | Possible values: DEVICE, ACCOUNT |
-| params.namespace | string |  |
-| params.key | string |  |
-| params.value | string |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace used to group related entries. |
+| params.key | string | Key identifier. |
+| params.value | string | Value associated with the key. |
 
 ### Examples
 
@@ -320,10 +376,10 @@ The following events are provided by the IStore2 Interface:
     "id": 4,
     "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
-        "scope": "DEVICE",
-        "namespace": "",
-        "key": "",
-        "value": ""
+        "scope": "- DEVICE",
+        "namespace": "- \"application",
+        "key": "- \"language",
+        "value": "- \"en-US"
     }
 }
 ```

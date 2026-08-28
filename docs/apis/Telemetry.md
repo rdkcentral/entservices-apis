@@ -65,7 +65,7 @@ The following methods are provided by the ITelemetry Interface:
 <a id="abortReport"></a>
 ## *abortReport*
 
-Abort report upload
+Invoked by the Telemetry service to abort an ongoing telemetry report upload. Components implementing this interface should terminate the upload process and handle any necessary cleanup.
 
 ### Events Triggered
 None
@@ -107,10 +107,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "- Failed to abort the report upload."
+    }
+}
+```
+
 <a id="isOptOutTelemetry"></a>
 ## *isOptOutTelemetry*
 
-Checks the telemetry opt-out status.
+Invoked by the Telemetry service to check the current opt-out status for telemetry reporting. Components implementing this interface should return the current configuration indicating whether telemetry data collection is opted out.
 
 ### Events Triggered
 None
@@ -157,10 +171,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the opt-out status."
+    }
+}
+```
+
 <a id="logApplicationEvent"></a>
 ## *logApplicationEvent*
 
-Logs an application
+Invoked by the Telemetry service to log an application  Components implementing this interface should record the event with the provided name and value.
 
 ### Events Triggered
 None
@@ -186,8 +214,8 @@ None
     "id": 2,
     "method": "org.rdk.Telemetry.logApplicationEvent",
     "params": {
-        "eventName": "",
-        "eventValue": ""
+        "eventName": "UserLogin",
+        "eventValue": "Success"
     }
 }
 ```
@@ -196,7 +224,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "", "eventValue": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "UserLogin", "eventValue": "Success"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -210,10 +238,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "- Failed to log the "
+    }
+}
+```
+
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
-Sets the telemetry opt-out status.
+Invoked by the Telemetry service to set the opt-out status for telemetry reporting. Components implementing this interface should update their internal configuration to reflect the user's preference regarding telemetry data collection.
 
 ### Events Triggered
 None
@@ -226,7 +268,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | struct |
 
 ### Examples
 
@@ -264,10 +306,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "- Failed to set the OptOut status."
+    }
+}
+```
+
 <a id="setReportProfileStatus"></a>
 ## *setReportProfileStatus*
 
-Sets the status of telemetry reporting
+Invoked by the Telemetry service to set the status of telemetry reporting. Components implementing this interface should update their internal state to reflect the new reporting status.
 
 ### Events Triggered
 None
@@ -292,7 +348,7 @@ None
     "id": 4,
     "method": "org.rdk.Telemetry.setReportProfileStatus",
     "params": {
-        "status": ""
+        "status": "enabled"
     }
 }
 ```
@@ -301,7 +357,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": "enabled"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -315,10 +371,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "- Failed to set the status."
+    }
+}
+```
+
 <a id="uploadReport"></a>
 ## *uploadReport*
 
-Uploading of telemetry report
+Invoked by the Telemetry service to upload a telemetry report. Components implementing this interface should initiate the report upload process and handle the result accordingly.
 
 ### Events Triggered
 None
@@ -360,6 +430,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "- Failed to initiate the report upload."
+    }
+}
+```
+
 <a id="ITelemetry-Notifications"></a>
 ### Notifications
 
@@ -374,7 +458,7 @@ The following events are provided by the ITelemetry Interface:
 <a id="onReportUpload"></a>
 ## *onReportUpload*
 
-Triggered by callback from Telemetry after report uploading
+Invoked by the Telemetry service after a report has been uploaded. Components implementing this interface should handle the upload status accordingly.
 
 ### Parameters
 | Name | Type | Description |
@@ -390,7 +474,7 @@ Triggered by callback from Telemetry after report uploading
     "id": 6,
     "method": "org.rdk.Telemetry.onReportUpload",
     "params": {
-        "telemetryUploadStatus": ""
+        "telemetryUploadStatus": "success"
     }
 }
 ```

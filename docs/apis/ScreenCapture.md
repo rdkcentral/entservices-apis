@@ -55,13 +55,13 @@ The following methods are provided by the IScreenCapture Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
 
 <a id="sendScreenshot"></a>
 ## *sendScreenshot*
 
-Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
 ### Events Triggered
 None
@@ -69,12 +69,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callGUID | string | string |
+| params.callGUID | string | -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | - Whether the request succeeded |
 
 ### Examples
 
@@ -87,7 +87,7 @@ None
     "id": 0,
     "method": "org.rdk.ScreenCapture.sendScreenshot",
     "params": {
-        "callGUID": ""
+        "callGUID": "- \"123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```
@@ -96,7 +96,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "- \"123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -106,16 +106,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "success": true
-    }
+    "result": "- { success: true }"
 }
 ```
 
 <a id="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
 
-Takes a screenshot and uploads it to the specified URL
+Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
 ### Events Triggered
 None
@@ -129,7 +127,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Result (contains success flag) |
 
 ### Examples
 
@@ -142,8 +140,8 @@ None
     "id": 1,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
-        "url": "",
-        "callGUID": ""
+        "url": "- \"https://example.com/upload",
+        "callGUID": "- \"123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```
@@ -152,7 +150,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "- \"https://example.com/upload", "callGUID": "- \"123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -162,9 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "success": true
-    }
+    "result": "- { success: true }"
 }
 ```
 
@@ -182,7 +178,7 @@ The following events are provided by the IScreenCapture Interface:
 <a id="uploadComplete"></a>
 ## *uploadComplete*
 
-Triggered after uploading a screen capture
+Triggered after a screen capture upload is completed
 
 ### Parameters
 | Name | Type | Description |
@@ -200,9 +196,9 @@ Triggered after uploading a screen capture
     "id": 2,
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {
-        "status": true,
-        "message": "",
-        "call_guid": ""
+        "status": "- true",
+        "message": "- \"Upload completed successfully",
+        "call_guid": "- \"123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```

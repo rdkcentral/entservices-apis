@@ -63,7 +63,7 @@ The following methods are provided by the IUSBDevice Interface:
 <a id="bindDriver"></a>
 ## *bindDriver*
 
-Bind the respective driver for the device
+Associates the appropriate driver with the specified USB device. This operation enables driver functionality for devices that support dynamic driver binding.
 
 ### Events Triggered
 None
@@ -88,7 +88,7 @@ None
     "id": 0,
     "method": "org.rdk.USBDevice.bindDriver",
     "params": {
-        "deviceName": ""
+        "deviceName": "USB Serial Adapter"
     }
 }
 ```
@@ -97,7 +97,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBDevice.bindDriver", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBDevice.bindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -111,10 +111,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "- Failed to bind the driver."
+    }
+}
+```
+
 <a id="getDeviceInfo"></a>
 ## *getDeviceInfo*
 
-Get the extended USB device information for the provided device name
+Retrieves detailed information about a USB device including vendor ID, product ID, device status, bus speed, serial number, supported features, and product information strings.
 
 ### Events Triggered
 None
@@ -177,7 +191,7 @@ None
     "id": 1,
     "method": "org.rdk.USBDevice.getDeviceInfo",
     "params": {
-        "deviceName": ""
+        "deviceName": "USB Serial Adapter"
     }
 }
 ```
@@ -186,7 +200,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBDevice.getDeviceInfo", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBDevice.getDeviceInfo", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -243,10 +257,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve device information."
+    }
+}
+```
+
 <a id="getDeviceList"></a>
 ## *getDeviceList*
 
-Get the basic information about list of devices connected with the system.
+Retrieves a list of USB devices currently connected to the device. Each entry contains basic device information such as device name, class, subclass, and device path.
 
 ### Events Triggered
 None
@@ -290,20 +318,29 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": [
-        {
-            "deviceClass": 0,
-            "deviceSubclass": 0,
-            "deviceName": "",
-            "devicePath": ""
-        }
+        "USB Flash Drive"
     ]
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the device list."
+    }
 }
 ```
 
 <a id="unbindDriver"></a>
 ## *unbindDriver*
 
-Unbind the respective driver for the device
+Detaches the currently associated driver from the specified USB device. This operation is typically used before switching drivers or disabling device functionality.
 
 ### Events Triggered
 None
@@ -328,7 +365,7 @@ None
     "id": 3,
     "method": "org.rdk.USBDevice.unbindDriver",
     "params": {
-        "deviceName": ""
+        "deviceName": "USB Serial Adapter"
     }
 }
 ```
@@ -337,7 +374,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.USBDevice.unbindDriver", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.USBDevice.unbindDriver", "params": {"deviceName": "USB Serial Adapter"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -348,6 +385,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "- Failed to unbind the driver."
+    }
 }
 ```
 
@@ -366,7 +417,7 @@ The following events are provided by the IUSBDevice Interface:
 <a id="onDevicePluggedIn"></a>
 ## *onDevicePluggedIn*
 
-Device Plugged in notification
+Triggered when a USB device is connected to the system and successfully detected by the USB subsystem. The event provides basic information about the newly connected device.
 
 ### Parameters
 | Name | Type | Description |
@@ -386,10 +437,7 @@ Device Plugged in notification
     "id": 4,
     "method": "org.rdk.USBDevice.onDevicePluggedIn",
     "params": {
-        "deviceClass": 0,
-        "deviceSubclass": 0,
-        "deviceName": "",
-        "devicePath": ""
+        "deviceName": "USB Flash Drive"
     }
 }
 ```
@@ -397,7 +445,7 @@ Device Plugged in notification
 <a id="onDevicePluggedOut"></a>
 ## *onDevicePluggedOut*
 
-Device Plugged out notification
+Triggered when a USB device is disconnected from the system. The event provides basic information about the disconnected device.
 
 ### Parameters
 | Name | Type | Description |
@@ -417,10 +465,7 @@ Device Plugged out notification
     "id": 5,
     "method": "org.rdk.USBDevice.onDevicePluggedOut",
     "params": {
-        "deviceClass": 0,
-        "deviceSubclass": 0,
-        "deviceName": "",
-        "devicePath": ""
+        "deviceName": "USB Flash Drive"
     }
 }
 ```

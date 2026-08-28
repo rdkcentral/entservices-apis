@@ -135,18 +135,26 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "available": true,
-        "length": 0,
+        "length": 2,
         "pathList": [
-            {
-                "logicalAddress": 0,
-                "physicalAddress": "",
-                "deviceType": "",
-                "vendorID": "",
-                "osdName": ""
-            }
+            "[{logicalAddress: 4, physicalAddress: \"1.0.0.0\"}]"
         ],
-        "ActiveRoute": "",
+        "ActiveRoute": "1.0.0.0",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "The active HDMI-CEC route could not be retrieved."
     }
 }
 ```
@@ -172,7 +180,7 @@ This method takes no parameters.
 | result.osdName | string | OSD name of the active source |
 | result.vendorID | string | Vendor ID of the active source |
 | result.powerStatus | string | Power status of the active source |
-| result.port | string |  |
+| result.port | string | Port number of the active source |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -204,15 +212,29 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": {
         "available": true,
-        "logicalAddress": 0,
-        "physicalAddress": "",
-        "deviceType": "",
-        "cecVersion": "",
-        "osdName": "",
-        "vendorID": "",
-        "powerStatus": "",
-        "port": "",
+        "logicalAddress": 4,
+        "physicalAddress": "1.0.0.0",
+        "deviceType": "Playback Device",
+        "cecVersion": 1.4,
+        "osdName": "STB",
+        "vendorID": "0x0000",
+        "powerStatus": "On",
+        "port": "HDMI0",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "The active source could not be retrieved."
     }
 }
 ```
@@ -220,7 +242,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getAudioDeviceConnectedStatus"></a>
 ## *getAudioDeviceConnectedStatus*
 
-Gets audio device connected status
+Gets the connected status of the audio device
 
 ### Events Triggered
 None
@@ -263,6 +285,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "result": {
         "connected": true,
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "The audio device connected status could not be retrieved."
     }
 }
 ```
@@ -320,20 +356,25 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "numberofdevices": 0,
+        "numberofdevices": 2,
         "deviceList": [
-            {
-                "logicalAddress": 0,
-                "physicalAddress": "",
-                "deviceType": "",
-                "cecVersion": "",
-                "osdName": "",
-                "vendorID": "",
-                "powerStatus": "",
-                "portNumber": ""
-            }
+            "[{logicalAddress: 4, physicalAddress: \"1.0.0.0\", deviceType: \"Playback Device\", cecVersion: \"1.4\", osdName: \"STB\", vendorID: \"0x0000\", powerStatus: \"On\", port: \"HDMI0\"}]"
         ],
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "The device list could not be retrieved."
     }
 }
 ```
@@ -388,6 +429,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "The HDMI CEC Sink status could not be retrieved."
+    }
+}
+```
+
 <a id="getOSDName"></a>
 ## *getOSDName*
 
@@ -432,8 +487,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "name": "",
+        "name": "TV",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "The OSD name could not be retrieved."
     }
 }
 ```
@@ -482,8 +551,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": {
-        "vendorid": "",
+        "vendorid": "0x0000",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "The vendor ID could not be retrieved."
     }
 }
 ```
@@ -538,6 +621,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "The device list could not be printed."
+    }
+}
+```
+
 <a id="requestActiveSource"></a>
 ## *requestActiveSource*
 
@@ -582,6 +679,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "id": 8,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "The active source could not be requested."
     }
 }
 ```
@@ -634,10 +745,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "The audio device power status could not be requested."
+    }
+}
+```
+
 <a id="requestShortAudioDescriptor"></a>
 ## *requestShortAudioDescriptor*
 
-Sends the CEC Request Short Audio Descriptor (SAD) message as an
+Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device.
 
 ### Events Triggered
 None
@@ -678,6 +803,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "id": 10,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "The SAD request could not be sent."
     }
 }
 ```
@@ -730,6 +869,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "The audio device power on message could not be sent."
+    }
+}
+```
+
 <a id="sendGetAudioStatusMessage"></a>
 ## *sendGetAudioStatusMessage*
 
@@ -778,6 +931,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "The audio status request message could not be sent."
+    }
+}
+```
+
 <a id="sendKeyPressEvent"></a>
 ## *sendKeyPressEvent*
 
@@ -808,8 +975,8 @@ None
     "id": 13,
     "method": "org.rdk.HdmiCecSink.sendKeyPressEvent",
     "params": {
-        "logicalAddress": 0,
-        "keyCode": 0
+        "logicalAddress": 4,
+        "keyCode": "0x44"
     }
 }
 ```
@@ -818,7 +985,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.HdmiCecSink.sendKeyPressEvent", "params": {"logicalAddress": 0, "keyCode": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.HdmiCecSink.sendKeyPressEvent", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -830,6 +997,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     "id": 13,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "error": {
+        "code": 1,
+        "message": "The key press event message could not be sent."
     }
 }
 ```
@@ -882,6 +1063,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "error": {
+        "code": 1,
+        "message": "The standby message could not be sent."
+    }
+}
+```
+
 <a id="sendUserControlPressed"></a>
 ## *sendUserControlPressed*
 
@@ -912,8 +1107,8 @@ None
     "id": 15,
     "method": "org.rdk.HdmiCecSink.sendUserControlPressed",
     "params": {
-        "logicalAddress": 0,
-        "keyCode": 0
+        "logicalAddress": 4,
+        "keyCode": "0x44"
     }
 }
 ```
@@ -922,7 +1117,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.HdmiCecSink.sendUserControlPressed", "params": {"logicalAddress": 0, "keyCode": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.HdmiCecSink.sendUserControlPressed", "params": {"logicalAddress": 4, "keyCode": "0x44"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -934,6 +1129,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "id": 15,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "error": {
+        "code": 1,
+        "message": "The user control pressed message could not be sent."
     }
 }
 ```
@@ -967,7 +1176,7 @@ None
     "id": 16,
     "method": "org.rdk.HdmiCecSink.sendUserControlReleased",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -976,7 +1185,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.HdmiCecSink.sendUserControlReleased", "params": {"logicalAddress": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.HdmiCecSink.sendUserControlReleased", "params": {"logicalAddress": 4}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -988,6 +1197,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "id": 16,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "error": {
+        "code": 1,
+        "message": "The user control released message could not be sent."
     }
 }
 ```
@@ -1021,7 +1244,7 @@ None
     "id": 17,
     "method": "org.rdk.HdmiCecSink.setActivePath",
     "params": {
-        "activePath": ""
+        "activePath": "1.0.0.0"
     }
 }
 ```
@@ -1030,7 +1253,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.HdmiCecSink.setActivePath", "params": {"activePath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.HdmiCecSink.setActivePath", "params": {"activePath": "1.0.0.0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1042,6 +1265,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "id": 17,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "error": {
+        "code": 1,
+        "message": "The active path could not be set."
     }
 }
 ```
@@ -1090,6 +1327,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "id": 18,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "error": {
+        "code": 1,
+        "message": "The active source could not be set."
     }
 }
 ```
@@ -1144,6 +1395,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "id": 19,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "error": {
+        "code": 1,
+        "message": "The HDMI CEC Sink status could not be set."
     }
 }
 ```
@@ -1208,6 +1473,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "error": {
+        "code": 1,
+        "message": "The latency info could not be set."
+    }
+}
+```
+
 <a id="setMenuLanguage"></a>
 ## *setMenuLanguage*
 
@@ -1237,7 +1516,7 @@ None
     "id": 21,
     "method": "org.rdk.HdmiCecSink.setMenuLanguage",
     "params": {
-        "language": ""
+        "language": "eng"
     }
 }
 ```
@@ -1246,7 +1525,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.HdmiCecSink.setMenuLanguage", "params": {"language": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.HdmiCecSink.setMenuLanguage", "params": {"language": "eng"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1258,6 +1537,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
     "id": 21,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "error": {
+        "code": 1,
+        "message": "The menu language could not be set."
     }
 }
 ```
@@ -1291,7 +1584,7 @@ None
     "id": 22,
     "method": "org.rdk.HdmiCecSink.setOSDName",
     "params": {
-        "name": ""
+        "name": "TV"
     }
 }
 ```
@@ -1300,7 +1593,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": "TV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1312,6 +1605,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "id": 22,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "error": {
+        "code": 1,
+        "message": "The OSD name could not be set."
     }
 }
 ```
@@ -1346,8 +1653,8 @@ None
     "id": 23,
     "method": "org.rdk.HdmiCecSink.setRoutingChange",
     "params": {
-        "oldPort": "",
-        "newPort": ""
+        "oldPort": "HDMI1",
+        "newPort": "HDMI2"
     }
 }
 ```
@@ -1356,7 +1663,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.HdmiCecSink.setRoutingChange", "params": {"oldPort": "", "newPort": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.HdmiCecSink.setRoutingChange", "params": {"oldPort": "HDMI1", "newPort": "HDMI2"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1368,6 +1675,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
     "id": 23,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "error": {
+        "code": 1,
+        "message": "The routing change could not be set."
     }
 }
 ```
@@ -1401,7 +1722,7 @@ None
     "id": 24,
     "method": "org.rdk.HdmiCecSink.setVendorId",
     "params": {
-        "vendorid": ""
+        "vendorid": "0x0000"
     }
 }
 ```
@@ -1410,7 +1731,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.HdmiCecSink.setVendorId", "params": {"vendorid": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.HdmiCecSink.setVendorId", "params": {"vendorid": "0x0000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1426,6 +1747,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "error": {
+        "code": 1,
+        "message": "The vendor ID could not be set."
+    }
+}
+```
+
 <a id="setupARCRouting"></a>
 ## *setupARCRouting*
 
@@ -1437,7 +1772,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Is the HDMI-CEC ARC routing enabled or not |
+| params.enabled | bool | Is the HDMI-CEC ARC routing enabled or |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1476,6 +1811,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
     "id": 25,
     "result": {
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 25,
+    "error": {
+        "code": 1,
+        "message": "The HDMI-CEC ARC routing could not be set."
     }
 }
 ```
@@ -1529,7 +1878,7 @@ Triggered when routing though the HDMI ARC port is successfully established.
     "id": 26,
     "method": "org.rdk.HdmiCecSink.arcInitiationEvent",
     "params": {
-        "status": ""
+        "status": "AUDIO_DEVICE_CONNECTED"
     }
 }
 ```
@@ -1553,7 +1902,7 @@ Triggered when routing though the HDMI ARC port terminates.
     "id": 27,
     "method": "org.rdk.HdmiCecSink.arcTerminationEvent",
     "params": {
-        "status": ""
+        "status": "AUDIO_DEVICE_CONNECTED"
     }
 }
 ```
@@ -1578,8 +1927,8 @@ Triggered when the active source device changes.
     "id": 28,
     "method": "org.rdk.HdmiCecSink.onActiveSourceChange",
     "params": {
-        "logicalAddress": 0,
-        "physicalAddress": ""
+        "logicalAddress": 4,
+        "physicalAddress": "1.0.0.0"
     }
 }
 ```
@@ -1603,7 +1952,7 @@ Triggered when a new device is added to the CEC network.
     "id": 29,
     "method": "org.rdk.HdmiCecSink.onDeviceAdded",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1627,7 +1976,7 @@ Triggered when device information changes.
     "id": 30,
     "method": "org.rdk.HdmiCecSink.onDeviceInfoUpdated",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1651,7 +2000,7 @@ Triggered when a device is removed from the CEC network.
     "id": 31,
     "method": "org.rdk.HdmiCecSink.onDeviceRemoved",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1675,7 +2024,7 @@ Triggered when an <Image View ON> CEC message is received from the source device
     "id": 32,
     "method": "org.rdk.HdmiCecSink.onImageViewOnMsg",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1700,8 +2049,8 @@ Triggered when the source is no longer active.
     "id": 33,
     "method": "org.rdk.HdmiCecSink.onInActiveSource",
     "params": {
-        "logicalAddress": 0,
-        "physicalAddress": ""
+        "logicalAddress": 4,
+        "physicalAddress": "1.0.0.0"
     }
 }
 ```
@@ -1726,8 +2075,8 @@ Notifies when a key press CEC message is received from other CEC device
     "id": 34,
     "method": "org.rdk.HdmiCecSink.onKeyPressEvent",
     "params": {
-        "logicalAddress": 0,
-        "keyCode": 0
+        "logicalAddress": 4,
+        "keyCode": "0x44"
     }
 }
 ```
@@ -1751,7 +2100,7 @@ Notifies when a key release CEC message is received from other CEC device
     "id": 35,
     "method": "org.rdk.HdmiCecSink.onKeyReleaseEvent",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1775,7 +2124,7 @@ Triggered when a <Text View ON> CEC message is received from the source device.
     "id": 36,
     "method": "org.rdk.HdmiCecSink.onTextViewOnMsg",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1799,7 +2148,7 @@ Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text 
     "id": 37,
     "method": "org.rdk.HdmiCecSink.onWakeupFromStandby",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```
@@ -1824,8 +2173,8 @@ Triggered when an audio device is added or removed.
     "id": 38,
     "method": "org.rdk.HdmiCecSink.reportAudioDeviceConnectedStatus",
     "params": {
-        "status": "",
-        "audioDeviceConnected": ""
+        "status": "AUDIO_DEVICE_CONNECTED",
+        "audioDeviceConnected": true
     }
 }
 ```
@@ -1875,7 +2224,7 @@ Triggered when CEC <Report Audio Status> message of device is received.
     "method": "org.rdk.HdmiCecSink.reportAudioStatusEvent",
     "params": {
         "muteStatus": 0,
-        "volumeLevel": 0
+        "volumeLevel": 50
     }
 }
 ```
@@ -1899,7 +2248,7 @@ Triggered when the HDMI-CEC is enabled.
     "id": 41,
     "method": "org.rdk.HdmiCecSink.reportCecEnabledEvent",
     "params": {
-        "cecEnable": ""
+        "cecEnable": true
     }
 }
 ```
@@ -1925,9 +2274,9 @@ Triggered when CEC <Feature Abort> message of device is received.
     "id": 42,
     "method": "org.rdk.HdmiCecSink.reportFeatureAbortEvent",
     "params": {
-        "logicalAddress": 0,
-        "opcode": 0,
-        "FeatureAbortReason": 0
+        "logicalAddress": 4,
+        "opcode": "0x44",
+        "FeatureAbortReason": "0x01"
     }
 }
 ```
@@ -1951,7 +2300,7 @@ Triggered when CEC <Set System Audio Mode> message of device is received.
     "id": 43,
     "method": "org.rdk.HdmiCecSink.setSystemAudioModeEvent",
     "params": {
-        "audioMode": ""
+        "audioMode": "AUDIO_MODE_ON"
     }
 }
 ```
@@ -1975,7 +2324,9 @@ Triggered when SAD is received from the connected audio device. See requestShort
     "id": 44,
     "method": "org.rdk.HdmiCecSink.shortAudiodescriptorEvent",
     "params": {
-        "shortAudioDescriptor": ""
+        "shortAudioDescriptor": {
+            "shortAudioDescriptor": "0x09, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
+        }
     }
 }
 ```
@@ -1999,7 +2350,7 @@ Triggered when the source device changes status to STANDBY.
     "id": 45,
     "method": "org.rdk.HdmiCecSink.standbyMessageReceived",
     "params": {
-        "logicalAddress": 0
+        "logicalAddress": 4
     }
 }
 ```

@@ -62,7 +62,7 @@ The following methods are provided by the IFirmwareUpdate Interface:
 <a id="getUpdateState"></a>
 ## *getUpdateState*
 
-Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware 
+Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware  The state and substate are provided as parameters.
 
 ### Events Triggered
 None
@@ -113,7 +113,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="setAutoReboot"></a>
 ## *setAutoReboot*
 
-Enable or disable the AutoReboot feature.
+This method enables or disables the AutoReboot feature. If enabled, the device will automatically reboot after a successful firmware update. If disabled, the device will not reboot automatically after a successful firmware update.
 
 ### Events Triggered
 None
@@ -167,7 +167,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="updateFirmware"></a>
 ## *updateFirmware*
 
-Initiates a firmware update.
+This method initiates a firmware update to the device. The firmware file path and type are provided as parameters. The result of the operation is returned in the result parameter.
 
 ### Events Triggered
 None
@@ -194,8 +194,8 @@ None
     "id": 2,
     "method": "org.rdk.FirmwareUpdate.updateFirmware",
     "params": {
-        "firmwareFilepath": "",
-        "firmwareType": ""
+        "firmwareFilepath": "/tmp/firmware.bin",
+        "firmwareType": "PCI"
     }
 }
 ```
@@ -204,7 +204,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "", "firmwareType": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "/tmp/firmware.bin", "firmwareType": "PCI"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -235,7 +235,7 @@ The following events are provided by the IFirmwareUpdate Interface:
 <a id="onFlashingStateChange"></a>
 ## *onFlashingStateChange*
 
-This notification is raised between flashing started state and flashing succeeded/failed.
+This notification is raised between flashing started state and flashing succeeded/failed. The percentageComplete parameter indicates the "percentage complete" of the flashing process.
 
 ### Parameters
 | Name | Type | Description |
@@ -251,7 +251,7 @@ This notification is raised between flashing started state and flashing succeede
     "id": 3,
     "method": "org.rdk.FirmwareUpdate.onFlashingStateChange",
     "params": {
-        "percentageComplete": 0
+        "percentageComplete": 50
     }
 }
 ```
@@ -259,7 +259,7 @@ This notification is raised between flashing started state and flashing succeede
 <a id="onUpdateStateChange"></a>
 ## *onUpdateStateChange*
 
-Notifies firmware update state changes.
+This notification is raised when the firmware update state changes. The state and substate are provided as parameters.
 
 ### Parameters
 | Name | Type | Description |
@@ -276,8 +276,8 @@ Notifies firmware update state changes.
     "id": 4,
     "method": "org.rdk.FirmwareUpdate.onUpdateStateChange",
     "params": {
-        "state": "VALIDATION_FAILED",
-        "substate": "NOT_APPLICABLE"
+        "state": "FLASHING_STARTED",
+        "substate": "FIRMWARE_OUTDATED"
     }
 }
 ```

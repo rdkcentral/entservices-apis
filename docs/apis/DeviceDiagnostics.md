@@ -64,7 +64,7 @@ The following methods are provided by the IDeviceDiagnostics Interface:
 <a id="getAVDecoderStatus"></a>
 ## *getAVDecoderStatus*
 
-Gets the most active status of audio/video decoder/pipeline
+Retrieves the most active status of audio/video decoder/pipeline from the device.
 
 ### Events Triggered
 None
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "avDecoderStatus": ""
+        "avDecoderStatus": "Active"
     }
 }
 ```
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getConfiguration"></a>
 ## *getConfiguration*
 
-Gets the values associated with the corresponding property names
+Retrieves the configuration values corresponding to the supplied property names from the device.
 
 ### Events Triggered
 None
@@ -142,7 +142,9 @@ None
     "id": 1,
     "method": "org.rdk.DeviceDiagnostics.getConfiguration",
     "params": [
-        ""
+        "DeviceInfo",
+        "FirmwareVersion",
+        "SerialNumber"
     ]
 }
 ```
@@ -151,7 +153,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": ["DeviceInfo", "FirmwareVersion", "SerialNumber"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -164,8 +166,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": {
         "paramList": [
             {
-                "name": "",
-                "value": ""
+                "name": "DeviceInfo",
+                "value": "X1"
             }
         ],
         "success": true
@@ -176,7 +178,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getMilestones"></a>
 ## *getMilestones*
 
-Returns the list of milestones
+Retrieves the list of milestones from the device.
 
 ### Events Triggered
 None
@@ -219,7 +221,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "milestones": [
-            ""
+            "BootStart",
+            "NetworkReady",
+            "BootComplete"
         ],
         "success": true
     }
@@ -229,7 +233,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getPreviousRebootInfo"></a>
 ## *getPreviousRebootInfo*
 
-Returns information about the previous reboot including timestamp, source, and reason
+Retrieves information about the previous reboot from the device, including the timestamp, source, and reason for the reboot.
 
 ### Events Triggered
 None
@@ -277,12 +281,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "result": {
         "rebootInfo": {
-            "timestamp": "",
-            "source": "",
-            "reason": "",
-            "customReason": "",
-            "otherReason": "",
-            "lastHardPowerReset": ""
+            "timestamp": "2023-05-15T10:30:00Z",
+            "source": "PowerButton",
+            "reason": "UserInitiated",
+            "customReason": "N/A",
+            "otherReason": "N/A",
+            "lastHardPowerReset": "2023-05-14T08:15:00Z"
         },
         "success": true
     }
@@ -292,7 +296,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="logMilestone"></a>
 ## *logMilestone*
 
-Log marker string to rdk milestones log
+Logs the provided marker string to the RDK milestones log for tracking and analysis purposes.
 
 ### Events Triggered
 None
@@ -318,7 +322,7 @@ None
     "id": 4,
     "method": "org.rdk.DeviceDiagnostics.logMilestone",
     "params": {
-        "marker": ""
+        "marker": "NetworkReady"
     }
 }
 ```
@@ -327,7 +331,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": "NetworkReady"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -357,7 +361,7 @@ The following events are provided by the IDeviceDiagnostics Interface:
 <a id="onAVDecoderStatusChanged"></a>
 ## *onAVDecoderStatusChanged*
 
-Triggered when the most active status of audio/video decoder/pipeline changes
+The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video decoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
 
 ### Parameters
 | Name | Type | Description |

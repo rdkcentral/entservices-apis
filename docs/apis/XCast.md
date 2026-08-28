@@ -55,25 +55,25 @@ The following methods are provided by the IXCast Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getEnabled](#getEnabled) | Reports whether xcast plugin is enabled or disabled |
-| [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API |
-| [getManufacturerName](#getManufacturerName) | Returns the manufacturer name set by setManufacturerName API |
-| [getModelName](#getModelName) | Returns the model name set by setModelName API |
-| [getProtocolVersion](#getProtocolVersion) | Returns the DIAL protocol version supported by the server |
-| [getStandbyBehavior](#getStandbyBehavior) | Return current standby behavior option string set uisng setStandbyBehavior or default value |
-| [registerApplications](#registerApplications) | Registers an application |
-| [setApplicationState](#setApplicationState) | Triggered when the cast service receives an application state change notification from a client |
-| [setEnabled](#setEnabled) | Enable or disable XCAST service @parm enabled: true for enabled or false for disabled |
-| [setFriendlyName](#setFriendlyName) | Sets the friendly name of the device |
-| [setManufacturerName](#setManufacturerName) | Sets the manufacturer name of the device |
-| [setModelName](#setModelName) | Sets the model name of the device |
-| [setStandbyBehavior](#setStandbyBehavior) | Sets the expected xcast behavior in standby mode |
-| [unregisterApplications](#unregisterApplications) | Unregisters an application |
+| [getEnabled](#getEnabled) | Check XCAST service operational status |
+| [getFriendlyName](#getFriendlyName) | Fetch device display name |
+| [getManufacturerName](#getManufacturerName) | Query current device manufacturer |
+| [getModelName](#getModelName) | Retrieve configured device model |
+| [getProtocolVersion](#getProtocolVersion) | Retrieve DIAL protocol version information |
+| [getStandbyBehavior](#getStandbyBehavior) | Retrieve current standby mode configuration |
+| [registerApplications](#registerApplications) | Register one or more castable applications |
+| [setApplicationState](#setApplicationState) | Update application state with status notification |
+| [setEnabled](#setEnabled) | Control XCAST service activation state |
+| [setFriendlyName](#setFriendlyName) | Assign user-readable device name |
+| [setManufacturerName](#setManufacturerName) | Configure device manufacturer identity |
+| [setModelName](#setModelName) | Update device model identifier |
+| [setStandbyBehavior](#setStandbyBehavior) | Configure XCAST service standby mode behavior |
+| [unregisterApplications](#unregisterApplications) | Deregister applications from casting support |
 
 <a id="getEnabled"></a>
 ## *getEnabled*
 
-Reports whether xcast plugin is enabled or disabled
+Queries the current operational state of the XCAST service. Returns whether the service is active and accepting client requests, or inactive and rejecting all requests.
 
 ### Events Triggered
 None
@@ -120,10 +120,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve XCAST service enabled/disabled"
+    }
+}
+```
+
 <a id="getFriendlyName"></a>
 ## *getFriendlyName*
 
-Returns the friendly name set by setFriendlyName API
+Obtains the friendly name currently assigned to the device. Returns the value previously configured via setFriendlyName, which is shown to users in casting client applications.
 
 ### Events Triggered
 None
@@ -170,10 +184,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getManufacturerName"></a>
 ## *getManufacturerName*
 
-Returns the manufacturer name set by setManufacturerName API
+Retrieves the manufacturer name currently stored in the device description (dd.xml) file. This reflects the last value set via setManufacturerName or the factory default if not yet configured.
 
 ### Events Triggered
 None
@@ -214,8 +242,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "manufacturer": "",
+        "manufacturer": "MyCompany",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the manufacturer name."
     }
 }
 ```
@@ -223,7 +265,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getModelName"></a>
 ## *getModelName*
 
-Returns the model name set by setModelName API
+Fetches the device model name from the device description (dd.xml) file. Returns the previously configured model identifier set via setModelName, or the factory default if unconfigured.
 
 ### Events Triggered
 None
@@ -264,8 +306,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "model": "",
+        "model": "MyModel",
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the model name."
     }
 }
 ```
@@ -273,7 +329,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="getProtocolVersion"></a>
 ## *getProtocolVersion*
 
-Returns the DIAL protocol version supported by the server
+Queries the DIAL protocol version that the server supports and implements. The version is returned as a semantic version string in major.minor format.
 
 ### Events Triggered
 None
@@ -314,8 +370,22 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "version": "",
+        "version": 1.7,
         "success": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "- Failed to retrieve the protocol version."
     }
 }
 ```
@@ -323,7 +393,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="getStandbyBehavior"></a>
 ## *getStandbyBehavior*
 
-Return current standby behavior option string set uisng setStandbyBehavior or default value
+Returns the standby behavior setting currently in effect. The value reflects either a previously configured setting via setStandbyBehavior or the system default. Indicates whether the service remains active or suspended during standby.
 
 ### Events Triggered
 None
@@ -370,10 +440,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="registerApplications"></a>
 ## *registerApplications*
 
-Registers an application
+Registers applications that can be launched via casting. Each application entry specifies its name, launch prefixes, CORS policy, launch parameters, and whether it can be stopped by remote clients.
 
 ### Events Triggered
 None
@@ -406,12 +490,12 @@ None
     "method": "org.rdk.XCast.registerApplications",
     "params": [
         {
-            "name": "",
-            "prefix": "",
-            "cors": "",
-            "query": "",
-            "payload": "",
-            "allowStop": 0
+            "appName": "YouTube",
+            "prefixes": "yt",
+            "cors": "*",
+            "query": "autoplay=true",
+            "payload": "videoId=abcd1234",
+            "allowStop": true
         }
     ]
 }
@@ -421,7 +505,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "", "prefix": "", "cors": "", "query": "", "payload": "", "allowStop": 0}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"appName": "YouTube", "prefixes": "yt", "cors": "*", "query": "autoplay=true", "payload": "videoId=abcd1234", "allowStop": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -431,8 +515,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -440,7 +536,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="setApplicationState"></a>
 ## *setApplicationState*
 
-Triggered when the cast service receives an application state change notification from a client
+Communicates a state change for a running application instance back to the system. Includes the application identifier, new state, error code if applicable, and success status for the operation.
 
 ### Events Triggered
 None
@@ -469,10 +565,10 @@ None
     "id": 7,
     "method": "org.rdk.XCast.setApplicationState",
     "params": {
-        "applicationName": "",
+        "applicationName": "YouTube",
         "state": "running",
-        "applicationId": "",
-        "error": "none"
+        "applicationId": "abcd1234",
+        "error": "Application not found"
     }
 }
 ```
@@ -481,7 +577,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "", "state": "running", "applicationId": "", "error": "none"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "YouTube", "state": "running", "applicationId": "abcd1234", "error": "Application not found"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -491,8 +587,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "- Application state change notification processing failed."
     }
 }
 ```
@@ -500,7 +608,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="setEnabled"></a>
 ## *setEnabled*
 
-Enable or disable XCAST service @parm enabled: true for enabled or false for disabled
+Activates or deactivates the XCAST service. When disabled, all incoming client requests are rejected and the service remains dormant. Enable to activate service functionality.
 
 ### Events Triggered
 None
@@ -545,8 +653,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "- Failed to enable/disable XCAST service."
     }
 }
 ```
@@ -554,7 +674,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="setFriendlyName"></a>
 ## *setFriendlyName*
 
-Sets the friendly name of the device
+Sets a human-friendly name for the device that will be displayed in casting client interfaces and device discovery lists. This name enhances user experience by providing an identifiable label.
 
 ### Events Triggered
 None
@@ -599,8 +719,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -608,7 +740,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="setManufacturerName"></a>
 ## *setManufacturerName*
 
-Sets the manufacturer name of the device
+Updates the manufacturer field in the device description (dd.xml) file with the provided manufacturer identifier. This value is exposed to casting clients for device identification purposes.
 
 ### Events Triggered
 None
@@ -634,7 +766,7 @@ None
     "id": 10,
     "method": "org.rdk.XCast.setManufacturerName",
     "params": {
-        "manufacturer": ""
+        "manufacturer": "MyCompany"
     }
 }
 ```
@@ -643,7 +775,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.XCast.setManufacturerName", "params": {"manufacturer": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.XCast.setManufacturerName", "params": {"manufacturer": "MyCompany"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -653,8 +785,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "- Failed to set the manufacturer name."
     }
 }
 ```
@@ -662,7 +806,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="setModelName"></a>
 ## *setModelName*
 
-Sets the model name of the device
+Assigns a model name to the device and persists it in the device description (dd.xml) file. Casting clients use this identifier to recognize and manage device capabilities.
 
 ### Events Triggered
 None
@@ -688,7 +832,7 @@ None
     "id": 11,
     "method": "org.rdk.XCast.setModelName",
     "params": {
-        "model": ""
+        "model": "MyModel"
     }
 }
 ```
@@ -697,7 +841,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.XCast.setModelName", "params": {"model": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.XCast.setModelName", "params": {"model": "MyModel"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -707,8 +851,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "- Failed to set the model name."
     }
 }
 ```
@@ -716,7 +872,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="setStandbyBehavior"></a>
 ## *setStandbyBehavior*
 
-Sets the expected xcast behavior in standby mode
+Defines how the XCAST service should operate when the device enters standby mode. Active mode allows continued service operation for casting, while inactive mode suspends the service to conserve power.
 
 ### Events Triggered
 None
@@ -761,8 +917,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -770,7 +938,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="unregisterApplications"></a>
 ## *unregisterApplications*
 
-Unregisters an application
+Removes one or more previously registered applications from the castable application list. The application names must match registered application names or their prefixes.
 
 ### Events Triggered
 None
@@ -797,7 +965,8 @@ None
     "id": 13,
     "method": "org.rdk.XCast.unregisterApplications",
     "params": [
-        ""
+        "YouTube",
+        "yt"
     ]
 }
 ```
@@ -806,7 +975,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.XCast.unregisterApplications", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.XCast.unregisterApplications", "params": ["YouTube", "yt"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -816,8 +985,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "result": {
-        "success": true
+    "result": true
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -831,17 +1012,17 @@ The following events are provided by the IXCast Interface:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onApplicationHideRequest](#onApplicationHideRequest) | Triggered when the cast service receives a hide request from a client |
-| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Triggered when the cast service receives a launch request from a client with launch params |
-| [onApplicationLaunchRequestWithParam](#onApplicationLaunchRequestWithParam) | Triggered when the cast service receives a launch request from a client with launch params |
-| [onApplicationResumeRequest](#onApplicationResumeRequest) | Triggered when the cast service receives a resume request from a client |
-| [onApplicationStateRequest](#onApplicationStateRequest) | Triggered when the cast service needs an update of the application state |
-| [onApplicationStopRequest](#onApplicationStopRequest) | Triggered when the cast service receives a stop request from a client |
+| [onApplicationHideRequest](#onApplicationHideRequest) | Request to conceal active application |
+| [onApplicationLaunchRequest](#onApplicationLaunchRequest) | Basic application launch directive received |
+| [onApplicationLaunchRequestWithParam](#onApplicationLaunchRequestWithParam) | Incoming application launch request with extended parameters |
+| [onApplicationResumeRequest](#onApplicationResumeRequest) | Request to restore backgrounded application |
+| [onApplicationStateRequest](#onApplicationStateRequest) | Query for running application state update |
+| [onApplicationStopRequest](#onApplicationStopRequest) | Application termination request from client |
 
 <a id="onApplicationHideRequest"></a>
 ## *onApplicationHideRequest*
 
-Triggered when the cast service receives a hide request from a client
+Notifies that a casting client has requested to hide or background a currently running application instance. The application continues execution but is not visible to the user.
 
 ### Parameters
 | Name | Type | Description |
@@ -858,8 +1039,8 @@ Triggered when the cast service receives a hide request from a client
     "id": 14,
     "method": "org.rdk.XCast.onApplicationHideRequest",
     "params": {
-        "applicationName": "",
-        "applicationId": ""
+        "applicationName": "YouTube",
+        "applicationId": "abcd1234"
     }
 }
 ```
@@ -867,7 +1048,7 @@ Triggered when the cast service receives a hide request from a client
 <a id="onApplicationLaunchRequest"></a>
 ## *onApplicationLaunchRequest*
 
-Triggered when the cast service receives a launch request from a client with launch params
+Notifies that a casting client has requested application launch with combined launch parameters in a single string. This simpler variant contains app identification and launch arguments in unified format.
 
 ### Parameters
 | Name | Type | Description |
@@ -884,8 +1065,8 @@ Triggered when the cast service receives a launch request from a client with lau
     "id": 15,
     "method": "org.rdk.XCast.onApplicationLaunchRequest",
     "params": {
-        "applicationName": "",
-        "parameter": ""
+        "applicationName": "YouTube",
+        "parameter": "videoId=abcd1234&autoplay=true"
     }
 }
 ```
@@ -893,7 +1074,7 @@ Triggered when the cast service receives a launch request from a client with lau
 <a id="onApplicationLaunchRequestWithParam"></a>
 ## *onApplicationLaunchRequestWithParam*
 
-Triggered when the cast service receives a launch request from a client with launch params
+Signals an incoming launch directive from a casting client containing comprehensive launch data including payload, query parameters, and additional data URL. The receiver must parse and route this request to the appropriate application instance.
 
 ### Parameters
 | Name | Type | Description |
@@ -912,10 +1093,10 @@ Triggered when the cast service receives a launch request from a client with lau
     "id": 16,
     "method": "org.rdk.XCast.onApplicationLaunchRequestWithParam",
     "params": {
-        "applicationName": "",
-        "strPayLoad": "",
-        "strQuery": "",
-        "strAddDataUrl": ""
+        "applicationName": "YouTube",
+        "strPayLoad": "videoId=abcd1234",
+        "strQuery": "autoplay=true",
+        "strAddDataUrl": "https://example.com/additionalData"
     }
 }
 ```
@@ -923,7 +1104,7 @@ Triggered when the cast service receives a launch request from a client with lau
 <a id="onApplicationResumeRequest"></a>
 ## *onApplicationResumeRequest*
 
-Triggered when the cast service receives a resume request from a client
+Signals that a casting client wants to resume a previously hidden or backgrounded application instance. The application should become visible and active again.
 
 ### Parameters
 | Name | Type | Description |
@@ -940,8 +1121,8 @@ Triggered when the cast service receives a resume request from a client
     "id": 17,
     "method": "org.rdk.XCast.onApplicationResumeRequest",
     "params": {
-        "applicationName": "",
-        "applicationId": ""
+        "applicationName": "YouTube",
+        "applicationId": "abcd1234"
     }
 }
 ```
@@ -949,7 +1130,7 @@ Triggered when the cast service receives a resume request from a client
 <a id="onApplicationStateRequest"></a>
 ## *onApplicationStateRequest*
 
-Triggered when the cast service needs an update of the application state
+Requests the current state of a running application instance. The service must retrieve and report the application's operational state in response to this query.
 
 ### Parameters
 | Name | Type | Description |
@@ -966,8 +1147,8 @@ Triggered when the cast service needs an update of the application state
     "id": 18,
     "method": "org.rdk.XCast.onApplicationStateRequest",
     "params": {
-        "applicationName": "",
-        "applicationId": ""
+        "applicationName": "YouTube",
+        "applicationId": "abcd1234"
     }
 }
 ```
@@ -975,7 +1156,7 @@ Triggered when the cast service needs an update of the application state
 <a id="onApplicationStopRequest"></a>
 ## *onApplicationStopRequest*
 
-Triggered when the cast service receives a stop request from a client
+Indicates that a casting client has issued a request to stop a running application instance. The notification includes the application name and instance ID to identify which running application should be terminated.
 
 ### Parameters
 | Name | Type | Description |
@@ -992,8 +1173,8 @@ Triggered when the cast service receives a stop request from a client
     "id": 19,
     "method": "org.rdk.XCast.onApplicationStopRequest",
     "params": {
-        "applicationName": "",
-        "applicationId": ""
+        "applicationName": "YouTube",
+        "applicationId": "abcd1234"
     }
 }
 ```

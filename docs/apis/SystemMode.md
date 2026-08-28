@@ -62,7 +62,7 @@ The following methods are provided by the ISystemMode Interface:
 <a id="clientActivated"></a>
 ## *clientActivated*
 
-To put client plugin entry in map.
+Invoked by the SystemMode service to notify that a client plugin has been activated. Components implementing this interface should record the activation of the client plugin for the specified system mode.
 
 ### Events Triggered
 None
@@ -88,8 +88,8 @@ None
     "id": 0,
     "method": "org.rdk.SystemMode.clientActivated",
     "params": {
-        "callsign": "",
-        "systemMode": ""
+        "callsign": "com.example.client",
+        "systemMode": "DEVICE_OPTIMIZE"
     }
 }
 ```
@@ -98,7 +98,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "", "systemMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "com.example.client", "systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -115,7 +115,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="clientDeactivated"></a>
 ## *clientDeactivated*
 
-To put client plugin entry in map.
+Invoked by the SystemMode service to notify that a client plugin has been deactivated. Components implementing this interface should remove the activation record of the client plugin for the specified system mode.
 
 ### Events Triggered
 None
@@ -141,8 +141,8 @@ None
     "id": 1,
     "method": "org.rdk.SystemMode.clientDeactivated",
     "params": {
-        "callsign": "",
-        "systemMode": ""
+        "callsign": "com.example.client",
+        "systemMode": "DEVICE_OPTIMIZE"
     }
 }
 ```
@@ -151,7 +151,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "", "systemMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "com.example.client", "systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -168,7 +168,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getState"></a>
 ## *getState*
 
-Gets the current state for a given system property
+Invoked by the SystemMode service to retrieve the current state of a given system mode. Components implementing this interface should return the current state of the requested system mode.
 
 ### Events Triggered
 None
@@ -194,7 +194,7 @@ None
     "id": 2,
     "method": "org.rdk.SystemMode.getState",
     "params": {
-        "systemMode": "device_optimize"
+        "systemMode": "DEVICE_OPTIMIZE"
     }
 }
 ```
@@ -203,7 +203,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -222,7 +222,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="requestState"></a>
 ## *requestState*
 
-Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
+Invoked by the SystemMode service to request a new state for a given system mode. Components implementing this interface should asynchronously adjust their internal behavior, resource usage, or performance characteristics to match the requested optimization state.
 
 ### Events Triggered
 None
@@ -248,8 +248,8 @@ None
     "id": 3,
     "method": "org.rdk.SystemMode.requestState",
     "params": {
-        "systemMode": "device_optimize",
-        "state": "video"
+        "systemMode": "DEVICE_OPTIMIZE",
+        "state": "VIDEO"
     }
 }
 ```
@@ -258,7 +258,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "device_optimize", "state": "video"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "DEVICE_OPTIMIZE", "state": "VIDEO"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

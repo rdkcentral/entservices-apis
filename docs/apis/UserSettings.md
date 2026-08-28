@@ -100,7 +100,7 @@ The following methods are provided by the IUserSettings Interface:
 <a id="getAudioDescription"></a>
 ## *getAudioDescription*
 
-Gets the current AudioDescription setting
+Retrieves the persistent user preference for this setting.
 
 ### Events Triggered
 None
@@ -141,6 +141,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "enabled": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -193,10 +207,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getCaptions"></a>
 ## *getCaptions*
 
-Gets the Captions setting.
+Gets the Captions setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally.
 
 ### Events Triggered
 None
@@ -241,10 +269,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getContentPin"></a>
 ## *getContentPin*
 
-Gets the ContentPin.
+ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
 
 ### Events Triggered
 None
@@ -284,7 +326,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "contentPin": ""
+        "contentPin": 1234
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 3,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -337,6 +393,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 4,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getLiveWatershed"></a>
 ## *getLiveWatershed*
 
@@ -381,6 +451,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "id": 5,
     "result": {
         "liveWatershed": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 5,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -433,6 +517,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 6,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPinOnPurchase"></a>
 ## *getPinOnPurchase*
 
@@ -477,6 +575,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "id": 7,
     "result": {
         "pinOnPurchase": true
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 7,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -529,10 +641,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 8,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPreferredAudioLanguages"></a>
 ## *getPreferredAudioLanguages*
 
-Gets the current PreferredAudioLanguages setting
+Retrieves the persistent user preference for this setting.
 
 ### Events Triggered
 None
@@ -577,10 +703,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 9,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPreferredCaptionsLanguages"></a>
 ## *getPreferredCaptionsLanguages*
 
-Gets the current PreferredCaptionsLanguages setting.
+Gets the current PreferredCaptionsLanguages setting
 
 ### Events Triggered
 None
@@ -625,10 +765,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPreferredClosedCaptionService"></a>
 ## *getPreferredClosedCaptionService*
 
-Gets the current PreferredClosedCaptionService setting.
+Gets the current PreferredClosedCaptionService setting Valid output for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
 
 ### Events Triggered
 None
@@ -673,10 +827,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 11,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getPresentationLanguage"></a>
 ## *getPresentationLanguage*
 
-Gets the presentationLanguage
+Gets the presentationLanguage in a full BCP 47 value, including script, region, variant
 
 ### Events Triggered
 None
@@ -716,7 +884,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "jsonrpc": 2.0,
     "id": 12,
     "result": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -724,7 +906,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="getPrivacyMode"></a>
 ## *getPrivacyMode*
 
-Gets the current PrivacyMode setting.
+Gets the current PrivacyMode setting Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
 
 ### Events Triggered
 None
@@ -764,7 +946,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     "jsonrpc": 2.0,
     "id": 13,
     "result": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -812,7 +994,27 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "jsonrpc": 2.0,
     "id": 14,
     "result": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -860,7 +1062,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "jsonrpc": 2.0,
     "id": 15,
     "result": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -913,6 +1129,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 16,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getVoiceGuidanceHints"></a>
 ## *getVoiceGuidanceHints*
 
@@ -961,6 +1191,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 17,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getVoiceGuidanceRate"></a>
 ## *getVoiceGuidanceRate*
 
@@ -1004,7 +1248,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "jsonrpc": 2.0,
     "id": 18,
     "result": {
-        "rate": 0.0
+        "rate": 1.0
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 18,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -1012,7 +1270,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 <a id="setAudioDescription"></a>
 ## *setAudioDescription*
 
-Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
+Updates the persistent user preference for this setting. Changes are stored by the UserSettings service and may trigger the corresponding notification event so that applications can react to runtime configuration changes.
 
 ### Events Triggered
 None
@@ -1057,6 +1315,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "jsonrpc": 2.0,
     "id": 19,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 19,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1111,6 +1383,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setCaptions"></a>
 ## *setCaptions*
 
@@ -1162,6 +1448,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 21,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setContentPin"></a>
 ## *setContentPin*
 
@@ -1190,7 +1490,7 @@ None
     "id": 22,
     "method": "org.rdk.UserSettings.setContentPin",
     "params": {
-        "contentPin": ""
+        "contentPin": 1234
     }
 }
 ```
@@ -1199,7 +1499,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1210,6 +1510,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 22,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1264,6 +1578,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 23,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setLiveWatershed"></a>
 ## *setLiveWatershed*
 
@@ -1315,10 +1643,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 24,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPinControl"></a>
 ## *setPinControl*
 
-Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
+A setting of ON indicates that Parental Control is enabled. Players should enforce the parental control settings when enabled.
 
 ### Events Triggered
 None
@@ -1366,10 +1708,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 25,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPinOnPurchase"></a>
 ## *setPinOnPurchase*
 
-Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
+Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made
 
 ### Events Triggered
 None
@@ -1417,10 +1773,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPlaybackWatershed"></a>
 ## *setPlaybackWatershed*
 
-Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
+Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
 
 ### Events Triggered
 None
@@ -1468,10 +1838,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPreferredAudioLanguages"></a>
 ## *setPreferredAudioLanguages*
 
-A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
+The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
 
 ### Events Triggered
 None
@@ -1516,6 +1900,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
     "jsonrpc": 2.0,
     "id": 28,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1570,6 +1968,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPreferredClosedCaptionService"></a>
 ## *setPreferredClosedCaptionService*
 
@@ -1621,10 +2033,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setPresentationLanguage"></a>
 ## *setPresentationLanguage*
 
-Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
+Stores the user's preferred presentation language. Media players and applications can use this preference to automatically select the most appropriate language for presentation.
 
 ### Events Triggered
 None
@@ -1649,7 +2075,7 @@ None
     "id": 31,
     "method": "org.rdk.UserSettings.setPresentationLanguage",
     "params": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
     }
 }
 ```
@@ -1658,7 +2084,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": "en-US"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1669,6 +2095,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
     "jsonrpc": 2.0,
     "id": 31,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1700,7 +2140,7 @@ None
     "id": 32,
     "method": "org.rdk.UserSettings.setPrivacyMode",
     "params": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -1709,7 +2149,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": "DO_NOT_SHARE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1720,6 +2160,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
     "jsonrpc": 2.0,
     "id": 32,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 32,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1751,7 +2205,13 @@ None
     "id": 33,
     "method": "org.rdk.UserSettings.setViewingRestrictions",
     "params": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
     }
 }
 ```
@@ -1760,7 +2220,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": {"ratingScheme": "MPAA", "ratings": ["PG-13", "R"]}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1771,6 +2231,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
     "jsonrpc": 2.0,
     "id": 33,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 33,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1802,7 +2276,7 @@ None
     "id": 34,
     "method": "org.rdk.UserSettings.setViewingRestrictionsWindow",
     "params": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
     }
 }
 ```
@@ -1811,7 +2285,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": "ALWAYS"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1822,6 +2296,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
     "jsonrpc": 2.0,
     "id": 34,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 34,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -1876,6 +2364,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 35,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setVoiceGuidanceHints"></a>
 ## *setVoiceGuidanceHints*
 
@@ -1927,6 +2429,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 36,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="setVoiceGuidanceRate"></a>
 ## *setVoiceGuidanceRate*
 
@@ -1955,7 +2471,7 @@ None
     "id": 37,
     "method": "org.rdk.UserSettings.setVoiceGuidanceRate",
     "params": {
-        "rate": 0.0
+        "rate": 1.0
     }
 }
 ```
@@ -1964,7 +2480,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 0.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 1.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1975,6 +2491,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
     "jsonrpc": 2.0,
     "id": 37,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 37,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
@@ -2010,7 +2540,7 @@ The following events are provided by the IUserSettings Interface:
 <a id="onAudioDescriptionChanged"></a>
 ## *onAudioDescriptionChanged*
 
-The AudioDescription setting has changed.
+Triggered when the AudioDescription setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2034,7 +2564,7 @@ The AudioDescription setting has changed.
 <a id="onBlockNotRatedContentChanged"></a>
 ## *onBlockNotRatedContentChanged*
 
-The BlockNotRatedContent setting has changed.
+Triggered when the BlockNotRatedContent setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2058,7 +2588,7 @@ The BlockNotRatedContent setting has changed.
 <a id="onCaptionsChanged"></a>
 ## *onCaptionsChanged*
 
-The Captions setting has changed.
+Triggered when the Captions setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2082,7 +2612,7 @@ The Captions setting has changed.
 <a id="onContentPinChanged"></a>
 ## *onContentPinChanged*
 
-The ContentPin setting has changed.
+Triggered when the ContentPin setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2098,7 +2628,7 @@ The ContentPin setting has changed.
     "id": 43,
     "method": "org.rdk.UserSettings.onContentPinChanged",
     "params": {
-        "contentPin": ""
+        "contentPin": 1234
     }
 }
 ```
@@ -2130,7 +2660,7 @@ Triggered after the high contrast settings changes.
 <a id="onLiveWatershedChanged"></a>
 ## *onLiveWatershedChanged*
 
-The LiveWatershed setting has changed.
+Triggered when the LiveWatershed setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2154,7 +2684,7 @@ The LiveWatershed setting has changed.
 <a id="onPinControlChanged"></a>
 ## *onPinControlChanged*
 
-The PinControl setting has changed.
+Triggered when the PinControl setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2178,7 +2708,7 @@ The PinControl setting has changed.
 <a id="onPinOnPurchaseChanged"></a>
 ## *onPinOnPurchaseChanged*
 
-The PinOnPurchase setting has changed.
+Triggered when the PinOnPurchase setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2202,7 +2732,7 @@ The PinOnPurchase setting has changed.
 <a id="onPlaybackWatershedChanged"></a>
 ## *onPlaybackWatershedChanged*
 
-The PlaybackWatershed setting has changed.
+Triggered when the PlaybackWatershed setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2226,7 +2756,7 @@ The PlaybackWatershed setting has changed.
 <a id="onPreferredAudioLanguagesChanged"></a>
 ## *onPreferredAudioLanguagesChanged*
 
-The preferredLanguages setting has changed.
+Triggered when the preferredLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2250,7 +2780,7 @@ The preferredLanguages setting has changed.
 <a id="onPreferredCaptionsLanguagesChanged"></a>
 ## *onPreferredCaptionsLanguagesChanged*
 
-The PreferredCaptionsLanguages setting has changed.
+Triggered when the PreferredCaptionsLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2274,7 +2804,7 @@ The PreferredCaptionsLanguages setting has changed.
 <a id="onPreferredClosedCaptionServiceChanged"></a>
 ## *onPreferredClosedCaptionServiceChanged*
 
-The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
+Triggered when the PreferredClosedCaptionService setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2298,7 +2828,7 @@ The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]"
 <a id="onPresentationLanguageChanged"></a>
 ## *onPresentationLanguageChanged*
 
-The PresentationLanguages setting has changed.
+Triggered when the PresentationLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2314,7 +2844,7 @@ The PresentationLanguages setting has changed.
     "id": 52,
     "method": "org.rdk.UserSettings.onPresentationLanguageChanged",
     "params": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
     }
 }
 ```
@@ -2322,7 +2852,7 @@ The PresentationLanguages setting has changed.
 <a id="onPrivacyModeChanged"></a>
 ## *onPrivacyModeChanged*
 
-The PrivacyMode setting has changed.
+Triggered when the PrivacyMode setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2338,7 +2868,7 @@ The PrivacyMode setting has changed.
     "id": 53,
     "method": "org.rdk.UserSettings.onPrivacyModeChanged",
     "params": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -2346,7 +2876,7 @@ The PrivacyMode setting has changed.
 <a id="onViewingRestrictionsChanged"></a>
 ## *onViewingRestrictionsChanged*
 
-The ViewingRestrictions setting has changed.
+Triggered when the ViewingRestrictions setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2362,7 +2892,13 @@ The ViewingRestrictions setting has changed.
     "id": 54,
     "method": "org.rdk.UserSettings.onViewingRestrictionsChanged",
     "params": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
     }
 }
 ```
@@ -2370,7 +2906,7 @@ The ViewingRestrictions setting has changed.
 <a id="onViewingRestrictionsWindowChanged"></a>
 ## *onViewingRestrictionsWindowChanged*
 
-The ViewingRestrictionsWindow setting has changed.
+Triggered when the ViewingRestrictionsWindow setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2386,7 +2922,7 @@ The ViewingRestrictionsWindow setting has changed.
     "id": 55,
     "method": "org.rdk.UserSettings.onViewingRestrictionsWindowChanged",
     "params": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
     }
 }
 ```
@@ -2394,7 +2930,7 @@ The ViewingRestrictionsWindow setting has changed.
 <a id="onVoiceGuidanceChanged"></a>
 ## *onVoiceGuidanceChanged*
 
-Triggered after the voice guidance enabled settings changes.
+This event is triggered when the voice guidance setting is updated.
 
 ### Parameters
 | Name | Type | Description |
@@ -2418,7 +2954,7 @@ Triggered after the voice guidance enabled settings changes.
 <a id="onVoiceGuidanceHintsChanged"></a>
 ## *onVoiceGuidanceHintsChanged*
 
-Triggered after the voice guidance hints changes.
+This event is triggered when the voice guidance hints setting is updated.
 
 ### Parameters
 | Name | Type | Description |
@@ -2442,7 +2978,7 @@ Triggered after the voice guidance hints changes.
 <a id="onVoiceGuidanceRateChanged"></a>
 ## *onVoiceGuidanceRateChanged*
 
-Triggered after the voice guidance rate changed.
+This event is triggered when the voice guidance rate setting is updated.
 
 ### Parameters
 | Name | Type | Description |
@@ -2458,7 +2994,7 @@ Triggered after the voice guidance rate changed.
     "id": 58,
     "method": "org.rdk.UserSettings.onVoiceGuidanceRateChanged",
     "params": {
-        "rate": 0.0
+        "rate": 1.0
     }
 }
 ```
@@ -2481,7 +3017,7 @@ The following methods are provided by the IUserSettingsInspector Interface:
 <a id="getMigrationState"></a>
 ## *getMigrationState*
 
-Get the migration state of the respective key
+Get the migration state of the respective key. If requiresMigration is true, the setting is not valid and should not be used.
 
 ### Events Triggered
 None
@@ -2507,7 +3043,7 @@ None
     "id": 38,
     "method": "org.rdk.UserSettings.getMigrationState",
     "params": {
-        "key": "PREFERRED_AUDIO_LANGUAGES"
+        "key": 1
     }
 }
 ```
@@ -2516,7 +3052,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2532,10 +3068,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 }
 ```
 
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 38,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
 <a id="getMigrationStates"></a>
 ## *getMigrationStates*
 
-Get the migration state of all the defined keys
+Get the migration state of all the defined keys. If requiresMigration is true, the setting is not valid and should not be used.
 
 ### Events Triggered
 None
@@ -2578,10 +3128,28 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
     "id": 39,
     "result": [
         {
-            "key": "PREFERRED_AUDIO_LANGUAGES",
+            "key": 1,
             "requiresMigration": true
+        },
+        {
+            "key": 2,
+            "requiresMigration": false
         }
     ]
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 39,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
 }
 ```
 
