@@ -168,16 +168,17 @@ namespace WPEFramework
             };
 
             enum WakeupSrcType : uint16_t {
-                WAKEUPSRC_UNKNOWN          = 0 /* @text UNKNOWN */,
-                WAKEUPSRC_VOICE            = 1 /* @brief Voice Wake up */,
-                WAKEUPSRC_PRESENCE_DETECTION = 2 /* @brief Presence detection wake up */,
-                WAKEUPSRC_BLUETOOTH        = 3 /* @brief Bluetooth Wakeup */,
-                WAKEUPSRC_WIFI             = 4 /* @brief WiFi Wake up */,
-                WAKEUPSRC_IR               = 5 /* @brief IR Remote Wake up */,
-                WAKEUPSRC_POWER_KEY         = 6 /* @brief Power Button Wake up - GPIO */,
-                WAKEUPSRC_CEC            = 7 /* @brief HDMI CEC command Wake up */,
-                WAKEUPSRC_LAN              = 8 /* @brief LAN wake up */,
-                WAKEUPSRC_TIMER              = 9 /* @brief Timer Wake up */
+                WAKEUP_SRC_UNKNOWN          = 0    /* @text WAKEUPSRC_UNKNOWN */ /* @brief Voice Wake up */,
+                WAKEUP_SRC_VOICE            = 1    /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */,
+                WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */,
+                WAKEUP_SRC_BLUETOOTH        = 3    /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */,
+                WAKEUP_SRC_WIFI             = 4    /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/,
+                WAKEUP_SRC_IR               = 5    /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */,
+                WAKEUP_SRC_POWERKEY         = 6    /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */,
+                WAKEUP_SRC_TIMER            = 7    /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */,
+                WAKEUP_SRC_CEC              = 8    /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */,
+                WAKEUP_SRC_LAN              = 9    /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */,
+                WAKEUP_SRC_RF4CE            = 10   /* @text WAKEUPSRC_RF4CE */ /* @brief RF4CE wake up */
             };
 
             struct EXTERNAL WakeupSources {
