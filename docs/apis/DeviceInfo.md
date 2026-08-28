@@ -152,6 +152,10 @@ The following properties are provided by the IDeviceInfo Interface:
 | [releaseversion](#releaseversion)<sup>RO</sup> | Provides access to the ReleaseVersion of the Image |
 | [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacture |
 | [modelid](#modelid)<sup>RO</sup> | Provides access to the device model number |
+| [deviceId](#deviceId)<sup>RO</sup> | Provides access to the stable alphanumeric device identifier |
+| [hardwareId](#hardwareId)<sup>RO</sup> | Provides access to the hardware identifier |
+| [osname](#osname) | Provides access to the operating system name |
+| [osversion](#osversion) | Provides access to the operating system version |
 | [socname](#socname)<sup>RO</sup> | Provides access to the SOC Name. |
 | [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
 | [wifimac](#wifimac)<sup>RO</sup> | Provides access to the WIFI MAC addresses. |
@@ -656,6 +660,7 @@ Event details will be updated soon.
 | :-------- | :-------- | :-------- |
 | (property).firmwareVersionInfo | object | Version information |
 | (property).firmwareVersionInfo.imagename | string | Image name |
+| (property).firmwareVersionInfo.rdk | string | rdk version |
 | (property).firmwareVersionInfo.sdk | string | sdk version |
 | (property).firmwareVersionInfo.mediarite | string | mediarite |
 | (property).firmwareVersionInfo.yocto | string | yocto version |
@@ -690,6 +695,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "id": 16,
     "result": {
         "imagename": "",
+        "rdk": "",
         "sdk": "",
         "mediarite": "",
         "yocto": "",
@@ -1005,6 +1011,336 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 {
     "jsonrpc": 2.0,
     "id": 22,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="deviceId"></a>
+## *deviceId*
+
+Provides access to the stable alphanumeric device identifier
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).deviceId | string | Stable alphanumeric device identifier. If the serial number contains at least one non-digit character (alphanumeric), returns that serial number directly. If the serial number is entirely numeric, composes the deviceId from the hardware ID (HWID) in the format `<HWID> + "000" + serialNumber.substr(5, 7)`. For example, serial `84725041828384` with HWID `32E304` yields deviceId `32E3040000418283`. If HWID is unavailable, falls back to manufacturing serial number. If both HWID and manufacturing serial number calls fail, uses the raw serial number as deviceId. The value is cached in memory for the lifetime of the plugin instance. |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "method": "DeviceInfo.deviceId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "DeviceInfo.deviceId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "result": {
+        "deviceId": "EB21163216C000024"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 26,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="hardwareId"></a>
+## *hardwareId*
+
+Provides access to the hardware identifier
+
+> This property is read-only.
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).hardwareId | string | Hardware identifier (first 6 characters of the deviceId value). This property reuses the cached deviceId without invoking the MFR library independently. If deviceId is shorter than 6 characters, hardwareId equals the full deviceId value. |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "method": "DeviceInfo.hardwareId"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "DeviceInfo.hardwareId"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "result": {
+        "hardwareId": "EB2116"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 27,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="osname"></a>
+## *osname*
+
+Provides access to the operating system name
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).osName | string | Operating system name |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "method": "DeviceInfo.osname"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "DeviceInfo.osname"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "result": {
+        "osName": "RDKLinux"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 28,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "method": "DeviceInfo.osname",
+    "params": {
+        "osName": "RDKLinux"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "DeviceInfo.osname", "params": {"osName": "RDKLinux"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "result": "null"
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 29,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+<a id="osversion"></a>
+## *osversion*
+
+Provides access to the operating system version
+
+### Events
+Event details will be updated soon.
+### Values
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property).osVersion | string | Operating system version |
+
+### Examples
+
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "method": "DeviceInfo.osversion"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "DeviceInfo.osversion"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "result": {
+        "osVersion": "5.4.0"
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 30,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
+    }
+}
+```
+
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
+    "method": "DeviceInfo.osversion",
+    "params": {
+        "osVersion": "5.4.0"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "DeviceInfo.osversion", "params": {"osVersion": "5.4.0"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
+    "result": "null"
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 31,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -1832,4 +2168,3 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     }
 }
 ```
-
