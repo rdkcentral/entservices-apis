@@ -103,6 +103,12 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
           string type /* @text type */
               /* @brief The type or category of the application */;
 
+          uint8_t priority /* @text priority */
+              /* @brief Application priority level. Lower values are more important. */;
+
+          uint32_t lastActiveIndex /* @text lastActiveIndex */
+              /* @brief Monotonic ordering value for when the application was last active. */;
+
           AppLifecycleState targetLifecycleState /* @text targetLifecycleState */
               /* @brief The desired lifecycle state that the application is transitioning to */;
 
