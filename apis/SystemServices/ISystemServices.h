@@ -167,18 +167,23 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
-             struct EXTERNAL WakeupSources {
-                bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
-                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
-                bool bluetooth /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */;
-                bool wifi /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/;
-                bool ir /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */;
-                bool powerKey /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */;
-                bool cec /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */;
-                bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
-                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
+            enum WakeupSrcType : uint16_t {
+                WAKEUPSRC_UNKNOWN          = 0 /* @text UNKNOWN */,
+                WAKEUPSRC_VOICE            = 1 /* @brief Voice Wake up */,
+                WAKEUPSRC_PRESENCE_DETECTION = 2 /* @brief Presence detection wake up */,
+                WAKEUPSRC_BLUETOOTH        = 3 /* @brief Bluetooth Wakeup */,
+                WAKEUPSRC_WIFI             = 4 /* @brief WiFi Wake up */,
+                WAKEUPSRC_IR               = 5 /* @brief IR Remote Wake up */,
+                WAKEUPSRC_POWER_KEY         = 6 /* @brief Power Button Wake up - GPIO */,
+                WAKEUPSRC_CEC            = 7 /* @brief HDMI CEC command Wake up */,
+                WAKEUPSRC_LAN              = 8 /* @brief LAN wake up */,
+                WAKEUPSRC_TIMER              = 9 /* @brief Timer Wake up */
             };
 
+            struct EXTERNAL WakeupSources {
+                WakeupSrcType wakeupSource;
+                bool enabled;
+            };
 
             using ISystemServicesWakeupSourcesIterator = RPC::IIteratorType<WakeupSources, ID_SYSTEMSERVICES_WAKEUPSOURCES_ITERATOR>;
 
