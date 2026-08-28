@@ -47,7 +47,7 @@ namespace WPEFramework
             // @param index: Index of the brightness level
             // @param brightness: Brightness level
             // @param success: Is the operation successful or not
-            virtual Core::hresult GetBrightness(const string& index, uint32_t &brightness /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetBrightness(const string& index, int32_t &brightness /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the front panel lights
             // @text getFrontPanelLights
