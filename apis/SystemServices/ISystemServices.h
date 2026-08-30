@@ -168,7 +168,7 @@ namespace WPEFramework
             };
 
             enum WakeupSrcType : uint16_t {
-                WAKEUP_SRC_UNKNOWN          = 0    /* @text WAKEUPSRC_UNKNOWN */ /* @brief Voice Wake up */,
+                WAKEUP_SRC_UNKNOWN          = 0    /* @text WAKEUPSRC_UNKNOWN */ /* @brief Unknown wake up source */,
                 WAKEUP_SRC_VOICE            = 1    /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */,
                 WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */,
                 WAKEUP_SRC_BLUETOOTH        = 3    /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */,
