@@ -22,7 +22,9 @@ on:
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
-    
+    env:
+      THUNDER_TOOLS_COMMIT_SHA: d5dd83c7c19c49c7f25c558c126500bd2d64f7a4
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -32,6 +34,20 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ssh-key: ${{ secrets.RDKCM_DEPLOY_KEY }}
     
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build build-essential git
+
+    - name: Clone ThunderTools
+      run: |
+        git clone -b ${{ env.THUNDER_TOOLS_COMMIT_SHA }} https://github.com/rdkcentral/ThunderTools.git
+
+    - name: Build ThunderTools
+      run: |
+        cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="${PWD}/install"
+        cmake --build ThunderTools/build --target install
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -52,24 +68,17 @@ jobs:
         echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
         echo "Changed files: $CHANGED_FILES"
     
-    - name: Validate JSON changes
-      if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
-      run: |
-        cd tools/md_generator
-        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }} --validate-only
-        python3 update_sidebar.py
-    
     - name: Generate documentation (incremental)
       if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
       run: |
-        cd tools/md_generator
-        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
+        install/sbin/JsonGenerator/JsonGenerator.py --docs -I install/include/WPEFramework/ --output $(pwd)/docs/apis ${{ steps.changed_files.outputs.files }}
+        python3 tools/update_sidebar.py
     
     - name: Generate documentation (full)
       if: github.event_name == 'workflow_dispatch'
       run: |
-        cd tools/md_generator
-        python3 generate_md.py
+        install/sbin/JsonGenerator/JsonGenerator.py --docs -I install/include/WPEFramework/ --output $(pwd)/docs/apis apis/*/I*.h apis/*/*.json
+        python3 tools/update_sidebar.py
     
     - name: Check for documentation changes
       id: check_changes
