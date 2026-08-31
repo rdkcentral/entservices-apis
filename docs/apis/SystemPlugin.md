@@ -1927,17 +1927,10 @@ No Events
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params?.powerState | string | <sup>*(optional)*</sup> The power state (must be one of the following: *STANDBY*, *DEEP_SLEEP*, *LIGHT_SLEEP*, *ON*) |
-| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
+| params.wakeupSources | array | Array of wake up source configurations |
 | params.wakeupSources[#] | object |  |
-| params.wakeupSources[#]?.WAKEUPSRC_VOICE | boolean | <sup>*(optional)*</sup> Voice Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_PRESENCE_DETECTION | boolean | <sup>*(optional)*</sup> Presense detection wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_BLUETOOTH | boolean | <sup>*(optional)*</sup> Bluetooth Wakeup |
-| params.wakeupSources[#]?.WAKEUPSRC_WIFI | boolean | <sup>*(optional)*</sup> WiFi Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_IR | boolean | <sup>*(optional)*</sup> IR Remote Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_POWER_KEY | boolean | <sup>*(optional)*</sup> Power Button Wake up - GPIO |
-| params.wakeupSources[#]?.WAKEUPSRC_CEC | boolean | <sup>*(optional)*</sup> HDMI CEC commadn Wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_LAN | boolean | <sup>*(optional)*</sup> LAN wake up |
-| params.wakeupSources[#]?.WAKEUPSRC_TIMER | boolean | <sup>*(optional)*</sup> TImer Wake up |
+| params.wakeupSources[#].wakeupSource | string | The wake up source type (must be one of the following: *WAKEUPSRC_VOICE*, *WAKEUPSRC_PRESENCE_DETECTION*, *WAKEUPSRC_BLUETOOTH*, *WAKEUPSRC_WIFI*, *WAKEUPSRC_IR*, *WAKEUPSRC_POWER_KEY*, *WAKEUPSRC_TIMER*, *WAKEUPSRC_CEC*, *WAKEUPSRC_LAN*, *WAKEUPSRC_RF4CE*) |
+| params.wakeupSources[#].enabled | boolean | Whether the wakeup source configuration is enabled or disabled |
 
 ### Result
 
@@ -1959,15 +1952,40 @@ No Events
         "powerState": "ON",
         "wakeupSources": [
             {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
+                "wakeupSource": "WAKEUPSRC_VOICE",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_PRESENCE_DETECTION",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_BLUETOOTH",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_WIFI",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_IR",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_POWER_KEY",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_CEC",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_LAN",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_TIMER",
+                "enabled": true
             }
         ]
     }
