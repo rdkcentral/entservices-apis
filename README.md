@@ -47,7 +47,7 @@ If you would like to contribute to this project, please fork this project and ra
 
 2. At least one approved reviewer needs to **review and approve** the pull request.
 
-3. For tracking and release management purposes, each pull request and all the commits in the pull request shall include **RDK ticket number(s) or Github issue number(s)** and “reason for the change”.
+3. For tracking and release management purposes, each pull request and all the commits in the pull request shall include **RDK ticket number(s) or Github issue number(s)** and "reason for the change".
 
 4. Any pull request from Comcast developers should include a link to successful gerrit verification (in the comment section).
 
@@ -65,65 +65,33 @@ TO BE UPDATED!!
 
 - When the implementation of a given Ent Service is expected to support only JSONRPC, then use @stubgen:omit tag at struct/class to omit proxystub generation for COM-RPC support.
 
-Markdown files are generated from the header file / JSON definitions using the md_generator tool (`tools/md_generator/generate_md.py`).
+Markdown files are generated from the header file / JSON definitions using the JsonGenerator tool from ThunderTools.
 
-The generator tool requires:
+The JsonGenerator tool is built and installed as part of the CI/CD workflow via CMake. To generate documentation locally:
 
-* Python 3.5 or higher
-* The jsonref library
+### Generating Markdown for Incremental Changes ###
 
-Verify your Python version:
-
-```shell
-python --version
-```
-
-Install jsonref if it is not already installed:
+When specific files have changed, generate documentation for only those files:
 
 ```shell
-pip install jsonref
+install/sbin/JsonGenerator/JsonGenerator.py --docs -I install/include/WPEFramework/ --output $(pwd)/docs/apis <changed-files>
 ```
-
-### Generating Markdown for a Single Service ###
-
-
-#### Generating Markdown for a Single Service from interface header###
-To generate markdown for a single service from header :
-
-1. Change directories to `tools/md_generator/h2md`
-2. Run `generate_md_from_header.py` and provide the location of the header file using the `-i` argument and the output directory using the `-o` argument.
-
-  ```shell
-  python3 generate_md_from_header.py -i ../../../apis/MyService -o ../../../docs/apis/ 
-  ```
-
-
-#### Generating Markdown for a Single Service from json###
-To generate markdown for a single service from json :
-
-1. Change directories to `tools/md_generator/json2md`.
-2. Run `generator_json.py` and provide the location of the service JSON plugin file using the `-d` argument and the output directory using the `-o` argument. You must also include the `--no-interfaces-section` argument; otherwise, an interface section is added to the markdown. Make certain that you are pointing to the plugin definition and not the interface definition. Here is an example of using the tool:
-
-    ```shell
-    python ./generator_json.py -d ../json/MyService/MyServicePlugin.json  -o ../../../docs/apis --no-interfaces-section --verbose $files
-    ```
-
-    The `MyServicePlugin.md` file is written to the `../../../docs/apis` folder. This is the standard directory where all the service API markdown files are written.
 
 ### Generating Markdown for All Services ###
 
-A script is provided to generate the markdown for all services and does a complete build of the documentation. The script only generates the markdown for a service if the header definition has been updated. In addition, the script post-processes the generated markdown files to create standard link anchors and to clean the build.
-
 To generate markdown for all services:
 
-1. From the entservices-apis repository, change directories to `tools/md_generator`.
-2. Run `generate_md.py`. For example:
+```shell
+install/sbin/JsonGenerator/JsonGenerator.py --docs -I install/include/WPEFramework/ --output $(pwd)/docs/apis apis/*/I*.h apis/*/*.json
+```
 
-    ```shell
-    python ./generate_md.py
-    ```
+After generating documentation, update the sidebar with new entries:
 
-    All markdown files are written to the `../../docs/apis` folder. This is the standard directory where all the service API markdown files are written.
+```shell
+python3 tools/update_sidebar.py
+```
+
+All markdown files are written to the `docs/apis` folder.
 
 Use the existing services as a guide when learning the structure of both the plugin and interface schemas.
 
@@ -133,11 +101,11 @@ Use the existing services as a guide when learning the structure of both the plu
 
 1. Be Consistent
 
-    * The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you’re saying rather than on how you’re saying it.
+    * The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you're saying rather than on how you're saying it.
 
     * If the code you add to a file looks drastically different from the existing code around it, it throws readers out of their rhythm. Avoid this.
 
-    * If you’re editing code, take a few minutes to determine the coding style of the component and apply the same style.
+    * If you're editing code, take a few minutes to determine the coding style of the component and apply the same style.
 
     * To maintain uniformity in all text-editors, set TAB size to 2 or 4 spaces and replace TAB by SPACES
 
