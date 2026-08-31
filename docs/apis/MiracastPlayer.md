@@ -1,535 +1,515 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="MiracastPlayer_Module"></a>
-# MiracastPlayer Module
+<a id="head_MiracastPlayer_API"></a>
+# MiracastPlayer API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MiracastPlayer/IMiracastPlayer.h)**
+**Version: 1.0.0**
 
-A MiracastPlayer module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+MiracastPlayer interface for Thunder framework.
+
+(Defined with IMiracastPlayer in [IMiracastPlayer.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IMiracastPlayer.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IMiracastPlayer](#IMiracastPlayer)
-    - [Methods](#IMiracastPlayer-Methods)
-    - [Notifications](#IMiracastPlayer-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the MiracastPlayer interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `MiracastPlayer` module provides the following interface(s):
+MiracastPlayer JSON-RPC interface.
 
-- IMiracastPlayer
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the MiracastPlayer interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.MiracastPlayer) |
-| classname | string | Class name: *MiracastPlayer* |
-| locator | string | Library name: *libWPEFrameworkMiracastPlayer.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IMiracastPlayer"></a>
-## IMiracastPlayer Interface
-
-<a id="IMiracastPlayer-Methods"></a>
-### Methods
-
-The following methods are provided by the IMiracastPlayer Interface:
+MiracastPlayer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [playRequest](#playRequest) | To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback |
-| [setEnvArguments](#setEnvArguments) | To configure the environment arguments for the Miracast Player |
-| [setVideoRectangle](#setVideoRectangle) | Set the Video Rectangle. |
-| [setWesterosEnvironment](#setWesterosEnvironment) | To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead. |
-| [stopRequest](#stopRequest) | To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state |
-| [unsetEnvArguments](#unsetEnvArguments) | To reset the environment arguments for the Miracast Player |
-| [unsetWesterosEnvironment](#unsetWesterosEnvironment) | To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead. |
+| [playRequest](#method_playRequest) | To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback |
+| [stopRequest](#method_stopRequest) | To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state |
+| [setVideoRectangle](#method_setVideoRectangle) | Set the Video Rectangle |
+| [setWesterosEnvironment](#method_setWesterosEnvironment) | To configure the westeros environment arguments for the Miracast Player |
+| [unsetWesterosEnvironment](#method_unsetWesterosEnvironment) | To reset the westeros environment arguments for the Miracast Player |
+| [setEnvArguments](#method_setEnvArguments) | To configure the environment arguments for the Miracast Player |
+| [unsetEnvArguments](#method_unsetEnvArguments) | To reset the environment arguments for the Miracast Player |
 
-<a id="playRequest"></a>
-## *playRequest*
+<a id="method_playRequest"></a>
+## *playRequest [<sup>method</sup>](#head_Methods)*
 
-To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
+To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.device_parameters | object | Contains Source and Sink Device related properties |
-| params.device_parameters.source_dev_ip | string | IP Address of Source Device |
-| params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
-| params.device_parameters.source_dev_name | string | Name of Source Device |
-| params.device_parameters.sink_dev_ip | string | IP Address of Sink Device |
-| params.video_rectangle | object | Video rectangle to be used for Miracast playback (x, y, width, height) |
-| params.video_rectangle.X | int | X coordinate of the rectangle |
-| params.video_rectangle.Y | int | Y coordinate of the rectangle |
-| params.video_rectangle.W | int | Width of the rectangle |
-| params.video_rectangle.H | int | Height of the rectangle |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.device_parameters | object | mandatory | Contains Source and Sink Device related properties |
+| params.device_parameters.source_dev_ip | string | mandatory | IP Address of Source Device |
+| params.device_parameters.source_dev_mac | string | mandatory | MAC Address of Source Device |
+| params.device_parameters.source_dev_name | string | mandatory | Name of Source Device |
+| params.device_parameters.sink_dev_ip | string | mandatory | IP Address of Sink Device |
+| params.video_rectangle | object | mandatory | Video rectangle to be used for Miracast playback (x, y, width, height) |
+| params.video_rectangle.X | integer | mandatory | X coordinate of the rectangle |
+| params.video_rectangle.Y | integer | mandatory | Y coordinate of the rectangle |
+| params.video_rectangle.W | integer | mandatory | Width of the rectangle |
+| params.video_rectangle.H | integer | mandatory | Height of the rectangle |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.MiracastPlayer.playRequest",
-    "params": {
-        "device_parameters": {
-            "source_dev_ip": "",
-            "source_dev_mac": "",
-            "source_dev_name": "",
-            "sink_dev_ip": ""
-        },
-        "video_rectangle": {
-            "X": 0,
-            "Y": 0,
-            "W": 0,
-            "H": 0
-        }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.playRequest",
+  "params": {
+    "device_parameters": {
+      "source_dev_ip": "...",
+      "source_dev_mac": "...",
+      "source_dev_name": "...",
+      "sink_dev_ip": "..."
+    },
+    "video_rectangle": {
+      "X": 0,
+      "Y": 0,
+      "W": 0,
+      "H": 0
     }
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": {"source_dev_ip": "", "source_dev_mac": "", "source_dev_name": "", "sink_dev_ip": ""}, "video_rectangle": {"X": 0, "Y": 0, "W": 0, "H": 0}}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-<a id="setEnvArguments"></a>
-## *setEnvArguments*
+<a id="method_stopRequest"></a>
+## *stopRequest [<sup>method</sup>](#head_Methods)*
 
-To configure the environment arguments for the Miracast Player
+To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.envArgs | array | environment arguments to be set |
-| params.envArgs[#].argName | string | environment argument name |
-| params.envArgs[#].argValue | string | environment argument value |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.mac | string | mandatory | MacAddress of the client device |
+| params.name | string | mandatory | Name of the client device |
+| params.reason_code | integer | mandatory | Reason code for the player stop request |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.MiracastPlayer.setEnvArguments",
-    "params": [
-        {
-            "argName": "",
-            "argValue": ""
-        }
-    ]
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.stopRequest",
+  "params": {
+    "mac": "...",
+    "name": "...",
+    "reason_code": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": [{"argName": "", "argValue": ""}]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-<a id="setVideoRectangle"></a>
-## *setVideoRectangle*
+<a id="method_setVideoRectangle"></a>
+## *setVideoRectangle [<sup>method</sup>](#head_Methods)*
 
 Set the Video Rectangle.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.X | int | X coordinate of the rectangle |
-| params.Y | int | Y coordinate of the rectangle |
-| params.W | int | Width of the rectangle |
-| params.H | int | Height of the rectangle |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.X | integer | mandatory | X coordinate of the rectangle |
+| params.Y | integer | mandatory | Y coordinate of the rectangle |
+| params.W | integer | mandatory | Width of the rectangle |
+| params.H | integer | mandatory | Height of the rectangle |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.MiracastPlayer.setVideoRectangle",
-    "params": {
-        "X": 0,
-        "Y": 0,
-        "W": 0,
-        "H": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setVideoRectangle",
+  "params": {
+    "X": 0,
+    "Y": 0,
+    "W": 0,
+    "H": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastPlayer.setVideoRectangle", "params": {"X": 0, "Y": 0, "W": 0, "H": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-<a id="setWesterosEnvironment"></a>
-## *setWesterosEnvironment*
+<a id="method_setWesterosEnvironment"></a>
+## *setWesterosEnvironment [<sup>method</sup>](#head_Methods)*
 
 To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.westerosArgs | array | Westeros environment arguments to be set |
-| params.westerosArgs[#].argName | string | environment argument name |
-| params.westerosArgs[#].argValue | string | environment argument value |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.westerosArgs | array | mandatory | Westeros environment arguments to be set |
+| params.westerosArgs[#] | object | mandatory | *...* |
+| params.westerosArgs[#].argName | string | mandatory | Environment argument name |
+| params.westerosArgs[#].argValue | string | mandatory | Environment argument value |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.MiracastPlayer.setWesterosEnvironment",
-    "params": [
-        {
-            "argName": "",
-            "argValue": ""
-        }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setWesterosEnvironment",
+  "params": {
+    "westerosArgs": [
+      {
+        "argName": "...",
+        "argValue": "..."
+      }
     ]
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": [{"argName": "", "argValue": ""}]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-<a id="stopRequest"></a>
-## *stopRequest*
-
-To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mac | string | MacAddress of the client device |
-| params.name | string | Name of the client device |
-| params.reason_code | int | Reason code for the player stop request |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.MiracastPlayer.stopRequest",
-    "params": {
-        "mac": "",
-        "name": "",
-        "reason_code": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "", "name": "", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-<a id="unsetEnvArguments"></a>
-## *unsetEnvArguments*
-
-To reset the environment arguments for the Miracast Player
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.MiracastPlayer.unsetEnvArguments"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastPlayer.unsetEnvArguments"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-<a id="unsetWesterosEnvironment"></a>
-## *unsetWesterosEnvironment*
+<a id="method_unsetWesterosEnvironment"></a>
+## *unsetWesterosEnvironment [<sup>method</sup>](#head_Methods)*
 
 To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.message | string | reason for success or failure |
-| result.result.success | bool |  |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.MiracastPlayer.unsetWesterosEnvironment"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unsetWesterosEnvironment"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.MiracastPlayer.unsetWesterosEnvironment"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-<a id="IMiracastPlayer-Notifications"></a>
-### Notifications
+<a id="method_setEnvArguments"></a>
+## *setEnvArguments [<sup>method</sup>](#head_Methods)*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the IMiracastPlayer Interface:
-
-| Event | Description |
-| :-------- | :-------- |
-| [onStateChange](#onStateChange) | Notifies when a Miracast source device wants to connect |
-
-<a id="onStateChange"></a>
-## *onStateChange*
-
-Notifies when a Miracast source device wants to connect
+To configure the environment arguments for the Miracast Player.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.name | string | Name of the client device |
-| params.mac | string | MacAddress of the client device |
-| params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).). Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED, PAUSED |
-| params.reason_code | string | Reason code for the player state update |
-| params.reason | string | reason code Decription. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.envArgs | array | mandatory | Environment arguments to be set |
+| params.envArgs[#] | object | mandatory | *...* |
+| params.envArgs[#].argName | string | mandatory | Environment argument name |
+| params.envArgs[#].argValue | string | mandatory | Environment argument value |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.MiracastPlayer.onStateChange",
-    "params": {
-        "name": "",
-        "mac": "",
-        "state": "IDLE",
-        "reason_code": "",
-        "reason": "SUCCESS"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setEnvArguments",
+  "params": {
+    "envArgs": [
+      {
+        "argName": "...",
+        "argValue": "..."
+      }
+    ]
+  }
 }
 ```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_unsetEnvArguments"></a>
+## *unsetEnvArguments [<sup>method</sup>](#head_Methods)*
+
+To reset the environment arguments for the Miracast Player.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.message | string | mandatory | Reason for success or failure |
+| result.success | boolean | mandatory | *...* |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unsetEnvArguments"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "message": "...",
+    "success": false
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the MiracastPlayer interface:
+
+MiracastPlayer interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onStateChange](#notification_onStateChange) | Notifies when a Miracast source device wants to connect |
+
+<a id="notification_onStateChange"></a>
+## *onStateChange [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when a Miracast source device wants to connect.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.name | string | mandatory | Name of the client device |
+| params.mac | string | mandatory | MacAddress of the client device |
+| params.state | string | mandatory | Current state of the player (must be one of the following: *IDLE, INITIATED, INPROGRESS, PAUSED, PLAYING, STOPPED*) |
+| params.reason_code | string | mandatory | Reason code for the player state update |
+| params.reason | string | mandatory | *...* (must be one of the following: *APP_REQ_TO_STOP, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ, RTSP_FAILURE, RTSP_NOT_SUPPORTED, RTSP_TIMEOUT, SRC_DEV_REQ_TO_STOP, SUCCESS*) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onStateChange",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onStateChange",
+  "params": {
+    "name": "...",
+    "mac": "...",
+    "state": ", INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).",
+    "reason_code": "...",
+    "reason": "APP_REQ_TO_STOP"
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onStateChange``.
 

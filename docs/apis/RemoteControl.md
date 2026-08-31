@@ -1,1209 +1,1280 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="RemoteControl_Module"></a>
-# RemoteControl Module
+<a id="head_RemoteControl_API"></a>
+# RemoteControl API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RemoteControl/IRemoteControl.h)**
+**Version: 1.0.0**
 
-A RemoteControl module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+RemoteControl interface for Thunder framework.
+
+(Defined with IRemoteControl in [IRemoteControl.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IRemoteControl.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IRemoteControl](#IRemoteControl)
-    - [Methods](#IRemoteControl-Methods)
-    - [Notifications](#IRemoteControl-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the RemoteControl interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `RemoteControl` module provides the following interface(s):
+RemoteControl JSON-RPC interface.
 
-- IRemoteControl
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the RemoteControl interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.RemoteControl) |
-| classname | string | Class name: *RemoteControl* |
-| locator | string | Library name: *libWPEFrameworkRemoteControl.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IRemoteControl"></a>
-## IRemoteControl Interface
-
-### Description
-
-Interface for the Remote Control JSONRPC API in WPEFramework.  This interface defines the JSONRPC methods and events for remote control management, including pairing, IRDB operations, firmware updates, and related notifications. Implementations of this interface are expected to be registered with the Thunder framework.
-
-<a id="IRemoteControl-Methods"></a>
-### Methods
-
-The following methods are provided by the IRemoteControl Interface:
+RemoteControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancelFirmwareUpdate](#cancelFirmwareUpdate) | Cancels an active firmware image update session |
-| [clearIRCodes](#clearIRCodes) | Clears the IR codes from the specified remote |
-| [configureWakeupKeys](#configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
-| [factoryReset](#factoryReset) | Tells all paired and connected remotes to factory reset |
-| [findMyRemote](#findMyRemote) | Tells the most recently used remote to beep |
-| [getApiVersionNumber](#getApiVersionNumber) | Gets the current API version number. |
-| [getIRCodesByAutoLookup](#getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
-| [getIRCodesByNames](#getIRCodesByNames) | Returns a list of IR codes for the AV device specified by the input parameters |
-| [getIRDBManufacturers](#getIRDBManufacturers) | Returns a list of manufacturer names based on the specified input parameters |
-| [getIRDBModels](#getIRDBModels) | Returns a list of model names based on the specified input parameters |
-| [getLastKeypressSource](#getLastKeypressSource) | Returns last key press source data |
-| [getNetStatus](#getNetStatus) | Returns the status information provided by the last `onStatus` event for the specified network. |
-| [initializeIRDB](#initializeIRDB) | Initializes the IR database |
-| [setIRCode](#setIRCode) | Programs an IR code into the specified remote control |
-| [startFirmwareUpdate](#startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
-| [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
-| [unpair](#unpair) | Unpairs all remotes from the STB |
-
-<a id="cancelFirmwareUpdate"></a>
-## *cancelFirmwareUpdate*
-
-Cancels an active firmware image update session
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | string | The session identifier  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.RemoteControl.cancelFirmwareUpdate",
-    "params": {
-        "sessionId": "12345-abc-def"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="clearIRCodes"></a>
-## *clearIRCodes*
-
-Clears the IR codes from the specified remote
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of network  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.RemoteControl.clearIRCodes",
-    "params": {
-        "remoteId": 1,
-        "netType": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1, "netType": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="configureWakeupKeys"></a>
-## *configureWakeupKeys*
-
-Configures which keys on the remote will wake the target from deepsleep
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
-| params.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.RemoteControl.configureWakeupKeys",
-    "params": {
-        "wakeupConfig": "INVALID",
-        "customKeys": "195,199"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "INVALID", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="factoryReset"></a>
-## *factoryReset*
-
-Tells all paired and connected remotes to factory reset
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.RemoteControl.factoryReset"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RemoteControl.factoryReset"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="findMyRemote"></a>
-## *findMyRemote*
-
-Tells the most recently used remote to beep
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.level | string | The level at which the remote will beep. Possible values: INVALID, off, mid, high |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.RemoteControl.findMyRemote",
-    "params": {
-        "level": "INVALID"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "INVALID"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="getApiVersionNumber"></a>
-## *getApiVersionNumber*
+| [getApiVersionNumber](#method_getApiVersionNumber) | Gets the current API version number |
+| [getNetStatus](#method_getNetStatus) | Returns the status information provided by the last `onStatus` event for the specified network |
+| [getIRDBManufacturers](#method_getIRDBManufacturers) | Returns a list of manufacturer names based on the specified input parameters |
+| [getIRDBModels](#method_getIRDBModels) | Returns a list of model names based on the specified input parameters |
+| [getIRCodesByAutoLookup](#method_getIRCodesByAutoLookup) | Returns a list of available IR codes for the TV and AVRs specified by the input parameters |
+| [getIRCodesByNames](#method_getIRCodesByNames) | Returns a list of IR codes for the AV device specified by the input parameters |
+| [setIRCode](#method_setIRCode) | Programs an IR code into the specified remote control |
+| [clearIRCodes](#method_clearIRCodes) | Clears the IR codes from the specified remote |
+| [getLastKeypressSource](#method_getLastKeypressSource) | Returns last key press source data |
+| [configureWakeupKeys](#method_configureWakeupKeys) | Configures which keys on the remote will wake the target from deepsleep |
+| [initializeIRDB](#method_initializeIRDB) | Initializes the IR database |
+| [findMyRemote](#method_findMyRemote) | Tells the most recently used remote to beep |
+| [factoryReset](#method_factoryReset) | Tells all paired and connected remotes to factory reset |
+| [unpair](#method_unpair) | Unpairs all remotes from the STB |
+| [startFirmwareUpdate](#method_startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
+| [cancelFirmwareUpdate](#method_cancelFirmwareUpdate) | Cancels an active firmware image update session |
+| [statusFirmwareUpdate](#method_statusFirmwareUpdate) | Returns the status of an active firmware image update session |
+
+<a id="method_getApiVersionNumber"></a>
+## *getApiVersionNumber [<sup>method</sup>](#head_Methods)*
 
 Gets the current API version number.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | object | The API version response |
-| result.response.version | integer | The API version number  |
-| result.response.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The API version response |
+| result.version | integer | mandatory | The API version number ex: 1 |
+| result.success | boolean | mandatory | Whether the request succeeded |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.RemoteControl.getApiVersionNumber"
-}
-```
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Operation completed successfully. |
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RemoteControl.getApiVersionNumber"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "version": 1,
-        "success": true
-    }
-}
-```
-
-<a id="getIRCodesByAutoLookup"></a>
-## *getIRCodesByAutoLookup*
-
-Returns a list of available IR codes for the TV and AVRs specified by the input parameters
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.netType | integer | The type of network  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.tvManufacturer | string | The TV manufacturer for which codes are provided  |
-| result.tvModel | string | The TV model for which codes are provided  |
-| result.avrManufacturer | string | The AVR manufacturer for which codes are provided  |
-| result.avrModel | string | The AVR model for which codes are provided  |
-| result.success | bool | Whether the request succeeded |
-| result.tvCodes | array | A list of TV IR codes  |
-| result.tvCodes[#] | string |  |
-| result.avrCodes | array | A list of AVR IR codes  |
-| result.avrCodes[#] | string |  |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
-    "params": {
-        "netType": 1
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getApiVersionNumber"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "tvManufacturer": "Samsung",
-        "tvModel": "UN65JU750",
-        "avrManufacturer": "Denon",
-        "avrModel": "AVR-S750H",
-        "success": true,
-        "tvCodes": [
-            1156
-        ],
-        "avrCodes": [
-            "R2467"
-        ]
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "version": 0,
+    "success": false
+  }
 }
 ```
 
-<a id="getIRCodesByNames"></a>
-## *getIRCodesByNames*
-
-Returns a list of IR codes for the AV device specified by the input parameters
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| result.manufacturer | string | The manufacturer name of the AV device  |
-| result.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
-| result.success | bool | Whether the request succeeded |
-| result.codes | string | A list of IR codes as a string |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.RemoteControl.getIRCodesByNames",
-    "params": {
-        "avDevType": "INVALID",
-        "manufacturer": "Samsung",
-        "model": "UN6"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "avDevType": "INVALID",
-        "manufacturer": "Samsung",
-        "model": "UN6",
-        "success": true,
-        "codes": ""
-    }
-}
-```
-
-<a id="getIRDBManufacturers"></a>
-## *getIRDBManufacturers*
-
-Returns a list of manufacturer names based on the specified input parameters
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| result.success | bool | Whether the request succeeded |
-| result.manufacturers | array | A list of manufacturer names  |
-| result.manufacturers[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.RemoteControl.getIRDBManufacturers",
-    "params": {
-        "avDevType": "INVALID",
-        "manufacturer": "Sam"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "INVALID", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "avDevType": "INVALID",
-        "success": true,
-        "manufacturers": [
-            "Samsung"
-        ]
-    }
-}
-```
-
-<a id="getIRDBModels"></a>
-## *getIRDBModels*
-
-Returns a list of model names based on the specified input parameters
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| result.manufacturer | string | The manufacturer name of the AV device  |
-| result.success | bool | Whether the request succeeded |
-| result.models | array | A list of model names  |
-| result.models[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.RemoteControl.getIRDBModels",
-    "params": {
-        "avDevType": "INVALID",
-        "manufacturer": "Samsung",
-        "model": "UN6"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "avDevType": "INVALID",
-        "manufacturer": "Samsung",
-        "success": true,
-        "models": [
-            "AH5901068L"
-        ]
-    }
-}
-```
-
-<a id="getLastKeypressSource"></a>
-## *getLastKeypressSource*
-
-Returns last key press source data
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | object | The last keypress source response |
-| result.response.controllerId | integer | The controller ID of the target remote on the specified network  |
-| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch |
-| result.response.sourceName | string | The source of the last key press  |
-| result.response.sourceType | string | The source type of the last key press  |
-| result.response.sourceKeyCode | integer | The source key code  |
-| result.response.bIsScreenBindMode | bool | True if in screen bind mode, otherwise false |
-| result.response.remoteKeypadConfig | integer | The configuration of the remote keypad  |
-| result.response.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.RemoteControl.getLastKeypressSource"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RemoteControl.getLastKeypressSource"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "controllerId": 1,
-        "timestamp": 0,
-        "sourceName": "IR",
-        "sourceType": "REMOTE",
-        "sourceKeyCode": 195,
-        "bIsScreenBindMode": true,
-        "remoteKeypadConfig": 0,
-        "success": true
-    }
-}
-```
-
-<a id="getNetStatus"></a>
-## *getNetStatus*
+<a id="method_getNetStatus"></a>
+## *getNetStatus [<sup>method</sup>](#head_Methods)*
 
 Returns the status information provided by the last `onStatus` event for the specified network.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.netType | integer | The type of network  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC |
-| result.result.success | bool | Whether the request succeeded |
-| result.result.status | object | The network status data |
-| result.result.status.netType | integer | The type of remote control network  |
-| result.result.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
-| result.result.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| result.result.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
-| result.result.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
 
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.RemoteControl.getNetStatus",
-    "params": {
-        "netType": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "success": true,
-        "status": {
-            "netType": 1,
-            "pairingState": "INITIALISING",
-            "irProgState": "IDLE",
-            "netTypesSupported": "",
-            "remoteData": ""
-        }
-    }
-}
-```
-
-<a id="initializeIRDB"></a>
-## *initializeIRDB*
-
-Initializes the IR database
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.netType | integer | The type of network  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.RemoteControl.initializeIRDB",
-    "params": {
-        "netType": 1
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setIRCode"></a>
-## *setIRCode*
-
-Programs an IR code into the specified remote control
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The remote ID of the target remote on the specified network  |
-| params.netType | integer | The type of network  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.code | string | The IR code being programmed into the remote  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.RemoteControl.setIRCode",
-    "params": {
-        "remoteId": 1,
-        "netType": 1,
-        "avDevType": "INVALID",
-        "code": "PANASONIC_3DTV"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "INVALID", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="startFirmwareUpdate"></a>
-## *startFirmwareUpdate*
-
-Starts a firmware image update session for the specified remote(s)
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.macAddress | string | <sup>(optional)</sup>Optional MAC address of the target remote in hex-colon format  |
-| params.fileName | string | The full path and filename for the firmware image  |
-| params?.fileType | string | <sup>(optional)</sup>Optional type of firmware image file  |
-| params?.percentIncrement | integer | <sup>(optional)</sup>Optional increment change of a firmware update to notify. Valid range 1-100 percent  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-| result.sessionIdList | array | List of session IDs created for the firmware update(s) |
-| result.sessionIdList[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.RemoteControl.startFirmwareUpdate",
-    "params": {
-        "macAddress": "AA:BB:CC:DD:EE:FF",
-        "fileName": "/tmp/remote_firmware.bin",
-        "fileType": "mfg",
-        "percentIncrement": 10
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 10}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": {
-        "success": true,
-        "sessionIdList": [
-            ""
-        ]
-    }
-}
-```
-
-<a id="statusFirmwareUpdate"></a>
-## *statusFirmwareUpdate*
-
-Returns the status of an active firmware image update session
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | string | The session identifier  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | object | The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString) |
-| result.response.success | bool | Whether the request succeeded |
-| result.response.status | object | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
-| result.response.status.upgradeSessionId | string | The firmware update session identifier  |
-| result.response.status.macAddress | string | The MAC address of the remote in hex-colon format  |
-| result.response.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
-| result.response.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| result.response.status.errorString | string | The firmware update error string, only present on failure |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.RemoteControl.statusFirmwareUpdate",
-    "params": {
-        "sessionId": "12345-abc-def"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": {
-        "success": true,
-        "status": {
-            "upgradeSessionId": "12345-abc-def",
-            "macAddress": "AA:BB:CC:DD:EE:FF",
-            "upgradeState": "success",
-            "percentComplete": 50,
-            "errorString": ""
-        }
-    }
-}
-```
-
-<a id="unpair"></a>
-## *unpair*
-
-Unpairs all remotes from the STB
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes) |
-| params?.macAddressList[#] | string | <sup>(optional)</sup> |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.RemoteControl.unpair",
-    "params": [
-        ""
-    ]
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="IRemoteControl-Notifications"></a>
-### Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the IRemoteControl Interface:
-
-| Event | Description |
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.netType | integer | mandatory | The type of network ex: 1 |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.status | object | mandatory | The network status data |
+| result.status.netType | integer | mandatory | The type of remote control network ex: 1 |
+| result.status.pairingState | string | mandatory | The pairing state (must be one of the following: *COMPLETE, FAILED, IDLE, INITIALISING, PAIRING, SEARCHING*) |
+| result.status.irProgState | string | mandatory | The IR programming state (must be one of the following: *COMPLETE, FAILED, IDLE, WAITING*) |
+| result.status.netTypesSupported | opaque object | mandatory | JSON array of supported network types e.g. [1] |
+| result.status.remoteData | opaque object | mandatory | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
+
+### Errors
+
+| Message | Description |
 | :-------- | :-------- |
-| [onFirmwareUpdateProgress](#onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
-| [onStatus](#onStatus) | Triggered at any time when the status of any one of the supported STB remote networks changes |
-| [onValidation](#onValidation) | Generated for manual pairing validation |
+| ```ErrorCode::NONE``` | Network status retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve network status. |
 
-<a id="onFirmwareUpdateProgress"></a>
-## *onFirmwareUpdateProgress*
+### Example
 
-Generated at 0 and 100 percent and each time a download percent increment is reached
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | object | Firmware update status including session ID, MAC address, upgrade state, and percent complete |
-| params.status.upgradeSessionId | string | The firmware update session identifier  |
-| params.status.macAddress | string | The MAC address of the remote in hex-colon format  |
-| params.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
-| params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| params.status.errorString | string | The firmware update error string, only present on failure |
-
-### Examples
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
-    "params": {
-        "upgradeSessionId": "12345-abc-def",
-        "macAddress": "AA:BB:CC:DD:EE:FF",
-        "upgradeState": "success",
-        "percentComplete": 50,
-        "errorString": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getNetStatus",
+  "params": {
+    "netType": 0
+  }
 }
 ```
 
-<a id="onStatus"></a>
-## *onStatus*
-
-Triggered at any time when the status of any one of the supported STB remote networks changes
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | object | Network status information including network type, pairing state, and IR programming state |
-| params.status.netType | integer | The type of remote control network  |
-| params.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
-| params.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| params.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
-| params.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.RemoteControl.onStatus",
-    "params": {
-        "netType": 1,
-        "pairingState": "INITIALISING",
-        "irProgState": "IDLE",
-        "netTypesSupported": "",
-        "remoteData": ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "status": {
+      "netType": 0,
+      "pairingState": "IDLE",
+      "irProgState": "WAITING",
+      "netTypesSupported": {},
+      "remoteData": {}
     }
+  }
 }
 ```
 
-<a id="onValidation"></a>
-## *onValidation*
+<a id="method_getIRDBManufacturers"></a>
+## *getIRDBManufacturers [<sup>method</sup>](#head_Methods)*
 
-Generated for manual pairing validation
+Returns a list of manufacturer names based on the specified input parameters.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | object | Validation information including network type and validation digits for manual pairing |
-| params.status.netType | integer | The type of remote control network  |
-| params.status.validationDigit1 | integer | The first validation digit  |
-| params.status.validationDigit2 | integer | The second validation digit  |
-| params.status.validationDigit3 | integer | The third validation digit  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| params.manufacturer | string | mandatory | A part of the name of the manufacturer of the AV device e.g. "Sam" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.manufacturers | array | mandatory | A list of manufacturer names e.g. "Samsung" |
+| result.manufacturers[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IRDB manufacturers retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve IRDB manufacturers. |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.RemoteControl.onValidation",
-    "params": {
-        "netType": 1,
-        "validationDigit1": 1,
-        "validationDigit2": 2,
-        "validationDigit3": 3
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getIRDBManufacturers",
+  "params": {
+    "avDevType": "TV",
+    "manufacturer": "..."
+  }
 }
 ```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "avDevType": "TV",
+    "success": false,
+    "manufacturers": [
+      "..."
+    ]
+  }
+}
+```
+
+<a id="method_getIRDBModels"></a>
+## *getIRDBModels [<sup>method</sup>](#head_Methods)*
+
+Returns a list of model names based on the specified input parameters.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| params.manufacturer | string | mandatory | The manufacturer name of the AV device e.g. "Samsung" |
+| params.model | string | mandatory | A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| result.manufacturer | string | mandatory | The manufacturer name of the AV device e.g. "Samsung" |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.models | array | mandatory | A list of model names e.g. "AH5901068L" |
+| result.models[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IRDB models retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve IRDB models. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getIRDBModels",
+  "params": {
+    "avDevType": "TV",
+    "manufacturer": "...",
+    "model": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "avDevType": "TV",
+    "manufacturer": "...",
+    "success": false,
+    "models": [
+      "..."
+    ]
+  }
+}
+```
+
+<a id="method_getIRCodesByAutoLookup"></a>
+## *getIRCodesByAutoLookup [<sup>method</sup>](#head_Methods)*
+
+Returns a list of available IR codes for the TV and AVRs specified by the input parameters.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.netType | integer | mandatory | The type of network ex: 1 |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.tvManufacturer | string | mandatory | The TV manufacturer for which codes are provided e.g. "Samsung" |
+| result.tvModel | string | mandatory | The TV model for which codes are provided e.g. "UN65JU750" |
+| result.avrManufacturer | string | mandatory | The AVR manufacturer for which codes are provided e.g. "Denon" |
+| result.avrModel | string | mandatory | The AVR model for which codes are provided e.g. "AVR-S750H" |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.tvCodes | array | mandatory | A list of TV IR codes e.g. "1156" |
+| result.tvCodes[#] | string | mandatory | *...* |
+| result.avrCodes | array | mandatory | A list of AVR IR codes e.g. "R2467" |
+| result.avrCodes[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IR codes retrieved successfully by auto lookup. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve IR codes by auto lookup. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getIRCodesByAutoLookup",
+  "params": {
+    "netType": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "tvManufacturer": "...",
+    "tvModel": "...",
+    "avrManufacturer": "...",
+    "avrModel": "...",
+    "success": false,
+    "tvCodes": [
+      "..."
+    ],
+    "avrCodes": [
+      "..."
+    ]
+  }
+}
+```
+
+<a id="method_getIRCodesByNames"></a>
+## *getIRCodesByNames [<sup>method</sup>](#head_Methods)*
+
+Returns a list of IR codes for the AV device specified by the input parameters.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| params.manufacturer | string | mandatory | The manufacturer name of the AV device e.g. "Samsung" |
+| params.model | string | mandatory | A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| result.manufacturer | string | mandatory | The manufacturer name of the AV device e.g. "Samsung" |
+| result.model | string | mandatory | A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6" |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.codes | opaque object | mandatory | A list of IR codes as a string |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IR codes retrieved successfully by names. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve IR codes by names. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getIRCodesByNames",
+  "params": {
+    "avDevType": "TV",
+    "manufacturer": "...",
+    "model": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "avDevType": "TV",
+    "manufacturer": "...",
+    "model": "...",
+    "success": false,
+    "codes": {}
+  }
+}
+```
+
+<a id="method_setIRCode"></a>
+## *setIRCode [<sup>method</sup>](#head_Methods)*
+
+Programs an IR code into the specified remote control.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The remote ID of the target remote on the specified network ex: 1 |
+| params.netType | integer | mandatory | The type of network ex: 1 |
+| params.avDevType | string | mandatory | Whether the device is a video (TV) or audio (AMP) device (must be one of the following: *AMP, INVALID, TV*) |
+| params.code | string | mandatory | The IR code being programmed into the remote e.g. "PANASONIC_3DTV" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IR code set successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to set IR code. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setIRCode",
+  "params": {
+    "remoteId": 0,
+    "netType": 0,
+    "avDevType": "TV",
+    "code": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_clearIRCodes"></a>
+## *clearIRCodes [<sup>method</sup>](#head_Methods)*
+
+Clears the IR codes from the specified remote.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The remote ID of the target remote on the specified network ex: 1 |
+| params.netType | integer | mandatory | The type of network ex: 1 |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IR codes cleared successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to clear IR codes. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.clearIRCodes",
+  "params": {
+    "remoteId": 0,
+    "netType": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getLastKeypressSource"></a>
+## *getLastKeypressSource [<sup>method</sup>](#head_Methods)*
+
+Returns last key press source data.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The last keypress source response |
+| result.controllerId | integer | mandatory | The controller ID of the target remote on the specified network ex: 1 |
+| result.timestamp | integer | mandatory | The time of the last key press in milliseconds since epoch |
+| result.sourceName | string | mandatory | The source of the last key press e.g. "IR" |
+| result.sourceType | string | mandatory | The source type of the last key press e.g. "REMOTE" |
+| result.sourceKeyCode | integer | mandatory | The source key code ex: 195 |
+| result.bIsScreenBindMode | boolean | mandatory | True if in screen bind mode, otherwise false |
+| result.remoteKeypadConfig | integer | mandatory | The configuration of the remote keypad ex: 0 |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Last keypress source retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve last keypress source. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLastKeypressSource"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "controllerId": 0,
+    "timestamp": 0,
+    "sourceName": "...",
+    "sourceType": "...",
+    "sourceKeyCode": 0,
+    "bIsScreenBindMode": false,
+    "remoteKeypadConfig": 0,
+    "success": false
+  }
+}
+```
+
+<a id="method_configureWakeupKeys"></a>
+## *configureWakeupKeys [<sup>method</sup>](#head_Methods)*
+
+Configures which keys on the remote will wake the target from deepsleep.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.wakeupConfig | string | mandatory | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) (must be one of the following: *INVALID, all, custom, none*) |
+| params?.customKeys | string | optional | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted e.g. "195,199" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Wakeup keys configured successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to configure wakeup keys. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.configureWakeupKeys",
+  "params": {
+    "wakeupConfig": "all",
+    "customKeys": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_initializeIRDB"></a>
+## *initializeIRDB [<sup>method</sup>](#head_Methods)*
+
+Initializes the IR database.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.netType | integer | mandatory | The type of network ex: 1 |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | IRDB initialized successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to initialize IRDB. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.initializeIRDB",
+  "params": {
+    "netType": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_findMyRemote"></a>
+## *findMyRemote [<sup>method</sup>](#head_Methods)*
+
+Tells the most recently used remote to beep.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.level | string | mandatory | The level at which the remote will beep (must be one of the following: *INVALID, high, mid, off*) |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Find my remote executed successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to execute find my remote. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.findMyRemote",
+  "params": {
+    "level": "off"
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_factoryReset"></a>
+## *factoryReset [<sup>method</sup>](#head_Methods)*
+
+Tells all paired and connected remotes to factory reset.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Factory reset executed successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to execute factory reset. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.factoryReset"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_unpair"></a>
+## *unpair [<sup>method</sup>](#head_Methods)*
+
+Unpairs all remotes from the STB.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params?.macAddressList | array | optional | *...* |
+| params?.macAddressList[#] | string | optional | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Unpair executed successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to execute unpair. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unpair",
+  "params": {
+    "macAddressList": [
+      "..."
+    ]
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_startFirmwareUpdate"></a>
+## *startFirmwareUpdate [<sup>method</sup>](#head_Methods)*
+
+Starts a firmware image update session for the specified remote(s).
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params?.macAddress | string | optional | *...* |
+| params.fileName | string | mandatory | The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin" |
+| params?.fileType | string | optional | *...* |
+| params?.percentIncrement | integer | optional | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.sessionIdList | array | mandatory | List of session IDs created for the firmware update(s) |
+| result.sessionIdList[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Firmware update started successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to start firmware update. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startFirmwareUpdate",
+  "params": {
+    "macAddress": "...",
+    "fileName": "...",
+    "fileType": "...",
+    "percentIncrement": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "sessionIdList": [
+      "..."
+    ]
+  }
+}
+```
+
+<a id="method_cancelFirmwareUpdate"></a>
+## *cancelFirmwareUpdate [<sup>method</sup>](#head_Methods)*
+
+Cancels an active firmware image update session.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.sessionId | string | mandatory | The session identifier e.g. "12345-abc-def" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Firmware update cancelled successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to cancel firmware update. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.cancelFirmwareUpdate",
+  "params": {
+    "sessionId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_statusFirmwareUpdate"></a>
+## *statusFirmwareUpdate [<sup>method</sup>](#head_Methods)*
+
+Returns the status of an active firmware image update session.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.sessionId | string | mandatory | The session identifier e.g. "12345-abc-def" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The firmware update status with success at top level and details nested under status (upgradeSessionId, macAddress, upgradeState, percentComplete, optional errorString) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.status | object | mandatory | The firmware update status details including session ID, MAC address, upgrade state, and percent complete |
+| result.status.upgradeSessionId | string | mandatory | The firmware update session identifier ex: 12345-abc-def |
+| result.status.macAddress | string | mandatory | The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" |
+| result.status.upgradeState | string | mandatory | The firmware update state (must be one of the following: *canceled, error, idle, invalid, pending, retrying, success*) |
+| result.status.percentComplete | integer | mandatory | The estimated percentage of the firmware update that has completed (0-100) ex: 50 |
+| result.status?.errorString | string | optional | The firmware update error string, only present on failure |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Firmware update status retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve firmware update status. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.statusFirmwareUpdate",
+  "params": {
+    "sessionId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "status": {
+      "upgradeSessionId": "...",
+      "macAddress": "...",
+      "upgradeState": "idle",
+      "percentComplete": 0,
+      "errorString": "..."
+    }
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the RemoteControl interface:
+
+RemoteControl interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onStatus](#notification_onStatus) | Triggered at any time when the status of any one of the supported STB remote networks changes |
+| [onValidation](#notification_onValidation) | Generated for manual pairing validation |
+| [onFirmwareUpdateProgress](#notification_onFirmwareUpdateProgress) | Generated at 0 and 100 percent and each time a download percent increment is reached |
+
+<a id="notification_onStatus"></a>
+## *onStatus [<sup>notification</sup>](#head_Notifications)*
+
+Triggered at any time when the status of any one of the supported STB remote networks changes.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | object | mandatory | Network status information including network type, pairing state, and IR programming state |
+| params.status.netType | integer | mandatory | The type of remote control network ex: 1 |
+| params.status.pairingState | string | mandatory | The pairing state (must be one of the following: *COMPLETE, FAILED, IDLE, INITIALISING, PAIRING, SEARCHING*) |
+| params.status.irProgState | string | mandatory | The IR programming state (must be one of the following: *COMPLETE, FAILED, IDLE, WAITING*) |
+| params.status.netTypesSupported | opaque object | mandatory | JSON array of supported network types e.g. [1] |
+| params.status.remoteData | opaque object | mandatory | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onStatus",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onStatus",
+  "params": {
+    "status": {
+      "netType": 0,
+      "pairingState": "IDLE",
+      "irProgState": "WAITING",
+      "netTypesSupported": {},
+      "remoteData": {}
+    }
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onStatus``.
+
+<a id="notification_onValidation"></a>
+## *onValidation [<sup>notification</sup>](#head_Notifications)*
+
+Generated for manual pairing validation.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | object | mandatory | Validation information including network type and validation digits for manual pairing |
+| params.status.netType | integer | mandatory | The type of remote control network ex: 1 |
+| params.status.validationDigit1 | integer | mandatory | The first validation digit ex: 1 |
+| params.status.validationDigit2 | integer | mandatory | The second validation digit ex: 2 |
+| params.status.validationDigit3 | integer | mandatory | The third validation digit ex: 3 |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onValidation",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onValidation",
+  "params": {
+    "status": {
+      "netType": 0,
+      "validationDigit1": 0,
+      "validationDigit2": 0,
+      "validationDigit3": 0
+    }
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onValidation``.
+
+<a id="notification_onFirmwareUpdateProgress"></a>
+## *onFirmwareUpdateProgress [<sup>notification</sup>](#head_Notifications)*
+
+Generated at 0 and 100 percent and each time a download percent increment is reached.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | object | mandatory | Firmware update status including session ID, MAC address, upgrade state, and percent complete |
+| params.status.upgradeSessionId | string | mandatory | The firmware update session identifier ex: 12345-abc-def |
+| params.status.macAddress | string | mandatory | The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" |
+| params.status.upgradeState | string | mandatory | The firmware update state (must be one of the following: *canceled, error, idle, invalid, pending, retrying, success*) |
+| params.status.percentComplete | integer | mandatory | The estimated percentage of the firmware update that has completed (0-100) ex: 50 |
+| params.status?.errorString | string | optional | The firmware update error string, only present on failure |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFirmwareUpdateProgress",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onFirmwareUpdateProgress",
+  "params": {
+    "status": {
+      "upgradeSessionId": "...",
+      "macAddress": "...",
+      "upgradeState": "idle",
+      "percentComplete": 0,
+      "errorString": "..."
+    }
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFirmwareUpdateProgress``.
 

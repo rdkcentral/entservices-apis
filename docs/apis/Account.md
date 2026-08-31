@@ -1,158 +1,171 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Account_Module"></a>
-# Account Module
+<a id="head_Account_API"></a>
+# Account API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Account/IAccount.h)**
+**Version: 1.0.0**
 
-A Account module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+Account interface for Thunder framework.
+
+(Defined with IAccount in [IAccount.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IAccount.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IAccount](#IAccount)
-    - [Methods](#IAccount-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the Account interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `Account` module provides the following interface(s):
+Account JSON-RPC interface.
 
-- IAccount
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the Account interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.Account) |
-| classname | string | Class name: *Account* |
-| locator | string | Library name: *libWPEFrameworkAccount.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IAccount"></a>
-## IAccount Interface
-
-<a id="IAccount-Methods"></a>
-### Methods
-
-The following methods are provided by the IAccount Interface:
+Account interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getLastCheckoutResetTime](#getLastCheckoutResetTime) | Gets the last reset time for Hotel Checkout. |
-| [setLastCheckoutResetTime](#setLastCheckoutResetTime) | Sets the last reset time for Hotel Checkout. |
+| [getLastCheckoutResetTime](#method_getLastCheckoutResetTime) | Gets the last reset time for Hotel Checkout |
+| [setLastCheckoutResetTime](#method_setLastCheckoutResetTime) | Sets the last reset time for Hotel Checkout |
 
-<a id="getLastCheckoutResetTime"></a>
-## *getLastCheckoutResetTime*
+<a id="method_getLastCheckoutResetTime"></a>
+## *getLastCheckoutResetTime [<sup>method</sup>](#head_Methods)*
 
 Gets the last reset time for Hotel Checkout.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.resetTime | integer | Time in UTC. Returns 0, if time is not available. |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Time in UTC. Returns 0, if time is not available |
+| result.resetTime | integer | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Last Checkout reset time is successfully retrieved |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.Account.getLastCheckoutResetTime"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLastCheckoutResetTime"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Account.getLastCheckoutResetTime"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "resetTime": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "resetTime": 0
+  }
 }
 ```
 
-<a id="setLastCheckoutResetTime"></a>
-## *setLastCheckoutResetTime*
+<a id="method_setLastCheckoutResetTime"></a>
+## *setLastCheckoutResetTime [<sup>method</sup>](#head_Methods)*
 
 Sets the last reset time for Hotel Checkout.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.resetTime | integer | Time in UTC. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.resetTime | integer | mandatory | Time in UTC |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Last Checkout reset time is successfully set |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.Account.setLastCheckoutResetTime",
-    "params": {
-        "resetTime": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setLastCheckoutResetTime",
+  "params": {
+    "resetTime": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Account.setLastCheckoutResetTime", "params": {"resetTime": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 

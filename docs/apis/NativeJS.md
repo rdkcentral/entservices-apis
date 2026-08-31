@@ -1,318 +1,292 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="NativeJS_Module"></a>
-# NativeJS Module
+<a id="head_NativeJS_API"></a>
+# NativeJS API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/NativeJS/INativeJS.h)**
+**Version: 1.0.0**
 
-A NativeJS module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+NativeJS interface for Thunder framework.
+
+(Defined with INativeJS in [INativeJS.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/INativeJS.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [INativeJS](#INativeJS)
-    - [Methods](#INativeJS-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the NativeJS interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `NativeJS` module provides the following interface(s):
+NativeJS JSON-RPC interface.
 
-- INativeJS
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the NativeJS interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.NativeJS) |
-| classname | string | Class name: *NativeJS* |
-| locator | string | Library name: *libWPEFrameworkNativeJS.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="INativeJS"></a>
-## INativeJS Interface
-
-<a id="INativeJS-Methods"></a>
-### Methods
-
-The following methods are provided by the INativeJS Interface:
+NativeJS interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [createApplication](#createApplication) | Create a NativeJS application. |
-| [getApplications](#getApplications) | Get details of existing plugin. |
-| [runApplication](#runApplication) | run a NativeJS application. |
-| [runJavaScript](#runJavaScript) | run a NativeJS code. |
-| [terminateApplication](#terminateApplication) | Destroy a running NativeJS application. |
+| [createApplication](#method_createApplication) | Create a NativeJS application |
+| [runApplication](#method_runApplication) | run a NativeJS application |
+| [runJavaScript](#method_runJavaScript) | run a NativeJS code |
+| [getApplications](#method_getApplications) | Get details of existing plugin |
+| [terminateApplication](#method_terminateApplication) | Destroy a running NativeJS application |
 
-<a id="createApplication"></a>
-## *createApplication*
+<a id="method_createApplication"></a>
+## *createApplication [<sup>method</sup>](#head_Methods)*
 
 Create a NativeJS application.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.options | string | Additional options for creating the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.id | integer | This should have the id of the created application |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.options | string | mandatory | Additional options for creating the application |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | integer | mandatory | This should have the id of the created application |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.NativeJS.createApplication",
-    "params": {
-        "options": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.createApplication",
+  "params": {
+    "options": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.NativeJS.createApplication", "params": {"options": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "id": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
 }
 ```
 
-<a id="getApplications"></a>
-## *getApplications*
-
-Get details of existing plugin.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.NativeJS.getApplications"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.NativeJS.getApplications"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
-}
-```
-
-<a id="runApplication"></a>
-## *runApplication*
+<a id="method_runApplication"></a>
+## *runApplication [<sup>method</sup>](#head_Methods)*
 
 run a NativeJS application.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.id | integer | The ID for the application to run. |
-| params.url | string | URL for the application to run. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.id | integer | mandatory | The ID for the application to run |
+| params.url | string | mandatory | URL for the application to run |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.NativeJS.runApplication",
-    "params": {
-        "id": 0,
-        "url": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.runApplication",
+  "params": {
+    "id": 0,
+    "url": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.NativeJS.runApplication", "params": {"id": 0, "url": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="runJavaScript"></a>
-## *runJavaScript*
+<a id="method_runJavaScript"></a>
+## *runJavaScript [<sup>method</sup>](#head_Methods)*
 
 run a NativeJS code.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.id | integer | The ID for the code to run. |
-| params.code | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.id | integer | mandatory | The ID for the code to run |
+| params.code | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.NativeJS.runJavaScript",
-    "params": {
-        "id": 0,
-        "code": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.runJavaScript",
+  "params": {
+    "id": 0,
+    "code": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.NativeJS.runJavaScript", "params": {"id": 0, "code": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="terminateApplication"></a>
-## *terminateApplication*
+<a id="method_getApplications"></a>
+## *getApplications [<sup>method</sup>](#head_Methods)*
+
+Get details of existing plugin.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getApplications"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_terminateApplication"></a>
+## *terminateApplication [<sup>method</sup>](#head_Methods)*
 
 Destroy a running NativeJS application.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.id | integer | The ID of the application to destroy. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.id | integer | mandatory | The ID of the application to destroy |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.NativeJS.terminateApplication",
-    "params": {
-        "id": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.terminateApplication",
+  "params": {
+    "id": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.NativeJS.terminateApplication", "params": {"id": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 

@@ -1,243 +1,265 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PreinstallManager_Module"></a>
-# PreinstallManager Module
+<a id="head_PreinstallManager_API"></a>
+# PreinstallManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PreinstallManager/IPreinstallManager.h)**
+**Version: 1.0.0**
 
-A PreinstallManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+PreinstallManager interface for Thunder framework.
+
+(Defined with IPreinstallManager in [IPreinstallManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IPreinstallManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IPreinstallManager](#IPreinstallManager)
-    - [Methods](#IPreinstallManager-Methods)
-    - [Notifications](#IPreinstallManager-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the PreinstallManager interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `PreinstallManager` module provides the following interface(s):
+PreinstallManager JSON-RPC interface.
 
-- IPreinstallManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the PreinstallManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.PreinstallManager) |
-| classname | string | Class name: *PreinstallManager* |
-| locator | string | Library name: *libWPEFrameworkPreinstallManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IPreinstallManager"></a>
-## IPreinstallManager Interface
-
-<a id="IPreinstallManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IPreinstallManager Interface:
+PreinstallManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getPreinstallState](#getPreinstallState) | Provides the state of the preinstallation process. |
-| [startPreinstall](#startPreinstall) | Checks the preinstall directory for packages to be preinstalled and installs them as needed. |
+| [startPreinstall](#method_startPreinstall) | Checks the preinstall directory for packages to be preinstalled and installs them as needed |
+| [getPreinstallState](#method_getPreinstallState) | Provides the state of the preinstallation process |
 
-<a id="getPreinstallState"></a>
-## *getPreinstallState*
-
-Provides the state of the preinstallation process.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | Value can be NOT_STARTED/IN_PROGRESS/COMPLETED. Possible values: NOT_STARTED, IN_PROGRESS, COMPLETED |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.PreinstallManager.getPreinstallState"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PreinstallManager.getPreinstallState"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "state": "NOT_STARTED"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Failed to retrieve the preinstallation state."
-    }
-}
-```
-
-<a id="startPreinstall"></a>
-## *startPreinstall*
+<a id="method_startPreinstall"></a>
+## *startPreinstall [<sup>method</sup>](#head_Methods)*
 
 Checks the preinstall directory for packages to be preinstalled and installs them as needed.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.forceInstall | bool | If true always install the app; if false then install only if not installed or existing is older version |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.forceInstall | boolean | mandatory | If true always install the app; if false then install only if not installed or existing is older version |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Preinstallation completed or started successfully. |
+| ```Core::ERROR_GENERAL``` | An error occurred while starting or running preinstallation. |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.PreinstallManager.startPreinstall",
-    "params": {
-        "forceInstall": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startPreinstall",
+  "params": {
+    "forceInstall": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PreinstallManager.startPreinstall", "params": {"forceInstall": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
+<a id="method_getPreinstallState"></a>
+## *getPreinstallState [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (Core::ERROR_GENERAL)
+Provides the state of the preinstallation process.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | *...* (must be one of the following: *COMPLETED, IN_PROGRESS, NOT_STARTED*) |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | State retrieved successfully. |
+| ```Core::ERROR_GENERAL``` | Failed to retrieve the preinstallation state. |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "An error occurred while starting or running preinstallation."
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getPreinstallState"
 }
 ```
 
-<a id="IPreinstallManager-Notifications"></a>
-### Notifications
+#### Response
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "IN_PROGRESS"
+}
+```
 
-The following events are provided by the IPreinstallManager Interface:
+<a id="head_Notifications"></a>
+# Notifications
 
-| Event | Description |
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the PreinstallManager interface:
+
+PreinstallManager interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onAppInstallationStatus](#onAppInstallationStatus)<sup>deprecated</sup> | Emitted when the installation of a preinstalled app succeeds or fails. |
-| [onPreinstallationComplete](#onPreinstallationComplete) | Emitted when the preinstallation process completes |
+| [onAppInstallationStatus](#notification_onAppInstallationStatus) <sup>deprecated</sup> | Emitted when the installation of a preinstalled app succeeds or fails |
+| [onPreinstallationComplete](#notification_onPreinstallationComplete) | Emitted when the preinstallation process completes |
 
-<a id="onAppInstallationStatus"></a>
-## *onAppInstallationStatus*
+<a id="notification_onAppInstallationStatus"></a>
+## *onAppInstallationStatus [<sup>notification</sup>](#head_Notifications)*
 
 Emitted when the installation of a preinstalled app succeeds or fails.
 
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
+> ``onAppInstallationStatus`` is an alternative name for this notification. This name is **deprecated** and may be removed in the future. It is not recommended for use in new implementations.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.jsonresponse | string | Output installation status details as string object |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.jsonresponse | opaque object | mandatory | Output installation status details as string object |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.PreinstallManager.onAppInstallationStatus",
-    "params": {
-        "jsonresponse": ""
-    }
-}
-```
+### Example
 
-<a id="onPreinstallationComplete"></a>
-## *onPreinstallationComplete*
-
-Emitted when the preinstallation process completes
-
-### Parameters
-This method takes no parameters.
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.PreinstallManager.onPreinstallationComplete"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppInstallationStatus",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAppInstallationStatus",
+  "params": {
+    "jsonresponse": {}
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppInstallationStatus``.
+
+<a id="notification_onPreinstallationComplete"></a>
+## *onPreinstallationComplete [<sup>notification</sup>](#head_Notifications)*
+
+Emitted when the preinstallation process completes.
+
+### Notification Parameters
+
+This notification carries no parameters.
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onPreinstallationComplete",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onPreinstallationComplete"
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onPreinstallationComplete``.
 

@@ -1,474 +1,449 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DownloadManager_Module"></a>
-# DownloadManager Module
+<a id="head_DownloadManager_API"></a>
+# DownloadManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DownloadManager/IDownloadManager.h)**
+**Version: 1.0.0**
 
-A DownloadManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+DownloadManager interface for Thunder framework.
+
+(Defined with IDownloadManager in [IDownloadManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IDownloadManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IDownloadManager](#IDownloadManager)
-    - [Methods](#IDownloadManager-Methods)
-    - [Notifications](#IDownloadManager-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the DownloadManager interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `DownloadManager` module provides the following interface(s):
+DownloadManager JSON-RPC interface.
 
-- IDownloadManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the DownloadManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.DownloadManager) |
-| classname | string | Class name: *DownloadManager* |
-| locator | string | Library name: *libWPEFrameworkDownloadManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IDownloadManager"></a>
-## IDownloadManager Interface
-
-<a id="IDownloadManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IDownloadManager Interface:
+DownloadManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [cancel](#cancel) | Cancel an ongoing download session |
-| [delete](#delete) | Delete a downloaded file from the system using its locator path |
-| [download](#download) | Download Start downloading a file from a specified URL with custom options |
-| [pause](#pause) | Pause an active download session |
-| [progress](#progress) | Progress Query current download progress |
-| [rateLimit](#rateLimit) | RateLimit Set rate limiting for a specific download session |
-| [resume](#resume) | Resume a paused download session |
+| [download](#method_download) | Download Start downloading a file from a specified URL with custom options |
+| [pause](#method_pause) | Pause an active download session |
+| [resume](#method_resume) | Resume a paused download session |
+| [cancel](#method_cancel) | Cancel an ongoing download session |
+| [delete](#method_delete) | Delete a downloaded file from the system using its locator path |
+| [progress](#method_progress) | Progress Query current download progress |
+| [rateLimit](#method_rateLimit) | RateLimit Set rate limiting for a specific download session |
 
-<a id="cancel"></a>
-## *cancel*
+<a id="method_download"></a>
+## *download [<sup>method</sup>](#head_Methods)*
 
-Cancel an ongoing download session
+Download Start downloading a file from a specified URL with custom options.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadId | string | Unique identifier of the download to cancel |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.url | string | mandatory | URL from which the file is to be downloaded |
+| params.options | object | mandatory | Options controlling download behavior |
+| params.options.priority | boolean | mandatory | Adds the download request to either a priority queue (true) or regular queue (false) |
+| params.options.retries | integer | mandatory | Retries Number of retry attempts allowed for failed downloads (the default retries is 2) |
+| params.options.rateLimit | integer | mandatory | RateLimit Maximum bandwidth allowed for the download (bytes per second) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | Output parameter that returns the assigned download ID |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.DownloadManager.cancel",
-    "params": {
-        "downloadId": ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.download",
+  "params": {
+    "url": "...",
+    "options": {
+      "priority": false,
+      "retries": 0,
+      "rateLimit": 0
     }
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DownloadManager.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 
-<a id="delete"></a>
-## *delete*
+<a id="method_pause"></a>
+## *pause [<sup>method</sup>](#head_Methods)*
 
-Delete a downloaded file from the system using its locator path
+Pause an active download session.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.fileLocator | string | File path or locator of the file to be deleted |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadId | string | mandatory | Unique identifier of the download to pause |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.DownloadManager.delete",
-    "params": {
-        "fileLocator": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.pause",
+  "params": {
+    "downloadId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DownloadManager.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="download"></a>
-## *download*
+<a id="method_resume"></a>
+## *resume [<sup>method</sup>](#head_Methods)*
 
-Download Start downloading a file from a specified URL with custom options
+Resume a paused download session.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.url | string | URL from which the file is to be downloaded |
-| params.options | object | Options controlling download behavior |
-| params.options.priority | bool |  |
-| params.options.retries | integer |  |
-| params.options.rateLimit | integer |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.downloadId | string | Output parameter that returns the assigned download ID |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadId | string | mandatory | Unique identifier of the download to resume |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.DownloadManager.download",
-    "params": {
-        "url": "",
-        "options": {
-            "priority": true,
-            "retries": 0,
-            "rateLimit": 0
-        }
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.resume",
+  "params": {
+    "downloadId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DownloadManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "downloadId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="pause"></a>
-## *pause*
+<a id="method_cancel"></a>
+## *cancel [<sup>method</sup>](#head_Methods)*
 
-Pause an active download session
+Cancel an ongoing download session.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadId | string | Unique identifier of the download to pause |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadId | string | mandatory | Unique identifier of the download to cancel |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.DownloadManager.pause",
-    "params": {
-        "downloadId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.cancel",
+  "params": {
+    "downloadId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DownloadManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="progress"></a>
-## *progress*
+<a id="method_delete"></a>
+## *delete [<sup>method</sup>](#head_Methods)*
 
-Progress Query current download progress
+Delete a downloaded file from the system using its locator path.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadId | string | Unique identifier of the download |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.percent | integer | Output parameter returning percentage completed |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.fileLocator | string | mandatory | File path or locator of the file to be deleted |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.DownloadManager.progress",
-    "params": {
-        "downloadId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.delete",
+  "params": {
+    "fileLocator": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DownloadManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "percent": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="rateLimit"></a>
-## *rateLimit*
+<a id="method_progress"></a>
+## *progress [<sup>method</sup>](#head_Methods)*
 
-RateLimit Set rate limiting for a specific download session
+Progress Query current download progress.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadId | string | Unique identifier of the download |
-| params.limit | integer | Maximum bandwidth in bytes per second (0 = unlimited) |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadId | string | mandatory | Unique identifier of the download |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | integer | mandatory | Output parameter returning percentage completed |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.DownloadManager.rateLimit",
-    "params": {
-        "downloadId": "",
-        "limit": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.progress",
+  "params": {
+    "downloadId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DownloadManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
 }
 ```
 
-<a id="resume"></a>
-## *resume*
+<a id="method_rateLimit"></a>
+## *rateLimit [<sup>method</sup>](#head_Methods)*
 
-Resume a paused download session
+RateLimit Set rate limiting for a specific download session.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadId | string | Unique identifier of the download to resume |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadId | string | mandatory | Unique identifier of the download |
+| params.limit | integer | mandatory | Maximum bandwidth in bytes per second (0 = unlimited) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.DownloadManager.resume",
-    "params": {
-        "downloadId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.rateLimit",
+  "params": {
+    "downloadId": "...",
+    "limit": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DownloadManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="IDownloadManager-Notifications"></a>
-### Notifications
+<a id="head_Notifications"></a>
+# Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IDownloadManager Interface:
+The following events are provided by the DownloadManager interface:
 
-| Event | Description |
+DownloadManager interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onAppDownloadStatus](#onAppDownloadStatus) | OnAppDownloadStatus Callback for status changes of app downloads |
+| [onAppDownloadStatus](#notification_onAppDownloadStatus) | OnAppDownloadStatus Callback for status changes of app downloads |
 
-<a id="onAppDownloadStatus"></a>
-## *onAppDownloadStatus*
+<a id="notification_onAppDownloadStatus"></a>
+## *onAppDownloadStatus [<sup>notification</sup>](#head_Notifications)*
 
-OnAppDownloadStatus Callback for status changes of app downloads
+OnAppDownloadStatus Callback for status changes of app downloads.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.downloadStatus | string | [JSON string] Download status of a queued download request, includes downloadId, fileLocator, failReason (enum) |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.downloadStatus | string | mandatory | : [JSON string] Download status of a queued download request, includes downloadId, fileLocator, failReason (enum) |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.DownloadManager.onAppDownloadStatus",
-    "params": {
-        "downloadStatus": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppDownloadStatus",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAppDownloadStatus",
+  "params": {
+    "downloadStatus": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppDownloadStatus``.
 

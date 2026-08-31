@@ -1,380 +1,377 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DeviceDiagnostics_Module"></a>
-# DeviceDiagnostics Module
+<a id="head_DeviceDiagnostics_API"></a>
+# DeviceDiagnostics API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics/IDeviceDiagnostics.h)**
+**Version: 1.0.0**
 
-A DeviceDiagnostics module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+DeviceDiagnostics interface for Thunder framework.
+
+(Defined with IDeviceDiagnostics in [IDeviceDiagnostics.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IDeviceDiagnostics.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IDeviceDiagnostics](#IDeviceDiagnostics)
-    - [Methods](#IDeviceDiagnostics-Methods)
-    - [Notifications](#IDeviceDiagnostics-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the DeviceDiagnostics interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `DeviceDiagnostics` module provides the following interface(s):
+DeviceDiagnostics JSON-RPC interface.
 
-- IDeviceDiagnostics
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the DeviceDiagnostics interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.DeviceDiagnostics) |
-| classname | string | Class name: *DeviceDiagnostics* |
-| locator | string | Library name: *libWPEFrameworkDeviceDiagnostics.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IDeviceDiagnostics"></a>
-## IDeviceDiagnostics Interface
-
-<a id="IDeviceDiagnostics-Methods"></a>
-### Methods
-
-The following methods are provided by the IDeviceDiagnostics Interface:
+DeviceDiagnostics interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getAVDecoderStatus](#getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
-| [getConfiguration](#getConfiguration) | Gets the values associated with the corresponding property names |
-| [getMilestones](#getMilestones) | Returns the list of milestones |
-| [getPreviousRebootInfo](#getPreviousRebootInfo) | Returns information about the previous reboot including timestamp, source, and reason |
-| [logMilestone](#logMilestone) | Log marker string to rdk milestones log |
+| [getConfiguration](#method_getConfiguration) | Gets the values associated with the corresponding property names |
+| [getMilestones](#method_getMilestones) | Returns the list of milestones |
+| [logMilestone](#method_logMilestone) | Log marker string to rdk milestones log |
+| [getAVDecoderStatus](#method_getAVDecoderStatus) | Gets the most active status of audio/video decoder/pipeline |
+| [getPreviousRebootInfo](#method_getPreviousRebootInfo) | Returns information about the previous reboot including timestamp, source, and reason |
 
-<a id="getAVDecoderStatus"></a>
-## *getAVDecoderStatus*
+<a id="method_getConfiguration"></a>
+## *getConfiguration [<sup>method</sup>](#head_Methods)*
 
-Gets the most active status of audio/video decoder/pipeline
+Gets the values associated with the corresponding property names.
 
-### Events Triggered
-None
 ### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.avDecoderStatus | string |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.names | array | mandatory | - in - String array of property names |
+| params.names[#] | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.paramList | array | mandatory | - out - specified properties and their values |
+| result.paramList[#] | object | mandatory | *...* |
+| result.paramList[#].name | string | mandatory | *...* |
+| result.paramList[#].value | string | mandatory | *...* |
+| result.success | boolean | mandatory | - out - boolean |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceDiagnostics.getAVDecoderStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "avDecoderStatus": ""
-    }
-}
-```
-
-<a id="getConfiguration"></a>
-## *getConfiguration*
-
-Gets the values associated with the corresponding property names
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.names | array | String array of property names |
-| params.names[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.paramList | array | specified properties and their values |
-| result.paramList[#].name | string | name |
-| result.paramList[#].value | string | value |
-| result.success | bool | boolean |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.DeviceDiagnostics.getConfiguration",
-    "params": [
-        ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getConfiguration",
+  "params": {
+    "names": [
+      "..."
     ]
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "paramList": [
-            {
-                "name": "",
-                "value": ""
-            }
-        ],
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "paramList": [
+      {
+        "name": "...",
+        "value": "..."
+      }
+    ],
+    "success": false
+  }
 }
 ```
 
-<a id="getMilestones"></a>
-## *getMilestones*
+<a id="method_getMilestones"></a>
+## *getMilestones [<sup>method</sup>](#head_Methods)*
 
-Returns the list of milestones
+Returns the list of milestones.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.milestones | array | A string [] of milestones |
-| result.milestones[#] | string |  |
-| result.success | bool | boolean |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.milestones | array | mandatory | - out - A string [] of milestones |
+| result.milestones[#] | string | mandatory | *...* |
+| result.success | boolean | mandatory | - out - boolean |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.DeviceDiagnostics.getMilestones"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMilestones"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceDiagnostics.getMilestones"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "milestones": [
-            ""
-        ],
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "milestones": [
+      "..."
+    ],
+    "success": false
+  }
 }
 ```
 
-<a id="getPreviousRebootInfo"></a>
-## *getPreviousRebootInfo*
+<a id="method_logMilestone"></a>
+## *logMilestone [<sup>method</sup>](#head_Methods)*
 
-Returns information about the previous reboot including timestamp, source, and reason
+Log marker string to rdk milestones log.
 
-### Events Triggered
-None
 ### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.marker | string | mandatory | - in - string |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | - out - boolean |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.logMilestone",
+  "params": {
+    "marker": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
+}
+```
+
+<a id="method_getAVDecoderStatus"></a>
+## *getAVDecoderStatus [<sup>method</sup>](#head_Methods)*
+
+Gets the most active status of audio/video decoder/pipeline.
+
+### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.rebootInfo | object | Contains previous reboot information |
-| result.rebootInfo.timestamp | string | timestamp |
-| result.rebootInfo.source | string | source |
-| result.rebootInfo.reason | string | reason |
-| result.rebootInfo.customReason | string | customReason |
-| result.rebootInfo.otherReason | string | otherReason |
-| result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
-| result.success | bool | Indicates whether the operation was successful |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | - out |
+| result.avDecoderStatus | string | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getAVDecoderStatus"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DeviceDiagnostics.getPreviousRebootInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "rebootInfo": {
-            "timestamp": "",
-            "source": "",
-            "reason": "",
-            "customReason": "",
-            "otherReason": "",
-            "lastHardPowerReset": ""
-        },
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "avDecoderStatus": "..."
+  }
 }
 ```
 
-<a id="logMilestone"></a>
-## *logMilestone*
+<a id="method_getPreviousRebootInfo"></a>
+## *getPreviousRebootInfo [<sup>method</sup>](#head_Methods)*
 
-Log marker string to rdk milestones log
+Returns information about the previous reboot including timestamp, source, and reason.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.marker | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | boolean |
 
-### Examples
+This method takes no parameters.
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.rebootInfo | object | mandatory | Contains previous reboot information |
+| result.rebootInfo.timestamp | string | mandatory | *...* |
+| result.rebootInfo.source | string | mandatory | *...* |
+| result.rebootInfo.reason | string | mandatory | *...* |
+| result.rebootInfo.customReason | string | mandatory | *...* |
+| result.rebootInfo.otherReason | string | mandatory | *...* |
+| result.rebootInfo.lastHardPowerReset | string | mandatory | *...* |
+| result.success | boolean | mandatory | Indicates whether the operation was successful |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.DeviceDiagnostics.logMilestone",
-    "params": {
-        "marker": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getPreviousRebootInfo"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "rebootInfo": {
+      "timestamp": "...",
+      "source": "...",
+      "reason": "...",
+      "customReason": "...",
+      "otherReason": "...",
+      "lastHardPowerReset": "..."
+    },
+    "success": false
+  }
 }
 ```
 
-<a id="IDeviceDiagnostics-Notifications"></a>
-### Notifications
+<a id="head_Notifications"></a>
+# Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IDeviceDiagnostics Interface:
+The following events are provided by the DeviceDiagnostics interface:
 
-| Event | Description |
+DeviceDiagnostics interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onAVDecoderStatusChanged](#onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
+| [onAVDecoderStatusChanged](#notification_onAVDecoderStatusChanged) | Triggered when the most active status of audio/video decoder/pipeline changes |
 
-<a id="onAVDecoderStatusChanged"></a>
-## *onAVDecoderStatusChanged*
+<a id="notification_onAVDecoderStatusChanged"></a>
+## *onAVDecoderStatusChanged [<sup>notification</sup>](#head_Notifications)*
 
-Triggered when the most active status of audio/video decoder/pipeline changes
+Triggered when the most active status of audio/video decoder/pipeline changes.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.avDecoderStatusChange | string | string |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.avDecoderStatusChange | string | mandatory | - in - string |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.DeviceDiagnostics.onAVDecoderStatusChanged",
-    "params": {
-        "avDecoderStatusChange": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAVDecoderStatusChanged",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAVDecoderStatusChanged",
+  "params": {
+    "avDecoderStatusChange": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAVDecoderStatusChanged``.
 

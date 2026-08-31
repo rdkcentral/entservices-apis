@@ -1,209 +1,230 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="ScreenCapture_Module"></a>
-# ScreenCapture Module
+<a id="head_ScreenCapture_API"></a>
+# ScreenCapture API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ScreenCapture/IScreenCapture.h)**
+**Version: 1.0.0**
 
-A ScreenCapture module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+ScreenCapture interface for Thunder framework.
+
+(Defined with IScreenCapture in [IScreenCapture.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IScreenCapture.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IScreenCapture](#IScreenCapture)
-    - [Methods](#IScreenCapture-Methods)
-    - [Notifications](#IScreenCapture-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the ScreenCapture interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `ScreenCapture` module provides the following interface(s):
+ScreenCapture JSON-RPC interface.
 
-- IScreenCapture
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the ScreenCapture interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.ScreenCapture) |
-| classname | string | Class name: *ScreenCapture* |
-| locator | string | Library name: *libWPEFrameworkScreenCapture.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IScreenCapture"></a>
-## IScreenCapture Interface
-
-<a id="IScreenCapture-Methods"></a>
-### Methods
-
-The following methods are provided by the IScreenCapture Interface:
+ScreenCapture interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
-| [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+| [uploadScreenCapture](#method_uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
+| [sendScreenshot](#method_sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
 
-<a id="sendScreenshot"></a>
-## *sendScreenshot*
+<a id="method_uploadScreenCapture"></a>
+## *uploadScreenCapture [<sup>method</sup>](#head_Methods)*
 
-Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+Takes a screenshot and uploads it to the specified URL.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.callGUID | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.url | string | mandatory | - in - string |
+| params.callGUID | string | mandatory | - in - string |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.ScreenCapture.sendScreenshot",
-    "params": {
-        "callGUID": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.uploadScreenCapture",
+  "params": {
+    "url": "...",
+    "callGUID": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="uploadScreenCapture"></a>
-## *uploadScreenCapture*
+<a id="method_sendScreenshot"></a>
+## *sendScreenshot [<sup>method</sup>](#head_Methods)*
 
-Takes a screenshot and uploads it to the specified URL
+Takes a screenshot and uploads it to the specified URL.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.url | string | string |
-| params.callGUID | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.callGUID | string | mandatory | -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | - Whether the request succeeded |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.ScreenCapture.uploadScreenCapture",
-    "params": {
-        "url": "",
-        "callGUID": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.sendScreenshot",
+  "params": {
+    "callGUID": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="IScreenCapture-Notifications"></a>
-### Notifications
+<a id="head_Notifications"></a>
+# Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IScreenCapture Interface:
+The following events are provided by the ScreenCapture interface:
 
-| Event | Description |
+ScreenCapture interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [uploadComplete](#uploadComplete) | Triggered after uploading a screen capture |
+| [uploadComplete](#notification_uploadComplete) | Triggered after uploading a screen capture |
 
-<a id="uploadComplete"></a>
-## *uploadComplete*
+<a id="notification_uploadComplete"></a>
+## *uploadComplete [<sup>notification</sup>](#head_Notifications)*
 
-Triggered after uploading a screen capture
+Triggered after uploading a screen capture.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | bool | boolean |
-| params.message | string | string |
-| params.call_guid | string | string |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | boolean | mandatory | - in - boolean |
+| params.message | string | mandatory | - in - string |
+| params.call_guid | string | mandatory | - in - string |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.ScreenCapture.uploadComplete",
-    "params": {
-        "status": true,
-        "message": "",
-        "call_guid": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "uploadComplete",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.uploadComplete",
+  "params": {
+    "status": false,
+    "message": "...",
+    "call_guid": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.uploadComplete``.
 

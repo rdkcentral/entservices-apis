@@ -1,3901 +1,3530 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="SystemServices_Module"></a>
-# SystemServices Module
+<a id="head_SystemServices_API"></a>
+# SystemServices API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SystemServices/ISystemServices.h)**
+**Version: 1.0.0**
 
-A SystemServices module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+SystemServices interface for Thunder framework.
+
+(Defined with ISystemServices in [ISystemServices.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/ISystemServices.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [ISystemServices](#ISystemServices)
-    - [Methods](#ISystemServices-Methods)
-    - [Notifications](#ISystemServices-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the SystemServices interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `SystemServices` module provides the following interface(s):
+SystemServices JSON-RPC interface.
 
-- ISystemServices
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the SystemServices interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.SystemServices) |
-| classname | string | Class name: *SystemServices* |
-| locator | string | Library name: *libWPEFrameworkSystemServices.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="ISystemServices"></a>
-## ISystemServices Interface
-
-<a id="ISystemServices-Methods"></a>
-### Methods
-
-The following methods are provided by the ISystemServices Interface:
+SystemServices interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [abortLogUpload](#abortLogUpload) | Stops background process to upload logs. |
-| [getBlocklistFlag](#getBlocklistFlag) | Get block list flag. |
-| [getBootTypeInfo](#getBootTypeInfo) | Get the FSR flag from the emmc raw area. |
-| [getBuildType](#getBuildType) | Returns build type of the image flashed on the device. |
-| [getDeviceInfo](#getDeviceInfo) | Collects device details |
-| [getDownloadedFirmwareInfo](#getDownloadedFirmwareInfo) | Returns information about firmware downloads. |
-| [getFSRFlag](#getFSRFlag) | Get the FSR flag from the emmc raw area. |
-| [getFirmwareDownloadPercent](#getFirmwareDownloadPercent) | Gets the current download percentage. |
-| [getFirmwareUpdateInfo](#getFirmwareUpdateInfo) | Checks the firmware update information. |
-| [getFirmwareUpdateState](#getFirmwareUpdateState) | Checks the state of the firmware update. |
-| [getFriendlyName](#getFriendlyName) | Returns the friendly name set by setFriendlyName API or default value. |
-| [getLastFirmwareFailureReason](#getLastFirmwareFailureReason) | Retrieves the last firmware failure reason. |
-| [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode. |
-| [getMacAddresses](#getMacAddresses) | Gets the MAC address of the device. |
-| [getMfgSerialNumber](#getMfgSerialNumber) | Gets the Manufacturing Serial Number. |
-| [getMigrationStatus](#getMigrationStatus) | get the Migration Status of the device |
-| [getNetworkStandbyMode](#getNetworkStandbyMode) | Returns the network standby mode of the device. |
-| [getPlatformConfiguration](#getPlatformConfiguration) | Returns the Supported features and device/account info |
-| [getPowerState](#getPowerState) | Returns the power state of the device. |
-| [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot. |
-| [getRFCConfig](#getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations. |
-| [getSerialNumber](#getSerialNumber) | Returns the device serial number. |
-| [getSystemVersions](#getSystemVersions) | Returns system version details. |
-| [getTerritory](#getTerritory) | Gets the configured system territory and region. |
-| [getTimeStatus](#getTimeStatus) | Get the time status on the device. |
-| [getTimeZoneDST](#getTimeZoneDST) | Gets the available timezones from the system’s time zone database. |
-| [getTimeZones](#getTimeZones) | Returns the friendly name set by setFriendlyName API or default value. |
-| [getWakeupReason](#getWakeupReason) | Returns the reason for the device coming out of deep sleep. |
-| [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
-| [reboot](#reboot) | Requests that the system performs a reboot of the set-top box. |
-| [requestSystemUptime](#requestSystemUptime) | Returns the device uptime. |
-| [setBlocklistFlag](#setBlocklistFlag) | To update Blocklist flag. |
-| [setBootLoaderSplashScreen](#setBootLoaderSplashScreen) | Install or update the BootLoader Splash Screens. |
-| [setDeepSleepTimer](#setDeepSleepTimer) | Sets the deep sleep timeout period. |
-| [setFSRFlag](#setFSRFlag) | Set the FSR flag into the emmc raw area. |
-| [setFirmwareAutoReboot](#setFirmwareAutoReboot) | Enables or disables the AutoReboot Feature. |
-| [setFriendlyName](#setFriendlyName) | Sets the friendly name of device. |
-| [setMigrationStatus](#setMigrationStatus) | set the Migration Status of the device. |
-| [setMode](#setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode. |
-| [setNetworkStandbyMode](#setNetworkStandbyMode) | Enables or disables the AutoReboot Feature. |
-| [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
-| [setPowerState](#setPowerState) | Sets the power state of the device. |
-| [setTerritory](#setTerritory) | Sets the system territory and region. |
-| [setTimeZoneDST](#setTimeZoneDST) | Sets the system time zone. |
-| [setWakeupSrcConfiguration](#setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState. |
-| [updateFirmware](#updateFirmware) | Initiates a firmware update. |
-| [uploadLogsAsync](#uploadLogsAsync) | Starts background process to upload logs. |
+| [getDeviceInfo](#method_getDeviceInfo) | Collects device details |
+| [getDownloadedFirmwareInfo](#method_getDownloadedFirmwareInfo) | Returns information about firmware downloads |
+| [getFirmwareDownloadPercent](#method_getFirmwareDownloadPercent) | Gets the current download percentage |
+| [getFirmwareUpdateInfo](#method_getFirmwareUpdateInfo) | Checks the firmware update information |
+| [getFirmwareUpdateState](#method_getFirmwareUpdateState) | Checks the state of the firmware update |
+| [getLastFirmwareFailureReason](#method_getLastFirmwareFailureReason) | Retrieves the last firmware failure reason |
+| [getLastWakeupKeyCode](#method_getLastWakeupKeyCode) | Returns the last wakeup keycode |
+| [getMfgSerialNumber](#method_getMfgSerialNumber) | Gets the Manufacturing Serial Number |
+| [getNetworkStandbyMode](#method_getNetworkStandbyMode) | Returns the network standby mode of the device |
+| [getPowerState](#method_getPowerState) | Returns the power state of the device |
+| [getPowerStateBeforeReboot](#method_getPowerStateBeforeReboot) | Returns the power state before reboot |
+| [getRFCConfig](#method_getRFCConfig) | Returns information that is related to RDK Feature Control (RFC) configurations |
+| [getSerialNumber](#method_getSerialNumber) | Returns the device serial number |
+| [getFriendlyName](#method_getFriendlyName) | Returns the friendly name set by setFriendlyName API or default value |
+| [getTerritory](#method_getTerritory) | Gets the configured system territory and region |
+| [getTimeZones](#method_getTimeZones) | Returns the friendly name set by setFriendlyName API or default value |
+| [getTimeZoneDST](#method_getTimeZoneDST) | Gets the available timezones from the system’s time zone database |
+| [getWakeupReason](#method_getWakeupReason) | Returns the reason for the device coming out of deep sleep |
+| [isOptOutTelemetry](#method_isOptOutTelemetry) | Checks the telemetry opt-out status |
+| [reboot](#method_reboot) | Requests that the system performs a reboot of the set-top box |
+| [setDeepSleepTimer](#method_setDeepSleepTimer) | Sets the deep sleep timeout period |
+| [setFirmwareAutoReboot](#method_setFirmwareAutoReboot) | Enables or disables the AutoReboot Feature |
+| [setNetworkStandbyMode](#method_setNetworkStandbyMode) | Enables or disables the AutoReboot Feature |
+| [setOptOutTelemetry](#method_setOptOutTelemetry) | Sets the telemetry opt-out status |
+| [setPowerState](#method_setPowerState) | Sets the power state of the device |
+| [setFriendlyName](#method_setFriendlyName) | Sets the friendly name of device |
+| [setBootLoaderSplashScreen](#method_setBootLoaderSplashScreen) | Install or update the BootLoader Splash Screens |
+| [setTerritory](#method_setTerritory) | Sets the system territory and region |
+| [setTimeZoneDST](#method_setTimeZoneDST) | Sets the system time zone |
+| [updateFirmware](#method_updateFirmware) | Initiates a firmware update |
+| [getBootTypeInfo](#method_getBootTypeInfo) | Get the FSR flag from the emmc raw area |
+| [setMigrationStatus](#method_setMigrationStatus) | set the Migration Status of the device |
+| [getMigrationStatus](#method_getMigrationStatus) | get the Migration Status of the device |
+| [getMacAddresses](#method_getMacAddresses) | Gets the MAC address of the device |
+| [getPlatformConfiguration](#method_getPlatformConfiguration) | Returns the Supported features and device/account info |
+| [setWakeupSrcConfiguration](#method_setWakeupSrcConfiguration) | Sets the wakeup source configuration for the input powerState |
+| [getSystemVersions](#method_getSystemVersions) | Returns system version details |
+| [requestSystemUptime](#method_requestSystemUptime) | Returns the device uptime |
+| [setMode](#method_setMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
+| [uploadLogsAsync](#method_uploadLogsAsync) | Starts background process to upload logs |
+| [abortLogUpload](#method_abortLogUpload) | Stops background process to upload logs |
+| [setFSRFlag](#method_setFSRFlag) | Set the FSR flag into the emmc raw area |
+| [getFSRFlag](#method_getFSRFlag) | Get the FSR flag from the emmc raw area |
+| [setBlocklistFlag](#method_setBlocklistFlag) | To update Blocklist flag |
+| [getBlocklistFlag](#method_getBlocklistFlag) | Get block list flag |
+| [getBuildType](#method_getBuildType) | Returns build type of the image flashed on the device |
+| [getTimeStatus](#method_getTimeStatus) | Get the time status on the device |
 
-<a id="abortLogUpload"></a>
-## *abortLogUpload*
+<a id="method_getDeviceInfo"></a>
+## *getDeviceInfo [<sup>method</sup>](#head_Methods)*
 
-Stops background process to upload logs.
+Collects device details.
 
-### Events Triggered
-None
 ### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.params | array | mandatory | A list of Supported device keys |
+| params.params[#] | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Device Information |
+| result.make | string | mandatory | Device manufacturer |
+| result.bluetooth_mac | string | mandatory | <sup>*(deprecated)*</sup> Bluetooth MAC Address |
+| result.boxIP | string | mandatory | STB IP Address |
+| result.build_type | string | mandatory | Image build type |
+| result.device_type | string | mandatory | <sup>*(deprecated)*</sup> Device type |
+| result.estb_mac | string | mandatory | STB MAC Address |
+| result.eth_mac | string | mandatory | Ethernet MAC Address |
+| result.friendly_id | string | mandatory | Friendly device model name |
+| result.imageVersion | string | mandatory | Image version |
+| result.version | string | mandatory | Version Info |
+| result.software_version | string | mandatory | Software version |
+| result.model_number | string | mandatory | Device model number |
+| result.wifi_mac | string | mandatory | WIFI Mac Address |
+| result.modelName | string | mandatory | Device model name |
+| result.hardwareID | string | mandatory | Hardware ID |
+| result.message | string | mandatory | Error message if input failure |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.SystemServices.abortLogUpload"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemServices.abortLogUpload"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getBlocklistFlag"></a>
-## *getBlocklistFlag*
-
-Get block list flag.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.blocklist | bool | Whether the device is blocklisted |
-| result.result.error | object | Error Information |
-| result.result.error.message | string | Error Message |
-| result.result.error.code | string | Error Code |
-| result.result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.SystemServices.getBlocklistFlag"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemServices.getBlocklistFlag"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "blocklist": true,
-        "error": {
-            "message": "",
-            "code": ""
-        },
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getBootTypeInfo"></a>
-## *getBootTypeInfo*
-
-Get the FSR flag from the emmc raw area.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.bootType | string | BOOT Type Info |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.SystemServices.getBootTypeInfo"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemServices.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "bootType": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getBuildType"></a>
-## *getBuildType*
-
-Returns build type of the image flashed on the device.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.build_type | string | Image build type |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.SystemServices.getBuildType"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemServices.getBuildType"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "build_type": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getDeviceInfo"></a>
-## *getDeviceInfo*
-
-Collects device details
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.params | array | A list of Supported device keys |
-| params.params[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.deviceInfo | object | Device Information |
-| result.deviceInfo.make | string | Device manufacturer |
-| result.deviceInfo.bluetooth_mac | string | Bluetooth MAC Address |
-| result.deviceInfo.boxIP | string | STB IP Address |
-| result.deviceInfo.build_type | string | Image build type |
-| result.deviceInfo.device_type | string | Device type |
-| result.deviceInfo.estb_mac | string | STB MAC Address |
-| result.deviceInfo.eth_mac | string | Ethernet MAC Address |
-| result.deviceInfo.friendly_id | string | friendly device model name |
-| result.deviceInfo.imageVersion | string | Image version |
-| result.deviceInfo.version | string | Version Info |
-| result.deviceInfo.software_version | string | Software version |
-| result.deviceInfo.model_number | string | Device model number |
-| result.deviceInfo.wifi_mac | string | WIFI Mac Address |
-| result.deviceInfo.modelName | string | Device model name |
-| result.deviceInfo.hardwareID | string | Hardware ID |
-| result.deviceInfo.message | string | Error message if input failure |
-| result.deviceInfo.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.SystemServices.getDeviceInfo",
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getDeviceInfo",
+  "params": {
     "params": [
-        ""
+      "..."
     ]
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SystemServices.getDeviceInfo", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "make": "",
-        "bluetooth_mac": "",
-        "boxIP": "",
-        "build_type": "",
-        "device_type": "",
-        "estb_mac": "",
-        "eth_mac": "",
-        "friendly_id": "",
-        "imageVersion": "",
-        "version": "",
-        "software_version": "",
-        "model_number": "",
-        "wifi_mac": "",
-        "modelName": "",
-        "hardwareID": "",
-        "message": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "make": "...",
+    "boxIP": "...",
+    "build_type": "...",
+    "estb_mac": "...",
+    "eth_mac": "...",
+    "friendly_id": "...",
+    "imageVersion": "...",
+    "version": "...",
+    "software_version": "...",
+    "model_number": "...",
+    "wifi_mac": "...",
+    "modelName": "...",
+    "hardwareID": "...",
+    "message": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getDownloadedFirmwareInfo"></a>
-## *getDownloadedFirmwareInfo*
+<a id="method_getDownloadedFirmwareInfo"></a>
+## *getDownloadedFirmwareInfo [<sup>method</sup>](#head_Methods)*
 
 Returns information about firmware downloads.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.downloadedFirmwareInfo | object |  |
-| result.downloadedFirmwareInfo.currentFWVersion | string | The current firmware version |
-| result.downloadedFirmwareInfo.downloadedFWVersion | string | The downloaded firmware version |
-| result.downloadedFirmwareInfo.downloadedFWLocation | string | The location of the downloaded firmware |
-| result.downloadedFirmwareInfo.isRebootDeferred | bool | Whether the device should be rebooted |
-| result.downloadedFirmwareInfo.success | bool | Whether the request succeeded |
-| result.downloadedFirmwareInfo.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.downloadedFirmwareInfo.errorMessage | string | Error message if failure occurs |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.currentFWVersion | string | mandatory | The current firmware version |
+| result.downloadedFWVersion | string | mandatory | The downloaded firmware version |
+| result.downloadedFWLocation | string | mandatory | The location of the downloaded firmware |
+| result.isRebootDeferred | boolean | mandatory | Whether the device should be rebooted |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getDownloadedFirmwareInfo"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SystemServices.getDownloadedFirmwareInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "currentFWVersion": "",
-        "downloadedFWVersion": "",
-        "downloadedFWLocation": "",
-        "isRebootDeferred": true,
-        "success": true,
-        "SysSrv_Status": 0,
-        "errorMessage": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "currentFWVersion": "...",
+    "downloadedFWVersion": "...",
+    "downloadedFWLocation": "...",
+    "isRebootDeferred": false,
+    "success": false,
+    "SysSrv_Status": 0,
+    "errorMessage": "..."
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getFSRFlag"></a>
-## *getFSRFlag*
-
-Get the FSR flag from the emmc raw area.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.fsrFlag | bool | FSR flag |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.SystemServices.getFSRFlag"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SystemServices.getFSRFlag"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "fsrFlag": true,
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getFirmwareDownloadPercent"></a>
-## *getFirmwareDownloadPercent*
+<a id="method_getFirmwareDownloadPercent"></a>
+## *getFirmwareDownloadPercent [<sup>method</sup>](#head_Methods)*
 
 Gets the current download percentage.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.downloadPercent | integer | Current download percentage (0-100) |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.downloadPercent | integer | mandatory | Current download percentage (0-100) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFirmwareDownloadPercent"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SystemServices.getFirmwareDownloadPercent"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "downloadPercent": 0,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "downloadPercent": 0,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getFirmwareUpdateInfo"></a>
-## *getFirmwareUpdateInfo*
+<a id="method_getFirmwareUpdateInfo"></a>
+## *getFirmwareUpdateInfo [<sup>method</sup>](#head_Methods)*
 
 Checks the firmware update information.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.GUID | string | A unique identifier |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.asyncResponse | bool | Whether the event notification succeeded |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.GUID | string | mandatory | A unique identifier |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.asyncResponse | boolean | mandatory | Whether the event notification succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.SystemServices.getFirmwareUpdateInfo",
-    "params": {
-        "GUID": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFirmwareUpdateInfo",
+  "params": {
+    "GUID": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SystemServices.getFirmwareUpdateInfo", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "asyncResponse": true,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "asyncResponse": false,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getFirmwareUpdateState"></a>
-## *getFirmwareUpdateState*
+<a id="method_getFirmwareUpdateState"></a>
+## *getFirmwareUpdateState [<sup>method</sup>](#head_Methods)*
 
 Checks the state of the firmware update.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.firmwareUpdateState | int | The state (must be one of the following: Uninitialized, Requesting, Downloading, Failed, DownLoad Complete, Validation Complete, Preparing to Reboot) |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.firmwareUpdateState | integer | mandatory | The state (must be one of the following: Uninitialized, Requesting, Downloading, Failed, DownLoad Complete, Validation Complete, Preparing to Reboot) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.SystemServices.getFirmwareUpdateState"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFirmwareUpdateState"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SystemServices.getFirmwareUpdateState"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "firmwareUpdateState": 0,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "firmwareUpdateState": 0,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getFriendlyName"></a>
-## *getFriendlyName*
-
-Returns the friendly name set by setFriendlyName API or default value.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.friendlyName | string | The friendly name of the device which used to display on the client device list |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.SystemServices.getFriendlyName"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.SystemServices.getFriendlyName"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "friendlyName": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getLastFirmwareFailureReason"></a>
-## *getLastFirmwareFailureReason*
+<a id="method_getLastFirmwareFailureReason"></a>
+## *getLastFirmwareFailureReason [<sup>method</sup>](#head_Methods)*
 
 Retrieves the last firmware failure reason.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.failReason | string | The reason the failure occurred |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.failReason | string | mandatory | The reason the failure occurred |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLastFirmwareFailureReason"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.SystemServices.getLastFirmwareFailureReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "failReason": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "failReason": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getLastWakeupKeyCode"></a>
-## *getLastWakeupKeyCode*
+<a id="method_getLastWakeupKeyCode"></a>
+## *getLastWakeupKeyCode [<sup>method</sup>](#head_Methods)*
 
 Returns the last wakeup keycode.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.wakeupKeyCode | int | The last wakeup keycode |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.wakeupKeyCode | integer | mandatory | The last wakeup keycode |
+| result.success | boolean | mandatory | Whether the request succeeded |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.SystemServices.getLastWakeupKeyCode"
-}
-```
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.SystemServices.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "wakeupKeyCode": 0,
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getMacAddresses"></a>
-## *getMacAddresses*
-
-Gets the MAC address of the device.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.GUID | string | A unique identifier |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.asyncResponse | bool | Whether the event notification succeeded |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.SystemServices.getMacAddresses",
-    "params": {
-        "GUID": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLastWakeupKeyCode"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.SystemServices.getMacAddresses", "params": {"GUID": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "asyncResponse": true,
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "wakeupKeyCode": 0,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getMfgSerialNumber"></a>
-## *getMfgSerialNumber*
+<a id="method_getMfgSerialNumber"></a>
+## *getMfgSerialNumber [<sup>method</sup>](#head_Methods)*
 
 Gets the Manufacturing Serial Number.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.mfgSerialNumber | string | Manufacturing Serial Number |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.mfgSerialNumber | string | mandatory | Manufacturing Serial Number |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.SystemServices.getMfgSerialNumber"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMfgSerialNumber"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.SystemServices.getMfgSerialNumber"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": {
-        "mfgSerialNumber": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "mfgSerialNumber": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getMigrationStatus"></a>
-## *getMigrationStatus*
-
-get the Migration Status of the device
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.migrationStatus | string | Migration Status |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.SystemServices.getMigrationStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.SystemServices.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": {
-        "migrationStatus": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getNetworkStandbyMode"></a>
-## *getNetworkStandbyMode*
+<a id="method_getNetworkStandbyMode"></a>
+## *getNetworkStandbyMode [<sup>method</sup>](#head_Methods)*
 
 Returns the network standby mode of the device.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.nwStandby | boolean | mandatory | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
+| result.success | boolean | mandatory | Whether the request succeeded |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.SystemServices.getNetworkStandbyMode"
-}
-```
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.SystemServices.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": {
-        "nwStandby": true,
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getPlatformConfiguration"></a>
-## *getPlatformConfiguration*
-
-Returns the Supported features and device/account info
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.query | string | Query for support of a particular feature, e.g. AccountInfo.accountId |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.platformConfig | object | Platform Configuration Details |
-| result.platformConfig.AccountInfo | object | AccountInfo Details |
-| result.platformConfig.AccountInfo.accountId | string | Account Id |
-| result.platformConfig.AccountInfo.x1DeviceId | string | X1 Device Id |
-| result.platformConfig.AccountInfo.XCALSessionTokenAvailable | bool | XCAL Session Token Available |
-| result.platformConfig.AccountInfo.experience | string | Experience |
-| result.platformConfig.AccountInfo.deviceMACAddress | string | Device MAC Address |
-| result.platformConfig.AccountInfo.firmwareUpdateDisabled | bool | Whether the firmwareUpdate Disabled |
-| result.platformConfig.DeviceInfo | object | DeviceInfo Details |
-| result.platformConfig.DeviceInfo.quirks | string | The list of installed “quirks” |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions | object | mime Type Exclusions |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.CDVR | string | CDVR |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.DVR | string | DVR |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.EAS | string | EAS |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.IPDVR | string | IPDVR |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.IVOD | string | IVOD |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.LINEAR_TV | string | LINEAR_TV |
-| result.platformConfig.DeviceInfo.mimeTypeExclusions.VOD | string | VOD |
-| result.platformConfig.DeviceInfo.features | object | features |
-| result.platformConfig.DeviceInfo.features.allowSelfSignedWithIPAddress | integer |  |
-| result.platformConfig.DeviceInfo.features.connection.supportsSecure | integer | connection.supportsSecure |
-| result.platformConfig.DeviceInfo.features.htmlview.callJavaScriptWithResult | integer | htmlview.callJavaScriptWithResult |
-| result.platformConfig.DeviceInfo.features.htmlview.cookies | integer | htmlview.cookies |
-| result.platformConfig.DeviceInfo.features.htmlview.disableCSSAnimations | integer | htmlview.disableCSSAnimations |
-| result.platformConfig.DeviceInfo.features.htmlview.evaluateJavaScript | integer | htmlview.evaluateJavaScript |
-| result.platformConfig.DeviceInfo.features.htmlview.headers | integer | htmlview.headers |
-| result.platformConfig.DeviceInfo.features.htmlview.httpCookies | integer | htmlview.httpCookies |
-| result.platformConfig.DeviceInfo.features.htmlview.postMessage | integer | htmlview.postMessage |
-| result.platformConfig.DeviceInfo.features.htmlview.urlpatterns | integer | htmlview.urlpatterns |
-| result.platformConfig.DeviceInfo.features.keySource | integer |  |
-| result.platformConfig.DeviceInfo.features.uhd_4k_decode | integer | uhd_4k_decode |
-| result.platformConfig.DeviceInfo.mimeTypes | string | mime Types |
-| result.platformConfig.DeviceInfo.model | string | model |
-| result.platformConfig.DeviceInfo.deviceType | string | Device Type |
-| result.platformConfig.DeviceInfo.supportsTrueSD | bool | SD Support |
-| result.platformConfig.DeviceInfo.webBrowser | object | webBrowser Info |
-| result.platformConfig.DeviceInfo.webBrowser.browserType | string | Browser Type |
-| result.platformConfig.DeviceInfo.webBrowser.version | string | Version |
-| result.platformConfig.DeviceInfo.webBrowser.userAgent | string | User Agent |
-| result.platformConfig.DeviceInfo.HdrCapability | string | e.g. HDR10,Dolby Vision,Technicolor Prime |
-| result.platformConfig.DeviceInfo.canMixPCMWithSurround | bool | PCM with Surround |
-| result.platformConfig.DeviceInfo.publicIP | string | Public IP |
-| result.platformConfig.success | bool | Whether the request succeeded |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.SystemServices.getPlatformConfiguration",
-    "params": {
-        "query": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getNetworkStandbyMode"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.SystemServices.getPlatformConfiguration", "params": {"query": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": {
-        "AccountInfo": {
-            "accountId": "",
-            "x1DeviceId": "",
-            "XCALSessionTokenAvailable": true,
-            "experience": "",
-            "deviceMACAddress": "",
-            "firmwareUpdateDisabled": true
-        },
-        "DeviceInfo": {
-            "quirks": "",
-            "mimeTypeExclusions": {
-                "CDVR": "",
-                "DVR": "",
-                "EAS": "",
-                "IPDVR": "",
-                "IVOD": "",
-                "LINEAR_TV": "",
-                "VOD": ""
-            },
-            "features": {
-                "allowSelfSignedWithIPAddress": 0,
-                "connection.supportsSecure": 0,
-                "htmlview.callJavaScriptWithResult": 0,
-                "htmlview.cookies": 0,
-                "htmlview.disableCSSAnimations": 0,
-                "htmlview.evaluateJavaScript": 0,
-                "htmlview.headers": 0,
-                "htmlview.httpCookies": 0,
-                "htmlview.postMessage": 0,
-                "htmlview.urlpatterns": 0,
-                "keySource": 0,
-                "uhd_4k_decode": 0
-            },
-            "mimeTypes": "",
-            "model": "",
-            "deviceType": "",
-            "supportsTrueSD": true,
-            "webBrowser": {
-                "browserType": "",
-                "version": "",
-                "userAgent": ""
-            },
-            "HdrCapability": "",
-            "canMixPCMWithSurround": true,
-            "publicIP": ""
-        },
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "nwStandby": false,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getPowerState"></a>
-## *getPowerState*
+<a id="method_getPowerState"></a>
+## *getPowerState [<sup>method</sup>](#head_Methods)*
 
 Returns the power state of the device.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.powerState | string | mandatory | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.SystemServices.getPowerState"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getPowerState"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.SystemServices.getPowerState"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": {
-        "powerState": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "powerState": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getPowerStateBeforeReboot"></a>
-## *getPowerStateBeforeReboot*
+<a id="method_getPowerStateBeforeReboot"></a>
+## *getPowerStateBeforeReboot [<sup>method</sup>](#head_Methods)*
 
 Returns the power state before reboot.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | The power state |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.state | string | mandatory | The power state |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getPowerStateBeforeReboot"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.SystemServices.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 19,
-    "result": {
-        "state": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "state": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getRFCConfig"></a>
-## *getRFCConfig*
+<a id="method_getRFCConfig"></a>
+## *getRFCConfig [<sup>method</sup>](#head_Methods)*
 
 Returns information that is related to RDK Feature Control (RFC) configurations.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.rfcList | array | A list of RFC properties to query |
-| params.rfcList[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.RFCConfig | string | A list of specified RFC properties |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.rfcList | array | mandatory | A list of RFC properties to query |
+| params.rfcList[#] | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.RFCConfig | opaque object | mandatory | A list of specified RFC properties |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.SystemServices.getRFCConfig",
-    "params": [
-        ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getRFCConfig",
+  "params": {
+    "rfcList": [
+      "..."
     ]
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.SystemServices.getRFCConfig", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 20,
-    "result": {
-        "RFCConfig": "",
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "RFCConfig": {},
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getSerialNumber"></a>
-## *getSerialNumber*
+<a id="method_getSerialNumber"></a>
+## *getSerialNumber [<sup>method</sup>](#head_Methods)*
 
 Returns the device serial number.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.serialNumber | string | The serial number |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.serialNumber | string | mandatory | The serial number |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "method": "org.rdk.SystemServices.getSerialNumber"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getSerialNumber"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.SystemServices.getSerialNumber"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "result": {
-        "serialNumber": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "serialNumber": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getSystemVersions"></a>
-## *getSystemVersions*
-
-Returns system version details.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.systemVersionsInfo | object |  |
-| result.systemVersionsInfo.stbVersion | string | The STB version |
-| result.systemVersionsInfo.receiverVersion | string | The receiver version |
-| result.systemVersionsInfo.stbTimestamp | string | The STB timestamp |
-| result.systemVersionsInfo.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.SystemServices.getSystemVersions"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.SystemServices.getSystemVersions"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": {
-        "stbVersion": "",
-        "receiverVersion": "",
-        "stbTimestamp": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getTerritory"></a>
-## *getTerritory*
-
-Gets the configured system territory and region.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.territory | string | territory name |
-| result.region | string | region name |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.SystemServices.getTerritory"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.SystemServices.getTerritory"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": {
-        "territory": "",
-        "region": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getTimeStatus"></a>
-## *getTimeStatus*
-
-Get the time status on the device.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.TimeQuality | string | Time Quality |
-| result.TimeSrc | string | Time Source |
-| result.Time | string | Current Time |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "method": "org.rdk.SystemServices.getTimeStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.SystemServices.getTimeStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "result": {
-        "TimeQuality": "",
-        "TimeSrc": "",
-        "Time": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getTimeZoneDST"></a>
-## *getTimeZoneDST*
-
-Gets the available timezones from the system’s time zone database.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.timeZone | string | The timezone |
-| result.accuracy | string | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "method": "org.rdk.SystemServices.getTimeZoneDST"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.SystemServices.getTimeZoneDST"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "result": {
-        "timeZone": "",
-        "accuracy": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="getTimeZones"></a>
-## *getTimeZones*
+<a id="method_getFriendlyName"></a>
+## *getFriendlyName [<sup>method</sup>](#head_Methods)*
 
 Returns the friendly name set by setFriendlyName API or default value.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.timeZones | array | A list of available timezones from the system |
-| params.timeZones[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.zoneinfo | string | A timezone area |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+This method takes no parameters.
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.friendlyName | string | mandatory | The friendly name of the device which used to display on the client device list |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.SystemServices.getTimeZones",
-    "params": [
-        ""
-    ]
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFriendlyName"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.SystemServices.getTimeZones", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 26,
-    "result": {
-        "zoneinfo": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "friendlyName": "...",
+    "success": false
+  }
 }
 ```
 
+<a id="method_getTerritory"></a>
+## *getTerritory [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (ErrorCode::ERROR_GENERAL)
+Gets the configured system territory and region.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.territory | string | mandatory | Territory name |
+| result.region | string | mandatory | Region name |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 26,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getTerritory"
 }
 ```
 
-<a id="getWakeupReason"></a>
-## *getWakeupReason*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "territory": "...",
+    "region": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_getTimeZones"></a>
+## *getTimeZones [<sup>method</sup>](#head_Methods)*
+
+Returns the friendly name set by setFriendlyName API or default value.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.timeZones | array | mandatory | A list of available timezones from the system |
+| params.timeZones[#] | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.zoneinfo | opaque object | mandatory | A timezone area |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getTimeZones",
+  "params": {
+    "timeZones": [
+      "..."
+    ]
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "zoneinfo": {},
+    "success": false
+  }
+}
+```
+
+<a id="method_getTimeZoneDST"></a>
+## *getTimeZoneDST [<sup>method</sup>](#head_Methods)*
+
+Gets the available timezones from the system’s time zone database.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.timeZone | string | mandatory | The timezone |
+| result.accuracy | string | mandatory | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getTimeZoneDST"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "timeZone": "...",
+    "accuracy": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_getWakeupReason"></a>
+## *getWakeupReason [<sup>method</sup>](#head_Methods)*
 
 Returns the reason for the device coming out of deep sleep.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.wakeupReason | string |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.wakeupReason | string | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 27,
-    "method": "org.rdk.SystemServices.getWakeupReason"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getWakeupReason"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.SystemServices.getWakeupReason"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 27,
-    "result": {
-        "wakeupReason": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "wakeupReason": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="isOptOutTelemetry"></a>
-## *isOptOutTelemetry*
+<a id="method_isOptOutTelemetry"></a>
+## *isOptOutTelemetry [<sup>method</sup>](#head_Methods)*
 
 Checks the telemetry opt-out status.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.Opt-Out | bool | true for opt-out, otherwise false |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.Opt-Out | boolean | mandatory | True for opt-out, otherwise false |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 28,
-    "method": "org.rdk.SystemServices.isOptOutTelemetry"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.isOptOutTelemetry"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.SystemServices.isOptOutTelemetry"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 28,
-    "result": {
-        "Opt-Out": true,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "Opt-Out": false,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="reboot"></a>
-## *reboot*
+<a id="method_reboot"></a>
+## *reboot [<sup>method</sup>](#head_Methods)*
 
 Requests that the system performs a reboot of the set-top box.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.rebootReason | string | The reboot reason |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.IARM_Bus_Call_STATUS | int | IARM BUS status |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.rebootReason | string | mandatory | The reboot reason |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.IARM_Bus_Call_STATUS | integer | mandatory | IARM BUS status |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.SystemServices.reboot",
-    "params": {
-        "rebootReason": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.reboot",
+  "params": {
+    "rebootReason": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.SystemServices.reboot", "params": {"rebootReason": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 29,
-    "result": {
-        "IARM_Bus_Call_STATUS": 0,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "IARM_Bus_Call_STATUS": 0,
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="requestSystemUptime"></a>
-## *requestSystemUptime*
-
-Returns the device uptime.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.systemUptime | string | The uptime, in seconds, of the device |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "method": "org.rdk.SystemServices.requestSystemUptime"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.SystemServices.requestSystemUptime"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "result": {
-        "systemUptime": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setBlocklistFlag"></a>
-## *setBlocklistFlag*
-
-To update Blocklist flag.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.blocklist | bool | Blocklist flag |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | object |  |
-| result.result.error | object | Error Information |
-| result.result.error.message | string | Error Message |
-| result.result.error.code | string | Error Code |
-| result.result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "method": "org.rdk.SystemServices.setBlocklistFlag",
-    "params": {
-        "blocklist": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.SystemServices.setBlocklistFlag", "params": {"blocklist": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "result": {
-        "error": {
-            "message": "",
-            "code": ""
-        },
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setBootLoaderSplashScreen"></a>
-## *setBootLoaderSplashScreen*
-
-Install or update the BootLoader Splash Screens.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.path | string | Path to the pre-downloaded splash screen file location. Full path with file name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.error | object | Error Information |
-| result.error.message | string | Error Message |
-| result.error.code | string | Error Code |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "method": "org.rdk.SystemServices.setBootLoaderSplashScreen",
-    "params": {
-        "path": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.SystemServices.setBootLoaderSplashScreen", "params": {"path": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "result": {
-        "error": {
-            "message": "",
-            "code": ""
-        },
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setDeepSleepTimer"></a>
-## *setDeepSleepTimer*
+<a id="method_setDeepSleepTimer"></a>
+## *setDeepSleepTimer [<sup>method</sup>](#head_Methods)*
 
 Sets the deep sleep timeout period.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.seconds | int | The deep sleep timeout in seconds |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.seconds | integer | mandatory | The deep sleep timeout in seconds |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 33,
-    "method": "org.rdk.SystemServices.setDeepSleepTimer",
-    "params": {
-        "seconds": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setDeepSleepTimer",
+  "params": {
+    "seconds": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.SystemServices.setDeepSleepTimer", "params": {"seconds": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 33,
-    "result": {
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 33,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setFSRFlag"></a>
-## *setFSRFlag*
-
-Set the FSR flag into the emmc raw area.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.fsrFlag | bool | FSR flag |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "method": "org.rdk.SystemServices.setFSRFlag",
-    "params": {
-        "fsrFlag": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.SystemServices.setFSRFlag", "params": {"fsrFlag": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setFirmwareAutoReboot"></a>
-## *setFirmwareAutoReboot*
+<a id="method_setFirmwareAutoReboot"></a>
+## *setFirmwareAutoReboot [<sup>method</sup>](#head_Methods)*
 
 Enables or disables the AutoReboot Feature.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enable | bool | true to enable Autoreboot or false to disable |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.enable | boolean | mandatory | True to enable Autoreboot or false to disable |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 35,
-    "method": "org.rdk.SystemServices.setFirmwareAutoReboot",
-    "params": {
-        "enable": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setFirmwareAutoReboot",
+  "params": {
+    "enable": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "method": "org.rdk.SystemServices.setFirmwareAutoReboot", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 35,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 35,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setFriendlyName"></a>
-## *setFriendlyName*
-
-Sets the friendly name of device.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.friendlyName | string | The friendly name of the device which used to display on the client device list |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 36,
-    "method": "org.rdk.SystemServices.setFriendlyName",
-    "params": {
-        "friendlyName": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "method": "org.rdk.SystemServices.setFriendlyName", "params": {"friendlyName": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 36,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 36,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setMigrationStatus"></a>
-## *setMigrationStatus*
-
-set the Migration Status of the device.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | string | Migration Status |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "method": "org.rdk.SystemServices.setMigrationStatus",
-    "params": {
-        "status": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.SystemServices.setMigrationStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setMode"></a>
-## *setMode*
-
-Sets the mode of the set-top box for a specific duration before returning to normal mode.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.modeInfo | object |  |
-| params.modeInfo.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
-| params.modeInfo.duration | int | The duration |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "method": "org.rdk.SystemServices.setMode",
-    "params": {
-        "mode": "",
-        "duration": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.SystemServices.setMode", "params": {"mode": "", "duration": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "result": {
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setNetworkStandbyMode"></a>
-## *setNetworkStandbyMode*
+<a id="method_setNetworkStandbyMode"></a>
+## *setNetworkStandbyMode [<sup>method</sup>](#head_Methods)*
 
 Enables or disables the AutoReboot Feature.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.nwStandby | bool | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.nwStandby | boolean | mandatory | Whether WakeOnLAN and WakeOnWLAN is Supported (true); otherwise, false |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 39,
-    "method": "org.rdk.SystemServices.setNetworkStandbyMode",
-    "params": {
-        "nwStandby": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setNetworkStandbyMode",
+  "params": {
+    "nwStandby": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "method": "org.rdk.SystemServices.setNetworkStandbyMode", "params": {"nwStandby": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 39,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 39,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setOptOutTelemetry"></a>
-## *setOptOutTelemetry*
+<a id="method_setOptOutTelemetry"></a>
+## *setOptOutTelemetry [<sup>method</sup>](#head_Methods)*
 
 Sets the telemetry opt-out status.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.Opt-Out | bool | true for opt-out, otherwise false |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.Opt-Out | boolean | mandatory | True for opt-out, otherwise false |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 40,
-    "method": "org.rdk.SystemServices.setOptOutTelemetry",
-    "params": {
-        "Opt-Out": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setOptOutTelemetry",
+  "params": {
+    "Opt-Out": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 40, "method": "org.rdk.SystemServices.setOptOutTelemetry", "params": {"Opt-Out": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 40,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 40,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setPowerState"></a>
-## *setPowerState*
+<a id="method_setPowerState"></a>
+## *setPowerState [<sup>method</sup>](#head_Methods)*
 
 Sets the power state of the device.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.standbyReason | string | The reason for a standby state |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.powerState | string | mandatory | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.standbyReason | string | mandatory | The reason for a standby state |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 41,
-    "method": "org.rdk.SystemServices.setPowerState",
-    "params": {
-        "powerState": "",
-        "standbyReason": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setPowerState",
+  "params": {
+    "powerState": "...",
+    "standbyReason": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 41, "method": "org.rdk.SystemServices.setPowerState", "params": {"powerState": "", "standbyReason": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 41,
-    "result": {
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
 }
 ```
 
+<a id="method_setFriendlyName"></a>
+## *setFriendlyName [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (ErrorCode::ERROR_GENERAL)
+Sets the friendly name of device.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.friendlyName | string | mandatory | The friendly name of the device which used to display on the client device list |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 41,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setFriendlyName",
+  "params": {
+    "friendlyName": "..."
+  }
 }
 ```
 
-<a id="setTerritory"></a>
-## *setTerritory*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_setBootLoaderSplashScreen"></a>
+## *setBootLoaderSplashScreen [<sup>method</sup>](#head_Methods)*
+
+Install or update the BootLoader Splash Screens.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.path | string | mandatory | Path to the pre-downloaded splash screen file location. Full path with file name |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.error | object | mandatory | *...* |
+| result.error.message | string | mandatory | Error Message |
+| result.error.code | string | mandatory | Error Code |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setBootLoaderSplashScreen",
+  "params": {
+    "path": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "error": {
+      "message": "...",
+      "code": "..."
+    },
+    "success": false
+  }
+}
+```
+
+<a id="method_setTerritory"></a>
+## *setTerritory [<sup>method</sup>](#head_Methods)*
 
 Sets the system territory and region.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.territory | string | territory name |
-| params.region | string | region name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.message | string | Error message if input failure |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.territory | string | mandatory | Territory name |
+| params.region | string | mandatory | Region name |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.error | object | mandatory | *...* |
+| result.error.message | string | mandatory | Error Message |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 42,
-    "method": "org.rdk.SystemServices.setTerritory",
-    "params": {
-        "territory": "",
-        "region": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setTerritory",
+  "params": {
+    "territory": "...",
+    "region": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.SystemServices.setTerritory", "params": {"territory": "", "region": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 42,
-    "result": {
-        "error": {
-            "message": ""
-        },
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 42,
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
     "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+      "message": "..."
+    },
+    "success": false
+  }
 }
 ```
 
-<a id="setTimeZoneDST"></a>
-## *setTimeZoneDST*
+<a id="method_setTimeZoneDST"></a>
+## *setTimeZoneDST [<sup>method</sup>](#head_Methods)*
 
 Sets the system time zone.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.timeZone | string | The timezone |
-| params.accuracy | string | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.SysSrv_Status | integer | System service status error code if failure occurs |
-| result.errorMessage | string | Error message if failure occurs |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.timeZone | string | mandatory | The timezone |
+| params.accuracy | string | mandatory | The timezone accuracy (must be one of the following: INITIAL, INTERIM, FINAL) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 43,
-    "method": "org.rdk.SystemServices.setTimeZoneDST",
-    "params": {
-        "timeZone": "",
-        "accuracy": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setTimeZoneDST",
+  "params": {
+    "timeZone": "...",
+    "accuracy": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.SystemServices.setTimeZoneDST", "params": {"timeZone": "", "accuracy": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 43,
-    "result": {
-        "SysSrv_Status": 0,
-        "errorMessage": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 43,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="setWakeupSrcConfiguration"></a>
-## *setWakeupSrcConfiguration*
-
-Sets the wakeup source configuration for the input powerState.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#].WAKEUPSRC_VOICE | bool | Voice Wake up |
-| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presence detection wake up |
-| params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool | Bluetooth Wakeup |
-| params.wakeupSources[#].WAKEUPSRC_WIFI | bool | WiFi Wake up |
-| params.wakeupSources[#].WAKEUPSRC_IR | bool | IR Remote Wake up |
-| params.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool | Power Button Wake up - GPIO |
-| params.wakeupSources[#].WAKEUPSRC_CEC | bool | HDMI CEC command Wake up |
-| params.wakeupSources[#].WAKEUPSRC_LAN | bool | LAN wake up |
-| params.wakeupSources[#].WAKEUPSRC_TIMER | bool | Timer Wake up |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 44,
-    "method": "org.rdk.SystemServices.setWakeupSrcConfiguration",
-    "params": {
-        "powerState": "",
-        "wakeupSources": [
-            {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
-            }
-        ]
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 44,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 44,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="updateFirmware"></a>
-## *updateFirmware*
+<a id="method_updateFirmware"></a>
+## *updateFirmware [<sup>method</sup>](#head_Methods)*
 
 Initiates a firmware update.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 45,
-    "method": "org.rdk.SystemServices.updateFirmware"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.updateFirmware"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 45, "method": "org.rdk.SystemServices.updateFirmware"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 45,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
+<a id="method_getBootTypeInfo"></a>
+## *getBootTypeInfo [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (ErrorCode::ERROR_GENERAL)
+Get the FSR flag from the emmc raw area.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.bootType | string | mandatory | BOOT Type Info |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 45,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBootTypeInfo"
 }
 ```
 
-<a id="uploadLogsAsync"></a>
-## *uploadLogsAsync*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "bootType": "..."
+  }
+}
+```
+
+<a id="method_setMigrationStatus"></a>
+## *setMigrationStatus [<sup>method</sup>](#head_Methods)*
+
+set the Migration Status of the device.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | string | mandatory | Migration Status |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setMigrationStatus",
+  "params": {
+    "status": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getMigrationStatus"></a>
+## *getMigrationStatus [<sup>method</sup>](#head_Methods)*
+
+get the Migration Status of the device.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.migrationStatus | string | mandatory | Migration Status |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMigrationStatus"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "migrationStatus": "..."
+  }
+}
+```
+
+<a id="method_getMacAddresses"></a>
+## *getMacAddresses [<sup>method</sup>](#head_Methods)*
+
+Gets the MAC address of the device.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.GUID | string | mandatory | A unique identifier |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.asyncResponse | boolean | mandatory | Whether the event notification succeeded |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMacAddresses",
+  "params": {
+    "GUID": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "asyncResponse": false,
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_getPlatformConfiguration"></a>
+## *getPlatformConfiguration [<sup>method</sup>](#head_Methods)*
+
+Returns the Supported features and device/account info.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.query | string | mandatory | Query for support of a particular feature, e.g. AccountInfo.accountId |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Platform Configuration Details |
+| result.AccountInfo | object | mandatory | AccountInfo Details |
+| result.AccountInfo.accountId | string | mandatory | Account Id |
+| result.AccountInfo.x1DeviceId | string | mandatory | X1 Device Id |
+| result.AccountInfo.XCALSessionTokenAvailable | boolean | mandatory | XCAL Session Token Available |
+| result.AccountInfo.experience | string | mandatory | Experience |
+| result.AccountInfo.deviceMACAddress | string | mandatory | Device MAC Address |
+| result.AccountInfo.firmwareUpdateDisabled | boolean | mandatory | Whether the firmwareUpdate Disabled |
+| result.DeviceInfo | object | mandatory | DeviceInfo Details |
+| result.DeviceInfo.quirks | string | mandatory | The list of installed “quirks” |
+| result.DeviceInfo.mimeTypeExclusions | object | mandatory | Mime Type Exclusions |
+| result.DeviceInfo.mimeTypeExclusions.CDVR | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.DVR | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.EAS | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.IPDVR | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.IVOD | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.LINEAR_TV | string | mandatory | *...* |
+| result.DeviceInfo.mimeTypeExclusions.VOD | string | mandatory | *...* |
+| result.DeviceInfo.features | object | mandatory | Features |
+| result.DeviceInfo.features.allowSelfSignedWithIPAddress | integer | mandatory | *...* |
+| result.DeviceInfo.features.connection.supportsSecure | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.callJavaScriptWithResult | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.cookies | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.disableCSSAnimations | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.evaluateJavaScript | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.headers | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.httpCookies | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.postMessage | integer | mandatory | *...* |
+| result.DeviceInfo.features.htmlview.urlpatterns | integer | mandatory | *...* |
+| result.DeviceInfo.features.keySource | integer | mandatory | *...* |
+| result.DeviceInfo.features.uhd_4k_decode | integer | mandatory | *...* |
+| result.DeviceInfo.mimeTypes | string | mandatory | Mime Types |
+| result.DeviceInfo.model | string | mandatory | Model |
+| result.DeviceInfo.deviceType | string | mandatory | Device Type |
+| result.DeviceInfo.supportsTrueSD | boolean | mandatory | SD Support |
+| result.DeviceInfo.webBrowser | object | mandatory | WebBrowser Info |
+| result.DeviceInfo.webBrowser.browserType | string | mandatory | Browser Type |
+| result.DeviceInfo.webBrowser.version | string | mandatory | Version |
+| result.DeviceInfo.webBrowser.userAgent | string | mandatory | User Agent |
+| result.DeviceInfo.HdrCapability | string | mandatory | E.g. HDR10,Dolby Vision,Technicolor Prime |
+| result.DeviceInfo.canMixPCMWithSurround | boolean | mandatory | PCM with Surround |
+| result.DeviceInfo.publicIP | string | mandatory | Public IP |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getPlatformConfiguration",
+  "params": {
+    "query": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "AccountInfo": {
+      "accountId": "...",
+      "x1DeviceId": "...",
+      "XCALSessionTokenAvailable": false,
+      "experience": "...",
+      "deviceMACAddress": "...",
+      "firmwareUpdateDisabled": false
+    },
+    "DeviceInfo": {
+      "quirks": "...",
+      "mimeTypeExclusions": {
+        "CDVR": "...",
+        "DVR": "...",
+        "EAS": "...",
+        "IPDVR": "...",
+        "IVOD": "...",
+        "LINEAR_TV": "...",
+        "VOD": "..."
+      },
+      "features": {
+        "allowSelfSignedWithIPAddress": 0,
+        "connection.supportsSecure": 0,
+        "htmlview.callJavaScriptWithResult": 0,
+        "htmlview.cookies": 0,
+        "htmlview.disableCSSAnimations": 0,
+        "htmlview.evaluateJavaScript": 0,
+        "htmlview.headers": 0,
+        "htmlview.httpCookies": 0,
+        "htmlview.postMessage": 0,
+        "htmlview.urlpatterns": 0,
+        "keySource": 0,
+        "uhd_4k_decode": 0
+      },
+      "mimeTypes": "...",
+      "model": "...",
+      "deviceType": "...",
+      "supportsTrueSD": false,
+      "webBrowser": {
+        "browserType": "...",
+        "version": "...",
+        "userAgent": "..."
+      },
+      "HdrCapability": "...",
+      "canMixPCMWithSurround": false,
+      "publicIP": "..."
+    },
+    "success": false
+  }
+}
+```
+
+<a id="method_setWakeupSrcConfiguration"></a>
+## *setWakeupSrcConfiguration [<sup>method</sup>](#head_Methods)*
+
+Sets the wakeup source configuration for the input powerState.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.powerState | string | mandatory | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.wakeupSources | array | mandatory | Array of Key value pair with wake up sources and its configurations |
+| params.wakeupSources[#] | object | mandatory | *...* |
+| params.wakeupSources[#].WAKEUPSRC_VOICE | boolean | mandatory | Voice Wake up |
+| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | boolean | mandatory | Presence detection wake up |
+| params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | boolean | mandatory | Bluetooth Wakeup |
+| params.wakeupSources[#].WAKEUPSRC_WIFI | boolean | mandatory | WiFi Wake up |
+| params.wakeupSources[#].WAKEUPSRC_IR | boolean | mandatory | IR Remote Wake up |
+| params.wakeupSources[#].WAKEUPSRC_POWER_KEY | boolean | mandatory | Power Button Wake up - GPIO |
+| params.wakeupSources[#].WAKEUPSRC_CEC | boolean | mandatory | HDMI CEC command Wake up |
+| params.wakeupSources[#].WAKEUPSRC_LAN | boolean | mandatory | LAN wake up |
+| params.wakeupSources[#].WAKEUPSRC_TIMER | boolean | mandatory | Timer Wake up |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setWakeupSrcConfiguration",
+  "params": {
+    "powerState": "...",
+    "wakeupSources": [
+      {
+        "WAKEUPSRC_VOICE": false,
+        "WAKEUPSRC_PRESENCE_DETECTION": false,
+        "WAKEUPSRC_BLUETOOTH": false,
+        "WAKEUPSRC_WIFI": false,
+        "WAKEUPSRC_IR": false,
+        "WAKEUPSRC_POWER_KEY": false,
+        "WAKEUPSRC_CEC": false,
+        "WAKEUPSRC_LAN": false,
+        "WAKEUPSRC_TIMER": false
+      }
+    ]
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getSystemVersions"></a>
+## *getSystemVersions [<sup>method</sup>](#head_Methods)*
+
+Returns system version details.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.stbVersion | string | mandatory | The STB version |
+| result.receiverVersion | string | mandatory | The receiver version |
+| result.stbTimestamp | string | mandatory | The STB timestamp |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getSystemVersions"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "stbVersion": "...",
+    "receiverVersion": "...",
+    "stbTimestamp": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_requestSystemUptime"></a>
+## *requestSystemUptime [<sup>method</sup>](#head_Methods)*
+
+Returns the device uptime.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.systemUptime | string | mandatory | The uptime, in seconds, of the device |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.requestSystemUptime"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "systemUptime": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_setMode"></a>
+## *setMode [<sup>method</sup>](#head_Methods)*
+
+Sets the mode of the set-top box for a specific duration before returning to normal mode.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.modeInfo | object | mandatory | *...* |
+| params.modeInfo.mode | string | mandatory | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
+| params.modeInfo.duration | integer | mandatory | The duration |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.SysSrv_Status | integer | mandatory | System service status error code if failure occurs |
+| result.errorMessage | string | mandatory | Error message if failure occurs |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setMode",
+  "params": {
+    "modeInfo": {
+      "mode": "...",
+      "duration": 0
+    }
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "SysSrv_Status": 0,
+    "errorMessage": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_uploadLogsAsync"></a>
+## *uploadLogsAsync [<sup>method</sup>](#head_Methods)*
 
 Starts background process to upload logs.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 46,
-    "method": "org.rdk.SystemServices.uploadLogsAsync"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.uploadLogsAsync"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 46, "method": "org.rdk.SystemServices.uploadLogsAsync"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 46,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
+<a id="method_abortLogUpload"></a>
+## *abortLogUpload [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (ErrorCode::ERROR_GENERAL)
+Stops background process to upload logs.
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 46,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
+### Parameters
 
-<a id="ISystemServices-Notifications"></a>
-### Notifications
+This method takes no parameters.
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+### Result
 
-The following events are provided by the ISystemServices Interface:
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
 
-| Event | Description |
+### Errors
+
+| Message | Description |
 | :-------- | :-------- |
-| [onBlocklistChanged](#onBlocklistChanged) | Triggered when blocklist flag has changed. |
-| [onDeviceMgtUpdateReceived](#onDeviceMgtUpdateReceived) | Triggered when Device Mgt settings update is received |
-| [onFirmwarePendingReboot](#onFirmwarePendingReboot) | Triggered when system is in maintenance window |
-| [onFirmwareUpdateInfoReceived](#onFirmwareUpdateInfoReceived) | Triggered when the getFirmwareUpdateInfo asynchronous method is invoked. |
-| [onFirmwareUpdateStateChange](#onFirmwareUpdateStateChange) | Triggered when the firmware update state is changed. |
-| [onFriendlyNameChanged](#onFriendlyNameChanged) | Triggered when the friendly name is changed. |
-| [onLogUpload](#onLogUpload) | Triggered when logs upload process is done or stopped. |
-| [onMacAddressesRetreived](#onMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked. |
-| [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode is changed. |
-| [onRebootRequest](#onRebootRequest) | Triggers when a device reboot request is made |
-| [onSystemClockSet](#onSystemClockSet) | Triggered when time source state has changed. |
-| [onSystemModeChanged](#onSystemModeChanged) | Triggers when the system mode is changed successfully. |
-| [onSystemPowerStateChanged](#onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change. |
-| [onTemperatureThresholdChanged](#onTemperatureThresholdChanged) | Triggered when the temperature threshold is changed. |
-| [onTerritoryChanged](#onTerritoryChanged) | Triggered when the device territory changed. |
-| [onTimeStatusChanged](#onTimeStatusChanged) | Triggered when time status has changed. |
-| [onTimeZoneDSTChanged](#onTimeZoneDSTChanged) | Triggered when device time zone changed. |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
 
-<a id="onBlocklistChanged"></a>
-## *onBlocklistChanged*
+### Example
 
-Triggered when blocklist flag has changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.oldBlocklistFlag | string | The previous blocklist flag |
-| params.newBlocklistFlag | string | The new blocklist flag |
-
-### Examples
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 47,
-    "method": "org.rdk.SystemServices.onBlocklistChanged",
-    "params": {
-        "oldBlocklistFlag": "",
-        "newBlocklistFlag": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.abortLogUpload"
 }
 ```
 
-<a id="onDeviceMgtUpdateReceived"></a>
-## *onDeviceMgtUpdateReceived*
-
-Triggered when Device Mgt settings update is received
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.source | string | The source of the update |
-| params.type | string | The type of update |
-| params.success | bool | Whether the update was successful |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 48,
-    "method": "org.rdk.SystemServices.onDeviceMgtUpdateReceived",
-    "params": {
-        "source": "",
-        "type": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="onFirmwarePendingReboot"></a>
-## *onFirmwarePendingReboot*
+<a id="method_setFSRFlag"></a>
+## *setFSRFlag [<sup>method</sup>](#head_Methods)*
 
-Triggered when system is in maintenance window
+Set the FSR flag into the emmc raw area.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.fireFirmwarePendingReboot | int | time in seconds for pending reboot |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.fsrFlag | boolean | mandatory | FSR flag |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 49,
-    "method": "org.rdk.SystemServices.onFirmwarePendingReboot",
-    "params": {
-        "fireFirmwarePendingReboot": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setFSRFlag",
+  "params": {
+    "fsrFlag": false
+  }
 }
 ```
 
-<a id="onFirmwareUpdateInfoReceived"></a>
-## *onFirmwareUpdateInfoReceived*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getFSRFlag"></a>
+## *getFSRFlag [<sup>method</sup>](#head_Methods)*
+
+Get the FSR flag from the emmc raw area.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.fsrFlag | boolean | mandatory | FSR flag |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFSRFlag"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "fsrFlag": false,
+    "success": false
+  }
+}
+```
+
+<a id="method_setBlocklistFlag"></a>
+## *setBlocklistFlag [<sup>method</sup>](#head_Methods)*
+
+To update Blocklist flag.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.blocklist | boolean | mandatory | Blocklist flag |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.error | object | mandatory | Error Information |
+| result.error.message | string | mandatory | Error Message |
+| result.error.code | string | mandatory | Error Code |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setBlocklistFlag",
+  "params": {
+    "blocklist": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "error": {
+      "message": "...",
+      "code": "..."
+    },
+    "success": false
+  }
+}
+```
+
+<a id="method_getBlocklistFlag"></a>
+## *getBlocklistFlag [<sup>method</sup>](#head_Methods)*
+
+Get block list flag.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.blocklist | boolean | mandatory | Whether the device is blocklisted |
+| result.error | object | mandatory | Error Information |
+| result.error.message | string | mandatory | Error Message |
+| result.error.code | string | mandatory | Error Code |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBlocklistFlag"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "blocklist": false,
+    "error": {
+      "message": "...",
+      "code": "..."
+    },
+    "success": false
+  }
+}
+```
+
+<a id="method_getBuildType"></a>
+## *getBuildType [<sup>method</sup>](#head_Methods)*
+
+Returns build type of the image flashed on the device.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.build_type | string | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBuildType"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "build_type": "...",
+    "success": false
+  }
+}
+```
+
+<a id="method_getTimeStatus"></a>
+## *getTimeStatus [<sup>method</sup>](#head_Methods)*
+
+Get the time status on the device.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.TimeQuality | string | mandatory | Time Quality |
+| result.TimeSrc | string | mandatory | Time Source |
+| result.Time | string | mandatory | Current Time |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getTimeStatus"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "TimeQuality": "...",
+    "TimeSrc": "...",
+    "Time": "...",
+    "success": false
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the SystemServices interface:
+
+SystemServices interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onFirmwareUpdateInfoReceived](#notification_onFirmwareUpdateInfoReceived) | Triggered when the getFirmwareUpdateInfo asynchronous method is invoked |
+| [onRebootRequest](#notification_onRebootRequest) | Triggers when a device reboot request is made |
+| [onSystemPowerStateChanged](#notification_onSystemPowerStateChanged) | Triggered when the power manager detects a device power state change |
+| [onTerritoryChanged](#notification_onTerritoryChanged) | Triggered when the device territory changed |
+| [onTimeZoneDSTChanged](#notification_onTimeZoneDSTChanged) | Triggered when device time zone changed |
+| [onMacAddressesRetreived](#notification_onMacAddressesRetreived) | Triggered when the getMacAddresses asynchronous method is invoked |
+| [onSystemModeChanged](#notification_onSystemModeChanged) | Triggers when the system mode is changed successfully |
+| [onLogUpload](#notification_onLogUpload) | Triggered when logs upload process is done or stopped |
+| [onNetworkStandbyModeChanged](#notification_onNetworkStandbyModeChanged) | Triggered when the network standby mode is changed |
+| [onFirmwareUpdateStateChange](#notification_onFirmwareUpdateStateChange) | Triggered when the firmware update state is changed |
+| [onTemperatureThresholdChanged](#notification_onTemperatureThresholdChanged) | Triggered when the temperature threshold is changed |
+| [onSystemClockSet](#notification_onSystemClockSet) | Triggered when time source state has changed |
+| [onFirmwarePendingReboot](#notification_onFirmwarePendingReboot) | Triggered when system is in maintenance window |
+| [onFriendlyNameChanged](#notification_onFriendlyNameChanged) | Triggered when the friendly name is changed |
+| [onDeviceMgtUpdateReceived](#notification_onDeviceMgtUpdateReceived) | Triggered when Device Mgt settings update is received |
+| [onBlocklistChanged](#notification_onBlocklistChanged) | Triggered when blocklist flag has changed |
+| [onTimeStatusChanged](#notification_onTimeStatusChanged) | Triggered when time status has changed |
+
+<a id="notification_onFirmwareUpdateInfoReceived"></a>
+## *onFirmwareUpdateInfoReceived [<sup>notification</sup>](#head_Notifications)*
 
 Triggered when the getFirmwareUpdateInfo asynchronous method is invoked.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | int | The firmware update status |
-| params.responseString | string | A custom response |
-| params.firmwareUpdateVersion | string | The next firmware update version |
-| params.rebootImmediately | bool | The value true indicates that the device has to be rebooted immediately or false otherwise |
-| params.updateAvailable | bool | The value false indicates that there is no update available |
-| params.updateAvailableEnum | int | The update available details (must be one of the following: 0, 1, 2, 3) |
-| params.success | bool | Whether the request succeeded |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | integer | mandatory | The firmware update status |
+| params.responseString | string | mandatory | A custom response |
+| params.firmwareUpdateVersion | string | mandatory | The next firmware update version |
+| params.rebootImmediately | boolean | mandatory | The value true indicates that the device has to be rebooted immediately or false otherwise |
+| params.updateAvailable | boolean | mandatory | The value false indicates that there is no update available |
+| params.updateAvailableEnum | integer | mandatory | The update available details (must be one of the following: 0, 1, 2, 3) |
+| params.success | boolean | mandatory | Whether the request succeeded |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 50,
-    "method": "org.rdk.SystemServices.onFirmwareUpdateInfoReceived",
-    "params": {
-        "status": 0,
-        "responseString": "",
-        "firmwareUpdateVersion": "",
-        "rebootImmediately": true,
-        "updateAvailable": true,
-        "updateAvailableEnum": 0,
-        "success": true
-    }
-}
-```
+### Example
 
-<a id="onFirmwareUpdateStateChange"></a>
-## *onFirmwareUpdateStateChange*
-
-Triggered when the firmware update state is changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.firmwareUpdateStateChange | int | The firmware update state change |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 51,
-    "method": "org.rdk.SystemServices.onFirmwareUpdateStateChange",
-    "params": {
-        "firmwareUpdateStateChange": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFirmwareUpdateInfoReceived",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onFriendlyNameChanged"></a>
-## *onFriendlyNameChanged*
-
-Triggered when the friendly name is changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.friendlyName | string | The new friendly name |
-
-### Examples
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 52,
-    "method": "org.rdk.SystemServices.onFriendlyNameChanged",
-    "params": {
-        "friendlyName": ""
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onFirmwareUpdateInfoReceived",
+  "params": {
+    "status": 0,
+    "responseString": "...",
+    "firmwareUpdateVersion": "...",
+    "rebootImmediately": false,
+    "updateAvailable": false,
+    "updateAvailableEnum": 0,
+    "success": false
+  }
 }
 ```
 
-<a id="onLogUpload"></a>
-## *onLogUpload*
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFirmwareUpdateInfoReceived``.
 
-Triggered when logs upload process is done or stopped.
+<a id="notification_onRebootRequest"></a>
+## *onRebootRequest [<sup>notification</sup>](#head_Notifications)*
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.logUploadStatus | string | Upload status (must be one of the following: UPLOAD_SUCCESS, UPLOAD_FAILURE, UPLOAD_ABORTED) |
+Triggers when a device reboot request is made.
 
-### Examples
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.requestedApp | string | mandatory | The source of the reboot |
+| params.rebootReason | string | mandatory | The reboot reason |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 53,
-    "method": "org.rdk.SystemServices.onLogUpload",
-    "params": {
-        "logUploadStatus": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onRebootRequest",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onMacAddressesRetreived"></a>
-## *onMacAddressesRetreived*
-
-Triggered when the getMacAddresses asynchronous method is invoked.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.ecm_mac | string | The embedded cable modem MAC address |
-| params.estb_mac | string | The embedded set-top box MAC address |
-| params.moca_mac | string | The MOCA MAC address |
-| params.eth_mac | string | The Ethernet MAC address |
-| params.wifi_mac | string | The Wifi MAC address |
-| params.bluetooth_mac | string | The Bluetooth MAC address |
-| params.rf4ce_mac | string | The Rf4ce MAC address |
-| params.info | string | Additional information (only if any of the above data is missing) |
-| params.success | bool | Whether the request succeeded |
-
-### Examples
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 54,
-    "method": "org.rdk.SystemServices.onMacAddressesRetreived",
-    "params": {
-        "ecm_mac": "",
-        "estb_mac": "",
-        "moca_mac": "",
-        "eth_mac": "",
-        "wifi_mac": "",
-        "bluetooth_mac": "",
-        "rf4ce_mac": "",
-        "info": "",
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onRebootRequest",
+  "params": {
+    "requestedApp": "...",
+    "rebootReason": "..."
+  }
 }
 ```
 
-<a id="onNetworkStandbyModeChanged"></a>
-## *onNetworkStandbyModeChanged*
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onRebootRequest``.
 
-Triggered when the network standby mode is changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.nwStandby | bool | The network standby mode |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 55,
-    "method": "org.rdk.SystemServices.onNetworkStandbyModeChanged",
-    "params": {
-        "nwStandby": true
-    }
-}
-```
-
-<a id="onRebootRequest"></a>
-## *onRebootRequest*
-
-Triggers when a device reboot request is made
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.requestedApp | string | The source of the reboot |
-| params.rebootReason | string | The reboot reason |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 56,
-    "method": "org.rdk.SystemServices.onRebootRequest",
-    "params": {
-        "requestedApp": "",
-        "rebootReason": ""
-    }
-}
-```
-
-<a id="onSystemClockSet"></a>
-## *onSystemClockSet*
-
-Triggered when time source state has changed.
-
-### Parameters
-This method takes no parameters.
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 57,
-    "method": "org.rdk.SystemServices.onSystemClockSet"
-}
-```
-
-<a id="onSystemModeChanged"></a>
-## *onSystemModeChanged*
-
-Triggers when the system mode is changed successfully.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mode | string | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
-
-### Examples
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 58,
-    "method": "org.rdk.SystemServices.onSystemModeChanged",
-    "params": {
-        "mode": ""
-    }
-}
-```
-
-<a id="onSystemPowerStateChanged"></a>
-## *onSystemPowerStateChanged*
+<a id="notification_onSystemPowerStateChanged"></a>
+## *onSystemPowerStateChanged [<sup>notification</sup>](#head_Notifications)*
 
 Triggered when the power manager detects a device power state change.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.currentPowerState | string | The current power state |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.powerState | string | mandatory | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
+| params.currentPowerState | string | mandatory | The current power state |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 59,
-    "method": "org.rdk.SystemServices.onSystemPowerStateChanged",
-    "params": {
-        "powerState": "",
-        "currentPowerState": ""
-    }
-}
-```
+### Example
 
-<a id="onTemperatureThresholdChanged"></a>
-## *onTemperatureThresholdChanged*
-
-Triggered when the temperature threshold is changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.thresholdType | string | The type of temperature threshold |
-| params.exceeded | bool | Whether the threshold is exceeded |
-| params.temperature | string | The current temperature |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 60,
-    "method": "org.rdk.SystemServices.onTemperatureThresholdChanged",
-    "params": {
-        "thresholdType": "",
-        "exceeded": true,
-        "temperature": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onSystemPowerStateChanged",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onTerritoryChanged"></a>
-## *onTerritoryChanged*
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onSystemPowerStateChanged",
+  "params": {
+    "powerState": "...",
+    "currentPowerState": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onSystemPowerStateChanged``.
+
+<a id="notification_onTerritoryChanged"></a>
+## *onTerritoryChanged [<sup>notification</sup>](#head_Notifications)*
 
 Triggered when the device territory changed.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.oldTerritory | string | old territory |
-| params.newTerritory | string | new territory |
-| params.oldRegion | string | old region |
-| params.newRegion | string | new region |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.oldTerritory | string | mandatory | Old territory |
+| params.newTerritory | string | mandatory | New territory |
+| params.oldRegion | string | mandatory | Old region |
+| params.newRegion | string | mandatory | New region |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 61,
-    "method": "org.rdk.SystemServices.onTerritoryChanged",
-    "params": {
-        "oldTerritory": "",
-        "newTerritory": "",
-        "oldRegion": "",
-        "newRegion": ""
-    }
-}
-```
+### Example
 
-<a id="onTimeStatusChanged"></a>
-## *onTimeStatusChanged*
-
-Triggered when time status has changed.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.TimeQuality | string | The quality of the time |
-| params.TimeSrc | string | The source of the time |
-| params.Time | string | The current time |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 62,
-    "method": "org.rdk.SystemServices.onTimeStatusChanged",
-    "params": {
-        "TimeQuality": "",
-        "TimeSrc": "",
-        "Time": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onTerritoryChanged",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onTimeZoneDSTChanged"></a>
-## *onTimeZoneDSTChanged*
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onTerritoryChanged",
+  "params": {
+    "oldTerritory": "...",
+    "newTerritory": "...",
+    "oldRegion": "...",
+    "newRegion": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onTerritoryChanged``.
+
+<a id="notification_onTimeZoneDSTChanged"></a>
+## *onTimeZoneDSTChanged [<sup>notification</sup>](#head_Notifications)*
 
 Triggered when device time zone changed.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.oldTimeZone | string | old time zone |
-| params.newTimeZone | string | new time zone |
-| params.oldAccuracy | string | old time zone accuracy |
-| params.newAccuracy | string | new time zone accuracy |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.oldTimeZone | string | mandatory | Old time zone |
+| params.newTimeZone | string | mandatory | New time zone |
+| params.oldAccuracy | string | mandatory | Old time zone accuracy |
+| params.newAccuracy | string | mandatory | New time zone accuracy |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 63,
-    "method": "org.rdk.SystemServices.onTimeZoneDSTChanged",
-    "params": {
-        "oldTimeZone": "",
-        "newTimeZone": "",
-        "oldAccuracy": "",
-        "newAccuracy": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onTimeZoneDSTChanged",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onTimeZoneDSTChanged",
+  "params": {
+    "oldTimeZone": "...",
+    "newTimeZone": "...",
+    "oldAccuracy": "...",
+    "newAccuracy": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onTimeZoneDSTChanged``.
+
+<a id="notification_onMacAddressesRetreived"></a>
+## *onMacAddressesRetreived [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the getMacAddresses asynchronous method is invoked.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.ecm_mac | string | mandatory | The embedded cable modem MAC address |
+| params.estb_mac | string | mandatory | The embedded set-top box MAC address |
+| params.moca_mac | string | mandatory | The MOCA MAC address |
+| params.eth_mac | string | mandatory | The Ethernet MAC address |
+| params.wifi_mac | string | mandatory | The Wifi MAC address |
+| params.bluetooth_mac | string | mandatory | The Bluetooth MAC address |
+| params.rf4ce_mac | string | mandatory | The Rf4ce MAC address |
+| params.info | string | mandatory | Additional information (only if any of the above data is missing) |
+| params.success | boolean | mandatory | Whether the request succeeded |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onMacAddressesRetreived",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onMacAddressesRetreived",
+  "params": {
+    "ecm_mac": "...",
+    "estb_mac": "...",
+    "moca_mac": "...",
+    "eth_mac": "...",
+    "wifi_mac": "...",
+    "bluetooth_mac": "...",
+    "rf4ce_mac": "...",
+    "info": "...",
+    "success": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onMacAddressesRetreived``.
+
+<a id="notification_onSystemModeChanged"></a>
+## *onSystemModeChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggers when the system mode is changed successfully.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.mode | string | mandatory | The mode (must be one of the following: NORMAL, EAS, WAREHOUSE) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onSystemModeChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onSystemModeChanged",
+  "params": {
+    "mode": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onSystemModeChanged``.
+
+<a id="notification_onLogUpload"></a>
+## *onLogUpload [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when logs upload process is done or stopped.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.logUploadStatus | string | mandatory | Upload status (must be one of the following: UPLOAD_SUCCESS, UPLOAD_FAILURE, UPLOAD_ABORTED) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onLogUpload",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onLogUpload",
+  "params": {
+    "logUploadStatus": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onLogUpload``.
+
+<a id="notification_onNetworkStandbyModeChanged"></a>
+## *onNetworkStandbyModeChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the network standby mode is changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.nwStandby | boolean | mandatory | The network standby mode |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onNetworkStandbyModeChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onNetworkStandbyModeChanged",
+  "params": {
+    "nwStandby": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onNetworkStandbyModeChanged``.
+
+<a id="notification_onFirmwareUpdateStateChange"></a>
+## *onFirmwareUpdateStateChange [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the firmware update state is changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.firmwareUpdateStateChange | integer | mandatory | The firmware update state change |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFirmwareUpdateStateChange",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onFirmwareUpdateStateChange",
+  "params": {
+    "firmwareUpdateStateChange": 0
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFirmwareUpdateStateChange``.
+
+<a id="notification_onTemperatureThresholdChanged"></a>
+## *onTemperatureThresholdChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the temperature threshold is changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.thresholdType | string | mandatory | The type of temperature threshold |
+| params.exceeded | boolean | mandatory | Whether the threshold is exceeded |
+| params.temperature | string | mandatory | The current temperature |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onTemperatureThresholdChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onTemperatureThresholdChanged",
+  "params": {
+    "thresholdType": "...",
+    "exceeded": false,
+    "temperature": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onTemperatureThresholdChanged``.
+
+<a id="notification_onSystemClockSet"></a>
+## *onSystemClockSet [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when time source state has changed.
+
+### Notification Parameters
+
+This notification carries no parameters.
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onSystemClockSet",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onSystemClockSet"
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onSystemClockSet``.
+
+<a id="notification_onFirmwarePendingReboot"></a>
+## *onFirmwarePendingReboot [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when system is in maintenance window.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.fireFirmwarePendingReboot | integer | mandatory | Time in seconds for pending reboot |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFirmwarePendingReboot",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onFirmwarePendingReboot",
+  "params": {
+    "fireFirmwarePendingReboot": 0
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFirmwarePendingReboot``.
+
+<a id="notification_onFriendlyNameChanged"></a>
+## *onFriendlyNameChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the friendly name is changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.friendlyName | string | mandatory | The new friendly name |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFriendlyNameChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onFriendlyNameChanged",
+  "params": {
+    "friendlyName": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFriendlyNameChanged``.
+
+<a id="notification_onDeviceMgtUpdateReceived"></a>
+## *onDeviceMgtUpdateReceived [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when Device Mgt settings update is received.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.source | string | mandatory | The source of the update |
+| params.type | string | mandatory | The type of update |
+| params.success | boolean | mandatory | Whether the update was successful |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDeviceMgtUpdateReceived",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDeviceMgtUpdateReceived",
+  "params": {
+    "source": "...",
+    "type": "...",
+    "success": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDeviceMgtUpdateReceived``.
+
+<a id="notification_onBlocklistChanged"></a>
+## *onBlocklistChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when blocklist flag has changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.oldBlocklistFlag | string | mandatory | The previous blocklist flag |
+| params.newBlocklistFlag | string | mandatory | The new blocklist flag |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onBlocklistChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onBlocklistChanged",
+  "params": {
+    "oldBlocklistFlag": "...",
+    "newBlocklistFlag": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onBlocklistChanged``.
+
+<a id="notification_onTimeStatusChanged"></a>
+## *onTimeStatusChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when time status has changed.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.TimeQuality | string | mandatory | The quality of the time |
+| params.TimeSrc | string | mandatory | The source of the time |
+| params.Time | string | mandatory | The current time |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onTimeStatusChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onTimeStatusChanged",
+  "params": {
+    "TimeQuality": "...",
+    "TimeSrc": "...",
+    "Time": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onTimeStatusChanged``.
 

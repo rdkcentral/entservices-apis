@@ -1,130 +1,141 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Analytics_Module"></a>
-# Analytics Module
+<a id="head_Analytics_API"></a>
+# Analytics API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Analytics/IAnalytics.h)**
+**Version: 1.0.0**
 
-A Analytics module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+Analytics interface for Thunder framework.
+
+(Defined with IAnalytics in [IAnalytics.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IAnalytics.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IAnalytics](#IAnalytics)
-    - [Methods](#IAnalytics-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the Analytics interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `Analytics` module provides the following interface(s):
+Analytics JSON-RPC interface.
 
-- IAnalytics
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the Analytics interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.Analytics) |
-| classname | string | Class name: *Analytics* |
-| locator | string | Library name: *libWPEFrameworkAnalytics.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IAnalytics"></a>
-## IAnalytics Interface
-
-<a id="IAnalytics-Methods"></a>
-### Methods
-
-The following methods are provided by the IAnalytics Interface:
+Analytics interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendEvent](#sendEvent) | Send an event to the analytics server |
+| [SendEvent](#method_SendEvent) / [sendEvent](#method_SendEvent) | Send an event to the analytics server |
 
-<a id="sendEvent"></a>
-## *sendEvent*
+<a id="method_SendEvent"></a>
+## *SendEvent [<sup>method</sup>](#head_Methods)*
 
-Send an event to the analytics server
+Send an event to the analytics server.
 
-### Events Triggered
-None
+> ``sendEvent`` is an alternative name for this 
+
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.eventName | string | Name of the event |
-| params.eventVersion | string | Version of the event |
-| params.eventSource | string | Source of the event |
-| params.eventSourceVersion | string | Version of the event source |
-| params.cetList | array | List of CETs |
-| params.cetList[#] | string |  |
-| params.epochTimestamp | integer | Epoch timestamp of the event |
-| params.uptimeTimestamp | integer | Uptime timestamp of the event |
-| params.appId | string | Durable App Id string |
-| params.eventPayload | string | Payload of the event |
-| params.additionalContext | string | Additional context for the event |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.eventName | string | mandatory | Name of the event |
+| params.eventVersion | string | mandatory | Version of the event |
+| params.eventSource | string | mandatory | Source of the event |
+| params.eventSourceVersion | string | mandatory | Version of the event source |
+| params.cetList | array | mandatory | List of CETs |
+| params.cetList[#] | string | mandatory | *...* |
+| params.epochTimestamp | integer | mandatory | Epoch timestamp of the event |
+| params.uptimeTimestamp | integer | mandatory | Uptime timestamp of the event |
+| params.appId | string | mandatory | Durable App Id string |
+| params.eventPayload | string | mandatory | Payload of the event |
+| params.additionalContext | opaque object | mandatory | Additional context for the event |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.Analytics.sendEvent",
-    "params": {
-        "eventName": "",
-        "eventVersion": "",
-        "eventSource": "",
-        "eventSourceVersion": "",
-        "cetList": [
-            ""
-        ],
-        "epochTimestamp": 0,
-        "uptimeTimestamp": 0,
-        "appId": "",
-        "eventPayload": "",
-        "additionalContext": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.SendEvent",
+  "params": {
+    "eventName": "...",
+    "eventVersion": "...",
+    "eventSource": "...",
+    "eventSourceVersion": "...",
+    "cetList": [
+      "..."
+    ],
+    "epochTimestamp": 0,
+    "uptimeTimestamp": 0,
+    "appId": "...",
+    "eventPayload": "...",
+    "additionalContext": {}
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": "", "additionalContext": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 

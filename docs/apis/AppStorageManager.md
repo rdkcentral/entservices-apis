@@ -1,167 +1,162 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AppStorageManager_Module"></a>
-# AppStorageManager Module
+<a id="head_AppStorageManager_API"></a>
+# AppStorageManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppStorageManager/IAppStorageManager.h)**
+**Version: 1.0.0**
 
-A AppStorageManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+AppStorageManager interface for Thunder framework.
+
+(Defined with IAppStorageManager in [IAppStorageManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IAppStorageManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IAppStorageManager](#IAppStorageManager)
-    - [Methods](#IAppStorageManager-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the AppStorageManager interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `AppStorageManager` module provides the following interface(s):
+AppStorageManager JSON-RPC interface.
 
-- IAppStorageManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the AppStorageManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.AppStorageManager) |
-| classname | string | Class name: *AppStorageManager* |
-| locator | string | Library name: *libWPEFrameworkAppStorageManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IAppStorageManager"></a>
-## IAppStorageManager Interface
-
-<a id="IAppStorageManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IAppStorageManager Interface:
+AppStorageManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clear](#clear) | Called by IUI.  This also clears device storage as well |
-| [clearAll](#clearAll) | Called by IUI.  This also clears device storage as well |
+| [clear](#method_clear) | Called by IUI |
+| [clearAll](#method_clearAll) | Called by IUI |
 
-<a id="clear"></a>
-## *clear*
+<a id="method_clear"></a>
+## *clear [<sup>method</sup>](#head_Methods)*
 
-Called by IUI.  This also clears device storage as well
+Called by IUI.  This also clears device storage as well.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | string App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.errorReason | string | string error reason string |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | - in - string App identifier for the application |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | - out - string error reason string |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.AppStorageManager.clear",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.clear",
+  "params": {
+    "appId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "errorReason": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 
-<a id="clearAll"></a>
-## *clearAll*
+<a id="method_clearAll"></a>
+## *clearAll [<sup>method</sup>](#head_Methods)*
 
-Called by IUI.  This also clears device storage as well
+Called by IUI.  This also clears device storage as well.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.exemptionAppIds | string | string Clears all app data except for the exempt app ids as a json format |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.errorReason | string | string error reason string |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.exemptionAppIds | string | mandatory | - in - string Clears all app data except for the exempt app ids as a json format |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | - out - string error reason string |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.AppStorageManager.clearAll",
-    "params": {
-        "exemptionAppIds": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.clearAll",
+  "params": {
+    "exemptionAppIds": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "errorReason": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 

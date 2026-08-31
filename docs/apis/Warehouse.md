@@ -1,329 +1,331 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Warehouse_Module"></a>
-# Warehouse Module
+<a id="head_Warehouse_API"></a>
+# Warehouse API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Warehouse/IWarehouse.h)**
+**Version: 1.0.0**
 
-A Warehouse module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+Warehouse interface for Thunder framework.
+
+(Defined with IWarehouse in [IWarehouse.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IWarehouse.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IWarehouse](#IWarehouse)
-    - [Methods](#IWarehouse-Methods)
-    - [Notifications](#IWarehouse-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the Warehouse interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `Warehouse` module provides the following interface(s):
+Warehouse JSON-RPC interface.
 
-- IWarehouse
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the Warehouse interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.Warehouse) |
-| classname | string | Class name: *Warehouse* |
-| locator | string | Library name: *libWPEFrameworkWarehouse.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IWarehouse"></a>
-## IWarehouse Interface
-
-<a id="IWarehouse-Methods"></a>
-### Methods
-
-The following methods are provided by the IWarehouse Interface:
+Warehouse interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [internalReset](#internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
-| [isClean](#isClean) | Checks the locations on the device where customer data may be stored. |
-| [lightReset](#lightReset) | Resets the application data. |
-| [resetDevice](#resetDevice) | Resets the STB to the warehouse state. |
+| [internalReset](#method_internalReset) | Invokes the internal reset script, which reboots the Warehouse service |
+| [isClean](#method_isClean) | Checks the locations on the device where customer data may be stored |
+| [lightReset](#method_lightReset) | Resets the application data |
+| [resetDevice](#method_resetDevice) | Resets the STB to the warehouse state |
 
-<a id="internalReset"></a>
-## *internalReset*
+<a id="method_internalReset"></a>
+## *internalReset [<sup>method</sup>](#head_Methods)*
 
-Invokes the internal reset script, which reboots the Warehouse service
+Invokes the internal reset script, which reboots the Warehouse service.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.passPhrase | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.successErr | object |  |
-| result.successErr.success | bool |  |
-| result.successErr.error | string |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.passPhrase | string | mandatory | - in - string |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.error | string | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.Warehouse.internalReset",
-    "params": {
-        "passPhrase": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.internalReset",
+  "params": {
+    "passPhrase": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true,
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "error": "..."
+  }
 }
 ```
 
-<a id="isClean"></a>
-## *isClean*
+<a id="method_isClean"></a>
+## *isClean [<sup>method</sup>](#head_Methods)*
 
 Checks the locations on the device where customer data may be stored.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.age | int | integer |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.clean | bool | boolean |
-| result.files | array | string [] of file locations for each file |
-| result.files[#] | string |  |
-| result.success | bool | boolean |
-| result.error | string | -out - string |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.age | integer | mandatory | - in - integer |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.clean | boolean | mandatory | - out - boolean |
+| result.files | array | mandatory | - out - string [] of file locations for each file |
+| result.files[#] | string | mandatory | *...* |
+| result.success | boolean | mandatory | - out - boolean |
+| result.error | string | mandatory | -out - string |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.Warehouse.isClean",
-    "params": {
-        "age": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.isClean",
+  "params": {
+    "age": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "clean": true,
-        "files": [
-            ""
-        ],
-        "success": true,
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "clean": false,
+    "files": [
+      "..."
+    ],
+    "success": false,
+    "error": "..."
+  }
 }
 ```
 
-<a id="lightReset"></a>
-## *lightReset*
+<a id="method_lightReset"></a>
+## *lightReset [<sup>method</sup>](#head_Methods)*
 
 Resets the application data.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.successErr | object |  |
-| result.successErr.success | bool |  |
-| result.successErr.error | string |  |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.error | string | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.Warehouse.lightReset"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.lightReset"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Warehouse.lightReset"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true,
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "error": "..."
+  }
 }
 ```
 
-<a id="resetDevice"></a>
-## *resetDevice*
+<a id="method_resetDevice"></a>
+## *resetDevice [<sup>method</sup>](#head_Methods)*
 
 Resets the STB to the warehouse state.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.suppressReboot | bool | bool |
-| params.resetType | string | string |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.successErr | object |  |
-| result.successErr.success | bool |  |
-| result.successErr.error | string |  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.suppressReboot | boolean | mandatory | - in - bool |
+| params.resetType | string | mandatory | - in - string |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.error | string | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.Warehouse.resetDevice",
-    "params": {
-        "suppressReboot": true,
-        "resetType": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.resetDevice",
+  "params": {
+    "suppressReboot": false,
+    "resetType": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true,
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "error": "..."
+  }
 }
 ```
 
-<a id="IWarehouse-Notifications"></a>
-### Notifications
+<a id="head_Notifications"></a>
+# Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IWarehouse Interface:
+The following events are provided by the Warehouse interface:
 
-| Event | Description |
+Warehouse interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [resetDone](#resetDone) | Notifies subscribers about the status of the warehouse reset operation |
+| [resetDone](#notification_resetDone) | Notifies subscribers about the status of the warehouse reset operation |
 
-<a id="resetDone"></a>
-## *resetDone*
+<a id="notification_resetDone"></a>
+## *resetDone [<sup>notification</sup>](#head_Notifications)*
 
-Notifies subscribers about the status of the warehouse reset operation
+Notifies subscribers about the status of the warehouse reset operation.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.success | bool | boolean |
-| params.error | string | string |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.success | boolean | mandatory | - in - boolean |
+| params.error | string | mandatory | - in - string |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.Warehouse.resetDone",
-    "params": {
-        "success": true,
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "resetDone",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.resetDone",
+  "params": {
+    "success": false,
+    "error": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.resetDone``.
 

@@ -1,427 +1,453 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="USBDevice_Module"></a>
-# USBDevice Module
+<a id="head_USBDevice_API"></a>
+# USBDevice API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/USBDevice/IUSBDevice.h)**
+**Version: 1.0.0**
 
-A USBDevice module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+USBDevice interface for Thunder framework.
+
+(Defined with IUSBDevice in [IUSBDevice.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IUSBDevice.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IUSBDevice](#IUSBDevice)
-    - [Methods](#IUSBDevice-Methods)
-    - [Notifications](#IUSBDevice-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the USBDevice interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `USBDevice` module provides the following interface(s):
+USBDevice JSON-RPC interface.
 
-- IUSBDevice
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the USBDevice interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.USBDevice) |
-| classname | string | Class name: *USBDevice* |
-| locator | string | Library name: *libWPEFrameworkUSBDevice.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IUSBDevice"></a>
-## IUSBDevice Interface
-
-<a id="IUSBDevice-Methods"></a>
-### Methods
-
-The following methods are provided by the IUSBDevice Interface:
+USBDevice interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [bindDriver](#bindDriver) | Bind the respective driver for the device |
-| [getDeviceInfo](#getDeviceInfo) | Get the extended USB device information for the provided device name |
-| [getDeviceList](#getDeviceList) | Get the basic information about list of devices connected with the system. |
-| [unbindDriver](#unbindDriver) | Unbind the respective driver for the device |
+| [getDeviceList](#method_getDeviceList) | Get the basic information about list of devices connected with the system |
+| [getDeviceInfo](#method_getDeviceInfo) | Get the extended USB device information for the provided device name |
+| [bindDriver](#method_bindDriver) | Bind the respective driver for the device |
+| [unbindDriver](#method_unbindDriver) | Unbind the respective driver for the device |
 
-<a id="bindDriver"></a>
-## *bindDriver*
-
-Bind the respective driver for the device
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceName | string | Name of the device |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.USBDevice.bindDriver",
-    "params": {
-        "deviceName": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.USBDevice.bindDriver", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
-}
-```
-
-<a id="getDeviceInfo"></a>
-## *getDeviceInfo*
-
-Get the extended USB device information for the provided device name
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceName | string | device name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.deviceInfo | object | Detailed device information |
-| result.deviceInfo.parentId | integer | Parent Node ID of the device |
-| result.deviceInfo.deviceStatus | integer | current device status |
-| result.deviceInfo.deviceLevel | integer | device level |
-| result.deviceInfo.portNumber | integer | port number of USB on which the device is attached |
-| result.deviceInfo.vendorId | integer | Vendor ID of the device |
-| result.deviceInfo.productId | integer | Product ID of the device |
-| result.deviceInfo.protocol | integer | Protocol supported by the device |
-| result.deviceInfo.serialNumber | string | Serial number of the device |
-| result.deviceInfo.device | object | Basic device information included |
-| result.deviceInfo.device.deviceClass | integer | USB class of the device as per USB specificiation |
-| result.deviceInfo.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
-| result.deviceInfo.device.deviceName | string | Name of the USB device |
-| result.deviceInfo.device.devicePath | string | the path to be used for the USB device  |
-| result.deviceInfo.flags | string | Flags of the device. Possible values: AVAILABLE, SWITCHABLE |
-| result.deviceInfo.features | integer | Features supported by the device - reserved |
-| result.deviceInfo.busSpeed | string | Speed of the device. Possible values: Low, Full, High, Super |
-| result.deviceInfo.numLanguageIds | integer | number of language ids present on the device |
-| result.deviceInfo.productInfo1 | object |  |
-| result.deviceInfo.productInfo1.languageId | integer | language id present on the device |
-| result.deviceInfo.productInfo1.serialNumber | string | unicode string representing the serial number of the device |
-| result.deviceInfo.productInfo1.manufacturer | string | unicode string representing the manufacturer of the device |
-| result.deviceInfo.productInfo1.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo2 | object |  |
-| result.deviceInfo.productInfo2.languageId | integer | language id present on the device |
-| result.deviceInfo.productInfo2.serialNumber | string | unicode string representing the serial number of the device |
-| result.deviceInfo.productInfo2.manufacturer | string | unicode string representing the manufacturer of the device |
-| result.deviceInfo.productInfo2.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo3 | object |  |
-| result.deviceInfo.productInfo3.languageId | integer | language id present on the device |
-| result.deviceInfo.productInfo3.serialNumber | string | unicode string representing the serial number of the device |
-| result.deviceInfo.productInfo3.manufacturer | string | unicode string representing the manufacturer of the device |
-| result.deviceInfo.productInfo3.product | string | unicode string representing the product |
-| result.deviceInfo.productInfo4 | object |  |
-| result.deviceInfo.productInfo4.languageId | integer | language id present on the device |
-| result.deviceInfo.productInfo4.serialNumber | string | unicode string representing the serial number of the device |
-| result.deviceInfo.productInfo4.manufacturer | string | unicode string representing the manufacturer of the device |
-| result.deviceInfo.productInfo4.product | string | unicode string representing the product |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.USBDevice.getDeviceInfo",
-    "params": {
-        "deviceName": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBDevice.getDeviceInfo", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "parentId": 0,
-        "deviceStatus": 0,
-        "deviceLevel": 0,
-        "portNumber": 0,
-        "vendorId": 0,
-        "productId": 0,
-        "protocol": 0,
-        "serialNumber": "",
-        "device": {
-            "deviceClass": 0,
-            "deviceSubclass": 0,
-            "deviceName": "",
-            "devicePath": ""
-        },
-        "flags": "AVAILABLE",
-        "features": 0,
-        "busSpeed": "Low",
-        "numLanguageIds": 0,
-        "productInfo1": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo2": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo3": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo4": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        }
-    }
-}
-```
-
-<a id="getDeviceList"></a>
-## *getDeviceList*
+<a id="method_getDeviceList"></a>
+## *getDeviceList [<sup>method</sup>](#head_Methods)*
 
 Get the basic information about list of devices connected with the system.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.devices | array | List of USB devices along with basic info. |
-| result.devices[#].deviceClass | integer | USB class of the device as per USB specificiation |
-| result.devices[#].deviceSubclass | integer | USB sub class of the device as per USB specificiation |
-| result.devices[#].deviceName | string | Name of the USB device |
-| result.devices[#].devicePath | string | the path to be used for the USB device  |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | array | mandatory | : List of USB devices along with basic info |
+| result[#] | object | mandatory | *...* |
+| result[#].deviceClass | integer | mandatory | USB class of the device as per USB specificiation |
+| result[#].deviceSubclass | integer | mandatory | USB sub class of the device as per USB specificiation |
+| result[#].deviceName | string | mandatory | Name of the USB device |
+| result[#].devicePath | string | mandatory | The path to be used for the USB device ex: /dev/sdX |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.USBDevice.getDeviceList"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getDeviceList"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBDevice.getDeviceList"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": [
-        {
-            "deviceClass": 0,
-            "deviceSubclass": 0,
-            "deviceName": "",
-            "devicePath": ""
-        }
-    ]
-}
-```
-
-<a id="unbindDriver"></a>
-## *unbindDriver*
-
-Unbind the respective driver for the device
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.deviceName | string | Name of the device |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.USBDevice.unbindDriver",
-    "params": {
-        "deviceName": ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": [
+    {
+      "deviceClass": 0,
+      "deviceSubclass": 0,
+      "deviceName": "...",
+      "devicePath": "..."
     }
+  ]
 }
 ```
 
+<a id="method_getDeviceInfo"></a>
+## *getDeviceInfo [<sup>method</sup>](#head_Methods)*
 
-#### CURL Command
+Get the extended USB device information for the provided device name.
 
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.USBDevice.unbindDriver", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.deviceName | string | mandatory | Device name |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Detailed device information |
+| result.parentId | integer | mandatory | Parent Node ID of the device |
+| result.deviceStatus | integer | mandatory | *...* |
+| result.deviceLevel | integer | mandatory | Device level |
+| result.portNumber | integer | mandatory | Port number of USB on which the device is attached |
+| result.vendorId | integer | mandatory | Vendor ID of the device |
+| result.productId | integer | mandatory | Product ID of the device |
+| result.protocol | integer | mandatory | Protocol supported by the device |
+| result.serialNumber | string | mandatory | Serial number of the device |
+| result.device | object | mandatory | Basic device information included |
+| result.device.deviceClass | integer | mandatory | USB class of the device as per USB specificiation |
+| result.device.deviceSubclass | integer | mandatory | USB sub class of the device as per USB specificiation |
+| result.device.deviceName | string | mandatory | Name of the USB device |
+| result.device.devicePath | string | mandatory | The path to be used for the USB device ex: /dev/sdX |
+| result.flags | string | mandatory | Flags of the device (must be one of the following: *AVAILABLE, SWITCHABLE*) |
+| result.features | integer | mandatory | Features supported by the device - reserved |
+| result.busSpeed | string | mandatory | Speed of the device (must be one of the following: *Full, High, Low, Super*) |
+| result.numLanguageIds | integer | mandatory | Number of language ids present on the device |
+| result.productInfo1 | object | mandatory | *...* |
+| result.productInfo1.languageId | integer | mandatory | Language id present on the device |
+| result.productInfo1.serialNumber | string | mandatory | Unicode string representing the serial number of the device |
+| result.productInfo1.manufacturer | string | mandatory | Unicode string representing the manufacturer of the device |
+| result.productInfo1.product | string | mandatory | Unicode string representing the product |
+| result.productInfo2 | object | mandatory | *...* |
+| result.productInfo2.languageId | integer | mandatory | Language id present on the device |
+| result.productInfo2.serialNumber | string | mandatory | Unicode string representing the serial number of the device |
+| result.productInfo2.manufacturer | string | mandatory | Unicode string representing the manufacturer of the device |
+| result.productInfo2.product | string | mandatory | Unicode string representing the product |
+| result.productInfo3 | object | mandatory | *...* |
+| result.productInfo3.languageId | integer | mandatory | Language id present on the device |
+| result.productInfo3.serialNumber | string | mandatory | Unicode string representing the serial number of the device |
+| result.productInfo3.manufacturer | string | mandatory | Unicode string representing the manufacturer of the device |
+| result.productInfo3.product | string | mandatory | Unicode string representing the product |
+| result.productInfo4 | object | mandatory | *...* |
+| result.productInfo4.languageId | integer | mandatory | Language id present on the device |
+| result.productInfo4.serialNumber | string | mandatory | Unicode string representing the serial number of the device |
+| result.productInfo4.manufacturer | string | mandatory | Unicode string representing the manufacturer of the device |
+| result.productInfo4.product | string | mandatory | Unicode string representing the product |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getDeviceInfo",
+  "params": {
+    "deviceName": "..."
+  }
+}
 ```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "parentId": 0,
+    "deviceStatus": 0,
+    "deviceLevel": 0,
+    "portNumber": 0,
+    "vendorId": 0,
+    "productId": 0,
+    "protocol": 0,
+    "serialNumber": "...",
+    "device": {
+      "deviceClass": 0,
+      "deviceSubclass": 0,
+      "deviceName": "...",
+      "devicePath": "..."
+    },
+    "flags": "SWITCHABLE",
+    "features": 0,
+    "busSpeed": "Full",
+    "numLanguageIds": 0,
+    "productInfo1": {
+      "languageId": 0,
+      "serialNumber": "...",
+      "manufacturer": "...",
+      "product": "..."
+    },
+    "productInfo2": {
+      "languageId": 0,
+      "serialNumber": "...",
+      "manufacturer": "...",
+      "product": "..."
+    },
+    "productInfo3": {
+      "languageId": 0,
+      "serialNumber": "...",
+      "manufacturer": "...",
+      "product": "..."
+    },
+    "productInfo4": {
+      "languageId": 0,
+      "serialNumber": "...",
+      "manufacturer": "...",
+      "product": "..."
+    }
+  }
 }
 ```
 
-<a id="IUSBDevice-Notifications"></a>
-### Notifications
+<a id="method_bindDriver"></a>
+## *bindDriver [<sup>method</sup>](#head_Methods)*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Bind the respective driver for the device.
 
-The following events are provided by the IUSBDevice Interface:
+### Parameters
 
-| Event | Description |
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.deviceName | string | mandatory | Name of the device |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.bindDriver",
+  "params": {
+    "deviceName": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_unbindDriver"></a>
+## *unbindDriver [<sup>method</sup>](#head_Methods)*
+
+Unbind the respective driver for the device.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.deviceName | string | mandatory | Name of the device |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unbindDriver",
+  "params": {
+    "deviceName": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the USBDevice interface:
+
+USBDevice interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onDevicePluggedIn](#onDevicePluggedIn) | Device Plugged in notification |
-| [onDevicePluggedOut](#onDevicePluggedOut) | Device Plugged out notification |
+| [onDevicePluggedIn](#notification_onDevicePluggedIn) | Device Plugged in notification |
+| [onDevicePluggedOut](#notification_onDevicePluggedOut) | Device Plugged out notification |
 
-<a id="onDevicePluggedIn"></a>
-## *onDevicePluggedIn*
+<a id="notification_onDevicePluggedIn"></a>
+## *onDevicePluggedIn [<sup>notification</sup>](#head_Notifications)*
 
-Device Plugged in notification
+Device Plugged in notification.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.device | object | Basic device information included |
-| params.device.deviceClass | integer | USB class of the device as per USB specificiation |
-| params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
-| params.device.deviceName | string | Name of the USB device |
-| params.device.devicePath | string | the path to be used for the USB device  |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.device | object | mandatory | *...* |
+| params.device.deviceClass | integer | mandatory | USB class of the device as per USB specificiation |
+| params.device.deviceSubclass | integer | mandatory | USB sub class of the device as per USB specificiation |
+| params.device.deviceName | string | mandatory | Name of the USB device |
+| params.device.devicePath | string | mandatory | The path to be used for the USB device ex: /dev/sdX |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.USBDevice.onDevicePluggedIn",
-    "params": {
-        "deviceClass": 0,
-        "deviceSubclass": 0,
-        "deviceName": "",
-        "devicePath": ""
-    }
-}
-```
+### Example
 
-<a id="onDevicePluggedOut"></a>
-## *onDevicePluggedOut*
-
-Device Plugged out notification
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.device | object | Basic device information included |
-| params.device.deviceClass | integer | USB class of the device as per USB specificiation |
-| params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
-| params.device.deviceName | string | Name of the USB device |
-| params.device.devicePath | string | the path to be used for the USB device  |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.USBDevice.onDevicePluggedOut",
-    "params": {
-        "deviceClass": 0,
-        "deviceSubclass": 0,
-        "deviceName": "",
-        "devicePath": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDevicePluggedIn",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDevicePluggedIn",
+  "params": {
+    "device": {
+      "deviceClass": 0,
+      "deviceSubclass": 0,
+      "deviceName": "...",
+      "devicePath": "..."
+    }
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDevicePluggedIn``.
+
+<a id="notification_onDevicePluggedOut"></a>
+## *onDevicePluggedOut [<sup>notification</sup>](#head_Notifications)*
+
+Device Plugged out notification.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.device | object | mandatory | *...* |
+| params.device.deviceClass | integer | mandatory | USB class of the device as per USB specificiation |
+| params.device.deviceSubclass | integer | mandatory | USB sub class of the device as per USB specificiation |
+| params.device.deviceName | string | mandatory | Name of the USB device |
+| params.device.devicePath | string | mandatory | The path to be used for the USB device ex: /dev/sdX |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDevicePluggedOut",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDevicePluggedOut",
+  "params": {
+    "device": {
+      "deviceClass": 0,
+      "deviceSubclass": 0,
+      "deviceName": "...",
+      "devicePath": "..."
+    }
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDevicePluggedOut``.
 

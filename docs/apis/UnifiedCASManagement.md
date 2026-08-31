@@ -1,306 +1,291 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="UnifiedCASManagement_Module"></a>
-# UnifiedCASManagement Module
+<a id="head_UnifiedCASManagement_API"></a>
+# UnifiedCASManagement API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/UnifiedCASManagement/IUnifiedCASManagement.h)**
+**Version: 1.0.0**
 
-A UnifiedCASManagement module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+UnifiedCASManagement interface for Thunder framework.
+
+(Defined with IUnifiedCASManagement in [IUnifiedCASManagement.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IUnifiedCASManagement.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IUnifiedCASManagement](#IUnifiedCASManagement)
-    - [Methods](#IUnifiedCASManagement-Methods)
-    - [Notifications](#IUnifiedCASManagement-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the UnifiedCASManagement interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `UnifiedCASManagement` module provides the following interface(s):
+UnifiedCASManagement JSON-RPC interface.
 
-- IUnifiedCASManagement
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the UnifiedCASManagement interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.UnifiedCASManagement) |
-| classname | string | Class name: *UnifiedCASManagement* |
-| locator | string | Library name: *libWPEFrameworkUnifiedCASManagement.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IUnifiedCASManagement"></a>
-## IUnifiedCASManagement Interface
-
-<a id="IUnifiedCASManagement-Methods"></a>
-### Methods
-
-The following methods are provided by the IUnifiedCASManagement Interface:
+UnifiedCASManagement interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [manage](#manage) | Manage a well-known CAS (setup CAS management session) |
-| [send](#send) | Sends data to the remote CAS |
-| [unmanage](#unmanage) | Destroy a management session |
+| [manage](#method_manage) | Manage a well-known CAS (setup CAS management session) |
+| [unmanage](#method_unmanage) | Destroy a management session |
+| [send](#method_send) | Sends data to the remote CAS |
 
-<a id="manage"></a>
-## *manage*
+<a id="method_manage"></a>
+## *manage [<sup>method</sup>](#head_Methods)*
 
-Manage a well-known CAS (setup CAS management session)
+Manage a well-known CAS (setup CAS management session).
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.mediaurl | string | The URL to tune to (tune://, ocap://, http://, https://) |
-| params.mode | string | The use of the tune request. Possible values: MODE_NONE, MODE_LIVE, MODE_RECORD, MODE_PLAYBACK |
-| params.managementType | string | Type of CAS management. Possible values: MANAGE_FULL, MANAGE_NO_PSI, MANAGE_NO_TUNER |
-| params.casinitdata | string | CAS specific initdata for the selected media |
-| params.casocdmid | string | The well-known OCDM ID of the CAS to use |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.mediaurl | string | mandatory | The URL to tune to (tune://, ocap://, http://, https://) |
+| params.mode | string | mandatory | The use of the tune request (must be one of the following: *MODE_LIVE, MODE_NONE, MODE_PLAYBACK, MODE_RECORD*) |
+| params.managementType | string | mandatory | Type of CAS management (must be one of the following: *MANAGE_FULL, MANAGE_NO_PSI, MANAGE_NO_TUNER*) |
+| params.casinitdata | string | mandatory | CAS specific initdata for the selected media |
+| params.casocdmid | string | mandatory | The well-known OCDM ID of the CAS to use |
 
+### Result
 
-#### Request
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Returns true if the operation succeeded, false otherwise |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.UnifiedCASManagement.manage",
-    "params": {
-        "mediaurl": "",
-        "mode": "MODE_NONE",
-        "managementType": "MANAGE_FULL",
-        "casinitdata": "",
-        "casocdmid": ""
-    }
-}
-```
+### Errors
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.UnifiedCASManagement.manage", "params": {"mediaurl": "", "mode": "MODE_NONE", "managementType": "MANAGE_FULL", "casinitdata": "", "casocdmid": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Operation failed"
-    }
-}
-```
-
-<a id="send"></a>
-## *send*
-
-Sends data to the remote CAS
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.UnifiedCASManagement.send",
-    "params": {
-        "payload": "",
-        "source": "PUBLIC"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.UnifiedCASManagement.send", "params": {"payload": "", "source": "PUBLIC"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Operation failed"
-    }
-}
-```
-
-<a id="unmanage"></a>
-## *unmanage*
-
-Destroy a management session
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Returns true if the operation succeeded, false otherwise |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.UnifiedCASManagement.unmanage"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.UnifiedCASManagement.unmanage"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Operation failed"
-    }
-}
-```
-
-<a id="IUnifiedCASManagement-Notifications"></a>
-### Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the IUnifiedCASManagement Interface:
-
-| Event | Description |
+| Message | Description |
 | :-------- | :-------- |
-| [data](#data) | Sent when the CAS needs to send data to the caller |
+| ```Core::ERROR_NONE``` | Operation successful |
+| ```Core::ERROR_GENERAL``` | Operation failed |
 
-<a id="data"></a>
-## *data*
+### Example
 
-Sent when the CAS needs to send data to the caller
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.payload | string | Data to transfer. Can be base64 coded if required |
-| params.source | string | Origin of the data. Possible values: PUBLIC, PRIVATE |
-
-### Examples
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.UnifiedCASManagement.data",
-    "params": {
-        "payload": "",
-        "source": "PUBLIC"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.manage",
+  "params": {
+    "mediaurl": "...",
+    "mode": "MODE_LIVE",
+    "managementType": "MANAGE_NO_PSI",
+    "casinitdata": "...",
+    "casocdmid": "..."
+  }
 }
 ```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
+}
+```
+
+<a id="method_unmanage"></a>
+## *unmanage [<sup>method</sup>](#head_Methods)*
+
+Destroy a management session.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Returns true if the operation succeeded, false otherwise |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Operation successful |
+| ```Core::ERROR_GENERAL``` | Operation failed |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unmanage"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
+}
+```
+
+<a id="method_send"></a>
+## *send [<sup>method</sup>](#head_Methods)*
+
+Sends data to the remote CAS.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.payload | string | mandatory | Data to transfer. Can be base64 coded if required |
+| params.source | string | mandatory | Origin of the data (must be one of the following: *PRIVATE, PUBLIC*) |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Returns true if the operation succeeded, false otherwise |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Operation successful |
+| ```Core::ERROR_GENERAL``` | Operation failed |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.send",
+  "params": {
+    "payload": "...",
+    "source": "PRIVATE"
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the UnifiedCASManagement interface:
+
+UnifiedCASManagement interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onDataReceived](#notification_onDataReceived) / [data](#notification_onDataReceived) | Sent when the CAS needs to send data to the caller |
+
+<a id="notification_onDataReceived"></a>
+## *onDataReceived [<sup>notification</sup>](#head_Notifications)*
+
+Sent when the CAS needs to send data to the caller.
+
+> ``data`` is an alternative name for this notification.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.payload | string | mandatory | Data to transfer. Can be base64 coded if required |
+| params.source | string | mandatory | Origin of the data (must be one of the following: *PRIVATE, PUBLIC*) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDataReceived",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDataReceived",
+  "params": {
+    "payload": "...",
+    "source": "PRIVATE"
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDataReceived``.
 

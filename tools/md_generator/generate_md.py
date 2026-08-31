@@ -46,7 +46,7 @@ def generate_md(logfile=None):
                     h_files.append(file)
         if h_files:
             print(f"Found I*.h files in {plugin_path}: {h_files}")
-            convert_h_to_md(plugin_path, logfile)
+            convert_h_to_md(plugin_path, h_files)
             print(f"[TOOL] Would generate md from {h_files} using the required tool.")
         else:
             print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
@@ -67,14 +67,14 @@ def convert_json_to_md(plugin_path, interface_path):
         os.system(f"python3 {jsongenpath} --docs {file} -i {interface_path} -o {output_dir} --no-interfaces-section")
     print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
-def convert_h_to_md(plugin_path, logfile=None):
+def convert_h_to_md(plugin_path, h_files):
     print(f"*****   Generating md files from headers under docs/apis for {plugin_path}   *****")
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
-    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "h2md/generate_md_from_header.py"))
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../install/sbin/JsonGenerator/JsonGenerator.py"))
+    framework_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../install/include/WPEFramework"))
 
-    cmd = f"python3 {script_path} -i {plugin_path} -o {output_dir}"
-    if logfile:
-        cmd += f" --logfile {logfile}"
+    h_files_str = " ".join(h_files)
+    cmd = f"python3 {script_path} -I {framework_path} -o {output_dir} --docs {h_files_str}"
 
     print(f"Running: {cmd}")
     os.system(cmd)
@@ -103,6 +103,13 @@ def postprocess_md():
                 print("link fixing filename:", file)
                 with open(file, "w") as file_wr:
                     file_wr.writelines(rplce_file)
+
+        fname, fext = os.path.splitext(os.path.basename(file))
+        if fname.endswith("API"):
+            new_fname = os.path.join(apis_dir, fname[:-3] + fext)
+            os.rename(file, new_fname)
+            print(f"renamed {file} to {new_fname}")
+
     print("********************   Postprocessing completed   ********************")
 
 def main():
