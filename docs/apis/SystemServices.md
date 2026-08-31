@@ -3209,9 +3209,10 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#].wakeupSource | string | wake up sources and its configurations. Possible values: WAKEUPSRC_UNKNOWN      Unknown wake up source, WAKEUPSRC_VOICE      Voice Wake up, WAKEUPSRC_PRESENCE_DETECTION      Presence detection wake up, WAKEUPSRC_BLUETOOTH      Bluetooth Wakeup, WAKEUPSRC_WIFI      WiFi Wake up, WAKEUPSRC_IR      IR Remote Wake up, WAKEUPSRC_POWER_KEY      Power Button Wake up - GPIO, WAKEUPSRC_TIMER      Timer Wake up, WAKEUPSRC_CEC      HDMI CEC command Wake up, WAKEUPSRC_LAN      LAN wake up, WAKEUPSRC_RF4CE      RF4CE wake up |
-| params.wakeupSources[#].enabled | bool | Whether the wakeup src config is true or false |
+| params.wakeupSources | array | Array of wakeup source configurations |
+| params.wakeupSources[#] | object |  |
+| params.wakeupSources[#].wakeupSource | string | The wake up source type (must be one of the following: WAKEUPSRC_VOICE, WAKEUPSRC_PRESENCE_DETECTION, WAKEUPSRC_BLUETOOTH, WAKEUPSRC_WIFI, WAKEUPSRC_IR, WAKEUPSRC_POWER_KEY, WAKEUPSRC_TIMER, WAKEUPSRC_CEC, WAKEUPSRC_LAN, WAKEUPSRC_RF4CE) |
+| params.wakeupSources[#].enabled | bool | Whether the wakeup source configuration is enabled or disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -3232,7 +3233,11 @@ None
         "powerState": "",
         "wakeupSources": [
             {
-                "wakeupSource": "WAKEUPSRC_UNKNOWN      Unknown wake up source",
+                "wakeupSource": "WAKEUPSRC_VOICE",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_IR",
                 "enabled": true
             }
         ]
@@ -3244,7 +3249,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_UNKNOWN      Unknown wake up source", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_VOICE", "enabled": true}, {"wakeupSource": "WAKEUPSRC_IR", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
