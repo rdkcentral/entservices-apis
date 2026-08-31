@@ -1,3 +1,7 @@
+⚠️ **DEPRECATED**: This tool has been removed from the repository. As of [PR #976](https://github.com/rdkcentral/entservices-apis/pull/976), documentation generation now uses the JsonGenerator from ThunderTools instead of md_generator. Please see the main README for updated documentation generation instructions.
+
+---
+
 # Guidelines for Tagging C++ Methods with Doxygen Comments
 
 ## 1. Introduction
