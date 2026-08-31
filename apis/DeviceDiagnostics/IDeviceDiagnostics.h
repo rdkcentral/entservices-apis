@@ -78,7 +78,7 @@ namespace WPEFramework
             // @param success - out - boolean
             // @example success: true
             // @retval Core::ERROR_NONE Successfully retrieved configuration
-            virtual Core::hresult GetConfiguration(IStringIterator* const& names , IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
+            // @retval Core::ERROR_GENERAL Failed to retrieve configuration
 
             // @text getMilestones
             // @brief Returns the list of milestones
