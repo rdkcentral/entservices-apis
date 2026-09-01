@@ -68,7 +68,7 @@ No events are associated with this method.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result.brightness | uint32_t | Brightness level |
+| result.brightness | int32_t | Brightness level |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
