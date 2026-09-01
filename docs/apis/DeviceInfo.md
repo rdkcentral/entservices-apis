@@ -1,1958 +1,1208 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DeviceInfo_Module"></a>
-# DeviceInfo Module
+<a id="head_DeviceInfo_API"></a>
+# DeviceInfo API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceInfo/IDeviceInfo.h)**
+**Version: 1.0.0**
 
-A DeviceInfo module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+DeviceInfo interface for Thunder framework.
+
+(Defined with IDeviceInfo in [IDeviceInfo.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IDeviceInfo.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IDeviceInfo](#IDeviceInfo)
-    - [Methods](#IDeviceInfo-Methods)
-    - [Properties](#IDeviceInfo-Properties)
-  - [IDeviceAudioCapabilities](#IDeviceAudioCapabilities)
-    - [Methods](#IDeviceAudioCapabilities-Methods)
-  - [IDeviceVideoCapabilities](#IDeviceVideoCapabilities)
-    - [Methods](#IDeviceVideoCapabilities-Methods)
-    - [Properties](#IDeviceVideoCapabilities-Properties)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Properties](#head_Properties)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the DeviceInfo interface (version 1.0.0). It includes detailed specification about its methods and properties provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `DeviceInfo` module provides the following interface(s):
+DeviceInfo JSON-RPC interface.
 
-- IDeviceInfo
-- IDeviceAudioCapabilities
-- IDeviceVideoCapabilities
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the DeviceInfo interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: DeviceInfo) |
-| classname | string | Class name: *DeviceInfo* |
-| locator | string | Library name: *libWPEFrameworkDeviceInfo.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IDeviceInfo"></a>
-## IDeviceInfo Interface
-
-<a id="IDeviceInfo-Methods"></a>
-### Methods
-
-The following methods are provided by the IDeviceInfo Interface:
+DeviceInfo interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [supportedaudioports](#supportedaudioports) | Provides access to the audio ports supported on the device. |
+| [supportedaudioports](#method_supportedaudioports) | Provides access to the audio ports supported on the device |
 
-<a id="supportedaudioports"></a>
-## *supportedaudioports*
+<a id="method_supportedaudioports"></a>
+## *supportedaudioports [<sup>method</sup>](#head_Methods)*
 
 Provides access to the audio ports supported on the device.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedAudioPorts | array | Audio ports supported on the device. |
-| result.supportedAudioPorts[#] | string |  |
-| result.success | bool |  |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.supportedAudioPorts | array | mandatory | Audio ports supported on the device |
+| result.supportedAudioPorts[#] | string | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "DeviceInfo.supportedaudioports"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "DeviceInfo.supportedaudioports"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "supportedAudioPorts": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="IDeviceInfo-Properties"></a>
-### Properties
-
-The following properties are provided by the IDeviceInfo Interface:
-
-| Property | Description |
+| Message | Description |
 | :-------- | :-------- |
-| [addresses](#addresses)<sup>RO</sup> | Provides access to the network interface addresses. |
-| [brandname](#brandname)<sup>RO</sup> | Provides access to device brand name |
-| [chipset](#chipset)<sup>RO</sup> | Provides access to the chipset of the device |
-| [devicetype](#devicetype)<sup>RO</sup> | Provides access to the device type. |
-| [distributorid](#distributorid)<sup>RO</sup> | Provides access to the partner ID or distributor ID for device. |
-| [estbip](#estbip)<sup>RO</sup> | Provides access to the STB IP addresses. |
-| [estbmac](#estbmac)<sup>RO</sup> | Provides access to the STB MAC addresses. |
-| [ethmac](#ethmac)<sup>RO</sup> | Provides access to the Ethernet MAC addresses. |
-| [firmwareversion](#firmwareversion)<sup>RO</sup> | Provides access to the versions maintained in version.txt. |
-| [make](#make)<sup>RO</sup> | Provides access to the device manufacturer. |
-| [modelname](#modelname)<sup>RO</sup> | Provides access to the friendly device model name. |
-| [releaseversion](#releaseversion)<sup>RO</sup> | Provides access to the ReleaseVersion of the Image |
-| [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacture |
-| [modelid](#modelid)<sup>RO</sup> | Provides access to the device model number |
-| [deviceId](#deviceId)<sup>RO</sup> | Provides access to the stable alphanumeric device identifier |
-| [hardwareId](#hardwareId)<sup>RO</sup> | Provides access to the hardware identifier |
-| [socname](#socname)<sup>RO</sup> | Provides access to the SOC Name. |
-| [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
-| [wifimac](#wifimac)<sup>RO</sup> | Provides access to the WIFI MAC addresses. |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
 
-<a id="addresses"></a>
-## *addresses*
+### Example
 
-Provides access to the network interface addresses.
+#### Request
 
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.supportedaudioports"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "supportedAudioPorts": [
+      "..."
+    ],
+    "success": false
+  }
+}
+```
+
+<a id="head_Properties"></a>
+# Properties
+
+The following properties are provided by the DeviceInfo interface:
+
+DeviceInfo interface properties:
+
+| Property | R/W | Description |
 | :-------- | :-------- | :-------- |
-| (property).addressesInfo | array | Network interface addresses |
-| (property).addressesInfo[#].name | string | Interface name |
-| (property).addressesInfo[#].mac | string | Interface MAC address |
-| (property).addressesInfo[#].ip | string | Interface IP address |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "DeviceInfo.addresses"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "DeviceInfo.addresses"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": [
-        {
-            "name": "",
-            "mac": "",
-            "ip": ""
-        }
-    ]
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="brandname"></a>
-## *brandname*
-
-Provides access to device brand name
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).brand | string | Brand Name |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "DeviceInfo.brandname"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "DeviceInfo.brandname"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "brand": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="chipset"></a>
-## *chipset*
-
-Provides access to the chipset of the device
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).chipset | string | Device chip set Name |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "DeviceInfo.chipset"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "DeviceInfo.chipset"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "chipset": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="devicetype"></a>
-## *devicetype*
-
-Provides access to the device type.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).devicetype | string | Device type (must be one of the following: tv, IpStb, QamIpStb). Possible values: IpTv, IpStb, QamIpStb |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "DeviceInfo.devicetype"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "DeviceInfo.devicetype"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "devicetype": "IpTv"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="distributorid"></a>
-## *distributorid*
-
-Provides access to the partner ID or distributor ID for device.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).distributorid | string | Partner ID or distributor ID for device |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "DeviceInfo.distributorid"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "DeviceInfo.distributorid"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "distributorid": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="estbip"></a>
-## *estbip*
-
-Provides access to the STB IP addresses.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).estb_ip | string | STB IP Address |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "DeviceInfo.estbip"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "DeviceInfo.estbip"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "estb_ip": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="estbmac"></a>
-## *estbmac*
-
-Provides access to the STB MAC addresses.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).estb_mac | string | STB Mac Address |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "DeviceInfo.estbmac"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "DeviceInfo.estbmac"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": {
-        "estb_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="ethmac"></a>
-## *ethmac*
-
-Provides access to the Ethernet MAC addresses.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).eth_mac | string | Ethernet Mac Address |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "DeviceInfo.ethmac"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "DeviceInfo.ethmac"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": {
-        "eth_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="firmwareversion"></a>
-## *firmwareversion*
-
-Provides access to the versions maintained in version.txt.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).firmwareVersionInfo | object | Version information |
-| (property).firmwareVersionInfo.imagename | string | Image name |
-| (property).firmwareVersionInfo.rdk | string | rdk version |
-| (property).firmwareVersionInfo.sdk | string | sdk version |
-| (property).firmwareVersionInfo.mediarite | string | mediarite |
-| (property).firmwareVersionInfo.yocto | string | yocto version |
-| (property).firmwareVersionInfo.pdri | string | pdri version |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "DeviceInfo.firmwareversion"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "DeviceInfo.firmwareversion"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": {
-        "imagename": "",
-        "rdk": "",
-        "sdk": "",
-        "mediarite": "",
-        "yocto": "",
-        "pdri": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="make"></a>
-## *make*
-
-Provides access to the device manufacturer.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).make | string | Device manufacturer |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "DeviceInfo.make"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "DeviceInfo.make"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": {
-        "make": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="modelname"></a>
-## *modelname*
-
-Provides access to the friendly device model name.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).model | string | Friendly device model name |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "DeviceInfo.modelname"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "DeviceInfo.modelname"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "result": {
-        "model": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="releaseversion"></a>
-## *releaseversion*
-
-Provides access to the ReleaseVersion of the Image
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).releaseversion | string | Release version |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "DeviceInfo.releaseversion"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "DeviceInfo.releaseversion"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "result": {
-        "releaseversion": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="serialnumber"></a>
-## *serialnumber*
-
-Provides access to the serial number set by manufacture
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).serialnumber | string | Device serial number |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "method": "DeviceInfo.serialnumber"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "DeviceInfo.serialnumber"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "result": {
-        "serialnumber": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="modelid"></a>
-## *modelid*
-
-Provides access to the device model number
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).sku | string | Device model number or SKU |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "DeviceInfo.modelid"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "DeviceInfo.modelid"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": {
-        "sku": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="deviceId"></a>
-## *deviceId*
-
-Provides access to the stable alphanumeric device identifier
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).deviceId | string | Stable alphanumeric device identifier. If the serial number contains at least one non-digit character (alphanumeric), returns that serial number directly. If the serial number is entirely numeric, composes the deviceId from the hardware ID (HWID) in the format `<HWID> + "000" + serialNumber.substr(5, 7)`. For example, serial `84725041828384` with HWID `32E304` yields deviceId `32E3040000418283`. If HWID is unavailable, falls back to manufacturing serial number. If both HWID and manufacturing serial number calls fail, uses the raw serial number as deviceId. The value is cached in memory for the lifetime of the plugin instance. |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "method": "DeviceInfo.deviceId"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "DeviceInfo.deviceId"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "result": {
-        "deviceId": "EB21163216C000024"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="hardwareId"></a>
-## *hardwareId*
-
-Provides access to the hardware identifier
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).hardwareId | string | Hardware identifier (first 6 characters of the deviceId value). This property reuses the cached deviceId without invoking the MFR library independently. If deviceId is shorter than 6 characters, hardwareId equals the full deviceId value. |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "method": "DeviceInfo.hardwareId"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "DeviceInfo.hardwareId"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "result": {
-        "hardwareId": "EB2116"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="socname"></a>
-## *socname*
-
-Provides access to the SOC Name.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).socname | string | SOC Name |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "DeviceInfo.socname"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "DeviceInfo.socname"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": {
-        "socname": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="systeminfo"></a>
-## *systeminfo*
-
-Provides access to the system general information
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).systemInfo | object |  |
-| (property).systemInfo.version | string | Software version (in form version#hashtag) |
-| (property).systemInfo.uptime | integer | System uptime (in seconds) |
-| (property).systemInfo.totalram | integer | Total installed system RAM memory (in bytes) |
-| (property).systemInfo.freeram | integer | Free system RAM memory (in bytes) |
-| (property).systemInfo.totalswap | integer | Total swap space (in bytes) |
-| (property).systemInfo.freeswap | integer | Swap space still available (in bytes) |
-| (property).systemInfo.devicename | string | Host name |
-| (property).systemInfo.cpuload | string | Current CPU load (percentage) |
-| (property).systemInfo.cpuloadavg | object | CPU load average |
-| (property).systemInfo.cpuloadavg.avg1min | integer | 1min cpuload average |
-| (property).systemInfo.cpuloadavg.avg5min | integer | 5min cpuload average |
-| (property).systemInfo.cpuloadavg.avg15min | integer | 15min cpuload average |
-| (property).systemInfo.serialnumber | string | Device serial number |
-| (property).systemInfo.time | string | Current system date and time |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "method": "DeviceInfo.systeminfo"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "DeviceInfo.systeminfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "result": {
-        "version": "",
-        "uptime": 0,
-        "totalram": 0,
-        "freeram": 0,
-        "totalswap": 0,
-        "freeswap": 0,
-        "devicename": "",
-        "cpuload": "",
-        "cpuloadavg": {
-            "avg1min": 0,
-            "avg5min": 0,
-            "avg15min": 0
-        },
-        "serialnumber": "",
-        "time": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="wifimac"></a>
-## *wifimac*
-
-Provides access to the WIFI MAC addresses.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).wifi_mac | string | Wifi Mac Address |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "method": "DeviceInfo.wifimac"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "DeviceInfo.wifimac"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "result": {
-        "wifi_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
----
-
-<a id="IDeviceAudioCapabilities"></a>
-## IDeviceAudioCapabilities Interface
-
-<a id="IDeviceAudioCapabilities-Methods"></a>
-### Methods
-
-The following methods are provided by the IDeviceAudioCapabilities Interface:
-
-| Method | Description |
+| [serialnumber](#property_serialnumber) | read-only | Provides access to the serial number set by manufacture |
+| [modelid](#property_modelid) | read-only | Provides access to the device model number |
+| [make](#property_make) | read-only | Provides access to the device manufacturer |
+| [modelname](#property_modelname) | read-only | Provides access to the friendly device model name |
+| [devicetype](#property_devicetype) | read-only | Provides access to the device type |
+| [socname](#property_socname) | read-only | Provides access to the SOC Name |
+| [distributorid](#property_distributorid) | read-only | Provides access to the partner ID or distributor ID for device |
+| [brandname](#property_brandname) | read-only | Provides access to device brand name |
+| [releaseversion](#property_releaseversion) | read-only | Provides access to the ReleaseVersion of the Image |
+| [chipset](#property_chipset) | read-only | Provides access to the chipset of the device |
+| [firmwareversion](#property_firmwareversion) | read-only | Provides access to the versions maintained in version |
+| [systeminfo](#property_systeminfo) | read-only | Provides access to the system general information |
+| [addresses](#property_addresses) | read-only | Provides access to the network interface addresses |
+| [ethmac](#property_ethmac) | read-only | Provides access to the Ethernet MAC addresses |
+| [estbmac](#property_estbmac) | read-only | Provides access to the STB MAC addresses |
+| [wifimac](#property_wifimac) | read-only | Provides access to the WIFI MAC addresses |
+| [estbip](#property_estbip) | read-only | Provides access to the STB IP addresses |
+| [deviceId](#property_deviceId) | read-only | Provides the Device ID info |
+| [hardwareId](#property_hardwareId) | read-only | Provides the Hardware ID (first 6 characters of Device ID) |
+| [osname](#property_osname) | read/write | Provides access to the operating system name |
+| [osversion](#property_osversion) | read/write | Provides access to the operating system version |
+
+<a id="property_serialnumber"></a>
+## *serialnumber [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the serial number set by manufacture.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the serial number set by manufacture |
+| (property).serialnumber | string | mandatory | Serial number set by manufacturer |
+
+### Errors
+
+| Message | Description |
 | :-------- | :-------- |
-| [audiocapabilities](#audiocapabilities)<sup>deprecated</sup> | Audio capabilities for the specified audio port. |
-| [ms12capabilities](#ms12capabilities)<sup>deprecated</sup> | MS12 audio capabilities for the specified audio port. |
-| [supportedms12audioprofiles](#supportedms12audioprofiles)<sup>deprecated</sup> | Supported MS12 audio profiles for the specified audio port. |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
 
-<a id="audiocapabilities"></a>
-## *audiocapabilities*
-
-Audio capabilities for the specified audio port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.audioPort | string | Audio port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.AudioCapabilities | array | Audio capability |
-| result.AudioCapabilities[#] | string | Possible values: none, ATMOS, DOLBY_DIGITAL, DOLBY_DIGITAL_PLUS, Dual_Audio_Decode, DAPv2, MS12 |
-| result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "DeviceInfo.audiocapabilities",
-    "params": {
-        "audioPort": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "DeviceInfo.audiocapabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "AudioCapabilities": [
-            "none"
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="ms12capabilities"></a>
-## *ms12capabilities*
-
-MS12 audio capabilities for the specified audio port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.audioPort | string | Audio port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.MS12Capabilities | array | MS12 audio capability |
-| result.MS12Capabilities[#] | string | Possible values: none, Dolby_Volume, Inteligent_Equalizer, Dialogue_Enhancer |
-| result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "DeviceInfo.ms12capabilities",
-    "params": {
-        "audioPort": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "DeviceInfo.ms12capabilities", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "MS12Capabilities": [
-            "none"
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="supportedms12audioprofiles"></a>
-## *supportedms12audioprofiles*
-
-Supported MS12 audio profiles for the specified audio port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.audioPort | string | Audio port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedMS12AudioProfiles | array | MS12 audio profiles |
-| result.supportedMS12AudioProfiles[#] | string |  |
-| result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "DeviceInfo.supportedms12audioprofiles",
-    "params": {
-        "audioPort": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "supportedMS12AudioProfiles": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
----
-
-<a id="IDeviceVideoCapabilities"></a>
-## IDeviceVideoCapabilities Interface
-
-<a id="IDeviceVideoCapabilities-Methods"></a>
-### Methods
-
-The following methods are provided by the IDeviceVideoCapabilities Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [defaultresolution](#defaultresolution)<sup>deprecated</sup> | Default resolution on the selected video display port. |
-| [supportedhdcp](#supportedhdcp)<sup>deprecated</sup> | Supported hdcp version on the selected video display port. |
-| [supportedresolutions](#supportedresolutions)<sup>deprecated</sup> | Supported resolutions on the selected video display port. |
-| [supportedvideodisplays](#supportedvideodisplays)<sup>deprecated</sup> | Provides access to the video ports supported on the device. |
-
-<a id="defaultresolution"></a>
-## *defaultresolution*
-
-Default resolution on the selected video display port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.videoDisplay | string | Video display port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.defaultResolution | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "DeviceInfo.defaultresolution",
-    "params": {
-        "videoDisplay": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "DeviceInfo.defaultresolution", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "defaultResolution": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="supportedhdcp"></a>
-## *supportedhdcp*
-
-Supported hdcp version on the selected video display port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.videoDisplay | string | Video display port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedHDCPVersion | string | Possible values: unavailable, 1.4, 2.0, 2.1, 2.2 |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "DeviceInfo.supportedhdcp",
-    "params": {
-        "videoDisplay": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "DeviceInfo.supportedhdcp", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "supportedHDCPVersion": "unavailable"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="supportedresolutions"></a>
-## *supportedresolutions*
-
-Supported resolutions on the selected video display port.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.videoDisplay | string | Video display port name |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedResolutions | array | Supported Resolutions |
-| result.supportedResolutions[#] | string |  |
-| result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "DeviceInfo.supportedresolutions",
-    "params": {
-        "videoDisplay": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "DeviceInfo.supportedresolutions", "params": {"videoDisplay": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "supportedResolutions": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="supportedvideodisplays"></a>
-## *supportedvideodisplays*
-
-Provides access to the video ports supported on the device.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedVideoDisplays | array | Video ports supported on the device |
-| result.supportedVideoDisplays[#] | string |  |
-| result.success | bool |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "DeviceInfo.supportedvideodisplays"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "DeviceInfo.supportedvideodisplays"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "supportedVideoDisplays": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
-<a id="IDeviceVideoCapabilities-Properties"></a>
-### Properties
-
-The following properties are provided by the IDeviceVideoCapabilities Interface:
-
-| Property | Description |
-| :-------- | :-------- |
-| [hostedid](#hostedid)<sup>RO</sup><sup>deprecated</sup> | Provides access to the EDID of the host. |
-
-<a id="hostedid"></a>
-## *hostedid*
-
-Provides access to the EDID of the host.
-
-> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).EDID | string |  |
-
-### Examples
-
+### Example
 
 #### Get Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "DeviceInfo.hostedid"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.serialnumber"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "DeviceInfo.hostedid"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Get Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": {
-        "EDID": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "serialnumber": "..."
+  }
 }
 ```
 
+<a id="property_modelid"></a>
+## *modelid [<sup>property</sup>](#head_Properties)*
 
-#### Error Response (ErrorCode::ERROR_GENERAL)
+Provides access to the provides access to the device model number.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the device model number |
+| (property).sku | string | mandatory | Device model number or SKU |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.modelid"
 }
 ```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "sku": "..."
+  }
+}
+```
+
+<a id="property_make"></a>
+## *make [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the device manufacturer.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the device manufacturer |
+| (property).make | string | mandatory | Device manufacturer |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.make"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "make": "..."
+  }
+}
+```
+
+<a id="property_modelname"></a>
+## *modelname [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the friendly device model name.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the friendly device model name |
+| (property).model | string | mandatory | Friendly device model name |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.modelname"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "model": "..."
+  }
+}
+```
+
+<a id="property_devicetype"></a>
+## *devicetype [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the device type.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the device type |
+| (property).devicetype | string | mandatory | Device type (must be one of the following: tv, IpStb, QamIpStb) (must be one of the following: *IpStb, IpTv, QamIpStb*) |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.devicetype"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "devicetype": "IpStb"
+  }
+}
+```
+
+<a id="property_socname"></a>
+## *socname [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the SOC Name.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the SOC Name |
+| (property).socname | string | mandatory | SOC Name |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.socname"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "socname": "..."
+  }
+}
+```
+
+<a id="property_distributorid"></a>
+## *distributorid [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the partner ID or distributor ID for device.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the partner ID or distributor ID for device |
+| (property).distributorid | string | mandatory | Partner ID or distributor ID for device |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.distributorid"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "distributorid": "..."
+  }
+}
+```
+
+<a id="property_brandname"></a>
+## *brandname [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to device brand name.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to device brand name |
+| (property).brand | string | mandatory | Brand Name |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.brandname"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "brand": "..."
+  }
+}
+```
+
+<a id="property_releaseversion"></a>
+## *releaseversion [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the ReleaseVersion of the Image.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the ReleaseVersion of the Image |
+| (property).releaseversion | string | mandatory | Release version |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.releaseversion"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "releaseversion": "..."
+  }
+}
+```
+
+<a id="property_chipset"></a>
+## *chipset [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the chipset of the device.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the chipset of the device |
+| (property).chipset | string | mandatory | Device chip set Name |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.chipset"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "chipset": "..."
+  }
+}
+```
+
+<a id="property_firmwareversion"></a>
+## *firmwareversion [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the versions maintained in version.txt.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Version information |
+| (property).imagename | string | mandatory | Image name |
+| (property).rdk | string | mandatory | Rdk version |
+| (property).sdk | string | mandatory | Sdk version |
+| (property).mediarite | string | mandatory | Mediarite |
+| (property).yocto | string | mandatory | Yocto version |
+| (property).pdri | string | mandatory | Pdri version |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.firmwareversion"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "imagename": "...",
+    "rdk": "...",
+    "sdk": "...",
+    "mediarite": "...",
+    "yocto": "...",
+    "pdri": "..."
+  }
+}
+```
+
+<a id="property_systeminfo"></a>
+## *systeminfo [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the system general information.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the system general information |
+| (property).version | string | mandatory | Software version (in form version#hashtag) |
+| (property).uptime | integer | mandatory | System uptime (in seconds) |
+| (property).totalram | integer | mandatory | Total installed system RAM memory (in bytes) |
+| (property).freeram | integer | mandatory | Free system RAM memory (in bytes) |
+| (property).totalswap | integer | mandatory | Total swap space (in bytes) |
+| (property).freeswap | integer | mandatory | Swap space still available (in bytes) |
+| (property).devicename | string | mandatory | Host name |
+| (property).cpuload | string | mandatory | Current CPU load (percentage) |
+| (property).cpuloadavg | object | mandatory | CPU load average |
+| (property).cpuloadavg.avg1min | integer | mandatory | 1min cpuload average |
+| (property).cpuloadavg.avg5min | integer | mandatory | 5min cpuload average |
+| (property).cpuloadavg.avg15min | integer | mandatory | 15min cpuload average |
+| (property).serialnumber | string | mandatory | Device serial number |
+| (property).time | string | mandatory | Current system date and time |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.systeminfo"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "version": "...",
+    "uptime": 0,
+    "totalram": 0,
+    "freeram": 0,
+    "totalswap": 0,
+    "freeswap": 0,
+    "devicename": "...",
+    "cpuload": "...",
+    "cpuloadavg": {
+      "avg1min": 0,
+      "avg5min": 0,
+      "avg15min": 0
+    },
+    "serialnumber": "...",
+    "time": "..."
+  }
+}
+```
+
+<a id="property_addresses"></a>
+## *addresses [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the network interface addresses.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | array | mandatory | Network interface addresses |
+| (property)[#] | object | mandatory | *...* |
+| (property)[#].name | string | mandatory | Interface name |
+| (property)[#].mac | string | mandatory | Interface MAC address |
+| (property)[#].ip | string | mandatory | Interface IP address |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.addresses"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": [
+    {
+      "name": "...",
+      "mac": "...",
+      "ip": "..."
+    }
+  ]
+}
+```
+
+<a id="property_ethmac"></a>
+## *ethmac [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the Ethernet MAC addresses.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the Ethernet MAC addresses |
+| (property).eth_mac | string | mandatory | Ethernet Mac Address |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.ethmac"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "eth_mac": "..."
+  }
+}
+```
+
+<a id="property_estbmac"></a>
+## *estbmac [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the STB MAC addresses.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the STB MAC addresses |
+| (property).estb_mac | string | mandatory | STB Mac Address |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.estbmac"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "estb_mac": "..."
+  }
+}
+```
+
+<a id="property_wifimac"></a>
+## *wifimac [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the WIFI MAC addresses.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the WIFI MAC addresses |
+| (property).wifi_mac | string | mandatory | Wifi Mac Address |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.wifimac"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "wifi_mac": "..."
+  }
+}
+```
+
+<a id="property_estbip"></a>
+## *estbip [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the STB IP addresses.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the STB IP addresses |
+| (property).estb_ip | string | mandatory | STB IP Address |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.estbip"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "estb_ip": "..."
+  }
+}
+```
+
+<a id="property_deviceId"></a>
+## *deviceId [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides the Device ID info.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides the Device ID info |
+| (property).deviceId | string | mandatory | Device ID |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.deviceId"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "deviceId": "..."
+  }
+}
+```
+
+<a id="property_hardwareId"></a>
+## *hardwareId [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides the Hardware ID (first 6 characters of Device ID).
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides the Hardware ID (first 6 characters of Device ID) |
+| (property).hardwareId | string | mandatory | Hardware ID (first 6 characters of Device ID) |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.hardwareId"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "hardwareId": "..."
+  }
+}
+```
+
+<a id="property_osname"></a>
+## *osname [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the operating system name.
+
+### Description
+
+Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the operating system name |
+| (property).osName | string | mandatory | *...* |
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the operating system name |
+| (property).osName | string | mandatory | Operating system name |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.osname"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "osName": "..."
+  }
+}
+```
+
+#### Set Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.osname",
+  "params": {
+    "osName": "..."
+  }
+}
+```
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a id="property_osversion"></a>
+## *osversion [<sup>property</sup>](#head_Properties)*
+
+Provides access to the provides access to the operating system version.
+
+### Description
+
+Reads and writes OsVersion to /opt/persistent/osdetails.info and returns empty string if unset.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the operating system version |
+| (property).osVersion | string | mandatory | *...* |
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | object | mandatory | Provides access to the operating system version |
+| (property).osVersion | string | mandatory | Operating system version |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::ERROR_NONE``` | Indicates success |
+| ```ErrorCode::ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.osversion"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "osVersion": "..."
+  }
+}
+```
+
+#### Set Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.osversion",
+  "params": {
+    "osVersion": "..."
+  }
+}
+```
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+

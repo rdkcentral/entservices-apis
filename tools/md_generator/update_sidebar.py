@@ -44,7 +44,7 @@ def update_sidebar():
         if 'Plugin' in name:
             display_name = name.replace('Plugin', '<sup>@</sup>')
         else:
-            display_name = name.replace('Plugin', '')
+            display_name = name
         md_links.append(f"  - [{display_name}](apis/{f})\n")
 
     # Replace marker with new list

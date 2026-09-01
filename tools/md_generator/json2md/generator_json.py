@@ -2111,7 +2111,7 @@ def CreateDocument(schema, path):
                 MdParagraph(props["description"])
             if type == "method" or is_property:
                 MdHeader("Events", 3)
-                if "events" in props:
+                if "events" in props and isinstance(props["events"], dict):
                     MdTableHeader(["Event", "Description"])
                     event_dict = props["events"]
                     for k,v in event_dict.items():

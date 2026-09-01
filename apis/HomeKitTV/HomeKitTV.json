@@ -315,7 +315,7 @@
                         "paired": {
                             "description": "HomeKit Pairing status",
                             "type": "boolean",
-                            "example": "true, false"
+                            "example": true
                         }
                     },
                     "required": [

@@ -1,215 +1,207 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="LEDControl_Module"></a>
-# LEDControl Module
+<a id="head_LEDControl_API"></a>
+# LEDControl API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LEDControl/ILEDControl.h)**
+**Version: 1.0.0**
 
-A LEDControl module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+LEDControl interface for Thunder framework.
+
+(Defined with ILEDControl in [ILEDControl.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/ILEDControl.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [ILEDControl](#ILEDControl)
-    - [Methods](#ILEDControl-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the LEDControl interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `LEDControl` module provides the following interface(s):
+LEDControl JSON-RPC interface.
 
-- ILEDControl
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the LEDControl interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.LEDControl) |
-| classname | string | Class name: *LEDControl* |
-| locator | string | Library name: *libWPEFrameworkLEDControl.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="ILEDControl"></a>
-## ILEDControl Interface
-
-<a id="ILEDControl-Methods"></a>
-### Methods
-
-The following methods are provided by the ILEDControl Interface:
+LEDControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getLEDState](#getLEDState) | Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"} |
-| [getSupportedLEDStates](#getSupportedLEDStates) | Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`. |
-| [setLEDState](#setLEDState) | Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. |
+| [getSupportedLEDStates](#method_getSupportedLEDStates) |  |
+| [getLEDState](#method_getLEDState) | Retrieves current state of the LED |
+| [setLEDState](#method_setLEDState) | Sets the device LED to a requested state from those available in `GetSupportedLEDStates` |
 
-<a id="getLEDState"></a>
-## *getLEDState*
+<a id="method_getSupportedLEDStates"></a>
+## *getSupportedLEDStates [<sup>method</sup>](#head_Methods)*
 
-Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | LEDState. Possible values: NONE, ACTIVE, STANDBY, WPS_CONNECTING, WPS_CONNECTED, WPS_ERROR, FACTORY_RESET, USB_UPGRADE, DOWNLOAD_ERROR, MAX |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.LEDControl.getLEDState"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.LEDControl.getLEDState"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "state": "NONE"
-    }
-}
-```
-
-<a id="getSupportedLEDStates"></a>
-## *getSupportedLEDStates*
+### Description
 
 Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.supportedLEDStates | array | string [] of supported LED states.  |
-| result.supportedLEDStates[#] | string |  |
-| result.success | bool | boolean |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.supportedLEDStates | array | mandatory | String [] of supported LED states. e.g. "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']" |
+| result.supportedLEDStates[#] | string | mandatory | *...* |
+| result.success | boolean | mandatory | Boolean |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.LEDControl.getSupportedLEDStates"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getSupportedLEDStates"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.LEDControl.getSupportedLEDStates"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "supportedLEDStates": [
-            "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
-        ],
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "supportedLEDStates": [
+      "..."
+    ],
+    "success": false
+  }
 }
 ```
 
-<a id="setLEDState"></a>
-## *setLEDState*
+<a id="method_getLEDState"></a>
+## *getLEDState [<sup>method</sup>](#head_Methods)*
+
+Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | LEDState |
+| result.state | string | mandatory | *...* (must be one of the following: *ACTIVE, DOWNLOAD_ERROR, FACTORY_RESET, MAX, NONE, STANDBY, USB_UPGRADE, WPS_CONNECTED, WPS_CONNECTING, WPS_ERROR*) |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLEDState"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "state": "ACTIVE"
+  }
+}
+```
+
+<a id="method_setLEDState"></a>
+## *setLEDState [<sup>method</sup>](#head_Methods)*
 
 Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.state | string | LEDControlState. . Possible values: NONE, ACTIVE, STANDBY, WPS_CONNECTING, WPS_CONNECTED, WPS_ERROR, FACTORY_RESET, USB_UPGRADE, DOWNLOAD_ERROR, MAX |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | boolean |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.state | string | mandatory | LEDControlState. e.g. "FACTORY_RESET" (must be one of the following: *ACTIVE, DOWNLOAD_ERROR, FACTORY_RESET, MAX, NONE, STANDBY, USB_UPGRADE, WPS_CONNECTED, WPS_CONNECTING, WPS_ERROR*) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Boolean |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.LEDControl.setLEDState",
-    "params": {
-        "state": "FACTORY_RESET"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setLEDState",
+  "params": {
+    "state": "ACTIVE"
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.LEDControl.setLEDState", "params": {"state": "FACTORY_RESET"}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
 }
 ```
 

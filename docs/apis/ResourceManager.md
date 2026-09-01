@@ -1,279 +1,266 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="ResourceManager_Module"></a>
-# ResourceManager Module
+<a id="head_ResourceManager_API"></a>
+# ResourceManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ResourceManager/IResourceManager.h)**
+**Version: 1.0.0**
 
-A ResourceManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+ResourceManager interface for Thunder framework.
+
+(Defined with IResourceManager in [IResourceManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IResourceManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IResourceManager](#IResourceManager)
-    - [Methods](#IResourceManager-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the ResourceManager interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `ResourceManager` module provides the following interface(s):
+ResourceManager JSON-RPC interface.
 
-- IResourceManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the ResourceManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.ResourceManager) |
-| classname | string | Class name: *ResourceManager* |
-| locator | string | Library name: *libWPEFrameworkResourceManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IResourceManager"></a>
-## IResourceManager Interface
-
-<a id="IResourceManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IResourceManager Interface:
+ResourceManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBlockedAVApplications](#getBlockedAVApplications) | Gets a list of blacklisted clients |
-| [reserveTTSResource](#reserveTTSResource) | Reserves the Text To Speech resource for a specified client |
-| [reserveTTSResourceForApps](#reserveTTSResourceForApps) | Reserves the Text To Speech resource for specified clients |
-| [setAVBlocked](#setAVBlocked) | Adds/removes the application with the given callsign to/from the AV blacklist |
+| [setAVBlocked](#method_setAVBlocked) | Adds/removes the application with the given callsign to/from the AV blacklist |
+| [getBlockedAVApplications](#method_getBlockedAVApplications) | Gets a list of blacklisted clients |
+| [reserveTTSResource](#method_reserveTTSResource) | Reserves the Text To Speech resource for a specified client |
+| [reserveTTSResourceForApps](#method_reserveTTSResourceForApps) | Reserves the Text To Speech resource for specified clients |
 
-<a id="getBlockedAVApplications"></a>
-## *getBlockedAVApplications*
+<a id="method_setAVBlocked"></a>
+## *setAVBlocked [<sup>method</sup>](#head_Methods)*
 
-Gets a list of blacklisted clients
+Adds/removes the application with the given callsign to/from the AV blacklist.
 
-### Events Triggered
-None
 ### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appid | string | mandatory | The application identifier (callsign) |
+| params.blocked | boolean | mandatory | Whether to block (true) or unblock (false) AV access for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The result of the operation |
+| result.success | boolean | mandatory | *...* |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setAVBlocked",
+  "params": {
+    "appid": "...",
+    "blocked": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getBlockedAVApplications"></a>
+## *getBlockedAVApplications [<sup>method</sup>](#head_Methods)*
+
+Gets a list of blacklisted clients.
+
+### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.clients | array | Iterator containing the list of blocked applications |
-| result.clients[#] | string |  |
-| result.success | bool | Indicates whether the operation succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.clients | array | mandatory | Iterator containing the list of blocked applications |
+| result.clients[#] | string | mandatory | *...* |
+| result.success | boolean | mandatory | Indicates whether the operation succeeded |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.ResourceManager.getBlockedAVApplications"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBlockedAVApplications"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ResourceManager.getBlockedAVApplications"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "clients": [
-            ""
-        ],
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "clients": [
+      "..."
+    ],
+    "success": false
+  }
 }
 ```
 
-<a id="reserveTTSResource"></a>
-## *reserveTTSResource*
+<a id="method_reserveTTSResource"></a>
+## *reserveTTSResource [<sup>method</sup>](#head_Methods)*
 
-Reserves the Text To Speech resource for a specified client
+Reserves the Text To Speech resource for a specified client.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appid | string | The application identifier (callsign) |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | The result of the reservation operation |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appid | string | mandatory | The application identifier (callsign) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The result of the reservation operation |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.ResourceManager.reserveTTSResource",
-    "params": {
-        "appid": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.reserveTTSResource",
+  "params": {
+    "appid": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ResourceManager.reserveTTSResource", "params": {"appid": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="reserveTTSResourceForApps"></a>
-## *reserveTTSResourceForApps*
+<a id="method_reserveTTSResourceForApps"></a>
+## *reserveTTSResourceForApps [<sup>method</sup>](#head_Methods)*
 
-Reserves the Text To Speech resource for specified clients
+Reserves the Text To Speech resource for specified clients.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appids | array | Iterator containing the list of application identifiers (callsigns) |
-| params.appids[#] | string |  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | The result of the reservation operation |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appids | array | mandatory | Iterator containing the list of application identifiers (callsigns) |
+| params.appids[#] | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The result of the reservation operation |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.ResourceManager.reserveTTSResourceForApps",
-    "params": [
-        ""
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.reserveTTSResourceForApps",
+  "params": {
+    "appids": [
+      "..."
     ]
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.ResourceManager.reserveTTSResourceForApps", "params": [""]}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setAVBlocked"></a>
-## *setAVBlocked*
-
-Adds/removes the application with the given callsign to/from the AV blacklist
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appid | string | The application identifier (callsign) |
-| params.blocked | bool | Whether to block (true) or unblock (false) AV access for the application |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | The result of the operation |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.ResourceManager.setAVBlocked",
-    "params": {
-        "appid": "",
-        "blocked": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.ResourceManager.setAVBlocked", "params": {"appid": "", "blocked": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 

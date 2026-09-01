@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "Netflix Plugin",
+      "callsign": "Netflix",
+      "locator": "libWPEFrameworkNetflix.so",
+      "status": "production",
+      "description": "The Netflix plugin allows applications to interact with the Netflix application that is running on a set-top device."
+    },
+    "interface": {
+      "$ref": "{interfacedir}/Netflix.json#"
+    }
+}

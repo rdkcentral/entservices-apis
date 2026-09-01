@@ -10,7 +10,7 @@ on:
     paths:
       - 'apis/**/*.h'
       - 'apis/**/*.json'
-      - 'tools/md_generator/json/**/*.json'
+      - 'tools/md_generator/json/*/*.json'
   workflow_dispatch:
     inputs:
       regenerate_all:
@@ -22,7 +22,10 @@ on:
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
-    
+    env:
+      THUNDER_TOOLS_COMMIT_SHA: 8ab3af8232851f89f590d7c22d6d5ea52a77bfe6
+      THUNDER_COMMIT_SHA: 2c0fcc5529e7da734be558ca6efa05d934dcce31
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -32,6 +35,11 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ssh-key: ${{ secrets.RDKCM_DEPLOY_KEY }}
     
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build build-essential git
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -42,34 +50,35 @@ jobs:
         python -m pip install --upgrade pip
         pip install jsonref
     
-    - name: Get changed files
-      id: changed_files
-      if: github.event_name != 'workflow_dispatch'
+    - name: Clone ThunderTools
       run: |
-        # For PRs, compare against the base branch
-        git fetch origin ${{ github.base_ref }}
-        CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(h|json)$' | tr '\n' ' ')
-        echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-        echo "Changed files: $CHANGED_FILES"
-    
-    - name: Validate JSON changes
-      if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
+        git clone https://github.com/rdkcentral/ThunderTools.git
+        git -C ThunderTools checkout ${{ env.THUNDER_TOOLS_COMMIT_SHA }}
+
+    - name: Build ThunderTools
       run: |
-        cd tools/md_generator
-        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }} --validate-only
-        python3 update_sidebar.py
-    
-    - name: Generate documentation (incremental)
-      if: github.event_name != 'workflow_dispatch' && steps.changed_files.outputs.files != ''
+        cmake -G Ninja -S ThunderTools -B ThunderTools/build -DCMAKE_INSTALL_PREFIX="${PWD}/install" -DGENERIC_CMAKE_MODULE_PATH="${PWD}/install/include/WPEFramework/Modules"
+        cmake --build ThunderTools/build --target install
+
+    - name: Clone Thunder
       run: |
-        cd tools/md_generator
-        python3 generate_md_incremental.py --changed-files ${{ steps.changed_files.outputs.files }}
-    
-    - name: Generate documentation (full)
-      if: github.event_name == 'workflow_dispatch'
+        git clone https://github.com/rdkcentral/Thunder.git
+        git -C Thunder checkout ${{ env.THUNDER_COMMIT_SHA }}
+
+    - name: Build Thunder
       run: |
-        cd tools/md_generator
-        python3 generate_md.py
+        cmake -G Ninja -S Thunder -B Thunder/build \
+          -DBINDING="127.0.0.1" \
+          -DCMAKE_BUILD_TYPE="Debug" \
+          -DCMAKE_INSTALL_PREFIX="install" \
+          -DPORT="55555" \
+          -DTOOLS_SYSROOT="${PWD}" \
+          -DINITV_SCRIPT=OFF
+        cmake --build Thunder/build --target install
+
+    - name: Generate documentation
+      run: |
+        python3 tools/md_generator/generate_md.py
     
     - name: Check for documentation changes
       id: check_changes

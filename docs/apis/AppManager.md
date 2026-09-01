@@ -1,1283 +1,1200 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AppManager_Module"></a>
-# AppManager Module
+<a id="head_AppManager_API"></a>
+# AppManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppManager/IAppManager.h)**
+**Version: 1.0.0**
 
-A AppManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+AppManager interface for Thunder framework.
+
+(Defined with IAppManager in [IAppManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IAppManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IAppManager](#IAppManager)
-    - [Methods](#IAppManager-Methods)
-    - [Notifications](#IAppManager-Notifications)
-    - [Properties](#IAppManager-Properties)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Properties](#head_Properties)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the AppManager interface (version 1.0.0). It includes detailed specification about its methods and properties as well as sent notifications.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `AppManager` module provides the following interface(s):
+AppManager JSON-RPC interface.
 
-- IAppManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the AppManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.AppManager) |
-| classname | string | Class name: *AppManager* |
-| locator | string | Library name: *libWPEFrameworkAppManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IAppManager"></a>
-## IAppManager Interface
-
-<a id="IAppManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IAppManager Interface:
+AppManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clearAllAppData](#clearAllAppData) | Clears all persistent data for all apps. |
-| [clearAppData](#clearAppData) | Clears all persistent data for a given appId. |
-| [closeApp](#closeApp) | closeApp moves the state from Active to Running state |
-| [getAppMetadata](#getAppMetadata) | Retrieves meta data about an installed app |
-| [getAppProperty](#getAppProperty) | Gets a property for a given app. |
-| [getInstalledApps](#getInstalledApps) | Function fetches the details of all applications currently installed |
-| [getLoadedApps](#getLoadedApps) | Retrieves a list of applications currently loaded on the system. |
-| [isInstalled](#isInstalled) | check whether the Application is installed or not |
-| [killApp](#killApp) | killApp will terminate forcefully |
-| [launchApp](#launchApp) | Launch an Application and app will be in ACTIVE state. |
-| [preloadApp](#preloadApp) | Preloads an Application and app will be in the RUNNING state (hidden). |
-| [sendIntent](#sendIntent) | Sends an intent to a loaded app. |
-| [setAppProperty](#setAppProperty) | Sets a property for a given app |
-| [startSystemApp](#startSystemApp) | Start the System Application |
-| [stopSystemApp](#stopSystemApp) | Stop the System Application |
-| [terminateApp](#terminateApp) | TerminateApp will terminate gracefully |
+| [getInstalledApps](#method_getInstalledApps) | Function fetches the details of all applications currently installed |
+| [isInstalled](#method_isInstalled) | check whether the Application is installed or not |
+| [getLoadedApps](#method_getLoadedApps) | Retrieves a list of applications currently loaded on the system |
+| [launchApp](#method_launchApp) | Launch an Application and app will be in ACTIVE state |
+| [preloadApp](#method_preloadApp) | Preloads an Application and app will be in the RUNNING state (hidden) |
+| [closeApp](#method_closeApp) | closeApp moves the state from Active to Running state |
+| [terminateApp](#method_terminateApp) | TerminateApp will terminate gracefully |
+| [startSystemApp](#method_startSystemApp) | Start the System Application |
+| [stopSystemApp](#method_stopSystemApp) | Stop the System Application |
+| [killApp](#method_killApp) | killApp will terminate forcefully |
+| [sendIntent](#method_sendIntent) | Sends an intent to a loaded app |
+| [clearAppData](#method_clearAppData) | Clears all persistent data for a given appId |
+| [clearAllAppData](#method_clearAllAppData) | Clears all persistent data for all apps |
+| [getAppMetadata](#method_getAppMetadata) | Retrieves meta data about an installed app |
+| [getAppProperty](#method_getAppProperty) | Gets a property for a given app |
+| [setAppProperty](#method_setAppProperty) | Sets a property for a given app |
 
-<a id="clearAllAppData"></a>
-## *clearAllAppData*
+<a id="method_getInstalledApps"></a>
+## *getInstalledApps [<sup>method</sup>](#head_Methods)*
 
-Clears all persistent data for all apps.
+Function fetches the details of all applications currently installed.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | opaque object | mandatory | A list containing the details of installed applications |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.AppManager.clearAllAppData"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getInstalledApps"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppManager.clearAllAppData"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {}
 }
 ```
 
-<a id="clearAppData"></a>
-## *clearAppData*
+<a id="method_isInstalled"></a>
+## *isInstalled [<sup>method</sup>](#head_Methods)*
 
-Clears all persistent data for a given appId.
+check whether the Application is installed or not.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
 
+### Result
 
-#### Request
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | : if it is installed then return true otherwise false |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.AppManager.clearAppData",
-    "params": {
-        "appId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
-}
-```
-
-<a id="closeApp"></a>
-## *closeApp*
-
-closeApp moves the state from Active to Running state
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.AppManager.closeApp",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.isInstalled",
+  "params": {
+    "appId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
 }
 ```
 
-<a id="getAppMetadata"></a>
-## *getAppMetadata*
-
-Retrieves meta data about an installed app
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.metaData | string | the name of the meta-data |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.result | string | string holding json formatted app metadata |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.AppManager.getAppMetadata",
-    "params": {
-        "appId": "",
-        "metaData": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "", "metaData": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "result": ""
-    }
-}
-```
-
-<a id="getAppProperty"></a>
-## *getAppProperty*
-
-Gets a property for a given app.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.key | string | the name of the property to get |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.value | string | the value of the key |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.AppManager.getAppProperty",
-    "params": {
-        "appId": "",
-        "key": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "value": ""
-    }
-}
-```
-
-<a id="getInstalledApps"></a>
-## *getInstalledApps*
-
-Function fetches the details of all applications currently installed
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.apps | string | A list containing the details of installed applications. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.AppManager.getInstalledApps"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.AppManager.getInstalledApps"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "apps": ""
-    }
-}
-```
-
-<a id="getLoadedApps"></a>
-## *getLoadedApps*
+<a id="method_getLoadedApps"></a>
+## *getLoadedApps [<sup>method</sup>](#head_Methods)*
 
 Retrieves a list of applications currently loaded on the system.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.apps | array | A list containing the details of loaded applications |
-| result.apps[#].appId | string | appId |
-| result.apps[#].appInstanceId | string | appInstanceId |
-| result.apps[#].activeSessionId | string | activeSessionId |
-| result.apps[#].type | string | type |
-| result.apps[#].targetLifecycleState | string | targetLifecycleState. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
-| result.apps[#].lifecycleState | string | lifecycleState. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | array | mandatory | A list containing the details of loaded applications |
+| result[#] | object | mandatory | *...* |
+| result[#].appId | string | mandatory | App identifier for the application |
+| result[#].appInstanceId | string | mandatory | A numerical identifier for a specific instance of the application |
+| result[#].activeSessionId | string | mandatory | Identifier for the active session associated with the application instance |
+| result[#].type | string | mandatory | The type or category of the application |
+| result[#].targetLifecycleState | string | mandatory | The desired lifecycle state that the application is transitioning to (must be one of the following: *APP_STATE_ACTIVE, APP_STATE_HIBERNATED, APP_STATE_INITIALIZING, APP_STATE_LOADING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_SUSPENDED, APP_STATE_TERMINATING, APP_STATE_UNKNOWN, APP_STATE_UNLOADED*) |
+| result[#].lifecycleState | string | mandatory | The current lifecycle state of the application instance (must be one of the following: *APP_STATE_ACTIVE, APP_STATE_HIBERNATED, APP_STATE_INITIALIZING, APP_STATE_LOADING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_SUSPENDED, APP_STATE_TERMINATING, APP_STATE_UNKNOWN, APP_STATE_UNLOADED*) |
 
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.AppManager.getLoadedApps"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.AppManager.getLoadedApps"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": [
-        {
-            "appId": "",
-            "appInstanceId": "",
-            "activeSessionId": "",
-            "type": "",
-            "targetLifecycleState": "APP_STATE_UNKNOWN",
-            "lifecycleState": "APP_STATE_UNKNOWN"
-        }
-    ]
-}
-```
-
-<a id="isInstalled"></a>
-## *isInstalled*
-
-check whether the Application is installed or not
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | appId |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.installed | bool | if it is installed then return true otherwise false |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.AppManager.isInstalled",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLoadedApps"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "installed": true
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": [
+    {
+      "appId": "...",
+      "appInstanceId": "...",
+      "activeSessionId": "...",
+      "type": "...",
+      "targetLifecycleState": "APP_STATE_UNLOADED",
+      "lifecycleState": "APP_STATE_UNLOADED"
     }
+  ]
 }
 ```
 
-<a id="killApp"></a>
-## *killApp*
-
-killApp will terminate forcefully
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.AppManager.killApp",
-    "params": {
-        "appId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": null
-}
-```
-
-<a id="launchApp"></a>
-## *launchApp*
+<a id="method_launchApp"></a>
+## *launchApp [<sup>method</sup>](#head_Methods)*
 
 Launch an Application and app will be in ACTIVE state.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params?.intent | string | <sup>(optional)</sup>Specifies the intent or message to be executed. |
-| params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.intent | string | mandatory | *...* |
+| params.launchArgs | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.AppManager.launchApp",
-    "params": {
-        "appId": "",
-        "intent": "",
-        "launchArgs": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.launchApp",
+  "params": {
+    "appId": "...",
+    "intent": "...",
+    "launchArgs": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="preloadApp"></a>
-## *preloadApp*
+<a id="method_preloadApp"></a>
+## *preloadApp [<sup>method</sup>](#head_Methods)*
 
 Preloads an Application and app will be in the RUNNING state (hidden).
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params?.intent | string | <sup>(optional)</sup>Specifies the intent or message to be available during preload. |
-| params?.launchArgs | string | <sup>(optional)</sup>Additional parameters passed to the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.error | string | Output parameter populated with the error reason when the method returns a failure through Core::hresult |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.intent | string | mandatory | *...* |
+| params.launchArgs | string | mandatory | *...* |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | Output parameter populated with the error reason when the method returns a failure through Core::hresult |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Application was preloaded successfully. |
+| ```Core::ERROR_GENERAL``` | Preload failed. |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.AppManager.preloadApp",
-    "params": {
-        "appId": "",
-        "intent": "",
-        "launchArgs": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.preloadApp",
+  "params": {
+    "appId": "...",
+    "intent": "...",
+    "launchArgs": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "error": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 
+<a id="method_closeApp"></a>
+## *closeApp [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (Core::ERROR_GENERAL)
+closeApp moves the state from Active to Running state.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Preload failed."
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.closeApp",
+  "params": {
+    "appId": "..."
+  }
 }
 ```
 
-<a id="sendIntent"></a>
-## *sendIntent*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_terminateApp"></a>
+## *terminateApp [<sup>method</sup>](#head_Methods)*
+
+TerminateApp will terminate gracefully.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.terminateApp",
+  "params": {
+    "appId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_startSystemApp"></a>
+## *startSystemApp [<sup>method</sup>](#head_Methods)*
+
+Start the System Application.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startSystemApp",
+  "params": {
+    "appId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_stopSystemApp"></a>
+## *stopSystemApp [<sup>method</sup>](#head_Methods)*
+
+Stop the System Application.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.stopSystemApp",
+  "params": {
+    "appId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_killApp"></a>
+## *killApp [<sup>method</sup>](#head_Methods)*
+
+killApp will terminate forcefully.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.killApp",
+  "params": {
+    "appId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_sendIntent"></a>
+## *sendIntent [<sup>method</sup>](#head_Methods)*
 
 Sends an intent to a loaded app.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.intent | string | Specifies the intent or message to be executed. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.intent | string | mandatory | Specifies the intent or message to be executed |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.AppManager.sendIntent",
-    "params": {
-        "appId": "",
-        "intent": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.sendIntent",
+  "params": {
+    "appId": "...",
+    "intent": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "", "intent": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="setAppProperty"></a>
-## *setAppProperty*
+<a id="method_clearAppData"></a>
+## *clearAppData [<sup>method</sup>](#head_Methods)*
 
-Sets a property for a given app
+Clears all persistent data for a given appId.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.key | string | the name of the property to get |
-| params.value | string | the property value to set, this can be a boolean,number, string or object type |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.AppManager.setAppProperty",
-    "params": {
-        "appId": "",
-        "key": "",
-        "value": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.clearAppData",
+  "params": {
+    "appId": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="startSystemApp"></a>
-## *startSystemApp*
+<a id="method_clearAllAppData"></a>
+## *clearAllAppData [<sup>method</sup>](#head_Methods)*
 
-Start the System Application
+Clears all persistent data for all apps.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+This method takes no parameters.
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.AppManager.startSystemApp",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.clearAllAppData"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="stopSystemApp"></a>
-## *stopSystemApp*
+<a id="method_getAppMetadata"></a>
+## *getAppMetadata [<sup>method</sup>](#head_Methods)*
 
-Stop the System Application
+Retrieves meta data about an installed app.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.metaData | string | mandatory | The name of the meta-data |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | String holding json formatted app metadata |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.AppManager.stopSystemApp",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getAppMetadata",
+  "params": {
+    "appId": "...",
+    "metaData": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 
-<a id="terminateApp"></a>
-## *terminateApp*
+<a id="method_getAppProperty"></a>
+## *getAppProperty [<sup>method</sup>](#head_Methods)*
 
-TerminateApp will terminate gracefully
+Gets a property for a given app.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.key | string | mandatory | The name of the property to get |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | The value of the key |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.AppManager.terminateApp",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getAppProperty",
+  "params": {
+    "appId": "...",
+    "key": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
 }
 ```
 
-<a id="IAppManager-Notifications"></a>
-### Notifications
+<a id="method_setAppProperty"></a>
+## *setAppProperty [<sup>method</sup>](#head_Methods)*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Sets a property for a given app.
 
-The following events are provided by the IAppManager Interface:
+### Parameters
 
-| Event | Description |
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | App identifier for the application |
+| params.key | string | mandatory | The name of the property to get |
+| params.value | string | mandatory | The property value to set, this can be a boolean,number, string or object type |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setAppProperty",
+  "params": {
+    "appId": "...",
+    "key": "...",
+    "value": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="head_Properties"></a>
+# Properties
+
+The following properties are provided by the AppManager interface:
+
+AppManager interface properties:
+
+| Property | R/W | Description |
+| :-------- | :-------- | :-------- |
+| [getMaxRunningApps](#property_getMaxRunningApps) | read-only | Gets the maximum number of apps to maintain in the running or suspended state |
+| [getMaxHibernatedApps](#property_getMaxHibernatedApps) | read-only | Get the maximum number of apps to maintain in the hibernated state |
+| [getMaxHibernatedFlashUsage](#property_getMaxHibernatedFlashUsage) | read-only | Gets the max size of flash to use for hibernated apps (in mebibytes) |
+| [getMaxInactiveRamUsage](#property_getMaxInactiveRamUsage) | read-only | Gets the max amount of ram available for inactive apps (in mebibytes) |
+
+<a id="property_getMaxRunningApps"></a>
+## *getMaxRunningApps [<sup>property</sup>](#head_Properties)*
+
+Provides access to the gets the maximum number of apps to maintain in the running or suspended state.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | integer | mandatory | Max number of apps to maintain in the running or suspended state |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMaxRunningApps"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
+}
+```
+
+<a id="property_getMaxHibernatedApps"></a>
+## *getMaxHibernatedApps [<sup>property</sup>](#head_Properties)*
+
+Provides access to the get the maximum number of apps to maintain in the hibernated state.
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | integer | mandatory | Max number of apps to maintain in the hibernated state |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMaxHibernatedApps"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
+}
+```
+
+<a id="property_getMaxHibernatedFlashUsage"></a>
+## *getMaxHibernatedFlashUsage [<sup>property</sup>](#head_Properties)*
+
+Provides access to the gets the max size of flash to use for hibernated apps (in mebibytes).
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | integer | mandatory | Max size of flash to use for hibernated apps (in mebibytes) |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMaxHibernatedFlashUsage"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
+}
+```
+
+<a id="property_getMaxInactiveRamUsage"></a>
+## *getMaxInactiveRamUsage [<sup>property</sup>](#head_Properties)*
+
+Provides access to the gets the max amount of ram available for inactive apps (in mebibytes).
+
+> This property is **read-only**.
+
+### Value
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| (property) | integer | mandatory | Max ram available for inactive apps (in mebibytes) |
+
+### Example
+
+#### Get Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMaxInactiveRamUsage"
+}
+```
+
+#### Get Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the AppManager interface:
+
+AppManager interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onAppInstalled](#onAppInstalled) | Triggered whenever the App is installed. |
-| [onAppLaunchRequest](#onAppLaunchRequest) | Triggered whenever there is a request for App Launch. |
-| [onAppLifecycleStateChanged](#onAppLifecycleStateChanged) | Triggered whenever there is a change in the lifecycle state of a running app. |
-| [onAppUninstalled](#onAppUninstalled) | Triggered whenever the App is uninstalled. |
-| [onAppUnloaded](#onAppUnloaded) | Triggered whenever the App is unloaded(terminated). |
+| [onAppInstalled](#notification_onAppInstalled) | Triggered whenever the App is installed |
+| [onAppUninstalled](#notification_onAppUninstalled) | Triggered whenever the App is uninstalled |
+| [onAppLifecycleStateChanged](#notification_onAppLifecycleStateChanged) | Triggered whenever there is a change in the lifecycle state of a running app |
+| [onAppLaunchRequest](#notification_onAppLaunchRequest) | Triggered whenever there is a request for App Launch |
+| [onAppUnloaded](#notification_onAppUnloaded) | Triggered whenever the App is unloaded(terminated) |
 
-<a id="onAppInstalled"></a>
-## *onAppInstalled*
+<a id="notification_onAppInstalled"></a>
+## *onAppInstalled [<sup>notification</sup>](#head_Notifications)*
 
 Triggered whenever the App is installed.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.version | string | The version number of the application in string format |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
+| params.version | string | mandatory | The version number of the application in string format |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.AppManager.onAppInstalled",
-    "params": {
-        "appId": "",
-        "version": ""
-    }
-}
-```
+### Example
 
-<a id="onAppLaunchRequest"></a>
-## *onAppLaunchRequest*
-
-Triggered whenever there is a request for App Launch.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.intent | string | A reference to the intent string that specifies the action or request to be processed. |
-| params.source | string | A string indicating the source of the intent |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.AppManager.onAppLaunchRequest",
-    "params": {
-        "appId": "",
-        "intent": "",
-        "source": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppInstalled",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onAppLifecycleStateChanged"></a>
-## *onAppLifecycleStateChanged*
-
-Triggered whenever there is a change in the lifecycle state of a running app.
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
-| params.newState | string | The new state to transition the application. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
-| params.oldState | string | The previous state of the application instance before the update. Possible values: APP_STATE_UNKNOWN, APP_STATE_UNLOADED, APP_STATE_LOADING, APP_STATE_INITIALIZING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_ACTIVE, APP_STATE_SUSPENDED, APP_STATE_HIBERNATED, APP_STATE_TERMINATING |
-| params.errorReason | string | The reason for any error encountered during the state transition. Possible values: APP_ERROR_NONE, APP_ERROR_UNKNOWN, APP_ERROR_STATE_TIMEOUT, APP_ERROR_ABORT, APP_ERROR_INVALID_PARAM, APP_ERROR_CREATE_DISPLAY, APP_ERROR_DOBBY_SPEC, APP_ERROR_NOT_INSTALLED, APP_ERROR_PACKAGE_LOCK |
-
-### Examples
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.AppManager.onAppLifecycleStateChanged",
-    "params": {
-        "appId": "",
-        "appInstanceId": "",
-        "newState": "APP_STATE_UNKNOWN",
-        "oldState": "APP_STATE_UNKNOWN",
-        "errorReason": "APP_ERROR_NONE"
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onAppInstalled",
+  "params": {
+    "appId": "...",
+    "version": "..."
+  }
 }
 ```
 
-<a id="onAppUninstalled"></a>
-## *onAppUninstalled*
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppInstalled``.
+
+<a id="notification_onAppUninstalled"></a>
+## *onAppUninstalled [<sup>notification</sup>](#head_Notifications)*
 
 Triggered whenever the App is uninstalled.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.AppManager.onAppUninstalled",
-    "params": {
-        "appId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppUninstalled",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onAppUnloaded"></a>
-## *onAppUnloaded*
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAppUninstalled",
+  "params": {
+    "appId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppUninstalled``.
+
+<a id="notification_onAppLifecycleStateChanged"></a>
+## *onAppLifecycleStateChanged [<sup>notification</sup>](#head_Notifications)*
+
+Triggered whenever there is a change in the lifecycle state of a running app.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
+| params.appInstanceId | string | mandatory | *...* |
+| params.newState | string | mandatory | *...* (must be one of the following: *APP_STATE_ACTIVE, APP_STATE_HIBERNATED, APP_STATE_INITIALIZING, APP_STATE_LOADING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_SUSPENDED, APP_STATE_TERMINATING, APP_STATE_UNKNOWN, APP_STATE_UNLOADED*) |
+| params.oldState | string | mandatory | *...* (must be one of the following: *APP_STATE_ACTIVE, APP_STATE_HIBERNATED, APP_STATE_INITIALIZING, APP_STATE_LOADING, APP_STATE_PAUSED, APP_STATE_RUNNING, APP_STATE_SUSPENDED, APP_STATE_TERMINATING, APP_STATE_UNKNOWN, APP_STATE_UNLOADED*) |
+| params.errorReason | string | mandatory | *...* (must be one of the following: *APP_ERROR_ABORT, APP_ERROR_CREATE_DISPLAY, APP_ERROR_DOBBY_SPEC, APP_ERROR_INVALID_PARAM, APP_ERROR_NONE, APP_ERROR_NOT_INSTALLED, APP_ERROR_PACKAGE_LOCK, APP_ERROR_STATE_TIMEOUT, APP_ERROR_UNKNOWN*) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppLifecycleStateChanged",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAppLifecycleStateChanged",
+  "params": {
+    "appId": "...",
+    "appInstanceId": "...",
+    "newState": "APP_STATE_UNLOADED",
+    "oldState": "APP_STATE_UNLOADED",
+    "errorReason": "APP_ERROR_UNKNOWN"
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppLifecycleStateChanged``.
+
+<a id="notification_onAppLaunchRequest"></a>
+## *onAppLaunchRequest [<sup>notification</sup>](#head_Notifications)*
+
+Triggered whenever there is a request for App Launch.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
+| params.intent | string | mandatory | *...* |
+| params.source | string | mandatory | *...* |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppLaunchRequest",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onAppLaunchRequest",
+  "params": {
+    "appId": "...",
+    "intent": "...",
+    "source": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppLaunchRequest``.
+
+<a id="notification_onAppUnloaded"></a>
+## *onAppUnloaded [<sup>notification</sup>](#head_Notifications)*
 
 Triggered whenever the App is unloaded(terminated).
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.appId | string | App identifier for the application. |
-| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.appId | string | mandatory | *...* |
+| params.appInstanceId | string | mandatory | *...* |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.AppManager.onAppUnloaded",
-    "params": {
-        "appId": "",
-        "appInstanceId": ""
-    }
-}
-```
+### Example
 
-<a id="IAppManager-Properties"></a>
-### Properties
-
-The following properties are provided by the IAppManager Interface:
-
-| Property | Description |
-| :-------- | :-------- |
-| [getMaxHibernatedApps](#getMaxHibernatedApps)<sup>RO</sup> | Get the maximum number of apps to maintain in the hibernated state |
-| [getMaxHibernatedFlashUsage](#getMaxHibernatedFlashUsage)<sup>RO</sup> | Gets the max size of flash to use for hibernated apps (in mebibytes) |
-| [getMaxInactiveRamUsage](#getMaxInactiveRamUsage)<sup>RO</sup> | Gets the max amount of ram available for inactive apps (in mebibytes) |
-| [getMaxRunningApps](#getMaxRunningApps)<sup>RO</sup> | Gets the maximum number of apps to maintain in the running or suspended state |
-
-<a id="getMaxHibernatedApps"></a>
-## *getMaxHibernatedApps*
-
-Get the maximum number of apps to maintain in the hibernated state
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).maxHibernatedApps | integer | max number of apps to maintain in the hibernated state |
-
-### Examples
-
-
-#### Get Request
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "method": "org.rdk.AppManager.getMaxHibernatedApps"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onAppUnloaded",
+    "id": "myid"
+  }
 }
 ```
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.AppManager.getMaxHibernatedApps"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "result": {
-        "maxHibernatedApps": 0
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onAppUnloaded",
+  "params": {
+    "appId": "...",
+    "appInstanceId": "..."
+  }
 }
 ```
 
-<a id="getMaxHibernatedFlashUsage"></a>
-## *getMaxHibernatedFlashUsage*
-
-Gets the max size of flash to use for hibernated apps (in mebibytes)
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).maxHibernatedFlashUsage | integer | max size of flash to use for hibernated apps (in mebibytes) |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.AppManager.getMaxHibernatedFlashUsage"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.AppManager.getMaxHibernatedFlashUsage"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": {
-        "maxHibernatedFlashUsage": 0
-    }
-}
-```
-
-<a id="getMaxInactiveRamUsage"></a>
-## *getMaxInactiveRamUsage*
-
-Gets the max amount of ram available for inactive apps (in mebibytes)
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).maxInactiveRamUsage | integer | max ram available for inactive apps (in mebibytes) |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.AppManager.getMaxInactiveRamUsage"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.AppManager.getMaxInactiveRamUsage"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": {
-        "maxInactiveRamUsage": 0
-    }
-}
-```
-
-<a id="getMaxRunningApps"></a>
-## *getMaxRunningApps*
-
-Gets the maximum number of apps to maintain in the running or suspended state
-
-> This property is read-only.
-### Events
-Event details will be updated soon.
-### Values
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (property).maxRunningApps | integer | max number of apps to maintain in the running or suspended state |
-
-### Examples
-
-
-#### Get Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "method": "org.rdk.AppManager.getMaxRunningApps"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.AppManager.getMaxRunningApps"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Get Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "result": {
-        "maxRunningApps": 0
-    }
-}
-```
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onAppUnloaded``.
 

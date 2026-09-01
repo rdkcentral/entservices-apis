@@ -1,1732 +1,2071 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="RDKWindowManager_Module"></a>
-# RDKWindowManager Module
+<a id="head_RDKWindowManager_API"></a>
+# RDKWindowManager API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/RDKWindowManager/IRDKWindowManager.h)**
+**Version: 1.0.0**
 
-A RDKWindowManager module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+RDKWindowManager interface for Thunder framework.
+
+(Defined with IRDKWindowManager in [IRDKWindowManager.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IRDKWindowManager.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IRDKWindowManager](#IRDKWindowManager)
-    - [Methods](#IRDKWindowManager-Methods)
-    - [Notifications](#IRDKWindowManager-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the RDKWindowManager interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `RDKWindowManager` module provides the following interface(s):
+RDKWindowManager JSON-RPC interface.
 
-- IRDKWindowManager
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the RDKWindowManager interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.RDKWindowManager) |
-| classname | string | Class name: *RDKWindowManager* |
-| locator | string | Library name: *libWPEFrameworkRDKWindowManager.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IRDKWindowManager"></a>
-## IRDKWindowManager Interface
-
-<a id="IRDKWindowManager-Methods"></a>
-### Methods
-
-The following methods are provided by the IRDKWindowManager Interface:
+RDKWindowManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [addKeyIntercept](#addKeyIntercept) | Registers a key intercept for a specific key code and client |
-| [addKeyIntercepts](#addKeyIntercepts) | Registers multiple key intercepts in a single operation for a specific client. |
-| [addKeyListener](#addKeyListener) | Registers listeners for specific keys. |
-| [createDisplay](#createDisplay) | Create the display window |
-| [enableInactivityReporting](#enableInactivityReporting) | Enables the inactivity reporting |
-| [enableInputEvents](#enableInputEvents) | Enables KeyInputEvents for list of clients specified |
-| [enableKeyRepeats](#enableKeyRepeats) | Key repeats are enabled/disabled |
-| [generateKey](#generateKey) | Generates a key event for the specified keys and client. |
-| [getApps](#getApps) | Get the list of Apps which are currently active and available |
-| [getKeyRepeatsEnabled](#getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
-| [getLastKeyInfo](#getLastKeyInfo) | Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed. |
-| [getScreenshot](#getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete  |
-| [getVisibility](#getVisibility) | Gets the visibility of the given client or appInstanceId |
-| [getZOrder](#getZOrder) | Gets the zOrder of the given client or appInstanceId |
-| [ignoreKeyInputs](#ignoreKeyInputs) | Ignore key inputs |
-| [injectKey](#injectKey) | Simulates a key press event with optional modifiers. |
-| [keyRepeatConfig](#keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
-| [removeKeyIntercept](#removeKeyIntercept) | Removes a key intercept for a specific key code and client. |
-| [removeKeyListener](#removeKeyListener) | Removes listeners for specific keys. |
-| [resetInactivityTime](#resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
-| [setFocus](#setFocus) | Sets the focus to the app with the app id |
-| [setInactivityInterval](#setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
-| [setVisible](#setVisible) | Sets the visibility of the given client or appInstanceId |
-| [setZOrder](#setZOrder) | Sets the zOrder of the given client or appInstanceId |
-| [startVncServer](#startVncServer) | Starts the VNC server |
-| [stopVncServer](#stopVncServer) | Stops the VNC server |
+| [createDisplay](#method_createDisplay) | Create the display window |
+| [getApps](#method_getApps) | Get the list of Apps which are currently active and available |
+| [addKeyIntercept](#method_addKeyIntercept) | Registers a key intercept for a specific key code and client |
+| [addKeyIntercepts](#method_addKeyIntercepts) | Registers multiple key intercepts in a single operation for a specific client |
+| [removeKeyIntercept](#method_removeKeyIntercept) | Removes a key intercept for a specific key code and client |
+| [addKeyListener](#method_addKeyListener) | Registers listeners for specific keys |
+| [removeKeyListener](#method_removeKeyListener) | Removes listeners for specific keys |
+| [injectKey](#method_injectKey) | Simulates a key press event with optional modifiers |
+| [generateKey](#method_generateKey) | Generates a key event for the specified keys and client |
+| [enableInactivityReporting](#method_enableInactivityReporting) | Enables the inactivity reporting |
+| [setInactivityInterval](#method_setInactivityInterval) | Sets inactivity interval if EnableUserInactivity feature is enabled |
+| [resetInactivityTime](#method_resetInactivityTime) | Resets inactivity interval if EnableUserInactivity feature is enabled |
+| [enableKeyRepeats](#method_enableKeyRepeats) | Key repeats are enabled/disabled |
+| [getKeyRepeatsEnabled](#method_getKeyRepeatsEnabled) | Retrieves the flag determining whether keyRepeat true/false |
+| [ignoreKeyInputs](#method_ignoreKeyInputs) | Ignore key inputs |
+| [enableInputEvents](#method_enableInputEvents) | Enables KeyInputEvents for list of clients specified |
+| [keyRepeatConfig](#method_keyRepeatConfig) | Enables KeyInputEvents for list of clients specified |
+| [setFocus](#method_setFocus) | Sets the focus to the app with the app id |
+| [setVisible](#method_setVisible) | Sets the visibility of the given client or appInstanceId |
+| [getVisibility](#method_getVisibility) | Gets the visibility of the given client or appInstanceId |
+| [getLastKeyInfo](#method_getLastKeyInfo) | Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed |
+| [setZOrder](#method_setZOrder) | Sets the zOrder of the given client or appInstanceId |
+| [getZOrder](#method_getZOrder) | Gets the zOrder of the given client or appInstanceId |
+| [startVncServer](#method_startVncServer) | Starts the VNC server |
+| [stopVncServer](#method_stopVncServer) | Stops the VNC server |
+| [getFocused](#method_getFocused) | Gets the identifier of the currently focused application |
+| [getScreenshot](#method_getScreenshot) | Captures the entire screen buffer as Base64 encoded image data (PNG format) |
+| [setAlias](#method_setAlias) | Sets the alias name for the given client identifier |
+| [showSplashScreen](#method_showSplashScreen) | Shows or hides the splash screen in the window manager |
+| [setBounds](#method_setBounds) | Sets the x, y position and width, height dimensions of the given client |
+| [getBounds](#method_getBounds) | Gets the x, y position and width, height dimensions of the given client |
+| [setScale](#method_setScale) | Sets the horizontal and vertical scale factors of the given client |
+| [getScale](#method_getScale) | Gets the horizontal and vertical scale factors of the given client |
 
-<a id="addKeyIntercept"></a>
-## *addKeyIntercept*
+<a id="method_createDisplay"></a>
+## *createDisplay [<sup>method</sup>](#head_Methods)*
 
-Registers a key intercept for a specific key code and client
+Create the display window.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.intercept | string | JSON String format with the client/callSign, keyCode, modifiers |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client identifier |
+| params.displayName | string | mandatory | Name of Wayland display |
+| params?.displayWidth | integer | optional | Optional width of client window |
+| params?.displayHeight | integer | optional | Optional height of client window |
+| params?.virtualDisplay | boolean | optional | Optional flag indicating whether virtual display is enabled |
+| params?.virtualWidth | integer | optional | Optional width of display in framebuffer mode |
+| params?.virtualHeight | integer | optional | Optional height of display in framebuffer mode |
+| params?.ownerId | integer | optional | Optional UID of owner of Wayland socket |
+| params?.groupId | integer | optional | Optional group identifier of Wayland socket |
+| params?.topmost | boolean | optional | Optional flag indicating whether client window needs to be topmost |
+| params?.focus | boolean | optional | Optional flag indicating whether the client needs focus |
+| params?.capabilities | string | optional | Optional JSON string containing the runtime capability tokens for the client |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Display window created successfully |
+| ```Core::ERROR_GENERAL``` | Failed to create the display window |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.RDKWindowManager.addKeyIntercept",
-    "params": {
-        "intercept": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.createDisplay",
+  "params": {
+    "clientId": "...",
+    "displayName": "...",
+    "displayWidth": 0,
+    "displayHeight": 0,
+    "virtualDisplay": false,
+    "virtualWidth": 0,
+    "virtualHeight": 0,
+    "ownerId": 0,
+    "groupId": 0,
+    "topmost": false,
+    "focus": false,
+    "capabilities": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RDKWindowManager.addKeyIntercept", "params": {"intercept": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="addKeyIntercepts"></a>
-## *addKeyIntercepts*
+<a id="method_getApps"></a>
+## *getApps [<sup>method</sup>](#head_Methods)*
+
+Get the list of Apps which are currently active and available.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | array | mandatory | Returns the list of active app IDs as a JSON array |
+| result[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Active app IDs retrieved successfully |
+| ```Core::ERROR_GENERAL``` | Failed to retrieve active app IDs |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getApps"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": [
+    "..."
+  ]
+}
+```
+
+<a id="method_addKeyIntercept"></a>
+## *addKeyIntercept [<sup>method</sup>](#head_Methods)*
+
+Registers a key intercept for a specific key code and client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.intercept | string | mandatory | JSON String format with the client/callSign, keyCode, modifiers |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.addKeyIntercept",
+  "params": {
+    "intercept": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_addKeyIntercepts"></a>
+## *addKeyIntercepts [<sup>method</sup>](#head_Methods)*
 
 Registers multiple key intercepts in a single operation for a specific client.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | The client identifier |
-| params.intercepts | string | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The client identifier |
+| params.intercepts | string | mandatory | JSON String format containing the array of key intercepts (keyCode, modifiers, focusOnly, propagate) configuration |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | All provided key intercepts were registered successfully |
+| ```Core::ERROR_GENERAL``` | A general error occurred while registering one or more key intercepts |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.RDKWindowManager.addKeyIntercepts",
-    "params": {
-        "clientId": "",
-        "intercepts": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.addKeyIntercepts",
+  "params": {
+    "clientId": "...",
+    "intercepts": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RDKWindowManager.addKeyIntercepts", "params": {"clientId": "", "intercepts": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "A general error occurred while registering one or more key intercepts"
-    }
-}
-```
-
-<a id="addKeyListener"></a>
-## *addKeyListener*
-
-Registers listeners for specific keys.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.RDKWindowManager.addKeyListener",
-    "params": {
-        "keyListeners": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RDKWindowManager.addKeyListener", "params": {"keyListeners": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": null
-}
-```
-
-<a id="createDisplay"></a>
-## *createDisplay*
-
-Create the display window
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | Client identifier |
-| params.displayName | string | Name of Wayland display |
-| params.displayWidth | integer | Optional width of client window |
-| params.displayHeight | integer | Optional height of client window |
-| params.virtualDisplay | bool | Optional flag indicating whether virtual display is enabled |
-| params.virtualWidth | integer | Optional width of display in framebuffer mode |
-| params.virtualHeight | integer | Optional height of display in framebuffer mode |
-| params.ownerId | integer | Optional UID of owner of Wayland socket |
-| params.groupId | integer | Optional group identifier of Wayland socket |
-| params.topmost | bool | Optional flag indicating whether client window needs to be topmost |
-| params.focus | bool | Optional flag indicating whether the client needs focus |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.RDKWindowManager.createDisplay",
-    "params": {
-        "clientId": "",
-        "displayName": "",
-        "displayWidth": 0,
-        "displayHeight": 0,
-        "virtualDisplay": true,
-        "virtualWidth": 0,
-        "virtualHeight": 0,
-        "ownerId": 0,
-        "groupId": 0,
-        "topmost": true,
-        "focus": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RDKWindowManager.createDisplay", "params": {"clientId": "", "displayName": "", "displayWidth": 0, "displayHeight": 0, "virtualDisplay": true, "virtualWidth": 0, "virtualHeight": 0, "ownerId": 0, "groupId": 0, "topmost": true, "focus": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Failed to create the display window"
-    }
-}
-```
-
-<a id="enableInactivityReporting"></a>
-## *enableInactivityReporting*
-
-Enables the inactivity reporting
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enable | bool | flag to true/false the feature |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.RDKWindowManager.enableInactivityReporting",
-    "params": {
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RDKWindowManager.enableInactivityReporting", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
-}
-```
-
-<a id="enableInputEvents"></a>
-## *enableInputEvents*
-
-Enables KeyInputEvents for list of clients specified
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clients | string | JSON String format with number of clients, enable:Flag to enable input events |
-| params.enable | bool | flag to true/false the feature |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.RDKWindowManager.enableInputEvents",
-    "params": {
-        "clients": "",
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RDKWindowManager.enableInputEvents", "params": {"clients": "", "enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": null
-}
-```
-
-<a id="enableKeyRepeats"></a>
-## *enableKeyRepeats*
-
-Key repeats are enabled/disabled
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.enable | bool | flag to true/false the key repeats |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.RDKWindowManager.enableKeyRepeats",
-    "params": {
-        "enable": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RDKWindowManager.enableKeyRepeats", "params": {"enable": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": null
-}
-```
-
-<a id="generateKey"></a>
-## *generateKey*
-
-Generates a key event for the specified keys and client.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.keys | string | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
-| params.client | string | Name of the client/callSign requesting the key generation. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.RDKWindowManager.generateKey",
-    "params": {
-        "keys": "",
-        "client": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RDKWindowManager.generateKey", "params": {"keys": "", "client": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": null
-}
-```
-
-<a id="getApps"></a>
-## *getApps*
-
-Get the list of Apps which are currently active and available
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.appsIds | string | Returns the list of app IDs as a JSON string. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.RDKWindowManager.getApps"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RDKWindowManager.getApps"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "appsIds": ""
-    }
-}
-```
-
-<a id="getKeyRepeatsEnabled"></a>
-## *getKeyRepeatsEnabled*
-
-Retrieves the flag determining whether keyRepeat true/false
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.keyRepeat | bool | flag stating whether keyRepeat true/false |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RDKWindowManager.getKeyRepeatsEnabled"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "keyRepeat": true
-    }
-}
-```
-
-<a id="getLastKeyInfo"></a>
-## *getLastKeyInfo*
-
-Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed.
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.keyCode | integer | Output parameter. The key code of the last pressed key. |
-| result.modifiers | integer | Output parameter. The modifier flags (e.g., Shift, Ctrl) active during the last key press. |
-| result.timestampInSeconds | integer | Output parameter. The timestamp (in seconds) when the last key press occurred. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.RDKWindowManager.getLastKeyInfo"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RDKWindowManager.getLastKeyInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "keyCode": 0,
-        "modifiers": 0,
-        "timestampInSeconds": 0
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_UNAVAILABLE)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 2,
-        "message": "No key press information is available."
-    }
-}
-```
-
-<a id="getScreenshot"></a>
-## *getScreenshot*
-
-Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete 
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.RDKWindowManager.getScreenshot"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RDKWindowManager.getScreenshot"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "on failure"
-    }
-}
-```
-
-<a id="getVisibility"></a>
-## *getVisibility*
-
-Gets the visibility of the given client or appInstanceId
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.client | string | client name or application instance ID |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.RDKWindowManager.getVisibility",
-    "params": {
-        "client": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RDKWindowManager.getVisibility", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "visible": true
-    }
-}
-```
-
-<a id="getZOrder"></a>
-## *getZOrder*
-
-Gets the zOrder of the given client or appInstanceId
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | client name or application instance ID |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.zOrder | integer | integer value indicating the zOrder of the client |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.RDKWindowManager.getZOrder",
-    "params": {
-        "clientId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RDKWindowManager.getZOrder", "params": {"clientId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "zOrder": 0
-    }
-}
-```
-
-<a id="ignoreKeyInputs"></a>
-## *ignoreKeyInputs*
-
-Ignore key inputs
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.ignore | bool | flag stating whether key inputs ignored |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.RDKWindowManager.ignoreKeyInputs",
-    "params": {
-        "ignore": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RDKWindowManager.ignoreKeyInputs", "params": {"ignore": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": null
-}
-```
-
-<a id="injectKey"></a>
-## *injectKey*
-
-Simulates a key press event with optional modifiers.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.keyCode | integer | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
-| params.modifiers | string | JSON String format with one or more modifiers |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.RDKWindowManager.injectKey",
-    "params": {
-        "keyCode": 0,
-        "modifiers": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RDKWindowManager.injectKey", "params": {"keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "result": null
-}
-```
-
-<a id="keyRepeatConfig"></a>
-## *keyRepeatConfig*
-
-Enables KeyInputEvents for list of clients specified
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.input | string | input type (default/keyboard) |
-| params.keyConfig | string | JSON String format with enabled, initialDelay and repeatInterval |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.RDKWindowManager.keyRepeatConfig",
-    "params": {
-        "input": "",
-        "keyConfig": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RDKWindowManager.keyRepeatConfig", "params": {"input": "", "keyConfig": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "result": null
-}
-```
-
-<a id="removeKeyIntercept"></a>
-## *removeKeyIntercept*
+<a id="method_removeKeyIntercept"></a>
+## *removeKeyIntercept [<sup>method</sup>](#head_Methods)*
 
 Removes a key intercept for a specific key code and client.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | The client identifier |
-| params.keyCode | integer | The key code to remove |
-| params.modifiers | string | JSON String format with one or more modifiers |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The client identifier |
+| params.keyCode | integer | mandatory | The key code to remove |
+| params.modifiers | string | mandatory | JSON String format with one or more modifiers |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | The key intercept was removed successfully. |
+| ```Core::ERROR_GENERAL``` | The intercept could not be removed due to an internal error. |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.RDKWindowManager.removeKeyIntercept",
-    "params": {
-        "clientId": "",
-        "keyCode": 0,
-        "modifiers": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.removeKeyIntercept",
+  "params": {
+    "clientId": "...",
+    "keyCode": 0,
+    "modifiers": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.RDKWindowManager.removeKeyIntercept", "params": {"clientId": "", "keyCode": 0, "modifiers": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
+<a id="method_addKeyListener"></a>
+## *addKeyListener [<sup>method</sup>](#head_Methods)*
 
-#### Error Response (Core::ERROR_GENERAL)
+Registers listeners for specific keys.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.keyListeners | string | mandatory | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "The intercept could not be removed due to an internal error."
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.addKeyListener",
+  "params": {
+    "keyListeners": "..."
+  }
 }
 ```
 
-<a id="removeKeyListener"></a>
-## *removeKeyListener*
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_removeKeyListener"></a>
+## *removeKeyListener [<sup>method</sup>](#head_Methods)*
 
 Removes listeners for specific keys.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.keyListeners | string | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.keyListeners | string | mandatory | JSON String format containing the keylisteneres with keys(keyCode,nativekeyCode,modifiers,activate,propagate) and client/callSign |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.RDKWindowManager.removeKeyListener",
-    "params": {
-        "keyListeners": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.removeKeyListener",
+  "params": {
+    "keyListeners": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.RDKWindowManager.removeKeyListener", "params": {"keyListeners": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="resetInactivityTime"></a>
-## *resetInactivityTime*
+<a id="method_injectKey"></a>
+## *injectKey [<sup>method</sup>](#head_Methods)*
 
-Resets inactivity interval if EnableUserInactivity feature is enabled
+Simulates a key press event with optional modifiers.
 
-### Events Triggered
-None
 ### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.keyCode | integer | mandatory | Key code to be injected, modifiers :  JSON String format with one or more modifiers |
+| params.modifiers | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.injectKey",
+  "params": {
+    "keyCode": 0,
+    "modifiers": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_generateKey"></a>
+## *generateKey [<sup>method</sup>](#head_Methods)*
+
+Generates a key event for the specified keys and client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.keys | string | mandatory | JSON String format representing the key(s)(keyCode,modifiers,delay,client/callSign) to generate |
+| params.client | string | mandatory | Name of the client/callSign requesting the key generation |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.generateKey",
+  "params": {
+    "keys": "...",
+    "client": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_enableInactivityReporting"></a>
+## *enableInactivityReporting [<sup>method</sup>](#head_Methods)*
+
+Enables the inactivity reporting.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.enable | boolean | mandatory | Flag to true/false the feature |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.enableInactivityReporting",
+  "params": {
+    "enable": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_setInactivityInterval"></a>
+## *setInactivityInterval [<sup>method</sup>](#head_Methods)*
+
+Sets inactivity interval if EnableUserInactivity feature is enabled.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.interval | integer | mandatory | Time interval set for inactivity |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setInactivityInterval",
+  "params": {
+    "interval": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_resetInactivityTime"></a>
+## *resetInactivityTime [<sup>method</sup>](#head_Methods)*
+
+Resets inactivity interval if EnableUserInactivity feature is enabled.
+
+### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
 
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "method": "org.rdk.RDKWindowManager.resetInactivityTime"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.RDKWindowManager.resetInactivityTime"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "result": null
-}
-```
-
-<a id="setFocus"></a>
-## *setFocus*
-
-Sets the focus to the app with the app id
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.client | string | Name of the client/callSign requesting the key generation. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 20,
-    "method": "org.rdk.RDKWindowManager.setFocus",
-    "params": {
-        "client": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.resetInactivityTime"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.RDKWindowManager.setFocus", "params": {"client": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 20,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="setInactivityInterval"></a>
-## *setInactivityInterval*
+<a id="method_enableKeyRepeats"></a>
+## *enableKeyRepeats [<sup>method</sup>](#head_Methods)*
 
-Sets inactivity interval if EnableUserInactivity feature is enabled
+Key repeats are enabled/disabled.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.interval | integer | time interval set for inactivity |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.enable | boolean | mandatory | Flag to true/false the key repeats |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "method": "org.rdk.RDKWindowManager.setInactivityInterval",
-    "params": {
-        "interval": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.enableKeyRepeats",
+  "params": {
+    "enable": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.RDKWindowManager.setInactivityInterval", "params": {"interval": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 21,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="setVisible"></a>
-## *setVisible*
+<a id="method_getKeyRepeatsEnabled"></a>
+## *getKeyRepeatsEnabled [<sup>method</sup>](#head_Methods)*
 
-Sets the visibility of the given client or appInstanceId
+Retrieves the flag determining whether keyRepeat true/false.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.client | string | client name or application instance ID |
-| params.visible | bool | boolean indicating the visibility status: `true` for visible, `false` for hide. |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "method": "org.rdk.RDKWindowManager.setVisible",
-    "params": {
-        "client": "",
-        "visible": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.RDKWindowManager.setVisible", "params": {"client": "", "visible": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "result": null
-}
-```
-
-<a id="setZOrder"></a>
-## *setZOrder*
-
-Sets the zOrder of the given client or appInstanceId
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | client name or application instance ID |
-| params.zOrder | integer | integer value indicating the zOrder |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "method": "org.rdk.RDKWindowManager.setZOrder",
-    "params": {
-        "clientId": "",
-        "zOrder": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.RDKWindowManager.setZOrder", "params": {"clientId": "", "zOrder": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "result": null
-}
-```
-
-<a id="startVncServer"></a>
-## *startVncServer*
-
-Starts the VNC server
-
-### Events Triggered
-None
-### Parameters
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Flag stating whether keyRepeat true/false |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 24,
-    "method": "org.rdk.RDKWindowManager.startVncServer"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getKeyRepeatsEnabled"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.RDKWindowManager.startVncServer"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 24,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
 }
 ```
 
-<a id="stopVncServer"></a>
-## *stopVncServer*
+<a id="method_ignoreKeyInputs"></a>
+## *ignoreKeyInputs [<sup>method</sup>](#head_Methods)*
 
-Stops the VNC server
+Ignore key inputs.
 
-### Events Triggered
-None
 ### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.ignore | boolean | mandatory | Flag stating whether key inputs ignored |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 25,
-    "method": "org.rdk.RDKWindowManager.stopVncServer"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.ignoreKeyInputs",
+  "params": {
+    "ignore": false
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.RDKWindowManager.stopVncServer"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 25,
-    "result": null
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="IRDKWindowManager-Notifications"></a>
-### Notifications
+<a id="method_enableInputEvents"></a>
+## *enableInputEvents [<sup>method</sup>](#head_Methods)*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Enables KeyInputEvents for list of clients specified.
 
-The following events are provided by the IRDKWindowManager Interface:
+### Parameters
 
-| Event | Description |
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clients | string | mandatory | JSON String format with number of clients, enable:Flag to enable input events |
+| params.enable | boolean | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.enableInputEvents",
+  "params": {
+    "clients": "...",
+    "enable": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_keyRepeatConfig"></a>
+## *keyRepeatConfig [<sup>method</sup>](#head_Methods)*
+
+Enables KeyInputEvents for list of clients specified.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.input | string | mandatory | Input type (default/keyboard) |
+| params.keyConfig | string | mandatory | JSON String format with enabled, initialDelay and repeatInterval |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.keyRepeatConfig",
+  "params": {
+    "input": "...",
+    "keyConfig": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_setFocus"></a>
+## *setFocus [<sup>method</sup>](#head_Methods)*
+
+Sets the focus to the app with the app id.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.client | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setFocus",
+  "params": {
+    "client": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_setVisible"></a>
+## *setVisible [<sup>method</sup>](#head_Methods)*
+
+Sets the visibility of the given client or appInstanceId.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.client | string | mandatory | Client name or application instance ID |
+| params.visible | boolean | mandatory | Boolean indicating the visibility status: `true` for visible, `false` for hide |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setVisible",
+  "params": {
+    "client": "...",
+    "visible": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_getVisibility"></a>
+## *getVisibility [<sup>method</sup>](#head_Methods)*
+
+Gets the visibility of the given client or appInstanceId.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.client | string | mandatory | Client name or application instance ID |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | Boolean indicating the visibility status: `true` for visible, `false` for hide |
+
+### Errors
+
+| Message | Description |
 | :-------- | :-------- |
-| [onBlur](#onBlur) | Notifies when an application is blurred |
-| [onConnected](#onConnected) | Notifies when an application is connected |
-| [onDisconnected](#onDisconnected) | Notifies when an application is disconnected |
-| [onFocus](#onFocus) | Notifies when an application is in focus |
-| [onHidden](#onHidden) | Notifies when an application is hidden |
-| [onReady](#onReady) | Posting the client for first frame ready. |
-| [onScreenshotComplete](#onScreenshotComplete) | Notifies when a screenshot capture is complete |
-| [onUserInactivity](#onUserInactivity) | Posting the client is inactive state |
-| [onVisible](#onVisible) | Notifies when an application is visible |
+| ```Core::ERROR_NONE``` | on success |
 
-<a id="onBlur"></a>
-## *onBlur*
+### Example
 
-Notifies when an application is blurred
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the blurred application |
-
-### Examples
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 26,
-    "method": "org.rdk.RDKWindowManager.onBlur",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getVisibility",
+  "params": {
+    "client": "..."
+  }
 }
 ```
 
-<a id="onConnected"></a>
-## *onConnected*
-
-Notifies when an application is connected
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the connected application |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 27,
-    "method": "org.rdk.RDKWindowManager.onConnected",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
 }
 ```
 
-<a id="onDisconnected"></a>
-## *onDisconnected*
+<a id="method_getLastKeyInfo"></a>
+## *getLastKeyInfo [<sup>method</sup>](#head_Methods)*
 
-Notifies when an application is disconnected
+Retrieves information about the most recent key press event, including the key code, modifier flags, and the timestamp in seconds when the key was pressed.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the disconnected application |
 
-### Examples
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.keyCode | integer | mandatory | Output parameter. The key code of the last pressed key |
+| result.modifiers | integer | mandatory | Output parameter. The modifier flags |
+| result.timestampInSeconds | integer | mandatory | Output parameter. The timestamp (in seconds) when the last key press occurred |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Successfully retrieved the last key press information. |
+| ```Core::ERROR_UNAVAILABLE``` | No key press information is available. |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 28,
-    "method": "org.rdk.RDKWindowManager.onDisconnected",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getLastKeyInfo"
 }
 ```
 
-<a id="onFocus"></a>
-## *onFocus*
+#### Response
 
-Notifies when an application is in focus
+```json
+Failed to generate JSON example for getLastKeyInfo
+```
+
+<a id="method_setZOrder"></a>
+## *setZOrder [<sup>method</sup>](#head_Methods)*
+
+Sets the zOrder of the given client or appInstanceId.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the focussed application |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+| params.zOrder | integer | mandatory | Integer value indicating the zOrder |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 29,
-    "method": "org.rdk.RDKWindowManager.onFocus",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setZOrder",
+  "params": {
+    "clientId": "...",
+    "zOrder": 0
+  }
 }
 ```
 
-<a id="onHidden"></a>
-## *onHidden*
-
-Notifies when an application is hidden
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the hidden application |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 30,
-    "method": "org.rdk.RDKWindowManager.onHidden",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
 }
 ```
 
-<a id="onReady"></a>
-## *onReady*
+<a id="method_getZOrder"></a>
+## *getZOrder [<sup>method</sup>](#head_Methods)*
+
+Gets the zOrder of the given client or appInstanceId.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | integer | mandatory | Integer value indicating the zOrder of the client |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getZOrder",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": 0
+}
+```
+
+<a id="method_startVncServer"></a>
+## *startVncServer [<sup>method</sup>](#head_Methods)*
+
+Starts the VNC server.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startVncServer"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_stopVncServer"></a>
+## *stopVncServer [<sup>method</sup>](#head_Methods)*
+
+Stops the VNC server.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.stopVncServer"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_getFocused"></a>
+## *getFocused [<sup>method</sup>](#head_Methods)*
+
+Gets the identifier of the currently focused application.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | string | mandatory | Output parameter. The identifier of the currently focused application |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Successfully retrieved the focused application identifier |
+| ```Core::ERROR_GENERAL``` | Failed to retrieve the focused application identifier |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getFocused"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": "..."
+}
+```
+
+<a id="method_getScreenshot"></a>
+## *getScreenshot [<sup>method</sup>](#head_Methods)*
+
+Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete 
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+| ```Core::ERROR_GENERAL``` | on failure |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getScreenshot"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_setAlias"></a>
+## *setAlias [<sup>method</sup>](#head_Methods)*
+
+Sets the alias name for the given client identifier.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client identifier |
+| params.alias | string | mandatory | Alias name for the given client identifier |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Operation completed successfully |
+| ```Core::ERROR_GENERAL``` | Operation failed |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setAlias",
+  "params": {
+    "clientId": "...",
+    "alias": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_showSplashScreen"></a>
+## *showSplashScreen [<sup>method</sup>](#head_Methods)*
+
+Shows or hides the splash screen in the window manager.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.show | boolean | mandatory | Boolean indicating whether to show (true) or hide (false) the splash screen |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Operation completed successfully |
+| ```Core::ERROR_GENERAL``` | Operation failed |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.showSplashScreen",
+  "params": {
+    "show": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_setBounds"></a>
+## *setBounds [<sup>method</sup>](#head_Methods)*
+
+Sets the x, y position and width, height dimensions of the given client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+| params.x | integer | mandatory | X coordinate of the client window |
+| params.y | integer | mandatory | Y coordinate of the client window |
+| params.width | integer | mandatory | Width of the client window in pixels |
+| params.height | integer | mandatory | Height of the client window in pixels |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Bounds set successfully |
+| ```Core::ERROR_GENERAL``` | Failed to set bounds |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setBounds",
+  "params": {
+    "clientId": "...",
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_getBounds"></a>
+## *getBounds [<sup>method</sup>](#head_Methods)*
+
+Gets the x, y position and width, height dimensions of the given client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.x | integer | mandatory | X coordinate of the client window |
+| result.y | integer | mandatory | Y coordinate of the client window |
+| result.width | integer | mandatory | Width of the client window in pixels |
+| result.height | integer | mandatory | Height of the client window in pixels |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Bounds retrieved successfully |
+| ```Core::ERROR_GENERAL``` | Failed to get bounds |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBounds",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  }
+}
+```
+
+<a id="method_setScale"></a>
+## *setScale [<sup>method</sup>](#head_Methods)*
+
+Sets the horizontal and vertical scale factors of the given client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+| params.scaleX | number | mandatory | Horizontal scale factor |
+| params.scaleY | number | mandatory | Vertical scale factor |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | null | mandatory | Always null |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Scale set successfully |
+| ```Core::ERROR_GENERAL``` | Failed to set scale |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setScale",
+  "params": {
+    "clientId": "...",
+    "scaleX": 0.0,
+    "scaleY": 0.0
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": null
+}
+```
+
+<a id="method_getScale"></a>
+## *getScale [<sup>method</sup>](#head_Methods)*
+
+Gets the horizontal and vertical scale factors of the given client.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Client name or application instance ID |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.scaleX | number | mandatory | Horizontal scale factor |
+| result.scaleY | number | mandatory | Vertical scale factor |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | Scale retrieved successfully |
+| ```Core::ERROR_GENERAL``` | Failed to get scale |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getScale",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "scaleX": 0.0,
+    "scaleY": 0.0
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the RDKWindowManager interface:
+
+RDKWindowManager interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onUserInactivity](#notification_onUserInactivity) | Posting the client is inactive state |
+| [onDisconnected](#notification_onDisconnected) | Notifies when an application is disconnected |
+| [onReady](#notification_onReady) | Posting the client for first frame ready |
+| [onConnected](#notification_onConnected) | Notifies when an application is connected |
+| [onVisible](#notification_onVisible) | Notifies when an application is visible |
+| [onHidden](#notification_onHidden) | Notifies when an application is hidden |
+| [onFocus](#notification_onFocus) | Notifies when an application is in focus |
+| [onBlur](#notification_onBlur) | Notifies when an application is blurred |
+| [onScreenshotComplete](#notification_onScreenshotComplete) | Notifies when a screenshot capture is complete |
+
+<a id="notification_onUserInactivity"></a>
+## *onUserInactivity [<sup>notification</sup>](#head_Notifications)*
+
+Posting the client is inactive state.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.minutes | number | mandatory | Notify how long user is inactive state |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onUserInactivity",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onUserInactivity",
+  "params": {
+    "minutes": 0.0
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onUserInactivity``.
+
+<a id="notification_onDisconnected"></a>
+## *onDisconnected [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when an application is disconnected.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the disconnected application |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDisconnected",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDisconnected",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDisconnected``.
+
+<a id="notification_onReady"></a>
+## *onReady [<sup>notification</sup>](#head_Notifications)*
 
 Posting the client for first frame ready.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | notify first frame event received for client or application instance ID |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | Notify first frame event received for client or application instance ID |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "method": "org.rdk.RDKWindowManager.onReady",
-    "params": {
-        "clientId": ""
-    }
-}
-```
+### Example
 
-<a id="onScreenshotComplete"></a>
-## *onScreenshotComplete*
-
-Notifies when a screenshot capture is complete
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.success | bool | Indicates whether the screenshot was captured successfully |
-| params.imageData | string | Base64 encoded image data (PNG format) |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 32,
-    "method": "org.rdk.RDKWindowManager.onScreenshotComplete",
-    "params": {
-        "success": true,
-        "imageData": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onReady",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onUserInactivity"></a>
-## *onUserInactivity*
-
-Posting the client is inactive state
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.minutes | double | notify how long user is inactive state |
-
-### Examples
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 33,
-    "method": "org.rdk.RDKWindowManager.onUserInactivity",
-    "params": {
-        "minutes": 0.0
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onReady",
+  "params": {
+    "clientId": "..."
+  }
 }
 ```
 
-<a id="onVisible"></a>
-## *onVisible*
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onReady``.
 
-Notifies when an application is visible
+<a id="notification_onConnected"></a>
+## *onConnected [<sup>notification</sup>](#head_Notifications)*
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.clientId | string | the identifier of the visible application |
+Notifies when an application is connected.
 
-### Examples
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the connected application |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 34,
-    "method": "org.rdk.RDKWindowManager.onVisible",
-    "params": {
-        "clientId": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onConnected",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onConnected",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onConnected``.
+
+<a id="notification_onVisible"></a>
+## *onVisible [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when an application is visible.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the visible application |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onVisible",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onVisible",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onVisible``.
+
+<a id="notification_onHidden"></a>
+## *onHidden [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when an application is hidden.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the hidden application |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onHidden",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onHidden",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onHidden``.
+
+<a id="notification_onFocus"></a>
+## *onFocus [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when an application is in focus.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the focussed application |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onFocus",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onFocus",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onFocus``.
+
+<a id="notification_onBlur"></a>
+## *onBlur [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when an application is blurred.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.clientId | string | mandatory | The identifier of the blurred application |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onBlur",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onBlur",
+  "params": {
+    "clientId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onBlur``.
+
+<a id="notification_onScreenshotComplete"></a>
+## *onScreenshotComplete [<sup>notification</sup>](#head_Notifications)*
+
+Notifies when a screenshot capture is complete.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.success | boolean | mandatory | Indicates whether the screenshot was captured successfully |
+| params.imageData | string | mandatory | Base64 encoded image data (PNG format) |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onScreenshotComplete",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onScreenshotComplete",
+  "params": {
+    "success": false,
+    "imageData": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onScreenshotComplete``.
 

@@ -1,685 +1,804 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="VoiceControl_Module"></a>
-# VoiceControl Module
+<a id="head_VoiceControl_API"></a>
+# VoiceControl API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/VoiceControl/IVoiceControl.h)**
+**Version: 1.0.0**
 
-A VoiceControl module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+VoiceControl interface for Thunder framework.
+
+(Defined with IVoiceControl in [IVoiceControl.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IVoiceControl.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IVoiceControl](#IVoiceControl)
-    - [Methods](#IVoiceControl-Methods)
-    - [Notifications](#IVoiceControl-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the VoiceControl interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `VoiceControl` module provides the following interface(s):
+VoiceControl JSON-RPC interface.
 
-- IVoiceControl
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the VoiceControl interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.VoiceControl) |
-| classname | string | Class name: *VoiceControl* |
-| locator | string | Library name: *libWPEFrameworkVoiceControl.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IVoiceControl"></a>
-## IVoiceControl Interface
-
-### Description
-
-Voice Control JSONRPC interface definition for WPEFramework.  If not stated otherwise in this file or this component's LICENSE file the following copyright and licenses apply:  Copyright 2024 RDK Management  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-<a id="IVoiceControl-Methods"></a>
-### Methods
-
-The following methods are provided by the IVoiceControl Interface:
+VoiceControl interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
-| [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
-| [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
-| [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
-| [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
-| [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
-| [voiceSessionTerminate](#voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
+| [getApiVersionNumber](#method_getApiVersionNumber) | Get the API version number |
+| [voiceStatus](#method_voiceStatus) | Returns the current status of the RDK voice stack |
+| [sendVoiceMessage](#method_sendVoiceMessage) | Sends a message to the Voice Server |
+| [voiceSessionByText](#method_voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
+| [voiceSessionTypes](#method_voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
+| [voiceSessionTerminate](#method_voiceSessionTerminate) | Terminates a voice session using the specified session identifier |
+| [voiceSessionAudioStreamStart](#method_voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
 
-<a id="getApiVersionNumber"></a>
-## *getApiVersionNumber*
+<a id="method_getApiVersionNumber"></a>
+## *getApiVersionNumber [<sup>method</sup>](#head_Methods)*
 
-Get the API version number
+Get the API version number.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | object | The API version response |
-| result.response.version | integer | The API version number  |
-| result.response.success | bool | Whether the request succeeded |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The API version response |
+| result.version | integer | mandatory | The API version number ex: 1 |
+| result.success | boolean | mandatory | Whether the request succeeded |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.VoiceControl.getApiVersionNumber"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.VoiceControl.getApiVersionNumber"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "version": 1,
-        "success": true
-    }
-}
-```
-
-<a id="voiceSessionTypes"></a>
-## *voiceSessionTypes*
-
-Retrieves the types of voice sessions which are supported by the platform
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-| result.types | array | Array of strings indicating the voice session request types which are valid  |
-| result.types[#] | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.VoiceControl.voiceSessionTypes"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.VoiceControl.voiceSessionTypes"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true,
-        "types": [
-            "ptt_transcription"
-        ]
-    }
-}
-```
-
-<a id="voiceStatus"></a>
-## *voiceStatus*
-
-Returns the current status of the RDK voice stack
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.response | object | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success |
-| result.response.maskPii | bool | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
-| result.response.urlPtt | string | The PTT URL e.g. "ws: |
-| result.response.urlHf | string | The HF (ff and mic) URL e.g. "ws: |
-| result.response.urlMicTap | string | The microphone tap URL e.g. "ws: |
-| result.response.prv | bool | The Press & Release Voice feature (true for enable, false for disable) |
-| result.response.wwFeedback | bool | The Wake Word Feedback feature (true for enable, false for disable) |
-| result.response.ptt | object | The status information for the PTT device type |
-| result.response.ptt.status | string | The status of the device  |
-| result.response.ff | object | The status information for the FF device type |
-| result.response.ff.status | string | The status of the device  |
-| result.response.mic | object | The status information for the MIC device type |
-| result.response.mic.status | string | The status of the device  |
-| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available | object | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
-| result.response.mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available.status | string | The status of the device  |
-| result.response.capabilities | string | JSON array of capability strings returned by the voice stack |
-| result.response.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.VoiceControl.voiceStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.VoiceControl.voiceStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "maskPii": true,
-        "urlPtt": "ws:",
-        "urlHf": "ws:",
-        "urlMicTap": "ws:",
-        "prv": true,
-        "wwFeedback": true,
-        "ptt": {
-            "status": "ready"
-        },
-        "ff": {
-            "status": "ready"
-        },
-        "mic": {
-            "status": "ready"
-        },
-        "mic_tap @brief The status information for the MIC TAP device type, present only when MIC TAP capability is available": {
-            "status": "ready"
-        },
-        "capabilities": "",
-        "success": true
-    }
-}
-```
-
-<a id="sendVoiceMessage"></a>
-## *sendVoiceMessage*
-
-Sends a message to the Voice Server
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.msgType | string | Message type from the server  |
-| params?.trx | string | <sup>(optional)</sup>The unique id of the voice session  |
-| params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch |
-| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.VoiceControl.sendVoiceMessage",
-    "params": {
-        "msgType": "asr",
-        "trx": "12345-abc",
-        "created": 0,
-        "msgPayload": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 0, "msgPayload": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="voiceSessionAudioStreamStart"></a>
-## *voiceSessionAudioStreamStart*
-
-Starts a subsequent audio stream for the voice session indicated by the session identifier
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
-    "params": {
-        "sessionId": "session-12345"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="voiceSessionByText"></a>
-## *voiceSessionByText*
-
-Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED)
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.transcription | string | The transcription text to be sent to the voice server  |
-| params?.type | string | <sup>(optional)</sup>The device type to simulate the voice session from. Possible values: PTT, FF, MIC |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.VoiceControl.voiceSessionByText",
-    "params": {
-        "transcription": "turn on the lights",
-        "type": "ptt"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "ptt"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="voiceSessionTerminate"></a>
-## *voiceSessionTerminate*
-
-Terminates a voice session using the specified session identifier
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.sessionId | string | The session identifier of the session from the onSessionBegin event  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.VoiceControl.voiceSessionTerminate",
-    "params": {
-        "sessionId": "session-12345"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="IVoiceControl-Notifications"></a>
-### Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the IVoiceControl Interface:
-
-| Event | Description |
+| Message | Description |
 | :-------- | :-------- |
-| [onKeywordVerification](#onKeywordVerification) | Triggered when a keyword verification result is received |
-| [onServerMessage](#onServerMessage) | Triggered when a message is received from the Voice Server |
-| [onSessionBegin](#onSessionBegin) | Triggered when a voice session begins |
-| [onSessionEnd](#onSessionEnd) | Triggered when the interaction with the server has concluded |
-| [onStreamBegin](#onStreamBegin) | Triggered when a device starts streaming voice data to the RDK |
-| [onStreamEnd](#onStreamEnd) | Triggered when the device has stopped streaming audio |
+| ```ErrorCode::NONE``` | Operation completed successfully. |
 
-<a id="onKeywordVerification"></a>
-## *onKeywordVerification*
+### Example
 
-Triggered when a keyword verification result is received
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.verified | bool | True if the keyword was verified, otherwise false |
-
-### Examples
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.VoiceControl.onKeywordVerification",
-    "params": {
-        "remoteId": 1,
-        "sessionId": "session-12345",
-        "verified": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getApiVersionNumber"
 }
 ```
 
-<a id="onServerMessage"></a>
-## *onServerMessage*
-
-Triggered when a message is received from the Voice Server
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.msgType | string | Message type from the server  |
-| params.trx | string | The unique id of the voice session  |
-| params.created | integer | The timestamp for server information in milliseconds since epoch |
-| params.msgPayload | string | Vrex server information |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.VoiceControl.onServerMessage",
-    "params": {
-        "msgType": "asr",
-        "trx": "12345-abc",
-        "created": 0,
-        "msgPayload": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "version": 0,
+    "success": false
+  }
 }
 ```
 
-<a id="onSessionBegin"></a>
-## *onSessionBegin*
+<a id="method_voiceStatus"></a>
+## *voiceStatus [<sup>method</sup>](#head_Methods)*
 
-Triggered when a voice session begins
+Returns the current status of the RDK voice stack.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.deviceType | string | The type of voice device starting the session. Possible values: ptt, ff, mic |
-| params.keywordVerification | bool | True if the session uses keyword verification, otherwise false |
 
-### Examples
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | The typed voice status fields including urlPtt, urlHf, urlMicTap, maskPii, prv, wwFeedback, ptt, ff, mic, optional mic_tap, capabilities, and success |
+| result.maskPii | boolean | mandatory | Indicates if PII should be masked (1 - mask PII, 0 - display PII) |
+| result.urlPtt | string | mandatory | The PTT URL e.g. "ws://voice.example.com/ptt" |
+| result.urlHf | string | mandatory | The HF (ff and mic) URL e.g. "ws://voice.example.com/hf" |
+| result.urlMicTap | string | mandatory | The microphone tap URL e.g. "ws://voice.example.com/mictap" |
+| result.prv | boolean | mandatory | The Press & Release Voice feature (true for enable, false for disable) |
+| result.wwFeedback | boolean | mandatory | The Wake Word Feedback feature (true for enable, false for disable) |
+| result.ptt | object | mandatory | The status information for the PTT device type |
+| result.ptt.status | string | mandatory | The status of the device e.g. "ready" |
+| result.ff | object | mandatory | The status information for the FF device type |
+| result.ff.status | string | mandatory | The status of the device e.g. "ready" |
+| result.mic | object | mandatory | The status information for the MIC device type |
+| result.mic.status | string | mandatory | The status of the device e.g. "ready" |
+| result?.mic_tap | object | optional | The status information for the MIC TAP device type, present only when MIC TAP capability is available |
+| result?.mic_tap.status | string | mandatory | The status of the device e.g. "ready" |
+| result.capabilities | opaque object | mandatory | JSON array of capability strings returned by the voice stack |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice status retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve voice status. |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.VoiceControl.onSessionBegin",
-    "params": {
-        "remoteId": 1,
-        "sessionId": "session-12345",
-        "deviceType": "ptt",
-        "keywordVerification": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.voiceStatus"
 }
 ```
 
-<a id="onSessionEnd"></a>
-## *onSessionEnd*
-
-Triggered when the interaction with the server has concluded
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.result | string | The result of the voice session. Possible values: success, error, abort, shortUtterance |
-| params.serverStats | object | The voice server stats |
-| params.serverStats.dnsTime | double | The DNS time of the voice server in milliseconds .5 |
-| params.serverStats.serverIp | string | The IP of the voice server  |
-| params.serverStats.connectTime | double | The connection time of the voice server in milliseconds .2 |
-| params.success | string | Result data for a successful voice session containing transcription |
-| params.error | string | Result data for a failed voice session containing error codes |
-| params.abort | string | Result data for an aborted voice session containing reason |
-| params.shortUtterance | string | Result data for a short utterance voice session containing reason |
-| params.stbStats | string | STB statistics including device type, firmware, and controller info |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.VoiceControl.onSessionEnd",
-    "params": {
-        "remoteId": 1,
-        "sessionId": "session-12345",
-        "result": "success",
-        "serverStats": {
-            "dnsTime": 0.5,
-            "serverIp": "192.168.1.100",
-            "connectTime": 10.2
-        },
-        "success": "",
-        "error": "",
-        "abort": "",
-        "shortUtterance": "",
-        "stbStats": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "maskPii": false,
+    "urlPtt": "...",
+    "urlHf": "...",
+    "urlMicTap": "...",
+    "prv": false,
+    "wwFeedback": false,
+    "ptt": {
+      "status": "..."
+    },
+    "ff": {
+      "status": "..."
+    },
+    "mic": {
+      "status": "..."
+    },
+    "mic_tap": {
+      "status": "..."
+    },
+    "capabilities": {},
+    "success": false
+  }
 }
 ```
 
-<a id="onStreamBegin"></a>
-## *onStreamBegin*
+<a id="method_sendVoiceMessage"></a>
+## *sendVoiceMessage [<sup>method</sup>](#head_Methods)*
 
-Triggered when a device starts streaming voice data to the RDK
+Sends a message to the Voice Server.
 
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.msgType | string | mandatory | Message type from the server e.g. "asr" |
+| params?.trx | string | optional | *...* |
+| params?.created | integer | optional | *...* |
+| params?.msgPayload | opaque object | optional | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice message sent successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to send voice message. |
+
+### Example
+
+#### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.VoiceControl.onStreamBegin",
-    "params": {
-        "remoteId": 1,
-        "sessionId": "session-12345"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.sendVoiceMessage",
+  "params": {
+    "msgType": "...",
+    "trx": "...",
+    "created": 0,
+    "msgPayload": {}
+  }
 }
 ```
 
-<a id="onStreamEnd"></a>
-## *onStreamEnd*
-
-Triggered when the device has stopped streaming audio
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.remoteId | integer | The voice device identifier  |
-| params.sessionId | string | The unique identifier for the voice session  |
-| params.reason | integer | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown  |
-
-### Examples
+#### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.VoiceControl.onStreamEnd",
-    "params": {
-        "remoteId": 1,
-        "sessionId": "session-12345",
-        "reason": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
+
+<a id="method_voiceSessionByText"></a>
+## *voiceSessionByText [<sup>method</sup>](#head_Methods)*
+
+Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED).
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.transcription | string | mandatory | The transcription text to be sent to the voice server e.g. "turn on the lights" |
+| params?.type | string | optional | *...* (must be one of the following: *ff, mic, ptt*) |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice session by text executed successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to execute voice session by text. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.voiceSessionByText",
+  "params": {
+    "transcription": "...",
+    "type": "ff"
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_voiceSessionTypes"></a>
+## *voiceSessionTypes [<sup>method</sup>](#head_Methods)*
+
+Retrieves the types of voice sessions which are supported by the platform.
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | Whether the request succeeded |
+| result.types | array | mandatory | Array of strings indicating the voice session request types which are valid e.g. "ptt_transcription" |
+| result.types[#] | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice session types retrieved successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to retrieve voice session types. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.voiceSessionTypes"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "types": [
+      "..."
+    ]
+  }
+}
+```
+
+<a id="method_voiceSessionTerminate"></a>
+## *voiceSessionTerminate [<sup>method</sup>](#head_Methods)*
+
+Terminates a voice session using the specified session identifier.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.sessionId | string | mandatory | The session identifier of the session from the onSessionBegin event e.g. "session-12345" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice session terminated successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to terminate voice session. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.voiceSessionTerminate",
+  "params": {
+    "sessionId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_voiceSessionAudioStreamStart"></a>
+## *voiceSessionAudioStreamStart [<sup>method</sup>](#head_Methods)*
+
+Starts a subsequent audio stream for the voice session indicated by the session identifier.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.sessionId | string | mandatory | The session identifier of the session from the onSessionBegin event e.g. "session-12345" |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Whether the request succeeded |
+| result.success | boolean | mandatory | Whether the request succeeded |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Voice session audio stream started successfully. |
+| ```ErrorCode::RPC_CALL_FAILED``` | IARM bus call failed. |
+| ```ErrorCode::GENERAL``` | Failed to start voice session audio stream. |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.voiceSessionAudioStreamStart",
+  "params": {
+    "sessionId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the VoiceControl interface:
+
+VoiceControl interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onSessionBegin](#notification_onSessionBegin) | Triggered when a voice session begins |
+| [onStreamBegin](#notification_onStreamBegin) | Triggered when a device starts streaming voice data to the RDK |
+| [onKeywordVerification](#notification_onKeywordVerification) | Triggered when a keyword verification result is received |
+| [onServerMessage](#notification_onServerMessage) | Triggered when a message is received from the Voice Server |
+| [onStreamEnd](#notification_onStreamEnd) | Triggered when the device has stopped streaming audio |
+| [onSessionEnd](#notification_onSessionEnd) | Triggered when the interaction with the server has concluded |
+
+<a id="notification_onSessionBegin"></a>
+## *onSessionBegin [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when a voice session begins.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The voice device identifier ex: 1 |
+| params.sessionId | string | mandatory | The unique identifier for the voice session e.g. "session-12345" |
+| params.deviceType | string | mandatory | The type of voice device starting the session. Possible values: ptt, ff, mic (must be one of the following: *ff, mic, ptt*) |
+| params.keywordVerification | boolean | mandatory | True if the session uses keyword verification, otherwise false |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onSessionBegin",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onSessionBegin",
+  "params": {
+    "remoteId": 0,
+    "sessionId": "...",
+    "deviceType": "ff",
+    "keywordVerification": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onSessionBegin``.
+
+<a id="notification_onStreamBegin"></a>
+## *onStreamBegin [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when a device starts streaming voice data to the RDK.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The voice device identifier ex: 1 |
+| params.sessionId | string | mandatory | The unique identifier for the voice session e.g. "session-12345" |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onStreamBegin",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onStreamBegin",
+  "params": {
+    "remoteId": 0,
+    "sessionId": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onStreamBegin``.
+
+<a id="notification_onKeywordVerification"></a>
+## *onKeywordVerification [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when a keyword verification result is received.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The voice device identifier ex: 1 |
+| params.sessionId | string | mandatory | The unique identifier for the voice session e.g. "session-12345" |
+| params.verified | boolean | mandatory | True if the keyword was verified, otherwise false |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onKeywordVerification",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onKeywordVerification",
+  "params": {
+    "remoteId": 0,
+    "sessionId": "...",
+    "verified": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onKeywordVerification``.
+
+<a id="notification_onServerMessage"></a>
+## *onServerMessage [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when a message is received from the Voice Server.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.msgType | string | mandatory | Message type from the server e.g. "asr" |
+| params.trx | string | mandatory | The unique id of the voice session e.g. "12345-abc" |
+| params.created | integer | mandatory | The timestamp for server information in milliseconds since epoch |
+| params.msgPayload | opaque object | mandatory | Vrex server information<br>*String length must be at most 262144 chars.* |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onServerMessage",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onServerMessage",
+  "params": {
+    "msgType": "...",
+    "trx": "...",
+    "created": 0,
+    "msgPayload": {}
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onServerMessage``.
+
+<a id="notification_onStreamEnd"></a>
+## *onStreamEnd [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the device has stopped streaming audio.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The voice device identifier ex: 1 |
+| params.sessionId | string | mandatory | The unique identifier for the voice session e.g. "session-12345" |
+| params.reason | integer | mandatory | The reason code for why the device stopped streaming audio. 0: End of Stream (Mic Key Released / EOS detected), 1: First Packet Timeout, 2: Inter-packet Timeout, 3: Max Utterance Length, 4: Adjacent Key Press, 5: Other Key Press, 6: Other / Unknown ex: 0 |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onStreamEnd",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onStreamEnd",
+  "params": {
+    "remoteId": 0,
+    "sessionId": "...",
+    "reason": 0
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onStreamEnd``.
+
+<a id="notification_onSessionEnd"></a>
+## *onSessionEnd [<sup>notification</sup>](#head_Notifications)*
+
+Triggered when the interaction with the server has concluded.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.remoteId | integer | mandatory | The voice device identifier ex: 1 |
+| params.sessionId | string | mandatory | The unique identifier for the voice session e.g. "session-12345" |
+| params.result | string | mandatory | The result of the voice session. Possible values: success, error, abort, shortUtterance (must be one of the following: *abort, error, shortUtterance, success*) |
+| params.serverStats | object | mandatory | The voice server stats |
+| params.serverStats.dnsTime | number | mandatory | The DNS time of the voice server in milliseconds ex: 0.5 |
+| params.serverStats.serverIp | string | mandatory | The IP of the voice server e.g. "192.168.1.100" |
+| params.serverStats.connectTime | number | mandatory | The connection time of the voice server in milliseconds ex: 10.2 |
+| params?.success | opaque object | optional | Result data for a successful voice session containing transcription |
+| params?.error | opaque object | optional | Result data for a failed voice session containing error codes |
+| params?.abort | opaque object | optional | Result data for an aborted voice session containing reason |
+| params?.shortUtterance | opaque object | optional | Result data for a short utterance voice session containing reason |
+| params?.stbStats | opaque object | optional | STB statistics including device type, firmware, and controller info |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onSessionEnd",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onSessionEnd",
+  "params": {
+    "remoteId": 0,
+    "sessionId": "...",
+    "result": "error",
+    "serverStats": {
+      "dnsTime": 0.0,
+      "serverIp": "...",
+      "connectTime": 0.0
+    },
+    "success": {},
+    "error": {},
+    "abort": {},
+    "shortUtterance": {},
+    "stbStats": {}
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onSessionEnd``.
 

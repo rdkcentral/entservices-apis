@@ -1,5 +1,5 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="Netflix Plugin"></a>
+<a name="Netflix_Plugin"></a>
 # Netflix Plugin
 
 A Netflix plugin for Thunder framework.
@@ -46,14 +46,16 @@ Netflix interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [factoryreset](#factoryreset) | Performs a Netflix factory reset |
-| [systemcommand](#systemcommand) | Executes the specified Netflix system command |
-| [voicecommand](#voicecommand) | Executes the specified Netflix voice command |
+| [factoryreset](#factoryreset) | Performs a reset to factory defaults |
+| [systemcommand](#systemcommand) | Does Netflix system command |
+
 
 <a name="factoryreset"></a>
 ## *factoryreset*
 
-Performs a Netflix factory reset.
+Performs a reset to factory defaults.
+
+> This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
 ### Events
 
@@ -73,7 +75,7 @@ This method takes no parameters.
 
 | Code | Message | Description |
 | :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
+| 2 | ```ERROR_UNAVAILABLE``` | Netflix is unavailable |
 
 ### Example
 
@@ -83,7 +85,7 @@ This method takes no parameters.
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "Netflix.1.factoryreset"
+    "method": "Netflix.factoryreset"
 }
 ```
 
@@ -100,7 +102,7 @@ This method takes no parameters.
 <a name="systemcommand"></a>
 ## *systemcommand*
 
-Executes the specified Netflix system command.
+Does Netflix system command.
 
 ### Events
 
@@ -111,7 +113,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.command | string | The system command to send to the Netflix application |
+| params.command | string | Command to send to Netflix |
 
 ### Result
 
@@ -123,8 +125,8 @@ No Events
 
 | Code | Message | Description |
 | :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-| 22 | ERROR_UNKNOWN_KEY | Command is not set |
+| 2 | ```ERROR_UNAVAILABLE``` | Netflix is unavailable |
+| 22 | ```ERROR_UNKNOWN_KEY``` | Command is not set |
 
 ### Example
 
@@ -134,91 +136,9 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "Netflix.1.systemcommand",
+    "method": "Netflix.systemcommand",
     "params": {
         "command": "config"
-    }
-}
-```
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": null
-}
-```
-
-<a name="voicecommand"></a>
-## *voicecommand*
-
-Executes the specified Netflix voice command.
-
-### Events
-
-No Events
-
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.assistant | string | The voice assistant |
-| params.lang | string | The uttered language |
-| params.micType | string | The microphone type |
-| params.timeout | Integer | The duration, in milliseconds, to wait for execution |
-| params.utteranceStructured | object | The structure of the utterance |
-| params.utteranceStructured.command | string | The command to send to the Netflix application |
-| params.utteranceStructured.intents | array | A string array of intents |
-| params.utteranceStructured.intents[#] | string |  |
-| params.utteranceStructured.resources | array | The structured utterances to be executed |
-| params.utteranceStructured.resources[#] | object |  |
-| params.utteranceStructured.resources[#].type | string | The resources type |
-| params.utteranceStructured.resources[#].value | string | The resources value |
-| params.utterancetext | string | The uttered text |
-
-### Result
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | Always null |
-
-### Errors
-
-| Code | Message | Description |
-| :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
-| 22 | ERROR_UNKNOWN_KEY | Command is not set |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "Netflix.1.voicecommand",
-    "params": {
-        "assistant": "XFINITY",
-        "lang": "en-US",
-        "micType": "NEAR_FIELD",
-        "timeout": 15000,
-        "utteranceStructured": {
-            "command": "search",
-            "intents": [
-                "..."
-            ],
-            "resources": [
-                {
-                    "type": "Query",
-                    "value": "Comedy Movies"
-                }
-            ]
-        },
-        "utterancetext": "Find Comedy Movies"
     }
 }
 ```
@@ -239,16 +159,30 @@ No Events
 The following properties are provided by the Netflix plugin:
 
 Netflix interface properties:
+
 | Property | Description |
 | :-------- | :-------- |
-| [esn](#esn)  | ESN value|
-| [visibility](#visibility)  | Current Netflix visibility |
+| [esn](#esn) <sup>RO</sup> | ESN value |
+| [visibility](#visibility) <sup>WO</sup> | Current Netflix visibility |
+| [nfrstatus](#nfrstatus) | native frame rate status |
+
+StateControl interface properties:
+
+| Property | Description |
+| :-------- | :-------- |
+| [state](#state) | Running state of the service |
+
 
 <a name="esn"></a>
 ## *esn*
 
 Provides access to the ESN value.
-This property is read-only.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
 
 ### Value
 
@@ -260,21 +194,21 @@ This property is read-only.
 
 | Code | Message | Description |
 | :-------- | :-------- | :-------- |
-| 2 | ERROR_UNAVAILABLE | Netflix is unavailable |
+| 2 | ```ERROR_UNAVAILABLE``` | Netflix is unavailable |
 
 ### Example
 
-#### Request
+#### Get Request
 
 ```json
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "Netflix.1.esn"
+    "method": "Netflix.esn"
 }
 ```
 
-#### Response
+#### Get Response
 
 ```json
 {
@@ -289,38 +223,148 @@ This property is read-only.
 
 Provides access to the current Netflix visibility.
 
-This property is write-only.
-
-### Description
-
-Use this property to return current visibilty status of Netflix.
+> This property is **write-only**.
 
 ### Events
 
-| Event | Description |
-| :-------- | :-------- |
-| visibilitychange | Triggered if the Netflix visibility changed. |
+No Events
 
 ### Value
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property) | string | Current Netflix visibility. (must be one of the following: visible, hidden) |
+| (property) | string | Current Netflix visibility (must be one of the following: *visible*, *hidden*) |
 
 ### Example
 
-#### Request
+#### Set Request
 
 ```json
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "Netflix.1.visibility",
+    "method": "Netflix.visibility",
     "params": "visible"
 }
 ```
 
-#### Response
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="nfrstatus"></a>
+## *nfrstatus*
+
+Provides access to the native frame rate status.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | string | native frame rate status (must be one of the following: *enable*, *disable*) |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "Netflix.nfrstatus"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "enable"
+}
+```
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "Netflix.nfrstatus",
+    "params": "enable"
+}
+```
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="state"></a>
+## *state*
+
+Provides access to the running state of the service.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | string | Running state of the service (must be one of the following: *resumed*, *suspended*) |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "Netflix.state"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "resumed"
+}
+```
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "Netflix.state",
+    "params": "resumed"
+}
+```
+
+#### Set Response
 
 ```json
 {
@@ -338,34 +382,37 @@ Notifications are autonomous events, triggered by the internals of the implement
 The following events are provided by the Netflix plugin:
 
 Netflix interface events:
+
 | Event | Description |
 | :-------- | :-------- |
-| [visibilitychange](#visibilitychange) | Triggered when the Netflix service visibility changes |
-| [playbackchange](#playbackchange) | Triggered when Netflix playback changes |
+| [visibilitychange](#visibilitychange) | Signals a visibility change of the Netflix |
+| [playbackchange](#playbackchange) | Signals a playback change of the Netflix |
 
 StateControl interface events:
+
 | Event | Description |
 | :-------- | :-------- |
 | [statechange](#statechange) | Signals a state change of the service |
 
+
 <a name="visibilitychange"></a>
 ## *visibilitychange*
 
-Triggered when the Netflix service visibility changes.
+Signals a visibility change of the Netflix.
 
 ### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hidden | boolean | Whether Netflix has been hidden (true) or made visible (false) |
+| params.hidden | boolean | Determines if the Netflix has been hidden (true) or made visible (false) |
 
 ### Example
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.1.visibilitychange",
+    "method": "client.events.visibilitychange",
     "params": {
         "hidden": false
     }
@@ -375,21 +422,21 @@ Triggered when the Netflix service visibility changes.
 <a name="playbackchange"></a>
 ## *playbackchange*
 
-Triggered when Netflix playback changes.
+Signals a playback change of the Netflix.
 
 ### Parameters
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.playing | boolean | Whether Netflix is playing (true) or not playing (false) |
+| params.playing | boolean | Determines if the Netflix is in playing mode (true) or not playing (false) |
 
 ### Example
 
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.1.playbackchange",
+    "method": "client.events.playbackchange",
     "params": {
         "playing": true
     }
@@ -413,9 +460,10 @@ Signals a state change of the service.
 ```json
 {
     "jsonrpc": "2.0",
-    "method": "client.events.1.statechange",
+    "method": "client.events.statechange",
     "params": {
         "suspended": false
     }
 }
 ```
+

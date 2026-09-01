@@ -1,737 +1,346 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="SharedStorage_Module"></a>
-# SharedStorage Module
+<a id="head_SharedStorage_API"></a>
+# SharedStorage API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/SharedStorage/ISharedStorage.h)**
+**Version: 1.0.0**
 
-A SharedStorage module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+SharedStorage interface for Thunder framework.
+
+(Defined with ISharedStorage in [ISharedStorage.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/ISharedStorage.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [ISharedStorage](#ISharedStorage)
-    - [Methods](#ISharedStorage-Methods)
-    - [Notifications](#ISharedStorage-Notifications)
-  - [ISharedStorageInspector](#ISharedStorageInspector)
-    - [Methods](#ISharedStorageInspector-Methods)
-  - [ISharedStorageLimit](#ISharedStorageLimit)
-    - [Methods](#ISharedStorageLimit-Methods)
-  - [ISharedStorageCache](#ISharedStorageCache)
-    - [Methods](#ISharedStorageCache-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the SharedStorage interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `SharedStorage` module provides the following interface(s):
+SharedStorage JSON-RPC interface.
 
-- ISharedStorage
-- ISharedStorageInspector
-- ISharedStorageLimit
-- ISharedStorageCache
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the SharedStorage interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.SharedStorage) |
-| classname | string | Class name: *SharedStorage* |
-| locator | string | Library name: *libWPEFrameworkSharedStorage.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="ISharedStorage"></a>
-## ISharedStorage Interface
-
-<a id="ISharedStorage-Methods"></a>
-### Methods
-
-The following methods are provided by the ISharedStorage Interface:
+SharedStorage interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#deleteKey) | Deletes a key from the specified namespace |
-| [deleteNamespace](#deleteNamespace) | Deletes the specified namespace |
-| [getValue](#getValue) | Returns the value of a key from the specified namespace. |
-| [setValue](#setValue) | Sets the value of a key in the the specified namespace |
+| [setValue](#method_setValue) | Sets the value of a key in the the specified namespace |
+| [getValue](#method_getValue) | Returns the value of a key from the specified namespace |
+| [deleteKey](#method_deleteKey) | Deletes a key from the specified namespace |
+| [deleteNamespace](#method_deleteNamespace) | Deletes the specified namespace |
 
-<a id="deleteKey"></a>
-## *deleteKey*
+<a id="method_setValue"></a>
+## *setValue [<sup>method</sup>](#head_Methods)*
 
-Deletes a key from the specified namespace
+Sets the value of a key in the the specified namespace.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.key | string | key |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.scope | string | mandatory | Must be device or account (must be one of the following: *account, device*) |
+| params.namespace | string | mandatory | Name space |
+| params.key | string | mandatory | Key |
+| params.value | string | mandatory | Value |
+| params.ttl | integer | mandatory | Time to live (optional) |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Success |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.SharedStorage.deleteKey",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setValue",
+  "params": {
+    "scope": "account",
+    "namespace": "...",
+    "key": "...",
+    "value": "...",
+    "ttl": 0
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SharedStorage.deleteKey", "params": {"scope": "device", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="deleteNamespace"></a>
-## *deleteNamespace*
-
-Deletes the specified namespace
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.SharedStorage.deleteNamespace",
-    "params": {
-        "scope": "device",
-        "namespace": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SharedStorage.deleteNamespace", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="getValue"></a>
-## *getValue*
+<a id="method_getValue"></a>
+## *getValue [<sup>method</sup>](#head_Methods)*
 
 Returns the value of a key from the specified namespace.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.key | string | key |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.value | string | value out |
-| result.ttl | integer | time to live (optional) |
-| result.success | bool | success |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.scope | string | mandatory | Must be device or account (must be one of the following: *account, device*) |
+| params.namespace | string | mandatory | Name space |
+| params.key | string | mandatory | Key |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.value | string | mandatory | Value out |
+| result.ttl | integer | mandatory | Time to live (optional) |
+| result.success | boolean | mandatory | Success |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.SharedStorage.getValue",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getValue",
+  "params": {
+    "scope": "account",
+    "namespace": "...",
+    "key": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SharedStorage.getValue", "params": {"scope": "device", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "value": "",
-        "ttl": 0,
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "value": "...",
+    "ttl": 0,
+    "success": false
+  }
 }
 ```
 
-<a id="setValue"></a>
-## *setValue*
+<a id="method_deleteKey"></a>
+## *deleteKey [<sup>method</sup>](#head_Methods)*
 
-Sets the value of a key in the the specified namespace
+Deletes a key from the specified namespace.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.key | string | key |
-| params.value | string | value |
-| params.ttl | integer | time to live (optional) |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.scope | string | mandatory | Must be device or account (must be one of the following: *account, device*) |
+| params.namespace | string | mandatory | Name space |
+| params.key | string | mandatory | Key |
 
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Success |
+| result.success | boolean | mandatory | *...* |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.SharedStorage.setValue",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": "",
-        "value": "",
-        "ttl": 0
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.deleteKey",
+  "params": {
+    "scope": "account",
+    "namespace": "...",
+    "key": "..."
+  }
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SharedStorage.setValue", "params": {"scope": "device", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
 }
 ```
 
-<a id="ISharedStorage-Notifications"></a>
-### Notifications
+<a id="method_deleteNamespace"></a>
+## *deleteNamespace [<sup>method</sup>](#head_Methods)*
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Deletes the specified namespace.
 
-The following events are provided by the ISharedStorage Interface:
+### Parameters
 
-| Event | Description |
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.scope | string | mandatory | Must be device or account (must be one of the following: *account, device*) |
+| params.namespace | string | mandatory | Name space |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | Success |
+| result.success | boolean | mandatory | *...* |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.deleteNamespace",
+  "params": {
+    "scope": "account",
+    "namespace": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the SharedStorage interface:
+
+SharedStorage interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onValueChanged](#onValueChanged) | Values stored are changed using setValue |
+| [onValueChanged](#notification_onValueChanged) | Values stored are changed using setValue |
 
-<a id="onValueChanged"></a>
-## *onValueChanged*
+<a id="notification_onValueChanged"></a>
+## *onValueChanged [<sup>notification</sup>](#head_Notifications)*
 
-Values stored are changed using setValue
+Values stored are changed using setValue.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.key | string | key |
-| params.value | string | value |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.scope | string | mandatory | Must be device or account (must be one of the following: *account, device*) |
+| params.namespace | string | mandatory | *...* |
+| params.key | string | mandatory | Key |
+| params.value | string | mandatory | Value |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.SharedStorage.onValueChanged",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "key": "",
-        "value": ""
-    }
-}
-```
+### Example
 
----
-
-<a id="ISharedStorageInspector"></a>
-## ISharedStorageInspector Interface
-
-<a id="ISharedStorageInspector-Methods"></a>
-### Methods
-
-The following methods are provided by the ISharedStorageInspector Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [getKeys](#getKeys) | Returns the keys that are stored in the specified namespace |
-| [getNamespaces](#getNamespaces) | Returns the namespaces |
-| [getStorageSizes](#getStorageSizes) | Returns the size occupied by each namespace |
-
-<a id="getKeys"></a>
-## *getKeys*
-
-Returns the keys that are stored in the specified namespace
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.keys | array | keys list |
-| result.keys[#] | string |  |
-| result.success | bool | success |
-
-### Examples
-
-
-#### Request
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.SharedStorage.getKeys",
-    "params": {
-        "scope": "device",
-        "namespace": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onValueChanged",
+    "id": "myid"
+  }
 }
 ```
 
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.SharedStorage.getKeys", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "keys": [
-            ""
-        ],
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onValueChanged",
+  "params": {
+    "scope": "account",
+    "namespace": "...",
+    "key": "...",
+    "value": "..."
+  }
 }
 ```
 
-<a id="getNamespaces"></a>
-## *getNamespaces*
-
-Returns the namespaces
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.namespaces | array | namespaces list |
-| result.namespaces[#] | string |  |
-| result.success | bool | success |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.SharedStorage.getNamespaces",
-    "params": {
-        "scope": "device"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.SharedStorage.getNamespaces", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "namespaces": [
-            ""
-        ],
-        "success": true
-    }
-}
-```
-
-<a id="getStorageSizes"></a>
-## *getStorageSizes*
-
-Returns the size occupied by each namespace
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.storageList | array | list of namespaces and their sizes |
-| result.storageList[#].ns | string |  |
-| result.storageList[#].size | integer |  |
-| result.success | bool | success |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.SharedStorage.getStorageSizes",
-    "params": {
-        "scope": "device"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.SharedStorage.getStorageSizes", "params": {"scope": "device"}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "storageList": [
-            {
-                "ns": "",
-                "size": 0
-            }
-        ],
-        "success": true
-    }
-}
-```
-
----
-
-<a id="ISharedStorageLimit"></a>
-## ISharedStorageLimit Interface
-
-<a id="ISharedStorageLimit-Methods"></a>
-### Methods
-
-The following methods are provided by the ISharedStorageLimit Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [getNamespaceStorageLimit](#getNamespaceStorageLimit) | Returns the storage limit for a given namespace |
-| [setNamespaceStorageLimit](#setNamespaceStorageLimit) | Sets the storage limit for a given namespace |
-
-<a id="getNamespaceStorageLimit"></a>
-## *getNamespaceStorageLimit*
-
-Returns the storage limit for a given namespace
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.storageLimit | integer | Size in bytes |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.SharedStorage.getNamespaceStorageLimit",
-    "params": {
-        "scope": "device",
-        "namespace": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.SharedStorage.getNamespaceStorageLimit", "params": {"scope": "device", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "storageLimit": 0
-    }
-}
-```
-
-<a id="setNamespaceStorageLimit"></a>
-## *setNamespaceStorageLimit*
-
-Sets the storage limit for a given namespace
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.scope | string | must be device or account. Possible values: device, account |
-| params.namespace | string | name space |
-| params.storageLimit | integer | size |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | success |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.SharedStorage.setNamespaceStorageLimit",
-    "params": {
-        "scope": "device",
-        "namespace": "",
-        "storageLimit": 0
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.SharedStorage.setNamespaceStorageLimit", "params": {"scope": "device", "namespace": "", "storageLimit": 0}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "success": true
-    }
-}
-```
-
----
-
-<a id="ISharedStorageCache"></a>
-## ISharedStorageCache Interface
-
-<a id="ISharedStorageCache-Methods"></a>
-### Methods
-
-The following methods are provided by the ISharedStorageCache Interface:
-
-| Method | Description |
-| :-------- | :-------- |
-| [flushCache](#flushCache) | Flushes the device cache |
-
-<a id="flushCache"></a>
-## *flushCache*
-
-Flushes the device cache
-
-### Events Triggered
-None
-### Parameters
-This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.SharedStorage.flushCache"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.SharedStorage.flushCache"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": null
-}
-```
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onValueChanged``.
 

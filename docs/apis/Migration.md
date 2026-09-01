@@ -1,210 +1,203 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Migration_Module"></a>
-# Migration Module
+<a id="head_Migration_API"></a>
+# Migration API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Migration/IMigration.h)**
+**Version: 1.0.0**
 
-A Migration module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+Migration interface for Thunder framework.
+
+(Defined with IMigration in [IMigration.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IMigration.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IMigration](#IMigration)
-    - [Methods](#IMigration-Methods)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the Migration interface (version 1.0.0). It includes detailed specification about its methods provided.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `Migration` module provides the following interface(s):
+Migration JSON-RPC interface.
 
-- IMigration
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the Migration interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.Migration) |
-| classname | string | Class name: *Migration* |
-| locator | string | Library name: *libWPEFrameworkMigration.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IMigration"></a>
-## IMigration Interface
-
-<a id="IMigration-Methods"></a>
-### Methods
-
-The following methods are provided by the IMigration Interface:
+Migration interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [getBootTypeInfo](#getBootTypeInfo) | query the BootType details |
-| [getMigrationStatus](#getMigrationStatus) | get the MigrationStatus details |
-| [setMigrationStatus](#setMigrationStatus) | sets the tr181 MigrationStatus parameter |
+| [getBootTypeInfo](#method_getBootTypeInfo) | query the BootType details |
+| [setMigrationStatus](#method_setMigrationStatus) | sets the tr181 MigrationStatus parameter |
+| [getMigrationStatus](#method_getMigrationStatus) | get the MigrationStatus details |
 
-<a id="getBootTypeInfo"></a>
-## *getBootTypeInfo*
+<a id="method_getBootTypeInfo"></a>
+## *getBootTypeInfo [<sup>method</sup>](#head_Methods)*
 
-query the BootType details
+query the BootType details.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.bootType | string | Possible values: BOOT_INIT, BOOT_NORMAL, BOOT_MIGRATION, BOOT_UPDATE |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.bootType | string | mandatory | *...* (must be one of the following: *BOOT_INIT, BOOT_MIGRATION, BOOT_NORMAL, BOOT_UPDATE*) |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.Migration.getBootTypeInfo"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getBootTypeInfo"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Migration.getBootTypeInfo"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "bootType": "BOOT_INIT"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "bootType": "BOOT_NORMAL"
+  }
 }
 ```
 
-<a id="getMigrationStatus"></a>
-## *getMigrationStatus*
+<a id="method_setMigrationStatus"></a>
+## *setMigrationStatus [<sup>method</sup>](#head_Methods)*
 
-get the MigrationStatus details
+sets the tr181 MigrationStatus parameter.
 
-### Events Triggered
-None
 ### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.status | string | mandatory | - in - enum (must be one of the following: *APP_DATA_MIGRATED, CLOUD_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, MIGRATION_COMPLETED, NOT_NEEDED, NOT_STARTED, PRIORITY_SETTINGS_MIGRATED, STARTED*) |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | - out - struct |
+| result.success | boolean | mandatory | *...* |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.setMigrationStatus",
+  "params": {
+    "status": "NOT_NEEDED"
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false
+  }
+}
+```
+
+<a id="method_getMigrationStatus"></a>
+## *getMigrationStatus [<sup>method</sup>](#head_Methods)*
+
+get the MigrationStatus details.
+
+### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.migrationStatus | string | Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.migrationStatus | string | mandatory | *...* (must be one of the following: *APP_DATA_MIGRATED, CLOUD_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, MIGRATION_COMPLETED, NOT_NEEDED, NOT_STARTED, PRIORITY_SETTINGS_MIGRATED, STARTED*) |
 
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.Migration.getMigrationStatus"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Migration.getMigrationStatus"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "migrationStatus": "NOT_STARTED"
-    }
-}
-```
-
-<a id="setMigrationStatus"></a>
-## *setMigrationStatus*
-
-sets the tr181 MigrationStatus parameter
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.status | string | enum. Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | struct |
-
-### Examples
-
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.Migration.setMigrationStatus",
-    "params": {
-        "status": "NOT_STARTED"
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getMigrationStatus"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "success": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "migrationStatus": "NOT_NEEDED"
+  }
 }
 ```
 

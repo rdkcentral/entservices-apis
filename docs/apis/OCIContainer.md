@@ -1,1073 +1,1136 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="OCIContainer_Module"></a>
-# OCIContainer Module
+<a id="head_OCIContainer_API"></a>
+# OCIContainer API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/OCIContainer/IOCIContainer.h)**
+**Version: 1.0.0**
 
-A OCIContainer module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+OCIContainer interface for Thunder framework.
+
+(Defined with IOCIContainer in [IOCIContainer.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IOCIContainer.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IOCIContainer](#IOCIContainer)
-    - [Methods](#IOCIContainer-Methods)
-    - [Notifications](#IOCIContainer-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the OCIContainer interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `OCIContainer` module provides the following interface(s):
+OCIContainer JSON-RPC interface.
 
-- IOCIContainer
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the OCIContainer interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.OCIContainer) |
-| classname | string | Class name: *OCIContainer* |
-| locator | string | Library name: *libWPEFrameworkOCIContainer.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IOCIContainer"></a>
-## IOCIContainer Interface
-
-<a id="IOCIContainer-Methods"></a>
-### Methods
-
-The following methods are provided by the IOCIContainer Interface:
+OCIContainer interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [annotate](#annotate) | Update container properties |
-| [executeCommand](#executeCommand) | Execute the command in container |
-| [getContainerInfo](#getContainerInfo) | Get the information about container |
-| [getContainerState](#getContainerState) | Get the state of container |
-| [hibernateContainer](#hibernateContainer) | Hibernate the container |
-| [listContainers](#listContainers) | Provide list of containers |
-| [mount](#mount) | Mount a path in container |
-| [pauseContainer](#pauseContainer) | Pause the container |
-| [removeAnnotation](#removeAnnotation) | Remove container property |
-| [resumeContainer](#resumeContainer) | Resume the container |
-| [startContainer](#startContainer) | Start the container from bundle |
-| [startContainerFromDobbySpec](#startContainerFromDobbySpec) | Start the container from dobby specification |
-| [stopContainer](#stopContainer) | Stop the container |
-| [unmount](#unmount) | Unmount a path in container |
-| [wakeupContainer](#wakeupContainer) | Wakeup the container |
+| [listContainers](#method_listContainers) | Provide list of containers |
+| [getContainerInfo](#method_getContainerInfo) | Get the information about container |
+| [getContainerState](#method_getContainerState) | Get the state of container |
+| [startContainer](#method_startContainer) | Start the container from bundle |
+| [startContainerFromDobbySpec](#method_startContainerFromDobbySpec) | Start the container from dobby specification |
+| [stopContainer](#method_stopContainer) | Stop the container |
+| [pauseContainer](#method_pauseContainer) | Pause the container |
+| [resumeContainer](#method_resumeContainer) | Resume the container |
+| [hibernateContainer](#method_hibernateContainer) | Hibernate the container |
+| [wakeupContainer](#method_wakeupContainer) | Wakeup the container |
+| [executeCommand](#method_executeCommand) | Execute the command in container |
+| [annotate](#method_annotate) | Update container properties |
+| [removeAnnotation](#method_removeAnnotation) | Remove container property |
+| [mount](#method_mount) | Mount a path in container |
+| [unmount](#method_unmount) | Unmount a path in container |
 
-<a id="annotate"></a>
-## *annotate*
+<a id="method_listContainers"></a>
+## *listContainers [<sup>method</sup>](#head_Methods)*
 
-Update container properties
+Provide list of containers.
 
-### Events Triggered
-None
 ### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.key | string | name of property |
-| params.value | string | property data |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
 
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.OCIContainer.annotate",
-    "params": {
-        "containerId": "",
-        "key": "",
-        "value": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.OCIContainer.annotate", "params": {"containerId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="executeCommand"></a>
-## *executeCommand*
-
-Execute the command in container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params?.options | string | <sup>(optional)</sup>options to be passed to command |
-| params.command | string | command to run in container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.OCIContainer.executeCommand",
-    "params": {
-        "containerId": "",
-        "options": "",
-        "command": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.OCIContainer.executeCommand", "params": {"containerId": "", "options": "", "command": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="getContainerInfo"></a>
-## *getContainerInfo*
-
-Get the information about container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.info | string |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "method": "org.rdk.OCIContainer.getContainerInfo",
-    "params": {
-        "containerId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.OCIContainer.getContainerInfo", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "result": {
-        "info": "",
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="getContainerState"></a>
-## *getContainerState*
-
-Get the state of container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.state | string | Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "method": "org.rdk.OCIContainer.getContainerState",
-    "params": {
-        "containerId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.OCIContainer.getContainerState", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "result": {
-        "state": "INVALID",
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="hibernateContainer"></a>
-## *hibernateContainer*
-
-Hibernate the container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.options | string | options to be passed to command |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "method": "org.rdk.OCIContainer.hibernateContainer",
-    "params": {
-        "containerId": "",
-        "options": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.OCIContainer.hibernateContainer", "params": {"containerId": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="listContainers"></a>
-## *listContainers*
-
-Provide list of containers
-
-### Events Triggered
-None
-### Parameters
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.containers | string | /json - string |
-| result.success | bool |  |
-| result.errorReason | string |  |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.containers | opaque object | mandatory | - out/json - string |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
 
-#### Request
+### Errors
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "method": "org.rdk.OCIContainer.listContainers"
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.OCIContainer.listContainers"}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "result": {
-        "containers": "",
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="mount"></a>
-## *mount*
-
-Mount a path in container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.source | string | path source to mount |
-| params.target | string | mount target inside container |
-| params.type | string | type of mounting |
-| params.options | string | options for mounting |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "method": "org.rdk.OCIContainer.mount",
-    "params": {
-        "containerId": "",
-        "source": "",
-        "target": "",
-        "type": "",
-        "options": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.OCIContainer.mount", "params": {"containerId": "", "source": "", "target": "", "type": "", "options": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="pauseContainer"></a>
-## *pauseContainer*
-
-Pause the container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "method": "org.rdk.OCIContainer.pauseContainer",
-    "params": {
-        "containerId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.OCIContainer.pauseContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="removeAnnotation"></a>
-## *removeAnnotation*
-
-Remove container property
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.key | string | name of property |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "method": "org.rdk.OCIContainer.removeAnnotation",
-    "params": {
-        "containerId": "",
-        "key": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.OCIContainer.removeAnnotation", "params": {"containerId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="resumeContainer"></a>
-## *resumeContainer*
-
-Resume the container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "method": "org.rdk.OCIContainer.resumeContainer",
-    "params": {
-        "containerId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.OCIContainer.resumeContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="startContainer"></a>
-## *startContainer*
-
-Start the container from bundle
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.bundlePath | string | path of application bundle |
-| params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.descriptor | integer |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "method": "org.rdk.OCIContainer.startContainer",
-    "params": {
-        "containerId": "",
-        "bundlePath": "",
-        "command": "",
-        "westerosSocket": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.OCIContainer.startContainer", "params": {"containerId": "", "bundlePath": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "result": {
-        "descriptor": 0,
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="startContainerFromDobbySpec"></a>
-## *startContainerFromDobbySpec*
-
-Start the container from dobby specification
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.dobbySpec | string | dobby specification as json string |
-| params?.command | string | <sup>(optional)</sup>command to run in container |
-| params?.westerosSocket | string | <sup>(optional)</sup>Westeros socket container need to connect |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.descriptor | integer |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "method": "org.rdk.OCIContainer.startContainerFromDobbySpec",
-    "params": {
-        "containerId": "",
-        "dobbySpec": "",
-        "command": "",
-        "westerosSocket": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.OCIContainer.startContainerFromDobbySpec", "params": {"containerId": "", "dobbySpec": "", "command": "", "westerosSocket": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "result": {
-        "descriptor": 0,
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="stopContainer"></a>
-## *stopContainer*
-
-Stop the container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params?.force | bool | <sup>(optional)</sup>Mention forceful or graceful termination of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "method": "org.rdk.OCIContainer.stopContainer",
-    "params": {
-        "containerId": "",
-        "force": true
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.OCIContainer.stopContainer", "params": {"containerId": "", "force": true}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="unmount"></a>
-## *unmount*
-
-Unmount a path in container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.target | string | path to unmount from container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "method": "org.rdk.OCIContainer.unmount",
-    "params": {
-        "containerId": "",
-        "target": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.OCIContainer.unmount", "params": {"containerId": "", "target": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="wakeupContainer"></a>
-## *wakeupContainer*
-
-Wakeup the container
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool |  |
-| result.errorReason | string |  |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "method": "org.rdk.OCIContainer.wakeupContainer",
-    "params": {
-        "containerId": ""
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.OCIContainer.wakeupContainer", "params": {"containerId": ""}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "result": {
-        "success": true,
-        "errorReason": ""
-    }
-}
-```
-
-<a id="IOCIContainer-Notifications"></a>
-### Notifications
-
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
-
-The following events are provided by the IOCIContainer Interface:
-
-| Event | Description |
+| Message | Description |
 | :-------- | :-------- |
-| [onContainerFailed](#onContainerFailed) | Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup. |
-| [onContainerStarted](#onContainerStarted) | Notifies container is started |
-| [onContainerStateChanged](#onContainerStateChanged) | Notifies state change of container |
-| [onContainerStopped](#onContainerStopped) | Notifies container is stopped |
+| ```ErrorCode::NONE``` | Indicates successful state change |
 
-<a id="onContainerFailed"></a>
-## *onContainerFailed*
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.listContainers"
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "containers": {},
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_getContainerInfo"></a>
+## *getContainerInfo [<sup>method</sup>](#head_Methods)*
+
+Get the information about container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.info | opaque object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getContainerInfo",
+  "params": {
+    "containerId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "info": {},
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_getContainerState"></a>
+## *getContainerState [<sup>method</sup>](#head_Methods)*
+
+Get the state of container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.state | string | mandatory | *...* (must be one of the following: *AWAKENING, HIBERNATED, HIBERNATING, INVALID, PAUSED, RUNNING, STARTING, STOPPED, STOPPING*) |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.getContainerState",
+  "params": {
+    "containerId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "state": "STARTING",
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_startContainer"></a>
+## *startContainer [<sup>method</sup>](#head_Methods)*
+
+Start the container from bundle.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.bundlePath | string | mandatory | Path of application bundle |
+| params.command | string | mandatory | *...* |
+| params.westerosSocket | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.descriptor | integer | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startContainer",
+  "params": {
+    "containerId": "...",
+    "bundlePath": "...",
+    "command": "...",
+    "westerosSocket": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "descriptor": 0,
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_startContainerFromDobbySpec"></a>
+## *startContainerFromDobbySpec [<sup>method</sup>](#head_Methods)*
+
+Start the container from dobby specification.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.dobbySpec | string | mandatory | Dobby specification as json string |
+| params.command | string | mandatory | *...* |
+| params.westerosSocket | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.descriptor | integer | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.startContainerFromDobbySpec",
+  "params": {
+    "containerId": "...",
+    "dobbySpec": "...",
+    "command": "...",
+    "westerosSocket": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "descriptor": 0,
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_stopContainer"></a>
+## *stopContainer [<sup>method</sup>](#head_Methods)*
+
+Stop the container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.force | boolean | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.stopContainer",
+  "params": {
+    "containerId": "...",
+    "force": false
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_pauseContainer"></a>
+## *pauseContainer [<sup>method</sup>](#head_Methods)*
+
+Pause the container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.pauseContainer",
+  "params": {
+    "containerId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_resumeContainer"></a>
+## *resumeContainer [<sup>method</sup>](#head_Methods)*
+
+Resume the container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.resumeContainer",
+  "params": {
+    "containerId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_hibernateContainer"></a>
+## *hibernateContainer [<sup>method</sup>](#head_Methods)*
+
+Hibernate the container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.options | string | mandatory | *...* |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.hibernateContainer",
+  "params": {
+    "containerId": "...",
+    "options": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_wakeupContainer"></a>
+## *wakeupContainer [<sup>method</sup>](#head_Methods)*
+
+Wakeup the container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.wakeupContainer",
+  "params": {
+    "containerId": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_executeCommand"></a>
+## *executeCommand [<sup>method</sup>](#head_Methods)*
+
+Execute the command in container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.options | string | mandatory | *...* |
+| params.command | string | mandatory | Command to run in container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.executeCommand",
+  "params": {
+    "containerId": "...",
+    "options": "...",
+    "command": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_annotate"></a>
+## *annotate [<sup>method</sup>](#head_Methods)*
+
+Update container properties.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.key | string | mandatory | Name of property |
+| params.value | string | mandatory | Property data |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.annotate",
+  "params": {
+    "containerId": "...",
+    "key": "...",
+    "value": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_removeAnnotation"></a>
+## *removeAnnotation [<sup>method</sup>](#head_Methods)*
+
+Remove container 
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.key | string | mandatory | Name of property |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.removeAnnotation",
+  "params": {
+    "containerId": "...",
+    "key": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_mount"></a>
+## *mount [<sup>method</sup>](#head_Methods)*
+
+Mount a path in container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.source | string | mandatory | Path source to mount |
+| params.target | string | mandatory | Mount target inside container |
+| params.type | string | mandatory | Type of mounting |
+| params.options | string | mandatory | Options for mounting |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.mount",
+  "params": {
+    "containerId": "...",
+    "source": "...",
+    "target": "...",
+    "type": "...",
+    "options": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="method_unmount"></a>
+## *unmount [<sup>method</sup>](#head_Methods)*
+
+Unmount a path in container.
+
+### Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | Identifier of container |
+| params.target | string | mandatory | Path to unmount from container |
+
+### Result
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | object | mandatory | *...* |
+| result.success | boolean | mandatory | *...* |
+| result.errorReason | string | mandatory | *...* |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```ErrorCode::NONE``` | Indicates successful state change |
+
+### Example
+
+#### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.unmount",
+  "params": {
+    "containerId": "...",
+    "target": "..."
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": {
+    "success": false,
+    "errorReason": "..."
+  }
+}
+```
+
+<a id="head_Notifications"></a>
+# Notifications
+
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the OCIContainer interface:
+
+OCIContainer interface events:
+
+| Notification | Description |
+| :-------- | :-------- |
+| [onContainerStarted](#notification_onContainerStarted) | Notifies container is started |
+| [onContainerStopped](#notification_onContainerStopped) | Notifies container is stopped |
+| [onContainerFailed](#notification_onContainerFailed) | Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup |
+| [onContainerStateChanged](#notification_onContainerStateChanged) | Notifies state change of container |
+
+<a id="notification_onContainerStarted"></a>
+## *onContainerStarted [<sup>notification</sup>](#head_Notifications)*
+
+Notifies container is started.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | *...* |
+| params.name | string | mandatory | *...* |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onContainerStarted",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onContainerStarted",
+  "params": {
+    "containerId": "...",
+    "name": "..."
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onContainerStarted``.
+
+<a id="notification_onContainerStopped"></a>
+## *onContainerStopped [<sup>notification</sup>](#head_Notifications)*
+
+Notifies container is stopped.
+
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | *...* |
+| params.name | string | mandatory | *...* |
+| params.exitCode | integer | mandatory | Exit code of the container process |
+
+### Example
+
+#### Registration
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onContainerStopped",
+    "id": "myid"
+  }
+}
+```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onContainerStopped",
+  "params": {
+    "containerId": "...",
+    "name": "...",
+    "exitCode": 0
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onContainerStopped``.
+
+<a id="notification_onContainerFailed"></a>
+## *onContainerFailed [<sup>notification</sup>](#head_Notifications)*
 
 Notifies failure in container execution, only triggered for states start, stop, hibernate, wakeup.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
-| params.error | integer |  |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | *...* |
+| params.name | string | mandatory | *...* |
+| params.error | integer | mandatory | *...* |
 
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "method": "org.rdk.OCIContainer.onContainerFailed",
-    "params": {
-        "containerId": "",
-        "name": "",
-        "error": 0
-    }
-}
-```
+### Example
 
-<a id="onContainerStarted"></a>
-## *onContainerStarted*
-
-Notifies container is started
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
-
-### Examples
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 16,
-    "method": "org.rdk.OCIContainer.onContainerStarted",
-    "params": {
-        "containerId": "",
-        "name": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onContainerFailed",
+    "id": "myid"
+  }
 }
 ```
 
-<a id="onContainerStateChanged"></a>
-## *onContainerStateChanged*
-
-Notifies state change of container
-
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.state | string | Possible values: INVALID, STARTING, RUNNING, STOPPING, PAUSED, STOPPED, HIBERNATING, HIBERNATED, AWAKENING |
-
-### Examples
+#### Notification
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
-    "method": "org.rdk.OCIContainer.onContainerStateChanged",
-    "params": {
-        "containerId": "",
-        "state": "INVALID"
-    }
+  "jsonrpc": "2.0",
+  "method": "myid.onContainerFailed",
+  "params": {
+    "containerId": "...",
+    "name": "...",
+    "error": 0
+  }
 }
 ```
 
-<a id="onContainerStopped"></a>
-## *onContainerStopped*
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onContainerFailed``.
 
-Notifies container is stopped
+<a id="notification_onContainerStateChanged"></a>
+## *onContainerStateChanged [<sup>notification</sup>](#head_Notifications)*
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.containerId | string | Identifier of container |
-| params.name | string |  |
+Notifies state change of container.
 
-### Examples
+### Notification Parameters
+
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.containerId | string | mandatory | *...* |
+| params.state | string | mandatory | *...* (must be one of the following: *AWAKENING, HIBERNATED, HIBERNATING, INVALID, PAUSED, RUNNING, STARTING, STOPPED, STOPPING*) |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
-    "method": "org.rdk.OCIContainer.onContainerStopped",
-    "params": {
-        "containerId": "",
-        "name": ""
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onContainerStateChanged",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onContainerStateChanged",
+  "params": {
+    "containerId": "...",
+    "state": "STARTING"
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onContainerStateChanged``.
 

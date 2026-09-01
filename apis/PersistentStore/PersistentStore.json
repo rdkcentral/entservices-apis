@@ -2,7 +2,7 @@
   "$schema": "interface.schema.json",
   "jsonrpc": "2.0",
   "info": {
-    "title": "PertsistentStore API",
+    "title": "PersistentStore API",
     "class": "PersistentStore",
     "description": "Persistent Store JSON-RPC interface"
   },

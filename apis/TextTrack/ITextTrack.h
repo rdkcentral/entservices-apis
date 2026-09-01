@@ -615,51 +615,51 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
-     * @brief Creates a new rendering session.
-     * @details The session is newly opened, the session type is not set and display is muted. Use one
-     * of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
-     * In contrast to OpenSession(), this function will not return an existing session if the displayHandle is
-     * already in use, but will always create a new session. This allows multiple sessions to be created for
-     * the same displayHandle, which can be useful for example for preview purposes.
-     * Added in version 5
-     * @text createSession
-     * @param displayHandle Is an encoding of the wayland display name
-     * @param whoAmI Identifier for the caller; must not be empty.
-     * @param sessionId On success the returned session id ex: 1
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_GENERAL if we were unable to create the session
-     * @retval Core::ERROR_NONE on success
+     @brief Creates a new rendering session.
+     @details The session is newly opened, the session type is not set and display is muted. Use one
+     of the "selection" functions to select a session type, and UnMuteSession() to get subtitles displayed.
+     In contrast to OpenSession(), this function will not return an existing session if the displayHandle is
+     already in use, but will always create a new session. This allows multiple sessions to be created for
+     the same displayHandle, which can be useful for example for preview purposes.
+     Added in version 5
+     @text createSession
+     @param displayHandle Is an encoding of the wayland display name
+     @param whoAmI Identifier for the caller; must not be empty.
+     @param sessionId On success the returned session id ex: 1
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_GENERAL if we were unable to create the session
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult CreateSession(const string &displayHandle, const string &whoAmI, uint32_t &sessionId /* @out */) { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
-     * @brief Get a list of active sessions.
-     * Added in version 5
-     * @text getSessions
-     * @param sessions On success, will contain an iterator to the list of active sessions (see SessionInfo struct)
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_NONE on success
+     @brief Get a list of active sessions.
+     Added in version 5
+     @text getSessions
+     @param sessions On success, will contain an iterator to the list of active sessions (see SessionInfo struct)
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult GetSessions(ISessionInfoIterator *&sessions /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
-     * @brief Create a preview session for purposes of previewing style settings.
-     * @details Like CreateSession(), except: the preview session will be created as a CC type session and unmuted.
-     * There can only be one active preview session.
-     * Creating a preview session will cause all other sessions to be muted automatically until the preview session is closed.
-     * Use ApplyCustomClosedCaptionsStyleToSession() to preview style changes.
-     * Given a blank displayHandle, we will create a preview session on the standard display (from the configuration file).
-     * Use SetPreviewText() to set the text to display in the preview session.
-     * Use SetPreviewGeometry() to set the position of the preview session.
-     * Added in version 5
-     * @text createPreviewSession
-     * @param displayHandle Is an encoding of the wayland display name; may be empty
-     * @param whoAmI Identifier for the caller; must not be empty.
-     * @param sessionId On success the returned session id ex: 1
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_GENERAL if we were unable to create the session
-     * @retval Core::ERROR_GENERAL if a preview session is already running on the display
-     * @retval Core::ERROR_NONE on success
+     @brief Create a preview session for purposes of previewing style settings.
+     @details Like CreateSession(), except: the preview session will be created as a CC type session and unmuted.
+     There can only be one active preview session.
+     Creating a preview session will cause all other sessions to be muted automatically until the preview session is closed.
+     Use ApplyCustomClosedCaptionsStyleToSession() to preview style changes.
+     Given a blank displayHandle, we will create a preview session on the standard display (from the configuration file).
+     Use SetPreviewText() to set the text to display in the preview session.
+     Use SetPreviewGeometry() to set the position of the preview session.
+     Added in version 5
+     @text createPreviewSession
+     @param displayHandle Is an encoding of the wayland display name; may be empty
+     @param whoAmI Identifier for the caller; must not be empty.
+     @param sessionId On success the returned session id ex: 1
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_GENERAL if we were unable to create the session
+     @retval Core::ERROR_GENERAL if a preview session is already running on the display
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult CreatePreviewSession(const string &displayHandle, const string &whoAmI, uint32_t &sessionId /* @out */) { return Core::ERROR_NOT_SUPPORTED; }
 
@@ -676,58 +676,58 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
     };
 
     /**
-     * @brief Set the position of the preview session.
-     * @details The positions are given as percentage of the subtitle drawing area, so 0.5 means centre and 0.0 means top or left, 1.0 is bottom or right.
-     * The anchor value indicates which point of the text the positions refer to, so for example if the anchor is TOP_LEFT, the text will be positioned
-     * in such a way that the top left of the text is at the given position. If the anchor is CENTER, the text will be centered on
-     * the given position. This allows for more flexible positioning of the preview text.
-     * The default geometry is centred on the display/drawing area (0.5, 0.5, Anchor::CENTER).
-     * Added in version 5
-     * @text setPreviewGeometry
-     * @param sessionId Is the session
-     * @param xPos Is the horizontal position (0..1) for the preview text
-     * @param yPos Is the vertical position (0..1) for the preview text
-     * @param anchor Indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_GENERAL if the geometry could not be set
-     * @retval Core::ERROR_NONE on success
+     @brief Set the position of the preview session.
+     @details The positions are given as percentage of the subtitle drawing area, so 0.5 means centre and 0.0 means top or left, 1.0 is bottom or right.
+     The anchor value indicates which point of the text the positions refer to, so for example if the anchor is TOP_LEFT, the text will be positioned
+     in such a way that the top left of the text is at the given position. If the anchor is CENTER, the text will be centered on
+     the given position. This allows for more flexible positioning of the preview text.
+     The default geometry is centred on the display/drawing area (0.5, 0.5, Anchor::CENTER).
+     Added in version 5
+     @text setPreviewGeometry
+     @param sessionId Is the session
+     @param xPos Is the horizontal position (0..1) for the preview text
+     @param yPos Is the vertical position (0..1) for the preview text
+     @param anchor Indicates the anchor point of the preview text, i.e. which point of the text the positions refer to.
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_GENERAL if the geometry could not be set
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult SetPreviewGeometry(const uint32_t sessionId, const float xPos /* @restrict:0.0..1.0 */, const float yPos /* @restrict:0.0..1.0 */, const Anchor anchor) { return Core::ERROR_NOT_SUPPORTED; }
 
     using ISubtitleFormatIterator = RPC::IIteratorType<SubtitleFormat, ID_TEXT_TRACK_SUBTITLE_FORMAT_ITERATOR>;
 
     /**
-     * @brief Sets whether the global ClosedCaptionsStyle applies to a given session type.
-     * @details When set to true, the global ClosedCaptionsStyle will be converted and applied to all sessions of the given type. The conversion
-     * will be done according to the best effort conversion rules for the given type. When set to false, the global ClosedCaptionsStyle will not be applied.
-     * Added in version 5
-     * @text setClosedCaptionsStyleAppliesTo
-     * @param format The session type to configure
-     * @param applies If true, the global ClosedCaptionsStyle applies to sessions of this type
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_GENERAL if the session type is not supported
-     * @retval Core::ERROR_NONE on success
+     @brief Sets whether the global ClosedCaptionsStyle applies to a given session type.
+     @details When set to true, the global ClosedCaptionsStyle will be converted and applied to all sessions of the given type. The conversion
+     will be done according to the best effort conversion rules for the given type. When set to false, the global ClosedCaptionsStyle will not be applied.
+     Added in version 5
+     @text setClosedCaptionsStyleAppliesTo
+     @param format The session type to configure
+     @param applies If true, the global ClosedCaptionsStyle applies to sessions of this type
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_GENERAL if the session type is not supported
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult SetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, const bool applies) { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
-     * @brief Gets whether the global ClosedCaptionsStyle applies to a given session type.
-     * @details Added in version 5
-     * @text getClosedCaptionsStyleAppliesTo
-     * @param format The session type to query
-     * @param applies On success, true if the global ClosedCaptionsStyle applies to sessions of this type
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_NONE on success
+     @brief Gets whether the global ClosedCaptionsStyle applies to a given session type.
+     @details Added in version 5
+     @text getClosedCaptionsStyleAppliesTo
+     @param format The session type to query
+     @param applies On success, true if the global ClosedCaptionsStyle applies to sessions of this type
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult GetClosedCaptionsStyleAppliesTo(const SubtitleFormat format, bool &applies /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 
     /**
-     * @brief Gets the list of session types for which the global ClosedCaptionsStyle applies.
-     * @details Added in version 5
-     * @text getClosedCaptionsStyleAppliesToList
-     * @param iterator On success, an iterator over the session types for which the global ClosedCaptionsStyle applies
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
-     * @retval Core::ERROR_NONE on success
+     @brief Gets the list of session types for which the global ClosedCaptionsStyle applies.
+     @details Added in version 5
+     @text getClosedCaptionsStyleAppliesToList
+     @param iterator On success, an iterator over the session types for which the global ClosedCaptionsStyle applies
+     @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented
+     @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult GetClosedCaptionsStyleAppliesToList(ISubtitleFormatIterator *&iterator /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
 };

@@ -1,142 +1,178 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AudioOutput_Module"></a>
-# AudioOutput Module
+<a id="head_AudioOutput_API"></a>
+# AudioOutput API
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AudioOutput/IAudioOutput.h)**
+**Version: 1.0.0**
 
-A AudioOutput module for Thunder framework.
+**Status: :black_circle::white_circle::white_circle:**
+
+AudioOutput interface for Thunder framework.
+
+(Defined with IAudioOutput in [IAudioOutput.h](https://github.com/rdkcentral/ThunderInterfaces/blob/master/interfaces/IAudioOutput.h))
 
 ### Table of Contents
 
-- [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
-- [Description](#Description)
-- [Configuration](#Configuration)
-- [Interfaces](#Interfaces)
-  - [IAudioOutput](#IAudioOutput)
-    - [Methods](#IAudioOutput-Methods)
-    - [Notifications](#IAudioOutput-Notifications)
+- [Introduction](#head_Introduction)
+- [Description](#head_Description)
+- [Methods](#head_Methods)
+- [Notifications](#head_Notifications)
 
-<a id="abbreviation-acronyms-and-terms"></a>
-# Abbreviation, Acronyms and Terms
+<a id="head_Introduction"></a>
+# Introduction
 
-[[Refer to this link](overview/aat.md)]
+<a id="head_Scope"></a>
+## Scope
 
-<a id="Description"></a>
+This document describes purpose and functionality of the AudioOutput interface (version 1.0.0). It includes detailed specification about its methods provided and notifications sent.
+
+<a id="head_Case_Sensitivity"></a>
+## Case Sensitivity
+
+All identifiers of the interfaces described in this document are case-sensitive. Thus, unless stated otherwise, all keywords, entities, properties, relations and actions should be treated as such.
+
+<a id="head_Acronyms,_Abbreviations_and_Terms"></a>
+## Acronyms, Abbreviations and Terms
+
+The table below provides and overview of acronyms used in this document and their definitions.
+
+| Acronym | Description |
+| :-------- | :-------- |
+| <a name="API">API</a> | Application Programming Interface |
+| <a name="HTTP">HTTP</a> | Hypertext Transfer Protocol |
+| <a name="JSON">JSON</a> | JavaScript Object Notation; a data interchange format |
+| <a name="JSON-RPC">JSON-RPC</a> | A remote procedure call protocol encoded in JSON |
+
+The table below provides and overview of terms and abbreviations used in this document and their definitions.
+
+| Term | Description |
+| :-------- | :-------- |
+| <a name="callsign">callsign</a> | The name given to an instance of a plugin. One plugin can be instantiated multiple times, but each instance the instance name, callsign, must be unique. |
+
+<a id="head_References"></a>
+## References
+
+| Ref ID | Description |
+| :-------- | :-------- |
+| <a name="HTTP">[HTTP](http://www.w3.org/Protocols)</a> | HTTP specification |
+| <a name="JSON-RPC">[JSON-RPC](https://www.jsonrpc.org/specification)</a> | JSON-RPC 2.0 specification |
+| <a name="JSON">[JSON](http://www.json.org/)</a> | JSON specification |
+| <a name="Thunder">[Thunder](https://github.com/WebPlatformForEmbedded/Thunder/blob/master/doc/WPE%20-%20API%20-%20Thunder.docx)</a> | Thunder API Reference |
+
+<a id="head_Description"></a>
 # Description
 
-The `AudioOutput` module provides the following interface(s):
+AudioOutput JSON-RPC interface.
 
-- IAudioOutput
+<a id="head_Methods"></a>
+# Methods
 
-The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+The following methods are provided by the AudioOutput interface:
 
-<a id="Configuration"></a>
-# Configuration
-
-The table below lists configuration options of the plugin.
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| callsign | string | Plugin instance name (default: org.rdk.AudioOutput) |
-| classname | string | Class name: *AudioOutput* |
-| locator | string | Library name: *libWPEFrameworkAudioOutput.so* |
-| autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
-
-<a id="Interfaces"></a>
-# Interfaces
-
-<a id="IAudioOutput"></a>
-## IAudioOutput Interface
-
-<a id="IAudioOutput-Methods"></a>
-### Methods
-
-The following methods are provided by the IAudioOutput Interface:
+AudioOutput interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
-| [dolbyAtmosExperience](#dolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
+| [dolbyAtmosExperience](#method_dolbyAtmosExperience) | Returns whether Dolby Atmos Experience is currently enabled |
 
-<a id="dolbyAtmosExperience"></a>
-## *dolbyAtmosExperience*
+<a id="method_dolbyAtmosExperience"></a>
+## *dolbyAtmosExperience [<sup>method</sup>](#head_Methods)*
+
+Returns whether Dolby Atmos Experience is currently enabled.
+
+### Description
 
 Combines AtmosMetadata capability (must be ATMOS_METADATA) and current sound mode (must be PASSTHRU, DOLBYDIGITALPLUS, or SOUNDMODE_AUTO) to determine the Dolby Atmos Experience state.
 
-### Events Triggered
-None
 ### Parameters
+
 This method takes no parameters.
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.enabled | bool | true if Dolby Atmos Experience is enabled, false otherwise |
 
-### Examples
+### Result
 
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| result | boolean | mandatory | True if Dolby Atmos Experience is enabled, false otherwise |
+
+### Errors
+
+| Message | Description |
+| :-------- | :-------- |
+| ```Core::ERROR_NONE``` | on success |
+
+### Example
 
 #### Request
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "method": "org.rdk.AudioOutput.dolbyAtmosExperience"
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.dolbyAtmosExperience"
 }
 ```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AudioOutput.dolbyAtmosExperience"}' http://127.0.0.1:9998/jsonrpc
-```
-
 
 #### Response
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 0,
-    "result": {
-        "enabled": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "result": false
 }
 ```
 
-<a id="IAudioOutput-Notifications"></a>
-### Notifications
+<a id="head_Notifications"></a>
+# Notifications
 
-Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+Notifications are autonomous events triggered by the internals of the implementation and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-The following events are provided by the IAudioOutput Interface:
+The following events are provided by the AudioOutput interface:
 
-| Event | Description |
+AudioOutput interface events:
+
+| Notification | Description |
 | :-------- | :-------- |
-| [onDolbyAtmosExperienceChanged](#onDolbyAtmosExperienceChanged) | Notifies subscribers when the Dolby Atmos Experience state changes |
+| [onDolbyAtmosExperienceChanged](#notification_onDolbyAtmosExperienceChanged) | Notifies subscribers when the Dolby Atmos Experience state changes |
 
-<a id="onDolbyAtmosExperienceChanged"></a>
-## *onDolbyAtmosExperienceChanged*
+<a id="notification_onDolbyAtmosExperienceChanged"></a>
+## *onDolbyAtmosExperienceChanged [<sup>notification</sup>](#head_Notifications)*
 
-Notifies subscribers when the Dolby Atmos Experience state changes
+Notifies subscribers when the Dolby Atmos Experience state changes.
 
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params.dolbyAtmosExperience | bool | true if Dolby Atmos Experience is now enabled |
+### Notification Parameters
 
-### Examples
+| Name | Type | M/O | Description |
+| :-------- | :-------- | :-------- | :-------- |
+| params | object | mandatory | *...* |
+| params.dolbyAtmosExperience | boolean | mandatory | True if Dolby Atmos Experience is now enabled |
+
+### Example
+
+#### Registration
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 1,
-    "method": "org.rdk.AudioOutput.onDolbyAtmosExperienceChanged",
-    "params": {
-        "dolbyAtmosExperience": true
-    }
+  "jsonrpc": "2.0",
+  "id": 42,
+  "method": "<callsign>.register",
+  "params": {
+    "event": "onDolbyAtmosExperienceChanged",
+    "id": "myid"
+  }
 }
 ```
+
+#### Notification
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "myid.onDolbyAtmosExperienceChanged",
+  "params": {
+    "dolbyAtmosExperience": false
+  }
+}
+```
+
+> The *client ID* parameter is passed within the notification designator, i.e. ``<client-id>.onDolbyAtmosExperienceChanged``.
 
