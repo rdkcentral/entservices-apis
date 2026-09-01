@@ -55,6 +55,7 @@ namespace WPEFramework {
 
 			struct EXTERNAL ApplicationInfo {
 				string appName /* @text name */ /* @brief  Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail */;
+				string appId /* @text appid */ /* @brief Application ID used by the application manager for the corresponding application name */;
 				string prefixes /* @text prefix */ /* @brief  If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail */; 
 				string cors /* @text cors */ /* @brief origin allowed for the application. This must not be empty */;
 				string query /* @text query */ /* @brief query string that need to be appended in launch request */;
