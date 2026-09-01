@@ -24,8 +24,12 @@
 namespace WPEFramework {
 namespace Exchange {
 
-// @jsonrpc VictimSelector
-// @json 1.0.0 @text:keep
+/*
+ * @jsonrpc VictimSelector
+ * @brief Interface for the VictimSelector plugin.
+ */
+
+/* @json 1.0.0 @text:keep */
 struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
     enum { ID = ID_VICTIM_SELECTOR };
 
@@ -58,16 +62,28 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
         virtual void OnEvictComplete(const bool evicted, const EvictErrorReason errorCode) {}
     };
 
-    /** Register notification interface */
+    /**
+     * @brief Registers a notification interface to receive VictimSelector events.
+     * @param notification The notification interface implementation to register.
+     * @retval Core::ERROR_NONE: Notification interface registered successfully.
+     * @retval Core::ERROR_BAD_REQUEST: The notification interface is null.
+     */
     virtual Core::hresult Register(INotification* notification) = 0;
 
-    /** Unregister notification interface */
+    /**
+     * @brief Unregisters a previously registered notification interface.
+     * @param notification The notification interface implementation to unregister.
+     * @retval Core::ERROR_NONE: Notification interface unregistered successfully.
+     */
     virtual Core::hresult Unregister(INotification* notification) = 0;
 
     // @text evict
     // @brief Determines the best application to terminate using the app priority algorithm.
     // @param reason Resource requiring eviction: RAM, GPU, or FLASH.
     // @param type Eviction type: HARD or SOFT.
+    // @retval Core::ERROR_NONE: Eviction request was processed or no candidate was found.
+    // @retval Core::ERROR_UNAVAILABLE: The requested resource is unsupported or AppManager is unavailable.
+    // @retval Core::ERROR_GENERAL: A victim could not be selected or terminated.
     virtual Core::hresult Evict(const EvictionReason reason, const EvictionType type) = 0;
 };
 

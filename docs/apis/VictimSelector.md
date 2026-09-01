@@ -48,6 +48,10 @@ The table below lists configuration options of the plugin.
 <a id="IVictimSelector"></a>
 ## IVictimSelector Interface
 
+### Description
+
+Interface for the VictimSelector plugin.
+
 <a id="IVictimSelector-Methods"></a>
 ### Methods
 
@@ -107,6 +111,34 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": null
+}
+```
+
+
+#### Error Response (Core::ERROR_UNAVAILABLE)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 2,
+        "message": "The requested resource is unsupported or AppManager is unavailable."
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 1,
+        "message": "A victim could not be selected or terminated."
+    }
 }
 ```
 
