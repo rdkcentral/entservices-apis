@@ -90,7 +90,7 @@ This method takes no parameters.
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
 | result | object | mandatory | Current colorimetry info (colorimetryType is COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped) |
-| result.colorimetry | string | mandatory | *...* (must be one of the following: *ColorimetryBt2020rgbYcbcr, ColorimetryBt2020yccbcbrc, ColorimetryBt709, ColorimetryOprgb, ColorimetryOpycc601, ColorimetryOther, ColorimetrySmpte170m, ColorimetrySycc601, ColorimetryUnknown, ColorimetryXvycc601, ColorimetryXvycc709*) |
+| result.colorimetry | string | mandatory | *...* (must be one of the following: *ColorimetryBt2020RgbYcbcr, ColorimetryBt2020Yccbcbrc, ColorimetryBt709, ColorimetryOprgb, ColorimetryOpycc601, ColorimetryOther, ColorimetrySmpte170M, ColorimetrySycc601, ColorimetryUnknown, ColorimetryXvycc601, ColorimetryXvycc709*) |
 
 ### Example
 
@@ -249,7 +249,7 @@ Provides access to the provides access to display's colorimetry.
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
 | (property) | array | mandatory | Display colorimetry |
-| (property)[#] | string | mandatory | *...* (must be one of the following: *ColorimetryBt2020rgbYcbcr, ColorimetryBt2020yccbcbrc, ColorimetryBt709, ColorimetryOprgb, ColorimetryOpycc601, ColorimetryOther, ColorimetrySmpte170m, ColorimetrySycc601, ColorimetryUnknown, ColorimetryXvycc601, ColorimetryXvycc709*) |
+| (property)[#] | string | mandatory | *...* (must be one of the following: *ColorimetryBt2020RgbYcbcr, ColorimetryBt2020Yccbcbrc, ColorimetryBt709, ColorimetryOprgb, ColorimetryOpycc601, ColorimetryOther, ColorimetrySmpte170M, ColorimetrySycc601, ColorimetryUnknown, ColorimetryXvycc601, ColorimetryXvycc709*) |
 
 ### Example
 

@@ -161,7 +161,7 @@ Provides access to the current Video playback resolution.
 
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
-| (property) | string | mandatory | Resolution (must be one of the following: *Resolution1080i, Resolution1080i24, Resolution1080i25, Resolution1080i30, Resolution1080i50, Resolution1080p, Resolution1080p24, Resolution1080p25, Resolution1080p30, Resolution1080p50, Resolution2160p, Resolution2160p24, Resolution2160p25, Resolution2160p30, Resolution2160p50, Resolution2160p60, Resolution480i, Resolution480i24, Resolution480i25, Resolution480i30, Resolution480i50, Resolution480p, Resolution480p24, Resolution480p25, Resolution480p30, Resolution480p50, Resolution576i, Resolution576i24, Resolution576i25, Resolution576i30, Resolution576i50, Resolution576p, Resolution576p24, Resolution576p25, Resolution576p30, Resolution576p50, Resolution720p, Resolution720p24, Resolution720p25, Resolution720p30, Resolution720p50, Resolution768p, ResolutionUnknown*) |
+| (property) | string | mandatory | Resolution (must be one of the following: *Resolution1080I, Resolution1080I24, Resolution1080I25, Resolution1080I30, Resolution1080I50, Resolution1080P, Resolution1080P24, Resolution1080P25, Resolution1080P30, Resolution1080P50, Resolution2160P, Resolution2160P24, Resolution2160P25, Resolution2160P30, Resolution2160P50, Resolution2160P60, Resolution480I, Resolution480I24, Resolution480I25, Resolution480I30, Resolution480I50, Resolution480P, Resolution480P24, Resolution480P25, Resolution480P30, Resolution480P50, Resolution576I, Resolution576I24, Resolution576I25, Resolution576I30, Resolution576I50, Resolution576P, Resolution576P24, Resolution576P25, Resolution576P30, Resolution576P50, Resolution720P, Resolution720P24, Resolution720P25, Resolution720P30, Resolution720P50, Resolution768P, ResolutionUnknown*) |
 
 ### Example
 
@@ -181,7 +181,7 @@ Provides access to the current Video playback resolution.
 {
   "jsonrpc": "2.0",
   "id": 42,
-  "result": "Resolution480i24"
+  "result": "Resolution480I24"
 }
 ```
 

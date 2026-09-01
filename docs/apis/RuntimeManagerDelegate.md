@@ -88,7 +88,7 @@ Notifies about GoogleCast intent to launch/close/destroy cast application runtim
 | params.appId | string | mandatory | Durable application id |
 | params.inactive | boolean | mandatory | Indicates pre-launch(off screen) request |
 | params.intent | object | mandatory | A Firebolt compliant navigation intent |
-| params.intent.action | string | mandatory | Specifies the intent action to launch, close or destroy the app runtime instance. (must be one of the following: *LAUNCH, close, destroy*) |
+| params.intent.action | string | mandatory | Specifies the intent action to launch, close or destroy the app runtime instance. (must be one of the following: *close, destroy, launch*) |
 | params.intent.context | object | mandatory | Intent context |
 | params.intent.context.source | string | mandatory | Source of the intent |
 | params.intent.data | opaque object | mandatory | An array of launch arguments to forward to app runtime instance as is |

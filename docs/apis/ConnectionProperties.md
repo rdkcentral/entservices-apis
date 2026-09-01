@@ -402,11 +402,11 @@ Provides access to the HDCP protocol used for transmission.
 
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
-| (property) | string | mandatory | HDCP protocol used for transmission (must be one of the following: *Hdcp1x, Hdcp2x, HdcpAuto, HdcpUnencrypted*) |
+| (property) | string | mandatory | HDCP protocol used for transmission (must be one of the following: *Hdcp1X, Hdcp2X, HdcpAuto, HdcpUnencrypted*) |
 
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
-| (property) | string | mandatory | Protocol (must be one of the following: *Hdcp1x, Hdcp2x, HdcpAuto, HdcpUnencrypted*) |
+| (property) | string | mandatory | Protocol (must be one of the following: *Hdcp1X, Hdcp2X, HdcpAuto, HdcpUnencrypted*) |
 
 ### Example
 
@@ -426,7 +426,7 @@ Provides access to the HDCP protocol used for transmission.
 {
   "jsonrpc": "2.0",
   "id": 42,
-  "result": "Hdcp1x"
+  "result": "Hdcp1X"
 }
 ```
 
@@ -437,7 +437,7 @@ Provides access to the HDCP protocol used for transmission.
   "jsonrpc": "2.0",
   "id": 42,
   "method": "<callsign>.hdcpprotection",
-  "params": "Hdcp1x"
+  "params": "Hdcp1X"
 }
 ```
 

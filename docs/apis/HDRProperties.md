@@ -89,7 +89,7 @@ Provides access to the HDR formats supported by TV.
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
 | (property) | array | mandatory | HDR formats supported by TV |
-| (property)[#] | string | mandatory | *...* (must be one of the following: *Hdr10, Hdr10plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
+| (property)[#] | string | mandatory | *...* (must be one of the following: *Hdr10, Hdr10Plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
 
 ### Example
 
@@ -127,7 +127,7 @@ Provides access to the HDR formats supported by STB.
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
 | (property) | array | mandatory | HDR formats supported by STB |
-| (property)[#] | string | mandatory | *...* (must be one of the following: *Hdr10, Hdr10plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
+| (property)[#] | string | mandatory | *...* (must be one of the following: *Hdr10, Hdr10Plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
 
 ### Example
 
@@ -164,7 +164,7 @@ Provides access to the HDR format in use.
 
 | Name | Type | M/O | Description |
 | :-------- | :-------- | :-------- | :-------- |
-| (property) | string | mandatory | HDR format (must be one of the following: *Hdr10, Hdr10plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
+| (property) | string | mandatory | HDR format (must be one of the following: *Hdr10, Hdr10Plus, HdrDolbyvision, HdrHlg, HdrOff, HdrSdr, HdrTechnicolor*) |
 
 ### Example
 
