@@ -287,7 +287,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "error": {
         "code": 240,
-        "message": "for unsupported configuration"
+        "message": "Provided audioConfig is unsupported"
     }
 }
 ```
