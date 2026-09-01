@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/rdkcentral/entservices-apis/refs/heads/main/tools/md_generator/json2md/schemas/plugin.schema.json",
+    "info": {
+      "title": "HomeKitTV Plugin",
+      "callsign": "HomeKitTV",
+      "locator": "libWPEFrameworkHomeKitTV.so",
+      "status": "production",
+      "description": "The HomeKitTV plugin starts the Daemon backend service and provides Thunder Interface APIs/Properties/Events to manage the AirPlay Application life cycle."
+    },
+    "interface": {
+      "$ref": "{interfacedir}/HomeKitTV.json#"
+    }
+}

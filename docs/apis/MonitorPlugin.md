@@ -64,10 +64,10 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | The callsign of a service for which measurement snapshots are reset |
+| params.callsign | string | The callsign of a service to reset measurements snapshot of |
 | params.restart | object |  |
-| params.restart.limit | number | Maximum number of restarts to be attempted. If the limit parameter is not passed in request then, the default value is 0 |
-| params.restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed. If the window parameter is not passed in request then, the default value is 0 |
+| params.restart.limit | number | Maximum number or restarts to be attempted |
+| params.restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed |
 
 ### Result
 
@@ -118,7 +118,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | The callsign of a service for which statistics are reset |
+| params.callsign | string | The callsign of a service to reset statistics of |
 
 ### Result
 
@@ -150,8 +150,8 @@ No Events
 | result.measurements.count | number | Number of measurements |
 | result.observable | string | A callsign of the watched service |
 | result.restart | object | Restart limits for failures applying to the service |
-| result.restart.limit | number | Maximum number of restarts to be attempted. If the limit parameter is not passed in request then, the default value is 0 |
-| result.restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed. If the window parameter is not passed in request then, the default value is 0 |
+| result.restart.limit | number | Maximum number or restarts to be attempted |
+| result.restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed |
 
 ### Example
 
@@ -266,10 +266,10 @@ No Events
 | (property)[#].measurements.count | number | Number of measurements |
 | (property)[#].observable | string | A callsign of the watched service |
 | (property)[#].restart | object | Restart limits for failures applying to the service |
-| (property)[#].restart.limit | number | Maximum number of restarts to be attempted. If the limit parameter is not passed in request then, the default value is 0 |
-| (property)[#].restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed. If the window parameter is not passed in request then, the default value is 0 |
+| (property)[#].restart.limit | number | Maximum number or restarts to be attempted |
+| (property)[#].restart.window | number | Time period (in seconds) within which failures must happen for the limit to be considered crossed |
 
-> The *callsign* argument shall be passed as the index to the property, e.g. *Monitor.1.status@WebServer*. If omitted then, all the observed objects are returned on read. Invalid callsign results are in empty result.
+> The *callsign* argument shall be passed as the index to the property, e.g. *Monitor.1.status@WebServer*. If omitted then all observed objects will be returned on read.
 
 ### Example
 
@@ -354,7 +354,7 @@ Signals an action taken by the Monitor.
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.callsign | string | Callsign of the service the Monitor acted upon |
-| params.action | string | The action executed by the Monitor on a service (must be one of the following: *Activate*, *Deactivate*, *StoppedRestarting*) |
+| params.action | string | The action executed by the Monitor on a service. One of: "Activate", "Deactivate", "StoppedRestarting" |
 | params.reason | string | A message describing the reason the action was taken |
 
 ### Example

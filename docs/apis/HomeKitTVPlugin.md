@@ -1,8 +1,8 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a name="HomeKitTV Plugin"></a>
+<a name="HomeKitTV_Plugin"></a>
 # HomeKitTV Plugin
 
-A HomeKitTV Plugin for Thunder framework.
+A HomeKitTV plugin for Thunder framework.
 
 ### Table of Contents
 
@@ -32,9 +32,9 @@ The table below lists configuration options of the plugin.
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| callsign | string | HomeKitTV |
-| classname | string | Class name : HomeKitTV |
-| locator | string | Library name: LibWPEFrameworkHomeKitTV.so |
+| callsign | string | Plugin instance name (default: *HomeKitTV*) |
+| classname | string | Class name: *HomeKitTV* |
+| locator | string | Library name: *libWPEFrameworkHomeKitTV.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
 <a name="Methods"></a>
@@ -42,15 +42,20 @@ The table below lists configuration options of the plugin.
 
 The following methods are provided by the HomeKitTV plugin:
 
+HomeKitTVJSONRPC interface methods:
+
 | Method | Description |
 | :-------- | :-------- |
-| [requestAppLaunch](#requestAppLaunch) | The distributor application (example, Immersive UI) running in the HomeKit Television accessory devices (such as TVs, Streaming Boxes and Streaming Sticks) SHALL use this API to request HomeKit to prepare for the launch of AirPlay Application |
-| [setCurrentInputSource](#setCurrentInputSource) | The distributor application (example, Immersive UI) running in the HomeKit Television accessory devices (such as TVs, Streaming Boxes and Streaming Sticks) SHALL use this API to inform HomeKit about the change in the currently selected Input Source. |
+| [setCurrentInputSource](#setCurrentInputSource) | Request Airplay to set the current Input-Source |
+| [getEnabledStatus](#getEnabledStatus) | Return the status of Airplay On/Off |
+| [getConnectionStatus](#getConnectionStatus) | Request whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device |
+| [requestAppLaunch](#requestAppLaunch) | Requests Airplay Daemon to launch specific page of Airplay App |
 
-<a name="requestAppLaunch"></a>
-## *requestAppLaunch*
 
-Launches the AirPlay Application and displays application UI when Airplay icon selected from Settings and/or Input source.
+<a name="setCurrentInputSource"></a>
+## *setCurrentInputSource*
+
+Request Airplay to set the current Input-Source.
 
 ### Events
 
@@ -60,15 +65,22 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object | An empty parameter object |
-| param.origin | string | The origin of the launch request. One of the following string SHALL be used: "EPG" |
-| params.reason | string | Sets the reason to launch AirPlay Application:"HomeScreenButton" or "InputSourceSelected" |
+| params | object |  |
+| params.sourceName | string | Selected Input-Source using IR Remote |
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | success: true/false |
+| result | object |  |
+| result.success | boolean |  |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 2 | ```ERROR_UNAVAILABLE``` | Airplay is unavailable |
+| 22 | ```ERROR_UNKNOWN_KEY``` | Command is not set |
 
 ### Example
 
@@ -78,13 +90,12 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "HomeKitTV.requestapplaunch",
-    "params": {"origin": "EPG" ,"reason":"HomeScreenButton"}
+    "method": "HomeKitTV.setCurrentInputSource",
+    "params": {
+        "sourceName": "HDMI1,AirPlay,ImmersiveUI"
+    }
 }
 ```
-#### Curl command Form
-
-curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" --header "Content-Type: application/json" --request POST --data '{"jsonrpc":"2.0","id":"3","method": "HomeKitTV.1.requestapplaunch", "params": {"origin": "EPG" ,"reason":"HomeScreenButton"}}' http://127.0.0.1:9998/jsonrpc
 
 #### Response
 
@@ -98,10 +109,10 @@ curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" 
 }
 ```
 
-<a name="setCurrentInputSource"></a>
-## *setCurrentInputSource*
+<a name="getEnabledStatus"></a>
+## *getEnabledStatus*
 
-Request Airplay-Daemon to set the current Input-Source
+Return the status of Airplay On/Off.
 
 ### Events
 
@@ -109,16 +120,21 @@ No Events
 
 ### Parameters
 
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object | An empty parameter object |
-| params.sourceName	 | string | Selected Input-Source using IR Remote "HDMI1" ,"AirPlay" |
+This method takes no parameters.
 
 ### Result
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | boolean | success: true/false |
+| result | object |  |
+| result.enabled | boolean |  |
+| result.success | boolean | Legacy parameter (always true) |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
@@ -128,14 +144,9 @@ No Events
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "HomeKitTV.setcurrentInputsource",
-    "params": {"sourceName":"AirPlay"}
+    "method": "HomeKitTV.getEnabledStatus"
 }
 ```
-
-#### Curl command Form
-
-curl  --header "Content-Type: application/json" -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`"  --request POST --data '{"jsonrpc": "2.0","id": 4,"method":"HomeKitTV.1.setcurrentinputsource","params": {"sourceName": "AirPlay"}}' http://127.0.0.1:9998/jsonrpc
 
 #### Response
 
@@ -143,7 +154,121 @@ curl  --header "Content-Type: application/json" -H "Authorization: Bearer `WPEFr
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": 1
+    "result": {
+        "enabled": true,
+        "success": true
+    }
+}
+```
+
+<a name="getConnectionStatus"></a>
+## *getConnectionStatus*
+
+Request whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.paired | boolean |  |
+| result.success | boolean | Legacy parameter (always true) |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "HomeKitTV.getConnectionStatus"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "paired": true,
+        "success": true
+    }
+}
+```
+
+<a name="requestAppLaunch"></a>
+## *requestAppLaunch*
+
+Requests Airplay Daemon to launch specific page of Airplay App.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.origin | string | Origin of the launch Request |
+| params.reason | string | Reason to request Airplay app UI, e.g., to display Airplay curtain page or Airlay & HomeKit settings |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean |  |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 2 | ```ERROR_UNAVAILABLE``` | Airplay is unavailable |
+| 22 | ```ERROR_UNKNOWN_KEY``` | Command is not set |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "HomeKitTV.requestAppLaunch",
+    "params": {
+        "origin": "EPG",
+        "reason": "HomeScreenButton"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -152,98 +277,143 @@ curl  --header "Content-Type: application/json" -H "Authorization: Bearer `WPEFr
 
 The following properties are provided by the HomeKitTV plugin:
 
-HomeKitTV interface properties:
+HomeKitTVJSONRPC interface properties:
+
 | Property | Description |
 | :-------- | :-------- |
-| [getConnectionStatus](#getConnectionStatus)  | Set/Get property to Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device. |
-| [getEnabledStatus](#getEnabledStatus)  | Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device |
+| [setAppContainerIPAddress](#setAppContainerIPAddress) | Set the Airplay Application containers IP address to Daemon side |
 
-<a name="getConnectionStatus"></a>
-## *getConnectionStatus*
+StateControl interface properties:
 
-Set/Get property to Returns whether the AirPlay capable Apple companion device is paired (true) or unpaired (false) with this HomeKit Television Accessory device.
+| Property | Description |
+| :-------- | :-------- |
+| [state](#state) | Running state of the service |
 
-### Events
 
-No Events
+<a name="setAppContainerIPAddress"></a>
+## *setAppContainerIPAddress*
 
-### Parameters
-
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| (Property) | object | An empty parameter object |
-| (property).getConnectionStatus | Boolean | AirPlay paired status On(true)/Off(false) |
-
-### Example
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "method": "HomeKitTV.getconnectionstatus"
-}
-```
-
-#### Curl command Form
-
-curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" --header "Content-Type: application/json" --request POST --data '{"jsonrpc":"2.0","id":"3","method": "HomeKitTV.1.getconnectionstatus"}' http://127.0.0.1:9998/jsonrpc
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 42,
-    "result": null
-}
-```
-
-<a name="getEnabledStatus"></a>
-## *getEnabledStatus*
-
-Get AirPlay Setting On/Off value.
-Default value set by Daemon is On.
+Provides access to the set the Airplay Application containers IP address to Daemon side.
 
 ### Events
 
 No Events
 
-### Parameters
+### Value
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (Property) | object | An empty parameter object |
-| (property).getenabledstatus | Boolean | AirPlay option in AirPlay Settings set as On(true)/Off(false) |
+| (property) | object | Set the Airplay Application containers IP address to Daemon side |
+| (property).ipaddress | string | IP Address of Application container |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 1 | ```ERROR_GENERAL``` | General error |
 
 ### Example
 
-#### Request
+#### Get Request
 
 ```json
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "method": "HomeKitTV.getenabledstatus"
+    "method": "HomeKitTV.setAppContainerIPAddress"
 }
 ```
 
-#### Curl command Form
-
-curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" --header "Content-Type: application/json" --request POST --data '{"jsonrpc":"2.0","id":"3","method": "HomeKitTV.1.getenabledstatus"}' http://127.0.0.1:9998/jsonrpc
-
-#### Response
+#### Get Response
 
 ```json
 {
     "jsonrpc": "2.0",
     "id": 42,
-    "result": 
-     {"success": 
-        true,
-      "enabled":true
-     }
+    "result": {
+        "ipaddress": "127.0.0.1"
+    }
+}
+```
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "HomeKitTV.setAppContainerIPAddress",
+    "params": {
+        "ipaddress": "127.0.0.1"
+    }
+}
+```
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="state"></a>
+## *state*
+
+Provides access to the running state of the service.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | string | Running state of the service (must be one of the following: *resumed*, *suspended*) |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "HomeKitTV.state"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "resumed"
+}
+```
+
+#### Set Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "HomeKitTV.state",
+    "params": "resumed"
+}
+```
+
+#### Set Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
 }
 ```
 
@@ -252,68 +422,60 @@ curl -H "Authorization: Bearer `WPEFrameworkSecurityUtility | cut -d '"' -f 4`" 
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
 
-Notifications are the events generated by AirPlay Daemon to manage AirPlay Application states:
+The following events are provided by the HomeKitTV plugin:
+
+HomeKitTVJSONRPC interface events:
 
 | Event | Description |
 | :-------- | :-------- |
-| [onAppStateChangeRequest](#onAppStateChangeRequest) | Raised when HomeKit TV wants the distributor application to switch the state of the AirPlay Application running in the device. |
-| [onEnabledStatusChanged](#onEnabledStatusChanged) | AirPlay Daemon raises this event when user changes the AirPlay On/Off from AirPlay Settings  |
-| [onConnectionStatusChanged](#onConnectionStatusChanged) | AirPlay Daemon raises this event in below cases:Pairing status - When Pairing status changes from pair to unpair or vice-a-versa from Homekit |
-| [OninputSourceChanged](#OninputSourceChanged) | AirPlay Daemon raises this event when input source changes via Home Application in Sender's Apple devices (iPhone/iPad/iPod)o |
+| [onAppStateChangeRequest](#onAppStateChangeRequest) | Event raised to request state change of the Airplay Application to starting-section, resuming-section, suspending-close, and stopping-destroy |
+| [onEnabledStatusChanged](#onEnabledStatusChanged) | Event raised to send Airplay status changed to On or Off |
+| [onInputSourceChanged](#onInputSourceChanged) | Event raised to send selected Inputsource details |
+| [onairplayerror](#onairplayerror) | Event raised to send failure events |
+| [onConnectionStatusChanged](#onConnectionStatusChanged) | Event raised to notify pairing status changed |
+
+StateControl interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [statechange](#statechange) | Signals a state change of the service |
+
 
 <a name="onAppStateChangeRequest"></a>
 ## *onAppStateChangeRequest*
 
-Raised when HomeKit TV wants the distributor application to switch the state of the AirPlay Application running in the device.
+Event raised to request state change of the Airplay Application to starting-section, resuming-section, suspending-close, and stopping-destroy.
 
 ### Parameters
 
-| Name | Type | Description | M/O |
-| :-------- | :-------- | :-------- | :-------- |
-| params | object |  |  |
-| params.origin | string | the state of Airplay application requested. "AppStart, AppSuspend, AppResume, AppStop" |  |
-| params.intent | object | Input Parameters to be passed to RDKShell APIs. |  |
-| params.intent.action | String | One of the following string:For "starting" or "resuming" the app: section For "suspending" the app: close For "stopping" the app: destroy |  |
-| params.intent.data | object | App State Change Intent "Data Object" associated with the requested action. Applicable only for the "section" action. | Mandatory for intent action "section" Don't care for other actions. |
-| params.intent.data.sectionName | boolean | String representing launch parameters that needs to be passed to the AirPlay Application in case of "section" action. | Mandatory for intent action "section" Don't care for other actions. |
-| params.intent.context | Object | App State Change Intent "Context Object" associated with the requested action. Applicable only for the "section" action. | Mandatory for intent action "section" Don't care for other actions. |
-| params.intent.context.source | String | String representing the reason for triggering the "section" action from the given origin. Value of the String SHALL be one of the following: HomeScreenButton, InputSourceSelected | Mandatory for intent action "section"Don't care for other actions |
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.origin | string | Origin of app state change request |
+| params.intent | object | App State change intent object |
+| params.intent?.action | string | <sup>*(optional)*</sup> Intent action |
+| params.intent?.data | object | <sup>*(optional)*</sup> Intent's data |
+| params.intent?.data.sectionName | string | String representing launch parameters |
+| params.intent?.context | object | <sup>*(optional)*</sup> App State Change Intent Context Object |
+| params.intent?.context.source | string | String representing the reason for triggering the section |
 
 ### Example
 
-#### Start or Resume AirPlay App:
 ```json
 {
-    "jsonrpc":"2.0",
-    "id":"3",
-    "method": "org.rdk.HomeKitTV.onAppStateChangeRequest",
-    "params": {"origin":"AirPlay",
-    "intent":{"action":"section",
-    "data":{"sectionName":"uejhfeufeuifbuefbiejfief"},
-    "context":{"source":"HomeScreenButton"}
-    }
-  }
-}
-```
-
-#### Suspend AirPlay App
-```json
-{
-    "jsonrpc":"2.0",
-    "id":"3",
-    "method": "org.rdk.HomeKitTV.onAppStateChangeRequest",
-    "params": {"origin":"AirPlay", "intent":{"action":"close"}
-    }
-}
-```
-
-#### Stop AirPlay App:
-```json
-{
-    "jsonrpc":"2.0",
-    "id":"3",
-    "method": "org.rdk.HomeKitTV.onAppStateChangeRequest",
-    "params": {"origin":"AirPlay", "intent":{"action":"destroy"}
+    "jsonrpc": "2.0",
+    "method": "client.events.onAppStateChangeRequest",
+    "params": {
+        "origin": "EPG, Airplay",
+        "intent": {
+            "action": "section",
+            "data": {
+                "sectionName": "argv0:--cwd=/tmp"
+            },
+            "context": {
+                "source": "HomeScreenButton, InputSourceSelected"
+            }
+        }
     }
 }
 ```
@@ -321,47 +483,124 @@ Raised when HomeKit TV wants the distributor application to switch the state of 
 <a name="onEnabledStatusChanged"></a>
 ## *onEnabledStatusChanged*
 
-AirPlay Daemon raises this event when user changes the AirPlay On/Off from AirPlay Settings 
+Event raised to send Airplay status changed to On or Off.
 
 ### Parameters
 
-| Name | Type | Description | M/O |
-| :-------- | :-------- | :-------- | :-------- |
-| params | object | Notification / Event Object | Mandatory |
-| params.enabled | Boolean | true if Airplay Status is enabled or false if disabled | Mandatory |
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.enabled | boolean | Airplay setting status changed between On or Off |
 
-<a name="onConnectionStatusChanged"></a>
-## *onConnectionStatusChanged*
+### Example
 
-AirPlay Daemon raises this event in below cases:
-Pairing status - When Pairing status changes from pair to unpair or vice-a-versa from Homekit
-
-### Parameters
-
-| Name | Type | Description | M/O |
-| :-------- | :-------- | :-------- | :-------- |
-| params | object | Notification / Event Object | Mandatory |
-| params.enabled | Boolean | true if Airplay Status is enabled or false if disabled | Mandatory |
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onEnabledStatusChanged",
+    "params": {
+        "enabled": true
+    }
+}
+```
 
 <a name="onInputSourceChanged"></a>
 ## *onInputSourceChanged*
 
-Raised when input source is changed via Home Application running in Apple devices.
+Event raised to send selected Inputsource details.
 
 ### Parameters
 
-| Name | Type | Description | M/O |
-| :-------- | :-------- | :-------- | :-------- |
-| params | object | Notification / Event Object | Mandatory |
-| params.sourceType | string | Name of the Input Source Type. e.g., HDMI, Composite, etc. | Mandatory |
-| params.portId | Number | Port ID of the input source e.g., 0, 1 | Mandatory |
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.sourceType | string | Type of inputsource hdmi, composite, Airplay |
+| params.portId | number | Port ID of Input source |
 
 ### Example
+
 ```json
 {
-  "jsonrpc":"2.0",
-  "id":"3",
-  "method": "org.rdk.HomeKitTV.onAppStateChangeRequest",
-  "params":
+    "jsonrpc": "2.0",
+    "method": "client.events.onInputSourceChanged",
+    "params": {
+        "sourceType": "HDMI, COMPOSITE, AIRPLAY",
+        "portId": 1
+    }
 }
+```
+
+<a name="onairplayerror"></a>
+## *onairplayerror*
+
+Event raised to send failure events.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.errordata | string | Details of the failure |
+| params.errorid | number | Failure code |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onairplayerror",
+    "params": {
+        "errordata": "Network lost",
+        "errorid": 10
+    }
+}
+```
+
+<a name="onConnectionStatusChanged"></a>
+## *onConnectionStatusChanged*
+
+Event raised to notify pairing status changed.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.paired | boolean | HomeKit Pairing status |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onConnectionStatusChanged",
+    "params": {
+        "paired": true
+    }
+}
+```
+
+<a name="statechange"></a>
+## *statechange*
+
+Signals a state change of the service.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.suspended | boolean | Determines if the service has entered suspended state (true) or resumed state (false) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.statechange",
+    "params": {
+        "suspended": false
+    }
+}
+```
 

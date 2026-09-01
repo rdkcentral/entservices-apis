@@ -10,6 +10,7 @@ A OCDM plugin for Thunder framework.
 - [Description](#Description)
 - [Configuration](#Configuration)
 - [Properties](#Properties)
+- [Notifications](#Notifications)
 
 <a name="Abbreviation,_Acronyms_and_Terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -57,6 +58,7 @@ OCDM interface properties:
 | :-------- | :-------- |
 | [drms](#drms) <sup>RO</sup> | Supported DRM systems |
 | [keysystems](#keysystems) <sup>RO</sup> | DRM key systems |
+| [sessions](#sessions) <sup>RO</sup> | Active sessions enumerator |
 
 
 <a name="drms"></a>
@@ -76,9 +78,9 @@ No Events
 | :-------- | :-------- | :-------- |
 | (property) | array | Supported DRM systems |
 | (property)[#] | object |  |
-| (property)[#].name | string | The name of the DRM system |
+| (property)[#].name | string | Name of the DRM |
 | (property)[#].keysystems | array |  |
-| (property)[#].keysystems[#] | string | An identifier of a key system |
+| (property)[#].keysystems[#] | string | Identifier of a key system |
 
 ### Example
 
@@ -125,7 +127,7 @@ No Events
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | (property) | array | DRM key systems |
-| (property)[#] | string | An identifier of a key system |
+| (property)[#] | string | Identifier of a key system |
 
 > The *drm system* argument shall be passed as the index to the property, e.g. *OCDM.1.keysystems@PlayReady*.
 
@@ -156,6 +158,124 @@ No Events
     "result": [
         "com.microsoft.playready"
     ]
+}
+```
+
+<a name="sessions"></a>
+## *sessions*
+
+Provides access to the active sessions enumerator.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | array | Active sessions enumerator |
+| (property)[#] | object |  |
+| (property)[#].drm | string | Name of the DRM system |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "OCDM.sessions"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": [
+        {
+            "drm": "PlayReady"
+        }
+    ]
+}
+```
+
+<a name="Notifications"></a>
+# Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](#Thunder)] for information on how to register for a notification.
+
+The following events are provided by the OCDM plugin:
+
+OCDM interface events:
+
+| Event | Description |
+| :-------- | :-------- |
+| [drmalreadyinitialized](#drmalreadyinitialized) | Signals that the specified DRM system could not be initialized because it is already initialized by another process |
+| [drminitializationstatus](#drminitializationstatus) | Notifies about DRM initialization status |
+
+
+<a name="drmalreadyinitialized"></a>
+## *drmalreadyinitialized*
+
+Signals that the specified DRM system could not be initialized because it is already initialized by another process.
+
+### Description
+
+When this event is received, the application owning given DRM system should release it immediately.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.drm | string | Name of the DRM system |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.drmalreadyinitialized",
+    "params": {
+        "drm": "PlayReady"
+    }
+}
+```
+
+<a name="drminitializationstatus"></a>
+## *drminitializationstatus*
+
+Notifies about DRM initialization status.
+
+### Description
+
+Register to this event to be notified about DRM retrying status busy/failure/success
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.status | string | BUSY - drm is used by another process, SUCCESS - recovered from BUSY state after retry, FAILED - not recovered after re-trying from BUSY (must be one of the following: *BUSY*, *SUCCESS*, *FAILED*) |
+| params.drm | string | Name of the DRM system |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.drminitializationstatus",
+    "params": {
+        "status": "SUCCESS",
+        "drm": "PlayReady"
+    }
 }
 ```
 

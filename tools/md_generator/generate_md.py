@@ -36,7 +36,14 @@ def generate_md(logfile=None):
 
     for plugin in plugin_folders:
         plugin_path = os.path.join(apis_dir, plugin)
-        h_files = glob.glob(os.path.join(plugin_path, "I*.h"))
+        h_files_in = glob.glob(os.path.join(plugin_path, "I*.h"))
+        # Only use files that have a "@json" marker in them.
+        # If none found, fall back to check for json-based documentation
+        h_files = []
+        for file in h_files_in:
+            with open(file, "r") as f:
+                if "@json" in f.read():
+                    h_files.append(file)
         if h_files:
             print(f"Found I*.h files in {plugin_path}: {h_files}")
             convert_h_to_md(plugin_path, logfile)
@@ -44,20 +51,20 @@ def generate_md(logfile=None):
         else:
             print(f"No I*.h files found in {plugin_path}, using convert_json_to_md.")
             json_plugin_path = os.path.abspath(os.path.join(os.path.dirname(__file__), f"json/{plugin}"))
-            convert_json_to_md(json_plugin_path)
+            convert_json_to_md(json_plugin_path, plugin_path)
             used_json_method = True
 
     if not used_json_method:
         print("No plugin folders required convert_json_to_md().")
     print("*****   MD generation completed   *****")
 
-def convert_json_to_md(plugin_path):
+def convert_json_to_md(plugin_path, interface_path):
     print(f"*****   Generating md files under docs/apis for {plugin_path}   *****")
     jsongenpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "json2md/generator_json.py"))
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../docs/apis"))
     flist = glob.glob(os.path.join(plugin_path, "*Plugin.json"))
     for file in flist:
-        os.system(f"python3 {jsongenpath} --docs {file} -o {output_dir} --no-interfaces-section")
+        os.system(f"python3 {jsongenpath} --docs {file} -i {interface_path} -o {output_dir} --no-interfaces-section")
     print(f"*****   Generated md files under docs/apis for {plugin_path}   *****")
 
 def convert_h_to_md(plugin_path, logfile=None):

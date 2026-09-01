@@ -64,6 +64,6 @@
         }
     },
     "interface": {
-        "$ref": "OpenCDMi.json#"
+        "$ref": "{interfacedir}/OCDM.json#"
     }
 }
