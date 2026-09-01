@@ -75,8 +75,8 @@ namespace Exchange {
         // @example audioConfig: CONTINUOUS_AUDIO_OUTPUT
         // @param enabled: true to enable the configuration, false to disable it
         // @example enabled: true
-        // @retval Core::ERROR_NONE on success
-        // @retval Core::ERROR_BAD_REQUEST for unsupported configuration
+        // @retval Core::ERROR_NONE: Indicates success
+        // @retval Core::ERROR_BAD_REQUEST: Provided audioConfig is unsupported
         virtual Core::hresult SetAudioConfig(const string& audioConfig /* @text audioConfig */, const bool enabled) = 0;
 
         // @text getAudioConfig
