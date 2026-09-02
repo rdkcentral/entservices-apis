@@ -988,7 +988,7 @@ The following properties are provided by the IDisplayProperties Interface:
 | [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's Colour Depth |
 | [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
 | [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
-| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
+| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Quantization Range |
 
 <a id="colorSpace"></a>
 ## *colorSpace*
