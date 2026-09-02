@@ -111,20 +111,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Failed to retrieve the device list."
-    }
-}
-```
-
 <a id="getMountPoints"></a>
 ## *getMountPoints*
 
@@ -136,7 +122,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | name of the device for which mount points are to be retrieved |
+| params.deviceName | string | Name of the device for which mount points are to be retrieved |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -182,20 +168,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "mountPath": "/media/usb0"
         }
     ]
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Failed to retrieve mount point information."
-    }
 }
 ```
 
@@ -257,20 +229,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "size": 1024
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Failed to retrieve partition information."
     }
 }
 ```

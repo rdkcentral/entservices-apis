@@ -111,20 +111,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Failed to bind the driver."
-    }
-}
-```
-
 <a id="getDeviceInfo"></a>
 ## *getDeviceInfo*
 
@@ -211,62 +197,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "parentId": 0,
-        "deviceStatus": 0,
-        "deviceLevel": 0,
-        "portNumber": 0,
-        "vendorId": 0,
-        "productId": 0,
-        "protocol": 0,
-        "serialNumber": "",
-        "device": {
-            "deviceClass": 0,
-            "deviceSubclass": 0,
-            "deviceName": "",
-            "devicePath": ""
-        },
-        "flags": "AVAILABLE",
-        "features": 0,
-        "busSpeed": "Low",
-        "numLanguageIds": 0,
-        "productInfo1": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo2": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo3": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        },
-        "productInfo4": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
-        }
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve device information."
+        "vendorId": 1234,
+        "productId": 5678,
+        "serialNumber": 1234567890
     }
 }
 ```
@@ -318,22 +251,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": [
-        "USB Flash Drive"
+        {
+            "deviceClass": 8,
+            "deviceSubclass": 6,
+            "deviceName": "USB Flash Drive",
+            "devicePath": "/dev/sda"
+        }
     ]
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the device list."
-    }
 }
 ```
 
@@ -388,20 +312,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Failed to unbind the driver."
-    }
-}
-```
-
 <a id="IUSBDevice-Notifications"></a>
 ### Notifications
 
@@ -423,7 +333,7 @@ Triggered when a USB device is connected to the system and successfully detected
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device | object | Basic device information included |
+| params.device | object | USB information of the plugged in device |
 | params.device.deviceClass | integer | USB class of the device as per USB specificiation |
 | params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | params.device.deviceName | string | Name of the USB device |
@@ -451,7 +361,7 @@ Triggered when a USB device is disconnected from the system. The event provides 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device | object | Basic device information included |
+| params.device | object | USB information of the disconnected device |
 | params.device.deviceClass | integer | USB class of the device as per USB specificiation |
 | params.device.deviceSubclass | integer | USB sub class of the device as per USB specificiation |
 | params.device.deviceName | string | Name of the USB device |

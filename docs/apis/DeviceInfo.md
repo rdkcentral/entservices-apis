@@ -118,20 +118,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="IDeviceInfo-Properties"></a>
 ### Properties
 
@@ -214,20 +200,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="brandname"></a>
 ## *brandname*
 
@@ -239,7 +211,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).brand | string | Brand Name |
+| (property).brand | string | Device brand name |
 
 ### Examples
 
@@ -274,20 +246,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="chipset"></a>
 ## *chipset*
 
@@ -299,7 +257,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).chipset | string | Device chip set Name |
+| (property).chipset | string | Chipset of the device |
 
 ### Examples
 
@@ -334,20 +292,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="deviceId"></a>
 ## *deviceId*
 
@@ -359,7 +303,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).deviceId | string | Device ID |
+| (property).deviceId | string | Device ID of the device |
 
 ### Examples
 
@@ -394,20 +338,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="devicetype"></a>
 ## *devicetype*
 
@@ -419,7 +349,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).devicetype | string | Device type (must be one of the following: tv, IpStb, QamIpStb). Possible values: IpTv, IpStb, QamIpStb |
+| (property).devicetype | string | Device Type. Possible values: IpTv, IpStb, QamIpStb |
 
 ### Examples
 
@@ -450,20 +380,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "id": 12,
     "result": {
         "devicetype": "IpStb"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -514,20 +430,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="estbip"></a>
 ## *estbip*
 
@@ -539,7 +441,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).estb_ip | string | STB IP Address |
+| (property).estb_ip | string | STB IP addresses |
 
 ### Examples
 
@@ -574,20 +476,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="estbmac"></a>
 ## *estbmac*
 
@@ -599,7 +487,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).estb_mac | string | STB Mac Address |
+| (property).estb_mac | string | STB MAC addresses |
 
 ### Examples
 
@@ -629,21 +517,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "jsonrpc": 2.0,
     "id": 15,
     "result": {
-        "estb_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "estbMac": "00:11:22:33:44:55"
     }
 }
 ```
@@ -659,7 +533,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).eth_mac | string | Ethernet Mac Address |
+| (property).eth_mac | string | Ethernet MAC addresses |
 
 ### Examples
 
@@ -689,21 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "jsonrpc": 2.0,
     "id": 16,
     "result": {
-        "eth_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "ethMac": "00:11:22:33:44:55"
     }
 }
 ```
@@ -765,20 +625,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="hardwareId"></a>
 ## *hardwareId*
 
@@ -790,7 +636,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).hardwareId | string | Hardware ID (first 6 characters of Device ID) |
+| (property).hardwareId | string | Hardware ID of the device |
 
 ### Examples
 
@@ -821,20 +667,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "id": 18,
     "result": {
         "hardwareId": 123456
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -885,20 +717,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="modelname"></a>
 ## *modelname*
 
@@ -910,7 +728,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).model | string | Friendly device model name |
+| (property).model | string | Device model name |
 
 ### Examples
 
@@ -941,20 +759,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
     "id": 21,
     "result": {
         "model": "Technicolor XG1A"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -998,9 +802,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 {
     "jsonrpc": 2.0,
     "id": 22,
-    "result": {
-        "osName": ""
-    }
+    "result": "RDK-E"
 }
 ```
 
@@ -1012,9 +814,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "method": "org.rdk.DeviceInfo.osname",
-    "params": {
-        "osName": ""
-    }
+    "params": "RDK-E"
 }
 ```
 
@@ -1022,7 +822,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.osname", "params": {"osName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DeviceInfo.osname", "params": "RDK-E"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1033,20 +833,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "result": null
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1089,9 +875,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 {
     "jsonrpc": 2.0,
     "id": 23,
-    "result": {
-        "osVersion": ""
-    }
+    "result": 8.3
 }
 ```
 
@@ -1103,9 +887,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
     "jsonrpc": 2.0,
     "id": 23,
     "method": "org.rdk.DeviceInfo.osversion",
-    "params": {
-        "osVersion": ""
-    }
+    "params": 8.3
 }
 ```
 
@@ -1113,7 +895,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.osversion", "params": {"osVersion": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DeviceInfo.osversion", "params": 8.3}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1124,20 +906,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
     "jsonrpc": 2.0,
     "id": 23,
     "result": null
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1152,7 +920,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).releaseversion | string | Release version |
+| (property).releaseversion | string | ReleaseVersion of the Image |
 
 ### Examples
 
@@ -1187,20 +955,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="serialnumber"></a>
 ## *serialnumber*
 
@@ -1212,7 +966,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).serialnumber | string | Device serial number |
+| (property).serialnumber | string | Serial number set by manufacturer |
 
 ### Examples
 
@@ -1247,20 +1001,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="modelid"></a>
 ## *modelid*
 
@@ -1272,7 +1012,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).sku | string | Device model number or SKU |
+| (property).sku | string | device model number |
 
 ### Examples
 
@@ -1302,21 +1042,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
     "jsonrpc": 2.0,
     "id": 26,
     "result": {
-        "sku": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "sku": "X1234"
     }
 }
 ```
@@ -1332,7 +1058,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).socname | string | SOC Name |
+| (property).socname | string | Name of the SOC |
 
 ### Examples
 
@@ -1367,20 +1093,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="systeminfo"></a>
 ## *systeminfo*
 
@@ -1392,7 +1104,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).systemInfo | object |  |
+| (property).systemInfo | object | System general information |
 | (property).systemInfo.version | string | Software version (in form version#hashtag) |
 | (property).systemInfo.uptime | integer | System uptime (in seconds) |
 | (property).systemInfo.totalram | integer | Total installed system RAM memory (in bytes) |
@@ -1455,20 +1167,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="wifimac"></a>
 ## *wifimac*
 
@@ -1480,7 +1178,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).wifi_mac | string | Wifi Mac Address |
+| (property).wifi_mac | string | WIFI MAC addresses |
 
 ### Examples
 
@@ -1510,21 +1208,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
     "jsonrpc": 2.0,
     "id": 29,
     "result": {
-        "wifi_mac": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "wifiMac": "00:11:22:33:44:55"
     }
 }
 ```
@@ -1608,20 +1292,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="ms12capabilities"></a>
 ## *ms12capabilities*
 
@@ -1681,20 +1351,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
             "Dialogue_Enhancer"
         ],
         "success": true
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -1762,20 +1418,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 ---
 
 <a id="IDeviceVideoCapabilities"></a>
@@ -1811,7 +1453,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.defaultResolution | string |  |
+| result.defaultResolution | string | Default Resolutions |
 
 ### Examples
 
@@ -1844,21 +1486,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "defaultResolution": ""
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "defaultResolution": "1080p60"
     }
 }
 ```
@@ -1881,7 +1509,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.supportedHDCPVersion | string | Possible values: unavailable, 1.4, 2.0, 2.1, 2.2 |
+| result.supportedHDCPVersion | string | HDCP support. Possible values: unavailable, 1.4, 2.0, 2.1, 2.2 |
 
 ### Examples
 
@@ -1914,21 +1542,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "supportedHDCPVersion": "unavailable"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "supportedHDCPVersion": 2.2
     }
 }
 ```
@@ -1996,20 +1610,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="supportedvideodisplays"></a>
 ## *supportedvideodisplays*
 
@@ -2066,20 +1666,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="IDeviceVideoCapabilities-Properties"></a>
 ### Properties
 
@@ -2092,7 +1678,7 @@ The following properties are provided by the IDeviceVideoCapabilities Interface:
 <a id="hostedid"></a>
 ## *hostedid*
 
-Retrieves the EDID of the host.
+Retrieves the base64 encoded Extended Display Identification Data (EDID) reported by the host device.
 
 > This API is **deprecated** and may be removed in the future. It is no longer recommended for use in new implementations.
 
@@ -2102,7 +1688,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).EDID | string |  |
+| (property).EDID | string | EDID of the host |
 
 ### Examples
 
@@ -2133,20 +1719,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "id": 19,
     "result": {
         "EDID": "base64encodedstring"
-    }
-}
-```
-
-
-#### Error Response (ErrorCode::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```

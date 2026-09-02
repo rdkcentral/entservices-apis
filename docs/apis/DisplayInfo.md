@@ -72,7 +72,7 @@ The following properties are provided by the IGraphicsProperties Interface:
 <a id="freeGpuRam"></a>
 ## *freeGpuRam*
 
-Free GPU DRAM memory (in bytes)
+Retrieves the free GPU DRAM memory (in bytes).
 
 > This property is read-only.
 ### Events
@@ -80,7 +80,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).free | integer |  |
+| (property).free | integer | Free GPU RAM |
 
 ### Examples
 
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": {
-        "free": 0
+        "free": 1073741824
     }
 }
 ```
@@ -118,7 +118,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="totalGpuRam"></a>
 ## *totalGpuRam*
 
-Total GPU DRAM memory (in bytes)
+Retrieves the total GPU DRAM memory (in bytes).
 
 > This property is read-only.
 ### Events
@@ -126,7 +126,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).total | integer |  |
+| (property).total | integer | Total GPU RAM |
 
 ### Examples
 
@@ -156,7 +156,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
     "jsonrpc": 2.0,
     "id": 20,
     "result": {
-        "total": 0
+        "total": 2147483648
     }
 }
 ```
@@ -233,24 +233,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="heightInCentimeters"></a>
 ## *heightInCentimeters*
 
-Vertical size in centimeters
+Retrieves the vertical size of the TV in centimeters.
 
 ### Events Triggered
 None
@@ -260,7 +246,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.height | integer | height in cm |
+| result.height | integer | Height in cm |
 
 ### Examples
 
@@ -322,7 +308,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.width | integer | width in cm |
+| result.width | integer | Width in cm |
 
 ### Examples
 
@@ -467,20 +453,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="hDCPProtection"></a>
 ## *hDCPProtection*
 
@@ -491,7 +463,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).value | string | protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
+| (property).value | string | Protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
 
 ### Examples
 
@@ -558,20 +530,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="height"></a>
 ## *height*
 
@@ -583,7 +541,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).height | integer | height of TV in pixels |
+| (property).height | integer | Height of TV in pixels |
 
 ### Examples
 
@@ -614,20 +572,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "id": 14,
     "result": {
         "height": 50
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -678,20 +622,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="portName"></a>
 ## *portName*
 
@@ -703,7 +633,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).name | string | video output port name |
+| (property).name | string | Video output port name |
 
 ### Examples
 
@@ -738,20 +668,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="verticalFreq"></a>
 ## *verticalFreq*
 
@@ -763,7 +679,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).vf | integer | vertical freq |
+| (property).vf | integer | Vertical frequency |
 
 ### Examples
 
@@ -798,20 +714,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="width"></a>
 ## *width*
 
@@ -823,7 +725,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).width | integer | width of TV in pixels |
+| (property).width | integer | Width of TV in pixels |
 
 ### Examples
 
@@ -854,20 +756,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "id": 22,
     "result": {
         "width": 100
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -934,20 +822,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="sTBCapabilities"></a>
 ## *sTBCapabilities*
 
@@ -995,20 +869,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="tVCapabilities"></a>
 ## *tVCapabilities*
 
@@ -1053,20 +913,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "result": [
         "[HDR_10, HDR_10PLUS]"
     ]
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1130,20 +976,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="IDisplayProperties-Properties"></a>
 ### Properties
 
@@ -1153,7 +985,7 @@ The following properties are provided by the IDisplayProperties Interface:
 | :-------- | :-------- |
 | [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
 | [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
-| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
+| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's Colour Depth |
 | [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
 | [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
 | [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
@@ -1169,7 +1001,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).cs | string | colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
+| (property).cs | string | Colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
 
 ### Examples
 
@@ -1200,20 +1032,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "id": 5,
     "result": {
         "cs": "FORMAT_YCBCR_422"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -1265,24 +1083,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="colourDepth"></a>
 ## *colourDepth*
 
-Retrieves the display's colour depth.
+Retrieves the display's Colour depth.
 
 > This property is read-only.
 ### Events
@@ -1290,7 +1094,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).colour | string | colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
+| (property).colour | string | Colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
 
 ### Examples
 
@@ -1320,21 +1124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "jsonrpc": 2.0,
     "id": 7,
     "result": {
-        "colour": "COLORDEPTH_10_BIT"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
+        "colour": "COLOURDEPTH_10_BIT"
     }
 }
 ```
@@ -1385,20 +1175,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="frameRate"></a>
 ## *frameRate*
 
@@ -1410,7 +1186,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).rate | string | frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
+| (property).rate | string | Frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
 
 ### Examples
 
@@ -1441,20 +1217,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "id": 10,
     "result": {
         "rate": "FRAMERATE_60"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -1501,20 +1263,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "id": 17,
     "result": {
         "qr": "QUANTIZATIONRANGE_LIMITED"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```

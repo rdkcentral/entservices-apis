@@ -57,7 +57,7 @@ The following methods are provided by the ITelemetry Interface:
 | :-------- | :-------- |
 | [abortReport](#abortReport) | Abort report upload |
 | [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
-| [logApplicationEvent](#logApplicationEvent) | Logs an application |
+| [logApplicationEvent](#logApplicationEvent) | Logs an application event |
 | [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
 | [setReportProfileStatus](#setReportProfileStatus) | Sets the status of telemetry reporting |
 | [uploadReport](#uploadReport) | Uploading of telemetry report |
@@ -107,20 +107,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Failed to abort the report upload."
-    }
-}
-```
-
 <a id="isOptOutTelemetry"></a>
 ## *isOptOutTelemetry*
 
@@ -134,8 +120,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.Opt-Out | bool |  |
-| result.success | bool | boolean |
+| result.Opt-Out | bool | Boolean The current opt-out status for telemetry reporting. |
+| result.success | bool | Boolean Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -171,20 +157,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the opt-out status."
-    }
-}
-```
-
 <a id="logApplicationEvent"></a>
 ## *logApplicationEvent*
 
@@ -196,8 +168,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventName | string | string |
-| params.eventValue | string | string |
+| params.eventName | string | String The name of the application  |
+| params.eventValue | string | String The value associated with the application  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -238,20 +210,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Failed to log the "
-    }
-}
-```
-
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
@@ -263,7 +221,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Opt-Out | bool |  |
+| params.Opt-Out | bool | boolean The desired opt-out status for telemetry reporting. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -300,23 +258,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Failed to set the OptOut status."
-    }
+    "result": true
 }
 ```
 
@@ -331,7 +273,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | string |
+| params.status | string | String The new status of telemetry reporting. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -368,20 +310,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "- Failed to set the status."
-    }
 }
 ```
 
@@ -430,20 +358,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "- Failed to initiate the report upload."
-    }
-}
-```
-
 <a id="ITelemetry-Notifications"></a>
 ### Notifications
 
@@ -464,7 +378,7 @@ Invoked by the Telemetry service after a report has been uploaded. Components im
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.telemetryUploadStatus | string | string |
+| params.telemetryUploadStatus | string | String The status of the telemetry upload. |
 
 ### Examples
 

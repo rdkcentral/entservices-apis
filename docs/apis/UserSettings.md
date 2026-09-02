@@ -79,12 +79,12 @@ The following methods are provided by the IUserSettings Interface:
 | [getVoiceGuidanceRate](#getVoiceGuidanceRate) | Gets the current voiceGuidanceRate setting. |
 | [setAudioDescription](#setAudioDescription) | Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled |
 | [setBlockNotRatedContent](#setBlockNotRatedContent) | Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project. |
-| [setCaptions](#setCaptions) | brief Sets Captions ON/OFF. |
+| [setCaptions](#setCaptions) | Sets Captions ON/OFF. |
 | [setContentPin](#setContentPin) | Sets the ContentPin. |
 | [setHighContrast](#setHighContrast) | Sets highContrast. Whether the app should display with high contrast or not. |
 | [setLiveWatershed](#setLiveWatershed) | Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project. |
 | [setPinControl](#setPinControl) | Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled. |
-| [setPinOnPurchase](#setPinOnPurchase) | Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted. |
+| [setPinOnPurchase](#setPinOnPurchase) | Sets PinOnPurchase ON/OFF. Whether a PIN challenge should be made when a purchase is attempted. |
 | [setPlaybackWatershed](#setPlaybackWatershed) | Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project. |
 | [setPreferredAudioLanguages](#setPreferredAudioLanguages) | A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track. |
 | [setPreferredCaptionsLanguages](#setPreferredCaptionsLanguages) | Set preferred languages for captions. |
@@ -95,7 +95,7 @@ The following methods are provided by the IUserSettings Interface:
 | [setViewingRestrictionsWindow](#setViewingRestrictionsWindow) | Sets the ViewingRestrictionsWindow. |
 | [setVoiceGuidance](#setVoiceGuidance) | Sets voiceGuidance. Whether Voice Guidance is enabled or not. |
 | [setVoiceGuidanceHints](#setVoiceGuidanceHints) | Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not. |
-| [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive. |
+| [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value from 0.1 to 10 inclusive. |
 
 <a id="getAudioDescription"></a>
 ## *getAudioDescription*
@@ -110,7 +110,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | Enabled/Disabled |
+| result.enabled | bool | Boolean Indicates whether AudioDescription is enabled or disabled. |
 
 ### Examples
 
@@ -145,24 +145,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getBlockNotRatedContent"></a>
 ## *getBlockNotRatedContent*
 
-Gets the BlockNotRatedContent setting
+Retrieves the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
 
 ### Events Triggered
 None
@@ -203,20 +189,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": {
         "blockNotRatedContent": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -269,20 +241,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getContentPin"></a>
 ## *getContentPin*
 
@@ -331,24 +289,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getHighContrast"></a>
 ## *getHighContrast*
 
-Gets the current highContrast setting.
+Retrieves the persistent user preference for whether the app should display with high contrast or not.
 
 ### Events Triggered
 None
@@ -393,24 +337,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getLiveWatershed"></a>
 ## *getLiveWatershed*
 
-Gets the LiveWatershed setting
+Retrieves the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -455,24 +385,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPinControl"></a>
 ## *getPinControl*
 
-Gets the PinControl setting
+Retrieves the persistent user preference for whether Parental Control as a whole is enabled or disabled.
 
 ### Events Triggered
 None
@@ -517,24 +433,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPinOnPurchase"></a>
 ## *getPinOnPurchase*
 
-Gets the PinOnPurchase setting
+Retrieves the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
 
 ### Events Triggered
 None
@@ -579,24 +481,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPlaybackWatershed"></a>
 ## *getPlaybackWatershed*
 
-Gets the PlaybackWatershed setting
+Retrieves the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -637,20 +525,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "id": 8,
     "result": {
         "playbackWatershed": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -703,24 +577,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPreferredCaptionsLanguages"></a>
 ## *getPreferredCaptionsLanguages*
 
-Gets the current PreferredCaptionsLanguages setting
+Retrieves the configured list of preferred caption languages as a comma-separated string of language codes. The returned value reflects the current caption language preference setting.
 
 ### Events Triggered
 None
@@ -765,24 +625,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPreferredClosedCaptionService"></a>
 ## *getPreferredClosedCaptionService*
 
-Gets the current PreferredClosedCaptionService setting Valid output for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]"
+Retrieves the persistent user preference for the closed caption service. Valid values for service are "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
 
 ### Events Triggered
 None
@@ -823,20 +669,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "id": 11,
     "result": {
         "service": "CC3"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -889,24 +721,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getPrivacyMode"></a>
 ## *getPrivacyMode*
 
-Gets the current PrivacyMode setting Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
+Gets the current PrivacyMode setting. Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
 
 ### Events Triggered
 None
@@ -954,7 +772,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="getViewingRestrictions"></a>
 ## *getViewingRestrictions*
 
-Gets the current ViewingRestrictions.
+Retrieves the persistent user preference for the current ViewingRestrictions.
 
 ### Events Triggered
 None
@@ -964,7 +782,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictions | string | A JSON document that escribes the rating scheme(s) and ratings that are blocked. |
+| result.viewingRestrictions | string | A JSON document that describes the rating scheme(s) and ratings that are blocked. |
 
 ### Examples
 
@@ -1001,20 +819,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
                 "R"
             ]
         }
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -1067,24 +871,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getVoiceGuidance"></a>
 ## *getVoiceGuidance*
 
-Gets the current voiceGuidance setting.
+Retrieves the persistent user preference for whether Voice Guidance is enabled or not.
 
 ### Events Triggered
 None
@@ -1129,24 +919,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getVoiceGuidanceHints"></a>
 ## *getVoiceGuidanceHints*
 
-Gets the current voiceGuidanceHints setting.
+Retrieves the persistent user preference for whether Voice Guidance hints setting is switched on or not.
 
 ### Events Triggered
 None
@@ -1191,24 +967,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getVoiceGuidanceRate"></a>
 ## *getVoiceGuidanceRate*
 
-Gets the current voiceGuidanceRate setting.
+Retrieves the persistent user preference for the current voice guidance rate value.
 
 ### Events Triggered
 None
@@ -1253,20 +1015,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setAudioDescription"></a>
 ## *setAudioDescription*
 
@@ -1278,7 +1026,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Enabled/Disabled |
+| params.enabled | bool | Boolean Indicates whether AudioDescription is enabled or disabled. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1318,24 +1066,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setBlockNotRatedContent"></a>
 ## *setBlockNotRatedContent*
 
-Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
+Updates the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1383,24 +1117,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setCaptions"></a>
 ## *setCaptions*
 
-A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
+A setting of ON indicates that players should select a subtitle track for presentation; this does not affect any already running sessions. This is a global state, persisted by the TextTrack plug-in, applying to all forms of text: closed captions, Captions and timed text types. Media players should listen to OnCaptionsChanged notifications to react to platform-wide dynamic state changes while playback is active, and should call GetCaptions on playback start to retrieve the current enabled state.
 
 ### Events Triggered
 None
@@ -1445,20 +1165,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
     "jsonrpc": 2.0,
     "id": 21,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1513,24 +1219,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setHighContrast"></a>
 ## *setHighContrast*
 
-Sets highContrast. Whether the app should display with high contrast or not.
+Updates the persistent user preference for whether the app should display with high contrast or not.
 
 ### Events Triggered
 None
@@ -1578,24 +1270,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setLiveWatershed"></a>
 ## *setLiveWatershed*
 
-Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
+Updates the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1640,20 +1318,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
     "jsonrpc": 2.0,
     "id": 24,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1708,24 +1372,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setPinOnPurchase"></a>
 ## *setPinOnPurchase*
 
-Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made
+Updates the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
 
 ### Events Triggered
 None
@@ -1773,24 +1423,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 26,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setPlaybackWatershed"></a>
 ## *setPlaybackWatershed*
 
-Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
+Updates the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1835,20 +1471,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
     "jsonrpc": 2.0,
     "id": 27,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 27,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -1903,20 +1525,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 28,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setPreferredCaptionsLanguages"></a>
 ## *setPreferredCaptionsLanguages*
 
@@ -1965,20 +1573,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "me
     "jsonrpc": 2.0,
     "id": 29,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 29,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -2033,20 +1627,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 30,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setPresentationLanguage"></a>
 ## *setPresentationLanguage*
 
@@ -2095,20 +1675,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "me
     "jsonrpc": 2.0,
     "id": 31,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 31,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -2163,24 +1729,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 32,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setViewingRestrictions"></a>
 ## *setViewingRestrictions*
 
-A JSON document that escribes the rating scheme(s) and ratings that are blocked.
+A JSON document that describes the rating scheme(s) and ratings that are blocked.
 
 ### Events Triggered
 None
@@ -2231,20 +1783,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "me
     "jsonrpc": 2.0,
     "id": 33,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 33,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -2299,24 +1837,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 34,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setVoiceGuidance"></a>
 ## *setVoiceGuidance*
 
-Sets voiceGuidance. Whether Voice Guidance is enabled or not.
+Updates the persistent user preference for whether Voice Guidance is enabled or not.
 
 ### Events Triggered
 None
@@ -2364,24 +1888,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 35,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setVoiceGuidanceHints"></a>
 ## *setVoiceGuidanceHints*
 
-Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
+Updates the persistent user preference for whether Voice Guidance hints setting is switched on or not.
 
 ### Events Triggered
 None
@@ -2429,24 +1939,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 36,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setVoiceGuidanceRate"></a>
 ## *setVoiceGuidanceRate*
 
-Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
+Updates the persistent user preference for the voice guidance rate value from 0.1 to 10 inclusive.
 
 ### Events Triggered
 None
@@ -2491,20 +1987,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "me
     "jsonrpc": 2.0,
     "id": 37,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 37,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -2570,7 +2052,7 @@ Triggered when the BlockNotRatedContent setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
+| params.blockNotRatedContent | bool | BlockNotRatedContent enabled or not. |
 
 ### Examples
 
@@ -2642,7 +2124,7 @@ Triggered after the high contrast settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | high contrast enabled or not. |
+| params.enabled | bool | High contrast enabled or not. |
 
 ### Examples
 
@@ -2666,7 +2148,7 @@ Triggered when the LiveWatershed setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.liveWatershed | bool | liveWatershed enabled or not. |
+| params.liveWatershed | bool | The changed liveWatershed setting. |
 
 ### Examples
 
@@ -2690,7 +2172,7 @@ Triggered when the PinControl setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinControl | bool | pinControl enabled or not. |
+| params.pinControl | bool | PinControl enabled or not. |
 
 ### Examples
 
@@ -2714,7 +2196,7 @@ Triggered when the PinOnPurchase setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinOnPurchase | bool | pinOnPurchase enabled or not. |
+| params.pinOnPurchase | bool | PinOnPurchase enabled or not. |
 
 ### Examples
 
@@ -2738,7 +2220,7 @@ Triggered when the PlaybackWatershed setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.playbackWatershed | bool | playbackWatershed enabled or not. |
+| params.playbackWatershed | bool | PlaybackWatershed enabled or not. |
 
 ### Examples
 
@@ -2882,7 +2364,7 @@ Triggered when the ViewingRestrictions setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictions | string | the changed viewingRestrictions. |
+| params.viewingRestrictions | string | The changed viewingRestrictions. |
 
 ### Examples
 
@@ -2912,7 +2394,7 @@ Triggered when the ViewingRestrictionsWindow setting is changed.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| params.viewingRestrictionsWindow | string | The changed viewingRestrictionsWindow. |
 
 ### Examples
 
@@ -2936,7 +2418,7 @@ This event is triggered when the voice guidance setting is updated.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | voice guidance enabled or not. |
+| params.enabled | bool | Voice guidance enabled or not. |
 
 ### Examples
 
@@ -2960,7 +2442,7 @@ This event is triggered when the voice guidance hints setting is updated.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hints | bool | voice guidance hints enabled or not. |
+| params.hints | bool | Voice guidance hints enabled or not. |
 
 ### Examples
 
@@ -2984,7 +2466,7 @@ This event is triggered when the voice guidance rate setting is updated.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rate | double | the changed voice guidance rate. |
+| params.rate | double | The changed voice guidance rate. |
 
 ### Examples
 
@@ -3030,7 +2512,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.requiresMigration | bool |  |
+| result.requiresMigration | bool | Indicates whether the setting requires migration. |
 
 ### Examples
 
@@ -3064,20 +2546,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
     "id": 38,
     "result": {
         "requiresMigration": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 38,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -3136,20 +2604,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
             "requiresMigration": false
         }
     ]
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 39,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 

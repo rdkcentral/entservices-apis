@@ -112,21 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ message: \"Connection stopped\", success: true }"
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ message: \"Backend discovery status updated\", success: true }"
 }
 ```
 
@@ -180,20 +166,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setEnable"></a>
 ## *setEnable*
 
@@ -210,7 +182,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object | Contains the result of the operation, including a message and a success flag |
+| result.result | object | Result of the set enable operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -244,21 +216,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": "{ message: \"Connection stopped\", success: true }"
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ message: \"Backend discovery status updated\", success: true }"
 }
 ```
 
@@ -312,21 +270,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": "{ message: \"Connection stopped\", success: true }"
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ message: \"Backend discovery status updated\", success: true }"
 }
 ```
 
@@ -382,21 +326,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": "{ message: \"Connection stopped\", success: true }"
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ message: \"Backend discovery status updated\", success: true }"
 }
 ```
 
@@ -454,21 +384,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": "{ message: \"Connection stopped\", success: true }"
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ message: \"Backend discovery status updated\", success: true }"
 }
 ```
 
@@ -488,7 +404,7 @@ The following events are provided by the IMiracastService Interface:
 <a id="onClientConnectionError"></a>
 ## *onClientConnectionError*
 
-It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming
+Notifies listeners that the connection to the source streaming device could not be established, providing the failing client's identity along with a reason code and description of the underlying P2P or streaming error.
 
 ### Parameters
 | Name | Type | Description |
@@ -496,8 +412,8 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
 | params | object |  |
 | params.mac | string | MacAddress of the client device |
 | params.name | string | Name of the client device |
-| params.error_code | string |  |
-| params.reason | string | Reason for the connection failure. Possible values: SUCCESS, P2P_CONNECT_FAILURE, P2P_GROUP_NEGOTIATION_FAILURE, P2P_GROUP_FORMATION_FAILURE, GENERIC_FAILURE |
+| params.error_code | string | Error code for the connection failure |
+| params.reason | string | Description of the reason for the connection failure. Possible values: SUCCESS, P2P_CONNECT_FAILURE, P2P_GROUP_NEGOTIATION_FAILURE, P2P_GROUP_FORMATION_FAILURE, GENERIC_FAILURE |
 
 ### Examples
 
@@ -509,7 +425,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
     "params": {
         "mac": "00:11:22:33:44:55",
         "name": "John's iPhone",
-        "error_code": "",
+        "error_code": 1001,
         "reason": "Authentication failed"
     }
 }
@@ -518,7 +434,7 @@ It is triggered when the Miracast Service plugin failed to connect with the sour
 <a id="onClientConnectionRequest"></a>
 ## *onClientConnectionRequest*
 
-Triggered when the Miracast Service plugin receives a new connection request from a client
+Notifies listeners of an incoming Miracast connection request, identifying the requesting client so the application can prompt the user to accept or reject it via acceptClientConnection.
 
 ### Parameters
 | Name | Type | Description |
@@ -544,13 +460,13 @@ Triggered when the Miracast Service plugin receives a new connection request fro
 <a id="onLaunchRequest"></a>
 ## *onLaunchRequest*
 
-Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player
+Triggered when the Miracast Service plugin needs the Resident Application or MiracastWidget to launch the Miracast Player, providing the source and sink device parameters required to start streaming.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.device_parameters | object |  |
+| params.device_parameters | object | Contains Source and Sink Device related properties |
 | params.device_parameters.source_dev_ip | string | IP Address of Source Device |
 | params.device_parameters.source_dev_mac | string | MAC Address of Source Device |
 | params.device_parameters.source_dev_name | string | Name of Source Device |
@@ -563,12 +479,7 @@ Miracast Service Plugin raises this Event to request RA or MiracastWidget to lau
     "jsonrpc": 2.0,
     "id": 8,
     "method": "org.rdk.MiracastService.onLaunchRequest",
-    "params": {
-        "source_dev_ip": "",
-        "source_dev_mac": "",
-        "source_dev_name": "",
-        "sink_dev_ip": ""
-    }
+    "params": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }"
 }
 ```
 

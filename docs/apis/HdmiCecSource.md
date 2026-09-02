@@ -119,20 +119,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getDeviceList"></a>
 ## *getDeviceList*
 
@@ -190,20 +176,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getEnabled"></a>
 ## *getEnabled*
 
@@ -250,20 +222,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "result": {
         "enabled": true,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -318,20 +276,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getOTPEnabled"></a>
 ## *getOTPEnabled*
 
@@ -382,20 +326,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getVendorId"></a>
 ## *getVendorId*
 
@@ -409,7 +339,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.vendorid | string |  |
+| result.vendorid | string | ID of the HDMI CEC source |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -440,22 +370,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "vendorid": "",
+        "vendorid": 123456,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -503,20 +419,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -574,20 +476,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="sendStandbyMessage"></a>
 ## *sendStandbyMessage*
 
@@ -631,20 +519,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -700,20 +574,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setOSDName"></a>
 ## *setOSDName*
 
@@ -763,20 +623,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -832,20 +678,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setVendorId"></a>
 ## *setVendorId*
 
@@ -857,7 +689,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.vendorid | string |  |
+| params.vendorid | string | Vendor ID of the HDMI CEC source |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -875,7 +707,7 @@ None
     "id": 12,
     "method": "org.rdk.HdmiCecSource.setVendorId",
     "params": {
-        "vendorid": ""
+        "vendorid": 123456
     }
 }
 ```
@@ -884,7 +716,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.HdmiCecSource.setVendorId", "params": {"vendorid": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.HdmiCecSource.setVendorId", "params": {"vendorid": 123456}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -895,20 +727,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "jsonrpc": 2.0,
     "id": 12,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -956,7 +774,7 @@ This event is triggered when the active source status changes
 <a id="onDeviceAdded"></a>
 ## *onDeviceAdded*
 
-Notifies when CEC device added to CEC network
+Provides the logical address of the added device when it is added to the CEC network.
 
 ### Parameters
 | Name | Type | Description |
@@ -980,7 +798,7 @@ Notifies when CEC device added to CEC network
 <a id="onDeviceInfoUpdated"></a>
 ## *onDeviceInfoUpdated*
 
-Notifies when CEC device info updated
+Provides the logical address of the updated device when its information is updated.
 
 ### Parameters
 | Name | Type | Description |
@@ -1004,7 +822,7 @@ Notifies when CEC device info updated
 <a id="onDeviceRemoved"></a>
 ## *onDeviceRemoved*
 
-Notifies when CEC device removed from CEC network
+Provides the logical address of the removed device when it is removed from the CEC network.
 
 ### Parameters
 | Name | Type | Description |

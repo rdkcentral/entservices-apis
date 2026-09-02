@@ -128,20 +128,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the content protection status."
-    }
-}
-```
-
 <a id="currentVideoMode"></a>
 ## *currentVideoMode*
 
@@ -192,20 +178,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the active video mode."
-    }
-}
-```
-
 <a id="getARCPortId"></a>
 ## *getARCPortId*
 
@@ -252,20 +224,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "result": {
         "portId": "HDMI0",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the ARC port ID."
     }
 }
 ```
@@ -326,20 +284,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the HDMI ALLM bit in EDID."
-    }
-}
-```
-
 <a id="getEdidVersion"></a>
 ## *getEdidVersion*
 
@@ -392,20 +336,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "result": {
         "edidVersion": "HDMI_VERSION_2.0",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the EDID version profile."
     }
 }
 ```
@@ -468,20 +398,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the designated game feature state."
-    }
-}
-```
-
 <a id="getHdmiVersion"></a>
 ## *getHdmiVersion*
 
@@ -534,20 +450,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "result": {
         "HdmiCapabilityVersion": "HDMI_VERSION_2.1",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the HDMI version."
     }
 }
 ```
@@ -608,20 +510,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve SPD information."
-    }
-}
-```
-
 <a id="getSPD"></a>
 ## *getSPD*
 
@@ -678,20 +566,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve SPD information."
-    }
-}
-```
-
 <a id="getSupportedGameFeatures"></a>
 ## *getSupportedGameFeatures*
 
@@ -743,20 +617,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
             "QFT"
         ],
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve supported game features."
     }
 }
 ```
@@ -817,24 +677,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the VRR frame rate."
-    }
-}
-```
-
 <a id="getVRRSupport"></a>
 ## *getVRRSupport*
 
-Configures the Variable Refresh Rate (VRR) support bit within the EDID structure for the specified HDMI input port.
+Retrieves the Variable Refresh Rate (VRR) support bit within the EDID structure for the specified HDMI input port.
 
 ### Events Triggered
 None
@@ -842,13 +688,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | The ID of the input device to get the VRR |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.vrrSupport | bool | The VRR support bit value |
-| result.success | bool | [Type: Boolean] Whether the request succeeded |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -883,20 +729,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "result": {
         "vrrSupport": true,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the HDMI VRR bit in EDID."
     }
 }
 ```
@@ -947,20 +779,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "result": {
         "numberOfInputs": 4,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -1021,20 +839,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve EDID."
-    }
-}
-```
-
 <a id="setEdid2AllmSupport"></a>
 ## *setEdid2AllmSupport*
 
@@ -1052,7 +856,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1091,20 +895,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "- Failed to update the HDMI ALLM bit in EDID."
-    }
-}
-```
-
 <a id="setEdidVersion"></a>
 ## *setEdidVersion*
 
@@ -1122,7 +912,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1161,20 +951,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "- Failed to update the EDID version profile."
-    }
-}
-```
-
 <a id="setMixerLevels"></a>
 ## *setMixerLevels*
 
@@ -1192,7 +968,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1231,20 +1007,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "- Failed to update the audio mixer levels."
-    }
-}
-```
-
 <a id="setVRRSupport"></a>
 ## *setVRRSupport*
 
@@ -1256,13 +1018,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.portId | string | An ID of an HDMI/Composite Input port as returned by the getInputDevices method |
+| params.portId | string | The ID of the input device to set the VRR |
 | params.vrrSupport | bool | The VRR support bit value to set |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1301,20 +1063,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "- Failed to update the HDMI VRR bit in EDID."
-    }
-}
-```
-
 <a id="setVideoRectangle"></a>
 ## *setVideoRectangle*
 
@@ -1335,7 +1083,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1377,20 +1125,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "- Failed to update video window coordinates."
-    }
-}
-```
-
 <a id="startInput"></a>
 ## *startInput*
 
@@ -1411,7 +1145,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1453,20 +1187,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "- Failed to activate the specified input port."
-    }
-}
-```
-
 <a id="stopInput"></a>
 ## *stopInput*
 
@@ -1483,7 +1203,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1521,20 +1241,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "- Failed to deactivate the specified input port."
-    }
-}
-```
-
 <a id="writeEDID"></a>
 ## *writeEDID*
 
@@ -1552,7 +1258,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Whether the request succeeded |
 
 ### Examples
 
@@ -1591,20 +1297,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "- EDID update failed."
-    }
-}
-```
-
 <a id="IAVInput-Notifications"></a>
 ### Notifications
 
@@ -1631,7 +1323,7 @@ This notification is generated when the HDMI source reports a change in the AVI 
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.id | int | Hdmi Input port ID for which content type change event received and possible values are port id 0, 1 and 2 for three Hdmi Input ports |
-| params.aviContentType | int | new Content type received for the active hdmi input port and the possible integer values indicates following accordingly 0 - Graphics, 1 - Photo, 2 - Cinema, 3 - Game, 4 - Invalid data |
+| params.aviContentType | int | New Content type received for the active hdmi input port and the possible integer values indicates following accordingly 0 - Graphics, 1 - Photo, 2 - Cinema, 3 - Game, 4 - Invalid data |
 
 ### Examples
 
@@ -1650,7 +1342,7 @@ This notification is generated when the HDMI source reports a change in the AVI 
 <a id="gameFeatureStatusUpdate"></a>
 ## *gameFeatureStatusUpdate*
 
-Triggered whenever game feature(ALLM) status changes for an HDMI Input
+This notification is generated when the status of a game feature (such as ALLM) changes for an active HDMI input port.
 
 ### Parameters
 | Name | Type | Description |
@@ -1678,13 +1370,13 @@ Triggered whenever game feature(ALLM) status changes for an HDMI Input
 <a id="onDevicesChanged"></a>
 ## *onDevicesChanged*
 
-Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite Input
+This method is called whenever there is a change in the connected input devices.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.devices | array |  |
+| params.devices | array | An iterator over the list of currently connected input devices |
 | params.devices[#].id | int | id |
 | params.devices[#].locator | string | locator |
 | params.devices[#].connected | bool | connected |
@@ -1699,8 +1391,13 @@ Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite
     "params": [
         {
             "id": 0,
-            "locator": "",
+            "locator": "HDMI0",
             "connected": true
+        },
+        {
+            "id": 1,
+            "locator": "HDMI1",
+            "connected": false
         }
     ]
 }
@@ -1709,7 +1406,7 @@ Triggered whenever a new HDMI/Composite device is connected to an HDMI/Composite
 <a id="onInputStatusChanged"></a>
 ## *onInputStatusChanged*
 
-Triggered whenever the status changes for an HDMI/Composite Input
+This notification is generated whenever the status of an HDMI/Composite Input changes.
 
 ### Parameters
 | Name | Type | Description |
@@ -1729,8 +1426,8 @@ Triggered whenever the status changes for an HDMI/Composite Input
     "method": "org.rdk.AVInput.onInputStatusChanged",
     "params": {
         "id": 0,
-        "locator": "",
-        "status": "",
+        "locator": "HDMI0",
+        "status": "started",
         "plane": 0
     }
 }
@@ -1739,7 +1436,7 @@ Triggered whenever the status changes for an HDMI/Composite Input
 <a id="onSignalChanged"></a>
 ## *onSignalChanged*
 
-Triggered whenever the signal status changes for an HDMI/Composite Input
+This method is called whenever there is a change in the signal status for an HDMI/Composite Input.
 
 ### Parameters
 | Name | Type | Description |
@@ -1758,8 +1455,8 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
     "method": "org.rdk.AVInput.onSignalChanged",
     "params": {
         "id": 0,
-        "locator": "",
-        "signalStatus": ""
+        "locator": "HDMI0",
+        "signalStatus": "stableSignal"
     }
 }
 ```
@@ -1767,7 +1464,7 @@ Triggered whenever the signal status changes for an HDMI/Composite Input
 <a id="videoStreamInfoUpdate"></a>
 ## *videoStreamInfoUpdate*
 
-Triggered whenever there is an update in HDMI/Composite Input video stream info
+This notification is generated whenever there is an update in the video stream information for an active HDMI/Composite Input port.
 
 ### Parameters
 | Name | Type | Description |
@@ -1790,12 +1487,12 @@ Triggered whenever there is an update in HDMI/Composite Input video stream info
     "method": "org.rdk.AVInput.videoStreamInfoUpdate",
     "params": {
         "id": 0,
-        "locator": "",
-        "width": 0,
-        "height": 0,
+        "locator": "HDMI0",
+        "width": 1920,
+        "height": 1080,
         "progressive": true,
-        "frameRateN": 0,
-        "frameRateD": 0
+        "frameRateN": 60000,
+        "frameRateD": 1001
     }
 }
 ```

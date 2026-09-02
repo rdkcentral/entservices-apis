@@ -65,7 +65,7 @@ The following methods are provided by the IFrontPanel Interface:
 <a id="getBrightness"></a>
 ## *getBrightness*
 
-Gets the status of the Front Panel
+Provides the current active brightness state or percentage value configured for the device display panel.
 
 ### Events Triggered
 None
@@ -118,24 +118,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getFrontPanelLights"></a>
 ## *getFrontPanelLights*
 
-Gets the front panel lights
+Provides a list or status bitmask of the active illumination nodes present on the physical display facade of the device.
 
 ### Events Triggered
 None
@@ -188,24 +174,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="powerLedOff"></a>
 ## *powerLedOff*
 
-Switches the specified LED off
+Cuts power or disables illumination for the specified light source on the device facade using its identifier.
 
 ### Events Triggered
 None
@@ -254,24 +226,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="powerLedOn"></a>
 ## *powerLedOn*
 
-Switches the specified LED on
+Applies power or enables illumination for the specified light source on the device facade using its identifier.
 
 ### Events Triggered
 None
@@ -317,20 +275,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -399,24 +343,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setBrightness"></a>
 ## *setBrightness*
 
-Sets the brightness of the specified LED
+Adjusts the intensity of the light source corresponding to the provided index using a percentage or discrete scale value.
 
 ### Events Triggered
 None
@@ -467,24 +397,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setLED"></a>
 ## *setLED*
 
-Sets the LED with the specified color and brightness
+Configures the specified LED on the device facade with the provided color and brightness settings.
 
 ### Events Triggered
 None
@@ -540,20 +456,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 

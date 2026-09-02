@@ -77,8 +77,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.framerate | string | string |
-| result.success | bool | boolean |
+| result.framerate | string | The current display frame rate. |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -114,20 +114,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getFrmMode"></a>
 ## *getFrmMode*
 
@@ -141,8 +127,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.auto-frm-mode | int |  |
-| result.success | bool | boolean |
+| result.auto-frm-mode | int | The current auto framerate mode. |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -172,22 +158,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "auto-frm-mode": 0,
+        "auto-frm-mode": 1,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -203,12 +175,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frequency | int | int |
+| params.frequency | int | The interval, in milliseconds, at which FPS data should be collected. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -246,20 +218,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setDisplayFrameRate"></a>
 ## *setDisplayFrameRate*
 
@@ -271,12 +229,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.framerate | string | string |
+| params.framerate | string | The display frame rate to be set. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -314,20 +272,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setFrmMode"></a>
 ## *setFrmMode*
 
@@ -339,12 +283,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.frmmode | int | int |
+| params.frmmode | int | The auto framerate mode to be set. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -382,20 +326,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="startFpsCollection"></a>
 ## *startFpsCollection*
 
@@ -409,7 +339,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -444,20 +374,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="stopFpsCollection"></a>
 ## *stopFpsCollection*
 
@@ -471,7 +387,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -506,20 +422,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="updateFps"></a>
 ## *updateFps*
 
@@ -531,12 +433,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.newFpsValue | int | int |
+| params.newFpsValue | int | The new FPS value to be set. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -574,20 +476,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="IFrameRate-Notifications"></a>
 ### Notifications
 
@@ -610,7 +498,7 @@ This event is triggered after a display framerate transition is completed and th
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string | string |
+| params.displayFrameRate | string | The new display frame rate that has been applied. |
 
 ### Examples
 
@@ -634,7 +522,7 @@ This notification is raised when a display frame rate change has started and bef
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.displayFrameRate | string | string |
+| params.displayFrameRate | string | The display frame rate that is about to be applied. |
 
 ### Examples
 
@@ -652,15 +540,15 @@ This notification is raised when a display frame rate change has started and bef
 <a id="onFpsEvent"></a>
 ## *onFpsEvent*
 
-Triggered by callback from FrameRate after onFpsEvent
+Provides the average, minimum, and maximum frame rates observed during the current measurement interval.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.average | int | int |
-| params.min | int | int |
-| params.max | int | int |
+| params.average | int | Average frame rate observed during the current measurement interval. |
+| params.min | int | Minimum frame rate observed during the current measurement interval. |
+| params.max | int | Maximum frame rate observed during the current measurement interval. |
 
 ### Examples
 

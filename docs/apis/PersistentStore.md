@@ -90,9 +90,9 @@ None
     "id": 0,
     "method": "org.rdk.PersistentStore.deleteKey",
     "params": {
-        "scope": "- DEVICE",
-        "namespace": "- \"application",
-        "key": "- \"language"
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -101,7 +101,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -112,20 +112,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Failed to delete the key."
-    }
 }
 ```
 
@@ -158,8 +144,8 @@ None
     "id": 1,
     "method": "org.rdk.PersistentStore.deleteNamespace",
     "params": {
-        "scope": "- DEVICE",
-        "namespace": "- \"application"
+        "scope": "DEVICE",
+        "namespace": "application"
     }
 }
 ```
@@ -168,7 +154,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "- DEVICE", "namespace": "- \"application"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "DEVICE", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -179,20 +165,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "- Failed to delete the namespace."
-    }
 }
 ```
 
@@ -228,9 +200,9 @@ None
     "id": 2,
     "method": "org.rdk.PersistentStore.getValue",
     "params": {
-        "scope": "- DEVICE",
-        "namespace": "- \"application",
-        "key": "- \"language"
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -239,7 +211,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -250,22 +222,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "value": "- \"en-US",
-        "ttl": "- 3580"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the value."
+        "value": "en-US",
+        "ttl": 3580
     }
 }
 ```
@@ -302,11 +260,11 @@ None
     "id": 3,
     "method": "org.rdk.PersistentStore.setValue",
     "params": {
-        "scope": "- DEVICE",
-        "namespace": "- \"application",
-        "key": "- \"language",
-        "value": "- \"en-US",
-        "ttl": "- 3580"
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US",
+        "ttl": 3580
     }
 }
 ```
@@ -315,7 +273,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "- DEVICE", "namespace": "- \"application", "key": "- \"language", "value": "- \"en-US", "ttl": "- 3580"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language", "value": "en-US", "ttl": 3580}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -326,20 +284,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Failed to store the value."
-    }
 }
 ```
 
@@ -376,10 +320,10 @@ The following events are provided by the IStore2 Interface:
     "id": 4,
     "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
-        "scope": "- DEVICE",
-        "namespace": "- \"application",
-        "key": "- \"language",
-        "value": "- \"en-US"
+        "scope": "DEVICE",
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US"
     }
 }
 ```

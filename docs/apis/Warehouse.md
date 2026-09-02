@@ -71,7 +71,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.passPhrase | string | string |
+| params.passPhrase | string | String containing the passphrase required for the internal reset operation. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -91,7 +91,7 @@ None
     "id": 0,
     "method": "org.rdk.Warehouse.internalReset",
     "params": {
-        "passPhrase": "- \"mySecretPassphrase"
+        "passPhrase": "mySecretPassphrase"
     }
 }
 ```
@@ -100,7 +100,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": "- \"mySecretPassphrase"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Warehouse.internalReset", "params": {"passPhrase": "mySecretPassphrase"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -111,22 +111,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "success": false,
+        "success": true,
         "error": "Unsupported reset type"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Internal reset operation failed."
     }
 }
 ```
@@ -142,16 +128,16 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.age | int | integer |
+| params.age | int | Integer specifying the age threshold for checking files. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clean | bool | boolean |
-| result.files | array | string [] of file locations for each file |
+| result.clean | bool | Boolean indicating whether the device is clean. |
+| result.files | array | Array of strings containing the file locations for each file. |
 | result.files[#] | string |  |
-| result.success | bool | boolean |
-| result.error | string | -out - string |
+| result.success | bool | Boolean indicating whether the clean check operation was successful. |
+| result.error | string | The error message if the clean check operation failed. Empty if the operation was successful. |
 
 ### Examples
 
@@ -164,7 +150,7 @@ None
     "id": 1,
     "method": "org.rdk.Warehouse.isClean",
     "params": {
-        "age": "- 30"
+        "age": 30
     }
 }
 ```
@@ -173,7 +159,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": "- 30"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Warehouse.isClean", "params": {"age": 30}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -184,26 +170,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "clean": "- true",
+        "clean": true,
         "files": [
-            "- [\"/opt/persistentStore/application/language\",\"/opt/persistentStore/network/region\"]"
+            "/opt/persistentStore/application/language",
+            "/opt/persistentStore/network/region"
         ],
-        "success": "- true",
-        "error": "- "
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "- Clean check operation failed."
+        "success": true,
+        "error": ""
     }
 }
 ```
@@ -253,22 +226,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "success": false,
+        "success": true,
         "error": "Unsupported reset type"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Light reset operation failed."
     }
 }
 ```
@@ -284,8 +243,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.suppressReboot | bool | bool |
-| params.resetType | string | string |
+| params.suppressReboot | bool | Boolean indicating whether to suppress the device reboot after the reset operation. |
+| params.resetType | string | String specifying the type of reset to perform. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -305,8 +264,8 @@ None
     "id": 3,
     "method": "org.rdk.Warehouse.resetDevice",
     "params": {
-        "suppressReboot": "- true",
-        "resetType": "- \"factory"
+        "suppressReboot": true,
+        "resetType": "factory"
     }
 }
 ```
@@ -315,7 +274,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": "- true", "resetType": "- \"factory"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.Warehouse.resetDevice", "params": {"suppressReboot": true, "resetType": "factory"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -326,22 +285,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "success": false,
+        "success": true,
         "error": "Unsupported reset type"
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Reset device operation failed."
     }
 }
 ```
@@ -360,14 +305,14 @@ The following events are provided by the IWarehouse Interface:
 <a id="resetDone"></a>
 ## *resetDone*
 
-Notifies subscribers about the status of the warehouse reset operation
+This event is triggered when the warehouse reset operation is completed, providing the success status and any error message if applicable.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.success | bool | boolean |
-| params.error | string | string |
+| params.success | bool | Boolean indicating whether the reset operation was successful. |
+| params.error | string | The error message if the reset operation failed. Empty if the operation was successful. |
 
 ### Examples
 
@@ -377,8 +322,8 @@ Notifies subscribers about the status of the warehouse reset operation
     "id": 4,
     "method": "org.rdk.Warehouse.resetDone",
     "params": {
-        "success": "- true",
-        "error": "- "
+        "success": true,
+        "error": ""
     }
 }
 ```

@@ -88,7 +88,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the play request operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -104,12 +104,7 @@ None
     "method": "org.rdk.MiracastPlayer.playRequest",
     "params": {
         "device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }",
-        "video_rectangle": {
-            "X": 0,
-            "Y": 0,
-            "W": 0,
-            "H": 0
-        }
+        "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"
     }
 }
 ```
@@ -118,7 +113,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }", "video_rectangle": {"X": 0, "Y": 0, "W": 0, "H": 0}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }", "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -128,24 +123,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -167,7 +145,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set environment arguments operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -201,24 +179,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -241,7 +202,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set video rectangle operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -278,24 +239,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -317,7 +261,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set westeros environment operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -351,24 +295,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -390,7 +317,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the stop request |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -426,24 +353,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -460,7 +370,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the unset environment arguments operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -491,24 +401,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -525,7 +418,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the unset westeros environment operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -556,24 +449,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "message": "",
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -601,7 +477,7 @@ Triggered whenever the Miracast player changes state. The event provides the sou
 | params.mac | string | MacAddress of the client device |
 | params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).). Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED, PAUSED |
 | params.reason_code | string | Reason code for the player state update |
-| params.reason | string | reason code Decription. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
+| params.reason | string | Reason for the player state update. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
 
 ### Examples
 
@@ -615,7 +491,7 @@ Triggered whenever the Miracast player changes state. The event provides the sou
         "mac": "00:1A:2B:3C:4D:5E",
         "state": "STATE_PLAYING",
         "reason_code": 200,
-        "reason": "SUCCESS"
+        "reason": "REASON_CODE_SUCCESS"
     }
 }
 ```

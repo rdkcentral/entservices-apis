@@ -83,7 +83,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | true for enabled or false for disabled |
+| result.enabled | bool | True for enabled or false for disabled |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -116,20 +116,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "result": {
         "enabled": true,
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve XCAST service enabled/disabled"
     }
 }
 ```
@@ -178,22 +164,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "friendlyname": "",
+        "friendlyname": "Living Room TV",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -211,7 +183,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.manufacturer | string | The Manufacturer name of the device which used to update in dd.xml |
+| result.manufacturer | string | The Manufacturer name of the device which is currently stored in dd.xml |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -248,20 +220,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the manufacturer name."
-    }
-}
-```
-
 <a id="getModelName"></a>
 ## *getModelName*
 
@@ -275,7 +233,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.model | string | The Model name of the device which used to update in dd.xml |
+| result.model | string | The Model name of the device which is used to update in dd.xml |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -308,20 +266,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "result": {
         "model": "MyModel",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the model name."
     }
 }
 ```
@@ -376,20 +320,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "- Failed to retrieve the protocol version."
-    }
-}
-```
-
 <a id="getStandbyBehavior"></a>
 ## *getStandbyBehavior*
 
@@ -403,7 +333,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.standbybehavior | string | whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
+| result.standbybehavior | string | Whether to remain active or inactive during standby mode (must be one of the following: active, inactive). Possible values: active, inactive |
 | result.success | bool | Whether the request succeeded |
 
 ### Examples
@@ -440,20 +370,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="registerApplications"></a>
 ## *registerApplications*
 
@@ -465,7 +381,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.applications | array | Json array with one or more application details to register |
+| params.applications | array | Iterator over the list of application information objects to register |
 | params.applications[#].name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
 | params.applications[#].prefix | string | If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail |
 | params.applications[#].cors | string | origin allowed for the application. This must not be empty |
@@ -489,14 +405,7 @@ None
     "id": 6,
     "method": "org.rdk.XCast.registerApplications",
     "params": [
-        {
-            "appName": "YouTube",
-            "prefixes": "yt",
-            "cors": "*",
-            "query": "autoplay=true",
-            "payload": "videoId=abcd1234",
-            "allowStop": true
-        }
+        "[appInfo1, appInfo2, ...]"
     ]
 }
 ```
@@ -505,7 +414,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"appName": "YouTube", "prefixes": "yt", "cors": "*", "query": "autoplay=true", "payload": "videoId=abcd1234", "allowStop": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": ["[appInfo1, appInfo2, ...]"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -516,20 +425,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -591,20 +486,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "- Application state change notification processing failed."
-    }
-}
-```
-
 <a id="setEnabled"></a>
 ## *setEnabled*
 
@@ -616,7 +497,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | true for enabled or false for disabled |
+| params.enabled | bool | True for enabled or false for disabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -657,20 +538,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "- Failed to enable/disable XCAST service."
-    }
-}
-```
-
 <a id="setFriendlyName"></a>
 ## *setFriendlyName*
 
@@ -700,7 +567,7 @@ None
     "id": 9,
     "method": "org.rdk.XCast.setFriendlyName",
     "params": {
-        "friendlyname": ""
+        "friendlyname": "Living Room TV"
     }
 }
 ```
@@ -709,7 +576,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.XCast.setFriendlyName", "params": {"friendlyname": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.XCast.setFriendlyName", "params": {"friendlyname": "Living Room TV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -720,20 +587,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "jsonrpc": 2.0,
     "id": 9,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -789,20 +642,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "- Failed to set the manufacturer name."
-    }
-}
-```
-
 <a id="setModelName"></a>
 ## *setModelName*
 
@@ -814,7 +653,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.model | string | The Model name of the device which used to update in dd.xml |
+| params.model | string | The Model name of the device which is currently stored in dd.xml |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -852,20 +691,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "- Failed to set the model name."
-    }
 }
 ```
 
@@ -921,20 +746,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="unregisterApplications"></a>
 ## *unregisterApplications*
 
@@ -986,20 +797,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     "jsonrpc": 2.0,
     "id": 13,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 

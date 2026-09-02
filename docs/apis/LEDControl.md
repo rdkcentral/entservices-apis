@@ -106,20 +106,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getSupportedLEDStates"></a>
 ## *getSupportedLEDStates*
 
@@ -135,7 +121,7 @@ This method takes no parameters.
 | result | object |  |
 | result.supportedLEDStates | array | string [] of supported LED states.  |
 | result.supportedLEDStates[#] | string |  |
-| result.success | bool | boolean |
+| result.success | bool | boolean indicating whether the operation was successful |
 
 ### Examples
 
@@ -173,20 +159,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setLEDState"></a>
 ## *setLEDState*
 
@@ -203,7 +175,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Boolean indicating whether the operation was successful |
 
 ### Examples
 
@@ -237,20 +209,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```

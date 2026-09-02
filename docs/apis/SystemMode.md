@@ -54,10 +54,10 @@ The following methods are provided by the ISystemMode Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clientActivated](#clientActivated) | To put client plugin entry in map. |
-| [clientDeactivated](#clientDeactivated) | To put client plugin entry in map. |
+| [clientActivated](#clientActivated) | Records the activation of a client plugin for a specific system mode. |
+| [clientDeactivated](#clientDeactivated) | Records the deactivation of a client plugin for a specific system mode. |
 | [getState](#getState) | Gets the current state for a given system property |
-| [requestState](#requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
+| [requestState](#requestState) | Requests a new system mode state in the device. Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
 
 <a id="clientActivated"></a>
 ## *clientActivated*
@@ -70,8 +70,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | callsign of client. |
-| params.systemMode | string | The system mode. |
+| params.callsign | string | The callsign of the client plugin being activated. |
+| params.systemMode | string | The system mode for which the client plugin is being activated. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -123,8 +123,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | callsign of client. |
-| params.systemMode | string | The system mode. |
+| params.callsign | string | The callsign of the client plugin being deactivated. |
+| params.systemMode | string | The system mode for which the client plugin is being deactivated. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -176,12 +176,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode to get the state of. Possible values: device_optimize |
+| params.systemMode | string | Indicates the system mode whose current state is being queried. Possible values: device_optimize |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | state. Possible values: video, game |
+| result.state | string | The current state of the specified system mode. Possible values: video, game |
 
 ### Examples
 
@@ -214,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "state": "video"
+        "state": "VIDEO"
     }
 }
 ```
@@ -230,8 +230,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode. Possible values: device_optimize |
-| params.state | string | The requested state. Possible values: video, game |
+| params.systemMode | string | Indicates the system mode for which the state is being requested. Possible values: device_optimize |
+| params.state | string | Indicates the requested state. Possible values: video, game |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

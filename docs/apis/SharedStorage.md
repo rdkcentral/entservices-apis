@@ -87,7 +87,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -125,20 +125,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="deleteNamespace"></a>
 ## *deleteNamespace*
 
@@ -156,7 +142,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -193,20 +179,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getValue"></a>
 ## *getValue*
 
@@ -227,7 +199,7 @@ None
 | result | object |  |
 | result.value | string | value out |
 | result.ttl | integer | time to live (optional) |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -269,20 +241,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setValue"></a>
 ## *setValue*
 
@@ -303,7 +261,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -340,20 +298,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": true
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
 }
 ```
 
@@ -417,7 +361,7 @@ The following methods are provided by the ISharedStorageInspector Interface:
 <a id="getKeys"></a>
 ## *getKeys*
 
-Returns the keys that are stored in the specified namespace.
+Retrieves the list of all keys currently stored within the specified namespace and scope.
 
 ### Events Triggered
 None
@@ -433,7 +377,7 @@ None
 | result | object |  |
 | result.keys | array | keys list |
 | result.keys[#] | string |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -476,20 +420,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getNamespaces"></a>
 ## *getNamespaces*
 
@@ -508,7 +438,7 @@ None
 | result | object |  |
 | result.namespaces | array | namespaces list |
 | result.namespaces[#] | string |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -550,20 +480,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="getStorageSizes"></a>
 ## *getStorageSizes*
 
@@ -583,7 +499,7 @@ None
 | result.storageList | array | list of namespaces and their sizes |
 | result.storageList[#].ns | string |  |
 | result.storageList[#].size | integer |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -623,20 +539,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
             }
         ],
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -710,20 +612,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
-    }
-}
-```
-
 <a id="setNamespaceStorageLimit"></a>
 ## *setNamespaceStorageLimit*
 
@@ -742,7 +630,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -778,20 +666,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "id": 9,
     "result": {
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "Indicates failure"
     }
 }
 ```
@@ -852,20 +726,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": null
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "- Failed to flush the cache."
-    }
 }
 ```
 

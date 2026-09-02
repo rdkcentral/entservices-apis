@@ -65,7 +65,7 @@ The following methods are provided by the IHdmiCecSink Interface:
 | [printDeviceList](#printDeviceList) | This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices |
 | [requestActiveSource](#requestActiveSource) | Request the active source in the network |
 | [requestAudioDevicePowerStatus](#requestAudioDevicePowerStatus) | Requests the audio device power status. |
-| [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an |
+| [requestShortAudioDescriptor](#requestShortAudioDescriptor) | Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device. |
 | [sendAudioDevicePowerOnMessage](#sendAudioDevicePowerOnMessage) | This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network. |
 | [sendGetAudioStatusMessage](#sendGetAudioStatusMessage) | Sends the CEC <Give Audio Status> message to request the audio status. |
 | [sendKeyPressEvent](#sendKeyPressEvent) | Sends the CEC <User Control Pressed> message when TV remote key is pressed. |
@@ -85,7 +85,7 @@ The following methods are provided by the IHdmiCecSink Interface:
 <a id="getActiveRoute"></a>
 ## *getActiveRoute*
 
-Gets the Active Route(s) of the HDMI CEC Sink
+Provides the routing path from the active source device through any intermediate CEC devices to the HDMI CEC sink.
 
 ### Events Triggered
 None
@@ -145,24 +145,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 0,
-    "error": {
-        "code": 1,
-        "message": "The active HDMI-CEC route could not be retrieved."
-    }
-}
-```
-
 <a id="getActiveSource"></a>
 ## *getActiveSource*
 
-Gets the status of the current active source
+Provides detailed information about the current active source device in the HDMI-CEC network, including its address, type, and power state.
 
 ### Events Triggered
 None
@@ -225,20 +211,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 1,
-    "error": {
-        "code": 1,
-        "message": "The active source could not be retrieved."
-    }
-}
-```
-
 <a id="getAudioDeviceConnectedStatus"></a>
 ## *getAudioDeviceConnectedStatus*
 
@@ -289,24 +261,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 2,
-    "error": {
-        "code": 1,
-        "message": "The audio device connected status could not be retrieved."
-    }
-}
-```
-
 <a id="getDeviceList"></a>
 ## *getDeviceList*
 
-Gets the list of devices connected to the HDMI CEC sink
+Provides detailed information about all devices currently connected to the HDMI CEC sink.
 
 ### Events Triggered
 None
@@ -365,24 +323,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 3,
-    "error": {
-        "code": 1,
-        "message": "The device list could not be retrieved."
-    }
-}
-```
-
 <a id="getEnabled"></a>
 ## *getEnabled*
 
-Gets the status of the HDMI CEC Sink
+Provides the current enabled status of the HDMI CEC Sink.
 
 ### Events Triggered
 None
@@ -429,24 +373,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 4,
-    "error": {
-        "code": 1,
-        "message": "The HDMI CEC Sink status could not be retrieved."
-    }
-}
-```
-
 <a id="getOSDName"></a>
 ## *getOSDName*
 
-Gets the OSD name of the HDMI CEC Sink
+Provides the current OSD name of the HDMI CEC Sink.
 
 ### Events Triggered
 None
@@ -487,22 +417,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "name": "TV",
+        "name": "My TV",
         "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 5,
-    "error": {
-        "code": 1,
-        "message": "The OSD name could not be retrieved."
     }
 }
 ```
@@ -510,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="getVendorId"></a>
 ## *getVendorId*
 
-Gets the vendor ID of the HDMI CEC Sink
+Provides the current vendor ID of the HDMI CEC Sink.
 
 ### Events Triggered
 None
@@ -557,24 +473,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 6,
-    "error": {
-        "code": 1,
-        "message": "The vendor ID could not be retrieved."
-    }
-}
-```
-
 <a id="printDeviceList"></a>
 ## *printDeviceList*
 
-This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices
+This is a helper debug command for developers. It provides a detailed printout of the list of connected devices and their properties.
 
 ### Events Triggered
 None
@@ -621,24 +523,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 }
 ```
 
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 7,
-    "error": {
-        "code": 1,
-        "message": "The device list could not be printed."
-    }
-}
-```
-
 <a id="requestActiveSource"></a>
 ## *requestActiveSource*
 
-Request the active source in the network
+Requests the current active source in the HDMI CEC network.
 
 ### Events Triggered
 None
@@ -677,30 +565,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 8,
-    "error": {
-        "code": 1,
-        "message": "The active source could not be requested."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="requestAudioDevicePowerStatus"></a>
 ## *requestAudioDevicePowerStatus*
 
-Requests the audio device power status.
+Sends a request to retrieve the current power status of the connected audio device.The response is expected to provide information about whether the audio device is powered on, powered off, or in a standby state.
 
 ### Events Triggered
 None
@@ -739,30 +611,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 9,
-    "error": {
-        "code": 1,
-        "message": "The audio device power status could not be requested."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="requestShortAudioDescriptor"></a>
 ## *requestShortAudioDescriptor*
 
-Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device.
+Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device to obtain its supported audio formats.
 
 ### Events Triggered
 None
@@ -801,30 +657,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 10,
-    "error": {
-        "code": 1,
-        "message": "The SAD request could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendAudioDevicePowerOnMessage"></a>
 ## *sendAudioDevicePowerOnMessage*
 
-This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
+Sends a CEC <Image View On>/<Text View On> message to power on the connected audio device, typically triggered when the TV exits standby and detects an audio device on the network.
 
 ### Events Triggered
 None
@@ -863,30 +703,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 11,
-    "error": {
-        "code": 1,
-        "message": "The audio device power on message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendGetAudioStatusMessage"></a>
 ## *sendGetAudioStatusMessage*
 
-Sends the CEC <Give Audio Status> message to request the audio status.
+Sends a <Give Audio Status> HDMI-CEC message to the connected audio device to query its current mute status and volume level. The response is delivered via the reportAudioStatusEvent notification.
 
 ### Events Triggered
 None
@@ -925,30 +749,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 12,
-    "error": {
-        "code": 1,
-        "message": "The audio status request message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendKeyPressEvent"></a>
 ## *sendKeyPressEvent*
 
-Sends the CEC <User Control Pressed> message when TV remote key is pressed.
+Notifies the connected CEC device of a remote key press event by sending a <User Control Pressed> HDMI-CEC message identifying the pressed key.
 
 ### Events Triggered
 None
@@ -995,30 +803,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 13,
-    "error": {
-        "code": 1,
-        "message": "The key press event message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendStandbyMessage"></a>
 ## *sendStandbyMessage*
 
-Sends the CEC <Standby> message to another CEC device
+Broadcasts a <Standby> HDMI-CEC command to the connected CEC network, requesting other CEC-enabled devices to enter standby mode.
 
 ### Events Triggered
 None
@@ -1057,30 +849,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 {
     "jsonrpc": 2.0,
     "id": 14,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 14,
-    "error": {
-        "code": 1,
-        "message": "The standby message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendUserControlPressed"></a>
 ## *sendUserControlPressed*
 
-Sends the CEC <User Control Pressed> message when TV remote key is pressed.
+Notifies the connected CEC device of a remote key press by sending a <User Control Pressed> HDMI-CEC message identifying the pressed key.
 
 ### Events Triggered
 None
@@ -1127,30 +903,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 15,
-    "error": {
-        "code": 1,
-        "message": "The user control pressed message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="sendUserControlReleased"></a>
 ## *sendUserControlReleased*
 
-Sends the CEC <User Control Released> message when TV remote key is released.
+Notifies the connected CEC device that a previously pressed remote key has been released, by sending a <User Control Released> HDMI-CEC message.
 
 ### Events Triggered
 None
@@ -1195,30 +955,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 16,
-    "error": {
-        "code": 1,
-        "message": "The user control released message could not be sent."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setActivePath"></a>
 ## *setActivePath*
 
-Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state.
+Sends a <Set Stream Path> command to make the specified source device the active source. If the target source device is in standby mode, it is requested to wake up and become the active source for audio/video playback.
 
 ### Events Triggered
 None
@@ -1263,30 +1007,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 17,
-    "error": {
-        "code": 1,
-        "message": "The active path could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setActiveSource"></a>
 ## *setActiveSource*
 
-Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
+Marks the TV as the active source with the physical address `0.0.0.0`. This method should be invoked when the TV switches to an internal source, such as the built-in tuner or an application, ensuring that connected HDMI-CEC devices are notified of the active source change.
 
 ### Events Triggered
 None
@@ -1325,30 +1053,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 18,
-    "error": {
-        "code": 1,
-        "message": "The active source could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setEnabled"></a>
 ## *setEnabled*
 
-Sets the status of the HDMI CEC Sink
+Updates the operational status of the HDMI CEC sink. When enabled, the sink can participate in HDMI-CEC communication and respond to CEC commands. When disabled, HDMI-CEC functionality for the sink is turned off.
 
 ### Events Triggered
 None
@@ -1393,30 +1105,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 {
     "jsonrpc": 2.0,
     "id": 19,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 19,
-    "error": {
-        "code": 1,
-        "message": "The HDMI CEC Sink status could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setLatencyInfo"></a>
 ## *setLatencyInfo*
 
-Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
+Sends a <Report Current Latency> message containing the current latency values used by the Dynamic Auto LipSync feature. The reported information includes video latency, latency flags, audio output compensated value, and audio output delay.
 
 ### Events Triggered
 None
@@ -1467,30 +1163,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 {
     "jsonrpc": 2.0,
     "id": 20,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 20,
-    "error": {
-        "code": 1,
-        "message": "The latency info could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setMenuLanguage"></a>
 ## *setMenuLanguage*
 
-Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
+Updates the internal data structure with the specified menu language and broadcasts a <Set Menu Language> HDMI-CEC message to notify connected HDMI-CEC devices of the language change.
 
 ### Events Triggered
 None
@@ -1535,30 +1215,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 {
     "jsonrpc": 2.0,
     "id": 21,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 21,
-    "error": {
-        "code": 1,
-        "message": "The menu language could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setOSDName"></a>
 ## *setOSDName*
 
-Sets the OSD name of the HDMI CEC Sink
+Configures the OSD name of the connected HDMI CEC sink. The OSD name is used to identify the device and may be displayed by other HDMI CEC devices during device discovery and source selection.
 
 ### Events Triggered
 None
@@ -1584,7 +1248,7 @@ None
     "id": 22,
     "method": "org.rdk.HdmiCecSink.setOSDName",
     "params": {
-        "name": "TV"
+        "name": "My TV"
     }
 }
 ```
@@ -1593,7 +1257,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": "TV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.HdmiCecSink.setOSDName", "params": {"name": "My TV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1603,30 +1267,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 {
     "jsonrpc": 2.0,
     "id": 22,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 22,
-    "error": {
-        "code": 1,
-        "message": "The OSD name could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setRoutingChange"></a>
 ## *setRoutingChange*
 
-Changes routing while switching between HDMI inputs and TV.
+This method is used to notify the HDMI CEC Sink about a routing change between HDMI inputs and the TV.
 
 ### Events Triggered
 None
@@ -1673,30 +1321,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 {
     "jsonrpc": 2.0,
     "id": 23,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 23,
-    "error": {
-        "code": 1,
-        "message": "The routing change could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setVendorId"></a>
 ## *setVendorId*
 
-Sets the vendor ID of the HDMI CEC Sink
+Configures the Vendor ID of the connected HDMI CEC sink. The Vendor ID is used to identify the manufacturer of the HDMI CEC device during CEC communication.
 
 ### Events Triggered
 None
@@ -1741,30 +1373,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 {
     "jsonrpc": 2.0,
     "id": 24,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 24,
-    "error": {
-        "code": 1,
-        "message": "The vendor ID could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setupARCRouting"></a>
 ## *setupARCRouting*
 
-Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
+Configures HDMI-CEC Audio Return Channel (ARC) routing between connected devices. When ARC routing is enabled, an `arcInitiationEvent` is triggered. When ARC routing is disabled, an `arcTerminationEvent` is triggered.
 
 ### Events Triggered
 None
@@ -1809,23 +1425,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 {
     "jsonrpc": 2.0,
     "id": 25,
-    "result": {
-        "success": true
-    }
-}
-```
-
-
-#### Error Response (Core::ERROR_GENERAL)
-
-```json
-{
-    "jsonrpc": 2.0,
-    "id": 25,
-    "error": {
-        "code": 1,
-        "message": "The HDMI-CEC ARC routing could not be set."
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -1862,7 +1462,7 @@ The following events are provided by the IHdmiCecSink Interface:
 <a id="arcInitiationEvent"></a>
 ## *arcInitiationEvent*
 
-Triggered when routing though the HDMI ARC port is successfully established.
+This event is generated when ARC routing through the HDMI ARC port has been successfully initiated and the ARC connection is active. It notifies clients that audio can be routed through the ARC channel.
 
 ### Parameters
 | Name | Type | Description |
@@ -1886,7 +1486,7 @@ Triggered when routing though the HDMI ARC port is successfully established.
 <a id="arcTerminationEvent"></a>
 ## *arcTerminationEvent*
 
-Triggered when routing though the HDMI ARC port terminates.
+This event is generated when ARC routing through the HDMI ARC port has been terminated and the ARC connection is no longer active. It notifies clients that audio can no longer be routed through the ARC channel.
 
 ### Parameters
 | Name | Type | Description |
@@ -1910,7 +1510,7 @@ Triggered when routing though the HDMI ARC port terminates.
 <a id="onActiveSourceChange"></a>
 ## *onActiveSourceChange*
 
-Triggered when the active source device changes.
+Provides the logical and physical addresses of the new active source device.
 
 ### Parameters
 | Name | Type | Description |
@@ -1936,7 +1536,7 @@ Triggered when the active source device changes.
 <a id="onDeviceAdded"></a>
 ## *onDeviceAdded*
 
-Triggered when a new device is added to the CEC network.
+Provides the logical address of the newly added device in the CEC network.
 
 ### Parameters
 | Name | Type | Description |
@@ -1960,7 +1560,7 @@ Triggered when a new device is added to the CEC network.
 <a id="onDeviceInfoUpdated"></a>
 ## *onDeviceInfoUpdated*
 
-Triggered when device information changes.
+Provides the logical address of the device whose information has been updated.
 
 ### Parameters
 | Name | Type | Description |
@@ -1984,7 +1584,7 @@ Triggered when device information changes.
 <a id="onDeviceRemoved"></a>
 ## *onDeviceRemoved*
 
-Triggered when a device is removed from the CEC network.
+Provides the logical address of the device that has been removed from the CEC network.
 
 ### Parameters
 | Name | Type | Description |
@@ -2008,7 +1608,7 @@ Triggered when a device is removed from the CEC network.
 <a id="onImageViewOnMsg"></a>
 ## *onImageViewOnMsg*
 
-Triggered when an <Image View ON> CEC message is received from the source device.
+Provides the logical address of the source device that sent the <Image View ON> CEC message.
 
 ### Parameters
 | Name | Type | Description |
@@ -2032,7 +1632,7 @@ Triggered when an <Image View ON> CEC message is received from the source device
 <a id="onInActiveSource"></a>
 ## *onInActiveSource*
 
-Triggered when the source is no longer active.
+Provides the logical and physical addresses of the source device that is no longer active.
 
 ### Parameters
 | Name | Type | Description |
@@ -2058,7 +1658,7 @@ Triggered when the source is no longer active.
 <a id="onKeyPressEvent"></a>
 ## *onKeyPressEvent*
 
-Notifies when a key press CEC message is received from other CEC device
+Provides the logical address and key code of the device when a key press CEC message is received from other CEC device.
 
 ### Parameters
 | Name | Type | Description |
@@ -2084,7 +1684,7 @@ Notifies when a key press CEC message is received from other CEC device
 <a id="onKeyReleaseEvent"></a>
 ## *onKeyReleaseEvent*
 
-Notifies when a key release CEC message is received from other CEC device
+Provides the logical address of the device when a key release CEC message is received from other CEC device.
 
 ### Parameters
 | Name | Type | Description |
@@ -2108,7 +1708,7 @@ Notifies when a key release CEC message is received from other CEC device
 <a id="onTextViewOnMsg"></a>
 ## *onTextViewOnMsg*
 
-Triggered when a <Text View ON> CEC message is received from the source device.
+Provides the logical address of the source device that sent the <Text View ON> CEC message.
 
 ### Parameters
 | Name | Type | Description |
@@ -2132,7 +1732,7 @@ Triggered when a <Text View ON> CEC message is received from the source device.
 <a id="onWakeupFromStandby"></a>
 ## *onWakeupFromStandby*
 
-Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text View ON>/ <Active Source> CEC message from the connected source device.
+Provides the logical address of the connected source device that sent the <Image View ON>/ <Text View ON>/ <Active Source> CEC message while the TV is in standby mode.
 
 ### Parameters
 | Name | Type | Description |
@@ -2156,7 +1756,7 @@ Triggered when the TV is in standby mode and it receives <Image View ON>/ <Text 
 <a id="reportAudioDeviceConnectedStatus"></a>
 ## *reportAudioDeviceConnectedStatus*
 
-Triggered when an audio device is added or removed.
+Provides the status and connection state of the audio device when it is added or removed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2182,7 +1782,7 @@ Triggered when an audio device is added or removed.
 <a id="reportAudioDevicePowerStatus"></a>
 ## *reportAudioDevicePowerStatus*
 
-Triggered when the source device changes.
+Provides the power status of the source device when it changes.
 
 ### Parameters
 | Name | Type | Description |
@@ -2206,7 +1806,7 @@ Triggered when the source device changes.
 <a id="reportAudioStatusEvent"></a>
 ## *reportAudioStatusEvent*
 
-Triggered when CEC <Report Audio Status> message of device is received.
+Provides the mute status and volume level of the device when CEC <Report Audio Status> message is received.
 
 ### Parameters
 | Name | Type | Description |
@@ -2232,7 +1832,7 @@ Triggered when CEC <Report Audio Status> message of device is received.
 <a id="reportCecEnabledEvent"></a>
 ## *reportCecEnabledEvent*
 
-Triggered when the HDMI-CEC is enabled.
+Provides the HDMI-CEC enabled status.
 
 ### Parameters
 | Name | Type | Description |
@@ -2256,7 +1856,7 @@ Triggered when the HDMI-CEC is enabled.
 <a id="reportFeatureAbortEvent"></a>
 ## *reportFeatureAbortEvent*
 
-Triggered when CEC <Feature Abort> message of device is received.
+Provides the logical address, opcode, and reason for the feature abort when CEC <Feature Abort> message of device is received.
 
 ### Parameters
 | Name | Type | Description |
@@ -2284,7 +1884,7 @@ Triggered when CEC <Feature Abort> message of device is received.
 <a id="setSystemAudioModeEvent"></a>
 ## *setSystemAudioModeEvent*
 
-Triggered when CEC <Set System Audio Mode> message of device is received.
+Provides the audio mode when CEC <Set System Audio Mode> message of device is received.
 
 ### Parameters
 | Name | Type | Description |
@@ -2308,7 +1908,7 @@ Triggered when CEC <Set System Audio Mode> message of device is received.
 <a id="shortAudiodescriptorEvent"></a>
 ## *shortAudiodescriptorEvent*
 
-Triggered when SAD is received from the connected audio device. See requestShortAudioDescriptor.
+Provides the Short Audio Descriptor (SAD) information when it is received from the connected audio device. See requestShortAudioDescriptor.
 
 ### Parameters
 | Name | Type | Description |
@@ -2334,7 +1934,7 @@ Triggered when SAD is received from the connected audio device. See requestShort
 <a id="standbyMessageReceived"></a>
 ## *standbyMessageReceived*
 
-Triggered when the source device changes status to STANDBY.
+Provides the logical address of the source device when it changes status to STANDBY.
 
 ### Parameters
 | Name | Type | Description |
