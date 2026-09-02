@@ -115,6 +115,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```
 
 
+#### Error Response (Core::ERROR_ILLEGAL_STATE)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "error": {
+        "code": 5,
+        "message": "Another eviction is already in progress and cannot be escalated."
+    }
+}
+```
+
+
 #### Error Response (Core::ERROR_UNAVAILABLE)
 
 ```json

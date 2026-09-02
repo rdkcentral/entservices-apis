@@ -82,6 +82,7 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
     // @param reason Resource requiring eviction: RAM, GPU, or FLASH.
     // @param type Eviction type: HARD or SOFT.
     // @retval Core::ERROR_NONE: Eviction request was processed or no candidate was found.
+    // @retval Core::ERROR_ILLEGAL_STATE: Another eviction is already in progress and cannot be escalated.
     // @retval Core::ERROR_UNAVAILABLE: The requested resource is unsupported or AppManager is unavailable.
     // @retval Core::ERROR_GENERAL: A victim could not be selected or terminated.
     virtual Core::hresult Evict(const EvictionReason reason, const EvictionType type) = 0;
