@@ -94,7 +94,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @@iterator
         // @text onDeviceUnMounted
         // @details Triggered when a USB mass storage device is successfully unmounted by the system. The event provides information about the device and its previously mounted partitions.
-        // @param deviceInfo: name and device path of the mounted device.
+        // @param deviceInfo: name and device path of the unmounted device.
         // @example deviceInfo: {"deviceName": "USB Flash Drive"}
         // @param mountPoints: List of mountpoints information for the device unmounted.
         // @example mountPoints: [{"mountPath": "/media/usb0"}]
