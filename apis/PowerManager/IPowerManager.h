@@ -129,9 +129,9 @@ namespace WPEFramework
             // @example currentState: POWER_STATE_ON
             // @param newState: Changing power state to this New Power State
             // @example newState: POWER_STATE_STANDBY
-            // @param transactionId: transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API
+            // @param transactionId: TransactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API
             // @example transactionId: 12345
-            // @param stateChangeAfter: seconds after which the actual power mode will be applied.
+            // @param stateChangeAfter: Seconds after which the actual power mode will be applied.
             // @example stateChangeAfter: 10
             virtual void OnPowerModePreChange(const PowerState currentState, const PowerState newState, const int transactionId, const int stateChangeAfter) {};
         };
@@ -215,30 +215,23 @@ namespace WPEFramework
         //
         //        IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF **
         //                   always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.
-        //
         // @details Registers a client to engage in power mode pre-change operations.
         // @param clientName: Name of the client
         // @example clientName: "MyClient"
         // @param clientId: Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) 
         //                  or to delay the power mode change (`DelayPowerModeChangeBy`)
         // @example clientId: 12345
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult AddPowerModePreChangeClient(const string& clientName , uint32_t& clientId /* @out */) = 0;
 
         /** Disengage a client from the power mode change operation. */
         // @text removePowerModePreChangeClient
         // @brief Removes a registered client from participating in power mode pre-change operations.
         //        NOTE client will still continue to receive pre-change notifications.
-        // @details Removes a registered client from participating in power mode pre-change operations.
+        // @details This API should be called when the client no longer wishes to participate in power mode pre-change operations.
         // @param clientId: Unique identifier for the client. See `AddPowerModePreChangeClient`
         // @example clientId: 12345
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult RemovePowerModePreChangeClient(const uint32_t clientId ) = 0;
 
         /** Sets Power State . */
@@ -251,10 +244,7 @@ namespace WPEFramework
         // @example powerState: POWER_STATE_STANDBY
         // @param reason: Reason for moving to the power state
         // @example reason: "UserInitiated"
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetPowerState(const int keyCode , const PowerState powerState ,const string &reason ) = 0;
 
         /** Gets the Power State.*/
@@ -263,14 +253,9 @@ namespace WPEFramework
         // @details Retrieves the current and previous power states of the device. Clients can use this API to query the device's power state information.
         // @param currentState: Current Power State
         // @example currentState: POWER_STATE_ON
-        // @param powerState: Get current power state
-        // @example powerState: POWER_STATE_STANDBY
         // @param previousState: Get previous power state
         // @example previousState: POWER_STATE_OFF
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetPowerState(PowerState& currentState /* @out */, PowerState &previousState /* @out */) const = 0;
 
         /** Gets the current Thermal state.*/
@@ -279,10 +264,7 @@ namespace WPEFramework
         // @details Retrieves the current thermal state of the device, including the current temperature. Clients can use this API to monitor the device's thermal conditions.
         // @param currentTemperature: current temperature
         // @example currentTemperature: 75.5
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetThermalState(float& currentTemperature /* @out */) const = 0;
 
         /** Sets the Temperature Thresholds.*/
@@ -293,10 +275,7 @@ namespace WPEFramework
         // @example high: 80.0
         // @param critical : critical threshold
         // @example critical: 90.0
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetTemperatureThresholds(float high , float critical ) = 0;
 
         /** Gets the current Temperature Thresholds.*/
@@ -307,36 +286,27 @@ namespace WPEFramework
         // @example high: 80.0
         // @param critical : critical threshold
         // @example critical: 90.0
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetTemperatureThresholds(float& high /* @out */, float& critical /* @out */) const = 0;
 
         /** Sets the current Temperature Grace interval.*/
         // @property
         // @text setOvertempGraceInterval
+        // @brief Set Temperature Grace interval
         // @details Sets the grace interval for over-temperature conditions. Clients can use this API to define a time period during which the device can operate above the defined temperature thresholds before taking action.
-        // @brief Set Temperature Thresholds
         // @param graceInterval: interval in secs?
         // @example graceInterval: 60
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetOvertempGraceInterval(const int graceInterval ) = 0;
 
-        /** Gets the current Temperature Thresholds.*/
+        /** Gets the current Temperature Grace interval.*/
         // @property
         // @text getOvertempGraceInterval
         // @brief Get Temperature Grace interval
         // @details Retrieves the current grace interval for over-temperature conditions. Clients can use this API to query the defined time period during which the device can operate above the defined temperature thresholds before taking action.
         // @param graceInterval: interval in secs?
         // @example graceInterval: 60
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetOvertempGraceInterval(int& graceInterval /* @out */) const = 0;
 
         /** Set Deep Sleep Timer for later wakeup */
@@ -344,12 +314,9 @@ namespace WPEFramework
         // @text setDeepSleepTimer
         // @brief Set Deep sleep timer for timeOut period
         // @details Sets the deep sleep timer for the device. Clients can use this API to specify a timeout period after which the device will enter deep sleep mode.
-        // @param timeOut: deep sleep timeout
+        // @param timeOut: Deep sleep timeout
         // @example timeOut: 300
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetDeepSleepTimer(const int timeOut ) = 0;
 
         /** Get Last Wakeup reason */
@@ -357,12 +324,9 @@ namespace WPEFramework
         // @text getLastWakeupReason
         // @brief Get Last Wake up reason
         // @details Retrieves the last wakeup reason for the device. Clients can use this API to determine the cause of the most recent wakeup event, such as a specific wakeup source or user action.
-        // @param wakeupReason: wake up reason
+        // @param wakeupReason: Wake up reason
         // @example wakeupReason: WAKEUP_REASON_IR
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetLastWakeupReason(WakeupReason &wakeupReason /* @out */) const = 0;
 
         /** Get Last Wakeup key code */
@@ -371,10 +335,7 @@ namespace WPEFramework
         // @brief Get the key code that can be used for wakeup
         // @details Retrieves the last wakeup key code for the device. Clients can use this API to determine the specific key code that triggered the most recent wakeup event.
         // @param keycode: Key code for wakeup
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetLastWakeupKeyCode(int &keycode /* @out */) const = 0;
 
         /** Perform Reboot */
@@ -387,10 +348,7 @@ namespace WPEFramework
         // @example rebootReasonCustom: "FirmwareUpdate"
         // @param rebootReasonOther: Reboot reason other
         // @example rebootReasonOther: "UserInitiated"
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Reboot(const string &rebootRequestor , const string &rebootReasonCustom , const string &rebootReasonOther ) = 0;
 
         /** Set Network Standby Mode */
@@ -400,10 +358,7 @@ namespace WPEFramework
         // @details Sets the network standby mode for the device. Clients can use this API to enable or disable network standby functionality, which may affect the device's behavior when in low-power states.
         // @param standbyMode: Network standby mode
         // @example standbyMode: true
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure  
         virtual Core::hresult SetNetworkStandbyMode(const bool standbyMode ) = 0;
 
         /** Get Network Standby Mode */
@@ -412,10 +367,7 @@ namespace WPEFramework
         // @details Retrieves the current network standby mode for the device. Clients can use this API to query whether network standby functionality is enabled or disabled.
         // @param standbyMode: Network standby mode
         // @example standbyMode: true
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetNetworkStandbyMode(bool &standbyMode /* @out */) = 0;
 
         /** Set Wakeup source configuration */
@@ -424,10 +376,7 @@ namespace WPEFramework
         // @details Configures the wakeup sources for the device. Clients can use this API to specify which sources are enabled or disabled for waking up the device from low-power states.
         // @param wakeupSources: Wake up sources array
         // @example wakeupSources: [{ "wakeupSource": WAKEUP_SRC_IR, "enabled": true }, { "wakeupSource": WAKEUP_SRC_BLUETOOTH, "enabled": false }]
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* const wakeupSources) = 0;
 
         /** Get Wakeup source configuration */
@@ -436,10 +385,7 @@ namespace WPEFramework
         // @details Retrieves the current wakeup source configuration for the device. Clients can use this API to query which sources are enabled or disabled for waking up the device from low-power states.
         // @param wakeupSources: Wake up sources array
         // @example wakeupSources: [{ "wakeupSource": WAKEUP_SRC_IR, "enabled": true }, { "wakeupSource": WAKEUP_SRC_BLUETOOTH, "enabled": false }]
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetWakeupSourceConfig(IWakeupSourceConfigIterator*& wakeupSources /* @out */) const = 0;
 
         /** Get Power State before reboot */
@@ -448,10 +394,7 @@ namespace WPEFramework
         // @details Retrieves the power state of the device before the last reboot. Clients can use this API to determine the power state that was active prior to the most recent reboot event.
         // @param powerStateBeforeReboot: power state
         // @example powerStateBeforeReboot: POWER_STATE_STANDBY
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetPowerStateBeforeReboot(PowerState &powerStateBeforeReboot /* @out */) = 0;
 
         /** Power prechange activity completed */
@@ -459,11 +402,10 @@ namespace WPEFramework
         // @brief Pre power mode handling complete for given client and transation id
         // @details Informs the power manager that the pre-change operation for a specific client and transaction ID has been completed. Clients should call this API after completing their pre-change tasks to allow the power mode transition to proceed.
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
-        // example clientId: 12345
-        // @param transactionId: transaction id as received in OnPowerModePreChange
+        // @example clientId: 12345
+        // @param transactionId: Transaction ID as received in OnPowerModePreChange
         // @example transactionId: 67890
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult PowerModePreChangeComplete(const uint32_t clientId , const int transactionId ) = 0;
 
         /** Delay Powermode change by given time */
@@ -472,14 +414,11 @@ namespace WPEFramework
         // @details Delays the power mode change by a specified time period for a specific client and transaction ID. Clients can use this API to request additional time before the power mode transition occurs, allowing them to complete any necessary tasks.
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @example clientId: 12345
-        // @param transactionId: transaction id as received in OnPowerModePreChange
+        // @param transactionId: Transaction ID as received in OnPowerModePreChange
         // @example transactionId: 67890
         // @param delayPeriod: delay in seconds
         // @example delayPeriod: 30
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
 
         /** Get the Wakeup Time in seconds */
@@ -488,10 +427,7 @@ namespace WPEFramework
         // @details Retrieves the time elapsed since the device transitioned to the ON state. Clients can use this API to determine how long the device has been awake and active.
         // @param timeSinceWakeup: Wakeup time in seconds
         // @example timeSinceWakeup: 120
-        // @param success: Indicates whether the operation was successful
-        // @example success: true
         // @retval ErrorCode::ERROR_NONE: Indicates success
-        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
     };
 

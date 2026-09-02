@@ -29,9 +29,8 @@ namespace Exchange {
         // @brief Configures the component using the framework shell.
         // @details Initializes and configures the component using the provided framework shell instance.
         // @param framework: Framework shell instance
-        // @example framework: PluginHost::IShell
+        // @example framework: "IShell instance"
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult Configure(PluginHost::IShell* framework) = 0;
     };
 }

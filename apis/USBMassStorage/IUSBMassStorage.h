@@ -113,31 +113,28 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @param deviceInfo: Device info for devices that are currently mounted.
     // @example deviceInfo: [{"deviceName": "USB Flash Drive"}]
     // @retval Core::ERROR_NONE: Device list retrieved successfully.
-    // @retval Core::ERROR_GENERAL: Failed to retrieve the device list.
     virtual Core::hresult GetDeviceList(IUSBStorageDeviceInfoIterator*& deviceInfo /* @out */ ) const = 0;
 
     /** Get mount points information for a specified device.*/
     // @text getMountPoints
     // @brief Get mount points information for a specified device
     // @details Retrieves mount points information for the specified USB mass storage device.
-    // @param deviceName: name of the device for which mount points are to be retrieved
+    // @param deviceName: Name of the device for which mount points are to be retrieved
     // @example deviceName: "USB Flash Drive"
     // @param mountPoints: List of mountpoints information for a given device.
     // @example mountPoints: [{"mountPath": "/media/usb0"}]
     // @retval Core::ERROR_NONE: Mount point information retrieved successfully.
-    // @retval Core::ERROR_GENERAL: Failed to retrieve mount point information.
     virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
     /** Get partition information for a given partition.*/
     // @text getPartitionInfo
     // @brief Get partition information for a given partition
     // @details Retrieves partition information for the specified mount path.
-    // @param mountPath : mount path of the partition for which more info is required
+    // @param mountPath: mount path of the partition for which more info is required
     // @example mountPath: "/media/usb0"
     // @param partitionInfo: partition info details
     // @example partitionInfo: {"size": 1024}  
     // @retval Core::ERROR_NONE: Partition information retrieved successfully.
-    // @retval Core::ERROR_GENERAL: Failed to retrieve partition information.
     virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
 };

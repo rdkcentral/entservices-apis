@@ -58,7 +58,6 @@ namespace Exchange {
         // @example eventPayload: "{\"bitrate\":5000,\"codec\":\"h264\"}"
         // @example additionalContext: "{\"networkType\":\"ethernet\"}"
         // @retval Core::ERROR_NONE: Event was accepted and successfully queued for processing by the Analytics service.
-        // @retval Core::ERROR_GENERAL: Event submission failed due to an internal service error.
         virtual Core::hresult SendEvent(const string& eventName,
                                    const string& eventVersion,
                                    const string& eventSource,

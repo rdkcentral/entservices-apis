@@ -103,8 +103,6 @@ namespace WPEFramework
                 // @example reasonDescription: REASON_CODE_SUCCESS
                 // @param reasonCode: Reason code for the player state update
                 // @example reasonCode: 200
-                // @param reason: reason code Decription
-                // @example reason: "SUCCESS"
                 virtual void OnStateChange(const string &clientName /* @text name */, const string &clientMac /* @text mac */, const State playerState /* @text state */, const string &reasonCode /* @text reason_code */, const ReasonCode reasonDescription /* @text reason */) {};
             };
 
@@ -119,10 +117,10 @@ namespace WPEFramework
             // @param deviceParam: Contains Source and Sink Device related properties
             // @example deviceParam: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @example videoRect: { x: 0, y: 0, width: 1920, height: 1080 }
+            // @param result: Result of the play request operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult PlayRequest(const DeviceParameters &deviceParam /* @text device_parameters */, const VideoRectangle videoRect /* @text video_rectangle */, Result &result /* @out */) = 0;
 
             // @brief To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
@@ -134,12 +132,9 @@ namespace WPEFramework
             // @example clientName: "Miracast Source Device"
             // @param reasonCode: Reason code for the player stop request
             // @example reasonCode: 200
-            // @param reason: Reason for the player stop request
-            // @example reason: "SUCCESS"
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the stop request
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult StopRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const int reasonCode /* @text reason_code */, Result &result /* @out */) = 0;
 
             // @brief Set the Video Rectangle.
@@ -153,10 +148,9 @@ namespace WPEFramework
             // @example width: 1920
             // @param height: Height of the rectangle
             // @example height: 1080
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the set video rectangle operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetVideoRectangle(const int startX /* @text X */, const int startY /* @text Y */, const int width /* @text W */, const int height /* @text H */, Result &result /* @out */) = 0;
 
             // @brief To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
@@ -164,19 +158,17 @@ namespace WPEFramework
             // @details Applies the specified westeros environment settings required for Miracast playback. This API is deprecated in favor of SetEnvArguments.           
             // @param westerosArgs: Westeros environment arguments to be set
             // @example westerosArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the set westeros environment operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetWesterosEnvironment( IEnvArgumentsIterator * const westerosArgs /* @text westerosArgs */, Result &result /* @out */) = 0;
 
             // @brief To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
             // @text unsetWesterosEnvironment
             // @details Removes all Westeros-specific environment settings and restores the default playback environment. This API is deprecated in favor of UnsetEnvArguments.           
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the unset westeros environment operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UnsetWesterosEnvironment(Result &result /* @out */) = 0;
 
             // @brief To configure the environment arguments for the Miracast Player
@@ -184,19 +176,17 @@ namespace WPEFramework
             // @details Applies the specified environment variables that influence the behavior and execution environment of the Miracast player.            
             // @param envArgs: environment arguments to be set
             // @example envArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the set environment arguments operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetEnvArguments( IEnvArgumentsIterator * const envArgs /* @text envArgs */, Result &result /* @out */) = 0;
 
             // @brief To reset the environment arguments for the Miracast Player
             // @text unsetEnvArguments
             // @details Clears all previously configured environment variables and restores the Miracast player to its default environment settings.          
-            // @param success: Is the operation successful or not
-            // @example success: true
+            // @param result: Result of the unset environment arguments operation
+            // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult UnsetEnvArguments(Result &result /* @out */) = 0;
         };
     } // namespace Exchange

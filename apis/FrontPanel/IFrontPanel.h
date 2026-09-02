@@ -44,7 +44,7 @@ namespace WPEFramework
 
             // @brief Gets the status of the Front Panel
             // @text getBrightness
-            // @details Gets the status of the Front Panel
+            // @details Provides the current active brightness state or percentage value configured for the device display panel.
             // @param index: Index of the brightness level
             // @example index: "0"
             // @param brightness: Brightness level
@@ -52,12 +52,11 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure   
             virtual Core::hresult GetBrightness(const string& index, uint32_t &brightness /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the front panel lights
             // @text getFrontPanelLights
-            // @details Gets the front panel lights
+            // @details Provides a list or status bitmask of the active illumination nodes present on the physical display facade of the device.
             // @param supportedLights: List of supported front panel lights
             // @example supportedLights: ["POWER_LED", "STATUS_LED"]
             // @param supportedLightsInfo: Information about the supported front panel lights
@@ -65,29 +64,26 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFrontPanelLights(IFrontPanelLightsListIterator*& supportedLights /* @out */, string &supportedLightsInfo /* @out @opaque */, bool &success /* @out */) = 0;
 
             // @brief Switches the specified LED off
             // @text powerLedOff
-            // @details Switches the specified LED off
+            // @details Cuts power or disables illumination for the specified light source on the device facade using its identifier.
             // @param index: Index of the LED to switch off
             // @example index: "0"
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult PowerLedOff(const string& index, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Switches the specified LED on
             // @text powerLedOn
-            // @details Switches the specified LED on
+            // @details Applies power or enables illumination for the specified light source on the device facade using its identifier.
             // @param index: Index of the LED to switch on
             // @example index: "0"
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult PowerLedOn(const string& index, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) 
@@ -98,12 +94,11 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetBlink(const string& blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets the brightness of the specified LED
             // @text setBrightness
-            // @details Sets the brightness of the specified LED
+            // @details Adjusts the intensity of the light source corresponding to the provided index using a percentage or discrete scale value.
             // @param index: Index of the brightness level
             // @example index: "0"
             // @param brightness: Brightness level to set
@@ -111,12 +106,11 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetBrightness(const string& index, const uint32_t brightness, FrontPanelSuccess &success /* @out */) = 0;
 
             // @brief Sets the LED with the specified color and brightness
             // @text setLED
-            // @details Sets the LED with the specified color and brightness
+            // @details Configures the specified LED on the device facade with the provided color and brightness settings.
             // @param ledIndicator: LED indicator to set
             // @example ledIndicator: "POWER_LED"
             // @param brightness: Brightness level of the LED
@@ -132,7 +126,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetLED(const string& ledIndicator, const uint32_t brightness, const string& color, const uint32_t red, const uint32_t green, const uint32_t blue, FrontPanelSuccess &success /* @out */) = 0;
 
         };

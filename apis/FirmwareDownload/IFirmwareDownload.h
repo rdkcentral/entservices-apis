@@ -78,10 +78,7 @@ namespace WPEFramework
             // @example downloadedFWLocation: "/path/to/downloaded/firmware"
             // @param isRebootDeferred: Whether the device should be rebooted
             // @example isRebootDeferred: true
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDownloadedFirmwareInfo(string& currentFWVersion /* @out */, string& downloadedFWVersion /* @out */, string& downloadedFWLocation /* @out */, bool& isRebootDeferred /* @out */) = 0;
 
             // @text getFirmwareDownloadPercent
@@ -89,41 +86,29 @@ namespace WPEFramework
             // @details Retrieves the current download percentage of the firmware download process.
             // @param firmwareDownloadPercent: Current download percentage
             // @example firmwareDownloadPercent: { downloadPercent: 75 }
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetFirmwareDownloadPercent( FirmwareDownloadPercent& firmwareDownloadPercent /* @out */) = 0;
 
             // @text searchFirmware
             // @brief Search for any available firmware ( in the remote server - for ex., xconf) that the device can update to.
             // @details Initiates a search for any available firmware in the remote server (e.g., xconf) that the device can update to. This method triggers an asynchronous operation, and the result will be provided through the OnFirmwareAvailable event.
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SearchFirmware() = 0;
             
             // @text getDownloadState
             // @brief Retrieve the current state of the download process.
             // @details Retrieves the current state of the firmware download process, providing information about whether the download is in progress, completed, or encountered an error.
-            // @param FirmwareDownloadState: current firmware download state
-            // @example FirmwareDownloadState: { downloadState: "InProgress" }
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
+            // @param downloadState: Current firmware download state
+            // @example downloadState: { downloadState: "InProgress" }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDownloadState( FirmwareDownloadState& downloadState /* @out */) = 0;
             
             // @text getDownloadFailureReason
             // @brief Gets the last firmware download failure reason.
             // @details Retrieves the last firmware download failure reason, providing information about the cause of the failure during the firmware download process.
-            // @param DownloadFailureReason: firmware download failure reason
-            // @example DownloadFailureReason: { failureReason: "NetworkError" }
-            // @param success: Indicates whether the operation was successful
-            // @example success: true
+            // @param downloadFailureReason: Firmware download failure reason
+            // @example downloadFailureReason: { failureReason: "NetworkError" }
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDownloadFailureReason( DownloadFailureReason& downloadFailureReason /* @out */) = 0;
         };
     } // namespace Exchange

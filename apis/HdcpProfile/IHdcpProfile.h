@@ -47,9 +47,9 @@
                  
                 // @text onDisplayConnectionChanged
                 // @brief Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
-                // @details Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
-                // @param HDCPStatus: Contains HDCP-related data as separate properties
-                // @example HDCPStatus: { isConnected: true, isHDCPCompliant: true, isHDCPEnabled: true, hdcpReason: 0, supportedHDCPVersion: "2.2", receiverHDCPVersion: "2.2", currentHDCPVersion: "2.2" }
+                // @details Provides the current connection status and HDCP compliance information for the display.
+                // @param hdcpStatus: Contains HDCP-related data as separate properties
+                // @example hdcpStatus: { "isConnected": true, "isHDCPCompliant": true, "isHDCPEnabled": true, "hdcpReason": 0, "supportedHDCPVersion": "2.2", "receiverHDCPVersion": "2.2", "currentHDCPVersion": "2.2" }
                 virtual void OnDisplayConnectionChanged(const HDCPStatus hdcpStatus/* @text HDCPStatus*/) {};
             };
             virtual Core::hresult Register(IHdcpProfile::INotification* notification) = 0;
@@ -59,19 +59,18 @@
             // @text getHDCPStatus
             // @brief Returns HDCP-related data.
             // @details Returns HDCP-related data as separate properties.
-            // @param HDCPStatus: Contains HDCP-related data as separate properties
-            // @example HDCPStatus: { isConnected: true, isHDCPCompliant: true, isHDCPEnabled: true, hdcpReason: 0, supportedHDCPVersion: "2.2", receiverHDCPVersion: "2.2", currentHDCPVersion: "2.2" }
+            // @param hdcpStatus: Contains HDCP-related data as separate properties
+            // @example hdcpStatus: { "isConnected": true, "isHDCPCompliant": true, "isHDCPEnabled": true, "hdcpReason": 0, "supportedHDCPVersion": "2.2", "receiverHDCPVersion": "2.2", "currentHDCPVersion": "2.2" }
             // @param success: Indicates whether the operation was successful
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetHDCPStatus(HDCPStatus& hdcpStatus /* @out @text HDCPStatus*/,bool& success  /* @out */) = 0;
             /**********************getHDCPStatus() - end******************************/
              
             /**********************getSettopHDCPSupport() - start*********************************/
             // @text getSettopHDCPSupport
             // @brief Returns which version of HDCP is supported by the STB.
-            // @details Returns which version of HDCP is supported by the STB.
+            // @details This method queries the STB to determine which version of HDCP it supports.
             // @param supportedHDCPVersion: Supported HDCP protocol version by the host device
             // @example supportedHDCPVersion: "2.2"
             // @param isHDCPSupported: Indicates whether HDCP is supported by the STB
@@ -79,7 +78,6 @@
             // @param success: Indicates whether the operation was successful
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetSettopHDCPSupport(string& supportedHDCPVersion/* @out */,bool& isHDCPSupported/* @out */,bool& success /* @out */) = 0;
             /**********************getSettopHDCPSupport() - end***********************************/ 
          };

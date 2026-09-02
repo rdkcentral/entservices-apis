@@ -76,10 +76,9 @@ namespace Exchange {
         // @example value: "en-US"
         // @param ttl: time to live (optional)
         // @example ttl: 3600
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, const string& value, const uint32_t ttl, Success& success /* @out */) = 0;
 
         // @brief Returns the value of a key from the specified namespace.
@@ -95,10 +94,9 @@ namespace Exchange {
         // @example value: "en-US"
         // @param ttl: time to live (optional)
         // @example ttl: 3580
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetValue(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, string& value /* @out */, uint32_t& ttl /* @out */, bool& success /* @out */) = 0;
 
         // @brief Deletes a key from the specified namespace
@@ -110,10 +108,9 @@ namespace Exchange {
         // @example ns: "application"
         // @param key: key
         // @example key: "language"
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, Success& success /* @out */) = 0;
 
         // @brief Deletes the specified namespace
@@ -123,10 +120,9 @@ namespace Exchange {
         // @example scope: DEVICE
         // @param ns: name space
         // @example ns: "application"
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */, Success& success /* @out */) = 0;
     };
 
@@ -147,17 +143,16 @@ namespace Exchange {
 
         // @brief Returns the keys that are stored in the specified namespace
         // @text getKeys
-        // @details Returns the keys that are stored in the specified namespace.
+        // @details Retrieves the list of all keys currently stored within the specified namespace and scope.
         // @param scope: must be device or account
         // @example scope: DEVICE
         // @param ns: name space
         // @example ns: "application"
         // @param keys: keys list
         // @example keys: ["language", "region"]
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetKeys(const ScopeType scope, const string& ns /* @text:namespace */, IStringIterator*& keys /* @out */, bool& success /* @out */) = 0;
 
         // @brief Returns the namespaces
@@ -167,10 +162,9 @@ namespace Exchange {
         // @example scope: DEVICE
         // @param namespaces: namespaces list
         // @example namespaces: ["application", "settings"]
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetNamespaces(const ScopeType scope, IStringIterator*& namespaces /* @out */, bool& success /* @out */) = 0;
 
         // @brief Returns the size occupied by each namespace
@@ -180,10 +174,9 @@ namespace Exchange {
         // @example scope: DEVICE
         // @param storageList: list of namespaces and their sizes
         // @example storageList: [{ "ns":"application", "size":1024 }]
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetStorageSizes(const ScopeType scope, INamespaceSizeIterator*& storageList /* @out */, bool& success /* @out */) = 0;
     };
 
@@ -207,10 +200,9 @@ namespace Exchange {
         // @example ns: "application"
         // @param storageLimit: size
         // @example storageLimit: 1024
-        // @param success: success
+        // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, const uint32_t storageLimit, bool& success /* @out */) = 0;
 
         // @brief Returns the storage limit for a given namespace
@@ -222,10 +214,7 @@ namespace Exchange {
         // @example ns: "application"
         // @param storageLimit: Size in bytes
         // @example storageLimit: 1024
-        // @param success: success
-        // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
-        // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetNamespaceStorageLimit(const ScopeType scope, const string& ns /* @text:namespace */, StorageLimit& storageLimit /* @out */) = 0;
     };
 
@@ -237,7 +226,6 @@ namespace Exchange {
         // @text flushCache
         // @details Forces all pending shared-storage cache entries to be written to the underlying persistent storage backend.
         // @retval Core::ERROR_NONE - Cache flushed successfully.
-        // @retval Core::ERROR_GENERAL - Failed to flush the cache.
         virtual Core::hresult FlushCache() = 0;
     };
 

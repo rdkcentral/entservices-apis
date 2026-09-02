@@ -61,7 +61,8 @@ namespace WPEFramework
                 // @text onAVDecoderStatusChanged
                 // @brief Triggered when the most active status of audio/video decoder/pipeline changes
                 // @details The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video decoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
-                // @param avDecoderStatusChange - in - string
+                // @param avDecoderStatusChange: Status change of the audio/video decoder/pipeline
+                // @example avDecoderStatusChange: "Active"
                 virtual void OnAVDecoderStatusChanged(const string& avDecoderStatusChange) {};
             };
 
@@ -71,43 +72,41 @@ namespace WPEFramework
             // @text getConfiguration
             // @brief Gets the values associated with the corresponding property names
             // @details Retrieves the configuration values corresponding to the supplied property names from the device.
-            // @param names - in - String array of property names
+            // @param names: String array of property names
             // @example names: ["DeviceInfo", "FirmwareVersion", "SerialNumber"]
-            // @param paramList - out - specified properties and their values
+            // @param paramList: specified properties and their values
             // @example paramList: [{"name":"DeviceInfo","value":"X1"}]
-            // @param success - out - boolean
+            // @param success: boolean
             // @example success: true
-            // @retval Core::ERROR_NONE Successfully retrieved configuration
-            // @retval Core::ERROR_GENERAL Failed to retrieve configuration
+            // @retval Core::ERROR_NONE:Successfully retrieved configuration
+            virtual Core::hresult GetConfiguration(IStringIterator* const& names , IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
 
             // @text getMilestones
             // @brief Returns the list of milestones
             // @details Retrieves the list of milestones from the device.
-            // @param milestones - out - A string [] of milestones
+            // @param milestones: A string [] of milestones
             // @example milestones: ["BootStart", "NetworkReady", "BootComplete"]
-            // @param success - out - boolean
+            // @param success: boolean
             // @example success: true
-            // @retval Core::ERROR_NONE Successfully retrieved milestones
+            // @retval Core::ERROR_NONE: Successfully retrieved milestones
             virtual Core::hresult GetMilestones(IStringIterator*& milestones /* @out */, bool& success /* @out */) = 0;
 
             // @text logMilestone
             // @brief Log marker string to rdk milestones log
             // @details Logs the provided marker string to the RDK milestones log for tracking and analysis purposes.
-            // @param marker - in - string
+            // @param marker: Milestone marker string
             // @example marker: "NetworkReady"
-            // @param success - out - boolean
+            // @param success: boolean
             // @example success: true
-            // @retval Core::ERROR_NONE Successfully logged the milestone
+            // @retval Core::ERROR_NONE: Successfully logged the milestone
             virtual Core::hresult LogMilestone(const string& marker , bool& success /* @out */) = 0;
 
             // @text getAVDecoderStatus
             // @brief Gets the most active status of audio/video decoder/pipeline
             // @details Retrieves the most active status of audio/video decoder/pipeline from the device.
-            // @param AVDecoderStatus - out
+            // @param AVDecoderStatus: The audio/video decoder status
             // @example AVDecoderStatus: {"avDecoderStatus":"Active"}
-            // @param success - out - boolean
-            // @example success: true
-            // @retval Core::ERROR_NONE Successfully retrieved the AV decoder status    
+            // @retval Core::ERROR_NONE: Successfully retrieved the AV decoder status    
             virtual Core::hresult GetAVDecoderStatus(AvDecoderStatusResult& AVDecoderStatus /* @out */) = 0;
 
             // @text getPreviousRebootInfo
@@ -117,7 +116,7 @@ namespace WPEFramework
             // @example rebootInfo: {"timestamp":"2023-05-15T10:30:00Z","source":"PowerButton","reason":"UserInitiated","customReason":"N/A","otherReason":"N/A","lastHardPowerReset":"2023-05-14T08:15:00Z"}
             // @param success: Indicates whether the operation was successful
             // @example success: true
-            // @retval Core::ERROR_NONE Successfully retrieved the previous reboot information
+            // @retval Core::ERROR_NONE: Successfully retrieved the previous reboot information
             virtual Core::hresult GetPreviousRebootInfo(RebootInfo& rebootInfo /* @out */, bool& success /* @out */) = 0;
         };
     } // namespace Exchange

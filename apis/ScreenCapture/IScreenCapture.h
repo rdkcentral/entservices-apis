@@ -40,13 +40,13 @@ namespace WPEFramework
 
                 // @text uploadComplete
                 // @brief Triggered after uploading a screen capture
-                // @details Triggered after a screen capture upload is completed
-                // @param status - in - boolean
-                // @example status - true
-                // @param message - in - string
-                // @example message - "Upload completed successfully"
-                // @param call_guid - in - string
-                // @example call_guid - "123e4567-e89b-12d3-a456-426614174000"
+                // @details Provides the status, message, and call GUID associated with the completed upload.
+                // @param status: boolean indicating the success of the upload
+                // @example status: true
+                // @param message: Message providing additional information about the upload status
+                // @example message: "Upload completed successfully"
+                // @param call_guid: The unique identifier of the call associated with the upload
+                // @example call_guid: "123e4567-e89b-12d3-a456-426614174000"
                 virtual void UploadComplete(const bool& status, const string& message, const string& call_guid ) {};
             };
 
@@ -58,13 +58,13 @@ namespace WPEFramework
             // @text uploadScreenCapture
             // @brief Takes a screenshot and uploads it to the specified URL
             // @details Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
-            // @param url - in - string
-            // @example url - "https://example.com/upload"
-            // @param callGUID - in - string
-            // @example callGUID - "123e4567-e89b-12d3-a456-426614174000"
-            // @param result - out - Result (contains success flag)
-            // @example result - { "success": true }
-            // @returns Core::hresult
+            // @param url: Destination URL for the upload.
+            // @example url: "https://example.com/upload"
+            // @param callGUID: The unique identifier of the call associated with the upload.
+            // @example callGUID: "123e4567-e89b-12d3-a456-426614174000"
+            // @param result: Output structure containing the immediate execution status of the upload request
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult UploadScreenCapture(const string& url , const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************uploadScreenCapture() - end*********************************/
 
@@ -72,11 +72,11 @@ namespace WPEFramework
             // @text sendScreenshot
             // @brief Takes a screenshot and uploads it to the specified URL
             // @details Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
-            // @param callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
-            // @example callGUID - "123e4567-e89b-12d3-a456-426614174000"
-            // @param result - Whether the request succeeded
-            // @example result - { success: true }
-            // @returns Core::hresult
+            // @param callGUID: A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
+            // @example callGUID: "123e4567-e89b-12d3-a456-426614174000"
+            // @param result: Output structure containing the immediate execution status of the capture request
+            // @example result: { "success": true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************sendScreenshot() - end*********************************/
         };

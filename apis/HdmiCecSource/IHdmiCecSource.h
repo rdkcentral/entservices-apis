@@ -52,21 +52,21 @@ namespace WPEFramework
     
                 // @brief Notifies when CEC device added to CEC network
                 // @text onDeviceAdded
-                // @details Notifies when CEC device added to CEC network
+                // @details Provides the logical address of the added device when it is added to the CEC network.
                 // @param logicalAddress: Logical address of the added device
                 // @example logicalAddress: 1
                 virtual void OnDeviceAdded(const int logicalAddress) {};
     
                 // @brief Notifies when CEC device removed from CEC network
                 // @text onDeviceRemoved
-                // @details Notifies when CEC device removed from CEC network
+                // @details Provides the logical address of the removed device when it is removed from the CEC network.
                 // @param logicalAddress: Logical address of the removed device
                 // @example logicalAddress: 1
                 virtual void OnDeviceRemoved(const int logicalAddress ) {};
     
                 // @brief Notifies when CEC device info updated
                 // @text onDeviceInfoUpdated
-                // @details Notifies when CEC device info updated
+                // @details Provides the logical address of the updated device when its information is updated.
                 // @param logicalAddress: Logical address of the updated device
                 // @example logicalAddress: 1
                 virtual void OnDeviceInfoUpdated(const int logicalAddress) {};
@@ -118,7 +118,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetActiveSourceStatus(bool &status /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the status of the HDMI CEC source
@@ -129,7 +128,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the OSD name of the HDMI CEC source
@@ -140,7 +138,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetOSDName(string &name /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the OTP enabled status of the HDMI CEC source
@@ -151,18 +148,16 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetOTPEnabled(bool &otpEnabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the vendor ID of the HDMI CEC source
             // @text getVendorId
             // @details Retrieves the vendor ID assigned to the HDMI CEC source device
-            // @param vendorId: Vendor ID of the HDMI CEC source
-            // @example vendorId: "123456"
+            // @param vendorid: ID of the HDMI CEC source
+            // @example vendorid: "123456"
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetVendorId(string &vendorid /* @out */, bool &success /* @out */) = 0;
 
             // @brief Performs the OTP action
@@ -171,7 +166,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult PerformOTPAction(HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sends a key press event to the HDMI CEC device.
@@ -184,7 +178,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sends a standby message to another CEC device
@@ -193,7 +186,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SendStandbyMessage(HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the status of the HDMI CEC source
@@ -204,18 +196,16 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC source
             // @text setOSDName
             // @details Configures the On-Screen Display (OSD) name for the HDMI CEC source device
-            // @param osdName: OSD name of the HDMI CEC source
-            // @example osdName: "My CEC Source"
+            // @param name: OSD name of the HDMI CEC source
+            // @example name: "My CEC Source"
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetOSDName(const string &name , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the OTP enabled status of the HDMI CEC source
@@ -226,18 +216,16 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetOTPEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC source
             // @text setVendorId
             // @details Configures the vendor ID for the HDMI CEC source device
-            // @param vendorId: Vendor ID of the HDMI CEC source
-            // @example vendorId: "123456"
+            // @param vendorid: Vendor ID of the HDMI CEC source
+            // @example vendorid: "123456"
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetVendorId(const string &vendorid , HdmiCecSourceSuccess &success /* @out */) = 0;
 
             // @brief Gets the list of devices connected to the HDMI CEC source
@@ -250,7 +238,6 @@ namespace WPEFramework
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            // @retval Core::ERROR_GENERAL: Indicates failure
             virtual Core::hresult GetDeviceList(uint32_t &numberofdevices /* @out */, IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
         };
 } // namespace Exchange
