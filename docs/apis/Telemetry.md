@@ -226,7 +226,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | struct |
+| result.success | bool | Output structure containing the operation result. |
 
 ### Examples
 
@@ -258,7 +258,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
