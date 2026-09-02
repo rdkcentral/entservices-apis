@@ -209,7 +209,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
          * @param config updated device configuration
          * @text onDeviceConfigurationChanged
          */
-        virtual void OnDeviceConfigurationChanged(const DeviceConfiguration& config) {}
+        virtual void OnDeviceConfigurationChanged(const DeviceConfiguration& /*config*/) {}
     };
 
     ~ITextToSpeech() override = default;
@@ -355,7 +355,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED Indicates conversion of text to speech is not supported in this implementation
      * @text getVoices
      */
-    virtual Core::hresult GetVoices(const string& language, IVoiceInfoIterator*& voices /* @out */) const { return Core::ERROR_NOT_SUPPORTED; };
+    virtual Core::hresult GetVoices(const string& language, IVoiceInfoIterator*& voices /* @out */) const = 0;
 
     /**
      * @brief Speaks text provided with utterance (Added in version 2)
@@ -372,8 +372,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @text speakWithUtterance
      */
     virtual Core::hresult SpeakWithUtterance(const string& callsign, const SpeechUtterance& utterance, const string& text, uint32_t& speechid /* @out */,
-                                             TTSErrorDetail& status /* @out */) {
-        return Core::ERROR_NOT_SUPPORTED;
+                                             TTSErrorDetail& status /* @out */) = 0;
     };
 
     /**
@@ -386,7 +385,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_OK on success
      * @text getInterfaceVersion
      */
-    virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const =0;
 
     /**
      * @brief Queries whether a specific TextToSpeech capability is supported by the implementation. (Added in version 2)
@@ -396,7 +395,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
      * @text getCapability
      */
-    virtual Core::hresult GetCapability(Capability capability, bool& hasCapability /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult GetCapability(Capability capability, bool& hasCapability /* @out */) const = 0;
 
     /**
      * @brief Retrieves an iterator over all supported TextToSpeech capabilities. (Added in version 2)
@@ -405,7 +404,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported.
      * @text getCapabilities
      */
-    virtual Core::hresult GetCapabilities(ICapabilityIterator*& capabilities /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult GetCapabilities(ICapabilityIterator*& capabilities /* @out */) const = 0;
 
     /**
      * @brief Retrieve tts configuration attributes
@@ -415,7 +414,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED Indicates retrieval of configuration is not supported in this implementation
      * @text getDeviceConfiguration
      */
-    virtual Core::hresult GetDeviceConfiguration(DeviceConfiguration& config /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult GetDeviceConfiguration(DeviceConfiguration& config /* @out */) const = 0;
 
     /**
      * @brief Set tts configuration attributes
@@ -425,7 +424,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @retval Core::ERROR_NOT_SUPPORTED Indicates setting of configuration is not supported in this implementation
      * @text setDeviceConfiguration
      */
-    virtual Core::hresult SetDeviceConfiguration(const DeviceConfiguration& config) { return Core::ERROR_NOT_SUPPORTED; }
+    virtual Core::hresult SetDeviceConfiguration(const DeviceConfiguration& config) = 0;
 };
 
 } // namespace Exchange
