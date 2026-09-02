@@ -97,9 +97,9 @@ namespace WPEFramework
                 // @param clientName: Name of the client device
                 // @example clientName: John's iPhone
                 // @param reasonCode: Error code for the connection failure
-                // @example reasonCode: 1001
+                // @example reasonCode: "1001"
                 // @param reasonDescription: Description of the reason for the connection failure
-                // @example reasonDescription: Authentication failed
+                // @example reasonDescription: "P2P_CONNECT_FAILURE"
                 virtual void OnClientConnectionError(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const string &reasonCode /* @text error_code */, const ReasonCode reasonDescription /* @text reason */) {};
 
                 // @brief Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player
