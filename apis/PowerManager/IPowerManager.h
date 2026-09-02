@@ -381,6 +381,18 @@ namespace WPEFramework
         // @param delayPeriod: delay in seconds
         virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
 
+        /** Schedule a deep sleep wakeup at a specific time */
+        // @text scheduleDeepSleepWakeup
+        // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
+        //        The device will transition to POWER_STATE_STANDBY (ActiveStandby). Note: the requestor
+        //        info is not yet delivered via OnPowerModeChanged; that will be added under ONEM-42980.
+        // @param unixTime: Unix timestamp (seconds since epoch) when device should wake up
+        // @param requestorId: Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen)
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult ScheduleDeepSleepWakeup(const uint64_t unixTime, const string& requestorId) = 0;
+
         /** Get the Wakeup Time in seconds */
         // @text getTimeSinceWakeup
         // @brief Get the Wakeup Time in seconds since the device transitioned to the ON state.
@@ -392,4 +404,3 @@ namespace WPEFramework
 
 } // namespace Exchange
 } // namespace WPEFramework
-
