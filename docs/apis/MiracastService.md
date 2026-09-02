@@ -426,7 +426,7 @@ Notifies listeners that the connection to the source streaming device could not 
         "mac": "00:11:22:33:44:55",
         "name": "John's iPhone",
         "error_code": 1001,
-        "reason": "Authentication failed"
+        "reason": "P2P_CONNECT_FAILURE"
     }
 }
 ```
