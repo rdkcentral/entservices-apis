@@ -489,9 +489,9 @@ Triggered whenever the Miracast player changes state. The event provides the sou
     "params": {
         "name": "Miracast Source Device",
         "mac": "00:1A:2B:3C:4D:5E",
-        "state": "STATE_PLAYING",
+        "state": "PLAYING",
         "reason_code": 200,
-        "reason": "REASON_CODE_SUCCESS"
+        "reason": "SUCCESS"
     }
 }
 ```
