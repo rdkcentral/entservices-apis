@@ -98,11 +98,11 @@ namespace WPEFramework
                 // @param clientMac: MacAddress of the client device
                 // @example clientMac: "00:1A:2B:3C:4D:5E"
                 // @param playerState: Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).)
-                // @example playerState: STATE_PLAYING
+                // @example playerState: "PLAYING"
                 // @param reasonDescription: Reason for the player state update
-                // @example reasonDescription: REASON_CODE_SUCCESS
+                // @example reasonDescription: "SUCCESS"
                 // @param reasonCode: Reason code for the player state update
-                // @example reasonCode: 200
+                // @example reasonCode: "200"
                 virtual void OnStateChange(const string &clientName /* @text name */, const string &clientMac /* @text mac */, const State playerState /* @text state */, const string &reasonCode /* @text reason_code */, const ReasonCode reasonDescription /* @text reason */) {};
             };
 
