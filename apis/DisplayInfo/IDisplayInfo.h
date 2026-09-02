@@ -40,7 +40,7 @@ namespace Exchange {
         virtual Core::hresult FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
 
-    /* @json @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
+    /* @json @text:keep @uncompliant:extended */  // NOTE: extended format is deprecated!! Do not just copy this line!
     struct EXTERNAL IConnectionProperties : virtual public Core::IUnknown {
         enum { ID = ID_CONNECTION_PROPERTIES };
 
@@ -95,7 +95,7 @@ namespace Exchange {
 
         // @brief TV's Extended Display Identification Data
         // @param edid: edid byte string
-        virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
+        virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length @encode:base64 */) const = 0;
 
         // @brief Horizontal size in centimeters
         // @param width: width in cm

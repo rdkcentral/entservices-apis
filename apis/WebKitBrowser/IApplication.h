@@ -23,7 +23,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    // @json @uncompliant:collapsed
+    // @json @text:keep @uncompliant:collapsed
     struct EXTERNAL IApplication : virtual public Core::IUnknown {
 
         enum { ID = ID_APPLICATION };
