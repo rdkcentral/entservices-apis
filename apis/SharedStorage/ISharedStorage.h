@@ -225,7 +225,7 @@ namespace Exchange {
         // @brief Flushes the device cache
         // @text flushCache
         // @details Forces all pending shared-storage cache entries to be written to the underlying persistent storage backend.
-        // @retval Core::ERROR_NONE - Cache flushed successfully.
+        // @retval Core::ERROR_NONE: Cache flushed successfully.
         virtual Core::hresult FlushCache() = 0;
     };
 
