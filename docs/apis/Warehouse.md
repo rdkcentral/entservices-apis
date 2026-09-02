@@ -111,7 +111,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "success": true,
+        "success": false,
         "error": "Unsupported reset type"
     }
 }
@@ -226,7 +226,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "success": true,
+        "success": false,
         "error": "Unsupported reset type"
     }
 }
@@ -285,7 +285,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "success": true,
+        "success": false,
         "error": "Unsupported reset type"
     }
 }
