@@ -27,7 +27,7 @@ namespace Thunder {
 
 namespace Exchange {
 
-// @json
+// @json @text:keep
 struct EXTERNAL IMessageControl : virtual public Core::IUnknown {
 
     enum { ID = ID_MESSAGE_CONTROL };
