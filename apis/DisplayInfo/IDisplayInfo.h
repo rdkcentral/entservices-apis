@@ -310,7 +310,7 @@ namespace Exchange {
         virtual Core::hresult Colorimetry(IColorimetryIterator*& colorimetry /* @out */) const = 0;
 
         // @property
-        // @brief Provides access to display's Qauntization Range
+        // @brief Provides access to display's Quantization Range
         // @details Retrieves the display's quantization range.
         // @param qr: quantization range
         // @example qr: QUANTIZATIONRANGE_LIMITED
