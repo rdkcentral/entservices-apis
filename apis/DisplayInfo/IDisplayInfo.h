@@ -25,7 +25,7 @@
 namespace Thunder {
 namespace Exchange {
 
-    /* @json */
+    /* @json @text:keep */
     struct EXTERNAL IGraphicsProperties : virtual public Core::IUnknown {
         enum { ID = ID_GRAPHICS_PROPERTIES };
 
@@ -118,7 +118,7 @@ namespace Exchange {
 
     };
 
-    /* @json */
+    /* @json @text:keep */
     struct EXTERNAL IHDRProperties : virtual public Core::IUnknown {
         enum { ID = ID_HDR_PROPERTIES };
 
@@ -150,7 +150,7 @@ namespace Exchange {
         virtual Core::hresult HDRSetting(HDRType& type /* @out */) const = 0;
     };
 
-    /* @json */
+    /* @json @text:keep */
     struct EXTERNAL IDisplayProperties : virtual public Core::IUnknown {
         enum { ID = ID_DISPLAY_PROPERTIES };
 
