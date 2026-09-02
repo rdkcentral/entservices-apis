@@ -103,8 +103,9 @@ namespace WPEFramework
             // @example suppressReboot: true
             // @param resetType: String specifying the type of reset to perform.
             // @example resetType: "factory"
-            // @param successErr: Result of the operation, including success state and any error details.    
-            // @example successErr: {"success": true, "error": "Unsupported reset type"}
+            // @param successErr: Result of the operation, including success state and any error details.
+            // @example successErr: {"success": true, "error": ""}
+            // @example successErr: {"success": false, "error": "Unsupported reset type"}
             // @retval Core::ERROR_NONE: Reset device operation completed successfully.
             virtual Core::hresult ResetDevice(const bool suppressReboot, const string& resetType, WarehouseSuccessErr& successErr /* @out */) = 0;
         };
