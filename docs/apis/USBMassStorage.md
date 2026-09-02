@@ -292,7 +292,7 @@ Triggered when a USB mass storage device is successfully unmounted by the system
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceInfo | object | name and device path of the mounted device. |
+| params.deviceInfo | object | name and device path of the unmounted device. |
 | params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
 | params.deviceInfo.deviceName | string | Device name identifying the device |
 | params.mountPoints | array | List of mountpoints information for the device unmounted. |
