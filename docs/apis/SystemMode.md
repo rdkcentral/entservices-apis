@@ -89,7 +89,7 @@ None
     "method": "org.rdk.SystemMode.clientActivated",
     "params": {
         "callsign": "com.example.client",
-        "systemMode": "DEVICE_OPTIMIZE"
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -98,7 +98,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "com.example.client", "systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "com.example.client", "systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -142,7 +142,7 @@ None
     "method": "org.rdk.SystemMode.clientDeactivated",
     "params": {
         "callsign": "com.example.client",
-        "systemMode": "DEVICE_OPTIMIZE"
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -151,7 +151,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "com.example.client", "systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "com.example.client", "systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -194,7 +194,7 @@ None
     "id": 2,
     "method": "org.rdk.SystemMode.getState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE"
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -203,7 +203,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "DEVICE_OPTIMIZE"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.SystemMode.getState", "params": {"systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -214,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "state": "VIDEO"
+        "state": "video"
     }
 }
 ```
@@ -248,8 +248,8 @@ None
     "id": 3,
     "method": "org.rdk.SystemMode.requestState",
     "params": {
-        "systemMode": "DEVICE_OPTIMIZE",
-        "state": "VIDEO"
+        "systemMode": "device_optimize",
+        "state": "video"
     }
 }
 ```
@@ -258,7 +258,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "DEVICE_OPTIMIZE", "state": "VIDEO"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.SystemMode.requestState", "params": {"systemMode": "device_optimize", "state": "video"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
