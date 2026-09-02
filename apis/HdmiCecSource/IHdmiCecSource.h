@@ -74,7 +74,7 @@ namespace WPEFramework
                 // @brief Notifies when the active source status is updated
                 // @text onActiveSourceStatusUpdated
                 // @details This event is triggered when the active source status changes
-                // @param status Indicates whether the active source is active.
+                // @param status: Indicates whether the active source is active.
                 // @example status: true
                 virtual void OnActiveSourceStatusUpdated(const bool status ) {};
     
