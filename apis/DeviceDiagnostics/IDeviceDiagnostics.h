@@ -78,7 +78,7 @@ namespace WPEFramework
             // @example paramList: [{"name":"DeviceInfo","value":"X1"}]
             // @param success: boolean
             // @example success: true
-            // @retval Core::ERROR_NONE:Successfully retrieved configuration
+            // @retval Core::ERROR_NONE: Successfully retrieved configuration
             virtual Core::hresult GetConfiguration(IStringIterator* const& names , IDeviceDiagnosticsParamListIterator*& paramList /* @out */, bool& success /* @out */) = 0;
 
             // @text getMilestones
