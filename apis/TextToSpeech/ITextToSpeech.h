@@ -373,7 +373,6 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      */
     virtual Core::hresult SpeakWithUtterance(const string& callsign, const SpeechUtterance& utterance, const string& text, uint32_t& speechid /* @out */,
                                              TTSErrorDetail& status /* @out */) = 0;
-    };
 
     /**
      * @brief Return the interface version implemented (Added in version 2)
