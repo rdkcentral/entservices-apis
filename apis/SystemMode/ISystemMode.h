@@ -47,9 +47,9 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @brief Requests a new system mode state in the device. Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
   // @details Invoked by the SystemMode service to request a new state for a given system mode. Components implementing this interface should asynchronously adjust their internal behavior, resource usage, or performance characteristics to match the requested optimization state.
   // @param systemMode: Indicates the system mode for which the state is being requested.
-  // @example systemMode: DEVICE_OPTIMIZE
+  // @example systemMode: "device_optimize"
   // @param state: Indicates the requested state.
-  // @example state: VIDEO
+  // @example state: "video"
   // @retval Core::ERROR_NONE: The state transition request was accepted successfully.
   virtual Core::hresult RequestState(const SystemMode systemMode /* @text systemMode */ , const State state /* @text state */ ) = 0;
 
@@ -57,9 +57,9 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @brief Gets the current state for a given system property
   // @details Invoked by the SystemMode service to retrieve the current state of a given system mode. Components implementing this interface should return the current state of the requested system mode.
   // @param systemMode: Indicates the system mode whose current state is being queried.
-  // @example systemMode: DEVICE_OPTIMIZE
+  // @example systemMode: "device_optimize"
   // @param getStateResult: The current state of the specified system mode.
-  // @example getStateResult: { "state": "VIDEO" }
+  // @example getStateResult: { "state": "video" }
   // @retval Core::ERROR_NONE: The current state was retrieved successfully.
   virtual Core::hresult GetState(const SystemMode systemMode /* @text systemMode */ , GetStateResult& getStateResult /* @out */) const = 0;
 
@@ -69,7 +69,7 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @param callsign: The callsign of the client plugin being activated.
   // @example callsign: "com.example.client"
   // @param systemMode: The system mode for which the client plugin is being activated.
-  // @example systemMode: DEVICE_OPTIMIZE
+  // @example systemMode: "device_optimize"
   // @retval Core::ERROR_NONE: The client activation was recorded successfully.
   virtual Core::hresult ClientActivated(const string& callsign /* @text callsign*/ ,const string& systemMode) = 0;
 
@@ -79,7 +79,7 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
   // @param callsign: The callsign of the client plugin being deactivated.
   // @example callsign: "com.example.client"
   // @param systemMode: The system mode for which the client plugin is being deactivated.
-  // @example systemMode: DEVICE_OPTIMIZE
+  // @example systemMode: "device_optimize"
   // @retval Core::ERROR_NONE: The client deactivation was recorded successfully.
   virtual Core::hresult ClientDeactivated(const string& callsign /* @text callsign*/, const string& systemMode) = 0;
 };
