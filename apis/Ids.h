@@ -367,6 +367,9 @@ namespace Exchange {
 
         ID_VICTIM_SELECTOR                          = ID_ENTOS_OFFSET + 0x570,
         ID_VICTIM_SELECTOR_NOTIFICATION             = ID_VICTIM_SELECTOR + 1,
+
+        ID_RESOURCE_MONITOR                         = ID_ENTOS_OFFSET + 0x580,
+        ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
     }; // enum IDS
 
 } // namespace Exchange
