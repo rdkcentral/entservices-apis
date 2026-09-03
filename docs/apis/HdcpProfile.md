@@ -61,7 +61,7 @@ The following methods are provided by the IHdcpProfile Interface:
 <a id="getHDCPStatus"></a>
 ## *getHDCPStatus*
 
-Returns HDCP-related data.
+Returns HDCP-related data as separate properties.
 
 ### Events Triggered
 None
@@ -114,9 +114,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
             "isHDCPCompliant": true,
             "isHDCPEnabled": true,
             "hdcpReason": 0,
-            "supportedHDCPVersion": "",
-            "receiverHDCPVersion": "",
-            "currentHDCPVersion": ""
+            "supportedHDCPVersion": 2.2,
+            "receiverHDCPVersion": 2.2,
+            "currentHDCPVersion": 2.2
         },
         "success": true
     }
@@ -126,7 +126,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getSettopHDCPSupport"></a>
 ## *getSettopHDCPSupport*
 
-Returns which version of HDCP is supported by the STB.
+This method queries the STB to determine which version of HDCP it supports.
 
 ### Events Triggered
 None
@@ -168,7 +168,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "supportedHDCPVersion": "",
+        "supportedHDCPVersion": 2.2,
         "isHDCPSupported": true,
         "success": true
     }
@@ -189,7 +189,7 @@ The following events are provided by the IHdcpProfile Interface:
 <a id="onDisplayConnectionChanged"></a>
 ## *onDisplayConnectionChanged*
 
-Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPlug
+Provides the current connection status and HDCP compliance information for the display.
 
 ### Parameters
 | Name | Type | Description |
@@ -216,9 +216,9 @@ Triggered if HDMI was connected or disconnected upon receiving onHdmiOutputHotPl
         "isHDCPCompliant": true,
         "isHDCPEnabled": true,
         "hdcpReason": 0,
-        "supportedHDCPVersion": "",
-        "receiverHDCPVersion": "",
-        "currentHDCPVersion": ""
+        "supportedHDCPVersion": 2.2,
+        "receiverHDCPVersion": 2.2,
+        "currentHDCPVersion": 2.2
     }
 }
 ```

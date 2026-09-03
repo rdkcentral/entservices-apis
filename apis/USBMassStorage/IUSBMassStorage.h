@@ -83,15 +83,21 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @brief Device Mounted notification
         // @@iterator
         // @text onDeviceMounted
+        // @details Triggered when a USB mass storage device is successfully mounted by the system.
         // @param deviceInfo: name and device path of the mounted device.
+        // @example deviceInfo: {"deviceName": "USB Flash Drive"}
         // @param mountPoints: List of mountpoints information for the device mounted.
+        // @example mountPoints: [{"mountPath": "/media/usb0"}]
         virtual void OnDeviceMounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
 
         // @brief Device Unmounted notification
         // @@iterator
         // @text onDeviceUnMounted
-        // @param deviceInfo: name and device path of the mounted device.
+        // @details Triggered when a USB mass storage device is successfully unmounted by the system. The event provides information about the device and its previously mounted partitions.
+        // @param deviceInfo: name and device path of the unmounted device.
+        // @example deviceInfo: {"deviceName": "USB Flash Drive"}
         // @param mountPoints: List of mountpoints information for the device unmounted.
+        // @example mountPoints: [{"mountPath": "/media/usb0"}]
         virtual void OnDeviceUnmounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
     };
 
@@ -103,21 +109,32 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     /** Get list of devices that are currently mounted in the system */
     // @text getDeviceList
     // @brief Get list of devices that are currently mounted in the system
+    // @details Retrieves a list of USB mass storage devices currently mounted in the system. Each entry contains basic device information such as device name and device path.
     // @param deviceInfo: Device info for devices that are currently mounted.
+    // @example deviceInfo: [{"deviceName": "USB Flash Drive"}]
+    // @retval Core::ERROR_NONE: Device list retrieved successfully.
     virtual Core::hresult GetDeviceList(IUSBStorageDeviceInfoIterator*& deviceInfo /* @out */ ) const = 0;
 
     /** Get mount points information for a specified device.*/
     // @text getMountPoints
     // @brief Get mount points information for a specified device
-    // @param deviceName: name of the device for which mount points are to be retrieved
+    // @details Retrieves mount points information for the specified USB mass storage device.
+    // @param deviceName: Name of the device for which mount points are to be retrieved
+    // @example deviceName: "USB Flash Drive"
     // @param mountPoints: List of mountpoints information for a given device.
+    // @example mountPoints: [{"mountPath": "/media/usb0"}]
+    // @retval Core::ERROR_NONE: Mount point information retrieved successfully.
     virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
     /** Get partition information for a given partition.*/
     // @text getPartitionInfo
     // @brief Get partition information for a given partition
-    // @param mountPath : mount path of the partition for which more info is required
+    // @details Retrieves partition information for the specified mount path.
+    // @param mountPath: mount path of the partition for which more info is required
+    // @example mountPath: "/media/usb0"
     // @param partitionInfo: partition info details
+    // @example partitionInfo: {"size": 1024}  
+    // @retval Core::ERROR_NONE: Partition information retrieved successfully.
     virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
 };

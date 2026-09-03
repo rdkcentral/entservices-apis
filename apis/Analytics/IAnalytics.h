@@ -36,6 +36,7 @@ namespace Exchange {
 
         // @alt sendEvent
         // @brief Send an event to the analytics server
+        // @details Sends an analytics event along with its metadata, timestamps, application identifier, payload, CET information, and optional contextual data. The event is forwarded to the Analytics service for processing and delivery to the configured analytics backend.
         // @param eventName: Name of the event
         // @param eventVersion: Version of the event
         // @param eventSource: Source of the event
@@ -46,6 +47,17 @@ namespace Exchange {
         // @param appId: Durable App Id string
         // @param eventPayload: Payload of the event
         // @param additionalContext: Additional context for the event
+        // @example eventName: "playback_started"
+        // @example eventVersion: "1.0.0"
+        // @example eventSource: "player_component"
+        // @example eventSourceVersion: "2.1.0"
+        // @example cetList: ["CET_01", "CET_02"]
+        // @example epochTimestamp: 1719824400
+        // @example uptimeTimestamp: 3600
+        // @example appId: "com.comcast.xr11"
+        // @example eventPayload: "{\"bitrate\":5000,\"codec\":\"h264\"}"
+        // @example additionalContext: "{\"networkType\":\"ethernet\"}"
+        // @retval Core::ERROR_NONE: Event was accepted and successfully queued for processing by the Analytics service.
         virtual Core::hresult SendEvent(const string& eventName,
                                    const string& eventVersion,
                                    const string& eventSource,

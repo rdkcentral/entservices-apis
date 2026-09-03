@@ -82,21 +82,31 @@ namespace WPEFramework
 
                 // @brief Triggered when the Miracast Service plugin receives a new connection request from a client
                 // @text onClientConnectionRequest
+                // @details Notifies listeners of an incoming Miracast connection request, identifying the requesting client so the application can prompt the user to accept or reject it via acceptClientConnection.
                 // @param clientMac: MacAddress of the client device
+                // @example clientMac: 00:11:22:33:44:55
                 // @param clientName: Name of the client device
+                // @example clientName: John's iPhone
                 virtual void OnClientConnectionRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */) {};
 
                 // @brief It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming
                 // @text onClientConnectionError
+                // @details Notifies listeners that the connection to the source streaming device could not be established, providing the failing client's identity along with a reason code and description of the underlying P2P or streaming error.
                 // @param clientMac: MacAddress of the client device
+                // @example clientMac: 00:11:22:33:44:55
                 // @param clientName: Name of the client device
-                // @param errorCode: Error code for the connection failure
-                // @param reason: Reason for the connection failure
+                // @example clientName: John's iPhone
+                // @param reasonCode: Error code for the connection failure
+                // @example reasonCode: "1001"
+                // @param reasonDescription: Description of the reason for the connection failure
+                // @example reasonDescription: "P2P_CONNECT_FAILURE"
                 virtual void OnClientConnectionError(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const string &reasonCode /* @text error_code */, const ReasonCode reasonDescription /* @text reason */) {};
 
                 // @brief Miracast Service Plugin raises this Event to request RA or MiracastWidget to launch the Miracast Player
                 // @text onLaunchRequest
-                // @param DeviceParameters: Contains Source and Sink Device related properties
+                // @details Triggered when the Miracast Service plugin needs the Resident Application or MiracastWidget to launch the Miracast Player, providing the source and sink device parameters required to start streaming.
+                // @param deviceParameters: Contains Source and Sink Device related properties
+                // @example deviceParameters: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
                 virtual void OnLaunchRequest(const DeviceParameters &deviceParameters/* @text device_parameters*/) {};
             };
 
@@ -107,42 +117,68 @@ namespace WPEFramework
 
             // @brief To enable or disable the Miracast feature
             // @text setEnable
+            // @details Enables or disables the Miracast feature on the device. When enabled, the device will be discoverable by other Miracast devices and can accept connection requests. When disabled, the device will not be discoverable and will reject any incoming connection requests.
             // @param enabled: Is the MiracastService discovery enabled or not
-            // @param success: Is the operation successful or not
+            // @example enabled: true
+            // @param result: Result of the set enable operation
+            // @example result: { success: true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetEnabled(const bool enabled /* @text enabled */, Result &result /* @out */) = 0;
 
             // @brief To get the enable status of the Miracast feature
             // @text getEnable
+            // @details Retrieves the enable status of the Miracast feature on the device. If enabled, the device is discoverable by other Miracast devices and can accept connection requests. If disabled, the device is not discoverable and will reject any incoming connection requests.
             // @param enabled: Is the MiracastService discovery enabled or not
+            // @example enabled: true
             // @param success: Is the operation successful or not
+            // @example success: true
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetEnabled(bool &enabled /* @out @text enabled */, bool &success /* @out */) = 0;
 
             // @brief To accept or reject new client connection requests for the Miracast feature
             // @text acceptClientConnection
+            // @details Accepts or rejects new client connection requests for the Miracast feature. If accepted, the Miracast Service plugin will establish a connection with the client device and start streaming. If rejected, the Miracast Service plugin will send a rejection response to the client device.
             // @param requestStatus: It should be "Accept" or "Reject"
-            // @param success: Is the operation successful or not
+            // @example requestStatus: "Accept"
+            // @param result: Contains the result of the operation, including a message and a success flag
+            // @example result: { "message": "Connection accepted", "success": true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult AcceptClientConnection(const string &requestStatus /* @text requestStatus */, Result &result /* @out */) = 0;
 
             // @brief To abort the ongoing connection after accepted connection request
             // @text stopClientConnection
+            // @details Aborts the ongoing connection after accepted connection request. This can be used to stop the streaming from the source device to the sink device.
             // @param clientMac: MacAddress of the client device
+            // @example clientMac: 00:11:22:33:44:55
             // @param clientName: Name of the client device
-            // @param success: Is the operation successful or not
+            // @example clientName: John's iPhone
+            // @param result: Contains the result of the operation, including a message and a success flag
+            // @example result: { message: "Connection stopped", success: true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult StopClientConnection(const string &clientMac /* @text mac */, const string &clientName /* @text name */, Result &result /* @out */) = 0;
 
             // @brief Update the Miracast Player State to the Miracast Service Plugin
             // @text updatePlayerState
+            // @details Updates the Miracast Player State to the Miracast Service Plugin. This can be used to inform the plugin about the current state of the player, such as whether it is playing, paused, or stopped.
             // @param clientMac: MacAddress of the client device
+            // @example clientMac: 00:11:22:33:44:55
             // @param playerState: Player state to be updated
+            // @example playerState: PLAYER_STATE_PLAYING
             // @param reasonCode: Reason code for the player state update
-            // @param reason: Reason for the player state update
-            // @param success: Is the operation successful or not
+            // @example reasonCode: 200
+            // @param result: Contains the result of the operation, including a message and a success flag
+            // @example result: { message: "Player state updated", success: true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult UpdatePlayerState(const string &clientMac /* @text mac */, const PlayerState playerState /* @text state */, const int reasonCode /* @text reason_code */, Result &result /* @out */) = 0;
 
             // @brief Sets the status of the MiracastService backend discovery
             // @text setP2PBackendDiscovery
+            // @details Sets the status of the MiracastService backend discovery. When enabled, the MiracastService will perform backend discovery to find available Miracast devices. When disabled, the backend discovery will be turned off.
             // @param enabled: Is the MiracastService backend discovery enabled or not
-            // @param success: Is the operation successful or not
+            // @example enabled: true
+            // @param result: Contains the result of the operation, including a message and a success flag
+            // @example result: { message: "Backend discovery status updated", success: true }
+            // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetP2PBackendDiscovery(const bool enabled /* @text enabled */, Result &result /* @out */) = 0;
         };
     } // namespace Exchange

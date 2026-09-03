@@ -66,7 +66,7 @@ The following methods are provided by the IMiracastPlayer Interface:
 <a id="playRequest"></a>
 ## *playRequest*
 
-To set the Miracast Player State to Play after the Miracast session like RTSP communication and GStreamer Playback
+Initiates a Miracast session using the supplied source and sink device information, configures the display region, and starts media streaming.
 
 ### Events Triggered
 None
@@ -88,7 +88,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the play request operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -103,18 +103,8 @@ None
     "id": 0,
     "method": "org.rdk.MiracastPlayer.playRequest",
     "params": {
-        "device_parameters": {
-            "source_dev_ip": "",
-            "source_dev_mac": "",
-            "source_dev_name": "",
-            "sink_dev_ip": ""
-        },
-        "video_rectangle": {
-            "X": 0,
-            "Y": 0,
-            "W": 0,
-            "H": 0
-        }
+        "device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }",
+        "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"
     }
 }
 ```
@@ -123,7 +113,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": {"source_dev_ip": "", "source_dev_mac": "", "source_dev_name": "", "sink_dev_ip": ""}, "video_rectangle": {"X": 0, "Y": 0, "W": 0, "H": 0}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }", "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -133,17 +123,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setEnvArguments"></a>
 ## *setEnvArguments*
 
-To configure the environment arguments for the Miracast Player
+Applies the specified environment variables that influence the behavior and execution environment of the Miracast player.
 
 ### Events Triggered
 None
@@ -158,7 +145,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set environment arguments operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -173,10 +160,7 @@ None
     "id": 1,
     "method": "org.rdk.MiracastPlayer.setEnvArguments",
     "params": [
-        {
-            "argName": "",
-            "argValue": ""
-        }
+        "[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"
     ]
 }
 ```
@@ -185,7 +169,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": [{"argName": "", "argValue": ""}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": ["[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -195,17 +179,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setVideoRectangle"></a>
 ## *setVideoRectangle*
 
-Set the Video Rectangle.
+Sets the Video Rectangle for the Miracast Player.
 
 ### Events Triggered
 None
@@ -221,7 +202,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set video rectangle operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -238,8 +219,8 @@ None
     "params": {
         "X": 0,
         "Y": 0,
-        "W": 0,
-        "H": 0
+        "W": 1920,
+        "H": 1080
     }
 }
 ```
@@ -248,7 +229,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastPlayer.setVideoRectangle", "params": {"X": 0, "Y": 0, "W": 0, "H": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.MiracastPlayer.setVideoRectangle", "params": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -258,17 +239,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="setWesterosEnvironment"></a>
 ## *setWesterosEnvironment*
 
-To configure the westeros environment arguments for the Miracast Player. This will be deprecated and SetEnvArguments will be used instead.
+Applies the specified westeros environment settings required for Miracast playback. This API is deprecated in favor of SetEnvArguments.
 
 ### Events Triggered
 None
@@ -283,7 +261,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the set westeros environment operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -298,10 +276,7 @@ None
     "id": 3,
     "method": "org.rdk.MiracastPlayer.setWesterosEnvironment",
     "params": [
-        {
-            "argName": "",
-            "argValue": ""
-        }
+        "[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"
     ]
 }
 ```
@@ -310,7 +285,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": [{"argName": "", "argValue": ""}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": ["[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -320,17 +295,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="stopRequest"></a>
 ## *stopRequest*
 
-To stop the Miracast Player to tear down the RTSP communication, stop/close the GStreamer pipeline, clean up, and reset the player state
+Terminates the current streaming session, releases playback resources, and resets the player to an idle state.
 
 ### Events Triggered
 None
@@ -345,7 +317,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the stop request |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -360,9 +332,9 @@ None
     "id": 4,
     "method": "org.rdk.MiracastPlayer.stopRequest",
     "params": {
-        "mac": "",
-        "name": "",
-        "reason_code": 0
+        "mac": "00:1A:2B:3C:4D:5E",
+        "name": "Miracast Source Device",
+        "reason_code": 200
     }
 }
 ```
@@ -371,7 +343,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "", "name": "", "reason_code": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -381,17 +353,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="unsetEnvArguments"></a>
 ## *unsetEnvArguments*
 
-To reset the environment arguments for the Miracast Player
+Clears all previously configured environment variables and restores the Miracast player to its default environment settings.
 
 ### Events Triggered
 None
@@ -401,7 +370,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the unset environment arguments operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -432,17 +401,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
 <a id="unsetWesterosEnvironment"></a>
 ## *unsetWesterosEnvironment*
 
-To reset the westeros environment arguments for the Miracast Player. This will be deprecated and UnsetEnvArguments will be used instead.
+Removes all Westeros-specific environment settings and restores the default playback environment. This API is deprecated in favor of UnsetEnvArguments.
 
 ### Events Triggered
 None
@@ -452,7 +418,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object |  |
+| result.result | object | Result of the unset westeros environment operation |
 | result.result.message | string | reason for success or failure |
 | result.result.success | bool |  |
 
@@ -483,10 +449,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": {
-        "message": "",
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 
@@ -504,7 +467,7 @@ The following events are provided by the IMiracastPlayer Interface:
 <a id="onStateChange"></a>
 ## *onStateChange*
 
-Notifies when a Miracast source device wants to connect
+Triggered whenever the Miracast player changes state. The event provides the source device information, the current player state, and the associated reason for the state update.
 
 ### Parameters
 | Name | Type | Description |
@@ -514,7 +477,7 @@ Notifies when a Miracast source device wants to connect
 | params.mac | string | MacAddress of the client device |
 | params.state | string | Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).). Possible values: IDLE, INITIATED, INPROGRESS, PLAYING, STOPPED, PAUSED |
 | params.reason_code | string | Reason code for the player state update |
-| params.reason | string | reason code Decription. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
+| params.reason | string | Reason for the player state update. Possible values: SUCCESS, APP_REQ_TO_STOP, SRC_DEV_REQ_TO_STOP, RTSP_FAILURE, RTSP_TIMEOUT, RTSP_NOT_SUPPORTED, GST_FAILURE, INTERNAL_FAILURE, NEW_SRC_DEV_CONNECT_REQ |
 
 ### Examples
 
@@ -524,10 +487,10 @@ Notifies when a Miracast source device wants to connect
     "id": 7,
     "method": "org.rdk.MiracastPlayer.onStateChange",
     "params": {
-        "name": "",
-        "mac": "",
-        "state": "IDLE",
-        "reason_code": "",
+        "name": "Miracast Source Device",
+        "mac": "00:1A:2B:3C:4D:5E",
+        "state": "PLAYING",
+        "reason_code": 200,
         "reason": "SUCCESS"
     }
 }

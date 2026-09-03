@@ -61,7 +61,7 @@ The following methods are provided by the IMigration Interface:
 <a id="getBootTypeInfo"></a>
 ## *getBootTypeInfo*
 
-query the BootType details
+Retrieves the BootType details. Possible values include `BOOT_INIT`, `BOOT_NORMAL`, `BOOT_MIGRATION`, and `BOOT_UPDATE`.
 
 ### Events Triggered
 None
@@ -71,7 +71,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string | Possible values: BOOT_INIT, BOOT_NORMAL, BOOT_MIGRATION, BOOT_UPDATE |
+| result.bootType | string | struct. Possible values: BOOT_INIT, BOOT_NORMAL, BOOT_MIGRATION, BOOT_UPDATE |
 
 ### Examples
 
@@ -100,16 +100,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": {
-        "bootType": "BOOT_INIT"
-    }
+    "result": "{ bootType: BOOT_TYPE_MIGRATION }"
 }
 ```
 
 <a id="getMigrationStatus"></a>
 ## *getMigrationStatus*
 
-get the MigrationStatus details
+Retrieves the MigrationStatus details. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
 
 ### Events Triggered
 None
@@ -119,7 +117,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.migrationStatus | string | Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
+| result.migrationStatus | string | struct. Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 
 ### Examples
 
@@ -148,16 +146,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": {
-        "migrationStatus": "NOT_STARTED"
-    }
+    "result": "{ migrationStatus: MIGRATION_STATUS_STARTED }"
 }
 ```
 
 <a id="setMigrationStatus"></a>
 ## *setMigrationStatus*
 
-sets the tr181 MigrationStatus parameter
+Sets the tr181 MigrationStatus parameter. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
 
 ### Events Triggered
 None
@@ -183,7 +179,7 @@ None
     "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
-        "status": "NOT_STARTED"
+        "status": "MIGRATION_STATUS_STARTED"
     }
 }
 ```
@@ -192,7 +188,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "MIGRATION_STATUS_STARTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -202,9 +198,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": {
-        "success": true
-    }
+    "result": "{ success: true }"
 }
 ```
 

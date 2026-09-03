@@ -55,13 +55,13 @@ The following methods are provided by the ILEDControl Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [getLEDState](#getLEDState) | Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"} |
-| [getSupportedLEDStates](#getSupportedLEDStates) | Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`. |
+| [getSupportedLEDStates](#getSupportedLEDStates) | Returns the list of LED states that are actually supported by the platform at runtime. |
 | [setLEDState](#setLEDState) | Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. |
 
 <a id="getLEDState"></a>
 ## *getLEDState*
 
-Retrieves current state of the LED. e.g. {"state":"WPS_CONNECTING"}
+Retrieves current state of the LED. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
 
 ### Events Triggered
 None
@@ -101,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "state": "NONE"
+        "state": "WPS_CONNECTING"
     }
 }
 ```
@@ -121,7 +121,7 @@ This method takes no parameters.
 | result | object |  |
 | result.supportedLEDStates | array | string [] of supported LED states.  |
 | result.supportedLEDStates[#] | string |  |
-| result.success | bool | boolean |
+| result.success | bool | boolean indicating whether the operation was successful |
 
 ### Examples
 
@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="setLEDState"></a>
 ## *setLEDState*
 
-Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
+Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. If the requested state is not supported, the operation will fail and return `Core::ERROR_GENERAL`.
 
 ### Events Triggered
 None
@@ -175,7 +175,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Boolean indicating whether the operation was successful |
 
 ### Examples
 

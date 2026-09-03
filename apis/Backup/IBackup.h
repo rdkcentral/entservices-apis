@@ -57,20 +57,29 @@ namespace WPEFramework
 
             // @text backupSettings
             // @brief Backup settings across the system
+            // @details Invokes all registered backup providers and requests them to persist their settings into the location 
+            // specified by the supplied BackupContext. The backup operation is performed for the given scenario and variant.
             // @param context: Context for which the backup to happen
-            // @retval Core::ERROR_NONE Successfully backed up the settings
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully backed up the settings
             virtual Core::hresult BackupSettings(const BackupContext& context) = 0;
 
             // @text restoreSettings
             // @brief Restore settings across the system
+            // @details Invokes all registered backup providers and requests them to restore their settings from the location specified by the supplied BackupContext.
+            // The restore operation is performed for the given scenario and variant.
             // @param context: Context for which the restore to happen
-            // @retval Core::ERROR_NONE Successfully restored the settings
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully restored the settings
             virtual Core::hresult RestoreSettings(const BackupContext& context) = 0;
 
             // @text deleteBackup
             // @brief Deletes the previously backed up settings across the system
+            // @details Locates the backup directory specified by the BackupContext and removes all archived settings
+            // data associated with the given scenario and variant.
             // @param context: Context for which the backup to be deleted
-            // @retval Core::ERROR_NONE Successfully deleted the backup
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully deleted the backup
             virtual Core::hresult DeleteBackup(const BackupContext& context) = 0;
         };
 
@@ -89,20 +98,29 @@ namespace WPEFramework
 
             // @text backup
             // @brief Backup settings that belong to this component.
+            // @details Instructs this specific plugin or component provider to compile its
+            // internal state and persist it into the provided BackupContext directory path.
             // @param context: Context for which the backup to happen
-            // @retval Core::ERROR_NONE Successfully backed up
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully backed up
             virtual Core::hresult Backup(const BackupContext& context) = 0;
 
             // @text restore
             // @brief Restore settings that belong to this component.
+            // @details Instructs this specific plugin or component provider to ingest saved settings
+            // data from the BackupContext location and re-apply them to its runtime configuration.
             // @param context: Context for which the restore to happen
-            // @retval Core::ERROR_NONE Successfully restored
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully restored
             virtual Core::hresult Restore(const BackupContext& context) = 0;
 
             // @text delete
             // @brief Deletes the previously backed up settings that belong to this component.
+            // @details Commands this specific plugin provider to purge any specialized local archives, references, or storage files 
+            // created for this particular context scenario and variant.
             // @param context: Context for which the backup to be deleted
-            // @retval Core::ERROR_NONE Successfully deleted the backup
+            // @example context: {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}
+            // @retval Core::ERROR_NONE: Successfully deleted the backup
             virtual Core::hresult Delete(const BackupContext& context) = 0;
         };
     }
