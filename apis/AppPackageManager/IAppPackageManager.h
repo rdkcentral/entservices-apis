@@ -36,7 +36,7 @@ namespace Exchange {
 
         std::string fireboltVersion;
         bool enableDebugger;
-	std::string unpackedPath;
+        std::string unpackedPath;
     };
     #define RUNTIME_CONFIG
 #endif
