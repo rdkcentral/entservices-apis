@@ -139,9 +139,9 @@ namespace WPEFramework
             // @text acceptClientConnection
             // @details Accepts or rejects new client connection requests for the Miracast feature. If accepted, the Miracast Service plugin will establish a connection with the client device and start streaming. If rejected, the Miracast Service plugin will send a rejection response to the client device.
             // @param requestStatus: It should be "Accept" or "Reject"
-            // @example requestStatus: Accept
+            // @example requestStatus: "Accept"
             // @param result: Contains the result of the operation, including a message and a success flag
-            // @example result: { message: "Connection accepted", success: true }
+            // @example result: { "message": "Connection accepted", "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult AcceptClientConnection(const string &requestStatus /* @text requestStatus */, Result &result /* @out */) = 0;
 
