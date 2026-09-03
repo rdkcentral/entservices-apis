@@ -250,6 +250,7 @@ No Events
 | result?.appType | string | <sup>*(optional)*</sup>  |
 | result?.appPath | string | <sup>*(optional)*</sup>  |
 | result?.runtimePath | string | <sup>*(optional)*</sup>  |
+| result?.unpackedPath | string | <sup>*(optional)*</sup> Path to the unpacked application package |
 
 ### Example
 
@@ -288,7 +289,8 @@ No Events
         "command": "...",
         "appType": "...",
         "appPath": "...",
-        "runtimePath": "..."
+        "runtimePath": "...",
+        "unpackedPath": "..."
     }
 }
 ```
@@ -381,6 +383,7 @@ No Events
 | result.config?.appType | string | <sup>*(optional)*</sup>  |
 | result.config?.appPath | string | <sup>*(optional)*</sup>  |
 | result.config?.runtimePath | string | <sup>*(optional)*</sup>  |
+| result.config?.unpackedPath | string | <sup>*(optional)*</sup> Path to the unpacked application package |
 
 ### Example
 
@@ -421,7 +424,8 @@ No Events
             "command": "...",
             "appType": "...",
             "appPath": "...",
-            "runtimePath": "..."
+            "runtimePath": "...",
+            "unpackedPath": "..."
         }
     }
 }
