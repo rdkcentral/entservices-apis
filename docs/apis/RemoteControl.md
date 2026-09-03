@@ -74,7 +74,9 @@ The following methods are provided by the IRemoteControl Interface:
 | [initializeIRDB](#initializeIRDB) | Initializes the IR database |
 | [setIRCode](#setIRCode) | Programs an IR code into the specified remote control |
 | [startFirmwareUpdate](#startFirmwareUpdate) | Starts a firmware image update session for the specified remote(s) |
+| [startPairing](#startPairing) | Initiates pairing a remote with the STB on the specified network. |
 | [statusFirmwareUpdate](#statusFirmwareUpdate) | Returns the status of an active firmware image update session |
+| [stopPairing](#stopPairing) | Cancels pairing a remote with the STB on the specified network. |
 | [unpair](#unpair) | Unpairs all remotes from the STB |
 
 <a id="cancelFirmwareUpdate"></a>
@@ -102,7 +104,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.RemoteControl.cancelFirmwareUpdate",
     "params": {
@@ -115,7 +117,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.RemoteControl.cancelFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -123,7 +125,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "success": true
@@ -157,7 +159,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.RemoteControl.clearIRCodes",
     "params": {
@@ -171,7 +173,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1, "netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.RemoteControl.clearIRCodes", "params": {"remoteId": 1, "netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -179,7 +181,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "success": true
@@ -199,7 +201,7 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.wakeupConfig | string | The deepsleep wakeup key configuration of the remote. Possible values: all (all keys on the remote will wake target from deepsleep), none (no keys will wake target), custom (the custom list of Linux key codes in customKeys will wake target) |
-| params.customKeys | string | List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
+| params?.customKeys | string | <sup>(optional)</sup>List of Linux key codes that can wake the target from deepsleep. Mandatory if wakeupConfig is custom, otherwise should be omitted  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -213,11 +215,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "method": "org.rdk.RemoteControl.configureWakeupKeys",
     "params": {
-        "wakeupConfig": "INVALID",
+        "wakeupConfig": "all",
         "customKeys": "195,199"
     }
 }
@@ -227,7 +229,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "INVALID", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 2, "method": "org.rdk.RemoteControl.configureWakeupKeys", "params": {"wakeupConfig": "all", "customKeys": "195,199"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -235,7 +237,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 2,
     "result": {
         "success": true
@@ -265,7 +267,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "method": "org.rdk.RemoteControl.factoryReset"
 }
@@ -275,7 +277,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.RemoteControl.factoryReset"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 3, "method": "org.rdk.RemoteControl.factoryReset"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -283,7 +285,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 3,
     "result": {
         "success": true
@@ -302,7 +304,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.level | string | The level at which the remote will beep. Possible values: INVALID, off, mid, high |
+| params?.level | string | <sup>(optional)</sup>The level at which the remote will beep. Required for the call to succeed; the request fails if omitted. Possible values: off, mid, high |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -316,11 +318,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "method": "org.rdk.RemoteControl.findMyRemote",
     "params": {
-        "level": "INVALID"
+        "level": "off"
     }
 }
 ```
@@ -329,7 +331,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "INVALID"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.RemoteControl.findMyRemote", "params": {"level": "off"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -337,7 +339,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 4,
     "result": {
         "success": true
@@ -369,7 +371,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "method": "org.rdk.RemoteControl.getApiVersionNumber"
 }
@@ -379,7 +381,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.RemoteControl.getApiVersionNumber"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.RemoteControl.getApiVersionNumber"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -387,7 +389,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 5,
     "result": {
         "version": 1,
@@ -429,7 +431,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup",
     "params": {
@@ -442,7 +444,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.RemoteControl.getIRCodesByAutoLookup", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -450,7 +452,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 6,
     "result": {
         "tvManufacturer": "Samsung",
@@ -459,7 +461,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
         "avrModel": "AVR-S750H",
         "success": true,
         "tvCodes": [
-            1156
+            "1156"
         ],
         "avrCodes": [
             "R2467"
@@ -479,18 +481,19 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.manufacturer | string | The manufacturer name of the AV device  |
-| params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
+| params?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
+| params?.model | string | <sup>(optional)</sup>A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| result.manufacturer | string | The manufacturer name of the AV device  |
-| result.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
+| result?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
+| result?.model | string | <sup>(optional)</sup>A part (minimum of 3 characters) of the model name of the AV device  |
 | result.success | bool | Whether the request succeeded |
-| result.codes | string | A list of IR codes as a string |
+| result.codes | array | A list of IR codes  |
+| result.codes[#] | string |  |
 
 ### Examples
 
@@ -499,11 +502,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6"
     }
@@ -514,7 +517,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -522,14 +525,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 7,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6",
         "success": true,
-        "codes": ""
+        "codes": [
+            "6712"
+        ]
     }
 }
 ```
@@ -545,13 +550,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params.manufacturer | string | A part of the name of the manufacturer of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | result.success | bool | Whether the request succeeded |
 | result.manufacturers | array | A list of manufacturer names  |
 | result.manufacturers[#] | string |  |
@@ -563,11 +568,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "method": "org.rdk.RemoteControl.getIRDBManufacturers",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Sam"
     }
 }
@@ -577,7 +582,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "INVALID", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.RemoteControl.getIRDBManufacturers", "params": {"avDevType": "TV", "manufacturer": "Sam"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -585,10 +590,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 8,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "success": true,
         "manufacturers": [
             "Samsung"
@@ -608,15 +613,15 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| params.manufacturer | string | The manufacturer name of the AV device  |
+| params?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
+| params?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | params.model | string | A part (minimum of 3 characters) of the model name of the AV device  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
-| result.manufacturer | string | The manufacturer name of the AV device  |
+| result?.avDevType | string | <sup>(optional)</sup>Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
+| result?.manufacturer | string | <sup>(optional)</sup>The manufacturer name of the AV device  |
 | result.success | bool | Whether the request succeeded |
 | result.models | array | A list of model names  |
 | result.models[#] | string |  |
@@ -628,11 +633,11 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "model": "UN6"
     }
@@ -643,7 +648,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "INVALID", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -651,10 +656,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 9,
     "result": {
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "manufacturer": "Samsung",
         "success": true,
         "models": [
@@ -679,7 +684,7 @@ This method takes no parameters.
 | result | object |  |
 | result.response | object | The last keypress source response |
 | result.response.controllerId | integer | The controller ID of the target remote on the specified network  |
-| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch |
+| result.response.timestamp | integer | The time of the last key press in milliseconds since epoch  |
 | result.response.sourceName | string | The source of the last key press  |
 | result.response.sourceType | string | The source type of the last key press  |
 | result.response.sourceKeyCode | integer | The source key code  |
@@ -694,7 +699,7 @@ This method takes no parameters.
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "method": "org.rdk.RemoteControl.getLastKeypressSource"
 }
@@ -704,7 +709,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.RemoteControl.getLastKeypressSource"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 10, "method": "org.rdk.RemoteControl.getLastKeypressSource"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -712,11 +717,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 10,
     "result": {
         "controllerId": 1,
-        "timestamp": 0,
+        "timestamp": 1785344173000,
         "sourceName": "IR",
         "sourceType": "REMOTE",
         "sourceKeyCode": 195,
@@ -743,14 +748,14 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC |
+| result.result | object | The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData |
 | result.result.success | bool | Whether the request succeeded |
 | result.result.status | object | The network status data |
 | result.result.status.netType | integer | The type of remote control network  |
 | result.result.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | result.result.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| result.result.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
-| result.result.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
+| result.result.status.netTypesSupported | string | The list of supported network types  |
+| result.result.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
 
 ### Examples
 
@@ -759,7 +764,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "method": "org.rdk.RemoteControl.getNetStatus",
     "params": {
@@ -772,7 +777,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 11, "method": "org.rdk.RemoteControl.getNetStatus", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -780,7 +785,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 11,
     "result": {
         "success": true,
@@ -788,7 +793,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
             "netType": 1,
             "pairingState": "INITIALISING",
             "irProgState": "IDLE",
-            "netTypesSupported": "",
+            "netTypesSupported": [
+                1
+            ],
             "remoteData": ""
         }
     }
@@ -820,7 +827,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "method": "org.rdk.RemoteControl.initializeIRDB",
     "params": {
@@ -833,7 +840,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 12, "method": "org.rdk.RemoteControl.initializeIRDB", "params": {"netType": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -841,7 +848,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 12,
     "result": {
         "success": true
@@ -862,7 +869,7 @@ None
 | params | object |  |
 | params.remoteId | integer | The remote ID of the target remote on the specified network  |
 | params.netType | integer | The type of network  |
-| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: INVALID, TV, AMP |
+| params.avDevType | string | Whether the device is a video (TV) or audio (AMP) device. Possible values: TV, AMP |
 | params.code | string | The IR code being programmed into the remote  |
 ### Results
 | Name | Type | Description |
@@ -877,13 +884,13 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "method": "org.rdk.RemoteControl.setIRCode",
     "params": {
         "remoteId": 1,
         "netType": 1,
-        "avDevType": "INVALID",
+        "avDevType": "TV",
         "code": "PANASONIC_3DTV"
     }
 }
@@ -893,7 +900,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "INVALID", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 13, "method": "org.rdk.RemoteControl.setIRCode", "params": {"remoteId": 1, "netType": 1, "avDevType": "TV", "code": "PANASONIC_3DTV"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -901,7 +908,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 13,
     "result": {
         "success": true
@@ -929,7 +936,7 @@ None
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | array | List of session IDs created for the firmware update(s) |
+| result.sessionIdList | array | List of session IDs created for the firmware update(s)  |
 | result.sessionIdList[#] | string |  |
 
 ### Examples
@@ -939,7 +946,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "method": "org.rdk.RemoteControl.startFirmwareUpdate",
     "params": {
@@ -955,7 +962,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 10}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "method": "org.rdk.RemoteControl.startFirmwareUpdate", "params": {"macAddress": "AA:BB:CC:DD:EE:FF", "fileName": "/tmp/remote_firmware.bin", "fileType": "mfg", "percentIncrement": 10}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -963,13 +970,76 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 14,
     "result": {
         "success": true,
         "sessionIdList": [
-            ""
+            "12345-abc-def"
         ]
+    }
+}
+```
+
+<a id="startPairing"></a>
+## *startPairing*
+
+Initiates pairing a remote with the STB on the specified network.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds. If omitted, backend default is used. |
+| params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled. If omitted, backend default is used. |
+| params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled. If omitted, backend default is used. |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend)  |
+| params.macAddressList[#] | string |  |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 15,
+    "method": "org.rdk.RemoteControl.startPairing",
+    "params": {
+        "timeout": 0,
+        "screenBindEnable": true,
+        "scanEnable": true,
+        "macAddressList": [
+            "AA:BB:CC:DD:EE:FF"
+        ]
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 15,
+    "result": {
+        "success": true
     }
 }
 ```
@@ -997,7 +1067,7 @@ None
 | result.response.status.macAddress | string | The MAC address of the remote in hex-colon format  |
 | result.response.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | result.response.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| result.response.status.errorString | string | The firmware update error string, only present on failure |
+| result?.response.status.errorString | string | <sup>(optional)</sup>The firmware update error string, only present on failure |
 
 ### Examples
 
@@ -1006,8 +1076,8 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 15,
+    "jsonrpc": "2.0",
+    "id": 16,
     "method": "org.rdk.RemoteControl.statusFirmwareUpdate",
     "params": {
         "sessionId": "12345-abc-def"
@@ -1019,7 +1089,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 16, "method": "org.rdk.RemoteControl.statusFirmwareUpdate", "params": {"sessionId": "12345-abc-def"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1027,8 +1097,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 15,
+    "jsonrpc": "2.0",
+    "id": 16,
     "result": {
         "success": true,
         "status": {
@@ -1038,6 +1108,62 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
             "percentComplete": 50,
             "errorString": ""
         }
+    }
+}
+```
+
+<a id="stopPairing"></a>
+## *stopPairing*
+
+Cancels pairing a remote with the STB on the specified network.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.screenBindDisable | bool | <sup>(optional)</sup>Whether screen bind pairing should be disabled. If omitted, backend default is used. |
+| params?.scanDisable | bool | <sup>(optional)</sup>Whether scan pairing should be disabled. If omitted, backend default is used. |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 17,
+    "method": "org.rdk.RemoteControl.stopPairing",
+    "params": {
+        "screenBindDisable": true,
+        "scanDisable": true
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 17, "method": "org.rdk.RemoteControl.stopPairing", "params": {"screenBindDisable": true, "scanDisable": true}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 17,
+    "result": {
+        "success": true
     }
 }
 ```
@@ -1053,8 +1179,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes) |
-| params?.macAddressList[#] | string | <sup>(optional)</sup> |
+| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
+| params.macAddressList[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1068,12 +1194,14 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 16,
+    "jsonrpc": "2.0",
+    "id": 18,
     "method": "org.rdk.RemoteControl.unpair",
-    "params": [
-        ""
-    ]
+    "params": {
+        "macAddressList": [
+            "AA:BB:CC:DD:EE:FF"
+        ]
+    }
 }
 ```
 
@@ -1081,7 +1209,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.RemoteControl.unpair", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1089,8 +1217,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 16,
+    "jsonrpc": "2.0",
+    "id": 18,
     "result": {
         "success": true
     }
@@ -1124,14 +1252,14 @@ Generated at 0 and 100 percent and each time a download percent increment is rea
 | params.status.macAddress | string | The MAC address of the remote in hex-colon format  |
 | params.status.upgradeState | string | The firmware update state. Possible values: success, idle, pending, canceled, retrying, error, invalid |
 | params.status.percentComplete | integer | The estimated percentage of the firmware update that has completed (0-100)  |
-| params.status.errorString | string | The firmware update error string, only present on failure |
+| params?.status.errorString | string | <sup>(optional)</sup>The firmware update error string, only present on failure |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 17,
+    "jsonrpc": "2.0",
+    "id": 19,
     "method": "org.rdk.RemoteControl.onFirmwareUpdateProgress",
     "params": {
         "upgradeSessionId": "12345-abc-def",
@@ -1156,21 +1284,23 @@ Triggered at any time when the status of any one of the supported STB remote net
 | params.status.netType | integer | The type of remote control network  |
 | params.status.pairingState | string | The pairing state. Possible values: INITIALISING, IDLE, SEARCHING, PAIRING, COMPLETE, FAILED |
 | params.status.irProgState | string | The IR programming state. Possible values: IDLE, WAITING, COMPLETE, FAILED |
-| params.status.netTypesSupported | string | JSON array of supported network types e.g. [1] |
-| params.status.remoteData | string | JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape |
+| params.status.netTypesSupported | string | The list of supported network types  |
+| params.status.remoteData | string | Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state |
 
 ### Examples
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 18,
+    "jsonrpc": "2.0",
+    "id": 20,
     "method": "org.rdk.RemoteControl.onStatus",
     "params": {
         "netType": 1,
         "pairingState": "INITIALISING",
         "irProgState": "IDLE",
-        "netTypesSupported": "",
+        "netTypesSupported": [
+            1
+        ],
         "remoteData": ""
     }
 }
@@ -1195,8 +1325,8 @@ Generated for manual pairing validation
 
 ```json
 {
-    "jsonrpc": 2.0,
-    "id": 19,
+    "jsonrpc": "2.0",
+    "id": 21,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
         "netType": 1,

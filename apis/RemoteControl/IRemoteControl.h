@@ -23,6 +23,7 @@
 #pragma once
 
 #include "Module.h"
+#include <vector>
 
 // @stubgen:include <com/IIteratorType.h>
 
@@ -49,23 +50,20 @@ namespace WPEFramework {
         };
 
         enum class AVDevType : uint8_t {
-            INVALID = 0 /* @text INVALID */,
             TV          /* @text TV */,
             AMP         /* @text AMP */
         };
 
         enum class WakeupConfig : uint8_t {
-            INVALID = 0 /* @text INVALID */,
             ALL         /* @text all */,
             NONE        /* @text none */,
             CUSTOM      /* @text custom */
         };
 
         enum class FindMyRemoteLevel : uint8_t {
-            INVALID = 0 /* @text INVALID */,
-            OFF         /* @text off */,
-            MID         /* @text mid */,
-            HIGH        /* @text high */
+            OFF  /* @text off */,
+            MID  /* @text mid */,
+            HIGH /* @text high */
         };
 
         enum class FirmwareUpdateState : uint8_t {
@@ -94,7 +92,7 @@ namespace WPEFramework {
 
         struct EXTERNAL GetLastKeypressSourceResponse {
             uint32_t controllerId       /* @brief The controller ID of the target remote on the specified network ex: 1 */;
-            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch */;
+            uint64_t timestamp          /* @brief The time of the last key press in milliseconds since epoch ex: 1785344173000 */;
             string sourceName           /* @brief The source of the last key press e.g. "IR" */;
             string sourceType           /* @brief The source type of the last key press e.g. "REMOTE" */;
             uint32_t sourceKeyCode      /* @brief The source key code ex: 195 */;
@@ -104,11 +102,11 @@ namespace WPEFramework {
         };
 
         struct EXTERNAL FirmwareUpdateStatusData {
-            string upgradeSessionId    /* @brief The firmware update session identifier ex: 12345-abc-def */;
-            string macAddress          /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
-            FirmwareUpdateState upgradeState /* @brief The firmware update state */;
-            uint32_t percentComplete   /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
-            string errorString         /* @optional @brief The firmware update error string, only present on failure */;
+            string upgradeSessionId                /* @brief The firmware update session identifier ex: 12345-abc-def */;
+            string macAddress                      /* @brief The MAC address of the remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF" */;
+            FirmwareUpdateState upgradeState       /* @brief The firmware update state */;
+            uint32_t percentComplete               /* @brief The estimated percentage of the firmware update that has completed (0-100) ex: 50 */;
+            Core::OptionalType<string> errorString /* @brief The firmware update error string, only present on failure */;
         };
 
         struct EXTERNAL StatusFirmwareUpdateResponse {
@@ -116,12 +114,33 @@ namespace WPEFramework {
             FirmwareUpdateStatusData status /* @brief The firmware update status details including session ID, MAC address, upgrade state, and percent complete */;
         };
 
+        struct EXTERNAL PairedRemoteInfo {
+            string macAddress                                          /* @brief The MAC address of the remote in hex-colon format e.g. "48:d0:cf:00:00:67:eb:df" */;
+            bool connected                                              /* @brief Whether the remote is currently connected */;
+            string name                                                /* @brief The friendly name of the remote e.g. "XR15-20" */;
+            uint32_t remoteId                                           /* @brief The remote ID of the remote on its network ex: 1 */;
+            uint32_t deviceId                                           /* @brief The device ID of the remote ex: 0 */;
+            string make                                                /* @brief The manufacturer of the remote e.g. "UEI" */;
+            string model                                               /* @brief The model of the remote e.g. "XR15-20" */;
+            string hwVersion                                           /* @brief The hardware version of the remote e.g. "2.3.2.0" */;
+            string swVersion                                           /* @brief The software version of the remote e.g. "2.2.1.8" */;
+            string btlVersion                                          /* @brief The bootloader version of the remote e.g. "0.0.0.0" */;
+            string serialNumber                                        /* @brief The serial number of the remote e.g. "2060f290411c" */;
+            uint32_t batteryPercent                                     /* @brief The battery level of the remote as a percentage (0-100) ex: 90 */;
+            string tvIRCode                                            /* @brief The programmed TV IR code, or "0" if none ex: "0" */;
+            string ampIRCode                                           /* @brief The programmed AMP IR code, or "0" if none ex: "0" */;
+            uint32_t wakeupKeyCode                                      /* @brief The Linux key code that wakes the target from deepsleep ex: 255 */;
+            string upgradeSessionId                                    /* @brief The active firmware update session identifier for this remote, if any e.g. "12345-abc-def" */;
+            WakeupConfig wakeupConfig                                  /* @brief The deepsleep wakeup key configuration of the remote */;
+            Core::OptionalType<std::vector<uint32_t>> wakeupCustomList /* @restrict:32 @brief The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom ex: [59, 102, 62, 111, 110, 107] */;
+        };
+
         struct EXTERNAL NetStatusData {
-            uint32_t netType          /* @brief The type of remote control network ex: 1 */;
-            PairingState pairingState /* @brief The pairing state */;
-            IRProgState irProgState   /* @brief The IR programming state */;
-            string netTypesSupported  /* @opaque @brief JSON array of supported network types e.g. [1] */;
-            string remoteData         /* @opaque @brief JSON array of paired remote information. Kept as opaque JSON because of limitations of nesting COM-RPC iterators within struct data which does not preserve the desired status.remoteData response shape */;
+            uint32_t netType                         /* @brief The type of remote control network ex: 1 */;
+            PairingState pairingState                /* @brief The pairing state */;
+            IRProgState irProgState                  /* @brief The IR programming state */;
+            std::vector<uint32_t> netTypesSupported  /* @restrict:8 @brief The list of supported network types ex: [1] */;
+            std::vector<PairedRemoteInfo> remoteData /* @restrict:32 @brief Paired remote information for every paired remote across all networks (both RF4CE and BLE), not just the network that most recently changed state */;
         };
 
         struct EXTERNAL GetNetStatusResult {
@@ -158,30 +177,31 @@ namespace WPEFramework {
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
-            // @json:omit
             // @text startPairing
-            // @param payload: Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged.
+            // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
+            // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
+            // @param scanEnable(optional): Whether scan pairing is enabled. If omitted, backend default is used.
+            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend) e.g. "AA:BB:CC:DD:EE:FF"
             // @param result: Whether the request succeeded
-            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
-            // @json:omit
             // @text stopPairing
-            // @param payload: Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged.
+            // @param screenBindDisable(optional): Whether screen bind pairing should be disabled. If omitted, backend default is used.
+            // @param scanDisable(optional): Whether scan pairing should be disabled. If omitted, backend default is used.
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StopPairing(const Core::OptionalType<bool>& screenBindDisable, const Core::OptionalType<bool>& scanDisable, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
             // @param netType: The type of network ex: 1
-            // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData. remoteData is carried as opaque JSON to preserve the nested JSON response shape across COM-RPC
+            // @param result: The network status result containing success and a nested status object with netType, pairingState, irProgState, netTypesSupported, and remoteData
             // @retval ErrorCode::NONE: Network status retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve network status.
@@ -196,7 +216,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
-            virtual Core::hresult GetIRDBManufacturers(AVDevType& avDevType /* @inout */, const string& manufacturer, bool& success /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
+            virtual Core::hresult GetIRDBManufacturers(Core::OptionalType<AVDevType>& avDevType /* @inout */, const string& manufacturer, bool& success /* @out */, IStringIterator*& manufacturers /* @out */) = 0;
 
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
@@ -208,7 +228,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
-            virtual Core::hresult GetIRDBModels(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
+            virtual Core::hresult GetIRDBModels(Core::OptionalType<AVDevType>& avDevType /* @inout */, Core::OptionalType<string>& manufacturer /* @inout */, const string& model, bool& success /* @out */, IStringIterator*& models /* @out */) = 0;
 
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
@@ -231,11 +251,11 @@ namespace WPEFramework {
             // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
             // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
             // @param success: Whether the request succeeded
-            // @param codes: A list of IR codes as a string
+            // @param codes: A list of IR codes e.g. "6712"
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
-            virtual Core::hresult GetIRCodesByNames(AVDevType& avDevType /* @inout */, string& manufacturer /* @inout */, string& model /* @inout */, bool& success /* @out */, string& codes /* @out @opaque */) = 0;
+            virtual Core::hresult GetIRCodesByNames(Core::OptionalType<AVDevType>& avDevType /* @inout */, Core::OptionalType<string>& manufacturer /* @inout */, Core::OptionalType<string>& model /* @inout */, bool& success /* @out */, IStringIterator*& codes /* @out */) = 0;
 
             // @brief Programs an IR code into the specified remote control
             // @text setIRCode
@@ -275,7 +295,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Wakeup keys configured successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to configure wakeup keys.
-            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const string& customKeys /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult ConfigureWakeupKeys(const WakeupConfig wakeupConfig, const Core::OptionalType<string>& customKeys, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Initializes the IR database
             // @text initializeIRDB
@@ -288,12 +308,12 @@ namespace WPEFramework {
 
             // @brief Tells the most recently used remote to beep
             // @text findMyRemote
-            // @param level: The level at which the remote will beep
+            // @param level(optional): The level at which the remote will beep. Required for the call to succeed; the request fails if omitted.
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Find my remote executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute find my remote.
-            virtual Core::hresult FindMyRemote(const FindMyRemoteLevel level, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult FindMyRemote(const Core::OptionalType<FindMyRemoteLevel>& level, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Tells all paired and connected remotes to factory reset
             // @text factoryReset
@@ -306,11 +326,11 @@ namespace WPEFramework {
             // @brief Unpairs all remotes from the STB
             // @text unpair
             // @param result: Whether the request succeeded
-            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes)
+            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. "AA:BB:CC:DD:EE:FF"
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional */) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional @keep_key */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
@@ -319,7 +339,7 @@ namespace WPEFramework {
             // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
             // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
-            // @param sessionIdList: List of session IDs created for the firmware update(s)
+            // @param sessionIdList: List of session IDs created for the firmware update(s) e.g. "12345-abc-def"
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
