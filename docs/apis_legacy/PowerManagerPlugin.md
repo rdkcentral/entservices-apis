@@ -56,6 +56,7 @@ org.rdk.PowerManager interface methods:
 | [setOvertempGraceInterval](#setOvertempGraceInterval) | Sets the over-temperature grace interval value |
 | [setPowerState](#setPowerState) | Sets the power state of the device |
 | [setDeepSleepTimer](#setDeepSleepTimer) | Sets the deep sleep timeout period |
+| [scheduleDeepSleepWakeup](#scheduleDeepSleepWakeup) | Schedules a deep sleep wakeup at the specified Unix time |
 | [getLastWakeupReason](#getLastWakeupReason) | Returns the reason for the device coming out of deep sleep |
 | [getLastWakeupKeyCode](#getLastWakeupKeyCode) | Returns the last wakeup keycode |
 | [reboot](#reboot) | Requests that the system performs a reboot of the set-top box |
@@ -604,6 +605,61 @@ No Events
     "method": "org.rdk.PowerManager.setDeepSleepTimer",
     "params": {
         "timeOut": 3
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="scheduleDeepSleepWakeup"></a>
+## *scheduleDeepSleepWakeup*
+
+Schedules a deep sleep wakeup at the specified Unix time. Allows scheduling multiple deep sleep wakeups. The device always wakes to `POWER_STATE_STANDBY` when a scheduled wakeup is consumed. The nearest scheduled wakeup time is used to arm the deep sleep timer.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.unixTime | integer | The Unix timestamp (in seconds) when the device should wake up from deep sleep |
+| params.requestorId | string | An identifier for the requestor scheduling the wakeup |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 30 | ```ERROR_INVALID_PARAMETER``` | Invalid parameter |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.scheduleDeepSleepWakeup",
+    "params": {
+        "unixTime": 1735689600,
+        "requestorId": "testApp"
     }
 }
 ```
