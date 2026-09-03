@@ -3209,9 +3209,9 @@ None
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
-| params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#].wakeupSource | string | wake up sources and its configurations. Possible values: WAKEUPSRC_UNKNOWN, WAKEUPSRC_VOICE, WAKEUPSRC_PRESENCE_DETECTION, WAKEUPSRC_BLUETOOTH, WAKEUPSRC_WIFI, WAKEUPSRC_IR, WAKEUPSRC_POWER_KEY, WAKEUPSRC_TIMER, WAKEUPSRC_CEC, WAKEUPSRC_LAN, WAKEUPSRC_RF4CE |
-| params.wakeupSources[#].enabled | bool | Whether the wakeup src config is true or false |
+| params.wakeupSources | array | Array of wakeup source configuration objects. Each object specifies a wakeup source type and whether it is enabled |
+| params.wakeupSources[#].wakeupSource | string | The wakeup source type. Possible values: WAKEUPSRC_VOICE, WAKEUPSRC_PRESENCE_DETECTION, WAKEUPSRC_BLUETOOTH, WAKEUPSRC_WIFI, WAKEUPSRC_IR, WAKEUPSRC_POWER_KEY, WAKEUPSRC_TIMER, WAKEUPSRC_CEC, WAKEUPSRC_LAN, WAKEUPSRC_RF4CE |
+| params.wakeupSources[#].enabled | bool | Whether the wakeup source is enabled |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -3229,11 +3229,19 @@ None
     "id": 44,
     "method": "org.rdk.SystemServices.setWakeupSrcConfiguration",
     "params": {
-        "powerState": "",
+        "powerState": "STANDBY",
         "wakeupSources": [
             {
-                "wakeupSource": "WAKEUPSRC_UNKNOWN",
+                "wakeupSource": "WAKEUPSRC_VOICE",
                 "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_WIFI",
+                "enabled": true
+            },
+            {
+                "wakeupSource": "WAKEUPSRC_IR",
+                "enabled": false
             }
         ]
     }
@@ -3244,7 +3252,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_UNKNOWN", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "STANDBY", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_VOICE", "enabled": true}, {"wakeupSource": "WAKEUPSRC_WIFI", "enabled": true}, {"wakeupSource": "WAKEUPSRC_IR", "enabled": false}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
