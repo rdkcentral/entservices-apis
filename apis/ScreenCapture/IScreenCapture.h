@@ -52,7 +52,7 @@ namespace WPEFramework
 
             /**********************uploadScreenCapture() - start*******************************/
             // @text uploadScreenCapture
-            // @brief Takes a screenshot and uploads it to the specified URL
+            // @brief Takes a screenshot and uploads it by HTTP POST request to the specified URL
             // @param url - in - string
             // @param callGUID - in - string
             // @returns Core::hresult
@@ -61,12 +61,22 @@ namespace WPEFramework
 
             /**********************sendScreenshot() - start*******************************/
             // @text sendScreenshot
-            // @brief Takes a screenshot and uploads it to the specified URL
+            // @brief Takes a screenshot and uploads it by HTTP POST request to the URL, specified by RFC parameter
             // @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
             // @param: result - Whether the request succeeded
             // @returns Core::hresult
             virtual Core::hresult SendScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
             /**********************sendScreenshot() - end*********************************/
+
+            /**********************putScreenshot() - start*******************************/
+            // @text putScreenshot
+            // @brief Takes a screenshot and uploads it by HTTP PUT request to the URL, specified by RFC parameter
+            // @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event
+            // @param: result - Whether the request succeeded
+            // @returns Core::hresult
+            virtual Core::hresult PutScreenshot(const string& callGUID , Result &result /* @out  */ ) = 0;
+            /**********************putScreenshot() - end*********************************/
+
         };
     } // namespace Exchange
 } // namespace WPEFramework
