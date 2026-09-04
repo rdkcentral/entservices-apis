@@ -62,7 +62,7 @@ namespace Exchange {
                 HDCP_CHANGE,
             };
 
-            virtual void Updated(const Source event) = 0;
+            virtual void Updated(const Source event, const bool isFrameRateChanged) = 0;
         };
 
         virtual Core::hresult Register(INotification*) = 0;
