@@ -365,7 +365,7 @@ namespace Exchange {
         ID_AUDIO_OUTPUT                             = ID_ENTOS_OFFSET + 0x560,
         ID_AUDIO_OUTPUT_NOTIFICATION                = ID_AUDIO_OUTPUT + 1,
 
-	ID_DEVICESETTINGS                               = ID_ENTOS_OFFSET + 0x570,
+        ID_DEVICESETTINGS                               = ID_ENTOS_OFFSET + 0x570,
 
         ID_DEVICESETTINGS_AUDIO                             = ID_ENTOS_OFFSET + 0x580,
         ID_DEVICESETTINGS_AUDIO_NOTIFICATION                = ID_DEVICESETTINGS_AUDIO + 1,
