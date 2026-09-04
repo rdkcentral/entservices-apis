@@ -167,16 +167,23 @@ namespace WPEFramework
                 bool success /* @brief Whether the request succeeded */;
             };
 
-             struct EXTERNAL WakeupSources {
-                bool voice /* @text WAKEUPSRC_VOICE */ /* @brief Voice Wake up */;
-                bool presenceDetection /* @text WAKEUPSRC_PRESENCE_DETECTION */ /* @brief Presence detection wake up */;
-                bool bluetooth /* @text WAKEUPSRC_BLUETOOTH */ /* @brief Bluetooth Wakeup */;
-                bool wifi /* @text WAKEUPSRC_WIFI */ /* @brief WiFi Wake up*/;
-                bool ir /* @text WAKEUPSRC_IR */ /* @brief IR Remote Wake up */;
-                bool powerKey /* @text WAKEUPSRC_POWER_KEY */ /* @brief Power Button Wake up - GPIO */;
-                bool cec /* @text WAKEUPSRC_CEC */ /* @brief HDMI CEC command Wake up */;
-                bool lan /* @text WAKEUPSRC_LAN */ /* @brief LAN wake up */;
-                bool timer /* @text WAKEUPSRC_TIMER */ /* @brief Timer Wake up */;
+            enum WakeupSrcType : uint16_t {
+                WAKEUP_SRC_UNKNOWN          = 0    /* @text WAKEUPSRC_UNKNOWN */,
+                WAKEUP_SRC_VOICE            = 1    /* @text WAKEUPSRC_VOICE */,
+                WAKEUP_SRC_PRESENCEDETECTED = 2    /* @text WAKEUPSRC_PRESENCE_DETECTION */,
+                WAKEUP_SRC_BLUETOOTH        = 3    /* @text WAKEUPSRC_BLUETOOTH */,
+                WAKEUP_SRC_WIFI             = 4    /* @text WAKEUPSRC_WIFI */,
+                WAKEUP_SRC_IR               = 5    /* @text WAKEUPSRC_IR */,
+                WAKEUP_SRC_POWERKEY         = 6    /* @text WAKEUPSRC_POWER_KEY */,
+                WAKEUP_SRC_TIMER            = 7    /* @text WAKEUPSRC_TIMER */,
+                WAKEUP_SRC_CEC              = 8    /* @text WAKEUPSRC_CEC */,
+                WAKEUP_SRC_LAN              = 9    /* @text WAKEUPSRC_LAN */,
+                WAKEUP_SRC_RF4CE            = 10   /* @text WAKEUPSRC_RF4CE */
+            };
+
+            struct EXTERNAL WakeupSources {
+                WakeupSrcType wakeupSource /* @brief wake up sources and its configurations */;
+                bool enabled /* @brief Whether the wakeup src config is true or false */;
             };
 
 
