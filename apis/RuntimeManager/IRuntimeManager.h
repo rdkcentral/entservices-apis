@@ -26,42 +26,6 @@
 namespace WPEFramework {
 namespace Exchange {
 
-#ifndef RUNTIME_CONFIG
-struct RuntimeConfig {
-    bool dial;
-    bool wanLanAccess;
-    bool thunder;
-    int32_t systemMemoryLimit;
-    int32_t gpuMemoryLimit;
-    std::string envVariables;
-    uint32_t userId;
-    uint32_t groupId;
-    uint32_t dataImageSize;
-
-    bool resourceManagerClientEnabled;
-    std::string dialId;
-    std::string command;
-    std::string appType;
-    std::string appPath;
-    std::string runtimePath;
-
-    std::string logFilePath;
-    uint32_t logFileMaxSize;
-    std::string logLevels;          //json array of strings
-    bool mapi;
-    std::string fkpsFiles;          //json array of strings
-    std::string capabilities /* @text capabilities */
-                             /* @brief Comma-separated lowercase runtime capability tokens supported by the runtime configuration */;
-    std::string ralfPkgPath /* @text ralfPkgPath */
-                            /* @brief Filesystem path holding metadata information for RALF packages */;
-
-    std::string fireboltVersion;
-    bool enableDebugger;
-    string unpackedPath;
-};
-#define RUNTIME_CONFIG
-#endif
-
 // @text:keep
 struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     enum { ID = ID_RUNTIME_MANAGER };
@@ -125,7 +89,8 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @param ports(optional) array of socket ports to allow
     // @param paths(optional) paths contains an additional set of files and directories to map into the container
     // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
-    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const RuntimeConfig& runtimeConfigObject) = 0;
+    // @param runtimeConfigPayload Opaque string containing the final enriched serialized JSON runtime configuration object
+    virtual Core::hresult Run(const string& appId, const string& appInstanceId, const uint32_t userId, const uint32_t groupId, IValueIterator* const& ports, IStringIterator* const& paths, IStringIterator* const& debugSettings, const string& runtimeConfigPayload /* @opaque */) = 0;
 
     /** @brief Hibernate the application */
     // @text hibernate

@@ -7,40 +7,7 @@
 namespace WPEFramework {
 namespace Exchange {
 
-#ifndef RUNTIME_CONFIG
-    struct RuntimeConfig {
-        bool dial;
-        bool wanLanAccess;
-        bool thunder;
-        int32_t systemMemoryLimit;
-        int32_t gpuMemoryLimit;
-        std::string envVariables;
-        uint32_t userId;
-        uint32_t groupId;
-        uint32_t dataImageSize;
-
-        bool resourceManagerClientEnabled;
-        std::string dialId;
-        std::string command;
-        std::string appType;
-        std::string appPath;
-        std::string runtimePath;
-
-        std::string logFilePath;
-        uint32_t logFileMaxSize;
-        std::string logLevels;          //json array of strings
-        bool mapi;
-        std::string fkpsFiles;          //json array of strings
-        std::string capabilities /* @text capabilities */ /* @brief Comma-separated lowercase runtime capability tokens supported by the application runtime */;
-        std::string ralfPkgPath /* @text ralfPkgPath */ /* @brief Filesystem path containing metadata information for RALF packages */;
-
-        std::string fireboltVersion;
-        bool enableDebugger;
-    };
-    #define RUNTIME_CONFIG
-#endif
-
-    // @json 1.0.0 @text:keep
+    // @json 2.0.0 @text:keep
     struct EXTERNAL IPackageDownloader : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_DOWNLOADER };
 
@@ -153,7 +120,7 @@ namespace Exchange {
     };
 
 
-    // @json 1.0.0 @text:keep
+    // @json 2.0.0 @text:keep
     struct EXTERNAL IPackageInstaller : virtual public Core::IUnknown {
         enum { ID = ID_PACKAGE_INSTALLER };
 
@@ -242,14 +209,15 @@ namespace Exchange {
         // @text listPackages
         virtual Core::hresult ListPackages(IPackageIterator*& packages /* @out */) = 0;
 
-        // @brief Config
+        // @brief Return the package runtime configuration as an opaque serialized JSON string
         // @text config
         // @param packageId: Package Id
         // @param version: Version
+        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays
         virtual Core::hresult Config(
             const string &packageId,
             const string &version,
-            RuntimeConfig &configMetadata /* @out */
+            string &runtimeConfigPayload /* @out @opaque */
             ) = 0;
 
         struct PackageStateResponse {
@@ -267,13 +235,13 @@ namespace Exchange {
             InstallState &state /* @out */
             ) = 0;
 
-        // @brief getConfigForPackage
+        // @brief Return package metadata and its opaque serialized JSON runtime configuration
         // @text getConfigForPackage
         // @param fileLocator: locator of package
         // @param id: package id
         // @param version: version of package
-        // @param config: metadata of package
-        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, RuntimeConfig& config /* @out */) = 0;
+        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
+        virtual Core::hresult GetConfigForPackage(const string &fileLocator, string& id /* @out */, string &version /* @out */, string& runtimeConfigPayload /* @out @opaque */) = 0;
    };
 
 
@@ -302,7 +270,7 @@ namespace Exchange {
         // @param lockReason: LockReason
         // @param lockId: Lock Id
         // @param unpackedPath: Unpacked Path
-        // @param configMetadata: Config Metadata
+        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
         // @param appMetadata: App Metadata
         virtual Core::hresult Lock(
             const string &packageId,
@@ -310,7 +278,7 @@ namespace Exchange {
             const LockReason &lockReason,
             uint32_t &lockId /* @out */,
             string &unpackedPath /* @out */,
-            RuntimeConfig &configMetadata /* @out */,
+            string &runtimeConfigPayload /* @out @opaque */,
             IPackageHandler::ILockIterator*& appMetadata /* @out */
             // XXX: appContextPath ?!
             ) = 0;
@@ -327,16 +295,17 @@ namespace Exchange {
         // @text getLockedInfo
         // @param packageId: Package Id
         // @param version: Version
+        // @param runtimeConfigPayload: Opaque string containing a serialized JSON runtime configuration object
         virtual Core::hresult GetLockedInfo(
             const string &packageId,
             const string &version,
             string &unpackedPath /* @out */,
-            RuntimeConfig &configMetadata /* @out */,
+            string &runtimeConfigPayload /* @out @opaque */,
             string &gatewayMetadataPath /* @out */,
             bool &locked /* @out */
             ) = 0;
     };
-    // @json 1.0.0 @text:keep
+    // @json 2.0.0 @text:keep
     struct EXTERNAL IAppPackageManagerConfig : virtual public Core::IUnknown {
         enum { ID = ID_APP_PACKAGE_MANAGER_CONFIG };
 
