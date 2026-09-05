@@ -2,7 +2,7 @@
 <a id="AppPackageManager_Module"></a>
 # AppPackageManager Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
+**Version: [2.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppPackageManager/IAppPackageManager.h)**
 
 A AppPackageManager module for Thunder framework.
 
@@ -505,8 +505,8 @@ The following methods are provided by the IPackageInstaller Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [config](#config) | Config |
-| [getConfigForPackage](#getConfigForPackage) | getConfigForPackage |
+| [config](#config) | Return the package runtime configuration as an opaque serialized JSON string |
+| [getConfigForPackage](#getConfigForPackage) | Return package metadata and its opaque serialized JSON runtime configuration |
 | [install](#install) | Install |
 | [listPackages](#listPackages) | ListPackages |
 | [packageState](#packageState) | PackageState |
@@ -515,7 +515,7 @@ The following methods are provided by the IPackageInstaller Interface:
 <a id="config"></a>
 ## *config*
 
-Config
+Return the package runtime configuration as an opaque serialized JSON string
 
 ### Events Triggered
 None
@@ -529,32 +529,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.configMetadata | object | Config Metadata |
-| result.configMetadata.dial | bool |  |
-| result.configMetadata.wanLanAccess | bool |  |
-| result.configMetadata.thunder | bool |  |
-| result.configMetadata.systemMemoryLimit | integer |  |
-| result.configMetadata.gpuMemoryLimit | integer |  |
-| result.configMetadata.envVariables | string |  |
-| result.configMetadata.userId | integer |  |
-| result.configMetadata.groupId | integer |  |
-| result.configMetadata.dataImageSize | integer |  |
-| result.configMetadata.resourceManagerClientEnabled | bool |  |
-| result.configMetadata.dialId | string |  |
-| result.configMetadata.command | string |  |
-| result.configMetadata.appType | string |  |
-| result.configMetadata.appPath | string |  |
-| result.configMetadata.runtimePath | string |  |
-| result.configMetadata.logFilePath | string |  |
-| result.configMetadata.logFileMaxSize | integer |  |
-| result.configMetadata.logLevels | string | json array of strings |
-| result.configMetadata.mapi | bool |  |
-| result.configMetadata.fkpsFiles | string | json array of strings |
-| result.configMetadata.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
-| result.configMetadata.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
-| result.configMetadata.fireboltVersion | string |  |
-| result.configMetadata.enableDebugger | bool |  |
-| result.configMetadata.unpackedPath | string |  |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object; array-valued properties are represented as JSON arrays |
 
 ### Examples
 
@@ -588,31 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "dial": true,
-        "wanLanAccess": true,
-        "thunder": true,
-        "systemMemoryLimit": 0,
-        "gpuMemoryLimit": 0,
-        "envVariables": "",
-        "userId": 0,
-        "groupId": 0,
-        "dataImageSize": 0,
-        "resourceManagerClientEnabled": true,
-        "dialId": "",
-        "command": "",
-        "appType": "",
-        "appPath": "",
-        "runtimePath": "",
-        "logFilePath": "",
-        "logFileMaxSize": 0,
-        "logLevels": "",
-        "mapi": true,
-        "fkpsFiles": "",
-        "capabilities": "",
-        "ralfPkgPath": "",
-        "fireboltVersion": "",
-        "enableDebugger": true,
-        "unpackedPath": ""
+        "runtimeConfigPayload": ""
     }
 }
 ```
@@ -620,7 +571,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="getConfigForPackage"></a>
 ## *getConfigForPackage*
 
-getConfigForPackage
+Return package metadata and its opaque serialized JSON runtime configuration
 
 ### Events Triggered
 None
@@ -635,32 +586,7 @@ None
 | result | object |  |
 | result.id | string | package id |
 | result.version | string | version of package |
-| result.config | object | metadata of package |
-| result.config.dial | bool |  |
-| result.config.wanLanAccess | bool |  |
-| result.config.thunder | bool |  |
-| result.config.systemMemoryLimit | integer |  |
-| result.config.gpuMemoryLimit | integer |  |
-| result.config.envVariables | string |  |
-| result.config.userId | integer |  |
-| result.config.groupId | integer |  |
-| result.config.dataImageSize | integer |  |
-| result.config.resourceManagerClientEnabled | bool |  |
-| result.config.dialId | string |  |
-| result.config.command | string |  |
-| result.config.appType | string |  |
-| result.config.appPath | string |  |
-| result.config.runtimePath | string |  |
-| result.config.logFilePath | string |  |
-| result.config.logFileMaxSize | integer |  |
-| result.config.logLevels | string | json array of strings |
-| result.config.mapi | bool |  |
-| result.config.fkpsFiles | string | json array of strings |
-| result.config.capabilities | string | Comma-separated lowercase runtime capability tokens supported by the application runtime |
-| result.config.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
-| result.config.fireboltVersion | string |  |
-| result.config.enableDebugger | bool |  |
-| result.config.unpackedPath | string |  |
+| result.runtimeConfigPayload | string | Opaque string containing a serialized JSON runtime configuration object |
 
 ### Examples
 
@@ -695,33 +621,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "result": {
         "id": "",
         "version": "",
-        "config": {
-            "dial": true,
-            "wanLanAccess": true,
-            "thunder": true,
-            "systemMemoryLimit": 0,
-            "gpuMemoryLimit": 0,
-            "envVariables": "",
-            "userId": 0,
-            "groupId": 0,
-            "dataImageSize": 0,
-            "resourceManagerClientEnabled": true,
-            "dialId": "",
-            "command": "",
-            "appType": "",
-            "appPath": "",
-            "runtimePath": "",
-            "logFilePath": "",
-            "logFileMaxSize": 0,
-            "logLevels": "",
-            "mapi": true,
-            "fkpsFiles": "",
-            "capabilities": "",
-            "ralfPkgPath": "",
-            "fireboltVersion": "",
-            "enableDebugger": true,
-            "unpackedPath": ""
-        }
+        "runtimeConfigPayload": ""
     }
 }
 ```

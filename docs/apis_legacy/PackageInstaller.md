@@ -45,9 +45,9 @@ org.rdk.PackageInstaller interface methods:
 | [install](#method.install) | Install a package |
 | [uninstall](#method.uninstall) | Uninstall a package |
 | [listPackages](#method.listPackages) | Package List |
-| [config](#method.config) | return RuntimeConfig object |
+| [config](#method.config) | Return an opaque runtime configuration payload |
 | [packageState](#method.packageState) | retrutn Package State |
-| [getConfigForPackage](#method.getConfigForPackage) | return RuntimeConfig object |
+| [getConfigForPackage](#method.getConfigForPackage) | Return package details and an opaque runtime configuration payload |
 
 
 <a name="method.install"></a>
@@ -216,7 +216,7 @@ This method takes no parameters.
 <a name="method.config"></a>
 ## *config [<sup>method</sup>](#head.Methods)*
 
-return RuntimeConfig object.
+Return the runtime configuration as an opaque serialized JSON object. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
 
 ### Events
 
@@ -234,22 +234,8 @@ No Events
 
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | object | Returns RuntimeConfig on success or an error code string on failure |
-| result.dial | boolean |  |
-| result.wanLanAccess | boolean |  |
-| result?.thunder | boolean | <sup>*(optional)*</sup>  |
-| result?.systemMemoryLimit | integer | <sup>*(optional)*</sup>  |
-| result?.gpuMemoryLimit | integer | <sup>*(optional)*</sup>  |
-| result?.envVariables | string | <sup>*(optional)*</sup>  |
-| result?.userId | integer | <sup>*(optional)*</sup>  |
-| result?.groupId | integer | <sup>*(optional)*</sup>  |
-| result?.grodataImageSizeupId | integer | <sup>*(optional)*</sup>  |
-| result?.resourceManagerClientEnabled | boolean | <sup>*(optional)*</sup>  |
-| result?.dialId | string | <sup>*(optional)*</sup>  |
-| result?.command | string | <sup>*(optional)*</sup>  |
-| result?.appType | string | <sup>*(optional)*</sup>  |
-| result?.appPath | string | <sup>*(optional)*</sup>  |
-| result?.runtimePath | string | <sup>*(optional)*</sup>  |
+| result | object |  |
+| result.runtimeConfigPayload | string | Opaque serialized JSON object containing runtime configuration |
 
 ### Example
 
@@ -274,21 +260,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "dial": false,
-        "wanLanAccess": false,
-        "thunder": false,
-        "systemMemoryLimit": 0,
-        "gpuMemoryLimit": 0,
-        "envVariables": "...",
-        "userId": 0,
-        "groupId": 0,
-        "grodataImageSizeupId": 0,
-        "resourceManagerClientEnabled": false,
-        "dialId": "...",
-        "command": "...",
-        "appType": "...",
-        "appPath": "...",
-        "runtimePath": "..."
+        "runtimeConfigPayload": "{\"command\":\"...\",\"envVariables\":[\"KEY=value\"]}"
     }
 }
 ```
@@ -345,7 +317,7 @@ No Events
 <a name="method.getConfigForPackage"></a>
 ## *getConfigForPackage [<sup>method</sup>](#head.Methods)*
 
-return RuntimeConfig object.
+Return the runtime configuration as an opaque serialized JSON object. Array-valued properties such as environment variables, log levels, and FKPS files remain JSON arrays; consumers must preserve unknown properties.
 
 ### Events
 
@@ -365,22 +337,7 @@ No Events
 | result | object |  |
 | result.packageId | string | Package Id |
 | result.version | string | Package Version |
-| result.config | object | Runtime Config values |
-| result.config.dial | boolean |  |
-| result.config.wanLanAccess | boolean |  |
-| result.config?.thunder | boolean | <sup>*(optional)*</sup>  |
-| result.config?.systemMemoryLimit | integer | <sup>*(optional)*</sup>  |
-| result.config?.gpuMemoryLimit | integer | <sup>*(optional)*</sup>  |
-| result.config?.envVariables | string | <sup>*(optional)*</sup>  |
-| result.config?.userId | integer | <sup>*(optional)*</sup>  |
-| result.config?.groupId | integer | <sup>*(optional)*</sup>  |
-| result.config?.grodataImageSizeupId | integer | <sup>*(optional)*</sup>  |
-| result.config?.resourceManagerClientEnabled | boolean | <sup>*(optional)*</sup>  |
-| result.config?.dialId | string | <sup>*(optional)*</sup>  |
-| result.config?.command | string | <sup>*(optional)*</sup>  |
-| result.config?.appType | string | <sup>*(optional)*</sup>  |
-| result.config?.appPath | string | <sup>*(optional)*</sup>  |
-| result.config?.runtimePath | string | <sup>*(optional)*</sup>  |
+| result.runtimeConfigPayload | string | Opaque serialized JSON object containing runtime configuration |
 
 ### Example
 
@@ -406,23 +363,7 @@ No Events
     "result": {
         "packageId": "...",
         "version": "...",
-        "config": {
-            "dial": false,
-            "wanLanAccess": false,
-            "thunder": false,
-            "systemMemoryLimit": 0,
-            "gpuMemoryLimit": 0,
-            "envVariables": "...",
-            "userId": 0,
-            "groupId": 0,
-            "grodataImageSizeupId": 0,
-            "resourceManagerClientEnabled": false,
-            "dialId": "...",
-            "command": "...",
-            "appType": "...",
-            "appPath": "...",
-            "runtimePath": "..."
-        }
+        "runtimeConfigPayload": "{\"command\":\"...\",\"envVariables\":[\"KEY=value\"]}"
     }
 }
 ```
