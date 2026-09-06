@@ -12,8 +12,16 @@ namespace WPEFramework {
                 virtual void OnProcessKilled(const string& processName, const int pid, const int exitCode) {};
             };
 
+            // @event
+            struct EXTERNAL IInitializationNotification : virtual public Core::IUnknown {
+                enum { ID = ID_RESOURCE_MONITOR_NOTIFICATION_INITIALIZED };
+                virtual void OnInitialized() {};
+            };
+
             virtual Core::hresult Register(IProcessKilledNotification* notification) = 0;
             virtual Core::hresult Unregister(const IProcessKilledNotification* notification) = 0;
+            virtual Core::hresult Register(IInitializationNotification* notification) = 0;
+            virtual Core::hresult Unregister(const IInitializationNotification* notification) = 0;
 
             virtual Core::hresult GetApiVersionNumber(int& version /* @out */) = 0;
             virtual Core::hresult GetState() = 0;
