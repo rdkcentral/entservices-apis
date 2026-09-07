@@ -97,7 +97,7 @@ namespace WPEFramework
                 // @param clientName: Name of the client device
                 // @example clientName: John's iPhone
                 // @param reasonCode: Error code for the connection failure
-                // @example reasonCode: "1001"
+                // @example reasonCode: "101"
                 // @param reasonDescription: Description of the reason for the connection failure
                 // @example reasonDescription: "P2P_CONNECT_FAILURE"
                 virtual void OnClientConnectionError(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const string &reasonCode /* @text error_code */, const ReasonCode reasonDescription /* @text reason */) {};
@@ -106,7 +106,7 @@ namespace WPEFramework
                 // @text onLaunchRequest
                 // @details Triggered when the Miracast Service plugin needs the Resident Application or MiracastWidget to launch the Miracast Player, providing the source and sink device parameters required to start streaming.
                 // @param deviceParameters: Contains Source and Sink Device related properties
-                // @example deviceParameters: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
+                // @example deviceParameters: { "source_dev_ip": "192.168.1.2", "source_dev_mac": "00:11:22:33:44:55", "source_dev_name": "John's iPhone", "sink_dev_ip": "192.168.1.3" }
                 virtual void OnLaunchRequest(const DeviceParameters &deviceParameters/* @text device_parameters*/) {};
             };
 
