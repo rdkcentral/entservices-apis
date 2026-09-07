@@ -507,7 +507,6 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * The style setting will take effect immediately.
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the chosen styles
-     * @json:omit
      * @text applyCustomClosedCaptionsStyleToSession
      */
     virtual Core::hresult ApplyCustomClosedCaptionsStyleToSession(const uint32_t sessionId, const ITextTrackClosedCaptionsStyle::ClosedCaptionsStyle &style) = 0;
