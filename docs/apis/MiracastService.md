@@ -425,7 +425,7 @@ Notifies listeners that the connection to the source streaming device could not 
     "params": {
         "mac": "00:11:22:33:44:55",
         "name": "John's iPhone",
-        "error_code": 1001,
+        "error_code": 101,
         "reason": "P2P_CONNECT_FAILURE"
     }
 }
@@ -479,7 +479,12 @@ Triggered when the Miracast Service plugin needs the Resident Application or Mir
     "jsonrpc": 2.0,
     "id": 8,
     "method": "org.rdk.MiracastService.onLaunchRequest",
-    "params": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }"
+    "params": {
+        "source_dev_ip": "192.168.1.2",
+        "source_dev_mac": "00:11:22:33:44:55",
+        "source_dev_name": "John's iPhone",
+        "sink_dev_ip": "192.168.1.3"
+    }
 }
 ```
 
