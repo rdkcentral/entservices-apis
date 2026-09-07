@@ -243,7 +243,7 @@ namespace Exchange {
         // @brief Provides access to the versions maintained in version.txt.
         // @details Retrieves the versions maintained in version.txt.
         // @param firmwareVersionInfo: Version information
-        // @example firmwareVersionInfo: {"imagename":"image1","middleware":"middleware1","sdk":"sdk1","mediarite":"mediarite1","yocto":"yocto1","pdri":"pdri1"}
+        // @example firmwareVersionInfo: {"imagename":"image1","rdk":"rdk1","sdk":"sdk1","mediarite":"mediarite1","yocto":"yocto1","pdri":"pdri1"}
         // @retval ErrorCode::ERROR_NONE: Indicates success
         virtual Core::hresult FirmwareVersion(FirmwareversionInfo& firmwareVersionInfo/* @out */) const = 0;
 
