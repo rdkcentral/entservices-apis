@@ -616,7 +616,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "id": 17,
     "result": {
         "imagename": "image1",
-        "middleware": "middleware1",
+        "rdk": "rdk1",
         "sdk": "sdk1",
         "mediarite": "mediarite1",
         "yocto": "yocto1",
