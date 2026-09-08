@@ -401,6 +401,28 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult ScheduleDeepSleepWakeup(const uint64_t unixTime, const string& requestorId) = 0;
+
+        /** Cancel previously scheduled deep sleep wakeup(s) */
+        // @text cancelScheduledDeepSleepWakeups
+        // @brief Cancel previously scheduled deep sleep wakeup(s) registered via ScheduleDeepSleepWakeup.
+        //        Both parameters are optional filters used together to select which schedule(s) to remove:
+        //        - unixTime != 0 and requestorId non-empty: cancel that exact schedule
+        //        - unixTime == 0 and requestorId non-empty: cancel all schedules for that requestor
+        //        - unixTime != 0 and requestorId == "": cancel all schedules at that time, any requestor
+        //        - unixTime == 0 and requestorId == "": cancel every scheduled wakeup
+        //        This API never inspects or special-cases the current power state; if invoked while the
+        //        device is in deep sleep (which should not normally be possible), it behaves identically
+        //        to any other state - no special logic is applied.
+        // @param unixTime: Unix timestamp (seconds since epoch) to match; 0 = match any time
+        // @param requestorId: Unique identifier of the client that scheduled the wakeup; empty = match any requestor
+        // @retval ErrorCode::ERROR_NONE: Indicates success - at least one matching schedule was found and removed
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains invalid characters), OR no
+        //         matching schedule(s) were found for the given (unixTime, requestorId) combination - including
+        //         attempting to cancel an already-expired/already-fired schedule. Callers that need to
+        //         distinguish these cases should validate requestorId (alphanumeric + underscore + hyphen)
+        //         before calling; a valid requestorId then yields this code only when nothing matched.
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure to persist the updated schedule list
+        virtual Core::hresult CancelScheduledDeepSleepWakeups(const uint64_t unixTime /* @optional */, const string& requestorId /* @optional */) = 0;
     };
 
 } // namespace Exchange
