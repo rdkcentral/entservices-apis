@@ -21,12 +21,14 @@
 
 #include "Module.h"
 
+// @stubgen:include <com/IIteratorType.h>
+
 namespace WPEFramework {
 namespace Exchange {
 // @json 1.0.0 @text:keep
 struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   enum { ID = ID_RDK_WINDOW_MANAGER };
-
+  using IStringIterator = RPC::IIteratorType<string, RPC::ID_STRINGITERATOR>;
   // @event 
   struct EXTERNAL INotification : virtual public Core::IUnknown {
     enum { ID = ID_RDK_WINDOW_MANAGER_NOTIFICATION };
@@ -113,8 +115,10 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   /** Get the list of active Apps */
   // @text getApps
   // @brief Get the list of Apps which are currently active and available
-  // @param appsIds: Returns the list of app IDs as a JSON string.
-  virtual Core::hresult GetApps(string &appsIds /* @out */) const = 0;
+  // @param appsIds: Returns the list of active app IDs as a JSON array.
+  // @retval Core::ERROR_NONE: Active app IDs retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to retrieve active app IDs
+  virtual Core::hresult GetApps(IStringIterator*& appsIds /* @out */) const = 0;
 
   /** Registers a key intercept for a specific key code and client */
   // @text addKeyIntercept
@@ -286,6 +290,14 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE on success
   virtual Core::hresult StopVncServer() = 0;
 
+  /** Gets the currently focused application */
+  // @text getFocused
+  // @brief Gets the identifier of the currently focused application
+  // @param client: Output parameter. The identifier of the currently focused application
+  // @retval Core::ERROR_NONE: Successfully retrieved the focused application identifier
+  // @retval Core::ERROR_GENERAL: Failed to retrieve the focused application identifier
+  virtual Core::hresult GetFocused(string &client /* @out */) const = 0;
+
   /** Captures a screenshot of the current compositor output */
   // @text getScreenshot
   // @brief Captures the entire screen buffer as Base64 encoded image data (PNG format). The screenshot is returned asynchronously via the onScreenshotComplete event.
@@ -301,6 +313,58 @@ struct EXTERNAL IRDKWindowManager : virtual public Core::IUnknown {
   // @retval Core::ERROR_NONE: Operation completed successfully
   // @retval Core::ERROR_GENERAL: Operation failed
   virtual Core::hresult SetAlias(const string& clientId, const string& alias) = 0;
+
+  /** Show or hide the splash screen */
+  // @text showSplashScreen
+  // @brief Shows or hides the splash screen in the window manager
+  // @param show: boolean indicating whether to show (true) or hide (false) the splash screen
+  // @retval Core::ERROR_NONE: Operation completed successfully
+  // @retval Core::ERROR_GENERAL: Operation failed
+  virtual Core::hresult ShowSplashScreen(const bool show) = 0;
+
+  /** Sets the bounds (position and size) of the given client */
+  // @text setBounds
+  // @brief Sets the x, y position and width, height dimensions of the given client
+  // @param clientId: client name or application instance ID
+  // @param x: x coordinate of the client window
+  // @param y: y coordinate of the client window
+  // @param width: width of the client window in pixels
+  // @param height: height of the client window in pixels
+  // @retval Core::ERROR_NONE: Bounds set successfully
+  // @retval Core::ERROR_GENERAL: Failed to set bounds
+  virtual Core::hresult SetBounds(const string& clientId, const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height) = 0;
+
+  /** Gets the bounds (position and size) of the given client */
+  // @text getBounds
+  // @brief Gets the x, y position and width, height dimensions of the given client
+  // @param clientId: client name or application instance ID
+  // @param x: x coordinate of the client window
+  // @param y: y coordinate of the client window
+  // @param width: width of the client window in pixels
+  // @param height: height of the client window in pixels
+  // @retval Core::ERROR_NONE: Bounds retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to get bounds
+  virtual Core::hresult GetBounds(const string& clientId, uint32_t& x /* @out */, uint32_t& y /* @out */, uint32_t& width /* @out */, uint32_t& height /* @out */) const = 0;
+
+  /** Sets the scale of the given client */
+  // @text setScale
+  // @brief Sets the horizontal and vertical scale factors of the given client
+  // @param clientId: client name or application instance ID
+  // @param scaleX: horizontal scale factor
+  // @param scaleY: vertical scale factor
+  // @retval Core::ERROR_NONE: Scale set successfully
+  // @retval Core::ERROR_GENERAL: Failed to set scale
+  virtual Core::hresult SetScale(const string& clientId, const double scaleX, const double scaleY) = 0;
+
+  /** Gets the scale of the given client */
+  // @text getScale
+  // @brief Gets the horizontal and vertical scale factors of the given client
+  // @param clientId: client name or application instance ID
+  // @param scaleX: horizontal scale factor
+  // @param scaleY: vertical scale factor
+  // @retval Core::ERROR_NONE: Scale retrieved successfully
+  // @retval Core::ERROR_GENERAL: Failed to get scale
+  virtual Core::hresult GetScale(const string& clientId, double& scaleX /* @out */, double& scaleY /* @out */) const = 0;
 
 };
 } // namespace Exchange

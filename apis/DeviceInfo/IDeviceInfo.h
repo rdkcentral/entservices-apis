@@ -60,6 +60,7 @@ namespace Exchange {
 
         struct EXTERNAL FirmwareversionInfo {
             string imagename /* @brief Image name */;
+            string rdk /* @brief rdk version */;
             string sdk /* @brief sdk version */;
             string mediarite /* @brief mediarite */;
             string yocto /* @brief yocto version */;
@@ -126,6 +127,22 @@ namespace Exchange {
 
         struct EXTERNAL StbIp {
             string estbIp /* @text estb_ip */ /* @brief STB IP Address */;
+        };
+
+        struct EXTERNAL DeviceIdInfo {
+            string deviceId /* @brief Device ID */;
+        };
+
+        struct EXTERNAL HardwareIdInfo {
+            string hardwareId /* @brief Hardware ID (first 6 characters of Device ID) */;
+        };
+
+        struct EXTERNAL DeviceOsName {
+            string osName /* @brief Operating system name */;
+        };
+
+        struct EXTERNAL DeviceOsVersion {
+            string osVersion /* @brief Operating system version */;
         };
 
         using IAddressesInfoIterator = RPC::IIteratorType<AddressesInfo, ID_DEVICE_INFO_ADDRESSES_ITERATOR>;
@@ -273,6 +290,44 @@ namespace Exchange {
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult SupportedAudioPorts(IStringIterator*& supportedAudioPorts /* @out */, bool& success /* @out */) const = 0;
+
+        // @property
+        // @text deviceId
+        // @brief Provides the Device ID info.
+        // @param deviceId: Device ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult DeviceId(DeviceIdInfo& deviceIdInfo /* @out */) const = 0;
+
+        // @property
+        // @text hardwareId
+        // @brief Provides the Hardware ID (first 6 characters of Device ID).
+        // @param hardwareId: Hardware ID of the device
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult HardwareId(HardwareIdInfo& hardwareIdInfo /* @out */) const = 0;
+
+        // @property
+        // @text osname
+        // @brief Provides access to the operating system name.
+		// @details Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
+        // @param osName: Operating system name
+		// @example osName: RDK-E
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult OsName(DeviceOsName& deviceOsName /* @out */) const = 0;
+        virtual Core::hresult OsName(const string &osName) = 0;
+
+        // @property
+        // @text osversion
+        // @brief Provides access to the operating system version.
+		// @details Reads and writes OsVersion to /opt/persistent/osdetails.info and returns empty string if unset.
+        // @param osVersion: Operating system version
+		// @example osVersion: 8.3
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult OsVersion(DeviceOsVersion& deviceOsVersion /* @out */) const = 0;
+        virtual Core::hresult OsVersion(const string &osVersion) = 0;
     };
 
     /* @json 1.0.0 @text:keep */
