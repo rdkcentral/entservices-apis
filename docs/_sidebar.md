@@ -55,6 +55,7 @@
   - [RemoteControl](apis/RemoteControl.md)
   - [ResourceManager](apis/ResourceManager.md)
   - [ResourceManager<sup>@</sup>](apis/ResourceManagerPlugin.md)
+  - [ResourceMonitor](apis/ResourceMonitor.md)
   - [ScreenCapture](apis/ScreenCapture.md)
   - [SharedStorage](apis/SharedStorage.md)
   - [SystemAudioPlayer<sup>@</sup>](apis/SystemAudioPlayerPlugin.md)
