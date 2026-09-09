@@ -70,6 +70,7 @@
   - [USBDevice](apis/USBDevice.md)
   - [USBMassStorage](apis/USBMassStorage.md)
   - [UserSettings](apis/UserSettings.md)
+  - [VictimSelector](apis/VictimSelector.md)
   - [VoiceControl](apis/VoiceControl.md)
   - [Warehouse](apis/Warehouse.md)
   - [WebKitBrowser](apis/WebKitBrowser.md)
