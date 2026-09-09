@@ -24,6 +24,8 @@ The `TextToSpeech` plugin provides TTS functionality (Voice Guidance & Speech Sy
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
+**Note:** The ITextToSpeech interface has been updated to version 2 (`ITEXTTOSPEECH_VERSION 2`). This version introduces new data structures, methods, and notification events for enhanced TTS functionality.
+
 <a name="Configuration"></a>
 # Configuration
 
@@ -48,15 +50,22 @@ TextToSpeech interface methods:
 | [cancel](#cancel) | Cancels the speech |
 | [enabletts](#enabletts) | (For Resident App) Enables or disables the TTS conversion processing |
 | [getapiversion](#getapiversion) | Gets the API Version |
+| [getcapability](#getcapability) | Queries whether a specific capability (SSML, RAW_TEXT) is supported (Added in version 2) |
+| [getcapabilities](#getcapabilities) | Returns an iterator over all supported capabilities (Added in version 2) |
+| [getdeviceconfiguration](#getdeviceconfiguration) | Retrieves current TTS device configuration (Added in version 2) |
+| [getinterfaceversion](#getinterfaceversion) | Returns the interface version number (Added in version 2) |
 | [getspeechstate](#getspeechstate) | Returns the current state of the speech request |
-| [getttsconfiguration](#getttsconfiguration) | Gets the current TTS configuration |
+| [getttsconfiguration](#getttsconfiguration) | Gets the current TTS configuration (Deprecated - use getdeviceconfiguration instead) |
+| [getvoices](#getvoices) | Lists available voices with detailed information (Added in version 2) |
 | [isspeaking](#isspeaking) | Checks if speech is in progress |
 | [isttsenabled](#isttsenabled) | Returns whether the TTS engine is enabled or disabled |
-| [listvoices](#listvoices) | Lists the available voices for the specified language |
+| [listvoices](#listvoices) | Lists the available voices for the specified language (Deprecated - use getvoices instead) |
 | [pause](#pause) | Pauses the speech |
 | [resume](#resume) | Resumes the speech |
-| [setttsconfiguration](#setttsconfiguration) | Sets the TTS configuration |
+| [setdeviceconfiguration](#setdeviceconfiguration) | Sets TTS device configuration (Added in version 2) |
+| [setttsconfiguration](#setttsconfiguration) | Sets the TTS configuration (Deprecated - use setdeviceconfiguration instead) |
 | [speak](#speak) | Converts the input text to speech when TTS is enabled |
+| [speakwithutterance](#speakwithutterance) | Speaks text with per-utterance configuration overrides (Added in version 2) |
 | [setACL](#setACL) | Configures app to speak |
 
 
@@ -272,6 +281,8 @@ No Events
 
 Gets the current TTS configuration.
 
+**Deprecated:** This method is deprecated. Use [getdeviceconfiguration](#getdeviceconfiguration) instead. The Configuration struct is also deprecated in favor of DeviceConfiguration.
+
 ### Events
 
 No Events
@@ -434,6 +445,8 @@ This method takes no parameters.
 
 Lists the available voices for the specified language. For every language there is a set of pre-defined voices.
 
+**Deprecated:** This method is deprecated. Use [getvoices](#getvoices) instead, which provides more information about voices such as language and default status.
+
 ### Events
 
 No Events
@@ -592,7 +605,9 @@ Resumes the speech. Triggers the `onspeechresume`
 <a name="setttsconfiguration"></a>
 ## *setttsconfiguration*
 
-Sets the TTS configuration. Triggers the `onvoicechanged` 
+Sets the TTS configuration. Triggers the `onvoicechanged`
+
+**Deprecated:** This method is deprecated. Use [setdeviceconfiguration](#setdeviceconfiguration) instead. 
 
 ### Events
 
@@ -793,6 +808,428 @@ No Events
 }
 ```
 
+<a name="getvoices"></a>
+## *getvoices*
+
+Lists available voices with detailed information (language, name, isDefault status). Takes optional language parameter (BCP 47 tag) to filter results. Returns voice information iterator. Added in version 2.
+
+This method replaces the deprecated [listvoices](#listvoices) method and provides more detailed information about the voices.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.language | string | <sup>*(optional)*</sup> Optional language filter using BCP 47 language tag (e.g., "en-US"). If empty string or omitted, returns all available voices |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.voices | array | Array of voice information objects |
+| result.voices[#] | object |  |
+| result.voices[#].name | string | Unique voice identifier |
+| result.voices[#].language | string | BCP 47 language tag of the voice |
+| result.voices[#].isDefault | boolean | `true` if this is the default voice for its language |
+| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.getvoices",
+    "params": {
+        "language": "en-US"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "voices": [
+            {
+                "name": "carol",
+                "language": "en-US",
+                "isDefault": true
+            },
+            {
+                "name": "kevin",
+                "language": "en-US",
+                "isDefault": false
+            }
+        ],
+        "TTS_Status": 0,
+        "success": true
+    }
+}
+```
+
+<a name="speakwithutterance"></a>
+## *speakwithutterance*
+
+Speaks text with per-utterance configuration overrides via SpeechUtterance struct. Supports plain text or SSML markup (SSML detected by starting with "<speak>" or "<?xml"). Added in version 2.
+
+This method allows overriding the global TTS configuration for specific speech requests, including language, voice, volume, rate, and pitch settings.
+
+### Events
+
+| Event | Description |
+| :-------- | :-------- |
+| [onwillspeak](#onwillspeak) | Triggered when speech conversion is about to start |
+| [onspeechstart](#onspeechstart) | Triggered when conversion of text to speech is started |
+| [onspeechinterrupted](#onspeechinterrupted) | Current speech is interrupted either by a next speech request; by calling the cancel method; or by disabling TTS, when speech is in-progress |
+| [onspeechcomplete](#onspeechcomplete) | Triggered when conversion from text to speech is completed |
+| [onnetworkerror](#onnetworkerror) | Triggered when failed to fetch audio from the endpoint |
+| [onplaybackerror](#onplaybackerror) | Triggered when an error occurs during playback including pipeline failures; Triggered when speak is called during TTS disabled |
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.callsign | string | Identifier for the source of the request |
+| params.text | string | Plain text or SSML markup for conversion. If the string starts with "<speak>" or "<?xml" it is treated as SSML, otherwise as plain text. If SSML capability is not supported, SSML tags will be ignored |
+| params.utterance | object | Per-utterance configuration overrides |
+| params.utterance?.language | string | <sup>*(optional)*</sup> Language of the utterance (BCP 47 language tag). Empty string means use TTS configuration value |
+| params.utterance?.voice | string | <sup>*(optional)*</sup> Voice to use for synthesis. Empty string means use TTS configuration value |
+| params.utterance?.volume | number | <sup>*(optional)*</sup> Volume of the utterance (range 0.0 to 1.0). -1.0 means use TTS configuration value |
+| params.utterance?.rate | number | <sup>*(optional)*</sup> Speed of the utterance (range 0.1 to 10.0). -1.0 means use TTS configuration value |
+| params.utterance?.pitch | number | <sup>*(optional)*</sup> Pitch of the utterance (range 0.0 to 2.0). -1.0 means use TTS configuration value |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.speechid | number | The speech ID |
+| result.TTS_Status | number |  (must be one of the following: *TTS_OK(0)*, *TTS_FAIL(1)*, *TTS_NOT_ENABLED(2)*, *TTS_INVALID_CONFIGURATION(3)*) |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.speakwithutterance",
+    "params": {
+        "callsign": "WebApp",
+        "text": "Hello, this is a test.",
+        "utterance": {
+            "language": "en-US",
+            "voice": "carol",
+            "volume": 0.8,
+            "rate": 1.2,
+            "pitch": 1.0
+        }
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "speechid": 1,
+        "TTS_Status": 0,
+        "success": true
+    }
+}
+```
+
+<a name="getinterfaceversion"></a>
+## *getinterfaceversion*
+
+Returns the interface version number (e.g., 2). Used to determine available functionality. Added in version 2.
+
+If this method is not implemented, it returns Core::ERROR_NOT_SUPPORTED and you should assume version 1.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.version | number | The interface version number (e.g., 2) |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.getinterfaceversion"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "version": 2,
+        "success": true
+    }
+}
+```
+
+<a name="getcapability"></a>
+## *getcapability*
+
+Queries whether a specific capability (SSML, RAW_TEXT) is supported. Added in version 2.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.capability | string | The capability to query (must be one of the following: *UNSET(0)*, *RAW_TEXT(1)*, *SSML(2)*) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.hasCapability | boolean | `true` if the queried capability is supported |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.getcapability",
+    "params": {
+        "capability": "SSML"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "hasCapability": true,
+        "success": true
+    }
+}
+```
+
+<a name="getcapabilities"></a>
+## *getcapabilities*
+
+Returns an iterator over all supported capabilities. Added in version 2.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.capabilities | array | Array of supported capabilities |
+| result.capabilities[#] | string | Capability name (must be one of the following: *RAW_TEXT(1)*, *SSML(2)*) |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.getcapabilities"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "capabilities": [
+            "RAW_TEXT",
+            "SSML"
+        ],
+        "success": true
+    }
+}
+```
+
+<a name="getdeviceconfiguration"></a>
+## *getdeviceconfiguration*
+
+Retrieves current TTS device configuration (DeviceConfiguration struct). Replaces deprecated [getttsconfiguration](#getttsconfiguration). Added in version 2.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.ttsendpoint | string | The TTS engine URL |
+| result.ttsendpointsecured | string | The TTS engine secured URL |
+| result.language | string | Device default language (BCP 47 language tag) |
+| result.voice | string | Device default voice. Empty string means use TTS Engine default for the configured language |
+| result.volume | number | Device default volume (range 0.0 to 1.0, default 1.0) |
+| result.rate | number | Device default speed (range 0.1 to 10.0, default 1.0) |
+| result.pitch | number | Device default pitch (range 0.0 to 2.0, default 1.0) |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.getdeviceconfiguration"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "ttsendpoint": "http://url_for_the_text_to_speech_processing_unit",
+        "ttsendpointsecured": "https://url_for_the_text_to_speech_processing_unit",
+        "language": "en-US",
+        "voice": "carol",
+        "volume": 1.0,
+        "rate": 1.0,
+        "pitch": 1.0,
+        "success": true
+    }
+}
+```
+
+<a name="setdeviceconfiguration"></a>
+## *setdeviceconfiguration*
+
+Sets TTS device configuration (DeviceConfiguration struct). Replaces deprecated [setttsconfiguration](#setttsconfiguration). Added in version 2.
+
+### Events
+
+| Event | Description |
+| :-------- | :-------- |
+| [onvoicechanged](#onvoicechanged) | Triggered only when the voice configuration is changed |
+| [ondeviceconfigurationchanged](#ondeviceconfigurationchanged) | Triggered when device configuration changes |
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params?.ttsendpoint | string | <sup>*(optional)*</sup> The TTS engine URL |
+| params?.ttsendpointsecured | string | <sup>*(optional)*</sup> The TTS engine secured URL |
+| params?.language | string | <sup>*(optional)*</sup> Device default language (BCP 47 language tag) |
+| params?.voice | string | <sup>*(optional)*</sup> Device default voice. Empty string means use TTS Engine default |
+| params?.volume | number | <sup>*(optional)*</sup> Device default volume (range 0.0 to 1.0, default 1.0) |
+| params?.rate | number | <sup>*(optional)*</sup> Device default speed (range 0.1 to 10.0, default 1.0) |
+| params?.pitch | number | <sup>*(optional)*</sup> Device default pitch (range 0.0 to 2.0, default 1.0) |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | Whether the request succeeded |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.TextToSpeech.setdeviceconfiguration",
+    "params": {
+        "ttsendpoint": "http://url_for_the_text_to_speech_processing_unit",
+        "ttsendpointsecured": "https://url_for_the_text_to_speech_processing_unit",
+        "language": "en-US",
+        "voice": "carol",
+        "volume": 1.0,
+        "rate": 1.0,
+        "pitch": 1.0
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a name="Notifications"></a>
 # Notifications
 
@@ -804,6 +1241,8 @@ TextToSpeech interface events:
 
 | Event | Description |
 | :-------- | :-------- |
+| [oncapabilitieschanged](#oncapabilitieschanged) | Triggered when available capabilities change (Added in version 2) |
+| [ondeviceconfigurationchanged](#ondeviceconfigurationchanged) | Triggered when device configuration changes (Added in version 2) |
 | [onnetworkerror](#onnetworkerror) | Triggered when a network error occurs while fetching the audio from the endpoint |
 | [onplaybackerror](#onplaybackerror) | Triggered when an error occurs during playback including pipeline failures |
 | [onspeechcomplete](#onspeechcomplete) | Triggered when the speech completes |
@@ -813,8 +1252,83 @@ TextToSpeech interface events:
 | [onspeechstart](#onspeechstart) | Triggered when the speech start |
 | [onttsstatechanged](#onttsstatechanged) | Triggered when TTS is enabled or disabled |
 | [onvoicechanged](#onvoicechanged) | Triggered when the configured voice changes |
+| [onvoiceschanged](#onvoiceschanged) | Triggered when available voices change (Added in version 2) |
 | [onwillspeak](#onwillspeak) | Triggered when the text to speech conversion is about to start |
 
+
+<a name="onvoiceschanged"></a>
+## *onvoiceschanged*
+
+Triggered when available voices change (e.g., due to TTS configuration change, language pack installation, or TTS engine update). Added in version 2.
+
+### Parameters
+
+This event has no parameters.
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onvoiceschanged",
+    "params": {}
+}
+```
+
+<a name="oncapabilitieschanged"></a>
+## *oncapabilitieschanged*
+
+Triggered when available capabilities change (e.g., due to TTS configuration change). Added in version 2.
+
+### Parameters
+
+This event has no parameters.
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.oncapabilitieschanged",
+    "params": {}
+}
+```
+
+<a name="ondeviceconfigurationchanged"></a>
+## *ondeviceconfigurationchanged*
+
+Triggered when device configuration changes. Added in version 2.
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.ttsendpoint | string | The TTS engine URL |
+| params.ttsendpointsecured | string | The TTS engine secured URL |
+| params.language | string | Device default language (BCP 47 language tag) |
+| params.voice | string | Device default voice |
+| params.volume | number | Device default volume (range 0.0 to 1.0) |
+| params.rate | number | Device default speed (range 0.1 to 10.0) |
+| params.pitch | number | Device default pitch (range 0.0 to 2.0) |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.ondeviceconfigurationchanged",
+    "params": {
+        "ttsendpoint": "http://url_for_the_text_to_speech_processing_unit",
+        "ttsendpointsecured": "https://url_for_the_text_to_speech_processing_unit",
+        "language": "en-US",
+        "voice": "carol",
+        "volume": 1.0,
+        "rate": 1.0,
+        "pitch": 1.0
+    }
+}
+```
 
 <a name="onnetworkerror"></a>
 ## *onnetworkerror*
