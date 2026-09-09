@@ -186,7 +186,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, IStringIterator* const macAddressList /* @optional */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, const std::vector<string>& macAddressList /* @optional @restrict:32 */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
@@ -330,7 +330,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional @keep_key */) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, const std::vector<string>& macAddressList /* @optional @keep_key @restrict:32 */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
@@ -343,7 +343,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const string& macAddress /* @optional */, const string& fileName, const string& fileType /* @optional */, const uint32_t percentIncrement /* @optional */, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const string& macAddress /* @optional */, const string& fileName, const string& fileType /* @optional */, const uint32_t percentIncrement /* @optional */, bool& success /* @out */, std::vector<string>& sessionIdList /* @out @restrict:32 */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate

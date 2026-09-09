@@ -196,7 +196,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Voice session types retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve voice session types.
-            virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, IStringIterator*& types /* @out */) = 0;
+            virtual Core::hresult GetVoiceSessionTypes(bool& success /* @out */, std::vector<string>& types /* @out @restrict:16 */) = 0;
 
             // @brief Requests a voice session using the specified request type and optional parameters
             // @text voiceSessionRequest
