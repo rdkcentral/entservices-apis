@@ -123,6 +123,20 @@ namespace Exchange {
             DS_DISPLAY_AVI_SCAN_MAX        = 3
         };
 
+        enum DisplayColoriMetryInformation: uint32_t {
+            DS_DISPLAY_COLORIMETRY_INFO_NONE        = 0x00,
+            DS_DISPLAY_COLORIMETRY_INFO_XVYCC601    = 0x01,
+            DS_DISPLAY_COLORIMETRY_INFO_XVYCC709    = 0x02,
+            DS_DISPLAY_COLORIMETRY_INFO_SYCC601     = 0x04,
+            DS_DISPLAY_COLORIMETRY_INFO_ADOBEYCC601 = 0x08,
+            DS_DISPLAY_COLORIMETRY_INFO_ADOBERGB    = 0x10,
+            DS_DISPLAY_COLORIMETRY_INFO_BT2020CL    = 0x20,
+            DS_DISPLAY_COLORIMETRY_INFO_BT2020NCL   = 0x40,
+            DS_DISPLAY_COLORIMETRY_INFO_BT2020RGB   = 0x80,
+            DS_DISPLAY_COLORIMETRY_INFO_DCI_P3      = 0x100,
+            DS_DISPLAY_COLORIMETRY_INFO_MAX         = 0x200
+        };
+
         struct DisplayVideoPortResolution {
             string name;
             DisplayTVResolution pixelResolution;
