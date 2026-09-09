@@ -936,8 +936,7 @@ None
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.success | bool | Whether the request succeeded |
-| result.sessionIdList | array | List of session IDs created for the firmware update(s)  |
-| result.sessionIdList[#] | string |  |
+| result.sessionIdList | string | List of session IDs created for the firmware update(s)  |
 
 ### Examples
 
@@ -974,9 +973,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
     "id": 14,
     "result": {
         "success": true,
-        "sessionIdList": [
-            "12345-abc-def"
-        ]
+        "sessionIdList": "12345-abc-def"
     }
 }
 ```
@@ -995,8 +992,7 @@ None
 | params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds. If omitted, backend default is used. |
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled. If omitted, backend default is used. |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled. If omitted, backend default is used. |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend)  |
-| params.macAddressList[#] | string |  |
+| params?.macAddressList | string | <sup>(optional)</sup>Optional list of MAC addresses to pair with (if supported by backend)  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1017,9 +1013,7 @@ None
         "timeout": 0,
         "screenBindEnable": true,
         "scanEnable": true,
-        "macAddressList": [
-            "AA:BB:CC:DD:EE:FF"
-        ]
+        "macAddressList": "AA:BB:CC:DD:EE:FF"
     }
 }
 ```
@@ -1028,7 +1022,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": "AA:BB:CC:DD:EE:FF"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1179,8 +1173,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params?.macAddressList | array | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
-| params.macAddressList[#] | string |  |
+| params?.macAddressList | string | <sup>(optional)</sup>Optional list of MAC addresses to unpair (if empty, unpairs all remotes)  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1198,9 +1191,7 @@ None
     "id": 18,
     "method": "org.rdk.RemoteControl.unpair",
     "params": {
-        "macAddressList": [
-            "AA:BB:CC:DD:EE:FF"
-        ]
+        "macAddressList": "AA:BB:CC:DD:EE:FF"
     }
 }
 ```
@@ -1209,7 +1200,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"macAddressList": ["AA:BB:CC:DD:EE:FF"]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 18, "method": "org.rdk.RemoteControl.unpair", "params": {"macAddressList": "AA:BB:CC:DD:EE:FF"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
