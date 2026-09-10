@@ -86,7 +86,7 @@ namespace WPEFramework
                 // @param clientMac: MacAddress of the client device
                 // @example clientMac: 00:11:22:33:44:55
                 // @param clientName: Name of the client device
-                // @example clientName: John's iPhone
+                // @example clientName: "John's iPhone"
                 virtual void OnClientConnectionRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */) {};
 
                 // @brief It is triggered when the Miracast Service plugin failed to connect with the source streaming device due to some error, like P2P related errors during activation or while streaming
@@ -95,7 +95,7 @@ namespace WPEFramework
                 // @param clientMac: MacAddress of the client device
                 // @example clientMac: 00:11:22:33:44:55
                 // @param clientName: Name of the client device
-                // @example clientName: John's iPhone
+                // @example clientName: "John's iPhone"
                 // @param reasonCode: Error code for the connection failure
                 // @example reasonCode: "101"
                 // @param reasonDescription: Description of the reason for the connection failure
@@ -151,7 +151,7 @@ namespace WPEFramework
             // @param clientMac: MacAddress of the client device
             // @example clientMac: 00:11:22:33:44:55
             // @param clientName: Name of the client device
-            // @example clientName: John's iPhone
+            // @example clientName: "John's iPhone"
             // @param result: Contains the result of the operation, including a message and a success flag
             // @example result: { message: "Connection stopped", success: true }
             // @retval Core::ERROR_NONE: Indicates success
