@@ -144,7 +144,11 @@ namespace Exchange {
 
         using IDeviceSettingsAudioMS12AudioProfileIterator = RPC::IIteratorType<MS12AudioProfile, ID_DEVICESETTINGS_AUDIO_PROFILE_ITERATOR>;
 
-        using IDeviceSettingsAudioApplicationConfigIterator = RPC::IIteratorType<string, ID_DEVICESETTINGS_AUDIO_APPLICATION_CONFIG_ITERATOR>;
+        struct ApplicationAudioConfig {
+            string configName;
+        };
+
+        using IDeviceSettingsAudioApplicationConfigIterator = RPC::IIteratorType<ApplicationAudioConfig, ID_DEVICESETTINGS_AUDIO_APPLICATION_CONFIG_ITERATOR>;
 
         struct VolumeLeveller {
             uint8_t mode;       /* @text 0 = off, 1 = on, 2 = auto  */
