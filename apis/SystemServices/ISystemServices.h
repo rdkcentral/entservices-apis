@@ -661,6 +661,14 @@ namespace WPEFramework
             // @retval ErrorCode::ERROR_GENERAL: Indicates failure
             virtual Core::hresult SetFSRFlag(const bool fsrFlag, SystemResult& result /* @out */) = 0;
 
+            // @text TriggerGetSetEnv
+            // @brief Trigger get set env thread
+            // @param trigger: trigger flag
+            // @param SystemResult: Whether the request succeeded
+            // @retval ErrorCode::ERROR_NONE: Indicates success
+            // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+            virtual Core::hresult TriggerGetSetEnv(const bool trigger, SystemResult& result /* @out */) = 0;
+
             // @text getFSRFlag
             // @brief Get the FSR flag from the emmc raw area.
             // @param fsrFlag: FSR flag
