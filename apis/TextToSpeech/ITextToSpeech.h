@@ -243,7 +243,7 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     // @retval Core::ERROR_GENERAL: Indicates state change got failed
     virtual Core::hresult Enable(const bool enable) = 0;
 
-    // @text Enable
+    // @text enable
     // @brief Query whether TTS enabled or disabled
     // @param enable: tts status
     // @retval Core::NONE: Indicates TTS state retrieved successfully
@@ -350,9 +350,9 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * about voice selection
      * @param language optional is empty string, if provided filters the voices by the language specified using BCP 47 language tag
      * @param voices list of voices
-     * @retval Core::NONE Indicates successful retrieval of voices list
-     * @retval Core::ERROR_GENERAL Indicates retrieval of voices list got failed
-     * @retval Core::ERROR_NOT_SUPPORTED Indicates conversion of text to speech is not supported in this implementation
+     * @retval Core::NONE: Indicates successful retrieval of voices list
+     * @retval Core::ERROR_GENERAL: Indicates retrieval of voices list got failed
+     * @retval Core::ERROR_NOT_SUPPORTED: Indicates conversion of text to speech is not supported in this implementation
      * @text getVoices
      */
     virtual Core::hresult GetVoices(const string& language, IVoiceInfoIterator*& voices /* @out */) const = 0;
@@ -362,13 +362,13 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @details Allows to override the global configuration for settings such as language, voice, volume, rate, pitch.
      * @param callsign identifier for the source of the request
      * @param utterance contains the text and override context for the speech such as language, voice, volume, rate, pitch
-     * * @param text plain text or SSML markup for conversion; if the string starts with "<speak>" or "<?xml" it is treated as SSML, otherwise as plain text
+     * @param text plain text or SSML markup for conversion; if the string starts with "<speak>" or "<?xml" it is treated as SSML, otherwise as plain text
      * If the SSML capability is not supported, the SSML tags will be ignored and the text will be treated as plain text.
      * @param speechid returns id for the text
      * @param status return status
-     * @retval Core::NONE Indicates successful conversion of text to speech
-     * @retval Core::ERROR_GENERAL Indicates conversion of text to speech got failed
-     * @retval Core::ERROR_NOT_SUPPORTED Indicates conversion of text to speech is not supported in this implementation
+     * @retval Core::NONE: Indicates successful conversion of text to speech
+     * @retval Core::ERROR_GENERAL: Indicates conversion of text to speech got failed
+     * @retval Core::ERROR_NOT_SUPPORTED: Indicates conversion of text to speech is not supported in this implementation
      * @text speakWithUtterance
      */
     virtual Core::hresult SpeakWithUtterance(const string& callsign, const SpeechUtterance& utterance, const string& text, uint32_t& speechid /* @out */,
@@ -380,8 +380,8 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * it was compiled to support. This information can be helpful in determining whether
      * a certain functionality can be expected to be present.
      * @param version will receive the version number ex: 2
-     * @retval Core::ERROR_NOT_SUPPORTED if the function is not implemented - If not implemented assume version 1
-     * @retval Core::ERROR_OK on success
+     * @retval Core::ERROR_NOT_SUPPORTED: if the function is not implemented - If not implemented assume version 1
+     * @retval Core::ERROR_NONE: on success
      * @text getInterfaceVersion
      */
     virtual Core::hresult GetInterfaceVersion(uint32_t& version /* @out */) const =0;
@@ -390,8 +390,8 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
      * @brief Queries whether a specific TextToSpeech capability is supported by the implementation. (Added in version 2)
      * @param capability The capability to query ex: SSML, RAW_TEXT
      * @param hasCapability Indicates whether the queried capability is supported.
-     * @retval Core::ERROR_NONE The capability query completed successfully.
-     * @retval Core::ERROR_NOT_SUPPORTED Capability querying is not supported.
+     * @retval Core::ERROR_NONE: The capability query completed successfully.
+     * @retval Core::ERROR_NOT_SUPPORTED: Capability querying is not supported.
      * @text getCapability
      */
     virtual Core::hresult GetCapability(Capability capability, bool& hasCapability /* @out */) const = 0;
@@ -399,8 +399,8 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     /**
      * @brief Retrieves an iterator over all supported TextToSpeech capabilities. (Added in version 2)
      * @param capabilities Iterator providing the list of supported capabilities.
-     * @retval Core::ERROR_NONE The list of capabilities was retrieved successfully.
-     * @retval Core::ERROR_NOT_SUPPORTED Retrieving capabilities is not supported.
+     * @retval Core::ERROR_NONE: The list of capabilities was retrieved successfully.
+     * @retval Core::ERROR_NOT_SUPPORTED: Retrieving capabilities is not supported.
      * @text getCapabilities
      */
     virtual Core::hresult GetCapabilities(ICapabilityIterator*& capabilities /* @out */) const = 0;
@@ -408,9 +408,9 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     /**
      * @brief Retrieve tts configuration attributes
      * @param config tts device configuration
-     * @retval Core::NONE Indicates successful retrieval of configuration
-     * @retval Core::ERROR_GENERAL Indicates retrieval of configuration got failed
-     * @retval Core::ERROR_NOT_SUPPORTED Indicates retrieval of configuration is not supported in this implementation
+     * @retval Core::NONE: Indicates successful retrieval of configuration
+     * @retval Core::ERROR_GENERAL: Indicates retrieval of configuration got failed
+     * @retval Core::ERROR_NOT_SUPPORTED: Indicates retrieval of configuration is not supported in this implementation
      * @text getDeviceConfiguration
      */
     virtual Core::hresult GetDeviceConfiguration(DeviceConfiguration& config /* @out */) const = 0;
@@ -418,9 +418,9 @@ struct EXTERNAL ITextToSpeech : virtual public Core::IUnknown {
     /**
      * @brief Set tts configuration attributes
      * @param config tts deviceconfiguration
-     * @retval Core::NONE Indicates successful setting of configuration
-     * @retval Core::ERROR_GENERAL Indicates setting of configuration got failed
-     * @retval Core::ERROR_NOT_SUPPORTED Indicates setting of configuration is not supported in this implementation
+     * @retval Core::NONE: Indicates successful setting of configuration
+     * @retval Core::ERROR_GENERAL: Indicates setting of configuration got failed
+     * @retval Core::ERROR_NOT_SUPPORTED: Indicates setting of configuration is not supported in this implementation
      * @text setDeviceConfiguration
      */
     virtual Core::hresult SetDeviceConfiguration(const DeviceConfiguration& config) = 0;
