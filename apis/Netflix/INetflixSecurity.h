@@ -30,17 +30,29 @@ struct EXTERNAL INetflixSecurity : public Core::IUnknown
 
     virtual ~INetflixSecurity() { }
 
-    /* Retrieve the ESN */
-    virtual std::string ESN() const = 0;
+    // @brief Retrieve the ESN
+    // @param esn: Output ESN value
+    // @retval Core::ERROR_NONE: ESN retrieved successfully
+    // @retval Core::ERROR_UNAVAILABLE: ESN is unavailable
+    virtual Core::hresult GetESN(std::string& esn /* @out */) const = 0;
 
-    /* Retrieve the pre-shared encryption key */
-    virtual uint32_t EncryptionKey() const = 0;
+    // @brief Retrieve the pre-shared encryption key
+    // @param encryptionKeyId: Output encryption key handle
+    // @retval Core::ERROR_NONE: Encryption key retrieved successfully
+    // @retval Core::ERROR_UNAVAILABLE: Encryption key is unavailable
+    virtual Core::hresult GetEncryptionKey(uint32_t& encryptionKeyId /* @out */) const = 0;
 
-    /* Retrieve the pre-shared HMAC key */
-    virtual uint32_t HMACKey() const = 0;
+    // @brief Retrieve the pre-shared HMAC key
+    // @param hmacKeyId: Output HMAC key handle
+    // @retval Core::ERROR_NONE: HMAC key retrieved successfully
+    // @retval Core::ERROR_UNAVAILABLE: HMAC key is unavailable
+    virtual Core::hresult GetHMACKey(uint32_t& hmacKeyId /* @out */) const = 0;
 
-    /* Retrieve the pre-shared wrapping key */
-    virtual uint32_t WrappingKey() const = 0;
+    // @brief Retrieve the pre-shared wrapping key
+    // @param wrappingKeyId: Output wrapping key handle
+    // @retval Core::ERROR_NONE: Wrapping key retrieved successfully
+    // @retval Core::ERROR_UNAVAILABLE: Wrapping key is unavailable
+    virtual Core::hresult GetWrappingKey(uint32_t& wrappingKeyId /* @out */) const = 0;
 
     /* Derive encryption keys based on an authenticated Diffie-Hellman procedure */
     virtual uint32_t DeriveKeys(const uint32_t privateDhKeyId, const uint32_t peerPublicDhKeyId, const uint32_t derivationKeyId,
