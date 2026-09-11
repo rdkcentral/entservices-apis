@@ -103,7 +103,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ failureReason: \"NetworkError\" }"
+    "result": {
+        "failureReason": "NetworkError"
+    }
 }
 ```
 
@@ -149,7 +151,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": "{ downloadState: \"InProgress\" }"
+    "result": {
+        "downloadState": "InProgress"
+    }
 }
 ```
 
@@ -249,7 +253,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": "{ downloadPercent: 75 }"
+    "result": {
+        "downloadPercent": 75
+    }
 }
 ```
 
