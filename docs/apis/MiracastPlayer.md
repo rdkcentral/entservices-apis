@@ -276,7 +276,14 @@ None
     "id": 3,
     "method": "org.rdk.MiracastPlayer.setWesterosEnvironment",
     "params": [
-        "[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"
+        {
+            "argName": "WESTEROS_DISPLAY",
+            "argValue": "HDMI0"
+        },
+        {
+            "argName": "WESTEROS_FULLSCREEN",
+            "argValue": 1
+        }
     ]
 }
 ```
@@ -285,7 +292,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": ["[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.MiracastPlayer.setWesterosEnvironment", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": 1}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
