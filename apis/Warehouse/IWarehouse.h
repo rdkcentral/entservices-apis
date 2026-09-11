@@ -77,7 +77,7 @@ namespace WPEFramework
             // @param age: Integer specifying the age threshold for checking files.
             // @example age: 30
             // @param clean: Boolean indicating whether the device is clean.
-            // @example clean: true
+             // @example clean: false
             // @param files: Array of strings containing the file locations for each file.
             // @example files: ["/opt/persistentStore/application/language","/opt/persistentStore/network/region"]
             // @param success: Boolean indicating whether the clean check operation was successful.
