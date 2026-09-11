@@ -63,7 +63,7 @@ namespace WPEFramework
             // @brief query the BootType details
             // @details Retrieves the BootType details. Possible values include `BOOT_INIT`, `BOOT_NORMAL`, `BOOT_MIGRATION`, and `BOOT_UPDATE`.
             // @param bootTypeInfo: struct
-            // @example bootTypeInfo: { bootType: BOOT_TYPE_MIGRATION }
+// @example bootTypeInfo: { "bootType": "BOOT_MIGRATION" }
             virtual Core::hresult GetBootTypeInfo(BootTypeInfo& bootTypeInfo /* @out */) = 0;
 
             // @text setMigrationStatus
