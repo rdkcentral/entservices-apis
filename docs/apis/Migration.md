@@ -100,7 +100,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ bootType: BOOT_TYPE_MIGRATION }"
+    "result": {
+        "bootType": "BOOT_MIGRATION"
+    }
 }
 ```
 
