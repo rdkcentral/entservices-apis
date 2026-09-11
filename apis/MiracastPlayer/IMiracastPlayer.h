@@ -115,7 +115,7 @@ namespace WPEFramework
             // @text playRequest
             // @details Initiates a Miracast session using the supplied source and sink device information, configures the display region, and starts media streaming.           
             // @param deviceParam: Contains Source and Sink Device related properties
-            // @example deviceParam: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
+             // @example deviceParam: {"source_dev_ip": "192.168.1.2", "source_dev_mac": "00:11:22:33:44:55", "source_dev_name": "Miracast Source", "sink_dev_ip": "192.168.1.3"}
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
              // @example videoRect: {"X": 0, "Y": 0, "W": 1920, "H": 1080}
             // @param result: Result of the play request operation
