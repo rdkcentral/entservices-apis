@@ -163,7 +163,7 @@ namespace WPEFramework
             // @param clientMac: MacAddress of the client device
             // @example clientMac: 00:11:22:33:44:55
             // @param playerState: Player state to be updated
-            // @example playerState: PLAYER_STATE_PLAYING
+             // @example playerState: "PLAYING"
             // @param reasonCode: Reason code for the player state update
             // @example reasonCode: 200
             // @param result: Contains the result of the operation, including a message and a success flag
