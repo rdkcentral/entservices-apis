@@ -85,7 +85,7 @@ namespace WPEFramework
             // @brief Gets the current download percentage.
             // @details Retrieves the current download percentage of the firmware download process.
             // @param firmwareDownloadPercent: Current download percentage
-            // @example firmwareDownloadPercent: { downloadPercent: 75 }
+            // @example firmwareDownloadPercent: { "downloadPercent": 75 }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetFirmwareDownloadPercent( FirmwareDownloadPercent& firmwareDownloadPercent /* @out */) = 0;
 
@@ -99,7 +99,7 @@ namespace WPEFramework
             // @brief Retrieve the current state of the download process.
             // @details Retrieves the current state of the firmware download process, providing information about whether the download is in progress, completed, or encountered an error.
             // @param downloadState: Current firmware download state
-            // @example downloadState: { downloadState: "InProgress" }
+            // @example downloadState: { "downloadState": "InProgress" }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetDownloadState( FirmwareDownloadState& downloadState /* @out */) = 0;
             
@@ -107,7 +107,7 @@ namespace WPEFramework
             // @brief Gets the last firmware download failure reason.
             // @details Retrieves the last firmware download failure reason, providing information about the cause of the failure during the firmware download process.
             // @param downloadFailureReason: Firmware download failure reason
-            // @example downloadFailureReason: { failureReason: "NetworkError" }
+            // @example downloadFailureReason: { "failureReason": "NetworkError" }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetDownloadFailureReason( DownloadFailureReason& downloadFailureReason /* @out */) = 0;
         };
