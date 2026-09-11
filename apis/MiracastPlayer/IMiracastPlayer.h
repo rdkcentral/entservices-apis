@@ -117,7 +117,7 @@ namespace WPEFramework
             // @param deviceParam: Contains Source and Sink Device related properties
             // @example deviceParam: { sourceDeviceIP: "192.168.1.2", sinkDeviceIP: "192.168.1.3" }
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
-            // @example videoRect: { x: 0, y: 0, width: 1920, height: 1080 }
+             // @example videoRect: {"X": 0, "Y": 0, "W": 1920, "H": 1080}
             // @param result: Result of the play request operation
             // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
