@@ -132,7 +132,7 @@ namespace WPEFramework {
             uint32_t wakeupKeyCode                                      /* @brief The Linux key code that wakes the target from deepsleep ex: 255 */;
             string upgradeSessionId                                    /* @brief The active firmware update session identifier for this remote, if any e.g. "12345-abc-def" */;
             WakeupConfig wakeupConfig                                  /* @brief The deepsleep wakeup key configuration of the remote */;
-            Core::OptionalType<std::vector<uint32_t>> wakeupCustomList /* @restrict:32 @brief The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom ex: [59, 102, 62, 111, 110, 107] */;
+            std::vector<uint32_t> wakeupCustomList /* @restrict:32 @brief The custom list of Linux key codes that wake the target from deepsleep, only present when wakeupConfig is custom ex: [59, 102, 62, 111, 110, 107] */;
         };
 
         struct EXTERNAL NetStatusData {
