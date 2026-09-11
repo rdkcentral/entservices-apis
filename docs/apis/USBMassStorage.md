@@ -62,7 +62,7 @@ The following methods are provided by the IUSBMassStorage Interface:
 <a id="getDeviceList"></a>
 ## *getDeviceList*
 
-Get list of devices that are currently mounted in the system
+Retrieves a list of USB mass storage devices currently mounted in the system. Each entry contains basic device information such as device name and device path.
 
 ### Events Triggered
 None
@@ -105,8 +105,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": [
         {
-            "devicePath": "",
-            "deviceName": ""
+            "deviceName": "USB Flash Drive"
         }
     ]
 }
@@ -115,7 +114,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getMountPoints"></a>
 ## *getMountPoints*
 
-Get mount points information for a specified device
+Retrieves mount points information for the specified USB mass storage device.
 
 ### Events Triggered
 None
@@ -123,7 +122,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceName | string | name of the device for which mount points are to be retrieved |
+| params.deviceName | string | Name of the device for which mount points are to be retrieved |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -145,7 +144,7 @@ None
     "id": 1,
     "method": "org.rdk.USBMassStorage.getMountPoints",
     "params": {
-        "deviceName": ""
+        "deviceName": "USB Flash Drive"
     }
 }
 ```
@@ -154,7 +153,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBMassStorage.getMountPoints", "params": {"deviceName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.USBMassStorage.getMountPoints", "params": {"deviceName": "USB Flash Drive"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -166,10 +165,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": [
         {
-            "partitionName": "",
-            "mountFlags": "READ_ONLY",
-            "mountPath": "",
-            "fileSystem": "UNKNOWN file system"
+            "mountPath": "/media/usb0"
         }
     ]
 }
@@ -178,7 +174,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getPartitionInfo"></a>
 ## *getPartitionInfo*
 
-Get partition information for a given partition
+Retrieves partition information for the specified mount path.
 
 ### Events Triggered
 None
@@ -212,7 +208,7 @@ None
     "id": 2,
     "method": "org.rdk.USBMassStorage.getPartitionInfo",
     "params": {
-        "mountPath": ""
+        "mountPath": "/media/usb0"
     }
 }
 ```
@@ -221,7 +217,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBMassStorage.getPartitionInfo", "params": {"mountPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.USBMassStorage.getPartitionInfo", "params": {"mountPath": "/media/usb0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -232,14 +228,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "fileSystem": "UNKNOWN file system",
-        "size": 0,
-        "startSector": 0,
-        "numSectors": 0,
-        "sectorSize": 0,
-        "totalSpace": 0,
-        "usedSpace": 0,
-        "availableSpace": 0
+        "size": 1024
     }
 }
 ```
@@ -259,7 +248,7 @@ The following events are provided by the IUSBMassStorage Interface:
 <a id="onDeviceMounted"></a>
 ## *onDeviceMounted*
 
-Device Mounted notification @@iterator
+Triggered when a USB mass storage device is successfully mounted by the system.
 
 ### Parameters
 | Name | Type | Description |
@@ -283,15 +272,11 @@ Device Mounted notification @@iterator
     "method": "org.rdk.USBMassStorage.onDeviceMounted",
     "params": {
         "deviceInfo": {
-            "devicePath": "",
-            "deviceName": ""
+            "deviceName": "USB Flash Drive"
         },
         "mountPoints": [
             {
-                "partitionName": "",
-                "mountFlags": "READ_ONLY",
-                "mountPath": "",
-                "fileSystem": "UNKNOWN file system"
+                "mountPath": "/media/usb0"
             }
         ]
     }
@@ -301,13 +286,13 @@ Device Mounted notification @@iterator
 <a id="onDeviceUnMounted"></a>
 ## *onDeviceUnMounted*
 
-Device Unmounted notification @@iterator
+Triggered when a USB mass storage device is successfully unmounted by the system. The event provides information about the device and its previously mounted partitions.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.deviceInfo | object | name and device path of the mounted device. |
+| params.deviceInfo | object | name and device path of the unmounted device. |
 | params.deviceInfo.devicePath | string | Device path in the file system (sysfs) |
 | params.deviceInfo.deviceName | string | Device name identifying the device |
 | params.mountPoints | array | List of mountpoints information for the device unmounted. |
@@ -325,15 +310,11 @@ Device Unmounted notification @@iterator
     "method": "org.rdk.USBMassStorage.onDeviceUnMounted",
     "params": {
         "deviceInfo": {
-            "devicePath": "",
-            "deviceName": ""
+            "deviceName": "USB Flash Drive"
         },
         "mountPoints": [
             {
-                "partitionName": "",
-                "mountFlags": "READ_ONLY",
-                "mountPath": "",
-                "fileSystem": "UNKNOWN file system"
+                "mountPath": "/media/usb0"
             }
         ]
     }

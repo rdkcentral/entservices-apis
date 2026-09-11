@@ -59,7 +59,7 @@ The following methods are provided by the IAnalytics Interface:
 <a id="sendEvent"></a>
 ## *sendEvent*
 
-Send an event to the analytics server
+Sends an analytics event along with its metadata, timestamps, application identifier, payload, CET information, and optional contextual data. The event is forwarded to the Analytics service for processing and delivery to the configured analytics backend.
 
 ### Events Triggered
 None
@@ -94,18 +94,19 @@ None
     "id": 0,
     "method": "org.rdk.Analytics.sendEvent",
     "params": {
-        "eventName": "",
-        "eventVersion": "",
-        "eventSource": "",
-        "eventSourceVersion": "",
+        "eventName": "playback_started",
+        "eventVersion": "1.0.0",
+        "eventSource": "player_component",
+        "eventSourceVersion": "2.1.0",
         "cetList": [
-            ""
+            "CET_01",
+            "CET_02"
         ],
-        "epochTimestamp": 0,
-        "uptimeTimestamp": 0,
-        "appId": "",
-        "eventPayload": "",
-        "additionalContext": ""
+        "epochTimestamp": 1719824400,
+        "uptimeTimestamp": 3600,
+        "appId": "com.comcast.xr11",
+        "eventPayload": "{\\\"bitrate\\\":5000,\\\"codec\\\":\\\"h264\\\"}",
+        "additionalContext": "{\\\"networkType\\\":\\\"ethernet\\\"}"
     }
 }
 ```
@@ -114,7 +115,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": "", "additionalContext": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "playback_started", "eventVersion": "1.0.0", "eventSource": "player_component", "eventSourceVersion": "2.1.0", "cetList": ["CET_01", "CET_02"], "epochTimestamp": 1719824400, "uptimeTimestamp": 3600, "appId": "com.comcast.xr11", "eventPayload": "{\\\"bitrate\\\":5000,\\\"codec\\\":\\\"h264\\\"}", "additionalContext": "{\\\"networkType\\\":\\\"ethernet\\\"}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

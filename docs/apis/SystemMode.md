@@ -54,15 +54,15 @@ The following methods are provided by the ISystemMode Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [clientActivated](#clientActivated) | To put client plugin entry in map. |
-| [clientDeactivated](#clientDeactivated) | To put client plugin entry in map. |
+| [clientActivated](#clientActivated) | Records the activation of a client plugin for a specific system mode. |
+| [clientDeactivated](#clientDeactivated) | Records the deactivation of a client plugin for a specific system mode. |
 | [getState](#getState) | Gets the current state for a given system property |
-| [requestState](#requestState) | Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
+| [requestState](#requestState) | Requests a new system mode state in the device. Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return. |
 
 <a id="clientActivated"></a>
 ## *clientActivated*
 
-To put client plugin entry in map.
+Invoked by the SystemMode service to notify that a client plugin has been activated. Components implementing this interface should record the activation of the client plugin for the specified system mode.
 
 ### Events Triggered
 None
@@ -70,8 +70,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | callsign of client. |
-| params.systemMode | string | The system mode. |
+| params.callsign | string | The callsign of the client plugin being activated. |
+| params.systemMode | string | The system mode for which the client plugin is being activated. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -88,8 +88,8 @@ None
     "id": 0,
     "method": "org.rdk.SystemMode.clientActivated",
     "params": {
-        "callsign": "",
-        "systemMode": ""
+        "callsign": "com.example.client",
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -98,7 +98,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "", "systemMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.SystemMode.clientActivated", "params": {"callsign": "com.example.client", "systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -115,7 +115,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="clientDeactivated"></a>
 ## *clientDeactivated*
 
-To put client plugin entry in map.
+Invoked by the SystemMode service to notify that a client plugin has been deactivated. Components implementing this interface should remove the activation record of the client plugin for the specified system mode.
 
 ### Events Triggered
 None
@@ -123,8 +123,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callsign | string | callsign of client. |
-| params.systemMode | string | The system mode. |
+| params.callsign | string | The callsign of the client plugin being deactivated. |
+| params.systemMode | string | The system mode for which the client plugin is being deactivated. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -141,8 +141,8 @@ None
     "id": 1,
     "method": "org.rdk.SystemMode.clientDeactivated",
     "params": {
-        "callsign": "",
-        "systemMode": ""
+        "callsign": "com.example.client",
+        "systemMode": "device_optimize"
     }
 }
 ```
@@ -151,7 +151,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "", "systemMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.SystemMode.clientDeactivated", "params": {"callsign": "com.example.client", "systemMode": "device_optimize"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -168,7 +168,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getState"></a>
 ## *getState*
 
-Gets the current state for a given system property
+Invoked by the SystemMode service to retrieve the current state of a given system mode. Components implementing this interface should return the current state of the requested system mode.
 
 ### Events Triggered
 None
@@ -176,12 +176,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode to get the state of. Possible values: device_optimize |
+| params.systemMode | string | Indicates the system mode whose current state is being queried. Possible values: device_optimize |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.state | string | state. Possible values: video, game |
+| result.state | string | The current state of the specified system mode. Possible values: video, game |
 
 ### Examples
 
@@ -222,7 +222,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="requestState"></a>
 ## *requestState*
 
-Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
+Invoked by the SystemMode service to request a new state for a given system mode. Components implementing this interface should asynchronously adjust their internal behavior, resource usage, or performance characteristics to match the requested optimization state.
 
 ### Events Triggered
 None
@@ -230,8 +230,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.systemMode | string | The system mode. Possible values: device_optimize |
-| params.state | string | The requested state. Possible values: video, game |
+| params.systemMode | string | Indicates the system mode for which the state is being requested. Possible values: device_optimize |
+| params.state | string | Indicates the requested state. Possible values: video, game |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |

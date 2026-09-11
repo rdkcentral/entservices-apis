@@ -64,7 +64,7 @@ The following methods are provided by the IFirmwareDownload Interface:
 <a id="getDownloadFailureReason"></a>
 ## *getDownloadFailureReason*
 
-Gets the last firmware download failure reason.
+Retrieves the last firmware download failure reason, providing information about the cause of the failure during the firmware download process.
 
 ### Events Triggered
 None
@@ -74,7 +74,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.failureReason | string |  |
+| result.failureReason | string | Firmware download failure reason |
 
 ### Examples
 
@@ -104,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "failureReason": ""
+        "failureReason": "NetworkError"
     }
 }
 ```
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getDownloadState"></a>
 ## *getDownloadState*
 
-Retrieve the current state of the download process.
+Retrieves the current state of the firmware download process, providing information about whether the download is in progress, completed, or encountered an error.
 
 ### Events Triggered
 None
@@ -122,7 +122,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.downloadState | string |  |
+| result.downloadState | string | Current firmware download state |
 
 ### Examples
 
@@ -152,7 +152,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "downloadState": ""
+        "downloadState": "InProgress"
     }
 }
 ```
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getDownloadedFirmwareInfo"></a>
 ## *getDownloadedFirmwareInfo*
 
-Returns information about firmware downloads.
+Retrieves information about firmware downloads, including the current firmware version, downloaded firmware version, location of the downloaded firmware, and whether a reboot is deferred.
 
 ### Events Triggered
 None
@@ -203,9 +203,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "currentFWVersion": "",
-        "downloadedFWVersion": "",
-        "downloadedFWLocation": "",
+        "currentFWVersion": "1.0.0",
+        "downloadedFWVersion": "1.1.0",
+        "downloadedFWLocation": "/path/to/downloaded/firmware",
         "isRebootDeferred": true
     }
 }
@@ -214,7 +214,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getFirmwareDownloadPercent"></a>
 ## *getFirmwareDownloadPercent*
 
-Gets the current download percentage.
+Retrieves the current download percentage of the firmware download process.
 
 ### Events Triggered
 None
@@ -254,7 +254,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "downloadPercent": 0
+        "downloadPercent": 75
     }
 }
 ```
@@ -262,7 +262,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="searchFirmware"></a>
 ## *searchFirmware*
 
-Search for any available firmware ( in the remote server - for ex., xconf) that the device can update to.
+Initiates a search for any available firmware in the remote server (e.g., xconf) that the device can update to. This method triggers an asynchronous operation, and the result will be provided through the OnFirmwareAvailable 
 
 ### Events Triggered
 None
@@ -318,7 +318,7 @@ The following events are provided by the IFirmwareDownload Interface:
 <a id="onFirmwareAvailable"></a>
 ## *onFirmwareAvailable*
 
-Triggered when the SearchFirmware asynchronous method is invoked
+This event is triggered when the SearchFirmware asynchronous method is invoked. It provides information about the firmware search operation, including the status, server response, availability of new firmware, version string of the available firmware, and whether an immediate reboot is required.
 
 ### Parameters
 | Name | Type | Description |
@@ -339,9 +339,9 @@ Triggered when the SearchFirmware asynchronous method is invoked
     "method": "org.rdk.FirmwareDownload.onFirmwareAvailable",
     "params": {
         "searchStatus": 0,
-        "serverResponse": "",
+        "serverResponse": "Firmware search completed successfully.",
         "firmwareAvailable": true,
-        "firmwareVersion": "",
+        "firmwareVersion": "1.0.0",
         "rebootImmediately": true
     }
 }

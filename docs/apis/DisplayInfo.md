@@ -72,7 +72,7 @@ The following properties are provided by the IGraphicsProperties Interface:
 <a id="freeGpuRam"></a>
 ## *freeGpuRam*
 
-Free GPU DRAM memory (in bytes)
+Retrieves the free GPU DRAM memory (in bytes).
 
 > This property is read-only.
 ### Events
@@ -80,7 +80,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).free | integer |  |
+| (property).free | integer | Free GPU RAM |
 
 ### Examples
 
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "jsonrpc": 2.0,
     "id": 11,
     "result": {
-        "free": 0
+        "free": 1073741824
     }
 }
 ```
@@ -118,7 +118,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="totalGpuRam"></a>
 ## *totalGpuRam*
 
-Total GPU DRAM memory (in bytes)
+Retrieves the total GPU DRAM memory (in bytes).
 
 > This property is read-only.
 ### Events
@@ -126,7 +126,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).total | integer |  |
+| (property).total | integer | Total GPU RAM |
 
 ### Examples
 
@@ -156,7 +156,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
     "jsonrpc": 2.0,
     "id": 20,
     "result": {
-        "total": 0
+        "total": 2147483648
     }
 }
 ```
@@ -180,7 +180,7 @@ The following methods are provided by the IConnectionProperties Interface:
 <a id="eDID"></a>
 ## *eDID*
 
-TV's Extended Display Identification Data
+Retrieves the TV's Extended Display Identification Data (EDID) as a byte string.
 
 ### Events Triggered
 None
@@ -188,13 +188,13 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.length | integer |  |
+| params.length | integer | length of edid byte string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.length | integer |  |
-| result.data | string |  |
+| result.length | integer | length of edid byte string |
+| result.data | string | EDID byte string |
 
 ### Examples
 
@@ -207,7 +207,7 @@ None
     "id": 0,
     "method": "org.rdk.DisplayInfo.eDID",
     "params": {
-        "length": 0
+        "length": 2
     }
 }
 ```
@@ -216,7 +216,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DisplayInfo.eDID", "params": {"length": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DisplayInfo.eDID", "params": {"length": 2}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -227,8 +227,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "length": 0,
-        "data": ""
+        "length": 2,
+        "data": "[0x00,0xFF,0xFF,0xFF]"
     }
 }
 ```
@@ -236,7 +236,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="heightInCentimeters"></a>
 ## *heightInCentimeters*
 
-Vertical size in centimeters
+Retrieves the vertical size of the TV in centimeters.
 
 ### Events Triggered
 None
@@ -246,7 +246,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.height | integer | height of TV in pixels |
+| result.height | integer | Height in cm |
 
 ### Examples
 
@@ -276,7 +276,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "height": 0
+        "height": 50
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -284,7 +298,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="widthInCentimeters"></a>
 ## *widthInCentimeters*
 
-Horizontal size in centimeters
+Retrieves the horizontal size of the TV in centimeters.
 
 ### Events Triggered
 None
@@ -294,7 +308,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.width | integer | width in cm |
+| result.width | integer | Width in cm |
 
 ### Examples
 
@@ -324,7 +338,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "width": 0
+        "width": 100
+    }
+}
+```
+
+
+#### Error Response (Core::ERROR_GENERAL)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "error": {
+        "code": 1,
+        "message": "Indicates failure"
     }
 }
 ```
@@ -382,7 +410,7 @@ The following properties are provided by the IConnectionProperties Interface:
 <a id="connected"></a>
 ## *connected*
 
-Current HDMI connection status
+Retrieves the current HDMI connection status.
 
 > This property is read-only.
 ### Events
@@ -428,14 +456,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="hDCPProtection"></a>
 ## *hDCPProtection*
 
-HDCP protocol used for transmission
+Retrieves the HDCP protocol used for transmission.
 
 ### Events
 Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).value | string | protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
+| (property).value | string | Protocol. Possible values: HDCP_UNENCRYPTED, HDCP_1X, HDCP_2X, HDCP_AUTO |
 
 ### Examples
 
@@ -465,7 +493,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "jsonrpc": 2.0,
     "id": 12,
     "result": {
-        "value": "HDCP_UNENCRYPTED"
+        "value": "HDCP_2X"
     }
 }
 ```
@@ -479,7 +507,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "id": 12,
     "method": "org.rdk.DisplayInfo.hDCPProtection",
     "params": {
-        "value": "HDCP_UNENCRYPTED"
+        "value": "HDCP_2X"
     }
 }
 ```
@@ -488,7 +516,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_UNENCRYPTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_2X"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -505,7 +533,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="height"></a>
 ## *height*
 
-Vertical resolution of TV
+Retrieves the vertical resolution of the TV.
 
 > This property is read-only.
 ### Events
@@ -513,7 +541,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).height | integer | height of TV in pixels |
+| (property).height | integer | Height of TV in pixels |
 
 ### Examples
 
@@ -543,7 +571,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "jsonrpc": 2.0,
     "id": 14,
     "result": {
-        "height": 0
+        "height": 50
     }
 }
 ```
@@ -551,7 +579,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 <a id="isAudioPassthrough"></a>
 ## *isAudioPassthrough*
 
-Current audio passthrough status on HDMI
+Retrieves the current audio passthrough status on HDMI.
 
 > This property is read-only.
 ### Events
@@ -597,7 +625,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 <a id="portName"></a>
 ## *portName*
 
-Video output port on the STB used for connection to TV
+Retrieves the video output port on the STB used for connection to TV.
 
 > This property is read-only.
 ### Events
@@ -605,7 +633,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).name | string | video output port name |
+| (property).name | string | Video output port name |
 
 ### Examples
 
@@ -635,7 +663,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
     "jsonrpc": 2.0,
     "id": 16,
     "result": {
-        "name": ""
+        "name": "HDMI0"
     }
 }
 ```
@@ -643,7 +671,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="verticalFreq"></a>
 ## *verticalFreq*
 
-Vertical Frequency
+Retrieves the vertical frequency of the TV.
 
 > This property is read-only.
 ### Events
@@ -651,7 +679,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).vf | integer | vertical freq |
+| (property).vf | integer | Vertical frequency |
 
 ### Examples
 
@@ -681,7 +709,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
     "jsonrpc": 2.0,
     "id": 21,
     "result": {
-        "vf": 0
+        "vf": 60
     }
 }
 ```
@@ -689,7 +717,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 <a id="width"></a>
 ## *width*
 
-Horizontal resolution of TV
+Retrieves the horizontal resolution of the TV.
 
 > This property is read-only.
 ### Events
@@ -697,7 +725,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).width | integer | width of TV in pixels |
+| (property).width | integer | Width of TV in pixels |
 
 ### Examples
 
@@ -727,7 +755,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "result": {
-        "width": 0
+        "width": 100
     }
 }
 ```
@@ -751,7 +779,7 @@ The following properties are provided by the IHDRProperties Interface:
 <a id="hDRSetting"></a>
 ## *hDRSetting*
 
-HDR format in use
+Retrieves the HDR format in use.
 
 > This property is read-only.
 ### Events
@@ -789,7 +817,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     "jsonrpc": 2.0,
     "id": 13,
     "result": {
-        "type": "HDR_OFF"
+        "type": "HDR_10"
     }
 }
 ```
@@ -797,7 +825,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="sTBCapabilities"></a>
 ## *sTBCapabilities*
 
-HDR formats supported by STB
+Retrieves the HDR formats supported by STB.
 
 > This property is read-only.
 ### Events
@@ -805,7 +833,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | array |  |
+| (property).type | array | array of HDR formats |
 | (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
@@ -836,7 +864,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "jsonrpc": 2.0,
     "id": 18,
     "result": [
-        "HDR_OFF"
+        "[HDR_10, HDR_10PLUS]"
     ]
 }
 ```
@@ -844,7 +872,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 <a id="tVCapabilities"></a>
 ## *tVCapabilities*
 
-HDR formats supported by TV
+Retrieves the HDR formats supported by TV.
 
 > This property is read-only.
 ### Events
@@ -852,7 +880,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).type | array |  |
+| (property).type | array | array of HDR formats |
 | (property).type[#] | string | Possible values: HDR_OFF, HDR_10, HDR_10PLUS, HDR_HLG, HDR_DOLBYVISION, HDR_TECHNICOLOR, HDR_SDR |
 
 ### Examples
@@ -883,7 +911,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "jsonrpc": 2.0,
     "id": 19,
     "result": [
-        "HDR_OFF"
+        "[HDR_10, HDR_10PLUS]"
     ]
 }
 ```
@@ -905,7 +933,7 @@ The following methods are provided by the IDisplayProperties Interface:
 <a id="getCurrentColorimetry"></a>
 ## *getCurrentColorimetry*
 
-Returns the active colorimetry standard of the current connected video port
+Retrieves the active colorimetry standard of the current connected video port. If no display is connected, COLORIMETRY_UNKNOWN is returned. If the colorimetry coefficient is not mapped to a known standard, COLORIMETRY_OTHER is returned.
 
 ### Events Triggered
 None
@@ -944,9 +972,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": {
-        "colorimetry": "COLORIMETRY_UNKNOWN"
-    }
+    "result": "{ colorimetry: COLORIMETRY_BT709 }"
 }
 ```
 
@@ -959,15 +985,15 @@ The following properties are provided by the IDisplayProperties Interface:
 | :-------- | :-------- |
 | [colorSpace](#colorSpace)<sup>RO</sup> | Provides access to the display's Colour space (chroma subsampling format) |
 | [colorimetry](#colorimetry)<sup>RO</sup> | Provides access to display's colorimetry |
-| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's colour Depth |
+| [colourDepth](#colourDepth)<sup>RO</sup> | Provides access to display's Colour Depth |
 | [eOTF](#eOTF)<sup>RO</sup> | Provides access to display's Electro optical transfer function |
 | [frameRate](#frameRate)<sup>RO</sup> | Provides access to Frame Rate |
-| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Qauntization Range |
+| [quantizationRange](#quantizationRange)<sup>RO</sup> | Provides access to display's Quantization Range |
 
 <a id="colorSpace"></a>
 ## *colorSpace*
 
-Provides access to the display's Colour space (chroma subsampling format)
+Retrieves the display's Colour space (chroma subsampling format).
 
 > This property is read-only.
 ### Events
@@ -975,7 +1001,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).cs | string | colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
+| (property).cs | string | Colour space. Possible values: FORMAT_UNKNOWN, FORMAT_OTHER, FORMAT_RGB_444, FORMAT_YCBCR_444, FORMAT_YCBCR_422, FORMAT_YCBCR_420 |
 
 ### Examples
 
@@ -1005,7 +1031,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "cs": "FORMAT_UNKNOWN"
+        "cs": "FORMAT_YCBCR_422"
     }
 }
 ```
@@ -1013,7 +1039,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="colorimetry"></a>
 ## *colorimetry*
 
-Provides access to display's colorimetry
+Retrieves the display's colorimetry.
 
 > This property is read-only.
 ### Events
@@ -1052,7 +1078,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": [
-        "COLORIMETRY_UNKNOWN"
+        "[COLORIMETRY_BT709, COLORIMETRY_BT2020YCCBCBRC]"
     ]
 }
 ```
@@ -1060,7 +1086,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="colourDepth"></a>
 ## *colourDepth*
 
-Provides access to display's colour Depth
+Retrieves the display's Colour depth.
 
 > This property is read-only.
 ### Events
@@ -1068,7 +1094,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).colour | string | colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
+| (property).colour | string | Colour depth. Possible values: COLORDEPTH_UNKNOWN, COLORDEPTH_8_BIT, COLORDEPTH_10_BIT, COLORDEPTH_12_BIT |
 
 ### Examples
 
@@ -1098,7 +1124,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "jsonrpc": 2.0,
     "id": 7,
     "result": {
-        "colour": "COLORDEPTH_UNKNOWN"
+        "colour": "COLOURDEPTH_10_BIT"
     }
 }
 ```
@@ -1106,7 +1132,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="eOTF"></a>
 ## *eOTF*
 
-Provides access to display's Electro optical transfer function
+Retrieves the display's Electro optical transfer function (EOTF).
 
 > This property is read-only.
 ### Events
@@ -1144,7 +1170,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
     "jsonrpc": 2.0,
     "id": 9,
     "result": {
-        "eotf": "EOTF_UNKNOWN"
+        "eotf": "EOTF_BT2100"
     }
 }
 ```
@@ -1152,7 +1178,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="frameRate"></a>
 ## *frameRate*
 
-Provides access to Frame Rate
+Retrieves the display's frame rate.
 
 > This property is read-only.
 ### Events
@@ -1160,7 +1186,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).rate | string | frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
+| (property).rate | string | Frame rate. Possible values: FRAMERATE_UNKNOWN, FRAMERATE_23_976, FRAMERATE_24, FRAMERATE_25, FRAMERATE_29_97, FRAMERATE_30, FRAMERATE_47_952, FRAMERATE_48, FRAMERATE_50, FRAMERATE_59_94, FRAMERATE_60, FRAMERATE_119_88, FRAMERATE_120, FRAMERATE_144 |
 
 ### Examples
 
@@ -1190,7 +1216,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "rate": "FRAMERATE_UNKNOWN"
+        "rate": "FRAMERATE_60"
     }
 }
 ```
@@ -1198,7 +1224,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="quantizationRange"></a>
 ## *quantizationRange*
 
-Provides access to display's Qauntization Range
+Retrieves the display's quantization range.
 
 > This property is read-only.
 ### Events
@@ -1236,7 +1262,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
     "jsonrpc": 2.0,
     "id": 17,
     "result": {
-        "qr": "QUANTIZATIONRANGE_UNKNOWN"
+        "qr": "QUANTIZATIONRANGE_LIMITED"
     }
 }
 ```
