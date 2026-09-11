@@ -157,7 +157,7 @@ namespace WPEFramework
             // @text setWesterosEnvironment
             // @details Applies the specified westeros environment settings required for Miracast playback. This API is deprecated in favor of SetEnvArguments.           
             // @param westerosArgs: Westeros environment arguments to be set
-            // @example westerosArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
+             // @example westerosArgs: [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": "1"}]
             // @param result: Result of the set westeros environment operation
             // @example result: { success: true }
             // @retval Core::ERROR_NONE: Indicates success
