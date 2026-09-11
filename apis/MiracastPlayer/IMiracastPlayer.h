@@ -119,7 +119,7 @@ namespace WPEFramework
             // @param videoRect: Video rectangle to be used for Miracast playback (x, y, width, height)
              // @example videoRect: {"X": 0, "Y": 0, "W": 1920, "H": 1080}
             // @param result: Result of the play request operation
-            // @example result: { success: true }
+             // @example result: {"success": true}
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult PlayRequest(const DeviceParameters &deviceParam /* @text device_parameters */, const VideoRectangle videoRect /* @text video_rectangle */, Result &result /* @out */) = 0;
 
