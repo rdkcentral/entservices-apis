@@ -364,7 +364,7 @@ None
     "method": "org.rdk.MiracastService.updatePlayerState",
     "params": {
         "mac": "00:11:22:33:44:55",
-        "state": "PLAYER_STATE_PLAYING",
+        "state": "PLAYING",
         "reason_code": 200
     }
 }
@@ -374,7 +374,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "00:11:22:33:44:55", "state": "PLAYER_STATE_PLAYING", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.MiracastService.updatePlayerState", "params": {"mac": "00:11:22:33:44:55", "state": "PLAYING", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
