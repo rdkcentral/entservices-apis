@@ -104,7 +104,12 @@ None
     "method": "org.rdk.MiracastPlayer.playRequest",
     "params": {
         "device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }",
-        "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"
+        "video_rectangle": {
+            "X": 0,
+            "Y": 0,
+            "W": 1920,
+            "H": 1080
+        }
     }
 }
 ```
@@ -113,7 +118,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }", "video_rectangle": "{ x: 0, y: 0, width: 1920, height: 1080 }"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.MiracastPlayer.playRequest", "params": {"device_parameters": "{ sourceDeviceIP: \"192.168.1.2\", sinkDeviceIP: \"192.168.1.3\" }", "video_rectangle": {"X": 0, "Y": 0, "W": 1920, "H": 1080}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
