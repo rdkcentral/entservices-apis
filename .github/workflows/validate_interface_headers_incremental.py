@@ -116,8 +116,9 @@ def validate_header(file_path, issues, ids_lines):
                     break
         
         # Extract struct members
-        struct_member_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?' + struct_name + r'\s*(:\s*(public|private|protected)\s+[\w:]+)?\s*{([\s\S]*?)\s*};')
-        struct_content = struct_member_pattern.search(content)
+        struct_member_pattern = re.compile(r'struct\s+(EXTERNAL\s+)?' + re.escape(struct_name) + r'\s*(?:[:]\s*(public|private|protected)\s+[\w:]+)?\s*{([\s\S]*?)\s*};', re.MULTILINE)
+        struct_match = struct_member_pattern.search(content)
+        struct_content =struct_match.group(3)
         if struct_content:
             struct_members = struct_content.group(4).split('\n')
             inside_multiline_comment = False
