@@ -16,6 +16,8 @@ A AppPackageManager module for Thunder framework.
     - [Methods](#IPackageDownloader-Methods)
   - [IPackageInstaller](#IPackageInstaller)
     - [Methods](#IPackageInstaller-Methods)
+  - [IAppPackageManagerConfig](#IAppPackageManagerConfig)
+    - [Methods](#IAppPackageManagerConfig-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -29,6 +31,7 @@ The `AppPackageManager` module provides the following interface(s):
 
 - IPackageDownloader
 - IPackageInstaller
+- IAppPackageManagerConfig
 
 The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
@@ -954,4 +957,129 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     }
 }
 ```
+---
+
+<a id="IAppPackageManagerConfig"></a>
+## IAppPackageManagerConfig Interface
+
+<a id="IAppPackageManagerConfig-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppPackageManagerConfig Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getConfigForInstalledPackage](#getConfigForInstalledPackage) | Returns the metadata of installed package in JSON string format |
+| [getConfigListForInstalledPackages](#getConfigListForInstalledPackages) | Returns the metadata of all installed packages in JSON string format |
+
+<a id="getConfigForInstalledPackage"></a>
+## *getConfigForInstalledPackage*
+
+Returns the metadata of installed package in JSON string format
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.packageId | string | Package Id |
+| params.version | string | Version |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.config | string | Config of the installed package in JSON string format |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage",
+    "params": {
+        "packageId": "",
+        "version": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppPackageManager.getConfigForInstalledPackage", "params": {"packageId": "", "version": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 14,
+    "result": {
+        "config": ""
+    }
+}
+```
+
+<a id="getConfigListForInstalledPackages"></a>
+## *getConfigListForInstalledPackages*
+
+Returns the metadata of all installed packages in JSON string format
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.filter | string | capability filter for installed packages |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.config | string | Returns the metadata of all installed packages in JSON string format |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "method": "org.rdk.AppPackageManager.getConfigListForInstalledPackages",
+    "params": {
+        "filter": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppPackageManager.getConfigListForInstalledPackages", "params": {"filter": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 15,
+    "result": {
+        "config": ""
+    }
+}
+```
+
 
