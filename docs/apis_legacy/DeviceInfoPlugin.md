@@ -424,6 +424,8 @@ DeviceInfo interface properties:
 | [supportedaudioports](#supportedaudioports) <sup>RO</sup> | Audio ports supported on the device (all ports that are physically present) |
 | [supportedvideodisplays](#supportedvideodisplays) <sup>RO</sup> | Video ports supported on the device (all ports that are physically present) |
 | [hostedid](#hostedid) <sup>RO</sup> | EDID of the host |
+| [deviceid](#deviceid) <sup>RO</sup> | Stable alphanumeric device identifier derived from serial number and hardware ID |
+| [hardwareid](#hardwareid) <sup>RO</sup> | Hardware identifier (first 6 characters of deviceId) |
 
 
 <a name="systeminfo"></a>
@@ -1140,6 +1142,84 @@ No Events
     "result": {
         "EDID": "AP///////wAQrMLQVEJTMQUdAQOANR546q11qVRNnSYPUFSlSwCBALMA0QBxT6lAgYDRwAEBVl4AoKCgKVAwIDUADighAAAaAAAA/wBNWTNORDkxVjFTQlQKAAAA/ABERUxMIFAyNDE4RAogAAAA/QAxVh1xHAAKICAgICAgARsCAxuxUJAFBAMCBxYBBhESFRMUHyBlAwwAEAACOoAYcTgtQFgsRQAOKCEAAB4BHYAYcRwWIFgsJQAOKCEAAJ6/FgCggDgTQDAgOgAOKCEAABp+OQCggDgfQDAgOgAOKCEAABoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A"
     }
+}
+```
+
+<a name="deviceid"></a>
+## *deviceid*
+
+Provides access to a stable alphanumeric device identifier.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | string | Stable alphanumeric device identifier. Derived from serial number; if serial is alphanumeric, returns that value directly. If serial is numeric, composes from hardware ID (HWID) in format `<HWID>000<serialNumber.substr(5,7)>`. Falls back to manufacturing serial number if HWID unavailable, or raw serial number if both fail. Value is cached after first retrieval. |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.deviceid"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "EB21163216C000024"
+}
+```
+
+<a name="hardwareid"></a>
+## *hardwareid*
+
+Provides access to the hardware identifier.
+
+> This property is **read-only**.
+
+### Events
+
+No Events
+
+### Value
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| (property) | string | Hardware identifier representing the first 6 characters of the deviceId value. If deviceId is shorter than 6 characters, returns the full deviceId. |
+
+### Example
+
+#### Get Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "DeviceInfo.hardwareid"
+}
+```
+
+#### Get Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "EB2116"
 }
 ```
 
