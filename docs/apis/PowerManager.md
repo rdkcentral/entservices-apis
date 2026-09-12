@@ -56,6 +56,7 @@ The following methods are provided by the IPowerManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
+| [addPowerModeChangeAcknowledgementClient](#addPowerModeChangeAcknowledgementClient) | Register a client for power mode change acknowledgement notifications |
 | [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.  |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used. |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Get the standby mode for Network |
@@ -65,12 +66,83 @@ The following methods are provided by the IPowerManager Interface:
 | [getThermalState](#getThermalState) | Get Current Thermal State (temperature) |
 | [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the Wakeup Time in seconds since the device transitioned to the ON state. |
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
+| [powerModeChangeAcknowledgement](#powerModeChangeAcknowledgement) | Acknowledges a power mode change request |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
 | [reboot](#reboot) | Reboot device |
+| [removePowerModeChangeAcknowledgementClient](#removePowerModeChangeAcknowledgementClient) | Unregisters a client from power mode change acknowledgement notifications |
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications. |
 | [setPowerState](#setPowerState) | Set Power State |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Set Temperature Thresholds |
 | [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup |
+
+<a id="addPowerModeChangeAcknowledgementClient"></a>
+## *addPowerModeChangeAcknowledgementClient*
+
+Register a client for power mode change acknowledgement notifications
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientName | string | Name of the client to register |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.acknowledgeClientId | integer | Unique ID assigned to the client for acknowledgement operations |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.addPowerModeChangeAcknowledgementClient",
+    "params": {
+        "clientName": "MyApp"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 42, "method": "org.rdk.PowerManager.addPowerModeChangeAcknowledgementClient", "params": {"clientName": "MyApp"}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "acknowledgeClientId": 1,
+        "success": true
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_INVALID_PARAMETER)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "error": {
+        "code": 2,
+        "message": "If clientName is empty"
+    }
+}
+```
 
 <a id="addPowerModePreChangeClient"></a>
 ## *addPowerModePreChangeClient*
@@ -540,6 +612,76 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 }
 ```
 
+<a id="powerModeChangeAcknowledgement"></a>
+## *powerModeChangeAcknowledgement*
+
+Acknowledges a power mode change request
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | The client ID returned from `addPowerModeChangeAcknowledgementClient` |
+| params.transactionId | integer | Transaction ID from the acknowledgement notification |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | True if acknowledgement accepted |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.powerModeChangeAcknowledgement",
+    "params": {
+        "acknowledgeClientId": 1,
+        "transactionId": 12345
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 42, "method": "org.rdk.PowerManager.powerModeChangeAcknowledgement", "params": {"acknowledgeClientId": 1, "transactionId": 12345}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_INVALID_PARAMETER)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "error": {
+        "code": 2,
+        "message": "If acknowledgeClientId or transactionId don't match the active acknowledgement round"
+    }
+}
+```
+
 <a id="powerModePreChangeComplete"></a>
 ## *powerModePreChangeComplete*
 
@@ -648,6 +790,74 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 }
 ```
 
+<a id="removePowerModeChangeAcknowledgementClient"></a>
+## *removePowerModeChangeAcknowledgementClient*
+
+Unregisters a client from power mode change acknowledgement notifications
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | The client ID returned from `addPowerModeChangeAcknowledgementClient` |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | boolean | True if removal succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.removePowerModeChangeAcknowledgementClient",
+    "params": {
+        "acknowledgeClientId": 1
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 42, "method": "org.rdk.PowerManager.removePowerModeChangeAcknowledgementClient", "params": {"acknowledgeClientId": 1}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "success": true
+    }
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_INVALID_PARAMETER)
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "error": {
+        "code": 2,
+        "message": "If acknowledgeClientId is not found"
+    }
+}
+```
+
 <a id="removePowerModePreChangeClient"></a>
 ## *removePowerModePreChangeClient*
 
@@ -751,6 +961,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "jsonrpc": 2.0,
     "id": 12,
     "result": null
+}
+```
+
+
+#### Error Response (ErrorCode::ERROR_ILLEGAL_STATE)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 12,
+    "error": {
+        "code": 4,
+        "message": "If called while an acknowledgement negotiation is already in progress for a different state change"
+    }
 }
 ```
 
@@ -875,6 +1099,7 @@ The following events are provided by the IPowerManager Interface:
 | [onDeepSleepTimeout](#onDeepSleepTimeout) | Deep sleep timeout event |
 | [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Network Standby Mode changed event - only on XIone |
 | [onPowerModeChanged](#onPowerModeChanged) | Power mode changed |
+| [onPowerModeChangeAcknowledgementRequested](#onPowerModeChangeAcknowledgementRequested) | Triggered when a power state change requires client acknowledgement |
 | [onPowerModePreChange](#onPowerModePreChange) | Power mode Pre-change event |
 | [onRebootBegin](#onRebootBegin) | Reboot begin event |
 | [onThermalModeChanged](#onThermalModeChanged) | Thermal Mode changed event |
@@ -949,6 +1174,35 @@ Power mode changed
     "params": {
         "currentState": "UNKNOWN",
         "newState": "UNKNOWN"
+    }
+}
+```
+
+<a id="onPowerModeChangeAcknowledgementRequested"></a>
+## *onPowerModeChangeAcknowledgementRequested*
+
+Triggered when a power state change requires client acknowledgement
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current power state. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | Target power state. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.transactionId | integer | Unique transaction ID for this acknowledgement round |
+| params.reason | string | Reason for the power state change |
+
+### Examples
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "org.rdk.PowerManager.onPowerModeChangeAcknowledgementRequested",
+    "params": {
+        "currentState": "ON",
+        "newState": "STANDBY",
+        "transactionId": 12345,
+        "reason": "user requested"
     }
 }
 ```
