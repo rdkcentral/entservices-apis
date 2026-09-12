@@ -57,7 +57,7 @@ The following methods are provided by the IPowerManager Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.  |
-| [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used. |
+| [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time (DEEP_SLEEP transitions only). If different clients provide different values of delay for DEEP_SLEEP, the maximum of these values is used. |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Get the standby mode for Network |
 | [getPowerState](#getPowerState) | Get Power State |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Get Power state before reboot |
@@ -88,7 +88,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change (`DelayPowerModeChangeBy`) |
+| result.clientId | integer | Unique identifier for the client to be used while acknowledging the pre-change operation (`PowerModePreChangeComplete`) or to delay the power mode change for DEEP_SLEEP transitions (`DelayPowerModeChangeBy`) |
 
 ### Examples
 
@@ -129,7 +129,11 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="delayPowerModeChangeBy"></a>
 ## *delayPowerModeChangeBy*
 
-Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used.
+Delay Powermode change by given time for **DEEP_SLEEP transitions only**. If different clients provide different values of delay for DEEP_SLEEP, the maximum of these values is used.
+
+> **IMPORTANT**: This API is **RESTRICTED to DEEP_SLEEP state transitions only** to ensure responsive user experience during wakeup and normal operations. For ON, STANDBY, and LIGHT_SLEEP transitions, this API will return an error and the transition will proceed immediately without delay.
+
+> **WARNING**: Clients should **NOT** call this API for wakeup scenarios (STANDBY→ON, LIGHT_SLEEP→ON) or normal state transitions. Use only for DEEP_SLEEP preparation where cleanup operations are required.
 
 ### Events Triggered
 None
@@ -139,11 +143,14 @@ None
 | params | object |  |
 | params.clientId | integer | Unique identifier for the client, as received in AddPowerModePreChangeClient |
 | params.transactionId | int | transaction id as received in OnPowerModePreChange |
-| params.delayPeriod | int | delay in seconds |
+| params.delayPeriod | int | delay in seconds (only honored for DEEP_SLEEP transitions) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| result | null | On success null will be returned. |
+| result | null | On success null will be returned (DEEP_SLEEP transition) |
+| error | object | Error object returned for non-DEEP_SLEEP transitions |
+| error.code | integer | Error code: 2 (ERROR_INVALID_PARAMETER) for non-DEEP_SLEEP transitions |
+| error.message | string | Error message describing why the delay was rejected |
 
 ### Examples
 
@@ -171,13 +178,26 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```
 
 
-#### Response
+#### Response (Success - DEEP_SLEEP transition)
 
 ```json
 {
     "jsonrpc": 2.0,
     "id": 1,
     "result": null
+}
+```
+
+#### Response (Error - Non-DEEP_SLEEP transition)
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 1,
+    "error": {
+        "code": 2,
+        "message": "ERROR_INVALID_PARAMETER: Delay NOT allowed for ON/STANDBY/LIGHT_SLEEP transition. DelayPowerModeChangeBy is restricted to DEEP_SLEEP only"
+    }
 }
 ```
 
@@ -964,7 +984,7 @@ Power mode Pre-change event
 | params | object |  |
 | params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
 | params.newState | string | Changing power state to this New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
-| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API |
+| params.transactionId | int | transactionId to be used when invoking prePowerChangeComplete() / delayPowerModeChangeBy API (Note: delayPowerModeChangeBy only works for DEEP_SLEEP transitions) |
 | params.stateChangeAfter | int | seconds after which the actual power mode will be applied. |
 
 ### Examples
