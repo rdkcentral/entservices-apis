@@ -38,13 +38,13 @@ namespace WPEFramework {
 
 			enum StandbyBehavior : uint8_t {
 				ACTIVE = 0 /* @text active */,
-				INACTIVE = 1 /* @text inactive */
+				inactive = 1 /* @text inactive */
 			};
 			
 			enum ErrorCode : uint16_t {
 				NONE = 200 /* @text none */ ,
 				FORBIDDEN = 403 /* @text forbidden */ ,
-				UNAVAILABLE = 404 /* @text unavailable */ ,
+				UN-AVAILABLE = 404 /* @text unavailable */ ,
 				INVALID = 400 /* @text invalid */,
 				INTERNAL = 500 /* @text internal */
 			};
@@ -80,7 +80,7 @@ namespace WPEFramework {
 				// @brief Triggered when the cast service receives a launch request from a client with launch params
 				// @param applicationName: Registered application name
 				// @param parameter: Application launch string
-				virtual void OnApplicationLaunchRequest(const string& appName /* @text applicationName */ , const string& parameter /* @text parameter */ )  {};
+				virtual void OnApplicationLaunchRequest(const string& appName /* @text applicationName */ , const string& parameter /* @text parameter */ ) = 0;
 				// @text onApplicationStopRequest
 				// @brief 	Triggered when the cast service receives a stop request from a client
 				// @param applicationName: 	Registered application name
@@ -95,12 +95,12 @@ namespace WPEFramework {
 				// @brief 	Triggered when the cast service needs an update of the application state
 				// @param applicationName: Registered application name
 				// @param applicationId: Application instance ID
-				virtual void OnApplicationStateRequest(const string& appName /* @text applicationName */ , const string& appID /* @text applicationId */ )  {};
+				virtual void OnApplicationStateRequest(const string& appName /* @text ApplicationName */ , const string& appID /* @text applicationId */ )  {};
 				// @text onApplicationResumeRequest
 				// @brief Triggered when the cast service receives a resume request from a client
 				// @param applicationName: Registered application name
 				// @param applicationId: Application instance ID
-				virtual void OnApplicationResumeRequest(const string& appName /* @text applicationName */ , const string& appID /* @text applicationId */)  {};
+				virtual void OnApplicationResumeRequest(const string& appName /* @text applicationName */ , const string& AppID /* @text applicationId */)  {};
 			};
 
 			virtual Core::hresult Register(IXCast::INotification* sink ) = 0;
@@ -130,7 +130,7 @@ namespace WPEFramework {
 			// @brief Sets the manufacturer name of the device
 			// @param manufacturer: The Manufacturer name of the device which used to update in dd.xml
 			// @param success: 	Whether the request succeeded
-			virtual Core::hresult SetManufacturerName(const string &manufacturername /* @text manufacturer */, XCastSuccess& success /* @out */) = 0;
+			virtual Core::hresult SetManufacturerName(const string &manufacturername /* @text @in manufacturer */, XCastSuccess& success /* @out */) = 0;
 			/***************************************** setManufacturerName() **********************************/
 
 			/****************************************getManufacturerName()**********************************/
@@ -138,7 +138,7 @@ namespace WPEFramework {
 			// @brief Returns the manufacturer name set by setManufacturerName API
 			// @param manufacturer: The Manufacturer name of the device which used to update in dd.xml
 			// @param success: Whether the request succeeded
-			virtual Core::hresult GetManufacturerName(string &manufacturername /* @out @text manufacturer */, bool &success /* @out */) = 0;
+			virtual Core::hresult GetManufacturerName(string &manufacturername /* @out @text manufacturer */, bool &success) = 0;
 			/***************************************** getManufacturerName() *********************************/
 
 			/****************************************setModelName()**********************************/
@@ -158,7 +158,7 @@ namespace WPEFramework {
 			/***************************************** getModelName() *********************************/
 
 			/****************************************setEnabled()**********************************/
-			// @text setEnabled
+			// @text Enabled
 			// @brief Enable or disable XCAST service
 			// @parm enabled: true for enabled or false for disabled
 			// @param success: 	Whether the request succeeded
@@ -175,7 +175,6 @@ namespace WPEFramework {
 
 			/****************************************setStandbyBehavior()**********************************/
 			// @text setStandbyBehavior
-			// @brief Sets the expected xcast behavior in standby mode
 			// @param standbybehavior: whether to remain active or inactive during standby mode (must be one of the following: active, inactive)
 			// @param success: 	Whether the request succeeded
 			virtual Core::hresult SetStandbyBehavior(const StandbyBehavior &standbybehavior /* @text standbybehavior */, XCastSuccess& success /* @out */) = 0;
@@ -192,14 +191,11 @@ namespace WPEFramework {
 			/****************************************setFriendlyName()**********************************/
 			// @text setFriendlyName
 			// @brief Sets the friendly name of the device
-			// @param friendlyname: The friendly name of the device which used to display on the client device list
-			// @param success: 	Whether the request succeeded
 			virtual Core::hresult SetFriendlyName(const string &friendlyname /* @text friendlyname */, XCastSuccess& success /* @out */) = 0;
 			/***************************************** setFriendlyName() **********************************/
 
 			/****************************************getFriendlyName()**********************************/
 			// @text getFriendlyName
-			// @brief Returns the friendly name set by setFriendlyName API
 			// @param friendlyname: The friendly name of the device which used to display on the client device list
 			// @param success: Whether the request succeeded
 			virtual Core::hresult GetFriendlyName(string &friendlyname /* @out @text friendlyname */, bool &success /* @out */) = 0;
@@ -214,10 +210,6 @@ namespace WPEFramework {
 			/****************************************registerApplications()**********************************/
 
 			/****************************************unregisterApplications()**********************************/
-			// @text unregisterApplications
-			// @brief Unregisters an application
-			// @param applications: One or more application name to unregister
-			// @param success: 	Whether the request succeeded
 			virtual Core::hresult UnregisterApplications(IStringIterator* const applications /* @text applications */, XCastSuccess& success /* @out */) = 0;
 			/****************************************unregisterApplications()**********************************/
 			
