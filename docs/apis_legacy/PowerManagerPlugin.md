@@ -24,6 +24,12 @@ The `PowerManager` that is responsible for persisting and notifying listeners of
 
 The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](#Thunder)].
 
+## Power Mode Change Flow
+
+Power mode changes involve two phases:
+1. **Pre-change notification phase** - Clients registered via `addPowerModePreChangeClient` can delay the power state change
+2. **Acknowledgement phase** - Clients registered via `AddPowerModeChangeAcknowledgementClient` must acknowledge readiness before the actual power state change occurs
+
 <a name="Configuration"></a>
 # Configuration
 
@@ -45,10 +51,13 @@ org.rdk.PowerManager interface methods:
 
 | Method | Description |
 | :-------- | :-------- |
+| [AddPowerModeChangeAcknowledgementClient](#AddPowerModeChangeAcknowledgementClient) | Registers a client for power mode change acknowledgement notifications |
 | [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode pre-change operations |
-| [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
-| [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time |
+| [PowerModeChangeAcknowledgement](#PowerModeChangeAcknowledgement) | Called by clients to acknowledge a power mode change request during the acknowledgement phase |
+| [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transaction id |
+| [RemovePowerModeChangeAcknowledgementClient](#RemovePowerModeChangeAcknowledgementClient) | Unregisters a client from power mode change acknowledgement notifications |
+| [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations |
 | [getOvertempGraceInterval](#getOvertempGraceInterval) | Returns the over-temperature grace interval value |
 | [getPowerState](#getPowerState) | Returns the current power state of the device |
 | [getThermalState](#getThermalState) | Returns temperature threshold values |
@@ -67,6 +76,56 @@ org.rdk.PowerManager interface methods:
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
 
+
+<a name="AddPowerModeChangeAcknowledgementClient"></a>
+## *AddPowerModeChangeAcknowledgementClient*
+
+Registers a client for power mode change acknowledgement notifications. Returns an `acknowledgeClientId` that the client must use when calling `PowerModeChangeAcknowledgement`.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientName | string | Name of the client |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.acknowledgeClientId | integer | Unique identifier for the client to be used when acknowledging power mode change via `PowerModeChangeAcknowledgement` |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.AddPowerModeChangeAcknowledgementClient",
+    "params": {
+        "clientName": "exampleclient"
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "acknowledgeClientId": 1
+    }
+}
+```
 
 <a name="addPowerModePreChangeClient"></a>
 ## *addPowerModePreChangeClient*
@@ -223,6 +282,53 @@ No Events
 }
 ```
 
+<a name="RemovePowerModeChangeAcknowledgementClient"></a>
+## *RemovePowerModeChangeAcknowledgementClient*
+
+Unregisters a client from power mode change acknowledgement notifications.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the client. See `AddPowerModeChangeAcknowledgementClient` |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.RemovePowerModeChangeAcknowledgementClient",
+    "params": {
+        "acknowledgeClientId": 1
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
 <a name="delayPowerModeChangeBy"></a>
 ## *delayPowerModeChangeBy*
 
@@ -260,6 +366,55 @@ No Events
         "clientId": 1,
         "transactionId": 3,
         "delayPeriod": 5
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": "null"
+}
+```
+
+<a name="PowerModeChangeAcknowledgement"></a>
+## *PowerModeChangeAcknowledgement*
+
+Called by clients to acknowledge a power mode change request during the acknowledgement phase. Clients receive the `transactionId` via the `onPowerModeChangeAcknowledgementRequested` notification and must call this method to confirm they are ready for the power state change to proceed.
+
+### Events
+
+No Events
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the client, as received in AddPowerModeChangeAcknowledgementClient |
+| params.transactionId | integer | transaction id as received in onPowerModeChangeAcknowledgementRequested |
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | string | On success null will be returned |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.PowerModeChangeAcknowledgement",
+    "params": {
+        "acknowledgeClientId": 1,
+        "transactionId": 5
     }
 }
 ```
@@ -1133,6 +1288,7 @@ org.rdk.PowerManager interface events:
 | [onRebootBegin](#onRebootBegin) | Triggered when an application invokes the reboot method |
 | [onPowerModeChanged](#onPowerModeChanged) | Triggered when the power manager detects a device power state change |
 | [onPowerModePreChange](#onPowerModePreChange) | Triggered before change then device power state |
+| [onPowerModeChangeAcknowledgementRequested](#onPowerModeChangeAcknowledgementRequested) | Triggered when a power mode change requires acknowledgement from registered clients |
 | [onDeepSleepTimeout](#onDeepSleepTimeout) | Triggered when the power manager detects a device power state change to light sleep from deep sleep |
 | [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
 | [onThermalModeChanged](#onThermalModeChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
@@ -1216,6 +1372,36 @@ Triggered before change then device power state. The power state (must be one of
         "newState": "ON",
         "transactionId": 3,
         "stateChangeAfter": 1
+    }
+}
+```
+
+<a name="onPowerModeChangeAcknowledgementRequested"></a>
+## *onPowerModeChangeAcknowledgementRequested*
+
+Triggered when a power mode change is about to occur and requires acknowledgement from registered clients. This is sent after the pre-change notification phase completes successfully. Clients must respond by calling `PowerModeChangeAcknowledgement` with the provided `transactionId` within the timeout period (default 10 seconds).
+
+### Parameters
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current Power State |
+| params.newState | string | Changing power state to this New Power State |
+| params.transactionId | integer | transactionId to be used when calling PowerModeChangeAcknowledgement API |
+| params.reason | string | The reason for the power state change |
+
+### Example
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "client.events.onPowerModeChangeAcknowledgementRequested",
+    "params": {
+        "currentState": "STANDBY",
+        "newState": "ON",
+        "transactionId": 5,
+        "reason": "User requested"
     }
 }
 ```
