@@ -56,6 +56,7 @@ The following methods are provided by the IPowerManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
+| [addPowerModeChangeAcknowledgementClient](#addPowerModeChangeAcknowledgementClient) | Register a client to receive power mode change acknowledgement requests |
 | [addPowerModePreChangeClient](#addPowerModePreChangeClient) | Register a client to engage in power mode state changes. Added client should call either - `PowerModePreChangeComplete` API to inform power manager that this client has completed its pre-change operation. - Or `DelayPowerModeChangeBy` API to delay the power mode change. If the client does not call `PowerModePreChangeComplete` API, the power mode change will complete after the maximum delay `stateChangeAfter` seconds (as received in `OnPowerModePreChange` event).  IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IModePreChangeNotification` BEFORE DISENGAGING ITSELF ** always make sure to call `RemovePowerModePreChangeClient` before calling `Unregister` from `IModePreChangeNotification`.  |
 | [delayPowerModeChangeBy](#delayPowerModeChangeBy) | Delay Powermode change by given time. If different clients provide different values of delay, then the maximum of these values is used. |
 | [getNetworkStandbyMode](#getNetworkStandbyMode) | Get the standby mode for Network |
@@ -65,12 +66,68 @@ The following methods are provided by the IPowerManager Interface:
 | [getThermalState](#getThermalState) | Get Current Thermal State (temperature) |
 | [getTimeSinceWakeup](#getTimeSinceWakeup) | Get the Wakeup Time in seconds since the device transitioned to the ON state. |
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | Get the source configuration for device wakeup |
+| [powerModeChangeAcknowledgement](#powerModeChangeAcknowledgement) | Acknowledge a power state change |
 | [powerModePreChangeComplete](#powerModePreChangeComplete) | Pre power mode handling complete for given client and transation id |
 | [reboot](#reboot) | Reboot device |
+| [removePowerModeChangeAcknowledgementClient](#removePowerModeChangeAcknowledgementClient) | Unregister a client from receiving power mode change acknowledgement requests |
 | [removePowerModePreChangeClient](#removePowerModePreChangeClient) | Removes a registered client from participating in power mode pre-change operations. NOTE client will still continue to receive pre-change notifications. |
 | [setPowerState](#setPowerState) | Set Power State |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Set Temperature Thresholds |
 | [setWakeupSourceConfig](#setWakeupSourceConfig) | Set the source configuration for device wakeup |
+
+<a id="addPowerModeChangeAcknowledgementClient"></a>
+## *addPowerModeChangeAcknowledgementClient*
+
+Register a client to receive power mode change acknowledgement requests
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.clientName | string | Name of the client |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.acknowledgeClientId | integer | Unique identifier for the acknowledgement client to be used when calling `PowerModeChangeAcknowledgement` |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "method": "org.rdk.PowerManager.addPowerModeChangeAcknowledgementClient",
+    "params": {
+        "clientName": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PowerManager.addPowerModeChangeAcknowledgementClient", "params": {"clientName": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 0,
+    "result": {
+        "acknowledgeClientId": 0
+    }
+}
+```
 
 <a id="addPowerModePreChangeClient"></a>
 ## *addPowerModePreChangeClient*
@@ -98,7 +155,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "method": "org.rdk.PowerManager.addPowerModePreChangeClient",
     "params": {
         "clientName": ""
@@ -110,7 +167,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PowerManager.addPowerModePreChangeClient", "params": {"clientName": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PowerManager.addPowerModePreChangeClient", "params": {"clientName": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -119,7 +176,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 0,
+    "id": 1,
     "result": {
         "clientId": 0
     }
@@ -153,7 +210,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "method": "org.rdk.PowerManager.delayPowerModeChangeBy",
     "params": {
         "clientId": 0,
@@ -167,7 +224,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PowerManager.delayPowerModeChangeBy", "params": {"clientId": 0, "transactionId": 0, "delayPeriod": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PowerManager.delayPowerModeChangeBy", "params": {"clientId": 0, "transactionId": 0, "delayPeriod": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -176,7 +233,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 1,
+    "id": 2,
     "result": null
 }
 ```
@@ -204,7 +261,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "method": "org.rdk.PowerManager.getNetworkStandbyMode"
 }
 ```
@@ -213,7 +270,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PowerManager.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PowerManager.getNetworkStandbyMode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -222,7 +279,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "result": {
         "standbyMode": true
     }
@@ -253,7 +310,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "method": "org.rdk.PowerManager.getPowerState"
 }
 ```
@@ -262,7 +319,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PowerManager.getPowerState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PowerManager.getPowerState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -271,7 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "result": {
         "currentState": "UNKNOWN",
         "previousState": "UNKNOWN"
@@ -302,7 +359,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.PowerManager.getPowerStateBeforeReboot"
 }
 ```
@@ -311,7 +368,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.PowerManager.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PowerManager.getPowerStateBeforeReboot"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -320,7 +377,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "result": {
         "powerStateBeforeReboot": "UNKNOWN"
     }
@@ -351,7 +408,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "method": "org.rdk.PowerManager.getTemperatureThresholds"
 }
 ```
@@ -360,7 +417,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.PowerManager.getTemperatureThresholds"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PowerManager.getTemperatureThresholds"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -369,7 +426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "result": {
         "high": 0.0,
         "critical": 0.0
@@ -400,7 +457,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "method": "org.rdk.PowerManager.getThermalState"
 }
 ```
@@ -409,7 +466,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.PowerManager.getThermalState"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PowerManager.getThermalState"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -418,7 +475,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "result": {
         "currentTemperature": 0.0
     }
@@ -448,7 +505,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "method": "org.rdk.PowerManager.getTimeSinceWakeup"
 }
 ```
@@ -457,7 +514,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.PowerManager.getTimeSinceWakeup"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PowerManager.getTimeSinceWakeup"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -466,7 +523,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "result": {
         "secondsSinceWakeup": 0
     }
@@ -479,7 +536,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -512,7 +569,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "method": "org.rdk.PowerManager.getWakeupSourceConfig"
 }
 ```
@@ -521,7 +578,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.PowerManager.getWakeupSourceConfig"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PowerManager.getWakeupSourceConfig"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -530,13 +587,66 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "result": [
         {
             "wakeupSource": "UNKNOWN",
             "enabled": true
         }
     ]
+}
+```
+
+<a id="powerModeChangeAcknowledgement"></a>
+## *powerModeChangeAcknowledgement*
+
+Acknowledge a power state change
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the acknowledgement client, as received in AddPowerModeChangeAcknowledgementClient |
+| params.transactionId | int | transaction id as received in OnPowerModeChangeAcknowledgementRequested |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "method": "org.rdk.PowerManager.powerModeChangeAcknowledgement",
+    "params": {
+        "acknowledgeClientId": 0,
+        "transactionId": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PowerManager.powerModeChangeAcknowledgement", "params": {"acknowledgeClientId": 0, "transactionId": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 10,
+    "result": null
 }
 ```
 
@@ -566,7 +676,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 11,
     "method": "org.rdk.PowerManager.powerModePreChangeComplete",
     "params": {
         "clientId": 0,
@@ -579,7 +689,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.PowerManager.powerModePreChangeComplete", "params": {"clientId": 0, "transactionId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PowerManager.powerModePreChangeComplete", "params": {"clientId": 0, "transactionId": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -588,7 +698,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 11,
     "result": null
 }
 ```
@@ -620,7 +730,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 12,
     "method": "org.rdk.PowerManager.reboot",
     "params": {
         "rebootRequestor": "",
@@ -634,7 +744,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.PowerManager.reboot", "params": {"rebootRequestor": "", "rebootReasonCustom": "", "rebootReasonOther": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.reboot", "params": {"rebootRequestor": "", "rebootReasonCustom": "", "rebootReasonOther": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -643,7 +753,58 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 12,
+    "result": null
+}
+```
+
+<a id="removePowerModeChangeAcknowledgementClient"></a>
+## *removePowerModeChangeAcknowledgementClient*
+
+Unregister a client from receiving power mode change acknowledgement requests
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.acknowledgeClientId | integer | Unique identifier for the acknowledgement client. See `AddPowerModeChangeAcknowledgementClient` |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
+    "method": "org.rdk.PowerManager.removePowerModeChangeAcknowledgementClient",
+    "params": {
+        "acknowledgeClientId": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PowerManager.removePowerModeChangeAcknowledgementClient", "params": {"acknowledgeClientId": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 13,
     "result": null
 }
 ```
@@ -673,7 +834,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 14,
     "method": "org.rdk.PowerManager.removePowerModePreChangeClient",
     "params": {
         "clientId": 0
@@ -685,7 +846,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.PowerManager.removePowerModePreChangeClient", "params": {"clientId": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.removePowerModePreChangeClient", "params": {"clientId": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -694,7 +855,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 14,
     "result": null
 }
 ```
@@ -726,7 +887,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 15,
     "method": "org.rdk.PowerManager.setPowerState",
     "params": {
         "keyCode": 0,
@@ -740,7 +901,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.PowerManager.setPowerState", "params": {"keyCode": 0, "powerState": "UNKNOWN", "reason": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.PowerManager.setPowerState", "params": {"keyCode": 0, "powerState": "UNKNOWN", "reason": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -749,7 +910,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 15,
     "result": null
 }
 ```
@@ -780,7 +941,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 16,
     "method": "org.rdk.PowerManager.setTemperatureThresholds",
     "params": {
         "high": 0.0,
@@ -793,7 +954,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.PowerManager.setTemperatureThresholds", "params": {"high": 0.0, "critical": 0.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.PowerManager.setTemperatureThresholds", "params": {"high": 0.0, "critical": 0.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -802,7 +963,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 16,
     "result": null
 }
 ```
@@ -834,7 +995,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 17,
     "method": "org.rdk.PowerManager.setWakeupSourceConfig",
     "params": [
         {
@@ -849,7 +1010,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "UNKNOWN", "enabled": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -858,7 +1019,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 17,
     "result": null
 }
 ```
@@ -874,6 +1035,7 @@ The following events are provided by the IPowerManager Interface:
 | :-------- | :-------- |
 | [onDeepSleepTimeout](#onDeepSleepTimeout) | Deep sleep timeout event |
 | [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Network Standby Mode changed event - only on XIone |
+| [onPowerModeChangeAcknowledgementRequested](#onPowerModeChangeAcknowledgementRequested) | Power mode change acknowledgement requested event |
 | [onPowerModeChanged](#onPowerModeChanged) | Power mode changed |
 | [onPowerModePreChange](#onPowerModePreChange) | Power mode Pre-change event |
 | [onRebootBegin](#onRebootBegin) | Reboot begin event |
@@ -895,7 +1057,7 @@ Deep sleep timeout event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 18,
     "method": "org.rdk.PowerManager.onDeepSleepTimeout",
     "params": {
         "wakeupTimeout": 0
@@ -919,10 +1081,40 @@ Network Standby Mode changed event - only on XIone
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 19,
     "method": "org.rdk.PowerManager.onNetworkStandbyModeChanged",
     "params": {
         "enabled": true
+    }
+}
+```
+
+<a id="onPowerModeChangeAcknowledgementRequested"></a>
+## *onPowerModeChangeAcknowledgementRequested*
+
+Power mode change acknowledgement requested event
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.currentState | string | Current Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.newState | string | New Power State. Possible values: UNKNOWN, OFF, STANDBY, ON, LIGHT_SLEEP, DEEP_SLEEP |
+| params.transactionId | int | transaction id to be used when calling PowerModeChangeAcknowledgement |
+| params.reason | string | Reason for the power state change |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 20,
+    "method": "org.rdk.PowerManager.onPowerModeChangeAcknowledgementRequested",
+    "params": {
+        "currentState": "UNKNOWN",
+        "newState": "UNKNOWN",
+        "transactionId": 0,
+        "reason": ""
     }
 }
 ```
@@ -944,7 +1136,7 @@ Power mode changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 21,
     "method": "org.rdk.PowerManager.onPowerModeChanged",
     "params": {
         "currentState": "UNKNOWN",
@@ -972,7 +1164,7 @@ Power mode Pre-change event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 22,
     "method": "org.rdk.PowerManager.onPowerModePreChange",
     "params": {
         "currentState": "UNKNOWN",
@@ -1001,7 +1193,7 @@ Reboot begin event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 23,
     "method": "org.rdk.PowerManager.onRebootBegin",
     "params": {
         "rebootReasonCustom": "",
@@ -1029,7 +1221,7 @@ Thermal Mode changed event
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 24,
     "method": "org.rdk.PowerManager.onThermalModeChanged",
     "params": {
         "currentThermalLevel": "UNKNOWN Thermal Temperature",
@@ -1074,7 +1266,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 25,
     "method": "org.rdk.PowerManager.getLastWakeupKeyCode"
 }
 ```
@@ -1083,7 +1275,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.PowerManager.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.PowerManager.getLastWakeupKeyCode"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1092,7 +1284,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 25,
     "result": {
         "keycode": 0
     }
@@ -1120,7 +1312,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 26,
     "method": "org.rdk.PowerManager.getLastWakeupReason"
 }
 ```
@@ -1129,7 +1321,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.PowerManager.getLastWakeupReason"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.PowerManager.getLastWakeupReason"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1138,7 +1330,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 26,
     "result": {
         "wakeupReason": "UNKNOWN"
     }
@@ -1166,7 +1358,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 27,
     "method": "org.rdk.PowerManager.getOvertempGraceInterval"
 }
 ```
@@ -1175,7 +1367,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.PowerManager.getOvertempGraceInterval"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "method": "org.rdk.PowerManager.getOvertempGraceInterval"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1184,7 +1376,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 23,
+    "id": 27,
     "result": {
         "graceInterval": 0
     }
@@ -1212,7 +1404,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 28,
     "method": "org.rdk.PowerManager.setDeepSleepTimer",
     "params": {
         "timeOut": 0
@@ -1224,7 +1416,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "method": "org.rdk.PowerManager.setDeepSleepTimer", "params": {"timeOut": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 28, "method": "org.rdk.PowerManager.setDeepSleepTimer", "params": {"timeOut": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1233,7 +1425,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 24,
+    "id": 28,
     "result": null
 }
 ```
@@ -1259,7 +1451,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 29,
     "method": "org.rdk.PowerManager.setNetworkStandbyMode",
     "params": {
         "standbyMode": true
@@ -1271,7 +1463,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "method": "org.rdk.PowerManager.setNetworkStandbyMode", "params": {"standbyMode": true}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 29, "method": "org.rdk.PowerManager.setNetworkStandbyMode", "params": {"standbyMode": true}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1280,7 +1472,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 25,
+    "id": 29,
     "result": null
 }
 ```
@@ -1306,7 +1498,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 30,
     "method": "org.rdk.PowerManager.setOvertempGraceInterval",
     "params": {
         "graceInterval": 0
@@ -1318,7 +1510,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "method": "org.rdk.PowerManager.setOvertempGraceInterval", "params": {"graceInterval": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "method": "org.rdk.PowerManager.setOvertempGraceInterval", "params": {"graceInterval": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1327,7 +1519,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 26,
+    "id": 30,
     "result": null
 }
 ```
