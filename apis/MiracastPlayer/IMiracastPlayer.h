@@ -149,7 +149,7 @@ namespace WPEFramework
             // @param height: Height of the rectangle
             // @example height: 1080
             // @param result: Result of the set video rectangle operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetVideoRectangle(const int startX /* @text X */, const int startY /* @text Y */, const int width /* @text W */, const int height /* @text H */, Result &result /* @out */) = 0;
 
@@ -159,7 +159,7 @@ namespace WPEFramework
             // @param westerosArgs: Westeros environment arguments to be set
              // @example westerosArgs: [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": "1"}]
             // @param result: Result of the set westeros environment operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetWesterosEnvironment( IEnvArgumentsIterator * const westerosArgs /* @text westerosArgs */, Result &result /* @out */) = 0;
 
@@ -167,7 +167,7 @@ namespace WPEFramework
             // @text unsetWesterosEnvironment
             // @details Removes all Westeros-specific environment settings and restores the default playback environment. This API is deprecated in favor of UnsetEnvArguments.           
             // @param result: Result of the unset westeros environment operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult UnsetWesterosEnvironment(Result &result /* @out */) = 0;
 
@@ -175,9 +175,9 @@ namespace WPEFramework
             // @text setEnvArguments
             // @details Applies the specified environment variables that influence the behavior and execution environment of the Miracast player.            
             // @param envArgs: environment arguments to be set
-            // @example envArgs: [{ argName: "WESTEROS_DISPLAY", argValue: "HDMI0" }, { argName: "WESTEROS_FULLSCREEN", argValue: "1" }]
+            // @example envArgs: [{"argName":"WESTEROS_DISPLAY","argValue":"HDMI0"},{"argName":"WESTEROS_FULLSCREEN","argValue":"1"}]
             // @param result: Result of the set environment arguments operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetEnvArguments( IEnvArgumentsIterator * const envArgs /* @text envArgs */, Result &result /* @out */) = 0;
 
@@ -185,7 +185,7 @@ namespace WPEFramework
             // @text unsetEnvArguments
             // @details Clears all previously configured environment variables and restores the Miracast player to its default environment settings.          
             // @param result: Result of the unset environment arguments operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult UnsetEnvArguments(Result &result /* @out */) = 0;
         };
