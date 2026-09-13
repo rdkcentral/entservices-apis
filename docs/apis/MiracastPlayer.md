@@ -133,7 +133,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -170,7 +172,14 @@ None
     "id": 1,
     "method": "org.rdk.MiracastPlayer.setEnvArguments",
     "params": [
-        "[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"
+        {
+            "argName": "WESTEROS_DISPLAY",
+            "argValue": "HDMI0"
+        },
+        {
+            "argName": "WESTEROS_FULLSCREEN",
+            "argValue": 1
+        }
     ]
 }
 ```
@@ -179,7 +188,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": ["[{ argName: \"WESTEROS_DISPLAY\", argValue: \"HDMI0\" }, { argName: \"WESTEROS_FULLSCREEN\", argValue: \"1\" }]"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.MiracastPlayer.setEnvArguments", "params": [{"argName": "WESTEROS_DISPLAY", "argValue": "HDMI0"}, {"argName": "WESTEROS_FULLSCREEN", "argValue": 1}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -189,7 +198,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -249,7 +260,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -312,7 +325,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -370,7 +385,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -418,7 +435,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -466,7 +485,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
