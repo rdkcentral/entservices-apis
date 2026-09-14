@@ -112,7 +112,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ message: \"Backend discovery status updated\", success: true }"
+    "result": {
+        "message": "Backend discovery status updated",
+        "success": true
+    }
 }
 ```
 
@@ -216,7 +219,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": "{ message: \"Backend discovery status updated\", success: true }"
+    "result": {
+        "message": "Backend discovery status updated",
+        "success": true
+    }
 }
 ```
 
@@ -270,7 +276,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": "{ message: \"Backend discovery status updated\", success: true }"
+    "result": {
+        "message": "Backend discovery status updated",
+        "success": true
+    }
 }
 ```
 
@@ -326,7 +335,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "result": "{ message: \"Backend discovery status updated\", success: true }"
+    "result": {
+        "message": "Backend discovery status updated",
+        "success": true
+    }
 }
 ```
 
@@ -384,7 +396,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 {
     "jsonrpc": 2.0,
     "id": 5,
-    "result": "{ message: \"Backend discovery status updated\", success: true }"
+    "result": {
+        "message": "Backend discovery status updated",
+        "success": true
+    }
 }
 ```
 
