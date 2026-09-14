@@ -70,16 +70,16 @@ namespace WPEFramework
             // @brief sets the tr181 MigrationStatus parameter
             // @details Sets the tr181 MigrationStatus parameter. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
             // @param status: enum
-            // @example status: MIGRATION_STATUS_STARTED
+            // @example status: "STARTED"
             // @param migrationResult: struct
-            // @example migrationResult: { success: true }
+            // @example migrationResult: { "success": true }
             virtual Core::hresult SetMigrationStatus(const MigrationStatus status, MigrationResult& migrationResult /* @out */) = 0;
 
             // @text getMigrationStatus
             // @brief get the MigrationStatus details
             // @details Retrieves the MigrationStatus details. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
             // @param migrationStatusInfo: struct
-            // @example migrationStatusInfo: { migrationStatus: MIGRATION_STATUS_STARTED }
+            // @example migrationStatusInfo: { "migrationStatus": "STARTED" }
             virtual Core::hresult GetMigrationStatus(MigrationStatusInfo& migrationStatusInfo /* @out */) = 0;
         };
     } // namespace Exchange
