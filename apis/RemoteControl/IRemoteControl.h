@@ -178,6 +178,7 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
+            // @param netType(optional): The type of network to pair on. If omitted, backend default is used.
             // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
             // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
             // @param scanEnable(optional): Whether scan pairing is enabled. If omitted, backend default is used.
@@ -186,7 +187,7 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, const std::vector<string>& macAddressList /* @optional @restrict:32 */, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StartPairing(const Core::OptionalType<uint32_t>& netType, const Core::OptionalType<uint32_t>& timeout, const Core::OptionalType<bool>& screenBindEnable, const Core::OptionalType<bool>& scanEnable, const std::vector<string>& macAddressList /* @optional @restrict:32 */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
