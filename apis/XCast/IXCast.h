@@ -138,11 +138,11 @@ namespace WPEFramework {
 			// @param applicationName: Registered application name
 			// @example applicationName: "YouTube"
 			// @param state: Application state
-			// @example state: 0
+			// @example state: "running"
 			// @param applicationId: Application instance ID
 			// @example applicationId: "abcd1234"
 			// @param error: Error string, if any
-			// @example error: "Application not found"
+			// @example error: "invalid"
 			// @param success: Whether the request succeeded
 			// @example success: true
 			// @retval Core::ERROR_NONE: Application state change notification processed successfully.
@@ -286,7 +286,7 @@ namespace WPEFramework {
 			// @brief Register one or more castable applications
 			// @details Registers applications that can be launched via casting. Each application entry specifies its name, launch prefixes, CORS policy, launch parameters, and whether it can be stopped by remote clients.
 			// @param appInfoList: Iterator over the list of application information objects to register
-			// @example appInfoList: [appInfo1, appInfo2, ...]
+			// @example appInfoList: [{"appName":"YouTube","prefixes":["youtube://"],"corsPolicy":"*","launchParameters":"{}","allowStop":true},{"appName":"Netflix","prefixes":["netflix://"],"corsPolicy":"*","launchParameters":"{}","allowStop":true}]
 			// @param success: 	Whether the request succeeded
 			// @example success: true
 			// @retval Core::ERROR_NONE: Indicates success
