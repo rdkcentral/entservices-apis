@@ -989,6 +989,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
+| params?.netType | integer | <sup>(optional)</sup>The type of network to pair on. If omitted, backend default is used. |
 | params?.timeout | integer | <sup>(optional)</sup>Pairing timeout in seconds. If omitted, backend default is used. |
 | params?.screenBindEnable | bool | <sup>(optional)</sup>Whether screen bind pairing is enabled. If omitted, backend default is used. |
 | params?.scanEnable | bool | <sup>(optional)</sup>Whether scan pairing is enabled. If omitted, backend default is used. |
@@ -1010,6 +1011,7 @@ None
     "id": 15,
     "method": "org.rdk.RemoteControl.startPairing",
     "params": {
+        "netType": 1,
         "timeout": 0,
         "screenBindEnable": true,
         "scanEnable": true,
@@ -1022,7 +1024,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": "AA:BB:CC:DD:EE:FF"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 15, "method": "org.rdk.RemoteControl.startPairing", "params": {"netType": 1, "timeout": 0, "screenBindEnable": true, "scanEnable": true, "macAddressList": "AA:BB:CC:DD:EE:FF"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
