@@ -84,7 +84,7 @@ namespace WPEFramework
                 // @text onClientConnectionRequest
                 // @details Notifies listeners of an incoming Miracast connection request, identifying the requesting client so the application can prompt the user to accept or reject it via acceptClientConnection.
                 // @param clientMac: MacAddress of the client device
-                // @example clientMac: 00:11:22:33:44:55
+                // @example clientMac: "00:11:22:33:44:55"
                 // @param clientName: Name of the client device
                 // @example clientName: "John's iPhone"
                 virtual void OnClientConnectionRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */) {};
@@ -93,7 +93,7 @@ namespace WPEFramework
                 // @text onClientConnectionError
                 // @details Notifies listeners that the connection to the source streaming device could not be established, providing the failing client's identity along with a reason code and description of the underlying P2P or streaming error.
                 // @param clientMac: MacAddress of the client device
-                // @example clientMac: 00:11:22:33:44:55
+                // @example clientMac: "00:11:22:33:44:55"
                 // @param clientName: Name of the client device
                 // @example clientName: "John's iPhone"
                 // @param reasonCode: Error code for the connection failure
