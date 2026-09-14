@@ -33,7 +33,7 @@ namespace Exchange {
         // @brief Total GPU DRAM memory (in bytes)
         // @details Retrieves the total GPU DRAM memory (in bytes).
         // @param total: Total GPU RAM
-        // @example total: "2147483648"
+        // @example total: 2147483648
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult TotalGpuRam(uint64_t& total /* @out */) const = 0;
 
@@ -41,7 +41,7 @@ namespace Exchange {
         // @brief Free GPU DRAM memory (in bytes)
         // @details Retrieves the free GPU DRAM memory (in bytes).
         // @param free: Free GPU RAM
-        // @example free: "1073741824"
+        // @example free: 1073741824
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult FreeGpuRam(uint64_t& free /* @out */) const = 0;
     };
@@ -94,7 +94,7 @@ namespace Exchange {
         // @brief Horizontal resolution of TV
         // @details Retrieves the horizontal resolution of the TV.
         // @param width: Width of TV in pixels
-        // @example width: "1920"
+        // @example width: 1920
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult Width(uint32_t& width /* @out */) const = 0;
 
@@ -102,7 +102,7 @@ namespace Exchange {
         // @brief Vertical resolution of TV
         // @details Retrieves the vertical resolution of the TV.
         // @param height: Height of TV in pixels
-        // @example height: "1080"
+        // @example height: 1080
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult Height(uint32_t& height /* @out */) const = 0;
 
@@ -110,7 +110,7 @@ namespace Exchange {
         // @brief Vertical Frequency
         // @details Retrieves the vertical frequency of the TV.
         // @param vf: Vertical frequency
-        // @example vf: "60"
+        // @example vf: 60
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult VerticalFreq(uint32_t& vf /* @out */) const = 0;
 
@@ -126,7 +126,7 @@ namespace Exchange {
         // @brief Horizontal size in centimeters
         // @details Retrieves the horizontal size of the TV in centimeters.
         // @param width: Width in cm
-        // @example width: "100"
+        // @example width: 100
         // @retval Core::ERROR_NONE: Indicates success
         // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult WidthInCentimeters(uint8_t& width /* @out */) const = 0;
@@ -134,7 +134,7 @@ namespace Exchange {
         // @brief Vertical size in centimeters
         // @details Retrieves the vertical size of the TV in centimeters.
         // @param height: Height in cm
-        // @example height: "50"
+        // @example height: 50
         // @retval Core::ERROR_NONE: Indicates success
         // @retval Core::ERROR_GENERAL: Indicates failure
         virtual Core::hresult HeightInCentimeters(uint8_t& height /* @out */) const = 0;
@@ -184,7 +184,7 @@ namespace Exchange {
         // @brief HDR formats supported by TV
         // @details Retrieves the HDR formats supported by TV.
         // @param type: array of HDR formats
-        // @example type: ["HDR_10, HDR_10PLUS"]
+        // @example type: ["HDR_10", "HDR_10PLUS"]
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult TVCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
@@ -192,7 +192,7 @@ namespace Exchange {
         // @brief HDR formats supported by STB
         // @details Retrieves the HDR formats supported by STB.
         // @param type: array of HDR formats
-        // @example type: ["HDR_10, HDR_10PLUS"]
+        // @example type: ["HDR_10", "HDR_10PLUS"]
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult STBCapabilities(IHDRIterator*& type /* @out */) const = 0;
 
