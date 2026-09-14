@@ -72,7 +72,7 @@ namespace WPEFramework
             // @param index: Index of the LED to switch off
             // @example index: "0"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult PowerLedOff(const string& index, FrontPanelSuccess &success /* @out */) = 0;
 
@@ -82,7 +82,7 @@ namespace WPEFramework
             // @param index: Index of the LED to switch on
             // @example index: "0"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult PowerLedOn(const string& index, FrontPanelSuccess &success /* @out */) = 0;
 
@@ -92,7 +92,7 @@ namespace WPEFramework
             // @param blinkInfo: JSON string with blink pattern information containing ledIndicator, iterations, and pattern array with brightness, duration(milliseconds), and optional color and red/green/blue values.
             // @example blinkInfo: {"ledIndicator": "POWER_LED", "iterations": 3, "pattern": [{"brightness": 100, "duration": 500}, {"brightness": 0, "duration": 500}]}
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetBlink(const string& blinkInfo /* @opaque */, FrontPanelSuccess &success /* @out */) = 0;
 
@@ -104,7 +104,7 @@ namespace WPEFramework
             // @param brightness: Brightness level to set
             // @example brightness: 100
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetBrightness(const string& index, const uint32_t brightness, FrontPanelSuccess &success /* @out */) = 0;
 
@@ -124,7 +124,7 @@ namespace WPEFramework
             // @param blue: Blue component of the LED color
             // @example blue: 0
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetLED(const string& ledIndicator, const uint32_t brightness, const string& color, const uint32_t red, const uint32_t green, const uint32_t blue, FrontPanelSuccess &success /* @out */) = 0;
 
