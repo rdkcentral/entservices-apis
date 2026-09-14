@@ -234,7 +234,7 @@ namespace WPEFramework
             // @param numberofdevices: Number of devices connected to the HDMI CEC source
             // @example numberofdevices: 2
             // @param deviceList: List of devices connected to the HDMI CEC source
-            // @example deviceList: [{ logicalAddress: 1, vendorID: "123456", osdName: "Device1" }, { logicalAddress: 2, vendorID: "654321", osdName: "Device2" }]
+             // @example deviceList: [{ "logicalAddress": 1, "vendorID": "123456", "osdName": "Device1" }, { "logicalAddress": 2, "vendorID": "654321", "osdName": "Device2" }]
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
