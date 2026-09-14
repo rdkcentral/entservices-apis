@@ -121,7 +121,7 @@ namespace WPEFramework
             // @param enabled: Is the MiracastService discovery enabled or not
             // @example enabled: true
             // @param result: Result of the set enable operation
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetEnabled(const bool enabled /* @text enabled */, Result &result /* @out */) = 0;
 
@@ -149,11 +149,11 @@ namespace WPEFramework
             // @text stopClientConnection
             // @details Aborts the ongoing connection after accepted connection request. This can be used to stop the streaming from the source device to the sink device.
             // @param clientMac: MacAddress of the client device
-            // @example clientMac: 00:11:22:33:44:55
+            // @example clientMac: "00:11:22:33:44:55"
             // @param clientName: Name of the client device
             // @example clientName: "John's iPhone"
             // @param result: Contains the result of the operation, including a message and a success flag
-            // @example result: { message: "Connection stopped", success: true }
+            // @example result: { "message": "Connection stopped", "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult StopClientConnection(const string &clientMac /* @text mac */, const string &clientName /* @text name */, Result &result /* @out */) = 0;
 
@@ -161,13 +161,13 @@ namespace WPEFramework
             // @text updatePlayerState
             // @details Updates the Miracast Player State to the Miracast Service Plugin. This can be used to inform the plugin about the current state of the player, such as whether it is playing, paused, or stopped.
             // @param clientMac: MacAddress of the client device
-            // @example clientMac: 00:11:22:33:44:55
+            // @example clientMac: "00:11:22:33:44:55"
             // @param playerState: Player state to be updated
-             // @example playerState: "PLAYING"
+            // @example playerState: "PLAYING"
             // @param reasonCode: Reason code for the player state update
             // @example reasonCode: 200
             // @param result: Contains the result of the operation, including a message and a success flag
-            // @example result: { message: "Player state updated", success: true }
+            // @example result: { "message": "Player state updated", "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult UpdatePlayerState(const string &clientMac /* @text mac */, const PlayerState playerState /* @text state */, const int reasonCode /* @text reason_code */, Result &result /* @out */) = 0;
 
@@ -177,7 +177,7 @@ namespace WPEFramework
             // @param enabled: Is the MiracastService backend discovery enabled or not
             // @example enabled: true
             // @param result: Contains the result of the operation, including a message and a success flag
-            // @example result: { message: "Backend discovery status updated", success: true }
+            // @example result: { "message": "Backend discovery status updated", "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetP2PBackendDiscovery(const bool enabled /* @text enabled */, Result &result /* @out */) = 0;
         };
