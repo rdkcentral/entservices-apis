@@ -103,7 +103,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{ state: FLASHING_STARTED, substate: FIRMWARE_OUTDATED }"
+    "result": {
+        "state": "flashingStarted",
+        "substate": "firmwareOutdated"
+    }
 }
 ```
 
@@ -155,7 +158,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -209,7 +214,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
