@@ -164,9 +164,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": [
-        {
-            "mountPath": "/media/usb0"
-        }
+        "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
     ]
 }
 ```
@@ -272,12 +270,11 @@ Triggered when a USB mass storage device is successfully mounted by the system.
     "method": "org.rdk.USBMassStorage.onDeviceMounted",
     "params": {
         "deviceInfo": {
-            "deviceName": "USB Flash Drive"
+            "deviceName": "USB Flash Drive",
+            "devicePath": "/dev/sda1"
         },
         "mountPoints": [
-            {
-                "mountPath": "/media/usb0"
-            }
+            "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
         ]
     }
 }
@@ -310,12 +307,11 @@ Triggered when a USB mass storage device is successfully unmounted by the system
     "method": "org.rdk.USBMassStorage.onDeviceUnMounted",
     "params": {
         "deviceInfo": {
-            "deviceName": "USB Flash Drive"
+            "deviceName": "USB Flash Drive",
+            "devicePath": "/dev/sda1"
         },
         "mountPoints": [
-            {
-                "mountPath": "/media/usb0"
-            }
+            "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
         ]
     }
 }
