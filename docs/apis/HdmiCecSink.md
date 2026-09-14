@@ -1486,7 +1486,7 @@ The following events are provided by the IHdmiCecSink Interface:
 
 | Event | Description |
 | :-------- | :-------- |
-| [arcInitiationEvent](#arcInitiationEvent) | Triggered when routing though the HDMI ARC port is successfully established. |
+| [arcInitiationEvent](#arcInitiationEvent) | Triggered when routing through the HDMI ARC port is successfully established. |
 | [arcTerminationEvent](#arcTerminationEvent) | Triggered when routing though the HDMI ARC port terminates. |
 | [onActiveSourceChange](#onActiveSourceChange) | Triggered when the active source device changes. |
 | [onDeviceAdded](#onDeviceAdded) | Triggered when a new device is added to the CEC network. |
@@ -1972,9 +1972,7 @@ Provides the Short Audio Descriptor (SAD) information when it is received from t
     "id": 44,
     "method": "org.rdk.HdmiCecSink.shortAudiodescriptorEvent",
     "params": {
-        "shortAudioDescriptor": {
-            "shortAudioDescriptor": "0x09, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
-        }
+        "shortAudioDescriptor": "0x09, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
     }
 }
 ```
