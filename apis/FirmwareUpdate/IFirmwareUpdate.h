@@ -85,11 +85,11 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @brief Initiates a firmware update.
   // @details This method initiates a firmware update to the device. The firmware file path and type are provided as parameters. The result of the operation is returned in the result parameter.
   // @param firmwareFilepath The complete path of the firmware file to which the device needs to be updated to.
-  // @example firmwareFilepath: /tmp/firmware.bin
+  // @example firmwareFilepath: "/tmp/firmware.bin"
   // @param firmwareType: Type of firmware. One of the following (PCI,DRI)
-  // @example firmwareType: PCI
+  // @example firmwareType: "PCI"
   // @param result: Indicates whether the operation was successful
-  // @example result: { success: true }
+  // @example result: { "success": true }
   // @retval Core::ERROR_NONE: Indicates success
   virtual Core::hresult UpdateFirmware(const string& firmwareFilepath /* @text firmwareFilepath */ , const string& firmwareType /* @text firmwareType */, Result &result /* @out  */ ) = 0;
 
@@ -97,7 +97,7 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @brief Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
   // @details Tracks progress across both major phases: validation and flashing. Returns the current state and substate via the output parameter.
   // @param getUpdateStateResult: Firmware update state and substate
-  // @example getUpdateStateResult: { state: FLASHING_STARTED, substate: FIRMWARE_OUTDATED }
+  // @example getUpdateStateResult: { "state": "flashingStarted", "substate": "firmwareOutdated" }  
   // @retval Core::ERROR_NONE: Indicates success
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
@@ -107,7 +107,7 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @param enable: Boolean to enable or disable AutoReboot
   // @example enable: true
   // @param result: Contains the outcome of the request
-  // @example result: { success: true }
+  // @example result: { "success": true }
   // @retval Core::ERROR_NONE: Indicates success
   virtual Core::hresult SetAutoReboot(const bool enable, Result& result /* @out */) = 0;
 
