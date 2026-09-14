@@ -289,7 +289,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.otpEnabled | bool | Is the OTP enabled or not |
+| result.enabled | bool | Is the OTP enabled or not |
 | result.success | bool | Is the operation successful or not |
 
 ### Examples
@@ -320,7 +320,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "otpEnabled": true,
+        "enabled": true,
         "success": true
     }
 }
