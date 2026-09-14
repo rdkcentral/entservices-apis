@@ -405,7 +405,24 @@ None
     "id": 6,
     "method": "org.rdk.XCast.registerApplications",
     "params": [
-        "[appInfo1, appInfo2, ...]"
+        {
+            "appName": "YouTube",
+            "prefixes": [
+                "youtube://"
+            ],
+            "corsPolicy": "*",
+            "launchParameters": "{}",
+            "allowStop": true
+        },
+        {
+            "appName": "Netflix",
+            "prefixes": [
+                "netflix://"
+            ],
+            "corsPolicy": "*",
+            "launchParameters": "{}",
+            "allowStop": true
+        }
     ]
 }
 ```
@@ -414,7 +431,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": ["[appInfo1, appInfo2, ...]"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"appName": "YouTube", "prefixes": ["youtube://"], "corsPolicy": "*", "launchParameters": "{}", "allowStop": true}, {"appName": "Netflix", "prefixes": ["netflix://"], "corsPolicy": "*", "launchParameters": "{}", "allowStop": true}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -463,7 +480,7 @@ None
         "applicationName": "YouTube",
         "state": "running",
         "applicationId": "abcd1234",
-        "error": "Application not found"
+        "error": "invalid"
     }
 }
 ```
@@ -472,7 +489,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "YouTube", "state": "running", "applicationId": "abcd1234", "error": "Application not found"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.XCast.setApplicationState", "params": {"applicationName": "YouTube", "state": "running", "applicationId": "abcd1234", "error": "invalid"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
