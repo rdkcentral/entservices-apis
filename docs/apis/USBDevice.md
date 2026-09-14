@@ -199,7 +199,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": {
         "vendorId": 1234,
         "productId": 5678,
-        "serialNumber": 1234567890
+        "serialNumber": 1234567890,
+        "deviceStatus": "Connected",
+        "busSpeed": "USB3.0",
+        "manufacturer": "SanDisk",
+        "productName": "Cruzer Blade",
+        "supportedFeatures": "Mass Storage"
     }
 }
 ```
@@ -347,7 +352,10 @@ Triggered when a USB device is connected to the system and successfully detected
     "id": 4,
     "method": "org.rdk.USBDevice.onDevicePluggedIn",
     "params": {
-        "deviceName": "USB Flash Drive"
+        "deviceName": "USB Flash Drive",
+        "deviceClass": "Mass Storage",
+        "deviceSubclass": "USB Flash",
+        "devicePath": "/dev/sda1"
     }
 }
 ```
@@ -375,7 +383,10 @@ Triggered when a USB device is disconnected from the system. The event provides 
     "id": 5,
     "method": "org.rdk.USBDevice.onDevicePluggedOut",
     "params": {
-        "deviceName": "USB Flash Drive"
+        "deviceName": "USB Flash Drive",
+        "deviceClass": "Mass Storage",
+        "deviceSubclass": "USB Flash",
+        "devicePath": "/dev/sda1"
     }
 }
 ```
