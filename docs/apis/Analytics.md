@@ -105,8 +105,8 @@ None
         "epochTimestamp": 1719824400,
         "uptimeTimestamp": 3600,
         "appId": "com.comcast.xr11",
-        "eventPayload": "{\\\"bitrate\\\":5000,\\\"codec\\\":\\\"h264\\\"}",
-        "additionalContext": "{\\\"networkType\\\":\\\"ethernet\\\"}"
+        "eventPayload": "{\"bitrate\":5000,\"codec\":\"h264\"}",
+        "additionalContext": "{\"networkType\":\"ethernet\"}"
     }
 }
 ```
@@ -115,7 +115,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "playback_started", "eventVersion": "1.0.0", "eventSource": "player_component", "eventSourceVersion": "2.1.0", "cetList": ["CET_01", "CET_02"], "epochTimestamp": 1719824400, "uptimeTimestamp": 3600, "appId": "com.comcast.xr11", "eventPayload": "{\\\"bitrate\\\":5000,\\\"codec\\\":\\\"h264\\\"}", "additionalContext": "{\\\"networkType\\\":\\\"ethernet\\\"}"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "playback_started", "eventVersion": "1.0.0", "eventSource": "player_component", "eventSourceVersion": "2.1.0", "cetList": ["CET_01", "CET_02"], "epochTimestamp": 1719824400, "uptimeTimestamp": 3600, "appId": "com.comcast.xr11", "eventPayload": "{\"bitrate\":5000,\"codec\":\"h264\"}", "additionalContext": "{\"networkType\":\"ethernet\"}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
