@@ -141,7 +141,7 @@ The following properties are provided by the IDeviceInfo Interface:
 | [osname](#osname) | Provides access to the operating system name. |
 | [osversion](#osversion) | Provides access to the operating system version. |
 | [releaseversion](#releaseversion)<sup>RO</sup> | Provides access to the ReleaseVersion of the Image |
-| [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacture |
+| [serialnumber](#serialnumber)<sup>RO</sup> | Provides access to the serial number set by manufacturer |
 | [modelid](#modelid)<sup>RO</sup> | Provides access to the device model number |
 | [socname](#socname)<sup>RO</sup> | Provides access to the SOC Name. |
 | [systeminfo](#systeminfo)<sup>RO</sup> | Provides access to the system general information |
