@@ -150,7 +150,7 @@ namespace Exchange {
 
         // @property
         // @text serialnumber
-        // @brief Provides access to the serial number set by manufacture
+        // @brief Provides access to the serial number set by manufacturer
         // @details Retrieves the serial number assigned to the device by the manufacturer.
         // @param deviceSerialNo: Serial number set by manufacturer
         // @example deviceSerialNo: {"serialnumber":"XG1A2300012345"}
@@ -335,7 +335,7 @@ namespace Exchange {
         // @brief Provides access to the operating system name.
 		// @details Reads and writes OsName to /opt/persistent/osdetails.info and returns empty string if unset.
         // @param deviceOsName: Operating system name
-		// @example deviceOsName: RDK-E
+		// @example deviceOsName: "RDK-E"
         // @param osName: Operating system name to set
         // @example osName: "RDK-E"
         // @retval ErrorCode::ERROR_NONE: Indicates success
@@ -347,7 +347,7 @@ namespace Exchange {
         // @brief Provides access to the operating system version.
 		// @details Reads and writes OsVersion to /opt/persistent/osdetails.info and returns empty string if unset.
         // @param deviceOsVersion: Operating system version
-		// @example deviceOsVersion: 8.3
+		// @example deviceOsVersion: "8.3"
         // @param osVersion: Operating system version to set
         // @example osVersion: "8.3"
         // @retval ErrorCode::ERROR_NONE: Indicates success
