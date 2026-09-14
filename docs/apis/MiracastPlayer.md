@@ -366,7 +366,7 @@ None
     "params": {
         "mac": "00:1A:2B:3C:4D:5E",
         "name": "Miracast Source Device",
-        "reason_code": 200
+        "reason_code": "MIRACAST_ERROR"
     }
 }
 ```
@@ -375,7 +375,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": 200}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": "MIRACAST_ERROR"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -528,7 +528,7 @@ Triggered whenever the Miracast player changes state. The event provides the sou
         "name": "Miracast Source Device",
         "mac": "00:1A:2B:3C:4D:5E",
         "state": "PLAYING",
-        "reason_code": 200,
+        "reason_code": "MIRACAST_CONNECTED",
         "reason": "SUCCESS"
     }
 }
