@@ -65,7 +65,7 @@
                 enum { ID = ID_HDMI_CEC_SINK_NOTIFICATION };
 
 
-                // @brief Triggered when routing though the HDMI ARC port is successfully established.
+                // @brief Triggered when routing through the HDMI ARC port is successfully established.
                 // @text arcInitiationEvent
                 // @details This event is generated when ARC routing through the HDMI ARC port has been successfully initiated and the ARC 
                 // connection is active. It notifies clients that audio can be routed through the ARC channel.
@@ -188,7 +188,7 @@
                 // @text shortAudiodescriptorEvent
                 // @details Provides the Short Audio Descriptor (SAD) information when it is received from the connected audio device. See requestShortAudioDescriptor.
                 // @param shortAudioDescriptor: JSON response containing the Short Audio Descriptor (SAD) information
-                // @example shortAudioDescriptor: { "shortAudioDescriptor": "0x09, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00" }
+                // @example shortAudioDescriptor: "0x09, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00"
                 virtual void ShortAudiodescriptorEvent(const string& shortAudioDescriptor) {};
 
                 // @brief Triggered when the source device changes status to STANDBY.
@@ -372,7 +372,7 @@
             // @param logicalAddress: Logical address of the device
             // @example logicalAddress: 4
             // @param keyCode: Key code of the key press event
-            // @example keyCode: 0x44
+            // @example keyCode: 68
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
             // @retval Core::ERROR_NONE The key press event message was sent successfully.
