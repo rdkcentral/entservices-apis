@@ -150,6 +150,7 @@ namespace Exchange {
 
         ID_TEXT_TO_SPEECH                            = ID_ENTOS_OFFSET + 0x130,
         ID_TEXT_TO_SPEECH_NOTIFICATION               = ID_TEXT_TO_SPEECH + 1,
+        ID_VOICE_INFO_ITERATOR                       = ID_TEXT_TO_SPEECH + 2,
 
         ID_HOMEKITTV                                 = ID_ENTOS_OFFSET + 0x140,
         ID_HOMEKITTV_NOTIFICATION                    = ID_HOMEKITTV + 1,
@@ -399,6 +400,12 @@ namespace Exchange {
         ID_DEVICESETTINGS_VIDEOPORT                         = ID_ENTOS_OFFSET + 0x5F0,
         ID_DEVICESETTINGS_VIDEOPORT_NOTIFICATION            = ID_DEVICESETTINGS_VIDEOPORT + 1,
         ID_DEVICESETTINGS_VIDEOPORT_RESOLUTION_ITERATOR     = ID_DEVICESETTINGS_VIDEOPORT + 2,
+
+        ID_VICTIM_SELECTOR                          = ID_ENTOS_OFFSET + 0x600,
+        ID_VICTIM_SELECTOR_NOTIFICATION             = ID_VICTIM_SELECTOR + 1,
+
+        ID_RESOURCE_MONITOR                         = ID_ENTOS_OFFSET + 0x610,
+        ID_RESOURCE_MONITOR_NOTIFICATION            = ID_RESOURCE_MONITOR + 1,
     }; // enum IDS
 
 } // namespace Exchange
