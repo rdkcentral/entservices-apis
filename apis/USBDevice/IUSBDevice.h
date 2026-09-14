@@ -44,14 +44,14 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     // @text onDevicePluggedIn
     // @details Triggered when a USB device is connected to the system and successfully detected by the USB subsystem. The event provides basic information about the newly connected device.
     // @param device: USB information of the plugged in device
-    // @example device: {"deviceName": "USB Flash Drive"}
+    // @example device: {"deviceName":"USB Flash Drive","deviceClass":"Mass Storage","deviceSubclass":"USB Flash","devicePath":"/dev/sda1"}
     virtual void OnDevicePluggedIn(const USBDevice &device) {};
 
     // @brief Device Plugged out notification
     // @text onDevicePluggedOut
     // @details Triggered when a USB device is disconnected from the system. The event provides basic information about the disconnected device.
     // @param device: USB information of the disconnected device
-    // @example device: {"deviceName": "USB Flash Drive"}
+    // @example device: {"deviceName": "USB Flash Drive", "deviceClass": "Mass Storage", "deviceSubclass": "USB Flash", "devicePath": "/dev/sda1"}
     virtual void OnDevicePluggedOut(const USBDevice &device) {};
 
     };
@@ -124,7 +124,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     // @param deviceName: device name
     // @example deviceName: "USB Flash Drive"
     // @param deviceInfo: Detailed device information
-    // @example deviceInfo: {"vendorId": 1234, "productId": 5678, "serialNumber": "1234567890"}
+    // @example deviceInfo: {"vendorId":1234,"productId":5678,"serialNumber":"1234567890","deviceStatus":"Connected","busSpeed":"USB3.0","manufacturer":"SanDisk","productName":"Cruzer Blade","supportedFeatures":"Mass Storage"}
     // @retval Core::ERROR_NONE: Device information retrieved successfully.
     virtual Core::hresult GetDeviceInfo(const string &deviceName /* @text deviceName */, USBDeviceInfo& deviceInfo /* @out */) const = 0;
 
