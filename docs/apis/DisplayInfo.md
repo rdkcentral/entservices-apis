@@ -228,7 +228,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "length": 2,
-        "data": "[0x00,0xFF,0xFF,0xFF]"
+        "data": [
+            "0x00,0xFF,0xFF,0xFF"
+        ]
     }
 }
 ```
@@ -864,7 +866,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "jsonrpc": 2.0,
     "id": 18,
     "result": [
-        "[HDR_10, HDR_10PLUS]"
+        "HDR_10, HDR_10PLUS"
     ]
 }
 ```
@@ -911,7 +913,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "jsonrpc": 2.0,
     "id": 19,
     "result": [
-        "[HDR_10, HDR_10PLUS]"
+        "HDR_10, HDR_10PLUS"
     ]
 }
 ```
@@ -1078,7 +1080,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": [
-        "[COLORIMETRY_BT709, COLORIMETRY_BT2020YCCBCBRC]"
+        "COLORIMETRY_BT709",
+        "COLORIMETRY_BT2020YCCBCBRC"
     ]
 }
 ```
@@ -1124,7 +1127,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "jsonrpc": 2.0,
     "id": 7,
     "result": {
-        "colour": "COLOURDEPTH_10_BIT"
+        "colour": "COLORDEPTH_10_BIT"
     }
 }
 ```
