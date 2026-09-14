@@ -427,7 +427,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 {
     "jsonrpc": 2.0,
     "id": 6,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -481,7 +483,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 {
     "jsonrpc": 2.0,
     "id": 7,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -527,7 +531,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -579,7 +585,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -631,7 +639,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -683,7 +693,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -735,7 +747,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": true
+    "result": {
+        "success": true
+    }
 }
 ```
 
