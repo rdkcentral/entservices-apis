@@ -148,7 +148,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 {
     "jsonrpc": 2.0,
     "id": 1,
-    "result": "{ migrationStatus: MIGRATION_STATUS_STARTED }"
+    "result": {
+        "migrationStatus": "STARTED"
+    }
 }
 ```
 
@@ -181,7 +183,7 @@ None
     "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
-        "status": "MIGRATION_STATUS_STARTED"
+        "status": "STARTED"
     }
 }
 ```
@@ -190,7 +192,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "MIGRATION_STATUS_STARTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "STARTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -200,7 +202,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 {
     "jsonrpc": 2.0,
     "id": 2,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
