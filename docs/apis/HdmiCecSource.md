@@ -169,7 +169,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": {
         "numberofdevices": 2,
         "deviceList": [
-            "[{ logicalAddress: 1, vendorID: \"123456\", osdName: \"Device1\" }, { logicalAddress: 2, vendorID: \"654321\", osdName: \"Device2\" }]"
+            {
+                "logicalAddress": 1,
+                "vendorID": 123456,
+                "osdName": "Device1"
+            },
+            {
+                "logicalAddress": 2,
+                "vendorID": 654321,
+                "osdName": "Device2"
+            }
         ],
         "success": true
     }
