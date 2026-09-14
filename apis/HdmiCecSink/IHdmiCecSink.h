@@ -243,7 +243,7 @@
             // @example ActiveRoute: "1.0.0.0"
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The active HDMI-CEC route was retrieved successfully.
+            // @retval Core::ERROR_NONE: The active HDMI-CEC route was retrieved successfully.
             virtual Core::hresult GetActiveRoute(bool &available /* @out */, uint8_t &length /* @out */, IHdmiCecSinkActivePathIterator*& pathList /* @out */, string &ActiveRoute /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the status of the current active source
@@ -362,7 +362,7 @@
             // @text sendGetAudioStatusMessage
             // @details Sends a <Give Audio Status> HDMI-CEC message to the connected audio device to query its current mute status and volume level. The response is delivered via the reportAudioStatusEvent notification.
             // @param successResult: Is the operation successful or not
-            // @example successResult: { success: true }
+            // @example successResult: { "success": true }
             // @retval Core::ERROR_NONE The audio status request message was sent successfully.
             virtual Core::hresult SendGetAudioStatusMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
