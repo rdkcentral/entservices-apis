@@ -50,7 +50,7 @@ namespace Exchange {
             // @text onValueChanged
             // @details Triggered when the value of a key in the specified namespace changes.
             // @param scope: must be device or account
-            // @example scope: DEVICE
+            // @example scope: "device"
             // @param key: key 
             // @example key: "language"
             // @param ns: name space
@@ -67,7 +67,7 @@ namespace Exchange {
         // @text setValue
         // @details Creates or updates a key-value pair within the specified scope and namespace. A time-to-live (TTL) value may be supplied to control automatic expiration of the stored entry.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space 
         // @example ns: "application"
         // @param key: key 
@@ -85,7 +85,7 @@ namespace Exchange {
         // @text getValue
         // @details Retrieves the value associated with the specified key together with its remaining TTL information.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param key: key 
@@ -103,13 +103,13 @@ namespace Exchange {
         // @text deleteKey
         // @details Removes the specified key and its associated value from the given namespace and scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param key: key
         // @example key: "language"
         // @param success: Indicates whether the operation was successful
-        // @example success: true
+        // @example success: { "success": true }        
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult DeleteKey(const ScopeType scope, const string& ns /* @text:namespace */, const string& key, Success& success /* @out */) = 0;
 
@@ -117,11 +117,11 @@ namespace Exchange {
         // @text deleteNamespace
         // @details Removes the specified namespace and all associated key-value pairs contained within it.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param success: Indicates whether the operation was successful
-        // @example success: true
+        // @example success: { "success": true }        
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult DeleteNamespace(const ScopeType scope, const string& ns /* @text:namespace */, Success& success /* @out */) = 0;
     };
@@ -145,7 +145,7 @@ namespace Exchange {
         // @text getKeys
         // @details Retrieves the list of all keys currently stored within the specified namespace and scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param keys: keys list
@@ -159,7 +159,7 @@ namespace Exchange {
         // @text getNamespaces
         // @details Returns the namespaces that are stored in the specified scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param namespaces: namespaces list
         // @example namespaces: ["application", "settings"]
         // @param success: Indicates whether the operation was successful
@@ -171,7 +171,7 @@ namespace Exchange {
         // @text getStorageSizes
         // @details Returns the size occupied by each namespace in the specified scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param storageList: list of namespaces and their sizes
         // @example storageList: [{ "ns":"application", "size":1024 }]
         // @param success: Indicates whether the operation was successful
@@ -195,7 +195,7 @@ namespace Exchange {
         // @text setNamespaceStorageLimit
         // @details Sets the storage limit for the specified namespace in the given scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param storageLimit: size
@@ -209,7 +209,7 @@ namespace Exchange {
         // @text getNamespaceStorageLimit
         // @details Returns the storage limit for the specified namespace in the given scope.
         // @param scope: must be device or account
-        // @example scope: DEVICE
+        // @example scope: "device"
         // @param ns: name space
         // @example ns: "application"
         // @param storageLimit: Size in bytes
