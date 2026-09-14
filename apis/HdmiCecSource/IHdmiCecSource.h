@@ -164,7 +164,7 @@ namespace WPEFramework
             // @text performOTPAction
             // @details Triggers the One-Touch Play (OTP) action on the HDMI CEC source device
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult PerformOTPAction(HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -176,7 +176,7 @@ namespace WPEFramework
             // @param keyCode: Key code of the key press event
             // @example keyCode: 123
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -184,7 +184,7 @@ namespace WPEFramework
             // @text sendStandbyMessage
             // @details Transmits a standby request to all devices on the CEC network
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SendStandbyMessage(HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -194,7 +194,7 @@ namespace WPEFramework
             // @param enabled: Is the HDMI CEC source enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -204,7 +204,7 @@ namespace WPEFramework
             // @param name: OSD name of the HDMI CEC source
             // @example name: "My CEC Source"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetOSDName(const string &name , HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -214,7 +214,7 @@ namespace WPEFramework
             // @param enabled: Is the OTP enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetOTPEnabled(const bool &enabled , HdmiCecSourceSuccess &success /* @out */) = 0;
 
@@ -224,7 +224,7 @@ namespace WPEFramework
             // @param vendorid: Vendor ID of the HDMI CEC source
             // @example vendorid: "123456"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult SetVendorId(const string &vendorid , HdmiCecSourceSuccess &success /* @out */) = 0;
 
