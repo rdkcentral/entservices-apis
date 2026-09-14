@@ -95,9 +95,9 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @text onDeviceUnMounted
         // @details Triggered when a USB mass storage device is successfully unmounted by the system. The event provides information about the device and its previously mounted partitions.
         // @param deviceInfo: name and device path of the unmounted device.
-        // @example deviceInfo: {"deviceName": "USB Flash Drive"}
+        // @example deviceInfo: {"deviceName":"USB Flash Drive","devicePath":"/dev/sda1"}
         // @param mountPoints: List of mountpoints information for the device unmounted.
-        // @example mountPoints: [{"mountPath": "/media/usb0"}]
+        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"}]
         virtual void OnDeviceUnmounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
     };
 
@@ -106,7 +106,6 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @json:omit
     virtual Core::hresult Unregister(Exchange::IUSBMassStorage::INotification *notification) = 0;
 
-    /** Get list of devices that are currently mounted in the system */
     // @text getDeviceList
     // @brief Get list of devices that are currently mounted in the system
     // @details Retrieves a list of USB mass storage devices currently mounted in the system. Each entry contains basic device information such as device name and device path.
@@ -122,7 +121,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @param deviceName: Name of the device for which mount points are to be retrieved
     // @example deviceName: "USB Flash Drive"
     // @param mountPoints: List of mountpoints information for a given device.
-    // @example mountPoints: [{"mountPath": "/media/usb0"}]
+    // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"
     // @retval Core::ERROR_NONE: Mount point information retrieved successfully.
     virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
