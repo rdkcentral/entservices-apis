@@ -143,12 +143,12 @@ namespace WPEFramework
             // @brief Gets the OTP enabled status of the HDMI CEC source
             // @text getOTPEnabled
             // @details Retrieves whether One-Touch Play (OTP) is enabled for the HDMI CEC source
-            // @param otpEnabled: Is the OTP enabled or not
-            // @example otpEnabled: true
+            // @param enabled: Is the OTP enabled or not
+            // @example enabled: true
             // @param success: Is the operation successful or not
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
-            virtual Core::hresult GetOTPEnabled(bool &otpEnabled /* @out */, bool &success /* @out */) = 0;
+            virtual Core::hresult GetOTPEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the vendor ID of the HDMI CEC source
             // @text getVendorId
