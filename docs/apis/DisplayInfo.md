@@ -866,7 +866,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "jsonrpc": 2.0,
     "id": 18,
     "result": [
-        "HDR_10, HDR_10PLUS"
+        "HDR_10",
+        "HDR_10PLUS"
     ]
 }
 ```
@@ -913,7 +914,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
     "jsonrpc": 2.0,
     "id": 19,
     "result": [
-        "HDR_10, HDR_10PLUS"
+        "HDR_10",
+        "HDR_10PLUS"
     ]
 }
 ```
