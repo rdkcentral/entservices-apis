@@ -99,10 +99,10 @@ namespace WPEFramework
                 // @example clientMac: "00:1A:2B:3C:4D:5E"
                 // @param playerState: Current state of the player (e.g., INITIATED | INPROGRESS | PLAYING | STOPPED/IDLE(Default State).)
                 // @example playerState: "PLAYING"
+                // @param reasonCode: Reason code for the player state update
+                // @example reasonCode: "MIRACAST_CONNECTED"
                 // @param reasonDescription: Reason for the player state update
                 // @example reasonDescription: "SUCCESS"
-                // @param reasonCode: Reason code for the player state update
-                // @example reasonCode: "200"
                 virtual void OnStateChange(const string &clientName /* @text name */, const string &clientMac /* @text mac */, const State playerState /* @text state */, const string &reasonCode /* @text reason_code */, const ReasonCode reasonDescription /* @text reason */) {};
             };
 
@@ -131,9 +131,9 @@ namespace WPEFramework
             // @param clientName: Name of the client device
             // @example clientName: "Miracast Source Device"
             // @param reasonCode: Reason code for the player stop request
-            // @example reasonCode: 200
+            // @example reasonCode: "MIRACAST_ERROR"
             // @param result: Result of the stop request
-            // @example result: { success: true }
+            // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult StopRequest(const string &clientMac /* @text mac */, const string &clientName /* @text name */, const int reasonCode /* @text reason_code */, Result &result /* @out */) = 0;
 
