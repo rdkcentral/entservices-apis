@@ -158,7 +158,7 @@ namespace Exchange {
         // @brief Video output port on the STB used for connection to TV
         // @details Retrieves the video output port on the STB used for connection to TV.
         // @param name: Video output port name
-        // @example name: HDMI0
+        // @example name: "HDMI0"
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult PortName (string& name /* @out */) const = 0;
 
