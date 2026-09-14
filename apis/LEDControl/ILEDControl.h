@@ -57,7 +57,7 @@ namespace WPEFramework
             // @brief Returns the list of LED states that are actually supported by the platform at runtime.
             // @details Returns the list of LED states that are actually supported by the platform at runtime. Possible values include `NONE`, `ACTIVE`, `STANDBY`, `WPS_CONNECTING`, `WPS_CONNECTED`, `WPS_ERROR`, `FACTORY_RESET`, `USB_UPGRADE` and `DOWNLOAD_ERROR`.
             // @param supportedLEDStates: string [] of supported LED states. e.g. "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
-            // @example supportedLEDStates: "['ACTIVE', 'STANDBY', 'WPS_CONNECTING', 'WPS_CONNECTED', 'WPS_ERROR', 'FACTORY_RESET', 'USB_UPGRADE', 'DOWNLOAD_ERROR']"
+            // @example supportedLEDStates: ["ACTIVE","STANDBY","WPS_CONNECTING","WPS_CONNECTED","WPS_ERROR","FACTORY_RESET","USB_UPGRADE","DOWNLOAD_ERROR"]
             // @param success: boolean indicating whether the operation was successful
             // @example success: true
             // @retval Core::ERROR_NONE: Indicates success
