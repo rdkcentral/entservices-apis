@@ -137,7 +137,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
         "available": true,
         "length": 2,
         "pathList": [
-            "[{logicalAddress: 4, physicalAddress: \"1.0.0.0\"}]"
+            {
+                "logicalAddress": 4,
+                "physicalAddress": "1.0.0.0"
+            }
         ],
         "ActiveRoute": "1.0.0.0",
         "success": true
@@ -316,7 +319,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "result": {
         "numberofdevices": 2,
         "deviceList": [
-            "[{logicalAddress: 4, physicalAddress: \"1.0.0.0\", deviceType: \"Playback Device\", cecVersion: \"1.4\", osdName: \"STB\", vendorID: \"0x0000\", powerStatus: \"On\", port: \"HDMI0\"}]"
+            {
+                "logicalAddress": 4,
+                "physicalAddress": "1.0.0.0",
+                "deviceType": "Playback Device",
+                "cecVersion": 1.4,
+                "osdName": "STB",
+                "vendorID": "0x0000",
+                "powerStatus": "On",
+                "port": "HDMI0"
+            }
         ],
         "success": true
     }
@@ -565,7 +577,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 {
     "jsonrpc": 2.0,
     "id": 8,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -611,7 +625,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 {
     "jsonrpc": 2.0,
     "id": 9,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -657,7 +673,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 {
     "jsonrpc": 2.0,
     "id": 10,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -703,7 +721,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 {
     "jsonrpc": 2.0,
     "id": 11,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -749,7 +769,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 {
     "jsonrpc": 2.0,
     "id": 12,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -803,7 +825,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 {
     "jsonrpc": 2.0,
     "id": 13,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -849,7 +873,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 {
     "jsonrpc": 2.0,
     "id": 14,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -903,7 +929,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 {
     "jsonrpc": 2.0,
     "id": 15,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -955,7 +983,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 {
     "jsonrpc": 2.0,
     "id": 16,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1007,7 +1037,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 {
     "jsonrpc": 2.0,
     "id": 17,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1053,7 +1085,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 {
     "jsonrpc": 2.0,
     "id": 18,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1105,7 +1139,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 {
     "jsonrpc": 2.0,
     "id": 19,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1163,7 +1199,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 {
     "jsonrpc": 2.0,
     "id": 20,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1215,7 +1253,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 {
     "jsonrpc": 2.0,
     "id": 21,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1267,7 +1307,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 {
     "jsonrpc": 2.0,
     "id": 22,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1321,7 +1363,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 {
     "jsonrpc": 2.0,
     "id": 23,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1373,7 +1417,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 {
     "jsonrpc": 2.0,
     "id": 24,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
@@ -1425,7 +1471,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 {
     "jsonrpc": 2.0,
     "id": 25,
-    "result": "{ success: true }"
+    "result": {
+        "success": true
+    }
 }
 ```
 
