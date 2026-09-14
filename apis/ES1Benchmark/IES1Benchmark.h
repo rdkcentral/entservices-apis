@@ -66,32 +66,71 @@ namespace Exchange {
             Level2Data data  /* @brief Level-2 nested object */;
         };
 
-        // @text echostring
-        virtual uint32_t EchoString(const string& value /* @in */, string& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text setstring
+        virtual uint32_t SetString(const string& value /* @in @restrict:0..4M */) = 0;
 
-        // @text echoarray
-        virtual uint32_t EchoArray(const std::vector<uint8_t>& values /* @in @restrict:0..256K */, std::vector<uint8_t>& echo /* @out @restrict:0..256K */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text getstring
+        virtual uint32_t GetString(const uint32_t size /* @in @restrict:0..4M */, string& value /* @out @restrict:0..4M */) = 0;
 
-        // @text echomixedarray
-        virtual uint32_t EchoMixedArray(const std::vector<MixedElement>& elements /* @in @restrict:0..4228 */, std::vector<MixedElement>& echo /* @out @restrict:0..4228 */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text setarray
+        virtual uint32_t SetArray(const std::vector<uint8_t>& value /* @in @restrict:0..256K */) = 0;
 
-        // @text echonestedobjects
-        virtual uint32_t EchoNestedObjects(const std::vector<NestedObject>& objects /* @in @restrict:0..1736 */, std::vector<NestedObject>& echo /* @out @restrict:0..1736 */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text getarray
+        virtual uint32_t GetArray(const uint32_t size /* @in @restrict:0..256K */, std::vector<uint8_t>& value /* @out @restrict:0..256K */) = 0;
 
-        // @text echoint32
-        virtual uint32_t EchoUint32(const uint32_t value /* @in */, uint32_t& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text setmixedarray
+        virtual uint32_t SetMixedArray(const std::vector<MixedElement>& value /* @in @restrict:0..4228 */) = 0;
 
-        // @text echoint64
-        virtual uint32_t EchoUint64(const uint64_t value /* @in */, uint64_t& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text getmixedarray
+        virtual uint32_t GetMixedArray(const uint32_t count /* @in @restrict:0..4228 */, std::vector<MixedElement>& value /* @out @restrict:0..4228 */) = 0;
 
-        // @text echobool
-        virtual uint32_t EchoBool(const bool value /* @in */, bool& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text setnestedobjects
+        virtual uint32_t SetNestedObjects(const std::vector<NestedObject>& value /* @in @restrict:0..1736 */) = 0;
 
-        // @text echofloat
-        virtual uint32_t EchoFloat(const float value /* @in */, float& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text getnestedobjects
+        virtual uint32_t GetNestedObjects(const uint32_t count /* @in @restrict:0..1736 */, std::vector<NestedObject>& value /* @out @restrict:0..1736 */) = 0;
 
-        // @text echodouble
-        virtual uint32_t EchoDouble(const double value /* @in */, double& echo /* @out */, uint64_t& ts2 /* @out */, uint64_t& ts3 /* @out */) = 0;
+        // @text setuint32
+        virtual uint32_t SetUint32(const uint32_t value /* @in */) = 0;
+
+        // @text getuint32
+        virtual uint32_t GetUint32(uint32_t& value /* @out */) = 0;
+
+        // @text setuint64
+        virtual uint32_t SetUint64(const uint64_t value /* @in */) = 0;
+
+        // @text getuint64
+        virtual uint32_t GetUint64(uint64_t& value /* @out */) = 0;
+
+        // @text setbool
+        virtual uint32_t SetBool(const bool value /* @in */) = 0;
+
+        // @text getbool
+        virtual uint32_t GetBool(bool& value /* @out */) = 0;
+
+        // @text setfloat
+        virtual uint32_t SetFloat(const float value /* @in */) = 0;
+
+        // @text getfloat
+        virtual uint32_t GetFloat(float& value /* @out */) = 0;
+
+        // @text setdouble
+        virtual uint32_t SetDouble(const double value /* @in */) = 0;
+
+        // @text getdouble
+        virtual uint32_t GetDouble(double& value /* @out */) = 0;
+
+        // @text measurecopycost
+        virtual uint32_t MeasureCopyCost(const uint32_t size /* @in @restrict:0..256K */, uint64_t& us /* @out */) = 0;
+
+        // @text measurestringresizecost
+        virtual uint32_t MeasureStringResizeCost(const uint32_t size /* @in @restrict:0..4M */, uint64_t& us /* @out */) = 0;
+
+        // @text measuremixedassigncost
+        virtual uint32_t MeasureMixedAssignCost(const uint32_t count /* @in @restrict:0..4228 */, uint64_t& us /* @out */) = 0;
+
+        // @text measurenestedassigncost
+        virtual uint32_t MeasureNestedAssignCost(const uint32_t count /* @in @restrict:0..1736 */, uint64_t& us /* @out */) = 0;
     };
 
 } // namespace Exchange
