@@ -554,7 +554,6 @@ None
 | result.configMetadata.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
 | result.configMetadata.fireboltVersion | string |  |
 | result.configMetadata.enableDebugger | bool |  |
-| result.configMetadata.unpackedPath | string |  |
 
 ### Examples
 
@@ -611,8 +610,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
         "capabilities": "",
         "ralfPkgPath": "",
         "fireboltVersion": "",
-        "enableDebugger": true,
-        "unpackedPath": ""
+        "enableDebugger": true
     }
 }
 ```
@@ -660,7 +658,6 @@ None
 | result.config.ralfPkgPath | string | Filesystem path containing metadata information for RALF packages |
 | result.config.fireboltVersion | string |  |
 | result.config.enableDebugger | bool |  |
-| result.config.unpackedPath | string |  |
 
 ### Examples
 
@@ -719,8 +716,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
             "capabilities": "",
             "ralfPkgPath": "",
             "fireboltVersion": "",
-            "enableDebugger": true,
-            "unpackedPath": ""
+            "enableDebugger": true
         }
     }
 }
