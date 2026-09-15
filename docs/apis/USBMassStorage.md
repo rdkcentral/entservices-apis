@@ -164,7 +164,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": [
-        "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
+        {
+            "partitionName": "sda1",
+            "mountFlags": "READ_WRITE",
+            "mountPath": "/media/usb0",
+            "fileSystem": "EXT4"
+        }
     ]
 }
 ```
@@ -274,7 +279,12 @@ Triggered when a USB mass storage device is successfully mounted by the system.
             "devicePath": "/dev/sda1"
         },
         "mountPoints": [
-            "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
+            {
+                "partitionName": "sda1",
+                "mountFlags": "READ_WRITE",
+                "mountPath": "/media/usb0",
+                "fileSystem": "EXT4"
+            }
         ]
     }
 }
@@ -311,7 +321,12 @@ Triggered when a USB mass storage device is successfully unmounted by the system
             "devicePath": "/dev/sda1"
         },
         "mountPoints": [
-            "[{\"partitionName\":\"sda1\",\"mountFlags\":\"rw\",\"mountPath\":\"/media/usb0\",\"fileSystem\":\"ext4"
+            {
+                "partitionName": "sda1",
+                "mountFlags": "READ_WRITE",
+                "mountPath": "/media/usb0",
+                "fileSystem": "EXT4"
+            }
         ]
     }
 }
