@@ -249,8 +249,8 @@ typedef enum : uint8_t {
 // CBCS & CENC3.0 pattern is a number of encrypted blocks followed a number of clear
 // blocks after which the pattern repeats.
 typedef struct {
-    uint32_t clear_blocks;
     uint32_t encrypted_blocks;
+    uint32_t clear_blocks;
 } EncryptionPattern;
 
 typedef struct {
@@ -371,6 +371,7 @@ public:
         uint8_t**                outData,         // Outgoing decrypted data
         uint32_t*                outDataLength,   // Outgoing decrypted data length
         const SampleInfo*        sampleInfo,      // Information required to decrypt Sample
+        const uint16_t           sampleCount,     // Number of samples to decrypt
         const IStreamProperties* properties) {    // Stream Properties
 
 PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
