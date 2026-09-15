@@ -121,7 +121,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @param deviceName: Name of the device for which mount points are to be retrieved
     // @example deviceName: "USB Flash Drive"
     // @param mountPoints: List of mountpoints information for a given device.
-    // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"
+    // @example mountPoints: [{"partitionName":"sda1","mountFlags":"READ_WRITE","mountPath":"/media/usb0","fileSystem":"EXT4"}]
     // @retval Core::ERROR_NONE: Mount point information retrieved successfully.
     virtual Core::hresult GetMountPoints(const string &deviceName , IUSBStorageMountInfoIterator*& mountPoints /* @out */ ) const = 0;
 
