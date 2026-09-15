@@ -116,7 +116,7 @@ namespace WPEFramework
             // @param status: Is the active source active or not
             // @example status: true
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetActiveSourceStatus(bool &status /* @out */, bool &success /* @out */) = 0;
 
@@ -126,7 +126,7 @@ namespace WPEFramework
             // @param enabled: Is the HDMI CEC source enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
@@ -136,7 +136,7 @@ namespace WPEFramework
             // @param name: OSD name of the HDMI CEC source
             // @example name: "My CEC Source"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetOSDName(string &name /* @out */, bool &success /* @out */) = 0;
 
@@ -146,7 +146,7 @@ namespace WPEFramework
             // @param enabled: Is the OTP enabled or not
             // @example enabled: true
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetOTPEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
@@ -156,7 +156,7 @@ namespace WPEFramework
             // @param vendorid: ID of the HDMI CEC source
             // @example vendorid: "123456"
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetVendorId(string &vendorid /* @out */, bool &success /* @out */) = 0;
 
@@ -234,9 +234,9 @@ namespace WPEFramework
             // @param numberofdevices: Number of devices connected to the HDMI CEC source
             // @example numberofdevices: 2
             // @param deviceList: List of devices connected to the HDMI CEC source
-             // @example deviceList: [{ "logicalAddress": 1, "vendorID": "123456", "osdName": "Device1" }, { "logicalAddress": 2, "vendorID": "654321", "osdName": "Device2" }]
+            // @example deviceList: [{ "logicalAddress": 1, "vendorID": "123456", "osdName": "Device1" }, { "logicalAddress": 2, "vendorID": "654321", "osdName": "Device2" }]
             // @param success: Is the operation successful or not
-            // @example success: true
+            // @example success: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
             virtual Core::hresult GetDeviceList(uint32_t &numberofdevices /* @out */, IHdmiCecSourceDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
         };
