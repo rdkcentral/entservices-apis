@@ -55,8 +55,8 @@ namespace Exchange {
         // @example epochTimestamp: 1719824400
         // @example uptimeTimestamp: 3600
         // @example appId: "com.comcast.xr11"
-        // @example eventPayload: '{"bitrate":5000,"codec":"h264"}'
-        // @example additionalContext: '{"networkType":"ethernet"}'
+        // @example eventPayload: "{"bitrate":5000,"codec":"h264"}"
+        // @example additionalContext: {"networkType":"ethernet"}
         // @retval Core::ERROR_NONE: Event was accepted and successfully queued for processing by the Analytics service.
         virtual Core::hresult SendEvent(const string& eventName,
                                    const string& eventVersion,
