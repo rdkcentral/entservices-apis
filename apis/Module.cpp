@@ -20,3 +20,24 @@
 #include "Module.h"
 
 MODULE_NAME_DECLARATION(BUILD_REFERENCE)
+
+#include "UnifiedCASManagement/IUnifiedCASManagement.h"
+
+// Enum conversion tables for COM-RPC serialization
+ENUM_CONVERSION_BEGIN(WPEFramework::Exchange::IUnifiedCASManagement::TuneMode)
+    { WPEFramework::Exchange::IUnifiedCASManagement::TuneMode::MODE_NONE, _TXT("MODE_NONE") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::TuneMode::MODE_LIVE, _TXT("MODE_LIVE") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::TuneMode::MODE_RECORD, _TXT("MODE_RECORD") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::TuneMode::MODE_PLAYBACK, _TXT("MODE_PLAYBACK") }
+ENUM_CONVERSION_END(WPEFramework::Exchange::IUnifiedCASManagement::TuneMode)
+
+ENUM_CONVERSION_BEGIN(WPEFramework::Exchange::IUnifiedCASManagement::ManagementType)
+    { WPEFramework::Exchange::IUnifiedCASManagement::ManagementType::MANAGE_FULL, _TXT("MANAGE_FULL") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::ManagementType::MANAGE_NO_PSI, _TXT("MANAGE_NO_PSI") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::ManagementType::MANAGE_NO_TUNER, _TXT("MANAGE_NO_TUNER") }
+ENUM_CONVERSION_END(WPEFramework::Exchange::IUnifiedCASManagement::ManagementType)
+
+ENUM_CONVERSION_BEGIN(WPEFramework::Exchange::IUnifiedCASManagement::DataSource)
+    { WPEFramework::Exchange::IUnifiedCASManagement::DataSource::PUBLIC, _TXT("PUBLIC") },
+    { WPEFramework::Exchange::IUnifiedCASManagement::DataSource::PRIVATE, _TXT("PRIVATE") }
+ENUM_CONVERSION_END(WPEFramework::Exchange::IUnifiedCASManagement::DataSource)
