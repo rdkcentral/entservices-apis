@@ -3210,15 +3210,8 @@ None
 | params | object |  |
 | params.powerState | string | The power state (must be one of the following: STANDBY, DEEP_SLEEP, LIGHT_SLEEP, ON) |
 | params.wakeupSources | array | Array of Key value pair with wake up sources and its configurations |
-| params.wakeupSources[#].WAKEUPSRC_VOICE | bool | Voice Wake up |
-| params.wakeupSources[#].WAKEUPSRC_PRESENCE_DETECTION | bool | Presence detection wake up |
-| params.wakeupSources[#].WAKEUPSRC_BLUETOOTH | bool | Bluetooth Wakeup |
-| params.wakeupSources[#].WAKEUPSRC_WIFI | bool | WiFi Wake up |
-| params.wakeupSources[#].WAKEUPSRC_IR | bool | IR Remote Wake up |
-| params.wakeupSources[#].WAKEUPSRC_POWER_KEY | bool | Power Button Wake up - GPIO |
-| params.wakeupSources[#].WAKEUPSRC_CEC | bool | HDMI CEC command Wake up |
-| params.wakeupSources[#].WAKEUPSRC_LAN | bool | LAN wake up |
-| params.wakeupSources[#].WAKEUPSRC_TIMER | bool | Timer Wake up |
+| params.wakeupSources[#].wakeupSource | string | wake up sources and its configurations. Possible values: WAKEUPSRC_UNKNOWN, WAKEUPSRC_VOICE, WAKEUPSRC_PRESENCE_DETECTION, WAKEUPSRC_BLUETOOTH, WAKEUPSRC_WIFI, WAKEUPSRC_IR, WAKEUPSRC_POWER_KEY, WAKEUPSRC_TIMER, WAKEUPSRC_CEC, WAKEUPSRC_LAN, WAKEUPSRC_RF4CE |
+| params.wakeupSources[#].enabled | bool | Whether the wakeup src config is true or false |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -3239,15 +3232,8 @@ None
         "powerState": "",
         "wakeupSources": [
             {
-                "WAKEUPSRC_VOICE": true,
-                "WAKEUPSRC_PRESENCE_DETECTION": true,
-                "WAKEUPSRC_BLUETOOTH": true,
-                "WAKEUPSRC_WIFI": true,
-                "WAKEUPSRC_IR": true,
-                "WAKEUPSRC_POWER_KEY": true,
-                "WAKEUPSRC_CEC": true,
-                "WAKEUPSRC_LAN": true,
-                "WAKEUPSRC_TIMER": true
+                "wakeupSource": "WAKEUPSRC_UNKNOWN",
+                "enabled": true
             }
         ]
     }
@@ -3258,7 +3244,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"WAKEUPSRC_VOICE": true, "WAKEUPSRC_PRESENCE_DETECTION": true, "WAKEUPSRC_BLUETOOTH": true, "WAKEUPSRC_WIFI": true, "WAKEUPSRC_IR": true, "WAKEUPSRC_POWER_KEY": true, "WAKEUPSRC_CEC": true, "WAKEUPSRC_LAN": true, "WAKEUPSRC_TIMER": true}]}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 44, "method": "org.rdk.SystemServices.setWakeupSrcConfiguration", "params": {"powerState": "", "wakeupSources": [{"wakeupSource": "WAKEUPSRC_UNKNOWN", "enabled": true}]}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
