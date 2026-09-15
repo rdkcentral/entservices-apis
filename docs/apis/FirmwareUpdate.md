@@ -57,6 +57,7 @@ The following methods are provided by the IFirmwareUpdate Interface:
 | :-------- | :-------- |
 | [getUpdateState](#getUpdateState) | Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware  |
 | [setAutoReboot](#setAutoReboot) | Enable or disable the AutoReboot feature. |
+| [setFirmwareRebootDelay](#setFirmwareRebootDelay) | Delays the firmware reboot |
 | [updateFirmware](#updateFirmware) | Initiates a firmware update. |
 
 <a id="getUpdateState"></a>
@@ -164,6 +165,60 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+<a id="setFirmwareRebootDelay"></a>
+## *setFirmwareRebootDelay*
+
+Delays the firmware reboot
+
+### Events
+Event details will be updated soon.
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.delaySeconds | integer | Number |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | success |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.FirmwareUpdate.setFirmwareRebootDelay",
+    "params": {
+        "delaySeconds": 0
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FirmwareUpdate.setFirmwareRebootDelay", "params": {"delaySeconds": 0}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": {
+        "success": true
+    }
+}
+```
+
 <a id="updateFirmware"></a>
 ## *updateFirmware*
 
@@ -191,7 +246,7 @@ None
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "method": "org.rdk.FirmwareUpdate.updateFirmware",
     "params": {
         "firmwareFilepath": "",
@@ -204,7 +259,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "", "firmwareType": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.FirmwareUpdate.updateFirmware", "params": {"firmwareFilepath": "", "firmwareType": ""}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -213,7 +268,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "result": {
         "success": true
     }
@@ -248,7 +303,7 @@ This notification is raised between flashing started state and flashing succeede
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "method": "org.rdk.FirmwareUpdate.onFlashingStateChange",
     "params": {
         "percentageComplete": 0
@@ -273,7 +328,7 @@ Notifies firmware update state changes.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.FirmwareUpdate.onUpdateStateChange",
     "params": {
         "state": "VALIDATION_FAILED",
