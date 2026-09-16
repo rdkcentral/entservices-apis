@@ -141,7 +141,7 @@ namespace WPEFramework
             // @text onPowerModeChanged
             // @param currentState: Current Power State
             // @param newState: New Power State
-            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState) {};
+            virtual void OnPowerModeChanged(const PowerState currentState, const PowerState newState, const string& reason, const string &requestors) {};
         };
         virtual Core::hresult Register(IModeChangedNotification* notification ) = 0;
         virtual Core::hresult Unregister(const IModeChangedNotification* notification ) = 0;
@@ -183,6 +183,28 @@ namespace WPEFramework
          };
          virtual Core::hresult Register(IThermalModeChangedNotification* notification ) = 0;
          virtual Core::hresult Unregister(const IThermalModeChangedNotification* notification ) = 0;
+
+        // @event
+        struct EXTERNAL IPowerModeChangeAcknowledgementRequested : virtual public Core::IUnknown
+        {
+            enum { ID = ID_POWER_MANAGER_NOTIFICATION_MODE_CHANGE_ACK };
+            // @brief Power mode change acknowledgement requested event. Emitted once the power mode change
+            //        pre-change negotiation phase has finished, requesting all clients registered via
+            //        `AddPowerModeChangeAcknowledgementClient` to acknowledge (via `PowerModeChangeAcknowledgement`)
+            //        before the actual power mode change is applied.
+            // @text onPowerModeChangeAcknowledgementRequested
+            // @param currentState: Current Power State
+            // @param newState: Changing power state to this New Power State
+            // @param transactionId: transactionId to be used when invoking PowerModeChangeAcknowledgement API
+            // @param reason: Reason for the power state change, as provided in the triggering SetPowerState invocation
+            virtual void OnPowerModeChangeAcknowledgementRequested(const PowerState currentState, const PowerState newState, const int transactionId, const string &reason) {};
+        };
+        // @brief Register for Power Mode change acknowledgement requested event
+        virtual Core::hresult Register(IPowerModeChangeAcknowledgementRequested* notification ) = 0;
+        // @brief Unregister for Power Mode change acknowledgement requested event
+        //       IMPORTANT: If client is also engaged in power mode change acknowledgement operation (requested via AddPowerModeChangeAcknowledgementClient API),
+        //                  make sure to disengage (using RemovePowerModeChangeAcknowledgementClient API) before calling Unregister.
+        virtual Core::hresult Unregister(const IPowerModeChangeAcknowledgementRequested* notification ) = 0;
 
         /** Engage a client in power mode change operation. */
         // @text addPowerModePreChangeClient
@@ -325,7 +347,7 @@ namespace WPEFramework
         // @param clientId: Unique identifier for the client, as received in AddPowerModePreChangeClient
         // @param transactionId: transaction id as received in OnPowerModePreChange
         // @param delayPeriod: delay in seconds
-        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod ) = 0;
+        virtual Core::hresult DelayPowerModeChangeBy(const uint32_t clientId , const int transactionId , const int delayPeriod, const bool renegotiateAfterwards ) = 0;
 
         /** Get the Wakeup Time in seconds */
         // @text getTimeSinceWakeup
@@ -334,6 +356,66 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
+
+        /** Schedule a deep sleep wakeup at a specific time */
+        // @text scheduleDeepSleepWakeup
+        // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
+        //        The device will transition to POWER_STATE_STANDBY (ActiveStandby). Note: the requestor
+        //        info is not yet delivered via OnPowerModeChanged; that will be added under ONEM-42980.
+        // @param unixTime: Unix timestamp (seconds since epoch) when device should wake up
+        // @param requestorId: Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen)
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult ScheduleDeepSleepWakeup(const uint64_t unixTime, const string& requestorId) = 0;
+
+        /** cancel previously scheduled deep sleep wakeup */
+        // @text cancelScheduledDeepSleepWakeups
+        // @brief Cancel previously scheduled deep sleep wakeup
+        // @param unixTime: Unix timestamp (seconds since epoch) for the previously scheduled wake up. If '0', all schedules for given requestorId are removed (or all schedules if requestorId is empty as well)
+        // @param requestorId: Unique identifier of the client that scheduled that wakeup; if empty - all the schedules for given time are removed (or all schedules if unixTime is empty as well)
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult CancelScheduledDeepSleepWakeups(long unixTime, const string &requestorId);
+
+        /** Register a client for the power mode change acknowledgement phase. */
+        // @text addPowerModeChangeAcknowledgementClient
+        // @brief Register a client to participate in the power mode change acknowledgement phase.
+        //        Once the (existing) power mode pre-change negotiation phase finishes, an `OnPowerModeChangeAcknowledgementRequested`
+        //        event is emitted. Registered clients must then call `PowerModeChangeAcknowledgement` as soon as they are
+        //        prepared for the power mode change. Only when all registered clients have acknowledged will the
+        //        actual power mode change proceed.
+        //
+        //        IMPORTANT: ** IT'S A BUG IF CLIENT `Unregister` FROM `IPowerModeChangeAcknowledgementRequested` BEFORE DISENGAGING ITSELF **
+        //                   always make sure to call `RemovePowerModeChangeAcknowledgementClient` before calling `Unregister` from `IPowerModeChangeAcknowledgementRequested`.
+        //
+        // @param clientName: Name of the client
+        // @param acknowledgeClientId: Unique identifier for the client to be used while acknowledging the power mode change (`PowerModeChangeAcknowledgement`)
+        virtual Core::hresult AddPowerModeChangeAcknowledgementClient(const string& clientName , uint32_t& acknowledgeClientId /* @out */) = 0;
+
+        /** Disengage a client from the power mode change acknowledgement phase. */
+        // @text removePowerModeChangeAcknowledgementClient
+        // @brief Removes a registered client from participating in power mode change acknowledgements.
+        //        NOTE client will still continue to receive acknowledgement requested notifications.
+        // @param acknowledgeClientId: Unique identifier for the client. See `AddPowerModeChangeAcknowledgementClient`
+        virtual Core::hresult RemovePowerModeChangeAcknowledgementClient(const uint32_t acknowledgeClientId ) = 0;
+
+        /** Acknowledge readiness for a power mode change during the acknowledgement phase. */
+        // @text powerModeChangeAcknowledgement
+        // @brief Acknowledge readiness for the power mode change requested via `OnPowerModeChangeAcknowledgementRequested`.
+        //        Must be called by every client registered via `AddPowerModeChangeAcknowledgementClient`, as soon as
+        //        that client is prepared for the power mode change. Only when all registered clients have acknowledged
+        //        will the power mode change proceed.
+        // @param acknowledgeClientId: Unique identifier for the client, as received in AddPowerModeChangeAcknowledgementClient
+        // @param transactionId: transaction id as received in OnPowerModeChangeAcknowledgementRequested
+        virtual Core::hresult PowerModeChangeAcknowledgement(const uint32_t acknowledgeClientId , const int transactionId ) = 0;
+
+        /** Gets the most recent reboot reason. */
+        // @text getRebootReason
+        // @brief Get the most recent reboot reason string.
+        // @param reason: returns the most recent reboot reason
+        virtual Core::hresult GetRebootReason(std::string& reason /* out */);
     };
 
 } // namespace Exchange
