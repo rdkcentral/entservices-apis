@@ -60,7 +60,6 @@ The following methods are provided by the IVoiceControl Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [configureVoice](#configureVoice) | Configures the RDK's voice stack. Only the fields provided are applied; omitted fields are left unchanged. |
-| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message sent to the Voice Server |
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
@@ -136,106 +135,6 @@ None
 
 ```curl
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com/all", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "result": {
-        "success": true
-    }
-}
-```
-
-<a id="setVoiceInit"></a>
-## *setVoiceInit*
-
-> This method is excluded from JSON-RPC code generation (`@json:omit`) and is documented here by hand; it will not be regenerated or removed by the doc generator.
-
-Sets the application metadata in the INIT message sent to the Voice Server. `params` is forwarded to ctrlm unchanged as an opaque JSON object, since different partners send additional bespoke fields not enumerated below. A typed/decomposed interface would silently drop whichever fields aren't listed here, so this method intentionally takes the whole object as-is.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object | The voice init payload as a JSON object. Fields observed in practice, not an exhaustive list: |
-| params?.roles | array | <sup>(optional)</sup>The client roles |
-| params?.capabilities | array | <sup>(optional)</sup>The client capabilities |
-| params?.clientProfile | string | <sup>(optional)</sup>The client profile identifier |
-| params?.language | string | <sup>(optional)</sup>The client language |
-| params?.transmissionProtocol | string | <sup>(optional)</sup>The transmission protocol |
-| params?.downstreamProtocol | string | <sup>(optional)</sup>The downstream protocol |
-| params?.vrexFields | array | <sup>(optional)</sup>Voice server fields to request |
-| params?.id | object | <sup>(optional)</sup>The device/partner identity |
-| params?.id.type | string | <sup>(optional)</sup>The device type identifier |
-| params?.id.partner | string | <sup>(optional)</sup>The partner identifier |
-| params?.id.subType | string | <sup>(optional)</sup>The device sub-type/model identifier |
-| params?.id.jvAgent | string | <sup>(optional)</sup>The voice agent identifier |
-| params?.accessPayload | object | <sup>(optional)</sup>Opaque access/exclusion metadata |
-| params?.deviceSwVersion | string | <sup>(optional)</sup>The device software version |
-| params?.name | string | <sup>(optional)</sup>Client-supplied name field |
-| params?.proposition | string | <sup>(optional)</sup>The partner UI proposition |
-| params?.timeZone | string | <sup>(optional)</sup>The client timezone |
-| params?.experience | string | <sup>(optional)</sup>The partner experience identifier |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 0,
-    "method": "org.rdk.VoiceControl.setVoiceInit",
-    "params": {
-        "roles": [
-            "av",
-            "render"
-        ],
-        "capabilities": [
-            "WBW",
-            "STB_POWER",
-            "VOICE_OUT",
-            "DEVICE_LIGHT",
-            "GUI",
-            "CONTEXT",
-            "FIREBOLT"
-        ],
-        "clientProfile": "entos:rdk",
-        "language": "eng-USA",
-        "transmissionProtocol": "thisWebSocket",
-        "downstreamProtocol": "thisWebSocket",
-        "vrexFields": [
-            "executeResponse"
-        ],
-        "id": {
-            "type": "llama",
-            "subType": "SCXI11BEI",
-            "jvAgent": "xumo"
-        },
-        "deviceSwVersion": "REL-20035_20260727215203_P",
-        "proposition": "xumo",
-        "experience": "Flex-EOS"
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"roles": ["av", "render"], "capabilities": ["WBW", "STB_POWER", "VOICE_OUT", "DEVICE_LIGHT", "GUI", "CONTEXT", "FIREBOLT"], "clientProfile": "entos:rdk", "language": "eng-USA", "transmissionProtocol": "thisWebSocket", "downstreamProtocol": "thisWebSocket", "vrexFields": ["executeResponse"], "id": {"type": "llama", "subType": "SCXI11BEI", "jvAgent": "xumo"}, "deviceSwVersion": "REL-20035_20260727215203_P", "proposition": "xumo", "experience": "Flex-EOS"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
