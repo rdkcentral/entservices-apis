@@ -178,11 +178,11 @@ namespace WPEFramework {
 
             // @brief Initiates pairing a remote with the STB on the specified network.
             // @text startPairing
-            // @param netType(optional): The type of network to pair on. If omitted, backend default is used.
-            // @param timeout(optional): Pairing timeout in seconds. If omitted, backend default is used.
-            // @param screenBindEnable(optional): Whether screen bind pairing is enabled. If omitted, backend default is used.
-            // @param scanEnable(optional): Whether scan pairing is enabled. If omitted, backend default is used.
-            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend) e.g. "AA:BB:CC:DD:EE:FF"
+            // @param netType(optional): The type of network to pair on
+            // @param timeout(optional): Pairing timeout in seconds
+            // @param screenBindEnable(optional): Whether screen bind pairing is enabled
+            // @param scanEnable(optional): Whether scan pairing is enabled
+            // @param macAddressList(optional): List of MAC addresses to pair with e.g. ["AA:BB:CC:DD:EE:FF"]
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -191,8 +191,8 @@ namespace WPEFramework {
 
             // @brief Cancels pairing a remote with the STB on the specified network.
             // @text stopPairing
-            // @param screenBindDisable(optional): Whether screen bind pairing should be disabled. If omitted, backend default is used.
-            // @param scanDisable(optional): Whether scan pairing should be disabled. If omitted, backend default is used.
+            // @param screenBindDisable(optional): Whether screen bind pairing should be disabled
+            // @param scanDisable(optional): Whether scan pairing should be disabled
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -327,7 +327,7 @@ namespace WPEFramework {
             // @brief Unpairs all remotes from the STB
             // @text unpair
             // @param result: Whether the request succeeded
-            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. "AA:BB:CC:DD:EE:FF"
+            // @param macAddressList(optional): Optional list of MAC addresses to unpair (if empty, unpairs all remotes) e.g. ["AA:BB:CC:DD:EE:FF"]
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.

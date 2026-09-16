@@ -147,7 +147,7 @@ namespace WPEFramework {
             virtual Core::hresult ConfigureVoice(const Core::OptionalType<string>& urlAll, const Core::OptionalType<string>& urlPtt, const Core::OptionalType<string>& urlHf, const Core::OptionalType<string>& urlMicTap, const Core::OptionalType<bool>& enable, const Core::OptionalType<bool>& prv, const Core::OptionalType<bool>& wwFeedback, const Core::OptionalType<DeviceEnableConfig>& ptt, const Core::OptionalType<DeviceEnableConfig>& ff, const Core::OptionalType<DeviceEnableConfig>& mic, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @json:omit
-            // @brief Sets the application metadata in the INIT message sent to the Voice Server. Forwarded to ctrlm unchanged, since partners (Sky UK, Comcast/Xumo, ...) send bespoke fields not enumerated here. Known fields: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
+            // @brief Sets the application metadata in the INIT message sent to the Voice Server. The whole payload is forwarded unchanged, since different partners send bespoke fields not enumerated here. Known fields: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
             // @text setVoiceInit
             // @param payload: The voice init payload as a JSON object
             // @param result: Whether the request succeeded
