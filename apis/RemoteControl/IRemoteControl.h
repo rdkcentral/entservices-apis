@@ -213,7 +213,7 @@ namespace WPEFramework {
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
             // @param manufacturer: A part of the name of the manufacturer of the AV device e.g. "Sam"
             // @param success: Whether the request succeeded
-            // @param manufacturers: A list of manufacturer names e.g. "Samsung"
+            // @param manufacturers: A list of manufacturer names e.g. ["ACME"]
             // @retval ErrorCode::NONE: IRDB manufacturers retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB manufacturers.
@@ -222,10 +222,10 @@ namespace WPEFramework {
             // @brief Returns a list of model names based on the specified input parameters
             // @text getIRDBModels
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
-            // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
-            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
+            // @param manufacturer: The manufacturer name of the AV device e.g. "ACME"
+            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "ACM"
             // @param success: Whether the request succeeded
-            // @param models: A list of model names e.g. "AH5901068L"
+            // @param models: A list of model names e.g. ["AH5901068L"]
             // @retval ErrorCode::NONE: IRDB models retrieved successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IRDB models.
@@ -234,13 +234,13 @@ namespace WPEFramework {
             // @brief Returns a list of available IR codes for the TV and AVRs specified by the input parameters
             // @text getIRCodesByAutoLookup
             // @param netType: The type of network ex: 1
-            // @param tvManufacturer: The TV manufacturer for which codes are provided e.g. "Samsung"
-            // @param tvModel: The TV model for which codes are provided e.g. "UN65JU750"
-            // @param avrManufacturer: The AVR manufacturer for which codes are provided e.g. "Denon"
-            // @param avrModel: The AVR model for which codes are provided e.g. "AVR-S750H"
+            // @param tvManufacturer: The TV manufacturer for which codes are provided e.g. "ACME"
+            // @param tvModel: The TV model for which codes are provided e.g. "ACME-TV100"
+            // @param avrManufacturer: The AVR manufacturer for which codes are provided e.g. "ACME Audio"
+            // @param avrModel: The AVR model for which codes are provided e.g. "ACME-AVR100"
             // @param success: Whether the request succeeded
-            // @param tvCodes: A list of TV IR codes e.g. "1156"
-            // @param avrCodes: A list of AVR IR codes e.g. "R2467"
+            // @param tvCodes: A list of TV IR codes e.g. ["1156"]
+            // @param avrCodes: A list of AVR IR codes e.g. ["R2467"]
             // @retval ErrorCode::NONE: IR codes retrieved successfully by auto lookup.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by auto lookup.
@@ -249,10 +249,10 @@ namespace WPEFramework {
             // @brief Returns a list of IR codes for the AV device specified by the input parameters
             // @text getIRCodesByNames
             // @param avDevType: Whether the device is a video (TV) or audio (AMP) device
-            // @param manufacturer: The manufacturer name of the AV device e.g. "Samsung"
-            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "UN6"
+            // @param manufacturer: The manufacturer name of the AV device e.g. "ACME"
+            // @param model: A part (minimum of 3 characters) of the model name of the AV device e.g. "ACM"
             // @param success: Whether the request succeeded
-            // @param codes: A list of IR codes e.g. "6712"
+            // @param codes: A list of IR codes e.g. ["6712"]
             // @retval ErrorCode::NONE: IR codes retrieved successfully by names.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to retrieve IR codes by names.
@@ -340,7 +340,7 @@ namespace WPEFramework {
             // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
             // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
-            // @param sessionIdList: List of session IDs created for the firmware update(s) e.g. "12345-abc-def"
+            // @param sessionIdList: List of session IDs created for the firmware update(s) e.g. ["12345-abc-def"]
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
