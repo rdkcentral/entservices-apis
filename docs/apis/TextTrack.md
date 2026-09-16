@@ -18,6 +18,9 @@ A TextTrack module for Thunder framework.
   - [ITextTrackTtmlStyle](#ITextTrackTtmlStyle)
     - [Methods](#ITextTrackTtmlStyle-Methods)
     - [Notifications](#ITextTrackTtmlStyle-Notifications)
+  - [ITextTrackWebVttStyle](#ITextTrackWebVttStyle)
+    - [Methods](#ITextTrackWebVttStyle-Methods)
+    - [Notifications](#ITextTrackWebVttStyle-Notifications)
   - [ITextTrackCapabilities](#ITextTrackCapabilities)
     - [Methods](#ITextTrackCapabilities-Methods)
   - [ITextTrack](#ITextTrack)
@@ -35,6 +38,7 @@ The `TextTrack` module provides the following interface(s):
 
 - ITextTrackClosedCaptionsStyle
 - ITextTrackTtmlStyle
+- ITextTrackWebVttStyle
 - ITextTrackCapabilities
 - ITextTrack
 
@@ -1252,7 +1256,7 @@ Notify backgroundColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 42,
+    "id": 44,
     "method": "org.rdk.TextTrack.onBackgroundColorChanged",
     "params": {
         "color": ""
@@ -1276,7 +1280,7 @@ Notify backgroundOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 43,
+    "id": 45,
     "method": "org.rdk.TextTrack.onBackgroundOpacityChanged",
     "params": {
         "opacity": 0
@@ -1310,7 +1314,7 @@ The ClosedCaptionsStyle settings has changed. Call GetClosedCaptionsStyle() to g
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 44,
+    "id": 46,
     "method": "org.rdk.TextTrack.onClosedCaptionsStyleChanged",
     "params": {
         "fontFamily": "CONTENT_DEFAULT",
@@ -1343,7 +1347,7 @@ Notify fontColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 45,
+    "id": 47,
     "method": "org.rdk.TextTrack.onFontColorChanged",
     "params": {
         "color": ""
@@ -1367,7 +1371,7 @@ Notify fontEdge Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 46,
+    "id": 48,
     "method": "org.rdk.TextTrack.onFontEdgeChanged",
     "params": {
         "edge": "CONTENT_DEFAULT"
@@ -1391,7 +1395,7 @@ Notify fontEdgeColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 47,
+    "id": 49,
     "method": "org.rdk.TextTrack.onFontEdgeColorChanged",
     "params": {
         "color": ""
@@ -1415,7 +1419,7 @@ Notify fontFamily Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 48,
+    "id": 50,
     "method": "org.rdk.TextTrack.onFontFamilyChanged",
     "params": {
         "font": "CONTENT_DEFAULT"
@@ -1439,7 +1443,7 @@ Notify fontOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 49,
+    "id": 51,
     "method": "org.rdk.TextTrack.onFontOpacityChanged",
     "params": {
         "opacity": 0
@@ -1463,7 +1467,7 @@ Notify fontSize Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 50,
+    "id": 52,
     "method": "org.rdk.TextTrack.onFontSizeChanged",
     "params": {
         "size": "CONTENT_DEFAULT"
@@ -1487,7 +1491,7 @@ Notify windowColor Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 52,
+    "id": 55,
     "method": "org.rdk.TextTrack.onWindowColorChanged",
     "params": {
         "color": ""
@@ -1511,7 +1515,7 @@ Notify windowOpacity Changed
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 53,
+    "id": 56,
     "method": "org.rdk.TextTrack.onWindowOpacityChanged",
     "params": {
         "opacity": 0
@@ -1660,8 +1664,157 @@ The TTML Style override settings has changed.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 51,
+    "id": 53,
     "method": "org.rdk.TextTrack.onTtmlStyleOverridesChanged",
+    "params": {
+        "style": ""
+    }
+}
+```
+
+---
+
+<a id="ITextTrackWebVttStyle"></a>
+## ITextTrackWebVttStyle Interface
+
+<a id="ITextTrackWebVttStyle-Methods"></a>
+### Methods
+
+The following methods are provided by the ITextTrackWebVttStyle Interface:
+
+| Method | Description |
+| :-------- | :-------- |
+| [getWebVttStyleOverrides](#getWebVttStyleOverrides) | Gets the global WebVTT style overrides |
+| [setWebVttStyleOverrides](#setWebVttStyleOverrides) | Sets global WebVTT override style. |
+
+<a id="getWebVttStyleOverrides"></a>
+## *getWebVttStyleOverrides*
+
+Gets the global WebVTT style overrides
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.style | string | Will receive the style overrides |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 42,
+    "method": "org.rdk.TextTrack.getWebVttStyleOverrides"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 42, "method": "org.rdk.TextTrack.getWebVttStyleOverrides"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 42,
+    "result": {
+        "style": ""
+    }
+}
+```
+
+<a id="setWebVttStyleOverrides"></a>
+## *setWebVttStyleOverrides*
+
+The styles given here (as "attr:value;attr:value") will be applied last to WebVTT sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.style | string | Contains the chosen override for styles |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 43,
+    "method": "org.rdk.TextTrack.setWebVttStyleOverrides",
+    "params": {
+        "style": ""
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "method": "org.rdk.TextTrack.setWebVttStyleOverrides", "params": {"style": ""}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 43,
+    "result": null
+}
+```
+
+<a id="ITextTrackWebVttStyle-Notifications"></a>
+### Notifications
+
+Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
+
+The following events are provided by the ITextTrackWebVttStyle Interface:
+
+| Event | Description |
+| :-------- | :-------- |
+| [onWebVttStyleOverridesChanged](#onWebVttStyleOverridesChanged) | The WebVTT Style override settings has changed. |
+
+<a id="onWebVttStyleOverridesChanged"></a>
+## *onWebVttStyleOverridesChanged*
+
+The WebVTT Style override settings has changed.
+
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object |  |
+| params.style | string | Contains the chosen override for styles |
+
+### Examples
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 54,
+    "method": "org.rdk.TextTrack.onWebVttStyleOverridesChanged",
     "params": {
         "style": ""
     }

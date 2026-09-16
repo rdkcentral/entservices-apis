@@ -22,7 +22,7 @@
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
 
-#define ITEXTTRACK_VERSION 5
+#define ITEXTTRACK_VERSION 6
 
 namespace WPEFramework {
 namespace Exchange {
@@ -354,6 +354,55 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
      * @text getTtmlStyleOverrides
      */
     virtual Core::hresult GetTtmlStyleOverrides(string& style /* @out */) const = 0;
+};
+
+/*
+ * This is the COM-RPC interface for global WebVTT style overrides.
+ * Added in version 6
+ */
+/* @json 1.0.0 @text:keep */
+struct EXTERNAL ITextTrackWebVttStyle : virtual public Core::IUnknown {
+    enum {
+        ID = ID_TEXT_TRACK_WEBVTT_STYLE
+    };
+
+    /* @event */
+    struct EXTERNAL INotification : virtual public Core::IUnknown {
+        enum {
+            ID = ID_TEXT_TRACK_WEBVTT_STYLE_NOTIFICATION
+        };
+
+        /**
+         * @brief The WebVTT Style override settings has changed.
+         * @text onWebVttStyleOverridesChanged
+         */
+        virtual void OnWebVttStyleOverridesChanged(const string &style) {};
+    };
+
+    /** Register notification interface.
+     * The callback will be called with the current settings.
+     */
+    virtual Core::hresult Register(INotification *notification) = 0;
+    /** Unregister notification interface */
+    virtual Core::hresult Unregister(const INotification *notification) = 0;
+
+    /**
+     * @brief Sets global WebVTT override style.
+     * @details The styles given here (as "attr:value;attr:value") will be applied last to WebVTT sessions, meaning
+     * that they will override styles given in the content.
+     * The value will be persisted in the system.
+     * The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style.
+     * @param style Contains the chosen override for styles
+     * @text setWebVttStyleOverrides
+     */
+    virtual Core::hresult SetWebVttStyleOverrides(const string& style) = 0;
+
+    /**
+     * @brief Gets the global WebVTT style overrides
+     * @param style Will receive the style overrides
+     * @text getWebVttStyleOverrides
+     */
+    virtual Core::hresult GetWebVttStyleOverrides(string& style /* @out */) const = 0;
 };
 
 /*
@@ -730,6 +779,19 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @retval Core::ERROR_NONE on success
      */
     virtual Core::hresult GetClosedCaptionsStyleAppliesToList(ISubtitleFormatIterator *&iterator /* @out */) const { return Core::ERROR_NOT_SUPPORTED; }
+
+    /**
+     * @brief Applies a custom WebVTT styling with overrides that is applied on all elements
+     * @details When a custom styling override is applied on a specific WebVTT session, the styling carried on the data for the specified element is
+     * overridden.
+     * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
+     * Styles not mentioned in the list will not be affected.
+     * Added in version 6
+     * @param sessionId Is the session as returned in the ITextTrack interface.
+     * @param style Contains the list of styles to be overridden
+     * @text applyCustomWebVttStyleOverridesToSession
+     */
+    virtual Core::hresult ApplyCustomWebVttStyleOverridesToSession(const uint32_t sessionId, const string &style) { return Core::ERROR_NOT_SUPPORTED; }
 };
 
 } // namespace Exchange
