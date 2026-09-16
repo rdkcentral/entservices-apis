@@ -114,9 +114,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": {
         "status": true,
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -182,9 +180,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
                 "osdName": "Device2"
             }
         ],
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -234,9 +230,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "enabled": true,
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -286,9 +280,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "result": {
         "name": "My CEC Source",
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -338,9 +330,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "id": 4,
     "result": {
         "enabled": true,
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
@@ -390,9 +380,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "id": 5,
     "result": {
         "vendorid": 123456,
-        "success": {
-            "success": true
-        }
+        "success": true
     }
 }
 ```
