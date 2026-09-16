@@ -455,10 +455,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
     "jsonrpc": "2.0",
     "id": 6,
     "result": {
-        "tvManufacturer": "Samsung",
-        "tvModel": "UN65JU750",
-        "avrManufacturer": "Denon",
-        "avrModel": "AVR-S750H",
+        "tvManufacturer": "ACME",
+        "tvModel": "ACME-TV100",
+        "avrManufacturer": "ACME Audio",
+        "avrModel": "ACME-AVR100",
         "success": true,
         "tvCodes": [
             "1156"
@@ -507,8 +507,8 @@ None
     "method": "org.rdk.RemoteControl.getIRCodesByNames",
     "params": {
         "avDevType": "TV",
-        "manufacturer": "Samsung",
-        "model": "UN6"
+        "manufacturer": "ACME",
+        "model": "ACM"
     }
 }
 ```
@@ -517,7 +517,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.RemoteControl.getIRCodesByNames", "params": {"avDevType": "TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -529,8 +529,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
     "id": 7,
     "result": {
         "avDevType": "TV",
-        "manufacturer": "Samsung",
-        "model": "UN6",
+        "manufacturer": "ACME",
+        "model": "ACM",
         "success": true,
         "codes": [
             "6712"
@@ -596,7 +596,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
         "avDevType": "TV",
         "success": true,
         "manufacturers": [
-            "Samsung"
+            "ACME"
         ]
     }
 }
@@ -638,8 +638,8 @@ None
     "method": "org.rdk.RemoteControl.getIRDBModels",
     "params": {
         "avDevType": "TV",
-        "manufacturer": "Samsung",
-        "model": "UN6"
+        "manufacturer": "ACME",
+        "model": "ACM"
     }
 }
 ```
@@ -648,7 +648,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "TV", "manufacturer": "Samsung", "model": "UN6"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.RemoteControl.getIRDBModels", "params": {"avDevType": "TV", "manufacturer": "ACME", "model": "ACM"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -660,7 +660,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
     "id": 9,
     "result": {
         "avDevType": "TV",
-        "manufacturer": "Samsung",
+        "manufacturer": "ACME",
         "success": true,
         "models": [
             "AH5901068L"
@@ -973,7 +973,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 14, "
     "id": 14,
     "result": {
         "success": true,
-        "sessionIdList": "12345-abc-def"
+        "sessionIdList": [
+            "12345-abc-def"
+        ]
     }
 }
 ```
