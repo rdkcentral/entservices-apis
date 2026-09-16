@@ -23,7 +23,7 @@
 
 #include <vector>
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
     struct EXTERNAL IDeviceSettings : virtual public Core::IUnknown {
@@ -156,4 +156,4 @@ namespace Exchange {
     };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder

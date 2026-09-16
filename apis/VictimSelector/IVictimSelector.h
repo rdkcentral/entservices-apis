@@ -21,7 +21,7 @@
 
 #include "Module.h"
 
-namespace WPEFramework {
+namespace Thunder {
 namespace Exchange {
 
 /*
@@ -89,4 +89,4 @@ struct EXTERNAL IVictimSelector : virtual public Core::IUnknown {
 };
 
 } // namespace Exchange
-} // namespace WPEFramework
+} // namespace Thunder
