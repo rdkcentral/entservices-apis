@@ -149,7 +149,7 @@ namespace WPEFramework {
             // @json:omit
             // @brief Sets the application metadata in the INIT message sent to the Voice Server. Forwarded to ctrlm unchanged, since partners (Sky UK, Comcast/Xumo, ...) send bespoke fields not enumerated here. Known fields: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
             // @text setVoiceInit
-            // @param payload: The voice init payload as a JSON object; forwarded to ctrlm unchanged
+            // @param payload: The voice init payload as a JSON object
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.

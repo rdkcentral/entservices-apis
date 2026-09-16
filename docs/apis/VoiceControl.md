@@ -163,14 +163,14 @@ None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| params | object | The voice init payload as a JSON object; forwarded to ctrlm unchanged. Fields observed in practice, not an exhaustive list: |
+| params | object | The voice init payload as a JSON object. Fields observed in practice, not an exhaustive list: |
 | params?.roles | array | <sup>(optional)</sup>The client roles |
 | params?.capabilities | array | <sup>(optional)</sup>The client capabilities |
 | params?.clientProfile | string | <sup>(optional)</sup>The client profile identifier |
 | params?.language | string | <sup>(optional)</sup>The client language |
 | params?.transmissionProtocol | string | <sup>(optional)</sup>The transmission protocol |
 | params?.downstreamProtocol | string | <sup>(optional)</sup>The downstream protocol |
-| params?.vrexFields | array | <sup>(optional)</sup>The vrex fields to request |
+| params?.vrexFields | array | <sup>(optional)</sup>Voice server fields to request |
 | params?.id | object | <sup>(optional)</sup>The device/partner identity |
 | params?.id.type | string | <sup>(optional)</sup>The device type identifier |
 | params?.id.partner | string | <sup>(optional)</sup>The partner identifier |
