@@ -1056,6 +1056,7 @@ Notifies container is stopped
 | params | object |  |
 | params.containerId | string | Identifier of container |
 | params.name | string |  |
+| params.exitCode | integer | Exit code of the container process |
 
 ### Examples
 
@@ -1066,7 +1067,8 @@ Notifies container is stopped
     "method": "org.rdk.OCIContainer.onContainerStopped",
     "params": {
         "containerId": "",
-        "name": ""
+        "name": "",
+        "exitCode": 0
     }
 }
 ```
