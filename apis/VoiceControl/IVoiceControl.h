@@ -128,6 +128,12 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to retrieve voice status.
             virtual Core::hresult GetVoiceStatus(VoiceStatusResponse& response /* @out */) = 0;
 
+            // @json:omit
+            // @brief Returns whether PII masking is currently enabled, without triggering a ctrlm round-trip (unlike voiceStatus)
+            // @param enabled: Whether PII masking is currently enabled
+            // @retval ErrorCode::NONE: Operation completed successfully.
+            virtual Core::hresult IsMaskPiiEnabled(bool& enabled /* @out */) = 0;
+
             // @brief Configures the RDK's voice stack. Only the fields provided are applied; omitted fields are left unchanged.
             // @text configureVoice
             // @param urlAll(optional): Convenience URL applied to urlPtt, urlHf, and urlMicTap at once e.g. "ws://voice.example.com/all"
