@@ -93,11 +93,6 @@ namespace WPEFramework {
             Core::OptionalType<bool> enable /* @brief Whether the device type should be enabled */;
         };
 
-        struct EXTERNAL VoiceInitIdentity {
-            Core::OptionalType<string> type    /* @brief The device type identifier e.g. "llama" */;
-            Core::OptionalType<string> partner /* @brief The partner identifier e.g. "sky-uk" */;
-        };
-
         struct EXTERNAL VoiceStatusResponse {
             bool maskPii                            /* @brief Indicates if PII should be masked (1 - mask PII, 0 - display PII) */;
             string urlPtt                           /* @brief The PTT URL e.g. "ws://voice.example.com/ptt" */;
@@ -151,21 +146,15 @@ namespace WPEFramework {
             // @retval ErrorCode::GENERAL: Failed to configure voice settings.
             virtual Core::hresult ConfigureVoice(const Core::OptionalType<string>& urlAll, const Core::OptionalType<string>& urlPtt, const Core::OptionalType<string>& urlHf, const Core::OptionalType<string>& urlMicTap, const Core::OptionalType<bool>& enable, const Core::OptionalType<bool>& prv, const Core::OptionalType<bool>& wwFeedback, const Core::OptionalType<DeviceEnableConfig>& ptt, const Core::OptionalType<DeviceEnableConfig>& ff, const Core::OptionalType<DeviceEnableConfig>& mic, VoiceControlSuccessResult& result /* @out */) = 0;
 
-            // @brief Sets the application metadata in the INIT message that gets sent to the Voice Server. Only the fields provided are forwarded to ctrlm.
+            // @json:omit
+            // @brief Sets the application metadata in the INIT message sent to the Voice Server. Forwarded to ctrlm unchanged, since partners (Sky UK, Comcast/Xumo, ...) send bespoke fields not enumerated here. Known fields: roles, transmissionProtocol, downstreamProtocol, capabilities, clientProfile, language, vrexFields, id (type/partner/subType/jvAgent), accessPayload, deviceSwVersion, name, proposition, timeZone, experience.
             // @text setVoiceInit
-            // @param roles(optional): The client roles e.g. ["envoy", "input"]
-            // @param transmissionProtocol(optional): The transmission protocol e.g. "webSocket"
-            // @param downstreamProtocol(optional): The downstream protocol e.g. "webSocket"
-            // @param capabilities(optional): The client capabilities e.g. ["GUI", "WBW"]
-            // @param clientProfile(optional): The client profile identifier e.g. "profileName"
-            // @param language(optional): The client language e.g. "eng-USA"
-            // @param vrexFields(optional): The vrex fields to request e.g. ["executeResponse"]
-            // @param id(optional): The device/partner identity e.g. {"type": "deviceType", "partner": "partnerName"}
+            // @param payload: The voice init payload as a JSON object; forwarded to ctrlm unchanged
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice initialization set successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to set voice initialization.
-            virtual Core::hresult SetVoiceInit(const std::vector<string>& roles /* @optional @restrict:8 */, const Core::OptionalType<string>& transmissionProtocol, const Core::OptionalType<string>& downstreamProtocol, const std::vector<string>& capabilities /* @optional @restrict:16 */, const Core::OptionalType<string>& clientProfile, const Core::OptionalType<string>& language, const std::vector<string>& vrexFields /* @optional @restrict:16 */, const Core::OptionalType<VoiceInitIdentity>& id, VoiceControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult SetVoiceInit(const string& payload /* @opaque */, VoiceControlSuccessResult& result /* @out */) = 0;
 
             // @brief Sends a message to the Voice Server
             // @text sendVoiceMessage

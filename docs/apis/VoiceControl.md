@@ -60,11 +60,11 @@ The following methods are provided by the IVoiceControl Interface:
 | Method | Description |
 | :-------- | :-------- |
 | [configureVoice](#configureVoice) | Configures the RDK's voice stack. Only the fields provided are applied; omitted fields are left unchanged. |
+| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message sent to the Voice Server |
 | [getApiVersionNumber](#getApiVersionNumber) | Get the API version number |
 | [voiceSessionTypes](#voiceSessionTypes) | Retrieves the types of voice sessions which are supported by the platform |
 | [voiceStatus](#voiceStatus) | Returns the current status of the RDK voice stack |
 | [sendVoiceMessage](#sendVoiceMessage) | Sends a message to the Voice Server |
-| [setVoiceInit](#setVoiceInit) | Sets the application metadata in the INIT message that gets sent to the Voice Server. Only the fields provided are forwarded to ctrlm. |
 | [voiceSessionAudioStreamStart](#voiceSessionAudioStreamStart) | Starts a subsequent audio stream for the voice session indicated by the session identifier |
 | [voiceSessionByText](#voiceSessionByText) | Sends a voice session with a transcription string to simulate a real voice session for QA (DEPRECATED) |
 | [voiceSessionRequest](#voiceSessionRequest) | Requests a voice session using the specified request type and optional parameters |
@@ -136,6 +136,106 @@ None
 
 ```curl
 curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.configureVoice", "params": {"urlAll": "ws://voice.example.com/all", "urlPtt": "ws://voice.example.com/ptt", "urlHf": "ws://voice.example.com/hf", "urlMicTap": "ws://voice.example.com/mictap", "enable": true, "prv": true, "wwFeedback": true, "ptt": {"enable": true}, "ff": {"enable": true}, "mic": {"enable": true}}}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "result": {
+        "success": true
+    }
+}
+```
+
+<a id="setVoiceInit"></a>
+## *setVoiceInit*
+
+> This method is excluded from JSON-RPC code generation (`@json:omit`) and is documented here by hand; it will not be regenerated or removed by the doc generator.
+
+Sets the application metadata in the INIT message sent to the Voice Server. `params` is forwarded to ctrlm unchanged as an opaque JSON object, since different partners send additional bespoke fields not enumerated below. A typed/decomposed interface would silently drop whichever fields aren't listed here, so this method intentionally takes the whole object as-is.
+
+### Events Triggered
+None
+### Parameters
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| params | object | The voice init payload as a JSON object; forwarded to ctrlm unchanged. Fields observed in practice, not an exhaustive list: |
+| params?.roles | array | <sup>(optional)</sup>The client roles |
+| params?.capabilities | array | <sup>(optional)</sup>The client capabilities |
+| params?.clientProfile | string | <sup>(optional)</sup>The client profile identifier |
+| params?.language | string | <sup>(optional)</sup>The client language |
+| params?.transmissionProtocol | string | <sup>(optional)</sup>The transmission protocol |
+| params?.downstreamProtocol | string | <sup>(optional)</sup>The downstream protocol |
+| params?.vrexFields | array | <sup>(optional)</sup>The vrex fields to request |
+| params?.id | object | <sup>(optional)</sup>The device/partner identity |
+| params?.id.type | string | <sup>(optional)</sup>The device type identifier |
+| params?.id.partner | string | <sup>(optional)</sup>The partner identifier |
+| params?.id.subType | string | <sup>(optional)</sup>The device sub-type/model identifier |
+| params?.id.jvAgent | string | <sup>(optional)</sup>The voice agent identifier |
+| params?.accessPayload | object | <sup>(optional)</sup>Opaque access/exclusion metadata |
+| params?.deviceSwVersion | string | <sup>(optional)</sup>The device software version |
+| params?.name | string | <sup>(optional)</sup>Client-supplied name field |
+| params?.proposition | string | <sup>(optional)</sup>The partner UI proposition |
+| params?.timeZone | string | <sup>(optional)</sup>The client timezone |
+| params?.experience | string | <sup>(optional)</sup>The partner experience identifier |
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.success | bool | Whether the request succeeded |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 0,
+    "method": "org.rdk.VoiceControl.setVoiceInit",
+    "params": {
+        "roles": [
+            "av",
+            "render"
+        ],
+        "capabilities": [
+            "WBW",
+            "STB_POWER",
+            "VOICE_OUT",
+            "DEVICE_LIGHT",
+            "GUI",
+            "CONTEXT",
+            "FIREBOLT"
+        ],
+        "clientProfile": "entos:rdk",
+        "language": "eng-USA",
+        "transmissionProtocol": "thisWebSocket",
+        "downstreamProtocol": "thisWebSocket",
+        "vrexFields": [
+            "executeResponse"
+        ],
+        "id": {
+            "type": "llama",
+            "subType": "SCXI11BEI",
+            "jvAgent": "xumo"
+        },
+        "deviceSwVersion": "REL-20035_20260727215203_P",
+        "proposition": "xumo",
+        "experience": "Flex-EOS"
+    }
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"roles": ["av", "render"], "capabilities": ["WBW", "STB_POWER", "VOICE_OUT", "DEVICE_LIGHT", "GUI", "CONTEXT", "FIREBOLT"], "clientProfile": "entos:rdk", "language": "eng-USA", "transmissionProtocol": "thisWebSocket", "downstreamProtocol": "thisWebSocket", "vrexFields": ["executeResponse"], "id": {"type": "llama", "subType": "SCXI11BEI", "jvAgent": "xumo"}, "deviceSwVersion": "REL-20035_20260727215203_P", "proposition": "xumo", "experience": "Flex-EOS"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -410,87 +510,6 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "m
 }
 ```
 
-<a id="setVoiceInit"></a>
-## *setVoiceInit*
-
-Sets the application metadata in the INIT message that gets sent to the Voice Server. Only the fields provided are forwarded to ctrlm.
-
-### Events Triggered
-None
-### Parameters
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| params | object |  |
-| params?.roles | string | <sup>(optional)</sup>The client roles  |
-| params?.transmissionProtocol | string | <sup>(optional)</sup>The transmission protocol  |
-| params?.downstreamProtocol | string | <sup>(optional)</sup>The downstream protocol  |
-| params?.capabilities | string | <sup>(optional)</sup>The client capabilities  |
-| params?.clientProfile | string | <sup>(optional)</sup>The client profile identifier  |
-| params?.language | string | <sup>(optional)</sup>The client language  |
-| params?.vrexFields | string | <sup>(optional)</sup>The vrex fields to request  |
-| params?.id | object | <sup>(optional)</sup>The device/partner identity  |
-| params?.id.type | string | <sup>(optional)</sup>The device type identifier  |
-| params?.id.partner | string | <sup>(optional)</sup>The partner identifier  |
-### Results
-| Name | Type | Description |
-| :-------- | :-------- | :-------- |
-| result | object |  |
-| result.success | bool | Whether the request succeeded |
-
-### Examples
-
-
-#### Request
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 5,
-    "method": "org.rdk.VoiceControl.setVoiceInit",
-    "params": {
-        "roles": [
-            "envoy",
-            "input"
-        ],
-        "transmissionProtocol": "webSocket",
-        "downstreamProtocol": "webSocket",
-        "capabilities": [
-            "GUI",
-            "WBW"
-        ],
-        "clientProfile": "profileName",
-        "language": "eng-USA",
-        "vrexFields": [
-            "executeResponse"
-        ],
-        "id": {
-            "type": "deviceType",
-            "partner": "partnerName"
-        }
-    }
-}
-```
-
-
-#### CURL Command
-
-```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.setVoiceInit", "params": {"roles": ["envoy", "input"], "transmissionProtocol": "webSocket", "downstreamProtocol": "webSocket", "capabilities": ["GUI", "WBW"], "clientProfile": "profileName", "language": "eng-USA", "vrexFields": ["executeResponse"], "id": {"type": "deviceType", "partner": "partnerName"}}}' http://127.0.0.1:9998/jsonrpc
-```
-
-
-#### Response
-
-```json
-{
-    "jsonrpc": "2.0",
-    "id": 5,
-    "result": {
-        "success": true
-    }
-}
-```
-
 <a id="voiceSessionAudioStreamStart"></a>
 ## *voiceSessionAudioStreamStart*
 
@@ -517,7 +536,7 @@ None
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 6,
+    "id": 5,
     "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart",
     "params": {
         "sessionId": "session-12345"
@@ -529,7 +548,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 5, "method": "org.rdk.VoiceControl.voiceSessionAudioStreamStart", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -538,7 +557,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "m
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 6,
+    "id": 5,
     "result": {
         "success": true
     }
@@ -572,7 +591,7 @@ None
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 7,
+    "id": 6,
     "method": "org.rdk.VoiceControl.voiceSessionByText",
     "params": {
         "transcription": "turn on the lights",
@@ -585,7 +604,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "ptt"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 6, "method": "org.rdk.VoiceControl.voiceSessionByText", "params": {"transcription": "turn on the lights", "type": "ptt"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -594,7 +613,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "m
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 7,
+    "id": 6,
     "result": {
         "success": true
     }
@@ -632,7 +651,7 @@ None
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 8,
+    "id": 7,
     "method": "org.rdk.VoiceControl.voiceSessionRequest",
     "params": {
         "type": "ptt_transcription",
@@ -648,7 +667,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"type": "ptt_transcription", "transcription": "comedy movies", "audio_file": "/tmp/audio.wav", "audio_format": "pcm", "name": "Test"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 7, "method": "org.rdk.VoiceControl.voiceSessionRequest", "params": {"type": "ptt_transcription", "transcription": "comedy movies", "audio_file": "/tmp/audio.wav", "audio_format": "pcm", "name": "Test"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -657,7 +676,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "m
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 8,
+    "id": 7,
     "result": {
         "success": true,
         "sessionId": "83d7747d-e02f-42f8-bdc3-bc8f510605c6"
@@ -691,7 +710,7 @@ None
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 9,
+    "id": 8,
     "method": "org.rdk.VoiceControl.voiceSessionTerminate",
     "params": {
         "sessionId": "session-12345"
@@ -703,7 +722,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 8, "method": "org.rdk.VoiceControl.voiceSessionTerminate", "params": {"sessionId": "session-12345"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -712,7 +731,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 9, "m
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 9,
+    "id": 8,
     "result": {
         "success": true
     }
@@ -753,7 +772,7 @@ Triggered when a keyword verification result is received
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 10,
+    "id": 9,
     "method": "org.rdk.VoiceControl.onKeywordVerification",
     "params": {
         "remoteId": 1,
@@ -782,7 +801,7 @@ Triggered when a message is received from the Voice Server
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 11,
+    "id": 10,
     "method": "org.rdk.VoiceControl.onServerMessage",
     "params": {
         "msgType": "asr",
@@ -825,7 +844,7 @@ Triggered when a voice session begins
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 12,
+    "id": 11,
     "method": "org.rdk.VoiceControl.onSessionBegin",
     "params": {
         "remoteId": 1,
@@ -863,7 +882,7 @@ Triggered when the interaction with the server has concluded
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 13,
+    "id": 12,
     "method": "org.rdk.VoiceControl.onSessionEnd",
     "params": {
         "remoteId": 1,
@@ -900,7 +919,7 @@ Triggered when a device starts streaming voice data to the RDK
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 14,
+    "id": 13,
     "method": "org.rdk.VoiceControl.onStreamBegin",
     "params": {
         "remoteId": 1,
@@ -927,7 +946,7 @@ Triggered when the device has stopped streaming audio
 ```json
 {
     "jsonrpc": "2.0",
-    "id": 15,
+    "id": 14,
     "method": "org.rdk.VoiceControl.onStreamEnd",
     "params": {
         "remoteId": 1,
