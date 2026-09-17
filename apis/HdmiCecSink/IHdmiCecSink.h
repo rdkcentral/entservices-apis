@@ -269,7 +269,7 @@
             // @example port: "HDMI0"
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The active source was retrieved successfully.
+            // @retval Core::ERROR_NONE: The active source was retrieved successfully.
             virtual Core::hresult GetActiveSource(bool &available /* @out */, uint8_t &logicalAddress /* @out */, string &physicalAddress /* @out */, string &deviceType /* @out */, string &cecVersion /* @out */, string &osdName /* @out */, string &vendorID /* @out*/, string &powerStatus /* @out */, string &port /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets audio device connected status
@@ -279,7 +279,7 @@
             // @example connected: true
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The audio device connected status was retrieved successfully.
+            // @retval Core::ERROR_NONE: The audio device connected status was retrieved successfully.
             virtual Core::hresult GetAudioDeviceConnectedStatus(bool &connected /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the list of devices connected to the HDMI CEC sink
@@ -291,7 +291,7 @@
             // @example deviceList: [{"logicalAddress":4,"physicalAddress":"1.0.0.0","deviceType":"Playback Device","cecVersion":"1.4","osdName":"STB","vendorID":"0x0000","powerStatus":"On","port":"HDMI0"}]
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The device list was retrieved successfully.
+            // @retval Core::ERROR_NONE: The device list was retrieved successfully.
             virtual Core::hresult GetDeviceList(uint32_t &numberofdevices /* @out */, IHdmiCecSinkDeviceListIterator*& deviceList /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the status of the HDMI CEC Sink
@@ -301,7 +301,7 @@
             // @example enabled: true
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The HDMI CEC Sink status was retrieved successfully.
+            // @retval Core::ERROR_NONE: The HDMI CEC Sink status was retrieved successfully.
             virtual Core::hresult GetEnabled(bool &enabled /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the OSD name of the HDMI CEC Sink
@@ -311,7 +311,7 @@
             // @example name: "TV"
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The OSD name was retrieved successfully.
+            // @retval Core::ERROR_NONE: The OSD name was retrieved successfully.
             virtual Core::hresult GetOSDName(string &name /* @out */, bool &success /* @out */) = 0;
 
             // @brief Gets the vendor ID of the HDMI CEC Sink
@@ -321,7 +321,7 @@
             // @example vendorid: "0x0000"
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The vendor ID was retrieved successfully.
+            // @retval Core::ERROR_NONE: The vendor ID was retrieved successfully.
             virtual Core::hresult GetVendorId(string &vendorid /* @out */, bool &success /* @out */) = 0;
 
             // @brief This is a helper debug command for developers. It prints the list of connected devices and properties of connected devices 
@@ -331,7 +331,7 @@
             // @example printed: true
             // @param success: Is the operation successful or not
             // @example success: true
-            // @retval Core::ERROR_NONE The device list was printed successfully.
+            // @retval Core::ERROR_NONE: The device list was printed successfully.
             virtual Core::hresult PrintDeviceList(bool &printed /* @out */, bool &success /* @out */) = 0;
 
             // @brief Request the active source in the network
@@ -339,7 +339,7 @@
             // @details Requests the current active source in the HDMI CEC network.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The active source was requested successfully.
+            // @retval Core::ERROR_NONE: The active source was requested successfully.
             virtual Core::hresult RequestActiveSource(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device.
@@ -347,7 +347,7 @@
             // @details Sends the CEC Request Short Audio Descriptor (SAD) message as an inquiry to the audio device to obtain its supported audio formats.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The SAD request was sent successfully.
+            // @retval Core::ERROR_NONE: The SAD request was sent successfully.
             virtual Core::hresult RequestShortAudioDescriptor(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief This message is used to power on the connected audio device. Usually sent by the TV when it comes out of standby and detects audio device connected in the network.
@@ -355,7 +355,7 @@
             // @details Sends a CEC <Image View On>/<Text View On> message to power on the connected audio device, typically triggered when the TV exits standby and detects an audio device on the network.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The audio device power on message was sent successfully.
+            // @retval Core::ERROR_NONE: The audio device power on message was sent successfully.
             virtual Core::hresult SendAudioDevicePowerOnMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <Give Audio Status> message to request the audio status.
@@ -363,7 +363,7 @@
             // @details Sends a <Give Audio Status> HDMI-CEC message to the connected audio device to query its current mute status and volume level. The response is delivered via the reportAudioStatusEvent notification.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The audio status request message was sent successfully.
+            // @retval Core::ERROR_NONE: The audio status request message was sent successfully.
             virtual Core::hresult SendGetAudioStatusMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Pressed> message when TV remote key is pressed.
@@ -375,7 +375,7 @@
             // @example keyCode: 68
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The key press event message was sent successfully.
+            // @retval Core::ERROR_NONE: The key press event message was sent successfully.
             virtual Core::hresult SendKeyPressEvent(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Pressed> message when TV remote key is pressed.
@@ -387,7 +387,7 @@
             // @example keyCode: 0x44
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The user control pressed message was sent successfully.
+            // @retval Core::ERROR_NONE: The user control pressed message was sent successfully.
             virtual Core::hresult SendUserControlPressed(const uint32_t &logicalAddress , const uint32_t &keyCode , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <User Control Released> message when TV remote key is released.
@@ -397,7 +397,7 @@
             // @example logicalAddress: 4
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The user control released message was sent successfully.
+            // @retval Core::ERROR_NONE: The user control released message was sent successfully.
             virtual Core::hresult SendUserControlReleased(const uint32_t &logicalAddress , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sends the CEC <Standby> message to another CEC device
@@ -405,7 +405,7 @@
             // @details Broadcasts a <Standby> HDMI-CEC command to the connected CEC network, requesting other CEC-enabled devices to enter standby mode.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The standby message was sent successfully.
+            // @retval Core::ERROR_NONE: The standby message was sent successfully.
             virtual Core::hresult SendStandbyMessage(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the source device to active (setStreamPath). The source wakes from standby if it’s in the standby state.
@@ -416,7 +416,7 @@
             // @example activePath: "1.0.0.0"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The active path was set successfully.
+            // @retval Core::ERROR_NONE: The active path was set successfully.
             virtual Core::hresult SetActivePath(const string &activePath , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the current active source as TV (physical address 0.0.0.0). This call needs to be made when the TV switches to internal tuner or any apps.
@@ -425,7 +425,7 @@
             // the built-in tuner or an application, ensuring that connected HDMI-CEC devices are notified of the active source change.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The active source was set successfully.
+            // @retval Core::ERROR_NONE: The active source was set successfully.
             virtual Core::hresult SetActiveSource(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the status of the HDMI CEC Sink
@@ -437,7 +437,7 @@
             // @example enabled: true
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The HDMI CEC Sink status was set successfully.
+            // @retval Core::ERROR_NONE: The HDMI CEC Sink status was set successfully.
             virtual Core::hresult SetEnabled(const bool &enabled , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Updates the internal data structure with the new menu Language and also broadcasts the <Set Menu Language> CEC message.
@@ -448,7 +448,7 @@
             // @example language: "eng"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The menu language was set successfully.
+            // @retval Core::ERROR_NONE: The menu language was set successfully.
             virtual Core::hresult SetMenuLanguage(const string &language , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the OSD name of the HDMI CEC Sink
@@ -459,7 +459,7 @@
             // @example name: "My TV"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The OSD name was set successfully.
+            // @retval Core::ERROR_NONE: The OSD name was set successfully.
             virtual Core::hresult SetOSDName(const string &name , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Changes routing while switching between HDMI inputs and TV.
@@ -471,7 +471,7 @@
             // @example newPort: "HDMI2"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The routing change was set successfully.
+            // @retval Core::ERROR_NONE: The routing change was set successfully.
             virtual Core::hresult SetRoutingChange(const string &oldPort , const string &newPort , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Enable (or disable) HDMI-CEC Audio Return Channel (ARC) routing. Upon enabling, triggers arcInitiationEvent and upon disabling, triggers arcTerminationEvent.
@@ -481,7 +481,7 @@
             // @example enabled: true
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The HDMI-CEC ARC routing was set successfully.
+            // @retval Core::ERROR_NONE: The HDMI-CEC ARC routing was set successfully.
             virtual Core::hresult SetupARCRouting(const bool &enabled , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the vendor ID of the HDMI CEC Sink
@@ -492,7 +492,7 @@
             // @example vendorid: "0x0000"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The vendor ID was set successfully.
+            // @retval Core::ERROR_NONE: The vendor ID was set successfully.
             virtual Core::hresult SetVendorId(const string &vendorid , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Sets the Current Latency Values such as Video Latency, Latency Flags,Audio Output Compensated value and Audio Output Delay by sending <Report Current Latency> message for Dynamic Auto LipSync Feature.
@@ -509,7 +509,7 @@
             // @example audioOutputDelay: "0"
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The latency info was set successfully.
+            // @retval Core::ERROR_NONE: The latency info was set successfully.
             virtual Core::hresult SetLatencyInfo(const string &videoLatency , const string &lowLatencyMode , const string &audioOutputCompensated , const string &audioOutputDelay , HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
             // @brief Requests the audio device power status.
@@ -518,7 +518,7 @@
             // the audio device is powered on, powered off, or in a standby state.
             // @param successResult: Is the operation successful or not
             // @example successResult: { "success": true }
-            // @retval Core::ERROR_NONE The audio device power status was requested successfully.
+            // @retval Core::ERROR_NONE: The audio device power status was requested successfully.
             virtual Core::hresult RequestAudioDevicePowerStatus(HdmiCecSinkSuccess &successResult /* @out */) = 0;
 
          };
