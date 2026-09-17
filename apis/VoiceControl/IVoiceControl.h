@@ -161,7 +161,7 @@ namespace WPEFramework {
             // @param msgType: Message type from the server e.g. "asr"
             // @param trx(optional): The unique id of the voice session e.g. "12345-abc"
             // @param created(optional): The timestamp for server information in milliseconds since epoch ex: 1700000000000
-            // @param msgPayload(optional): Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}
+            // @param msgPayload(optional): Server-defined context payload e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["AppOne", "AppTwo"]}}}
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Voice message sent successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
@@ -251,7 +251,7 @@ namespace WPEFramework {
                 // @param msgType: Message type from the server e.g. "asr"
                 // @param trx: The unique id of the voice session e.g. "12345-abc"
                 // @param created: The timestamp for server information in milliseconds since epoch ex: 1700000000000
-                // @param msgPayload: Vrex server information e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}
+                // @param msgPayload: Server-defined context payload e.g. {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["AppOne", "AppTwo"]}}}
                 virtual void OnServerMessage(const string& msgType, const string& trx, const uint64_t created, const string& msgPayload /* @opaque @restrict:256K */) {}
 
                 // @brief Triggered when the device has stopped streaming audio

@@ -350,7 +350,7 @@ None
 | params.msgType | string | Message type from the server  |
 | params?.trx | string | <sup>(optional)</sup>The unique id of the voice session  |
 | params?.created | integer | <sup>(optional)</sup>The timestamp for server information in milliseconds since epoch  |
-| params?.msgPayload | string | <sup>(optional)</sup>Vrex server information  |
+| params?.msgPayload | string | <sup>(optional)</sup>Server-defined context payload  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -379,8 +379,8 @@ None
             "screenContext": {
                 "searchParams": {
                     "catalog": [
-                        "Netflix",
-                        "DisneyPlus"
+                        "AppOne",
+                        "AppTwo"
                     ]
                 }
             }
@@ -393,7 +393,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 1700000000000, "msgPayload": {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["Netflix", "DisneyPlus"]}}}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 4, "method": "org.rdk.VoiceControl.sendVoiceMessage", "params": {"msgType": "asr", "trx": "12345-abc", "created": 1700000000000, "msgPayload": {"appFocuses": [], "environmentalContext": {"entities": []}, "screenContext": {"searchParams": {"catalog": ["AppOne", "AppTwo"]}}}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -693,7 +693,7 @@ Triggered when a message is received from the Voice Server
 | params.msgType | string | Message type from the server  |
 | params.trx | string | The unique id of the voice session  |
 | params.created | integer | The timestamp for server information in milliseconds since epoch  |
-| params.msgPayload | string | Vrex server information  |
+| params.msgPayload | string | Server-defined context payload  |
 
 ### Examples
 
@@ -714,8 +714,8 @@ Triggered when a message is received from the Voice Server
             "screenContext": {
                 "searchParams": {
                     "catalog": [
-                        "Netflix",
-                        "DisneyPlus"
+                        "AppOne",
+                        "AppTwo"
                     ]
                 }
             }
