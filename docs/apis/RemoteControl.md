@@ -1314,8 +1314,7 @@ Generated for manual pairing validation
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | object | Validation information including network type and validation digits for manual pairing |
-| params.status.netType | integer | The type of remote control network  |
+| params.status | object | Validation information including the validation digits for manual pairing |
 | params.status.validationDigit1 | integer | The first validation digit  |
 | params.status.validationDigit2 | integer | The second validation digit  |
 | params.status.validationDigit3 | integer | The third validation digit  |
@@ -1328,7 +1327,6 @@ Generated for manual pairing validation
     "id": 21,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
-        "netType": 1,
         "validationDigit1": 1,
         "validationDigit2": 2,
         "validationDigit3": 3
