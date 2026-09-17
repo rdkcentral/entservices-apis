@@ -151,7 +151,6 @@ namespace WPEFramework {
 
 
         struct EXTERNAL ValidationStatusObject {
-            uint32_t netType           /* @brief The type of remote control network ex: 1 */;
             uint32_t validationDigit1  /* @brief The first validation digit ex: 1 */;
             uint32_t validationDigit2  /* @brief The second validation digit ex: 2 */;
             uint32_t validationDigit3  /* @brief The third validation digit ex: 3 */;
@@ -376,7 +375,7 @@ namespace WPEFramework {
 
                 // @brief Generated for manual pairing validation
                 // @text onValidation
-                // @param status: Validation information including network type and validation digits for manual pairing
+                // @param status: Validation information including the validation digits for manual pairing
                 virtual void OnValidation(const ValidationStatusObject& status) {}
 
                 // @brief Generated at 0 and 100 percent and each time a download percent increment is reached
