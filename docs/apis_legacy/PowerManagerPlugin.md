@@ -1133,7 +1133,7 @@ org.rdk.PowerManager interface events:
 | [onRebootBegin](#onRebootBegin) | Triggered when an application invokes the reboot method |
 | [onPowerModeChanged](#onPowerModeChanged) | Triggered when the power manager detects a device power state change |
 | [onPowerModePreChange](#onPowerModePreChange) | Triggered before change then device power state |
-| [onDeepSleepTimeout](#onDeepSleepTimeout) | Triggered when the power manager detects a device power state change to light sleep from deep sleep |
+| [onDeepSleepTimeout](#onDeepSleepTimeout) | Triggered when the deep sleep timer expires |
 | [onNetworkStandbyModeChanged](#onNetworkStandbyModeChanged) | Triggered when the network standby mode setting changes |
 | [onThermalModeChanged](#onThermalModeChanged) | Triggered when the device temperature changes beyond the `WARN` or `MAX` limits (see `setTemperatureThresholds`) |
 
@@ -1223,7 +1223,7 @@ Triggered before change then device power state. The power state (must be one of
 <a name="onDeepSleepTimeout"></a>
 ## *onDeepSleepTimeout*
 
-Triggered when the power manager detects a device power state change to light sleep from deep sleep.
+Triggered when the deep sleep timer expires. By default, the device transitions from deep sleep to light sleep (LIGHT_SLEEP). When the CUSTOM_LGI build option is enabled, the device instead transitions to STANDBY after the timer expires. The target power state is determined at build time via the CUSTOM_LGI CMake option.
 
 ### Parameters
 
