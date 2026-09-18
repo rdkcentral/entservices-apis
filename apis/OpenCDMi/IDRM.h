@@ -249,8 +249,8 @@ typedef enum : uint8_t {
 // CBCS & CENC3.0 pattern is a number of encrypted blocks followed a number of clear
 // blocks after which the pattern repeats.
 typedef struct {
-    uint32_t encrypted_blocks;
     uint32_t clear_blocks;
+    uint32_t encrypted_blocks;
 } EncryptionPattern;
 
 typedef struct {
