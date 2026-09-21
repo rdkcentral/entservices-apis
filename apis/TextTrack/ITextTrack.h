@@ -28,7 +28,7 @@ namespace WPEFramework {
 namespace Exchange {
 
 /*
-    This is the COM-RPC interface for managing Closed Captions styles.
+    This is the interface for managing Closed Captions styles.
 */
 /* @json 1.0.0 @text:keep */
 struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
@@ -308,7 +308,7 @@ struct EXTERNAL ITextTrackClosedCaptionsStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for global TTML style overrides.
+ * This is the interface for global TTML style overrides.
  * Added in version 2
  */
 /* @json 1.0.0 @text:keep */
@@ -357,7 +357,7 @@ struct EXTERNAL ITextTrackTtmlStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for global WebVTT style overrides.
+ * This is the interface for global WebVTT style overrides.
  * Added in version 6
  */
 /* @json 1.0.0 @text:keep */
@@ -406,7 +406,7 @@ struct EXTERNAL ITextTrackWebVttStyle : virtual public Core::IUnknown {
 };
 
 /*
- * This is the COM-RPC interface for querying TextTrack capabilities.
+ * This is the interface for querying TextTrack capabilities.
  * The list of capabilities can be extended over time and future versions.
  * Added in version 4
  */
@@ -440,7 +440,7 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
 };
 
 /*
-    This is the COM-RPC interface for handling TextTrack sessions.
+    This is the interface for handling TextTrack sessions.
 */
 /* @json 1.5.0 @text:keep */
 struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
@@ -556,7 +556,6 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * The style setting will take effect immediately.
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the chosen styles
-     * @json:omit
      * @text applyCustomClosedCaptionsStyleToSession
      */
     virtual Core::hresult ApplyCustomClosedCaptionsStyleToSession(const uint32_t sessionId, const ITextTrackClosedCaptionsStyle::ClosedCaptionsStyle &style) = 0;
