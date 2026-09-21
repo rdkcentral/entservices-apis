@@ -85,9 +85,9 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @text onDeviceMounted
         // @details Triggered when a USB mass storage device is successfully mounted by the system.
         // @param deviceInfo: name and device path of the mounted device.
-        // @example deviceInfo: {"deviceName": "USB Flash Drive"}
+        // @example deviceInfo: {"deviceName":"USB Flash Drive","devicePath":"/dev/sda1"}
         // @param mountPoints: List of mountpoints information for the device mounted.
-        // @example mountPoints: [{"mountPath": "/media/usb0"}]
+        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"}]
         virtual void OnDeviceMounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
 
         // @brief Device Unmounted notification
@@ -110,7 +110,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @brief Get list of devices that are currently mounted in the system
     // @details Retrieves a list of USB mass storage devices currently mounted in the system. Each entry contains basic device information such as device name and device path.
     // @param deviceInfo: Device info for devices that are currently mounted.
-    // @example deviceInfo: [{"deviceName": "USB Flash Drive"}]
+    // @example deviceInfo: {"deviceName":"USB Flash Drive","devicePath":"/dev/sda1"}
     // @retval Core::ERROR_NONE: Device list retrieved successfully.
     virtual Core::hresult GetDeviceList(IUSBStorageDeviceInfoIterator*& deviceInfo /* @out */ ) const = 0;
 
