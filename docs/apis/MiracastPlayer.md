@@ -366,7 +366,7 @@ None
     "params": {
         "mac": "00:1A:2B:3C:4D:5E",
         "name": "Miracast Source Device",
-        "reason_code": "MIRACAST_ERROR"
+        "reason_code": 203
     }
 }
 ```
@@ -375,7 +375,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": "MIRACAST_ERROR"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.MiracastPlayer.stopRequest", "params": {"mac": "00:1A:2B:3C:4D:5E", "name": "Miracast Source Device", "reason_code": 203}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
