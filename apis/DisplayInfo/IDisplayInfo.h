@@ -119,7 +119,7 @@ namespace Exchange {
         // @param length: length of edid byte string
         // @example length: 2
 		// @param data: EDID byte string
-        // @example data: ["0x00,0xFF,0xFF,0xFF"]
+		// @example data: [0, 255, 255, 255, 255, 255, 255, 0]
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult EDID (uint16_t& length /* @inout */, uint8_t data[] /* @out @length:length */) const = 0;
 
@@ -287,7 +287,7 @@ namespace Exchange {
         // @brief Returns the active colorimetry standard of the current connected video port
         // @details Retrieves the active colorimetry standard of the current connected video port. If no display is connected, COLORIMETRY_UNKNOWN is returned. If the colorimetry coefficient is not mapped to a known standard, COLORIMETRY_OTHER is returned.
         // @param info: current colorimetry info (colorimetryType is COLORIMETRY_UNKNOWN if no display connected, COLORIMETRY_OTHER if coefficient unmapped)
-        // @example info: { colorimetry: COLORIMETRY_BT709 }
+        // @example info: { "colorimetry": "COLORIMETRY_BT709" }
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult GetCurrentColorimetry(ColorimetryTypeInfo& info /* @out */) const = 0;
 
