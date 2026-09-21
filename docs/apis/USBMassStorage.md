@@ -105,7 +105,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "id": 0,
     "result": [
         {
-            "deviceName": "USB Flash Drive"
+            "deviceName": "USB Flash Drive",
+            "devicePath": "/dev/sda1"
         }
     ]
 }
