@@ -1315,10 +1315,9 @@ Generated for manual pairing validation
 | :-------- | :-------- | :-------- |
 | params | object |  |
 | params.status | object | Validation information including the validation status, the pairing code (KEY_* codes) when generated, and each key that was pressed |
-| params.status.status | string | The validation status of the manual pairing request (must be one of the following: *SUCCESS*, *PENDING*, *TIMEOUT*, *COLLISION*, *FAILURE*, *ABORT*, *FULL_ABORT*, *FAILED*, *BIND_TABLE_FULL*, *IN_PROGRESS*, *CTRLM_RESTART*) |
-| params.status.code | array | The pairing code for manual pairing which consists of 3 key codes (KEY_*), only present when the pairing code is first generated |
-| params.status.code[#] | integer |  |
-| params.status?.key | integer | <sup>(optional)</sup>A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode |
+| params.status.status | string | The validation status of the manual pairing request. Possible values: SUCCESS, PENDING, TIMEOUT, COLLISION, FAILURE, ABORT, FULL_ABORT, FAILED, BIND_TABLE_FULL, IN_PROGRESS, CTRLM_RESTART |
+| params.status.code | string | The pairing code for manual pairing which consists of 3 key codes (KEY_*), only present when the pairing code is first generated  |
+| params?.status.key | integer | <sup>(optional)</sup>A single key code (KEY_*) that is used to validate against the manual pair code in manual pairing mode  |
 
 ### Examples
 
@@ -1328,15 +1327,13 @@ Generated for manual pairing validation
     "id": 21,
     "method": "org.rdk.RemoteControl.onValidation",
     "params": {
-        "status": {
-            "status": "PENDING",
-            "code": [
-                2,
-                3,
-                4
-            ],
-            "key": 2
-        }
+        "status": "SUCCESS",
+        "code": [
+            2,
+            3,
+            4
+        ],
+        "key": 2
     }
 }
 ```
