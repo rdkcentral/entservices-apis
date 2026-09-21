@@ -229,7 +229,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "result": {
         "length": 2,
         "data": [
-            "0x00,0xFF,0xFF,0xFF"
+            0,
+            255,
+            255,
+            255,
+            255,
+            255,
+            255,
+            0
         ]
     }
 }
@@ -976,7 +983,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 {
     "jsonrpc": 2.0,
     "id": 3,
-    "result": "{ colorimetry: COLORIMETRY_BT709 }"
+    "result": {
+        "colorimetry": "COLORIMETRY_BT709"
+    }
 }
 ```
 
