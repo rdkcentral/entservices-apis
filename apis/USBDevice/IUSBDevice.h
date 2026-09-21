@@ -51,7 +51,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     // @text onDevicePluggedOut
     // @details Triggered when a USB device is disconnected from the system. The event provides basic information about the disconnected device.
     // @param device: USB information of the disconnected device
-    // @example device: {"deviceName": "USB Flash Drive", "deviceClass": "Mass Storage", "deviceSubclass": "USB Flash", "devicePath": "/dev/sda1"}
+    // @example device: {"deviceName":"USB Flash Drive","deviceClass":8,"deviceSubclass":6,"devicePath":"/dev/sda1"}
     virtual void OnDevicePluggedOut(const USBDevice &device) {};
 
     };
