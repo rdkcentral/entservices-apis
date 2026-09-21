@@ -353,8 +353,8 @@ Triggered when a USB device is connected to the system and successfully detected
     "method": "org.rdk.USBDevice.onDevicePluggedIn",
     "params": {
         "deviceName": "USB Flash Drive",
-        "deviceClass": "Mass Storage",
-        "deviceSubclass": "USB Flash",
+        "deviceClass": 8,
+        "deviceSubclass": 6,
         "devicePath": "/dev/sda1"
     }
 }
@@ -384,8 +384,8 @@ Triggered when a USB device is disconnected from the system. The event provides 
     "method": "org.rdk.USBDevice.onDevicePluggedOut",
     "params": {
         "deviceName": "USB Flash Drive",
-        "deviceClass": "Mass Storage",
-        "deviceSubclass": "USB Flash",
+        "deviceClass": 8,
+        "deviceSubclass": 6,
         "devicePath": "/dev/sda1"
     }
 }
