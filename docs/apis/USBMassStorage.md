@@ -232,14 +232,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "fileSystem": "ext4",
-        "size": 1073741824,
+        "fileSystem": "EXT4",
+        "size": 1024,
         "startSector": 2048,
         "numSectors": 2097152,
         "sectorSize": 512,
-        "totalSpace": 1073741824,
-        "usedSpace": 536870912,
-        "availableSpace": 536870912
+        "totalSpace": 1024,
+        "usedSpace": 512,
+        "availableSpace": 512
     }
 }
 ```
