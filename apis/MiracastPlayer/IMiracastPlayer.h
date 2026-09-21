@@ -131,7 +131,7 @@ namespace WPEFramework
             // @param clientName: Name of the client device
             // @example clientName: "Miracast Source Device"
             // @param reasonCode: Reason code for the player stop request
-            // @example reasonCode: "MIRACAST_ERROR"
+             // @example reasonCode: 203
             // @param result: Result of the stop request
             // @example result: { "success": true }
             // @retval Core::ERROR_NONE: Indicates success
