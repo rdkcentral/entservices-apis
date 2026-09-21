@@ -44,7 +44,7 @@ struct EXTERNAL IUSBDevice : virtual public Core::IUnknown {
     // @text onDevicePluggedIn
     // @details Triggered when a USB device is connected to the system and successfully detected by the USB subsystem. The event provides basic information about the newly connected device.
     // @param device: USB information of the plugged in device
-    // @example device: {"deviceName":"USB Flash Drive","deviceClass":"Mass Storage","deviceSubclass":"USB Flash","devicePath":"/dev/sda1"}
+    // @example device: {"deviceName":"USB Flash Drive","deviceClass":8,"deviceSubclass":6,"devicePath":"/dev/sda1"}
     virtual void OnDevicePluggedIn(const USBDevice &device) {};
 
     // @brief Device Plugged out notification
