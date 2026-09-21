@@ -132,7 +132,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @param mountPath: mount path of the partition for which more info is required
     // @example mountPath: "/media/usb0"
     // @param partitionInfo: partition info details
-    // @example partitionInfo: {"fileSystem": "ext4", "size": 1073741824, "startSector": 2048, "numSectors": 2097152, "sectorSize": 512, "totalSpace": 1073741824, "usedSpace": 536870912, "availableSpace": 536870912}
+     // @example partitionInfo: {"fileSystem":"EXT4","size":1024,"startSector":2048,"numSectors":2097152,"sectorSize":512,"totalSpace":1024,"usedSpace":512,"availableSpace":512}
     // @retval Core::ERROR_NONE: Partition information retrieved successfully.
     virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
