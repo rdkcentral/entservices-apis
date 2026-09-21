@@ -87,7 +87,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @param deviceInfo: name and device path of the mounted device.
         // @example deviceInfo: {"deviceName":"USB Flash Drive","devicePath":"/dev/sda1"}
         // @param mountPoints: List of mountpoints information for the device mounted.
-        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"}]
+        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"READ_WRITE","mountPath":"/media/usb0","fileSystem":"EXT4"}]
         virtual void OnDeviceMounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
 
         // @brief Device Unmounted notification
@@ -97,7 +97,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
         // @param deviceInfo: name and device path of the unmounted device.
         // @example deviceInfo: {"deviceName":"USB Flash Drive","devicePath":"/dev/sda1"}
         // @param mountPoints: List of mountpoints information for the device unmounted.
-        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"rw","mountPath":"/media/usb0","fileSystem":"ext4"}]
+        // @example mountPoints: [{"partitionName":"sda1","mountFlags":"READ_WRITE","mountPath":"/media/usb0","fileSystem":"EXT4"}]
         virtual void OnDeviceUnmounted(const USBStorageDeviceInfo &deviceInfo , IUSBStorageMountInfoIterator* const mountPoints ) {};
     };
 
@@ -132,7 +132,7 @@ struct EXTERNAL IUSBMassStorage : virtual public Core::IUnknown
     // @param mountPath: mount path of the partition for which more info is required
     // @example mountPath: "/media/usb0"
     // @param partitionInfo: partition info details
-    // @example partitionInfo: {"size": 1024}  
+    // @example partitionInfo: {"fileSystem": "ext4", "size": 1073741824, "startSector": 2048, "numSectors": 2097152, "sectorSize": 512, "totalSpace": 1073741824, "usedSpace": 536870912, "availableSpace": 536870912}
     // @retval Core::ERROR_NONE: Partition information retrieved successfully.
     virtual Core::hresult GetPartitionInfo(const string &mountPath /* @text mountPath */, USBStoragePartitionInfo &partitionInfo /* @out */) const = 0;
 
