@@ -56,7 +56,7 @@ namespace WPEFramework
 
             // @brief Gets the front panel lights
             // @text getFrontPanelLights
-            // @details Provides a list or status bitmask of the active illumination nodes present on the physical display facade of the device.
+            // @details Returns the front-panel lights supported by the device platform.
             // @param supportedLights: List of supported front panel lights
             // @example supportedLights: ["POWER_LED", "STATUS_LED"]
             // @param supportedLightsInfo: Information about the supported front panel lights
