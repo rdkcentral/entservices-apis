@@ -97,7 +97,7 @@ struct EXTERNAL IFirmwareUpdate : virtual public Core::IUnknown {
   // @brief Firmware update consists of 2 major steps: 1. Firmware Validation, and 2. Firmware Flashing. This method returns the "status" of these steps in the firmware update process that was triggered by updateFirmware method.
   // @details Tracks progress across both major phases: validation and flashing. Returns the current state and substate via the output parameter.
   // @param getUpdateStateResult: Firmware update state and substate
-  // @example getUpdateStateResult: { "state": "flashingStarted", "substate": "firmwareOutdated" }  
+   // @example getUpdateStateResult: {"state":"FLASHING_STARTED","substate":"FIRMWARE_OUTDATED"}
   // @retval Core::ERROR_NONE: Indicates success
   virtual Core::hresult GetUpdateState(GetUpdateStateResult& getUpdateStateResult /* @out */) = 0;
 
