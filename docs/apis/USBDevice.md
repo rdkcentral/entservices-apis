@@ -197,14 +197,48 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
+        "parentId": 1,
+        "deviceStatus": 1,
+        "deviceLevel": 1,
+        "portNumber": 2,
         "vendorId": 1234,
         "productId": 5678,
+        "protocol": 0,
         "serialNumber": 1234567890,
-        "deviceStatus": "Connected",
-        "busSpeed": "USB3.0",
-        "manufacturer": "SanDisk",
-        "productName": "Cruzer Blade",
-        "supportedFeatures": "Mass Storage"
+        "device": {
+            "deviceClass": 8,
+            "deviceSubclass": 6,
+            "deviceName": "USB Flash Drive",
+            "devicePath": "/dev/sda"
+        },
+        "flags": "AVAILABLE",
+        "features": 0,
+        "busSpeed": "Super",
+        "numLanguageIds": 1,
+        "productInfo1": {
+            "languageId": 1033,
+            "serialNumber": 1234567890,
+            "manufacturer": "SanDisk",
+            "product": "Cruzer Blade"
+        },
+        "productInfo2": {
+            "languageId": 0,
+            "serialNumber": "",
+            "manufacturer": "",
+            "product": ""
+        },
+        "productInfo3": {
+            "languageId": 0,
+            "serialNumber": "",
+            "manufacturer": "",
+            "product": ""
+        },
+        "productInfo4": {
+            "languageId": 0,
+            "serialNumber": "",
+            "manufacturer": "",
+            "product": ""
+        }
     }
 }
 ```
