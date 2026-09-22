@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getFrontPanelLights"></a>
 ## *getFrontPanelLights*
 
-Provides a list or status bitmask of the active illumination nodes present on the physical display facade of the device.
+Returns the front-panel lights supported by the device platform.
 
 ### Events Triggered
 None
