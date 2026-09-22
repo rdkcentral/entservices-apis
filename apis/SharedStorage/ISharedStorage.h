@@ -173,7 +173,7 @@ namespace Exchange {
         // @param scope: must be device or account
         // @example scope: "device"
         // @param storageList: list of namespaces and their sizes
-        // @example storageList: [{ "ns":"application", "size":1024 }]
+        // @example storageList: [{ "namespace":"application", "size":1024 }]
         // @param success: Indicates whether the operation was successful
         // @example success: true
         // @retval Core::ERROR_NONE: Indicates success
