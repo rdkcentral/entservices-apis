@@ -201,10 +201,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
         "deviceStatus": 1,
         "deviceLevel": 1,
         "portNumber": 2,
-        "vendorId": 1234,
-        "productId": 5678,
+        "vendorId": 1921,
+        "productId": 21831,
         "protocol": 0,
-        "serialNumber": 1234567890,
+        "serialNumber": "SDCZ50-32GB-001",
         "device": {
             "deviceClass": 8,
             "deviceSubclass": 6,
@@ -214,30 +214,30 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
         "flags": "AVAILABLE",
         "features": 0,
         "busSpeed": "Super",
-        "numLanguageIds": 1,
+        "numLanguageIds": 4,
         "productInfo1": {
             "languageId": 1033,
-            "serialNumber": 1234567890,
+            "serialNumber": "SDCZ50-32GB-001",
             "manufacturer": "SanDisk",
             "product": "Cruzer Blade"
         },
         "productInfo2": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
+            "languageId": 1031,
+            "serialNumber": "SDCZ50-32GB-001",
+            "manufacturer": "SanDisk",
+            "product": "Cruzer Blade"
         },
         "productInfo3": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
+            "languageId": 1036,
+            "serialNumber": "SDCZ50-32GB-001",
+            "manufacturer": "SanDisk",
+            "product": "Cruzer Blade"
         },
         "productInfo4": {
-            "languageId": 0,
-            "serialNumber": "",
-            "manufacturer": "",
-            "product": ""
+            "languageId": 1041,
+            "serialNumber": "SDCZ50-32GB-001",
+            "manufacturer": "SanDisk",
+            "product": "Cruzer Blade"
         }
     }
 }
