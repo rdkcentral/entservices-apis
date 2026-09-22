@@ -207,7 +207,7 @@ None
     "id": 0,
     "method": "org.rdk.DisplayInfo.eDID",
     "params": {
-        "length": 2
+        "length": 4
     }
 }
 ```
@@ -216,7 +216,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DisplayInfo.eDID", "params": {"length": 2}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DisplayInfo.eDID", "params": {"length": 4}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -227,7 +227,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "length": 2,
+        "length": 4,
         "data": [
             0,
             255,
