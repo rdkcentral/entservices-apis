@@ -73,6 +73,10 @@ namespace Exchange {
         // @param passthru: enabled/disabled
         virtual Core::hresult IsAudioPassthrough (bool& passthru /* @out */) const = 0;
 
+        // @brief One-shot initialisation hook, called once by DisplayInfo::Initialize() 
+        // to let the implementation warm up any caches (e.g. frame rate).
+        virtual Core::hresult Configure() = 0;
+
         // @property
         // @brief Current HDMI connection status
         // @param isconnected: connected/disconnected
