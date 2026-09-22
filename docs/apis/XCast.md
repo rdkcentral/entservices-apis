@@ -383,6 +383,7 @@ None
 | params | object |  |
 | params.applications | array | Json array with one or more application details to register |
 | params.applications[#].name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#].appid | string | Application ID used by the application manager for the corresponding application name |
 | params.applications[#].prefix | string | If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail |
 | params.applications[#].cors | string | origin allowed for the application. This must not be empty |
 | params.applications[#].query | string | query string that need to be appended in launch request |
@@ -407,6 +408,7 @@ None
     "params": [
         {
             "name": "",
+            "appid": "",
             "prefix": "",
             "cors": "",
             "query": "",
@@ -421,7 +423,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "", "prefix": "", "cors": "", "query": "", "payload": "", "allowStop": 0}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "", "appid": "", "prefix": "", "cors": "", "query": "", "payload": "", "allowStop": 0}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
