@@ -73,7 +73,7 @@ namespace WPEFramework
 
             // @text setLEDState
             // @brief Sets the device LED to a requested state from those available in `GetSupportedLEDStates`.
-            // @details Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. If the requested state is not supported, the operation will fail and return `Core::ERROR_GENERAL`.
+            // @details The requested state must be one of the values returned by `GetSupportedLEDStates`.
             // @param state: LEDControlState. e.g. "FACTORY_RESET"
             // @example state: "FACTORY_RESET"
             // @param success: Boolean indicating whether the operation was successful
