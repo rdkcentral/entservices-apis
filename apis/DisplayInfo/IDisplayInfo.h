@@ -117,7 +117,7 @@ namespace Exchange {
         // @brief TV's Extended Display Identification Data
         // @details Retrieves the TV's Extended Display Identification Data (EDID) as a byte string.
         // @param length: length of edid byte string
-        // @example length: 2
+        // @example length: 4
 		// @param data: EDID byte string
 		// @example data: [0, 255, 255, 255, 255, 255, 255, 0]
         // @retval Core::ERROR_NONE: Indicates success
