@@ -540,7 +540,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
     "result": {
         "storageList": [
             {
-                "ns": "application",
+                "namespace": "application",
                 "size": 1024
             }
         ],
