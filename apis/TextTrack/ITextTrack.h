@@ -419,6 +419,7 @@ struct EXTERNAL ITextTrackCapabilities : virtual public Core::IUnknown {
     enum class Capability : uint32_t {
         UNSET = 0, //< Filler value; will never be used as a capability
         FIREBOLT_MIGRATION = 1, //< Have the CC style settings from Firebolt been migrated into TextTrack?
+        STYLE_PREVIEW = 2, //< Supports previewing style changes before applying them
     };
 
     using IIterator = RPC::IIteratorType<Capability, RPC::ID_VALUEITERATOR>;
@@ -554,6 +555,7 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief  Applies a custom ClosedCaptionsStyle on a single session.
      * @details When a custom style is applied on a specific session we will not update the style for this session if the global style setting change.
      * The style setting will take effect immediately.
+     * Available in JSON interface since version 6.
      * @param sessionId Is the session as returned in the ITextTrack interface.
      * @param style Contains the chosen styles
      * @text applyCustomClosedCaptionsStyleToSession
