@@ -286,7 +286,7 @@ namespace WPEFramework {
 			// @brief Register one or more castable applications
 			// @details Registers applications that can be launched via casting. Each application entry specifies its name, launch prefixes, CORS policy, launch parameters, and whether it can be stopped by remote clients.
 			// @param appInfoList: Iterator over the list of application information objects to register
-			// @example appInfoList: [{"appName":"YouTube","prefixes":["youtube://"],"corsPolicy":"*","launchParameters":"{}","allowStop":true},{"appName":"Netflix","prefixes":["netflix://"],"corsPolicy":"*","launchParameters":"{}","allowStop":true}]
+			// @example appInfoList: [{"name":"YouTube","prefix":"youtube://","cors":"*","query":"","payload":"{}","allowStop":1},{"name":"Netflix","prefix":"netflix://","cors":"*","query":"","payload":"{}","allowStop":1}]
 			// @param success: 	Whether the request succeeded
 			// @example success: true
 			// @retval Core::ERROR_NONE: Indicates success
