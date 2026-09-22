@@ -406,22 +406,20 @@ None
     "method": "org.rdk.XCast.registerApplications",
     "params": [
         {
-            "appName": "YouTube",
-            "prefixes": [
-                "youtube://"
-            ],
-            "corsPolicy": "*",
-            "launchParameters": "{}",
-            "allowStop": true
+            "name": "YouTube",
+            "prefix": "youtube://",
+            "cors": "*",
+            "query": "",
+            "payload": "{}",
+            "allowStop": 1
         },
         {
-            "appName": "Netflix",
-            "prefixes": [
-                "netflix://"
-            ],
-            "corsPolicy": "*",
-            "launchParameters": "{}",
-            "allowStop": true
+            "name": "Netflix",
+            "prefix": "netflix://",
+            "cors": "*",
+            "query": "",
+            "payload": "{}",
+            "allowStop": 1
         }
     ]
 }
@@ -431,7 +429,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"appName": "YouTube", "prefixes": ["youtube://"], "corsPolicy": "*", "launchParameters": "{}", "allowStop": true}, {"appName": "Netflix", "prefixes": ["netflix://"], "corsPolicy": "*", "launchParameters": "{}", "allowStop": true}]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.XCast.registerApplications", "params": [{"name": "YouTube", "prefix": "youtube://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}, {"name": "Netflix", "prefix": "netflix://", "cors": "*", "query": "", "payload": "{}", "allowStop": 1}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
