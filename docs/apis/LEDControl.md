@@ -162,7 +162,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="setLEDState"></a>
 ## *setLEDState*
 
-Sets the device LED to a requested state from those available in `GetSupportedLEDStates`. If the requested state is not supported, the operation will fail and return `Core::ERROR_GENERAL`.
+The requested state must be one of the values returned by `GetSupportedLEDStates`.
 
 ### Events Triggered
 None
