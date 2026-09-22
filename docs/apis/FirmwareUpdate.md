@@ -104,8 +104,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "state": "flashingStarted",
-        "substate": "firmwareOutdated"
+        "state": "FLASHING_STARTED",
+        "substate": "FIRMWARE_OUTDATED"
     }
 }
 ```
