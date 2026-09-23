@@ -90,7 +90,7 @@ namespace WPEFramework
             // @text setBlink
             // @details Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) - the LED indicator to set, iterations (integer) - the number of times to repeat the pattern, and pattern (array of objects) - each object contains brightness (integer), duration (integer in milliseconds), and optional color (string) and red/green/blue (integers) values.
             // @param blinkInfo: JSON string with blink pattern information containing ledIndicator, iterations, and pattern array with brightness, duration(milliseconds), and optional color and red/green/blue values.
-            // @example blinkInfo: {"ledIndicator": "POWER_LED", "iterations": 3, "pattern": [{"brightness": 100, "duration": 500}, {"brightness": 0, "duration": 500}]}
+             // @example blinkInfo: '{"ledIndicator": "POWER_LED", "iterations": 3, "pattern": [{"brightness": 100, "duration": 500}, {"brightness": 0, "duration": 500}]}'
             // @param success: Is the operation successful or not
             // @example success: { "success": true }          
             // @retval Core::ERROR_NONE: Indicates success
