@@ -516,7 +516,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
     "jsonrpc": 2.0,
     "id": 8,
     "result": [
-        "[{ \"wakeupSource\": WAKEUP_SRC_IR, \"enabled\": true }, { \"wakeupSource\": WAKEUP_SRC_BLUETOOTH, \"enabled\": false }]"
+        {
+            "wakeupSource": "IR",
+            "enabled": true
+        },
+        {
+            "wakeupSource": "BLUETOOTH",
+            "enabled": false
+        }
     ]
 }
 ```
@@ -818,7 +825,14 @@ None
     "id": 14,
     "method": "org.rdk.PowerManager.setWakeupSourceConfig",
     "params": [
-        "[{ \"wakeupSource\": WAKEUP_SRC_IR, \"enabled\": true }, { \"wakeupSource\": WAKEUP_SRC_BLUETOOTH, \"enabled\": false }]"
+        {
+            "wakeupSource": "IR",
+            "enabled": true
+        },
+        {
+            "wakeupSource": "BLUETOOTH",
+            "enabled": false
+        }
     ]
 }
 ```
@@ -827,7 +841,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": ["[{ \"wakeupSource\": WAKEUP_SRC_IR, \"enabled\": true }, { \"wakeupSource\": WAKEUP_SRC_BLUETOOTH, \"enabled\": false }]"]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.PowerManager.setWakeupSourceConfig", "params": [{"wakeupSource": "IR", "enabled": true}, {"wakeupSource": "BLUETOOTH", "enabled": false}]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
