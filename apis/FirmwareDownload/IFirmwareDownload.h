@@ -50,7 +50,8 @@ namespace WPEFramework
 
                 // @text onFirmwareAvailable
                 // @brief Triggered when the SearchFirmware asynchronous method is invoked
-                // @details This event is triggered when the SearchFirmware asynchronous method is invoked. It provides information about the firmware search operation, including the status, server response, availability of new firmware, version string of the available firmware, and whether an immediate reboot is required.
+                // @details This event is triggered when the SearchFirmware asynchronous operation completes and its result becomes available. It provides information about the firmware search outcome, including
+                // the operation status, server response, availability of new firmware, the available firmware version, and whether an immediate reboot is required.
                 // @param searchStatus: Status of the firmware search operation
                 // @example searchStatus: 0
                 // @param serverResponse: Response message from the server
