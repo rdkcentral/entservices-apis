@@ -372,6 +372,9 @@ namespace Exchange {
         ID_PROCESS_WATCHER                          = ID_ENTOS_OFFSET + 0x580,
 
         ID_PROCESS_HANDLER                          = ID_ENTOS_OFFSET + 0x590,
+
+        ID_RESOURCE_MANAGER_TOP                     = ID_ENTOS_OFFSET + 0x5A0,
+        ID_RESOURCE_MANAGER_TOP_NOTIFICATION_MULTIPLICATION_RESULT = ID_RESOURCE_MANAGER_TOP + 1,
     }; // enum IDS
 
 } // namespace Exchange
