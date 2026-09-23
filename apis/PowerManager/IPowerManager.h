@@ -375,7 +375,7 @@ namespace WPEFramework
         // @brief Set the source configuration for device wakeup
         // @details Configures the wakeup sources for the device. Clients can use this API to specify which sources are enabled or disabled for waking up the device from low-power states.
         // @param wakeupSources: Wake up sources array
-        // @example wakeupSources: [{ "wakeupSource": WAKEUP_SRC_IR, "enabled": true }, { "wakeupSource": WAKEUP_SRC_BLUETOOTH, "enabled": false }]
+        // @example wakeupSources: [{ "wakeupSource": "IR", "enabled": true }, { "wakeupSource": "BLUETOOTH", "enabled": false }]        
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult SetWakeupSourceConfig(IWakeupSourceConfigIterator* const wakeupSources) = 0;
 
@@ -384,7 +384,7 @@ namespace WPEFramework
         // @brief Get the source configuration for device wakeup
         // @details Retrieves the current wakeup source configuration for the device. Clients can use this API to query which sources are enabled or disabled for waking up the device from low-power states.
         // @param wakeupSources: Wake up sources array
-        // @example wakeupSources: [{ "wakeupSource": WAKEUP_SRC_IR, "enabled": true }, { "wakeupSource": WAKEUP_SRC_BLUETOOTH, "enabled": false }]
+        // @example wakeupSources: [{ "wakeupSource": "IR", "enabled": true }, { "wakeupSource": "BLUETOOTH", "enabled": false }]
         // @retval Core::ERROR_NONE: Indicates success
         virtual Core::hresult GetWakeupSourceConfig(IWakeupSourceConfigIterator*& wakeupSources /* @out */) const = 0;
 
