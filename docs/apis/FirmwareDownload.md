@@ -318,7 +318,7 @@ The following events are provided by the IFirmwareDownload Interface:
 <a id="onFirmwareAvailable"></a>
 ## *onFirmwareAvailable*
 
-This event is triggered when the SearchFirmware asynchronous method is invoked. It provides information about the firmware search operation, including the status, server response, availability of new firmware, version string of the available firmware, and whether an immediate reboot is required.
+This event is triggered when the SearchFirmware asynchronous operation completes and its result becomes available. It provides information about the firmware search outcome, including the operation status, server response, availability of new firmware, the available firmware version, and whether an immediate reboot is required.
 
 ### Parameters
 | Name | Type | Description |
