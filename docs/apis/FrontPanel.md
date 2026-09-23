@@ -311,20 +311,7 @@ None
     "id": 4,
     "method": "org.rdk.FrontPanel.setBlink",
     "params": {
-        "blinkInfo": {
-            "ledIndicator": "POWER_LED",
-            "iterations": 3,
-            "pattern": [
-                {
-                    "brightness": 100,
-                    "duration": 500
-                },
-                {
-                    "brightness": 0,
-                    "duration": 500
-                }
-            ]
-        }
+        "blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"
     }
 }
 ```
@@ -333,7 +320,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": {"ledIndicator": "POWER_LED", "iterations": 3, "pattern": [{"brightness": 100, "duration": 500}, {"brightness": 0, "duration": 500}]}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
