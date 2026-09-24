@@ -66,6 +66,7 @@ namespace Exchange {
                 POST_RESOLUTION_CHANGE,
                 HDMI_CHANGE,
                 HDCP_CHANGE,
+                FRAMERATE_CHANGE,
             };
 
             virtual void Updated(const Source event) = 0;
@@ -73,6 +74,11 @@ namespace Exchange {
 
         virtual Core::hresult Register(INotification*) = 0;
         virtual Core::hresult Unregister(INotification*) = 0;
+
+        // @brief Initializes and caches the current display frame rate
+        // @details Caches the current frame rate so subsequent changes can be detected and notified via the FRAMERATE_CHANGE event.
+        // @retval Core::ERROR_NONE: Indicates success
+        virtual Core::hresult InitializeFrameRate() = 0;
 
         // @property
         // @brief Current audio passthrough status on HDMI
