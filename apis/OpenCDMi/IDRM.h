@@ -522,8 +522,7 @@ struct IGoogleCastAuthExtension {
     virtual CDMi_RESULT GetSystemId(uint32_t& id /* @out */) const = 0;
 };
 
-// RDKDEV-1281: optional batch (multi-sample) decryption. A standalone extension interface,
-// found with dynamic_cast as for IRobustnessExtension, so IMediaKeySession is left unchanged.
+// Optional batch (multi-sample) decryption. A standalone extension interface
 struct IMediaKeySessionBatch {
     virtual ~IMediaKeySessionBatch() = default;
     virtual CDMi_RESULT DecryptMulti(

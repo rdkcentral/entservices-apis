@@ -59,9 +59,6 @@ namespace Exchange {
 
     class DataExchange : public Core::SharedBuffer {
     private:
-        // RDKDEV-1281: per-sample entry used by the additive multi-sample array below.
-        // Multi-sample decryption requires same KeyId, EncScheme and Clear / Enc Pattern
-        // Related fields are re-used in single and multi sample decryption cases - to avoid enlarging Administration structure
         struct MultiSampleInfo {
             uint8_t  iv[24];
             uint8_t  ivLength;
@@ -82,10 +79,12 @@ namespace Exchange {
             uint16_t StreamWidth;
             uint8_t  StreamType;
 
-            // RDKDEV-1281: multi-sample decrypt additions (additive; legacy fields above unchanged).
+            // Multi-sample decrypt additions (additive; legacy fields above unchanged).
             // SampleLength defaults to 0 (buffer is zero-initialized), so existing single-sample
             // callers that never call SetSamples() are unaffected.
-            // SubSamples array is re-used in multi-sample decryption case.
+            // Multi-sample decryption requires same KeyId, EncScheme and Clear / Enc Pattern
+            // Related fields are re-used in single and multi sample decryption cases - to avoid enlarging Administration structure.
+            // SubSamples array is also re-used in multi-sample decryption case.
             uint16_t SampleLength;
             MultiSampleInfo Samples[32];
         };
@@ -120,7 +119,6 @@ namespace Exchange {
         void SetSubSamples(const uint16_t startIdx, const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            VERIFY(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo) >= (startIdx + length));
             for(uint16_t index = 0; index < length; index++) {
                 admin->SubSamples[index + startIdx].encrypted_bytes = subSampleInfo[index].encrypted_bytes;
                 admin->SubSamples[index + startIdx].clear_bytes = subSampleInfo[index].clear_bytes;
@@ -190,9 +188,6 @@ namespace Exchange {
         void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
-            // RDKDEV-1281: legacy-only entry point, so clear SampleLength here to stop a
-            // stale batch request routing this one down the batch path.
-            admin->SampleLength = 0;
             VERIFY(ivDataLength <= sizeof(Administration::IV));
             admin->IVLength = (ivDataLength > sizeof(Administration::IV) ? sizeof(Administration::IV)
                                                                         : ivDataLength);
@@ -244,7 +239,6 @@ namespace Exchange {
                 admin->SubSamples[index].clear_bytes = subSampleInfo[index].clear_bytes;
             }
         }
-        // ---- additive multi-sample accessors (RDKDEV-1281) ----
         void SetSampleLength(const uint16_t length)
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
@@ -277,10 +271,14 @@ namespace Exchange {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
             VERIFY(admin->SampleLength > idx);
             if (admin->SampleLength > idx) {
+                const uint16_t maxSubSamples = static_cast<uint16_t>(sizeof(Administration::SubSamples) / sizeof(CDMi::SubSampleInfo));
+                const uint16_t remaining = (maxSubSamples > admin->SubSampleLength ? (maxSubSamples - admin->SubSampleLength) : 0);
+                const uint16_t actualSubSampleLegth = std::min<uint16_t>(subSampleLength, remaining);
+
                 SetIV(admin->Samples[idx], ivLength, iv);
-                SetSubSampleLength(admin->Samples[idx], subSampleLength);
-                SetSubSamples(admin->SubSampleLength, subSampleLength, subSampleInfo);
-                admin->SubSampleLength += subSampleLength;
+                SetSubSampleLength(admin->Samples[idx], actualSubSampleLegth);
+                SetSubSamples(admin->SubSampleLength, actualSubSampleLegth, subSampleInfo);
+                admin->SubSampleLength += actualSubSampleLegth;
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
