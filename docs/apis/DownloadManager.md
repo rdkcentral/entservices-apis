@@ -66,7 +66,7 @@ The following methods are provided by the IDownloadManager Interface:
 <a id="cancel"></a>
 ## *cancel*
 
-Cancel an ongoing download session
+Cancels the specified download session, stopping any ongoing download and cleaning up associated resources.
 
 ### Events Triggered
 None
@@ -91,7 +91,7 @@ None
     "id": 0,
     "method": "org.rdk.DownloadManager.cancel",
     "params": {
-        "downloadId": ""
+        "downloadId": 1234
     }
 }
 ```
@@ -100,7 +100,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DownloadManager.cancel", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DownloadManager.cancel", "params": {"downloadId": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -117,7 +117,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="delete"></a>
 ## *delete*
 
-Delete a downloaded file from the system using its locator path
+Deletes the specified downloaded file from the system, freeing up storage space.
 
 ### Events Triggered
 None
@@ -142,7 +142,7 @@ None
     "id": 1,
     "method": "org.rdk.DownloadManager.delete",
     "params": {
-        "fileLocator": ""
+        "fileLocator": "/path/to/file"
     }
 }
 ```
@@ -151,7 +151,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DownloadManager.delete", "params": {"fileLocator": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DownloadManager.delete", "params": {"fileLocator": "/path/to/file"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -168,7 +168,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="download"></a>
 ## *download*
 
-Download Start downloading a file from a specified URL with custom options
+Initiates the download of a file from the specified URL using the provided options. The download ID is returned through the output parameter.
 
 ### Events Triggered
 None
@@ -198,12 +198,8 @@ None
     "id": 2,
     "method": "org.rdk.DownloadManager.download",
     "params": {
-        "url": "",
-        "options": {
-            "priority": true,
-            "retries": 0,
-            "rateLimit": 0
-        }
+        "url": "http://example.com/file",
+        "options": "{\\\"retryCount\\\":3,\\\"timeout\\\":60}"
     }
 }
 ```
@@ -212,7 +208,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DownloadManager.download", "params": {"url": "", "options": {"priority": true, "retries": 0, "rateLimit": 0}}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DownloadManager.download", "params": {"url": "http://example.com/file", "options": "{\\\"retryCount\\\":3,\\\"timeout\\\":60}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -223,7 +219,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "downloadId": ""
+        "downloadId": 1234
     }
 }
 ```
@@ -231,7 +227,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="pause"></a>
 ## *pause*
 
-Pause an active download session
+Pauses the specified download session, temporarily halting the download process.
 
 ### Events Triggered
 None
@@ -256,7 +252,7 @@ None
     "id": 3,
     "method": "org.rdk.DownloadManager.pause",
     "params": {
-        "downloadId": ""
+        "downloadId": 1234
     }
 }
 ```
@@ -265,7 +261,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DownloadManager.pause", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DownloadManager.pause", "params": {"downloadId": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -282,7 +278,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="progress"></a>
 ## *progress*
 
-Progress Query current download progress
+Retrieves the current progress of the specified download session, providing the completion percentage.
 
 ### Events Triggered
 None
@@ -308,7 +304,7 @@ None
     "id": 4,
     "method": "org.rdk.DownloadManager.progress",
     "params": {
-        "downloadId": ""
+        "downloadId": 1234
     }
 }
 ```
@@ -317,7 +313,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DownloadManager.progress", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DownloadManager.progress", "params": {"downloadId": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -328,7 +324,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "percent": 0
+        "percent": 50
     }
 }
 ```
@@ -336,7 +332,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="rateLimit"></a>
 ## *rateLimit*
 
-RateLimit Set rate limiting for a specific download session
+Sets a maximum bandwidth limit for the specified download session, controlling the rate at which data is downloaded.
 
 ### Events Triggered
 None
@@ -362,8 +358,8 @@ None
     "id": 5,
     "method": "org.rdk.DownloadManager.rateLimit",
     "params": {
-        "downloadId": "",
-        "limit": 0
+        "downloadId": 1234,
+        "limit": 1024
     }
 }
 ```
@@ -372,7 +368,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DownloadManager.rateLimit", "params": {"downloadId": "", "limit": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DownloadManager.rateLimit", "params": {"downloadId": 1234, "limit": 1024}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -389,7 +385,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="resume"></a>
 ## *resume*
 
-Resume a paused download session
+Resumes a previously paused download session, allowing the download to continue from where it left off.
 
 ### Events Triggered
 None
@@ -414,7 +410,7 @@ None
     "id": 6,
     "method": "org.rdk.DownloadManager.resume",
     "params": {
-        "downloadId": ""
+        "downloadId": 1234
     }
 }
 ```
@@ -423,7 +419,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DownloadManager.resume", "params": {"downloadId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DownloadManager.resume", "params": {"downloadId": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -451,7 +447,7 @@ The following events are provided by the IDownloadManager Interface:
 <a id="onAppDownloadStatus"></a>
 ## *onAppDownloadStatus*
 
-OnAppDownloadStatus Callback for status changes of app downloads
+Provides detailed information about the current status of the download, including progress and any errors encountered.
 
 ### Parameters
 | Name | Type | Description |
@@ -467,7 +463,7 @@ OnAppDownloadStatus Callback for status changes of app downloads
     "id": 7,
     "method": "org.rdk.DownloadManager.onAppDownloadStatus",
     "params": {
-        "downloadStatus": ""
+        "downloadStatus": "{\\\"downloadId\\\":\\\"1234\\\",\\\"fileLocator\\\":\\\"http://example.com/file\\\",\\\"failReason\\\":\\\"DOWNLOAD_FAILURE\\\"}"
     }
 }
 ```
