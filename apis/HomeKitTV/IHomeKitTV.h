@@ -56,7 +56,7 @@ namespace WPEFramework {
                 // @brief Notifies when there is a request to change the app state.
                 // @details This event is triggered when there is a request to change the state of the app.
                 // @param params: JSON string containing the details of the app state change request.
-                // @example params: "{ \"state\": \"foreground\" }
+                // @example params: "{ \"state\": \"foreground\" }"
                 virtual void dispatchOnAppStateChangeRequest(const string& params) = 0;
 
                 // @brief Notifies when the enabled status of the HomeKit TV changes.
@@ -112,13 +112,13 @@ namespace WPEFramework {
             // @brief Retrieves the enabled status of the HomeKit TV.
             // @details This method fetches the current enabled status of the HomeKit TV.
             // @param result: Boolean indicating whether the HomeKit TV is enabled.
-            // @example result: "{ \"enabled\": true }"
+			// @example result: true
         virtual void getEnabledStatus(bool& result /* @out */) = 0;
            
             // @brief Retrieves the connection status of the HomeKit TV.
             // @details This method fetches the current connection status of the HomeKit TV.
             // @param result: Boolean indicating whether the HomeKit TV is connected.
-            // @example result: "{ \"connected\": true }"
+			// @example result: true
 	        virtual void getConnectionStatus(bool& result /* @out */) = 0;
 
             // @brief Sets the IP address of the app container on the HomeKit TV.
