@@ -44,7 +44,10 @@ namespace Exchange {
 
             // @text StateChange
             // @brief Triggered whenever the App state changes
-            // @param state: current state of amazon prime
+            // @details The notification is sent when the Amazon Prime application changes playback state.
+            // @param state: Current state of amazon prime
+            // @example state: PLAYING
+            // @retval Core::ERROR_NONE: State change notification was delivered successfully
             virtual void StateChange(const IAmazon::State state) {};
         };
 
@@ -55,26 +58,32 @@ namespace Exchange {
         /** Unregister notification interface */
         virtual Core::hresult Unregister(IAmazon::INotification* amazon) = 0;
 
-        /** To send deeplink command to amazon prime application **/
         // @text setDeepLink
         // @brief Set the deeplink command for amazon prime
-        // @param command : app Deeplink command
+        // @details The command is forwarded to the Amazon Prime application when it is launched or active.
+        // @param command: App Deeplink command
+        // @example command: "https://www.amazon.com/gp/video/detail/B012345678"
+        // @retval Core::ERROR_NONE: Deeplink command set successfully
         virtual Core::hresult SetDeepLink(const string& command) = 0;
 
-        /** To request for personal access token to amazon prime application **/
         // @text personalInfoRequest
         // @brief Request for personal access token to amazon prime app
+        // @details Requests the Amazon Prime application to provide the user's personal access token.
+        // @retval Core::ERROR_NONE: Personal access token request accepted successfully
         virtual Core::hresult PersonalInfoRequest() = 0;
 
-        /** To factory reset amazon prime application **/
         // @text factoryResetRequest
         // @brief Factory reset amazon prime app data
+        // @details Removes the stored application data and restores Amazon Prime to its factory state.
+        // @retval Core::ERROR_NONE: Factory reset request accepted successfully
         virtual Core::hresult FactoryResetRequest() = 0;
 
-        /** To set launch reason for amazon prime application **/
         // @texts setLaunchReason
         // @brief Set launch reason for amazon prime app
-        // @param command : app launch reason
+        // @details Stores the reason that should be provided when launching the Amazon Prime application.
+        // @param command: App launch reason
+        // @example command: "USER_REQUEST"
+        // @retval Core::ERROR_NONE: Launch reason set successfully
         virtual Core::hresult SetLaunchReason(const string& command) = 0;
     };
 }
