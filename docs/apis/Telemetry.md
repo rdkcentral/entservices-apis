@@ -57,7 +57,7 @@ The following methods are provided by the ITelemetry Interface:
 | :-------- | :-------- |
 | [abortReport](#abortReport) | Abort report upload |
 | [isOptOutTelemetry](#isOptOutTelemetry) | Checks the telemetry opt-out status. |
-| [logApplicationEvent](#logApplicationEvent) | Logs an application |
+| [logApplicationEvent](#logApplicationEvent) | Logs an application event |
 | [setOptOutTelemetry](#setOptOutTelemetry) | Sets the telemetry opt-out status. |
 | [setReportProfileStatus](#setReportProfileStatus) | Sets the status of telemetry reporting |
 | [uploadReport](#uploadReport) | Uploading of telemetry report |
@@ -65,7 +65,7 @@ The following methods are provided by the ITelemetry Interface:
 <a id="abortReport"></a>
 ## *abortReport*
 
-Abort report upload
+Invoked by the Telemetry service to abort an ongoing telemetry report upload. Components implementing this interface should terminate the upload process and handle any necessary cleanup.
 
 ### Events Triggered
 None
@@ -110,7 +110,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="isOptOutTelemetry"></a>
 ## *isOptOutTelemetry*
 
-Checks the telemetry opt-out status.
+Invoked by the Telemetry service to check the current opt-out status for telemetry reporting. Components implementing this interface should return the current configuration indicating whether telemetry data collection is opted out.
 
 ### Events Triggered
 None
@@ -120,8 +120,8 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.Opt-Out | bool |  |
-| result.success | bool | boolean |
+| result.Opt-Out | bool | Boolean The current opt-out status for telemetry reporting. |
+| result.success | bool | Boolean Indicates whether the operation was successful. |
 
 ### Examples
 
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="logApplicationEvent"></a>
 ## *logApplicationEvent*
 
-Logs an application
+Invoked by the Telemetry service to log an application  Components implementing this interface should record the event with the provided name and value.
 
 ### Events Triggered
 None
@@ -168,8 +168,8 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.eventName | string | string |
-| params.eventValue | string | string |
+| params.eventName | string | String The name of the application  |
+| params.eventValue | string | String The value associated with the application  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -186,8 +186,8 @@ None
     "id": 2,
     "method": "org.rdk.Telemetry.logApplicationEvent",
     "params": {
-        "eventName": "",
-        "eventValue": ""
+        "eventName": "UserLogin",
+        "eventValue": "Success"
     }
 }
 ```
@@ -196,7 +196,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "", "eventValue": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Telemetry.logApplicationEvent", "params": {"eventName": "UserLogin", "eventValue": "Success"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -213,7 +213,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setOptOutTelemetry"></a>
 ## *setOptOutTelemetry*
 
-Sets the telemetry opt-out status.
+Invoked by the Telemetry service to set the opt-out status for telemetry reporting. Components implementing this interface should update their internal configuration to reflect the user's preference regarding telemetry data collection.
 
 ### Events Triggered
 None
@@ -221,12 +221,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.Opt-Out | bool |  |
+| params.Opt-Out | bool | boolean The desired opt-out status for telemetry reporting. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | boolean |
+| result.success | bool | Output structure containing the operation result. |
 
 ### Examples
 
@@ -267,7 +267,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="setReportProfileStatus"></a>
 ## *setReportProfileStatus*
 
-Sets the status of telemetry reporting
+Invoked by the Telemetry service to set the status of telemetry reporting. Components implementing this interface should update their internal state to reflect the new reporting status.
 
 ### Events Triggered
 None
@@ -275,7 +275,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | string |
+| params.status | string | String The new status of telemetry reporting. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -292,7 +292,7 @@ None
     "id": 4,
     "method": "org.rdk.Telemetry.setReportProfileStatus",
     "params": {
-        "status": ""
+        "status": "enabled"
     }
 }
 ```
@@ -301,7 +301,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.Telemetry.setReportProfileStatus", "params": {"status": "enabled"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -318,7 +318,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="uploadReport"></a>
 ## *uploadReport*
 
-Uploading of telemetry report
+Invoked by the Telemetry service to upload a telemetry report. Components implementing this interface should initiate the report upload process and handle the result accordingly.
 
 ### Events Triggered
 None
@@ -374,13 +374,13 @@ The following events are provided by the ITelemetry Interface:
 <a id="onReportUpload"></a>
 ## *onReportUpload*
 
-Triggered by callback from Telemetry after report uploading
+Invoked by the Telemetry service after a report has been uploaded. Components implementing this interface should handle the upload status accordingly.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.telemetryUploadStatus | string | string |
+| params.telemetryUploadStatus | string | String The status of the telemetry upload. |
 
 ### Examples
 
@@ -390,7 +390,7 @@ Triggered by callback from Telemetry after report uploading
     "id": 6,
     "method": "org.rdk.Telemetry.onReportUpload",
     "params": {
-        "telemetryUploadStatus": ""
+        "telemetryUploadStatus": "success"
     }
 }
 ```
