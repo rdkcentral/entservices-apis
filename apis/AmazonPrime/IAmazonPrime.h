@@ -47,7 +47,6 @@ namespace Exchange {
             // @details The notification is sent when the Amazon Prime application changes playback state.
             // @param state: Current state of amazon prime
             // @example state: PLAYING
-            // @retval Core::ERROR_NONE: State change notification was delivered successfully
             virtual void StateChange(const IAmazon::State state) {};
         };
 
