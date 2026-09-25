@@ -121,7 +121,7 @@ namespace Exchange {
         // @param downloadId: Unique identifier of the download
         // @example downloadId: "1234"
         // @param percent: Output parameter returning percentage completed
-        // @example percent: 50        v
+// @example percent: 50
         virtual Core::hresult Progress(
             const string& downloadId,
             uint8_t& percent /* @out */) = 0;
