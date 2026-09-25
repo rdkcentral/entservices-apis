@@ -197,7 +197,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
   // @brief Retrieves a list of applications currently loaded on the system.
   // @details This function retrieves the details of all applications currently loaded on the system.
   // @param apps A list containing the details of loaded applications
-  // @example apps: "[{\"appId\": \"com.example.myapp\", \"name\": \"My App\"}]"
+  // @example apps: [{"appId": "com.example.myapp", "appInstanceId": "instance-123", "activeSessionId": "session-456", "type": "web", "targetLifecycleState": "APP_STATE_RUNNING", "lifecycleState": "APP_STATE_RUNNING"}]
   // @retval Core::ERROR_NONE: Successfully retrieved the list of loaded applications
   virtual Core::hresult GetLoadedApps(ILoadedAppInfoIterator*& apps /* @out */) = 0;
 
