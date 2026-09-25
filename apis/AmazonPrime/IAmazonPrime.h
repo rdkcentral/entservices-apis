@@ -44,7 +44,9 @@ namespace Exchange {
 
             // @text StateChange
             // @brief Triggered whenever the App state changes
+            // @details The notification is sent when the Amazon Prime application changes playback state.
             // @param state: current state of amazon prime
+            // @example state: PLAYING
             virtual void StateChange(const IAmazon::State state) {};
         };
 
@@ -55,26 +57,28 @@ namespace Exchange {
         /** Unregister notification interface */
         virtual Core::hresult Unregister(IAmazon::INotification* amazon) = 0;
 
-        /** To send deeplink command to amazon prime application **/
         // @text setDeepLink
         // @brief Set the deeplink command for amazon prime
+        // @details The command is forwarded to the Amazon Prime application when it is launched or active.
         // @param command : app Deeplink command
+        // @example command: "primevideo://watch?asin=B08FC5L3RG"
         virtual Core::hresult SetDeepLink(const string& command) = 0;
 
-        /** To request for personal access token to amazon prime application **/
         // @text personalInfoRequest
         // @brief Request for personal access token to amazon prime app
+        // @details Requests the Amazon Prime application to provide the user's personal access token.
         virtual Core::hresult PersonalInfoRequest() = 0;
 
-        /** To factory reset amazon prime application **/
         // @text factoryResetRequest
         // @brief Factory reset amazon prime app data
+        // @details Removes the stored application data and restores Amazon Prime to its factory state.
         virtual Core::hresult FactoryResetRequest() = 0;
 
-        /** To set launch reason for amazon prime application **/
         // @texts setLaunchReason
         // @brief Set launch reason for amazon prime app
+        // @details Sets the reason for launching the Amazon Prime application.
         // @param command : app launch reason
+        // @example command: "USER_REQUEST"
         virtual Core::hresult SetLaunchReason(const string& command) = 0;
     };
 }

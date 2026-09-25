@@ -42,11 +42,16 @@ namespace WPEFramework
             // @json:omit
             // @text subscribe
             // @brief Thunder register/unregister for Firebolt subscription requests
+            // @details Registers or unregisters for Firebolt subscription requests based on the listen parameter.
             // @param context: Execution context containing requestId, connectionId, appId and version
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "origin": "org.rdk.AppGateway", "version": "1.0.0"}
             // @param listen: boolean
+            // @example listen: true
             // @param module: the thunder plugin to subscribe
+            // @example module: "org.rdk.AppNotifications"
             // @param event: the event to subscribe
-            // @returns Core::hresult 
+            // @example event: "AppLaunched"
+            // @retval Core::ERROR_NONE: Successfully subscribed or unsubscribed for the event
             virtual Core::hresult Subscribe(const AppNotificationContext& context ,
                                             bool listen ,
                                             const string& module ,
@@ -55,10 +60,14 @@ namespace WPEFramework
             // @json:omit
             // @text emit
             // @brief Dispatch event for a given registration, if appId is provided the dispatch happens for a given App.
+            // @details Emits an event to the specified app or to all apps if no appId is provided.
             // @param event: the event to emit
+            // @example event: "AppLaunched"
             // @param payload: the payload to emit
+            // @example payload: "{\"key\": \"value\"}"
             // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
-            // @returns Core::hresult
+            // @example appId: "com.example.app"
+            // @retval Core::ERROR_NONE: Successfully emitted the event
             virtual Core::hresult Emit(const string& event ,
                                        const string& payload /* @opaque */,
                                        const string& appId ) = 0;
@@ -66,9 +75,12 @@ namespace WPEFramework
             // @json:omit
             // @text cleanup
             // @brief Cleanup any context which has a given connectionId for a given origin
+            // @details Cleans up the context associated with the specified connectionId and origin.
             // @param connectionId: connection id for a given context
+            // @example connectionId: 2
             // @param origin: origin of the context
-            // @returns Core::hresult
+            // @example origin: "com.example.origin"
+            // @retval Core::ERROR_NONE: Successfully cleaned up the context
             virtual Core::hresult Cleanup(const uint32_t connectionId , const string& origin ) = 0;
 
         };
@@ -90,9 +102,14 @@ namespace WPEFramework
                 // @json:omit
                 // @text emit
                 // @brief Dispatch event for a given registration, if appId is provided the dispatch happens for a given App.
+                // @details Emits the specified event with the given payload to the specified app or to all apps if no appId is provided.
                 // @param event: the event to emit
+                // @example event: "AppLaunched"
                 // @param payload: the payload to emit
+                // @example payload: "{\"key\": \"value\"}"
                 // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
+                // @example appId: "com.example.app"
+                // @retval Core::ERROR_NONE: Successfully emitted the event
                 virtual void Emit(const string &event,
                                   const string &payload /*@opaque */,
                                   const string &appId) {};
@@ -102,11 +119,16 @@ namespace WPEFramework
             // @json:omit
             // @text handleAppEventNotifier
             // @brief Handle AppEvent Notifier expectations for a given event
+            // @details Registers or unregisters the emit callback for the specified event and reports whether the operation succeeded.
             // @param emitCb: the emit callback interface
-            // @param event: the event for registration
-            // @param listen: whether to listen
-            // @param status: status to be filled in
-            // @returns Core::hresult
+            // @example emitCb: "Emitter instance"
+            // @param event: The event for registration
+            // @example event: "AppLaunched"
+            // @param listen: Whether to listen
+            // @example listen: true
+            // @param status: Status to be filled in
+            // @example status: true
+            // @retval Core::ERROR_NONE: Successfully handled the AppEvent Notifier expectations for the given event
             virtual Core::hresult HandleAppEventNotifier(IEmitter *emitCb, const string& event, bool listen, bool& status /* @out */) = 0;
 
         };

@@ -66,9 +66,13 @@ namespace Exchange {
 
                 // @text onIntentChanged
                 // @brief Notifies about GoogleCast intent to launch/close/destroy cast application runtime.
+                // @details Provides detailed information about the intent change, including the application ID, inactive status, and the intent itself.
                 // @param appId: Durable application id.
+                // @example appId: "com.example.castapp"
                 // @param inactive: Indicates pre-launch(off screen) request.
+                // @example inactive: true
                 // @param intent: A Firebolt compliant navigation intent.
+                // @example intent: "{\"action\":\"LAUNCH\",\"context\":{\"source\":\"example\"},\"data\":\"arg1,arg2\"}"
                 virtual void OnIntentChanged(
                     const string& appId,
                     const bool    inactive,
@@ -81,9 +85,13 @@ namespace Exchange {
             // @json:omit
             // @brief Starts the runtime and brings it to the foreground on the screen.
             // @brief Emits onIntentChanged with launch action and args passed in intent data field.
+            // @details Starts the cast web runtime with the specified application ID and arguments, optionally in prelaunch mode.
             // @param appId: Durable application id of cast web runtime or cast settings.
+            // @example appId: "com.example.castapp"
             // @param args: A list of arguments to forward to app runtime.
+            // @example args: ["arg1", "arg2"]
             // @param prelaunch: Indicates if runtimes should be started in background.
+            // @example prelaunch: true
             // @retval Core::ERROR_NOT_SUPPORTED: Pre-launch is not supported.
             // @retval Core::ERROR_NONE: Successfully delegated launch request.
             virtual Core::hresult StartRuntime(const string& appId, IStringIterator *const args, bool prelaunch) = 0;
@@ -91,14 +99,18 @@ namespace Exchange {
             // @json:omit
             // @brief Stops the runtime.
             // @brief Emits onIntentChanged with destroy action.
+            // @details Stops the cast web runtime associated with the specified application ID.
             // @param appId: Durable application id of cast web runtime or cast settings.
-            // @retval Core::ERROR_NONE: Successfully delegated destroy request.
+            // @example appId: "com.example.castapp"
+            // @retval Core::ERROR_NONE: Successfully delegated destroy request..
             virtual Core::hresult StopRuntime(const string& appId) = 0;
 
             // @json:omit
             // @brief Sends the runtime to the background off-screen.
             // @brief Emits onIntentChanged with close action.
+            // @details Sends the cast web runtime associated with the specified application ID to the background, making it off-screen but still running.
             // @param appId: Durable application id of cast web runtime or cast settings.
+            // @example appId: "com.example.castapp"
             // @retval Core::ERROR_NONE: Successfully delegated the request.
             virtual Core::hresult SendToBackground(const string& appId) = 0;
         };
@@ -131,6 +143,7 @@ namespace Exchange {
 
             // @brief Notifies that the GoogleCast status changed.
             // @text onStatusChanged
+            // @details Provides detailed information about the status change of the GoogleCast shell.
             // @alt onStatusChange
             virtual void OnStatusChanged() {
             }
@@ -140,6 +153,9 @@ namespace Exchange {
 
         // @property @text getCastStatus @alt cast_status
         // @brief Status of cast shell interfacing via Cast control API.
+        // @details Retrieves the current status of the GoogleCast shell, including build number and cast state.
+        // @param status: Output parameter returning the current cast status, including build number and cast state.
+        // @example status: { "castBuildNumber": "1.0.0", "castState": "READY_TO_CAST" }
         // @retval Core::ERROR_NONE: Indicates successful retrieval of cast status.
         virtual Core::hresult GetCastStatus(CastStatus& status /* @out */) const = 0;
     };

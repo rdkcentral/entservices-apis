@@ -43,21 +43,28 @@ namespace WPEFramework
 
             // @text configure
             // @brief Adds additional Resolution paths to the gateway
+            // @details Adds the specified set of resolution paths to the gateway in the order provided.
             // @param paths: Adds set of paths in the order of override to be used by gateway to update the resolutions
-            // @returns Core::hresult
+            // @example paths: ["/path/to/resolution1", "/path/to/resolution2"]
+            // @retval Core::ERROR_NONE: Resolution paths configured successfully
             virtual Core::hresult Configure(IStringIterator *const& paths ) = 0;
 
 
             // @json:omit
             // @text resolve
-            // @brief Provides support for other thunder plugins to use the 
-            // resolver for processing requests.
+            // @brief Provides support for other thunder plugins to use the resolver for processing requests.
+            // @details This method allows other Thunder plugins to utilize the gateway resolver for processing their requests.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: { "requestId": 123, "connectionId": 456, "appId": "com.example.app", "version": "1.0.0" }
             // @param origin: Origin of the request typically the callsign.
+            // @example origin: "org.rdk.Example"
             // @param method: the method to resolve
+            // @example method: "exampleMethod"
             // @param params (optional): the parameters to resolve
+            // @example params: { "key1": "value1", "key2": "value2" }
             // @param result: Result of the resolution can be empty
-            // @returns Core::hresult
+            // @example result: { "status": "success" }
+            // @retval Core::ERROR_NONE: Request resolved successfully
             virtual Core::hresult Resolve(const GatewayContext& context ,
                                           const string& origin ,
                                           const string& method ,
@@ -76,23 +83,39 @@ namespace WPEFramework
             // ---- Authenticate ----
             // @json:omit
             // @text authenticate
-            // @param sessionId: Session Id provided by a given application.
             // @brief Authenticate an incoming connection
+            // @details Validates the session and returns the application identifier associated with it.
+            // @param sessionId: Session Id provided by a given application.
+            // @example sessionId: "session-12345"
+            // @param appId: Application identifier associated with the session.
+            // @example appId: "com.example.app"
+            // @retval Core::ERROR_NONE: Connection authenticated successfully            
             virtual Core::hresult Authenticate(const string& sessionId , string& appId /* @out */) = 0;
 
             // ---- GetSessionId ----
             // @json:omit
             // @text getSessionId
-            // @param appId: AppId of the current application.
             // @brief Get the sessionId for a given application provided to the delegate
+            // @details Retrieves the active session identifier associated with the application.
+            // @param appId: AppId of the current application.
+            // @example appId: "com.example.app"
+            // @param sessionId: Session identifier associated with the application.
+            // @example sessionId: "session-12345"
+            // @retval Core::ERROR_NONE: Session identifier retrieved 
             virtual Core::hresult GetSessionId(const string& appId  , string& sessionId /* @out */) = 0;
 
             // ---- CheckPermissionGroup ----
             // @json:omit
             // @text checkPermissionGroup
-            // @param appId: AppId of the current application.
-            // @param permissionGroup: Permission group to check
             // @brief Check if the application belongs to a given permission group
+            // @details Evaluates whether the application has the requested permission group.
+            // @param appId: AppId of the current application.
+            // @example appId: "com.example.app"
+            // @param permissionGroup: Permission group to check
+            // @example permissionGroup: "video"
+            // @param allowed: Indicates whether the application is allowed the specified permission group.
+            // @example allowed: true
+            // @retval Core::ERROR_NONE: Permission check completed successfully
             virtual Core::hresult CheckPermissionGroup(const string& appId ,
                                                        const string& permissionGroup ,
                                                        bool& allowed /* @out */) = 0;
@@ -110,29 +133,41 @@ namespace WPEFramework
             // @json:omit
             // @text respond
             // @brief Provides support for responding to a given context
+            // @details Sends a response payload to the client associated with the supplied gateway context.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "version": "1.0.0"}
             // @param payload: the response payload
-            // @returns Core::hresult
+            // @example payload: "{\"result\":\"ok\"}"
+            // @retval Core::ERROR_NONE: Response sent successfully
             virtual Core::hresult Respond(const GatewayContext& context ,
                                           const string& payload /*@opaque */) = 0;
 
             // @json:omit
             // @text emit
             // @brief Provides support for Emitting Notifications to a given context
+            // @details Emits a notification payload to the client associated with the supplied gateway context.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "version": "1.0.0"}
+            // @param method: Notification method name
+            // @example method: "onExampleEvent"
             // @param payload: the response payload
-            // @returns Core::hresult
+            // @example payload: "{\"state\":\"ready\"}"
             virtual Core::hresult Emit(const GatewayContext& context ,
                 const string& method , const string& payload /*@opaque */) = 0;
 
             // @json:omit
             // @text request
             // @brief Forwards a Request to the Client. Needed for App Provider Patterns.
+            // @details Forwards a request to the client connected through the specified gateway connection.
             // @param connectionId: Connection Id
+            // @example connectionId: 2
             // @param id: Request id
+            // @example id: 1
             // @param method: Method
+            // @example method: "exampleMethod"
             // @param params: Params string object
-            // @returns Core::hresult
+            // @example params: "{}"
+            // @retval Core::ERROR_NONE: Request forwarded successfully
             virtual Core::hresult Request(const uint32_t connectionId , 
                 const uint32_t id , const string& method , const string& params /*@opaque */) = 0;
 
@@ -140,10 +175,14 @@ namespace WPEFramework
             // @json:omit
             // @text getGatewayConnectionContext
             // @brief Gets any connection context parameter like headers, url params
+            // @details Reads a value previously associated with the gateway connection context.
             // @param connectionId: Connection Id
+            // @example connectionId: 2
             // @param contextKey: Context key
-            // @param contextValue: response value
-            // @returns Core::hresult
+            // @example contextKey: "Authorization"
+            // @param contextValue: Response value
+            // @example contextValue: "Bearer token"
+            // @retval Core::ERROR_NONE: Connection context retrieved successfully
             virtual Core::hresult GetGatewayConnectionContext(const uint32_t connectionId ,
                 const string& contextKey ,
                 string& contextValue /* @out */) = 0;
@@ -151,10 +190,14 @@ namespace WPEFramework
             // @json:omit
             // @text recordGatewayConnectionContext
             // @brief Allows other Firebolt based plugins to update connection context back to Gateway Socket Connection
+            // @details Stores or updates a value in the gateway connection context.
             // @param connectionId: Connection Id
+            // @example connectionId: 2
             // @param contextKey: Context Key
+            // @example contextKey: "Authorization"
             // @param contextValue: Context Value
-            // @returns Core::hresult
+            // @example contextValue: "Bearer token"
+            // @retval Core::ERROR_NONE: Connection context recorded successfully
             virtual Core::hresult RecordGatewayConnectionContext(const uint32_t connectionId ,
                 const string& contextKey ,
                 const string& contextValue) = 0;
@@ -166,9 +209,14 @@ namespace WPEFramework
 
                 // @brief Notifies App has either started or stopped a connection. App can create multiple connections.
                 // @text onAppConnectionChanged
+                // @details Notifies observers whenever an application opens or closes a gateway connection.
                 // @param appId App identifier for the application
+                // @example appId: "com.example.app"
                 // @param connectionId Unique identifier for the connection
+                // @example connectionId: 2
                 // @param connected true if connection started, false if connection stopped
+                // @example connected: true
+                // @retval Core::ERROR_NONE: Connection state notification delivered successfully
                 virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected) {};
             };
 
@@ -191,11 +239,15 @@ namespace WPEFramework
             // @json:omit
             // @text handleAppGatewayRequest
             // @brief Provides support for responding to a given context
+            // @details Handles a request received through the AppGateway and produces a response payload.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "version": "1.0.0"}
             // @param method: the method to handle
+            // @example method: "exampleMethod"
             // @param payload: the request payload
+            // @example payload: "{}"
             // @param result: Response for the given request. Can be empty.
-            // @returns Core::hresult
+            // @retval Core::ERROR_NONE: Request handled successfully
             virtual Core::hresult HandleAppGatewayRequest(const GatewayContext& context ,
                                           const string& method ,
                                           const string& payload /*@opaque */,
@@ -214,13 +266,16 @@ namespace WPEFramework
             // @json:omit
             // @text recordTelemetryEvent
             // @brief Records a telemetry event with gateway context information
+            // @details Records an event using the gateway context associated with the application.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "version": "1.0.0"}
             // @param eventName: Name of the telemetry event to record
+            // @example eventName: "playbackStarted"
             // @param eventData: JSON string containing telemetry event data
+            // @example eventData: "{\"duration\":120}"
             // @retval Core::ERROR_NONE: Event recorded successfully
             // @retval Core::ERROR_GENERAL: Failed to record the event
             // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
-            // @returns Core::hresult
             virtual Core::hresult RecordTelemetryEvent(const GatewayContext& context /* @text context */,
                                                        const string& eventName /* @text eventName */,
                                                        const string& eventData /* @text eventData */ /*@opaque */) = 0;
@@ -228,10 +283,15 @@ namespace WPEFramework
             // @json:omit
             // @text recordTelemetryMetric
             // @brief Records a telemetry metric with gateway context information
+            // @details Records a numeric metric using the gateway context associated with the application.
             // @param context: Execution context containing requestId, connectionId, appId
+            // @example context: {"requestId": 1, "connectionId": 2, "appId": "com.example.app", "version": "1.0.0"}
             // @param metricName: Name of the telemetry metric to record
+            // @example metricName: "bufferDuration"
             // @param metricValue: Numeric value of the metric
+            // @example metricValue: 250.5
             // @param metricUnit: Unit of measurement for the metric
+            // @example metricUnit: "milliseconds"
             // @retval Core::ERROR_NONE: Metric recorded successfully
             // @retval Core::ERROR_GENERAL: Failed to record the metric
             // @retval Core::ERROR_UNAVAILABLE: Telemetry service is not available
@@ -258,11 +318,12 @@ namespace WPEFramework
             //        While suspended, incoming messages from the application are silently
             //        dropped and outgoing messages destined for the application are discarded
             //        without transmitting. No errors are surfaced to the application.
+            // @details Stops incoming and outgoing gateway traffic for the specified application without reporting errors to it.
             // @param appId: Application identifier whose traffic should be suspended
+            // @example appId: "com.example.app"
             // @retval Core::ERROR_NONE: Traffic suspended successfully
             // @retval Core::ERROR_GENERAL: Failed to suspend traffic
             // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
-            // @returns Core::hresult
             virtual Core::hresult SuspendTraffic(const string& appId) = 0;
 
             // @json:omit
@@ -270,7 +331,9 @@ namespace WPEFramework
             // @brief Resumes gateway traffic for a specific application after a suspension.
             //        After calling this method the gateway will once again process and
             //        forward messages for the application normally.
+            // @details Restores normal processing and forwarding of gateway traffic for the specified application.
             // @param appId: Application identifier whose traffic should be resumed
+            // @example appId: "com.example.app"
             // @retval Core::ERROR_NONE: Traffic resumed successfully
             // @retval Core::ERROR_GENERAL: Failed to resume traffic
             // @retval Core::ERROR_UNAVAILABLE: Gateway service is not available
