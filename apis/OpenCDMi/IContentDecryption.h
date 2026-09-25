@@ -190,6 +190,9 @@ namespace Exchange {
         void SetIV(const uint8_t ivDataLength, const uint8_t ivData[])
         {
             Administration* admin = reinterpret_cast<Administration*>(AdministrationBuffer());
+            // RDKDEV-1281: legacy-only entry point, so clear SampleLength here to stop a
+            // stale batch request routing this one down the batch path.
+            admin->SampleLength = 0;
             VERIFY(ivDataLength <= sizeof(Administration::IV));
             admin->IVLength = (ivDataLength > sizeof(Administration::IV) ? sizeof(Administration::IV)
                                                                         : ivDataLength);
