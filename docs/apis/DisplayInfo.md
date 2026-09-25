@@ -90,7 +90,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "method": "org.rdk.DisplayInfo.freeGpuRam"
 }
 ```
@@ -99,7 +99,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DisplayInfo.freeGpuRam"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.freeGpuRam"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -108,7 +108,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 11,
+    "id": 12,
     "result": {
         "free": 1073741824
     }
@@ -136,7 +136,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 21,
     "method": "org.rdk.DisplayInfo.totalGpuRam"
 }
 ```
@@ -145,7 +145,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.DisplayInfo.totalGpuRam"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.DisplayInfo.totalGpuRam"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -154,7 +154,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 20,
+    "id": 21,
     "result": {
         "total": 2147483648
     }
@@ -175,6 +175,7 @@ The following methods are provided by the IConnectionProperties Interface:
 | :-------- | :-------- |
 | [eDID](#eDID) | TV's Extended Display Identification Data |
 | [heightInCentimeters](#heightInCentimeters) | Vertical size in centimeters |
+| [initializeFrameRate](#initializeFrameRate) | Initializes and caches the current display frame rate |
 | [widthInCentimeters](#widthInCentimeters) | Horizontal size in centimeters |
 
 <a id="eDID"></a>
@@ -304,6 +305,51 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
+<a id="initializeFrameRate"></a>
+## *initializeFrameRate*
+
+Caches the current frame rate so subsequent changes can be detected and notified via the FRAMERATE_CHANGE 
+
+### Events Triggered
+None
+### Parameters
+This method takes no parameters.
+### Results
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | null | On success null will be returned. |
+
+### Examples
+
+
+#### Request
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "method": "org.rdk.DisplayInfo.initializeFrameRate"
+}
+```
+
+
+#### CURL Command
+
+```curl
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DisplayInfo.initializeFrameRate"}' http://127.0.0.1:9998/jsonrpc
+```
+
+
+#### Response
+
+```json
+{
+    "jsonrpc": 2.0,
+    "id": 2,
+    "result": null
+}
+```
+
 <a id="widthInCentimeters"></a>
 ## *widthInCentimeters*
 
@@ -327,7 +373,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "method": "org.rdk.DisplayInfo.widthInCentimeters"
 }
 ```
@@ -336,7 +382,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DisplayInfo.widthInCentimeters"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DisplayInfo.widthInCentimeters"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -345,7 +391,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "result": {
         "width": 100
     }
@@ -358,7 +404,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 2,
+    "id": 3,
     "error": {
         "code": 1,
         "message": "Indicates failure"
@@ -386,14 +432,14 @@ The following events are provided by the IConnectionProperties Interface:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE |
+| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE, FRAMERATE_CHANGE |
 
 ### Examples
 
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 4,
+    "id": 5,
     "method": "org.rdk.DisplayInfo.updated",
     "params": {
         "event": "PRE_RESOLUTION_CHANGE"
@@ -437,7 +483,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "method": "org.rdk.DisplayInfo.connected"
 }
 ```
@@ -446,7 +492,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.DisplayInfo.connected"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DisplayInfo.connected"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -455,7 +501,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 8,
+    "id": 9,
     "result": {
         "isconnected": true
     }
@@ -482,7 +528,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "method": "org.rdk.DisplayInfo.hDCPProtection"
 }
 ```
@@ -491,7 +537,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDCPProtection"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DisplayInfo.hDCPProtection"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -500,7 +546,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "result": {
         "value": "HDCP_2X"
     }
@@ -513,7 +559,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "method": "org.rdk.DisplayInfo.hDCPProtection",
     "params": {
         "value": "HDCP_2X"
@@ -525,7 +571,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_2X"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DisplayInfo.hDCPProtection", "params": {"value": "HDCP_2X"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -534,7 +580,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 12,
+    "id": 13,
     "result": null
 }
 ```
@@ -560,7 +606,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 15,
     "method": "org.rdk.DisplayInfo.height"
 }
 ```
@@ -569,7 +615,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.DisplayInfo.height"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.DisplayInfo.height"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -578,7 +624,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 14,
+    "id": 15,
     "result": {
         "height": 50
     }
@@ -606,7 +652,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 16,
     "method": "org.rdk.DisplayInfo.isAudioPassthrough"
 }
 ```
@@ -615,7 +661,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.DisplayInfo.isAudioPassthrough"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DisplayInfo.isAudioPassthrough"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -624,7 +670,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 15,
+    "id": 16,
     "result": {
         "passthru": true
     }
@@ -652,7 +698,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 17,
     "method": "org.rdk.DisplayInfo.portName"
 }
 ```
@@ -661,7 +707,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "method": "org.rdk.DisplayInfo.portName"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DisplayInfo.portName"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -670,7 +716,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 16,
+    "id": 17,
     "result": {
         "name": "HDMI0"
     }
@@ -698,7 +744,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 22,
     "method": "org.rdk.DisplayInfo.verticalFreq"
 }
 ```
@@ -707,7 +753,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "method": "org.rdk.DisplayInfo.verticalFreq"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DisplayInfo.verticalFreq"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -716,7 +762,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 21,
+    "id": 22,
     "result": {
         "vf": 60
     }
@@ -744,7 +790,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 23,
     "method": "org.rdk.DisplayInfo.width"
 }
 ```
@@ -753,7 +799,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.DisplayInfo.width"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "method": "org.rdk.DisplayInfo.width"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -762,7 +808,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 22,
+    "id": 23,
     "result": {
         "width": 100
     }
@@ -806,7 +852,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 14,
     "method": "org.rdk.DisplayInfo.hDRSetting"
 }
 ```
@@ -815,7 +861,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.DisplayInfo.hDRSetting"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.DisplayInfo.hDRSetting"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -824,7 +870,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 13,
+    "id": 14,
     "result": {
         "type": "HDR_10"
     }
@@ -853,7 +899,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 19,
     "method": "org.rdk.DisplayInfo.sTBCapabilities"
 }
 ```
@@ -862,7 +908,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.DisplayInfo.sTBCapabilities"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DisplayInfo.sTBCapabilities"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -871,7 +917,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 18,
+    "id": 19,
     "result": [
         "HDR_10",
         "HDR_10PLUS"
@@ -901,7 +947,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 20,
     "method": "org.rdk.DisplayInfo.tVCapabilities"
 }
 ```
@@ -910,7 +956,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "method": "org.rdk.DisplayInfo.tVCapabilities"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "method": "org.rdk.DisplayInfo.tVCapabilities"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -919,7 +965,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 19,
+    "id": 20,
     "result": [
         "HDR_10",
         "HDR_10PLUS"
@@ -964,7 +1010,7 @@ This method takes no parameters.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "method": "org.rdk.DisplayInfo.getCurrentColorimetry"
 }
 ```
@@ -973,7 +1019,7 @@ This method takes no parameters.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.DisplayInfo.getCurrentColorimetry"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DisplayInfo.getCurrentColorimetry"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -982,7 +1028,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 3,
+    "id": 4,
     "result": {
         "colorimetry": "COLORIMETRY_BT709"
     }
@@ -1024,7 +1070,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "method": "org.rdk.DisplayInfo.colorSpace"
 }
 ```
@@ -1033,7 +1079,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.DisplayInfo.colorSpace"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DisplayInfo.colorSpace"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1042,7 +1088,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 5,
+    "id": 6,
     "result": {
         "cs": "FORMAT_YCBCR_422"
     }
@@ -1071,7 +1117,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "method": "org.rdk.DisplayInfo.colorimetry"
 }
 ```
@@ -1080,7 +1126,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.DisplayInfo.colorimetry"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.DisplayInfo.colorimetry"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1089,7 +1135,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 6,
+    "id": 7,
     "result": [
         "COLORIMETRY_BT709",
         "COLORIMETRY_BT2020YCCBCBRC"
@@ -1118,7 +1164,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "method": "org.rdk.DisplayInfo.colourDepth"
 }
 ```
@@ -1127,7 +1173,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.DisplayInfo.colourDepth"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.DisplayInfo.colourDepth"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1136,7 +1182,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 7,
+    "id": 8,
     "result": {
         "colour": "COLORDEPTH_10_BIT"
     }
@@ -1164,7 +1210,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "method": "org.rdk.DisplayInfo.eOTF"
 }
 ```
@@ -1173,7 +1219,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.DisplayInfo.eOTF"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DisplayInfo.eOTF"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1182,7 +1228,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 9,
+    "id": 10,
     "result": {
         "eotf": "EOTF_BT2100"
     }
@@ -1210,7 +1256,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "method": "org.rdk.DisplayInfo.frameRate"
 }
 ```
@@ -1219,7 +1265,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.DisplayInfo.frameRate"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.DisplayInfo.frameRate"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1228,7 +1274,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 10,
+    "id": 11,
     "result": {
         "rate": "FRAMERATE_60"
     }
@@ -1256,7 +1302,7 @@ Event details will be updated soon.
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 18,
     "method": "org.rdk.DisplayInfo.quantizationRange"
 }
 ```
@@ -1265,7 +1311,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "method": "org.rdk.DisplayInfo.quantizationRange"}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "method": "org.rdk.DisplayInfo.quantizationRange"}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1274,7 +1320,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 ```json
 {
     "jsonrpc": 2.0,
-    "id": 17,
+    "id": 18,
     "result": {
         "qr": "QUANTIZATIONRANGE_LIMITED"
     }
