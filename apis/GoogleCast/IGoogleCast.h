@@ -155,7 +155,7 @@ namespace Exchange {
         // @brief Status of cast shell interfacing via Cast control API.
         // @details Retrieves the current status of the GoogleCast shell, including build number and cast state.
         // @param status: Output parameter returning the current cast status, including build number and cast state.
-        // @example status: "{\"castBuildNumber\":\"1.0.0\",\"castState\":\"READY_TO_CAST\"}"
+        // @example status: { "castBuildNumber": "1.0.0", "castState": "READY_TO_CAST" }
         // @retval Core::ERROR_NONE: Indicates successful retrieval of cast status.
         virtual Core::hresult GetCastStatus(CastStatus& status /* @out */) const = 0;
     };
