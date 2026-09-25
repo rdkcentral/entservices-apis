@@ -199,7 +199,11 @@ None
     "method": "org.rdk.DownloadManager.download",
     "params": {
         "url": "http://example.com/file",
-        "options": "{\\\"retryCount\\\":3,\\\"timeout\\\":60}"
+        "options": {
+            "priority": true,
+            "retries": 3,
+            "rateLimit": 1024
+        }
     }
 }
 ```
@@ -208,7 +212,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DownloadManager.download", "params": {"url": "http://example.com/file", "options": "{\\\"retryCount\\\":3,\\\"timeout\\\":60}"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DownloadManager.download", "params": {"url": "http://example.com/file", "options": {"priority": true, "retries": 3, "rateLimit": 1024}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

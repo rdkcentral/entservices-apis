@@ -99,7 +99,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 {
     "jsonrpc": 2.0,
     "id": 0,
-    "result": "{\\\"castBuildNumber\\\":\\\"1.0.0\\\",\\\"castState\\\":\\\"READY_TO_CAST\\\"}"
+    "result": {
+        "castBuildNumber": "1.0.0",
+        "castState": "READY_TO_CAST"
+    }
 }
 ```
 
