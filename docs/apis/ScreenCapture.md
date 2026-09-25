@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="ScreenCapture_Plugin"></a>
-# ScreenCapture Plugin
+<a id="ScreenCapture_Module"></a>
+# ScreenCapture Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/ScreenCapture/IScreenCapture.h)**
 
-A ScreenCapture plugin for Thunder framework.
+A ScreenCapture module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IScreenCapture](#IScreenCapture)
+    - [Methods](#IScreenCapture-Methods)
+    - [Notifications](#IScreenCapture-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A ScreenCapture plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `ScreenCapture` plugin provides an interface for ScreenCapture.
+The `ScreenCapture` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IScreenCapture
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,35 +42,39 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkScreenCapture.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the ScreenCapture plugin:
+<a id="IScreenCapture"></a>
+## IScreenCapture Interface
 
-ScreenCapture interface methods:
+<a id="IScreenCapture-Methods"></a>
+### Methods
+
+The following methods are provided by the IScreenCapture Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [sendScreenshot](#sendScreenshot) |Takes screenshot and uploads it to a specified URL, where the URL value is retrieved from an RFC parameter named Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.URL and Device.DeviceInfo.X_RDKCENTRAL-COM_RFC.Feature.ScreenCapture.Enable that check whether screencapture is enabled.@param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded |
+| [sendScreenshot](#sendScreenshot) | Takes a screenshot and uploads it to the specified URL |
 | [uploadScreenCapture](#uploadScreenCapture) | Takes a screenshot and uploads it to the specified URL |
 
 <a id="sendScreenshot"></a>
 ## *sendScreenshot*
 
-Takes a screenshot and uploads it to the specified URL @param: callGUID -  A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event @param: result - Whether the request succeeded
+Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.callGUID | string | string |
+| params.callGUID | string | A unique identifier of a call. The identifier is used to find a corresponding uploadComplete event |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Output structure containing the immediate execution status of the capture request |
 
 ### Examples
 
@@ -79,7 +87,7 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.ScreenCapture.sendScreenshot",
     "params": {
-        "callGUID": ""
+        "callGUID": "123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```
@@ -88,7 +96,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.ScreenCapture.sendScreenshot", "params": {"callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -107,21 +115,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="uploadScreenCapture"></a>
 ## *uploadScreenCapture*
 
-Takes a screenshot and uploads it to the specified URL
+Takes a screenshot and uploads it to the specified URL. The callGUID is used to identify the uploadComplete event that will be triggered after the upload is completed.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.url | string | string |
-| params.callGUID | string | string |
+| params.url | string | Destination URL for the upload. |
+| params.callGUID | string | The unique identifier of the call associated with the upload. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool | success |
+| result.success | bool | Output structure containing the immediate execution status of the upload request |
 
 ### Examples
 
@@ -134,8 +142,8 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.ScreenCapture.uploadScreenCapture",
     "params": {
-        "url": "",
-        "callGUID": ""
+        "url": "https://example.com/upload",
+        "callGUID": "123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```
@@ -144,7 +152,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "", "callGUID": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.ScreenCapture.uploadScreenCapture", "params": {"url": "https://example.com/upload", "callGUID": "123e4567-e89b-12d3-a456-426614174000"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -160,16 +168,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IScreenCapture-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the ScreenCapture plugin:
-
-ScreenCapture interface events:
+The following events are provided by the IScreenCapture Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -178,15 +182,15 @@ ScreenCapture interface events:
 <a id="uploadComplete"></a>
 ## *uploadComplete*
 
-Triggered after uploading a screen capture
+Provides the status, message, and call GUID associated with the completed upload.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | bool | boolean |
-| params.message | string | string |
-| params.call_guid | string | string |
+| params.status | bool | boolean indicating the success of the upload |
+| params.message | string | Message providing additional information about the upload status |
+| params.call_guid | string | The unique identifier of the call associated with the upload |
 
 ### Examples
 
@@ -197,8 +201,9 @@ Triggered after uploading a screen capture
     "method": "org.rdk.ScreenCapture.uploadComplete",
     "params": {
         "status": true,
-        "message": "",
-        "call_guid": ""
+        "message": "Upload completed successfully",
+        "call_guid": "123e4567-e89b-12d3-a456-426614174000"
     }
 }
 ```
+

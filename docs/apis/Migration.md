@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Migration_Plugin"></a>
-# Migration Plugin
+<a id="Migration_Module"></a>
+# Migration Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Migration/IMigration.h)**
 
-A Migration plugin for Thunder framework.
+A Migration module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IMigration](#IMigration)
+    - [Methods](#IMigration-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A Migration plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `Migration` plugin provides an interface for Migration.
+The `Migration` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IMigration
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMigration.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the Migration plugin:
+<a id="IMigration"></a>
+## IMigration Interface
 
-Migration interface methods:
+<a id="IMigration-Methods"></a>
+### Methods
+
+The following methods are provided by the IMigration Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -53,17 +61,17 @@ Migration interface methods:
 <a id="getBootTypeInfo"></a>
 ## *getBootTypeInfo*
 
-query the BootType details
+Retrieves the BootType details. Possible values include `BOOT_INIT`, `BOOT_NORMAL`, `BOOT_MIGRATION`, and `BOOT_UPDATE`.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.bootType | string |  |
+| result.bootType | string | struct. Possible values: BOOT_INIT, BOOT_NORMAL, BOOT_MIGRATION, BOOT_UPDATE |
 
 ### Examples
 
@@ -93,7 +101,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "bootType": "BOOT_TYPE_INIT"
+        "bootType": "BOOT_MIGRATION"
     }
 }
 ```
@@ -101,17 +109,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getMigrationStatus"></a>
 ## *getMigrationStatus*
 
-get the MigrationStatus details
+Retrieves the MigrationStatus details. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.migrationStatus | string |  |
+| result.migrationStatus | string | struct. Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 
 ### Examples
 
@@ -141,7 +149,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "migrationStatus": "MIGRATION_STATUS_NOT_STARTED"
+        "migrationStatus": "STARTED"
     }
 }
 ```
@@ -149,20 +157,20 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="setMigrationStatus"></a>
 ## *setMigrationStatus*
 
-sets the tr181 MigrationStatus parameter
+Sets the tr181 MigrationStatus parameter. Possible values include `MIGRATION_STATUS_NOT_STARTED`, `MIGRATION_STATUS_NOT_NEEDED`, `MIGRATION_STATUS_STARTED`, `MIGRATION_STATUS_PRIORITY_SETTINGS_MIGRATED`, `MIGRATION_STATUS_DEVICE_SETTINGS_MIGRATED`, `MIGRATION_STATUS_CLOUD_SETTINGS_MIGRATED`, `MIGRATION_STATUS_APP_DATA_MIGRATED`, and `MIGRATION_STATUS_MIGRATION_COMPLETED`.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.status | string | enum |
+| params.status | string | enum. Possible values: NOT_STARTED, NOT_NEEDED, STARTED, PRIORITY_SETTINGS_MIGRATED, DEVICE_SETTINGS_MIGRATED, CLOUD_SETTINGS_MIGRATED, APP_DATA_MIGRATED, MIGRATION_COMPLETED |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.success | bool |  |
+| result.success | bool | struct |
 
 ### Examples
 
@@ -175,7 +183,7 @@ Event details will be updated soon.
     "id": 2,
     "method": "org.rdk.Migration.setMigrationStatus",
     "params": {
-        "status": "MIGRATION_STATUS_NOT_STARTED"
+        "status": "STARTED"
     }
 }
 ```
@@ -184,7 +192,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "MIGRATION_STATUS_NOT_STARTED"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Migration.setMigrationStatus", "params": {"status": "STARTED"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -199,5 +207,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     }
 }
 ```
-
 

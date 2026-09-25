@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Backup_Plugin"></a>
-# Backup Plugin
+<a id="Backup_Module"></a>
+# Backup Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Backup/IBackup.h)**
 
-A Backup plugin for Thunder framework.
+A Backup module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IBackupManager](#IBackupManager)
+    - [Methods](#IBackupManager-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A Backup plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `Backup` plugin provides an interface for Backup.
+The `Backup` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IBackupManager
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,20 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkBackup.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the Backup plugin:
+<a id="IBackupManager"></a>
+## IBackupManager Interface
 
-Backup interface methods:
+### Description
+
+Filesystem path where backup data is stored persistently
+
+<a id="IBackupManager-Methods"></a>
+### Methods
+
+The following methods are provided by the IBackupManager Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -53,16 +65,16 @@ Backup interface methods:
 <a id="backupSettings"></a>
 ## *backupSettings*
 
-Backup settings across the system
+Invokes all registered backup providers and requests them to persist their settings into the location specified by the supplied BackupContext. The backup operation is performed for the given scenario and variant.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the backup to happen |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
@@ -82,8 +94,8 @@ Event details will be updated soon.
     "method": "org.rdk.Backup.backupSettings",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -92,7 +104,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Backup.backupSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -109,16 +121,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="deleteBackup"></a>
 ## *deleteBackup*
 
-Deletes the previously backed up settings across the system
+Locates the backup directory specified by the BackupContext and removes all archived settings data associated with the given scenario and variant.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the backup to be deleted |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
@@ -138,8 +150,8 @@ Event details will be updated soon.
     "method": "org.rdk.Backup.deleteBackup",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -148,7 +160,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.Backup.deleteBackup", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -165,16 +177,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="restoreSettings"></a>
 ## *restoreSettings*
 
-Restore settings across the system
+Invokes all registered backup providers and requests them to restore their settings from the location specified by the supplied BackupContext. The restore operation is performed for the given scenario and variant.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.context | BackupContext | Context for which the backup to happen @retval Core::ERROR_NONE Successfully backed up the settings |
-| params.context.scenario | string | scenario |
+| params.context | object | Context for which the restore to happen |
+| params.context.scenario | string | scenario. Possible values: HOSPITALITY_RESET |
 | params.context.variant | string | variant |
 | params.context.persistentPath | string | persistentPath |
 ### Results
@@ -194,8 +206,8 @@ Event details will be updated soon.
     "method": "org.rdk.Backup.restoreSettings",
     "params": {
         "scenario": "HOSPITALITY_RESET",
-        "variant": "",
-        "persistentPath": ""
+        "variant": "generic",
+        "persistentPath": "/opt/secure/persistent/settings_backup/"
     }
 }
 ```
@@ -204,7 +216,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "", "persistentPath": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.Backup.restoreSettings", "params": {"scenario": "HOSPITALITY_RESET", "variant": "generic", "persistentPath": "/opt/secure/persistent/settings_backup/"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -217,5 +229,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "result": null
 }
 ```
-
 

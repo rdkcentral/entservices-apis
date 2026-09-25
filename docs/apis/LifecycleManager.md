@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="LifecycleManager_Plugin"></a>
-# LifecycleManager Plugin
+<a id="LifecycleManager_Module"></a>
+# LifecycleManager Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManagerState.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/LifecycleManager/ILifecycleManager.h)**
 
-A LifecycleManager plugin for Thunder framework.
+A LifecycleManager module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [ILifecycleManagerState](#ILifecycleManagerState)
+    - [Methods](#ILifecycleManagerState-Methods)
+    - [Notifications](#ILifecycleManagerState-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A LifecycleManager plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `LifecycleManager` plugin provides an interface for LifecycleManager.
+The `LifecycleManager` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- ILifecycleManagerState
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkLifecycleManager.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the LifecycleManager plugin:
+<a id="ILifecycleManagerState"></a>
+## ILifecycleManagerState Interface
 
-LifecycleManager interface methods:
+<a id="ILifecycleManagerState-Methods"></a>
+### Methods
+
+The following methods are provided by the ILifecycleManagerState Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,13 +64,13 @@ LifecycleManager interface methods:
 
 Response api call to appInitializing API
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
+| params.appId | string | App identifier for the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -107,14 +115,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 close the app
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
-| params.closeReason | string | closed reason for application |
+| params.appId | string | App identifier for the application. |
+| params.closeReason | string | closed reason for application. Possible values: USER_EXIT, ERROR, KILL_AND_RUN, KILL_AND_ACTIVATE |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -160,13 +168,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 Response api call to appLifecycleStateChanged API
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
+| params.appId | string | App identifier for the application. |
 | params.stateChangedId | integer | state changed identifier |
 | params.success | bool |  |
 ### Results
@@ -210,16 +218,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="ILifecycleManagerState-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the LifecycleManager plugin:
-
-LifecycleManager interface events:
+The following events are provided by the ILifecycleManagerState Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -234,10 +238,10 @@ Notifies the new state
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string |  |
-| params.appInstanceId | string |  |
-| params.oldLifecycleState | LifecycleState | The previous state of the application instance before the update. |
-| params.newLifecycleState | LifecycleState | The new state to transition the application. |
+| params.appId | string | App identifier for the application. |
+| params.appInstanceId | string | A numerical identifier for a specific instance of the application. |
+| params.oldLifecycleState | string | The previous state of the application instance before the update. |
+| params.newLifecycleState | string | The new state to transition the application. |
 | params.navigationIntent | string | navigation intent during active state |
 
 ### Examples
@@ -256,3 +260,4 @@ Notifies the new state
     }
 }
 ```
+

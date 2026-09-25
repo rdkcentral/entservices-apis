@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="DeviceDiagnostics_Plugin"></a>
-# DeviceDiagnostics Plugin
+<a id="DeviceDiagnostics_Module"></a>
+# DeviceDiagnostics Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/DeviceDiagnostics/IDeviceDiagnostics.h)**
 
-A DeviceDiagnostics plugin for Thunder framework.
+A DeviceDiagnostics module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IDeviceDiagnostics](#IDeviceDiagnostics)
+    - [Methods](#IDeviceDiagnostics-Methods)
+    - [Notifications](#IDeviceDiagnostics-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A DeviceDiagnostics plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `DeviceDiagnostics` plugin provides an interface for DeviceDiagnostics.
+The `DeviceDiagnostics` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IDeviceDiagnostics
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkDeviceDiagnostics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the DeviceDiagnostics plugin:
+<a id="IDeviceDiagnostics"></a>
+## IDeviceDiagnostics Interface
 
-DeviceDiagnostics interface methods:
+<a id="IDeviceDiagnostics-Methods"></a>
+### Methods
+
+The following methods are provided by the IDeviceDiagnostics Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -56,17 +64,17 @@ DeviceDiagnostics interface methods:
 <a id="getAVDecoderStatus"></a>
 ## *getAVDecoderStatus*
 
-Gets the most active status of audio/video decoder/pipeline
+Retrieves the most active status of audio/video decoder/pipeline from the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.avDecoderStatus | string |  |
+| result.avDecoderStatus | string | The audio/video decoder status |
 
 ### Examples
 
@@ -96,7 +104,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "avDecoderStatus": ""
+        "avDecoderStatus": "Active"
     }
 }
 ```
@@ -104,21 +112,21 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getConfiguration"></a>
 ## *getConfiguration*
 
-Gets the values associated with the corresponding property names
+Retrieves the configuration values corresponding to the supplied property names from the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.names | IStringIterator | String array of property names |
+| params.names | array | String array of property names |
 | params.names[#] | string |  |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.paramList | IDeviceDiagnosticsParamListIterator | specified properties and their values |
+| result.paramList | array | specified properties and their values |
 | result.paramList[#].name | string | name |
 | result.paramList[#].value | string | value |
 | result.success | bool | boolean |
@@ -134,7 +142,9 @@ Event details will be updated soon.
     "id": 1,
     "method": "org.rdk.DeviceDiagnostics.getConfiguration",
     "params": [
-        ""
+        "DeviceInfo",
+        "FirmwareVersion",
+        "SerialNumber"
     ]
 }
 ```
@@ -143,7 +153,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceDiagnostics.getConfiguration", "params": ["DeviceInfo", "FirmwareVersion", "SerialNumber"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -156,8 +166,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "result": {
         "paramList": [
             {
-                "name": "",
-                "value": ""
+                "name": "DeviceInfo",
+                "value": "X1"
             }
         ],
         "success": true
@@ -168,17 +178,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getMilestones"></a>
 ## *getMilestones*
 
-Returns the list of milestones
+Retrieves the list of milestones from the device.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.milestones | IStringIterator | A string [] of milestones |
+| result.milestones | array | A string [] of milestones |
 | result.milestones[#] | string |  |
 | result.success | bool | boolean |
 
@@ -211,7 +221,9 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "id": 2,
     "result": {
         "milestones": [
-            ""
+            "BootStart",
+            "NetworkReady",
+            "BootComplete"
         ],
         "success": true
     }
@@ -221,24 +233,24 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getPreviousRebootInfo"></a>
 ## *getPreviousRebootInfo*
 
-Returns information about the previous reboot including timestamp, source, and reason
+Retrieves information about the previous reboot from the device, including the timestamp, source, and reason for the reboot.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 This method takes no parameters.
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.rebootInfo | RebootInfo | Contains previous reboot information |
+| result.rebootInfo | object | Contains previous reboot information |
 | result.rebootInfo.timestamp | string | timestamp |
 | result.rebootInfo.source | string | source |
 | result.rebootInfo.reason | string | reason |
 | result.rebootInfo.customReason | string | customReason |
 | result.rebootInfo.otherReason | string | otherReason |
 | result.rebootInfo.lastHardPowerReset | string | lastHardPowerReset |
-| result.success | bool | boolean |
+| result.success | bool | Indicates whether the operation was successful |
 
 ### Examples
 
@@ -269,12 +281,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "result": {
         "rebootInfo": {
-            "timestamp": "",
-            "source": "",
-            "reason": "",
-            "customReason": "",
-            "otherReason": "",
-            "lastHardPowerReset": ""
+            "timestamp": "2023-05-15T10:30:00Z",
+            "source": "PowerButton",
+            "reason": "UserInitiated",
+            "customReason": "N/A",
+            "otherReason": "N/A",
+            "lastHardPowerReset": "2023-05-14T08:15:00Z"
         },
         "success": true
     }
@@ -284,15 +296,15 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="logMilestone"></a>
 ## *logMilestone*
 
-Log marker string to rdk milestones log
+Logs the provided marker string to the RDK milestones log for tracking and analysis purposes.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.marker | string | string |
+| params.marker | string | Milestone marker string |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -310,7 +322,7 @@ Event details will be updated soon.
     "id": 4,
     "method": "org.rdk.DeviceDiagnostics.logMilestone",
     "params": {
-        "marker": ""
+        "marker": "NetworkReady"
     }
 }
 ```
@@ -319,7 +331,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.DeviceDiagnostics.logMilestone", "params": {"marker": "NetworkReady"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -335,16 +347,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IDeviceDiagnostics-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the DeviceDiagnostics plugin:
-
-DeviceDiagnostics interface events:
+The following events are provided by the IDeviceDiagnostics Interface:
 
 | Event | Description |
 | :-------- | :-------- |
@@ -353,13 +361,13 @@ DeviceDiagnostics interface events:
 <a id="onAVDecoderStatusChanged"></a>
 ## *onAVDecoderStatusChanged*
 
-Triggered when the most active status of audio/video decoder/pipeline changes
+The OnAVDecoderStatusChanged event is triggered when the most active status of audio/video decoder/pipeline changes. The event provides a string parameter that describes the new status of the audio/video decoder/pipeline.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.avDecoderStatusChange | string | string |
+| params.avDecoderStatusChange | string | Status change of the audio/video decoder/pipeline |
 
 ### Examples
 
@@ -369,7 +377,8 @@ Triggered when the most active status of audio/video decoder/pipeline changes
     "id": 5,
     "method": "org.rdk.DeviceDiagnostics.onAVDecoderStatusChanged",
     "params": {
-        "avDecoderStatusChange": ""
+        "avDecoderStatusChange": "Active"
     }
 }
 ```
+

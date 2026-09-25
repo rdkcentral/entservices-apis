@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="MessageControl_Plugin"></a>
-# MessageControl Plugin
+<a id="MessageControl_Module"></a>
+# MessageControl Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/MessageControl/IMessageControl.h)**
 
-A MessageControl plugin for Thunder framework.
+A MessageControl module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Properties](#Properties)
+- [Interfaces](#Interfaces)
+  - [IMessageControl](#IMessageControl)
+    - [Methods](#IMessageControl-Methods)
+    - [Properties](#IMessageControl-Properties)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A MessageControl plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `MessageControl` plugin provides an interface for MessageControl.
+The `MessageControl` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IMessageControl
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,12 +42,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkMessageControl.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the MessageControl plugin:
+<a id="IMessageControl"></a>
+## IMessageControl Interface
 
-MessageControl interface methods:
+<a id="IMessageControl-Methods"></a>
+### Methods
+
+The following methods are provided by the IMessageControl Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -54,16 +62,16 @@ MessageControl interface methods:
 
 Enables/disables a message control
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.type | string | Type of message |
+| params.type | string | Message type. Possible values: TRACING, LOGGING, REPORTING, STANDARD_OUT, STANDARD_ERROR |
 | params.category | string | Name of the message category (e.g. Information) |
 | params.module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
-| params.enabled | bool | Denotes if the control is enabled (true) or disabled (false) |
+| params.enabled | bool | Denotes if control should be enabled (true) or disabled (false) |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -106,19 +114,17 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 }
 ```
 
+<a id="IMessageControl-Properties"></a>
+### Properties
 
-<a id="Properties"></a>
-# Properties
-The following properties are provided by the MessageControl plugin:
-
-MessageControl interface properties:
+The following properties are provided by the IMessageControl Interface:
 
 | Property | Description |
 | :-------- | :-------- |
 | [controls](#controls)<sup>RO</sup> | Retrieves a list of current message controls |
 
-<a id="Controls"></a>
-## *Controls*
+<a id="controls"></a>
+## *controls*
 
 Retrieves a list of current message controls
 
@@ -128,8 +134,8 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).control | IControlIterator |  |
-| (property).control[#].type | string | Type of message |
+| (property).control | array |  |
+| (property).control[#].type | string | Type of message. Possible values: TRACING, LOGGING, REPORTING, STANDARD_OUT, STANDARD_ERROR |
 | (property).control[#].category | string | Name of the message category (e.g. Information) |
 | (property).control[#].module | string | Name of the module the message is originating from (e.g. Plugin_BluetoothControl) |
 | (property).control[#].enabled | bool | Denotes if the control is enabled (true) or disabled (false) |

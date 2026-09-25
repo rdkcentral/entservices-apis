@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="AppGateway_Plugin"></a>
-# AppGateway Plugin
+<a id="AppGateway_Module"></a>
+# AppGateway Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/AppGateway/IAppGateway.h)**
 
-A AppGateway plugin for Thunder framework.
+A AppGateway module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IAppGatewayResolver](#IAppGatewayResolver)
+    - [Methods](#IAppGatewayResolver-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A AppGateway plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `AppGateway` plugin provides an interface for AppGateway.
+The `AppGateway` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAppGatewayResolver
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAppGateway.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the AppGateway plugin:
+<a id="IAppGatewayResolver"></a>
+## IAppGatewayResolver Interface
 
-AppGateway interface methods:
+<a id="IAppGatewayResolver-Methods"></a>
+### Methods
+
+The following methods are provided by the IAppGatewayResolver Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -53,13 +61,13 @@ AppGateway interface methods:
 
 Adds additional Resolution paths to the gateway
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.paths | IStringIterator | Adds set of paths in the order of override to be used by gateway to update the resolutions |
+| params.paths | array | Adds set of paths in the order of override to be used by gateway to update the resolutions |
 | params.paths[#] | string |  |
 ### Results
 | Name | Type | Description |
@@ -99,5 +107,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "result": null
 }
 ```
-
 

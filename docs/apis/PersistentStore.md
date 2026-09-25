@@ -1,18 +1,20 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="PersistentStore_Plugin"></a>
-# PersistentStore Plugin
+<a id="PersistentStore_Module"></a>
+# PersistentStore Module
 
-**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStore.h)**
+**Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/PersistentStore/IStoreCache.h)**
 
-A PersistentStore plugin for Thunder framework.
+A PersistentStore module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
-- [Notifications](#Notifications)
+- [Interfaces](#Interfaces)
+  - [IStore2](#IStore2)
+    - [Methods](#IStore2-Methods)
+    - [Notifications](#IStore2-Notifications)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -22,9 +24,11 @@ A PersistentStore plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `PersistentStore` plugin provides an interface for PersistentStore.
+The `PersistentStore` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IStore2
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -38,34 +42,38 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkPersistentStore.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the PersistentStore plugin:
+<a id="IStore2"></a>
+## IStore2 Interface
 
-PersistentStore interface methods:
+<a id="IStore2-Methods"></a>
+### Methods
+
+The following methods are provided by the IStore2 Interface:
 
 | Method | Description |
 | :-------- | :-------- |
-| [deleteKey](#deleteKey) |  |
-| [deleteNamespace](#deleteNamespace) |  |
-| [getValue](#getValue) |  |
-| [setValue](#setValue) |  |
+| [deleteKey](#deleteKey) | Deletes a key-value pair. |
+| [deleteNamespace](#deleteNamespace) | Deletes an entire namespace. |
+| [getValue](#getValue) | Retrieves a value from the persistent store. |
+| [setValue](#setValue) | Stores a value in the persistent store. |
 
 <a id="deleteKey"></a>
 ## *deleteKey*
 
+Removes the specified key and its associated value from the given namespace and scope.
 
-
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
-| params.namespace | string |  |
-| params.key | string |  |
+| params.scope | string | Storage scope. Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace containing the key. |
+| params.key | string | Key to be removed. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -83,8 +91,8 @@ Event details will be updated soon.
     "method": "org.rdk.PersistentStore.deleteKey",
     "params": {
         "scope": "DEVICE",
-        "namespace": "",
-        "key": ""
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -93,7 +101,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.PersistentStore.deleteKey", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -110,16 +118,16 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="deleteNamespace"></a>
 ## *deleteNamespace*
 
+Removes the specified namespace and all associated key-value pairs from the selected storage scope.
 
-
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
-| params.namespace | string |  |
+| params.scope | string | Storage scope. Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace to remove. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -137,7 +145,7 @@ Event details will be updated soon.
     "method": "org.rdk.PersistentStore.deleteNamespace",
     "params": {
         "scope": "DEVICE",
-        "namespace": ""
+        "namespace": "application"
     }
 }
 ```
@@ -146,7 +154,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "DEVICE", "namespace": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.PersistentStore.deleteNamespace", "params": {"scope": "DEVICE", "namespace": "application"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -163,23 +171,23 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getValue"></a>
 ## *getValue*
 
+Returns the value associated with the specified key together with its remaining TTL information.
 
-
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
-| params.namespace | string |  |
-| params.key | string |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace containing the key. |
+| params.key | string | Key identifier. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.value | string |  |
-| result.ttl | integer |  |
+| result.value | string | Retrieved value. |
+| result.ttl | integer | Remaining TTL value in seconds. |
 
 ### Examples
 
@@ -193,8 +201,8 @@ Event details will be updated soon.
     "method": "org.rdk.PersistentStore.getValue",
     "params": {
         "scope": "DEVICE",
-        "namespace": "",
-        "key": ""
+        "namespace": "application",
+        "key": "language"
     }
 }
 ```
@@ -203,7 +211,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "DEVICE", "namespace": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.PersistentStore.getValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -214,8 +222,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
     "jsonrpc": 2.0,
     "id": 2,
     "result": {
-        "value": "",
-        "ttl": 0
+        "value": "en-US",
+        "ttl": 3580
     }
 }
 ```
@@ -223,19 +231,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="setValue"></a>
 ## *setValue*
 
+Creates or updates a key-value pair within the specified scope and namespace. A time-to-live (TTL) value may be supplied to control automatic expiration of the stored entry.
 
-
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
-| params.namespace | string |  |
-| params.key | string |  |
-| params.value | string |  |
-| params.ttl | integer |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace used to group related entries. |
+| params.key | string | Key identifier. |
+| params.value | string | Value associated with the key. |
+| params.ttl | integer | Time-to-live of the value in seconds. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -253,10 +261,10 @@ Event details will be updated soon.
     "method": "org.rdk.PersistentStore.setValue",
     "params": {
         "scope": "DEVICE",
-        "namespace": "",
-        "key": "",
-        "value": "",
-        "ttl": 0
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US",
+        "ttl": 3580
     }
 }
 ```
@@ -265,7 +273,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "DEVICE", "namespace": "", "key": "", "value": "", "ttl": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.PersistentStore.setValue", "params": {"scope": "DEVICE", "namespace": "application", "key": "language", "value": "en-US", "ttl": 3580}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -279,23 +287,19 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 }
 ```
 
-
-
-<a id="Notifications"></a>
-# Notifications
+<a id="IStore2-Notifications"></a>
+### Notifications
 
 Notifications are autonomous events, triggered by the internals of the implementation, and broadcasted via JSON-RPC to all registered observers. Refer to [[Thunder](https://rdkcentral.github.io/Thunder/)] for information on how to register for a notification.
 
-The following events are provided by the PersistentStore plugin:
-
-PersistentStore interface events:
+The following events are provided by the IStore2 Interface:
 
 | Event | Description |
 | :-------- | :-------- |
 | [onValueChanged](#onValueChanged) |  |
 
-<a id="valueChanged"></a>
-## *valueChanged*
+<a id="onValueChanged"></a>
+## *onValueChanged*
 
 
 
@@ -303,10 +307,10 @@ PersistentStore interface events:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.scope | string |  |
-| params.namespace | string |  |
-| params.key | string |  |
-| params.value | string |  |
+| params.scope | string | Storage scope (DEVICE or ACCOUNT). Possible values: DEVICE, ACCOUNT |
+| params.namespace | string | Namespace used to group related entries. |
+| params.key | string | Key identifier. |
+| params.value | string | Value associated with the key. |
 
 ### Examples
 
@@ -314,12 +318,13 @@ PersistentStore interface events:
 {
     "jsonrpc": 2.0,
     "id": 4,
-    "method": "org.rdk.PersistentStore.valueChanged",
+    "method": "org.rdk.PersistentStore.onValueChanged",
     "params": {
         "scope": "DEVICE",
-        "namespace": "",
-        "key": "",
-        "value": ""
+        "namespace": "application",
+        "key": "language",
+        "value": "en-US"
     }
 }
 ```
+

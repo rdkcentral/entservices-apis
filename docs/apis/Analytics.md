@@ -1,17 +1,19 @@
 <!-- Generated automatically, DO NOT EDIT! -->
-<a id="Analytics_Plugin"></a>
-# Analytics Plugin
+<a id="Analytics_Module"></a>
+# Analytics Module
 
 **Version: [1.0.0](https://github.com/rdkcentral/entservices-apis/tree/main/apis/Analytics/IAnalytics.h)**
 
-A Analytics plugin for Thunder framework.
+A Analytics module for Thunder framework.
 
 ### Table of Contents
 
 - [Abbreviation, Acronyms and Terms](#abbreviation-acronyms-and-terms)
 - [Description](#Description)
 - [Configuration](#Configuration)
-- [Methods](#Methods)
+- [Interfaces](#Interfaces)
+  - [IAnalytics](#IAnalytics)
+    - [Methods](#IAnalytics-Methods)
 
 <a id="abbreviation-acronyms-and-terms"></a>
 # Abbreviation, Acronyms and Terms
@@ -21,9 +23,11 @@ A Analytics plugin for Thunder framework.
 <a id="Description"></a>
 # Description
 
-The `Analytics` plugin provides an interface for Analytics.
+The `Analytics` module provides the following interface(s):
 
-The plugin is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
+- IAnalytics
+
+The module is designed to be loaded and executed within the Thunder framework. For more information about the framework refer to [[Thunder](https://rdkcentral.github.io/Thunder/)].
 
 <a id="Configuration"></a>
 # Configuration
@@ -37,12 +41,16 @@ The table below lists configuration options of the plugin.
 | locator | string | Library name: *libWPEFrameworkAnalytics.so* |
 | autostart | boolean | Determines if the plugin shall be started automatically along with the framework |
 
-<a id="Methods"></a>
-# Methods
+<a id="Interfaces"></a>
+# Interfaces
 
-The following methods are provided by the Analytics plugin:
+<a id="IAnalytics"></a>
+## IAnalytics Interface
 
-Analytics interface methods:
+<a id="IAnalytics-Methods"></a>
+### Methods
+
+The following methods are provided by the IAnalytics Interface:
 
 | Method | Description |
 | :-------- | :-------- |
@@ -51,10 +59,10 @@ Analytics interface methods:
 <a id="sendEvent"></a>
 ## *sendEvent*
 
-Send an event to the analytics server
+Sends an analytics event along with its metadata, timestamps, application identifier, payload, CET information, and optional contextual data. The event is forwarded to the Analytics service for processing and delivery to the configured analytics backend.
 
-### Events
-Event details will be updated soon.
+### Events Triggered
+None
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -63,7 +71,7 @@ Event details will be updated soon.
 | params.eventVersion | string | Version of the event |
 | params.eventSource | string | Source of the event |
 | params.eventSourceVersion | string | Version of the event source |
-| params.cetList | IStringIterator | List of CETs |
+| params.cetList | array | List of CETs |
 | params.cetList[#] | string |  |
 | params.epochTimestamp | integer | Epoch timestamp of the event |
 | params.uptimeTimestamp | integer | Uptime timestamp of the event |
@@ -86,18 +94,21 @@ Event details will be updated soon.
     "id": 0,
     "method": "org.rdk.Analytics.sendEvent",
     "params": {
-        "eventName": "",
-        "eventVersion": "",
-        "eventSource": "",
-        "eventSourceVersion": "",
+        "eventName": "playback_started",
+        "eventVersion": "1.0.0",
+        "eventSource": "player_component",
+        "eventSourceVersion": "2.1.0",
         "cetList": [
-            ""
+            "CET_01",
+            "CET_02"
         ],
-        "epochTimestamp": 0,
-        "uptimeTimestamp": 0,
-        "appId": "",
-        "eventPayload": "",
-        "additionalContext": ""
+        "epochTimestamp": 1719824400,
+        "uptimeTimestamp": 3600,
+        "appId": "com.comcast.xr11",
+        "eventPayload": "{\"bitrate\":5000,\"codec\":\"h264\"}",
+        "additionalContext": {
+            "networkType": "ethernet"
+        }
     }
 }
 ```
@@ -106,7 +117,7 @@ Event details will be updated soon.
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "", "eventVersion": "", "eventSource": "", "eventSourceVersion": "", "cetList": [""], "epochTimestamp": 0, "uptimeTimestamp": 0, "appId": "", "eventPayload": "", "additionalContext": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.Analytics.sendEvent", "params": {"eventName": "playback_started", "eventVersion": "1.0.0", "eventSource": "player_component", "eventSourceVersion": "2.1.0", "cetList": ["CET_01", "CET_02"], "epochTimestamp": 1719824400, "uptimeTimestamp": 3600, "appId": "com.comcast.xr11", "eventPayload": "{\"bitrate\":5000,\"codec\":\"h264\"}", "additionalContext": {"networkType": "ethernet"}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -119,5 +130,4 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "result": null
 }
 ```
-
 

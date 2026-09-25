@@ -158,23 +158,25 @@ namespace WPEFramework {
             virtual Core::hresult GetApiVersionNumber(RemoteControlGetApiVersionNumberResponse& response /* @out */) = 0;
 
             // @brief Initiates pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text startPairing
             // @param payload: Opaque string encoding all pairing options. All fields must be included in this string. The plugin and backend will pass this through unchanged.
             // @param result: Whether the request succeeded
-            // @param macAddressList (optional): Optional list of MAC addresses to pair with (if supported by backend)
+            // @param macAddressList(optional): Optional list of MAC addresses to pair with (if supported by backend)
             // @retval ErrorCode::NONE: Pairing started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start pairing.
-            virtual Core::hresult StartPairing(const string& payload, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult StartPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional */) = 0;
 
             // @brief Cancels pairing a remote with the STB on the specified network.
+            // @json:omit
             // @text stopPairing
             // @param payload: Opaque string encoding all pairing options. All optional/defaulted fields should be included in this string. The plugin and backend will pass this through unchanged.
             // @param result: Whether the request succeeded
             // @retval ErrorCode::NONE: Pairing stopped successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to stop pairing.
-            virtual Core::hresult StopPairing(const string& payload, RemoteControlSuccessResult& result /* @out */) = 0;
+            virtual Core::hresult StopPairing(const string& payload /* @opaque */, RemoteControlSuccessResult& result /* @out */) = 0;
 
             // @brief Returns the status information provided by the last `onStatus` event for the specified network.
             // @text getNetStatus
@@ -308,20 +310,20 @@ namespace WPEFramework {
             // @retval ErrorCode::NONE: Unpair executed successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to execute unpair.
-            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList) = 0;
+            virtual Core::hresult Unpair(RemoteControlSuccessResult& result /* @out */, IStringIterator* const macAddressList /* @optional */) = 0;
 
             // @brief Starts a firmware image update session for the specified remote(s)
             // @text startFirmwareUpdate
-            // @param macAddress: The MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
+            // @param macAddress(optional): Optional MAC address of the target remote in hex-colon format e.g. "AA:BB:CC:DD:EE:FF"
             // @param fileName: The full path and filename for the firmware image e.g. "/tmp/remote_firmware.bin"
-            // @param fileType: The type of firmware image file e.g. "mfg"
-            // @param percentIncrement: The increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
+            // @param fileType(optional): Optional type of firmware image file e.g. "mfg"
+            // @param percentIncrement(optional): Optional increment change of a firmware update to notify. Valid range 1-100 percent ex: 10
             // @param success: Whether the request succeeded
             // @param sessionIdList: List of session IDs created for the firmware update(s)
             // @retval ErrorCode::NONE: Firmware update started successfully.
             // @retval ErrorCode::RPC_CALL_FAILED: IARM bus call failed.
             // @retval ErrorCode::GENERAL: Failed to start firmware update.
-            virtual Core::hresult StartFirmwareUpdate(const string& macAddress, const string& fileName, const string& fileType, const uint32_t percentIncrement, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
+            virtual Core::hresult StartFirmwareUpdate(const string& macAddress /* @optional */, const string& fileName, const string& fileType /* @optional */, const uint32_t percentIncrement /* @optional */, bool& success /* @out */, IStringIterator*& sessionIdList /* @out */) = 0;
 
             // @brief Cancels an active firmware image update session
             // @text cancelFirmwareUpdate
