@@ -79,12 +79,12 @@ The following methods are provided by the IUserSettings Interface:
 | [getVoiceGuidanceRate](#getVoiceGuidanceRate) | Gets the current voiceGuidanceRate setting. |
 | [setAudioDescription](#setAudioDescription) | Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled |
 | [setBlockNotRatedContent](#setBlockNotRatedContent) | Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project. |
-| [setCaptions](#setCaptions) | brief Sets Captions ON/OFF. |
+| [setCaptions](#setCaptions) | Sets Captions ON/OFF. |
 | [setContentPin](#setContentPin) | Sets the ContentPin. |
 | [setHighContrast](#setHighContrast) | Sets highContrast. Whether the app should display with high contrast or not. |
 | [setLiveWatershed](#setLiveWatershed) | Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project. |
 | [setPinControl](#setPinControl) | Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled. |
-| [setPinOnPurchase](#setPinOnPurchase) | Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted. |
+| [setPinOnPurchase](#setPinOnPurchase) | Sets PinOnPurchase ON/OFF. Whether a PIN challenge should be made when a purchase is attempted. |
 | [setPlaybackWatershed](#setPlaybackWatershed) | Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project. |
 | [setPreferredAudioLanguages](#setPreferredAudioLanguages) | A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track. |
 | [setPreferredCaptionsLanguages](#setPreferredCaptionsLanguages) | Set preferred languages for captions. |
@@ -95,12 +95,12 @@ The following methods are provided by the IUserSettings Interface:
 | [setViewingRestrictionsWindow](#setViewingRestrictionsWindow) | Sets the ViewingRestrictionsWindow. |
 | [setVoiceGuidance](#setVoiceGuidance) | Sets voiceGuidance. Whether Voice Guidance is enabled or not. |
 | [setVoiceGuidanceHints](#setVoiceGuidanceHints) | Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not. |
-| [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive. |
+| [setVoiceGuidanceRate](#setVoiceGuidanceRate) | Sets voiceGuidanceRate. Setting voice guidance rate value from 0.1 to 10 inclusive. |
 
 <a id="getAudioDescription"></a>
 ## *getAudioDescription*
 
-Gets the current AudioDescription setting
+Retrieves the persistent user preference for this setting.
 
 ### Events Triggered
 None
@@ -110,7 +110,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.enabled | bool | Enabled/Disabled |
+| result.enabled | bool | Boolean Indicates whether AudioDescription is enabled or disabled. |
 
 ### Examples
 
@@ -148,7 +148,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getBlockNotRatedContent"></a>
 ## *getBlockNotRatedContent*
 
-Gets the BlockNotRatedContent setting
+Retrieves the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
 
 ### Events Triggered
 None
@@ -196,7 +196,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="getCaptions"></a>
 ## *getCaptions*
 
-Gets the Captions setting.
+Gets the Captions setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally.
 
 ### Events Triggered
 None
@@ -244,7 +244,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getContentPin"></a>
 ## *getContentPin*
 
-Gets the ContentPin.
+ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
 
 ### Events Triggered
 None
@@ -284,7 +284,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "contentPin": ""
+        "contentPin": 1234
     }
 }
 ```
@@ -292,7 +292,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="getHighContrast"></a>
 ## *getHighContrast*
 
-Gets the current highContrast setting.
+Retrieves the persistent user preference for whether the app should display with high contrast or not.
 
 ### Events Triggered
 None
@@ -340,7 +340,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="getLiveWatershed"></a>
 ## *getLiveWatershed*
 
-Gets the LiveWatershed setting
+Retrieves the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -388,7 +388,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="getPinControl"></a>
 ## *getPinControl*
 
-Gets the PinControl setting
+Retrieves the persistent user preference for whether Parental Control as a whole is enabled or disabled.
 
 ### Events Triggered
 None
@@ -436,7 +436,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="getPinOnPurchase"></a>
 ## *getPinOnPurchase*
 
-Gets the PinOnPurchase setting
+Retrieves the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
 
 ### Events Triggered
 None
@@ -484,7 +484,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="getPlaybackWatershed"></a>
 ## *getPlaybackWatershed*
 
-Gets the PlaybackWatershed setting
+Retrieves the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -532,7 +532,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="getPreferredAudioLanguages"></a>
 ## *getPreferredAudioLanguages*
 
-Gets the current PreferredAudioLanguages setting
+Retrieves the persistent user preference for this setting.
 
 ### Events Triggered
 None
@@ -580,7 +580,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="getPreferredCaptionsLanguages"></a>
 ## *getPreferredCaptionsLanguages*
 
-Gets the current PreferredCaptionsLanguages setting.
+Retrieves the configured list of preferred caption languages as a comma-separated string of language codes. The returned value reflects the current caption language preference setting.
 
 ### Events Triggered
 None
@@ -628,7 +628,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="getPreferredClosedCaptionService"></a>
 ## *getPreferredClosedCaptionService*
 
-Gets the current PreferredClosedCaptionService setting.
+Retrieves the persistent user preference for the closed caption service. Valid values for service are "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
 
 ### Events Triggered
 None
@@ -676,7 +676,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="getPresentationLanguage"></a>
 ## *getPresentationLanguage*
 
-Gets the presentationLanguage
+Gets the presentationLanguage in a full BCP 47 value, including script, region, variant
 
 ### Events Triggered
 None
@@ -716,7 +716,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
     "jsonrpc": 2.0,
     "id": 12,
     "result": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
     }
 }
 ```
@@ -724,7 +724,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="getPrivacyMode"></a>
 ## *getPrivacyMode*
 
-Gets the current PrivacyMode setting.
+Gets the current PrivacyMode setting. Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
 
 ### Events Triggered
 None
@@ -764,7 +764,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
     "jsonrpc": 2.0,
     "id": 13,
     "result": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -772,7 +772,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="getViewingRestrictions"></a>
 ## *getViewingRestrictions*
 
-Gets the current ViewingRestrictions.
+Retrieves the persistent user preference for the current ViewingRestrictions.
 
 ### Events Triggered
 None
@@ -782,7 +782,7 @@ This method takes no parameters.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.viewingRestrictions | string | A JSON document that escribes the rating scheme(s) and ratings that are blocked. |
+| result.viewingRestrictions | string | A JSON document that describes the rating scheme(s) and ratings that are blocked. |
 
 ### Examples
 
@@ -812,7 +812,13 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
     "jsonrpc": 2.0,
     "id": 14,
     "result": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
     }
 }
 ```
@@ -860,7 +866,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
     "jsonrpc": 2.0,
     "id": 15,
     "result": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
     }
 }
 ```
@@ -868,7 +874,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "me
 <a id="getVoiceGuidance"></a>
 ## *getVoiceGuidance*
 
-Gets the current voiceGuidance setting.
+Retrieves the persistent user preference for whether Voice Guidance is enabled or not.
 
 ### Events Triggered
 None
@@ -916,7 +922,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 16, "me
 <a id="getVoiceGuidanceHints"></a>
 ## *getVoiceGuidanceHints*
 
-Gets the current voiceGuidanceHints setting.
+Retrieves the persistent user preference for whether Voice Guidance hints setting is switched on or not.
 
 ### Events Triggered
 None
@@ -964,7 +970,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 17, "me
 <a id="getVoiceGuidanceRate"></a>
 ## *getVoiceGuidanceRate*
 
-Gets the current voiceGuidanceRate setting.
+Retrieves the persistent user preference for the current voice guidance rate value.
 
 ### Events Triggered
 None
@@ -1004,7 +1010,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
     "jsonrpc": 2.0,
     "id": 18,
     "result": {
-        "rate": 0.0
+        "rate": 1.0
     }
 }
 ```
@@ -1012,7 +1018,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 18, "me
 <a id="setAudioDescription"></a>
 ## *setAudioDescription*
 
-Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
+Updates the persistent user preference for this setting. Changes are stored by the UserSettings service and may trigger the corresponding notification event so that applications can react to runtime configuration changes.
 
 ### Events Triggered
 None
@@ -1020,7 +1026,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | Enabled/Disabled |
+| params.enabled | bool | Boolean Indicates whether AudioDescription is enabled or disabled. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -1063,7 +1069,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 19, "me
 <a id="setBlockNotRatedContent"></a>
 ## *setBlockNotRatedContent*
 
-Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
+Updates the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1114,7 +1120,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 20, "me
 <a id="setCaptions"></a>
 ## *setCaptions*
 
-A setting of ON indicates that Players should select a subtitle track for presentation The Setting does not influence any running sessions. It is up to the player to enforce the setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types. Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active. When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally
+A setting of ON indicates that players should select a subtitle track for presentation; this does not affect any already running sessions. This is a global state, persisted by the TextTrack plug-in, applying to all forms of text: closed captions, Captions and timed text types. Media players should listen to OnCaptionsChanged notifications to react to platform-wide dynamic state changes while playback is active, and should call GetCaptions on playback start to retrieve the current enabled state.
 
 ### Events Triggered
 None
@@ -1190,7 +1196,7 @@ None
     "id": 22,
     "method": "org.rdk.UserSettings.setContentPin",
     "params": {
-        "contentPin": ""
+        "contentPin": 1234
     }
 }
 ```
@@ -1199,7 +1205,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "method": "org.rdk.UserSettings.setContentPin", "params": {"contentPin": 1234}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1216,7 +1222,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 <a id="setHighContrast"></a>
 ## *setHighContrast*
 
-Sets highContrast. Whether the app should display with high contrast or not.
+Updates the persistent user preference for whether the app should display with high contrast or not.
 
 ### Events Triggered
 None
@@ -1267,7 +1273,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 <a id="setLiveWatershed"></a>
 ## *setLiveWatershed*
 
-Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
+Updates the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1318,7 +1324,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
 <a id="setPinControl"></a>
 ## *setPinControl*
 
-Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
+A setting of ON indicates that Parental Control is enabled. Players should enforce the parental control settings when enabled.
 
 ### Events Triggered
 None
@@ -1369,7 +1375,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 25, "me
 <a id="setPinOnPurchase"></a>
 ## *setPinOnPurchase*
 
-Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made when a purchase is attempted.
+Updates the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
 
 ### Events Triggered
 None
@@ -1420,7 +1426,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 26, "me
 <a id="setPlaybackWatershed"></a>
 ## *setPlaybackWatershed*
 
-Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
+Updates the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
 
 ### Events Triggered
 None
@@ -1471,7 +1477,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 27, "me
 <a id="setPreferredAudioLanguages"></a>
 ## *setPreferredAudioLanguages*
 
-A prioritized list of ISO 639-2/B codes for the preferred audio languages, expressed as a comma separated lists of languages of zero of more elements. The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
+The players will pick the audio track that has the best match compared with this list. In the absence of a matching track, the player should by best effort select the preferred audio track.
 
 ### Events Triggered
 None
@@ -1624,7 +1630,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 30, "me
 <a id="setPresentationLanguage"></a>
 ## *setPresentationLanguage*
 
-Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
+Stores the user's preferred presentation language. Media players and applications can use this preference to automatically select the most appropriate language for presentation.
 
 ### Events Triggered
 None
@@ -1649,7 +1655,7 @@ None
     "id": 31,
     "method": "org.rdk.UserSettings.setPresentationLanguage",
     "params": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
     }
 }
 ```
@@ -1658,7 +1664,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 31, "method": "org.rdk.UserSettings.setPresentationLanguage", "params": {"presentationLanguage": "en-US"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1700,7 +1706,7 @@ None
     "id": 32,
     "method": "org.rdk.UserSettings.setPrivacyMode",
     "params": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -1709,7 +1715,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "method": "org.rdk.UserSettings.setPrivacyMode", "params": {"privacyMode": "DO_NOT_SHARE"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1726,7 +1732,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 32, "me
 <a id="setViewingRestrictions"></a>
 ## *setViewingRestrictions*
 
-A JSON document that escribes the rating scheme(s) and ratings that are blocked.
+A JSON document that describes the rating scheme(s) and ratings that are blocked.
 
 ### Events Triggered
 None
@@ -1751,7 +1757,13 @@ None
     "id": 33,
     "method": "org.rdk.UserSettings.setViewingRestrictions",
     "params": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
     }
 }
 ```
@@ -1760,7 +1772,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 33, "method": "org.rdk.UserSettings.setViewingRestrictions", "params": {"viewingRestrictions": {"ratingScheme": "MPAA", "ratings": ["PG-13", "R"]}}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1802,7 +1814,7 @@ None
     "id": 34,
     "method": "org.rdk.UserSettings.setViewingRestrictionsWindow",
     "params": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
     }
 }
 ```
@@ -1811,7 +1823,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "method": "org.rdk.UserSettings.setViewingRestrictionsWindow", "params": {"viewingRestrictionsWindow": "ALWAYS"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1828,7 +1840,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 34, "me
 <a id="setVoiceGuidance"></a>
 ## *setVoiceGuidance*
 
-Sets voiceGuidance. Whether Voice Guidance is enabled or not.
+Updates the persistent user preference for whether Voice Guidance is enabled or not.
 
 ### Events Triggered
 None
@@ -1879,7 +1891,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 35, "me
 <a id="setVoiceGuidanceHints"></a>
 ## *setVoiceGuidanceHints*
 
-Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
+Updates the persistent user preference for whether Voice Guidance hints setting is switched on or not.
 
 ### Events Triggered
 None
@@ -1930,7 +1942,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 36, "me
 <a id="setVoiceGuidanceRate"></a>
 ## *setVoiceGuidanceRate*
 
-Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
+Updates the persistent user preference for the voice guidance rate value from 0.1 to 10 inclusive.
 
 ### Events Triggered
 None
@@ -1955,7 +1967,7 @@ None
     "id": 37,
     "method": "org.rdk.UserSettings.setVoiceGuidanceRate",
     "params": {
-        "rate": 0.0
+        "rate": 1.0
     }
 }
 ```
@@ -1964,7 +1976,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 0.0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 37, "method": "org.rdk.UserSettings.setVoiceGuidanceRate", "params": {"rate": 1.0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2010,7 +2022,7 @@ The following events are provided by the IUserSettings Interface:
 <a id="onAudioDescriptionChanged"></a>
 ## *onAudioDescriptionChanged*
 
-The AudioDescription setting has changed.
+Triggered when the AudioDescription setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2034,13 +2046,13 @@ The AudioDescription setting has changed.
 <a id="onBlockNotRatedContentChanged"></a>
 ## *onBlockNotRatedContentChanged*
 
-The BlockNotRatedContent setting has changed.
+Triggered when the BlockNotRatedContent setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.blockNotRatedContent | bool | blockNotRatedContent enabled or not. |
+| params.blockNotRatedContent | bool | BlockNotRatedContent enabled or not. |
 
 ### Examples
 
@@ -2058,7 +2070,7 @@ The BlockNotRatedContent setting has changed.
 <a id="onCaptionsChanged"></a>
 ## *onCaptionsChanged*
 
-The Captions setting has changed.
+Triggered when the Captions setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2082,7 +2094,7 @@ The Captions setting has changed.
 <a id="onContentPinChanged"></a>
 ## *onContentPinChanged*
 
-The ContentPin setting has changed.
+Triggered when the ContentPin setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2098,7 +2110,7 @@ The ContentPin setting has changed.
     "id": 43,
     "method": "org.rdk.UserSettings.onContentPinChanged",
     "params": {
-        "contentPin": ""
+        "contentPin": 1234
     }
 }
 ```
@@ -2112,7 +2124,7 @@ Triggered after the high contrast settings changes.
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | high contrast enabled or not. |
+| params.enabled | bool | High contrast enabled or not. |
 
 ### Examples
 
@@ -2130,13 +2142,13 @@ Triggered after the high contrast settings changes.
 <a id="onLiveWatershedChanged"></a>
 ## *onLiveWatershedChanged*
 
-The LiveWatershed setting has changed.
+Triggered when the LiveWatershed setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.liveWatershed | bool | liveWatershed enabled or not. |
+| params.liveWatershed | bool | The changed liveWatershed setting. |
 
 ### Examples
 
@@ -2154,13 +2166,13 @@ The LiveWatershed setting has changed.
 <a id="onPinControlChanged"></a>
 ## *onPinControlChanged*
 
-The PinControl setting has changed.
+Triggered when the PinControl setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinControl | bool | pinControl enabled or not. |
+| params.pinControl | bool | PinControl enabled or not. |
 
 ### Examples
 
@@ -2178,13 +2190,13 @@ The PinControl setting has changed.
 <a id="onPinOnPurchaseChanged"></a>
 ## *onPinOnPurchaseChanged*
 
-The PinOnPurchase setting has changed.
+Triggered when the PinOnPurchase setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.pinOnPurchase | bool | pinOnPurchase enabled or not. |
+| params.pinOnPurchase | bool | PinOnPurchase enabled or not. |
 
 ### Examples
 
@@ -2202,13 +2214,13 @@ The PinOnPurchase setting has changed.
 <a id="onPlaybackWatershedChanged"></a>
 ## *onPlaybackWatershedChanged*
 
-The PlaybackWatershed setting has changed.
+Triggered when the PlaybackWatershed setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.playbackWatershed | bool | playbackWatershed enabled or not. |
+| params.playbackWatershed | bool | PlaybackWatershed enabled or not. |
 
 ### Examples
 
@@ -2226,7 +2238,7 @@ The PlaybackWatershed setting has changed.
 <a id="onPreferredAudioLanguagesChanged"></a>
 ## *onPreferredAudioLanguagesChanged*
 
-The preferredLanguages setting has changed.
+Triggered when the preferredLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2250,7 +2262,7 @@ The preferredLanguages setting has changed.
 <a id="onPreferredCaptionsLanguagesChanged"></a>
 ## *onPreferredCaptionsLanguagesChanged*
 
-The PreferredCaptionsLanguages setting has changed.
+Triggered when the PreferredCaptionsLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2274,7 +2286,7 @@ The PreferredCaptionsLanguages setting has changed.
 <a id="onPreferredClosedCaptionServiceChanged"></a>
 ## *onPreferredClosedCaptionServiceChanged*
 
-The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
+Triggered when the PreferredClosedCaptionService setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2298,7 +2310,7 @@ The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]"
 <a id="onPresentationLanguageChanged"></a>
 ## *onPresentationLanguageChanged*
 
-The PresentationLanguages setting has changed.
+Triggered when the PresentationLanguages setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2314,7 +2326,7 @@ The PresentationLanguages setting has changed.
     "id": 52,
     "method": "org.rdk.UserSettings.onPresentationLanguageChanged",
     "params": {
-        "presentationLanguage": ""
+        "presentationLanguage": "en-US"
     }
 }
 ```
@@ -2322,7 +2334,7 @@ The PresentationLanguages setting has changed.
 <a id="onPrivacyModeChanged"></a>
 ## *onPrivacyModeChanged*
 
-The PrivacyMode setting has changed.
+Triggered when the PrivacyMode setting is changed.
 
 ### Parameters
 | Name | Type | Description |
@@ -2338,7 +2350,7 @@ The PrivacyMode setting has changed.
     "id": 53,
     "method": "org.rdk.UserSettings.onPrivacyModeChanged",
     "params": {
-        "privacyMode": ""
+        "privacyMode": "DO_NOT_SHARE"
     }
 }
 ```
@@ -2346,13 +2358,13 @@ The PrivacyMode setting has changed.
 <a id="onViewingRestrictionsChanged"></a>
 ## *onViewingRestrictionsChanged*
 
-The ViewingRestrictions setting has changed.
+Triggered when the ViewingRestrictions setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictions | string | the changed viewingRestrictions. |
+| params.viewingRestrictions | string | The changed viewingRestrictions. |
 
 ### Examples
 
@@ -2362,7 +2374,13 @@ The ViewingRestrictions setting has changed.
     "id": 54,
     "method": "org.rdk.UserSettings.onViewingRestrictionsChanged",
     "params": {
-        "viewingRestrictions": ""
+        "viewingRestrictions": {
+            "ratingScheme": "MPAA",
+            "ratings": [
+                "PG-13",
+                "R"
+            ]
+        }
     }
 }
 ```
@@ -2370,13 +2388,13 @@ The ViewingRestrictions setting has changed.
 <a id="onViewingRestrictionsWindowChanged"></a>
 ## *onViewingRestrictionsWindowChanged*
 
-The ViewingRestrictionsWindow setting has changed.
+Triggered when the ViewingRestrictionsWindow setting is changed.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.viewingRestrictionsWindow | string | the changed viewingRestrictionsWindow. |
+| params.viewingRestrictionsWindow | string | The changed viewingRestrictionsWindow. |
 
 ### Examples
 
@@ -2386,7 +2404,7 @@ The ViewingRestrictionsWindow setting has changed.
     "id": 55,
     "method": "org.rdk.UserSettings.onViewingRestrictionsWindowChanged",
     "params": {
-        "viewingRestrictionsWindow": ""
+        "viewingRestrictionsWindow": "ALWAYS"
     }
 }
 ```
@@ -2394,13 +2412,13 @@ The ViewingRestrictionsWindow setting has changed.
 <a id="onVoiceGuidanceChanged"></a>
 ## *onVoiceGuidanceChanged*
 
-Triggered after the voice guidance enabled settings changes.
+This event is triggered when the voice guidance setting is updated.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.enabled | bool | voice guidance enabled or not. |
+| params.enabled | bool | Voice guidance enabled or not. |
 
 ### Examples
 
@@ -2418,13 +2436,13 @@ Triggered after the voice guidance enabled settings changes.
 <a id="onVoiceGuidanceHintsChanged"></a>
 ## *onVoiceGuidanceHintsChanged*
 
-Triggered after the voice guidance hints changes.
+This event is triggered when the voice guidance hints setting is updated.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.hints | bool | voice guidance hints enabled or not. |
+| params.hints | bool | Voice guidance hints enabled or not. |
 
 ### Examples
 
@@ -2442,13 +2460,13 @@ Triggered after the voice guidance hints changes.
 <a id="onVoiceGuidanceRateChanged"></a>
 ## *onVoiceGuidanceRateChanged*
 
-Triggered after the voice guidance rate changed.
+This event is triggered when the voice guidance rate setting is updated.
 
 ### Parameters
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.rate | double | the changed voice guidance rate. |
+| params.rate | double | The changed voice guidance rate. |
 
 ### Examples
 
@@ -2458,7 +2476,7 @@ Triggered after the voice guidance rate changed.
     "id": 58,
     "method": "org.rdk.UserSettings.onVoiceGuidanceRateChanged",
     "params": {
-        "rate": 0.0
+        "rate": 1.0
     }
 }
 ```
@@ -2481,7 +2499,7 @@ The following methods are provided by the IUserSettingsInspector Interface:
 <a id="getMigrationState"></a>
 ## *getMigrationState*
 
-Get the migration state of the respective key
+Get the migration state of the respective key. If requiresMigration is true, the setting is not valid and should not be used.
 
 ### Events Triggered
 None
@@ -2494,7 +2512,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.requiresMigration | bool |  |
+| result.requiresMigration | bool | Indicates whether the setting requires migration. |
 
 ### Examples
 
@@ -2507,7 +2525,7 @@ None
     "id": 38,
     "method": "org.rdk.UserSettings.getMigrationState",
     "params": {
-        "key": "PREFERRED_AUDIO_LANGUAGES"
+        "key": 1
     }
 }
 ```
@@ -2516,7 +2534,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": "PREFERRED_AUDIO_LANGUAGES"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "method": "org.rdk.UserSettings.getMigrationState", "params": {"key": 1}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -2535,7 +2553,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 38, "me
 <a id="getMigrationStates"></a>
 ## *getMigrationStates*
 
-Get the migration state of all the defined keys
+Get the migration state of all the defined keys. If requiresMigration is true, the setting is not valid and should not be used.
 
 ### Events Triggered
 None
@@ -2578,8 +2596,12 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 39, "me
     "id": 39,
     "result": [
         {
-            "key": "PREFERRED_AUDIO_LANGUAGES",
+            "key": 1,
             "requiresMigration": true
+        },
+        {
+            "key": 2,
+            "requiresMigration": false
         }
     ]
 }
