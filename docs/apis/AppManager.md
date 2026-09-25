@@ -76,7 +76,7 @@ The following methods are provided by the IAppManager Interface:
 <a id="clearAllAppData"></a>
 ## *clearAllAppData*
 
-Clears all persistent data for all apps.
+This function clears all persistent data for all installed applications.
 
 ### Events Triggered
 None
@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="clearAppData"></a>
 ## *clearAppData*
 
-Clears all persistent data for a given appId.
+This function clears all persistent data for the specified application.
 
 ### Events Triggered
 None
@@ -146,7 +146,7 @@ None
     "id": 1,
     "method": "org.rdk.AppManager.clearAppData",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -155,7 +155,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppManager.clearAppData", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -172,7 +172,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="closeApp"></a>
 ## *closeApp*
 
-closeApp moves the state from Active to Running state
+This function closes the specified application and moves it from the Active state to the Running state (hidden).
 
 ### Events Triggered
 None
@@ -197,7 +197,7 @@ None
     "id": 2,
     "method": "org.rdk.AppManager.closeApp",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -206,7 +206,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.AppManager.closeApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -223,7 +223,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="getAppMetadata"></a>
 ## *getAppMetadata*
 
-Retrieves meta data about an installed app
+This function retrieves meta data about the specified application.
 
 ### Events Triggered
 None
@@ -250,8 +250,8 @@ None
     "id": 3,
     "method": "org.rdk.AppManager.getAppMetadata",
     "params": {
-        "appId": "",
-        "metaData": ""
+        "appId": "com.example.myapp",
+        "metaData": "com.example.myapp.META_DATA_KEY"
     }
 }
 ```
@@ -260,7 +260,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "", "metaData": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "method": "org.rdk.AppManager.getAppMetadata", "params": {"appId": "com.example.myapp", "metaData": "com.example.myapp.META_DATA_KEY"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -271,7 +271,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "jsonrpc": 2.0,
     "id": 3,
     "result": {
-        "result": ""
+        "result": "{\\\"key\\\":\\\"value\\\"}"
     }
 }
 ```
@@ -279,7 +279,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="getAppProperty"></a>
 ## *getAppProperty*
 
-Gets a property for a given app.
+This function retrieves the value of the specified property for the given application.
 
 ### Events Triggered
 None
@@ -306,8 +306,8 @@ None
     "id": 4,
     "method": "org.rdk.AppManager.getAppProperty",
     "params": {
-        "appId": "",
-        "key": ""
+        "appId": "com.example.myapp",
+        "key": "com.example.myapp.PROPERTY_KEY"
     }
 }
 ```
@@ -316,7 +316,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "", "key": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.AppManager.getAppProperty", "params": {"appId": "com.example.myapp", "key": "com.example.myapp.PROPERTY_KEY"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -327,7 +327,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "value": ""
+        "value": "some_value"
     }
 }
 ```
@@ -335,7 +335,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="getInstalledApps"></a>
 ## *getInstalledApps*
 
-Function fetches the details of all applications currently installed
+This function retrieves the details of all applications currently installed on the system.
 
 ### Events Triggered
 None
@@ -375,7 +375,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
     "jsonrpc": 2.0,
     "id": 5,
     "result": {
-        "apps": ""
+        "apps": "[{\\\"appId\\\": \\\"com.example.myapp\\\", \\\"name\\\": \\\"My App\\\"}]"
     }
 }
 ```
@@ -383,7 +383,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="getLoadedApps"></a>
 ## *getLoadedApps*
 
-Retrieves a list of applications currently loaded on the system.
+This function retrieves the details of all applications currently loaded on the system.
 
 ### Events Triggered
 None
@@ -429,14 +429,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": [
-        {
-            "appId": "",
-            "appInstanceId": "",
-            "activeSessionId": "",
-            "type": "",
-            "targetLifecycleState": "APP_STATE_UNKNOWN",
-            "lifecycleState": "APP_STATE_UNKNOWN"
-        }
+        "[{\\\"appId\\\": \\\"com.example.myapp\\\", \\\"name\\\": \\\"My App\\\"}]"
     ]
 }
 ```
@@ -444,7 +437,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
 <a id="isInstalled"></a>
 ## *isInstalled*
 
-check whether the Application is installed or not
+This function checks whether a specific application is installed on the system.
 
 ### Events Triggered
 None
@@ -452,12 +445,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.appId | string | appId |
+| params.appId | string | App identifier for the application. |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.installed | bool | if it is installed then return true otherwise false |
+| result.installed | bool | If it is installed then return true otherwise false |
 
 ### Examples
 
@@ -470,7 +463,7 @@ None
     "id": 7,
     "method": "org.rdk.AppManager.isInstalled",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -479,7 +472,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "method": "org.rdk.AppManager.isInstalled", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -498,7 +491,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 7, "met
 <a id="killApp"></a>
 ## *killApp*
 
-killApp will terminate forcefully
+This function forcefully terminates the specified application.
 
 ### Events Triggered
 None
@@ -523,7 +516,7 @@ None
     "id": 8,
     "method": "org.rdk.AppManager.killApp",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -532,7 +525,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "method": "org.rdk.AppManager.killApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -549,7 +542,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 8, "met
 <a id="launchApp"></a>
 ## *launchApp*
 
-Launch an Application and app will be in ACTIVE state.
+This function launches the specified application and moves it to the ACTIVE state.
 
 ### Events Triggered
 None
@@ -576,9 +569,9 @@ None
     "id": 9,
     "method": "org.rdk.AppManager.launchApp",
     "params": {
-        "appId": "",
-        "intent": "",
-        "launchArgs": ""
+        "appId": "com.example.myapp",
+        "intent": "com.example.myapp.ACTION_DO_SOMETHING",
+        "launchArgs": "--fullscreen"
     }
 }
 ```
@@ -587,7 +580,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "method": "org.rdk.AppManager.launchApp", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING", "launchArgs": "--fullscreen"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -604,7 +597,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 9, "met
 <a id="preloadApp"></a>
 ## *preloadApp*
 
-Preloads an Application and app will be in the RUNNING state (hidden).
+This function preloads the specified application and moves it to the RUNNING state (hidden).
 
 ### Events Triggered
 None
@@ -632,9 +625,9 @@ None
     "id": 10,
     "method": "org.rdk.AppManager.preloadApp",
     "params": {
-        "appId": "",
-        "intent": "",
-        "launchArgs": ""
+        "appId": "com.example.myapp",
+        "intent": "com.example.myapp.ACTION_DO_SOMETHING",
+        "launchArgs": "--fullscreen"
     }
 }
 ```
@@ -643,7 +636,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "", "intent": "", "launchArgs": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "method": "org.rdk.AppManager.preloadApp", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING", "launchArgs": "--fullscreen"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -654,7 +647,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "error": ""
+        "error": "Failed to preload application due to missing resources."
     }
 }
 ```
@@ -676,7 +669,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
 <a id="sendIntent"></a>
 ## *sendIntent*
 
-Sends an intent to a loaded app.
+This function sends an intent or message to the specified application.
 
 ### Events Triggered
 None
@@ -702,8 +695,8 @@ None
     "id": 11,
     "method": "org.rdk.AppManager.sendIntent",
     "params": {
-        "appId": "",
-        "intent": ""
+        "appId": "com.example.myapp",
+        "intent": "com.example.myapp.ACTION_DO_SOMETHING"
     }
 }
 ```
@@ -712,7 +705,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "", "intent": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "method": "org.rdk.AppManager.sendIntent", "params": {"appId": "com.example.myapp", "intent": "com.example.myapp.ACTION_DO_SOMETHING"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -729,7 +722,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
 <a id="setAppProperty"></a>
 ## *setAppProperty*
 
-Sets a property for a given app
+This function sets the value of the specified property for the given application.
 
 ### Events Triggered
 None
@@ -756,9 +749,9 @@ None
     "id": 12,
     "method": "org.rdk.AppManager.setAppProperty",
     "params": {
-        "appId": "",
-        "key": "",
-        "value": ""
+        "appId": "com.example.myapp",
+        "key": "com.example.myapp.PROPERTY_KEY",
+        "value": "some_value"
     }
 }
 ```
@@ -767,7 +760,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "", "key": "", "value": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "method": "org.rdk.AppManager.setAppProperty", "params": {"appId": "com.example.myapp", "key": "com.example.myapp.PROPERTY_KEY", "value": "some_value"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -784,7 +777,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 12, "me
 <a id="startSystemApp"></a>
 ## *startSystemApp*
 
-Start the System Application
+This function starts the specified system application.
 
 ### Events Triggered
 None
@@ -809,7 +802,7 @@ None
     "id": 13,
     "method": "org.rdk.AppManager.startSystemApp",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -818,7 +811,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "method": "org.rdk.AppManager.startSystemApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -835,7 +828,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 13, "me
 <a id="stopSystemApp"></a>
 ## *stopSystemApp*
 
-Stop the System Application
+This function stops the specified system application.
 
 ### Events Triggered
 None
@@ -860,7 +853,7 @@ None
     "id": 14,
     "method": "org.rdk.AppManager.stopSystemApp",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -869,7 +862,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "method": "org.rdk.AppManager.stopSystemApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -886,7 +879,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 14, "me
 <a id="terminateApp"></a>
 ## *terminateApp*
 
-TerminateApp will terminate gracefully
+This function terminates the specified application gracefully.
 
 ### Events Triggered
 None
@@ -911,7 +904,7 @@ None
     "id": 15,
     "method": "org.rdk.AppManager.terminateApp",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -920,7 +913,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 15, "method": "org.rdk.AppManager.terminateApp", "params": {"appId": "com.example.myapp"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -952,7 +945,7 @@ The following events are provided by the IAppManager Interface:
 <a id="onAppInstalled"></a>
 ## *onAppInstalled*
 
-Triggered whenever the App is installed.
+This event is triggered whenever a new application is successfully installed on the system.
 
 ### Parameters
 | Name | Type | Description |
@@ -969,8 +962,8 @@ Triggered whenever the App is installed.
     "id": 16,
     "method": "org.rdk.AppManager.onAppInstalled",
     "params": {
-        "appId": "",
-        "version": ""
+        "appId": "com.example.myapp",
+        "version": "1.0.0"
     }
 }
 ```
@@ -978,7 +971,7 @@ Triggered whenever the App is installed.
 <a id="onAppLaunchRequest"></a>
 ## *onAppLaunchRequest*
 
-Triggered whenever there is a request for App Launch.
+This event is triggered whenever there is a request to launch an application.
 
 ### Parameters
 | Name | Type | Description |
@@ -996,9 +989,9 @@ Triggered whenever there is a request for App Launch.
     "id": 17,
     "method": "org.rdk.AppManager.onAppLaunchRequest",
     "params": {
-        "appId": "",
-        "intent": "",
-        "source": ""
+        "appId": "com.example.myapp",
+        "intent": "com.example.myapp.ACTION_DO_SOMETHING",
+        "source": "com.example.myapp"
     }
 }
 ```
@@ -1006,7 +999,7 @@ Triggered whenever there is a request for App Launch.
 <a id="onAppLifecycleStateChanged"></a>
 ## *onAppLifecycleStateChanged*
 
-Triggered whenever there is a change in the lifecycle state of a running app.
+This event is triggered whenever there is a change in the lifecycle state of a running application.
 
 ### Parameters
 | Name | Type | Description |
@@ -1026,11 +1019,11 @@ Triggered whenever there is a change in the lifecycle state of a running app.
     "id": 18,
     "method": "org.rdk.AppManager.onAppLifecycleStateChanged",
     "params": {
-        "appId": "",
-        "appInstanceId": "",
-        "newState": "APP_STATE_UNKNOWN",
-        "oldState": "APP_STATE_UNKNOWN",
-        "errorReason": "APP_ERROR_NONE"
+        "appId": "com.example.myapp",
+        "appInstanceId": 12345,
+        "newState": "AppLifecycleState::Running",
+        "oldState": "AppLifecycleState::Stopped",
+        "errorReason": "AppErrorReason::None"
     }
 }
 ```
@@ -1038,7 +1031,7 @@ Triggered whenever there is a change in the lifecycle state of a running app.
 <a id="onAppUninstalled"></a>
 ## *onAppUninstalled*
 
-Triggered whenever the App is uninstalled.
+This event is triggered whenever an application is successfully uninstalled from the system.
 
 ### Parameters
 | Name | Type | Description |
@@ -1054,7 +1047,7 @@ Triggered whenever the App is uninstalled.
     "id": 19,
     "method": "org.rdk.AppManager.onAppUninstalled",
     "params": {
-        "appId": ""
+        "appId": "com.example.myapp"
     }
 }
 ```
@@ -1062,7 +1055,7 @@ Triggered whenever the App is uninstalled.
 <a id="onAppUnloaded"></a>
 ## *onAppUnloaded*
 
-Triggered whenever the App is unloaded(terminated).
+This event is triggered whenever an application is unloaded (terminated).
 
 ### Parameters
 | Name | Type | Description |
@@ -1079,8 +1072,8 @@ Triggered whenever the App is unloaded(terminated).
     "id": 20,
     "method": "org.rdk.AppManager.onAppUnloaded",
     "params": {
-        "appId": "",
-        "appInstanceId": ""
+        "appId": "com.example.myapp",
+        "appInstanceId": 12345
     }
 }
 ```
@@ -1100,7 +1093,7 @@ The following properties are provided by the IAppManager Interface:
 <a id="getMaxHibernatedApps"></a>
 ## *getMaxHibernatedApps*
 
-Get the maximum number of apps to maintain in the hibernated state
+This function retrieves the maximum number of apps that can be maintained in the hibernated state.
 
 > This property is read-only.
 ### Events
@@ -1138,7 +1131,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
     "jsonrpc": 2.0,
     "id": 21,
     "result": {
-        "maxHibernatedApps": 0
+        "maxHibernatedApps": 5
     }
 }
 ```
@@ -1146,7 +1139,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 21, "me
 <a id="getMaxHibernatedFlashUsage"></a>
 ## *getMaxHibernatedFlashUsage*
 
-Gets the max size of flash to use for hibernated apps (in mebibytes)
+This function retrieves the maximum size of flash that can be used for hibernated apps.
 
 > This property is read-only.
 ### Events
@@ -1184,7 +1177,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
     "jsonrpc": 2.0,
     "id": 22,
     "result": {
-        "maxHibernatedFlashUsage": 0
+        "maxHibernatedFlashUsage": 1024
     }
 }
 ```
@@ -1192,7 +1185,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 22, "me
 <a id="getMaxInactiveRamUsage"></a>
 ## *getMaxInactiveRamUsage*
 
-Gets the max amount of ram available for inactive apps (in mebibytes)
+This function retrieves the maximum amount of RAM that can be used for inactive apps.
 
 > This property is read-only.
 ### Events
@@ -1230,7 +1223,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
     "jsonrpc": 2.0,
     "id": 23,
     "result": {
-        "maxInactiveRamUsage": 0
+        "maxInactiveRamUsage": 512
     }
 }
 ```
@@ -1238,7 +1231,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 23, "me
 <a id="getMaxRunningApps"></a>
 ## *getMaxRunningApps*
 
-Gets the maximum number of apps to maintain in the running or suspended state
+This function retrieves the maximum number of apps that can be maintained in the running or suspended state.
 
 > This property is read-only.
 ### Events
@@ -1276,7 +1269,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 24, "me
     "jsonrpc": 2.0,
     "id": 24,
     "result": {
-        "maxRunningApps": 0
+        "maxRunningApps": 10
     }
 }
 ```

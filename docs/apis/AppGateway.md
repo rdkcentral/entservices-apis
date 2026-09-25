@@ -59,7 +59,7 @@ The following methods are provided by the IAppGatewayResolver Interface:
 <a id="configure"></a>
 ## *configure*
 
-Adds additional Resolution paths to the gateway
+Adds the specified set of resolution paths to the gateway in the order provided.
 
 ### Events Triggered
 None
@@ -85,7 +85,8 @@ None
     "id": 0,
     "method": "org.rdk.AppGateway.configure",
     "params": [
-        ""
+        "/path/to/resolution1",
+        "/path/to/resolution2"
     ]
 }
 ```
@@ -94,7 +95,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppGateway.configure", "params": [""]}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppGateway.configure", "params": ["/path/to/resolution1", "/path/to/resolution2"]}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

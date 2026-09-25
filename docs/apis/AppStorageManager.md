@@ -60,7 +60,7 @@ The following methods are provided by the IAppStorageManager Interface:
 <a id="clear"></a>
 ## *clear*
 
-Called by IUI.  This also clears device storage as well
+Clears the storage associated with the specified application.
 
 ### Events Triggered
 None
@@ -73,7 +73,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string | string error reason string |
+| result.errorReason | string | String error reason string |
 
 ### Examples
 
@@ -86,7 +86,7 @@ None
     "id": 0,
     "method": "org.rdk.AppStorageManager.clear",
     "params": {
-        "appId": ""
+        "appId": "com.example.app"
     }
 }
 ```
@@ -95,7 +95,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": "com.example.app"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -106,7 +106,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "errorReason": ""
+        "errorReason": "Insufficient storage space"
     }
 }
 ```
@@ -114,7 +114,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="clearAll"></a>
 ## *clearAll*
 
-Called by IUI.  This also clears device storage as well
+Clears all app data except for the exempt app ids.
 
 ### Events Triggered
 None
@@ -122,12 +122,12 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.exemptionAppIds | string | string Clears all app data except for the exempt app ids as a json format |
+| params.exemptionAppIds | string | String Clears all app data except for the exempt app ids as a json format |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | result | object |  |
-| result.errorReason | string | string error reason string |
+| result.errorReason | string | String error reason string |
 
 ### Examples
 
@@ -140,7 +140,7 @@ None
     "id": 1,
     "method": "org.rdk.AppStorageManager.clearAll",
     "params": {
-        "exemptionAppIds": ""
+        "exemptionAppIds": "[\\\"com.example.app1\\\", \\\"com.example.app2\\\"]"
     }
 }
 ```
@@ -149,7 +149,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": "[\\\"com.example.app1\\\", \\\"com.example.app2\\\"]"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -160,7 +160,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "jsonrpc": 2.0,
     "id": 1,
     "result": {
-        "errorReason": ""
+        "errorReason": "Insufficient storage space"
     }
 }
 ```

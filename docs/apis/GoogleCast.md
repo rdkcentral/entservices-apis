@@ -60,7 +60,7 @@ The following properties are provided by the IGoogleCast Interface:
 <a id="getCastStatus"></a>
 ## *getCastStatus*
 
-Status of cast shell interfacing via Cast control API.
+Retrieves the current status of the GoogleCast shell, including build number and cast state.
 
 > This property is read-only.
 ### Events
@@ -68,7 +68,7 @@ Event details will be updated soon.
 ### Values
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
-| (property).status | object |  |
+| (property).status | object | Output parameter returning the current cast status, including build number and cast state. |
 | (property).status.castBuildNumber | string |  |
 | (property).status.castState | string | Possible values: UNKNOWN, STARTING, NOT_SETUP, OFFLINE, FORCED_UPDATE, SUSPENDED, Ready to cast. Cast is functional. |
 
@@ -100,8 +100,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "castBuildNumber": "",
-        "castState": "UNKNOWN"
+        "castBuildNumber": "1.0.0",
+        "castState": "READY_TO_CAST"
     }
 }
 ```
