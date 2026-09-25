@@ -49,7 +49,9 @@ namespace Exchange {
 
             // @brief OnAppDownloadStatus Callback for status changes of app downloads
             // @text onAppDownloadStatus
-            // @param downloadStatus : [JSON string] Download status of a queued download request, includes downloadId, fileLocator, failReason (enum)
+            // @details Provides detailed information about the current status of the download, including progress and any errors encountered.
+            // @param downloadStatus: [JSON string] Download status of a queued download request, includes downloadId, fileLocator, failReason (enum)
+            // @example downloadStatus: "{\"downloadId\":\"1234\",\"fileLocator\":\"http://example.com/file\",\"failReason\":\"DOWNLOAD_FAILURE\"}"
             virtual void OnAppDownloadStatus(const string& downloadStatus) {}
         };
 
@@ -60,16 +62,26 @@ namespace Exchange {
         virtual Core::hresult Unregister(IDownloadManager::INotification* sink) = 0;
 
         // @json:omit
+        // @brief Initialize the download manager with the provided service context.
+        // @details Prepares the download manager for handling download requests, setting up necessary resources and configurations.
+        // @param service: Service instance for the download manager
         virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
 
         // @json:omit
+        // @brief Deinitialize the download manager and release any allocated resources.
+        // @details Cleans up the download manager, ensuring that all ongoing downloads are properly handled and resources are freed.
+        // @param service: Service instance for the download manager
         virtual Core::hresult Deinitialize(PluginHost::IShell* service) = 0;
 
         // @brief Download Start downloading a file from a specified URL with custom options
         // @text download
+        // @details Initiates the download of a file from the specified URL using the provided options. The download ID is returned through the output parameter.
         // @param url: URL from which the file is to be downloaded
+        // @example url: "http://example.com/file"
         // @param options: Options controlling download behavior
+        // @example options: { "priority": true, "retries": 3, "rateLimit": 1024 }
         // @param downloadId: Output parameter that returns the assigned download ID
+        // @example downloadId: "1234"
         virtual Core::hresult Download(
             const string& url,
             const Options& options,
@@ -77,36 +89,50 @@ namespace Exchange {
 
         // @brief Pause an active download session
         // @text pause
+        // @details Pauses the specified download session, temporarily halting the download process.
         // @param downloadId: Unique identifier of the download to pause
+        // @example downloadId: "1234"
         virtual Core::hresult Pause(const string& downloadId) = 0;
 
         // @brief Resume a paused download session
         // @text resume
+        // @details Resumes a previously paused download session, allowing the download to continue from where it left off.
         // @param downloadId: Unique identifier of the download to resume
+        // @example downloadId: "1234"
         virtual Core::hresult Resume(const string& downloadId) = 0;
 
         // @brief Cancel an ongoing download session
         // @text cancel
+        // @details Cancels the specified download session, stopping any ongoing download and cleaning up associated resources.
         // @param downloadId: Unique identifier of the download to cancel
+        // @example downloadId: "1234"       
         virtual Core::hresult Cancel(const string& downloadId) = 0;
 
         // @brief Delete a downloaded file from the system using its locator path
         // @text delete
+        // @details Deletes the specified downloaded file from the system, freeing up storage space.
         // @param fileLocator: File path or locator of the file to be deleted
+        // @example fileLocator: "/path/to/file"
         virtual Core::hresult Delete(const string& fileLocator) = 0;
 
         // @brief Progress Query current download progress
         // @text progress
+// @details Retrieves the current progress of the specified download session, providing the completion percentage.
         // @param downloadId: Unique identifier of the download
+        // @example downloadId: "1234"
         // @param percent: Output parameter returning percentage completed
+// @example percent: 50
         virtual Core::hresult Progress(
             const string& downloadId,
             uint8_t& percent /* @out */) = 0;
 
         // @brief RateLimit Set rate limiting for a specific download session
         // @text rateLimit
+        // @details Sets a maximum bandwidth limit for the specified download session, controlling the rate at which data is downloaded.
         // @param downloadId: Unique identifier of the download
+        // @example downloadId: "1234"
         // @param limit: Maximum bandwidth in bytes per second (0 = unlimited)
+        // @example limit: 1024
         virtual Core::hresult RateLimit(const string& downloadId, const uint32_t& limit) = 0;
     };
 } // Exchange
