@@ -383,6 +383,7 @@ None
 | params | object |  |
 | params.applications | array | Iterator over the list of application information objects to register |
 | params.applications[#].name | string | Application name in request URI must have exact match to one of the names. Otherwise, matching prefix is needed. If the application name in request URI does not match any names or prefixes, then the request shall fail |
+| params.applications[#].appid | string | Application ID used by the application manager for the corresponding application name |
 | params.applications[#].prefix | string | If the application name in request URI does not match the appname given here, it must contain some prefix.If the application name in request URI does not match the appnames or prefix, then the request shall fail |
 | params.applications[#].cors | string | origin allowed for the application. This must not be empty |
 | params.applications[#].query | string | query string that need to be appended in launch request |
