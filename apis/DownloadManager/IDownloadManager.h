@@ -79,7 +79,7 @@ namespace Exchange {
         // @param url: URL from which the file is to be downloaded
         // @example url: "http://example.com/file"
         // @param options: Options controlling download behavior
-        // @example options: "{\"retryCount\":3,\"timeout\":60}"
+        // @example options: { "priority": true, "retries": 3, "rateLimit": 1024 }
         // @param downloadId: Output parameter that returns the assigned download ID
         // @example downloadId: "1234"
         virtual Core::hresult Download(
