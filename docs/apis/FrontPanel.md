@@ -65,7 +65,7 @@ The following methods are provided by the IFrontPanel Interface:
 <a id="getBrightness"></a>
 ## *getBrightness*
 
-Gets the status of the Front Panel
+Provides the current active brightness state or percentage value configured for the device display panel.
 
 ### Events Triggered
 None
@@ -112,7 +112,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
     "jsonrpc": 2.0,
     "id": 0,
     "result": {
-        "brightness": 0,
+        "brightness": 100,
         "success": true
     }
 }
@@ -121,7 +121,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 <a id="getFrontPanelLights"></a>
 ## *getFrontPanelLights*
 
-Gets the front panel lights
+Returns the front-panel lights supported by the device platform.
 
 ### Events Triggered
 None
@@ -165,9 +165,10 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
     "id": 1,
     "result": {
         "supportedLights": [
-            ""
+            "POWER_LED",
+            "STATUS_LED"
         ],
-        "supportedLightsInfo": "",
+        "supportedLightsInfo": "The front panel supports POWER_LED and STATUS_LED.",
         "success": true
     }
 }
@@ -176,7 +177,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 <a id="powerLedOff"></a>
 ## *powerLedOff*
 
-Switches the specified LED off
+Cuts power or disables illumination for the specified light source on the device facade using its identifier.
 
 ### Events Triggered
 None
@@ -230,7 +231,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "met
 <a id="powerLedOn"></a>
 ## *powerLedOn*
 
-Switches the specified LED on
+Applies power or enables illumination for the specified light source on the device facade using its identifier.
 
 ### Events Triggered
 None
@@ -284,7 +285,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
 <a id="setBlink"></a>
 ## *setBlink*
 
-Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string)
+Sets a blink pattern for the specified LED. The blinkInfo parameter is a JSON string containing: ledIndicator (string) - the LED indicator to set, iterations (integer) - the number of times to repeat the pattern, and pattern (array of objects) - each object contains brightness (integer), duration (integer in milliseconds), and optional color (string) and red/green/blue (integers) values.
 
 ### Events Triggered
 None
@@ -310,7 +311,7 @@ None
     "id": 4,
     "method": "org.rdk.FrontPanel.setBlink",
     "params": {
-        "blinkInfo": ""
+        "blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"
     }
 }
 ```
@@ -319,7 +320,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": ""}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "method": "org.rdk.FrontPanel.setBlink", "params": {"blinkInfo": "{\"ledIndicator\": \"POWER_LED\", \"iterations\": 3, \"pattern\": [{\"brightness\": 100, \"duration\": 500}, {\"brightness\": 0, \"duration\": 500}]}"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -338,7 +339,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
 <a id="setBrightness"></a>
 ## *setBrightness*
 
-Sets the brightness of the specified LED
+Adjusts the intensity of the light source corresponding to the provided index using a percentage or discrete scale value.
 
 ### Events Triggered
 None
@@ -366,7 +367,7 @@ None
     "method": "org.rdk.FrontPanel.setBrightness",
     "params": {
         "index": "",
-        "brightness": 0
+        "brightness": 100
     }
 }
 ```
@@ -375,7 +376,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.FrontPanel.setBrightness", "params": {"index": "", "brightness": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "method": "org.rdk.FrontPanel.setBrightness", "params": {"index": "", "brightness": 100}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -394,7 +395,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 5, "met
 <a id="setLED"></a>
 ## *setLED*
 
-Sets the LED with the specified color and brightness
+Configures the specified LED on the device facade with the provided color and brightness settings.
 
 ### Events Triggered
 None
@@ -425,10 +426,10 @@ None
     "id": 6,
     "method": "org.rdk.FrontPanel.setLED",
     "params": {
-        "ledIndicator": "",
-        "brightness": 0,
-        "color": "",
-        "red": 0,
+        "ledIndicator": "POWER_LED",
+        "brightness": 100,
+        "color": "red",
+        "red": 255,
         "green": 0,
         "blue": 0
     }
@@ -439,7 +440,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.FrontPanel.setLED", "params": {"ledIndicator": "", "brightness": 0, "color": "", "red": 0, "green": 0, "blue": 0}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "method": "org.rdk.FrontPanel.setLED", "params": {"ledIndicator": "POWER_LED", "brightness": 100, "color": "red", "red": 255, "green": 0, "blue": 0}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 

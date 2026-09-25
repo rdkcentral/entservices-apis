@@ -44,31 +44,43 @@ struct EXTERNAL ISystemMode : virtual public Core::IUnknown {
 	  State state /* @text state */;
   };
   // @text requestState
-  // @brief Requests a new system mode state in the device.  Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
-  // @param[in] systemMode       The system mode.
-  // @param[in] state            The requested state.
-  // @returns Core::hresult
+  // @brief Requests a new system mode state in the device. Thunder components asynchronously reconfigure themselves so the caller cannot be guaranteed a full state transition upon return.
+  // @details Invoked by the SystemMode service to request a new state for a given system mode. Components implementing this interface should asynchronously adjust their internal behavior, resource usage, or performance characteristics to match the requested optimization state.
+  // @param systemMode: Indicates the system mode for which the state is being requested.
+  // @example systemMode: "device_optimize"
+  // @param state: Indicates the requested state.
+  // @example state: "video"
+  // @retval Core::ERROR_NONE: The state transition request was accepted successfully.
   virtual Core::hresult RequestState(const SystemMode systemMode /* @text systemMode */ , const State state /* @text state */ ) = 0;
 
   // @text getState
   // @brief Gets the current state for a given system property
-  // @param[in] systemMode       The system mode to get the state of.
-  // @param[out] state           Receives the state of the system mode.
-  // @returns Core::hresult
+  // @details Invoked by the SystemMode service to retrieve the current state of a given system mode. Components implementing this interface should return the current state of the requested system mode.
+  // @param systemMode: Indicates the system mode whose current state is being queried.
+  // @example systemMode: "device_optimize"
+  // @param getStateResult: The current state of the specified system mode.
+  // @example getStateResult: { "state": "video" }
+  // @retval Core::ERROR_NONE: The current state was retrieved successfully.
   virtual Core::hresult GetState(const SystemMode systemMode /* @text systemMode */ , GetStateResult& getStateResult /* @out */) const = 0;
 
   // @text clientActivated
-  // @brief To put client plugin entry in map.
-  // @param[in] callsign       callsign of client.
-  // @param[in] systemMode       The system mode.
-  // @returns Core::hresult
+  // @brief Records the activation of a client plugin for a specific system mode.
+  // @details Invoked by the SystemMode service to notify that a client plugin has been activated. Components implementing this interface should record the activation of the client plugin for the specified system mode.
+  // @param callsign: The callsign of the client plugin being activated.
+  // @example callsign: "com.example.client"
+  // @param systemMode: The system mode for which the client plugin is being activated.
+  // @example systemMode: "device_optimize"
+  // @retval Core::ERROR_NONE: The client activation was recorded successfully.
   virtual Core::hresult ClientActivated(const string& callsign /* @text callsign*/ ,const string& systemMode) = 0;
 
   // @text clientDeactivated
-  // @brief To put client plugin entry in map.
-  // @param[in] callsign       callsign of client.
-  // @param[in] systemMode       The system mode.
-  // @returns Core::hresult
+  // @brief Records the deactivation of a client plugin for a specific system mode.
+  // @details Invoked by the SystemMode service to notify that a client plugin has been deactivated. Components implementing this interface should remove the activation record of the client plugin for the specified system mode.
+  // @param callsign: The callsign of the client plugin being deactivated.
+  // @example callsign: "com.example.client"
+  // @param systemMode: The system mode for which the client plugin is being deactivated.
+  // @example systemMode: "device_optimize"
+  // @retval Core::ERROR_NONE: The client deactivation was recorded successfully.
   virtual Core::hresult ClientDeactivated(const string& callsign /* @text callsign*/, const string& systemMode) = 0;
 };
 } // namespace Exchange
