@@ -388,10 +388,20 @@ struct EXTERNAL ITextTrackWebVttStyle : virtual public Core::IUnknown {
 
     /**
      * @brief Sets global WebVTT override style.
-     * @details The styles given here (as "attr:value;attr:value") will be applied last to WebVTT sessions, meaning
+     * @details The styles given here will be applied last to WebVTT sessions, meaning
      * that they will override styles given in the content.
      * The value will be persisted in the system.
      * The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style.
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:SOLID;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * The colour keys fontColor, backgroundColor, windowColor and edgeColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity, backgroundOpacity and windowOpacity take SOLID, FLASHING, TRANSLUCENT or TRANSPARENT.
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * The key edgeStyle takes NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW or RIGHT_DROP_SHADOW.
+     * A key that is omitted is left unset and does not override lower priority styling.
      * @param style Contains the chosen override for styles
      * @text setWebVttStyleOverrides
      */
@@ -399,6 +409,8 @@ struct EXTERNAL ITextTrackWebVttStyle : virtual public Core::IUnknown {
 
     /**
      * @brief Gets the global WebVTT style overrides
+     * @details Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVttStyleOverrides, and is
+     * returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
      * @param style Will receive the style overrides
      * @text getWebVttStyleOverrides
      */
@@ -785,7 +797,15 @@ struct EXTERNAL ITextTrack : virtual public Core::IUnknown {
      * @brief Applies a custom WebVTT styling with overrides that is applied on all elements
      * @details When a custom styling override is applied on a specific WebVTT session, the styling carried on the data for the specified element is
      * overridden.
-     * The format of the styling string is "attr:value;attr:value;attr:value" (see vocabulary; NB: not all styling is supported)
+     * The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:SOLID;fontSize:LARGE".
+     * Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored.
+     * The colour keys fontColor, backgroundColor, windowColor and edgeColor take an RGB value written as "#rrggbb"; opacity is not part of
+     * the colour, use the matching opacity key instead.
+     * The opacity keys fontOpacity, backgroundOpacity and windowOpacity take SOLID, FLASHING, TRANSLUCENT or TRANSPARENT.
+     * The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL,
+     * CURSIVE or SMALL_CAPITAL.
+     * The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE.
+     * The key edgeStyle takes NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW or RIGHT_DROP_SHADOW.
      * Styles not mentioned in the list will not be affected.
      * Added in version 6
      * @param sessionId Is the session as returned in the ITextTrack interface.

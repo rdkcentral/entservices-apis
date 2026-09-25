@@ -1690,7 +1690,7 @@ The following methods are provided by the ITextTrackWebVttStyle Interface:
 <a id="getWebVttStyleOverrides"></a>
 ## *getWebVttStyleOverrides*
 
-Gets the global WebVTT style overrides
+Gets the global WebVTT style overrides. The string uses the same "key:value;key:value" format as setWebVttStyleOverrides, and is returned in a normalised form: keys appear in a fixed order and values use their canonical spelling.
 
 ### Events Triggered
 None
@@ -1738,7 +1738,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 43, "me
 <a id="setWebVttStyleOverrides"></a>
 ## *setWebVttStyleOverrides*
 
-The styles given here (as "attr:value;attr:value") will be applied last to WebVTT sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style.
+The styles given here will be applied last to WebVTT sessions, meaning that they will override styles given in the content. The value will be persisted in the system. The style setting will take effect immediately in all running (WebVTT) sessions, which has not applied a custom style. The style string is a semicolon separated list of "key:value" pairs, for example "fontColor:#0000ff;fontOpacity:SOLID;fontSize:LARGE". Keys and values are case insensitive, surrounding whitespace is ignored, and unrecognised entries are ignored. The colour keys fontColor, backgroundColor, windowColor and edgeColor take an RGB value written as "#rrggbb"; opacity is not part of the colour, use the matching opacity key instead. The opacity keys fontOpacity, backgroundOpacity and windowOpacity take SOLID, FLASHING, TRANSLUCENT or TRANSPARENT. The key fontStyle takes CONTENT_DEFAULT, MONOSPACED_SERIF, PROPORTIONAL_SERIF, MONOSPACE_SANS_SERIF, PROPORTIONAL_SANS_SERIF, CASUAL, CURSIVE or SMALL_CAPITAL. The key fontSize takes SMALL, REGULAR, LARGE or EXTRA_LARGE. The key edgeStyle takes NONE, RAISED, DEPRESSED, UNIFORM, LEFT_DROP_SHADOW or RIGHT_DROP_SHADOW. A key that is omitted is left unset and does not override lower priority styling.
 
 ### Events Triggered
 None
@@ -1850,7 +1850,7 @@ This method takes no parameters.
 | :-------- | :-------- | :-------- |
 | result | object |  |
 | result.capabilities | array | Iterator providing the list of supported capabilities. |
-| result.capabilities[#] | string | Possible values: UNSET, FIREBOLT_MIGRATION |
+| result.capabilities[#] | string | Possible values: UNSET, FIREBOLT_MIGRATION, STYLE_PREVIEW |
 
 ### Examples
 
@@ -1910,7 +1910,7 @@ None
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.capability | string | The capability to query . Possible values: UNSET, FIREBOLT_MIGRATION |
+| params.capability | string | The capability to query . Possible values: UNSET, FIREBOLT_MIGRATION, STYLE_PREVIEW |
 ### Results
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
@@ -2000,7 +2000,7 @@ The following methods are provided by the ITextTrack Interface:
 <a id="applyCustomClosedCaptionsStyleToSession"></a>
 ## *applyCustomClosedCaptionsStyleToSession*
 
-When a custom style is applied on a specific session we will not update the style for this session if the global style setting change. The style setting will take effect immediately.
+When a custom style is applied on a specific session we will not update the style for this session if the global style setting change. The style setting will take effect immediately. Available in JSON interface since version 6.
 
 ### Events Triggered
 None
