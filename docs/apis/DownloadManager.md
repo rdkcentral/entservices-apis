@@ -328,7 +328,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 4, "met
     "jsonrpc": 2.0,
     "id": 4,
     "result": {
-        "percent": "50        v"
+        "percent": 50
     }
 }
 ```
