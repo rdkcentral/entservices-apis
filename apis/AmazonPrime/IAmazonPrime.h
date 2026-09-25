@@ -62,6 +62,7 @@ namespace Exchange {
         // @details The command is forwarded to the Amazon Prime application when it is launched or active.
         // @param command : app Deeplink command
         // @example command: "primevideo://watch?asin=B08FC5L3RG"
+        // @retval Core::ERROR_NONE: The deeplink command was set successfully
         virtual Core::hresult SetDeepLink(const string& command) = 0;
 
         // @text personalInfoRequest
