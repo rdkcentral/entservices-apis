@@ -429,7 +429,14 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 6, "met
     "jsonrpc": 2.0,
     "id": 6,
     "result": [
-        "[{\\\"appId\\\": \\\"com.example.myapp\\\", \\\"name\\\": \\\"My App\\\"}]"
+        {
+            "appId": "com.example.myapp",
+            "appInstanceId": "instance-123",
+            "activeSessionId": "session-456",
+            "type": "web",
+            "targetLifecycleState": "APP_STATE_RUNNING",
+            "lifecycleState": "APP_STATE_RUNNING"
+        }
     ]
 }
 ```
