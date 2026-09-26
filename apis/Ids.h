@@ -108,6 +108,7 @@ namespace Exchange {
 
         ID_DOLBY_OUTPUT                              = ID_ENTOS_OFFSET + 0x0B0,
         ID_DOLBY_OUTPUT_NOTIFICATION                 = ID_DOLBY_OUTPUT + 1,
+        ID_AUDIO_CONFIG_LIST_ITERATOR                = ID_DOLBY_OUTPUT + 2,
 
         ID_CONFIGURATION                             = ID_ENTOS_OFFSET + 0x0C0,
 
