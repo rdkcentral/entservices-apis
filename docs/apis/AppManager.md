@@ -1028,9 +1028,9 @@ This event is triggered whenever there is a change in the lifecycle state of a r
     "params": {
         "appId": "com.example.myapp",
         "appInstanceId": 12345,
-        "newState": "AppLifecycleState::Running",
-        "oldState": "AppLifecycleState::Stopped",
-        "errorReason": "AppErrorReason::None"
+        "newState": "APP_STATE_RUNNING",
+        "oldState": "APP_STATE_PAUSED",
+        "errorReason": "APP_ERROR_NONE"
     }
 }
 ```
