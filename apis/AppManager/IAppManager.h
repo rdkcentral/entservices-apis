@@ -139,11 +139,11 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
     // @param appInstanceId:A numerical identifier for a specific instance of the application.
     // @example appInstanceId: "12345"
     // @param newState:The new state to transition the application.
-    // @example newState: AppLifecycleState::Running
+    // @example newState: APP_STATE_RUNNING
     // @param oldState:The previous state of the application instance before the update.
-    // @example oldState: AppLifecycleState::Stopped
+    // @example oldState: APP_STATE_PAUSED
     // @param errorReason:The reason for any error encountered during the state transition
-    // @example errorReason: AppErrorReason::None
+    // @example errorReason: APP_ERROR_NONE
     virtual void OnAppLifecycleStateChanged(const string& appId, const string& appInstanceId, const AppLifecycleState newState, const AppLifecycleState oldState, const AppErrorReason errorReason){};
 
     // @text onAppLaunchRequest
