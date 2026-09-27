@@ -99,6 +99,7 @@ namespace WPEFramework {
             // @example reason: "User initiated"
             // @param result: JSON string containing the result of the app launch request.
             // @example result: "{ \"success\": true }"
+			// @retval Core::ERROR_NONE: App launch requested successfully
             virtual uint32_t requestAppLaunch(const string& origin, const string& reason, string& result /* @out */) = 0;
 
             // @brief Sets the current input source of the HomeKit TV.
