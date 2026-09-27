@@ -102,7 +102,7 @@ namespace Exchange {
             // @details Stops the cast web runtime associated with the specified application ID.
             // @param appId: Durable application id of cast web runtime or cast settings.
             // @example appId: "com.example.castapp"
-            // @retval Core::ERROR_NONE: Successfully delegated destroy request..
+            // @retval Core::ERROR_NONE: Successfully delegated destroy request.
             virtual Core::hresult StopRuntime(const string& appId) = 0;
 
             // @json:omit
