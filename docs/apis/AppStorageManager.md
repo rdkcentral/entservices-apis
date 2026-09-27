@@ -82,7 +82,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "method": "org.rdk.AppStorageManager.clear",
     "params": {
@@ -95,7 +95,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": "com.example.app"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 0, "method": "org.rdk.AppStorageManager.clear", "params": {"appId": "com.example.app"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -103,7 +103,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 0,
     "result": {
         "errorReason": "Insufficient storage space"
@@ -136,7 +136,7 @@ None
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "method": "org.rdk.AppStorageManager.clearAll",
     "params": {
@@ -149,7 +149,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": "[\\\"com.example.app1\\\", \\\"com.example.app2\\\"]"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": "2.0", "id": 1, "method": "org.rdk.AppStorageManager.clearAll", "params": {"exemptionAppIds": "[\\\"com.example.app1\\\", \\\"com.example.app2\\\"]"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -157,7 +157,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "met
 
 ```json
 {
-    "jsonrpc": 2.0,
+    "jsonrpc": "2.0",
     "id": 1,
     "result": {
         "errorReason": "Insufficient storage space"
