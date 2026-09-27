@@ -65,12 +65,14 @@ namespace Exchange {
         // @brief Initialize the download manager with the provided service context.
         // @details Prepares the download manager for handling download requests, setting up necessary resources and configurations.
         // @param service: Service instance for the download manager
+        // @retval Core::ERROR_NONE: Indicates successful initialization
         virtual Core::hresult Initialize(PluginHost::IShell* service) = 0;
 
         // @json:omit
         // @brief Deinitialize the download manager and release any allocated resources.
         // @details Cleans up the download manager, ensuring that all ongoing downloads are properly handled and resources are freed.
         // @param service: Service instance for the download manager
+        // @retval Core::ERROR_NONE: Indicates successful deinitialization
         virtual Core::hresult Deinitialize(PluginHost::IShell* service) = 0;
 
         // @brief Download Start downloading a file from a specified URL with custom options
@@ -117,11 +119,11 @@ namespace Exchange {
 
         // @brief Progress Query current download progress
         // @text progress
-// @details Retrieves the current progress of the specified download session, providing the completion percentage.
+        // @details Retrieves the current progress of the specified download session, providing the completion percentage.
         // @param downloadId: Unique identifier of the download
         // @example downloadId: "1234"
         // @param percent: Output parameter returning percentage completed
-// @example percent: 50
+        // @example percent: 50
         virtual Core::hresult Progress(
             const string& downloadId,
             uint8_t& percent /* @out */) = 0;
