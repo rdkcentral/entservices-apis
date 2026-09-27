@@ -68,11 +68,13 @@ namespace Exchange {
         // @text personalInfoRequest
         // @brief Request for personal access token to amazon prime app
         // @details Requests the Amazon Prime application to provide the user's personal access token.
+        // @retval Core::ERROR_NONE: Personal info request sent successfully
         virtual Core::hresult PersonalInfoRequest() = 0;
 
         // @text factoryResetRequest
         // @brief Factory reset amazon prime app data
         // @details Removes the stored application data and restores Amazon Prime to its factory state.
+        // @retval Core::ERROR_NONE: Factory reset request sent successfully
         virtual Core::hresult FactoryResetRequest() = 0;
 
         // @texts setLaunchReason
@@ -80,6 +82,7 @@ namespace Exchange {
         // @details Sets the reason for launching the Amazon Prime application.
         // @param command : app launch reason
         // @example command: "USER_REQUEST"
+        // @retval Core::ERROR_NONE: Launch reason set successfully
         virtual Core::hresult SetLaunchReason(const string& command) = 0;
     };
 }
