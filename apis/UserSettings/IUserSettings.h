@@ -46,97 +46,135 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
         // @text onAudioDescriptionChanged
         // @brief The AudioDescription setting has changed.
+        // @details Triggered when the AudioDescription setting is changed.
         // @param enabled: audioDescription enabled or not
+        // @example enabled: true
         virtual void OnAudioDescriptionChanged(const bool enabled) {};
 
         // @text onPreferredAudioLanguagesChanged
         // @brief The preferredLanguages setting has changed.
+        // @details Triggered when the preferredLanguages setting is changed.
         // @param preferredLanguages: the changed preferredLanguages.
+        // @example preferredLanguages: "eng,fra"
         virtual void OnPreferredAudioLanguagesChanged(const string& preferredLanguages /* @text preferredLanguages */) {};
 
         // @text onPresentationLanguageChanged
         // @brief The PresentationLanguages setting has changed.
+        // @details Triggered when the PresentationLanguages setting is changed.
         // @param presentationLanguage: the changed presentationLanguage.
+        // @example presentationLanguage: "en-US"
         virtual void OnPresentationLanguageChanged(const string& presentationLanguage /* @text presentationLanguage */) {};
 
         // @text onCaptionsChanged
         // @brief The Captions setting has changed.
+        // @details Triggered when the Captions setting is changed.
         // @param enabled: Captions enabled or not.
+        // @example enabled: true
         virtual void OnCaptionsChanged(const bool enabled) {};
 
         // @text onPreferredCaptionsLanguagesChanged
         // @brief The PreferredCaptionsLanguages setting has changed.
+        // @details Triggered when the PreferredCaptionsLanguages setting is changed.
         // @param preferredLanguages: the changed preferredLanguages.
+        // @example preferredLanguages: "eng,fra"
         virtual void OnPreferredCaptionsLanguagesChanged(const string& preferredLanguages /* @text preferredLanguages */) {};
 
         // @text onPreferredClosedCaptionServiceChanged
         // @brief The PreferredClosedCaptionService setting has changed.Eg: "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
+        // @details Triggered when the PreferredClosedCaptionService setting is changed.
         // @param service: the changed preferredClosedCaptionService.
+        // @example service: "CC3"
         virtual void OnPreferredClosedCaptionServiceChanged(const string& service) {};
 
         // @text onPrivacyModeChanged
         // @brief The PrivacyMode setting has changed.
+        // @details Triggered when the PrivacyMode setting is changed.
         // @param privacyMode: "SHARE", "DO_NOT_SHARE".
+        // @example privacyMode: "DO_NOT_SHARE"
         virtual void OnPrivacyModeChanged(const string& privacyMode /* @text privacyMode */) {};
 
         // @alt onPinControlChanged
         // @brief The PinControl setting has changed.
-        // @param pinControl: pinControl enabled or not.
+        // @details Triggered when the PinControl setting is changed.
+        // @param pinControl: PinControl enabled or not.
+        // @example pinControl: true
         virtual void OnPinControlChanged(const bool pinControl) {};
 
         // @text onViewingRestrictionsChanged
         // @brief The ViewingRestrictions setting has changed.
-        // @param viewingRestrictions: the changed viewingRestrictions.
+        // @details Triggered when the ViewingRestrictions setting is changed.
+        // @param viewingRestrictions: The changed viewingRestrictions.
+        // @example viewingRestrictions: {"ratingScheme":"MPAA","ratings":["PG-13","R"]}
         virtual void OnViewingRestrictionsChanged(const string& viewingRestrictions /* @text viewingRestrictions */) {};
 
         // @text onViewingRestrictionsWindowChanged
         // @brief The ViewingRestrictionsWindow setting has changed.
-        // @param viewingRestrictionsWindow: the changed viewingRestrictionsWindow.
+        // @details Triggered when the ViewingRestrictionsWindow setting is changed.
+        // @param viewingRestrictionsWindow: The changed viewingRestrictionsWindow.
+        // @example viewingRestrictionsWindow: "ALWAYS"
         virtual void OnViewingRestrictionsWindowChanged(const string& viewingRestrictionsWindow /* @text viewingRestrictionsWindow */) {};
 
         // @text onLiveWatershedChanged
         // @brief The LiveWatershed setting has changed.
-        // @param liveWatershed: liveWatershed enabled or not.
+        // @details Triggered when the LiveWatershed setting is changed.
+        // @param liveWatershed: The changed liveWatershed setting.
+        // @example liveWatershed: true
         virtual void OnLiveWatershedChanged(const bool liveWatershed) {};
 
         // @text onPlaybackWatershedChanged
         // @brief The PlaybackWatershed setting has changed.
-        // @param playbackWatershed: playbackWatershed enabled or not.
+        // @details Triggered when the PlaybackWatershed setting is changed.
+        // @param playbackWatershed: PlaybackWatershed enabled or not.
+        // @example playbackWatershed: true
         virtual void OnPlaybackWatershedChanged(const bool playbackWatershed) {};
 
         // @text onBlockNotRatedContentChanged
         // @brief The BlockNotRatedContent setting has changed.
-        // @param blockNotRatedContent: blockNotRatedContent enabled or not.
+        // @details Triggered when the BlockNotRatedContent setting is changed.
+        // @param blockNotRatedContent: BlockNotRatedContent enabled or not.
+        // @example blockNotRatedContent: true
         virtual void OnBlockNotRatedContentChanged(const bool blockNotRatedContent) {};
 
         // @text onPinOnPurchaseChanged
         // @brief The PinOnPurchase setting has changed.
-        // @param pinOnPurchase: pinOnPurchase enabled or not.
+        // @details Triggered when the PinOnPurchase setting is changed.
+        // @param pinOnPurchase: PinOnPurchase enabled or not.
+        // @example pinOnPurchase: true
         virtual void OnPinOnPurchaseChanged(const bool pinOnPurchase) {};
 
         // @text onHighContrastChanged
         // @brief Triggered after the high contrast settings changes.
-        // @param enabled: high contrast enabled or not.
+        // @details Triggered after the high contrast settings changes.
+        // @param enabled: High contrast enabled or not.
+        // @example enabled: true
         virtual void OnHighContrastChanged(const bool enabled) {};
 
         // @text onVoiceGuidanceChanged
         // @brief Triggered after the voice guidance enabled settings changes.
-        // @param enabled: voice guidance enabled or not.
+        // @details This event is triggered when the voice guidance setting is updated.
+        // @param enabled: Voice guidance enabled or not.
+        // @example enabled: true
         virtual void OnVoiceGuidanceChanged(const bool enabled) {};
 
         // @text onVoiceGuidanceRateChanged
         // @brief Triggered after the voice guidance rate changed.
-        // @param rate: the changed voice guidance rate.
+        // @details This event is triggered when the voice guidance rate setting is updated.
+        // @param rate: The changed voice guidance rate.
+        // @example rate: 1.0
         virtual void OnVoiceGuidanceRateChanged(const double rate) {};
 
         // @text onVoiceGuidanceHintsChanged
         // @brief Triggered after the voice guidance hints changes.
-        // @param hints: voice guidance hints enabled or not.
+        // @details This event is triggered when the voice guidance hints setting is updated.
+        // @param hints: Voice guidance hints enabled or not.
+        // @example hints: true
         virtual void OnVoiceGuidanceHintsChanged(const bool hints) {};
 
         // @text onContentPinChanged
         // @brief The ContentPin setting has changed.
+        // @details Triggered when the ContentPin setting is changed.
         // @param contentPin: The changed contentPin.
+        // @example contentPin: "1234"
         virtual void OnContentPinChanged(const string& contentPin) {};
 
     };
@@ -146,12 +184,18 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
 
     // @text setAudioDescription
     // @brief Sets AudioDescription ON/OFF. Players should preferred Audio Descriptive tracks over normal audio track when enabled
-    // @param enabled: Enabled/Disabled
+    // @details Updates the persistent user preference for this setting. Changes are stored by the UserSettings service and may trigger the corresponding notification event so that applications can react to runtime configuration changes.
+    // @param enabled: Boolean Indicates whether AudioDescription is enabled or disabled.
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetAudioDescription(const bool enabled ) = 0;
 
     // @text getAudioDescription
     // @brief Gets the current AudioDescription setting
-    // @param enabled: Enabled/Disabled
+    // @details Retrieves the persistent user preference for this setting.
+    // @param enabled: Boolean Indicates whether AudioDescription is enabled or disabled.
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetAudioDescription(bool &enabled /* @out */) const = 0;
 
     // @text setPreferredAudioLanguages
@@ -160,56 +204,75 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // The players will pick the audio track that has the best match compared with
     // this list. In the absence of a matching track, the player should by best
     // effort select the preferred audio track.
+    // @details The players will pick the audio track that has the best match compared with this list.
+    // In the absence of a matching track, the player should by best effort select the preferred audio track.
     // @param preferredLanguages: PreferredLanguages
+    // @example preferredLanguages: "eng,fra"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPreferredAudioLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
 
     // @text getPreferredAudioLanguages
     // @brief Gets the current PreferredAudioLanguages setting
+    // @details Retrieves the persistent user preference for this setting.
     // @param preferredLanguages: PreferredLanguages
+    // @example preferredLanguages: "eng,fra"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPreferredAudioLanguages(string &preferredLanguages /* @out @text preferredLanguages */) const = 0;
 
     // @text setPresentationLanguage
     // @brief Sets the presentationLanguage in a full BCP 47 value, including script, region, variant
+    // @details Stores the user's preferred presentation language. Media players and applications can use this preference to automatically select the most appropriate language for presentation.    
     // @param presentationLanguage: "en-US", "es-US", "en-CA", "fr-CA"
+    // @example presentationLanguage: "en-US"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPresentationLanguage(const string& presentationLanguage /* @text presentationLanguage */) = 0;
 
     // @text getPresentationLanguage
     // @brief Gets the presentationLanguage
+    // @details Gets the presentationLanguage in a full BCP 47 value, including script, region, variant
     // @param presentationLanguage: "en-US", "es-US", "en-CA", "fr-CA"
+    // @example presentationLanguage: "en-US"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPresentationLanguage(string &presentationLanguage /* @out @text presentationLanguage */) const = 0;
 
     // @text setCaptions
-    // @brief brief Sets Captions ON/OFF.
-    // @details A setting of ON indicates that Players should select a subtitle track for presentation
-    // The Setting does not influence any running sessions. It is up to the player to enforce the setting.
-    // This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions
-    // and timed text types.
-    // Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes
-    // of this state while a playback is active.
-    // When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state.
-    // This holds true for media players that utilize TextTrack render sessions for text track decode-display and also for media
-    // players or apps that decode-display internally 
+    // @brief Sets Captions ON/OFF.
+    // @details A setting of ON indicates that players should select a subtitle track for presentation; this does not affect any already running sessions.
+    // This is a global state, persisted by the TextTrack plug-in, applying to all forms of text: closed captions, Captions and timed text types. 
+    // Media players should listen to OnCaptionsChanged notifications to react to platform-wide dynamic state changes while playback is active, and should call GetCaptions on playback start to retrieve the current enabled state.
     // @param enabled: Sets the state
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetCaptions(const bool enabled  ) = 0;
 
     // @text getCaptions
     // @brief Gets the Captions setting.
+    // @details Gets the Captions setting. This is a global state persisted by the TextTrack plug-in applying to all forms of text; closed captions, Captions and timed text types.
+    // Media players should to listen to OnCaptionsChanged notifications to react to platform wide dynamic state changes of this state while a playback is active.
+    // When media players start playback, they should also call the GetCaptions method to retrieve the current enabled state. This holds true for media players that 
+    // utilize TextTrack render sessions for text track decode-display and also for media players or apps that decode-display internally.
     // @param enabled: Receives the state
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetCaptions(bool &enabled /* @out */) const = 0;
 
     // @text setPreferredCaptionsLanguages
     // @brief Set preferred languages for captions.
     // @details A prioritized list of ISO 639-2/B codes for the preferred Captions languages,
     // expressed as a comma separated lists of languages of zero of more elements.
-    // The players will pick the subtitle track that has the best match compared with
-    // this list. In the absence of a matching track, the player should by best
-    // effort select the preferred subtitle track. 
+    // The players will pick the subtitle track that has the best match compared with this list.
+    // In the absence of a matching track, the player should by best effort select the preferred subtitle track. 
     // @param preferredLanguages: Is the list to set (e.g. "eng,fra")
+    // @example preferredLanguages: "eng,fra"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPreferredCaptionsLanguages(const string& preferredLanguages  /* @text preferredLanguages */) = 0;
 
     // @text getPreferredCaptionsLanguages
     // @brief Gets the current PreferredCaptionsLanguages setting.
+    // @details Retrieves the configured list of preferred caption languages as a comma-separated string of language codes. The returned value reflects the current caption language preference setting.    
     // @param preferredLanguages: "eng,fra"
+    // @example preferredLanguages: "eng,fra"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPreferredCaptionsLanguages(string &preferredLanguages /* @out @text preferredLanguages */) const = 0;
 
     // @text setPreferredClosedCaptionService
@@ -217,44 +280,64 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details The setting should be honored by the player. The behaviour of AUTO may be player specific.
     // Valid input for service is "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]" 
     // @param service: Identifies the service to display e.g. "CC3".
+    // @example service: "CC3"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPreferredClosedCaptionService(const string& service  ) = 0;
 
     // @text getPreferredClosedCaptionService
     // @brief Gets the current PreferredClosedCaptionService setting.
+    // @details Retrieves the persistent user preference for the closed caption service. Valid values for service are "CC[1-4]", "TEXT[1-4]", "SERVICE[1-64]".
     // @param service: Identifies the service to display e.g. "CC3".
+    // @example service: "CC3"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPreferredClosedCaptionService(string &service /* @out */) const = 0;
 
     // @text setPrivacyMode
     // @brief Sets the PrivacyMode.
-    // @details The setting should be honored by the Telemetry.
-    // If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
+    // @details The setting should be honored by the Telemetry. If privacyMode is "DO_NOT_SHARE", logs and crash report should not be uploaded.
     // @param privacyMode: "SHARE", "DO_NOT_SHARE"
+    // @example privacyMode: "DO_NOT_SHARE"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPrivacyMode(const string& privacyMode /* @text privacyMode*/) = 0;
 
     // @text getPrivacyMode
     // @brief Gets the current PrivacyMode setting.
+    // @details Gets the current PrivacyMode setting. Valid output for privacyMode is "SHARE", "DO_NOT_SHARE"
     // @param privacyMode: "SHARE"
+    // @example privacyMode: "DO_NOT_SHARE"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPrivacyMode(string &privacyMode /* @out @text privacyMode */) const = 0;
 
     // @alt setPinControl
     // @brief Sets PinControl ON/OFF. Parental Control as a whole is enabled or disabled.
+    // @details A setting of ON indicates that Parental Control is enabled. Players should enforce the parental control settings when enabled.
     // @param pinControl: Enabled/Disabled
+    // @example pinControl: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPinControl(const bool pinControl ) = 0;
 
     // @text getPinControl
     // @brief Gets the PinControl setting
+    // @details Retrieves the persistent user preference for whether Parental Control as a whole is enabled or disabled.
     // @param pinControl: Enabled/Disabled
+    // @example pinControl: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPinControl(bool &pinControl /* @out */) const = 0;
 
     // @text setViewingRestrictions
     // @brief Sets the ViewingRestrictions.
-    // @details A JSON document that escribes the rating scheme(s) and ratings that are blocked.
+    // @details A JSON document that describes the rating scheme(s) and ratings that are blocked.
     // @param viewingRestrictions: A JSON document that describes the rating scheme(s) and ratings that are blocked.
+    // @example viewingRestrictions: {"ratingScheme":"MPAA","ratings":["PG-13","R"]}
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetViewingRestrictions(const string& viewingRestrictions /* @text viewingRestrictions */) = 0;
 
     // @text getViewingRestrictions
     // @brief Gets the current ViewingRestrictions.
-    // @param viewingRestrictions: A JSON document that escribes the rating scheme(s) and ratings that are blocked.
+    // @details Retrieves the persistent user preference for the current ViewingRestrictions.
+    // @param viewingRestrictions: A JSON document that describes the rating scheme(s) and ratings that are blocked.
+    // @example viewingRestrictions: {"ratingScheme":"MPAA","ratings":["PG-13","R"]}
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetViewingRestrictions(string &viewingRestrictions /* @out @text viewingRestrictions */) const = 0;
 
     // @text setViewingRestrictionsWindow
@@ -262,106 +345,160 @@ struct EXTERNAL IUserSettings : virtual public Core::IUnknown
     // @details A project-specific representation of the time interval when viewing
     // restrictions are to be applied, if applicable for the project
     // @param viewingRestrictionsWindow: A project-specific representation of the time interval.Eg: "ALWAYS"
+    // @example viewingRestrictionsWindow: "ALWAYS"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetViewingRestrictionsWindow(const string &viewingRestrictionsWindow /* @text viewingRestrictionsWindow */) = 0;
 
     // @text getViewingRestrictionsWindow
     // @brief Gets the current ViewingRestrictionsWindow.
+    // @details Gets the current ViewingRestrictionsWindow.
     // @param viewingRestrictionsWindow: A project-specific representation of the time interval.Eg: "ALWAYS"
+    // @example viewingRestrictionsWindow: "ALWAYS"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetViewingRestrictionsWindow(string &viewingRestrictionsWindow /* @out @text viewingRestrictionsWindow */) const = 0;
 
     // @text setLiveWatershed
-    // @brief Sets LiveWatershed ON/OFF.Whether project-specific watershed rules
-    // should be applied for live content, if applicable for the project.
+    // @brief Sets LiveWatershed ON/OFF.Whether project-specific watershed rules should be applied for live content, if applicable for the project.
+    // @details Updates the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
     // @param liveWatershed: Enabled/Disabled
+    // @example liveWatershed: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetLiveWatershed(const bool liveWatershed ) = 0;
 
     // @text getLiveWatershed
     // @brief Gets the LiveWatershed setting
+    // @details Retrieves the persistent user preference for whether project-specific watershed rules should be applied for live content, if applicable for the project.
     // @param liveWatershed: Enabled/Disabled
+    // @example liveWatershed: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetLiveWatershed(bool &liveWatershed /* @out */) const = 0;
 
     // @text setPlaybackWatershed
-    // @brief Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules
-    // should be applied for non-live content, if applicable for the project.
+    // @brief Sets PlaybackWatershed ON/OFF. Whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
+    // @details Updates the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
     // @param playbackWatershed: Enabled/Disabled
+    // @example playbackWatershed: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPlaybackWatershed(const bool playbackWatershed ) = 0;
 
     // @text getPlaybackWatershed
     // @brief Gets the PlaybackWatershed setting
+    // @details Retrieves the persistent user preference for whether project-specific watershed rules should be applied for non-live content, if applicable for the project.
     // @param playbackWatershed: Enabled/Disabled
+    // @example playbackWatershed: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPlaybackWatershed(bool &playbackWatershed /* @out */) const = 0;
 
     // @text setBlockNotRatedContent
-    // @brief Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be
-    // blocked, if applicable for the project.
+    // @brief Sets BlockNotRatedContent ON/OFF. Whether content that is not rated should be blocked, if applicable for the project.
+    // @details Updates the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
     // @param blockNotRatedContent: Enabled/Disabled
+    // @example blockNotRatedContent: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetBlockNotRatedContent(const bool blockNotRatedContent ) = 0;
 
     // @text getBlockNotRatedContent
     // @brief Gets the BlockNotRatedContent setting
+    // @details Retrieves the persistent user preference for whether content that is not rated should be blocked, if applicable for the project.
     // @param blockNotRatedContent: Enabled/Disabled
+    // @example blockNotRatedContent: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetBlockNotRatedContent(bool &blockNotRatedContent /* @out */) const = 0;
 
     // @text setPinOnPurchase
-    // @brief Sets PinOnPurchase ON/OFF.Whether a PIN challenge should be made
-    // when a purchase is attempted.
+    // @brief Sets PinOnPurchase ON/OFF. Whether a PIN challenge should be made when a purchase is attempted.
+    // @details Updates the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
     // @param pinOnPurchase: Enabled/Disabled
+    // @example pinOnPurchase: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetPinOnPurchase(const bool pinOnPurchase ) = 0;
 
     // @text getPinOnPurchase
     // @brief Gets the PinOnPurchase setting
+    // @details Retrieves the persistent user preference for whether a PIN challenge should be made when a purchase is attempted.
     // @param pinOnPurchase: Enabled/Disabled
+    // @example pinOnPurchase: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetPinOnPurchase(bool &pinOnPurchase /* @out */) const = 0;
 
     // @text setHighContrast
     // @brief Sets highContrast. Whether the app should display with high contrast or not.
+    // @details Updates the persistent user preference for whether the app should display with high contrast or not.
     // @param enabled: Enabled/Disabled
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetHighContrast(const bool enabled ) = 0;
 
     // @text getHighContrast
     // @brief Gets the current highContrast setting.
+    // @details Retrieves the persistent user preference for whether the app should display with high contrast or not.
     // @param enabled: Enabled/Disabled
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetHighContrast(bool &enabled /* @out */) const = 0;
 
     // @text setVoiceGuidance
     // @brief Sets voiceGuidance. Whether Voice Guidance is enabled or not.
+    // @details Updates the persistent user preference for whether Voice Guidance is enabled or not.
     // @param enabled: Enabled/Disabled
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetVoiceGuidance(const bool enabled ) = 0;
 
     // @text getVoiceGuidance
     // @brief Gets the current voiceGuidance setting.
+    // @details Retrieves the persistent user preference for whether Voice Guidance is enabled or not.
     // @param enabled: Enabled/Disabled
+    // @example enabled: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetVoiceGuidance(bool &enabled /* @out */) const = 0;
 
     // @text setVoiceGuidanceRate
-    // @brief Sets voiceGuidanceRate. Setting voice guidance rate value. from 0.1 to 10 inclusive.
+    // @brief Sets voiceGuidanceRate. Setting voice guidance rate value from 0.1 to 10 inclusive.
+    // @details Updates the persistent user preference for the voice guidance rate value from 0.1 to 10 inclusive.
     // @param rate: Sets Voice Guidance rate
+    // @example rate: 1.0
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetVoiceGuidanceRate(const double rate ) = 0;
 
     // @text getVoiceGuidanceRate
     // @brief Gets the current voiceGuidanceRate setting.
+    // @details Retrieves the persistent user preference for the current voice guidance rate value.
     // @param rate: Gets Voice Guidance rate
+    // @example rate: 1.0
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetVoiceGuidanceRate(double &rate /* @out */) const = 0;
 
     // @text setVoiceGuidanceHints
     // @brief Sets voiceGuidanceHints ON/OFF. Whether Voice Guidance hints setting is switched on or not.
+    // @details Updates the persistent user preference for whether Voice Guidance hints setting is switched on or not.
     // @param hints: Enabled/Disabled
+    // @example hints: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetVoiceGuidanceHints(const bool hints ) = 0;
 
     // @text getVoiceGuidanceHints
     // @brief Gets the current voiceGuidanceHints setting.
+    // @details Retrieves the persistent user preference for whether Voice Guidance hints setting is switched on or not.
     // @param hints: true/false
+    // @example hints: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetVoiceGuidanceHints(bool &hints /* @out */) const = 0;
 
     // @text setContentPin
     // @brief Sets the ContentPin.
     // @details ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
     // @param contentPin: A string of four decimal digits that represents the content PIN.
+    // @example contentPin: "1234"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult SetContentPin(const string& contentPin) = 0;
 
     // @text getContentPin
     // @brief Gets the ContentPin.
+    // @details ContentPin is a string of four decimal digits that represents the PIN code which is used to unlock access to restricted AV content.
     // @param contentPin: A string of four decimal digits that represents the content PIN.
+    // @example contentPin: "1234"
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetContentPin(string& contentPin /* @out */) const = 0;
 
 };
@@ -416,14 +553,21 @@ struct EXTERNAL IUserSettingsInspector : virtual public Core::IUnknown
     /** Get the migration state of the respective key */
     // @text getMigrationState
     // @brief Get the migration state of the respective key
+    // @details Get the migration state of the respective key. If requiresMigration is true, the setting is not valid and should not be used.
     // @param key: one of UserSettingsKey
-    // @param migrationState: key and it's migration state.
+    // @example key: 1
+    // @param requiresMigration: Indicates whether the setting requires migration.
+    // @example requiresMigration: true
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetMigrationState(const SettingsKey key, bool &requiresMigration /* @out */) const = 0;
 
     /** Get the migration state of all the defined keys */
     // @text getMigrationStates
     // @brief Get the migration state of all the defined keys
+    // @details Get the migration state of all the defined keys. If requiresMigration is true, the setting is not valid and should not be used.
     // @param states: array of migration status.
+    // @example states: [{"key":1,"requiresMigration":true},{"key":2,"requiresMigration":false}]
+    // @retval Core::ERROR_NONE: Indicates success
     virtual Core::hresult GetMigrationStates(IUserSettingsMigrationStateIterator*& states /* @out */) const = 0;
 
 };
