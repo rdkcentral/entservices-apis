@@ -84,7 +84,7 @@ namespace Exchange {
 
             // @json:omit
             // @brief Starts the runtime and brings it to the foreground on the screen.
-            // @brief Emits onIntentChanged with launch action and args passed in intent data field.
+            // Emits onIntentChanged with launch action and args passed in intent data field.
             // @details Starts the cast web runtime with the specified application ID and arguments, optionally in prelaunch mode.
             // @param appId: Durable application id of cast web runtime or cast settings.
             // @example appId: "com.example.castapp"
