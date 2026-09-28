@@ -110,8 +110,8 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 3, "met
     "id": 3,
     "result": {
         "supportedAudioPorts": [
-            "AUDIO_ANALOG",
-            "AUDIO_HDMI0"
+            "SPEAKER0",
+            "HDMI0"
         ],
         "success": true
     }
@@ -1262,7 +1262,7 @@ None
     "id": 0,
     "method": "org.rdk.DeviceInfo.audiocapabilities",
     "params": {
-        "audioPort": "AUDIO_HDMI0"
+        "audioPort": "HDMI0"
     }
 }
 ```
@@ -1271,7 +1271,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": "AUDIO_HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 0, "method": "org.rdk.DeviceInfo.audiocapabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1325,7 +1325,7 @@ None
     "id": 1,
     "method": "org.rdk.DeviceInfo.ms12capabilities",
     "params": {
-        "audioPort": "AUDIO_HDMI0"
+        "audioPort": "HDMI0"
     }
 }
 ```
@@ -1334,7 +1334,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": "AUDIO_HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 1, "method": "org.rdk.DeviceInfo.ms12capabilities", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
@@ -1388,7 +1388,7 @@ None
     "id": 2,
     "method": "org.rdk.DeviceInfo.supportedms12audioprofiles",
     "params": {
-        "audioPort": "AUDIO_HDMI0"
+        "audioPort": "HDMI0"
     }
 }
 ```
@@ -1397,7 +1397,7 @@ None
 #### CURL Command
 
 ```curl
-curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": "AUDIO_HDMI0"}}' http://127.0.0.1:9998/jsonrpc
+curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 2, "method": "org.rdk.DeviceInfo.supportedms12audioprofiles", "params": {"audioPort": "HDMI0"}}' http://127.0.0.1:9998/jsonrpc
 ```
 
 
