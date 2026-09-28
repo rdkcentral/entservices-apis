@@ -363,6 +363,9 @@ namespace Exchange {
         ID_GSTREAMER_PLAYER                         = ID_ENTOS_OFFSET + 0x530,
         ID_GSTREAMER_PLAYER_NOTIFICATION            = ID_GSTREAMER_PLAYER + 1,
 
+        ID_PLAYBIN_PLUGIN                           = ID_ENTOS_OFFSET + 0x540,
+        ID_PLAYBIN_PLUGIN_NOTIFICATION               = ID_PLAYBIN_PLUGIN + 1,
+
     }; // enum IDS
 
 } // namespace Exchange
