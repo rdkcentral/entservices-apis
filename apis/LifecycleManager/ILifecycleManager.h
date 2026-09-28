@@ -133,7 +133,7 @@ struct EXTERNAL ILifecycleManager : virtual public Core::IUnknown {
     // @param targetLifecycleState: Lifecycle state requested after launch.
     // @example targetLifecycleState: ACTIVE
     // @param runtimeConfigObject: Runtime configuration for the application.
-    // @example runtimeConfigObject: { "configKey": "configValue" }
+    // @example runtimeConfigObject: { "dial": true, "userId": 1000, "groupId": 1000, "appType": "native" }
     // @param launchArgs: Arguments passed to the application at launch.
     // @example launchArgs: "--verbose"
     // @param appInstanceId: Output identifier assigned to the launched application instance.
