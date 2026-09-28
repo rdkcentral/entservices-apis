@@ -84,6 +84,7 @@ namespace Exchange {
         // @example options: { "priority": true, "retries": 3, "rateLimit": 1024 }
         // @param downloadId: Output parameter that returns the assigned download ID
         // @example downloadId: "1234"
+        // @retval Core::ERROR_NONE: The download request was successfully queued
         virtual Core::hresult Download(
             const string& url,
             const Options& options,
@@ -94,6 +95,7 @@ namespace Exchange {
         // @details Pauses the specified download session, temporarily halting the download process.
         // @param downloadId: Unique identifier of the download to pause
         // @example downloadId: "1234"
+        // @retval Core::ERROR_NONE: The download was successfully paused
         virtual Core::hresult Pause(const string& downloadId) = 0;
 
         // @brief Resume a paused download session
@@ -101,13 +103,15 @@ namespace Exchange {
         // @details Resumes a previously paused download session, allowing the download to continue from where it left off.
         // @param downloadId: Unique identifier of the download to resume
         // @example downloadId: "1234"
+        // @retval Core::ERROR_NONE: The download was successfully resumed
         virtual Core::hresult Resume(const string& downloadId) = 0;
 
         // @brief Cancel an ongoing download session
         // @text cancel
         // @details Cancels the specified download session, stopping any ongoing download and cleaning up associated resources.
         // @param downloadId: Unique identifier of the download to cancel
-        // @example downloadId: "1234"       
+        // @example downloadId: "1234"
+        // @retval Core::ERROR_NONE: The download was successfully cancelled
         virtual Core::hresult Cancel(const string& downloadId) = 0;
 
         // @brief Delete a downloaded file from the system using its locator path
@@ -115,6 +119,7 @@ namespace Exchange {
         // @details Deletes the specified downloaded file from the system, freeing up storage space.
         // @param fileLocator: File path or locator of the file to be deleted
         // @example fileLocator: "/path/to/file"
+        // @retval Core::ERROR_NONE: The file was successfully deleted
         virtual Core::hresult Delete(const string& fileLocator) = 0;
 
         // @brief Progress Query current download progress
@@ -124,6 +129,7 @@ namespace Exchange {
         // @example downloadId: "1234"
         // @param percent: Output parameter returning percentage completed
         // @example percent: 50
+        // @retval Core::ERROR_NONE: The download progress was successfully retrieved
         virtual Core::hresult Progress(
             const string& downloadId,
             uint8_t& percent /* @out */) = 0;
@@ -135,6 +141,7 @@ namespace Exchange {
         // @example downloadId: "1234"
         // @param limit: Maximum bandwidth in bytes per second (0 = unlimited)
         // @example limit: 1024
+        // @retval Core::ERROR_NONE: The rate limit was successfully applied
         virtual Core::hresult RateLimit(const string& downloadId, const uint32_t& limit) = 0;
     };
 } // Exchange
