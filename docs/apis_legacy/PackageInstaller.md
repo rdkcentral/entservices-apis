@@ -260,7 +260,7 @@ No Events
     "jsonrpc": "2.0",
     "id": 42,
     "result": {
-        "runtimeConfigPayload": "{\"command\":\"...\",\"envVariables\":[\"KEY=value\"]}"
+        "runtimeConfigPayload": "{\"dial\":false,\"wanLanAccess\":false,\"thunder\":false,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":false,\"dialId\":\"...\",\"command\":\"...\",\"appType\":\"...\",\"appPath\":\"...\",\"runtimePath\":\"...\"}"
     }
 }
 ```
@@ -363,7 +363,7 @@ No Events
     "result": {
         "packageId": "...",
         "version": "...",
-        "runtimeConfigPayload": "{\"command\":\"...\",\"envVariables\":[\"KEY=value\"]}"
+        "runtimeConfigPayload": "{\"dial\":false,\"wanLanAccess\":false,\"thunder\":false,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":false,\"dialId\":\"...\",\"command\":\"...\",\"appType\":\"...\",\"appPath\":\"...\",\"runtimePath\":\"...\"}"
     }
 }
 ```

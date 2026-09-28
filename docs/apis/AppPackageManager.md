@@ -563,7 +563,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 10, "me
     "jsonrpc": 2.0,
     "id": 10,
     "result": {
-        "runtimeConfigPayload": ""
+        "runtimeConfigPayload": "{\"dial\":true,\"wanLanAccess\":true,\"thunder\":true,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":true,\"dialId\":\"\",\"command\":\"\",\"appType\":\"\",\"appPath\":\"\",\"runtimePath\":\"\",\"logFilePath\":\"\",\"logFileMaxSize\":0,\"logLevels\":[],\"mapi\":true,\"fkpsFiles\":[],\"capabilities\":\"\",\"ralfPkgPath\":\"\",\"fireboltVersion\":\"\",\"enableDebugger\":true,\"unpackedPath\":\"\"}"
     }
 }
 ```
@@ -621,7 +621,7 @@ curl -H 'content-type:text/plain;' --data-binary '{"jsonrpc": 2.0, "id": 11, "me
     "result": {
         "id": "",
         "version": "",
-        "runtimeConfigPayload": ""
+        "runtimeConfigPayload": "{\"dial\":true,\"wanLanAccess\":true,\"thunder\":true,\"systemMemoryLimit\":0,\"gpuMemoryLimit\":0,\"envVariables\":[],\"userId\":0,\"groupId\":0,\"dataImageSize\":0,\"resourceManagerClientEnabled\":true,\"dialId\":\"\",\"command\":\"\",\"appType\":\"\",\"appPath\":\"\",\"runtimePath\":\"\",\"logFilePath\":\"\",\"logFileMaxSize\":0,\"logLevels\":[],\"mapi\":true,\"fkpsFiles\":[],\"capabilities\":\"\",\"ralfPkgPath\":\"\",\"fireboltVersion\":\"\",\"enableDebugger\":true,\"unpackedPath\":\"\"}"
     }
 }
 ```
