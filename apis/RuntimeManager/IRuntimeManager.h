@@ -85,7 +85,7 @@ struct EXTERNAL IRuntimeManager : virtual public Core::IUnknown {
     // @param appId App identifier for the application/container
     // @param appInstanceId App identifier for the application/container
     // @param userId userId used to identify the user
-    // @param userId groupid used to represent a group
+    // @param groupId groupId used to represent a group
     // @param ports(optional) array of socket ports to allow
     // @param paths(optional) paths contains an additional set of files and directories to map into the container
     // @param debugSettings(optional) can include additional ports to open for gdb and other settings for debugging
