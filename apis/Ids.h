@@ -375,6 +375,9 @@ namespace Exchange {
 
         ID_RESOURCE_MANAGER_TOP                     = ID_ENTOS_OFFSET + 0x5A0,
         ID_RESOURCE_MANAGER_TOP_NOTIFICATION_MULTIPLICATION_RESULT = ID_RESOURCE_MANAGER_TOP + 1,
+
+        ID_PLAYBIN_PLUGIN                           = ID_ENTOS_OFFSET + 0x5B0,
+        ID_PLAYBIN_PLUGIN_NOTIFICATION              = ID_PLAYBIN_PLUGIN + 1,
     }; // enum IDS
 
 } // namespace Exchange
