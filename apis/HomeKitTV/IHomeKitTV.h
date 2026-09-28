@@ -81,7 +81,7 @@ namespace WPEFramework {
                 // @details This event is triggered whenever there is a change in the connection status of the HomeKit TV.
                 // @param params: JSON string containing the details of the connection status change.
                 // @example params: "{ \"connected\": true }"
-		virtual void dispatchOnConnectionStatusChanged(const string& params) = 0;
+				virtual void dispatchOnConnectionStatusChanged(const string& params) = 0;
             };
 
             virtual void Register(IHomeKitTV::INotification* homeKitTV) = 0;
@@ -107,7 +107,7 @@ namespace WPEFramework {
             // @example inputsource: "HDMI1"
             // @param response: JSON string containing the result of the input source change request.
             // @example response: "{ \"success\": true }"
-	    virtual uint32_t setCurrentInputSource(const string& inputsource, string& response /* @out */) = 0;
+	      	virtual uint32_t setCurrentInputSource(const string& inputsource, string& response /* @out */) = 0;
 
             // @brief Retrieves the enabled status of the HomeKit TV.
             // @details This method fetches the current enabled status of the HomeKit TV.
