@@ -152,6 +152,7 @@ namespace WPEFramework
             // @example method: "onExampleEvent"
             // @param payload: the response payload
             // @example payload: "{\"state\":\"ready\"}"
+            // @retval Core::ERROR_NONE: Notification emitted successfully
             virtual Core::hresult Emit(const GatewayContext& context ,
                 const string& method , const string& payload /*@opaque */) = 0;
 
