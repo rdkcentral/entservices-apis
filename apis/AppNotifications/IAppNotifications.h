@@ -109,7 +109,6 @@ namespace WPEFramework
                 // @example payload: "{\"key\": \"value\"}"
                 // @param appId (optional): the appId to emit the event for, if empty the event is emitted for all Apps
                 // @example appId: "com.example.app"
-                // @retval Core::ERROR_NONE: Successfully emitted the event
                 virtual void Emit(const string &event,
                                   const string &payload /*@opaque */,
                                   const string &appId) {};
