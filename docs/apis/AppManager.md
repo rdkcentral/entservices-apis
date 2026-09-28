@@ -1027,7 +1027,7 @@ This event is triggered whenever there is a change in the lifecycle state of a r
     "method": "org.rdk.AppManager.onAppLifecycleStateChanged",
     "params": {
         "appId": "com.example.myapp",
-        "appInstanceId": 12345,
+        "appInstanceId": "12345",
         "newState": "APP_STATE_RUNNING",
         "oldState": "APP_STATE_PAUSED",
         "errorReason": "APP_ERROR_NONE"
