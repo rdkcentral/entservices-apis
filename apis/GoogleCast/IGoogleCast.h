@@ -72,7 +72,7 @@ namespace Exchange {
                 // @param inactive: Indicates pre-launch(off screen) request.
                 // @example inactive: true
                 // @param intent: A Firebolt compliant navigation intent.
-                // @example intent: "{\"action\":\"LAUNCH\",\"context\":{\"source\":\"example\"},\"data\":\"arg1,arg2\"}"
+                // @example intent: { "action": "LAUNCH", "context": { "source": "example" }, "data": "arg1,arg2" }
                 virtual void OnIntentChanged(
                     const string& appId,
                     const bool    inactive,
