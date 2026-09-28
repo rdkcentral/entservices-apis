@@ -217,7 +217,6 @@ namespace WPEFramework
                 // @example connectionId: 2
                 // @param connected true if connection started, false if connection stopped
                 // @example connected: true
-                // @retval Core::ERROR_NONE: Connection state notification delivered successfully
                 virtual void OnAppConnectionChanged(const string& appId, const uint32_t connectionId, const bool connected) {};
             };
 
