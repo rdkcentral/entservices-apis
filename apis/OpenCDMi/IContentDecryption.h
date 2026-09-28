@@ -114,7 +114,7 @@ namespace Exchange {
         }
         void SetSubSampleLength(MultiSampleInfo& sampleInfo, const uint16_t length)
         {
-            sampleInfo.subSampleLength = std::min(static_cast<uint16_t>(sizeof(Administration::SubSamples)/sizeof(CDMi::SubSampleInfo)), length);
+            sampleInfo.subSampleLength = std::min(static_cast<uint16_t>(UINT8_MAX), length);
         }
         void SetSubSamples(const uint16_t startIdx, const uint16_t length, const CDMi::SubSampleInfo subSampleInfo[])
         {
@@ -273,12 +273,12 @@ namespace Exchange {
             if (admin->SampleLength > idx) {
                 const uint16_t maxSubSamples = static_cast<uint16_t>(sizeof(Administration::SubSamples) / sizeof(CDMi::SubSampleInfo));
                 const uint16_t remaining = (maxSubSamples > admin->SubSampleLength ? (maxSubSamples - admin->SubSampleLength) : 0);
-                const uint16_t actualSubSampleLegth = std::min<uint16_t>(subSampleLength, remaining);
+                const uint16_t actualSubSampleLength = std::min<uint16_t>(subSampleLength, remaining);
 
                 SetIV(admin->Samples[idx], ivLength, iv);
-                SetSubSampleLength(admin->Samples[idx], actualSubSampleLegth);
-                SetSubSamples(admin->SubSampleLength, actualSubSampleLegth, subSampleInfo);
-                admin->SubSampleLength += actualSubSampleLegth;
+                SetSubSampleLength(admin->Samples[idx], actualSubSampleLength);
+                SetSubSamples(admin->SubSampleLength, actualSubSampleLength, subSampleInfo);
+                admin->SubSampleLength += actualSubSampleLength;
             }
         }
         void SetMediaProperties(const uint16_t height, const uint16_t width, const uint8_t type)
