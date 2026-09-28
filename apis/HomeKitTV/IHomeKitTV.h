@@ -113,7 +113,7 @@ namespace WPEFramework {
             // @details This method fetches the current enabled status of the HomeKit TV.
             // @param result: Boolean indicating whether the HomeKit TV is enabled.
 			// @example result: true
-           virtual void getEnabledStatus(bool& result /* @out */) = 0;
+           	virtual void getEnabledStatus(bool& result /* @out */) = 0;
 
             // @brief Retrieves the connection status of the HomeKit TV.
             // @details This method fetches the current connection status of the HomeKit TV.
@@ -125,7 +125,7 @@ namespace WPEFramework {
             // @details This method configures the IP address for the app container running on the HomeKit TV.
             // @param ipaddress: The IP address to be set for the app container.
             // @example ipaddress: "192.168.1.100"
-	    virtual uint32_t setAppContainerIPAddress(const string& ipaddress) = 0;
+	        virtual uint32_t setAppContainerIPAddress(const string& ipaddress) = 0;
         };
     }
 }
