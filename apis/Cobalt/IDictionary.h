@@ -86,7 +86,7 @@ namespace Exchange {
         // @example key: "exampleKey"
         // @param value: Output parameter receiving the associated value.
         // @example value: "exampleValue"
-        // @return true on success, false otherwise.
+// @retval true: The value was retrieved successfully; false: The key was not found or retrieval failed.
         virtual bool Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
        
         // @brief Stores a key-value pair in the dictionary.
