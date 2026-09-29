@@ -60,7 +60,7 @@ The following methods are provided by the IAppStorageManager Interface:
 <a id="clear"></a>
 ## *clear*
 
-Clears the storage associated with the specified application.
+Clears the storage associated with the specified application and clears device storage as well.
 
 ### Events Triggered
 None
