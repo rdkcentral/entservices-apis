@@ -106,7 +106,7 @@ namespace Exchange {
         // @details Returns an iterator that can be used to enumerate all key-value pairs within the namespace.
         // @param nameSpace: Namespace to enumerate.
         // @example nameSpace: "com.example.myapp"  
-        // @retval Core::ERROR_NONE if the operation was successful
+        // @return Iterator for the specified namespace, or nullptr if the namespace does not exist.
         virtual IIterator* Get(const string& nameSpace) const = 0;
     };
 }
