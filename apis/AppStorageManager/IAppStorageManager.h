@@ -80,7 +80,7 @@ struct EXTERNAL IAppStorageManager : virtual public Core::IUnknown {
     // @stubgen:stub
     // @text clear
     // @brief Called by IUI.  This also clears device storage as well
-    // @details Clears the storage associated with the specified application.
+    // @details Clears the storage associated with the specified application and clears device storage as well.
     // @param appId: string App identifier for the application.
     // @example appId: "com.example.app"
     // @param errorReason: String error reason string
