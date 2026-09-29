@@ -71,7 +71,8 @@ namespace Exchange {
                 // @example appId: "com.example.castapp"
                 // @param inactive: Indicates pre-launch(off screen) request.
                 // @example inactive: true
-// @example intent: { "action": "launch", "context": { "source": "example" }, "data": "arg1,arg2" }
+                // @param intent: A Firebolt compliant navigation intent.
+                // @example intent: { "action": "launch", "context": { "source": "example" }, "data": "arg1,arg2" }
                 virtual void OnIntentChanged(
                     const string& appId,
                     const bool    inactive,
