@@ -86,7 +86,8 @@ namespace Exchange {
         // @example key: "exampleKey"
         // @param value: Output parameter receiving the associated value.
         // @example value: "exampleValue"
-// @retval true: The value was retrieved successfully; false: The key was not found or retrieval failed.
+        // @retval true: The value was retrieved successfully;
+        // @retval false: The key was not found or retrieval failed.
         virtual bool Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
        
         // @brief Stores a key-value pair in the dictionary.
@@ -97,14 +98,15 @@ namespace Exchange {
         // @example key: "exampleKey"
         // @param value: Value associated with the key.
         // @example value: "exampleValue"
-        // @return true on success, false otherwise.
+        // @retval true: Key-value pair stored successfully.
+        // @retval false: Key-value pair could not be stored.
         virtual bool Set(const string& nameSpace, const string& key, const string& value) = 0;
        
         // @brief Retrieves an iterator for a namespace.
         // @details Returns an iterator that can be used to enumerate all key-value pairs within the namespace.
         // @param nameSpace: Namespace to enumerate.
         // @example nameSpace: "com.example.myapp"  
-        // @retval core::ERROR_NONE if the operation was successful
+        // @retval Core::ERROR_NONE if the operation was successful
         virtual IIterator* Get(const string& nameSpace) const = 0;
     };
 }
