@@ -55,10 +55,14 @@ namespace Exchange {
             
             // @brief Checks if the iterator is currently pointing to a valid entry.
             // @details Returns true if the iterator is positioned at a valid entry, false otherwise.
+            // @retval true: Iterator is positioned at a valid entry.
+            // @retval false: Iterator is not positioned at a valid entry.
             virtual bool IsValid() const = 0;
             
             // @brief Advances the iterator to the next entry.
             // @details Moves the iterator forward and reports whether the new position is valid.
+            // @retval true: Iterator advanced to a valid entry.
+            // @retval false: Iterator did not advance to a valid entry.
             virtual bool Next() = 0;
 
             // Signal changes on the subscribed namespace..
