@@ -137,7 +137,7 @@ struct EXTERNAL IAppManager : virtual public Core::IUnknown {
     // @param appId:App identifier for the application.
     // @example appId: "com.example.myapp"
     // @param appInstanceId:A numerical identifier for a specific instance of the application.
-    // @example appInstanceId: "instance-123"
+    // @example appInstanceId: "12345"
     // @param newState:The new state to transition the application.
     // @example newState: APP_STATE_RUNNING
     // @param oldState:The previous state of the application instance before the update.
