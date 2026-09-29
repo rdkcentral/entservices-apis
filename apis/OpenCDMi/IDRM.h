@@ -384,6 +384,22 @@ PUSH_WARNING(DISABLE_WARNING_DEPRECATED_USE)
 POP_WARNING()
     }
 
+    // RDKDEV-1281: multi-sample decrypt, additive alongside Decrypt() above (which is left
+    // untouched). Default implementation falls back to the single-sample Decrypt() using the
+    // first sample, so DRM implementations that don't override this keep working unmodified,
+    // just without multi-sample batching.
+    virtual CDMi_RESULT DecryptMulti(
+        uint8_t*                 inData,          // Incoming encrypted data
+        const uint32_t           inDataLength,    // Incoming encrypted data length
+        uint8_t**                outData,         // Outgoing decrypted data
+        uint32_t*                outDataLength,   // Outgoing decrypted data length
+        const SampleInfo*        sampleInfo,      // Array of per-sample decrypt information
+        const uint16_t           sampleCount,     // Number of samples in sampleInfo
+        const IStreamProperties* properties) {    // Stream Properties
+
+        return (Decrypt(inData, inDataLength, outData, outDataLength, sampleInfo, properties));
+    }
+
     virtual CDMi_RESULT ReleaseClearContent(
         const uint8_t* f_pbSessionKey,
         uint32_t f_cbSessionKey,
