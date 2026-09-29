@@ -86,7 +86,7 @@ namespace Exchange {
         // @example key: "exampleKey"
         // @param value: Output parameter receiving the associated value.
         // @example value: "exampleValue"
-        // @retval core::ERROR_NONE if the operation was successful
+        // @return true on success, false otherwise.
         virtual bool Get(const string& nameSpace, const string& key, string& value /* @out */) const = 0;
        
         // @brief Stores a key-value pair in the dictionary.
@@ -97,7 +97,7 @@ namespace Exchange {
         // @example key: "exampleKey"
         // @param value: Value associated with the key.
         // @example value: "exampleValue"
-        // @retval core::ERROR_NONE if the operation was successful
+        // @return true on success, false otherwise.
         virtual bool Set(const string& nameSpace, const string& key, const string& value) = 0;
        
         // @brief Retrieves an iterator for a namespace.
