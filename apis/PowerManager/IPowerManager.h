@@ -79,7 +79,8 @@ namespace WPEFramework
             WAKEUP_REASON_STRAUTHFAIL = 14    /* @text STR_AUTH_FAIL */,
             WAKEUP_REASON_CEC = 15            /* @text CEC */,
             WAKEUP_REASON_PRESENCE = 16       /* @text PRESENCE */,
-            WAKEUP_REASON_VOICE = 17       /* @text VOICE */
+            WAKEUP_REASON_VOICE = 17       /* @text VOICE */,
+            WAKEUP_REASON_MAINTENANCE = 18    /* @text MAINTENANCE */
         };
 
         enum SystemMode : uint8_t {
