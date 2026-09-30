@@ -15,11 +15,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.15)
 
 project(Definitions)
 
-find_package(Thunder REQUIRED)
+find_package(Thunder QUIET)
+
+if (NOT Thunder_FOUND)
+    find_package(WPEFramework REQUIRED)
+endif()
 
 project_version(5.0.0)
 
@@ -71,6 +75,10 @@ set_target_properties(${Target} PROPERTIES
         SOVERSION ${PROJECT_VERSION_MAJOR}
         PUBLIC_HEADER "${PUBLIC_HEADERS}" # specify the public headers
         )
+
+if(NAMESPACE STREQUAL "WPEFramework")
+    target_compile_definitions(${Target} PRIVATE Thunder=WPEFramework)
+endif()
 
 target_include_directories(${Target} PRIVATE
                                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../apis>
