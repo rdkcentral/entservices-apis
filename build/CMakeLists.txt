@@ -21,8 +21,12 @@ project(Definitions)
 
 find_package(Thunder QUIET)
 
-if (NOT Thunder_FOUND)
-    find_package(WPEFramework REQUIRED)
+if(NOT Thunder_FOUND)
+    find_package(WPEFramework QUIET)
+    if(NOT WPEFramework_FOUND)
+        message(FATAL_ERROR "Neither Thunder nor WPEFramework found in sysroot")
+    endif()
+    add_compile_definitions(Thunder=WPEFramework)
 endif()
 
 project_version(5.0.0)

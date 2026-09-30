@@ -32,6 +32,10 @@
 #include <plugins/IShell.h>
 #include <plugins/IStateControl.h>
 
+#if (THUNDER_VERSION < 5)
+#define Thunder WPEFramework
+#endif
+
 // All identifiers to identify an interface are allocated in this same directory
 // in the file calls Ids.h, please extend it with your requried interface number
 // if you are creating a new interface.
