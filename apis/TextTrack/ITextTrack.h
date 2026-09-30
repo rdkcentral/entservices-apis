@@ -19,6 +19,8 @@
 
 #pragma once
 
+// @stubgen:skip
+
 #include "Module.h"
 // @stubgen:include <com/IIteratorType.h>
 
