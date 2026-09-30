@@ -386,7 +386,7 @@ The following events are provided by the IConnectionProperties Interface:
 | Name | Type | Description |
 | :-------- | :-------- | :-------- |
 | params | object |  |
-| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE |
+| params.event | string | Possible values: PRE_RESOLUTION_CHANGE, POST_RESOLUTION_CHANGE, HDMI_CHANGE, HDCP_CHANGE, FRAMERATE_CHANGE |
 
 ### Examples
 
