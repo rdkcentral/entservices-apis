@@ -22,6 +22,8 @@
 
 #pragma once
 
+// @stubgen:skip
+
 #include "Module.h"
 #include <vector>
 
