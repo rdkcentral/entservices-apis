@@ -30,7 +30,7 @@ namespace Exchange {
         enum { ID = ID_DEVICESETTINGS };
 
         // Audio config structs
-        struct AudioTypeConfigInfo {
+        struct EXTERNAL AudioTypeConfigInfo {
             int32_t  typeId;
             string   name;
             uint32_t supportedCompressionMask;
@@ -38,7 +38,7 @@ namespace Exchange {
             uint32_t supportedStereoModeMask;
         };
 
-        struct AudioPortConfigInfo {
+        struct EXTERNAL AudioPortConfigInfo {
             int32_t audioPortType;           /* @brief AudioPortType enum value */
             int32_t audioPortIndex;
             int32_t connectedVideoPortType;
@@ -46,12 +46,12 @@ namespace Exchange {
         };
 
         // Front Panel Display config structs
-        struct FPDColorConfig {
+        struct EXTERNAL FPDColorConfig {
             int32_t  id;
             uint32_t color;
         };
 
-        struct FPDIndicatorConfig {
+        struct EXTERNAL FPDIndicatorConfig {
             int32_t id;
             int32_t maxBrightness;
             int32_t maxCycleRate;
@@ -60,13 +60,13 @@ namespace Exchange {
             int32_t colorMode;
         };
 
-        struct FPDColorBinding {
+        struct EXTERNAL FPDColorBinding {
             int32_t targetType;
             int32_t targetId;
             int32_t colorId;
         };
 
-        struct FPDTextDisplayConfig {
+        struct EXTERNAL FPDTextDisplayConfig {
             int32_t id;
             string  name;
             int32_t maxBrightness;
@@ -81,14 +81,14 @@ namespace Exchange {
         };
 
         // Video device config struct
-        struct VideoDeviceConfigInfo {
+        struct EXTERNAL VideoDeviceConfigInfo {
             uint32_t numSupportedDFCs;
             uint32_t supportedDFCsMask;
             int32_t  defaultDFC;             /* @brief VideoZoom enum value */
         };
 
         // Video port config structs
-        struct VideoPortTypeConfig {
+        struct EXTERNAL VideoPortTypeConfig {
             int32_t typeId;                  /* @brief VideoPort enum value */
             string  name;
             bool    dtcpSupported;
@@ -97,7 +97,7 @@ namespace Exchange {
             string  supportedResolutionNames;
         };
 
-        struct VideoPortPortConfig {
+        struct EXTERNAL VideoPortPortConfig {
             int32_t videoPortType;           /* @brief VideoPort enum value */
             int32_t videoPortIndex;
             int32_t connectedAudioPortType;
@@ -108,7 +108,7 @@ namespace Exchange {
         // Video port resolution config struct (populated from the 0th video port type;
         // callers needing resolutions for other types must use GetVideoPortResolutionConfig).
         // SoC configs define dsVideoPortRESOLUTION_NUMMAX = 32 as the absolute ceiling.
-        struct VideoPortResolutionConfig {
+        struct EXTERNAL VideoPortResolutionConfig {
             string  name;
             int32_t pixelResolution;   /* @brief VideoResolution enum value */
             int32_t aspectRatio;       /* @brief VideoAspectRatio enum value */
@@ -127,7 +127,7 @@ namespace Exchange {
         //   videoConfigs          : all SoCs 1 device                                          → 4
         //   videoPortTypes/Ports  : all SoCs 1 (HDMI or INTERNAL)                             → 4
         //   videoPortResolutions  : max 18 with 4K; SoC NUMMAX = 32                           → 32
-        struct DeviceSettingConfigs {
+        struct EXTERNAL DeviceSettingConfigs {
             std::vector<AudioTypeConfigInfo>        audioTypes            /* @restrict:8 */ ;
             std::vector<AudioPortConfigInfo>        audioPorts            /* @restrict:8 */ ;
             std::vector<FPDTextDisplayConfig>       textDisplays          /* @restrict:4 */ ;
