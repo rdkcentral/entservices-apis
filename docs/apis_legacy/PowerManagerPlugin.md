@@ -65,6 +65,7 @@ org.rdk.PowerManager interface methods:
 | [getWakeupSourceConfig](#getWakeupSourceConfig) | This API returns the currently configured values of all available wakeup sources that can be used to wakeup the device from deep sleep mode |
 | [setSystemMode](#setSystemMode) | Sets the mode of the set-top box for a specific duration before returning to normal mode |
 | [getPowerStateBeforeReboot](#getPowerStateBeforeReboot) | Returns the power state before reboot |
+| [getRebootReason](#getRebootReason) | Returns the reason of the most recent reboot executed via PowerManager |
 | [setTemperatureThresholds](#setTemperatureThresholds) | Sets the temperature threshold values |
 
 
@@ -1060,6 +1061,57 @@ This method takes no parameters.
     "id": 42,
     "result": {
         "powerStateBeforeReboot": "ON"
+    }
+}
+```
+
+<a name="getRebootReason"></a>
+## *getRebootReason*
+
+Returns the reason of the most recent reboot executed via PowerManager, i.e. the custom reason string supplied to SetPowerState (POWER_STATE_OFF case) or to Reboot's rebootReasonCustom parameter.
+
+### Events
+
+No Events
+
+### Parameters
+
+This method takes no parameters.
+
+### Result
+
+| Name | Type | Description |
+| :-------- | :-------- | :-------- |
+| result | object |  |
+| result.reason | string | The reboot reason |
+
+### Errors
+
+| Code | Message | Description |
+| :-------- | :-------- | :-------- |
+| 0 | ```ERROR_NONE``` | Indicates success |
+| 1 | ```ERROR_GENERAL``` | Indicates failure |
+
+### Example
+
+#### Request
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "method": "org.rdk.PowerManager.getRebootReason"
+}
+```
+
+#### Response
+
+```json
+{
+    "jsonrpc": "2.0",
+    "id": 42,
+    "result": {
+        "reason": "FIRMWARE_FAILURE"
     }
 }
 ```
