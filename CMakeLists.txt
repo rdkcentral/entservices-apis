@@ -23,7 +23,11 @@ if (BUILD_REFERENCE)
     add_definitions (-DBUILD_REFERENCE=${BUILD_REFERENCE})
 endif()
 
-find_package(Thunder REQUIRED)
+find_package(Thunder QUIET)
+
+if (NOT Thunder_FOUND)
+    find_package(WPEFramework REQUIRED)
+endif()
 
 project_version(5.0.0)
 
@@ -70,6 +74,10 @@ target_link_libraries(${Target}
           ${NAMESPACE}COM::${NAMESPACE}COM
           CompileSettingsDebug::CompileSettingsDebug
         )
+
+if(NAMESPACE STREQUAL "WPEFramework")
+    target_compile_definitions(${Target} PRIVATE Thunder=WPEFramework)
+endif()
 
 set_target_properties(${Target} PROPERTIES
         CXX_STANDARD 11
