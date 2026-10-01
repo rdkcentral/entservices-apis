@@ -27,7 +27,7 @@ namespace WPEFramework
 {
     namespace Exchange
     {
-        // @json @text:keep
+        // @json 1.0.0 @text:keep
         struct EXTERNAL IPowerManager : virtual public Core::IUnknown {
         enum { ID = ID_POWER_MANAGER };
 
@@ -389,8 +389,19 @@ namespace WPEFramework
         // @retval ErrorCode::ERROR_NONE: Indicates success
         // @retval ErrorCode::ERROR_GENERAL: Indicates failure
         virtual Core::hresult GetTimeSinceWakeup(TimeSinceWakeup &timeSinceWakeup /* @out */) = 0;
+
+        /** Schedule a deep sleep wakeup at a specific time */
+        // @text scheduleDeepSleepWakeup
+        // @brief Schedule device to wake from deep sleep to STANDBY state at a specific Unix timestamp.
+        //        The device will transition to POWER_STATE_STANDBY (ActiveStandby).
+        //        Note: requestorId is not currently delivered via OnPowerModeChanged.
+        // @param unixTime: Unix timestamp (seconds since epoch) when device should wake up
+        // @param requestorId: Unique identifier of the client scheduling the wakeup (alphanumeric + underscore + hyphen)
+        // @retval ErrorCode::ERROR_NONE: Indicates success
+        // @retval ErrorCode::ERROR_INVALID_PARAMETER: Invalid requestorId (contains whitespace or invalid characters)
+        // @retval ErrorCode::ERROR_GENERAL: Indicates failure
+        virtual Core::hresult ScheduleDeepSleepWakeup(const uint64_t unixTime, const string& requestorId) = 0;
     };
 
 } // namespace Exchange
 } // namespace WPEFramework
-
